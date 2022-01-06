@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -118,13 +119,6 @@ class Elasticsearch {
     required String packageID,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(packageID, 'packageID');
     final response = await _protocol.send(
       payload: null,
@@ -154,13 +148,6 @@ class Elasticsearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DomainName': domainName,
     };
@@ -275,13 +262,6 @@ class Elasticsearch {
     VPCOptions? vPCOptions,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DomainName': domainName,
       if (accessPolicies != null) 'AccessPolicies': accessPolicies,
@@ -343,13 +323,6 @@ class Elasticsearch {
     required DomainInformation sourceDomainInfo,
   }) async {
     ArgumentError.checkNotNull(connectionAlias, 'connectionAlias');
-    _s.validateStringLength(
-      'connectionAlias',
-      connectionAlias,
-      0,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(destinationDomainInfo, 'destinationDomainInfo');
     ArgumentError.checkNotNull(sourceDomainInfo, 'sourceDomainInfo');
     final $payload = <String, dynamic>{
@@ -396,21 +369,8 @@ class Elasticsearch {
     String? packageDescription,
   }) async {
     ArgumentError.checkNotNull(packageName, 'packageName');
-    _s.validateStringLength(
-      'packageName',
-      packageName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(packageSource, 'packageSource');
     ArgumentError.checkNotNull(packageType, 'packageType');
-    _s.validateStringLength(
-      'packageDescription',
-      packageDescription,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'PackageName': packageName,
       'PackageSource': packageSource,
@@ -440,13 +400,6 @@ class Elasticsearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -574,13 +527,6 @@ class Elasticsearch {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -611,13 +557,6 @@ class Elasticsearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -643,13 +582,6 @@ class Elasticsearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -716,12 +648,6 @@ class Elasticsearch {
   }) async {
     ArgumentError.checkNotNull(elasticsearchVersion, 'elasticsearchVersion');
     ArgumentError.checkNotNull(instanceType, 'instanceType');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-    );
     final $query = <String, List<String>>{
       if (domainName != null) 'domainName': [domainName],
     };
@@ -999,13 +925,6 @@ class Elasticsearch {
     required String packageID,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(packageID, 'packageID');
     final response = await _protocol.send(
       payload: null,
@@ -1030,12 +949,6 @@ class Elasticsearch {
       getCompatibleElasticsearchVersions({
     String? domainName,
   }) async {
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-    );
     final $query = <String, List<String>>{
       if (domainName != null) 'domainName': [domainName],
     };
@@ -1108,13 +1021,6 @@ class Elasticsearch {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1148,13 +1054,6 @@ class Elasticsearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1266,12 +1165,6 @@ class Elasticsearch {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(elasticsearchVersion, 'elasticsearchVersion');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1351,13 +1244,6 @@ class Elasticsearch {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1430,13 +1316,6 @@ class Elasticsearch {
     int? instanceCount,
   }) async {
     ArgumentError.checkNotNull(reservationName, 'reservationName');
-    _s.validateStringLength(
-      'reservationName',
-      reservationName,
-      5,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(reservedElasticsearchInstanceOfferingId,
         'reservedElasticsearchInstanceOfferingId');
     _s.validateNumRange(
@@ -1531,13 +1410,6 @@ class Elasticsearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DomainName': domainName,
     };
@@ -1642,13 +1514,6 @@ class Elasticsearch {
     VPCOptions? vPCOptions,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (accessPolicies != null) 'AccessPolicies': accessPolicies,
       if (advancedOptions != null) 'AdvancedOptions': advancedOptions,
@@ -1708,18 +1573,6 @@ class Elasticsearch {
   }) async {
     ArgumentError.checkNotNull(packageID, 'packageID');
     ArgumentError.checkNotNull(packageSource, 'packageSource');
-    _s.validateStringLength(
-      'commitMessage',
-      commitMessage,
-      0,
-      160,
-    );
-    _s.validateStringLength(
-      'packageDescription',
-      packageDescription,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'PackageID': packageID,
       'PackageSource': packageSource,
@@ -1757,13 +1610,6 @@ class Elasticsearch {
     bool? performCheckOnly,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targetVersion, 'targetVersion');
     final $payload = <String, dynamic>{
       'DomainName': domainName,

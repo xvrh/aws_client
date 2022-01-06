@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -688,12 +689,6 @@ class DirectConnect {
   Future<ConfirmCustomerAgreementResponse> confirmCustomerAgreement({
     String? agreementName,
   }) async {
-    _s.validateStringLength(
-      'agreementName',
-      agreementName,
-      0,
-      100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'OvertureService.ConfirmCustomerAgreement'

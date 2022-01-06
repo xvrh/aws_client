@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -53,21 +54,7 @@ class SagemakerEdgeManager {
     required String deviceName,
   }) async {
     ArgumentError.checkNotNull(deviceFleetName, 'deviceFleetName');
-    _s.validateStringLength(
-      'deviceFleetName',
-      deviceFleetName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceName, 'deviceName');
-    _s.validateStringLength(
-      'deviceName',
-      deviceName,
-      1,
-      63,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DeviceFleetName': deviceFleetName,
       'DeviceName': deviceName,
@@ -109,29 +96,8 @@ class SagemakerEdgeManager {
     List<Model>? models,
   }) async {
     ArgumentError.checkNotNull(agentVersion, 'agentVersion');
-    _s.validateStringLength(
-      'agentVersion',
-      agentVersion,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceFleetName, 'deviceFleetName');
-    _s.validateStringLength(
-      'deviceFleetName',
-      deviceFleetName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceName, 'deviceName');
-    _s.validateStringLength(
-      'deviceName',
-      deviceName,
-      1,
-      63,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'AgentVersion': agentVersion,
       'DeviceFleetName': deviceFleetName,

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -109,34 +110,8 @@ class IoTEvents {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(alarmModelName, 'alarmModelName');
-    _s.validateStringLength(
-      'alarmModelName',
-      alarmModelName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(alarmRule, 'alarmRule');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'alarmModelDescription',
-      alarmModelDescription,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      128,
-    );
     _s.validateNumRange(
       'severity',
       severity,
@@ -214,33 +189,7 @@ class IoTEvents {
     ArgumentError.checkNotNull(
         detectorModelDefinition, 'detectorModelDefinition');
     ArgumentError.checkNotNull(detectorModelName, 'detectorModelName');
-    _s.validateStringLength(
-      'detectorModelName',
-      detectorModelName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'detectorModelDescription',
-      detectorModelDescription,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      128,
-    );
     final $payload = <String, dynamic>{
       'detectorModelDefinition': detectorModelDefinition,
       'detectorModelName': detectorModelName,
@@ -288,19 +237,6 @@ class IoTEvents {
   }) async {
     ArgumentError.checkNotNull(inputDefinition, 'inputDefinition');
     ArgumentError.checkNotNull(inputName, 'inputName');
-    _s.validateStringLength(
-      'inputName',
-      inputName,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'inputDescription',
-      inputDescription,
-      0,
-      128,
-    );
     final $payload = <String, dynamic>{
       'inputDefinition': inputDefinition,
       'inputName': inputName,
@@ -332,13 +268,6 @@ class IoTEvents {
     required String alarmModelName,
   }) async {
     ArgumentError.checkNotNull(alarmModelName, 'alarmModelName');
-    _s.validateStringLength(
-      'alarmModelName',
-      alarmModelName,
-      1,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -363,13 +292,6 @@ class IoTEvents {
     required String detectorModelName,
   }) async {
     ArgumentError.checkNotNull(detectorModelName, 'detectorModelName');
-    _s.validateStringLength(
-      'detectorModelName',
-      detectorModelName,
-      1,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -393,13 +315,6 @@ class IoTEvents {
     required String inputName,
   }) async {
     ArgumentError.checkNotNull(inputName, 'inputName');
-    _s.validateStringLength(
-      'inputName',
-      inputName,
-      1,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -428,19 +343,6 @@ class IoTEvents {
     String? alarmModelVersion,
   }) async {
     ArgumentError.checkNotNull(alarmModelName, 'alarmModelName');
-    _s.validateStringLength(
-      'alarmModelName',
-      alarmModelName,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'alarmModelVersion',
-      alarmModelVersion,
-      1,
-      128,
-    );
     final $query = <String, List<String>>{
       if (alarmModelVersion != null) 'version': [alarmModelVersion],
     };
@@ -473,19 +375,6 @@ class IoTEvents {
     String? detectorModelVersion,
   }) async {
     ArgumentError.checkNotNull(detectorModelName, 'detectorModelName');
-    _s.validateStringLength(
-      'detectorModelName',
-      detectorModelName,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'detectorModelVersion',
-      detectorModelVersion,
-      1,
-      128,
-    );
     final $query = <String, List<String>>{
       if (detectorModelVersion != null) 'version': [detectorModelVersion],
     };
@@ -541,13 +430,6 @@ class IoTEvents {
     required String inputName,
   }) async {
     ArgumentError.checkNotNull(inputName, 'inputName');
-    _s.validateStringLength(
-      'inputName',
-      inputName,
-      1,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -640,13 +522,6 @@ class IoTEvents {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(alarmModelName, 'alarmModelName');
-    _s.validateStringLength(
-      'alarmModelName',
-      alarmModelName,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -728,13 +603,6 @@ class IoTEvents {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(detectorModelName, 'detectorModelName');
-    _s.validateStringLength(
-      'detectorModelName',
-      detectorModelName,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -885,13 +753,6 @@ class IoTEvents {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'resourceArn': [resourceArn],
     };
@@ -983,13 +844,6 @@ class IoTEvents {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $query = <String, List<String>>{
       'resourceArn': [resourceArn],
@@ -1024,13 +878,6 @@ class IoTEvents {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'resourceArn': [resourceArn],
@@ -1092,28 +939,8 @@ class IoTEvents {
     int? severity,
   }) async {
     ArgumentError.checkNotNull(alarmModelName, 'alarmModelName');
-    _s.validateStringLength(
-      'alarmModelName',
-      alarmModelName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(alarmRule, 'alarmRule');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'alarmModelDescription',
-      alarmModelDescription,
-      0,
-      128,
-    );
     _s.validateNumRange(
       'severity',
       severity,
@@ -1175,27 +1002,7 @@ class IoTEvents {
     ArgumentError.checkNotNull(
         detectorModelDefinition, 'detectorModelDefinition');
     ArgumentError.checkNotNull(detectorModelName, 'detectorModelName');
-    _s.validateStringLength(
-      'detectorModelName',
-      detectorModelName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'detectorModelDescription',
-      detectorModelDescription,
-      0,
-      128,
-    );
     final $payload = <String, dynamic>{
       'detectorModelDefinition': detectorModelDefinition,
       'roleArn': roleArn,
@@ -1237,19 +1044,6 @@ class IoTEvents {
   }) async {
     ArgumentError.checkNotNull(inputDefinition, 'inputDefinition');
     ArgumentError.checkNotNull(inputName, 'inputName');
-    _s.validateStringLength(
-      'inputName',
-      inputName,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'inputDescription',
-      inputDescription,
-      0,
-      128,
-    );
     final $payload = <String, dynamic>{
       'inputDefinition': inputDefinition,
       if (inputDescription != null) 'inputDescription': inputDescription,

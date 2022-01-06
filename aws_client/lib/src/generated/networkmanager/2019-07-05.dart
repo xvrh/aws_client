@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -57,13 +58,6 @@ class NetworkManager {
     required String attachmentId,
   }) async {
     ArgumentError.checkNotNull(attachmentId, 'attachmentId');
-    _s.validateStringLength(
-      'attachmentId',
-      attachmentId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -106,35 +100,8 @@ class NetworkManager {
     String? linkId,
   }) async {
     ArgumentError.checkNotNull(connectPeerId, 'connectPeerId');
-    _s.validateStringLength(
-      'connectPeerId',
-      connectPeerId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceId, 'deviceId');
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'linkId',
-      linkId,
-      0,
-      50,
-    );
     final $payload = <String, dynamic>{
       'ConnectPeerId': connectPeerId,
       'DeviceId': deviceId,
@@ -191,35 +158,8 @@ class NetworkManager {
     String? linkId,
   }) async {
     ArgumentError.checkNotNull(customerGatewayArn, 'customerGatewayArn');
-    _s.validateStringLength(
-      'customerGatewayArn',
-      customerGatewayArn,
-      0,
-      500,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceId, 'deviceId');
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'linkId',
-      linkId,
-      0,
-      50,
-    );
     final $payload = <String, dynamic>{
       'CustomerGatewayArn': customerGatewayArn,
       'DeviceId': deviceId,
@@ -261,29 +201,8 @@ class NetworkManager {
     required String linkId,
   }) async {
     ArgumentError.checkNotNull(deviceId, 'deviceId');
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(linkId, 'linkId');
-    _s.validateStringLength(
-      'linkId',
-      linkId,
-      0,
-      50,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DeviceId': deviceId,
       'LinkId': linkId,
@@ -335,36 +254,9 @@ class NetworkManager {
     String? linkId,
   }) async {
     ArgumentError.checkNotNull(deviceId, 'deviceId');
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         transitGatewayConnectPeerArn, 'transitGatewayConnectPeerArn');
-    _s.validateStringLength(
-      'transitGatewayConnectPeerArn',
-      transitGatewayConnectPeerArn,
-      0,
-      500,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'linkId',
-      linkId,
-      0,
-      50,
-    );
     final $payload = <String, dynamic>{
       'DeviceId': deviceId,
       'TransitGatewayConnectPeerArn': transitGatewayConnectPeerArn,
@@ -421,36 +313,9 @@ class NetworkManager {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(coreNetworkId, 'coreNetworkId');
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(edgeLocation, 'edgeLocation');
-    _s.validateStringLength(
-      'edgeLocation',
-      edgeLocation,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(options, 'options');
     ArgumentError.checkNotNull(transportAttachmentId, 'transportAttachmentId');
-    _s.validateStringLength(
-      'transportAttachmentId',
-      transportAttachmentId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'CoreNetworkId': coreNetworkId,
       'EdgeLocation': edgeLocation,
@@ -509,34 +374,8 @@ class NetworkManager {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(connectAttachmentId, 'connectAttachmentId');
-    _s.validateStringLength(
-      'connectAttachmentId',
-      connectAttachmentId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(insideCidrBlocks, 'insideCidrBlocks');
     ArgumentError.checkNotNull(peerAddress, 'peerAddress');
-    _s.validateStringLength(
-      'peerAddress',
-      peerAddress,
-      1,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'coreNetworkAddress',
-      coreNetworkAddress,
-      1,
-      50,
-    );
     final $payload = <String, dynamic>{
       'ConnectAttachmentId': connectAttachmentId,
       'InsideCidrBlocks': insideCidrBlocks,
@@ -599,47 +438,8 @@ class NetworkManager {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(connectedDeviceId, 'connectedDeviceId');
-    _s.validateStringLength(
-      'connectedDeviceId',
-      connectedDeviceId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceId, 'deviceId');
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'connectedLinkId',
-      connectedLinkId,
-      0,
-      50,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'linkId',
-      linkId,
-      0,
-      50,
-    );
     final $payload = <String, dynamic>{
       'ConnectedDeviceId': connectedDeviceId,
       'DeviceId': deviceId,
@@ -691,25 +491,6 @@ class NetworkManager {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'GlobalNetworkId': globalNetworkId,
       'ClientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -789,49 +570,6 @@ class NetworkManager {
     String? vendor,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'model',
-      model,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'serialNumber',
-      serialNumber,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'siteId',
-      siteId,
-      0,
-      50,
-    );
-    _s.validateStringLength(
-      'type',
-      type,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'vendor',
-      vendor,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (awsLocation != null) 'AWSLocation': awsLocation,
       if (description != null) 'Description': description,
@@ -873,12 +611,6 @@ class NetworkManager {
     String? description,
     List<Tag>? tags,
   }) async {
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (tags != null) 'Tags': tags,
@@ -941,39 +673,7 @@ class NetworkManager {
   }) async {
     ArgumentError.checkNotNull(bandwidth, 'bandwidth');
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(siteId, 'siteId');
-    _s.validateStringLength(
-      'siteId',
-      siteId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'provider',
-      provider,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'type',
-      type,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'Bandwidth': bandwidth,
       'SiteId': siteId,
@@ -1036,19 +736,6 @@ class NetworkManager {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (location != null) 'Location': location,
@@ -1093,27 +780,7 @@ class NetworkManager {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(coreNetworkId, 'coreNetworkId');
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(vpnConnectionArn, 'vpnConnectionArn');
-    _s.validateStringLength(
-      'vpnConnectionArn',
-      vpnConnectionArn,
-      0,
-      500,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'CoreNetworkId': coreNetworkId,
       'VpnConnectionArn': vpnConnectionArn,
@@ -1164,28 +831,8 @@ class NetworkManager {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(coreNetworkId, 'coreNetworkId');
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subnetArns, 'subnetArns');
     ArgumentError.checkNotNull(vpcArn, 'vpcArn');
-    _s.validateStringLength(
-      'vpcArn',
-      vpcArn,
-      0,
-      500,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'CoreNetworkId': coreNetworkId,
       'SubnetArns': subnetArns,
@@ -1218,13 +865,6 @@ class NetworkManager {
     required String attachmentId,
   }) async {
     ArgumentError.checkNotNull(attachmentId, 'attachmentId');
-    _s.validateStringLength(
-      'attachmentId',
-      attachmentId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1249,13 +889,6 @@ class NetworkManager {
     required String connectPeerId,
   }) async {
     ArgumentError.checkNotNull(connectPeerId, 'connectPeerId');
-    _s.validateStringLength(
-      'connectPeerId',
-      connectPeerId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1284,21 +917,7 @@ class NetworkManager {
     required String globalNetworkId,
   }) async {
     ArgumentError.checkNotNull(connectionId, 'connectionId');
-    _s.validateStringLength(
-      'connectionId',
-      connectionId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1325,13 +944,6 @@ class NetworkManager {
     required String coreNetworkId,
   }) async {
     ArgumentError.checkNotNull(coreNetworkId, 'coreNetworkId');
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1362,13 +974,6 @@ class NetworkManager {
     required int policyVersionId,
   }) async {
     ArgumentError.checkNotNull(coreNetworkId, 'coreNetworkId');
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyVersionId, 'policyVersionId');
     final response = await _protocol.send(
       payload: null,
@@ -1400,21 +1005,7 @@ class NetworkManager {
     required String globalNetworkId,
   }) async {
     ArgumentError.checkNotNull(deviceId, 'deviceId');
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1442,13 +1033,6 @@ class NetworkManager {
     required String globalNetworkId,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1478,21 +1062,7 @@ class NetworkManager {
     required String linkId,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(linkId, 'linkId');
-    _s.validateStringLength(
-      'linkId',
-      linkId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1518,13 +1088,6 @@ class NetworkManager {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1500,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1553,21 +1116,7 @@ class NetworkManager {
     required String siteId,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(siteId, 'siteId');
-    _s.validateStringLength(
-      'siteId',
-      siteId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1599,21 +1148,7 @@ class NetworkManager {
     required String transitGatewayArn,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(transitGatewayArn, 'transitGatewayArn');
-    _s.validateStringLength(
-      'transitGatewayArn',
-      transitGatewayArn,
-      0,
-      500,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1655,12 +1190,6 @@ class NetworkManager {
       1,
       500,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
     final $query = <String, List<String>>{
       if (globalNetworkIds != null) 'globalNetworkIds': globalNetworkIds,
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1695,21 +1224,7 @@ class NetworkManager {
     required String globalNetworkId,
   }) async {
     ArgumentError.checkNotNull(connectPeerId, 'connectPeerId');
-    _s.validateStringLength(
-      'connectPeerId',
-      connectPeerId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1739,21 +1254,7 @@ class NetworkManager {
     required String globalNetworkId,
   }) async {
     ArgumentError.checkNotNull(customerGatewayArn, 'customerGatewayArn');
-    _s.validateStringLength(
-      'customerGatewayArn',
-      customerGatewayArn,
-      0,
-      500,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1788,29 +1289,8 @@ class NetworkManager {
     required String linkId,
   }) async {
     ArgumentError.checkNotNull(deviceId, 'deviceId');
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(linkId, 'linkId');
-    _s.validateStringLength(
-      'linkId',
-      linkId,
-      0,
-      50,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'deviceId': [deviceId],
       'linkId': [linkId],
@@ -1846,22 +1326,8 @@ class NetworkManager {
     required String transitGatewayConnectPeerArn,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         transitGatewayConnectPeerArn, 'transitGatewayConnectPeerArn');
-    _s.validateStringLength(
-      'transitGatewayConnectPeerArn',
-      transitGatewayConnectPeerArn,
-      0,
-      500,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1892,13 +1358,6 @@ class NetworkManager {
     required int policyVersionId,
   }) async {
     ArgumentError.checkNotNull(coreNetworkId, 'coreNetworkId');
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyVersionId, 'policyVersionId');
     final response = await _protocol.send(
       payload: null,
@@ -1923,13 +1382,6 @@ class NetworkManager {
     required String attachmentId,
   }) async {
     ArgumentError.checkNotNull(attachmentId, 'attachmentId');
-    _s.validateStringLength(
-      'attachmentId',
-      attachmentId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1953,13 +1405,6 @@ class NetworkManager {
     required String connectPeerId,
   }) async {
     ArgumentError.checkNotNull(connectPeerId, 'connectPeerId');
-    _s.validateStringLength(
-      'connectPeerId',
-      connectPeerId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1996,24 +1441,11 @@ class NetworkManager {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (connectPeerIds != null) 'connectPeerIds': connectPeerIds,
@@ -2062,30 +1494,11 @@ class NetworkManager {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      0,
-      50,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (connectionIds != null) 'connectionIds': connectionIds,
@@ -2119,13 +1532,6 @@ class NetworkManager {
     required String coreNetworkId,
   }) async {
     ArgumentError.checkNotNull(coreNetworkId, 'coreNetworkId');
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2162,25 +1568,12 @@ class NetworkManager {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(coreNetworkId, 'coreNetworkId');
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyVersionId, 'policyVersionId');
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -2220,13 +1613,6 @@ class NetworkManager {
     int? policyVersionId,
   }) async {
     ArgumentError.checkNotNull(coreNetworkId, 'coreNetworkId');
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       if (alias != null) 'alias': [alias.toValue()],
       if (policyVersionId != null)
@@ -2273,24 +1659,11 @@ class NetworkManager {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (customerGatewayArns != null)
@@ -2339,30 +1712,11 @@ class NetworkManager {
     String? siteId,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'siteId',
-      siteId,
-      0,
-      50,
     );
     final $query = <String, List<String>>{
       if (deviceIds != null) 'deviceIds': deviceIds,
@@ -2412,36 +1766,11 @@ class NetworkManager {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      0,
-      50,
-    );
-    _s.validateStringLength(
-      'linkId',
-      linkId,
-      0,
-      50,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (deviceId != null) 'deviceId': [deviceId],
@@ -2501,42 +1830,11 @@ class NetworkManager {
     String? type,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'provider',
-      provider,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'siteId',
-      siteId,
-      0,
-      50,
-    );
-    _s.validateStringLength(
-      'type',
-      type,
-      0,
-      256,
     );
     final $query = <String, List<String>>{
       if (linkIds != null) 'linkIds': linkIds,
@@ -2635,30 +1933,11 @@ class NetworkManager {
     String? resourceType,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'resourceType',
-      resourceType,
-      0,
-      256,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -2775,60 +2054,11 @@ class NetworkManager {
     String? resourceType,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'accountId',
-      accountId,
-      12,
-      12,
-    );
-    _s.validateStringLength(
-      'awsRegion',
-      awsRegion,
-      1,
-      63,
-    );
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'registeredGatewayArn',
-      registeredGatewayArn,
-      0,
-      1500,
-    );
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1500,
-    );
-    _s.validateStringLength(
-      'resourceType',
-      resourceType,
-      0,
-      256,
     );
     final $query = <String, List<String>>{
       if (accountId != null) 'accountId': [accountId],
@@ -2966,60 +2196,11 @@ class NetworkManager {
     String? resourceType,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'accountId',
-      accountId,
-      12,
-      12,
-    );
-    _s.validateStringLength(
-      'awsRegion',
-      awsRegion,
-      1,
-      63,
-    );
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'registeredGatewayArn',
-      registeredGatewayArn,
-      0,
-      1500,
-    );
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1500,
-    );
-    _s.validateStringLength(
-      'resourceType',
-      resourceType,
-      0,
-      256,
     );
     final $query = <String, List<String>>{
       if (accountId != null) 'accountId': [accountId],
@@ -3095,13 +2276,6 @@ class NetworkManager {
     List<RouteType>? types,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(routeTableIdentifier, 'routeTableIdentifier');
     final $payload = <String, dynamic>{
       'RouteTableIdentifier': routeTableIdentifier,
@@ -3223,60 +2397,11 @@ class NetworkManager {
     String? resourceType,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'accountId',
-      accountId,
-      12,
-      12,
-    );
-    _s.validateStringLength(
-      'awsRegion',
-      awsRegion,
-      1,
-      63,
-    );
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'registeredGatewayArn',
-      registeredGatewayArn,
-      0,
-      1500,
-    );
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1500,
-    );
-    _s.validateStringLength(
-      'resourceType',
-      resourceType,
-      0,
-      256,
     );
     final $query = <String, List<String>>{
       if (accountId != null) 'accountId': [accountId],
@@ -3313,13 +2438,6 @@ class NetworkManager {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1500,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3347,21 +2465,7 @@ class NetworkManager {
     required String routeAnalysisId,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(routeAnalysisId, 'routeAnalysisId');
-    _s.validateStringLength(
-      'routeAnalysisId',
-      routeAnalysisId,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3386,13 +2490,6 @@ class NetworkManager {
     required String attachmentId,
   }) async {
     ArgumentError.checkNotNull(attachmentId, 'attachmentId');
-    _s.validateStringLength(
-      'attachmentId',
-      attachmentId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3429,24 +2526,11 @@ class NetworkManager {
     List<String>? siteIds,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -3493,24 +2577,11 @@ class NetworkManager {
     List<String>? transitGatewayConnectPeerArns,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -3558,24 +2629,11 @@ class NetworkManager {
     List<String>? transitGatewayArns,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -3607,13 +2665,6 @@ class NetworkManager {
     required String attachmentId,
   }) async {
     ArgumentError.checkNotNull(attachmentId, 'attachmentId');
-    _s.validateStringLength(
-      'attachmentId',
-      attachmentId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3655,29 +2706,11 @@ class NetworkManager {
     String? nextToken,
     AttachmentState? state,
   }) async {
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-    );
-    _s.validateStringLength(
-      'edgeLocation',
-      edgeLocation,
-      1,
-      63,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (attachmentType != null) 'attachmentType': [attachmentType.toValue()],
@@ -3721,29 +2754,11 @@ class NetworkManager {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'connectAttachmentId',
-      connectAttachmentId,
-      0,
-      50,
-    );
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (connectAttachmentId != null)
@@ -3784,24 +2799,11 @@ class NetworkManager {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(coreNetworkId, 'coreNetworkId');
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -3840,12 +2842,6 @@ class NetworkManager {
       1,
       500,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -3874,13 +2870,6 @@ class NetworkManager {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1500,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3924,26 +2913,7 @@ class NetworkManager {
     int? latestVersionId,
   }) async {
     ArgumentError.checkNotNull(coreNetworkId, 'coreNetworkId');
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyDocument, 'policyDocument');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'PolicyDocument': jsonEncode(policyDocument),
       'ClientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -3980,13 +2950,6 @@ class NetworkManager {
   }) async {
     ArgumentError.checkNotNull(policyDocument, 'policyDocument');
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1500,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'PolicyDocument': jsonEncode(policyDocument),
     };
@@ -4020,21 +2983,7 @@ class NetworkManager {
     required String transitGatewayArn,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(transitGatewayArn, 'transitGatewayArn');
-    _s.validateStringLength(
-      'transitGatewayArn',
-      transitGatewayArn,
-      0,
-      500,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'TransitGatewayArn': transitGatewayArn,
     };
@@ -4063,13 +3012,6 @@ class NetworkManager {
     required String attachmentId,
   }) async {
     ArgumentError.checkNotNull(attachmentId, 'attachmentId');
-    _s.validateStringLength(
-      'attachmentId',
-      attachmentId,
-      0,
-      50,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -4101,13 +3043,6 @@ class NetworkManager {
     required int policyVersionId,
   }) async {
     ArgumentError.checkNotNull(coreNetworkId, 'coreNetworkId');
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyVersionId, 'policyVersionId');
     final response = await _protocol.send(
       payload: null,
@@ -4156,13 +3091,6 @@ class NetworkManager {
   }) async {
     ArgumentError.checkNotNull(destination, 'destination');
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(source, 'source');
     final $payload = <String, dynamic>{
       'Destination': destination,
@@ -4200,13 +3128,6 @@ class NetworkManager {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1500,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -4238,13 +3159,6 @@ class NetworkManager {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1500,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -4292,39 +3206,7 @@ class NetworkManager {
     String? linkId,
   }) async {
     ArgumentError.checkNotNull(connectionId, 'connectionId');
-    _s.validateStringLength(
-      'connectionId',
-      connectionId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'connectedLinkId',
-      connectedLinkId,
-      0,
-      50,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'linkId',
-      linkId,
-      0,
-      50,
-    );
     final $payload = <String, dynamic>{
       if (connectedLinkId != null) 'ConnectedLinkId': connectedLinkId,
       if (description != null) 'Description': description,
@@ -4359,19 +3241,6 @@ class NetworkManager {
     String? description,
   }) async {
     ArgumentError.checkNotNull(coreNetworkId, 'coreNetworkId');
-    _s.validateStringLength(
-      'coreNetworkId',
-      coreNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
     };
@@ -4442,57 +3311,7 @@ class NetworkManager {
     String? vendor,
   }) async {
     ArgumentError.checkNotNull(deviceId, 'deviceId');
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'model',
-      model,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'serialNumber',
-      serialNumber,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'siteId',
-      siteId,
-      0,
-      50,
-    );
-    _s.validateStringLength(
-      'type',
-      type,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'vendor',
-      vendor,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (awsLocation != null) 'AWSLocation': awsLocation,
       if (description != null) 'Description': description,
@@ -4535,19 +3354,6 @@ class NetworkManager {
     String? description,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
     };
@@ -4603,39 +3409,7 @@ class NetworkManager {
     String? type,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(linkId, 'linkId');
-    _s.validateStringLength(
-      'linkId',
-      linkId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'provider',
-      provider,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'type',
-      type,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (bandwidth != null) 'Bandwidth': bandwidth,
       if (description != null) 'Description': description,
@@ -4675,22 +3449,8 @@ class NetworkManager {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(metadata, 'metadata');
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1500,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Metadata': metadata,
     };
@@ -4746,27 +3506,7 @@ class NetworkManager {
     Location? location,
   }) async {
     ArgumentError.checkNotNull(globalNetworkId, 'globalNetworkId');
-    _s.validateStringLength(
-      'globalNetworkId',
-      globalNetworkId,
-      0,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(siteId, 'siteId');
-    _s.validateStringLength(
-      'siteId',
-      siteId,
-      0,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (location != null) 'Location': location,
@@ -4808,13 +3548,6 @@ class NetworkManager {
     List<String>? removeSubnetArns,
   }) async {
     ArgumentError.checkNotNull(attachmentId, 'attachmentId');
-    _s.validateStringLength(
-      'attachmentId',
-      attachmentId,
-      0,
-      50,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (addSubnetArns != null) 'AddSubnetArns': addSubnetArns,
       if (options != null) 'Options': options,

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -259,19 +260,6 @@ class IoTEventsData {
     String? keyValue,
   }) async {
     ArgumentError.checkNotNull(alarmModelName, 'alarmModelName');
-    _s.validateStringLength(
-      'alarmModelName',
-      alarmModelName,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'keyValue',
-      keyValue,
-      1,
-      128,
-    );
     final $query = <String, List<String>>{
       if (keyValue != null) 'keyValue': [keyValue],
     };
@@ -305,19 +293,6 @@ class IoTEventsData {
     String? keyValue,
   }) async {
     ArgumentError.checkNotNull(detectorModelName, 'detectorModelName');
-    _s.validateStringLength(
-      'detectorModelName',
-      detectorModelName,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'keyValue',
-      keyValue,
-      1,
-      128,
-    );
     final $query = <String, List<String>>{
       if (keyValue != null) 'keyValue': [keyValue],
     };
@@ -355,13 +330,6 @@ class IoTEventsData {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(alarmModelName, 'alarmModelName');
-    _s.validateStringLength(
-      'alarmModelName',
-      alarmModelName,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -409,24 +377,11 @@ class IoTEventsData {
     String? stateName,
   }) async {
     ArgumentError.checkNotNull(detectorModelName, 'detectorModelName');
-    _s.validateStringLength(
-      'detectorModelName',
-      detectorModelName,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       250,
-    );
-    _s.validateStringLength(
-      'stateName',
-      stateName,
-      1,
-      128,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],

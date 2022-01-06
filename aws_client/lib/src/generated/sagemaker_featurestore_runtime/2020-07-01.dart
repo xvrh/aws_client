@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -116,30 +117,9 @@ class SageMakerFeatureStoreRuntime {
     required String recordIdentifierValueAsString,
   }) async {
     ArgumentError.checkNotNull(eventTime, 'eventTime');
-    _s.validateStringLength(
-      'eventTime',
-      eventTime,
-      0,
-      358400,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(featureGroupName, 'featureGroupName');
-    _s.validateStringLength(
-      'featureGroupName',
-      featureGroupName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         recordIdentifierValueAsString, 'recordIdentifierValueAsString');
-    _s.validateStringLength(
-      'recordIdentifierValueAsString',
-      recordIdentifierValueAsString,
-      0,
-      358400,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'EventTime': [eventTime],
       'RecordIdentifierValueAsString': [recordIdentifierValueAsString],
@@ -180,22 +160,8 @@ class SageMakerFeatureStoreRuntime {
     List<String>? featureNames,
   }) async {
     ArgumentError.checkNotNull(featureGroupName, 'featureGroupName');
-    _s.validateStringLength(
-      'featureGroupName',
-      featureGroupName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         recordIdentifierValueAsString, 'recordIdentifierValueAsString');
-    _s.validateStringLength(
-      'recordIdentifierValueAsString',
-      recordIdentifierValueAsString,
-      0,
-      358400,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'RecordIdentifierValueAsString': [recordIdentifierValueAsString],
       if (featureNames != null) 'FeatureName': featureNames,
@@ -245,13 +211,6 @@ class SageMakerFeatureStoreRuntime {
     required List<FeatureValue> record,
   }) async {
     ArgumentError.checkNotNull(featureGroupName, 'featureGroupName');
-    _s.validateStringLength(
-      'featureGroupName',
-      featureGroupName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(record, 'record');
     final $payload = <String, dynamic>{
       'Record': record,

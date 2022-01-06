@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -86,12 +87,6 @@ class TimestreamWrite {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'Timestream_20181101.CreateDatabase'
@@ -521,13 +516,6 @@ class TimestreamWrite {
     required String resourceARN,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'Timestream_20181101.ListTagsForResource'
@@ -567,13 +555,6 @@ class TimestreamWrite {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -612,13 +593,6 @@ class TimestreamWrite {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -687,13 +661,6 @@ class TimestreamWrite {
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
     ArgumentError.checkNotNull(kmsKeyId, 'kmsKeyId');
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'Timestream_20181101.UpdateDatabase'

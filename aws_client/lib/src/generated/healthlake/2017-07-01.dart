@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -75,18 +76,6 @@ class HealthLake {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(datastoreTypeVersion, 'datastoreTypeVersion');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'datastoreName',
-      datastoreName,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'HealthLake.CreateFHIRDatastore'
@@ -124,12 +113,6 @@ class HealthLake {
   Future<DeleteFHIRDatastoreResponse> deleteFHIRDatastore({
     String? datastoreId,
   }) async {
-    _s.validateStringLength(
-      'datastoreId',
-      datastoreId,
-      1,
-      32,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'HealthLake.DeleteFHIRDatastore'
@@ -163,12 +146,6 @@ class HealthLake {
   Future<DescribeFHIRDatastoreResponse> describeFHIRDatastore({
     String? datastoreId,
   }) async {
-    _s.validateStringLength(
-      'datastoreId',
-      datastoreId,
-      1,
-      32,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'HealthLake.DescribeFHIRDatastore'
@@ -206,21 +183,7 @@ class HealthLake {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(datastoreId, 'datastoreId');
-    _s.validateStringLength(
-      'datastoreId',
-      datastoreId,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'HealthLake.DescribeFHIRExportJob'
@@ -258,21 +221,7 @@ class HealthLake {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(datastoreId, 'datastoreId');
-    _s.validateStringLength(
-      'datastoreId',
-      datastoreId,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'HealthLake.DescribeFHIRImportJob'
@@ -318,12 +267,6 @@ class HealthLake {
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -390,30 +333,11 @@ class HealthLake {
     DateTime? submittedBefore,
   }) async {
     ArgumentError.checkNotNull(datastoreId, 'datastoreId');
-    _s.validateStringLength(
-      'datastoreId',
-      datastoreId,
-      1,
-      32,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      64,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -486,30 +410,11 @@ class HealthLake {
     DateTime? submittedBefore,
   }) async {
     ArgumentError.checkNotNull(datastoreId, 'datastoreId');
-    _s.validateStringLength(
-      'datastoreId',
-      datastoreId,
-      1,
-      32,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      64,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -549,13 +454,6 @@ class HealthLake {
     required String resourceARN,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'HealthLake.ListTagsForResource'
@@ -606,34 +504,8 @@ class HealthLake {
     String? jobName,
   }) async {
     ArgumentError.checkNotNull(dataAccessRoleArn, 'dataAccessRoleArn');
-    _s.validateStringLength(
-      'dataAccessRoleArn',
-      dataAccessRoleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(datastoreId, 'datastoreId');
-    _s.validateStringLength(
-      'datastoreId',
-      datastoreId,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(outputDataConfig, 'outputDataConfig');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'HealthLake.StartFHIRExportJob'
@@ -689,35 +561,9 @@ class HealthLake {
     String? jobName,
   }) async {
     ArgumentError.checkNotNull(dataAccessRoleArn, 'dataAccessRoleArn');
-    _s.validateStringLength(
-      'dataAccessRoleArn',
-      dataAccessRoleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(datastoreId, 'datastoreId');
-    _s.validateStringLength(
-      'datastoreId',
-      datastoreId,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(inputDataConfig, 'inputDataConfig');
     ArgumentError.checkNotNull(jobOutputDataConfig, 'jobOutputDataConfig');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'HealthLake.StartFHIRImportJob'
@@ -757,13 +603,6 @@ class HealthLake {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -798,13 +637,6 @@ class HealthLake {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -75,13 +76,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationAggregatorName, 'configurationAggregatorName');
-    _s.validateStringLength(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceIdentifiers, 'resourceIdentifiers');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -162,13 +156,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(authorizedAccountId, 'authorizedAccountId');
     ArgumentError.checkNotNull(authorizedAwsRegion, 'authorizedAwsRegion');
-    _s.validateStringLength(
-      'authorizedAwsRegion',
-      authorizedAwsRegion,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteAggregationAuthorization'
@@ -206,13 +193,6 @@ class ConfigService {
     required String configRuleName,
   }) async {
     ArgumentError.checkNotNull(configRuleName, 'configRuleName');
-    _s.validateStringLength(
-      'configRuleName',
-      configRuleName,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteConfigRule'
@@ -241,13 +221,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationAggregatorName, 'configurationAggregatorName');
-    _s.validateStringLength(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteConfigurationAggregator'
@@ -287,13 +260,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationRecorderName, 'configurationRecorderName');
-    _s.validateStringLength(
-      'configurationRecorderName',
-      configurationRecorderName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteConfigurationRecorder'
@@ -327,13 +293,6 @@ class ConfigService {
     required String conformancePackName,
   }) async {
     ArgumentError.checkNotNull(conformancePackName, 'conformancePackName');
-    _s.validateStringLength(
-      'conformancePackName',
-      conformancePackName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteConformancePack'
@@ -365,13 +324,6 @@ class ConfigService {
     required String deliveryChannelName,
   }) async {
     ArgumentError.checkNotNull(deliveryChannelName, 'deliveryChannelName');
-    _s.validateStringLength(
-      'deliveryChannelName',
-      deliveryChannelName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteDeliveryChannel'
@@ -403,13 +355,6 @@ class ConfigService {
     required String configRuleName,
   }) async {
     ArgumentError.checkNotNull(configRuleName, 'configRuleName');
-    _s.validateStringLength(
-      'configRuleName',
-      configRuleName,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteEvaluationResults'
@@ -448,13 +393,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         organizationConfigRuleName, 'organizationConfigRuleName');
-    _s.validateStringLength(
-      'organizationConfigRuleName',
-      organizationConfigRuleName,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteOrganizationConfigRule'
@@ -495,13 +433,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         organizationConformancePackName, 'organizationConformancePackName');
-    _s.validateStringLength(
-      'organizationConformancePackName',
-      organizationConformancePackName,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteOrganizationConformancePack'
@@ -534,13 +465,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(requesterAccountId, 'requesterAccountId');
     ArgumentError.checkNotNull(requesterAwsRegion, 'requesterAwsRegion');
-    _s.validateStringLength(
-      'requesterAwsRegion',
-      requesterAwsRegion,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeletePendingAggregationRequest'
@@ -576,13 +500,6 @@ class ConfigService {
     String? resourceType,
   }) async {
     ArgumentError.checkNotNull(configRuleName, 'configRuleName');
-    _s.validateStringLength(
-      'configRuleName',
-      configRuleName,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteRemediationConfiguration'
@@ -622,13 +539,6 @@ class ConfigService {
     required List<RemediationExceptionResourceKey> resourceKeys,
   }) async {
     ArgumentError.checkNotNull(configRuleName, 'configRuleName');
-    _s.validateStringLength(
-      'configRuleName',
-      configRuleName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceKeys, 'resourceKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -667,21 +577,7 @@ class ConfigService {
     required String resourceType,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      768,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
-    _s.validateStringLength(
-      'resourceType',
-      resourceType,
-      1,
-      196,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteResourceConfig'
@@ -711,13 +607,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         retentionConfigurationName, 'retentionConfigurationName');
-    _s.validateStringLength(
-      'retentionConfigurationName',
-      retentionConfigurationName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteRetentionConfiguration'
@@ -746,13 +635,6 @@ class ConfigService {
     required String queryName,
   }) async {
     ArgumentError.checkNotNull(queryName, 'queryName');
-    _s.validateStringLength(
-      'queryName',
-      queryName,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeleteStoredQuery'
@@ -797,13 +679,6 @@ class ConfigService {
     required String deliveryChannelName,
   }) async {
     ArgumentError.checkNotNull(deliveryChannelName, 'deliveryChannelName');
-    _s.validateStringLength(
-      'deliveryChannelName',
-      deliveryChannelName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DeliverConfigSnapshot'
@@ -857,13 +732,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationAggregatorName, 'configurationAggregatorName');
-    _s.validateStringLength(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -932,13 +800,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationAggregatorName, 'configurationAggregatorName');
-    _s.validateStringLength(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -1162,18 +1023,6 @@ class ConfigService {
       0,
       100,
     );
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      768,
-    );
-    _s.validateStringLength(
-      'resourceType',
-      resourceType,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.DescribeComplianceByResource'
@@ -1336,13 +1185,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationAggregatorName, 'configurationAggregatorName');
-    _s.validateStringLength(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -1530,13 +1372,6 @@ class ConfigService {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(conformancePackName, 'conformancePackName');
-    _s.validateStringLength(
-      'conformancePackName',
-      conformancePackName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -2096,13 +1931,6 @@ class ConfigService {
     List<RemediationExceptionResourceKey>? resourceKeys,
   }) async {
     ArgumentError.checkNotNull(configRuleName, 'configRuleName');
-    _s.validateStringLength(
-      'configRuleName',
-      configRuleName,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -2161,13 +1989,6 @@ class ConfigService {
     List<ResourceKey>? resourceKeys,
   }) async {
     ArgumentError.checkNotNull(configRuleName, 'configRuleName');
-    _s.validateStringLength(
-      'configRuleName',
-      configRuleName,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -2300,30 +2121,9 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
     ArgumentError.checkNotNull(awsRegion, 'awsRegion');
-    _s.validateStringLength(
-      'awsRegion',
-      awsRegion,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(configRuleName, 'configRuleName');
-    _s.validateStringLength(
-      'configRuleName',
-      configRuleName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         configurationAggregatorName, 'configurationAggregatorName');
-    _s.validateStringLength(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -2396,13 +2196,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationAggregatorName, 'configurationAggregatorName');
-    _s.validateStringLength(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -2475,13 +2268,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationAggregatorName, 'configurationAggregatorName');
-    _s.validateStringLength(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -2554,13 +2340,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationAggregatorName, 'configurationAggregatorName');
-    _s.validateStringLength(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -2609,13 +2388,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationAggregatorName, 'configurationAggregatorName');
-    _s.validateStringLength(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceIdentifier, 'resourceIdentifier');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2670,13 +2442,6 @@ class ConfigService {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(configRuleName, 'configRuleName');
-    _s.validateStringLength(
-      'configRuleName',
-      configRuleName,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -2737,21 +2502,7 @@ class ConfigService {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      768,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
-    _s.validateStringLength(
-      'resourceType',
-      resourceType,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.GetComplianceDetailsByResource'
@@ -2860,13 +2611,6 @@ class ConfigService {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(conformancePackName, 'conformancePackName');
-    _s.validateStringLength(
-      'conformancePackName',
-      conformancePackName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -3085,13 +2829,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         organizationConfigRuleName, 'organizationConfigRuleName');
-    _s.validateStringLength(
-      'organizationConfigRuleName',
-      organizationConfigRuleName,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -3154,13 +2891,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         organizationConformancePackName, 'organizationConformancePackName');
-    _s.validateStringLength(
-      'organizationConformancePackName',
-      organizationConformancePackName,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -3254,13 +2984,6 @@ class ConfigService {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      768,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
     _s.validateNumRange(
       'limit',
@@ -3305,13 +3028,6 @@ class ConfigService {
     required String queryName,
   }) async {
     ArgumentError.checkNotNull(queryName, 'queryName');
-    _s.validateStringLength(
-      'queryName',
-      queryName,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.GetStoredQuery'
@@ -3374,13 +3090,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationAggregatorName, 'configurationAggregatorName');
-    _s.validateStringLength(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
     _s.validateNumRange(
       'limit',
@@ -3564,13 +3273,6 @@ class ConfigService {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1000,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -3617,13 +3319,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(authorizedAccountId, 'authorizedAccountId');
     ArgumentError.checkNotNull(authorizedAwsRegion, 'authorizedAwsRegion');
-    _s.validateStringLength(
-      'authorizedAwsRegion',
-      authorizedAwsRegion,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.PutAggregationAuthorization'
@@ -3771,13 +3466,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationAggregatorName, 'configurationAggregatorName');
-    _s.validateStringLength(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.PutConfigurationAggregator'
@@ -3909,37 +3597,6 @@ class ConfigService {
     String? templateS3Uri,
   }) async {
     ArgumentError.checkNotNull(conformancePackName, 'conformancePackName');
-    _s.validateStringLength(
-      'conformancePackName',
-      conformancePackName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'deliveryS3Bucket',
-      deliveryS3Bucket,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'deliveryS3KeyPrefix',
-      deliveryS3KeyPrefix,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'templateBody',
-      templateBody,
-      1,
-      51200,
-    );
-    _s.validateStringLength(
-      'templateS3Uri',
-      templateS3Uri,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.PutConformancePack'
@@ -4083,13 +3740,6 @@ class ConfigService {
     required ExternalEvaluation externalEvaluation,
   }) async {
     ArgumentError.checkNotNull(configRuleName, 'configRuleName');
-    _s.validateStringLength(
-      'configRuleName',
-      configRuleName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(externalEvaluation, 'externalEvaluation');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4180,13 +3830,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         organizationConfigRuleName, 'organizationConfigRuleName');
-    _s.validateStringLength(
-      'organizationConfigRuleName',
-      organizationConfigRuleName,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.PutOrganizationConfigRule'
@@ -4301,37 +3944,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         organizationConformancePackName, 'organizationConformancePackName');
-    _s.validateStringLength(
-      'organizationConformancePackName',
-      organizationConformancePackName,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'deliveryS3Bucket',
-      deliveryS3Bucket,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'deliveryS3KeyPrefix',
-      deliveryS3KeyPrefix,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'templateBody',
-      templateBody,
-      1,
-      51200,
-    );
-    _s.validateStringLength(
-      'templateS3Uri',
-      templateS3Uri,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.PutOrganizationConformancePack'
@@ -4435,20 +4047,7 @@ class ConfigService {
     String? message,
   }) async {
     ArgumentError.checkNotNull(configRuleName, 'configRuleName');
-    _s.validateStringLength(
-      'configRuleName',
-      configRuleName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceKeys, 'resourceKeys');
-    _s.validateStringLength(
-      'message',
-      message,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.PutRemediationExceptions'
@@ -4530,29 +4129,8 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(configuration, 'configuration');
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      768,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
-    _s.validateStringLength(
-      'resourceType',
-      resourceType,
-      1,
-      196,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaVersionId, 'schemaVersionId');
-    _s.validateStringLength(
-      'schemaVersionId',
-      schemaVersionId,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.PutResourceConfig'
@@ -4719,21 +4297,7 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationAggregatorName, 'configurationAggregatorName');
-    _s.validateStringLength(
-      'configurationAggregatorName',
-      configurationAggregatorName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(expression, 'expression');
-    _s.validateStringLength(
-      'expression',
-      expression,
-      1,
-      4096,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -4795,13 +4359,6 @@ class ConfigService {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(expression, 'expression');
-    _s.validateStringLength(
-      'expression',
-      expression,
-      1,
-      4096,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -4911,13 +4468,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationRecorderName, 'configurationRecorderName');
-    _s.validateStringLength(
-      'configurationRecorderName',
-      configurationRecorderName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.StartConfigurationRecorder'
@@ -4958,13 +4508,6 @@ class ConfigService {
     required List<ResourceKey> resourceKeys,
   }) async {
     ArgumentError.checkNotNull(configRuleName, 'configRuleName');
-    _s.validateStringLength(
-      'configRuleName',
-      configRuleName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceKeys, 'resourceKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4998,13 +4541,6 @@ class ConfigService {
   }) async {
     ArgumentError.checkNotNull(
         configurationRecorderName, 'configurationRecorderName');
-    _s.validateStringLength(
-      'configurationRecorderName',
-      configurationRecorderName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'StarlingDoveService.StopConfigurationRecorder'
@@ -5043,13 +4579,6 @@ class ConfigService {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1000,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5086,13 +4615,6 @@ class ConfigService {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1000,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

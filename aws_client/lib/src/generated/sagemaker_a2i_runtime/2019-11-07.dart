@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -93,13 +94,6 @@ class AugmentedAIRuntime {
     required String humanLoopName,
   }) async {
     ArgumentError.checkNotNull(humanLoopName, 'humanLoopName');
-    _s.validateStringLength(
-      'humanLoopName',
-      humanLoopName,
-      1,
-      63,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -123,13 +117,6 @@ class AugmentedAIRuntime {
     required String humanLoopName,
   }) async {
     ArgumentError.checkNotNull(humanLoopName, 'humanLoopName');
-    _s.validateStringLength(
-      'humanLoopName',
-      humanLoopName,
-      1,
-      63,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -179,24 +166,11 @@ class AugmentedAIRuntime {
     SortOrder? sortOrder,
   }) async {
     ArgumentError.checkNotNull(flowDefinitionArn, 'flowDefinitionArn');
-    _s.validateStringLength(
-      'flowDefinitionArn',
-      flowDefinitionArn,
-      0,
-      1024,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final $query = <String, List<String>>{
       'FlowDefinitionArn': [flowDefinitionArn],
@@ -248,22 +222,8 @@ class AugmentedAIRuntime {
     HumanLoopDataAttributes? dataAttributes,
   }) async {
     ArgumentError.checkNotNull(flowDefinitionArn, 'flowDefinitionArn');
-    _s.validateStringLength(
-      'flowDefinitionArn',
-      flowDefinitionArn,
-      0,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(humanLoopInput, 'humanLoopInput');
     ArgumentError.checkNotNull(humanLoopName, 'humanLoopName');
-    _s.validateStringLength(
-      'humanLoopName',
-      humanLoopName,
-      1,
-      63,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'FlowDefinitionArn': flowDefinitionArn,
       'HumanLoopInput': humanLoopInput,
@@ -292,13 +252,6 @@ class AugmentedAIRuntime {
     required String humanLoopName,
   }) async {
     ArgumentError.checkNotNull(humanLoopName, 'humanLoopName');
-    _s.validateStringLength(
-      'humanLoopName',
-      humanLoopName,
-      1,
-      63,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'HumanLoopName': humanLoopName,
     };

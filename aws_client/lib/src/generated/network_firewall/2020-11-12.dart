@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -179,31 +180,6 @@ class NetworkFirewall {
     String? updateToken,
   }) async {
     ArgumentError.checkNotNull(firewallPolicyArn, 'firewallPolicyArn');
-    _s.validateStringLength(
-      'firewallPolicyArn',
-      firewallPolicyArn,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'firewallArn',
-      firewallArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'firewallName',
-      firewallName,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'updateToken',
-      updateToken,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.AssociateFirewallPolicy'
@@ -281,24 +257,6 @@ class NetworkFirewall {
     String? updateToken,
   }) async {
     ArgumentError.checkNotNull(subnetMappings, 'subnetMappings');
-    _s.validateStringLength(
-      'firewallArn',
-      firewallArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'firewallName',
-      firewallName,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'updateToken',
-      updateToken,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.AssociateSubnets'
@@ -406,36 +364,9 @@ class NetworkFirewall {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(firewallName, 'firewallName');
-    _s.validateStringLength(
-      'firewallName',
-      firewallName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(firewallPolicyArn, 'firewallPolicyArn');
-    _s.validateStringLength(
-      'firewallPolicyArn',
-      firewallPolicyArn,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subnetMappings, 'subnetMappings');
     ArgumentError.checkNotNull(vpcId, 'vpcId');
-    _s.validateStringLength(
-      'vpcId',
-      vpcId,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      512,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.CreateFirewall'
@@ -513,19 +444,6 @@ class NetworkFirewall {
   }) async {
     ArgumentError.checkNotNull(firewallPolicy, 'firewallPolicy');
     ArgumentError.checkNotNull(firewallPolicyName, 'firewallPolicyName');
-    _s.validateStringLength(
-      'firewallPolicyName',
-      firewallPolicyName,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      512,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.CreateFirewallPolicy'
@@ -669,26 +587,7 @@ class NetworkFirewall {
   }) async {
     ArgumentError.checkNotNull(capacity, 'capacity');
     ArgumentError.checkNotNull(ruleGroupName, 'ruleGroupName');
-    _s.validateStringLength(
-      'ruleGroupName',
-      ruleGroupName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      512,
-    );
-    _s.validateStringLength(
-      'rules',
-      rules,
-      0,
-      2000000,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.CreateRuleGroup'
@@ -751,18 +650,6 @@ class NetworkFirewall {
     String? firewallArn,
     String? firewallName,
   }) async {
-    _s.validateStringLength(
-      'firewallArn',
-      firewallArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'firewallName',
-      firewallName,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.DeleteFirewall'
@@ -805,18 +692,6 @@ class NetworkFirewall {
     String? firewallPolicyArn,
     String? firewallPolicyName,
   }) async {
-    _s.validateStringLength(
-      'firewallPolicyArn',
-      firewallPolicyArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'firewallPolicyName',
-      firewallPolicyName,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.DeleteFirewallPolicy'
@@ -853,13 +728,6 @@ class NetworkFirewall {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.DeleteResourcePolicy'
@@ -909,18 +777,6 @@ class NetworkFirewall {
     String? ruleGroupName,
     RuleGroupType? type,
   }) async {
-    _s.validateStringLength(
-      'ruleGroupArn',
-      ruleGroupArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'ruleGroupName',
-      ruleGroupName,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.DeleteRuleGroup'
@@ -962,18 +818,6 @@ class NetworkFirewall {
     String? firewallArn,
     String? firewallName,
   }) async {
-    _s.validateStringLength(
-      'firewallArn',
-      firewallArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'firewallName',
-      firewallName,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.DescribeFirewall'
@@ -1014,18 +858,6 @@ class NetworkFirewall {
     String? firewallPolicyArn,
     String? firewallPolicyName,
   }) async {
-    _s.validateStringLength(
-      'firewallPolicyArn',
-      firewallPolicyArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'firewallPolicyName',
-      firewallPolicyName,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.DescribeFirewallPolicy'
@@ -1067,18 +899,6 @@ class NetworkFirewall {
     String? firewallArn,
     String? firewallName,
   }) async {
-    _s.validateStringLength(
-      'firewallArn',
-      firewallArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'firewallName',
-      firewallName,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.DescribeLoggingConfiguration'
@@ -1113,13 +933,6 @@ class NetworkFirewall {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.DescribeResourcePolicy'
@@ -1169,18 +982,6 @@ class NetworkFirewall {
     String? ruleGroupName,
     RuleGroupType? type,
   }) async {
-    _s.validateStringLength(
-      'ruleGroupArn',
-      ruleGroupArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'ruleGroupName',
-      ruleGroupName,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.DescribeRuleGroup'
@@ -1236,18 +1037,6 @@ class NetworkFirewall {
     String? ruleGroupName,
     RuleGroupType? type,
   }) async {
-    _s.validateStringLength(
-      'ruleGroupArn',
-      ruleGroupArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'ruleGroupName',
-      ruleGroupName,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.DescribeRuleGroupMetadata'
@@ -1317,24 +1106,6 @@ class NetworkFirewall {
     String? updateToken,
   }) async {
     ArgumentError.checkNotNull(subnetIds, 'subnetIds');
-    _s.validateStringLength(
-      'firewallArn',
-      firewallArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'firewallName',
-      firewallName,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'updateToken',
-      updateToken,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.DisassociateSubnets'
@@ -1386,12 +1157,6 @@ class NetworkFirewall {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -1452,12 +1217,6 @@ class NetworkFirewall {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.ListFirewalls'
@@ -1516,12 +1275,6 @@ class NetworkFirewall {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.ListRuleGroups'
@@ -1578,24 +1331,11 @@ class NetworkFirewall {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       0,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -1703,21 +1443,7 @@ class NetworkFirewall {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(policy, 'policy');
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      395000,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.PutResourcePolicy'
@@ -1759,13 +1485,6 @@ class NetworkFirewall {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -1809,13 +1528,6 @@ class NetworkFirewall {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -1890,24 +1602,6 @@ class NetworkFirewall {
     String? updateToken,
   }) async {
     ArgumentError.checkNotNull(deleteProtection, 'deleteProtection');
-    _s.validateStringLength(
-      'firewallArn',
-      firewallArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'firewallName',
-      firewallName,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'updateToken',
-      updateToken,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.UpdateFirewallDeleteProtection'
@@ -1976,30 +1670,6 @@ class NetworkFirewall {
     String? firewallName,
     String? updateToken,
   }) async {
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      512,
-    );
-    _s.validateStringLength(
-      'firewallArn',
-      firewallArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'firewallName',
-      firewallName,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'updateToken',
-      updateToken,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.UpdateFirewallDescription'
@@ -2083,31 +1753,6 @@ class NetworkFirewall {
   }) async {
     ArgumentError.checkNotNull(firewallPolicy, 'firewallPolicy');
     ArgumentError.checkNotNull(updateToken, 'updateToken');
-    _s.validateStringLength(
-      'updateToken',
-      updateToken,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      512,
-    );
-    _s.validateStringLength(
-      'firewallPolicyArn',
-      firewallPolicyArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'firewallPolicyName',
-      firewallPolicyName,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.UpdateFirewallPolicy'
@@ -2188,24 +1833,6 @@ class NetworkFirewall {
   }) async {
     ArgumentError.checkNotNull(
         firewallPolicyChangeProtection, 'firewallPolicyChangeProtection');
-    _s.validateStringLength(
-      'firewallArn',
-      firewallArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'firewallName',
-      firewallName,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'updateToken',
-      updateToken,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target':
@@ -2289,18 +1916,6 @@ class NetworkFirewall {
     String? firewallName,
     LoggingConfiguration? loggingConfiguration,
   }) async {
-    _s.validateStringLength(
-      'firewallArn',
-      firewallArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'firewallName',
-      firewallName,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.UpdateLoggingConfiguration'
@@ -2417,37 +2032,6 @@ class NetworkFirewall {
     RuleGroupType? type,
   }) async {
     ArgumentError.checkNotNull(updateToken, 'updateToken');
-    _s.validateStringLength(
-      'updateToken',
-      updateToken,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      512,
-    );
-    _s.validateStringLength(
-      'ruleGroupArn',
-      ruleGroupArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'ruleGroupName',
-      ruleGroupName,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'rules',
-      rules,
-      0,
-      2000000,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.UpdateRuleGroup'
@@ -2525,24 +2109,6 @@ class NetworkFirewall {
   }) async {
     ArgumentError.checkNotNull(
         subnetChangeProtection, 'subnetChangeProtection');
-    _s.validateStringLength(
-      'firewallArn',
-      firewallArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'firewallName',
-      firewallName,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'updateToken',
-      updateToken,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'NetworkFirewall_20201112.UpdateSubnetChangeProtection'

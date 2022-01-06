@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -193,29 +194,8 @@ class MarketplaceCommerceAnalytics {
     ArgumentError.checkNotNull(dataSetType, 'dataSetType');
     ArgumentError.checkNotNull(
         destinationS3BucketName, 'destinationS3BucketName');
-    _s.validateStringLength(
-      'destinationS3BucketName',
-      destinationS3BucketName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleNameArn, 'roleNameArn');
-    _s.validateStringLength(
-      'roleNameArn',
-      roleNameArn,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(snsTopicArn, 'snsTopicArn');
-    _s.validateStringLength(
-      'snsTopicArn',
-      snsTopicArn,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MarketplaceCommerceAnalytics20150701.GenerateDataSet'
@@ -316,30 +296,9 @@ class MarketplaceCommerceAnalytics {
     ArgumentError.checkNotNull(dataSetType, 'dataSetType');
     ArgumentError.checkNotNull(
         destinationS3BucketName, 'destinationS3BucketName');
-    _s.validateStringLength(
-      'destinationS3BucketName',
-      destinationS3BucketName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(fromDate, 'fromDate');
     ArgumentError.checkNotNull(roleNameArn, 'roleNameArn');
-    _s.validateStringLength(
-      'roleNameArn',
-      roleNameArn,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(snsTopicArn, 'snsTopicArn');
-    _s.validateStringLength(
-      'snsTopicArn',
-      snsTopicArn,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':

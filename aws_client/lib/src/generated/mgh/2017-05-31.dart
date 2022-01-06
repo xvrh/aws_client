@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -96,21 +97,7 @@ class MigrationHub {
   }) async {
     ArgumentError.checkNotNull(createdArtifact, 'createdArtifact');
     ArgumentError.checkNotNull(migrationTaskName, 'migrationTaskName');
-    _s.validateStringLength(
-      'migrationTaskName',
-      migrationTaskName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(progressUpdateStream, 'progressUpdateStream');
-    _s.validateStringLength(
-      'progressUpdateStream',
-      progressUpdateStream,
-      1,
-      50,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSMigrationHub.AssociateCreatedArtifact'
@@ -165,21 +152,7 @@ class MigrationHub {
   }) async {
     ArgumentError.checkNotNull(discoveredResource, 'discoveredResource');
     ArgumentError.checkNotNull(migrationTaskName, 'migrationTaskName');
-    _s.validateStringLength(
-      'migrationTaskName',
-      migrationTaskName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(progressUpdateStream, 'progressUpdateStream');
-    _s.validateStringLength(
-      'progressUpdateStream',
-      progressUpdateStream,
-      1,
-      50,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSMigrationHub.AssociateDiscoveredResource'
@@ -227,13 +200,6 @@ class MigrationHub {
   }) async {
     ArgumentError.checkNotNull(
         progressUpdateStreamName, 'progressUpdateStreamName');
-    _s.validateStringLength(
-      'progressUpdateStreamName',
-      progressUpdateStreamName,
-      1,
-      50,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSMigrationHub.CreateProgressUpdateStream'
@@ -306,13 +272,6 @@ class MigrationHub {
   }) async {
     ArgumentError.checkNotNull(
         progressUpdateStreamName, 'progressUpdateStreamName');
-    _s.validateStringLength(
-      'progressUpdateStreamName',
-      progressUpdateStreamName,
-      1,
-      50,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSMigrationHub.DeleteProgressUpdateStream'
@@ -348,13 +307,6 @@ class MigrationHub {
     required String applicationId,
   }) async {
     ArgumentError.checkNotNull(applicationId, 'applicationId');
-    _s.validateStringLength(
-      'applicationId',
-      applicationId,
-      1,
-      1600,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSMigrationHub.DescribeApplicationState'
@@ -395,21 +347,7 @@ class MigrationHub {
     required String progressUpdateStream,
   }) async {
     ArgumentError.checkNotNull(migrationTaskName, 'migrationTaskName');
-    _s.validateStringLength(
-      'migrationTaskName',
-      migrationTaskName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(progressUpdateStream, 'progressUpdateStream');
-    _s.validateStringLength(
-      'progressUpdateStream',
-      progressUpdateStream,
-      1,
-      50,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSMigrationHub.DescribeMigrationTask'
@@ -480,29 +418,8 @@ class MigrationHub {
     bool? dryRun,
   }) async {
     ArgumentError.checkNotNull(createdArtifactName, 'createdArtifactName');
-    _s.validateStringLength(
-      'createdArtifactName',
-      createdArtifactName,
-      1,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(migrationTaskName, 'migrationTaskName');
-    _s.validateStringLength(
-      'migrationTaskName',
-      migrationTaskName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(progressUpdateStream, 'progressUpdateStream');
-    _s.validateStringLength(
-      'progressUpdateStream',
-      progressUpdateStream,
-      1,
-      50,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSMigrationHub.DisassociateCreatedArtifact'
@@ -556,29 +473,8 @@ class MigrationHub {
     bool? dryRun,
   }) async {
     ArgumentError.checkNotNull(configurationId, 'configurationId');
-    _s.validateStringLength(
-      'configurationId',
-      configurationId,
-      1,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(migrationTaskName, 'migrationTaskName');
-    _s.validateStringLength(
-      'migrationTaskName',
-      migrationTaskName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(progressUpdateStream, 'progressUpdateStream');
-    _s.validateStringLength(
-      'progressUpdateStream',
-      progressUpdateStream,
-      1,
-      50,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSMigrationHub.DisassociateDiscoveredResource'
@@ -631,21 +527,7 @@ class MigrationHub {
     bool? dryRun,
   }) async {
     ArgumentError.checkNotNull(migrationTaskName, 'migrationTaskName');
-    _s.validateStringLength(
-      'migrationTaskName',
-      migrationTaskName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(progressUpdateStream, 'progressUpdateStream');
-    _s.validateStringLength(
-      'progressUpdateStream',
-      progressUpdateStream,
-      1,
-      50,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSMigrationHub.ImportMigrationTask'
@@ -696,12 +578,6 @@ class MigrationHub {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -768,32 +644,12 @@ class MigrationHub {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(migrationTaskName, 'migrationTaskName');
-    _s.validateStringLength(
-      'migrationTaskName',
-      migrationTaskName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(progressUpdateStream, 'progressUpdateStream');
-    _s.validateStringLength(
-      'progressUpdateStream',
-      progressUpdateStream,
-      1,
-      50,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       10,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -848,32 +704,12 @@ class MigrationHub {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(migrationTaskName, 'migrationTaskName');
-    _s.validateStringLength(
-      'migrationTaskName',
-      migrationTaskName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(progressUpdateStream, 'progressUpdateStream');
-    _s.validateStringLength(
-      'progressUpdateStream',
-      progressUpdateStream,
-      1,
-      50,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       10,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -942,18 +778,6 @@ class MigrationHub {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'resourceName',
-      resourceName,
-      1,
-      1600,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSMigrationHub.ListMigrationTasks'
@@ -1000,12 +824,6 @@ class MigrationHub {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1062,13 +880,6 @@ class MigrationHub {
     DateTime? updateDateTime,
   }) async {
     ArgumentError.checkNotNull(applicationId, 'applicationId');
-    _s.validateStringLength(
-      'applicationId',
-      applicationId,
-      1,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(status, 'status');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1148,13 +959,6 @@ class MigrationHub {
     bool? dryRun,
   }) async {
     ArgumentError.checkNotNull(migrationTaskName, 'migrationTaskName');
-    _s.validateStringLength(
-      'migrationTaskName',
-      migrationTaskName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(nextUpdateSeconds, 'nextUpdateSeconds');
     _s.validateNumRange(
       'nextUpdateSeconds',
@@ -1164,13 +968,6 @@ class MigrationHub {
       isRequired: true,
     );
     ArgumentError.checkNotNull(progressUpdateStream, 'progressUpdateStream');
-    _s.validateStringLength(
-      'progressUpdateStream',
-      progressUpdateStream,
-      1,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(task, 'task');
     ArgumentError.checkNotNull(updateDateTime, 'updateDateTime');
     final headers = <String, String>{
@@ -1277,21 +1074,7 @@ class MigrationHub {
     bool? dryRun,
   }) async {
     ArgumentError.checkNotNull(migrationTaskName, 'migrationTaskName');
-    _s.validateStringLength(
-      'migrationTaskName',
-      migrationTaskName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(progressUpdateStream, 'progressUpdateStream');
-    _s.validateStringLength(
-      'progressUpdateStream',
-      progressUpdateStream,
-      1,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceAttributeList, 'resourceAttributeList');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

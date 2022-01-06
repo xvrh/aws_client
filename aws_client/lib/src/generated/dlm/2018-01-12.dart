@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -70,21 +71,7 @@ class Dlm {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(description, 'description');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      500,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(executionRoleArn, 'executionRoleArn');
-    _s.validateStringLength(
-      'executionRoleArn',
-      executionRoleArn,
-      0,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyDetails, 'policyDetails');
     ArgumentError.checkNotNull(state, 'state');
     final $payload = <String, dynamic>{
@@ -116,13 +103,6 @@ class Dlm {
     required String policyId,
   }) async {
     ArgumentError.checkNotNull(policyId, 'policyId');
-    _s.validateStringLength(
-      'policyId',
-      policyId,
-      0,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -199,13 +179,6 @@ class Dlm {
     required String policyId,
   }) async {
     ArgumentError.checkNotNull(policyId, 'policyId');
-    _s.validateStringLength(
-      'policyId',
-      policyId,
-      0,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -227,13 +200,6 @@ class Dlm {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -259,13 +225,6 @@ class Dlm {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -294,13 +253,6 @@ class Dlm {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -345,25 +297,6 @@ class Dlm {
     SettablePolicyStateValues? state,
   }) async {
     ArgumentError.checkNotNull(policyId, 'policyId');
-    _s.validateStringLength(
-      'policyId',
-      policyId,
-      0,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      500,
-    );
-    _s.validateStringLength(
-      'executionRoleArn',
-      executionRoleArn,
-      0,
-      2048,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (executionRoleArn != null) 'ExecutionRoleArn': executionRoleArn,

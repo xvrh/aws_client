@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -15,8 +16,8 @@ import '../../shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import '2010-05-15.meta.dart';
 
+import '2010-05-15.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// CloudFormation allows you to create and manage Amazon Web Services
@@ -143,41 +144,11 @@ class CloudFormation {
     String? typeNameAlias,
     VersionBump? versionBump,
   }) async {
-    _s.validateStringLength(
-      'executionRoleArn',
-      executionRoleArn,
-      1,
-      256,
-    );
     _s.validateNumRange(
       'majorVersion',
       majorVersion,
       1,
       100000,
-    );
-    _s.validateStringLength(
-      'publicTypeArn',
-      publicTypeArn,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'publisherId',
-      publisherId,
-      1,
-      40,
-    );
-    _s.validateStringLength(
-      'typeName',
-      typeName,
-      10,
-      204,
-    );
-    _s.validateStringLength(
-      'typeNameAlias',
-      typeNameAlias,
-      10,
-      204,
     );
     final $request = <String, dynamic>{};
     autoUpdate?.also((arg) => $request['AutoUpdate'] = arg);
@@ -262,12 +233,6 @@ class CloudFormation {
     String? clientRequestToken,
   }) async {
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      128,
-    );
     final $request = <String, dynamic>{};
     $request['StackName'] = stackName;
     clientRequestToken?.also((arg) => $request['ClientRequestToken'] = arg);
@@ -382,25 +347,6 @@ class CloudFormation {
     String? roleARN,
   }) async {
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'stackName',
-      stackName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'roleARN',
-      roleARN,
-      20,
-      2048,
-    );
     final $request = <String, dynamic>{};
     $request['StackName'] = stackName;
     clientRequestToken?.also((arg) => $request['ClientRequestToken'] = arg);
@@ -696,51 +642,7 @@ class CloudFormation {
     bool? usePreviousTemplate,
   }) async {
     ArgumentError.checkNotNull(changeSetName, 'changeSetName');
-    _s.validateStringLength(
-      'changeSetName',
-      changeSetName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'stackName',
-      stackName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'roleARN',
-      roleARN,
-      20,
-      2048,
-    );
-    _s.validateStringLength(
-      'templateBody',
-      templateBody,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'templateURL',
-      templateURL,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     $request['ChangeSetName'] = changeSetName;
     $request['StackName'] = stackName;
@@ -1065,42 +967,6 @@ class CloudFormation {
     int? timeoutInMinutes,
   }) async {
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'roleARN',
-      roleARN,
-      20,
-      2048,
-    );
-    _s.validateStringLength(
-      'stackPolicyBody',
-      stackPolicyBody,
-      1,
-      16384,
-    );
-    _s.validateStringLength(
-      'stackPolicyURL',
-      stackPolicyURL,
-      1,
-      1350,
-    );
-    _s.validateStringLength(
-      'templateBody',
-      templateBody,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'templateURL',
-      templateURL,
-      1,
-      1024,
-    );
     _s.validateNumRange(
       'timeoutInMinutes',
       timeoutInMinutes,
@@ -1266,12 +1132,6 @@ class CloudFormation {
   }) async {
     ArgumentError.checkNotNull(regions, 'regions');
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
-    _s.validateStringLength(
-      'operationId',
-      operationId,
-      1,
-      128,
-    );
     final $request = <String, dynamic>{};
     $request['Regions'] = regions;
     $request['StackSetName'] = stackSetName;
@@ -1557,42 +1417,6 @@ class CloudFormation {
     String? templateURL,
   }) async {
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
-    _s.validateStringLength(
-      'administrationRoleARN',
-      administrationRoleARN,
-      20,
-      2048,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'executionRoleName',
-      executionRoleName,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'templateBody',
-      templateBody,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'templateURL',
-      templateURL,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     $request['StackSetName'] = stackSetName;
     administrationRoleARN
@@ -1663,18 +1487,6 @@ class CloudFormation {
     ThirdPartyType? type,
     String? typeName,
   }) async {
-    _s.validateStringLength(
-      'arn',
-      arn,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'typeName',
-      typeName,
-      10,
-      204,
-    );
     final $request = <String, dynamic>{};
     arn?.also((arg) => $request['Arn'] = arg);
     type?.also((arg) => $request['Type'] = arg.toValue());
@@ -1718,19 +1530,6 @@ class CloudFormation {
     String? stackName,
   }) async {
     ArgumentError.checkNotNull(changeSetName, 'changeSetName');
-    _s.validateStringLength(
-      'changeSetName',
-      changeSetName,
-      1,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'stackName',
-      stackName,
-      1,
-      1152921504606846976,
-    );
     final $request = <String, dynamic>{};
     $request['ChangeSetName'] = changeSetName;
     stackName?.also((arg) => $request['StackName'] = arg);
@@ -1803,18 +1602,6 @@ class CloudFormation {
     String? roleARN,
   }) async {
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'roleARN',
-      roleARN,
-      20,
-      2048,
-    );
     final $request = <String, dynamic>{};
     $request['StackName'] = stackName;
     clientRequestToken?.also((arg) => $request['ClientRequestToken'] = arg);
@@ -1922,12 +1709,6 @@ class CloudFormation {
     ArgumentError.checkNotNull(regions, 'regions');
     ArgumentError.checkNotNull(retainStacks, 'retainStacks');
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
-    _s.validateStringLength(
-      'operationId',
-      operationId,
-      1,
-      128,
-    );
     final $request = <String, dynamic>{};
     $request['Regions'] = regions;
     $request['RetainStacks'] = retainStacks;
@@ -2055,24 +1836,6 @@ class CloudFormation {
     String? typeName,
     String? versionId,
   }) async {
-    _s.validateStringLength(
-      'arn',
-      arn,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'typeName',
-      typeName,
-      10,
-      204,
-    );
-    _s.validateStringLength(
-      'versionId',
-      versionId,
-      1,
-      128,
-    );
     final $request = <String, dynamic>{};
     arn?.also((arg) => $request['Arn'] = arg);
     type?.also((arg) => $request['Type'] = arg.toValue());
@@ -2103,12 +1866,6 @@ class CloudFormation {
   Future<DescribeAccountLimitsOutput> describeAccountLimits({
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     nextToken?.also((arg) => $request['NextToken'] = arg);
     final $result = await _protocol.send(
@@ -2150,25 +1907,6 @@ class CloudFormation {
     String? stackName,
   }) async {
     ArgumentError.checkNotNull(changeSetName, 'changeSetName');
-    _s.validateStringLength(
-      'changeSetName',
-      changeSetName,
-      1,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'stackName',
-      stackName,
-      1,
-      1152921504606846976,
-    );
     final $request = <String, dynamic>{};
     $request['ChangeSetName'] = changeSetName;
     nextToken?.also((arg) => $request['NextToken'] = arg);
@@ -2219,12 +1957,6 @@ class CloudFormation {
   Future<DescribePublisherOutput> describePublisher({
     String? publisherId,
   }) async {
-    _s.validateStringLength(
-      'publisherId',
-      publisherId,
-      1,
-      40,
-    );
     final $request = <String, dynamic>{};
     publisherId?.also((arg) => $request['PublisherId'] = arg);
     final $result = await _protocol.send(
@@ -2269,13 +2001,6 @@ class CloudFormation {
     required String stackDriftDetectionId,
   }) async {
     ArgumentError.checkNotNull(stackDriftDetectionId, 'stackDriftDetectionId');
-    _s.validateStringLength(
-      'stackDriftDetectionId',
-      stackDriftDetectionId,
-      1,
-      36,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['StackDriftDetectionId'] = stackDriftDetectionId;
     final $result = await _protocol.send(
@@ -2324,12 +2049,6 @@ class CloudFormation {
     String? nextToken,
     String? stackName,
   }) async {
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     nextToken?.also((arg) => $request['NextToken'] = arg);
     stackName?.also((arg) => $request['StackName'] = arg);
@@ -2522,24 +2241,11 @@ class CloudFormation {
     List<StackResourceDriftStatus>? stackResourceDriftStatusFilters,
   }) async {
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'stackName',
-      stackName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final $request = <String, dynamic>{};
     $request['StackName'] = stackName;
@@ -2738,13 +2444,6 @@ class CloudFormation {
     CallAs? callAs,
   }) async {
     ArgumentError.checkNotNull(operationId, 'operationId');
-    _s.validateStringLength(
-      'operationId',
-      operationId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
     final $request = <String, dynamic>{};
     $request['OperationId'] = operationId;
@@ -2792,12 +2491,6 @@ class CloudFormation {
     String? nextToken,
     String? stackName,
   }) async {
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     nextToken?.also((arg) => $request['NextToken'] = arg);
     stackName?.also((arg) => $request['StackName'] = arg);
@@ -2866,36 +2559,6 @@ class CloudFormation {
     String? typeName,
     String? versionId,
   }) async {
-    _s.validateStringLength(
-      'arn',
-      arn,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'publicVersionNumber',
-      publicVersionNumber,
-      5,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'publisherId',
-      publisherId,
-      1,
-      40,
-    );
-    _s.validateStringLength(
-      'typeName',
-      typeName,
-      10,
-      204,
-    );
-    _s.validateStringLength(
-      'versionId',
-      versionId,
-      1,
-      128,
-    );
     final $request = <String, dynamic>{};
     arn?.also((arg) => $request['Arn'] = arg);
     publicVersionNumber?.also((arg) => $request['PublicVersionNumber'] = arg);
@@ -2939,13 +2602,6 @@ class CloudFormation {
     required String registrationToken,
   }) async {
     ArgumentError.checkNotNull(registrationToken, 'registrationToken');
-    _s.validateStringLength(
-      'registrationToken',
-      registrationToken,
-      1,
-      128,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['RegistrationToken'] = registrationToken;
     final $result = await _protocol.send(
@@ -3004,13 +2660,6 @@ class CloudFormation {
     List<String>? logicalResourceIds,
   }) async {
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'stackName',
-      stackName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['StackName'] = stackName;
     logicalResourceIds?.also((arg) => $request['LogicalResourceIds'] = arg);
@@ -3058,13 +2707,6 @@ class CloudFormation {
   }) async {
     ArgumentError.checkNotNull(logicalResourceId, 'logicalResourceId');
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'stackName',
-      stackName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['LogicalResourceId'] = logicalResourceId;
     $request['StackName'] = stackName;
@@ -3167,12 +2809,6 @@ class CloudFormation {
     StackSetOperationPreferences? operationPreferences,
   }) async {
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
-    _s.validateStringLength(
-      'operationId',
-      operationId,
-      1,
-      128,
-    );
     final $request = <String, dynamic>{};
     $request['StackSetName'] = stackSetName;
     callAs?.also((arg) => $request['CallAs'] = arg.toValue());
@@ -3224,18 +2860,6 @@ class CloudFormation {
     String? templateBody,
     String? templateURL,
   }) async {
-    _s.validateStringLength(
-      'templateBody',
-      templateBody,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'templateURL',
-      templateURL,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     parameters?.also((arg) => $request['Parameters'] = arg);
     templateBody?.also((arg) => $request['TemplateBody'] = arg);
@@ -3302,25 +2926,6 @@ class CloudFormation {
     String? stackName,
   }) async {
     ArgumentError.checkNotNull(changeSetName, 'changeSetName');
-    _s.validateStringLength(
-      'changeSetName',
-      changeSetName,
-      1,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'stackName',
-      stackName,
-      1,
-      1152921504606846976,
-    );
     final $request = <String, dynamic>{};
     $request['ChangeSetName'] = changeSetName;
     clientRequestToken?.also((arg) => $request['ClientRequestToken'] = arg);
@@ -3411,12 +3016,6 @@ class CloudFormation {
     String? stackName,
     TemplateStage? templateStage,
   }) async {
-    _s.validateStringLength(
-      'changeSetName',
-      changeSetName,
-      1,
-      1600,
-    );
     final $request = <String, dynamic>{};
     changeSetName?.also((arg) => $request['ChangeSetName'] = arg);
     stackName?.also((arg) => $request['StackName'] = arg);
@@ -3519,24 +3118,6 @@ class CloudFormation {
     String? templateBody,
     String? templateURL,
   }) async {
-    _s.validateStringLength(
-      'stackName',
-      stackName,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'templateBody',
-      templateBody,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'templateURL',
-      templateURL,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     stackName?.also((arg) => $request['StackName'] = arg);
@@ -3617,18 +3198,6 @@ class CloudFormation {
     String? stackIdsUrl,
   }) async {
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
-    _s.validateStringLength(
-      'operationId',
-      operationId,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'stackIdsUrl',
-      stackIdsUrl,
-      1,
-      5120,
-    );
     final $request = <String, dynamic>{};
     $request['StackSetName'] = stackSetName;
     callAs?.also((arg) => $request['CallAs'] = arg.toValue());
@@ -3668,19 +3237,6 @@ class CloudFormation {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'stackName',
-      stackName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     $request['StackName'] = stackName;
     nextToken?.also((arg) => $request['NextToken'] = arg);
@@ -3715,12 +3271,6 @@ class CloudFormation {
   Future<ListExportsOutput> listExports({
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     nextToken?.also((arg) => $request['NextToken'] = arg);
     final $result = await _protocol.send(
@@ -3759,12 +3309,6 @@ class CloudFormation {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(exportName, 'exportName');
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     $request['ExportName'] = exportName;
     nextToken?.also((arg) => $request['NextToken'] = arg);
@@ -3855,12 +3399,6 @@ class CloudFormation {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     $request['StackSetName'] = stackSetName;
     callAs?.also((arg) => $request['CallAs'] = arg.toValue());
@@ -3911,12 +3449,6 @@ class CloudFormation {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     $request['StackName'] = stackName;
     nextToken?.also((arg) => $request['NextToken'] = arg);
@@ -3991,25 +3523,12 @@ class CloudFormation {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(operationId, 'operationId');
-    _s.validateStringLength(
-      'operationId',
-      operationId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final $request = <String, dynamic>{};
     $request['OperationId'] = operationId;
@@ -4088,12 +3607,6 @@ class CloudFormation {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final $request = <String, dynamic>{};
     $request['StackSetName'] = stackSetName;
@@ -4191,12 +3704,6 @@ class CloudFormation {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     callAs?.also((arg) => $request['CallAs'] = arg.toValue());
     maxResults?.also((arg) => $request['MaxResults'] = arg);
@@ -4235,12 +3742,6 @@ class CloudFormation {
     String? nextToken,
     List<StackStatus>? stackStatusFilter,
   }) async {
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     nextToken?.also((arg) => $request['NextToken'] = arg);
     stackStatusFilter?.also((arg) =>
@@ -4312,24 +3813,6 @@ class CloudFormation {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'typeArn',
-      typeArn,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'typeName',
-      typeName,
-      10,
-      204,
     );
     final $request = <String, dynamic>{};
     maxResults?.also((arg) => $request['MaxResults'] = arg);
@@ -4422,35 +3905,11 @@ class CloudFormation {
     RegistryType? type,
     String? typeName,
   }) async {
-    _s.validateStringLength(
-      'arn',
-      arn,
-      0,
-      1024,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'publisherId',
-      publisherId,
-      1,
-      40,
-    );
-    _s.validateStringLength(
-      'typeName',
-      typeName,
-      10,
-      204,
     );
     final $request = <String, dynamic>{};
     arn?.also((arg) => $request['Arn'] = arg);
@@ -4588,12 +4047,6 @@ class CloudFormation {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     deprecatedStatus
         ?.also((arg) => $request['DeprecatedStatus'] = arg.toValue());
@@ -4674,24 +4127,6 @@ class CloudFormation {
     ThirdPartyType? type,
     String? typeName,
   }) async {
-    _s.validateStringLength(
-      'arn',
-      arn,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'publicVersionNumber',
-      publicVersionNumber,
-      5,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'typeName',
-      typeName,
-      10,
-      204,
-    );
     final $request = <String, dynamic>{};
     arn?.also((arg) => $request['Arn'] = arg);
     publicVersionNumber?.also((arg) => $request['PublicVersionNumber'] = arg);
@@ -4764,32 +4199,7 @@ class CloudFormation {
     String? statusMessage,
   }) async {
     ArgumentError.checkNotNull(bearerToken, 'bearerToken');
-    _s.validateStringLength(
-      'bearerToken',
-      bearerToken,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(operationStatus, 'operationStatus');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'resourceModel',
-      resourceModel,
-      1,
-      16384,
-    );
-    _s.validateStringLength(
-      'statusMessage',
-      statusMessage,
-      0,
-      1024,
-    );
     final $request = <String, dynamic>{};
     $request['BearerToken'] = bearerToken;
     $request['OperationStatus'] = operationStatus.toValue();
@@ -4847,12 +4257,6 @@ class CloudFormation {
     bool? acceptTermsAndConditions,
     String? connectionArn,
   }) async {
-    _s.validateStringLength(
-      'connectionArn',
-      connectionArn,
-      1,
-      256,
-    );
     final $request = <String, dynamic>{};
     acceptTermsAndConditions
         ?.also((arg) => $request['AcceptTermsAndConditions'] = arg);
@@ -5011,33 +4415,7 @@ class CloudFormation {
     RegistryType? type,
   }) async {
     ArgumentError.checkNotNull(schemaHandlerPackage, 'schemaHandlerPackage');
-    _s.validateStringLength(
-      'schemaHandlerPackage',
-      schemaHandlerPackage,
-      1,
-      4096,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(typeName, 'typeName');
-    _s.validateStringLength(
-      'typeName',
-      typeName,
-      10,
-      204,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'executionRoleArn',
-      executionRoleArn,
-      1,
-      256,
-    );
     final $request = <String, dynamic>{};
     $request['SchemaHandlerPackage'] = schemaHandlerPackage;
     $request['TypeName'] = typeName;
@@ -5105,25 +4483,6 @@ class CloudFormation {
     String? roleARN,
   }) async {
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'stackName',
-      stackName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'roleARN',
-      roleARN,
-      20,
-      2048,
-    );
     final $request = <String, dynamic>{};
     $request['StackName'] = stackName;
     clientRequestToken?.also((arg) => $request['ClientRequestToken'] = arg);
@@ -5165,18 +4524,6 @@ class CloudFormation {
     String? stackPolicyURL,
   }) async {
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'stackPolicyBody',
-      stackPolicyBody,
-      1,
-      16384,
-    );
-    _s.validateStringLength(
-      'stackPolicyURL',
-      stackPolicyURL,
-      1,
-      1350,
-    );
     final $request = <String, dynamic>{};
     $request['StackName'] = stackName;
     stackPolicyBody?.also((arg) => $request['StackPolicyBody'] = arg);
@@ -5266,31 +4613,6 @@ class CloudFormation {
     String? typeName,
   }) async {
     ArgumentError.checkNotNull(configuration, 'configuration');
-    _s.validateStringLength(
-      'configuration',
-      configuration,
-      1,
-      204800,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'configurationAlias',
-      configurationAlias,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'typeArn',
-      typeArn,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'typeName',
-      typeName,
-      10,
-      204,
-    );
     final $request = <String, dynamic>{};
     $request['Configuration'] = configuration;
     configurationAlias?.also((arg) => $request['ConfigurationAlias'] = arg);
@@ -5346,24 +4668,6 @@ class CloudFormation {
     String? typeName,
     String? versionId,
   }) async {
-    _s.validateStringLength(
-      'arn',
-      arn,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'typeName',
-      typeName,
-      10,
-      204,
-    );
-    _s.validateStringLength(
-      'versionId',
-      versionId,
-      1,
-      128,
-    );
     final $request = <String, dynamic>{};
     arn?.also((arg) => $request['Arn'] = arg);
     type?.also((arg) => $request['Type'] = arg.toValue());
@@ -5416,22 +4720,8 @@ class CloudFormation {
   }) async {
     ArgumentError.checkNotNull(logicalResourceId, 'logicalResourceId');
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'stackName',
-      stackName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(status, 'status');
     ArgumentError.checkNotNull(uniqueId, 'uniqueId');
-    _s.validateStringLength(
-      'uniqueId',
-      uniqueId,
-      1,
-      64,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['LogicalResourceId'] = logicalResourceId;
     $request['StackName'] = stackName;
@@ -5491,13 +4781,6 @@ class CloudFormation {
     CallAs? callAs,
   }) async {
     ArgumentError.checkNotNull(operationId, 'operationId');
-    _s.validateStringLength(
-      'operationId',
-      operationId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
     final $request = <String, dynamic>{};
     $request['OperationId'] = operationId;
@@ -5614,30 +4897,6 @@ class CloudFormation {
     String? typeName,
     String? versionId,
   }) async {
-    _s.validateStringLength(
-      'arn',
-      arn,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'logDeliveryBucket',
-      logDeliveryBucket,
-      3,
-      63,
-    );
-    _s.validateStringLength(
-      'typeName',
-      typeName,
-      10,
-      204,
-    );
-    _s.validateStringLength(
-      'versionId',
-      versionId,
-      1,
-      128,
-    );
     final $request = <String, dynamic>{};
     arn?.also((arg) => $request['Arn'] = arg);
     logDeliveryBucket?.also((arg) => $request['LogDeliveryBucket'] = arg);
@@ -5955,54 +5214,6 @@ class CloudFormation {
     bool? usePreviousTemplate,
   }) async {
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'roleARN',
-      roleARN,
-      20,
-      2048,
-    );
-    _s.validateStringLength(
-      'stackPolicyBody',
-      stackPolicyBody,
-      1,
-      16384,
-    );
-    _s.validateStringLength(
-      'stackPolicyDuringUpdateBody',
-      stackPolicyDuringUpdateBody,
-      1,
-      16384,
-    );
-    _s.validateStringLength(
-      'stackPolicyDuringUpdateURL',
-      stackPolicyDuringUpdateURL,
-      1,
-      1350,
-    );
-    _s.validateStringLength(
-      'stackPolicyURL',
-      stackPolicyURL,
-      1,
-      1350,
-    );
-    _s.validateStringLength(
-      'templateBody',
-      templateBody,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'templateURL',
-      templateURL,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     $request['StackName'] = stackName;
     capabilities?.also((arg) =>
@@ -6189,12 +5400,6 @@ class CloudFormation {
   }) async {
     ArgumentError.checkNotNull(regions, 'regions');
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
-    _s.validateStringLength(
-      'operationId',
-      operationId,
-      1,
-      128,
-    );
     final $request = <String, dynamic>{};
     $request['Regions'] = regions;
     $request['StackSetName'] = stackSetName;
@@ -6589,42 +5794,6 @@ class CloudFormation {
     bool? usePreviousTemplate,
   }) async {
     ArgumentError.checkNotNull(stackSetName, 'stackSetName');
-    _s.validateStringLength(
-      'administrationRoleARN',
-      administrationRoleARN,
-      20,
-      2048,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'executionRoleName',
-      executionRoleName,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'operationId',
-      operationId,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'templateBody',
-      templateBody,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'templateURL',
-      templateURL,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     $request['StackSetName'] = stackSetName;
     accounts?.also((arg) => $request['Accounts'] = arg);
@@ -6685,13 +5854,6 @@ class CloudFormation {
     ArgumentError.checkNotNull(
         enableTerminationProtection, 'enableTerminationProtection');
     ArgumentError.checkNotNull(stackName, 'stackName');
-    _s.validateStringLength(
-      'stackName',
-      stackName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['EnableTerminationProtection'] = enableTerminationProtection;
     $request['StackName'] = stackName;
@@ -6738,18 +5900,6 @@ class CloudFormation {
     String? templateBody,
     String? templateURL,
   }) async {
-    _s.validateStringLength(
-      'templateBody',
-      templateBody,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'templateURL',
-      templateURL,
-      1,
-      1024,
-    );
     final $request = <String, dynamic>{};
     templateBody?.also((arg) => $request['TemplateBody'] = arg);
     templateURL?.also((arg) => $request['TemplateURL'] = arg);

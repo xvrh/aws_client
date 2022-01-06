@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -420,18 +421,6 @@ class Ivs {
     Map<String, String>? tags,
     ChannelType? type,
   }) async {
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'recordingConfigurationArn',
-      recordingConfigurationArn,
-      0,
-      128,
-    );
     final $payload = <String, dynamic>{
       if (authorized != null) 'authorized': authorized,
       if (latencyMode != null) 'latencyMode': latencyMode.toValue(),
@@ -490,12 +479,6 @@ class Ivs {
   }) async {
     ArgumentError.checkNotNull(
         destinationConfiguration, 'destinationConfiguration');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      128,
-    );
     final $payload = <String, dynamic>{
       'destinationConfiguration': destinationConfiguration,
       if (name != null) 'name': name,
@@ -536,13 +519,6 @@ class Ivs {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      1,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'channelArn': channelArn,
       if (tags != null) 'tags': tags,
@@ -578,13 +554,6 @@ class Ivs {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      1,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'arn': arn,
     };
@@ -613,13 +582,6 @@ class Ivs {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      1,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'arn': arn,
     };
@@ -651,13 +613,6 @@ class Ivs {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      0,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'arn': arn,
     };
@@ -683,13 +638,6 @@ class Ivs {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      1,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'arn': arn,
     };
@@ -714,13 +662,6 @@ class Ivs {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      1,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'arn': arn,
     };
@@ -750,13 +691,6 @@ class Ivs {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      1,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'arn': arn,
     };
@@ -782,13 +716,6 @@ class Ivs {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      0,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'arn': arn,
     };
@@ -814,13 +741,6 @@ class Ivs {
     required String channelArn,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      1,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'channelArn': channelArn,
     };
@@ -845,13 +765,6 @@ class Ivs {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      1,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'arn': arn,
     };
@@ -882,19 +795,6 @@ class Ivs {
     String? streamId,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'streamId',
-      streamId,
-      26,
-      26,
-    );
     final $payload = <String, dynamic>{
       'channelArn': channelArn,
       if (streamId != null) 'streamId': streamId,
@@ -936,12 +836,6 @@ class Ivs {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(publicKeyMaterial, 'publicKeyMaterial');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      128,
-    );
     final $payload = <String, dynamic>{
       'publicKeyMaterial': publicKeyMaterial,
       if (name != null) 'name': name,
@@ -985,29 +879,11 @@ class Ivs {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'filterByName',
-      filterByName,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'filterByRecordingConfigurationArn',
-      filterByRecordingConfigurationArn,
-      0,
-      128,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      1024,
     );
     final $payload = <String, dynamic>{
       if (filterByName != null) 'filterByName': filterByName,
@@ -1049,12 +925,6 @@ class Ivs {
       1,
       50,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'maxResults': maxResults,
       if (nextToken != null) 'nextToken': nextToken,
@@ -1092,12 +962,6 @@ class Ivs {
       1,
       50,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'maxResults': maxResults,
       if (nextToken != null) 'nextToken': nextToken,
@@ -1132,24 +996,11 @@ class Ivs {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      1024,
     );
     final $payload = <String, dynamic>{
       'channelArn': channelArn,
@@ -1187,24 +1038,11 @@ class Ivs {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      1024,
     );
     final $payload = <String, dynamic>{
       'channelArn': channelArn,
@@ -1245,12 +1083,6 @@ class Ivs {
       1,
       50,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       if (filterBy != null) 'filterBy': filterBy,
       if (maxResults != null) 'maxResults': maxResults,
@@ -1277,13 +1109,6 @@ class Ivs {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1318,21 +1143,7 @@ class Ivs {
     required String metadata,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(metadata, 'metadata');
-    _s.validateStringLength(
-      'metadata',
-      metadata,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'channelArn': channelArn,
       'metadata': metadata,
@@ -1366,13 +1177,6 @@ class Ivs {
     required String channelArn,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      1,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'channelArn': channelArn,
     };
@@ -1401,13 +1205,6 @@ class Ivs {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -1436,13 +1233,6 @@ class Ivs {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -1515,25 +1305,6 @@ class Ivs {
     ChannelType? type,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'recordingConfigurationArn',
-      recordingConfigurationArn,
-      0,
-      128,
-    );
     final $payload = <String, dynamic>{
       'arn': arn,
       if (authorized != null) 'authorized': authorized,

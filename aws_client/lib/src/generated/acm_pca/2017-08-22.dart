@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -151,12 +152,6 @@ class AcmPca {
         certificateAuthorityConfiguration, 'certificateAuthorityConfiguration');
     ArgumentError.checkNotNull(
         certificateAuthorityType, 'certificateAuthorityType');
-    _s.validateStringLength(
-      'idempotencyToken',
-      idempotencyToken,
-      1,
-      36,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.CreateCertificateAuthority'
@@ -232,21 +227,7 @@ class AcmPca {
         auditReportResponseFormat, 'auditReportResponseFormat');
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(s3BucketName, 's3BucketName');
-    _s.validateStringLength(
-      's3BucketName',
-      s3BucketName,
-      3,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.CreateCertificateAuthorityAuditReport'
@@ -336,27 +317,7 @@ class AcmPca {
     ArgumentError.checkNotNull(actions, 'actions');
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(principal, 'principal');
-    _s.validateStringLength(
-      'principal',
-      principal,
-      0,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'sourceAccount',
-      sourceAccount,
-      12,
-      12,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.CreatePermission'
@@ -433,13 +394,6 @@ class AcmPca {
   }) async {
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'permanentDeletionTimeInDays',
       permanentDeletionTimeInDays,
@@ -526,27 +480,7 @@ class AcmPca {
   }) async {
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(principal, 'principal');
-    _s.validateStringLength(
-      'principal',
-      principal,
-      0,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'sourceAccount',
-      sourceAccount,
-      12,
-      12,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.DeletePermission'
@@ -627,13 +561,6 @@ class AcmPca {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      5,
-      200,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.DeletePolicy'
@@ -702,13 +629,6 @@ class AcmPca {
   }) async {
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.DescribeCertificateAuthority'
@@ -757,22 +677,8 @@ class AcmPca {
     required String certificateAuthorityArn,
   }) async {
     ArgumentError.checkNotNull(auditReportId, 'auditReportId');
-    _s.validateStringLength(
-      'auditReportId',
-      auditReportId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.DescribeCertificateAuthorityAuditReport'
@@ -829,22 +735,8 @@ class AcmPca {
     required String certificateAuthorityArn,
   }) async {
     ArgumentError.checkNotNull(certificateArn, 'certificateArn');
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      5,
-      200,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.GetCertificate'
@@ -885,13 +777,6 @@ class AcmPca {
   }) async {
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.GetCertificateAuthorityCertificate'
@@ -938,13 +823,6 @@ class AcmPca {
   }) async {
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.GetCertificateAuthorityCsr'
@@ -1014,13 +892,6 @@ class AcmPca {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      5,
-      200,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.GetPolicy'
@@ -1214,13 +1085,6 @@ class AcmPca {
     ArgumentError.checkNotNull(certificate, 'certificate');
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.ImportCertificateAuthorityCertificate'
@@ -1388,28 +1252,9 @@ class AcmPca {
   }) async {
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(csr, 'csr');
     ArgumentError.checkNotNull(signingAlgorithm, 'signingAlgorithm');
     ArgumentError.checkNotNull(validity, 'validity');
-    _s.validateStringLength(
-      'idempotencyToken',
-      idempotencyToken,
-      1,
-      36,
-    );
-    _s.validateStringLength(
-      'templateArn',
-      templateArn,
-      5,
-      200,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.IssueCertificate'
@@ -1466,12 +1311,6 @@ class AcmPca {
       maxResults,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      500,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1560,24 +1399,11 @@ class AcmPca {
   }) async {
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      500,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1638,24 +1464,11 @@ class AcmPca {
   }) async {
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      500,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1747,21 +1560,7 @@ class AcmPca {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(policy, 'policy');
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      20480,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      5,
-      200,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.PutPolicy'
@@ -1818,13 +1617,6 @@ class AcmPca {
   }) async {
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.RestoreCertificateAuthority'
@@ -1909,21 +1701,7 @@ class AcmPca {
   }) async {
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(certificateSerial, 'certificateSerial');
-    _s.validateStringLength(
-      'certificateSerial',
-      certificateSerial,
-      0,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(revocationReason, 'revocationReason');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1978,13 +1756,6 @@ class AcmPca {
   }) async {
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2034,13 +1805,6 @@ class AcmPca {
   }) async {
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2106,13 +1870,6 @@ class AcmPca {
   }) async {
     ArgumentError.checkNotNull(
         certificateAuthorityArn, 'certificateAuthorityArn');
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      5,
-      200,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ACMPrivateCA.UpdateCertificateAuthority'

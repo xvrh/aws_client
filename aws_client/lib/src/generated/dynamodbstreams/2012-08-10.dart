@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -76,19 +77,6 @@ class DynamoDBStreams {
     int? limit,
   }) async {
     ArgumentError.checkNotNull(streamArn, 'streamArn');
-    _s.validateStringLength(
-      'streamArn',
-      streamArn,
-      37,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'exclusiveStartShardId',
-      exclusiveStartShardId,
-      28,
-      65,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -149,13 +137,6 @@ class DynamoDBStreams {
     int? limit,
   }) async {
     ArgumentError.checkNotNull(shardIterator, 'shardIterator');
-    _s.validateStringLength(
-      'shardIterator',
-      shardIterator,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -236,28 +217,8 @@ class DynamoDBStreams {
     String? sequenceNumber,
   }) async {
     ArgumentError.checkNotNull(shardId, 'shardId');
-    _s.validateStringLength(
-      'shardId',
-      shardId,
-      28,
-      65,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(shardIteratorType, 'shardIteratorType');
     ArgumentError.checkNotNull(streamArn, 'streamArn');
-    _s.validateStringLength(
-      'streamArn',
-      streamArn,
-      37,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'sequenceNumber',
-      sequenceNumber,
-      21,
-      40,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDBStreams_20120810.GetShardIterator'
@@ -306,23 +267,11 @@ class DynamoDBStreams {
     int? limit,
     String? tableName,
   }) async {
-    _s.validateStringLength(
-      'exclusiveStartStreamArn',
-      exclusiveStartStreamArn,
-      37,
-      1024,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -242,13 +243,6 @@ class Directory {
   }) async {
     ArgumentError.checkNotNull(directoryId, 'directoryId');
     ArgumentError.checkNotNull(regionName, 'regionName');
-    _s.validateStringLength(
-      'regionName',
-      regionName,
-      8,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(vPCSettings, 'vPCSettings');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -393,20 +387,7 @@ class Directory {
     ArgumentError.checkNotNull(connectSettings, 'connectSettings');
     ArgumentError.checkNotNull(name, 'name');
     ArgumentError.checkNotNull(password, 'password');
-    _s.validateStringLength(
-      'password',
-      password,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(size, 'size');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.ConnectDirectory'
@@ -459,13 +440,6 @@ class Directory {
     required String directoryId,
   }) async {
     ArgumentError.checkNotNull(alias, 'alias');
-    _s.validateStringLength(
-      'alias',
-      alias,
-      1,
-      62,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(directoryId, 'directoryId');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -522,28 +496,8 @@ class Directory {
     String? organizationalUnitDistinguishedName,
   }) async {
     ArgumentError.checkNotNull(computerName, 'computerName');
-    _s.validateStringLength(
-      'computerName',
-      computerName,
-      1,
-      15,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(directoryId, 'directoryId');
     ArgumentError.checkNotNull(password, 'password');
-    _s.validateStringLength(
-      'password',
-      password,
-      8,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'organizationalUnitDistinguishedName',
-      organizationalUnitDistinguishedName,
-      1,
-      2000,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.CreateComputer'
@@ -706,12 +660,6 @@ class Directory {
     ArgumentError.checkNotNull(name, 'name');
     ArgumentError.checkNotNull(password, 'password');
     ArgumentError.checkNotNull(size, 'size');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.CreateDirectory'
@@ -760,13 +708,6 @@ class Directory {
   }) async {
     ArgumentError.checkNotNull(directoryId, 'directoryId');
     ArgumentError.checkNotNull(logGroupName, 'logGroupName');
-    _s.validateStringLength(
-      'logGroupName',
-      logGroupName,
-      1,
-      512,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.CreateLogSubscription'
@@ -846,12 +787,6 @@ class Directory {
     ArgumentError.checkNotNull(name, 'name');
     ArgumentError.checkNotNull(password, 'password');
     ArgumentError.checkNotNull(vpcSettings, 'vpcSettings');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.CreateMicrosoftAD'
@@ -898,12 +833,6 @@ class Directory {
     String? name,
   }) async {
     ArgumentError.checkNotNull(directoryId, 'directoryId');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.CreateSnapshot'
@@ -978,13 +907,6 @@ class Directory {
     ArgumentError.checkNotNull(remoteDomainName, 'remoteDomainName');
     ArgumentError.checkNotNull(trustDirection, 'trustDirection');
     ArgumentError.checkNotNull(trustPassword, 'trustPassword');
-    _s.validateStringLength(
-      'trustPassword',
-      trustPassword,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.CreateTrust'
@@ -1247,13 +1169,6 @@ class Directory {
   }) async {
     ArgumentError.checkNotNull(directoryId, 'directoryId');
     ArgumentError.checkNotNull(topicName, 'topicName');
-    _s.validateStringLength(
-      'topicName',
-      topicName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.DeregisterEventTopic'
@@ -1674,12 +1589,6 @@ class Directory {
     String? regionName,
   }) async {
     ArgumentError.checkNotNull(directoryId, 'directoryId');
-    _s.validateStringLength(
-      'regionName',
-      regionName,
-      8,
-      32,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.DescribeRegions'
@@ -2026,18 +1935,6 @@ class Directory {
     String? userName,
   }) async {
     ArgumentError.checkNotNull(directoryId, 'directoryId');
-    _s.validateStringLength(
-      'password',
-      password,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'userName',
-      userName,
-      1,
-      1152921504606846976,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.DisableSso'
@@ -2213,18 +2110,6 @@ class Directory {
     String? userName,
   }) async {
     ArgumentError.checkNotNull(directoryId, 'directoryId');
-    _s.validateStringLength(
-      'password',
-      password,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'userName',
-      userName,
-      1,
-      1152921504606846976,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.EnableSso'
@@ -2580,13 +2465,6 @@ class Directory {
     CertificateType? type,
   }) async {
     ArgumentError.checkNotNull(certificateData, 'certificateData');
-    _s.validateStringLength(
-      'certificateData',
-      certificateData,
-      1,
-      8192,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(directoryId, 'directoryId');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2636,13 +2514,6 @@ class Directory {
   }) async {
     ArgumentError.checkNotNull(directoryId, 'directoryId');
     ArgumentError.checkNotNull(topicName, 'topicName');
-    _s.validateStringLength(
-      'topicName',
-      topicName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.RegisterEventTopic'
@@ -2847,21 +2718,7 @@ class Directory {
   }) async {
     ArgumentError.checkNotNull(directoryId, 'directoryId');
     ArgumentError.checkNotNull(newPassword, 'newPassword');
-    _s.validateStringLength(
-      'newPassword',
-      newPassword,
-      1,
-      127,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userName, 'userName');
-    _s.validateStringLength(
-      'userName',
-      userName,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.ResetUserPassword'
@@ -2980,12 +2837,6 @@ class Directory {
     ArgumentError.checkNotNull(directoryId, 'directoryId');
     ArgumentError.checkNotNull(shareMethod, 'shareMethod');
     ArgumentError.checkNotNull(shareTarget, 'shareTarget');
-    _s.validateStringLength(
-      'shareNotes',
-      shareNotes,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.ShareDirectory'
@@ -3041,22 +2892,8 @@ class Directory {
     ArgumentError.checkNotNull(createSnapshotBeforeSchemaExtension,
         'createSnapshotBeforeSchemaExtension');
     ArgumentError.checkNotNull(description, 'description');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(directoryId, 'directoryId');
     ArgumentError.checkNotNull(ldifContent, 'ldifContent');
-    _s.validateStringLength(
-      'ldifContent',
-      ldifContent,
-      1,
-      500000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DirectoryService_20150416.StartSchemaExtension'

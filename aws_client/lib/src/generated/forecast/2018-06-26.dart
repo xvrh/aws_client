@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -195,25 +196,6 @@ class Forecast {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(predictorName, 'predictorName');
-    _s.validateStringLength(
-      'predictorName',
-      predictorName,
-      1,
-      63,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'forecastFrequency',
-      forecastFrequency,
-      1,
-      5,
-    );
-    _s.validateStringLength(
-      'referencePredictorArn',
-      referencePredictorArn,
-      0,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.CreateAutoPredictor'
@@ -377,22 +359,9 @@ class Forecast {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(datasetName, 'datasetName');
-    _s.validateStringLength(
-      'datasetName',
-      datasetName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(datasetType, 'datasetType');
     ArgumentError.checkNotNull(domain, 'domain');
     ArgumentError.checkNotNull(schema, 'schema');
-    _s.validateStringLength(
-      'dataFrequency',
-      dataFrequency,
-      1,
-      5,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.CreateDataset'
@@ -507,13 +476,6 @@ class Forecast {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(datasetGroupName, 'datasetGroupName');
-    _s.validateStringLength(
-      'datasetGroupName',
-      datasetGroupName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domain, 'domain');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -692,39 +654,7 @@ class Forecast {
   }) async {
     ArgumentError.checkNotNull(dataSource, 'dataSource');
     ArgumentError.checkNotNull(datasetArn, 'datasetArn');
-    _s.validateStringLength(
-      'datasetArn',
-      datasetArn,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(datasetImportJobName, 'datasetImportJobName');
-    _s.validateStringLength(
-      'datasetImportJobName',
-      datasetImportJobName,
-      1,
-      63,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'geolocationFormat',
-      geolocationFormat,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'timeZone',
-      timeZone,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'timestampFormat',
-      timestampFormat,
-      0,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.CreateDatasetImportJob'
@@ -944,33 +874,7 @@ class Forecast {
   }) async {
     ArgumentError.checkNotNull(explainabilityConfig, 'explainabilityConfig');
     ArgumentError.checkNotNull(explainabilityName, 'explainabilityName');
-    _s.validateStringLength(
-      'explainabilityName',
-      explainabilityName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'endDateTime',
-      endDateTime,
-      0,
-      19,
-    );
-    _s.validateStringLength(
-      'startDateTime',
-      startDateTime,
-      0,
-      19,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.CreateExplainability'
@@ -1069,22 +973,8 @@ class Forecast {
   }) async {
     ArgumentError.checkNotNull(destination, 'destination');
     ArgumentError.checkNotNull(explainabilityArn, 'explainabilityArn');
-    _s.validateStringLength(
-      'explainabilityArn',
-      explainabilityArn,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         explainabilityExportName, 'explainabilityExportName');
-    _s.validateStringLength(
-      'explainabilityExportName',
-      explainabilityExportName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.CreateExplainabilityExport'
@@ -1199,21 +1089,7 @@ class Forecast {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(forecastName, 'forecastName');
-    _s.validateStringLength(
-      'forecastName',
-      forecastName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(predictorArn, 'predictorArn');
-    _s.validateStringLength(
-      'predictorArn',
-      predictorArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.CreateForecast'
@@ -1329,21 +1205,7 @@ class Forecast {
   }) async {
     ArgumentError.checkNotNull(destination, 'destination');
     ArgumentError.checkNotNull(forecastArn, 'forecastArn');
-    _s.validateStringLength(
-      'forecastArn',
-      forecastArn,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(forecastExportJobName, 'forecastExportJobName');
-    _s.validateStringLength(
-      'forecastExportJobName',
-      forecastExportJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.CreateForecastExportJob'
@@ -1638,19 +1500,6 @@ class Forecast {
     ArgumentError.checkNotNull(forecastHorizon, 'forecastHorizon');
     ArgumentError.checkNotNull(inputDataConfig, 'inputDataConfig');
     ArgumentError.checkNotNull(predictorName, 'predictorName');
-    _s.validateStringLength(
-      'predictorName',
-      predictorName,
-      1,
-      63,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'algorithmArn',
-      algorithmArn,
-      0,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.CreatePredictor'
@@ -1766,22 +1615,8 @@ class Forecast {
   }) async {
     ArgumentError.checkNotNull(destination, 'destination');
     ArgumentError.checkNotNull(predictorArn, 'predictorArn');
-    _s.validateStringLength(
-      'predictorArn',
-      predictorArn,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         predictorBacktestExportJobName, 'predictorBacktestExportJobName');
-    _s.validateStringLength(
-      'predictorBacktestExportJobName',
-      predictorBacktestExportJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.CreatePredictorBacktestExportJob'
@@ -1823,13 +1658,6 @@ class Forecast {
     required String datasetArn,
   }) async {
     ArgumentError.checkNotNull(datasetArn, 'datasetArn');
-    _s.validateStringLength(
-      'datasetArn',
-      datasetArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeleteDataset'
@@ -1865,13 +1693,6 @@ class Forecast {
     required String datasetGroupArn,
   }) async {
     ArgumentError.checkNotNull(datasetGroupArn, 'datasetGroupArn');
-    _s.validateStringLength(
-      'datasetGroupArn',
-      datasetGroupArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeleteDatasetGroup'
@@ -1904,13 +1725,6 @@ class Forecast {
     required String datasetImportJobArn,
   }) async {
     ArgumentError.checkNotNull(datasetImportJobArn, 'datasetImportJobArn');
-    _s.validateStringLength(
-      'datasetImportJobArn',
-      datasetImportJobArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeleteDatasetImportJob'
@@ -1943,13 +1757,6 @@ class Forecast {
     required String explainabilityArn,
   }) async {
     ArgumentError.checkNotNull(explainabilityArn, 'explainabilityArn');
-    _s.validateStringLength(
-      'explainabilityArn',
-      explainabilityArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeleteExplainability'
@@ -1979,13 +1786,6 @@ class Forecast {
   }) async {
     ArgumentError.checkNotNull(
         explainabilityExportArn, 'explainabilityExportArn');
-    _s.validateStringLength(
-      'explainabilityExportArn',
-      explainabilityExportArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeleteExplainabilityExport'
@@ -2020,13 +1820,6 @@ class Forecast {
     required String forecastArn,
   }) async {
     ArgumentError.checkNotNull(forecastArn, 'forecastArn');
-    _s.validateStringLength(
-      'forecastArn',
-      forecastArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeleteForecast'
@@ -2058,13 +1851,6 @@ class Forecast {
     required String forecastExportJobArn,
   }) async {
     ArgumentError.checkNotNull(forecastExportJobArn, 'forecastExportJobArn');
-    _s.validateStringLength(
-      'forecastExportJobArn',
-      forecastExportJobArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeleteForecastExportJob'
@@ -2096,13 +1882,6 @@ class Forecast {
     required String predictorArn,
   }) async {
     ArgumentError.checkNotNull(predictorArn, 'predictorArn');
-    _s.validateStringLength(
-      'predictorArn',
-      predictorArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeletePredictor'
@@ -2133,13 +1912,6 @@ class Forecast {
   }) async {
     ArgumentError.checkNotNull(
         predictorBacktestExportJobArn, 'predictorBacktestExportJobArn');
-    _s.validateStringLength(
-      'predictorBacktestExportJobArn',
-      predictorBacktestExportJobArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeletePredictorBacktestExportJob'
@@ -2198,13 +1970,6 @@ class Forecast {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DeleteResourceTree'
@@ -2232,13 +1997,6 @@ class Forecast {
     required String predictorArn,
   }) async {
     ArgumentError.checkNotNull(predictorArn, 'predictorArn');
-    _s.validateStringLength(
-      'predictorArn',
-      predictorArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DescribeAutoPredictor'
@@ -2285,13 +2043,6 @@ class Forecast {
     required String datasetArn,
   }) async {
     ArgumentError.checkNotNull(datasetArn, 'datasetArn');
-    _s.validateStringLength(
-      'datasetArn',
-      datasetArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DescribeDataset'
@@ -2341,13 +2092,6 @@ class Forecast {
     required String datasetGroupArn,
   }) async {
     ArgumentError.checkNotNull(datasetGroupArn, 'datasetGroupArn');
-    _s.validateStringLength(
-      'datasetGroupArn',
-      datasetGroupArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DescribeDatasetGroup'
@@ -2403,13 +2147,6 @@ class Forecast {
     required String datasetImportJobArn,
   }) async {
     ArgumentError.checkNotNull(datasetImportJobArn, 'datasetImportJobArn');
-    _s.validateStringLength(
-      'datasetImportJobArn',
-      datasetImportJobArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DescribeDatasetImportJob'
@@ -2440,13 +2177,6 @@ class Forecast {
     required String explainabilityArn,
   }) async {
     ArgumentError.checkNotNull(explainabilityArn, 'explainabilityArn');
-    _s.validateStringLength(
-      'explainabilityArn',
-      explainabilityArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DescribeExplainability'
@@ -2478,13 +2208,6 @@ class Forecast {
   }) async {
     ArgumentError.checkNotNull(
         explainabilityExportArn, 'explainabilityExportArn');
-    _s.validateStringLength(
-      'explainabilityExportArn',
-      explainabilityExportArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DescribeExplainabilityExport'
@@ -2537,13 +2260,6 @@ class Forecast {
     required String forecastArn,
   }) async {
     ArgumentError.checkNotNull(forecastArn, 'forecastArn');
-    _s.validateStringLength(
-      'forecastArn',
-      forecastArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DescribeForecast'
@@ -2593,13 +2309,6 @@ class Forecast {
     required String forecastExportJobArn,
   }) async {
     ArgumentError.checkNotNull(forecastExportJobArn, 'forecastExportJobArn');
-    _s.validateStringLength(
-      'forecastExportJobArn',
-      forecastExportJobArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DescribeForecastExportJob'
@@ -2662,13 +2371,6 @@ class Forecast {
     required String predictorArn,
   }) async {
     ArgumentError.checkNotNull(predictorArn, 'predictorArn');
-    _s.validateStringLength(
-      'predictorArn',
-      predictorArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DescribePredictor'
@@ -2720,13 +2422,6 @@ class Forecast {
   }) async {
     ArgumentError.checkNotNull(
         predictorBacktestExportJobArn, 'predictorBacktestExportJobArn');
-    _s.validateStringLength(
-      'predictorBacktestExportJobArn',
-      predictorBacktestExportJobArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.DescribePredictorBacktestExportJob'
@@ -2782,13 +2477,6 @@ class Forecast {
     required String predictorArn,
   }) async {
     ArgumentError.checkNotNull(predictorArn, 'predictorArn');
-    _s.validateStringLength(
-      'predictorArn',
-      predictorArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.GetAccuracyMetrics'
@@ -2832,12 +2520,6 @@ class Forecast {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      3000,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2916,12 +2598,6 @@ class Forecast {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      3000,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.ListDatasetImportJobs'
@@ -2965,12 +2641,6 @@ class Forecast {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      3000,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3043,12 +2713,6 @@ class Forecast {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      3000,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.ListExplainabilities'
@@ -3120,12 +2784,6 @@ class Forecast {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      3000,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3206,12 +2864,6 @@ class Forecast {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      3000,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.ListForecastExportJobs'
@@ -3291,12 +2943,6 @@ class Forecast {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      3000,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.ListForecasts'
@@ -3372,12 +3018,6 @@ class Forecast {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      3000,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3459,12 +3099,6 @@ class Forecast {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      3000,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.ListPredictors'
@@ -3497,13 +3131,6 @@ class Forecast {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.ListTagsForResource'
@@ -3569,13 +3196,6 @@ class Forecast {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.StopResource'
@@ -3648,13 +3268,6 @@ class Forecast {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3689,13 +3302,6 @@ class Forecast {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3737,13 +3343,6 @@ class Forecast {
   }) async {
     ArgumentError.checkNotNull(datasetArns, 'datasetArns');
     ArgumentError.checkNotNull(datasetGroupArn, 'datasetGroupArn');
-    _s.validateStringLength(
-      'datasetGroupArn',
-      datasetGroupArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonForecast.UpdateDatasetGroup'

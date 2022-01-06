@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -102,13 +103,6 @@ class Lambda {
   }) async {
     ArgumentError.checkNotNull(eventSource, 'eventSource');
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(role, 'role');
     final $payload = <String, dynamic>{
       'EventSource': eventSource,
@@ -140,13 +134,6 @@ class Lambda {
     required String functionName,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      64,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -199,13 +186,6 @@ class Lambda {
     required String functionName,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -232,13 +212,6 @@ class Lambda {
     required String functionName,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -271,13 +244,6 @@ class Lambda {
     required Uint8List invokeArgs,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(invokeArgs, 'invokeArgs');
     final response = await _protocol.send(
       payload: invokeArgs,
@@ -324,12 +290,6 @@ class Lambda {
     String? marker,
     int? maxItems,
   }) async {
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      64,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -467,19 +427,6 @@ class Lambda {
     int? timeout,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     _s.validateNumRange(
       'memorySize',
       memorySize,
@@ -581,24 +528,11 @@ class Lambda {
     int? timeout,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(functionZip, 'functionZip');
     ArgumentError.checkNotNull(handler, 'handler');
     ArgumentError.checkNotNull(mode, 'mode');
     ArgumentError.checkNotNull(role, 'role');
     ArgumentError.checkNotNull(runtime, 'runtime');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     _s.validateNumRange(
       'memorySize',
       memorySize,

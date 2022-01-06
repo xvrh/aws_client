@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -57,13 +58,6 @@ class Outposts {
     required String orderId,
   }) async {
     ArgumentError.checkNotNull(orderId, 'orderId');
-    _s.validateStringLength(
-      'orderId',
-      orderId,
-      1,
-      20,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -100,13 +94,6 @@ class Outposts {
   }) async {
     ArgumentError.checkNotNull(lineItems, 'lineItems');
     ArgumentError.checkNotNull(outpostIdentifier, 'outpostIdentifier');
-    _s.validateStringLength(
-      'outpostIdentifier',
-      outpostIdentifier,
-      1,
-      180,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(paymentOption, 'paymentOption');
     final $payload = <String, dynamic>{
       'LineItems': lineItems,
@@ -153,39 +140,7 @@ class Outposts {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(siteId, 'siteId');
-    _s.validateStringLength(
-      'siteId',
-      siteId,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'availabilityZone',
-      availabilityZone,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'availabilityZoneId',
-      availabilityZoneId,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       'SiteId': siteId,
@@ -244,25 +199,6 @@ class Outposts {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1000,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1001,
-    );
-    _s.validateStringLength(
-      'notes',
-      notes,
-      1,
-      2000,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       if (description != null) 'Description': description,
@@ -296,13 +232,6 @@ class Outposts {
     required String outpostId,
   }) async {
     ArgumentError.checkNotNull(outpostId, 'outpostId');
-    _s.validateStringLength(
-      'outpostId',
-      outpostId,
-      1,
-      180,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -325,13 +254,6 @@ class Outposts {
     required String siteId,
   }) async {
     ArgumentError.checkNotNull(siteId, 'siteId');
-    _s.validateStringLength(
-      'siteId',
-      siteId,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -352,13 +274,6 @@ class Outposts {
     required String catalogItemId,
   }) async {
     ArgumentError.checkNotNull(catalogItemId, 'catalogItemId');
-    _s.validateStringLength(
-      'catalogItemId',
-      catalogItemId,
-      1,
-      10,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -380,13 +295,6 @@ class Outposts {
     required String orderId,
   }) async {
     ArgumentError.checkNotNull(orderId, 'orderId');
-    _s.validateStringLength(
-      'orderId',
-      orderId,
-      1,
-      20,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -409,13 +317,6 @@ class Outposts {
     required String outpostId,
   }) async {
     ArgumentError.checkNotNull(outpostId, 'outpostId');
-    _s.validateStringLength(
-      'outpostId',
-      outpostId,
-      1,
-      180,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -440,24 +341,11 @@ class Outposts {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(outpostId, 'outpostId');
-    _s.validateStringLength(
-      'outpostId',
-      outpostId,
-      1,
-      180,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1005,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
@@ -486,13 +374,6 @@ class Outposts {
     required String siteId,
   }) async {
     ArgumentError.checkNotNull(siteId, 'siteId');
-    _s.validateStringLength(
-      'siteId',
-      siteId,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -520,13 +401,6 @@ class Outposts {
   }) async {
     ArgumentError.checkNotNull(addressType, 'addressType');
     ArgumentError.checkNotNull(siteId, 'siteId');
-    _s.validateStringLength(
-      'siteId',
-      siteId,
-      1,
-      255,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'AddressType': [addressType.toValue()],
     };
@@ -585,12 +459,6 @@ class Outposts {
       1,
       1000,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1005,
-    );
     final $query = <String, List<String>>{
       if (eC2FamilyFilter != null) 'EC2FamilyFilter': eC2FamilyFilter,
       if (itemClassFilter != null)
@@ -632,18 +500,6 @@ class Outposts {
       maxResults,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1005,
-    );
-    _s.validateStringLength(
-      'outpostIdentifierFilter',
-      outpostIdentifierFilter,
-      1,
-      180,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
@@ -708,12 +564,6 @@ class Outposts {
       1,
       1000,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1005,
-    );
     final $query = <String, List<String>>{
       if (availabilityZoneFilter != null)
         'AvailabilityZoneFilter': availabilityZoneFilter,
@@ -749,12 +599,6 @@ class Outposts {
       1,
       1000,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1005,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
       if (nextToken != null) 'NextToken': [nextToken],
@@ -781,13 +625,6 @@ class Outposts {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1011,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -813,13 +650,6 @@ class Outposts {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -848,13 +678,6 @@ class Outposts {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -888,25 +711,6 @@ class Outposts {
     SupportedHardwareType? supportedHardwareType,
   }) async {
     ArgumentError.checkNotNull(outpostId, 'outpostId');
-    _s.validateStringLength(
-      'outpostId',
-      outpostId,
-      1,
-      180,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (name != null) 'Name': name,
@@ -942,31 +746,6 @@ class Outposts {
     String? notes,
   }) async {
     ArgumentError.checkNotNull(siteId, 'siteId');
-    _s.validateStringLength(
-      'siteId',
-      siteId,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1001,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'notes',
-      notes,
-      1,
-      2000,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (name != null) 'Name': name,
@@ -1011,13 +790,6 @@ class Outposts {
     ArgumentError.checkNotNull(address, 'address');
     ArgumentError.checkNotNull(addressType, 'addressType');
     ArgumentError.checkNotNull(siteId, 'siteId');
-    _s.validateStringLength(
-      'siteId',
-      siteId,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Address': address,
       'AddressType': addressType.toValue(),
@@ -1192,13 +964,6 @@ class Outposts {
     UplinkGbps? uplinkGbps,
   }) async {
     ArgumentError.checkNotNull(siteId, 'siteId');
-    _s.validateStringLength(
-      'siteId',
-      siteId,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (fiberOpticCableType != null)
         'FiberOpticCableType': fiberOpticCableType.toValue(),

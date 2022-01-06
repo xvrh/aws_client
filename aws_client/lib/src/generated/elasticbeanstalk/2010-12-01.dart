@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -15,8 +16,8 @@ import '../../shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import '2010-12-01.meta.dart';
 
+import '2010-12-01.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// AWS Elastic Beanstalk makes it easy for you to create, deploy, and manage
@@ -57,12 +58,6 @@ class ElasticBeanstalk {
     String? environmentId,
     String? environmentName,
   }) async {
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
     final $request = <String, dynamic>{};
     environmentId?.also((arg) => $request['EnvironmentId'] = arg);
     environmentName?.also((arg) => $request['EnvironmentName'] = arg);
@@ -138,21 +133,7 @@ class ElasticBeanstalk {
     required String operationsRole,
   }) async {
     ArgumentError.checkNotNull(environmentName, 'environmentName');
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(operationsRole, 'operationsRole');
-    _s.validateStringLength(
-      'operationsRole',
-      operationsRole,
-      1,
-      256,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['EnvironmentName'] = environmentName;
     $request['OperationsRole'] = operationsRole;
@@ -176,13 +157,6 @@ class ElasticBeanstalk {
     required String cNAMEPrefix,
   }) async {
     ArgumentError.checkNotNull(cNAMEPrefix, 'cNAMEPrefix');
-    _s.validateStringLength(
-      'cNAMEPrefix',
-      cNAMEPrefix,
-      4,
-      63,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['CNAMEPrefix'] = cNAMEPrefix;
     final $result = await _protocol.send(
@@ -232,18 +206,6 @@ class ElasticBeanstalk {
     String? groupName,
     List<String>? versionLabels,
   }) async {
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      19,
-    );
     final $request = <String, dynamic>{};
     applicationName?.also((arg) => $request['ApplicationName'] = arg);
     groupName?.also((arg) => $request['GroupName'] = arg);
@@ -289,19 +251,6 @@ class ElasticBeanstalk {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
     final $request = <String, dynamic>{};
     $request['ApplicationName'] = applicationName;
     description?.also((arg) => $request['Description'] = arg);
@@ -419,27 +368,7 @@ class ElasticBeanstalk {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionLabel, 'versionLabel');
-    _s.validateStringLength(
-      'versionLabel',
-      versionLabel,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
     final $request = <String, dynamic>{};
     $request['ApplicationName'] = applicationName;
     $request['VersionLabel'] = versionLabel;
@@ -578,27 +507,7 @@ class ElasticBeanstalk {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateName, 'templateName');
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
     final $request = <String, dynamic>{};
     $request['ApplicationName'] = applicationName;
     $request['TemplateName'] = templateName;
@@ -743,55 +652,6 @@ class ElasticBeanstalk {
     String? versionLabel,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'cNAMEPrefix',
-      cNAMEPrefix,
-      4,
-      63,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      19,
-    );
-    _s.validateStringLength(
-      'operationsRole',
-      operationsRole,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'versionLabel',
-      versionLabel,
-      1,
-      100,
-    );
     final $request = <String, dynamic>{};
     $request['ApplicationName'] = applicationName;
     cNAMEPrefix?.also((arg) => $request['CNAMEPrefix'] = arg);
@@ -860,12 +720,6 @@ class ElasticBeanstalk {
         platformDefinitionBundle, 'platformDefinitionBundle');
     ArgumentError.checkNotNull(platformName, 'platformName');
     ArgumentError.checkNotNull(platformVersion, 'platformVersion');
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
     final $request = <String, dynamic>{};
     $request['PlatformDefinitionBundle'] = platformDefinitionBundle;
     $request['PlatformName'] = platformName;
@@ -932,13 +786,6 @@ class ElasticBeanstalk {
     bool? terminateEnvByForce,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ApplicationName'] = applicationName;
     terminateEnvByForce?.also((arg) => $request['TerminateEnvByForce'] = arg);
@@ -981,21 +828,7 @@ class ElasticBeanstalk {
     bool? deleteSourceBundle,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionLabel, 'versionLabel');
-    _s.validateStringLength(
-      'versionLabel',
-      versionLabel,
-      1,
-      100,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ApplicationName'] = applicationName;
     $request['VersionLabel'] = versionLabel;
@@ -1032,21 +865,7 @@ class ElasticBeanstalk {
     required String templateName,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateName, 'templateName');
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      100,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ApplicationName'] = applicationName;
     $request['TemplateName'] = templateName;
@@ -1082,21 +901,7 @@ class ElasticBeanstalk {
     required String environmentName,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(environmentName, 'environmentName');
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ApplicationName'] = applicationName;
     $request['EnvironmentName'] = environmentName;
@@ -1189,12 +994,6 @@ class ElasticBeanstalk {
     String? nextToken,
     List<String>? versionLabels,
   }) async {
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-    );
     _s.validateNumRange(
       'maxRecords',
       maxRecords,
@@ -1282,24 +1081,6 @@ class ElasticBeanstalk {
     String? solutionStackName,
     String? templateName,
   }) async {
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      100,
-    );
     final $request = <String, dynamic>{};
     applicationName?.also((arg) => $request['ApplicationName'] = arg);
     environmentName?.also((arg) => $request['EnvironmentName'] = arg);
@@ -1367,25 +1148,6 @@ class ElasticBeanstalk {
     String? templateName,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      100,
-    );
     final $request = <String, dynamic>{};
     $request['ApplicationName'] = applicationName;
     environmentName?.also((arg) => $request['EnvironmentName'] = arg);
@@ -1430,12 +1192,6 @@ class ElasticBeanstalk {
     String? environmentId,
     String? environmentName,
   }) async {
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
     final $request = <String, dynamic>{};
     attributeNames?.also((arg) =>
         $request['AttributeNames'] = arg.map((e) => e.toValue()).toList());
@@ -1477,12 +1233,6 @@ class ElasticBeanstalk {
     int? maxItems,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -1565,12 +1315,6 @@ class ElasticBeanstalk {
     String? environmentId,
     String? environmentName,
   }) async {
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
     final $request = <String, dynamic>{};
     environmentId?.also((arg) => $request['EnvironmentId'] = arg);
     environmentName?.also((arg) => $request['EnvironmentName'] = arg);
@@ -1641,23 +1385,11 @@ class ElasticBeanstalk {
     String? nextToken,
     String? versionLabel,
   }) async {
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-    );
     _s.validateNumRange(
       'maxRecords',
       maxRecords,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'versionLabel',
-      versionLabel,
-      1,
-      100,
     );
     final $request = <String, dynamic>{};
     applicationName?.also((arg) => $request['ApplicationName'] = arg);
@@ -1752,35 +1484,11 @@ class ElasticBeanstalk {
     String? templateName,
     String? versionLabel,
   }) async {
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
     _s.validateNumRange(
       'maxRecords',
       maxRecords,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'versionLabel',
-      versionLabel,
-      1,
-      100,
     );
     final $request = <String, dynamic>{};
     applicationName?.also((arg) => $request['ApplicationName'] = arg);
@@ -1836,18 +1544,6 @@ class ElasticBeanstalk {
     String? environmentName,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      100,
-    );
     final $request = <String, dynamic>{};
     attributeNames?.also((arg) =>
         $request['AttributeNames'] = arg.map((e) => e.toValue()).toList());
@@ -1917,13 +1613,6 @@ class ElasticBeanstalk {
     required String environmentName,
   }) async {
     ArgumentError.checkNotNull(environmentName, 'environmentName');
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['EnvironmentName'] = environmentName;
     await _protocol.send(
@@ -2180,12 +1869,6 @@ class ElasticBeanstalk {
     String? environmentId,
     String? environmentName,
   }) async {
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
     final $request = <String, dynamic>{};
     environmentId?.also((arg) => $request['EnvironmentId'] = arg);
     environmentName?.also((arg) => $request['EnvironmentName'] = arg);
@@ -2251,12 +1934,6 @@ class ElasticBeanstalk {
     String? environmentName,
   }) async {
     ArgumentError.checkNotNull(infoType, 'infoType');
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
     final $request = <String, dynamic>{};
     $request['InfoType'] = infoType.toValue();
     environmentId?.also((arg) => $request['EnvironmentId'] = arg);
@@ -2293,12 +1970,6 @@ class ElasticBeanstalk {
     String? environmentId,
     String? environmentName,
   }) async {
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
     final $request = <String, dynamic>{};
     environmentId?.also((arg) => $request['EnvironmentId'] = arg);
     environmentName?.also((arg) => $request['EnvironmentName'] = arg);
@@ -2353,12 +2024,6 @@ class ElasticBeanstalk {
     String? environmentName,
   }) async {
     ArgumentError.checkNotNull(infoType, 'infoType');
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
     final $request = <String, dynamic>{};
     $request['InfoType'] = infoType.toValue();
     environmentId?.also((arg) => $request['EnvironmentId'] = arg);
@@ -2418,18 +2083,6 @@ class ElasticBeanstalk {
     String? sourceEnvironmentId,
     String? sourceEnvironmentName,
   }) async {
-    _s.validateStringLength(
-      'destinationEnvironmentName',
-      destinationEnvironmentName,
-      4,
-      40,
-    );
-    _s.validateStringLength(
-      'sourceEnvironmentName',
-      sourceEnvironmentName,
-      4,
-      40,
-    );
     final $request = <String, dynamic>{};
     destinationEnvironmentId
         ?.also((arg) => $request['DestinationEnvironmentId'] = arg);
@@ -2499,12 +2152,6 @@ class ElasticBeanstalk {
     bool? forceTerminate,
     bool? terminateResources,
   }) async {
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
     final $request = <String, dynamic>{};
     environmentId?.also((arg) => $request['EnvironmentId'] = arg);
     environmentName?.also((arg) => $request['EnvironmentName'] = arg);
@@ -2546,19 +2193,6 @@ class ElasticBeanstalk {
     String? description,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
     final $request = <String, dynamic>{};
     $request['ApplicationName'] = applicationName;
     description?.also((arg) => $request['Description'] = arg);
@@ -2591,13 +2225,6 @@ class ElasticBeanstalk {
     required ApplicationResourceLifecycleConfig resourceLifecycleConfig,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         resourceLifecycleConfig, 'resourceLifecycleConfig');
     final $request = <String, dynamic>{};
@@ -2645,27 +2272,7 @@ class ElasticBeanstalk {
     String? description,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionLabel, 'versionLabel');
-    _s.validateStringLength(
-      'versionLabel',
-      versionLabel,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
     final $request = <String, dynamic>{};
     $request['ApplicationName'] = applicationName;
     $request['VersionLabel'] = versionLabel;
@@ -2737,27 +2344,7 @@ class ElasticBeanstalk {
     List<OptionSpecification>? optionsToRemove,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateName, 'templateName');
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
     final $request = <String, dynamic>{};
     $request['ApplicationName'] = applicationName;
     $request['TemplateName'] = templateName;
@@ -2875,42 +2462,6 @@ class ElasticBeanstalk {
     EnvironmentTier? tier,
     String? versionLabel,
   }) async {
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      19,
-    );
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'versionLabel',
-      versionLabel,
-      1,
-      100,
-    );
     final $request = <String, dynamic>{};
     applicationName?.also((arg) => $request['ApplicationName'] = arg);
     description?.also((arg) => $request['Description'] = arg);
@@ -3040,26 +2591,7 @@ class ElasticBeanstalk {
     String? templateName,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(optionSettings, 'optionSettings');
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      4,
-      40,
-    );
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      100,
-    );
     final $request = <String, dynamic>{};
     $request['ApplicationName'] = applicationName;
     $request['OptionSettings'] = optionSettings;

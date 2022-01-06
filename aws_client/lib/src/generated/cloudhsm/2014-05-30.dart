@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -278,13 +279,6 @@ class CloudHsm {
     String? label,
   }) async {
     ArgumentError.checkNotNull(certificate, 'certificate');
-    _s.validateStringLength(
-      'certificate',
-      certificate,
-      600,
-      2400,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CloudHsmFrontendService.CreateLunaClient'
@@ -1069,13 +1063,6 @@ class CloudHsm {
     required String clientArn,
   }) async {
     ArgumentError.checkNotNull(certificate, 'certificate');
-    _s.validateStringLength(
-      'certificate',
-      certificate,
-      600,
-      2400,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(clientArn, 'clientArn');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

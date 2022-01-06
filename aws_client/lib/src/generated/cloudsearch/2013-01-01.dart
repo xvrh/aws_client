@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -15,8 +16,8 @@ import '../../shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import '2013-01-01.meta.dart';
 
+import '2013-01-01.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// You use the Amazon CloudSearch configuration service to create, configure,
@@ -54,13 +55,6 @@ class CloudSearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     final $result = await _protocol.send(
@@ -96,13 +90,6 @@ class CloudSearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     final $result = await _protocol.send(
@@ -138,13 +125,6 @@ class CloudSearch {
   }) async {
     ArgumentError.checkNotNull(analysisScheme, 'analysisScheme');
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AnalysisScheme'] = analysisScheme;
     $request['DomainName'] = domainName;
@@ -181,13 +161,6 @@ class CloudSearch {
     required Expression expression,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(expression, 'expression');
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
@@ -232,13 +205,6 @@ class CloudSearch {
     required IndexField indexField,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexField, 'indexField');
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
@@ -277,13 +243,6 @@ class CloudSearch {
     required Suggester suggester,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(suggester, 'suggester');
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
@@ -320,21 +279,7 @@ class CloudSearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(analysisSchemeName, 'analysisSchemeName');
-    _s.validateStringLength(
-      'analysisSchemeName',
-      analysisSchemeName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AnalysisSchemeName'] = analysisSchemeName;
     $request['DomainName'] = domainName;
@@ -367,13 +312,6 @@ class CloudSearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     final $result = await _protocol.send(
@@ -409,21 +347,7 @@ class CloudSearch {
     required String expressionName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(expressionName, 'expressionName');
-    _s.validateStringLength(
-      'expressionName',
-      expressionName,
-      1,
-      64,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     $request['ExpressionName'] = expressionName;
@@ -461,21 +385,7 @@ class CloudSearch {
     required String indexFieldName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexFieldName, 'indexFieldName');
-    _s.validateStringLength(
-      'indexFieldName',
-      indexFieldName,
-      1,
-      64,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     $request['IndexFieldName'] = indexFieldName;
@@ -511,21 +421,7 @@ class CloudSearch {
     required String suggesterName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(suggesterName, 'suggesterName');
-    _s.validateStringLength(
-      'suggesterName',
-      suggesterName,
-      1,
-      64,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     $request['SuggesterName'] = suggesterName;
@@ -574,13 +470,6 @@ class CloudSearch {
     bool? deployed,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     analysisSchemeNames?.also((arg) => $request['AnalysisSchemeNames'] = arg);
@@ -626,13 +515,6 @@ class CloudSearch {
     bool? deployed,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     deployed?.also((arg) => $request['Deployed'] = arg);
@@ -674,13 +556,6 @@ class CloudSearch {
     bool? deployed,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     deployed?.also((arg) => $request['Deployed'] = arg);
@@ -762,13 +637,6 @@ class CloudSearch {
     List<String>? expressionNames,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     deployed?.also((arg) => $request['Deployed'] = arg);
@@ -817,13 +685,6 @@ class CloudSearch {
     List<String>? fieldNames,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     deployed?.also((arg) => $request['Deployed'] = arg);
@@ -856,13 +717,6 @@ class CloudSearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     final $result = await _protocol.send(
@@ -904,13 +758,6 @@ class CloudSearch {
     bool? deployed,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     deployed?.also((arg) => $request['Deployed'] = arg);
@@ -958,13 +805,6 @@ class CloudSearch {
     List<String>? suggesterNames,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     deployed?.also((arg) => $request['Deployed'] = arg);
@@ -995,13 +835,6 @@ class CloudSearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
     final $result = await _protocol.send(
@@ -1063,13 +896,6 @@ class CloudSearch {
     required bool multiAZ,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(multiAZ, 'multiAZ');
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
@@ -1116,13 +942,6 @@ class CloudSearch {
   }) async {
     ArgumentError.checkNotNull(domainEndpointOptions, 'domainEndpointOptions');
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DomainEndpointOptions'] = domainEndpointOptions;
     $request['DomainName'] = domainName;
@@ -1161,13 +980,6 @@ class CloudSearch {
     required ScalingParameters scalingParameters,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scalingParameters, 'scalingParameters');
     final $request = <String, dynamic>{};
     $request['DomainName'] = domainName;
@@ -1207,13 +1019,6 @@ class CloudSearch {
   }) async {
     ArgumentError.checkNotNull(accessPolicies, 'accessPolicies');
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AccessPolicies'] = accessPolicies;
     $request['DomainName'] = domainName;

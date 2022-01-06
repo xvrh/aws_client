@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -98,21 +99,7 @@ class SageMaker {
     AssociationEdgeType? associationType,
   }) async {
     ArgumentError.checkNotNull(destinationArn, 'destinationArn');
-    _s.validateStringLength(
-      'destinationArn',
-      destinationArn,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceArn, 'sourceArn');
-    _s.validateStringLength(
-      'sourceArn',
-      sourceArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.AddAssociation'
@@ -178,13 +165,6 @@ class SageMaker {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -222,21 +202,7 @@ class SageMaker {
     required String trialName,
   }) async {
     ArgumentError.checkNotNull(trialComponentName, 'trialComponentName');
-    _s.validateStringLength(
-      'trialComponentName',
-      trialComponentName,
-      1,
-      120,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(trialName, 'trialName');
-    _s.validateStringLength(
-      'trialName',
-      trialName,
-      1,
-      120,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.AssociateTrialComponent'
@@ -323,28 +289,8 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(actionName, 'actionName');
-    _s.validateStringLength(
-      'actionName',
-      actionName,
-      1,
-      120,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(actionType, 'actionType');
-    _s.validateStringLength(
-      'actionType',
-      actionType,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(source, 'source');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      3072,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateAction'
@@ -457,20 +403,7 @@ class SageMaker {
     AlgorithmValidationSpecification? validationSpecification,
   }) async {
     ArgumentError.checkNotNull(algorithmName, 'algorithmName');
-    _s.validateStringLength(
-      'algorithmName',
-      algorithmName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(trainingSpecification, 'trainingSpecification');
-    _s.validateStringLength(
-      'algorithmDescription',
-      algorithmDescription,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateAlgorithm'
@@ -537,30 +470,9 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(appName, 'appName');
-    _s.validateStringLength(
-      'appName',
-      appName,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appType, 'appType');
     ArgumentError.checkNotNull(domainId, 'domainId');
-    _s.validateStringLength(
-      'domainId',
-      domainId,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userProfileName, 'userProfileName');
-    _s.validateStringLength(
-      'userProfileName',
-      userProfileName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateApp'
@@ -604,13 +516,6 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(appImageConfigName, 'appImageConfigName');
-    _s.validateStringLength(
-      'appImageConfigName',
-      appImageConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateAppImageConfig'
@@ -665,20 +570,7 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(artifactType, 'artifactType');
-    _s.validateStringLength(
-      'artifactType',
-      artifactType,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(source, 'source');
-    _s.validateStringLength(
-      'artifactName',
-      artifactName,
-      1,
-      120,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateArtifact'
@@ -773,23 +665,9 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(autoMLJobName, 'autoMLJobName');
-    _s.validateStringLength(
-      'autoMLJobName',
-      autoMLJobName,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(inputDataConfig, 'inputDataConfig');
     ArgumentError.checkNotNull(outputDataConfig, 'outputDataConfig');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateAutoMLJob'
@@ -851,13 +729,6 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(codeRepositoryName, 'codeRepositoryName');
-    _s.validateStringLength(
-      'codeRepositoryName',
-      codeRepositoryName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gitConfig, 'gitConfig');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -993,29 +864,9 @@ class SageMaker {
     NeoVpcConfig? vpcConfig,
   }) async {
     ArgumentError.checkNotNull(compilationJobName, 'compilationJobName');
-    _s.validateStringLength(
-      'compilationJobName',
-      compilationJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(outputConfig, 'outputConfig');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stoppingCondition, 'stoppingCondition');
-    _s.validateStringLength(
-      'modelPackageVersionArn',
-      modelPackageVersionArn,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateCompilationJob'
@@ -1078,28 +929,8 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(contextName, 'contextName');
-    _s.validateStringLength(
-      'contextName',
-      contextName,
-      1,
-      120,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(contextType, 'contextType');
-    _s.validateStringLength(
-      'contextType',
-      contextType,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(source, 'source');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      3072,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateContext'
@@ -1175,22 +1006,8 @@ class SageMaker {
     ArgumentError.checkNotNull(
         dataQualityJobOutputConfig, 'dataQualityJobOutputConfig');
     ArgumentError.checkNotNull(jobDefinitionName, 'jobDefinitionName');
-    _s.validateStringLength(
-      'jobDefinitionName',
-      jobDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobResources, 'jobResources');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateDataQualityJobDefinition'
@@ -1256,26 +1073,7 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(deviceFleetName, 'deviceFleetName');
-    _s.validateStringLength(
-      'deviceFleetName',
-      deviceFleetName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(outputConfig, 'outputConfig');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      800,
-    );
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateDeviceFleet'
@@ -1433,34 +1231,8 @@ class SageMaker {
     ArgumentError.checkNotNull(authMode, 'authMode');
     ArgumentError.checkNotNull(defaultUserSettings, 'defaultUserSettings');
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subnetIds, 'subnetIds');
     ArgumentError.checkNotNull(vpcId, 'vpcId');
-    _s.validateStringLength(
-      'vpcId',
-      vpcId,
-      0,
-      32,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'homeEfsFileSystemKmsKeyId',
-      homeEfsFileSystemKmsKeyId,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      0,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateDomain'
@@ -1536,52 +1308,11 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(compilationJobName, 'compilationJobName');
-    _s.validateStringLength(
-      'compilationJobName',
-      compilationJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(edgePackagingJobName, 'edgePackagingJobName');
-    _s.validateStringLength(
-      'edgePackagingJobName',
-      edgePackagingJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(modelName, 'modelName');
-    _s.validateStringLength(
-      'modelName',
-      modelName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(modelVersion, 'modelVersion');
-    _s.validateStringLength(
-      'modelVersion',
-      modelVersion,
-      1,
-      30,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(outputConfig, 'outputConfig');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'resourceKey',
-      resourceKey,
-      0,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateEdgePackagingJob'
@@ -1720,21 +1451,7 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(endpointConfigName, 'endpointConfigName');
-    _s.validateStringLength(
-      'endpointConfigName',
-      endpointConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(endpointName, 'endpointName');
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateEndpoint'
@@ -1874,20 +1591,7 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(endpointConfigName, 'endpointConfigName');
-    _s.validateStringLength(
-      'endpointConfigName',
-      endpointConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(productionVariants, 'productionVariants');
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      0,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateEndpointConfig'
@@ -1964,25 +1668,6 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(experimentName, 'experimentName');
-    _s.validateStringLength(
-      'experimentName',
-      experimentName,
-      1,
-      120,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      3072,
-    );
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      1,
-      120,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateExperiment'
@@ -2162,43 +1847,10 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(eventTimeFeatureName, 'eventTimeFeatureName');
-    _s.validateStringLength(
-      'eventTimeFeatureName',
-      eventTimeFeatureName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(featureDefinitions, 'featureDefinitions');
     ArgumentError.checkNotNull(featureGroupName, 'featureGroupName');
-    _s.validateStringLength(
-      'featureGroupName',
-      featureGroupName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         recordIdentifierFeatureName, 'recordIdentifierFeatureName');
-    _s.validateStringLength(
-      'recordIdentifierFeatureName',
-      recordIdentifierFeatureName,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateFeatureGroup'
@@ -2270,23 +1922,9 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(flowDefinitionName, 'flowDefinitionName');
-    _s.validateStringLength(
-      'flowDefinitionName',
-      flowDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(humanLoopConfig, 'humanLoopConfig');
     ArgumentError.checkNotNull(outputConfig, 'outputConfig');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateFlowDefinition'
@@ -2333,13 +1971,6 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(humanTaskUiName, 'humanTaskUiName');
-    _s.validateStringLength(
-      'humanTaskUiName',
-      humanTaskUiName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(uiTemplate, 'uiTemplate');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2437,13 +2068,6 @@ class SageMaker {
         hyperParameterTuningJobConfig, 'hyperParameterTuningJobConfig');
     ArgumentError.checkNotNull(
         hyperParameterTuningJobName, 'hyperParameterTuningJobName');
-    _s.validateStringLength(
-      'hyperParameterTuningJobName',
-      hyperParameterTuningJobName,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateHyperParameterTuningJob'
@@ -2502,33 +2126,7 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(imageName, 'imageName');
-    _s.validateStringLength(
-      'imageName',
-      imageName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      512,
-    );
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateImage'
@@ -2581,27 +2179,7 @@ class SageMaker {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(baseImage, 'baseImage');
-    _s.validateStringLength(
-      'baseImage',
-      baseImage,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(imageName, 'imageName');
-    _s.validateStringLength(
-      'imageName',
-      imageName,
-      1,
-      63,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateImageVersion'
@@ -2672,28 +2250,8 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(inputConfig, 'inputConfig');
     ArgumentError.checkNotNull(jobName, 'jobName');
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobType, 'jobType');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'jobDescription',
-      jobDescription,
-      0,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateInferenceRecommendationsJob'
@@ -2973,36 +2531,9 @@ class SageMaker {
     ArgumentError.checkNotNull(humanTaskConfig, 'humanTaskConfig');
     ArgumentError.checkNotNull(inputConfig, 'inputConfig');
     ArgumentError.checkNotNull(labelAttributeName, 'labelAttributeName');
-    _s.validateStringLength(
-      'labelAttributeName',
-      labelAttributeName,
-      1,
-      127,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(labelingJobName, 'labelingJobName');
-    _s.validateStringLength(
-      'labelingJobName',
-      labelingJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(outputConfig, 'outputConfig');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'labelCategoryConfigS3Uri',
-      labelCategoryConfigS3Uri,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateLabelingJob'
@@ -3128,21 +2659,7 @@ class SageMaker {
     VpcConfig? vpcConfig,
   }) async {
     ArgumentError.checkNotNull(executionRoleArn, 'executionRoleArn');
-    _s.validateStringLength(
-      'executionRoleArn',
-      executionRoleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(modelName, 'modelName');
-    _s.validateStringLength(
-      'modelName',
-      modelName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateModel'
@@ -3213,13 +2730,6 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(jobDefinitionName, 'jobDefinitionName');
-    _s.validateStringLength(
-      'jobDefinitionName',
-      jobDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobResources, 'jobResources');
     ArgumentError.checkNotNull(
         modelBiasAppSpecification, 'modelBiasAppSpecification');
@@ -3227,13 +2737,6 @@ class SageMaker {
     ArgumentError.checkNotNull(
         modelBiasJobOutputConfig, 'modelBiasJobOutputConfig');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateModelBiasJobDefinition'
@@ -3309,13 +2812,6 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(jobDefinitionName, 'jobDefinitionName');
-    _s.validateStringLength(
-      'jobDefinitionName',
-      jobDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobResources, 'jobResources');
     ArgumentError.checkNotNull(modelExplainabilityAppSpecification,
         'modelExplainabilityAppSpecification');
@@ -3324,13 +2820,6 @@ class SageMaker {
     ArgumentError.checkNotNull(modelExplainabilityJobOutputConfig,
         'modelExplainabilityJobOutputConfig');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateModelExplainabilityJobDefinition'
@@ -3512,36 +3001,6 @@ class SageMaker {
     String? task,
     ModelPackageValidationSpecification? validationSpecification,
   }) async {
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
-    _s.validateStringLength(
-      'modelPackageDescription',
-      modelPackageDescription,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      1,
-      170,
-    );
-    _s.validateStringLength(
-      'modelPackageName',
-      modelPackageName,
-      1,
-      63,
-    );
-    _s.validateStringLength(
-      'samplePayloadUrl',
-      samplePayloadUrl,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateModelPackage'
@@ -3611,19 +3070,6 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(modelPackageGroupName, 'modelPackageGroupName');
-    _s.validateStringLength(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      1,
-      63,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'modelPackageGroupDescription',
-      modelPackageGroupDescription,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateModelPackageGroup'
@@ -3692,13 +3138,6 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(jobDefinitionName, 'jobDefinitionName');
-    _s.validateStringLength(
-      'jobDefinitionName',
-      jobDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobResources, 'jobResources');
     ArgumentError.checkNotNull(
         modelQualityAppSpecification, 'modelQualityAppSpecification');
@@ -3706,13 +3145,6 @@ class SageMaker {
     ArgumentError.checkNotNull(
         modelQualityJobOutputConfig, 'modelQualityJobOutputConfig');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateModelQualityJobDefinition'
@@ -3770,13 +3202,6 @@ class SageMaker {
         monitoringScheduleConfig, 'monitoringScheduleConfig');
     ArgumentError.checkNotNull(
         monitoringScheduleName, 'monitoringScheduleName');
-    _s.validateStringLength(
-      'monitoringScheduleName',
-      monitoringScheduleName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateMonitoringSchedule'
@@ -3972,51 +3397,7 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(instanceType, 'instanceType');
     ArgumentError.checkNotNull(notebookInstanceName, 'notebookInstanceName');
-    _s.validateStringLength(
-      'notebookInstanceName',
-      notebookInstanceName,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'defaultCodeRepository',
-      defaultCodeRepository,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'lifecycleConfigName',
-      lifecycleConfigName,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'platformIdentifier',
-      platformIdentifier,
-      0,
-      15,
-    );
-    _s.validateStringLength(
-      'subnetId',
-      subnetId,
-      0,
-      32,
-    );
     _s.validateNumRange(
       'volumeSizeInGB',
       volumeSizeInGB,
@@ -4103,13 +3484,6 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(notebookInstanceLifecycleConfigName,
         'notebookInstanceLifecycleConfigName');
-    _s.validateStringLength(
-      'notebookInstanceLifecycleConfigName',
-      notebookInstanceLifecycleConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateNotebookInstanceLifecycleConfig'
@@ -4180,45 +3554,7 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(pipelineName, 'pipelineName');
-    _s.validateStringLength(
-      'pipelineName',
-      pipelineName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      32,
-      128,
-    );
-    _s.validateStringLength(
-      'pipelineDefinition',
-      pipelineDefinition,
-      1,
-      1048576,
-    );
-    _s.validateStringLength(
-      'pipelineDescription',
-      pipelineDescription,
-      0,
-      3072,
-    );
-    _s.validateStringLength(
-      'pipelineDisplayName',
-      pipelineDisplayName,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreatePipeline'
@@ -4297,21 +3633,7 @@ class SageMaker {
     int? sessionExpirationDurationInSeconds,
   }) async {
     ArgumentError.checkNotNull(domainId, 'domainId');
-    _s.validateStringLength(
-      'domainId',
-      domainId,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userProfileName, 'userProfileName');
-    _s.validateStringLength(
-      'userProfileName',
-      userProfileName,
-      0,
-      63,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'expiresInSeconds',
       expiresInSeconds,
@@ -4384,13 +3706,6 @@ class SageMaker {
     int? sessionExpirationDurationInSeconds,
   }) async {
     ArgumentError.checkNotNull(notebookInstanceName, 'notebookInstanceName');
-    _s.validateStringLength(
-      'notebookInstanceName',
-      notebookInstanceName,
-      0,
-      63,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'sessionExpirationDurationInSeconds',
       sessionExpirationDurationInSeconds,
@@ -4479,22 +3794,8 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(appSpecification, 'appSpecification');
     ArgumentError.checkNotNull(processingJobName, 'processingJobName');
-    _s.validateStringLength(
-      'processingJobName',
-      processingJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(processingResources, 'processingResources');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateProcessingJob'
@@ -4558,21 +3859,8 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         serviceCatalogProvisioningDetails, 'serviceCatalogProvisioningDetails');
-    _s.validateStringLength(
-      'projectDescription',
-      projectDescription,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateProject'
@@ -4623,22 +3911,8 @@ class SageMaker {
         studioLifecycleConfigAppType, 'studioLifecycleConfigAppType');
     ArgumentError.checkNotNull(
         studioLifecycleConfigContent, 'studioLifecycleConfigContent');
-    _s.validateStringLength(
-      'studioLifecycleConfigContent',
-      studioLifecycleConfigContent,
-      1,
-      16384,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         studioLifecycleConfigName, 'studioLifecycleConfigName');
-    _s.validateStringLength(
-      'studioLifecycleConfigName',
-      studioLifecycleConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateStudioLifecycleConfig'
@@ -4911,22 +4185,8 @@ class SageMaker {
     ArgumentError.checkNotNull(outputDataConfig, 'outputDataConfig');
     ArgumentError.checkNotNull(resourceConfig, 'resourceConfig');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(stoppingCondition, 'stoppingCondition');
     ArgumentError.checkNotNull(trainingJobName, 'trainingJobName');
-    _s.validateStringLength(
-      'trainingJobName',
-      trainingJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateTrainingJob'
@@ -5118,22 +4378,8 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(modelName, 'modelName');
-    _s.validateStringLength(
-      'modelName',
-      modelName,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(transformInput, 'transformInput');
     ArgumentError.checkNotNull(transformJobName, 'transformJobName');
-    _s.validateStringLength(
-      'transformJobName',
-      transformJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(transformOutput, 'transformOutput');
     ArgumentError.checkNotNull(transformResources, 'transformResources');
     _s.validateNumRange(
@@ -5221,27 +4467,7 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(experimentName, 'experimentName');
-    _s.validateStringLength(
-      'experimentName',
-      experimentName,
-      1,
-      120,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(trialName, 'trialName');
-    _s.validateStringLength(
-      'trialName',
-      trialName,
-      1,
-      120,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      1,
-      120,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateTrial'
@@ -5339,19 +4565,6 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(trialComponentName, 'trialComponentName');
-    _s.validateStringLength(
-      'trialComponentName',
-      trialComponentName,
-      1,
-      120,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      1,
-      120,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateTrialComponent'
@@ -5428,27 +4641,7 @@ class SageMaker {
     UserSettings? userSettings,
   }) async {
     ArgumentError.checkNotNull(domainId, 'domainId');
-    _s.validateStringLength(
-      'domainId',
-      domainId,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userProfileName, 'userProfileName');
-    _s.validateStringLength(
-      'userProfileName',
-      userProfileName,
-      0,
-      63,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'singleSignOnUserValue',
-      singleSignOnUserValue,
-      0,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateUserProfile'
@@ -5529,13 +4722,6 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(workforceName, 'workforceName');
-    _s.validateStringLength(
-      'workforceName',
-      workforceName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateWorkforce'
@@ -5623,28 +4809,8 @@ class SageMaker {
     String? workforceName,
   }) async {
     ArgumentError.checkNotNull(description, 'description');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      200,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberDefinitions, 'memberDefinitions');
     ArgumentError.checkNotNull(workteamName, 'workteamName');
-    _s.validateStringLength(
-      'workteamName',
-      workteamName,
-      1,
-      63,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'workforceName',
-      workforceName,
-      1,
-      63,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.CreateWorkteam'
@@ -5679,13 +4845,6 @@ class SageMaker {
     required String actionName,
   }) async {
     ArgumentError.checkNotNull(actionName, 'actionName');
-    _s.validateStringLength(
-      'actionName',
-      actionName,
-      1,
-      120,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteAction'
@@ -5712,13 +4871,6 @@ class SageMaker {
     required String algorithmName,
   }) async {
     ArgumentError.checkNotNull(algorithmName, 'algorithmName');
-    _s.validateStringLength(
-      'algorithmName',
-      algorithmName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteAlgorithm'
@@ -5758,30 +4910,9 @@ class SageMaker {
     required String userProfileName,
   }) async {
     ArgumentError.checkNotNull(appName, 'appName');
-    _s.validateStringLength(
-      'appName',
-      appName,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appType, 'appType');
     ArgumentError.checkNotNull(domainId, 'domainId');
-    _s.validateStringLength(
-      'domainId',
-      domainId,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userProfileName, 'userProfileName');
-    _s.validateStringLength(
-      'userProfileName',
-      userProfileName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteApp'
@@ -5811,13 +4942,6 @@ class SageMaker {
     required String appImageConfigName,
   }) async {
     ArgumentError.checkNotNull(appImageConfigName, 'appImageConfigName');
-    _s.validateStringLength(
-      'appImageConfigName',
-      appImageConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteAppImageConfig'
@@ -5848,12 +4972,6 @@ class SageMaker {
     String? artifactArn,
     ArtifactSource? source,
   }) async {
-    _s.validateStringLength(
-      'artifactArn',
-      artifactArn,
-      0,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteArtifact'
@@ -5887,21 +5005,7 @@ class SageMaker {
     required String sourceArn,
   }) async {
     ArgumentError.checkNotNull(destinationArn, 'destinationArn');
-    _s.validateStringLength(
-      'destinationArn',
-      destinationArn,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceArn, 'sourceArn');
-    _s.validateStringLength(
-      'sourceArn',
-      sourceArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteAssociation'
@@ -5929,13 +5033,6 @@ class SageMaker {
     required String codeRepositoryName,
   }) async {
     ArgumentError.checkNotNull(codeRepositoryName, 'codeRepositoryName');
-    _s.validateStringLength(
-      'codeRepositoryName',
-      codeRepositoryName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteCodeRepository'
@@ -5962,13 +5059,6 @@ class SageMaker {
     required String contextName,
   }) async {
     ArgumentError.checkNotNull(contextName, 'contextName');
-    _s.validateStringLength(
-      'contextName',
-      contextName,
-      1,
-      120,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteContext'
@@ -5997,13 +5087,6 @@ class SageMaker {
     required String jobDefinitionName,
   }) async {
     ArgumentError.checkNotNull(jobDefinitionName, 'jobDefinitionName');
-    _s.validateStringLength(
-      'jobDefinitionName',
-      jobDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteDataQualityJobDefinition'
@@ -6030,13 +5113,6 @@ class SageMaker {
     required String deviceFleetName,
   }) async {
     ArgumentError.checkNotNull(deviceFleetName, 'deviceFleetName');
-    _s.validateStringLength(
-      'deviceFleetName',
-      deviceFleetName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteDeviceFleet'
@@ -6073,13 +5149,6 @@ class SageMaker {
     RetentionPolicy? retentionPolicy,
   }) async {
     ArgumentError.checkNotNull(domainId, 'domainId');
-    _s.validateStringLength(
-      'domainId',
-      domainId,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteDomain'
@@ -6111,13 +5180,6 @@ class SageMaker {
     required String endpointName,
   }) async {
     ArgumentError.checkNotNull(endpointName, 'endpointName');
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteEndpoint'
@@ -6152,13 +5214,6 @@ class SageMaker {
     required String endpointConfigName,
   }) async {
     ArgumentError.checkNotNull(endpointConfigName, 'endpointConfigName');
-    _s.validateStringLength(
-      'endpointConfigName',
-      endpointConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteEndpointConfig'
@@ -6187,13 +5242,6 @@ class SageMaker {
     required String experimentName,
   }) async {
     ArgumentError.checkNotNull(experimentName, 'experimentName');
-    _s.validateStringLength(
-      'experimentName',
-      experimentName,
-      1,
-      120,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteExperiment'
@@ -6231,13 +5279,6 @@ class SageMaker {
     required String featureGroupName,
   }) async {
     ArgumentError.checkNotNull(featureGroupName, 'featureGroupName');
-    _s.validateStringLength(
-      'featureGroupName',
-      featureGroupName,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteFeatureGroup'
@@ -6265,13 +5306,6 @@ class SageMaker {
     required String flowDefinitionName,
   }) async {
     ArgumentError.checkNotNull(flowDefinitionName, 'flowDefinitionName');
-    _s.validateStringLength(
-      'flowDefinitionName',
-      flowDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteFlowDefinition'
@@ -6304,13 +5338,6 @@ class SageMaker {
     required String humanTaskUiName,
   }) async {
     ArgumentError.checkNotNull(humanTaskUiName, 'humanTaskUiName');
-    _s.validateStringLength(
-      'humanTaskUiName',
-      humanTaskUiName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteHumanTaskUi'
@@ -6339,13 +5366,6 @@ class SageMaker {
     required String imageName,
   }) async {
     ArgumentError.checkNotNull(imageName, 'imageName');
-    _s.validateStringLength(
-      'imageName',
-      imageName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteImage'
@@ -6378,13 +5398,6 @@ class SageMaker {
     required int version,
   }) async {
     ArgumentError.checkNotNull(imageName, 'imageName');
-    _s.validateStringLength(
-      'imageName',
-      imageName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(version, 'version');
     _s.validateNumRange(
       'version',
@@ -6422,13 +5435,6 @@ class SageMaker {
     required String modelName,
   }) async {
     ArgumentError.checkNotNull(modelName, 'modelName');
-    _s.validateStringLength(
-      'modelName',
-      modelName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteModel'
@@ -6455,13 +5461,6 @@ class SageMaker {
     required String jobDefinitionName,
   }) async {
     ArgumentError.checkNotNull(jobDefinitionName, 'jobDefinitionName');
-    _s.validateStringLength(
-      'jobDefinitionName',
-      jobDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteModelBiasJobDefinition'
@@ -6488,13 +5487,6 @@ class SageMaker {
     required String jobDefinitionName,
   }) async {
     ArgumentError.checkNotNull(jobDefinitionName, 'jobDefinitionName');
-    _s.validateStringLength(
-      'jobDefinitionName',
-      jobDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteModelExplainabilityJobDefinition'
@@ -6529,13 +5521,6 @@ class SageMaker {
     required String modelPackageName,
   }) async {
     ArgumentError.checkNotNull(modelPackageName, 'modelPackageName');
-    _s.validateStringLength(
-      'modelPackageName',
-      modelPackageName,
-      1,
-      176,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteModelPackage'
@@ -6562,13 +5547,6 @@ class SageMaker {
     required String modelPackageGroupName,
   }) async {
     ArgumentError.checkNotNull(modelPackageGroupName, 'modelPackageGroupName');
-    _s.validateStringLength(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      1,
-      170,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteModelPackageGroup'
@@ -6593,13 +5571,6 @@ class SageMaker {
     required String modelPackageGroupName,
   }) async {
     ArgumentError.checkNotNull(modelPackageGroupName, 'modelPackageGroupName');
-    _s.validateStringLength(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteModelPackageGroupPolicy'
@@ -6626,13 +5597,6 @@ class SageMaker {
     required String jobDefinitionName,
   }) async {
     ArgumentError.checkNotNull(jobDefinitionName, 'jobDefinitionName');
-    _s.validateStringLength(
-      'jobDefinitionName',
-      jobDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteModelQualityJobDefinition'
@@ -6662,13 +5626,6 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(
         monitoringScheduleName, 'monitoringScheduleName');
-    _s.validateStringLength(
-      'monitoringScheduleName',
-      monitoringScheduleName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteMonitoringSchedule'
@@ -6700,13 +5657,6 @@ class SageMaker {
     required String notebookInstanceName,
   }) async {
     ArgumentError.checkNotNull(notebookInstanceName, 'notebookInstanceName');
-    _s.validateStringLength(
-      'notebookInstanceName',
-      notebookInstanceName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteNotebookInstance'
@@ -6732,13 +5682,6 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(notebookInstanceLifecycleConfigName,
         'notebookInstanceLifecycleConfigName');
-    _s.validateStringLength(
-      'notebookInstanceLifecycleConfigName',
-      notebookInstanceLifecycleConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteNotebookInstanceLifecycleConfig'
@@ -6775,19 +5718,6 @@ class SageMaker {
     String? clientRequestToken,
   }) async {
     ArgumentError.checkNotNull(pipelineName, 'pipelineName');
-    _s.validateStringLength(
-      'pipelineName',
-      pipelineName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      32,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeletePipeline'
@@ -6818,13 +5748,6 @@ class SageMaker {
     required String projectName,
   }) async {
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteProject'
@@ -6856,13 +5779,6 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(
         studioLifecycleConfigName, 'studioLifecycleConfigName');
-    _s.validateStringLength(
-      'studioLifecycleConfigName',
-      studioLifecycleConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteStudioLifecycleConfig'
@@ -6904,13 +5820,6 @@ class SageMaker {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6941,13 +5850,6 @@ class SageMaker {
     required String trialName,
   }) async {
     ArgumentError.checkNotNull(trialName, 'trialName');
-    _s.validateStringLength(
-      'trialName',
-      trialName,
-      1,
-      120,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteTrial'
@@ -6979,13 +5881,6 @@ class SageMaker {
     required String trialComponentName,
   }) async {
     ArgumentError.checkNotNull(trialComponentName, 'trialComponentName');
-    _s.validateStringLength(
-      'trialComponentName',
-      trialComponentName,
-      1,
-      120,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteTrialComponent'
@@ -7021,21 +5916,7 @@ class SageMaker {
     required String userProfileName,
   }) async {
     ArgumentError.checkNotNull(domainId, 'domainId');
-    _s.validateStringLength(
-      'domainId',
-      domainId,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userProfileName, 'userProfileName');
-    _s.validateStringLength(
-      'userProfileName',
-      userProfileName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteUserProfile'
@@ -7071,13 +5952,6 @@ class SageMaker {
     required String workforceName,
   }) async {
     ArgumentError.checkNotNull(workforceName, 'workforceName');
-    _s.validateStringLength(
-      'workforceName',
-      workforceName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteWorkforce'
@@ -7104,13 +5978,6 @@ class SageMaker {
     required String workteamName,
   }) async {
     ArgumentError.checkNotNull(workteamName, 'workteamName');
-    _s.validateStringLength(
-      'workteamName',
-      workteamName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DeleteWorkteam'
@@ -7142,13 +6009,6 @@ class SageMaker {
     required List<String> deviceNames,
   }) async {
     ArgumentError.checkNotNull(deviceFleetName, 'deviceFleetName');
-    _s.validateStringLength(
-      'deviceFleetName',
-      deviceFleetName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceNames, 'deviceNames');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7177,13 +6037,6 @@ class SageMaker {
     required String actionName,
   }) async {
     ArgumentError.checkNotNull(actionName, 'actionName');
-    _s.validateStringLength(
-      'actionName',
-      actionName,
-      1,
-      120,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeAction'
@@ -7210,13 +6063,6 @@ class SageMaker {
     required String algorithmName,
   }) async {
     ArgumentError.checkNotNull(algorithmName, 'algorithmName');
-    _s.validateStringLength(
-      'algorithmName',
-      algorithmName,
-      1,
-      170,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeAlgorithm'
@@ -7257,30 +6103,9 @@ class SageMaker {
     required String userProfileName,
   }) async {
     ArgumentError.checkNotNull(appName, 'appName');
-    _s.validateStringLength(
-      'appName',
-      appName,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appType, 'appType');
     ArgumentError.checkNotNull(domainId, 'domainId');
-    _s.validateStringLength(
-      'domainId',
-      domainId,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userProfileName, 'userProfileName');
-    _s.validateStringLength(
-      'userProfileName',
-      userProfileName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeApp'
@@ -7312,13 +6137,6 @@ class SageMaker {
     required String appImageConfigName,
   }) async {
     ArgumentError.checkNotNull(appImageConfigName, 'appImageConfigName');
-    _s.validateStringLength(
-      'appImageConfigName',
-      appImageConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeAppImageConfig'
@@ -7347,13 +6165,6 @@ class SageMaker {
     required String artifactArn,
   }) async {
     ArgumentError.checkNotNull(artifactArn, 'artifactArn');
-    _s.validateStringLength(
-      'artifactArn',
-      artifactArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeArtifact'
@@ -7382,13 +6193,6 @@ class SageMaker {
     required String autoMLJobName,
   }) async {
     ArgumentError.checkNotNull(autoMLJobName, 'autoMLJobName');
-    _s.validateStringLength(
-      'autoMLJobName',
-      autoMLJobName,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeAutoMLJob'
@@ -7415,13 +6219,6 @@ class SageMaker {
     required String codeRepositoryName,
   }) async {
     ArgumentError.checkNotNull(codeRepositoryName, 'codeRepositoryName');
-    _s.validateStringLength(
-      'codeRepositoryName',
-      codeRepositoryName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeCodeRepository'
@@ -7454,13 +6251,6 @@ class SageMaker {
     required String compilationJobName,
   }) async {
     ArgumentError.checkNotNull(compilationJobName, 'compilationJobName');
-    _s.validateStringLength(
-      'compilationJobName',
-      compilationJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeCompilationJob'
@@ -7489,13 +6279,6 @@ class SageMaker {
     required String contextName,
   }) async {
     ArgumentError.checkNotNull(contextName, 'contextName');
-    _s.validateStringLength(
-      'contextName',
-      contextName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeContext'
@@ -7525,13 +6308,6 @@ class SageMaker {
     required String jobDefinitionName,
   }) async {
     ArgumentError.checkNotNull(jobDefinitionName, 'jobDefinitionName');
-    _s.validateStringLength(
-      'jobDefinitionName',
-      jobDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeDataQualityJobDefinition'
@@ -7568,27 +6344,7 @@ class SageMaker {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(deviceFleetName, 'deviceFleetName');
-    _s.validateStringLength(
-      'deviceFleetName',
-      deviceFleetName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(deviceName, 'deviceName');
-    _s.validateStringLength(
-      'deviceName',
-      deviceName,
-      1,
-      63,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeDevice'
@@ -7619,13 +6375,6 @@ class SageMaker {
     required String deviceFleetName,
   }) async {
     ArgumentError.checkNotNull(deviceFleetName, 'deviceFleetName');
-    _s.validateStringLength(
-      'deviceFleetName',
-      deviceFleetName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeDeviceFleet'
@@ -7654,13 +6403,6 @@ class SageMaker {
     required String domainId,
   }) async {
     ArgumentError.checkNotNull(domainId, 'domainId');
-    _s.validateStringLength(
-      'domainId',
-      domainId,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeDomain'
@@ -7689,13 +6431,6 @@ class SageMaker {
     required String edgePackagingJobName,
   }) async {
     ArgumentError.checkNotNull(edgePackagingJobName, 'edgePackagingJobName');
-    _s.validateStringLength(
-      'edgePackagingJobName',
-      edgePackagingJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeEdgePackagingJob'
@@ -7722,13 +6457,6 @@ class SageMaker {
     required String endpointName,
   }) async {
     ArgumentError.checkNotNull(endpointName, 'endpointName');
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeEndpoint'
@@ -7756,13 +6484,6 @@ class SageMaker {
     required String endpointConfigName,
   }) async {
     ArgumentError.checkNotNull(endpointConfigName, 'endpointConfigName');
-    _s.validateStringLength(
-      'endpointConfigName',
-      endpointConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeEndpointConfig'
@@ -7791,13 +6512,6 @@ class SageMaker {
     required String experimentName,
   }) async {
     ArgumentError.checkNotNull(experimentName, 'experimentName');
-    _s.validateStringLength(
-      'experimentName',
-      experimentName,
-      1,
-      120,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeExperiment'
@@ -7834,19 +6548,6 @@ class SageMaker {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(featureGroupName, 'featureGroupName');
-    _s.validateStringLength(
-      'featureGroupName',
-      featureGroupName,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeFeatureGroup'
@@ -7876,13 +6577,6 @@ class SageMaker {
     required String flowDefinitionName,
   }) async {
     ArgumentError.checkNotNull(flowDefinitionName, 'flowDefinitionName');
-    _s.validateStringLength(
-      'flowDefinitionName',
-      flowDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeFlowDefinition'
@@ -7913,13 +6607,6 @@ class SageMaker {
     required String humanTaskUiName,
   }) async {
     ArgumentError.checkNotNull(humanTaskUiName, 'humanTaskUiName');
-    _s.validateStringLength(
-      'humanTaskUiName',
-      humanTaskUiName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeHumanTaskUi'
@@ -7950,13 +6637,6 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(
         hyperParameterTuningJobName, 'hyperParameterTuningJobName');
-    _s.validateStringLength(
-      'hyperParameterTuningJobName',
-      hyperParameterTuningJobName,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeHyperParameterTuningJob'
@@ -7985,13 +6665,6 @@ class SageMaker {
     required String imageName,
   }) async {
     ArgumentError.checkNotNull(imageName, 'imageName');
-    _s.validateStringLength(
-      'imageName',
-      imageName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeImage'
@@ -8025,13 +6698,6 @@ class SageMaker {
     int? version,
   }) async {
     ArgumentError.checkNotNull(imageName, 'imageName');
-    _s.validateStringLength(
-      'imageName',
-      imageName,
-      1,
-      63,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'version',
       version,
@@ -8070,13 +6736,6 @@ class SageMaker {
     required String jobName,
   }) async {
     ArgumentError.checkNotNull(jobName, 'jobName');
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeInferenceRecommendationsJob'
@@ -8106,13 +6765,6 @@ class SageMaker {
     required String labelingJobName,
   }) async {
     ArgumentError.checkNotNull(labelingJobName, 'labelingJobName');
-    _s.validateStringLength(
-      'labelingJobName',
-      labelingJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeLabelingJob'
@@ -8145,13 +6797,6 @@ class SageMaker {
     required String lineageGroupName,
   }) async {
     ArgumentError.checkNotNull(lineageGroupName, 'lineageGroupName');
-    _s.validateStringLength(
-      'lineageGroupName',
-      lineageGroupName,
-      1,
-      120,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeLineageGroup'
@@ -8178,13 +6823,6 @@ class SageMaker {
     required String modelName,
   }) async {
     ArgumentError.checkNotNull(modelName, 'modelName');
-    _s.validateStringLength(
-      'modelName',
-      modelName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeModel'
@@ -8215,13 +6853,6 @@ class SageMaker {
     required String jobDefinitionName,
   }) async {
     ArgumentError.checkNotNull(jobDefinitionName, 'jobDefinitionName');
-    _s.validateStringLength(
-      'jobDefinitionName',
-      jobDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeModelBiasJobDefinition'
@@ -8253,13 +6884,6 @@ class SageMaker {
     required String jobDefinitionName,
   }) async {
     ArgumentError.checkNotNull(jobDefinitionName, 'jobDefinitionName');
-    _s.validateStringLength(
-      'jobDefinitionName',
-      jobDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeModelExplainabilityJobDefinition'
@@ -8294,13 +6918,6 @@ class SageMaker {
     required String modelPackageName,
   }) async {
     ArgumentError.checkNotNull(modelPackageName, 'modelPackageName');
-    _s.validateStringLength(
-      'modelPackageName',
-      modelPackageName,
-      1,
-      176,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeModelPackage'
@@ -8327,13 +6944,6 @@ class SageMaker {
     required String modelPackageGroupName,
   }) async {
     ArgumentError.checkNotNull(modelPackageGroupName, 'modelPackageGroupName');
-    _s.validateStringLength(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      1,
-      170,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeModelPackageGroup'
@@ -8364,13 +6974,6 @@ class SageMaker {
     required String jobDefinitionName,
   }) async {
     ArgumentError.checkNotNull(jobDefinitionName, 'jobDefinitionName');
-    _s.validateStringLength(
-      'jobDefinitionName',
-      jobDefinitionName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeModelQualityJobDefinition'
@@ -8401,13 +7004,6 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(
         monitoringScheduleName, 'monitoringScheduleName');
-    _s.validateStringLength(
-      'monitoringScheduleName',
-      monitoringScheduleName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeMonitoringSchedule'
@@ -8434,13 +7030,6 @@ class SageMaker {
     required String notebookInstanceName,
   }) async {
     ArgumentError.checkNotNull(notebookInstanceName, 'notebookInstanceName');
-    _s.validateStringLength(
-      'notebookInstanceName',
-      notebookInstanceName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeNotebookInstance'
@@ -8473,13 +7062,6 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(notebookInstanceLifecycleConfigName,
         'notebookInstanceLifecycleConfigName');
-    _s.validateStringLength(
-      'notebookInstanceLifecycleConfigName',
-      notebookInstanceLifecycleConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeNotebookInstanceLifecycleConfig'
@@ -8510,13 +7092,6 @@ class SageMaker {
     required String pipelineName,
   }) async {
     ArgumentError.checkNotNull(pipelineName, 'pipelineName');
-    _s.validateStringLength(
-      'pipelineName',
-      pipelineName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribePipeline'
@@ -8546,13 +7121,6 @@ class SageMaker {
     required String pipelineExecutionArn,
   }) async {
     ArgumentError.checkNotNull(pipelineExecutionArn, 'pipelineExecutionArn');
-    _s.validateStringLength(
-      'pipelineExecutionArn',
-      pipelineExecutionArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribePipelineDefinitionForExecution'
@@ -8582,13 +7150,6 @@ class SageMaker {
     required String pipelineExecutionArn,
   }) async {
     ArgumentError.checkNotNull(pipelineExecutionArn, 'pipelineExecutionArn');
-    _s.validateStringLength(
-      'pipelineExecutionArn',
-      pipelineExecutionArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribePipelineExecution'
@@ -8618,13 +7179,6 @@ class SageMaker {
     required String processingJobName,
   }) async {
     ArgumentError.checkNotNull(processingJobName, 'processingJobName');
-    _s.validateStringLength(
-      'processingJobName',
-      processingJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeProcessingJob'
@@ -8651,13 +7205,6 @@ class SageMaker {
     required String projectName,
   }) async {
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeProject'
@@ -8687,13 +7234,6 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(
         studioLifecycleConfigName, 'studioLifecycleConfigName');
-    _s.validateStringLength(
-      'studioLifecycleConfigName',
-      studioLifecycleConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeStudioLifecycleConfig'
@@ -8722,13 +7262,6 @@ class SageMaker {
     required String workteamArn,
   }) async {
     ArgumentError.checkNotNull(workteamArn, 'workteamArn');
-    _s.validateStringLength(
-      'workteamArn',
-      workteamArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeSubscribedWorkteam'
@@ -8764,13 +7297,6 @@ class SageMaker {
     required String trainingJobName,
   }) async {
     ArgumentError.checkNotNull(trainingJobName, 'trainingJobName');
-    _s.validateStringLength(
-      'trainingJobName',
-      trainingJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeTrainingJob'
@@ -8799,13 +7325,6 @@ class SageMaker {
     required String transformJobName,
   }) async {
     ArgumentError.checkNotNull(transformJobName, 'transformJobName');
-    _s.validateStringLength(
-      'transformJobName',
-      transformJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeTransformJob'
@@ -8834,13 +7353,6 @@ class SageMaker {
     required String trialName,
   }) async {
     ArgumentError.checkNotNull(trialName, 'trialName');
-    _s.validateStringLength(
-      'trialName',
-      trialName,
-      1,
-      120,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeTrial'
@@ -8869,13 +7381,6 @@ class SageMaker {
     required String trialComponentName,
   }) async {
     ArgumentError.checkNotNull(trialComponentName, 'trialComponentName');
-    _s.validateStringLength(
-      'trialComponentName',
-      trialComponentName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeTrialComponent'
@@ -8909,21 +7414,7 @@ class SageMaker {
     required String userProfileName,
   }) async {
     ArgumentError.checkNotNull(domainId, 'domainId');
-    _s.validateStringLength(
-      'domainId',
-      domainId,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userProfileName, 'userProfileName');
-    _s.validateStringLength(
-      'userProfileName',
-      userProfileName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeUserProfile'
@@ -8960,13 +7451,6 @@ class SageMaker {
     required String workforceName,
   }) async {
     ArgumentError.checkNotNull(workforceName, 'workforceName');
-    _s.validateStringLength(
-      'workforceName',
-      workforceName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeWorkforce'
@@ -8995,13 +7479,6 @@ class SageMaker {
     required String workteamName,
   }) async {
     ArgumentError.checkNotNull(workteamName, 'workteamName');
-    _s.validateStringLength(
-      'workteamName',
-      workteamName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DescribeWorkteam'
@@ -9059,21 +7536,7 @@ class SageMaker {
     required String trialName,
   }) async {
     ArgumentError.checkNotNull(trialComponentName, 'trialComponentName');
-    _s.validateStringLength(
-      'trialComponentName',
-      trialComponentName,
-      1,
-      120,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(trialName, 'trialName');
-    _s.validateStringLength(
-      'trialName',
-      trialName,
-      1,
-      120,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.DisassociateTrialComponent'
@@ -9117,13 +7580,6 @@ class SageMaker {
     required String deviceFleetName,
   }) async {
     ArgumentError.checkNotNull(deviceFleetName, 'deviceFleetName');
-    _s.validateStringLength(
-      'deviceFleetName',
-      deviceFleetName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.GetDeviceFleetReport'
@@ -9152,13 +7608,6 @@ class SageMaker {
     required String lineageGroupName,
   }) async {
     ArgumentError.checkNotNull(lineageGroupName, 'lineageGroupName');
-    _s.validateStringLength(
-      'lineageGroupName',
-      lineageGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.GetLineageGroupPolicy'
@@ -9189,13 +7638,6 @@ class SageMaker {
     required String modelPackageGroupName,
   }) async {
     ArgumentError.checkNotNull(modelPackageGroupName, 'modelPackageGroupName');
-    _s.validateStringLength(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.GetModelPackageGroupPolicy'
@@ -9310,29 +7752,11 @@ class SageMaker {
     SortOrder? sortOrder,
     String? sourceUri,
   }) async {
-    _s.validateStringLength(
-      'actionType',
-      actionType,
-      0,
-      256,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
-    _s.validateStringLength(
-      'sourceUri',
-      sourceUri,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9403,18 +7827,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9498,18 +7910,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListAppImageConfigs'
@@ -9568,29 +7968,11 @@ class SageMaker {
     SortOrder? sortOrder,
     String? userProfileNameEquals,
   }) async {
-    _s.validateStringLength(
-      'domainIdEquals',
-      domainIdEquals,
-      0,
-      63,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
-    _s.validateStringLength(
-      'userProfileNameEquals',
-      userProfileNameEquals,
-      0,
-      63,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9659,29 +8041,11 @@ class SageMaker {
     SortOrder? sortOrder,
     String? sourceUri,
   }) async {
-    _s.validateStringLength(
-      'artifactType',
-      artifactType,
-      0,
-      256,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
-    _s.validateStringLength(
-      'sourceUri',
-      sourceUri,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9767,41 +8131,11 @@ class SageMaker {
     String? sourceArn,
     String? sourceType,
   }) async {
-    _s.validateStringLength(
-      'destinationArn',
-      destinationArn,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'destinationType',
-      destinationType,
-      0,
-      256,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
-    _s.validateStringLength(
-      'sourceArn',
-      sourceArn,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'sourceType',
-      sourceType,
-      0,
-      256,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9885,18 +8219,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListAutoMLJobs'
@@ -9964,30 +8286,11 @@ class SageMaker {
     CandidateStatus? statusEquals,
   }) async {
     ArgumentError.checkNotNull(autoMLJobName, 'autoMLJobName');
-    _s.validateStringLength(
-      'autoMLJobName',
-      autoMLJobName,
-      1,
-      32,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'candidateNameEquals',
-      candidateNameEquals,
-      1,
-      64,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10065,18 +8368,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10170,18 +8461,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListCompilationJobs'
@@ -10256,29 +8535,11 @@ class SageMaker {
     SortOrder? sortOrder,
     String? sourceUri,
   }) async {
-    _s.validateStringLength(
-      'contextType',
-      contextType,
-      0,
-      256,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
-    _s.validateStringLength(
-      'sourceUri',
-      sourceUri,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10351,29 +8612,11 @@ class SageMaker {
     MonitoringJobDefinitionSortKey? sortBy,
     SortOrder? sortOrder,
   }) async {
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      63,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10449,18 +8692,6 @@ class SageMaker {
       0,
       100,
     );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListDeviceFleets'
@@ -10516,29 +8747,11 @@ class SageMaker {
     String? modelName,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'deviceFleetName',
-      deviceFleetName,
-      1,
-      63,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       0,
       100,
-    );
-    _s.validateStringLength(
-      'modelName',
-      modelName,
-      1,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10580,12 +8793,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10660,24 +8867,6 @@ class SageMaker {
       0,
       100,
     );
-    _s.validateStringLength(
-      'modelNameContains',
-      modelNameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListEdgePackagingJobs'
@@ -10751,18 +8940,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10847,18 +9024,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListEndpoints'
@@ -10928,12 +9093,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11010,18 +9169,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListFeatureGroups'
@@ -11087,12 +9234,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListFlowDefinitions'
@@ -11151,12 +9292,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11238,18 +9373,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11333,24 +9456,11 @@ class SageMaker {
     ImageVersionSortOrder? sortOrder,
   }) async {
     ArgumentError.checkNotNull(imageName, 'imageName');
-    _s.validateStringLength(
-      'imageName',
-      imageName,
-      1,
-      63,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11433,18 +9543,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11535,18 +9633,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListInferenceRecommendationsJobs'
@@ -11635,18 +9721,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListLabelingJobs'
@@ -11723,30 +9797,11 @@ class SageMaker {
     SortOrder? sortOrder,
   }) async {
     ArgumentError.checkNotNull(workteamArn, 'workteamArn');
-    _s.validateStringLength(
-      'workteamArn',
-      workteamArn,
-      0,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'jobReferenceCodeContains',
-      jobReferenceCodeContains,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11818,12 +9873,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListLineageGroups'
@@ -11889,29 +9938,11 @@ class SageMaker {
     MonitoringJobDefinitionSortKey? sortBy,
     SortOrder? sortOrder,
   }) async {
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      63,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -11983,29 +10014,11 @@ class SageMaker {
     MonitoringJobDefinitionSortKey? sortBy,
     SortOrder? sortOrder,
   }) async {
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      63,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12062,12 +10075,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12128,18 +10135,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12237,24 +10232,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      1,
-      170,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListModelPackages'
@@ -12331,29 +10308,11 @@ class SageMaker {
     MonitoringJobDefinitionSortKey? sortBy,
     SortOrder? sortOrder,
   }) async {
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      63,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12423,18 +10382,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12532,35 +10479,11 @@ class SageMaker {
     SortOrder? sortOrder,
     ExecutionStatus? statusEquals,
   }) async {
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      63,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'monitoringJobDefinitionName',
-      monitoringJobDefinitionName,
-      1,
-      63,
-    );
-    _s.validateStringLength(
-      'monitoringScheduleName',
-      monitoringScheduleName,
-      1,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12670,35 +10593,11 @@ class SageMaker {
     SortOrder? sortOrder,
     ScheduleStatus? statusEquals,
   }) async {
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      63,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'monitoringJobDefinitionName',
-      monitoringJobDefinitionName,
-      1,
-      63,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12790,18 +10689,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -12909,41 +10796,11 @@ class SageMaker {
     NotebookInstanceSortOrder? sortOrder,
     NotebookInstanceStatus? statusEquals,
   }) async {
-    _s.validateStringLength(
-      'additionalCodeRepositoryEquals',
-      additionalCodeRepositoryEquals,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'defaultCodeRepositoryContains',
-      defaultCodeRepositoryContains,
-      0,
-      1024,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
-    _s.validateStringLength(
-      'notebookInstanceLifecycleConfigNameContains',
-      notebookInstanceLifecycleConfigNameContains,
-      0,
-      63,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13014,18 +10871,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
-    _s.validateStringLength(
-      'pipelineExecutionArn',
-      pipelineExecutionArn,
-      0,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListPipelineExecutionSteps'
@@ -13087,24 +10932,11 @@ class SageMaker {
     SortOrder? sortOrder,
   }) async {
     ArgumentError.checkNotNull(pipelineName, 'pipelineName');
-    _s.validateStringLength(
-      'pipelineName',
-      pipelineName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13154,24 +10986,11 @@ class SageMaker {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(pipelineExecutionArn, 'pipelineExecutionArn');
-    _s.validateStringLength(
-      'pipelineExecutionArn',
-      pipelineExecutionArn,
-      0,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13235,18 +11054,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
-    _s.validateStringLength(
-      'pipelineNamePrefix',
-      pipelineNamePrefix,
-      1,
-      256,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13331,12 +11138,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListProcessingJobs'
@@ -13409,18 +11210,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      1,
-      32,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13509,18 +11298,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListStudioLifecycleConfigs'
@@ -13578,18 +11355,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      1,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListSubscribedWorkteams'
@@ -13629,24 +11394,11 @@ class SageMaker {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       50,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13747,18 +11499,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListTrainingJobs'
@@ -13829,24 +11569,11 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(
         hyperParameterTuningJobName, 'hyperParameterTuningJobName');
-    _s.validateStringLength(
-      'hyperParameterTuningJobName',
-      hyperParameterTuningJobName,
-      1,
-      32,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -13928,18 +11655,6 @@ class SageMaker {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -14038,35 +11753,11 @@ class SageMaker {
     String? sourceArn,
     String? trialName,
   }) async {
-    _s.validateStringLength(
-      'experimentName',
-      experimentName,
-      1,
-      120,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
-    _s.validateStringLength(
-      'sourceArn',
-      sourceArn,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'trialName',
-      trialName,
-      1,
-      120,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -14143,29 +11834,11 @@ class SageMaker {
     SortOrder? sortOrder,
     String? trialComponentName,
   }) async {
-    _s.validateStringLength(
-      'experimentName',
-      experimentName,
-      1,
-      120,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
-    _s.validateStringLength(
-      'trialComponentName',
-      trialComponentName,
-      1,
-      120,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -14223,29 +11896,11 @@ class SageMaker {
     SortOrder? sortOrder,
     String? userProfileNameContains,
   }) async {
-    _s.validateStringLength(
-      'domainIdEquals',
-      domainIdEquals,
-      0,
-      63,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
-    _s.validateStringLength(
-      'userProfileNameContains',
-      userProfileNameContains,
-      0,
-      63,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -14303,18 +11958,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      1,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListWorkforces'
@@ -14371,18 +12014,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      1,
-      63,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.ListWorkteams'
@@ -14421,21 +12052,7 @@ class SageMaker {
     required String resourcePolicy,
   }) async {
     ArgumentError.checkNotNull(modelPackageGroupName, 'modelPackageGroupName');
-    _s.validateStringLength(
-      'modelPackageGroupName',
-      modelPackageGroupName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourcePolicy, 'resourcePolicy');
-    _s.validateStringLength(
-      'resourcePolicy',
-      resourcePolicy,
-      1,
-      20480,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.PutModelPackageGroupPolicy'
@@ -14539,12 +12156,6 @@ class SageMaker {
       0,
       50,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.QueryLineage'
@@ -14587,13 +12198,6 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(deviceFleetName, 'deviceFleetName');
-    _s.validateStringLength(
-      'deviceFleetName',
-      deviceFleetName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(devices, 'devices');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -14643,20 +12247,7 @@ class SageMaker {
     UiTemplate? uiTemplate,
   }) async {
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(task, 'task');
-    _s.validateStringLength(
-      'humanTaskUiArn',
-      humanTaskUiArn,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.RenderUiTemplate'
@@ -14701,19 +12292,6 @@ class SageMaker {
     ParallelismConfiguration? parallelismConfiguration,
   }) async {
     ArgumentError.checkNotNull(pipelineExecutionArn, 'pipelineExecutionArn');
-    _s.validateStringLength(
-      'pipelineExecutionArn',
-      pipelineExecutionArn,
-      0,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      32,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.RetryPipelineExecution'
@@ -14787,18 +12365,6 @@ class SageMaker {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      8192,
-    );
-    _s.validateStringLength(
-      'sortBy',
-      sortBy,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.Search'
@@ -14847,25 +12413,6 @@ class SageMaker {
     String? failureReason,
   }) async {
     ArgumentError.checkNotNull(callbackToken, 'callbackToken');
-    _s.validateStringLength(
-      'callbackToken',
-      callbackToken,
-      10,
-      10,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      32,
-      128,
-    );
-    _s.validateStringLength(
-      'failureReason',
-      failureReason,
-      0,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.SendPipelineExecutionStepFailure'
@@ -14912,19 +12459,6 @@ class SageMaker {
     List<OutputParameter>? outputParameters,
   }) async {
     ArgumentError.checkNotNull(callbackToken, 'callbackToken');
-    _s.validateStringLength(
-      'callbackToken',
-      callbackToken,
-      10,
-      10,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      32,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.SendPipelineExecutionStepSuccess'
@@ -14961,13 +12495,6 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(
         monitoringScheduleName, 'monitoringScheduleName');
-    _s.validateStringLength(
-      'monitoringScheduleName',
-      monitoringScheduleName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StartMonitoringSchedule'
@@ -14998,13 +12525,6 @@ class SageMaker {
     required String notebookInstanceName,
   }) async {
     ArgumentError.checkNotNull(notebookInstanceName, 'notebookInstanceName');
-    _s.validateStringLength(
-      'notebookInstanceName',
-      notebookInstanceName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StartNotebookInstance'
@@ -15055,31 +12575,6 @@ class SageMaker {
     List<Parameter>? pipelineParameters,
   }) async {
     ArgumentError.checkNotNull(pipelineName, 'pipelineName');
-    _s.validateStringLength(
-      'pipelineName',
-      pipelineName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      32,
-      128,
-    );
-    _s.validateStringLength(
-      'pipelineExecutionDescription',
-      pipelineExecutionDescription,
-      0,
-      3072,
-    );
-    _s.validateStringLength(
-      'pipelineExecutionDisplayName',
-      pipelineExecutionDisplayName,
-      1,
-      82,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StartPipelineExecution'
@@ -15118,13 +12613,6 @@ class SageMaker {
     required String autoMLJobName,
   }) async {
     ArgumentError.checkNotNull(autoMLJobName, 'autoMLJobName');
-    _s.validateStringLength(
-      'autoMLJobName',
-      autoMLJobName,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopAutoMLJob'
@@ -15161,13 +12649,6 @@ class SageMaker {
     required String compilationJobName,
   }) async {
     ArgumentError.checkNotNull(compilationJobName, 'compilationJobName');
-    _s.validateStringLength(
-      'compilationJobName',
-      compilationJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopCompilationJob'
@@ -15192,13 +12673,6 @@ class SageMaker {
     required String edgePackagingJobName,
   }) async {
     ArgumentError.checkNotNull(edgePackagingJobName, 'edgePackagingJobName');
-    _s.validateStringLength(
-      'edgePackagingJobName',
-      edgePackagingJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopEdgePackagingJob'
@@ -15233,13 +12707,6 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(
         hyperParameterTuningJobName, 'hyperParameterTuningJobName');
-    _s.validateStringLength(
-      'hyperParameterTuningJobName',
-      hyperParameterTuningJobName,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopHyperParameterTuningJob'
@@ -15266,13 +12733,6 @@ class SageMaker {
     required String jobName,
   }) async {
     ArgumentError.checkNotNull(jobName, 'jobName');
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopInferenceRecommendationsJob'
@@ -15301,13 +12761,6 @@ class SageMaker {
     required String labelingJobName,
   }) async {
     ArgumentError.checkNotNull(labelingJobName, 'labelingJobName');
-    _s.validateStringLength(
-      'labelingJobName',
-      labelingJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopLabelingJob'
@@ -15335,13 +12788,6 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(
         monitoringScheduleName, 'monitoringScheduleName');
-    _s.validateStringLength(
-      'monitoringScheduleName',
-      monitoringScheduleName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopMonitoringSchedule'
@@ -15376,13 +12822,6 @@ class SageMaker {
     required String notebookInstanceName,
   }) async {
     ArgumentError.checkNotNull(notebookInstanceName, 'notebookInstanceName');
-    _s.validateStringLength(
-      'notebookInstanceName',
-      notebookInstanceName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopNotebookInstance'
@@ -15441,19 +12880,6 @@ class SageMaker {
     String? clientRequestToken,
   }) async {
     ArgumentError.checkNotNull(pipelineExecutionArn, 'pipelineExecutionArn');
-    _s.validateStringLength(
-      'pipelineExecutionArn',
-      pipelineExecutionArn,
-      0,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      32,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopPipelineExecution'
@@ -15484,13 +12910,6 @@ class SageMaker {
     required String processingJobName,
   }) async {
     ArgumentError.checkNotNull(processingJobName, 'processingJobName');
-    _s.validateStringLength(
-      'processingJobName',
-      processingJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopProcessingJob'
@@ -15524,13 +12943,6 @@ class SageMaker {
     required String trainingJobName,
   }) async {
     ArgumentError.checkNotNull(trainingJobName, 'trainingJobName');
-    _s.validateStringLength(
-      'trainingJobName',
-      trainingJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopTrainingJob'
@@ -15563,13 +12975,6 @@ class SageMaker {
     required String transformJobName,
   }) async {
     ArgumentError.checkNotNull(transformJobName, 'transformJobName');
-    _s.validateStringLength(
-      'transformJobName',
-      transformJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.StopTransformJob'
@@ -15613,19 +13018,6 @@ class SageMaker {
     ActionStatus? status,
   }) async {
     ArgumentError.checkNotNull(actionName, 'actionName');
-    _s.validateStringLength(
-      'actionName',
-      actionName,
-      1,
-      120,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      3072,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateAction'
@@ -15663,13 +13055,6 @@ class SageMaker {
     KernelGatewayImageConfig? kernelGatewayImageConfig,
   }) async {
     ArgumentError.checkNotNull(appImageConfigName, 'appImageConfigName');
-    _s.validateStringLength(
-      'appImageConfigName',
-      appImageConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateAppImageConfig'
@@ -15713,19 +13098,6 @@ class SageMaker {
     List<String>? propertiesToRemove,
   }) async {
     ArgumentError.checkNotNull(artifactArn, 'artifactArn');
-    _s.validateStringLength(
-      'artifactArn',
-      artifactArn,
-      0,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'artifactName',
-      artifactName,
-      1,
-      120,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateArtifact'
@@ -15766,13 +13138,6 @@ class SageMaker {
     GitConfigForUpdate? gitConfig,
   }) async {
     ArgumentError.checkNotNull(codeRepositoryName, 'codeRepositoryName');
-    _s.validateStringLength(
-      'codeRepositoryName',
-      codeRepositoryName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateCodeRepository'
@@ -15815,19 +13180,6 @@ class SageMaker {
     List<String>? propertiesToRemove,
   }) async {
     ArgumentError.checkNotNull(contextName, 'contextName');
-    _s.validateStringLength(
-      'contextName',
-      contextName,
-      1,
-      120,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      3072,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateContext'
@@ -15881,26 +13233,7 @@ class SageMaker {
     String? roleArn,
   }) async {
     ArgumentError.checkNotNull(deviceFleetName, 'deviceFleetName');
-    _s.validateStringLength(
-      'deviceFleetName',
-      deviceFleetName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(outputConfig, 'outputConfig');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      800,
-    );
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateDeviceFleet'
@@ -15934,13 +13267,6 @@ class SageMaker {
     required List<Device> devices,
   }) async {
     ArgumentError.checkNotNull(deviceFleetName, 'deviceFleetName');
-    _s.validateStringLength(
-      'deviceFleetName',
-      deviceFleetName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(devices, 'devices');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -15980,13 +13306,6 @@ class SageMaker {
     DomainSettingsForUpdate? domainSettingsForUpdate,
   }) async {
     ArgumentError.checkNotNull(domainId, 'domainId');
-    _s.validateStringLength(
-      'domainId',
-      domainId,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateDomain'
@@ -16074,21 +13393,7 @@ class SageMaker {
     bool? retainDeploymentConfig,
   }) async {
     ArgumentError.checkNotNull(endpointConfigName, 'endpointConfigName');
-    _s.validateStringLength(
-      'endpointConfigName',
-      endpointConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(endpointName, 'endpointName');
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateEndpoint'
@@ -16137,13 +13442,6 @@ class SageMaker {
     ArgumentError.checkNotNull(
         desiredWeightsAndCapacities, 'desiredWeightsAndCapacities');
     ArgumentError.checkNotNull(endpointName, 'endpointName');
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateEndpointWeightsAndCapacities'
@@ -16185,25 +13483,6 @@ class SageMaker {
     String? displayName,
   }) async {
     ArgumentError.checkNotNull(experimentName, 'experimentName');
-    _s.validateStringLength(
-      'experimentName',
-      experimentName,
-      1,
-      120,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      3072,
-    );
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      1,
-      120,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateExperiment'
@@ -16254,31 +13533,6 @@ class SageMaker {
     String? roleArn,
   }) async {
     ArgumentError.checkNotNull(imageName, 'imageName');
-    _s.validateStringLength(
-      'imageName',
-      imageName,
-      1,
-      63,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      512,
-    );
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateImage'
@@ -16336,19 +13590,6 @@ class SageMaker {
     ModelApprovalStatus? modelApprovalStatus,
   }) async {
     ArgumentError.checkNotNull(modelPackageArn, 'modelPackageArn');
-    _s.validateStringLength(
-      'modelPackageArn',
-      modelPackageArn,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'approvalDescription',
-      approvalDescription,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateModelPackage'
@@ -16399,13 +13640,6 @@ class SageMaker {
         monitoringScheduleConfig, 'monitoringScheduleConfig');
     ArgumentError.checkNotNull(
         monitoringScheduleName, 'monitoringScheduleName');
-    _s.validateStringLength(
-      'monitoringScheduleName',
-      monitoringScheduleName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateMonitoringSchedule'
@@ -16540,31 +13774,6 @@ class SageMaker {
     int? volumeSizeInGB,
   }) async {
     ArgumentError.checkNotNull(notebookInstanceName, 'notebookInstanceName');
-    _s.validateStringLength(
-      'notebookInstanceName',
-      notebookInstanceName,
-      0,
-      63,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'defaultCodeRepository',
-      defaultCodeRepository,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'lifecycleConfigName',
-      lifecycleConfigName,
-      0,
-      63,
-    );
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-    );
     _s.validateNumRange(
       'volumeSizeInGB',
       volumeSizeInGB,
@@ -16632,13 +13841,6 @@ class SageMaker {
   }) async {
     ArgumentError.checkNotNull(notebookInstanceLifecycleConfigName,
         'notebookInstanceLifecycleConfigName');
-    _s.validateStringLength(
-      'notebookInstanceLifecycleConfigName',
-      notebookInstanceLifecycleConfigName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateNotebookInstanceLifecycleConfig'
@@ -16693,37 +13895,6 @@ class SageMaker {
     String? roleArn,
   }) async {
     ArgumentError.checkNotNull(pipelineName, 'pipelineName');
-    _s.validateStringLength(
-      'pipelineName',
-      pipelineName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'pipelineDefinition',
-      pipelineDefinition,
-      1,
-      1048576,
-    );
-    _s.validateStringLength(
-      'pipelineDescription',
-      pipelineDescription,
-      0,
-      3072,
-    );
-    _s.validateStringLength(
-      'pipelineDisplayName',
-      pipelineDisplayName,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdatePipeline'
@@ -16776,25 +13947,6 @@ class SageMaker {
     String? pipelineExecutionDisplayName,
   }) async {
     ArgumentError.checkNotNull(pipelineExecutionArn, 'pipelineExecutionArn');
-    _s.validateStringLength(
-      'pipelineExecutionArn',
-      pipelineExecutionArn,
-      0,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'pipelineExecutionDescription',
-      pipelineExecutionDescription,
-      0,
-      3072,
-    );
-    _s.validateStringLength(
-      'pipelineExecutionDisplayName',
-      pipelineExecutionDisplayName,
-      1,
-      82,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdatePipelineExecution'
@@ -16856,19 +14008,6 @@ class SageMaker {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      32,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'projectDescription',
-      projectDescription,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateProject'
@@ -16914,13 +14053,6 @@ class SageMaker {
     List<ProfilerRuleConfiguration>? profilerRuleConfigurations,
   }) async {
     ArgumentError.checkNotNull(trainingJobName, 'trainingJobName');
-    _s.validateStringLength(
-      'trainingJobName',
-      trainingJobName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateTrainingJob'
@@ -16959,19 +14091,6 @@ class SageMaker {
     String? displayName,
   }) async {
     ArgumentError.checkNotNull(trialName, 'trialName');
-    _s.validateStringLength(
-      'trialName',
-      trialName,
-      1,
-      120,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      1,
-      120,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateTrial'
@@ -17047,19 +14166,6 @@ class SageMaker {
     TrialComponentStatus? status,
   }) async {
     ArgumentError.checkNotNull(trialComponentName, 'trialComponentName');
-    _s.validateStringLength(
-      'trialComponentName',
-      trialComponentName,
-      1,
-      120,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      1,
-      120,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateTrialComponent'
@@ -17111,21 +14217,7 @@ class SageMaker {
     UserSettings? userSettings,
   }) async {
     ArgumentError.checkNotNull(domainId, 'domainId');
-    _s.validateStringLength(
-      'domainId',
-      domainId,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userProfileName, 'userProfileName');
-    _s.validateStringLength(
-      'userProfileName',
-      userProfileName,
-      0,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateUserProfile'
@@ -17194,13 +14286,6 @@ class SageMaker {
     SourceIpConfig? sourceIpConfig,
   }) async {
     ArgumentError.checkNotNull(workforceName, 'workforceName');
-    _s.validateStringLength(
-      'workforceName',
-      workforceName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateWorkforce'
@@ -17269,19 +14354,6 @@ class SageMaker {
     NotificationConfiguration? notificationConfiguration,
   }) async {
     ArgumentError.checkNotNull(workteamName, 'workteamName');
-    _s.validateStringLength(
-      'workteamName',
-      workteamName,
-      1,
-      63,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      200,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SageMaker.UpdateWorkteam'

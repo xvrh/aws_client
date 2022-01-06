@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -75,13 +76,6 @@ class AccessAnalyzer {
   }) async {
     ArgumentError.checkNotNull(analyzerArn, 'analyzerArn');
     ArgumentError.checkNotNull(ruleName, 'ruleName');
-    _s.validateStringLength(
-      'ruleName',
-      ruleName,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'analyzerArn': analyzerArn,
       'ruleName': ruleName,
@@ -202,13 +196,6 @@ class AccessAnalyzer {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(analyzerName, 'analyzerName');
-    _s.validateStringLength(
-      'analyzerName',
-      analyzerName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
     final $payload = <String, dynamic>{
       'analyzerName': analyzerName,
@@ -261,22 +248,8 @@ class AccessAnalyzer {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(analyzerName, 'analyzerName');
-    _s.validateStringLength(
-      'analyzerName',
-      analyzerName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(filter, 'filter');
     ArgumentError.checkNotNull(ruleName, 'ruleName');
-    _s.validateStringLength(
-      'ruleName',
-      ruleName,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'filter': filter,
       'ruleName': ruleName,
@@ -311,13 +284,6 @@ class AccessAnalyzer {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(analyzerName, 'analyzerName');
-    _s.validateStringLength(
-      'analyzerName',
-      analyzerName,
-      1,
-      255,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
     };
@@ -352,21 +318,7 @@ class AccessAnalyzer {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(analyzerName, 'analyzerName');
-    _s.validateStringLength(
-      'analyzerName',
-      analyzerName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(ruleName, 'ruleName');
-    _s.validateStringLength(
-      'ruleName',
-      ruleName,
-      1,
-      255,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
     };
@@ -463,13 +415,6 @@ class AccessAnalyzer {
     required String analyzerName,
   }) async {
     ArgumentError.checkNotNull(analyzerName, 'analyzerName');
-    _s.validateStringLength(
-      'analyzerName',
-      analyzerName,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -502,21 +447,7 @@ class AccessAnalyzer {
     required String ruleName,
   }) async {
     ArgumentError.checkNotNull(analyzerName, 'analyzerName');
-    _s.validateStringLength(
-      'analyzerName',
-      analyzerName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(ruleName, 'ruleName');
-    _s.validateStringLength(
-      'ruleName',
-      ruleName,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -803,13 +734,6 @@ class AccessAnalyzer {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(analyzerName, 'analyzerName');
-    _s.validateStringLength(
-      'analyzerName',
-      analyzerName,
-      1,
-      255,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -1114,22 +1038,8 @@ class AccessAnalyzer {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(analyzerName, 'analyzerName');
-    _s.validateStringLength(
-      'analyzerName',
-      analyzerName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(filter, 'filter');
     ArgumentError.checkNotNull(ruleName, 'ruleName');
-    _s.validateStringLength(
-      'ruleName',
-      ruleName,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'filter': filter,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),

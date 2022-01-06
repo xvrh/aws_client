@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -120,21 +121,7 @@ class CloudTrail {
     required String queryId,
   }) async {
     ArgumentError.checkNotNull(eventDataStore, 'eventDataStore');
-    _s.validateStringLength(
-      'eventDataStore',
-      eventDataStore,
-      3,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(queryId, 'queryId');
-    _s.validateStringLength(
-      'queryId',
-      queryId,
-      36,
-      36,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -206,13 +193,6 @@ class CloudTrail {
     bool? terminationProtectionEnabled,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      3,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'retentionPeriod',
       retentionPeriod,
@@ -470,13 +450,6 @@ class CloudTrail {
     required String eventDataStore,
   }) async {
     ArgumentError.checkNotNull(eventDataStore, 'eventDataStore');
-    _s.validateStringLength(
-      'eventDataStore',
-      eventDataStore,
-      3,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -557,21 +530,7 @@ class CloudTrail {
     required String queryId,
   }) async {
     ArgumentError.checkNotNull(eventDataStore, 'eventDataStore');
-    _s.validateStringLength(
-      'eventDataStore',
-      eventDataStore,
-      3,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(queryId, 'queryId');
-    _s.validateStringLength(
-      'queryId',
-      queryId,
-      36,
-      36,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -673,13 +632,6 @@ class CloudTrail {
     required String eventDataStore,
   }) async {
     ArgumentError.checkNotNull(eventDataStore, 'eventDataStore');
-    _s.validateStringLength(
-      'eventDataStore',
-      eventDataStore,
-      3,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -876,31 +828,11 @@ class CloudTrail {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(eventDataStore, 'eventDataStore');
-    _s.validateStringLength(
-      'eventDataStore',
-      eventDataStore,
-      3,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(queryId, 'queryId');
-    _s.validateStringLength(
-      'queryId',
-      queryId,
-      36,
-      36,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxQueryResults',
       maxQueryResults,
       1,
-      1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      4,
       1000,
     );
     final headers = <String, String>{
@@ -1020,12 +952,6 @@ class CloudTrail {
       'maxResults',
       maxResults,
       1,
-      1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      4,
       1000,
     );
     final headers = <String, String>{
@@ -1155,23 +1081,10 @@ class CloudTrail {
     DateTime? startTime,
   }) async {
     ArgumentError.checkNotNull(eventDataStore, 'eventDataStore');
-    _s.validateStringLength(
-      'eventDataStore',
-      eventDataStore,
-      3,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
-      1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      4,
       1000,
     );
     final headers = <String, String>{
@@ -1668,13 +1581,6 @@ class CloudTrail {
     required String eventDataStore,
   }) async {
     ArgumentError.checkNotNull(eventDataStore, 'eventDataStore');
-    _s.validateStringLength(
-      'eventDataStore',
-      eventDataStore,
-      3,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -1753,13 +1659,6 @@ class CloudTrail {
     required String queryStatement,
   }) async {
     ArgumentError.checkNotNull(queryStatement, 'queryStatement');
-    _s.validateStringLength(
-      'queryStatement',
-      queryStatement,
-      1,
-      10000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -1881,19 +1780,6 @@ class CloudTrail {
     bool? terminationProtectionEnabled,
   }) async {
     ArgumentError.checkNotNull(eventDataStore, 'eventDataStore');
-    _s.validateStringLength(
-      'eventDataStore',
-      eventDataStore,
-      3,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      3,
-      128,
-    );
     _s.validateNumRange(
       'retentionPeriod',
       retentionPeriod,

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -92,37 +93,6 @@ class AppIntegrations {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'kmsKey',
-      kmsKey,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'sourceURI',
-      sourceURI,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       'ClientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -181,34 +151,8 @@ class AppIntegrations {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(eventBridgeBus, 'eventBridgeBus');
-    _s.validateStringLength(
-      'eventBridgeBus',
-      eventBridgeBus,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(eventFilter, 'eventFilter');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'EventBridgeBus': eventBridgeBus,
       'EventFilter': eventFilter,
@@ -250,13 +194,6 @@ class AppIntegrations {
   }) async {
     ArgumentError.checkNotNull(
         dataIntegrationIdentifier, 'dataIntegrationIdentifier');
-    _s.validateStringLength(
-      'dataIntegrationIdentifier',
-      dataIntegrationIdentifier,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -281,13 +218,6 @@ class AppIntegrations {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -317,13 +247,6 @@ class AppIntegrations {
     required String identifier,
   }) async {
     ArgumentError.checkNotNull(identifier, 'identifier');
-    _s.validateStringLength(
-      'identifier',
-      identifier,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -347,13 +270,6 @@ class AppIntegrations {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -395,24 +311,11 @@ class AppIntegrations {
   }) async {
     ArgumentError.checkNotNull(
         dataIntegrationIdentifier, 'dataIntegrationIdentifier');
-    _s.validateStringLength(
-      'dataIntegrationIdentifier',
-      dataIntegrationIdentifier,
-      1,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1000,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -459,12 +362,6 @@ class AppIntegrations {
       1,
       50,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1000,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -503,24 +400,11 @@ class AppIntegrations {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(eventIntegrationName, 'eventIntegrationName');
-    _s.validateStringLength(
-      'eventIntegrationName',
-      eventIntegrationName,
-      1,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1000,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -560,12 +444,6 @@ class AppIntegrations {
       1,
       50,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1000,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -593,13 +471,6 @@ class AppIntegrations {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -626,13 +497,6 @@ class AppIntegrations {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -662,13 +526,6 @@ class AppIntegrations {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -711,25 +568,6 @@ class AppIntegrations {
     String? name,
   }) async {
     ArgumentError.checkNotNull(identifier, 'identifier');
-    _s.validateStringLength(
-      'identifier',
-      identifier,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (name != null) 'Name': name,
@@ -760,19 +598,6 @@ class AppIntegrations {
     String? description,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1000,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
     };

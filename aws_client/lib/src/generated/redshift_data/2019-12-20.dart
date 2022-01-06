@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -107,12 +108,6 @@ class RedshiftDataApi {
   }) async {
     ArgumentError.checkNotNull(database, 'database');
     ArgumentError.checkNotNull(sqls, 'sqls');
-    _s.validateStringLength(
-      'statementName',
-      statementName,
-      0,
-      500,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'RedshiftData.BatchExecuteStatement'
@@ -391,12 +386,6 @@ class RedshiftDataApi {
   }) async {
     ArgumentError.checkNotNull(database, 'database');
     ArgumentError.checkNotNull(sql, 'sql');
-    _s.validateStringLength(
-      'statementName',
-      statementName,
-      0,
-      500,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'RedshiftData.ExecuteStatement'
@@ -743,12 +732,6 @@ class RedshiftDataApi {
       maxResults,
       0,
       100,
-    );
-    _s.validateStringLength(
-      'statementName',
-      statementName,
-      0,
-      500,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -84,21 +85,7 @@ class EmrContainers {
     required String virtualClusterId,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(virtualClusterId, 'virtualClusterId');
-    _s.validateStringLength(
-      'virtualClusterId',
-      virtualClusterId,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -157,57 +144,10 @@ class EmrContainers {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(executionRoleArn, 'executionRoleArn');
-    _s.validateStringLength(
-      'executionRoleArn',
-      executionRoleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(releaseLabel, 'releaseLabel');
-    _s.validateStringLength(
-      'releaseLabel',
-      releaseLabel,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
-    _s.validateStringLength(
-      'type',
-      type,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(virtualClusterId, 'virtualClusterId');
-    _s.validateStringLength(
-      'virtualClusterId',
-      virtualClusterId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      44,
-      2048,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'executionRoleArn': executionRoleArn,
       'name': name,
@@ -259,19 +199,6 @@ class EmrContainers {
   }) async {
     ArgumentError.checkNotNull(containerProvider, 'containerProvider');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'containerProvider': containerProvider,
       'name': name,
@@ -304,21 +231,7 @@ class EmrContainers {
     required String virtualClusterId,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(virtualClusterId, 'virtualClusterId');
-    _s.validateStringLength(
-      'virtualClusterId',
-      virtualClusterId,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -345,13 +258,6 @@ class EmrContainers {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -379,21 +285,7 @@ class EmrContainers {
     required String virtualClusterId,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(virtualClusterId, 'virtualClusterId');
-    _s.validateStringLength(
-      'virtualClusterId',
-      virtualClusterId,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -422,21 +314,7 @@ class EmrContainers {
     required String virtualClusterId,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(virtualClusterId, 'virtualClusterId');
-    _s.validateStringLength(
-      'virtualClusterId',
-      virtualClusterId,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -465,13 +343,6 @@ class EmrContainers {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -518,25 +389,6 @@ class EmrContainers {
     List<JobRunState>? states,
   }) async {
     ArgumentError.checkNotNull(virtualClusterId, 'virtualClusterId');
-    _s.validateStringLength(
-      'virtualClusterId',
-      virtualClusterId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $query = <String, List<String>>{
       if (createdAfter != null)
         'createdAfter': [_s.iso8601ToJson(createdAfter).toString()],
@@ -595,19 +447,6 @@ class EmrContainers {
     List<String>? types,
   }) async {
     ArgumentError.checkNotNull(virtualClusterId, 'virtualClusterId');
-    _s.validateStringLength(
-      'virtualClusterId',
-      virtualClusterId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $query = <String, List<String>>{
       if (createdAfter != null)
         'createdAfter': [_s.iso8601ToJson(createdAfter).toString()],
@@ -641,13 +480,6 @@ class EmrContainers {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      60,
-      500,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -697,18 +529,6 @@ class EmrContainers {
     String? nextToken,
     List<VirtualClusterState>? states,
   }) async {
-    _s.validateStringLength(
-      'containerProviderId',
-      containerProviderId,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $query = <String, List<String>>{
       if (containerProviderId != null)
         'containerProviderId': [containerProviderId],
@@ -773,42 +593,9 @@ class EmrContainers {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(executionRoleArn, 'executionRoleArn');
-    _s.validateStringLength(
-      'executionRoleArn',
-      executionRoleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobDriver, 'jobDriver');
     ArgumentError.checkNotNull(releaseLabel, 'releaseLabel');
-    _s.validateStringLength(
-      'releaseLabel',
-      releaseLabel,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(virtualClusterId, 'virtualClusterId');
-    _s.validateStringLength(
-      'virtualClusterId',
-      virtualClusterId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'executionRoleArn': executionRoleArn,
       'jobDriver': jobDriver,
@@ -854,13 +641,6 @@ class EmrContainers {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      60,
-      500,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -889,13 +669,6 @@ class EmrContainers {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      60,
-      500,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,

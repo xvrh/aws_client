@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -75,13 +76,6 @@ class CloudWatchEvents {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.ActivateEventSource'
@@ -111,13 +105,6 @@ class CloudWatchEvents {
     required String replayName,
   }) async {
     ArgumentError.checkNotNull(replayName, 'replayName');
-    _s.validateStringLength(
-      'replayName',
-      replayName,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.CancelReplay'
@@ -172,36 +159,9 @@ class CloudWatchEvents {
     int? invocationRateLimitPerSecond,
   }) async {
     ArgumentError.checkNotNull(connectionArn, 'connectionArn');
-    _s.validateStringLength(
-      'connectionArn',
-      connectionArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(httpMethod, 'httpMethod');
     ArgumentError.checkNotNull(invocationEndpoint, 'invocationEndpoint');
-    _s.validateStringLength(
-      'invocationEndpoint',
-      invocationEndpoint,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      512,
-    );
     _s.validateNumRange(
       'invocationRateLimitPerSecond',
       invocationRateLimitPerSecond,
@@ -269,27 +229,7 @@ class CloudWatchEvents {
     int? retentionDays,
   }) async {
     ArgumentError.checkNotNull(archiveName, 'archiveName');
-    _s.validateStringLength(
-      'archiveName',
-      archiveName,
-      1,
-      48,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(eventSourceArn, 'eventSourceArn');
-    _s.validateStringLength(
-      'eventSourceArn',
-      eventSourceArn,
-      1,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      512,
-    );
     _s.validateNumRange(
       'retentionDays',
       retentionDays,
@@ -347,19 +287,6 @@ class CloudWatchEvents {
     ArgumentError.checkNotNull(authParameters, 'authParameters');
     ArgumentError.checkNotNull(authorizationType, 'authorizationType');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      512,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.CreateConnection'
@@ -416,19 +343,6 @@ class CloudWatchEvents {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'eventSourceName',
-      eventSourceName,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.CreateEventBus'
@@ -501,21 +415,7 @@ class CloudWatchEvents {
     required String name,
   }) async {
     ArgumentError.checkNotNull(account, 'account');
-    _s.validateStringLength(
-      'account',
-      account,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.CreatePartnerEventSource'
@@ -557,13 +457,6 @@ class CloudWatchEvents {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DeactivateEventSource'
@@ -594,13 +487,6 @@ class CloudWatchEvents {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DeauthorizeConnection'
@@ -631,13 +517,6 @@ class CloudWatchEvents {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DeleteApiDestination'
@@ -666,13 +545,6 @@ class CloudWatchEvents {
     required String archiveName,
   }) async {
     ArgumentError.checkNotNull(archiveName, 'archiveName');
-    _s.validateStringLength(
-      'archiveName',
-      archiveName,
-      1,
-      48,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DeleteArchive'
@@ -701,13 +573,6 @@ class CloudWatchEvents {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DeleteConnection'
@@ -739,13 +604,6 @@ class CloudWatchEvents {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DeleteEventBus'
@@ -784,21 +642,7 @@ class CloudWatchEvents {
     required String name,
   }) async {
     ArgumentError.checkNotNull(account, 'account');
-    _s.validateStringLength(
-      'account',
-      account,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DeletePartnerEventSource'
@@ -859,19 +703,6 @@ class CloudWatchEvents {
     bool? force,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'eventBusName',
-      eventBusName,
-      1,
-      1600,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DeleteRule'
@@ -901,13 +732,6 @@ class CloudWatchEvents {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DescribeApiDestination'
@@ -938,13 +762,6 @@ class CloudWatchEvents {
     required String archiveName,
   }) async {
     ArgumentError.checkNotNull(archiveName, 'archiveName');
-    _s.validateStringLength(
-      'archiveName',
-      archiveName,
-      1,
-      48,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DescribeArchive'
@@ -974,13 +791,6 @@ class CloudWatchEvents {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DescribeConnection'
@@ -1021,12 +831,6 @@ class CloudWatchEvents {
   Future<DescribeEventBusResponse> describeEventBus({
     String? name,
   }) async {
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1600,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DescribeEventBus'
@@ -1058,13 +862,6 @@ class CloudWatchEvents {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DescribeEventSource'
@@ -1099,13 +896,6 @@ class CloudWatchEvents {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DescribePartnerEventSource'
@@ -1145,13 +935,6 @@ class CloudWatchEvents {
     required String replayName,
   }) async {
     ArgumentError.checkNotNull(replayName, 'replayName');
-    _s.validateStringLength(
-      'replayName',
-      replayName,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DescribeReplay'
@@ -1190,19 +973,6 @@ class CloudWatchEvents {
     String? eventBusName,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'eventBusName',
-      eventBusName,
-      1,
-      1600,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DescribeRule'
@@ -1244,19 +1014,6 @@ class CloudWatchEvents {
     String? eventBusName,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'eventBusName',
-      eventBusName,
-      1,
-      1600,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.DisableRule'
@@ -1297,19 +1054,6 @@ class CloudWatchEvents {
     String? eventBusName,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'eventBusName',
-      eventBusName,
-      1,
-      1600,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.EnableRule'
@@ -1349,29 +1093,11 @@ class CloudWatchEvents {
     String? namePrefix,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'connectionArn',
-      connectionArn,
-      1,
-      1600,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'namePrefix',
-      namePrefix,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1423,29 +1149,11 @@ class CloudWatchEvents {
     String? nextToken,
     ArchiveState? state,
   }) async {
-    _s.validateStringLength(
-      'eventSourceArn',
-      eventSourceArn,
-      1,
-      1600,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'namePrefix',
-      namePrefix,
-      1,
-      48,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1497,18 +1205,6 @@ class CloudWatchEvents {
       1,
       100,
     );
-    _s.validateStringLength(
-      'namePrefix',
-      namePrefix,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.ListConnections'
@@ -1557,18 +1253,6 @@ class CloudWatchEvents {
       limit,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'namePrefix',
-      namePrefix,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1620,18 +1304,6 @@ class CloudWatchEvents {
       1,
       100,
     );
-    _s.validateStringLength(
-      'namePrefix',
-      namePrefix,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.ListEventSources'
@@ -1678,24 +1350,11 @@ class CloudWatchEvents {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(eventSourceName, 'eventSourceName');
-    _s.validateStringLength(
-      'eventSourceName',
-      eventSourceName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1742,24 +1401,11 @@ class CloudWatchEvents {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(namePrefix, 'namePrefix');
-    _s.validateStringLength(
-      'namePrefix',
-      namePrefix,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1808,29 +1454,11 @@ class CloudWatchEvents {
     String? nextToken,
     ReplayState? state,
   }) async {
-    _s.validateStringLength(
-      'eventSourceArn',
-      eventSourceArn,
-      1,
-      1600,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'namePrefix',
-      namePrefix,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1879,30 +1507,11 @@ class CloudWatchEvents {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(targetArn, 'targetArn');
-    _s.validateStringLength(
-      'targetArn',
-      targetArn,
-      1,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'eventBusName',
-      eventBusName,
-      1,
-      1600,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1953,29 +1562,11 @@ class CloudWatchEvents {
     String? namePrefix,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'eventBusName',
-      eventBusName,
-      1,
-      1600,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'namePrefix',
-      namePrefix,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2010,13 +1601,6 @@ class CloudWatchEvents {
     required String resourceARN,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1600,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.ListTagsForResource'
@@ -2059,30 +1643,11 @@ class CloudWatchEvents {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(rule, 'rule');
-    _s.validateStringLength(
-      'rule',
-      rule,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'eventBusName',
-      eventBusName,
-      1,
-      1600,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2253,30 +1818,6 @@ class CloudWatchEvents {
     String? principal,
     String? statementId,
   }) async {
-    _s.validateStringLength(
-      'action',
-      action,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'eventBusName',
-      eventBusName,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'principal',
-      principal,
-      1,
-      12,
-    );
-    _s.validateStringLength(
-      'statementId',
-      statementId,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.PutPermission'
@@ -2414,37 +1955,6 @@ class CloudWatchEvents {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      512,
-    );
-    _s.validateStringLength(
-      'eventBusName',
-      eventBusName,
-      1,
-      1600,
-    );
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      1,
-      1600,
-    );
-    _s.validateStringLength(
-      'scheduleExpression',
-      scheduleExpression,
-      0,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.PutRule'
@@ -2670,20 +2180,7 @@ class CloudWatchEvents {
     String? eventBusName,
   }) async {
     ArgumentError.checkNotNull(rule, 'rule');
-    _s.validateStringLength(
-      'rule',
-      rule,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targets, 'targets');
-    _s.validateStringLength(
-      'eventBusName',
-      eventBusName,
-      1,
-      1600,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.PutTargets'
@@ -2731,18 +2228,6 @@ class CloudWatchEvents {
     bool? removeAllPermissions,
     String? statementId,
   }) async {
-    _s.validateStringLength(
-      'eventBusName',
-      eventBusName,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'statementId',
-      statementId,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.RemovePermission'
@@ -2804,19 +2289,6 @@ class CloudWatchEvents {
   }) async {
     ArgumentError.checkNotNull(ids, 'ids');
     ArgumentError.checkNotNull(rule, 'rule');
-    _s.validateStringLength(
-      'rule',
-      rule,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'eventBusName',
-      eventBusName,
-      1,
-      1600,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.RemoveTargets'
@@ -2888,28 +2360,8 @@ class CloudWatchEvents {
     ArgumentError.checkNotNull(destination, 'destination');
     ArgumentError.checkNotNull(eventEndTime, 'eventEndTime');
     ArgumentError.checkNotNull(eventSourceArn, 'eventSourceArn');
-    _s.validateStringLength(
-      'eventSourceArn',
-      eventSourceArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(eventStartTime, 'eventStartTime');
     ArgumentError.checkNotNull(replayName, 'replayName');
-    _s.validateStringLength(
-      'replayName',
-      replayName,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      512,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.StartReplay'
@@ -2965,13 +2417,6 @@ class CloudWatchEvents {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3079,13 +2524,6 @@ class CloudWatchEvents {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3138,31 +2576,6 @@ class CloudWatchEvents {
     int? invocationRateLimitPerSecond,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'connectionArn',
-      connectionArn,
-      1,
-      1600,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      512,
-    );
-    _s.validateStringLength(
-      'invocationEndpoint',
-      invocationEndpoint,
-      1,
-      2048,
-    );
     _s.validateNumRange(
       'invocationRateLimitPerSecond',
       invocationRateLimitPerSecond,
@@ -3220,19 +2633,6 @@ class CloudWatchEvents {
     int? retentionDays,
   }) async {
     ArgumentError.checkNotNull(archiveName, 'archiveName');
-    _s.validateStringLength(
-      'archiveName',
-      archiveName,
-      1,
-      48,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      512,
-    );
     _s.validateNumRange(
       'retentionDays',
       retentionDays,
@@ -3285,19 +2685,6 @@ class CloudWatchEvents {
     String? description,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      512,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSEvents.UpdateConnection'

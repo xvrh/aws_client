@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -15,8 +16,8 @@ import '../../shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import '2010-03-31.meta.dart';
 
+import '2010-03-31.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// Amazon Simple Notification Service (Amazon SNS) is a web service that
@@ -382,13 +383,6 @@ class Sns {
     LanguageCodeString? languageCode,
   }) async {
     ArgumentError.checkNotNull(phoneNumber, 'phoneNumber');
-    _s.validateStringLength(
-      'phoneNumber',
-      phoneNumber,
-      0,
-      20,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['PhoneNumber'] = phoneNumber;
     languageCode?.also((arg) => $request['LanguageCode'] = arg.toValue());
@@ -626,13 +620,6 @@ class Sns {
     required String phoneNumber,
   }) async {
     ArgumentError.checkNotNull(phoneNumber, 'phoneNumber');
-    _s.validateStringLength(
-      'phoneNumber',
-      phoneNumber,
-      0,
-      20,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['PhoneNumber'] = phoneNumber;
     await _protocol.send(
@@ -1198,13 +1185,6 @@ class Sns {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ResourceArn'] = resourceArn;
     final $result = await _protocol.send(
@@ -2390,13 +2370,6 @@ class Sns {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $request = <String, dynamic>{};
     $request['ResourceArn'] = resourceArn;
@@ -2473,13 +2446,6 @@ class Sns {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $request = <String, dynamic>{};
     $request['ResourceArn'] = resourceArn;
@@ -2529,21 +2495,7 @@ class Sns {
     required String phoneNumber,
   }) async {
     ArgumentError.checkNotNull(oneTimePassword, 'oneTimePassword');
-    _s.validateStringLength(
-      'oneTimePassword',
-      oneTimePassword,
-      5,
-      8,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(phoneNumber, 'phoneNumber');
-    _s.validateStringLength(
-      'phoneNumber',
-      phoneNumber,
-      0,
-      20,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['OneTimePassword'] = oneTimePassword;
     $request['PhoneNumber'] = phoneNumber;

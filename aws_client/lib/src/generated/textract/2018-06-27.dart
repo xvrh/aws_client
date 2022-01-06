@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -369,24 +370,11 @@ class Textract {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -476,24 +464,11 @@ class Textract {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -573,24 +548,11 @@ class Textract {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -701,24 +663,6 @@ class Textract {
   }) async {
     ArgumentError.checkNotNull(documentLocation, 'documentLocation');
     ArgumentError.checkNotNull(featureTypes, 'featureTypes');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'jobTag',
-      jobTag,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'kMSKeyId',
-      kMSKeyId,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Textract.StartDocumentAnalysis'
@@ -823,24 +767,6 @@ class Textract {
     OutputConfig? outputConfig,
   }) async {
     ArgumentError.checkNotNull(documentLocation, 'documentLocation');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'jobTag',
-      jobTag,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'kMSKeyId',
-      kMSKeyId,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Textract.StartDocumentTextDetection'
@@ -946,24 +872,6 @@ class Textract {
     OutputConfig? outputConfig,
   }) async {
     ArgumentError.checkNotNull(documentLocation, 'documentLocation');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'jobTag',
-      jobTag,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'kMSKeyId',
-      kMSKeyId,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Textract.StartExpenseAnalysis'

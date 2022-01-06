@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -86,25 +87,6 @@ class KinesisVideoSignalingChannels {
     String? username,
   }) async {
     ArgumentError.checkNotNull(channelARN, 'channelARN');
-    _s.validateStringLength(
-      'channelARN',
-      channelARN,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      256,
-    );
     final $payload = <String, dynamic>{
       'ChannelARN': channelARN,
       if (clientId != null) 'ClientId': clientId,
@@ -148,29 +130,8 @@ class KinesisVideoSignalingChannels {
     required String senderClientId,
   }) async {
     ArgumentError.checkNotNull(channelARN, 'channelARN');
-    _s.validateStringLength(
-      'channelARN',
-      channelARN,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(messagePayload, 'messagePayload');
-    _s.validateStringLength(
-      'messagePayload',
-      messagePayload,
-      1,
-      10000,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(senderClientId, 'senderClientId');
-    _s.validateStringLength(
-      'senderClientId',
-      senderClientId,
-      1,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'ChannelARN': channelARN,
       'MessagePayload': messagePayload,

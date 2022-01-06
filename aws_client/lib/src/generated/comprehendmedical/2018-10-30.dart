@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -55,13 +56,6 @@ class ComprehendMedical {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -97,13 +91,6 @@ class ComprehendMedical {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.DescribeICD10CMInferenceJob'
@@ -138,13 +125,6 @@ class ComprehendMedical {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.DescribePHIDetectionJob'
@@ -178,13 +158,6 @@ class ComprehendMedical {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.DescribeRxNormInferenceJob'
@@ -219,13 +192,6 @@ class ComprehendMedical {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.DescribeSNOMEDCTInferenceJob'
@@ -266,13 +232,6 @@ class ComprehendMedical {
     required String text,
   }) async {
     ArgumentError.checkNotNull(text, 'text');
-    _s.validateStringLength(
-      'text',
-      text,
-      1,
-      20000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.DetectEntities'
@@ -320,13 +279,6 @@ class ComprehendMedical {
     required String text,
   }) async {
     ArgumentError.checkNotNull(text, 'text');
-    _s.validateStringLength(
-      'text',
-      text,
-      1,
-      20000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.DetectEntitiesV2'
@@ -364,13 +316,6 @@ class ComprehendMedical {
     required String text,
   }) async {
     ArgumentError.checkNotNull(text, 'text');
-    _s.validateStringLength(
-      'text',
-      text,
-      1,
-      20000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.DetectPHI'
@@ -409,13 +354,6 @@ class ComprehendMedical {
     required String text,
   }) async {
     ArgumentError.checkNotNull(text, 'text');
-    _s.validateStringLength(
-      'text',
-      text,
-      1,
-      10000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.InferICD10CM'
@@ -453,13 +391,6 @@ class ComprehendMedical {
     required String text,
   }) async {
     ArgumentError.checkNotNull(text, 'text');
-    _s.validateStringLength(
-      'text',
-      text,
-      1,
-      10000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.InferRxNorm'
@@ -496,13 +427,6 @@ class ComprehendMedical {
     required String text,
   }) async {
     ArgumentError.checkNotNull(text, 'text');
-    _s.validateStringLength(
-      'text',
-      text,
-      1,
-      10000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.InferSNOMEDCT'
@@ -548,12 +472,6 @@ class ComprehendMedical {
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1152921504606846976,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -602,12 +520,6 @@ class ComprehendMedical {
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1152921504606846976,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -658,12 +570,6 @@ class ComprehendMedical {
       1,
       500,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1152921504606846976,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.ListPHIDetectionJobs'
@@ -712,12 +618,6 @@ class ComprehendMedical {
       1,
       500,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1152921504606846976,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.ListRxNormInferenceJobs'
@@ -760,12 +660,6 @@ class ComprehendMedical {
       maxResults,
       1,
       500,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1152921504606846976,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -834,34 +728,9 @@ class ComprehendMedical {
     String? kMSKey,
   }) async {
     ArgumentError.checkNotNull(dataAccessRoleArn, 'dataAccessRoleArn');
-    _s.validateStringLength(
-      'dataAccessRoleArn',
-      dataAccessRoleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(inputDataConfig, 'inputDataConfig');
     ArgumentError.checkNotNull(languageCode, 'languageCode');
     ArgumentError.checkNotNull(outputDataConfig, 'outputDataConfig');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'kMSKey',
-      kMSKey,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.StartEntitiesDetectionV2Job'
@@ -933,34 +802,9 @@ class ComprehendMedical {
     String? kMSKey,
   }) async {
     ArgumentError.checkNotNull(dataAccessRoleArn, 'dataAccessRoleArn');
-    _s.validateStringLength(
-      'dataAccessRoleArn',
-      dataAccessRoleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(inputDataConfig, 'inputDataConfig');
     ArgumentError.checkNotNull(languageCode, 'languageCode');
     ArgumentError.checkNotNull(outputDataConfig, 'outputDataConfig');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'kMSKey',
-      kMSKey,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.StartICD10CMInferenceJob'
@@ -1032,34 +876,9 @@ class ComprehendMedical {
     String? kMSKey,
   }) async {
     ArgumentError.checkNotNull(dataAccessRoleArn, 'dataAccessRoleArn');
-    _s.validateStringLength(
-      'dataAccessRoleArn',
-      dataAccessRoleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(inputDataConfig, 'inputDataConfig');
     ArgumentError.checkNotNull(languageCode, 'languageCode');
     ArgumentError.checkNotNull(outputDataConfig, 'outputDataConfig');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'kMSKey',
-      kMSKey,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.StartPHIDetectionJob'
@@ -1131,34 +950,9 @@ class ComprehendMedical {
     String? kMSKey,
   }) async {
     ArgumentError.checkNotNull(dataAccessRoleArn, 'dataAccessRoleArn');
-    _s.validateStringLength(
-      'dataAccessRoleArn',
-      dataAccessRoleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(inputDataConfig, 'inputDataConfig');
     ArgumentError.checkNotNull(languageCode, 'languageCode');
     ArgumentError.checkNotNull(outputDataConfig, 'outputDataConfig');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'kMSKey',
-      kMSKey,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.StartRxNormInferenceJob'
@@ -1222,34 +1016,9 @@ class ComprehendMedical {
     String? kMSKey,
   }) async {
     ArgumentError.checkNotNull(dataAccessRoleArn, 'dataAccessRoleArn');
-    _s.validateStringLength(
-      'dataAccessRoleArn',
-      dataAccessRoleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(inputDataConfig, 'inputDataConfig');
     ArgumentError.checkNotNull(languageCode, 'languageCode');
     ArgumentError.checkNotNull(outputDataConfig, 'outputDataConfig');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'kMSKey',
-      kMSKey,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.StartSNOMEDCTInferenceJob'
@@ -1287,13 +1056,6 @@ class ComprehendMedical {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.StopEntitiesDetectionV2Job'
@@ -1324,13 +1086,6 @@ class ComprehendMedical {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.StopICD10CMInferenceJob'
@@ -1361,13 +1116,6 @@ class ComprehendMedical {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.StopPHIDetectionJob'
@@ -1398,13 +1146,6 @@ class ComprehendMedical {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.StopRxNormInferenceJob'
@@ -1436,13 +1177,6 @@ class ComprehendMedical {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ComprehendMedical_20181030.StopSNOMEDCTInferenceJob'

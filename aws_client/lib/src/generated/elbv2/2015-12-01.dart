@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -15,8 +16,8 @@ import '../../shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import '2015-12-01.meta.dart';
 
+import '2015-12-01.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// A load balancer distributes incoming traffic across targets, such as your
@@ -418,12 +419,6 @@ class ElasticLoadBalancingV2 {
     LoadBalancerTypeEnum? type,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'customerOwnedIpv4Pool',
-      customerOwnedIpv4Pool,
-      0,
-      256,
-    );
     final $request = <String, dynamic>{};
     $request['Name'] = name;
     customerOwnedIpv4Pool
@@ -715,12 +710,6 @@ class ElasticLoadBalancingV2 {
       healthCheckIntervalSeconds,
       5,
       300,
-    );
-    _s.validateStringLength(
-      'healthCheckPath',
-      healthCheckPath,
-      1,
-      1024,
     );
     _s.validateNumRange(
       'healthCheckTimeoutSeconds',
@@ -1771,12 +1760,6 @@ class ElasticLoadBalancingV2 {
       healthCheckIntervalSeconds,
       5,
       300,
-    );
-    _s.validateStringLength(
-      'healthCheckPath',
-      healthCheckPath,
-      1,
-      1024,
     );
     _s.validateNumRange(
       'healthCheckTimeoutSeconds',

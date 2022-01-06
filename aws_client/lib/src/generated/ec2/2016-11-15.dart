@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -857,18 +858,6 @@ class Ec2 {
     bool? dryRun,
     String? roleArn,
   }) async {
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      1,
-      1283,
-    );
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      1,
-      1283,
-    );
 // TODO: implement ec2
     throw UnimplementedError();
   }
@@ -3916,19 +3905,6 @@ class Ec2 {
   }) async {
     ArgumentError.checkNotNull(launchTemplateData, 'launchTemplateData');
     ArgumentError.checkNotNull(launchTemplateName, 'launchTemplateName');
-    _s.validateStringLength(
-      'launchTemplateName',
-      launchTemplateName,
-      3,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'versionDescription',
-      versionDescription,
-      0,
-      255,
-    );
 // TODO: implement ec2
     throw UnimplementedError();
   }
@@ -3991,18 +3967,6 @@ class Ec2 {
     String? versionDescription,
   }) async {
     ArgumentError.checkNotNull(launchTemplateData, 'launchTemplateData');
-    _s.validateStringLength(
-      'launchTemplateName',
-      launchTemplateName,
-      3,
-      128,
-    );
-    _s.validateStringLength(
-      'versionDescription',
-      versionDescription,
-      0,
-      255,
-    );
 // TODO: implement ec2
     throw UnimplementedError();
   }
@@ -4405,23 +4369,11 @@ class Ec2 {
     ArgumentError.checkNotNull(destination, 'destination');
     ArgumentError.checkNotNull(protocol, 'protocol');
     ArgumentError.checkNotNull(source, 'source');
-    _s.validateStringLength(
-      'destinationIp',
-      destinationIp,
-      0,
-      15,
-    );
     _s.validateNumRange(
       'destinationPort',
       destinationPort,
       1,
       65535,
-    );
-    _s.validateStringLength(
-      'sourceIp',
-      sourceIp,
-      0,
-      15,
     );
 // TODO: implement ec2
     throw UnimplementedError();
@@ -7299,12 +7251,6 @@ class Ec2 {
     String? launchTemplateId,
     String? launchTemplateName,
   }) async {
-    _s.validateStringLength(
-      'launchTemplateName',
-      launchTemplateName,
-      3,
-      128,
-    );
 // TODO: implement ec2
     throw UnimplementedError();
   }
@@ -7339,12 +7285,6 @@ class Ec2 {
     String? launchTemplateName,
   }) async {
     ArgumentError.checkNotNull(versions, 'versions');
-    _s.validateStringLength(
-      'launchTemplateName',
-      launchTemplateName,
-      3,
-      128,
-    );
 // TODO: implement ec2
     throw UnimplementedError();
   }
@@ -12689,12 +12629,6 @@ class Ec2 {
     String? nextToken,
     List<String>? versions,
   }) async {
-    _s.validateStringLength(
-      'launchTemplateName',
-      launchTemplateName,
-      3,
-      128,
-    );
 // TODO: implement ec2
     throw UnimplementedError();
   }
@@ -15916,12 +15850,6 @@ class Ec2 {
       5,
       255,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
 // TODO: implement ec2
     throw UnimplementedError();
   }
@@ -17472,12 +17400,6 @@ class Ec2 {
       5,
       255,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
 // TODO: implement ec2
     throw UnimplementedError();
   }
@@ -18715,18 +18637,6 @@ class Ec2 {
     bool? dryRun,
     String? roleArn,
   }) async {
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      1,
-      1283,
-    );
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      1,
-      1283,
-    );
 // TODO: implement ec2
     throw UnimplementedError();
   }
@@ -19406,12 +19316,6 @@ class Ec2 {
     String? certificateArn,
     bool? dryRun,
   }) async {
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      1,
-      1283,
-    );
 // TODO: implement ec2
     throw UnimplementedError();
   }
@@ -22845,12 +22749,6 @@ class Ec2 {
     String? launchTemplateId,
     String? launchTemplateName,
   }) async {
-    _s.validateStringLength(
-      'launchTemplateName',
-      launchTemplateName,
-      3,
-      128,
-    );
 // TODO: implement ec2
     throw UnimplementedError();
   }

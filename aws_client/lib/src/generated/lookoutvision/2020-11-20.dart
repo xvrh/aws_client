@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -114,27 +115,7 @@ class LookoutForVision {
     DatasetSource? datasetSource,
   }) async {
     ArgumentError.checkNotNull(datasetType, 'datasetType');
-    _s.validateStringLength(
-      'datasetType',
-      datasetType,
-      1,
-      10,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
     };
@@ -227,31 +208,6 @@ class LookoutForVision {
   }) async {
     ArgumentError.checkNotNull(outputConfig, 'outputConfig');
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      500,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
     };
@@ -311,19 +267,6 @@ class LookoutForVision {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
     };
@@ -401,27 +344,7 @@ class LookoutForVision {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(datasetType, 'datasetType');
-    _s.validateStringLength(
-      'datasetType',
-      datasetType,
-      1,
-      10,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
     };
@@ -481,27 +404,7 @@ class LookoutForVision {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(modelVersion, 'modelVersion');
-    _s.validateStringLength(
-      'modelVersion',
-      modelVersion,
-      1,
-      10,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
     };
@@ -561,19 +464,6 @@ class LookoutForVision {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
     };
@@ -613,21 +503,7 @@ class LookoutForVision {
     required String projectName,
   }) async {
     ArgumentError.checkNotNull(datasetType, 'datasetType');
-    _s.validateStringLength(
-      'datasetType',
-      datasetType,
-      1,
-      10,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -661,21 +537,7 @@ class LookoutForVision {
     required String projectName,
   }) async {
     ArgumentError.checkNotNull(modelVersion, 'modelVersion');
-    _s.validateStringLength(
-      'modelVersion',
-      modelVersion,
-      1,
-      10,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -711,21 +573,7 @@ class LookoutForVision {
     required String projectName,
   }) async {
     ArgumentError.checkNotNull(jobName, 'jobName');
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -754,13 +602,6 @@ class LookoutForVision {
     required String projectName,
   }) async {
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -814,29 +655,8 @@ class LookoutForVision {
   }) async {
     ArgumentError.checkNotNull(body, 'body');
     ArgumentError.checkNotNull(contentType, 'contentType');
-    _s.validateStringLength(
-      'contentType',
-      contentType,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(modelVersion, 'modelVersion');
-    _s.validateStringLength(
-      'modelVersion',
-      modelVersion,
-      1,
-      10,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': contentType.toString(),
     };
@@ -919,44 +739,12 @@ class LookoutForVision {
     String? sourceRefContains,
   }) async {
     ArgumentError.checkNotNull(datasetType, 'datasetType');
-    _s.validateStringLength(
-      'datasetType',
-      datasetType,
-      1,
-      10,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'anomalyClass',
-      anomalyClass,
-      1,
-      10,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'sourceRefContains',
-      sourceRefContains,
-      1,
-      2048,
     );
     final $query = <String, List<String>>{
       if (afterCreationDate != null)
@@ -1015,24 +803,11 @@ class LookoutForVision {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1085,24 +860,11 @@ class LookoutForVision {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1155,12 +917,6 @@ class LookoutForVision {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -1195,13 +951,6 @@ class LookoutForVision {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1278,27 +1027,7 @@ class LookoutForVision {
       isRequired: true,
     );
     ArgumentError.checkNotNull(modelVersion, 'modelVersion');
-    _s.validateStringLength(
-      'modelVersion',
-      modelVersion,
-      1,
-      10,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
     };
@@ -1408,39 +1137,7 @@ class LookoutForVision {
   }) async {
     ArgumentError.checkNotNull(configuration, 'configuration');
     ArgumentError.checkNotNull(modelVersion, 'modelVersion');
-    _s.validateStringLength(
-      'modelVersion',
-      modelVersion,
-      1,
-      10,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      64,
-    );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
     };
@@ -1506,27 +1203,7 @@ class LookoutForVision {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(modelVersion, 'modelVersion');
-    _s.validateStringLength(
-      'modelVersion',
-      modelVersion,
-      1,
-      10,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
     };
@@ -1566,13 +1243,6 @@ class LookoutForVision {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -1610,13 +1280,6 @@ class LookoutForVision {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -1696,27 +1359,7 @@ class LookoutForVision {
   }) async {
     ArgumentError.checkNotNull(changes, 'changes');
     ArgumentError.checkNotNull(datasetType, 'datasetType');
-    _s.validateStringLength(
-      'datasetType',
-      datasetType,
-      1,
-      10,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final headers = <String, String>{
       if (clientToken != null) 'X-Amzn-Client-Token': clientToken.toString(),
     };

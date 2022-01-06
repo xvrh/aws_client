@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -287,13 +288,6 @@ class SesV2 {
     ArgumentError.checkNotNull(successRedirectionURL, 'successRedirectionURL');
     ArgumentError.checkNotNull(templateContent, 'templateContent');
     ArgumentError.checkNotNull(templateName, 'templateName');
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateSubject, 'templateSubject');
     final $payload = <String, dynamic>{
       'FailureRedirectionURL': failureRedirectionURL,
@@ -478,13 +472,6 @@ class SesV2 {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(emailIdentity, 'emailIdentity');
-    _s.validateStringLength(
-      'emailIdentity',
-      emailIdentity,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'EmailIdentity': emailIdentity,
       if (configurationSetName != null)
@@ -544,29 +531,8 @@ class SesV2 {
     required String policyName,
   }) async {
     ArgumentError.checkNotNull(emailIdentity, 'emailIdentity');
-    _s.validateStringLength(
-      'emailIdentity',
-      emailIdentity,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policy, 'policy');
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyName, 'policyName');
-    _s.validateStringLength(
-      'policyName',
-      policyName,
-      1,
-      64,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Policy': policy,
     };
@@ -604,13 +570,6 @@ class SesV2 {
   }) async {
     ArgumentError.checkNotNull(templateContent, 'templateContent');
     ArgumentError.checkNotNull(templateName, 'templateName');
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'TemplateContent': templateContent,
       'TemplateName': templateName,
@@ -783,13 +742,6 @@ class SesV2 {
     required String templateName,
   }) async {
     ArgumentError.checkNotNull(templateName, 'templateName');
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -835,13 +787,6 @@ class SesV2 {
     required String emailIdentity,
   }) async {
     ArgumentError.checkNotNull(emailIdentity, 'emailIdentity');
-    _s.validateStringLength(
-      'emailIdentity',
-      emailIdentity,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -882,21 +827,7 @@ class SesV2 {
     required String policyName,
   }) async {
     ArgumentError.checkNotNull(emailIdentity, 'emailIdentity');
-    _s.validateStringLength(
-      'emailIdentity',
-      emailIdentity,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyName, 'policyName');
-    _s.validateStringLength(
-      'policyName',
-      policyName,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -920,13 +851,6 @@ class SesV2 {
     required String templateName,
   }) async {
     ArgumentError.checkNotNull(templateName, 'templateName');
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1133,13 +1057,6 @@ class SesV2 {
     required String templateName,
   }) async {
     ArgumentError.checkNotNull(templateName, 'templateName');
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1313,13 +1230,6 @@ class SesV2 {
     required DateTime startDate,
   }) async {
     ArgumentError.checkNotNull(domain, 'domain');
-    _s.validateStringLength(
-      'domain',
-      domain,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(endDate, 'endDate');
     ArgumentError.checkNotNull(startDate, 'startDate');
     final $query = <String, List<String>>{
@@ -1351,13 +1261,6 @@ class SesV2 {
     required String emailIdentity,
   }) async {
     ArgumentError.checkNotNull(emailIdentity, 'emailIdentity');
-    _s.validateStringLength(
-      'emailIdentity',
-      emailIdentity,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1393,13 +1296,6 @@ class SesV2 {
     required String emailIdentity,
   }) async {
     ArgumentError.checkNotNull(emailIdentity, 'emailIdentity');
-    _s.validateStringLength(
-      'emailIdentity',
-      emailIdentity,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1425,13 +1321,6 @@ class SesV2 {
     required String templateName,
   }) async {
     ArgumentError.checkNotNull(templateName, 'templateName');
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1453,13 +1342,6 @@ class SesV2 {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2071,21 +1953,7 @@ class SesV2 {
   }) async {
     ArgumentError.checkNotNull(mailType, 'mailType');
     ArgumentError.checkNotNull(useCaseDescription, 'useCaseDescription');
-    _s.validateStringLength(
-      'useCaseDescription',
-      useCaseDescription,
-      1,
-      5000,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(websiteURL, 'websiteURL');
-    _s.validateStringLength(
-      'websiteURL',
-      websiteURL,
-      1,
-      1000,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'MailType': mailType.toValue(),
       'UseCaseDescription': useCaseDescription,
@@ -2471,13 +2339,6 @@ class SesV2 {
     String? configurationSetName,
   }) async {
     ArgumentError.checkNotNull(emailIdentity, 'emailIdentity');
-    _s.validateStringLength(
-      'emailIdentity',
-      emailIdentity,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (configurationSetName != null)
         'ConfigurationSetName': configurationSetName,
@@ -2511,13 +2372,6 @@ class SesV2 {
     bool? signingEnabled,
   }) async {
     ArgumentError.checkNotNull(emailIdentity, 'emailIdentity');
-    _s.validateStringLength(
-      'emailIdentity',
-      emailIdentity,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (signingEnabled != null) 'SigningEnabled': signingEnabled,
     };
@@ -2592,13 +2446,6 @@ class SesV2 {
     DkimSigningAttributes? signingAttributes,
   }) async {
     ArgumentError.checkNotNull(emailIdentity, 'emailIdentity');
-    _s.validateStringLength(
-      'emailIdentity',
-      emailIdentity,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         signingAttributesOrigin, 'signingAttributesOrigin');
     final $payload = <String, dynamic>{
@@ -2655,13 +2502,6 @@ class SesV2 {
     bool? emailForwardingEnabled,
   }) async {
     ArgumentError.checkNotNull(emailIdentity, 'emailIdentity');
-    _s.validateStringLength(
-      'emailIdentity',
-      emailIdentity,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (emailForwardingEnabled != null)
         'EmailForwardingEnabled': emailForwardingEnabled,
@@ -2719,13 +2559,6 @@ class SesV2 {
     String? mailFromDomain,
   }) async {
     ArgumentError.checkNotNull(emailIdentity, 'emailIdentity');
-    _s.validateStringLength(
-      'emailIdentity',
-      emailIdentity,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (behaviorOnMxFailure != null)
         'BehaviorOnMxFailure': behaviorOnMxFailure.toValue(),
@@ -2918,13 +2751,6 @@ class SesV2 {
   }) async {
     ArgumentError.checkNotNull(emailAddress, 'emailAddress');
     ArgumentError.checkNotNull(templateName, 'templateName');
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'EmailAddress': emailAddress,
       'TemplateName': templateName,
@@ -3144,21 +2970,7 @@ class SesV2 {
     required String templateName,
   }) async {
     ArgumentError.checkNotNull(templateData, 'templateData');
-    _s.validateStringLength(
-      'templateData',
-      templateData,
-      0,
-      262144,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateName, 'templateName');
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'TemplateData': templateData,
     };
@@ -3386,13 +3198,6 @@ class SesV2 {
     ArgumentError.checkNotNull(successRedirectionURL, 'successRedirectionURL');
     ArgumentError.checkNotNull(templateContent, 'templateContent');
     ArgumentError.checkNotNull(templateName, 'templateName');
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateSubject, 'templateSubject');
     final $payload = <String, dynamic>{
       'FailureRedirectionURL': failureRedirectionURL,
@@ -3451,29 +3256,8 @@ class SesV2 {
     required String policyName,
   }) async {
     ArgumentError.checkNotNull(emailIdentity, 'emailIdentity');
-    _s.validateStringLength(
-      'emailIdentity',
-      emailIdentity,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policy, 'policy');
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyName, 'policyName');
-    _s.validateStringLength(
-      'policyName',
-      policyName,
-      1,
-      64,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Policy': policy,
     };
@@ -3510,13 +3294,6 @@ class SesV2 {
   }) async {
     ArgumentError.checkNotNull(templateContent, 'templateContent');
     ArgumentError.checkNotNull(templateName, 'templateName');
-    _s.validateStringLength(
-      'templateName',
-      templateName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'TemplateContent': templateContent,
     };

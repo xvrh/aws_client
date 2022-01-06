@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -15,8 +16,8 @@ import '../../shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import '2010-12-01.meta.dart';
 
+import '2010-12-01.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// This document contains reference information for the <a
@@ -664,13 +665,6 @@ class Ses {
   }) async {
     ArgumentError.checkNotNull(identity, 'identity');
     ArgumentError.checkNotNull(policyName, 'policyName');
-    _s.validateStringLength(
-      'policyName',
-      policyName,
-      1,
-      64,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['Identity'] = identity;
     $request['PolicyName'] = policyName;
@@ -1671,21 +1665,7 @@ class Ses {
   }) async {
     ArgumentError.checkNotNull(identity, 'identity');
     ArgumentError.checkNotNull(policy, 'policy');
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyName, 'policyName');
-    _s.validateStringLength(
-      'policyName',
-      policyName,
-      1,
-      64,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['Identity'] = identity;
     $request['Policy'] = policy;
@@ -2001,12 +1981,6 @@ class Ses {
     ArgumentError.checkNotNull(destinations, 'destinations');
     ArgumentError.checkNotNull(source, 'source');
     ArgumentError.checkNotNull(template, 'template');
-    _s.validateStringLength(
-      'defaultTemplateData',
-      defaultTemplateData,
-      0,
-      262144,
-    );
     final $request = <String, dynamic>{};
     $request['Destinations'] = destinations;
     $request['Source'] = source;
@@ -2750,13 +2724,6 @@ class Ses {
     ArgumentError.checkNotNull(source, 'source');
     ArgumentError.checkNotNull(template, 'template');
     ArgumentError.checkNotNull(templateData, 'templateData');
-    _s.validateStringLength(
-      'templateData',
-      templateData,
-      0,
-      262144,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['Destination'] = destination;
     $request['Source'] = source;
@@ -3151,13 +3118,6 @@ class Ses {
     required String templateName,
   }) async {
     ArgumentError.checkNotNull(templateData, 'templateData');
-    _s.validateStringLength(
-      'templateData',
-      templateData,
-      0,
-      262144,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateName, 'templateName');
     final $request = <String, dynamic>{};
     $request['TemplateData'] = templateData;

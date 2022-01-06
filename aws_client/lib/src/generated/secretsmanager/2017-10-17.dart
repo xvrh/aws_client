@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -66,13 +67,6 @@ class SecretsManager {
     required String secretId,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.CancelRotateSecret'
@@ -299,37 +293,6 @@ class SecretsManager {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      512,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      32,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'secretString',
-      secretString,
-      0,
-      65536,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.CreateSecret'
@@ -376,13 +339,6 @@ class SecretsManager {
     required String secretId,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.DeleteResourcePolicy'
@@ -465,13 +421,6 @@ class SecretsManager {
     int? recoveryWindowInDays,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.DeleteSecret'
@@ -511,13 +460,6 @@ class SecretsManager {
     required String secretId,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.DescribeSecret'
@@ -587,12 +529,6 @@ class SecretsManager {
     int? passwordLength,
     bool? requireEachIncludedType,
   }) async {
-    _s.validateStringLength(
-      'excludeCharacters',
-      excludeCharacters,
-      0,
-      4096,
-    );
     _s.validateNumRange(
       'passwordLength',
       passwordLength,
@@ -647,13 +583,6 @@ class SecretsManager {
     required String secretId,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.GetResourcePolicy'
@@ -724,25 +653,6 @@ class SecretsManager {
     String? versionStage,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'versionId',
-      versionId,
-      32,
-      64,
-    );
-    _s.validateStringLength(
-      'versionStage',
-      versionStage,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.GetSecretValue'
@@ -810,24 +720,11 @@ class SecretsManager {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -900,12 +797,6 @@ class SecretsManager {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.ListSecrets'
@@ -965,21 +856,7 @@ class SecretsManager {
     bool? blockPublicPolicy,
   }) async {
     ArgumentError.checkNotNull(resourcePolicy, 'resourcePolicy');
-    _s.validateStringLength(
-      'resourcePolicy',
-      resourcePolicy,
-      1,
-      20480,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.PutResourcePolicy'
@@ -1130,25 +1007,6 @@ class SecretsManager {
     List<String>? versionStages,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      32,
-      64,
-    );
-    _s.validateStringLength(
-      'secretString',
-      secretString,
-      0,
-      65536,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.PutSecretValue'
@@ -1191,13 +1049,6 @@ class SecretsManager {
   }) async {
     ArgumentError.checkNotNull(removeReplicaRegions, 'removeReplicaRegions');
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.RemoveRegionsFromReplication'
@@ -1242,13 +1093,6 @@ class SecretsManager {
   }) async {
     ArgumentError.checkNotNull(addReplicaRegions, 'addReplicaRegions');
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.ReplicateSecretToRegions'
@@ -1288,13 +1132,6 @@ class SecretsManager {
     required String secretId,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.RestoreSecret'
@@ -1391,25 +1228,6 @@ class SecretsManager {
     RotationRulesType? rotationRules,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      32,
-      64,
-    );
-    _s.validateStringLength(
-      'rotationLambdaARN',
-      rotationLambdaARN,
-      0,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.RotateSecret'
@@ -1449,13 +1267,6 @@ class SecretsManager {
     required String secretId,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.StopReplicationToReplica'
@@ -1540,13 +1351,6 @@ class SecretsManager {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1603,13 +1407,6 @@ class SecretsManager {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1749,37 +1546,6 @@ class SecretsManager {
     String? secretString,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      32,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'secretString',
-      secretString,
-      0,
-      65536,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.UpdateSecret'
@@ -1867,33 +1633,7 @@ class SecretsManager {
     String? removeFromVersionId,
   }) async {
     ArgumentError.checkNotNull(secretId, 'secretId');
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionStage, 'versionStage');
-    _s.validateStringLength(
-      'versionStage',
-      versionStage,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'moveToVersionId',
-      moveToVersionId,
-      32,
-      64,
-    );
-    _s.validateStringLength(
-      'removeFromVersionId',
-      removeFromVersionId,
-      32,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.UpdateSecretVersionStage'
@@ -1957,19 +1697,6 @@ class SecretsManager {
     String? secretId,
   }) async {
     ArgumentError.checkNotNull(resourcePolicy, 'resourcePolicy');
-    _s.validateStringLength(
-      'resourcePolicy',
-      resourcePolicy,
-      1,
-      20480,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'secretId',
-      secretId,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'secretsmanager.ValidateResourcePolicy'

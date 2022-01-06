@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -83,33 +84,7 @@ class IoTFleetHub {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(applicationName, 'applicationName');
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      1,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'applicationDescription',
-      applicationDescription,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'applicationName': applicationName,
       'roleArn': roleArn,
@@ -150,19 +125,6 @@ class IoTFleetHub {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(applicationId, 'applicationId');
-    _s.validateStringLength(
-      'applicationId',
-      applicationId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
     };
@@ -193,13 +155,6 @@ class IoTFleetHub {
     required String applicationId,
   }) async {
     ArgumentError.checkNotNull(applicationId, 'applicationId');
-    _s.validateStringLength(
-      'applicationId',
-      applicationId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -225,12 +180,6 @@ class IoTFleetHub {
   Future<ListApplicationsResponse> listApplications({
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
-    );
     final $query = <String, List<String>>{
       if (nextToken != null) 'nextToken': [nextToken],
     };
@@ -368,31 +317,6 @@ class IoTFleetHub {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(applicationId, 'applicationId');
-    _s.validateStringLength(
-      'applicationId',
-      applicationId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'applicationDescription',
-      applicationDescription,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'applicationName',
-      applicationName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       if (applicationDescription != null)
         'applicationDescription': applicationDescription,

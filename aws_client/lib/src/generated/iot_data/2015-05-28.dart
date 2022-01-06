@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -72,19 +73,6 @@ class IoTDataPlane {
     String? shadowName,
   }) async {
     ArgumentError.checkNotNull(thingName, 'thingName');
-    _s.validateStringLength(
-      'thingName',
-      thingName,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'shadowName',
-      shadowName,
-      1,
-      64,
-    );
     final $query = <String, List<String>>{
       if (shadowName != null) 'name': [shadowName],
     };
@@ -167,19 +155,6 @@ class IoTDataPlane {
     String? shadowName,
   }) async {
     ArgumentError.checkNotNull(thingName, 'thingName');
-    _s.validateStringLength(
-      'thingName',
-      thingName,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'shadowName',
-      shadowName,
-      1,
-      64,
-    );
     final $query = <String, List<String>>{
       if (shadowName != null) 'name': [shadowName],
     };
@@ -223,13 +198,6 @@ class IoTDataPlane {
     int? pageSize,
   }) async {
     ArgumentError.checkNotNull(thingName, 'thingName');
-    _s.validateStringLength(
-      'thingName',
-      thingName,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'pageSize',
       pageSize,
@@ -411,19 +379,6 @@ class IoTDataPlane {
   }) async {
     ArgumentError.checkNotNull(payload, 'payload');
     ArgumentError.checkNotNull(thingName, 'thingName');
-    _s.validateStringLength(
-      'thingName',
-      thingName,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'shadowName',
-      shadowName,
-      1,
-      64,
-    );
     final $query = <String, List<String>>{
       if (shadowName != null) 'name': [shadowName],
     };

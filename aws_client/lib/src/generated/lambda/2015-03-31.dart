@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -100,37 +101,10 @@ class Lambda {
     String? revisionId,
   }) async {
     ArgumentError.checkNotNull(action, 'action');
-    _s.validateStringLength(
-      'action',
-      action,
-      0,
-      22,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(layerName, 'layerName');
-    _s.validateStringLength(
-      'layerName',
-      layerName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(principal, 'principal');
     ArgumentError.checkNotNull(statementId, 'statementId');
-    _s.validateStringLength(
-      'statementId',
-      statementId,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionNumber, 'versionNumber');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      0,
-      34,
-    );
     final $query = <String, List<String>>{
       if (revisionId != null) 'RevisionId': [revisionId],
     };
@@ -255,40 +229,8 @@ class Lambda {
   }) async {
     ArgumentError.checkNotNull(action, 'action');
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(principal, 'principal');
     ArgumentError.checkNotNull(statementId, 'statementId');
-    _s.validateStringLength(
-      'statementId',
-      statementId,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'eventSourceToken',
-      eventSourceToken,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'qualifier',
-      qualifier,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'sourceAccount',
-      sourceAccount,
-      0,
-      12,
-    );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
     };
@@ -367,35 +309,8 @@ class Lambda {
     AliasRoutingConfiguration? routingConfig,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(functionVersion, 'functionVersion');
-    _s.validateStringLength(
-      'functionVersion',
-      functionVersion,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'FunctionVersion': functionVersion,
       'Name': name,
@@ -436,12 +351,6 @@ class Lambda {
     String? description,
   }) async {
     ArgumentError.checkNotNull(allowedPublishers, 'allowedPublishers');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'AllowedPublishers': allowedPublishers,
       if (codeSigningPolicies != null)
@@ -728,13 +637,6 @@ class Lambda {
     int? tumblingWindowInSeconds,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'batchSize',
       batchSize,
@@ -1041,32 +943,7 @@ class Lambda {
   }) async {
     ArgumentError.checkNotNull(code, 'code');
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(role, 'role');
-    _s.validateStringLength(
-      'codeSigningConfigArn',
-      codeSigningConfigArn,
-      0,
-      200,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'handler',
-      handler,
-      0,
-      128,
-    );
     _s.validateNumRange(
       'memorySize',
       memorySize,
@@ -1147,21 +1024,7 @@ class Lambda {
     required String name,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1185,13 +1048,6 @@ class Lambda {
     required String codeSigningConfigArn,
   }) async {
     ArgumentError.checkNotNull(codeSigningConfigArn, 'codeSigningConfigArn');
-    _s.validateStringLength(
-      'codeSigningConfigArn',
-      codeSigningConfigArn,
-      0,
-      200,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1275,19 +1131,6 @@ class Lambda {
     String? qualifier,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'qualifier',
-      qualifier,
-      1,
-      128,
-    );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
     };
@@ -1331,13 +1174,6 @@ class Lambda {
     required String functionName,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1377,13 +1213,6 @@ class Lambda {
     required String functionName,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1433,19 +1262,6 @@ class Lambda {
     String? qualifier,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'qualifier',
-      qualifier,
-      1,
-      128,
-    );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
     };
@@ -1478,13 +1294,6 @@ class Lambda {
     required int versionNumber,
   }) async {
     ArgumentError.checkNotNull(layerName, 'layerName');
-    _s.validateStringLength(
-      'layerName',
-      layerName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionNumber, 'versionNumber');
     await _protocol.send(
       payload: null,
@@ -1529,21 +1338,7 @@ class Lambda {
     required String qualifier,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(qualifier, 'qualifier');
-    _s.validateStringLength(
-      'qualifier',
-      qualifier,
-      1,
-      128,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'Qualifier': [qualifier],
     };
@@ -1607,21 +1402,7 @@ class Lambda {
     required String name,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1644,13 +1425,6 @@ class Lambda {
     required String codeSigningConfigArn,
   }) async {
     ArgumentError.checkNotNull(codeSigningConfigArn, 'codeSigningConfigArn');
-    _s.validateStringLength(
-      'codeSigningConfigArn',
-      codeSigningConfigArn,
-      0,
-      200,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1724,19 +1498,6 @@ class Lambda {
     String? qualifier,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      170,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'qualifier',
-      qualifier,
-      1,
-      128,
-    );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
     };
@@ -1779,13 +1540,6 @@ class Lambda {
     required String functionName,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1827,13 +1581,6 @@ class Lambda {
     required String functionName,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1885,19 +1632,6 @@ class Lambda {
     String? qualifier,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      170,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'qualifier',
-      qualifier,
-      1,
-      128,
-    );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
     };
@@ -1951,19 +1685,6 @@ class Lambda {
     String? qualifier,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'qualifier',
-      qualifier,
-      1,
-      128,
-    );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
     };
@@ -1998,13 +1719,6 @@ class Lambda {
     required int versionNumber,
   }) async {
     ArgumentError.checkNotNull(layerName, 'layerName');
-    _s.validateStringLength(
-      'layerName',
-      layerName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionNumber, 'versionNumber');
     final response = await _protocol.send(
       payload: null,
@@ -2032,13 +1746,6 @@ class Lambda {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      1,
-      140,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'Arn': [arn],
     };
@@ -2071,13 +1778,6 @@ class Lambda {
     required int versionNumber,
   }) async {
     ArgumentError.checkNotNull(layerName, 'layerName');
-    _s.validateStringLength(
-      'layerName',
-      layerName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionNumber, 'versionNumber');
     final response = await _protocol.send(
       payload: null,
@@ -2126,19 +1826,6 @@ class Lambda {
     String? qualifier,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      170,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'qualifier',
-      qualifier,
-      1,
-      128,
-    );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
     };
@@ -2189,21 +1876,7 @@ class Lambda {
     required String qualifier,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(qualifier, 'qualifier');
-    _s.validateStringLength(
-      'qualifier',
-      qualifier,
-      1,
-      128,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'Qualifier': [qualifier],
     };
@@ -2363,19 +2036,6 @@ class Lambda {
     String? qualifier,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      170,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'qualifier',
-      qualifier,
-      1,
-      128,
-    );
     final headers = <String, String>{
       if (clientContext != null)
         'X-Amz-Client-Context': clientContext.toString(),
@@ -2445,13 +2105,6 @@ class Lambda {
     required Uint8List invokeArgs,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      170,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(invokeArgs, 'invokeArgs');
     final response = await _protocol.send(
       payload: invokeArgs,
@@ -2507,19 +2160,6 @@ class Lambda {
     int? maxItems,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'functionVersion',
-      functionVersion,
-      1,
-      1024,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -2643,12 +2283,6 @@ class Lambda {
     String? marker,
     int? maxItems,
   }) async {
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -2714,13 +2348,6 @@ class Lambda {
     int? maxItems,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -2832,13 +2459,6 @@ class Lambda {
     int? maxItems,
   }) async {
     ArgumentError.checkNotNull(codeSigningConfigArn, 'codeSigningConfigArn');
-    _s.validateStringLength(
-      'codeSigningConfigArn',
-      codeSigningConfigArn,
-      0,
-      200,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -2897,13 +2517,6 @@ class Lambda {
     int? maxItems,
   }) async {
     ArgumentError.checkNotNull(layerName, 'layerName');
-    _s.validateStringLength(
-      'layerName',
-      layerName,
-      1,
-      140,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -3026,13 +2639,6 @@ class Lambda {
     int? maxItems,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -3122,13 +2728,6 @@ class Lambda {
     int? maxItems,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      170,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -3211,25 +2810,6 @@ class Lambda {
   }) async {
     ArgumentError.checkNotNull(content, 'content');
     ArgumentError.checkNotNull(layerName, 'layerName');
-    _s.validateStringLength(
-      'layerName',
-      layerName,
-      1,
-      140,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'licenseInfo',
-      licenseInfo,
-      0,
-      512,
-    );
     final $payload = <String, dynamic>{
       'Content': content,
       if (compatibleArchitectures != null)
@@ -3313,19 +2893,6 @@ class Lambda {
     String? revisionId,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (codeSha256 != null) 'CodeSha256': codeSha256,
       if (description != null) 'Description': description,
@@ -3378,21 +2945,7 @@ class Lambda {
     required String functionName,
   }) async {
     ArgumentError.checkNotNull(codeSigningConfigArn, 'codeSigningConfigArn');
-    _s.validateStringLength(
-      'codeSigningConfigArn',
-      codeSigningConfigArn,
-      0,
-      200,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'CodeSigningConfigArn': codeSigningConfigArn,
     };
@@ -3454,13 +3007,6 @@ class Lambda {
     required int reservedConcurrentExecutions,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         reservedConcurrentExecutions, 'reservedConcurrentExecutions');
     _s.validateNumRange(
@@ -3570,13 +3116,6 @@ class Lambda {
     String? qualifier,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maximumEventAgeInSeconds',
       maximumEventAgeInSeconds,
@@ -3588,12 +3127,6 @@ class Lambda {
       maximumRetryAttempts,
       0,
       2,
-    );
-    _s.validateStringLength(
-      'qualifier',
-      qualifier,
-      1,
-      128,
     );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
@@ -3657,13 +3190,6 @@ class Lambda {
     required String qualifier,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         provisionedConcurrentExecutions, 'provisionedConcurrentExecutions');
     _s.validateNumRange(
@@ -3674,13 +3200,6 @@ class Lambda {
       isRequired: true,
     );
     ArgumentError.checkNotNull(qualifier, 'qualifier');
-    _s.validateStringLength(
-      'qualifier',
-      qualifier,
-      1,
-      128,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'Qualifier': [qualifier],
     };
@@ -3728,21 +3247,7 @@ class Lambda {
     String? revisionId,
   }) async {
     ArgumentError.checkNotNull(layerName, 'layerName');
-    _s.validateStringLength(
-      'layerName',
-      layerName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(statementId, 'statementId');
-    _s.validateStringLength(
-      'statementId',
-      statementId,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionNumber, 'versionNumber');
     final $query = <String, List<String>>{
       if (revisionId != null) 'RevisionId': [revisionId],
@@ -3806,27 +3311,7 @@ class Lambda {
     String? revisionId,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(statementId, 'statementId');
-    _s.validateStringLength(
-      'statementId',
-      statementId,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'qualifier',
-      qualifier,
-      1,
-      128,
-    );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],
       if (revisionId != null) 'RevisionId': [revisionId],
@@ -3962,33 +3447,7 @@ class Lambda {
     AliasRoutingConfiguration? routingConfig,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'functionVersion',
-      functionVersion,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (functionVersion != null) 'FunctionVersion': functionVersion,
@@ -4031,19 +3490,6 @@ class Lambda {
     String? description,
   }) async {
     ArgumentError.checkNotNull(codeSigningConfigArn, 'codeSigningConfigArn');
-    _s.validateStringLength(
-      'codeSigningConfigArn',
-      codeSigningConfigArn,
-      0,
-      200,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (allowedPublishers != null) 'AllowedPublishers': allowedPublishers,
       if (codeSigningPolicies != null)
@@ -4300,12 +3746,6 @@ class Lambda {
       1,
       10000,
     );
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-    );
     _s.validateNumRange(
       'maximumBatchingWindowInSeconds',
       maximumBatchingWindowInSeconds,
@@ -4463,31 +3903,6 @@ class Lambda {
     Uint8List? zipFile,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      's3Bucket',
-      s3Bucket,
-      3,
-      63,
-    );
-    _s.validateStringLength(
-      's3Key',
-      s3Key,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      's3ObjectVersion',
-      s3ObjectVersion,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       if (architectures != null)
         'Architectures': architectures.map((e) => e.toValue()).toList(),
@@ -4662,25 +4077,6 @@ class Lambda {
     VpcConfig? vpcConfig,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'handler',
-      handler,
-      0,
-      128,
-    );
     _s.validateNumRange(
       'memorySize',
       memorySize,
@@ -4790,13 +4186,6 @@ class Lambda {
     String? qualifier,
   }) async {
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      140,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maximumEventAgeInSeconds',
       maximumEventAgeInSeconds,
@@ -4808,12 +4197,6 @@ class Lambda {
       maximumRetryAttempts,
       0,
       2,
-    );
-    _s.validateStringLength(
-      'qualifier',
-      qualifier,
-      1,
-      128,
     );
     final $query = <String, List<String>>{
       if (qualifier != null) 'Qualifier': [qualifier],

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -185,38 +186,10 @@ class Synthetics {
     VpcConfigInput? vpcConfig,
   }) async {
     ArgumentError.checkNotNull(artifactS3Location, 'artifactS3Location');
-    _s.validateStringLength(
-      'artifactS3Location',
-      artifactS3Location,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(code, 'code');
     ArgumentError.checkNotNull(executionRoleArn, 'executionRoleArn');
-    _s.validateStringLength(
-      'executionRoleArn',
-      executionRoleArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      21,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runtimeVersion, 'runtimeVersion');
-    _s.validateStringLength(
-      'runtimeVersion',
-      runtimeVersion,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schedule, 'schedule');
     _s.validateNumRange(
       'failureRetentionPeriodInDays',
@@ -301,13 +274,6 @@ class Synthetics {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      21,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -344,12 +310,6 @@ class Synthetics {
       maxResults,
       1,
       20,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      4,
-      252,
     );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
@@ -388,12 +348,6 @@ class Synthetics {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      4,
-      252,
     );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
@@ -435,12 +389,6 @@ class Synthetics {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      4,
-      252,
-    );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
       if (nextToken != null) 'NextToken': nextToken,
@@ -468,13 +416,6 @@ class Synthetics {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      21,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -508,24 +449,11 @@ class Synthetics {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      21,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      4,
-      252,
     );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
@@ -556,13 +484,6 @@ class Synthetics {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -589,13 +510,6 @@ class Synthetics {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      21,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -626,13 +540,6 @@ class Synthetics {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      21,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -676,13 +583,6 @@ class Synthetics {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -715,13 +615,6 @@ class Synthetics {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -854,34 +747,9 @@ class Synthetics {
     VpcConfigInput? vpcConfig,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      21,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'artifactS3Location',
-      artifactS3Location,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'executionRoleArn',
-      executionRoleArn,
-      1,
-      2048,
-    );
     _s.validateNumRange(
       'failureRetentionPeriodInDays',
       failureRetentionPeriodInDays,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'runtimeVersion',
-      runtimeVersion,
       1,
       1024,
     );

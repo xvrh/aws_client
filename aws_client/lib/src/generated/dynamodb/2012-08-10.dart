@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -496,21 +497,7 @@ class DynamoDB {
     required String tableName,
   }) async {
     ArgumentError.checkNotNull(backupName, 'backupName');
-    _s.validateStringLength(
-      'backupName',
-      backupName,
-      3,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.CreateBackup'
@@ -606,13 +593,6 @@ class DynamoDB {
     required List<Replica> replicationGroup,
   }) async {
     ArgumentError.checkNotNull(globalTableName, 'globalTableName');
-    _s.validateStringLength(
-      'globalTableName',
-      globalTableName,
-      3,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(replicationGroup, 'replicationGroup');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -915,13 +895,6 @@ class DynamoDB {
     ArgumentError.checkNotNull(attributeDefinitions, 'attributeDefinitions');
     ArgumentError.checkNotNull(keySchema, 'keySchema');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.CreateTable'
@@ -970,13 +943,6 @@ class DynamoDB {
     required String backupArn,
   }) async {
     ArgumentError.checkNotNull(backupArn, 'backupArn');
-    _s.validateStringLength(
-      'backupArn',
-      backupArn,
-      37,
-      1024,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.DeleteBackup'
@@ -1184,13 +1150,6 @@ class DynamoDB {
   }) async {
     ArgumentError.checkNotNull(key, 'key');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.DeleteItem'
@@ -1258,13 +1217,6 @@ class DynamoDB {
     required String tableName,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.DeleteTable'
@@ -1297,13 +1249,6 @@ class DynamoDB {
     required String backupArn,
   }) async {
     ArgumentError.checkNotNull(backupArn, 'backupArn');
-    _s.validateStringLength(
-      'backupArn',
-      backupArn,
-      37,
-      1024,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.DescribeBackup'
@@ -1349,13 +1294,6 @@ class DynamoDB {
     required String tableName,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.DescribeContinuousBackups'
@@ -1390,19 +1328,6 @@ class DynamoDB {
     String? indexName,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'indexName',
-      indexName,
-      3,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.DescribeContributorInsights'
@@ -1451,13 +1376,6 @@ class DynamoDB {
     required String exportArn,
   }) async {
     ArgumentError.checkNotNull(exportArn, 'exportArn');
-    _s.validateStringLength(
-      'exportArn',
-      exportArn,
-      37,
-      1024,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.DescribeExport'
@@ -1496,13 +1414,6 @@ class DynamoDB {
     required String globalTableName,
   }) async {
     ArgumentError.checkNotNull(globalTableName, 'globalTableName');
-    _s.validateStringLength(
-      'globalTableName',
-      globalTableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.DescribeGlobalTable'
@@ -1537,13 +1448,6 @@ class DynamoDB {
     required String globalTableName,
   }) async {
     ArgumentError.checkNotNull(globalTableName, 'globalTableName');
-    _s.validateStringLength(
-      'globalTableName',
-      globalTableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.DescribeGlobalTableSettings'
@@ -1574,13 +1478,6 @@ class DynamoDB {
     required String tableName,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.DescribeKinesisStreamingDestination'
@@ -1714,13 +1611,6 @@ class DynamoDB {
     required String tableName,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.DescribeTable'
@@ -1757,13 +1647,6 @@ class DynamoDB {
     required String tableName,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.DescribeTableReplicaAutoScaling'
@@ -1794,13 +1677,6 @@ class DynamoDB {
     required String tableName,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.DescribeTimeToLive'
@@ -1837,21 +1713,7 @@ class DynamoDB {
     required String tableName,
   }) async {
     ArgumentError.checkNotNull(streamArn, 'streamArn');
-    _s.validateStringLength(
-      'streamArn',
-      streamArn,
-      37,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.DisableKinesisStreamingDestination'
@@ -1891,21 +1753,7 @@ class DynamoDB {
     required String tableName,
   }) async {
     ArgumentError.checkNotNull(streamArn, 'streamArn');
-    _s.validateStringLength(
-      'streamArn',
-      streamArn,
-      37,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.EnableKinesisStreamingDestination'
@@ -1959,19 +1807,6 @@ class DynamoDB {
     ReturnConsumedCapacity? returnConsumedCapacity,
   }) async {
     ArgumentError.checkNotNull(statement, 'statement');
-    _s.validateStringLength(
-      'statement',
-      statement,
-      1,
-      8192,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      32768,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.ExecuteStatement'
@@ -2034,12 +1869,6 @@ class DynamoDB {
     ReturnConsumedCapacity? returnConsumedCapacity,
   }) async {
     ArgumentError.checkNotNull(transactStatements, 'transactStatements');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      36,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.ExecuteTransaction'
@@ -2139,12 +1968,6 @@ class DynamoDB {
   }) async {
     ArgumentError.checkNotNull(s3Bucket, 's3Bucket');
     ArgumentError.checkNotNull(tableArn, 'tableArn');
-    _s.validateStringLength(
-      's3SseKmsKeyId',
-      s3SseKmsKeyId,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.ExportTableToPointInTime'
@@ -2286,13 +2109,6 @@ class DynamoDB {
   }) async {
     ArgumentError.checkNotNull(key, 'key');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.GetItem'
@@ -2380,23 +2196,11 @@ class DynamoDB {
     DateTime? timeRangeLowerBound,
     DateTime? timeRangeUpperBound,
   }) async {
-    _s.validateStringLength(
-      'exclusiveStartBackupArn',
-      exclusiveStartBackupArn,
-      37,
-      1024,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -2448,12 +2252,6 @@ class DynamoDB {
       maxResults,
       0,
       100,
-    );
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -2550,12 +2348,6 @@ class DynamoDB {
     int? limit,
     String? regionName,
   }) async {
-    _s.validateStringLength(
-      'exclusiveStartGlobalTableName',
-      exclusiveStartGlobalTableName,
-      3,
-      255,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -2601,12 +2393,6 @@ class DynamoDB {
     String? exclusiveStartTableName,
     int? limit,
   }) async {
-    _s.validateStringLength(
-      'exclusiveStartTableName',
-      exclusiveStartTableName,
-      3,
-      255,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -2656,13 +2442,6 @@ class DynamoDB {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1283,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.ListTagsOfResource'
@@ -2957,13 +2736,6 @@ class DynamoDB {
   }) async {
     ArgumentError.checkNotNull(item, 'item');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.PutItem'
@@ -3425,19 +3197,6 @@ class DynamoDB {
     Select? select,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'indexName',
-      indexName,
-      3,
-      255,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -3555,21 +3314,7 @@ class DynamoDB {
     SSESpecification? sSESpecificationOverride,
   }) async {
     ArgumentError.checkNotNull(backupArn, 'backupArn');
-    _s.validateStringLength(
-      'backupArn',
-      backupArn,
-      37,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targetTableName, 'targetTableName');
-    _s.validateStringLength(
-      'targetTableName',
-      targetTableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.RestoreTableFromBackup'
@@ -3712,19 +3457,6 @@ class DynamoDB {
     bool? useLatestRestorableTime,
   }) async {
     ArgumentError.checkNotNull(targetTableName, 'targetTableName');
-    _s.validateStringLength(
-      'targetTableName',
-      targetTableName,
-      3,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'sourceTableName',
-      sourceTableName,
-      3,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.RestoreTableToPointInTime'
@@ -4093,19 +3825,6 @@ class DynamoDB {
     int? totalSegments,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'indexName',
-      indexName,
-      3,
-      255,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -4187,13 +3906,6 @@ class DynamoDB {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1283,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -4406,12 +4118,6 @@ class DynamoDB {
     ReturnItemCollectionMetrics? returnItemCollectionMetrics,
   }) async {
     ArgumentError.checkNotNull(transactItems, 'transactItems');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      36,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.TransactWriteItems'
@@ -4460,13 +4166,6 @@ class DynamoDB {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1283,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -4518,13 +4217,6 @@ class DynamoDB {
     ArgumentError.checkNotNull(
         pointInTimeRecoverySpecification, 'pointInTimeRecoverySpecification');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.UpdateContinuousBackups'
@@ -4571,19 +4263,6 @@ class DynamoDB {
     ArgumentError.checkNotNull(
         contributorInsightsAction, 'contributorInsightsAction');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'indexName',
-      indexName,
-      3,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.UpdateContributorInsights'
@@ -4647,13 +4326,6 @@ class DynamoDB {
     required List<ReplicaUpdate> replicaUpdates,
   }) async {
     ArgumentError.checkNotNull(globalTableName, 'globalTableName');
-    _s.validateStringLength(
-      'globalTableName',
-      globalTableName,
-      3,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(replicaUpdates, 'replicaUpdates');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -4734,13 +4406,6 @@ class DynamoDB {
     List<ReplicaSettingsUpdate>? replicaSettingsUpdate,
   }) async {
     ArgumentError.checkNotNull(globalTableName, 'globalTableName');
-    _s.validateStringLength(
-      'globalTableName',
-      globalTableName,
-      3,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'globalTableProvisionedWriteCapacityUnits',
       globalTableProvisionedWriteCapacityUnits,
@@ -5087,13 +4752,6 @@ class DynamoDB {
   }) async {
     ArgumentError.checkNotNull(key, 'key');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.UpdateItem'
@@ -5258,13 +4916,6 @@ class DynamoDB {
     TableClass? tableClass,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.UpdateTable'
@@ -5324,13 +4975,6 @@ class DynamoDB {
     List<ReplicaAutoScalingUpdate>? replicaUpdates,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20120810.UpdateTableReplicaAutoScaling'
@@ -5402,13 +5046,6 @@ class DynamoDB {
     required TimeToLiveSpecification timeToLiveSpecification,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         timeToLiveSpecification, 'timeToLiveSpecification');
     final headers = <String, String>{

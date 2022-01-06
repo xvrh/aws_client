@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -222,19 +223,6 @@ class Eks {
   }) async {
     ArgumentError.checkNotNull(addonName, 'addonName');
     ArgumentError.checkNotNull(clusterName, 'clusterName');
-    _s.validateStringLength(
-      'clusterName',
-      clusterName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'serviceAccountRoleArn',
-      serviceAccountRoleArn,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'addonName': addonName,
       if (addonVersion != null) 'addonVersion': addonVersion,
@@ -356,13 +344,6 @@ class Eks {
     String? version,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourcesVpcConfig, 'resourcesVpcConfig');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
     final $payload = <String, dynamic>{
@@ -744,13 +725,6 @@ class Eks {
   }) async {
     ArgumentError.checkNotNull(addonName, 'addonName');
     ArgumentError.checkNotNull(clusterName, 'clusterName');
-    _s.validateStringLength(
-      'clusterName',
-      clusterName,
-      1,
-      100,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       if (preserve != null) 'preserve': [preserve.toString()],
     };
@@ -917,13 +891,6 @@ class Eks {
   }) async {
     ArgumentError.checkNotNull(addonName, 'addonName');
     ArgumentError.checkNotNull(clusterName, 'clusterName');
-    _s.validateStringLength(
-      'clusterName',
-      clusterName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1247,13 +1214,6 @@ class Eks {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(clusterName, 'clusterName');
-    _s.validateStringLength(
-      'clusterName',
-      clusterName,
-      1,
-      100,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1646,13 +1606,6 @@ class Eks {
   }) async {
     ArgumentError.checkNotNull(connectorConfig, 'connectorConfig');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'connectorConfig': connectorConfig,
       'name': name,
@@ -1791,19 +1744,6 @@ class Eks {
   }) async {
     ArgumentError.checkNotNull(addonName, 'addonName');
     ArgumentError.checkNotNull(clusterName, 'clusterName');
-    _s.validateStringLength(
-      'clusterName',
-      clusterName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'serviceAccountRoleArn',
-      serviceAccountRoleArn,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       if (addonVersion != null) 'addonVersion': addonVersion,
       'clientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),

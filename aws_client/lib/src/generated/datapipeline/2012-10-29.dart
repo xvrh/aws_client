@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -87,13 +88,6 @@ class DataPipeline {
     DateTime? startTimestamp,
   }) async {
     ArgumentError.checkNotNull(pipelineId, 'pipelineId');
-    _s.validateStringLength(
-      'pipelineId',
-      pipelineId,
-      1,
-      1024,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.ActivatePipeline'
@@ -130,13 +124,6 @@ class DataPipeline {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(pipelineId, 'pipelineId');
-    _s.validateStringLength(
-      'pipelineId',
-      pipelineId,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -197,27 +184,7 @@ class DataPipeline {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(uniqueId, 'uniqueId');
-    _s.validateStringLength(
-      'uniqueId',
-      uniqueId,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.CreatePipeline'
@@ -264,13 +231,6 @@ class DataPipeline {
     bool? cancelActive,
   }) async {
     ArgumentError.checkNotNull(pipelineId, 'pipelineId');
-    _s.validateStringLength(
-      'pipelineId',
-      pipelineId,
-      1,
-      1024,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.DeactivatePipeline'
@@ -308,13 +268,6 @@ class DataPipeline {
     required String pipelineId,
   }) async {
     ArgumentError.checkNotNull(pipelineId, 'pipelineId');
-    _s.validateStringLength(
-      'pipelineId',
-      pipelineId,
-      1,
-      1024,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.DeletePipeline'
@@ -365,19 +318,6 @@ class DataPipeline {
   }) async {
     ArgumentError.checkNotNull(objectIds, 'objectIds');
     ArgumentError.checkNotNull(pipelineId, 'pipelineId');
-    _s.validateStringLength(
-      'pipelineId',
-      pipelineId,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.DescribeObjects'
@@ -466,29 +406,8 @@ class DataPipeline {
     required String pipelineId,
   }) async {
     ArgumentError.checkNotNull(expression, 'expression');
-    _s.validateStringLength(
-      'expression',
-      expression,
-      0,
-      20971520,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objectId, 'objectId');
-    _s.validateStringLength(
-      'objectId',
-      objectId,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(pipelineId, 'pipelineId');
-    _s.validateStringLength(
-      'pipelineId',
-      pipelineId,
-      1,
-      1024,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.EvaluateExpression'
@@ -531,19 +450,6 @@ class DataPipeline {
     String? version,
   }) async {
     ArgumentError.checkNotNull(pipelineId, 'pipelineId');
-    _s.validateStringLength(
-      'pipelineId',
-      pipelineId,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'version',
-      version,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.GetPipelineDefinition'
@@ -577,12 +483,6 @@ class DataPipeline {
   Future<ListPipelinesOutput> listPipelines({
     String? marker,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.ListPipelines'
@@ -649,19 +549,6 @@ class DataPipeline {
     InstanceIdentity? instanceIdentity,
   }) async {
     ArgumentError.checkNotNull(workerGroup, 'workerGroup');
-    _s.validateStringLength(
-      'workerGroup',
-      workerGroup,
-      0,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'hostname',
-      hostname,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.PollForTask'
@@ -722,13 +609,6 @@ class DataPipeline {
     List<ParameterValue>? parameterValues,
   }) async {
     ArgumentError.checkNotNull(pipelineId, 'pipelineId');
-    _s.validateStringLength(
-      'pipelineId',
-      pipelineId,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(pipelineObjects, 'pipelineObjects');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -790,27 +670,7 @@ class DataPipeline {
     Query? query,
   }) async {
     ArgumentError.checkNotNull(pipelineId, 'pipelineId');
-    _s.validateStringLength(
-      'pipelineId',
-      pipelineId,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sphere, 'sphere');
-    _s.validateStringLength(
-      'sphere',
-      sphere,
-      0,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.QueryObjects'
@@ -850,13 +710,6 @@ class DataPipeline {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(pipelineId, 'pipelineId');
-    _s.validateStringLength(
-      'pipelineId',
-      pipelineId,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -906,13 +759,6 @@ class DataPipeline {
     List<Field>? fields,
   }) async {
     ArgumentError.checkNotNull(taskId, 'taskId');
-    _s.validateStringLength(
-      'taskId',
-      taskId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.ReportTaskProgress'
@@ -963,25 +809,6 @@ class DataPipeline {
     String? workerGroup,
   }) async {
     ArgumentError.checkNotNull(taskrunnerId, 'taskrunnerId');
-    _s.validateStringLength(
-      'taskrunnerId',
-      taskrunnerId,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'hostname',
-      hostname,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'workerGroup',
-      workerGroup,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.ReportTaskRunnerHeartbeat'
@@ -1033,21 +860,7 @@ class DataPipeline {
   }) async {
     ArgumentError.checkNotNull(objectIds, 'objectIds');
     ArgumentError.checkNotNull(pipelineId, 'pipelineId');
-    _s.validateStringLength(
-      'pipelineId',
-      pipelineId,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(status, 'status');
-    _s.validateStringLength(
-      'status',
-      status,
-      0,
-      1024,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.SetStatus'
@@ -1113,26 +926,7 @@ class DataPipeline {
     String? errorStackTrace,
   }) async {
     ArgumentError.checkNotNull(taskId, 'taskId');
-    _s.validateStringLength(
-      'taskId',
-      taskId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(taskStatus, 'taskStatus');
-    _s.validateStringLength(
-      'errorId',
-      errorId,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'errorStackTrace',
-      errorStackTrace,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'DataPipeline.SetTaskStatus'
@@ -1180,13 +974,6 @@ class DataPipeline {
     List<ParameterValue>? parameterValues,
   }) async {
     ArgumentError.checkNotNull(pipelineId, 'pipelineId');
-    _s.validateStringLength(
-      'pipelineId',
-      pipelineId,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(pipelineObjects, 'pipelineObjects');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

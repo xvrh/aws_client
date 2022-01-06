@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -96,29 +97,8 @@ class WorkMail {
     required String resourceId,
   }) async {
     ArgumentError.checkNotNull(entityId, 'entityId');
-    _s.validateStringLength(
-      'entityId',
-      entityId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.AssociateDelegateToResource'
@@ -162,29 +142,8 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(groupId, 'groupId');
-    _s.validateStringLength(
-      'groupId',
-      groupId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberId, 'memberId');
-    _s.validateStringLength(
-      'memberId',
-      memberId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.AssociateMemberToGroup'
@@ -228,27 +187,7 @@ class WorkMail {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.CancelMailboxExportJob'
@@ -294,29 +233,8 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(alias, 'alias');
-    _s.validateStringLength(
-      'alias',
-      alias,
-      1,
-      254,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(entityId, 'entityId');
-    _s.validateStringLength(
-      'entityId',
-      entityId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.CreateAlias'
@@ -357,21 +275,7 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.CreateGroup'
@@ -459,33 +363,7 @@ class WorkMail {
   }) async {
     ArgumentError.checkNotNull(effect, 'effect');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.CreateMobileDeviceAccessRule'
@@ -578,31 +456,6 @@ class WorkMail {
     String? kmsKeyArn,
   }) async {
     ArgumentError.checkNotNull(alias, 'alias');
-    _s.validateStringLength(
-      'alias',
-      alias,
-      1,
-      62,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'directoryId',
-      directoryId,
-      12,
-      12,
-    );
-    _s.validateStringLength(
-      'kmsKeyArn',
-      kmsKeyArn,
-      20,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.CreateOrganization'
@@ -653,21 +506,7 @@ class WorkMail {
     required ResourceType type,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -721,37 +560,9 @@ class WorkMail {
     required String password,
   }) async {
     ArgumentError.checkNotNull(displayName, 'displayName');
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(password, 'password');
-    _s.validateStringLength(
-      'password',
-      password,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.CreateUser'
@@ -793,21 +604,7 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeleteAccessControlRule'
@@ -851,29 +648,8 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(alias, 'alias');
-    _s.validateStringLength(
-      'alias',
-      alias,
-      1,
-      254,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(entityId, 'entityId');
-    _s.validateStringLength(
-      'entityId',
-      entityId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeleteAlias'
@@ -905,13 +681,6 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeleteEmailMonitoringConfiguration'
@@ -948,21 +717,7 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(groupId, 'groupId');
-    _s.validateStringLength(
-      'groupId',
-      groupId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeleteGroup'
@@ -1004,29 +759,8 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(entityId, 'entityId');
-    _s.validateStringLength(
-      'entityId',
-      entityId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(granteeId, 'granteeId');
-    _s.validateStringLength(
-      'granteeId',
-      granteeId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeleteMailboxPermissions'
@@ -1088,29 +822,8 @@ class WorkMail {
     required String userId,
   }) async {
     ArgumentError.checkNotNull(deviceId, 'deviceId');
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeleteMobileDeviceAccessOverride'
@@ -1152,21 +865,7 @@ class WorkMail {
   }) async {
     ArgumentError.checkNotNull(
         mobileDeviceAccessRuleId, 'mobileDeviceAccessRuleId');
-    _s.validateStringLength(
-      'mobileDeviceAccessRuleId',
-      mobileDeviceAccessRuleId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeleteMobileDeviceAccessRule'
@@ -1210,19 +909,6 @@ class WorkMail {
   }) async {
     ArgumentError.checkNotNull(deleteDirectory, 'deleteDirectory');
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeleteOrganization'
@@ -1261,21 +947,7 @@ class WorkMail {
     required String resourceId,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeleteResource'
@@ -1309,21 +981,7 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeleteRetentionPolicy'
@@ -1366,21 +1024,7 @@ class WorkMail {
     required String userId,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      12,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeleteUser'
@@ -1420,21 +1064,7 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(entityId, 'entityId');
-    _s.validateStringLength(
-      'entityId',
-      entityId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeregisterFromWorkMail'
@@ -1474,21 +1104,7 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      209,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DeregisterMailDomain'
@@ -1522,13 +1138,6 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DescribeEmailMonitoringConfiguration'
@@ -1565,21 +1174,7 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(groupId, 'groupId');
-    _s.validateStringLength(
-      'groupId',
-      groupId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DescribeGroup'
@@ -1610,13 +1205,6 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DescribeInboundDmarcSettings'
@@ -1652,21 +1240,7 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DescribeMailboxExportJob'
@@ -1698,13 +1272,6 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DescribeOrganization'
@@ -1741,21 +1308,7 @@ class WorkMail {
     required String resourceId,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DescribeResource'
@@ -1792,21 +1345,7 @@ class WorkMail {
     required String userId,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      12,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DescribeUser'
@@ -1850,29 +1389,8 @@ class WorkMail {
     required String resourceId,
   }) async {
     ArgumentError.checkNotNull(entityId, 'entityId');
-    _s.validateStringLength(
-      'entityId',
-      entityId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DisassociateDelegateFromResource'
@@ -1916,29 +1434,8 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(groupId, 'groupId');
-    _s.validateStringLength(
-      'groupId',
-      groupId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberId, 'memberId');
-    _s.validateStringLength(
-      'memberId',
-      memberId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.DisassociateMemberFromGroup'
@@ -1985,37 +1482,9 @@ class WorkMail {
     required String userId,
   }) async {
     ArgumentError.checkNotNull(action, 'action');
-    _s.validateStringLength(
-      'action',
-      action,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(ipAddress, 'ipAddress');
-    _s.validateStringLength(
-      'ipAddress',
-      ipAddress,
-      1,
-      15,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      12,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.GetAccessControlEffect'
@@ -2050,13 +1519,6 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.GetDefaultRetentionPolicy'
@@ -2093,21 +1555,7 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      209,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.GetMailDomain'
@@ -2144,21 +1592,7 @@ class WorkMail {
     required String userId,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      12,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.GetMailboxDetails'
@@ -2209,37 +1643,6 @@ class WorkMail {
     String? deviceUserAgent,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'deviceModel',
-      deviceModel,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'deviceOperatingSystem',
-      deviceOperatingSystem,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'deviceType',
-      deviceType,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'deviceUserAgent',
-      deviceUserAgent,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.GetMobileDeviceAccessEffect'
@@ -2301,29 +1704,8 @@ class WorkMail {
     required String userId,
   }) async {
     ArgumentError.checkNotNull(deviceId, 'deviceId');
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.GetMobileDeviceAccessOverride'
@@ -2355,13 +1737,6 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.ListAccessControlRules'
@@ -2408,32 +1783,12 @@ class WorkMail {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(entityId, 'entityId');
-    _s.validateStringLength(
-      'entityId',
-      entityId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2485,32 +1840,12 @@ class WorkMail {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(groupId, 'groupId');
-    _s.validateStringLength(
-      'groupId',
-      groupId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2555,24 +1890,11 @@ class WorkMail {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2615,24 +1937,11 @@ class WorkMail {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2675,24 +1984,11 @@ class WorkMail {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2743,32 +2039,12 @@ class WorkMail {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(entityId, 'entityId');
-    _s.validateStringLength(
-      'entityId',
-      entityId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2838,36 +2114,11 @@ class WorkMail {
     String? userId,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      1,
-      32,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'userId',
-      userId,
-      1,
-      256,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2904,13 +2155,6 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.ListMobileDeviceAccessRules'
@@ -2948,12 +2192,6 @@ class WorkMail {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3003,32 +2241,12 @@ class WorkMail {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      12,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3072,24 +2290,11 @@ class WorkMail {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3121,13 +2326,6 @@ class WorkMail {
     required String resourceARN,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.ListTagsForResource'
@@ -3167,24 +2365,11 @@ class WorkMail {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3265,30 +2450,9 @@ class WorkMail {
     List<String>? userIds,
   }) async {
     ArgumentError.checkNotNull(description, 'description');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(effect, 'effect');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.PutAccessControlRule'
@@ -3339,29 +2503,8 @@ class WorkMail {
     required String roleArn,
   }) async {
     ArgumentError.checkNotNull(logGroupArn, 'logGroupArn');
-    _s.validateStringLength(
-      'logGroupArn',
-      logGroupArn,
-      47,
-      562,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.PutEmailMonitoringConfiguration'
@@ -3396,13 +2539,6 @@ class WorkMail {
   }) async {
     ArgumentError.checkNotNull(enforced, 'enforced');
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.PutInboundDmarcSettings'
@@ -3456,29 +2592,8 @@ class WorkMail {
     required List<PermissionType> permissionValues,
   }) async {
     ArgumentError.checkNotNull(entityId, 'entityId');
-    _s.validateStringLength(
-      'entityId',
-      entityId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(granteeId, 'granteeId');
-    _s.validateStringLength(
-      'granteeId',
-      granteeId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionValues, 'permissionValues');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3546,36 +2661,9 @@ class WorkMail {
     String? description,
   }) async {
     ArgumentError.checkNotNull(deviceId, 'deviceId');
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(effect, 'effect');
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.PutMobileDeviceAccessOverride'
@@ -3626,33 +2714,7 @@ class WorkMail {
   }) async {
     ArgumentError.checkNotNull(folderConfigurations, 'folderConfigurations');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.PutRetentionPolicy'
@@ -3698,27 +2760,7 @@ class WorkMail {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      209,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.RegisterMailDomain'
@@ -3776,29 +2818,8 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(email, 'email');
-    _s.validateStringLength(
-      'email',
-      email,
-      1,
-      254,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(entityId, 'entityId');
-    _s.validateStringLength(
-      'entityId',
-      entityId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.RegisterToWorkMail'
@@ -3844,29 +2865,8 @@ class WorkMail {
     required String userId,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(password, 'password');
-    _s.validateStringLength(
-      'password',
-      password,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      12,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.ResetPassword'
@@ -3933,65 +2933,11 @@ class WorkMail {
     String? description,
   }) async {
     ArgumentError.checkNotNull(entityId, 'entityId');
-    _s.validateStringLength(
-      'entityId',
-      entityId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(kmsKeyArn, 'kmsKeyArn');
-    _s.validateStringLength(
-      'kmsKeyArn',
-      kmsKeyArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(s3BucketName, 's3BucketName');
-    _s.validateStringLength(
-      's3BucketName',
-      s3BucketName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(s3Prefix, 's3Prefix');
-    _s.validateStringLength(
-      's3Prefix',
-      s3Prefix,
-      1,
-      1023,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1023,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.StartMailboxExportJob'
@@ -4034,13 +2980,6 @@ class WorkMail {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4074,13 +3013,6 @@ class WorkMail {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4119,21 +3051,7 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      209,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.UpdateDefaultMailDomain'
@@ -4183,21 +3101,7 @@ class WorkMail {
       isRequired: true,
     );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      12,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.UpdateMailboxQuota'
@@ -4285,35 +3189,8 @@ class WorkMail {
     ArgumentError.checkNotNull(effect, 'effect');
     ArgumentError.checkNotNull(
         mobileDeviceAccessRuleId, 'mobileDeviceAccessRuleId');
-    _s.validateStringLength(
-      'mobileDeviceAccessRuleId',
-      mobileDeviceAccessRuleId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.UpdateMobileDeviceAccessRule'
@@ -4377,29 +3254,8 @@ class WorkMail {
     required String organizationId,
   }) async {
     ArgumentError.checkNotNull(email, 'email');
-    _s.validateStringLength(
-      'email',
-      email,
-      1,
-      254,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(entityId, 'entityId');
-    _s.validateStringLength(
-      'entityId',
-      entityId,
-      12,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.UpdatePrimaryEmailAddress'
@@ -4453,27 +3309,7 @@ class WorkMail {
     String? name,
   }) async {
     ArgumentError.checkNotNull(organizationId, 'organizationId');
-    _s.validateStringLength(
-      'organizationId',
-      organizationId,
-      34,
-      34,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      34,
-      34,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      20,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'WorkMailService.UpdateResource'

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -69,13 +70,6 @@ class KinesisVideo {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(channelName, 'channelName');
-    _s.validateStringLength(
-      'channelName',
-      channelName,
-      1,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'ChannelName': channelName,
       if (channelType != null) 'ChannelType': channelType.toValue(),
@@ -176,36 +170,11 @@ class KinesisVideo {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(streamName, 'streamName');
-    _s.validateStringLength(
-      'streamName',
-      streamName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'dataRetentionInHours',
       dataRetentionInHours,
       0,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'deviceName',
-      deviceName,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'mediaType',
-      mediaType,
-      1,
-      128,
     );
     final $payload = <String, dynamic>{
       'StreamName': streamName,
@@ -250,19 +219,6 @@ class KinesisVideo {
     String? currentVersion,
   }) async {
     ArgumentError.checkNotNull(channelARN, 'channelARN');
-    _s.validateStringLength(
-      'channelARN',
-      channelARN,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'currentVersion',
-      currentVersion,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'ChannelARN': channelARN,
       if (currentVersion != null) 'CurrentVersion': currentVersion,
@@ -315,19 +271,6 @@ class KinesisVideo {
     String? currentVersion,
   }) async {
     ArgumentError.checkNotNull(streamARN, 'streamARN');
-    _s.validateStringLength(
-      'streamARN',
-      streamARN,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'currentVersion',
-      currentVersion,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'StreamARN': streamARN,
       if (currentVersion != null) 'CurrentVersion': currentVersion,
@@ -358,18 +301,6 @@ class KinesisVideo {
     String? channelARN,
     String? channelName,
   }) async {
-    _s.validateStringLength(
-      'channelARN',
-      channelARN,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'channelName',
-      channelName,
-      1,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (channelARN != null) 'ChannelARN': channelARN,
       if (channelName != null) 'ChannelName': channelName,
@@ -400,18 +331,6 @@ class KinesisVideo {
     String? streamARN,
     String? streamName,
   }) async {
-    _s.validateStringLength(
-      'streamARN',
-      streamARN,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'streamName',
-      streamName,
-      1,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (streamARN != null) 'StreamARN': streamARN,
       if (streamName != null) 'StreamName': streamName,
@@ -458,18 +377,6 @@ class KinesisVideo {
     String? streamName,
   }) async {
     ArgumentError.checkNotNull(aPIName, 'aPIName');
-    _s.validateStringLength(
-      'streamARN',
-      streamARN,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'streamName',
-      streamName,
-      1,
-      256,
-    );
     final $payload = <String, dynamic>{
       'APIName': aPIName.toValue(),
       if (streamARN != null) 'StreamARN': streamARN,
@@ -520,13 +427,6 @@ class KinesisVideo {
         singleMasterChannelEndpointConfiguration,
   }) async {
     ArgumentError.checkNotNull(channelARN, 'channelARN');
-    _s.validateStringLength(
-      'channelARN',
-      channelARN,
-      1,
-      1024,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'ChannelARN': channelARN,
       if (singleMasterChannelEndpointConfiguration != null)
@@ -573,12 +473,6 @@ class KinesisVideo {
       maxResults,
       1,
       10000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      512,
     );
     final $payload = <String, dynamic>{
       if (channelNameCondition != null)
@@ -627,12 +521,6 @@ class KinesisVideo {
       1,
       10000,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      512,
-    );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
       if (nextToken != null) 'NextToken': nextToken,
@@ -669,19 +557,6 @@ class KinesisVideo {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      512,
-    );
     final $payload = <String, dynamic>{
       'ResourceARN': resourceARN,
       if (nextToken != null) 'NextToken': nextToken,
@@ -723,24 +598,6 @@ class KinesisVideo {
     String? streamARN,
     String? streamName,
   }) async {
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      512,
-    );
-    _s.validateStringLength(
-      'streamARN',
-      streamARN,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'streamName',
-      streamName,
-      1,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (nextToken != null) 'NextToken': nextToken,
       if (streamARN != null) 'StreamARN': streamARN,
@@ -782,13 +639,6 @@ class KinesisVideo {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'ResourceARN': resourceARN,
@@ -841,18 +691,6 @@ class KinesisVideo {
     String? streamName,
   }) async {
     ArgumentError.checkNotNull(tags, 'tags');
-    _s.validateStringLength(
-      'streamARN',
-      streamARN,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'streamName',
-      streamName,
-      1,
-      256,
-    );
     final $payload = <String, dynamic>{
       'Tags': tags,
       if (streamARN != null) 'StreamARN': streamARN,
@@ -886,13 +724,6 @@ class KinesisVideo {
     required List<String> tagKeyList,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeyList, 'tagKeyList');
     final $payload = <String, dynamic>{
       'ResourceARN': resourceARN,
@@ -934,18 +765,6 @@ class KinesisVideo {
     String? streamName,
   }) async {
     ArgumentError.checkNotNull(tagKeyList, 'tagKeyList');
-    _s.validateStringLength(
-      'streamARN',
-      streamARN,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'streamName',
-      streamName,
-      1,
-      256,
-    );
     final $payload = <String, dynamic>{
       'TagKeyList': tagKeyList,
       if (streamARN != null) 'StreamARN': streamARN,
@@ -1021,13 +840,6 @@ class KinesisVideo {
     String? streamName,
   }) async {
     ArgumentError.checkNotNull(currentVersion, 'currentVersion');
-    _s.validateStringLength(
-      'currentVersion',
-      currentVersion,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         dataRetentionChangeInHours, 'dataRetentionChangeInHours');
     _s.validateNumRange(
@@ -1038,18 +850,6 @@ class KinesisVideo {
       isRequired: true,
     );
     ArgumentError.checkNotNull(operation, 'operation');
-    _s.validateStringLength(
-      'streamARN',
-      streamARN,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'streamName',
-      streamName,
-      1,
-      256,
-    );
     final $payload = <String, dynamic>{
       'CurrentVersion': currentVersion,
       'DataRetentionChangeInHours': dataRetentionChangeInHours,
@@ -1097,21 +897,7 @@ class KinesisVideo {
     SingleMasterConfiguration? singleMasterConfiguration,
   }) async {
     ArgumentError.checkNotNull(channelARN, 'channelARN');
-    _s.validateStringLength(
-      'channelARN',
-      channelARN,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(currentVersion, 'currentVersion');
-    _s.validateStringLength(
-      'currentVersion',
-      currentVersion,
-      1,
-      64,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'ChannelARN': channelARN,
       'CurrentVersion': currentVersion,
@@ -1186,37 +972,6 @@ class KinesisVideo {
     String? streamName,
   }) async {
     ArgumentError.checkNotNull(currentVersion, 'currentVersion');
-    _s.validateStringLength(
-      'currentVersion',
-      currentVersion,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'deviceName',
-      deviceName,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'mediaType',
-      mediaType,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'streamARN',
-      streamARN,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'streamName',
-      streamName,
-      1,
-      256,
-    );
     final $payload = <String, dynamic>{
       'CurrentVersion': currentVersion,
       if (deviceName != null) 'DeviceName': deviceName,

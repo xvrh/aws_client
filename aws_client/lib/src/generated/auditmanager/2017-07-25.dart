@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -97,21 +98,7 @@ class AuditManager {
     required String evidenceFolderId,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceFolderId, 'evidenceFolderId');
-    _s.validateStringLength(
-      'evidenceFolderId',
-      evidenceFolderId,
-      36,
-      36,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'evidenceFolderId': evidenceFolderId,
     };
@@ -147,21 +134,7 @@ class AuditManager {
     required List<String> evidenceIds,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceFolderId, 'evidenceFolderId');
-    _s.validateStringLength(
-      'evidenceFolderId',
-      evidenceFolderId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceIds, 'evidenceIds');
     final $payload = <String, dynamic>{
       'evidenceFolderId': evidenceFolderId,
@@ -195,13 +168,6 @@ class AuditManager {
     required List<CreateDelegationRequest> createDelegationRequests,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         createDelegationRequests, 'createDelegationRequests');
     final $payload = <String, dynamic>{
@@ -235,13 +201,6 @@ class AuditManager {
     required List<String> delegationIds,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(delegationIds, 'delegationIds');
     final $payload = <String, dynamic>{
       'delegationIds': delegationIds,
@@ -279,21 +238,7 @@ class AuditManager {
     required List<String> evidenceIds,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceFolderId, 'evidenceFolderId');
-    _s.validateStringLength(
-      'evidenceFolderId',
-      evidenceFolderId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceIds, 'evidenceIds');
     final $payload = <String, dynamic>{
       'evidenceFolderId': evidenceFolderId,
@@ -336,29 +281,8 @@ class AuditManager {
     required List<ManualEvidence> manualEvidence,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlId, 'controlId');
-    _s.validateStringLength(
-      'controlId',
-      controlId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlSetId, 'controlSetId');
-    _s.validateStringLength(
-      'controlSetId',
-      controlSetId,
-      1,
-      300,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(manualEvidence, 'manualEvidence');
     final $payload = <String, dynamic>{
       'manualEvidence': manualEvidence,
@@ -410,29 +334,9 @@ class AuditManager {
     ArgumentError.checkNotNull(
         assessmentReportsDestination, 'assessmentReportsDestination');
     ArgumentError.checkNotNull(frameworkId, 'frameworkId');
-    _s.validateStringLength(
-      'frameworkId',
-      frameworkId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      300,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roles, 'roles');
     ArgumentError.checkNotNull(scope, 'scope');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'assessmentReportsDestination': assessmentReportsDestination,
       'frameworkId': frameworkId,
@@ -482,25 +386,6 @@ class AuditManager {
   }) async {
     ArgumentError.checkNotNull(controlSets, 'controlSets');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      300,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'complianceType',
-      complianceType,
-      0,
-      100,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'controlSets': controlSets,
       'name': name,
@@ -538,27 +423,7 @@ class AuditManager {
     String? description,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      300,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'name': name,
       if (description != null) 'description': description,
@@ -610,37 +475,6 @@ class AuditManager {
   }) async {
     ArgumentError.checkNotNull(controlMappingSources, 'controlMappingSources');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      300,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'actionPlanInstructions',
-      actionPlanInstructions,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'actionPlanTitle',
-      actionPlanTitle,
-      0,
-      300,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'testingInformation',
-      testingInformation,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'controlMappingSources': controlMappingSources,
       'name': name,
@@ -673,13 +507,6 @@ class AuditManager {
     required String assessmentId,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -701,13 +528,6 @@ class AuditManager {
     required String frameworkId,
   }) async {
     ArgumentError.checkNotNull(frameworkId, 'frameworkId');
-    _s.validateStringLength(
-      'frameworkId',
-      frameworkId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -734,13 +554,6 @@ class AuditManager {
     required ShareRequestType requestType,
   }) async {
     ArgumentError.checkNotNull(requestId, 'requestId');
-    _s.validateStringLength(
-      'requestId',
-      requestId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(requestType, 'requestType');
     final $query = <String, List<String>>{
       'requestType': [requestType.toValue()],
@@ -772,21 +585,7 @@ class AuditManager {
     required String assessmentReportId,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(assessmentReportId, 'assessmentReportId');
-    _s.validateStringLength(
-      'assessmentReportId',
-      assessmentReportId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -809,13 +608,6 @@ class AuditManager {
     required String controlId,
   }) async {
     ArgumentError.checkNotNull(controlId, 'controlId');
-    _s.validateStringLength(
-      'controlId',
-      controlId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -861,12 +653,6 @@ class AuditManager {
   Future<void> deregisterOrganizationAdminAccount({
     String? adminAccountId,
   }) async {
-    _s.validateStringLength(
-      'adminAccountId',
-      adminAccountId,
-      12,
-      12,
-    );
     final $payload = <String, dynamic>{
       if (adminAccountId != null) 'adminAccountId': adminAccountId,
     };
@@ -896,21 +682,7 @@ class AuditManager {
     required String evidenceFolderId,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceFolderId, 'evidenceFolderId');
-    _s.validateStringLength(
-      'evidenceFolderId',
-      evidenceFolderId,
-      36,
-      36,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'evidenceFolderId': evidenceFolderId,
     };
@@ -949,13 +721,6 @@ class AuditManager {
     required String assessmentId,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -978,13 +743,6 @@ class AuditManager {
     required String frameworkId,
   }) async {
     ArgumentError.checkNotNull(frameworkId, 'frameworkId');
-    _s.validateStringLength(
-      'frameworkId',
-      frameworkId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1011,21 +769,7 @@ class AuditManager {
     required String assessmentReportId,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(assessmentReportId, 'assessmentReportId');
-    _s.validateStringLength(
-      'assessmentReportId',
-      assessmentReportId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1066,34 +810,9 @@ class AuditManager {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'controlId',
-      controlId,
-      36,
-      36,
-    );
-    _s.validateStringLength(
-      'controlSetId',
-      controlSetId,
-      1,
-      300,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
       1,
       1000,
     );
@@ -1127,13 +846,6 @@ class AuditManager {
     required String controlId,
   }) async {
     ArgumentError.checkNotNull(controlId, 'controlId');
-    _s.validateStringLength(
-      'controlId',
-      controlId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1162,12 +874,6 @@ class AuditManager {
     _s.validateNumRange(
       'maxResults',
       maxResults,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
       1,
       1000,
     );
@@ -1210,37 +916,9 @@ class AuditManager {
     required String evidenceId,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlSetId, 'controlSetId');
-    _s.validateStringLength(
-      'controlSetId',
-      controlSetId,
-      1,
-      300,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceFolderId, 'evidenceFolderId');
-    _s.validateStringLength(
-      'evidenceFolderId',
-      evidenceFolderId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceId, 'evidenceId');
-    _s.validateStringLength(
-      'evidenceId',
-      evidenceId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1281,38 +959,11 @@ class AuditManager {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlSetId, 'controlSetId');
-    _s.validateStringLength(
-      'controlSetId',
-      controlSetId,
-      1,
-      300,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceFolderId, 'evidenceFolderId');
-    _s.validateStringLength(
-      'evidenceFolderId',
-      evidenceFolderId,
-      36,
-      36,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
       1,
       1000,
     );
@@ -1352,29 +1003,8 @@ class AuditManager {
     required String evidenceFolderId,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlSetId, 'controlSetId');
-    _s.validateStringLength(
-      'controlSetId',
-      controlSetId,
-      1,
-      300,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(evidenceFolderId, 'evidenceFolderId');
-    _s.validateStringLength(
-      'evidenceFolderId',
-      evidenceFolderId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1408,22 +1038,9 @@ class AuditManager {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
       1,
       1000,
     );
@@ -1474,38 +1091,11 @@ class AuditManager {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlId, 'controlId');
-    _s.validateStringLength(
-      'controlId',
-      controlId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlSetId, 'controlSetId');
-    _s.validateStringLength(
-      'controlSetId',
-      controlSetId,
-      1,
-      300,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
       1,
       1000,
     );
@@ -1551,13 +1141,6 @@ class AuditManager {
     required String assessmentId,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1656,30 +1239,10 @@ class AuditManager {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlDomainId, 'controlDomainId');
-    _s.validateStringLength(
-      'controlDomainId',
-      controlDomainId,
-      36,
-      36,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
       1,
       1000,
     );
@@ -1730,12 +1293,6 @@ class AuditManager {
       1,
       1000,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1000,
-    );
     final $query = <String, List<String>>{
       'requestType': [requestType.toValue()],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1779,12 +1336,6 @@ class AuditManager {
       1,
       1000,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1000,
-    );
     final $query = <String, List<String>>{
       'frameworkType': [frameworkType.toValue()],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1819,12 +1370,6 @@ class AuditManager {
     _s.validateNumRange(
       'maxResults',
       maxResults,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
       1,
       1000,
     );
@@ -1865,12 +1410,6 @@ class AuditManager {
     _s.validateNumRange(
       'maxResults',
       maxResults,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
       1,
       1000,
     );
@@ -1919,12 +1458,6 @@ class AuditManager {
       1,
       1000,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1000,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -1969,22 +1502,9 @@ class AuditManager {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
       1,
       1000,
     );
@@ -2033,22 +1553,9 @@ class AuditManager {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(controlDomainId, 'controlDomainId');
-    _s.validateStringLength(
-      'controlDomainId',
-      controlDomainId,
-      36,
-      36,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
       1,
       1000,
     );
@@ -2091,12 +1598,6 @@ class AuditManager {
     _s.validateNumRange(
       'maxResults',
       maxResults,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
       1,
       1000,
     );
@@ -2143,12 +1644,6 @@ class AuditManager {
       1,
       1000,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1000,
-    );
     final $query = <String, List<String>>{
       'source': [source.toValue()],
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -2186,12 +1681,6 @@ class AuditManager {
       1,
       1000,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1000,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -2218,13 +1707,6 @@ class AuditManager {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2250,18 +1732,6 @@ class AuditManager {
     String? delegatedAdminAccount,
     String? kmsKey,
   }) async {
-    _s.validateStringLength(
-      'delegatedAdminAccount',
-      delegatedAdminAccount,
-      12,
-      12,
-    );
-    _s.validateStringLength(
-      'kmsKey',
-      kmsKey,
-      7,
-      2048,
-    );
     final $payload = <String, dynamic>{
       if (delegatedAdminAccount != null)
         'delegatedAdminAccount': delegatedAdminAccount,
@@ -2291,13 +1761,6 @@ class AuditManager {
     required String adminAccountId,
   }) async {
     ArgumentError.checkNotNull(adminAccountId, 'adminAccountId');
-    _s.validateStringLength(
-      'adminAccountId',
-      adminAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'adminAccountId': adminAccountId,
     };
@@ -2350,28 +1813,8 @@ class AuditManager {
     String? comment,
   }) async {
     ArgumentError.checkNotNull(destinationAccount, 'destinationAccount');
-    _s.validateStringLength(
-      'destinationAccount',
-      destinationAccount,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(destinationRegion, 'destinationRegion');
     ArgumentError.checkNotNull(frameworkId, 'frameworkId');
-    _s.validateStringLength(
-      'frameworkId',
-      frameworkId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'comment',
-      comment,
-      0,
-      500,
-    );
     final $payload = <String, dynamic>{
       'destinationAccount': destinationAccount,
       'destinationRegion': destinationRegion,
@@ -2403,13 +1846,6 @@ class AuditManager {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -2438,13 +1874,6 @@ class AuditManager {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -2492,26 +1921,7 @@ class AuditManager {
     List<Role>? roles,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
-    _s.validateStringLength(
-      'assessmentDescription',
-      assessmentDescription,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'assessmentName',
-      assessmentName,
-      1,
-      300,
-    );
     final $payload = <String, dynamic>{
       'scope': scope,
       if (assessmentDescription != null)
@@ -2559,35 +1969,8 @@ class AuditManager {
     ControlStatus? controlStatus,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlId, 'controlId');
-    _s.validateStringLength(
-      'controlId',
-      controlId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlSetId, 'controlSetId');
-    _s.validateStringLength(
-      'controlSetId',
-      controlSetId,
-      1,
-      300,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'commentBody',
-      commentBody,
-      0,
-      500,
-    );
     final $payload = <String, dynamic>{
       if (commentBody != null) 'commentBody': commentBody,
       if (controlStatus != null) 'controlStatus': controlStatus.toValue(),
@@ -2628,29 +2011,8 @@ class AuditManager {
     required ControlSetStatus status,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(comment, 'comment');
-    _s.validateStringLength(
-      'comment',
-      comment,
-      0,
-      350,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlSetId, 'controlSetId');
-    _s.validateStringLength(
-      'controlSetId',
-      controlSetId,
-      0,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(status, 'status');
     final $payload = <String, dynamic>{
       'comment': comment,
@@ -2697,33 +2059,7 @@ class AuditManager {
   }) async {
     ArgumentError.checkNotNull(controlSets, 'controlSets');
     ArgumentError.checkNotNull(frameworkId, 'frameworkId');
-    _s.validateStringLength(
-      'frameworkId',
-      frameworkId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      300,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'complianceType',
-      complianceType,
-      0,
-      100,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'controlSets': controlSets,
       'name': name,
@@ -2763,13 +2099,6 @@ class AuditManager {
   }) async {
     ArgumentError.checkNotNull(action, 'action');
     ArgumentError.checkNotNull(requestId, 'requestId');
-    _s.validateStringLength(
-      'requestId',
-      requestId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(requestType, 'requestType');
     final $payload = <String, dynamic>{
       'action': action.toValue(),
@@ -2802,13 +2131,6 @@ class AuditManager {
     required AssessmentStatus status,
   }) async {
     ArgumentError.checkNotNull(assessmentId, 'assessmentId');
-    _s.validateStringLength(
-      'assessmentId',
-      assessmentId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(status, 'status');
     final $payload = <String, dynamic>{
       'status': status.toValue(),
@@ -2859,46 +2181,8 @@ class AuditManager {
     String? testingInformation,
   }) async {
     ArgumentError.checkNotNull(controlId, 'controlId');
-    _s.validateStringLength(
-      'controlId',
-      controlId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(controlMappingSources, 'controlMappingSources');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      300,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'actionPlanInstructions',
-      actionPlanInstructions,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'actionPlanTitle',
-      actionPlanTitle,
-      0,
-      300,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'testingInformation',
-      testingInformation,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'controlMappingSources': controlMappingSources,
       'name': name,
@@ -2941,18 +2225,6 @@ class AuditManager {
     String? kmsKey,
     String? snsTopic,
   }) async {
-    _s.validateStringLength(
-      'kmsKey',
-      kmsKey,
-      7,
-      2048,
-    );
-    _s.validateStringLength(
-      'snsTopic',
-      snsTopic,
-      20,
-      2048,
-    );
     final $payload = <String, dynamic>{
       if (defaultAssessmentReportsDestination != null)
         'defaultAssessmentReportsDestination':
@@ -2986,13 +2258,6 @@ class AuditManager {
     required String s3RelativePath,
   }) async {
     ArgumentError.checkNotNull(s3RelativePath, 's3RelativePath');
-    _s.validateStringLength(
-      's3RelativePath',
-      s3RelativePath,
-      1,
-      1024,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       's3RelativePath': s3RelativePath,
     };

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -293,25 +294,6 @@ class AlexaForBusiness {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      10,
-      150,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      200,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.CreateAddressBook'
@@ -378,24 +360,6 @@ class AlexaForBusiness {
   }) async {
     ArgumentError.checkNotNull(contentRange, 'contentRange');
     ArgumentError.checkNotNull(format, 'format');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      10,
-      150,
-    );
-    _s.validateStringLength(
-      's3KeyPrefix',
-      s3KeyPrefix,
-      0,
-      100,
-    );
-    _s.validateStringLength(
-      'scheduleName',
-      scheduleName,
-      0,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.CreateBusinessReportSchedule'
@@ -458,22 +422,9 @@ class AlexaForBusiness {
   }) async {
     ArgumentError.checkNotNull(
         conferenceProviderName, 'conferenceProviderName');
-    _s.validateStringLength(
-      'conferenceProviderName',
-      conferenceProviderName,
-      1,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         conferenceProviderType, 'conferenceProviderType');
     ArgumentError.checkNotNull(meetingSetting, 'meetingSetting');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      10,
-      150,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.CreateConferenceProvider'
@@ -545,37 +496,6 @@ class AlexaForBusiness {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(firstName, 'firstName');
-    _s.validateStringLength(
-      'firstName',
-      firstName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      10,
-      150,
-    );
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'lastName',
-      lastName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'phoneNumber',
-      phoneNumber,
-      0,
-      50,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.CreateContact'
@@ -627,25 +547,6 @@ class AlexaForBusiness {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      10,
-      150,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.CreateGatewayGroup'
@@ -728,46 +629,8 @@ class AlexaForBusiness {
     List<String>? trustAnchors,
   }) async {
     ArgumentError.checkNotNull(networkProfileName, 'networkProfileName');
-    _s.validateStringLength(
-      'networkProfileName',
-      networkProfileName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(securityType, 'securityType');
     ArgumentError.checkNotNull(ssid, 'ssid');
-    _s.validateStringLength(
-      'ssid',
-      ssid,
-      1,
-      32,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      10,
-      150,
-    );
-    _s.validateStringLength(
-      'currentPassword',
-      currentPassword,
-      5,
-      128,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
-    _s.validateStringLength(
-      'nextPassword',
-      nextPassword,
-      0,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.CreateNetworkProfile'
@@ -863,44 +726,11 @@ class AlexaForBusiness {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(address, 'address');
-    _s.validateStringLength(
-      'address',
-      address,
-      1,
-      500,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(distanceUnit, 'distanceUnit');
     ArgumentError.checkNotNull(profileName, 'profileName');
-    _s.validateStringLength(
-      'profileName',
-      profileName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(temperatureUnit, 'temperatureUnit');
     ArgumentError.checkNotNull(timezone, 'timezone');
-    _s.validateStringLength(
-      'timezone',
-      timezone,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(wakeWord, 'wakeWord');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      10,
-      150,
-    );
-    _s.validateStringLength(
-      'locale',
-      locale,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.CreateProfile'
@@ -967,31 +797,6 @@ class AlexaForBusiness {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(roomName, 'roomName');
-    _s.validateStringLength(
-      'roomName',
-      roomName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      10,
-      150,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      200,
-    );
-    _s.validateStringLength(
-      'providerCalendarId',
-      providerCalendarId,
-      0,
-      100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.CreateRoom'
@@ -1042,25 +847,6 @@ class AlexaForBusiness {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(skillGroupName, 'skillGroupName');
-    _s.validateStringLength(
-      'skillGroupName',
-      skillGroupName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      10,
-      150,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      200,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.CreateSkillGroup'
@@ -1116,37 +902,6 @@ class AlexaForBusiness {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      10,
-      150,
-    );
-    _s.validateStringLength(
-      'email',
-      email,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'firstName',
-      firstName,
-      0,
-      30,
-    );
-    _s.validateStringLength(
-      'lastName',
-      lastName,
-      0,
-      30,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.CreateUser'
@@ -1468,13 +1223,6 @@ class AlexaForBusiness {
     String? roomArn,
   }) async {
     ArgumentError.checkNotNull(parameterKey, 'parameterKey');
-    _s.validateStringLength(
-      'parameterKey',
-      parameterKey,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(skillId, 'skillId');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1567,13 +1315,6 @@ class AlexaForBusiness {
     String? userArn,
   }) async {
     ArgumentError.checkNotNull(enrollmentId, 'enrollmentId');
-    _s.validateStringLength(
-      'enrollmentId',
-      enrollmentId,
-      0,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.DeleteUser'
@@ -2076,13 +1817,6 @@ class AlexaForBusiness {
     String? roomArn,
   }) async {
     ArgumentError.checkNotNull(parameterKey, 'parameterKey');
-    _s.validateStringLength(
-      'parameterKey',
-      parameterKey,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(skillId, 'skillId');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2151,12 +1885,6 @@ class AlexaForBusiness {
       1,
       50,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.ListBusinessReportSchedules'
@@ -2193,12 +1921,6 @@ class AlexaForBusiness {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2258,12 +1980,6 @@ class AlexaForBusiness {
       1,
       50,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.ListDeviceEvents'
@@ -2304,12 +2020,6 @@ class AlexaForBusiness {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2353,12 +2063,6 @@ class AlexaForBusiness {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2414,12 +2118,6 @@ class AlexaForBusiness {
       1,
       10,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.ListSkills'
@@ -2458,12 +2156,6 @@ class AlexaForBusiness {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2515,12 +2207,6 @@ class AlexaForBusiness {
       1,
       10,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.ListSkillsStoreSkillsByCategory'
@@ -2564,12 +2250,6 @@ class AlexaForBusiness {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2619,12 +2299,6 @@ class AlexaForBusiness {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2695,19 +2369,6 @@ class AlexaForBusiness {
     List<String>? privateSkillIds,
   }) async {
     ArgumentError.checkNotNull(organizationName, 'organizationName');
-    _s.validateStringLength(
-      'organizationName',
-      organizationName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'contactEmail',
-      contactEmail,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.PutInvitationConfiguration'
@@ -2855,13 +2516,6 @@ class AlexaForBusiness {
     ArgumentError.checkNotNull(clientId, 'clientId');
     ArgumentError.checkNotNull(productId, 'productId');
     ArgumentError.checkNotNull(userCode, 'userCode');
-    _s.validateStringLength(
-      'userCode',
-      userCode,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.RegisterAVSDevice'
@@ -2973,12 +2627,6 @@ class AlexaForBusiness {
     String? enrollmentId,
     String? userArn,
   }) async {
-    _s.validateStringLength(
-      'enrollmentId',
-      enrollmentId,
-      0,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.RevokeInvitation'
@@ -3028,12 +2676,6 @@ class AlexaForBusiness {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3088,12 +2730,6 @@ class AlexaForBusiness {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3153,12 +2789,6 @@ class AlexaForBusiness {
       1,
       50,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.SearchDevices'
@@ -3212,12 +2842,6 @@ class AlexaForBusiness {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3273,12 +2897,6 @@ class AlexaForBusiness {
       1,
       50,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.SearchProfiles'
@@ -3333,12 +2951,6 @@ class AlexaForBusiness {
       1,
       50,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.SearchRooms'
@@ -3392,12 +3004,6 @@ class AlexaForBusiness {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3456,12 +3062,6 @@ class AlexaForBusiness {
       1,
       50,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.SearchUsers'
@@ -3513,12 +3113,6 @@ class AlexaForBusiness {
   }) async {
     ArgumentError.checkNotNull(content, 'content');
     ArgumentError.checkNotNull(roomFilters, 'roomFilters');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      10,
-      150,
-    );
     _s.validateNumRange(
       'timeToLiveInSeconds',
       timeToLiveInSeconds,
@@ -3748,18 +3342,6 @@ class AlexaForBusiness {
     String? name,
   }) async {
     ArgumentError.checkNotNull(addressBookArn, 'addressBookArn');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      200,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.UpdateAddressBook'
@@ -3811,18 +3393,6 @@ class AlexaForBusiness {
     String? scheduleName,
   }) async {
     ArgumentError.checkNotNull(scheduleArn, 'scheduleArn');
-    _s.validateStringLength(
-      's3KeyPrefix',
-      s3KeyPrefix,
-      0,
-      100,
-    );
-    _s.validateStringLength(
-      'scheduleName',
-      scheduleName,
-      0,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.UpdateBusinessReportSchedule'
@@ -3931,30 +3501,6 @@ class AlexaForBusiness {
     List<SipAddress>? sipAddresses,
   }) async {
     ArgumentError.checkNotNull(contactArn, 'contactArn');
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'firstName',
-      firstName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'lastName',
-      lastName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'phoneNumber',
-      phoneNumber,
-      0,
-      50,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.UpdateContact'
@@ -3992,12 +3538,6 @@ class AlexaForBusiness {
     String? deviceArn,
     String? deviceName,
   }) async {
-    _s.validateStringLength(
-      'deviceName',
-      deviceName,
-      2,
-      100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.UpdateDevice'
@@ -4040,24 +3580,6 @@ class AlexaForBusiness {
     String? softwareVersion,
   }) async {
     ArgumentError.checkNotNull(gatewayArn, 'gatewayArn');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      253,
-    );
-    _s.validateStringLength(
-      'softwareVersion',
-      softwareVersion,
-      1,
-      50,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.UpdateGateway'
@@ -4097,18 +3619,6 @@ class AlexaForBusiness {
     String? name,
   }) async {
     ArgumentError.checkNotNull(gatewayGroupArn, 'gatewayGroupArn');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.UpdateGatewayGroup'
@@ -4171,30 +3681,6 @@ class AlexaForBusiness {
     List<String>? trustAnchors,
   }) async {
     ArgumentError.checkNotNull(networkProfileArn, 'networkProfileArn');
-    _s.validateStringLength(
-      'currentPassword',
-      currentPassword,
-      5,
-      128,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
-    _s.validateStringLength(
-      'networkProfileName',
-      networkProfileName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'nextPassword',
-      nextPassword,
-      0,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.UpdateNetworkProfile'
@@ -4284,30 +3770,6 @@ class AlexaForBusiness {
     String? timezone,
     WakeWord? wakeWord,
   }) async {
-    _s.validateStringLength(
-      'address',
-      address,
-      1,
-      500,
-    );
-    _s.validateStringLength(
-      'locale',
-      locale,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'profileName',
-      profileName,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'timezone',
-      timezone,
-      1,
-      100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.UpdateProfile'
@@ -4366,24 +3828,6 @@ class AlexaForBusiness {
     String? roomArn,
     String? roomName,
   }) async {
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      200,
-    );
-    _s.validateStringLength(
-      'providerCalendarId',
-      providerCalendarId,
-      0,
-      100,
-    );
-    _s.validateStringLength(
-      'roomName',
-      roomName,
-      1,
-      100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.UpdateRoom'
@@ -4424,18 +3868,6 @@ class AlexaForBusiness {
     String? skillGroupArn,
     String? skillGroupName,
   }) async {
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      200,
-    );
-    _s.validateStringLength(
-      'skillGroupName',
-      skillGroupName,
-      1,
-      100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AlexaForBusiness.UpdateSkillGroup'

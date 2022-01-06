@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -64,21 +65,7 @@ class IdentityStore {
     required String identityStoreId,
   }) async {
     ArgumentError.checkNotNull(groupId, 'groupId');
-    _s.validateStringLength(
-      'groupId',
-      groupId,
-      1,
-      47,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(identityStoreId, 'identityStoreId');
-    _s.validateStringLength(
-      'identityStoreId',
-      identityStoreId,
-      1,
-      12,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSIdentityStore.DescribeGroup'
@@ -121,21 +108,7 @@ class IdentityStore {
     required String userId,
   }) async {
     ArgumentError.checkNotNull(identityStoreId, 'identityStoreId');
-    _s.validateStringLength(
-      'identityStoreId',
-      identityStoreId,
-      1,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      1,
-      47,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSIdentityStore.DescribeUser'
@@ -197,24 +170,11 @@ class IdentityStore {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(identityStoreId, 'identityStoreId');
-    _s.validateStringLength(
-      'identityStoreId',
-      identityStoreId,
-      1,
-      12,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      65535,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -279,24 +239,11 @@ class IdentityStore {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(identityStoreId, 'identityStoreId');
-    _s.validateStringLength(
-      'identityStoreId',
-      identityStoreId,
-      1,
-      12,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      65535,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

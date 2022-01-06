@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -126,13 +127,6 @@ class MTurk {
     String? requesterFeedback,
   }) async {
     ArgumentError.checkNotNull(assignmentId, 'assignmentId');
-    _s.validateStringLength(
-      'assignmentId',
-      assignmentId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.ApproveAssignment'
@@ -193,21 +187,7 @@ class MTurk {
     bool? sendNotification,
   }) async {
     ArgumentError.checkNotNull(qualificationTypeId, 'qualificationTypeId');
-    _s.validateStringLength(
-      'qualificationTypeId',
-      qualificationTypeId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workerId, 'workerId');
-    _s.validateStringLength(
-      'workerId',
-      workerId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -273,21 +253,8 @@ class MTurk {
     String? uniqueRequestToken,
   }) async {
     ArgumentError.checkNotNull(hITId, 'hITId');
-    _s.validateStringLength(
-      'hITId',
-      hITId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         numberOfAdditionalAssignments, 'numberOfAdditionalAssignments');
-    _s.validateStringLength(
-      'uniqueRequestToken',
-      uniqueRequestToken,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -473,18 +440,6 @@ class MTurk {
     ArgumentError.checkNotNull(lifetimeInSeconds, 'lifetimeInSeconds');
     ArgumentError.checkNotNull(reward, 'reward');
     ArgumentError.checkNotNull(title, 'title');
-    _s.validateStringLength(
-      'hITLayoutId',
-      hITLayoutId,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'uniqueRequestToken',
-      uniqueRequestToken,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.CreateHIT'
@@ -719,26 +674,7 @@ class MTurk {
     String? uniqueRequestToken,
   }) async {
     ArgumentError.checkNotNull(hITTypeId, 'hITTypeId');
-    _s.validateStringLength(
-      'hITTypeId',
-      hITTypeId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lifetimeInSeconds, 'lifetimeInSeconds');
-    _s.validateStringLength(
-      'hITLayoutId',
-      hITLayoutId,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'uniqueRequestToken',
-      uniqueRequestToken,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.CreateHITWithHITType'
@@ -910,13 +846,6 @@ class MTurk {
   }) async {
     ArgumentError.checkNotNull(reason, 'reason');
     ArgumentError.checkNotNull(workerId, 'workerId');
-    _s.validateStringLength(
-      'workerId',
-      workerId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.CreateWorkerBlock'
@@ -971,13 +900,6 @@ class MTurk {
     required String hITId,
   }) async {
     ArgumentError.checkNotNull(hITId, 'hITId');
-    _s.validateStringLength(
-      'hITId',
-      hITId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.DeleteHIT'
@@ -1018,13 +940,6 @@ class MTurk {
     required String qualificationTypeId,
   }) async {
     ArgumentError.checkNotNull(qualificationTypeId, 'qualificationTypeId');
-    _s.validateStringLength(
-      'qualificationTypeId',
-      qualificationTypeId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.DeleteQualificationType'
@@ -1062,13 +977,6 @@ class MTurk {
     String? reason,
   }) async {
     ArgumentError.checkNotNull(workerId, 'workerId');
-    _s.validateStringLength(
-      'workerId',
-      workerId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.DeleteWorkerBlock'
@@ -1110,21 +1018,7 @@ class MTurk {
     String? reason,
   }) async {
     ArgumentError.checkNotNull(qualificationTypeId, 'qualificationTypeId');
-    _s.validateStringLength(
-      'qualificationTypeId',
-      qualificationTypeId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workerId, 'workerId');
-    _s.validateStringLength(
-      'workerId',
-      workerId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -1182,13 +1076,6 @@ class MTurk {
     required String assignmentId,
   }) async {
     ArgumentError.checkNotNull(assignmentId, 'assignmentId');
-    _s.validateStringLength(
-      'assignmentId',
-      assignmentId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.GetAssignment'
@@ -1234,13 +1121,6 @@ class MTurk {
     required String questionIdentifier,
   }) async {
     ArgumentError.checkNotNull(assignmentId, 'assignmentId');
-    _s.validateStringLength(
-      'assignmentId',
-      assignmentId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(questionIdentifier, 'questionIdentifier');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1273,13 +1153,6 @@ class MTurk {
     required String hITId,
   }) async {
     ArgumentError.checkNotNull(hITId, 'hITId');
-    _s.validateStringLength(
-      'hITId',
-      hITId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.GetHIT'
@@ -1321,21 +1194,7 @@ class MTurk {
     required String workerId,
   }) async {
     ArgumentError.checkNotNull(qualificationTypeId, 'qualificationTypeId');
-    _s.validateStringLength(
-      'qualificationTypeId',
-      qualificationTypeId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workerId, 'workerId');
-    _s.validateStringLength(
-      'workerId',
-      workerId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.GetQualificationScore'
@@ -1367,13 +1226,6 @@ class MTurk {
     required String qualificationTypeId,
   }) async {
     ArgumentError.checkNotNull(qualificationTypeId, 'qualificationTypeId');
-    _s.validateStringLength(
-      'qualificationTypeId',
-      qualificationTypeId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.GetQualificationType'
@@ -1433,24 +1285,11 @@ class MTurk {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(hITId, 'hITId');
-    _s.validateStringLength(
-      'hITId',
-      hITId,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1500,29 +1339,11 @@ class MTurk {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'assignmentId',
-      assignmentId,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'hITId',
-      hITId,
-      1,
-      64,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1563,12 +1384,6 @@ class MTurk {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1612,24 +1427,11 @@ class MTurk {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(qualificationTypeId, 'qualificationTypeId');
-    _s.validateStringLength(
-      'qualificationTypeId',
-      qualificationTypeId,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1675,18 +1477,6 @@ class MTurk {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'qualificationTypeId',
-      qualificationTypeId,
-      1,
-      64,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1746,12 +1536,6 @@ class MTurk {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1816,24 +1600,11 @@ class MTurk {
     bool? retrieveResults,
   }) async {
     ArgumentError.checkNotNull(hITId, 'hITId');
-    _s.validateStringLength(
-      'hITId',
-      hITId,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1886,23 +1657,11 @@ class MTurk {
     String? nextToken,
     ReviewableHITStatus? status,
   }) async {
-    _s.validateStringLength(
-      'hITTypeId',
-      hITTypeId,
-      1,
-      64,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1942,12 +1701,6 @@ class MTurk {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1994,24 +1747,11 @@ class MTurk {
     QualificationStatus? status,
   }) async {
     ArgumentError.checkNotNull(qualificationTypeId, 'qualificationTypeId');
-    _s.validateStringLength(
-      'qualificationTypeId',
-      qualificationTypeId,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2110,13 +1850,6 @@ class MTurk {
     required String requesterFeedback,
   }) async {
     ArgumentError.checkNotNull(assignmentId, 'assignmentId');
-    _s.validateStringLength(
-      'assignmentId',
-      assignmentId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(requesterFeedback, 'requesterFeedback');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2218,29 +1951,9 @@ class MTurk {
     String? uniqueRequestToken,
   }) async {
     ArgumentError.checkNotNull(assignmentId, 'assignmentId');
-    _s.validateStringLength(
-      'assignmentId',
-      assignmentId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(bonusAmount, 'bonusAmount');
     ArgumentError.checkNotNull(reason, 'reason');
     ArgumentError.checkNotNull(workerId, 'workerId');
-    _s.validateStringLength(
-      'workerId',
-      workerId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'uniqueRequestToken',
-      uniqueRequestToken,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.SendBonus'
@@ -2323,13 +2036,6 @@ class MTurk {
   }) async {
     ArgumentError.checkNotNull(expireAt, 'expireAt');
     ArgumentError.checkNotNull(hITId, 'hITId');
-    _s.validateStringLength(
-      'hITId',
-      hITId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.UpdateExpirationForHIT'
@@ -2375,13 +2081,6 @@ class MTurk {
     bool? revert,
   }) async {
     ArgumentError.checkNotNull(hITId, 'hITId');
-    _s.validateStringLength(
-      'hITId',
-      hITId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.UpdateHITReviewStatus'
@@ -2418,21 +2117,7 @@ class MTurk {
     required String hITTypeId,
   }) async {
     ArgumentError.checkNotNull(hITId, 'hITId');
-    _s.validateStringLength(
-      'hITId',
-      hITId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(hITTypeId, 'hITTypeId');
-    _s.validateStringLength(
-      'hITTypeId',
-      hITTypeId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.UpdateHITTypeOfHIT'
@@ -2482,13 +2167,6 @@ class MTurk {
     NotificationSpecification? notification,
   }) async {
     ArgumentError.checkNotNull(hITTypeId, 'hITTypeId');
-    _s.validateStringLength(
-      'hITTypeId',
-      hITTypeId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -2606,13 +2284,6 @@ class MTurk {
     int? testDurationInSeconds,
   }) async {
     ArgumentError.checkNotNull(qualificationTypeId, 'qualificationTypeId');
-    _s.validateStringLength(
-      'qualificationTypeId',
-      qualificationTypeId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'MTurkRequesterServiceV20170117.UpdateQualificationType'

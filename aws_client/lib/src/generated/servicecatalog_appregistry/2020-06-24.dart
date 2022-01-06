@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -61,21 +62,7 @@ class AppRegistry {
     required String attributeGroup,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
-    _s.validateStringLength(
-      'application',
-      application,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(attributeGroup, 'attributeGroup');
-    _s.validateStringLength(
-      'attributeGroup',
-      attributeGroup,
-      1,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'PUT',
@@ -109,21 +96,7 @@ class AppRegistry {
     required ResourceType resourceType,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
-    _s.validateStringLength(
-      'application',
-      application,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringLength(
-      'resource',
-      resource,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
     final response = await _protocol.send(
       payload: null,
@@ -165,25 +138,6 @@ class AppRegistry {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'name': name,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -236,33 +190,7 @@ class AppRegistry {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(attributes, 'attributes');
-    _s.validateStringLength(
-      'attributes',
-      attributes,
-      1,
-      8000,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'attributes': attributes,
       'name': name,
@@ -293,13 +221,6 @@ class AppRegistry {
     required String application,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
-    _s.validateStringLength(
-      'application',
-      application,
-      1,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -323,13 +244,6 @@ class AppRegistry {
     required String attributeGroup,
   }) async {
     ArgumentError.checkNotNull(attributeGroup, 'attributeGroup');
-    _s.validateStringLength(
-      'attributeGroup',
-      attributeGroup,
-      1,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -358,21 +272,7 @@ class AppRegistry {
     required String attributeGroup,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
-    _s.validateStringLength(
-      'application',
-      application,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(attributeGroup, 'attributeGroup');
-    _s.validateStringLength(
-      'attributeGroup',
-      attributeGroup,
-      1,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -403,21 +303,7 @@ class AppRegistry {
     required ResourceType resourceType,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
-    _s.validateStringLength(
-      'application',
-      application,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringLength(
-      'resource',
-      resource,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
     final response = await _protocol.send(
       payload: null,
@@ -447,13 +333,6 @@ class AppRegistry {
     required String application,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
-    _s.validateStringLength(
-      'application',
-      application,
-      1,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -483,21 +362,7 @@ class AppRegistry {
     required ResourceType resourceType,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
-    _s.validateStringLength(
-      'application',
-      application,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringLength(
-      'resource',
-      resource,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
     final response = await _protocol.send(
       payload: null,
@@ -523,13 +388,6 @@ class AppRegistry {
     required String attributeGroup,
   }) async {
     ArgumentError.checkNotNull(attributeGroup, 'attributeGroup');
-    _s.validateStringLength(
-      'attributeGroup',
-      attributeGroup,
-      1,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -560,12 +418,6 @@ class AppRegistry {
       maxResults,
       1,
       25,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2024,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -604,24 +456,11 @@ class AppRegistry {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
-    _s.validateStringLength(
-      'application',
-      application,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       25,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2024,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -661,24 +500,11 @@ class AppRegistry {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
-    _s.validateStringLength(
-      'application',
-      application,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       25,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2024,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -717,12 +543,6 @@ class AppRegistry {
       1,
       25,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2024,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -749,13 +569,6 @@ class AppRegistry {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -788,13 +601,6 @@ class AppRegistry {
     required ResourceType resourceType,
   }) async {
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringLength(
-      'resource',
-      resource,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
     final response = await _protocol.send(
       payload: null,
@@ -828,13 +634,6 @@ class AppRegistry {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -865,13 +664,6 @@ class AppRegistry {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -906,25 +698,6 @@ class AppRegistry {
     String? name,
   }) async {
     ArgumentError.checkNotNull(application, 'application');
-    _s.validateStringLength(
-      'application',
-      application,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'description': description,
       if (name != null) 'name': name,
@@ -966,31 +739,6 @@ class AppRegistry {
     String? name,
   }) async {
     ArgumentError.checkNotNull(attributeGroup, 'attributeGroup');
-    _s.validateStringLength(
-      'attributeGroup',
-      attributeGroup,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'attributes',
-      attributes,
-      1,
-      8000,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (attributes != null) 'attributes': attributes,
       if (description != null) 'description': description,

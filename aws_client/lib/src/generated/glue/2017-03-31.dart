@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -66,28 +67,8 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionInputList, 'partitionInputList');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.BatchCreatePartition'
@@ -125,12 +106,6 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(connectionNameList, 'connectionNameList');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.BatchDeleteConnection'
@@ -177,28 +152,8 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionsToDelete, 'partitionsToDelete');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.BatchDeletePartition'
@@ -261,26 +216,7 @@ class Glue {
     String? transactionId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tablesToDelete, 'tablesToDelete');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'transactionId',
-      transactionId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.BatchDeleteTable'
@@ -331,28 +267,8 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionIds, 'versionIds');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.BatchDeleteTableVersion'
@@ -549,28 +465,8 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionsToGet, 'partitionsToGet');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.BatchGetPartition'
@@ -685,13 +581,6 @@ class Glue {
     required List<String> jobRunIds,
   }) async {
     ArgumentError.checkNotNull(jobName, 'jobName');
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobRunIds, 'jobRunIds');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -740,28 +629,8 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(entries, 'entries');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.BatchUpdatePartition'
@@ -804,21 +673,7 @@ class Glue {
     required String transformId,
   }) async {
     ArgumentError.checkNotNull(taskRunId, 'taskRunId');
-    _s.validateStringLength(
-      'taskRunId',
-      taskRunId,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(transformId, 'transformId');
-    _s.validateStringLength(
-      'transformId',
-      transformId,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CancelMLTaskRun'
@@ -859,13 +714,6 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(dataFormat, 'dataFormat');
     ArgumentError.checkNotNull(schemaDefinition, 'schemaDefinition');
-    _s.validateStringLength(
-      'schemaDefinition',
-      schemaDefinition,
-      1,
-      170000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CheckSchemaVersionValidity'
@@ -911,27 +759,7 @@ class Glue {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(blueprintLocation, 'blueprintLocation');
-    _s.validateStringLength(
-      'blueprintLocation',
-      blueprintLocation,
-      1,
-      8192,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      512,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreateBlueprint'
@@ -1021,12 +849,6 @@ class Glue {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(connectionInput, 'connectionInput');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreateConnection'
@@ -1129,33 +951,8 @@ class Glue {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(role, 'role');
     ArgumentError.checkNotNull(targets, 'targets');
-    _s.validateStringLength(
-      'crawlerSecurityConfiguration',
-      crawlerSecurityConfiguration,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'tablePrefix',
-      tablePrefix,
-      0,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreateCrawler'
@@ -1211,12 +1008,6 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseInput, 'databaseInput');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreateDatabase'
@@ -1376,18 +1167,6 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(endpointName, 'endpointName');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'glueVersion',
-      glueVersion,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'securityConfiguration',
-      securityConfiguration,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreateDevEndpoint'
@@ -1600,32 +1379,7 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(command, 'command');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(role, 'role');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'glueVersion',
-      glueVersion,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'securityConfiguration',
-      securityConfiguration,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'timeout',
       timeout,
@@ -1857,27 +1611,8 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(inputRecordTables, 'inputRecordTables');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(parameters, 'parameters');
     ArgumentError.checkNotNull(role, 'role');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'glueVersion',
-      glueVersion,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'timeout',
       timeout,
@@ -1945,28 +1680,8 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionInput, 'partitionInput');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreatePartition'
@@ -2017,28 +1732,8 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionIndex, 'partitionIndex');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreatePartitionIndex'
@@ -2084,19 +1779,6 @@ class Glue {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(registryName, 'registryName');
-    _s.validateStringLength(
-      'registryName',
-      registryName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreateRegistry'
@@ -2233,25 +1915,6 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(dataFormat, 'dataFormat');
     ArgumentError.checkNotNull(schemaName, 'schemaName');
-    _s.validateStringLength(
-      'schemaName',
-      schemaName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'schemaDefinition',
-      schemaDefinition,
-      1,
-      170000,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreateSchema'
@@ -2340,13 +2003,6 @@ class Glue {
     ArgumentError.checkNotNull(
         encryptionConfiguration, 'encryptionConfiguration');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreateSecurityConfiguration'
@@ -2404,26 +2060,7 @@ class Glue {
     String? transactionId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableInput, 'tableInput');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'transactionId',
-      transactionId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreateTable'
@@ -2511,26 +2148,7 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(actions, 'actions');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'workflowName',
-      workflowName,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreateTrigger'
@@ -2585,20 +2203,7 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(functionInput, 'functionInput');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreateUserDefinedFunction'
@@ -2654,13 +2259,6 @@ class Glue {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.CreateWorkflow'
@@ -2696,13 +2294,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteBlueprint'
@@ -2732,13 +2323,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteClassifier'
@@ -2789,36 +2373,9 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(columnName, 'columnName');
-    _s.validateStringLength(
-      'columnName',
-      columnName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionValues, 'partitionValues');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteColumnStatisticsForPartition'
@@ -2869,35 +2426,8 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(columnName, 'columnName');
-    _s.validateStringLength(
-      'columnName',
-      columnName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteColumnStatisticsForTable'
@@ -2933,19 +2463,6 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(connectionName, 'connectionName');
-    _s.validateStringLength(
-      'connectionName',
-      connectionName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteConnection'
@@ -2977,13 +2494,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteCrawler'
@@ -3034,19 +2544,6 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteDatabase'
@@ -3106,13 +2603,6 @@ class Glue {
     required String jobName,
   }) async {
     ArgumentError.checkNotNull(jobName, 'jobName');
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteJob'
@@ -3150,13 +2640,6 @@ class Glue {
     required String transformId,
   }) async {
     ArgumentError.checkNotNull(transformId, 'transformId');
-    _s.validateStringLength(
-      'transformId',
-      transformId,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteMLTransform'
@@ -3201,28 +2684,8 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionValues, 'partitionValues');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeletePartition'
@@ -3271,35 +2734,8 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(indexName, 'indexName');
-    _s.validateStringLength(
-      'indexName',
-      indexName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeletePartitionIndex'
@@ -3373,18 +2809,6 @@ class Glue {
     String? policyHashCondition,
     String? resourceArn,
   }) async {
-    _s.validateStringLength(
-      'policyHashCondition',
-      policyHashCondition,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      10240,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteResourcePolicy'
@@ -3486,13 +2910,6 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(schemaId, 'schemaId');
     ArgumentError.checkNotNull(versions, 'versions');
-    _s.validateStringLength(
-      'versions',
-      versions,
-      1,
-      100000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteSchemaVersions'
@@ -3525,13 +2942,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteSecurityConfiguration'
@@ -3590,33 +3000,7 @@ class Glue {
     String? transactionId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'transactionId',
-      transactionId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteTable'
@@ -3665,35 +3049,8 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionId, 'versionId');
-    _s.validateStringLength(
-      'versionId',
-      versionId,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteTableVersion'
@@ -3727,13 +3084,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteTrigger'
@@ -3774,27 +3124,7 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteUserDefinedFunction'
@@ -3826,13 +3156,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.DeleteWorkflow'
@@ -3872,13 +3195,6 @@ class Glue {
     bool? includeParameterSpec,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetBlueprint'
@@ -3916,21 +3232,7 @@ class Glue {
     required String runId,
   }) async {
     ArgumentError.checkNotNull(blueprintName, 'blueprintName');
-    _s.validateStringLength(
-      'blueprintName',
-      blueprintName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runId, 'runId');
-    _s.validateStringLength(
-      'runId',
-      runId,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetBlueprintRun'
@@ -3971,13 +3273,6 @@ class Glue {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(blueprintName, 'blueprintName');
-    _s.validateStringLength(
-      'blueprintName',
-      blueprintName,
-      1,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4015,12 +3310,6 @@ class Glue {
   Future<GetCatalogImportStatusResponse> getCatalogImportStatus({
     String? catalogId,
   }) async {
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetCatalogImportStatus'
@@ -4050,13 +3339,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetClassifier'
@@ -4149,28 +3431,8 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(columnNames, 'columnNames');
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionValues, 'partitionValues');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetColumnStatisticsForPartition'
@@ -4224,27 +3486,7 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(columnNames, 'columnNames');
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetColumnStatisticsForTable'
@@ -4293,19 +3535,6 @@ class Glue {
     bool? hidePassword,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetConnection'
@@ -4360,12 +3589,6 @@ class Glue {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4405,13 +3628,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetCrawler'
@@ -4524,12 +3740,6 @@ class Glue {
       getDataCatalogEncryptionSettings({
     String? catalogId,
   }) async {
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetDataCatalogEncryptionSettings'
@@ -4568,19 +3778,6 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetDatabase'
@@ -4639,12 +3836,6 @@ class Glue {
     String? nextToken,
     ResourceShareType? resourceShareType,
   }) async {
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4799,13 +3990,6 @@ class Glue {
     required String jobName,
   }) async {
     ArgumentError.checkNotNull(jobName, 'jobName');
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetJob'
@@ -4882,21 +4066,7 @@ class Glue {
     bool? predecessorsIncluded,
   }) async {
     ArgumentError.checkNotNull(jobName, 'jobName');
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runId, 'runId');
-    _s.validateStringLength(
-      'runId',
-      runId,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetJobRun'
@@ -4939,13 +4109,6 @@ class Glue {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(jobName, 'jobName');
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5035,21 +4198,7 @@ class Glue {
     required String transformId,
   }) async {
     ArgumentError.checkNotNull(taskRunId, 'taskRunId');
-    _s.validateStringLength(
-      'taskRunId',
-      taskRunId,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(transformId, 'transformId');
-    _s.validateStringLength(
-      'transformId',
-      transformId,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetMLTaskRun'
@@ -5107,13 +4256,6 @@ class Glue {
     TaskRunSortCriteria? sort,
   }) async {
     ArgumentError.checkNotNull(transformId, 'transformId');
-    _s.validateStringLength(
-      'transformId',
-      transformId,
-      1,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5161,13 +4303,6 @@ class Glue {
     required String transformId,
   }) async {
     ArgumentError.checkNotNull(transformId, 'transformId');
-    _s.validateStringLength(
-      'transformId',
-      transformId,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetMLTransform'
@@ -5310,28 +4445,8 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionValues, 'partitionValues');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetPartition'
@@ -5381,27 +4496,7 @@ class Glue {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetPartitionIndexes'
@@ -5564,44 +4659,12 @@ class Glue {
     String? transactionId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'expression',
-      expression,
-      0,
-      2048,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'transactionId',
-      transactionId,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5798,12 +4861,6 @@ class Glue {
   Future<GetResourcePolicyResponse> getResourcePolicy({
     String? resourceArn,
   }) async {
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      10240,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetResourcePolicy'
@@ -5901,13 +4958,6 @@ class Glue {
     required SchemaId schemaId,
   }) async {
     ArgumentError.checkNotNull(schemaDefinition, 'schemaDefinition');
-    _s.validateStringLength(
-      'schemaDefinition',
-      schemaDefinition,
-      1,
-      170000,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaId, 'schemaId');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5966,12 +5016,6 @@ class Glue {
     String? schemaVersionId,
     SchemaVersionNumber? schemaVersionNumber,
   }) async {
-    _s.validateStringLength(
-      'schemaVersionId',
-      schemaVersionId,
-      36,
-      36,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetSchemaVersion'
@@ -6074,13 +5118,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetSecurityConfiguration'
@@ -6177,33 +5214,7 @@ class Glue {
     String? transactionId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'transactionId',
-      transactionId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetTable'
@@ -6258,33 +5269,7 @@ class Glue {
     String? versionId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'versionId',
-      versionId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetTableVersion'
@@ -6340,27 +5325,7 @@ class Glue {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6433,36 +5398,11 @@ class Glue {
     String? transactionId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'expression',
-      expression,
-      0,
-      2048,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'transactionId',
-      transactionId,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6502,13 +5442,6 @@ class Glue {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      10240,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetTags'
@@ -6540,13 +5473,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetTrigger'
@@ -6587,12 +5513,6 @@ class Glue {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'dependentJobName',
-      dependentJobName,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6636,32 +5556,11 @@ class Glue {
     AuditContext? auditContext,
   }) async {
     ArgumentError.checkNotNull(catalogId, 'catalogId');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionValues, 'partitionValues');
     ArgumentError.checkNotNull(
         supportedPermissionTypes, 'supportedPermissionTypes');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetUnfilteredPartitionMetadata'
@@ -6706,37 +5605,10 @@ class Glue {
     Segment? segment,
   }) async {
     ArgumentError.checkNotNull(catalogId, 'catalogId');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         supportedPermissionTypes, 'supportedPermissionTypes');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'expression',
-      expression,
-      0,
-      2048,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6785,29 +5657,8 @@ class Glue {
     AuditContext? auditContext,
   }) async {
     ArgumentError.checkNotNull(catalogId, 'catalogId');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         supportedPermissionTypes, 'supportedPermissionTypes');
     final headers = <String, String>{
@@ -6857,27 +5708,7 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetUserDefinedFunction'
@@ -6933,25 +5764,6 @@ class Glue {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(pattern, 'pattern');
-    _s.validateStringLength(
-      'pattern',
-      pattern,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6998,13 +5810,6 @@ class Glue {
     bool? includeGraph,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetWorkflow'
@@ -7045,21 +5850,7 @@ class Glue {
     bool? includeGraph,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runId, 'runId');
-    _s.validateStringLength(
-      'runId',
-      runId,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetWorkflowRun'
@@ -7097,21 +5888,7 @@ class Glue {
     required String runId,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runId, 'runId');
-    _s.validateStringLength(
-      'runId',
-      runId,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.GetWorkflowRunProperties'
@@ -7156,13 +5933,6 @@ class Glue {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -7201,12 +5971,6 @@ class Glue {
   Future<void> importCatalogToGlue({
     String? catalogId,
   }) async {
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.ImportCatalogToGlue'
@@ -7683,12 +6447,6 @@ class Glue {
     String? nextToken,
     Map<String, String>? tags,
   }) async {
-    _s.validateStringLength(
-      'dependentJobName',
-      dependentJobName,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -7776,12 +6534,6 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(
         dataCatalogEncryptionSettings, 'dataCatalogEncryptionSettings');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.PutDataCatalogEncryptionSettings'
@@ -7850,25 +6602,6 @@ class Glue {
     String? resourceArn,
   }) async {
     ArgumentError.checkNotNull(policyInJson, 'policyInJson');
-    _s.validateStringLength(
-      'policyInJson',
-      policyInJson,
-      2,
-      10240,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'policyHashCondition',
-      policyHashCondition,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      10240,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.PutResourcePolicy'
@@ -7921,12 +6654,6 @@ class Glue {
     SchemaVersionNumber? schemaVersionNumber,
   }) async {
     ArgumentError.checkNotNull(metadataKeyValue, 'metadataKeyValue');
-    _s.validateStringLength(
-      'schemaVersionId',
-      schemaVersionId,
-      36,
-      36,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.PutSchemaVersionMetadata'
@@ -7975,21 +6702,7 @@ class Glue {
     required Map<String, String> runProperties,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runId, 'runId');
-    _s.validateStringLength(
-      'runId',
-      runId,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runProperties, 'runProperties');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8048,12 +6761,6 @@ class Glue {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'schemaVersionId',
-      schemaVersionId,
-      36,
-      36,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8125,13 +6832,6 @@ class Glue {
     required SchemaId schemaId,
   }) async {
     ArgumentError.checkNotNull(schemaDefinition, 'schemaDefinition');
-    _s.validateStringLength(
-      'schemaDefinition',
-      schemaDefinition,
-      1,
-      170000,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schemaId, 'schemaId');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8178,12 +6878,6 @@ class Glue {
     SchemaVersionNumber? schemaVersionNumber,
   }) async {
     ArgumentError.checkNotNull(metadataKeyValue, 'metadataKeyValue');
-    _s.validateStringLength(
-      'schemaVersionId',
-      schemaVersionId,
-      36,
-      36,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.RemoveSchemaVersionMetadata'
@@ -8268,22 +6962,8 @@ class Glue {
     required String runId,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(nodeIds, 'nodeIds');
     ArgumentError.checkNotNull(runId, 'runId');
-    _s.validateStringLength(
-      'runId',
-      runId,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.ResumeWorkflowRun'
@@ -8378,23 +7058,11 @@ class Glue {
     String? searchText,
     List<SortCriterion>? sortCriteria,
   }) async {
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'searchText',
-      searchText,
-      0,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8444,27 +7112,7 @@ class Glue {
     String? parameters,
   }) async {
     ArgumentError.checkNotNull(blueprintName, 'blueprintName');
-    _s.validateStringLength(
-      'blueprintName',
-      blueprintName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'parameters',
-      parameters,
-      1,
-      131072,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartBlueprintRun'
@@ -8499,13 +7147,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartCrawler'
@@ -8538,13 +7179,6 @@ class Glue {
     required String crawlerName,
   }) async {
     ArgumentError.checkNotNull(crawlerName, 'crawlerName');
-    _s.validateStringLength(
-      'crawlerName',
-      crawlerName,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartCrawlerSchedule'
@@ -8588,13 +7222,6 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(outputS3Path, 'outputS3Path');
     ArgumentError.checkNotNull(transformId, 'transformId');
-    _s.validateStringLength(
-      'transformId',
-      transformId,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartExportLabelsTaskRun'
@@ -8667,13 +7294,6 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(inputS3Path, 'inputS3Path');
     ArgumentError.checkNotNull(transformId, 'transformId');
-    _s.validateStringLength(
-      'transformId',
-      transformId,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartImportLabelsTaskRun'
@@ -8813,25 +7433,6 @@ class Glue {
     WorkerType? workerType,
   }) async {
     ArgumentError.checkNotNull(jobName, 'jobName');
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'jobRunId',
-      jobRunId,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'securityConfiguration',
-      securityConfiguration,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'timeout',
       timeout,
@@ -8890,13 +7491,6 @@ class Glue {
     required String transformId,
   }) async {
     ArgumentError.checkNotNull(transformId, 'transformId');
-    _s.validateStringLength(
-      'transformId',
-      transformId,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartMLEvaluationTaskRun'
@@ -8952,13 +7546,6 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(outputS3Path, 'outputS3Path');
     ArgumentError.checkNotNull(transformId, 'transformId');
-    _s.validateStringLength(
-      'transformId',
-      transformId,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartMLLabelingSetGenerationTaskRun'
@@ -8996,13 +7583,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartTrigger'
@@ -9036,13 +7616,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StartWorkflowRun'
@@ -9074,13 +7647,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StopCrawler'
@@ -9112,13 +7678,6 @@ class Glue {
     required String crawlerName,
   }) async {
     ArgumentError.checkNotNull(crawlerName, 'crawlerName');
-    _s.validateStringLength(
-      'crawlerName',
-      crawlerName,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StopCrawlerSchedule'
@@ -9149,13 +7708,6 @@ class Glue {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StopTrigger'
@@ -9192,21 +7744,7 @@ class Glue {
     required String runId,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runId, 'runId');
-    _s.validateStringLength(
-      'runId',
-      runId,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.StopWorkflowRun'
@@ -9248,13 +7786,6 @@ class Glue {
     required Map<String, String> tagsToAdd,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      10240,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagsToAdd, 'tagsToAdd');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9291,13 +7822,6 @@ class Glue {
     required List<String> tagsToRemove,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      10240,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagsToRemove, 'tagsToRemove');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9339,27 +7863,7 @@ class Glue {
     String? description,
   }) async {
     ArgumentError.checkNotNull(blueprintLocation, 'blueprintLocation');
-    _s.validateStringLength(
-      'blueprintLocation',
-      blueprintLocation,
-      1,
-      8192,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      512,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdateBlueprint'
@@ -9461,28 +7965,8 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(columnStatisticsList, 'columnStatisticsList');
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionValues, 'partitionValues');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdateColumnStatisticsForPartition'
@@ -9538,27 +8022,7 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(columnStatisticsList, 'columnStatisticsList');
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdateColumnStatisticsForTable'
@@ -9605,19 +8069,6 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(connectionInput, 'connectionInput');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdateConnection'
@@ -9712,31 +8163,6 @@ class Glue {
     CrawlerTargets? targets,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'crawlerSecurityConfiguration',
-      crawlerSecurityConfiguration,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'tablePrefix',
-      tablePrefix,
-      0,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdateCrawler'
@@ -9792,13 +8218,6 @@ class Glue {
     String? schedule,
   }) async {
     ArgumentError.checkNotNull(crawlerName, 'crawlerName');
-    _s.validateStringLength(
-      'crawlerName',
-      crawlerName,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdateCrawlerSchedule'
@@ -9843,19 +8262,6 @@ class Glue {
   }) async {
     ArgumentError.checkNotNull(databaseInput, 'databaseInput');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdateDatabase'
@@ -9975,13 +8381,6 @@ class Glue {
     required JobUpdate jobUpdate,
   }) async {
     ArgumentError.checkNotNull(jobName, 'jobName');
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobUpdate, 'jobUpdate');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10098,31 +8497,6 @@ class Glue {
     WorkerType? workerType,
   }) async {
     ArgumentError.checkNotNull(transformId, 'transformId');
-    _s.validateStringLength(
-      'transformId',
-      transformId,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'glueVersion',
-      glueVersion,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'timeout',
       timeout,
@@ -10192,29 +8566,9 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partitionInput, 'partitionInput');
     ArgumentError.checkNotNull(partitionValueList, 'partitionValueList');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdatePartition'
@@ -10257,13 +8611,6 @@ class Glue {
     required RegistryId registryId,
   }) async {
     ArgumentError.checkNotNull(description, 'description');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(registryId, 'registryId');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10337,12 +8684,6 @@ class Glue {
     SchemaVersionNumber? schemaVersionNumber,
   }) async {
     ArgumentError.checkNotNull(schemaId, 'schemaId');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdateSchema'
@@ -10403,26 +8744,7 @@ class Glue {
     String? transactionId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableInput, 'tableInput');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'transactionId',
-      transactionId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdateTable'
@@ -10461,13 +8783,6 @@ class Glue {
     required TriggerUpdate triggerUpdate,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(triggerUpdate, 'triggerUpdate');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10517,28 +8832,8 @@ class Glue {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(functionInput, 'functionInput');
     ArgumentError.checkNotNull(functionName, 'functionName');
-    _s.validateStringLength(
-      'functionName',
-      functionName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdateUserDefinedFunction'
@@ -10589,13 +8884,6 @@ class Glue {
     int? maxConcurrentRuns,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSGlue.UpdateWorkflow'

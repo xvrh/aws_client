@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -15,8 +16,8 @@ import '../../shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import '2014-10-31.meta.dart';
 
+import '2014-10-31.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// Amazon DocumentDB API documentation
@@ -657,12 +658,6 @@ class DocDB {
   }) async {
     ArgumentError.checkNotNull(dBClusterIdentifier, 'dBClusterIdentifier');
     ArgumentError.checkNotNull(engine, 'engine');
-    _s.validateStringLength(
-      'globalClusterIdentifier',
-      globalClusterIdentifier,
-      1,
-      255,
-    );
     final $request = <String, dynamic>{};
     $request['DBClusterIdentifier'] = dBClusterIdentifier;
     $request['Engine'] = engine;
@@ -1214,13 +1209,6 @@ class DocDB {
   }) async {
     ArgumentError.checkNotNull(
         globalClusterIdentifier, 'globalClusterIdentifier');
-    _s.validateStringLength(
-      'globalClusterIdentifier',
-      globalClusterIdentifier,
-      1,
-      255,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['GlobalClusterIdentifier'] = globalClusterIdentifier;
     databaseName?.also((arg) => $request['DatabaseName'] = arg);
@@ -1523,13 +1511,6 @@ class DocDB {
   }) async {
     ArgumentError.checkNotNull(
         globalClusterIdentifier, 'globalClusterIdentifier');
-    _s.validateStringLength(
-      'globalClusterIdentifier',
-      globalClusterIdentifier,
-      1,
-      255,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['GlobalClusterIdentifier'] = globalClusterIdentifier;
     final $result = await _protocol.send(
@@ -2506,12 +2487,6 @@ class DocDB {
     String? marker,
     int? maxRecords,
   }) async {
-    _s.validateStringLength(
-      'globalClusterIdentifier',
-      globalClusterIdentifier,
-      1,
-      255,
-    );
     final $request = <String, dynamic>{};
     filters?.also((arg) => $request['Filters'] = arg);
     globalClusterIdentifier
@@ -3395,19 +3370,6 @@ class DocDB {
   }) async {
     ArgumentError.checkNotNull(
         globalClusterIdentifier, 'globalClusterIdentifier');
-    _s.validateStringLength(
-      'globalClusterIdentifier',
-      globalClusterIdentifier,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'newGlobalClusterIdentifier',
-      newGlobalClusterIdentifier,
-      1,
-      255,
-    );
     final $request = <String, dynamic>{};
     $request['GlobalClusterIdentifier'] = globalClusterIdentifier;
     deletionProtection?.also((arg) => $request['DeletionProtection'] = arg);
@@ -3503,13 +3465,6 @@ class DocDB {
     ArgumentError.checkNotNull(dbClusterIdentifier, 'dbClusterIdentifier');
     ArgumentError.checkNotNull(
         globalClusterIdentifier, 'globalClusterIdentifier');
-    _s.validateStringLength(
-      'globalClusterIdentifier',
-      globalClusterIdentifier,
-      1,
-      255,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DbClusterIdentifier'] = dbClusterIdentifier;
     $request['GlobalClusterIdentifier'] = globalClusterIdentifier;

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -290,13 +291,6 @@ class Ssm {
     List<String>? instanceIds,
   }) async {
     ArgumentError.checkNotNull(commandId, 'commandId');
-    _s.validateStringLength(
-      'commandId',
-      commandId,
-      36,
-      36,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.CancelCommand'
@@ -328,13 +322,6 @@ class Ssm {
     required String windowExecutionId,
   }) async {
     ArgumentError.checkNotNull(windowExecutionId, 'windowExecutionId');
-    _s.validateStringLength(
-      'windowExecutionId',
-      windowExecutionId,
-      36,
-      36,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.CancelMaintenanceWindowExecution'
@@ -449,25 +436,6 @@ class Ssm {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(iamRole, 'iamRole');
-    _s.validateStringLength(
-      'iamRole',
-      iamRole,
-      0,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'defaultInstanceName',
-      defaultInstanceName,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     _s.validateNumRange(
       'registrationLimit',
       registrationLimit,
@@ -684,30 +652,6 @@ class Ssm {
     List<Target>? targets,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'automationTargetParameterName',
-      automationTargetParameterName,
-      1,
-      50,
-    );
-    _s.validateStringLength(
-      'maxConcurrency',
-      maxConcurrency,
-      1,
-      7,
-    );
-    _s.validateStringLength(
-      'maxErrors',
-      maxErrors,
-      1,
-      7,
-    );
-    _s.validateStringLength(
-      'scheduleExpression',
-      scheduleExpression,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.CreateAssociation'
@@ -926,26 +870,7 @@ class Ssm {
     String? versionName,
   }) async {
     ArgumentError.checkNotNull(content, 'content');
-    _s.validateStringLength(
-      'content',
-      content,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'targetType',
-      targetType,
-      0,
-      200,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.CreateDocument'
@@ -1105,33 +1030,7 @@ class Ssm {
       isRequired: true,
     );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      3,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schedule, 'schedule');
-    _s.validateStringLength(
-      'schedule',
-      schedule,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      128,
-    );
     _s.validateNumRange(
       'scheduleOffset',
       scheduleOffset,
@@ -1304,46 +1203,13 @@ class Ssm {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(description, 'description');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(source, 'source');
-    _s.validateStringLength(
-      'source',
-      source,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(title, 'title');
-    _s.validateStringLength(
-      'title',
-      title,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'category',
-      category,
-      1,
-      64,
-    );
     _s.validateNumRange(
       'priority',
       priority,
       1,
       5,
-    );
-    _s.validateStringLength(
-      'severity',
-      severity,
-      1,
-      64,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1419,13 +1285,6 @@ class Ssm {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      1024,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.CreateOpsMetadata'
@@ -1564,25 +1423,6 @@ class Ssm {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      3,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.CreatePatchBaseline'
@@ -1685,19 +1525,6 @@ class Ssm {
     String? syncType,
   }) async {
     ArgumentError.checkNotNull(syncName, 'syncName');
-    _s.validateStringLength(
-      'syncName',
-      syncName,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'syncType',
-      syncType,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.CreateResourceDataSync'
@@ -1908,13 +1735,6 @@ class Ssm {
     InventorySchemaDeleteOption? schemaDeleteOption,
   }) async {
     ArgumentError.checkNotNull(typeName, 'typeName');
-    _s.validateStringLength(
-      'typeName',
-      typeName,
-      1,
-      100,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeleteInventory'
@@ -1947,13 +1767,6 @@ class Ssm {
     required String windowId,
   }) async {
     ArgumentError.checkNotNull(windowId, 'windowId');
-    _s.validateStringLength(
-      'windowId',
-      windowId,
-      20,
-      20,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeleteMaintenanceWindow'
@@ -1984,13 +1797,6 @@ class Ssm {
     required String opsMetadataArn,
   }) async {
     ArgumentError.checkNotNull(opsMetadataArn, 'opsMetadataArn');
-    _s.validateStringLength(
-      'opsMetadataArn',
-      opsMetadataArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeleteOpsMetadata'
@@ -2019,13 +1825,6 @@ class Ssm {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeleteParameter'
@@ -2083,13 +1882,6 @@ class Ssm {
     required String baselineId,
   }) async {
     ArgumentError.checkNotNull(baselineId, 'baselineId');
-    _s.validateStringLength(
-      'baselineId',
-      baselineId,
-      20,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeletePatchBaseline'
@@ -2126,19 +1918,6 @@ class Ssm {
     String? syncType,
   }) async {
     ArgumentError.checkNotNull(syncName, 'syncName');
-    _s.validateStringLength(
-      'syncName',
-      syncName,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'syncType',
-      syncType,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeleteResourceDataSync'
@@ -2170,13 +1949,6 @@ class Ssm {
     required String instanceId,
   }) async {
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringLength(
-      'instanceId',
-      instanceId,
-      20,
-      124,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeregisterManagedInstance'
@@ -2210,21 +1982,7 @@ class Ssm {
     required String patchGroup,
   }) async {
     ArgumentError.checkNotNull(baselineId, 'baselineId');
-    _s.validateStringLength(
-      'baselineId',
-      baselineId,
-      20,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(patchGroup, 'patchGroup');
-    _s.validateStringLength(
-      'patchGroup',
-      patchGroup,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeregisterPatchBaselineForPatchGroup'
@@ -2268,21 +2026,7 @@ class Ssm {
     bool? safe,
   }) async {
     ArgumentError.checkNotNull(windowId, 'windowId');
-    _s.validateStringLength(
-      'windowId',
-      windowId,
-      20,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowTargetId, 'windowTargetId');
-    _s.validateStringLength(
-      'windowTargetId',
-      windowTargetId,
-      36,
-      36,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeregisterTargetFromMaintenanceWindow'
@@ -2320,21 +2064,7 @@ class Ssm {
     required String windowTaskId,
   }) async {
     ArgumentError.checkNotNull(windowId, 'windowId');
-    _s.validateStringLength(
-      'windowId',
-      windowId,
-      20,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowTaskId, 'windowTaskId');
-    _s.validateStringLength(
-      'windowTaskId',
-      windowTaskId,
-      36,
-      36,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DeregisterTaskFromMaintenanceWindow'
@@ -2673,13 +2403,6 @@ class Ssm {
     bool? reverseOrder,
   }) async {
     ArgumentError.checkNotNull(automationExecutionId, 'automationExecutionId');
-    _s.validateStringLength(
-      'automationExecutionId',
-      automationExecutionId,
-      36,
-      36,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3051,13 +2774,6 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(baselineId, 'baselineId');
-    _s.validateStringLength(
-      'baselineId',
-      baselineId,
-      20,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3300,13 +3016,6 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(patchGroup, 'patchGroup');
-    _s.validateStringLength(
-      'patchGroup',
-      patchGroup,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3504,21 +3213,7 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(taskId, 'taskId');
-    _s.validateStringLength(
-      'taskId',
-      taskId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowExecutionId, 'windowExecutionId');
-    _s.validateStringLength(
-      'windowExecutionId',
-      windowExecutionId,
-      36,
-      36,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3581,13 +3276,6 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(windowExecutionId, 'windowExecutionId');
-    _s.validateStringLength(
-      'windowExecutionId',
-      windowExecutionId,
-      36,
-      36,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3656,13 +3344,6 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(windowId, 'windowId');
-    _s.validateStringLength(
-      'windowId',
-      windowId,
-      20,
-      20,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3734,12 +3415,6 @@ class Ssm {
       1,
       1152921504606846976,
     );
-    _s.validateStringLength(
-      'windowId',
-      windowId,
-      20,
-      20,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DescribeMaintenanceWindowSchedule'
@@ -3792,13 +3467,6 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(windowId, 'windowId');
-    _s.validateStringLength(
-      'windowId',
-      windowId,
-      20,
-      20,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3861,13 +3529,6 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(windowId, 'windowId');
-    _s.validateStringLength(
-      'windowId',
-      windowId,
-      20,
-      20,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4280,13 +3941,6 @@ class Ssm {
     required String patchGroup,
   }) async {
     ArgumentError.checkNotNull(patchGroup, 'patchGroup');
-    _s.validateStringLength(
-      'patchGroup',
-      patchGroup,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.DescribePatchGroupState'
@@ -4570,13 +4224,6 @@ class Ssm {
     required String automationExecutionId,
   }) async {
     ArgumentError.checkNotNull(automationExecutionId, 'automationExecutionId');
-    _s.validateStringLength(
-      'automationExecutionId',
-      automationExecutionId,
-      36,
-      36,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetAutomationExecution'
@@ -4698,20 +4345,7 @@ class Ssm {
     String? pluginName,
   }) async {
     ArgumentError.checkNotNull(commandId, 'commandId');
-    _s.validateStringLength(
-      'commandId',
-      commandId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringLength(
-      'pluginName',
-      pluginName,
-      4,
-      1152921504606846976,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetCommandInvocation'
@@ -4744,13 +4378,6 @@ class Ssm {
     required String target,
   }) async {
     ArgumentError.checkNotNull(target, 'target');
-    _s.validateStringLength(
-      'target',
-      target,
-      1,
-      400,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetConnectionStatus'
@@ -4839,13 +4466,6 @@ class Ssm {
   }) async {
     ArgumentError.checkNotNull(instanceId, 'instanceId');
     ArgumentError.checkNotNull(snapshotId, 'snapshotId');
-    _s.validateStringLength(
-      'snapshotId',
-      snapshotId,
-      36,
-      36,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetDeployablePatchSnapshotForInstance'
@@ -5024,12 +4644,6 @@ class Ssm {
       50,
       200,
     );
-    _s.validateStringLength(
-      'typeName',
-      typeName,
-      0,
-      100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetInventorySchema'
@@ -5064,13 +4678,6 @@ class Ssm {
     required String windowId,
   }) async {
     ArgumentError.checkNotNull(windowId, 'windowId');
-    _s.validateStringLength(
-      'windowId',
-      windowId,
-      20,
-      20,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetMaintenanceWindow'
@@ -5100,13 +4707,6 @@ class Ssm {
     required String windowExecutionId,
   }) async {
     ArgumentError.checkNotNull(windowExecutionId, 'windowExecutionId');
-    _s.validateStringLength(
-      'windowExecutionId',
-      windowExecutionId,
-      36,
-      36,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetMaintenanceWindowExecution'
@@ -5143,21 +4743,7 @@ class Ssm {
     required String windowExecutionId,
   }) async {
     ArgumentError.checkNotNull(taskId, 'taskId');
-    _s.validateStringLength(
-      'taskId',
-      taskId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowExecutionId, 'windowExecutionId');
-    _s.validateStringLength(
-      'windowExecutionId',
-      windowExecutionId,
-      36,
-      36,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetMaintenanceWindowExecutionTask'
@@ -5198,29 +4784,8 @@ class Ssm {
     required String windowExecutionId,
   }) async {
     ArgumentError.checkNotNull(invocationId, 'invocationId');
-    _s.validateStringLength(
-      'invocationId',
-      invocationId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(taskId, 'taskId');
-    _s.validateStringLength(
-      'taskId',
-      taskId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowExecutionId, 'windowExecutionId');
-    _s.validateStringLength(
-      'windowExecutionId',
-      windowExecutionId,
-      36,
-      36,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetMaintenanceWindowExecutionTaskInvocation'
@@ -5264,21 +4829,7 @@ class Ssm {
     required String windowTaskId,
   }) async {
     ArgumentError.checkNotNull(windowId, 'windowId');
-    _s.validateStringLength(
-      'windowId',
-      windowId,
-      20,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowTaskId, 'windowTaskId');
-    _s.validateStringLength(
-      'windowTaskId',
-      windowTaskId,
-      36,
-      36,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetMaintenanceWindowTask'
@@ -5362,13 +4913,6 @@ class Ssm {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(opsMetadataArn, 'opsMetadataArn');
-    _s.validateStringLength(
-      'opsMetadataArn',
-      opsMetadataArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5442,12 +4986,6 @@ class Ssm {
       1,
       50,
     );
-    _s.validateStringLength(
-      'syncName',
-      syncName,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetOpsSummary'
@@ -5496,13 +5034,6 @@ class Ssm {
     bool? withDecryption,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetParameter'
@@ -5557,13 +5088,6 @@ class Ssm {
     bool? withDecryption,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5703,13 +5227,6 @@ class Ssm {
     bool? withDecryption,
   }) async {
     ArgumentError.checkNotNull(path, 'path');
-    _s.validateStringLength(
-      'path',
-      path,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5759,13 +5276,6 @@ class Ssm {
     required String baselineId,
   }) async {
     ArgumentError.checkNotNull(baselineId, 'baselineId');
-    _s.validateStringLength(
-      'baselineId',
-      baselineId,
-      20,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetPatchBaseline'
@@ -5800,13 +5310,6 @@ class Ssm {
     OperatingSystem? operatingSystem,
   }) async {
     ArgumentError.checkNotNull(patchGroup, 'patchGroup');
-    _s.validateStringLength(
-      'patchGroup',
-      patchGroup,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetPatchBaselineForPatchGroup'
@@ -5878,13 +5381,6 @@ class Ssm {
     required String settingId,
   }) async {
     ArgumentError.checkNotNull(settingId, 'settingId');
-    _s.validateStringLength(
-      'settingId',
-      settingId,
-      1,
-      1000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.GetServiceSetting'
@@ -5969,13 +5465,6 @@ class Ssm {
   }) async {
     ArgumentError.checkNotNull(labels, 'labels');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.LabelParameterVersion'
@@ -6148,12 +5637,6 @@ class Ssm {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'commandId',
-      commandId,
-      36,
-      36,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6221,12 +5704,6 @@ class Ssm {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'commandId',
-      commandId,
-      36,
-      36,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6586,13 +6063,6 @@ class Ssm {
   }) async {
     ArgumentError.checkNotNull(instanceId, 'instanceId');
     ArgumentError.checkNotNull(typeName, 'typeName');
-    _s.validateStringLength(
-      'typeName',
-      typeName,
-      1,
-      100,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -6869,12 +6339,6 @@ class Ssm {
       1,
       50,
     );
-    _s.validateStringLength(
-      'syncType',
-      syncType,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.ListResourceDataSync'
@@ -6977,12 +6441,6 @@ class Ssm {
   }) async {
     ArgumentError.checkNotNull(name, 'name');
     ArgumentError.checkNotNull(permissionType, 'permissionType');
-    _s.validateStringLength(
-      'sharedDocumentVersion',
-      sharedDocumentVersion,
-      0,
-      8,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.ModifyDocumentPermission'
@@ -7129,37 +6587,10 @@ class Ssm {
     ComplianceUploadType? uploadType,
   }) async {
     ArgumentError.checkNotNull(complianceType, 'complianceType');
-    _s.validateStringLength(
-      'complianceType',
-      complianceType,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(executionSummary, 'executionSummary');
     ArgumentError.checkNotNull(items, 'items');
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
-    _s.validateStringLength(
-      'resourceType',
-      resourceType,
-      1,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'itemContentHash',
-      itemContentHash,
-      0,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.PutComplianceItems'
@@ -7523,44 +6954,7 @@ class Ssm {
     ParameterType? type,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(value, 'value');
-    _s.validateStringLength(
-      'allowedPattern',
-      allowedPattern,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'dataType',
-      dataType,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'policies',
-      policies,
-      1,
-      4096,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.PutParameter'
@@ -7607,13 +7001,6 @@ class Ssm {
     required String baselineId,
   }) async {
     ArgumentError.checkNotNull(baselineId, 'baselineId');
-    _s.validateStringLength(
-      'baselineId',
-      baselineId,
-      20,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.RegisterDefaultPatchBaseline'
@@ -7651,21 +7038,7 @@ class Ssm {
     required String patchGroup,
   }) async {
     ArgumentError.checkNotNull(baselineId, 'baselineId');
-    _s.validateStringLength(
-      'baselineId',
-      baselineId,
-      20,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(patchGroup, 'patchGroup');
-    _s.validateStringLength(
-      'patchGroup',
-      patchGroup,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.RegisterPatchBaselineForPatchGroup'
@@ -7767,37 +7140,6 @@ class Ssm {
     ArgumentError.checkNotNull(resourceType, 'resourceType');
     ArgumentError.checkNotNull(targets, 'targets');
     ArgumentError.checkNotNull(windowId, 'windowId');
-    _s.validateStringLength(
-      'windowId',
-      windowId,
-      20,
-      20,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      3,
-      128,
-    );
-    _s.validateStringLength(
-      'ownerInformation',
-      ownerInformation,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.RegisterTargetWithMaintenanceWindow'
@@ -7992,52 +7334,8 @@ class Ssm {
     Map<String, MaintenanceWindowTaskParameterValueExpression>? taskParameters,
   }) async {
     ArgumentError.checkNotNull(taskArn, 'taskArn');
-    _s.validateStringLength(
-      'taskArn',
-      taskArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(taskType, 'taskType');
     ArgumentError.checkNotNull(windowId, 'windowId');
-    _s.validateStringLength(
-      'windowId',
-      windowId,
-      20,
-      20,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'maxConcurrency',
-      maxConcurrency,
-      1,
-      7,
-    );
-    _s.validateStringLength(
-      'maxErrors',
-      maxErrors,
-      1,
-      7,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      3,
-      128,
-    );
     _s.validateNumRange(
       'priority',
       priority,
@@ -8198,13 +7496,6 @@ class Ssm {
     required String settingId,
   }) async {
     ArgumentError.checkNotNull(settingId, 'settingId');
-    _s.validateStringLength(
-      'settingId',
-      settingId,
-      1,
-      1000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.ResetServiceSetting'
@@ -8241,13 +7532,6 @@ class Ssm {
     required String sessionId,
   }) async {
     ArgumentError.checkNotNull(sessionId, 'sessionId');
-    _s.validateStringLength(
-      'sessionId',
-      sessionId,
-      1,
-      96,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.ResumeSession'
@@ -8307,13 +7591,6 @@ class Ssm {
     Map<String, List<String>>? payload,
   }) async {
     ArgumentError.checkNotNull(automationExecutionId, 'automationExecutionId');
-    _s.validateStringLength(
-      'automationExecutionId',
-      automationExecutionId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(signalType, 'signalType');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8495,48 +7772,6 @@ class Ssm {
     int? timeoutSeconds,
   }) async {
     ArgumentError.checkNotNull(documentName, 'documentName');
-    _s.validateStringLength(
-      'comment',
-      comment,
-      0,
-      100,
-    );
-    _s.validateStringLength(
-      'documentHash',
-      documentHash,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'maxConcurrency',
-      maxConcurrency,
-      1,
-      7,
-    );
-    _s.validateStringLength(
-      'maxErrors',
-      maxErrors,
-      1,
-      7,
-    );
-    _s.validateStringLength(
-      'outputS3BucketName',
-      outputS3BucketName,
-      3,
-      63,
-    );
-    _s.validateStringLength(
-      'outputS3KeyPrefix',
-      outputS3KeyPrefix,
-      0,
-      500,
-    );
-    _s.validateStringLength(
-      'outputS3Region',
-      outputS3Region,
-      3,
-      20,
-    );
     _s.validateNumRange(
       'timeoutSeconds',
       timeoutSeconds,
@@ -8721,30 +7956,6 @@ class Ssm {
     List<Target>? targets,
   }) async {
     ArgumentError.checkNotNull(documentName, 'documentName');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      36,
-    );
-    _s.validateStringLength(
-      'maxConcurrency',
-      maxConcurrency,
-      1,
-      7,
-    );
-    _s.validateStringLength(
-      'maxErrors',
-      maxErrors,
-      1,
-      7,
-    );
-    _s.validateStringLength(
-      'targetParameterName',
-      targetParameterName,
-      1,
-      50,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.StartAutomationExecution'
@@ -8880,24 +8091,6 @@ class Ssm {
   }) async {
     ArgumentError.checkNotNull(documentName, 'documentName');
     ArgumentError.checkNotNull(runbooks, 'runbooks');
-    _s.validateStringLength(
-      'changeDetails',
-      changeDetails,
-      1,
-      32768,
-    );
-    _s.validateStringLength(
-      'changeRequestName',
-      changeRequestName,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      36,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.StartChangeRequestExecution'
@@ -8972,19 +8165,6 @@ class Ssm {
     String? reason,
   }) async {
     ArgumentError.checkNotNull(target, 'target');
-    _s.validateStringLength(
-      'target',
-      target,
-      1,
-      400,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'reason',
-      reason,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.StartSession'
@@ -9023,13 +8203,6 @@ class Ssm {
     StopType? type,
   }) async {
     ArgumentError.checkNotNull(automationExecutionId, 'automationExecutionId');
-    _s.validateStringLength(
-      'automationExecutionId',
-      automationExecutionId,
-      36,
-      36,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.StopAutomationExecution'
@@ -9060,13 +8233,6 @@ class Ssm {
     required String sessionId,
   }) async {
     ArgumentError.checkNotNull(sessionId, 'sessionId');
-    _s.validateStringLength(
-      'sessionId',
-      sessionId,
-      1,
-      96,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.TerminateSession'
@@ -9109,13 +8275,6 @@ class Ssm {
   }) async {
     ArgumentError.checkNotNull(labels, 'labels');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(parameterVersion, 'parameterVersion');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9319,30 +8478,6 @@ class Ssm {
     List<Target>? targets,
   }) async {
     ArgumentError.checkNotNull(associationId, 'associationId');
-    _s.validateStringLength(
-      'automationTargetParameterName',
-      automationTargetParameterName,
-      1,
-      50,
-    );
-    _s.validateStringLength(
-      'maxConcurrency',
-      maxConcurrency,
-      1,
-      7,
-    );
-    _s.validateStringLength(
-      'maxErrors',
-      maxErrors,
-      1,
-      7,
-    );
-    _s.validateStringLength(
-      'scheduleExpression',
-      scheduleExpression,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.UpdateAssociation'
@@ -9490,26 +8625,7 @@ class Ssm {
     String? versionName,
   }) async {
     ArgumentError.checkNotNull(content, 'content');
-    _s.validateStringLength(
-      'content',
-      content,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'targetType',
-      targetType,
-      0,
-      200,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.UpdateDocument'
@@ -9709,42 +8825,17 @@ class Ssm {
     String? startDate,
   }) async {
     ArgumentError.checkNotNull(windowId, 'windowId');
-    _s.validateStringLength(
-      'windowId',
-      windowId,
-      20,
-      20,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'cutoff',
       cutoff,
       0,
       23,
     );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      128,
-    );
     _s.validateNumRange(
       'duration',
       duration,
       1,
       24,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      3,
-      128,
-    );
-    _s.validateStringLength(
-      'schedule',
-      schedule,
-      1,
-      256,
     );
     _s.validateNumRange(
       'scheduleOffset',
@@ -9848,39 +8939,7 @@ class Ssm {
     List<Target>? targets,
   }) async {
     ArgumentError.checkNotNull(windowId, 'windowId');
-    _s.validateStringLength(
-      'windowId',
-      windowId,
-      20,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowTargetId, 'windowTargetId');
-    _s.validateStringLength(
-      'windowTargetId',
-      windowTargetId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      3,
-      128,
-    );
-    _s.validateStringLength(
-      'ownerInformation',
-      ownerInformation,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.UpdateMaintenanceWindowTarget'
@@ -10137,56 +9196,12 @@ class Ssm {
     Map<String, MaintenanceWindowTaskParameterValueExpression>? taskParameters,
   }) async {
     ArgumentError.checkNotNull(windowId, 'windowId');
-    _s.validateStringLength(
-      'windowId',
-      windowId,
-      20,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(windowTaskId, 'windowTaskId');
-    _s.validateStringLength(
-      'windowTaskId',
-      windowTaskId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'maxConcurrency',
-      maxConcurrency,
-      1,
-      7,
-    );
-    _s.validateStringLength(
-      'maxErrors',
-      maxErrors,
-      1,
-      7,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      3,
-      128,
-    );
     _s.validateNumRange(
       'priority',
       priority,
       0,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'taskArn',
-      taskArn,
-      1,
-      1600,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10239,21 +9254,7 @@ class Ssm {
     required String instanceId,
   }) async {
     ArgumentError.checkNotNull(iamRole, 'iamRole');
-    _s.validateStringLength(
-      'iamRole',
-      iamRole,
-      0,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringLength(
-      'instanceId',
-      instanceId,
-      20,
-      124,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.UpdateManagedInstanceRole'
@@ -10396,35 +9397,11 @@ class Ssm {
     String? title,
   }) async {
     ArgumentError.checkNotNull(opsItemId, 'opsItemId');
-    _s.validateStringLength(
-      'category',
-      category,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      2048,
-    );
     _s.validateNumRange(
       'priority',
       priority,
       1,
       5,
-    );
-    _s.validateStringLength(
-      'severity',
-      severity,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'title',
-      title,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -10484,13 +9461,6 @@ class Ssm {
     Map<String, MetadataValue>? metadataToUpdate,
   }) async {
     ArgumentError.checkNotNull(opsMetadataArn, 'opsMetadataArn');
-    _s.validateStringLength(
-      'opsMetadataArn',
-      opsMetadataArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.UpdateOpsMetadata'
@@ -10608,25 +9578,6 @@ class Ssm {
     List<PatchSource>? sources,
   }) async {
     ArgumentError.checkNotNull(baselineId, 'baselineId');
-    _s.validateStringLength(
-      'baselineId',
-      baselineId,
-      20,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      3,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.UpdatePatchBaseline'
@@ -10692,22 +9643,8 @@ class Ssm {
     required String syncType,
   }) async {
     ArgumentError.checkNotNull(syncName, 'syncName');
-    _s.validateStringLength(
-      'syncName',
-      syncName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(syncSource, 'syncSource');
     ArgumentError.checkNotNull(syncType, 'syncType');
-    _s.validateStringLength(
-      'syncType',
-      syncType,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.UpdateResourceDataSync'
@@ -10816,21 +9753,7 @@ class Ssm {
     required String settingValue,
   }) async {
     ArgumentError.checkNotNull(settingId, 'settingId');
-    _s.validateStringLength(
-      'settingId',
-      settingId,
-      1,
-      1000,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(settingValue, 'settingValue');
-    _s.validateStringLength(
-      'settingValue',
-      settingValue,
-      1,
-      4096,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonSSM.UpdateServiceSetting'

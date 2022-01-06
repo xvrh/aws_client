@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -81,35 +82,8 @@ class IoTSiteWise {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(assetId, 'assetId');
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(childAssetId, 'childAssetId');
-    _s.validateStringLength(
-      'childAssetId',
-      childAssetId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(hierarchyId, 'hierarchyId');
-    _s.validateStringLength(
-      'hierarchyId',
-      hierarchyId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $payload = <String, dynamic>{
       'childAssetId': childAssetId,
       'hierarchyId': hierarchyId,
@@ -151,35 +125,8 @@ class IoTSiteWise {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(alias, 'alias');
-    _s.validateStringLength(
-      'alias',
-      alias,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(assetId, 'assetId');
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(propertyId, 'propertyId');
-    _s.validateStringLength(
-      'propertyId',
-      propertyId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $query = <String, List<String>>{
       'alias': [alias],
       'assetId': [assetId],
@@ -222,19 +169,6 @@ class IoTSiteWise {
   }) async {
     ArgumentError.checkNotNull(assetIds, 'assetIds');
     ArgumentError.checkNotNull(projectId, 'projectId');
-    _s.validateStringLength(
-      'projectId',
-      projectId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $payload = <String, dynamic>{
       'assetIds': assetIds,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -275,19 +209,6 @@ class IoTSiteWise {
   }) async {
     ArgumentError.checkNotNull(assetIds, 'assetIds');
     ArgumentError.checkNotNull(projectId, 'projectId');
-    _s.validateStringLength(
-      'projectId',
-      projectId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $payload = <String, dynamic>{
       'assetIds': assetIds,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -407,12 +328,6 @@ class IoTSiteWise {
     ArgumentError.checkNotNull(
         accessPolicyPermission, 'accessPolicyPermission');
     ArgumentError.checkNotNull(accessPolicyResource, 'accessPolicyResource');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $payload = <String, dynamic>{
       'accessPolicyIdentity': accessPolicyIdentity,
       'accessPolicyPermission': accessPolicyPermission.toValue(),
@@ -465,27 +380,7 @@ class IoTSiteWise {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(assetModelId, 'assetModelId');
-    _s.validateStringLength(
-      'assetModelId',
-      assetModelId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(assetName, 'assetName');
-    _s.validateStringLength(
-      'assetName',
-      assetName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $payload = <String, dynamic>{
       'assetModelId': assetModelId,
       'assetName': assetName,
@@ -572,25 +467,6 @@ class IoTSiteWise {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(assetModelName, 'assetModelName');
-    _s.validateStringLength(
-      'assetModelName',
-      assetModelName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'assetModelDescription',
-      assetModelDescription,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $payload = <String, dynamic>{
       'assetModelName': assetModelName,
       if (assetModelCompositeModels != null)
@@ -655,41 +531,8 @@ class IoTSiteWise {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(dashboardDefinition, 'dashboardDefinition');
-    _s.validateStringLength(
-      'dashboardDefinition',
-      dashboardDefinition,
-      0,
-      204800,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardName, 'dashboardName');
-    _s.validateStringLength(
-      'dashboardName',
-      dashboardName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectId, 'projectId');
-    _s.validateStringLength(
-      'projectId',
-      projectId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
-    _s.validateStringLength(
-      'dashboardDescription',
-      dashboardDescription,
-      1,
-      2048,
-    );
     final $payload = <String, dynamic>{
       'dashboardDefinition': dashboardDefinition,
       'dashboardName': dashboardName,
@@ -737,13 +580,6 @@ class IoTSiteWise {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(gatewayName, 'gatewayName');
-    _s.validateStringLength(
-      'gatewayName',
-      gatewayName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gatewayPlatform, 'gatewayPlatform');
     final $payload = <String, dynamic>{
       'gatewayName': gatewayName,
@@ -863,47 +699,8 @@ class IoTSiteWise {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(portalContactEmail, 'portalContactEmail');
-    _s.validateStringLength(
-      'portalContactEmail',
-      portalContactEmail,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(portalName, 'portalName');
-    _s.validateStringLength(
-      'portalName',
-      portalName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      1,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
-    _s.validateStringLength(
-      'notificationSenderEmail',
-      notificationSenderEmail,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'portalDescription',
-      portalDescription,
-      1,
-      2048,
-    );
     final $payload = <String, dynamic>{
       'portalContactEmail': portalContactEmail,
       'portalName': portalName,
@@ -966,33 +763,7 @@ class IoTSiteWise {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(portalId, 'portalId');
-    _s.validateStringLength(
-      'portalId',
-      portalId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
-    _s.validateStringLength(
-      'projectDescription',
-      projectDescription,
-      1,
-      2048,
-    );
     final $payload = <String, dynamic>{
       'portalId': portalId,
       'projectName': projectName,
@@ -1030,19 +801,6 @@ class IoTSiteWise {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(accessPolicyId, 'accessPolicyId');
-    _s.validateStringLength(
-      'accessPolicyId',
-      accessPolicyId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
     };
@@ -1083,19 +841,6 @@ class IoTSiteWise {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(assetId, 'assetId');
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
     };
@@ -1135,19 +880,6 @@ class IoTSiteWise {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(assetModelId, 'assetModelId');
-    _s.validateStringLength(
-      'assetModelId',
-      assetModelId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
     };
@@ -1180,19 +912,6 @@ class IoTSiteWise {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
-    _s.validateStringLength(
-      'dashboardId',
-      dashboardId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
     };
@@ -1219,13 +938,6 @@ class IoTSiteWise {
     required String gatewayId,
   }) async {
     ArgumentError.checkNotNull(gatewayId, 'gatewayId');
-    _s.validateStringLength(
-      'gatewayId',
-      gatewayId,
-      36,
-      36,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1254,19 +966,6 @@ class IoTSiteWise {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(portalId, 'portalId');
-    _s.validateStringLength(
-      'portalId',
-      portalId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
     };
@@ -1299,19 +998,6 @@ class IoTSiteWise {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(projectId, 'projectId');
-    _s.validateStringLength(
-      'projectId',
-      projectId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
     };
@@ -1375,30 +1061,6 @@ class IoTSiteWise {
     String? clientToken,
     String? propertyId,
   }) async {
-    _s.validateStringLength(
-      'alias',
-      alias,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
-    _s.validateStringLength(
-      'propertyId',
-      propertyId,
-      36,
-      36,
-    );
     final $query = <String, List<String>>{
       if (alias != null) 'alias': [alias],
       if (assetId != null) 'assetId': [assetId],
@@ -1430,13 +1092,6 @@ class IoTSiteWise {
     required String accessPolicyId,
   }) async {
     ArgumentError.checkNotNull(accessPolicyId, 'accessPolicyId');
-    _s.validateStringLength(
-      'accessPolicyId',
-      accessPolicyId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1459,13 +1114,6 @@ class IoTSiteWise {
     required String assetId,
   }) async {
     ArgumentError.checkNotNull(assetId, 'assetId');
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1488,13 +1136,6 @@ class IoTSiteWise {
     required String assetModelId,
   }) async {
     ArgumentError.checkNotNull(assetModelId, 'assetModelId');
-    _s.validateStringLength(
-      'assetModelId',
-      assetModelId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1530,21 +1171,7 @@ class IoTSiteWise {
     required String propertyId,
   }) async {
     ArgumentError.checkNotNull(assetId, 'assetId');
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(propertyId, 'propertyId');
-    _s.validateStringLength(
-      'propertyId',
-      propertyId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1568,13 +1195,6 @@ class IoTSiteWise {
     required String dashboardId,
   }) async {
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
-    _s.validateStringLength(
-      'dashboardId',
-      dashboardId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1617,13 +1237,6 @@ class IoTSiteWise {
     required String gatewayId,
   }) async {
     ArgumentError.checkNotNull(gatewayId, 'gatewayId');
-    _s.validateStringLength(
-      'gatewayId',
-      gatewayId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1661,21 +1274,7 @@ class IoTSiteWise {
     required String gatewayId,
   }) async {
     ArgumentError.checkNotNull(capabilityNamespace, 'capabilityNamespace');
-    _s.validateStringLength(
-      'capabilityNamespace',
-      capabilityNamespace,
-      1,
-      512,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gatewayId, 'gatewayId');
-    _s.validateStringLength(
-      'gatewayId',
-      gatewayId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1715,13 +1314,6 @@ class IoTSiteWise {
     required String portalId,
   }) async {
     ArgumentError.checkNotNull(portalId, 'portalId');
-    _s.validateStringLength(
-      'portalId',
-      portalId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1744,13 +1336,6 @@ class IoTSiteWise {
     required String projectId,
   }) async {
     ArgumentError.checkNotNull(projectId, 'projectId');
-    _s.validateStringLength(
-      'projectId',
-      projectId,
-      36,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1821,24 +1406,6 @@ class IoTSiteWise {
     String? assetId,
     String? propertyId,
   }) async {
-    _s.validateStringLength(
-      'alias',
-      alias,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-    );
-    _s.validateStringLength(
-      'propertyId',
-      propertyId,
-      36,
-      36,
-    );
     final $query = <String, List<String>>{
       if (alias != null) 'alias': [alias],
       if (assetId != null) 'assetId': [assetId],
@@ -1888,35 +1455,8 @@ class IoTSiteWise {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(assetId, 'assetId');
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(childAssetId, 'childAssetId');
-    _s.validateStringLength(
-      'childAssetId',
-      childAssetId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(hierarchyId, 'hierarchyId');
-    _s.validateStringLength(
-      'hierarchyId',
-      hierarchyId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $payload = <String, dynamic>{
       'childAssetId': childAssetId,
       'hierarchyId': hierarchyId,
@@ -1958,35 +1498,8 @@ class IoTSiteWise {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(alias, 'alias');
-    _s.validateStringLength(
-      'alias',
-      alias,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(assetId, 'assetId');
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(propertyId, 'propertyId');
-    _s.validateStringLength(
-      'propertyId',
-      propertyId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $query = <String, List<String>>{
       'alias': [alias],
       'assetId': [assetId],
@@ -2088,43 +1601,12 @@ class IoTSiteWise {
     ArgumentError.checkNotNull(aggregateTypes, 'aggregateTypes');
     ArgumentError.checkNotNull(endDate, 'endDate');
     ArgumentError.checkNotNull(resolution, 'resolution');
-    _s.validateStringLength(
-      'resolution',
-      resolution,
-      2,
-      2,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(startDate, 'startDate');
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
-    );
-    _s.validateStringLength(
-      'propertyAlias',
-      propertyAlias,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'propertyId',
-      propertyId,
-      36,
-      36,
     );
     final $query = <String, List<String>>{
       'aggregateTypes': aggregateTypes.map((e) => e.toValue()).toList(),
@@ -2193,24 +1675,6 @@ class IoTSiteWise {
     String? propertyAlias,
     String? propertyId,
   }) async {
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-    );
-    _s.validateStringLength(
-      'propertyAlias',
-      propertyAlias,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'propertyId',
-      propertyId,
-      36,
-      36,
-    );
     final $query = <String, List<String>>{
       if (assetId != null) 'assetId': [assetId],
       if (propertyAlias != null) 'propertyAlias': [propertyAlias],
@@ -2300,35 +1764,11 @@ class IoTSiteWise {
     DateTime? startDate,
     TimeOrdering? timeOrdering,
   }) async {
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
-    );
-    _s.validateStringLength(
-      'propertyAlias',
-      propertyAlias,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'propertyId',
-      propertyId,
-      36,
-      36,
     );
     final $query = <String, List<String>>{
       if (assetId != null) 'assetId': [assetId],
@@ -2530,19 +1970,6 @@ class IoTSiteWise {
       isRequired: true,
     );
     ArgumentError.checkNotNull(type, 'type');
-    _s.validateStringLength(
-      'type',
-      type,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-    );
     _s.validateNumRange(
       'endTimeOffsetInNanos',
       endTimeOffsetInNanos,
@@ -2560,24 +1987,6 @@ class IoTSiteWise {
       maxResults,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
-    );
-    _s.validateStringLength(
-      'propertyAlias',
-      propertyAlias,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'propertyId',
-      propertyId,
-      36,
-      36,
     );
     _s.validateNumRange(
       'startTimeOffsetInNanos',
@@ -2660,35 +2069,11 @@ class IoTSiteWise {
     String? resourceId,
     ResourceType? resourceType,
   }) async {
-    _s.validateStringLength(
-      'iamArn',
-      iamArn,
-      1,
-      1600,
-    );
-    _s.validateStringLength(
-      'identityId',
-      identityId,
-      1,
-      256,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
-    );
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      36,
-      36,
     );
     final $query = <String, List<String>>{
       if (iamArn != null) 'iamArn': [iamArn],
@@ -2731,12 +2116,6 @@ class IoTSiteWise {
       maxResults,
       1,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -2789,25 +2168,12 @@ class IoTSiteWise {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(assetId, 'assetId');
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(traversalType, 'traversalType');
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
     );
     final $query = <String, List<String>>{
       'traversalType': [traversalType.toValue()],
@@ -2882,23 +2248,11 @@ class IoTSiteWise {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'assetModelId',
-      assetModelId,
-      36,
-      36,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
     );
     final $query = <String, List<String>>{
       if (assetModelId != null) 'assetModelId': [assetModelId],
@@ -2982,30 +2336,11 @@ class IoTSiteWise {
     TraversalDirection? traversalDirection,
   }) async {
     ArgumentError.checkNotNull(assetId, 'assetId');
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'hierarchyId',
-      hierarchyId,
-      36,
-      36,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
     );
     final $query = <String, List<String>>{
       if (hierarchyId != null) 'hierarchyId': [hierarchyId],
@@ -3047,24 +2382,11 @@ class IoTSiteWise {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(projectId, 'projectId');
-    _s.validateStringLength(
-      'projectId',
-      projectId,
-      36,
-      36,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
     );
     final $query = <String, List<String>>{
       'projectId': [projectId],
@@ -3104,12 +2426,6 @@ class IoTSiteWise {
       1,
       250,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -3146,12 +2462,6 @@ class IoTSiteWise {
       maxResults,
       1,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -3190,24 +2500,11 @@ class IoTSiteWise {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(projectId, 'projectId');
-    _s.validateStringLength(
-      'projectId',
-      projectId,
-      36,
-      36,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -3245,24 +2542,11 @@ class IoTSiteWise {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(portalId, 'portalId');
-    _s.validateStringLength(
-      'portalId',
-      portalId,
-      36,
-      36,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
     );
     final $query = <String, List<String>>{
       'portalId': [portalId],
@@ -3297,13 +2581,6 @@ class IoTSiteWise {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'resourceArn': [resourceArn],
     };
@@ -3357,29 +2634,11 @@ class IoTSiteWise {
     String? nextToken,
     ListTimeSeriesType? timeSeriesType,
   }) async {
-    _s.validateStringLength(
-      'aliasPrefix',
-      aliasPrefix,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      4096,
     );
     final $query = <String, List<String>>{
       if (aliasPrefix != null) 'aliasPrefix': [aliasPrefix],
@@ -3421,12 +2680,6 @@ class IoTSiteWise {
     String? kmsKeyId,
   }) async {
     ArgumentError.checkNotNull(encryptionType, 'encryptionType');
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      1,
-      2048,
-    );
     final $payload = <String, dynamic>{
       'encryptionType': encryptionType.toValue(),
       if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
@@ -3567,13 +2820,6 @@ class IoTSiteWise {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $query = <String, List<String>>{
       'resourceArn': [resourceArn],
@@ -3612,13 +2858,6 @@ class IoTSiteWise {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'resourceArn': [resourceArn],
@@ -3668,23 +2907,10 @@ class IoTSiteWise {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(accessPolicyId, 'accessPolicyId');
-    _s.validateStringLength(
-      'accessPolicyId',
-      accessPolicyId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(accessPolicyIdentity, 'accessPolicyIdentity');
     ArgumentError.checkNotNull(
         accessPolicyPermission, 'accessPolicyPermission');
     ArgumentError.checkNotNull(accessPolicyResource, 'accessPolicyResource');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $payload = <String, dynamic>{
       'accessPolicyIdentity': accessPolicyIdentity,
       'accessPolicyPermission': accessPolicyPermission.toValue(),
@@ -3726,27 +2952,7 @@ class IoTSiteWise {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(assetId, 'assetId');
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(assetName, 'assetName');
-    _s.validateStringLength(
-      'assetName',
-      assetName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $payload = <String, dynamic>{
       'assetName': assetName,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -3840,33 +3046,7 @@ class IoTSiteWise {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(assetModelId, 'assetModelId');
-    _s.validateStringLength(
-      'assetModelId',
-      assetModelId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(assetModelName, 'assetModelName');
-    _s.validateStringLength(
-      'assetModelName',
-      assetModelName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'assetModelDescription',
-      assetModelDescription,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
     final $payload = <String, dynamic>{
       'assetModelName': assetModelName,
       if (assetModelCompositeModels != null)
@@ -3942,33 +3122,7 @@ class IoTSiteWise {
     PropertyNotificationState? propertyNotificationState,
   }) async {
     ArgumentError.checkNotNull(assetId, 'assetId');
-    _s.validateStringLength(
-      'assetId',
-      assetId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(propertyId, 'propertyId');
-    _s.validateStringLength(
-      'propertyId',
-      propertyId,
-      36,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
-    _s.validateStringLength(
-      'propertyAlias',
-      propertyAlias,
-      1,
-      1152921504606846976,
-    );
     final $payload = <String, dynamic>{
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
       if (propertyAlias != null) 'propertyAlias': propertyAlias,
@@ -4018,41 +3172,8 @@ class IoTSiteWise {
     String? dashboardDescription,
   }) async {
     ArgumentError.checkNotNull(dashboardDefinition, 'dashboardDefinition');
-    _s.validateStringLength(
-      'dashboardDefinition',
-      dashboardDefinition,
-      0,
-      204800,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
-    _s.validateStringLength(
-      'dashboardId',
-      dashboardId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardName, 'dashboardName');
-    _s.validateStringLength(
-      'dashboardName',
-      dashboardName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
-    _s.validateStringLength(
-      'dashboardDescription',
-      dashboardDescription,
-      1,
-      2048,
-    );
     final $payload = <String, dynamic>{
       'dashboardDefinition': dashboardDefinition,
       'dashboardName': dashboardName,
@@ -4086,21 +3207,7 @@ class IoTSiteWise {
     required String gatewayName,
   }) async {
     ArgumentError.checkNotNull(gatewayId, 'gatewayId');
-    _s.validateStringLength(
-      'gatewayId',
-      gatewayId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gatewayName, 'gatewayName');
-    _s.validateStringLength(
-      'gatewayName',
-      gatewayName,
-      1,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'gatewayName': gatewayName,
     };
@@ -4150,29 +3257,8 @@ class IoTSiteWise {
   }) async {
     ArgumentError.checkNotNull(
         capabilityConfiguration, 'capabilityConfiguration');
-    _s.validateStringLength(
-      'capabilityConfiguration',
-      capabilityConfiguration,
-      1,
-      104857600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(capabilityNamespace, 'capabilityNamespace');
-    _s.validateStringLength(
-      'capabilityNamespace',
-      capabilityNamespace,
-      1,
-      512,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gatewayId, 'gatewayId');
-    _s.validateStringLength(
-      'gatewayId',
-      gatewayId,
-      36,
-      36,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'capabilityConfiguration': capabilityConfiguration,
       'capabilityNamespace': capabilityNamespace,
@@ -4243,55 +3329,9 @@ class IoTSiteWise {
     Image? portalLogoImage,
   }) async {
     ArgumentError.checkNotNull(portalContactEmail, 'portalContactEmail');
-    _s.validateStringLength(
-      'portalContactEmail',
-      portalContactEmail,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(portalId, 'portalId');
-    _s.validateStringLength(
-      'portalId',
-      portalId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(portalName, 'portalName');
-    _s.validateStringLength(
-      'portalName',
-      portalName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      1,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
-    _s.validateStringLength(
-      'notificationSenderEmail',
-      notificationSenderEmail,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'portalDescription',
-      portalDescription,
-      1,
-      2048,
-    );
     final $payload = <String, dynamic>{
       'portalContactEmail': portalContactEmail,
       'portalName': portalName,
@@ -4339,33 +3379,7 @@ class IoTSiteWise {
     String? projectDescription,
   }) async {
     ArgumentError.checkNotNull(projectId, 'projectId');
-    _s.validateStringLength(
-      'projectId',
-      projectId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(projectName, 'projectName');
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      36,
-      64,
-    );
-    _s.validateStringLength(
-      'projectDescription',
-      projectDescription,
-      1,
-      2048,
-    );
     final $payload = <String, dynamic>{
       'projectName': projectName,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),

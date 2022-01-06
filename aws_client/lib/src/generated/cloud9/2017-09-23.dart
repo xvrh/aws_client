@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -158,44 +159,12 @@ class Cloud9 {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(instanceType, 'instanceType');
-    _s.validateStringLength(
-      'instanceType',
-      instanceType,
-      5,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      60,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'automaticStopTimeMinutes',
       automaticStopTimeMinutes,
       0,
       20160,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
-    _s.validateStringLength(
-      'imageId',
-      imageId,
-      0,
-      512,
-    );
-    _s.validateStringLength(
-      'subnetId',
-      subnetId,
-      15,
-      24,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -712,18 +681,6 @@ class Cloud9 {
     String? name,
   }) async {
     ArgumentError.checkNotNull(environmentId, 'environmentId');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      60,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCloud9WorkspaceManagementService.UpdateEnvironment'

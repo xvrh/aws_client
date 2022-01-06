@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -67,12 +68,6 @@ class Imagebuilder {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(imageBuildVersionArn, 'imageBuildVersionArn');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
     final $payload = <String, dynamic>{
       'imageBuildVersionArn': imageBuildVersionArn,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -175,36 +170,6 @@ class Imagebuilder {
     ArgumentError.checkNotNull(name, 'name');
     ArgumentError.checkNotNull(platform, 'platform');
     ArgumentError.checkNotNull(semanticVersion, 'semanticVersion');
-    _s.validateStringLength(
-      'changeDescription',
-      changeDescription,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
-    _s.validateStringLength(
-      'data',
-      data,
-      1,
-      16000,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'name': name,
       'platform': platform.toValue(),
@@ -330,51 +295,8 @@ class Imagebuilder {
     ArgumentError.checkNotNull(containerType, 'containerType');
     ArgumentError.checkNotNull(name, 'name');
     ArgumentError.checkNotNull(parentImage, 'parentImage');
-    _s.validateStringLength(
-      'parentImage',
-      parentImage,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(semanticVersion, 'semanticVersion');
     ArgumentError.checkNotNull(targetRepository, 'targetRepository');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'dockerfileTemplateData',
-      dockerfileTemplateData,
-      1,
-      16000,
-    );
-    _s.validateStringLength(
-      'imageOsVersionOverride',
-      imageOsVersionOverride,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'workingDirectory',
-      workingDirectory,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'components': components,
       'containerType': containerType.toValue(),
@@ -446,18 +368,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(distributions, 'distributions');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'distributions': distributions,
       'name': name,
@@ -531,12 +441,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(
         infrastructureConfigurationArn, 'infrastructureConfigurationArn');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
     final $payload = <String, dynamic>{
       'infrastructureConfigurationArn': infrastructureConfigurationArn,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -632,18 +536,6 @@ class Imagebuilder {
     ArgumentError.checkNotNull(
         infrastructureConfigurationArn, 'infrastructureConfigurationArn');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'infrastructureConfigurationArn': infrastructureConfigurationArn,
       'name': name,
@@ -752,32 +644,7 @@ class Imagebuilder {
     ArgumentError.checkNotNull(components, 'components');
     ArgumentError.checkNotNull(name, 'name');
     ArgumentError.checkNotNull(parentImage, 'parentImage');
-    _s.validateStringLength(
-      'parentImage',
-      parentImage,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(semanticVersion, 'semanticVersion');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'workingDirectory',
-      workingDirectory,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'components': components,
       'name': name,
@@ -892,38 +759,7 @@ class Imagebuilder {
     bool? terminateInstanceOnFailure,
   }) async {
     ArgumentError.checkNotNull(instanceProfileName, 'instanceProfileName');
-    _s.validateStringLength(
-      'instanceProfileName',
-      instanceProfileName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'keyPair',
-      keyPair,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'subnetId',
-      subnetId,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'instanceProfileName': instanceProfileName,
       'name': name,
@@ -1592,36 +1428,6 @@ class Imagebuilder {
     ArgumentError.checkNotNull(platform, 'platform');
     ArgumentError.checkNotNull(semanticVersion, 'semanticVersion');
     ArgumentError.checkNotNull(type, 'type');
-    _s.validateStringLength(
-      'changeDescription',
-      changeDescription,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
-    _s.validateStringLength(
-      'data',
-      data,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'format': format.toValue(),
       'name': name,
@@ -1717,41 +1523,9 @@ class Imagebuilder {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(platform, 'platform');
     ArgumentError.checkNotNull(semanticVersion, 'semanticVersion');
     ArgumentError.checkNotNull(vmImportTaskId, 'vmImportTaskId');
-    _s.validateStringLength(
-      'vmImportTaskId',
-      vmImportTaskId,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'osVersion',
-      osVersion,
-      1,
-      1152921504606846976,
-    );
     final $payload = <String, dynamic>{
       'name': name,
       'platform': platform.toValue(),
@@ -1814,12 +1588,6 @@ class Imagebuilder {
       maxResults,
       1,
       25,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      65535,
     );
     final $payload = <String, dynamic>{
       'componentVersionArn': componentVersionArn,
@@ -1910,12 +1678,6 @@ class Imagebuilder {
       1,
       25,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      65535,
-    );
     final $payload = <String, dynamic>{
       if (byName != null) 'byName': byName,
       if (filters != null) 'filters': filters,
@@ -1983,12 +1745,6 @@ class Imagebuilder {
       1,
       25,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
       if (maxResults != null) 'maxResults': maxResults,
@@ -2034,12 +1790,6 @@ class Imagebuilder {
       maxResults,
       1,
       25,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      65535,
     );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
@@ -2109,12 +1859,6 @@ class Imagebuilder {
       1,
       25,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      65535,
-    );
     final $payload = <String, dynamic>{
       'imageVersionArn': imageVersionArn,
       if (filters != null) 'filters': filters,
@@ -2164,12 +1908,6 @@ class Imagebuilder {
       maxResults,
       1,
       25,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      65535,
     );
     final $payload = <String, dynamic>{
       'imageBuildVersionArn': imageBuildVersionArn,
@@ -2230,12 +1968,6 @@ class Imagebuilder {
       maxResults,
       1,
       25,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      65535,
     );
     final $payload = <String, dynamic>{
       'imagePipelineArn': imagePipelineArn,
@@ -2303,12 +2035,6 @@ class Imagebuilder {
       1,
       25,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      65535,
-    );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
       if (maxResults != null) 'maxResults': maxResults,
@@ -2372,12 +2098,6 @@ class Imagebuilder {
       maxResults,
       1,
       25,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      65535,
     );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
@@ -2457,12 +2177,6 @@ class Imagebuilder {
       1,
       25,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      65535,
-    );
     final $payload = <String, dynamic>{
       if (byName != null) 'byName': byName,
       if (filters != null) 'filters': filters,
@@ -2510,12 +2224,6 @@ class Imagebuilder {
       maxResults,
       1,
       25,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      65535,
     );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
@@ -2582,13 +2290,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(componentArn, 'componentArn');
     ArgumentError.checkNotNull(policy, 'policy');
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      30000,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'componentArn': componentArn,
       'policy': policy,
@@ -2633,13 +2334,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(containerRecipeArn, 'containerRecipeArn');
     ArgumentError.checkNotNull(policy, 'policy');
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      30000,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'containerRecipeArn': containerRecipeArn,
       'policy': policy,
@@ -2682,13 +2376,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(imageArn, 'imageArn');
     ArgumentError.checkNotNull(policy, 'policy');
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      30000,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'imageArn': imageArn,
       'policy': policy,
@@ -2732,13 +2419,6 @@ class Imagebuilder {
   }) async {
     ArgumentError.checkNotNull(imageRecipeArn, 'imageRecipeArn');
     ArgumentError.checkNotNull(policy, 'policy');
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      30000,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'imageRecipeArn': imageRecipeArn,
       'policy': policy,
@@ -2775,12 +2455,6 @@ class Imagebuilder {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(imagePipelineArn, 'imagePipelineArn');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
     final $payload = <String, dynamic>{
       'imagePipelineArn': imagePipelineArn,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -2886,18 +2560,6 @@ class Imagebuilder {
     ArgumentError.checkNotNull(
         distributionConfigurationArn, 'distributionConfigurationArn');
     ArgumentError.checkNotNull(distributions, 'distributions');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'distributionConfigurationArn': distributionConfigurationArn,
       'distributions': distributions,
@@ -2985,18 +2647,6 @@ class Imagebuilder {
     ArgumentError.checkNotNull(imagePipelineArn, 'imagePipelineArn');
     ArgumentError.checkNotNull(
         infrastructureConfigurationArn, 'infrastructureConfigurationArn');
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'imagePipelineArn': imagePipelineArn,
       'infrastructureConfigurationArn': infrastructureConfigurationArn,
@@ -3127,37 +2777,6 @@ class Imagebuilder {
     ArgumentError.checkNotNull(
         infrastructureConfigurationArn, 'infrastructureConfigurationArn');
     ArgumentError.checkNotNull(instanceProfileName, 'instanceProfileName');
-    _s.validateStringLength(
-      'instanceProfileName',
-      instanceProfileName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      36,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'keyPair',
-      keyPair,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'subnetId',
-      subnetId,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'infrastructureConfigurationArn': infrastructureConfigurationArn,
       'instanceProfileName': instanceProfileName,

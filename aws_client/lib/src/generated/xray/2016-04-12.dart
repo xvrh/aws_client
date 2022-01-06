@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -132,13 +133,6 @@ class XRay {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      32,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'GroupName': groupName,
       if (filterExpression != null) 'FilterExpression': filterExpression,
@@ -237,18 +231,6 @@ class XRay {
     String? groupARN,
     String? groupName,
   }) async {
-    _s.validateStringLength(
-      'groupARN',
-      groupARN,
-      1,
-      400,
-    );
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      32,
-    );
     final $payload = <String, dynamic>{
       if (groupARN != null) 'GroupARN': groupARN,
       if (groupName != null) 'GroupName': groupName,
@@ -318,18 +300,6 @@ class XRay {
     String? groupARN,
     String? groupName,
   }) async {
-    _s.validateStringLength(
-      'groupARN',
-      groupARN,
-      1,
-      400,
-    );
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      32,
-    );
     final $payload = <String, dynamic>{
       if (groupARN != null) 'GroupARN': groupARN,
       if (groupName != null) 'GroupName': groupName,
@@ -353,12 +323,6 @@ class XRay {
   Future<GetGroupsResult> getGroups({
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      100,
-    );
     final $payload = <String, dynamic>{
       if (nextToken != null) 'NextToken': nextToken,
     };
@@ -426,12 +390,6 @@ class XRay {
       1,
       50,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
-    );
     final $payload = <String, dynamic>{
       'InsightId': insightId,
       if (maxResults != null) 'MaxResults': maxResults,
@@ -479,12 +437,6 @@ class XRay {
     ArgumentError.checkNotNull(endTime, 'endTime');
     ArgumentError.checkNotNull(insightId, 'insightId');
     ArgumentError.checkNotNull(startTime, 'startTime');
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
-    );
     final $payload = <String, dynamic>{
       'EndTime': unixTimestampToJson(endTime),
       'InsightId': insightId,
@@ -540,29 +492,11 @@ class XRay {
   }) async {
     ArgumentError.checkNotNull(endTime, 'endTime');
     ArgumentError.checkNotNull(startTime, 'startTime');
-    _s.validateStringLength(
-      'groupARN',
-      groupARN,
-      1,
-      400,
-    );
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      32,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
     );
     final $payload = <String, dynamic>{
       'EndTime': unixTimestampToJson(endTime),
@@ -687,18 +621,6 @@ class XRay {
   }) async {
     ArgumentError.checkNotNull(endTime, 'endTime');
     ArgumentError.checkNotNull(startTime, 'startTime');
-    _s.validateStringLength(
-      'groupARN',
-      groupARN,
-      1,
-      400,
-    );
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      32,
-    );
     final $payload = <String, dynamic>{
       'EndTime': unixTimestampToJson(endTime),
       'StartTime': unixTimestampToJson(startTime),
@@ -759,24 +681,6 @@ class XRay {
   }) async {
     ArgumentError.checkNotNull(endTime, 'endTime');
     ArgumentError.checkNotNull(startTime, 'startTime');
-    _s.validateStringLength(
-      'entitySelectorExpression',
-      entitySelectorExpression,
-      1,
-      500,
-    );
-    _s.validateStringLength(
-      'groupARN',
-      groupARN,
-      1,
-      400,
-    );
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      32,
-    );
     final $payload = <String, dynamic>{
       'EndTime': unixTimestampToJson(endTime),
       'StartTime': unixTimestampToJson(startTime),
@@ -923,13 +827,6 @@ class XRay {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'ResourceARN': resourceARN,
       if (nextToken != null) 'NextToken': nextToken,
@@ -977,12 +874,6 @@ class XRay {
     String? keyId,
   }) async {
     ArgumentError.checkNotNull(type, 'type');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      3000,
-    );
     final $payload = <String, dynamic>{
       'Type': type.toValue(),
       if (keyId != null) 'KeyId': keyId,
@@ -1019,24 +910,6 @@ class XRay {
     String? resourceARN,
   }) async {
     ArgumentError.checkNotNull(telemetryRecords, 'telemetryRecords');
-    _s.validateStringLength(
-      'eC2InstanceId',
-      eC2InstanceId,
-      0,
-      20,
-    );
-    _s.validateStringLength(
-      'hostname',
-      hostname,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      0,
-      500,
-    );
     final $payload = <String, dynamic>{
       'TelemetryRecords': telemetryRecords,
       if (eC2InstanceId != null) 'EC2InstanceId': eC2InstanceId,
@@ -1184,13 +1057,6 @@ class XRay {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'ResourceARN': resourceARN,
@@ -1223,13 +1089,6 @@ class XRay {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $payload = <String, dynamic>{
       'ResourceARN': resourceARN,
@@ -1277,18 +1136,6 @@ class XRay {
     String? groupName,
     InsightsConfiguration? insightsConfiguration,
   }) async {
-    _s.validateStringLength(
-      'groupARN',
-      groupARN,
-      1,
-      400,
-    );
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      32,
-    );
     final $payload = <String, dynamic>{
       if (filterExpression != null) 'FilterExpression': filterExpression,
       if (groupARN != null) 'GroupARN': groupARN,

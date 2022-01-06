@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -101,13 +102,6 @@ class GlueDataBrew {
     required List<String> recipeVersions,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(recipeVersions, 'recipeVersions');
     final $payload = <String, dynamic>{
       'RecipeVersions': recipeVersions,
@@ -153,13 +147,6 @@ class GlueDataBrew {
   }) async {
     ArgumentError.checkNotNull(input, 'input');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Input': input,
       'Name': name,
@@ -262,36 +249,9 @@ class GlueDataBrew {
     List<ValidationConfiguration>? validationConfigurations,
   }) async {
     ArgumentError.checkNotNull(datasetName, 'datasetName');
-    _s.validateStringLength(
-      'datasetName',
-      datasetName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      240,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(outputLocation, 'outputLocation');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'encryptionKeyArn',
-      encryptionKeyArn,
-      20,
-      2048,
-    );
     _s.validateNumRange(
       'maxRetries',
       maxRetries,
@@ -362,37 +322,9 @@ class GlueDataBrew {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(datasetName, 'datasetName');
-    _s.validateStringLength(
-      'datasetName',
-      datasetName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(recipeName, 'recipeName');
-    _s.validateStringLength(
-      'recipeName',
-      recipeName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DatasetName': datasetName,
       'Name': name,
@@ -437,20 +369,7 @@ class GlueDataBrew {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(steps, 'steps');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       'Steps': steps,
@@ -553,44 +472,12 @@ class GlueDataBrew {
     int? timeout,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      240,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'datasetName',
-      datasetName,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'encryptionKeyArn',
-      encryptionKeyArn,
-      20,
-      2048,
-    );
     _s.validateNumRange(
       'maxRetries',
       maxRetries,
       0,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
     );
     _s.validateNumRange(
       'timeout',
@@ -656,28 +543,8 @@ class GlueDataBrew {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(rules, 'rules');
     ArgumentError.checkNotNull(targetArn, 'targetArn');
-    _s.validateStringLength(
-      'targetArn',
-      targetArn,
-      20,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       'Rules': rules,
@@ -723,21 +590,7 @@ class GlueDataBrew {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(cronExpression, 'cronExpression');
-    _s.validateStringLength(
-      'cronExpression',
-      cronExpression,
-      1,
-      512,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'CronExpression': cronExpression,
       'Name': name,
@@ -765,13 +618,6 @@ class GlueDataBrew {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -793,13 +639,6 @@ class GlueDataBrew {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      240,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -821,13 +660,6 @@ class GlueDataBrew {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -855,21 +687,7 @@ class GlueDataBrew {
     required String recipeVersion,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(recipeVersion, 'recipeVersion');
-    _s.validateStringLength(
-      'recipeVersion',
-      recipeVersion,
-      1,
-      16,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -892,13 +710,6 @@ class GlueDataBrew {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -919,13 +730,6 @@ class GlueDataBrew {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -946,13 +750,6 @@ class GlueDataBrew {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -973,13 +770,6 @@ class GlueDataBrew {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      240,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1004,21 +794,7 @@ class GlueDataBrew {
     required String runId,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      240,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runId, 'runId');
-    _s.validateStringLength(
-      'runId',
-      runId,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1040,13 +816,6 @@ class GlueDataBrew {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1073,19 +842,6 @@ class GlueDataBrew {
     String? recipeVersion,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'recipeVersion',
-      recipeVersion,
-      1,
-      16,
-    );
     final $query = <String, List<String>>{
       if (recipeVersion != null) 'recipeVersion': [recipeVersion],
     };
@@ -1110,13 +866,6 @@ class GlueDataBrew {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1137,13 +886,6 @@ class GlueDataBrew {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1171,12 +913,6 @@ class GlueDataBrew {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1211,24 +947,11 @@ class GlueDataBrew {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      240,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1269,29 +992,11 @@ class GlueDataBrew {
     String? nextToken,
     String? projectName,
   }) async {
-    _s.validateStringLength(
-      'datasetName',
-      datasetName,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
-    );
-    _s.validateStringLength(
-      'projectName',
-      projectName,
-      1,
-      255,
     );
     final $query = <String, List<String>>{
       if (datasetName != null) 'datasetName': [datasetName],
@@ -1328,12 +1033,6 @@ class GlueDataBrew {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -1367,24 +1066,11 @@ class GlueDataBrew {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
     );
     final $query = <String, List<String>>{
       'name': [name],
@@ -1428,18 +1114,6 @@ class GlueDataBrew {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
-    );
-    _s.validateStringLength(
-      'recipeVersion',
-      recipeVersion,
-      1,
-      16,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1485,18 +1159,6 @@ class GlueDataBrew {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
-    );
-    _s.validateStringLength(
-      'targetArn',
-      targetArn,
-      20,
-      2048,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -1529,23 +1191,11 @@ class GlueDataBrew {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      240,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
     );
     final $query = <String, List<String>>{
       if (jobName != null) 'jobName': [jobName],
@@ -1575,13 +1225,6 @@ class GlueDataBrew {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1608,19 +1251,6 @@ class GlueDataBrew {
     String? description,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
     };
@@ -1663,19 +1293,6 @@ class GlueDataBrew {
     ViewFrame? viewFrame,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientSessionId',
-      clientSessionId,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'stepIndex',
       stepIndex,
@@ -1712,13 +1329,6 @@ class GlueDataBrew {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      240,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -1747,13 +1357,6 @@ class GlueDataBrew {
     bool? assumeControl,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (assumeControl != null) 'AssumeControl': assumeControl,
     };
@@ -1781,21 +1384,7 @@ class GlueDataBrew {
     required String runId,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      240,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(runId, 'runId');
-    _s.validateStringLength(
-      'runId',
-      runId,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -1825,13 +1414,6 @@ class GlueDataBrew {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -1861,13 +1443,6 @@ class GlueDataBrew {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -1906,13 +1481,6 @@ class GlueDataBrew {
   }) async {
     ArgumentError.checkNotNull(input, 'input');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Input': input,
       if (format != null) 'Format': format.toValue(),
@@ -2002,28 +1570,8 @@ class GlueDataBrew {
     List<ValidationConfiguration>? validationConfigurations,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      240,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(outputLocation, 'outputLocation');
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'encryptionKeyArn',
-      encryptionKeyArn,
-      20,
-      2048,
-    );
     _s.validateNumRange(
       'maxRetries',
       maxRetries,
@@ -2076,21 +1624,7 @@ class GlueDataBrew {
     Sample? sample,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'RoleArn': roleArn,
       if (sample != null) 'Sample': sample,
@@ -2125,19 +1659,6 @@ class GlueDataBrew {
     List<RecipeStep>? steps,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (steps != null) 'Steps': steps,
@@ -2220,27 +1741,7 @@ class GlueDataBrew {
     int? timeout,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      240,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'encryptionKeyArn',
-      encryptionKeyArn,
-      20,
-      2048,
-    );
     _s.validateNumRange(
       'maxRetries',
       maxRetries,
@@ -2294,20 +1795,7 @@ class GlueDataBrew {
     String? description,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(rules, 'rules');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'Rules': rules,
       if (description != null) 'Description': description,
@@ -2344,21 +1832,7 @@ class GlueDataBrew {
     List<String>? jobNames,
   }) async {
     ArgumentError.checkNotNull(cronExpression, 'cronExpression');
-    _s.validateStringLength(
-      'cronExpression',
-      cronExpression,
-      1,
-      512,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'CronExpression': cronExpression,
       if (jobNames != null) 'JobNames': jobNames,

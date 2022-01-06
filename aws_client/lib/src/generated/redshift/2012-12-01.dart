@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -15,8 +16,8 @@ import '../../shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import '2012-12-01.meta.dart';
 
+import '2012-12-01.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// This is an interface reference for Amazon Redshift. It contains
@@ -74,22 +75,8 @@ class Redshift {
     required String targetReservedNodeOfferingId,
   }) async {
     ArgumentError.checkNotNull(reservedNodeId, 'reservedNodeId');
-    _s.validateStringLength(
-      'reservedNodeId',
-      reservedNodeId,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         targetReservedNodeOfferingId, 'targetReservedNodeOfferingId');
-    _s.validateStringLength(
-      'targetReservedNodeOfferingId',
-      targetReservedNodeOfferingId,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ReservedNodeId'] = reservedNodeId;
     $request['TargetReservedNodeOfferingId'] = targetReservedNodeOfferingId;
@@ -133,37 +120,9 @@ class Redshift {
     required String partnerName,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringLength(
-      'accountId',
-      accountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      0,
-      127,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partnerName, 'partnerName');
-    _s.validateStringLength(
-      'partnerName',
-      partnerName,
-      0,
-      255,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AccountId'] = accountId;
     $request['ClusterIdentifier'] = clusterIdentifier;
@@ -207,19 +166,6 @@ class Redshift {
     String? consumerArn,
   }) async {
     ArgumentError.checkNotNull(dataShareArn, 'dataShareArn');
-    _s.validateStringLength(
-      'dataShareArn',
-      dataShareArn,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'consumerArn',
-      consumerArn,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['DataShareArn'] = dataShareArn;
     associateEntireAccount
@@ -293,31 +239,6 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         clusterSecurityGroupName, 'clusterSecurityGroupName');
-    _s.validateStringLength(
-      'clusterSecurityGroupName',
-      clusterSecurityGroupName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'cidrip',
-      cidrip,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'eC2SecurityGroupName',
-      eC2SecurityGroupName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'eC2SecurityGroupOwnerId',
-      eC2SecurityGroupOwnerId,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterSecurityGroupName'] = clusterSecurityGroupName;
     cidrip?.also((arg) => $request['CIDRIP'] = arg);
@@ -358,21 +279,7 @@ class Redshift {
     required String dataShareArn,
   }) async {
     ArgumentError.checkNotNull(consumerIdentifier, 'consumerIdentifier');
-    _s.validateStringLength(
-      'consumerIdentifier',
-      consumerIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataShareArn, 'dataShareArn');
-    _s.validateStringLength(
-      'dataShareArn',
-      dataShareArn,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ConsumerIdentifier'] = consumerIdentifier;
     $request['DataShareArn'] = dataShareArn;
@@ -413,19 +320,6 @@ class Redshift {
     List<String>? vpcIds,
   }) async {
     ArgumentError.checkNotNull(account, 'account');
-    _s.validateStringLength(
-      'account',
-      account,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['Account'] = account;
     clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
@@ -481,27 +375,7 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         accountWithRestoreAccess, 'accountWithRestoreAccess');
-    _s.validateStringLength(
-      'accountWithRestoreAccess',
-      accountWithRestoreAccess,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(snapshotIdentifier, 'snapshotIdentifier');
-    _s.validateStringLength(
-      'snapshotIdentifier',
-      snapshotIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'snapshotClusterIdentifier',
-      snapshotClusterIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['AccountWithRestoreAccess'] = accountWithRestoreAccess;
     $request['SnapshotIdentifier'] = snapshotIdentifier;
@@ -609,13 +483,6 @@ class Redshift {
     required String clusterIdentifier,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     final $result = await _protocol.send(
@@ -718,28 +585,8 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         sourceSnapshotIdentifier, 'sourceSnapshotIdentifier');
-    _s.validateStringLength(
-      'sourceSnapshotIdentifier',
-      sourceSnapshotIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         targetSnapshotIdentifier, 'targetSnapshotIdentifier');
-    _s.validateStringLength(
-      'targetSnapshotIdentifier',
-      targetSnapshotIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'sourceSnapshotClusterIdentifier',
-      sourceSnapshotClusterIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['SourceSnapshotIdentifier'] = sourceSnapshotIdentifier;
     $request['TargetSnapshotIdentifier'] = targetSnapshotIdentifier;
@@ -779,22 +626,8 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         authenticationProfileContent, 'authenticationProfileContent');
-    _s.validateStringLength(
-      'authenticationProfileContent',
-      authenticationProfileContent,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         authenticationProfileName, 'authenticationProfileName');
-    _s.validateStringLength(
-      'authenticationProfileName',
-      authenticationProfileName,
-      0,
-      63,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AuthenticationProfileContent'] = authenticationProfileContent;
     $request['AuthenticationProfileName'] = authenticationProfileName;
@@ -1237,127 +1070,9 @@ class Redshift {
     List<String>? vpcSecurityGroupIds,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(masterUserPassword, 'masterUserPassword');
-    _s.validateStringLength(
-      'masterUserPassword',
-      masterUserPassword,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(masterUsername, 'masterUsername');
-    _s.validateStringLength(
-      'masterUsername',
-      masterUsername,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(nodeType, 'nodeType');
-    _s.validateStringLength(
-      'nodeType',
-      nodeType,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'additionalInfo',
-      additionalInfo,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'availabilityZone',
-      availabilityZone,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'clusterParameterGroupName',
-      clusterParameterGroupName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'clusterSubnetGroupName',
-      clusterSubnetGroupName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'clusterType',
-      clusterType,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'clusterVersion',
-      clusterVersion,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'dBName',
-      dBName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'defaultIamRoleArn',
-      defaultIamRoleArn,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'elasticIp',
-      elasticIp,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'hsmClientCertificateIdentifier',
-      hsmClientCertificateIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'hsmConfigurationIdentifier',
-      hsmConfigurationIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'maintenanceTrackName',
-      maintenanceTrackName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'preferredMaintenanceWindow',
-      preferredMaintenanceWindow,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'snapshotScheduleIdentifier',
-      snapshotScheduleIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     $request['MasterUserPassword'] = masterUserPassword;
@@ -1482,29 +1197,8 @@ class Redshift {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(description, 'description');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(parameterGroupFamily, 'parameterGroupFamily');
-    _s.validateStringLength(
-      'parameterGroupFamily',
-      parameterGroupFamily,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(parameterGroupName, 'parameterGroupName');
-    _s.validateStringLength(
-      'parameterGroupName',
-      parameterGroupName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['Description'] = description;
     $request['ParameterGroupFamily'] = parameterGroupFamily;
@@ -1569,21 +1263,7 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         clusterSecurityGroupName, 'clusterSecurityGroupName');
-    _s.validateStringLength(
-      'clusterSecurityGroupName',
-      clusterSecurityGroupName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(description, 'description');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterSecurityGroupName'] = clusterSecurityGroupName;
     $request['Description'] = description;
@@ -1661,21 +1341,7 @@ class Redshift {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(snapshotIdentifier, 'snapshotIdentifier');
-    _s.validateStringLength(
-      'snapshotIdentifier',
-      snapshotIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     $request['SnapshotIdentifier'] = snapshotIdentifier;
@@ -1751,21 +1417,7 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         clusterSubnetGroupName, 'clusterSubnetGroupName');
-    _s.validateStringLength(
-      'clusterSubnetGroupName',
-      clusterSubnetGroupName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(description, 'description');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subnetIds, 'subnetIds');
     final $request = <String, dynamic>{};
     $request['ClusterSubnetGroupName'] = clusterSubnetGroupName;
@@ -1828,33 +1480,7 @@ class Redshift {
     List<String>? vpcSecurityGroupIds,
   }) async {
     ArgumentError.checkNotNull(endpointName, 'endpointName');
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subnetGroupName, 'subnetGroupName');
-    _s.validateStringLength(
-      'subnetGroupName',
-      subnetGroupName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'resourceOwner',
-      resourceOwner,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['EndpointName'] = endpointName;
     $request['SubnetGroupName'] = subnetGroupName;
@@ -1988,33 +1614,7 @@ class Redshift {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(snsTopicArn, 'snsTopicArn');
-    _s.validateStringLength(
-      'snsTopicArn',
-      snsTopicArn,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subscriptionName, 'subscriptionName');
-    _s.validateStringLength(
-      'subscriptionName',
-      subscriptionName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'severity',
-      severity,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'sourceType',
-      sourceType,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['SnsTopicArn'] = snsTopicArn;
     $request['SubscriptionName'] = subscriptionName;
@@ -2069,13 +1669,6 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         hsmClientCertificateIdentifier, 'hsmClientCertificateIdentifier');
-    _s.validateStringLength(
-      'hsmClientCertificateIdentifier',
-      hsmClientCertificateIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['HsmClientCertificateIdentifier'] = hsmClientCertificateIdentifier;
     tags?.also((arg) => $request['Tags'] = arg);
@@ -2143,55 +1736,13 @@ class Redshift {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(description, 'description');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         hsmConfigurationIdentifier, 'hsmConfigurationIdentifier');
-    _s.validateStringLength(
-      'hsmConfigurationIdentifier',
-      hsmConfigurationIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(hsmIpAddress, 'hsmIpAddress');
-    _s.validateStringLength(
-      'hsmIpAddress',
-      hsmIpAddress,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(hsmPartitionName, 'hsmPartitionName');
-    _s.validateStringLength(
-      'hsmPartitionName',
-      hsmPartitionName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(hsmPartitionPassword, 'hsmPartitionPassword');
-    _s.validateStringLength(
-      'hsmPartitionPassword',
-      hsmPartitionPassword,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         hsmServerPublicCertificate, 'hsmServerPublicCertificate');
-    _s.validateStringLength(
-      'hsmServerPublicCertificate',
-      hsmServerPublicCertificate,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['Description'] = description;
     $request['HsmConfigurationIdentifier'] = hsmConfigurationIdentifier;
@@ -2271,36 +1822,9 @@ class Redshift {
     DateTime? startTime,
   }) async {
     ArgumentError.checkNotNull(iamRole, 'iamRole');
-    _s.validateStringLength(
-      'iamRole',
-      iamRole,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(schedule, 'schedule');
-    _s.validateStringLength(
-      'schedule',
-      schedule,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scheduledActionName, 'scheduledActionName');
-    _s.validateStringLength(
-      'scheduledActionName',
-      scheduledActionName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targetAction, 'targetAction');
-    _s.validateStringLength(
-      'scheduledActionDescription',
-      scheduledActionDescription,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['IamRole'] = iamRole;
     $request['Schedule'] = schedule;
@@ -2378,19 +1902,6 @@ class Redshift {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(snapshotCopyGrantName, 'snapshotCopyGrantName');
-    _s.validateStringLength(
-      'snapshotCopyGrantName',
-      snapshotCopyGrantName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['SnapshotCopyGrantName'] = snapshotCopyGrantName;
     kmsKeyId?.also((arg) => $request['KmsKeyId'] = arg);
@@ -2446,18 +1957,6 @@ class Redshift {
     String? scheduleIdentifier,
     List<Tag>? tags,
   }) async {
-    _s.validateStringLength(
-      'scheduleDescription',
-      scheduleDescription,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'scheduleIdentifier',
-      scheduleIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     dryRun?.also((arg) => $request['DryRun'] = arg);
     nextInvocations?.also((arg) => $request['NextInvocations'] = arg);
@@ -2509,13 +2008,6 @@ class Redshift {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceName, 'resourceName');
-    _s.validateStringLength(
-      'resourceName',
-      resourceName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $request = <String, dynamic>{};
     $request['ResourceName'] = resourceName;
@@ -2584,13 +2076,6 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(amount, 'amount');
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(featureType, 'featureType');
     ArgumentError.checkNotNull(limitType, 'limitType');
     final $request = <String, dynamic>{};
@@ -2633,21 +2118,7 @@ class Redshift {
     required String dataShareArn,
   }) async {
     ArgumentError.checkNotNull(consumerIdentifier, 'consumerIdentifier');
-    _s.validateStringLength(
-      'consumerIdentifier',
-      consumerIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataShareArn, 'dataShareArn');
-    _s.validateStringLength(
-      'dataShareArn',
-      dataShareArn,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ConsumerIdentifier'] = consumerIdentifier;
     $request['DataShareArn'] = dataShareArn;
@@ -2677,13 +2148,6 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         authenticationProfileName, 'authenticationProfileName');
-    _s.validateStringLength(
-      'authenticationProfileName',
-      authenticationProfileName,
-      0,
-      63,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AuthenticationProfileName'] = authenticationProfileName;
     final $result = await _protocol.send(
@@ -2793,19 +2257,6 @@ class Redshift {
     bool? skipFinalClusterSnapshot,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'finalClusterSnapshotIdentifier',
-      finalClusterSnapshotIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     finalClusterSnapshotIdentifier
@@ -2853,13 +2304,6 @@ class Redshift {
     required String parameterGroupName,
   }) async {
     ArgumentError.checkNotNull(parameterGroupName, 'parameterGroupName');
-    _s.validateStringLength(
-      'parameterGroupName',
-      parameterGroupName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ParameterGroupName'] = parameterGroupName;
     await _protocol.send(
@@ -2894,13 +2338,6 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         clusterSecurityGroupName, 'clusterSecurityGroupName');
-    _s.validateStringLength(
-      'clusterSecurityGroupName',
-      clusterSecurityGroupName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterSecurityGroupName'] = clusterSecurityGroupName;
     await _protocol.send(
@@ -2947,19 +2384,6 @@ class Redshift {
     String? snapshotClusterIdentifier,
   }) async {
     ArgumentError.checkNotNull(snapshotIdentifier, 'snapshotIdentifier');
-    _s.validateStringLength(
-      'snapshotIdentifier',
-      snapshotIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'snapshotClusterIdentifier',
-      snapshotClusterIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['SnapshotIdentifier'] = snapshotIdentifier;
     snapshotClusterIdentifier
@@ -2991,13 +2415,6 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         clusterSubnetGroupName, 'clusterSubnetGroupName');
-    _s.validateStringLength(
-      'clusterSubnetGroupName',
-      clusterSubnetGroupName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterSubnetGroupName'] = clusterSubnetGroupName;
     await _protocol.send(
@@ -3026,13 +2443,6 @@ class Redshift {
     required String endpointName,
   }) async {
     ArgumentError.checkNotNull(endpointName, 'endpointName');
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['EndpointName'] = endpointName;
     final $result = await _protocol.send(
@@ -3061,13 +2471,6 @@ class Redshift {
     required String subscriptionName,
   }) async {
     ArgumentError.checkNotNull(subscriptionName, 'subscriptionName');
-    _s.validateStringLength(
-      'subscriptionName',
-      subscriptionName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['SubscriptionName'] = subscriptionName;
     await _protocol.send(
@@ -3094,13 +2497,6 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         hsmClientCertificateIdentifier, 'hsmClientCertificateIdentifier');
-    _s.validateStringLength(
-      'hsmClientCertificateIdentifier',
-      hsmClientCertificateIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['HsmClientCertificateIdentifier'] = hsmClientCertificateIdentifier;
     await _protocol.send(
@@ -3127,13 +2523,6 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         hsmConfigurationIdentifier, 'hsmConfigurationIdentifier');
-    _s.validateStringLength(
-      'hsmConfigurationIdentifier',
-      hsmConfigurationIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['HsmConfigurationIdentifier'] = hsmConfigurationIdentifier;
     await _protocol.send(
@@ -3173,37 +2562,9 @@ class Redshift {
     required String partnerName,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringLength(
-      'accountId',
-      accountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      0,
-      127,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partnerName, 'partnerName');
-    _s.validateStringLength(
-      'partnerName',
-      partnerName,
-      0,
-      255,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AccountId'] = accountId;
     $request['ClusterIdentifier'] = clusterIdentifier;
@@ -3234,13 +2595,6 @@ class Redshift {
     required String scheduledActionName,
   }) async {
     ArgumentError.checkNotNull(scheduledActionName, 'scheduledActionName');
-    _s.validateStringLength(
-      'scheduledActionName',
-      scheduledActionName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ScheduledActionName'] = scheduledActionName;
     await _protocol.send(
@@ -3266,13 +2620,6 @@ class Redshift {
     required String snapshotCopyGrantName,
   }) async {
     ArgumentError.checkNotNull(snapshotCopyGrantName, 'snapshotCopyGrantName');
-    _s.validateStringLength(
-      'snapshotCopyGrantName',
-      snapshotCopyGrantName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['SnapshotCopyGrantName'] = snapshotCopyGrantName;
     await _protocol.send(
@@ -3298,13 +2645,6 @@ class Redshift {
     required String scheduleIdentifier,
   }) async {
     ArgumentError.checkNotNull(scheduleIdentifier, 'scheduleIdentifier');
-    _s.validateStringLength(
-      'scheduleIdentifier',
-      scheduleIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ScheduleIdentifier'] = scheduleIdentifier;
     await _protocol.send(
@@ -3337,13 +2677,6 @@ class Redshift {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceName, 'resourceName');
-    _s.validateStringLength(
-      'resourceName',
-      resourceName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $request = <String, dynamic>{};
     $request['ResourceName'] = resourceName;
@@ -3371,13 +2704,6 @@ class Redshift {
     required String usageLimitId,
   }) async {
     ArgumentError.checkNotNull(usageLimitId, 'usageLimitId');
-    _s.validateStringLength(
-      'usageLimitId',
-      usageLimitId,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['UsageLimitId'] = usageLimitId;
     await _protocol.send(
@@ -3426,12 +2752,6 @@ class Redshift {
   Future<DescribeAuthenticationProfilesResult> describeAuthenticationProfiles({
     String? authenticationProfileName,
   }) async {
-    _s.validateStringLength(
-      'authenticationProfileName',
-      authenticationProfileName,
-      0,
-      63,
-    );
     final $request = <String, dynamic>{};
     authenticationProfileName
         ?.also((arg) => $request['AuthenticationProfileName'] = arg);
@@ -3487,18 +2807,6 @@ class Redshift {
     String? marker,
     int? maxRecords,
   }) async {
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
     marker?.also((arg) => $request['Marker'] = arg);
@@ -3591,18 +2899,6 @@ class Redshift {
     List<String>? tagKeys,
     List<String>? tagValues,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'parameterGroupName',
-      parameterGroupName,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     marker?.also((arg) => $request['Marker'] = arg);
     maxRecords?.also((arg) => $request['MaxRecords'] = arg);
@@ -3679,25 +2975,6 @@ class Redshift {
     String? source,
   }) async {
     ArgumentError.checkNotNull(parameterGroupName, 'parameterGroupName');
-    _s.validateStringLength(
-      'parameterGroupName',
-      parameterGroupName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'source',
-      source,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ParameterGroupName'] = parameterGroupName;
     marker?.also((arg) => $request['Marker'] = arg);
@@ -3794,18 +3071,6 @@ class Redshift {
     List<String>? tagKeys,
     List<String>? tagValues,
   }) async {
-    _s.validateStringLength(
-      'clusterSecurityGroupName',
-      clusterSecurityGroupName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     clusterSecurityGroupName
         ?.also((arg) => $request['ClusterSecurityGroupName'] = arg);
@@ -3965,36 +3230,6 @@ class Redshift {
     List<String>? tagKeys,
     List<String>? tagValues,
   }) async {
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'ownerAccount',
-      ownerAccount,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'snapshotIdentifier',
-      snapshotIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'snapshotType',
-      snapshotType,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     clusterExists?.also((arg) => $request['ClusterExists'] = arg);
     clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
@@ -4088,18 +3323,6 @@ class Redshift {
     List<String>? tagKeys,
     List<String>? tagValues,
   }) async {
-    _s.validateStringLength(
-      'clusterSubnetGroupName',
-      clusterSubnetGroupName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     clusterSubnetGroupName
         ?.also((arg) => $request['ClusterSubnetGroupName'] = arg);
@@ -4145,18 +3368,6 @@ class Redshift {
     String? marker,
     int? maxRecords,
   }) async {
-    _s.validateStringLength(
-      'maintenanceTrackName',
-      maintenanceTrackName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     maintenanceTrackName?.also((arg) => $request['MaintenanceTrackName'] = arg);
     marker?.also((arg) => $request['Marker'] = arg);
@@ -4231,24 +3442,6 @@ class Redshift {
     String? marker,
     int? maxRecords,
   }) async {
-    _s.validateStringLength(
-      'clusterParameterGroupFamily',
-      clusterParameterGroupFamily,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'clusterVersion',
-      clusterVersion,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     clusterParameterGroupFamily
         ?.also((arg) => $request['ClusterParameterGroupFamily'] = arg);
@@ -4342,18 +3535,6 @@ class Redshift {
     List<String>? tagKeys,
     List<String>? tagValues,
   }) async {
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
     marker?.also((arg) => $request['Marker'] = arg);
@@ -4401,18 +3582,6 @@ class Redshift {
     String? marker,
     int? maxRecords,
   }) async {
-    _s.validateStringLength(
-      'dataShareArn',
-      dataShareArn,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     dataShareArn?.also((arg) => $request['DataShareArn'] = arg);
     marker?.also((arg) => $request['Marker'] = arg);
@@ -4466,18 +3635,6 @@ class Redshift {
     int? maxRecords,
     DataShareStatusForConsumer? status,
   }) async {
-    _s.validateStringLength(
-      'consumerArn',
-      consumerArn,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     consumerArn?.also((arg) => $request['ConsumerArn'] = arg);
     marker?.also((arg) => $request['Marker'] = arg);
@@ -4532,18 +3689,6 @@ class Redshift {
     String? producerArn,
     DataShareStatusForProducer? status,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'producerArn',
-      producerArn,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     marker?.also((arg) => $request['Marker'] = arg);
     maxRecords?.also((arg) => $request['MaxRecords'] = arg);
@@ -4600,19 +3745,6 @@ class Redshift {
     int? maxRecords,
   }) async {
     ArgumentError.checkNotNull(parameterGroupFamily, 'parameterGroupFamily');
-    _s.validateStringLength(
-      'parameterGroupFamily',
-      parameterGroupFamily,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ParameterGroupFamily'] = parameterGroupFamily;
     marker?.also((arg) => $request['Marker'] = arg);
@@ -4668,36 +3800,6 @@ class Redshift {
     String? resourceOwner,
     String? vpcId,
   }) async {
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'resourceOwner',
-      resourceOwner,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'vpcId',
-      vpcId,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
     endpointName?.also((arg) => $request['EndpointName'] = arg);
@@ -4756,24 +3858,6 @@ class Redshift {
     String? marker,
     int? maxRecords,
   }) async {
-    _s.validateStringLength(
-      'account',
-      account,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     account?.also((arg) => $request['Account'] = arg);
     clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
@@ -4809,12 +3893,6 @@ class Redshift {
   Future<EventCategoriesMessage> describeEventCategories({
     String? sourceType,
   }) async {
-    _s.validateStringLength(
-      'sourceType',
-      sourceType,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     sourceType?.also((arg) => $request['SourceType'] = arg);
     final $result = await _protocol.send(
@@ -4896,18 +3974,6 @@ class Redshift {
     List<String>? tagKeys,
     List<String>? tagValues,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'subscriptionName',
-      subscriptionName,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     marker?.also((arg) => $request['Marker'] = arg);
     maxRecords?.also((arg) => $request['MaxRecords'] = arg);
@@ -5040,18 +4106,6 @@ class Redshift {
     SourceType? sourceType,
     DateTime? startTime,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'sourceIdentifier',
-      sourceIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     duration?.also((arg) => $request['Duration'] = arg);
     endTime?.also((arg) => $request['EndTime'] = _s.iso8601ToJson(arg));
@@ -5141,18 +4195,6 @@ class Redshift {
     List<String>? tagKeys,
     List<String>? tagValues,
   }) async {
-    _s.validateStringLength(
-      'hsmClientCertificateIdentifier',
-      hsmClientCertificateIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     hsmClientCertificateIdentifier
         ?.also((arg) => $request['HsmClientCertificateIdentifier'] = arg);
@@ -5241,18 +4283,6 @@ class Redshift {
     List<String>? tagKeys,
     List<String>? tagValues,
   }) async {
-    _s.validateStringLength(
-      'hsmConfigurationIdentifier',
-      hsmConfigurationIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     hsmConfigurationIdentifier
         ?.also((arg) => $request['HsmConfigurationIdentifier'] = arg);
@@ -5287,13 +4317,6 @@ class Redshift {
     required String clusterIdentifier,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     final $result = await _protocol.send(
@@ -5371,30 +4394,6 @@ class Redshift {
     String? snapshotIdentifier,
   }) async {
     ArgumentError.checkNotNull(actionType, 'actionType');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'ownerAccount',
-      ownerAccount,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'snapshotIdentifier',
-      snapshotIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ActionType'] = actionType.toValue();
     clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
@@ -5467,24 +4466,6 @@ class Redshift {
     int? maxRecords,
     String? nodeType,
   }) async {
-    _s.validateStringLength(
-      'clusterVersion',
-      clusterVersion,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'nodeType',
-      nodeType,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     clusterVersion?.also((arg) => $request['ClusterVersion'] = arg);
     marker?.also((arg) => $request['Marker'] = arg);
@@ -5531,33 +4512,7 @@ class Redshift {
     String? partnerName,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringLength(
-      'accountId',
-      accountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      63,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      0,
-      127,
-    );
-    _s.validateStringLength(
-      'partnerName',
-      partnerName,
-      0,
-      255,
-    );
     final $request = <String, dynamic>{};
     $request['AccountId'] = accountId;
     $request['ClusterIdentifier'] = clusterIdentifier;
@@ -5613,24 +4568,6 @@ class Redshift {
     String? reservedNodeExchangeRequestId,
     String? reservedNodeId,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'reservedNodeExchangeRequestId',
-      reservedNodeExchangeRequestId,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'reservedNodeId',
-      reservedNodeId,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     marker?.also((arg) => $request['Marker'] = arg);
     maxRecords?.also((arg) => $request['MaxRecords'] = arg);
@@ -5694,18 +4631,6 @@ class Redshift {
     int? maxRecords,
     String? reservedNodeOfferingId,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'reservedNodeOfferingId',
-      reservedNodeOfferingId,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     marker?.also((arg) => $request['Marker'] = arg);
     maxRecords?.also((arg) => $request['MaxRecords'] = arg);
@@ -5757,18 +4682,6 @@ class Redshift {
     int? maxRecords,
     String? reservedNodeId,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'reservedNodeId',
-      reservedNodeId,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     marker?.also((arg) => $request['Marker'] = arg);
     maxRecords?.also((arg) => $request['MaxRecords'] = arg);
@@ -5809,13 +4722,6 @@ class Redshift {
     required String clusterIdentifier,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     final $result = await _protocol.send(
@@ -5887,18 +4793,6 @@ class Redshift {
     DateTime? startTime,
     ScheduledActionTypeValues? targetActionType,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'scheduledActionName',
-      scheduledActionName,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     active?.also((arg) => $request['Active'] = arg);
     endTime?.also((arg) => $request['EndTime'] = _s.iso8601ToJson(arg));
@@ -5983,18 +4877,6 @@ class Redshift {
     List<String>? tagKeys,
     List<String>? tagValues,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'snapshotCopyGrantName',
-      snapshotCopyGrantName,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     marker?.also((arg) => $request['Marker'] = arg);
     maxRecords?.also((arg) => $request['MaxRecords'] = arg);
@@ -6054,24 +4936,6 @@ class Redshift {
     List<String>? tagKeys,
     List<String>? tagValues,
   }) async {
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'scheduleIdentifier',
-      scheduleIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
     marker?.also((arg) => $request['Marker'] = arg);
@@ -6146,24 +5010,6 @@ class Redshift {
     int? maxRecords,
     String? tableRestoreRequestId,
   }) async {
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'tableRestoreRequestId',
-      tableRestoreRequestId,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
     marker?.also((arg) => $request['Marker'] = arg);
@@ -6305,24 +5151,6 @@ class Redshift {
     List<String>? tagKeys,
     List<String>? tagValues,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'resourceName',
-      resourceName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'resourceType',
-      resourceType,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     marker?.also((arg) => $request['Marker'] = arg);
     maxRecords?.also((arg) => $request['MaxRecords'] = arg);
@@ -6425,24 +5253,6 @@ class Redshift {
     List<String>? tagValues,
     String? usageLimitId,
   }) async {
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'usageLimitId',
-      usageLimitId,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
     featureType?.also((arg) => $request['FeatureType'] = arg.toValue());
@@ -6479,13 +5289,6 @@ class Redshift {
     required String clusterIdentifier,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     final $result = await _protocol.send(
@@ -6525,13 +5328,6 @@ class Redshift {
     required String clusterIdentifier,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     final $result = await _protocol.send(
@@ -6569,19 +5365,6 @@ class Redshift {
     bool? disassociateEntireAccount,
   }) async {
     ArgumentError.checkNotNull(dataShareArn, 'dataShareArn');
-    _s.validateStringLength(
-      'dataShareArn',
-      dataShareArn,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'consumerArn',
-      consumerArn,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['DataShareArn'] = dataShareArn;
     consumerArn?.also((arg) => $request['ConsumerArn'] = arg);
@@ -6668,27 +5451,7 @@ class Redshift {
     String? s3KeyPrefix,
   }) async {
     ArgumentError.checkNotNull(bucketName, 'bucketName');
-    _s.validateStringLength(
-      'bucketName',
-      bucketName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      's3KeyPrefix',
-      s3KeyPrefix,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['BucketName'] = bucketName;
     $request['ClusterIdentifier'] = clusterIdentifier;
@@ -6764,27 +5527,7 @@ class Redshift {
     String? snapshotCopyGrantName,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(destinationRegion, 'destinationRegion');
-    _s.validateStringLength(
-      'destinationRegion',
-      destinationRegion,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'snapshotCopyGrantName',
-      snapshotCopyGrantName,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     $request['DestinationRegion'] = destinationRegion;
@@ -6962,27 +5705,7 @@ class Redshift {
     int? durationSeconds,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dbUser, 'dbUser');
-    _s.validateStringLength(
-      'dbUser',
-      dbUser,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'dbName',
-      dbName,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     $request['DbUser'] = dbUser;
@@ -7054,24 +5777,6 @@ class Redshift {
     String? snapshotIdentifier,
   }) async {
     ArgumentError.checkNotNull(actionType, 'actionType');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'snapshotIdentifier',
-      snapshotIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ActionType'] = actionType.toValue();
     clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
@@ -7121,19 +5826,6 @@ class Redshift {
     int? maxRecords,
   }) async {
     ArgumentError.checkNotNull(reservedNodeId, 'reservedNodeId');
-    _s.validateStringLength(
-      'reservedNodeId',
-      reservedNodeId,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ReservedNodeId'] = reservedNodeId;
     marker?.also((arg) => $request['Marker'] = arg);
@@ -7182,13 +5874,6 @@ class Redshift {
     AquaConfigurationStatus? aquaConfigurationStatus,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     aquaConfigurationStatus
@@ -7225,22 +5910,8 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         authenticationProfileContent, 'authenticationProfileContent');
-    _s.validateStringLength(
-      'authenticationProfileContent',
-      authenticationProfileContent,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         authenticationProfileName, 'authenticationProfileName');
-    _s.validateStringLength(
-      'authenticationProfileName',
-      authenticationProfileName,
-      0,
-      63,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AuthenticationProfileContent'] = authenticationProfileContent;
     $request['AuthenticationProfileName'] = authenticationProfileName;
@@ -7587,91 +6258,6 @@ class Redshift {
     List<String>? vpcSecurityGroupIds,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'availabilityZone',
-      availabilityZone,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'clusterParameterGroupName',
-      clusterParameterGroupName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'clusterType',
-      clusterType,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'clusterVersion',
-      clusterVersion,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'elasticIp',
-      elasticIp,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'hsmClientCertificateIdentifier',
-      hsmClientCertificateIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'hsmConfigurationIdentifier',
-      hsmConfigurationIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'maintenanceTrackName',
-      maintenanceTrackName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'masterUserPassword',
-      masterUserPassword,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'newClusterIdentifier',
-      newClusterIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'nodeType',
-      nodeType,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'preferredMaintenanceWindow',
-      preferredMaintenanceWindow,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     allowVersionUpgrade?.also((arg) => $request['AllowVersionUpgrade'] = arg);
@@ -7741,21 +6327,7 @@ class Redshift {
     required String revisionTarget,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(revisionTarget, 'revisionTarget');
-    _s.validateStringLength(
-      'revisionTarget',
-      revisionTarget,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     $request['RevisionTarget'] = revisionTarget;
@@ -7805,19 +6377,6 @@ class Redshift {
     List<String>? removeIamRoles,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'defaultIamRoleArn',
-      defaultIamRoleArn,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     addIamRoles?.also((arg) => $request['AddIamRoles'] = arg);
@@ -7871,19 +6430,6 @@ class Redshift {
     DateTime? deferMaintenanceStartTime,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'deferMaintenanceIdentifier',
-      deferMaintenanceIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     deferMaintenance?.also((arg) => $request['DeferMaintenance'] = arg);
@@ -7938,13 +6484,6 @@ class Redshift {
     required List<Parameter> parameters,
   }) async {
     ArgumentError.checkNotNull(parameterGroupName, 'parameterGroupName');
-    _s.validateStringLength(
-      'parameterGroupName',
-      parameterGroupName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(parameters, 'parameters');
     final $request = <String, dynamic>{};
     $request['ParameterGroupName'] = parameterGroupName;
@@ -7993,13 +6532,6 @@ class Redshift {
     int? manualSnapshotRetentionPeriod,
   }) async {
     ArgumentError.checkNotNull(snapshotIdentifier, 'snapshotIdentifier');
-    _s.validateStringLength(
-      'snapshotIdentifier',
-      snapshotIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['SnapshotIdentifier'] = snapshotIdentifier;
     force?.also((arg) => $request['Force'] = arg);
@@ -8042,19 +6574,6 @@ class Redshift {
     String? scheduleIdentifier,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'scheduleIdentifier',
-      scheduleIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     disassociateSchedule?.also((arg) => $request['DisassociateSchedule'] = arg);
@@ -8098,20 +6617,7 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         clusterSubnetGroupName, 'clusterSubnetGroupName');
-    _s.validateStringLength(
-      'clusterSubnetGroupName',
-      clusterSubnetGroupName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subnetIds, 'subnetIds');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterSubnetGroupName'] = clusterSubnetGroupName;
     $request['SubnetIds'] = subnetIds;
@@ -8150,13 +6656,6 @@ class Redshift {
     List<String>? vpcSecurityGroupIds,
   }) async {
     ArgumentError.checkNotNull(endpointName, 'endpointName');
-    _s.validateStringLength(
-      'endpointName',
-      endpointName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['EndpointName'] = endpointName;
     vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
@@ -8239,31 +6738,6 @@ class Redshift {
     String? sourceType,
   }) async {
     ArgumentError.checkNotNull(subscriptionName, 'subscriptionName');
-    _s.validateStringLength(
-      'subscriptionName',
-      subscriptionName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'severity',
-      severity,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'snsTopicArn',
-      snsTopicArn,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'sourceType',
-      sourceType,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['SubscriptionName'] = subscriptionName;
     enabled?.also((arg) => $request['Enabled'] = arg);
@@ -8335,31 +6809,6 @@ class Redshift {
     ScheduledActionType? targetAction,
   }) async {
     ArgumentError.checkNotNull(scheduledActionName, 'scheduledActionName');
-    _s.validateStringLength(
-      'scheduledActionName',
-      scheduledActionName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'iamRole',
-      iamRole,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'schedule',
-      schedule,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'scheduledActionDescription',
-      scheduledActionDescription,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ScheduledActionName'] = scheduledActionName;
     enable?.also((arg) => $request['Enable'] = arg);
@@ -8443,13 +6892,6 @@ class Redshift {
     bool? manual,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(retentionPeriod, 'retentionPeriod');
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
@@ -8488,13 +6930,6 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(scheduleDefinitions, 'scheduleDefinitions');
     ArgumentError.checkNotNull(scheduleIdentifier, 'scheduleIdentifier');
-    _s.validateStringLength(
-      'scheduleIdentifier',
-      scheduleIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ScheduleDefinitions'] = scheduleDefinitions;
     $request['ScheduleIdentifier'] = scheduleIdentifier;
@@ -8535,13 +6970,6 @@ class Redshift {
     UsageLimitBreachAction? breachAction,
   }) async {
     ArgumentError.checkNotNull(usageLimitId, 'usageLimitId');
-    _s.validateStringLength(
-      'usageLimitId',
-      usageLimitId,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['UsageLimitId'] = usageLimitId;
     amount?.also((arg) => $request['Amount'] = arg);
@@ -8571,13 +6999,6 @@ class Redshift {
     required String clusterIdentifier,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     final $result = await _protocol.send(
@@ -8623,13 +7044,6 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         reservedNodeOfferingId, 'reservedNodeOfferingId');
-    _s.validateStringLength(
-      'reservedNodeOfferingId',
-      reservedNodeOfferingId,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ReservedNodeOfferingId'] = reservedNodeOfferingId;
     nodeCount?.also((arg) => $request['NodeCount'] = arg);
@@ -8666,13 +7080,6 @@ class Redshift {
     required String clusterIdentifier,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     final $result = await _protocol.send(
@@ -8699,13 +7106,6 @@ class Redshift {
     required String dataShareArn,
   }) async {
     ArgumentError.checkNotNull(dataShareArn, 'dataShareArn');
-    _s.validateStringLength(
-      'dataShareArn',
-      dataShareArn,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DataShareArn'] = dataShareArn;
     final $result = await _protocol.send(
@@ -8751,13 +7151,6 @@ class Redshift {
     bool? resetAllParameters,
   }) async {
     ArgumentError.checkNotNull(parameterGroupName, 'parameterGroupName');
-    _s.validateStringLength(
-      'parameterGroupName',
-      parameterGroupName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ParameterGroupName'] = parameterGroupName;
     parameters?.also((arg) => $request['Parameters'] = arg);
@@ -8872,37 +7265,6 @@ class Redshift {
     String? targetReservedNodeOfferingId,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clusterType',
-      clusterType,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'nodeType',
-      nodeType,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'reservedNodeId',
-      reservedNodeId,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'targetReservedNodeOfferingId',
-      targetReservedNodeOfferingId,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     classic?.also((arg) => $request['Classic'] = arg);
@@ -9256,123 +7618,7 @@ class Redshift {
     List<String>? vpcSecurityGroupIds,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(snapshotIdentifier, 'snapshotIdentifier');
-    _s.validateStringLength(
-      'snapshotIdentifier',
-      snapshotIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'additionalInfo',
-      additionalInfo,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'availabilityZone',
-      availabilityZone,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'clusterParameterGroupName',
-      clusterParameterGroupName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'clusterSubnetGroupName',
-      clusterSubnetGroupName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'defaultIamRoleArn',
-      defaultIamRoleArn,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'elasticIp',
-      elasticIp,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'hsmClientCertificateIdentifier',
-      hsmClientCertificateIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'hsmConfigurationIdentifier',
-      hsmConfigurationIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'maintenanceTrackName',
-      maintenanceTrackName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'nodeType',
-      nodeType,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'ownerAccount',
-      ownerAccount,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'preferredMaintenanceWindow',
-      preferredMaintenanceWindow,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'reservedNodeId',
-      reservedNodeId,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'snapshotClusterIdentifier',
-      snapshotClusterIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'snapshotScheduleIdentifier',
-      snapshotScheduleIdentifier,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'targetReservedNodeOfferingId',
-      targetReservedNodeOfferingId,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     $request['SnapshotIdentifier'] = snapshotIdentifier;
@@ -9500,63 +7746,10 @@ class Redshift {
     String? targetSchemaName,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(newTableName, 'newTableName');
-    _s.validateStringLength(
-      'newTableName',
-      newTableName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(snapshotIdentifier, 'snapshotIdentifier');
-    _s.validateStringLength(
-      'snapshotIdentifier',
-      snapshotIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceDatabaseName, 'sourceDatabaseName');
-    _s.validateStringLength(
-      'sourceDatabaseName',
-      sourceDatabaseName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceTableName, 'sourceTableName');
-    _s.validateStringLength(
-      'sourceTableName',
-      sourceTableName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'sourceSchemaName',
-      sourceSchemaName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'targetDatabaseName',
-      targetDatabaseName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'targetSchemaName',
-      targetSchemaName,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     $request['NewTableName'] = newTableName;
@@ -9594,13 +7787,6 @@ class Redshift {
     required String clusterIdentifier,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     final $result = await _protocol.send(
@@ -9662,31 +7848,6 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         clusterSecurityGroupName, 'clusterSecurityGroupName');
-    _s.validateStringLength(
-      'clusterSecurityGroupName',
-      clusterSecurityGroupName,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'cidrip',
-      cidrip,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'eC2SecurityGroupName',
-      eC2SecurityGroupName,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'eC2SecurityGroupOwnerId',
-      eC2SecurityGroupOwnerId,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterSecurityGroupName'] = clusterSecurityGroupName;
     cidrip?.also((arg) => $request['CIDRIP'] = arg);
@@ -9737,18 +7898,6 @@ class Redshift {
     bool? force,
     List<String>? vpcIds,
   }) async {
-    _s.validateStringLength(
-      'account',
-      account,
-      0,
-      2147483647,
-    );
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     account?.also((arg) => $request['Account'] = arg);
     clusterIdentifier?.also((arg) => $request['ClusterIdentifier'] = arg);
@@ -9800,27 +7949,7 @@ class Redshift {
   }) async {
     ArgumentError.checkNotNull(
         accountWithRestoreAccess, 'accountWithRestoreAccess');
-    _s.validateStringLength(
-      'accountWithRestoreAccess',
-      accountWithRestoreAccess,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(snapshotIdentifier, 'snapshotIdentifier');
-    _s.validateStringLength(
-      'snapshotIdentifier',
-      snapshotIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'snapshotClusterIdentifier',
-      snapshotClusterIdentifier,
-      0,
-      2147483647,
-    );
     final $request = <String, dynamic>{};
     $request['AccountWithRestoreAccess'] = accountWithRestoreAccess;
     $request['SnapshotIdentifier'] = snapshotIdentifier;
@@ -9856,13 +7985,6 @@ class Redshift {
     required String clusterIdentifier,
   }) async {
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      2147483647,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['ClusterIdentifier'] = clusterIdentifier;
     final $result = await _protocol.send(
@@ -9913,44 +8035,10 @@ class Redshift {
     String? statusMessage,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringLength(
-      'accountId',
-      accountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(clusterIdentifier, 'clusterIdentifier');
-    _s.validateStringLength(
-      'clusterIdentifier',
-      clusterIdentifier,
-      0,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      0,
-      127,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partnerName, 'partnerName');
-    _s.validateStringLength(
-      'partnerName',
-      partnerName,
-      0,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(status, 'status');
-    _s.validateStringLength(
-      'statusMessage',
-      statusMessage,
-      0,
-      262144,
-    );
     final $request = <String, dynamic>{};
     $request['AccountId'] = accountId;
     $request['ClusterIdentifier'] = clusterIdentifier;

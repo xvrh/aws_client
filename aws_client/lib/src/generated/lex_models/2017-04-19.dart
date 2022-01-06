@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -78,13 +79,6 @@ class LexModelBuilding {
     String? checksum,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      2,
-      50,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (checksum != null) 'checksum': checksum,
     };
@@ -136,13 +130,6 @@ class LexModelBuilding {
     String? checksum,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (checksum != null) 'checksum': checksum,
     };
@@ -195,13 +182,6 @@ class LexModelBuilding {
     String? checksum,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (checksum != null) 'checksum': checksum,
     };
@@ -248,13 +228,6 @@ class LexModelBuilding {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      2,
-      50,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -291,21 +264,7 @@ class LexModelBuilding {
     required String name,
   }) async {
     ArgumentError.checkNotNull(botName, 'botName');
-    _s.validateStringLength(
-      'botName',
-      botName,
-      2,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -342,29 +301,8 @@ class LexModelBuilding {
     required String name,
   }) async {
     ArgumentError.checkNotNull(botAlias, 'botAlias');
-    _s.validateStringLength(
-      'botAlias',
-      botAlias,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(botName, 'botName');
-    _s.validateStringLength(
-      'botName',
-      botName,
-      2,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -399,21 +337,7 @@ class LexModelBuilding {
     required String version,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      2,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(version, 'version');
-    _s.validateStringLength(
-      'version',
-      version,
-      1,
-      64,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -454,13 +378,6 @@ class LexModelBuilding {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -494,21 +411,7 @@ class LexModelBuilding {
     required String version,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(version, 'version');
-    _s.validateStringLength(
-      'version',
-      version,
-      1,
-      64,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -549,13 +452,6 @@ class LexModelBuilding {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -589,21 +485,7 @@ class LexModelBuilding {
     required String version,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(version, 'version');
-    _s.validateStringLength(
-      'version',
-      version,
-      1,
-      64,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -650,21 +532,7 @@ class LexModelBuilding {
     required String userId,
   }) async {
     ArgumentError.checkNotNull(botName, 'botName');
-    _s.validateStringLength(
-      'botName',
-      botName,
-      2,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      2,
-      100,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -695,13 +563,6 @@ class LexModelBuilding {
     required String versionOrAlias,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      2,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionOrAlias, 'versionOrAlias');
     final response = await _protocol.send(
       payload: null,
@@ -734,21 +595,7 @@ class LexModelBuilding {
     required String name,
   }) async {
     ArgumentError.checkNotNull(botName, 'botName');
-    _s.validateStringLength(
-      'botName',
-      botName,
-      2,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -792,24 +639,11 @@ class LexModelBuilding {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(botName, 'botName');
-    _s.validateStringLength(
-      'botName',
-      botName,
-      2,
-      50,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      1,
-      100,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -853,29 +687,8 @@ class LexModelBuilding {
     required String name,
   }) async {
     ArgumentError.checkNotNull(botAlias, 'botAlias');
-    _s.validateStringLength(
-      'botAlias',
-      botAlias,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(botName, 'botName');
-    _s.validateStringLength(
-      'botName',
-      botName,
-      2,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -926,32 +739,12 @@ class LexModelBuilding {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(botAlias, 'botAlias');
-    _s.validateStringLength(
-      'botAlias',
-      botAlias,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(botName, 'botName');
-    _s.validateStringLength(
-      'botName',
-      botName,
-      2,
-      50,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      1,
-      100,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1007,13 +800,6 @@ class LexModelBuilding {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      2,
-      50,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1079,12 +865,6 @@ class LexModelBuilding {
       'maxResults',
       maxResults,
       1,
-      50,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      2,
       50,
     );
     final $query = <String, List<String>>{
@@ -1271,22 +1051,8 @@ class LexModelBuilding {
   }) async {
     ArgumentError.checkNotNull(exportType, 'exportType');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
     ArgumentError.checkNotNull(version, 'version');
-    _s.validateStringLength(
-      'version',
-      version,
-      1,
-      64,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'exportType': [exportType.toValue()],
       'name': [name],
@@ -1347,21 +1113,7 @@ class LexModelBuilding {
     required String version,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(version, 'version');
-    _s.validateStringLength(
-      'version',
-      version,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1410,13 +1162,6 @@ class LexModelBuilding {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1483,12 +1228,6 @@ class LexModelBuilding {
       1,
       50,
     );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      1,
-      100,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nameContains != null) 'nameContains': [nameContains],
@@ -1520,13 +1259,6 @@ class LexModelBuilding {
     required String migrationId,
   }) async {
     ArgumentError.checkNotNull(migrationId, 'migrationId');
-    _s.validateStringLength(
-      'migrationId',
-      migrationId,
-      10,
-      10,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1579,12 +1311,6 @@ class LexModelBuilding {
       1,
       50,
     );
-    _s.validateStringLength(
-      'v1BotNameContains',
-      v1BotNameContains,
-      2,
-      50,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (migrationStatusEquals != null)
@@ -1626,21 +1352,7 @@ class LexModelBuilding {
     required String version,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(version, 'version');
-    _s.validateStringLength(
-      'version',
-      version,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1689,13 +1401,6 @@ class LexModelBuilding {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1761,12 +1466,6 @@ class LexModelBuilding {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nameContains',
-      nameContains,
-      1,
-      100,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1834,13 +1533,6 @@ class LexModelBuilding {
     required StatusType statusType,
   }) async {
     ArgumentError.checkNotNull(botName, 'botName');
-    _s.validateStringLength(
-      'botName',
-      botName,
-      2,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(botVersions, 'botVersions');
     ArgumentError.checkNotNull(statusType, 'statusType');
     final $query = <String, List<String>>{
@@ -1872,13 +1564,6 @@ class LexModelBuilding {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2199,19 +1884,6 @@ class LexModelBuilding {
     ArgumentError.checkNotNull(childDirected, 'childDirected');
     ArgumentError.checkNotNull(locale, 'locale');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      2,
-      50,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
     _s.validateNumRange(
       'idleSessionTTLInSeconds',
       idleSessionTTLInSeconds,
@@ -2311,35 +1983,8 @@ class LexModelBuilding {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(botName, 'botName');
-    _s.validateStringLength(
-      'botName',
-      botName,
-      2,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(botVersion, 'botVersion');
-    _s.validateStringLength(
-      'botVersion',
-      botVersion,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
     final $payload = <String, dynamic>{
       'botVersion': botVersion,
       if (checksum != null) 'checksum': checksum,
@@ -2598,19 +2243,6 @@ class LexModelBuilding {
     List<Slot>? slots,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
     final $payload = <String, dynamic>{
       if (checksum != null) 'checksum': checksum,
       if (conclusionStatement != null)
@@ -2755,25 +2387,6 @@ class LexModelBuilding {
     SlotValueSelectionStrategy? valueSelectionStrategy,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      200,
-    );
-    _s.validateStringLength(
-      'parentSlotTypeSignature',
-      parentSlotTypeSignature,
-      1,
-      100,
-    );
     final $payload = <String, dynamic>{
       if (checksum != null) 'checksum': checksum,
       if (createVersion != null) 'createVersion': createVersion,
@@ -2926,37 +2539,9 @@ class LexModelBuilding {
   }) async {
     ArgumentError.checkNotNull(migrationStrategy, 'migrationStrategy');
     ArgumentError.checkNotNull(v1BotName, 'v1BotName');
-    _s.validateStringLength(
-      'v1BotName',
-      v1BotName,
-      2,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(v1BotVersion, 'v1BotVersion');
-    _s.validateStringLength(
-      'v1BotVersion',
-      v1BotVersion,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(v2BotName, 'v2BotName');
-    _s.validateStringLength(
-      'v2BotName',
-      v2BotName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(v2BotRole, 'v2BotRole');
-    _s.validateStringLength(
-      'v2BotRole',
-      v2BotRole,
-      20,
-      2048,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'migrationStrategy': migrationStrategy.toValue(),
       'v1BotName': v1BotName,
@@ -2994,13 +2579,6 @@ class LexModelBuilding {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -3032,13 +2610,6 @@ class LexModelBuilding {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,

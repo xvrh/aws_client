@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -15,8 +16,8 @@ import '../../shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import '2014-10-31.meta.dart';
 
+import '2014-10-31.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// Amazon Relational Database Service (Amazon RDS) is a web service that makes
@@ -1423,57 +1424,10 @@ class Rds {
   }) async {
     ArgumentError.checkNotNull(databaseInstallationFilesS3BucketName,
         'databaseInstallationFilesS3BucketName');
-    _s.validateStringLength(
-      'databaseInstallationFilesS3BucketName',
-      databaseInstallationFilesS3BucketName,
-      3,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(engine, 'engine');
-    _s.validateStringLength(
-      'engine',
-      engine,
-      1,
-      35,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(engineVersion, 'engineVersion');
-    _s.validateStringLength(
-      'engineVersion',
-      engineVersion,
-      1,
-      60,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(kMSKeyId, 'kMSKeyId');
-    _s.validateStringLength(
-      'kMSKeyId',
-      kMSKeyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(manifest, 'manifest');
-    _s.validateStringLength(
-      'manifest',
-      manifest,
-      1,
-      51000,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'databaseInstallationFilesS3Prefix',
-      databaseInstallationFilesS3Prefix,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1000,
-    );
     final $request = <String, dynamic>{};
     $request['DatabaseInstallationFilesS3BucketName'] =
         databaseInstallationFilesS3BucketName;
@@ -4840,21 +4794,7 @@ class Rds {
     List<String>? vpcSecurityGroupIds,
   }) async {
     ArgumentError.checkNotNull(dBProxyEndpointName, 'dBProxyEndpointName');
-    _s.validateStringLength(
-      'dBProxyEndpointName',
-      dBProxyEndpointName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dBProxyName, 'dBProxyName');
-    _s.validateStringLength(
-      'dBProxyName',
-      dBProxyName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(vpcSubnetIds, 'vpcSubnetIds');
     final $request = <String, dynamic>{};
     $request['DBProxyEndpointName'] = dBProxyEndpointName;
@@ -5468,21 +5408,7 @@ class Rds {
     required String engineVersion,
   }) async {
     ArgumentError.checkNotNull(engine, 'engine');
-    _s.validateStringLength(
-      'engine',
-      engine,
-      1,
-      35,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(engineVersion, 'engineVersion');
-    _s.validateStringLength(
-      'engineVersion',
-      engineVersion,
-      1,
-      60,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['Engine'] = engine;
     $request['EngineVersion'] = engineVersion;
@@ -5980,13 +5906,6 @@ class Rds {
     required String dBProxyEndpointName,
   }) async {
     ArgumentError.checkNotNull(dBProxyEndpointName, 'dBProxyEndpointName');
-    _s.validateStringLength(
-      'dBProxyEndpointName',
-      dBProxyEndpointName,
-      1,
-      63,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['DBProxyEndpointName'] = dBProxyEndpointName;
     final $result = await _protocol.send(
@@ -7757,18 +7676,6 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    _s.validateStringLength(
-      'dBProxyEndpointName',
-      dBProxyEndpointName,
-      1,
-      63,
-    );
-    _s.validateStringLength(
-      'dBProxyName',
-      dBProxyName,
-      1,
-      63,
-    );
     _s.validateNumRange(
       'maxRecords',
       maxRecords,
@@ -9725,22 +9632,8 @@ class Rds {
   }) async {
     ArgumentError.checkNotNull(
         globalClusterIdentifier, 'globalClusterIdentifier');
-    _s.validateStringLength(
-      'globalClusterIdentifier',
-      globalClusterIdentifier,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         targetDbClusterIdentifier, 'targetDbClusterIdentifier');
-    _s.validateStringLength(
-      'targetDbClusterIdentifier',
-      targetDbClusterIdentifier,
-      1,
-      255,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['GlobalClusterIdentifier'] = globalClusterIdentifier;
     $request['TargetDbClusterIdentifier'] = targetDbClusterIdentifier;
@@ -10129,27 +10022,7 @@ class Rds {
     CustomEngineVersionStatus? status,
   }) async {
     ArgumentError.checkNotNull(engine, 'engine');
-    _s.validateStringLength(
-      'engine',
-      engine,
-      1,
-      35,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(engineVersion, 'engineVersion');
-    _s.validateStringLength(
-      'engineVersion',
-      engineVersion,
-      1,
-      60,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1000,
-    );
     final $request = <String, dynamic>{};
     $request['Engine'] = engine;
     $request['EngineVersion'] = engineVersion;
@@ -11807,12 +11680,6 @@ class Rds {
     List<String>? vpcSecurityGroupIds,
   }) async {
     ArgumentError.checkNotNull(dBInstanceIdentifier, 'dBInstanceIdentifier');
-    _s.validateStringLength(
-      'awsBackupRecoveryPointArn',
-      awsBackupRecoveryPointArn,
-      43,
-      350,
-    );
     final $request = <String, dynamic>{};
     $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
     allocatedStorage?.also((arg) => $request['AllocatedStorage'] = arg);
@@ -12080,19 +11947,6 @@ class Rds {
     List<String>? vpcSecurityGroupIds,
   }) async {
     ArgumentError.checkNotNull(dBProxyEndpointName, 'dBProxyEndpointName');
-    _s.validateStringLength(
-      'dBProxyEndpointName',
-      dBProxyEndpointName,
-      1,
-      63,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'newDBProxyEndpointName',
-      newDBProxyEndpointName,
-      1,
-      63,
-    );
     final $request = <String, dynamic>{};
     $request['DBProxyEndpointName'] = dBProxyEndpointName;
     newDBProxyEndpointName

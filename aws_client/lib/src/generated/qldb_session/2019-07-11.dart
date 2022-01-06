@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -127,12 +128,6 @@ class QldbSession {
     StartSessionRequest? startSession,
     StartTransactionRequest? startTransaction,
   }) async {
-    _s.validateStringLength(
-      'sessionToken',
-      sessionToken,
-      4,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'QLDBSession.SendCommand'

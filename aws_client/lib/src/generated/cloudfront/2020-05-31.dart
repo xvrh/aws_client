@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -475,13 +476,6 @@ class CloudFront {
     ArgumentError.checkNotNull(functionCode, 'functionCode');
     ArgumentError.checkNotNull(functionConfig, 'functionConfig');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     final $result = await _protocol.sendRaw(
       method: 'POST',
       requestUri: '/2020-05-31/function',
@@ -2334,21 +2328,7 @@ class CloudFront {
     int? maxItems,
   }) async {
     ArgumentError.checkNotNull(alias, 'alias');
-    _s.validateStringLength(
-      'alias',
-      alias,
-      0,
-      253,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(distributionId, 'distributionId');
-    _s.validateStringLength(
-      'distributionId',
-      distributionId,
-      0,
-      25,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -218,12 +219,6 @@ class DataExchange {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
-    _s.validateStringLength(
-      'comment',
-      comment,
-      0,
-      16384,
-    );
     final $payload = <String, dynamic>{
       if (comment != null) 'Comment': comment,
       if (tags != null) 'Tags': tags,
@@ -1008,12 +1003,6 @@ class DataExchange {
   }) async {
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     ArgumentError.checkNotNull(revisionId, 'revisionId');
-    _s.validateStringLength(
-      'comment',
-      comment,
-      0,
-      16384,
-    );
     final $payload = <String, dynamic>{
       if (comment != null) 'Comment': comment,
       if (finalized != null) 'Finalized': finalized,

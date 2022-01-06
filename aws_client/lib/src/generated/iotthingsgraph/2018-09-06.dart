@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -71,21 +72,7 @@ class IoTThingsGraph {
     int? namespaceVersion,
   }) async {
     ArgumentError.checkNotNull(entityId, 'entityId');
-    _s.validateStringLength(
-      'entityId',
-      entityId,
-      0,
-      160,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(thingName, 'thingName');
-    _s.validateStringLength(
-      'thingName',
-      thingName,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.AssociateEntityToThing'
@@ -213,12 +200,6 @@ class IoTThingsGraph {
   }) async {
     ArgumentError.checkNotNull(definition, 'definition');
     ArgumentError.checkNotNull(target, 'target');
-    _s.validateStringLength(
-      'flowActionsRoleArn',
-      flowActionsRoleArn,
-      20,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.CreateSystemInstance'
@@ -307,13 +288,6 @@ class IoTThingsGraph {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      160,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.DeleteFlowTemplate'
@@ -368,12 +342,6 @@ class IoTThingsGraph {
   Future<void> deleteSystemInstance({
     String? id,
   }) async {
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      160,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.DeleteSystemInstance'
@@ -410,13 +378,6 @@ class IoTThingsGraph {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      160,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.DeleteSystemTemplate'
@@ -470,12 +431,6 @@ class IoTThingsGraph {
   Future<DeploySystemInstanceResponse> deploySystemInstance({
     String? id,
   }) async {
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      160,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.DeploySystemInstance'
@@ -513,13 +468,6 @@ class IoTThingsGraph {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      160,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.DeprecateFlowTemplate'
@@ -553,13 +501,6 @@ class IoTThingsGraph {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      160,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.DeprecateSystemTemplate'
@@ -590,12 +531,6 @@ class IoTThingsGraph {
   Future<DescribeNamespaceResponse> describeNamespace({
     String? namespaceName,
   }) async {
-    _s.validateStringLength(
-      'namespaceName',
-      namespaceName,
-      0,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.DescribeNamespace'
@@ -634,13 +569,6 @@ class IoTThingsGraph {
   }) async {
     ArgumentError.checkNotNull(entityType, 'entityType');
     ArgumentError.checkNotNull(thingName, 'thingName');
-    _s.validateStringLength(
-      'thingName',
-      thingName,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.DissociateEntityFromThing'
@@ -754,13 +682,6 @@ class IoTThingsGraph {
     int? revisionNumber,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      160,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.GetFlowTemplate'
@@ -809,13 +730,6 @@ class IoTThingsGraph {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      160,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -882,13 +796,6 @@ class IoTThingsGraph {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      160,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.GetSystemInstance'
@@ -928,13 +835,6 @@ class IoTThingsGraph {
     int? revisionNumber,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      160,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.GetSystemTemplate'
@@ -983,13 +883,6 @@ class IoTThingsGraph {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      160,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1030,13 +923,6 @@ class IoTThingsGraph {
     required String uploadId,
   }) async {
     ArgumentError.checkNotNull(uploadId, 'uploadId');
-    _s.validateStringLength(
-      'uploadId',
-      uploadId,
-      1,
-      40,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.GetUploadStatus'
@@ -1126,13 +1012,6 @@ class IoTThingsGraph {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1259,13 +1138,6 @@ class IoTThingsGraph {
     DateTime? startTime,
   }) async {
     ArgumentError.checkNotNull(systemInstanceId, 'systemInstanceId');
-    _s.validateStringLength(
-      'systemInstanceId',
-      systemInstanceId,
-      0,
-      160,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1482,13 +1354,6 @@ class IoTThingsGraph {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(entityId, 'entityId');
-    _s.validateStringLength(
-      'entityId',
-      entityId,
-      0,
-      160,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1533,13 +1398,6 @@ class IoTThingsGraph {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1571,12 +1429,6 @@ class IoTThingsGraph {
   Future<UndeploySystemInstanceResponse> undeploySystemInstance({
     String? id,
   }) async {
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      160,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.UndeploySystemInstance'
@@ -1620,13 +1472,6 @@ class IoTThingsGraph {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1680,13 +1525,6 @@ class IoTThingsGraph {
   }) async {
     ArgumentError.checkNotNull(definition, 'definition');
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      160,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.UpdateFlowTemplate'
@@ -1740,13 +1578,6 @@ class IoTThingsGraph {
   }) async {
     ArgumentError.checkNotNull(definition, 'definition');
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      160,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'IotThingsGraphFrontEndService.UpdateSystemTemplate'

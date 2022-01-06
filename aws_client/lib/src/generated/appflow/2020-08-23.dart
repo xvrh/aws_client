@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -125,20 +126,7 @@ class Appflow {
     ArgumentError.checkNotNull(
         connectorProfileConfig, 'connectorProfileConfig');
     ArgumentError.checkNotNull(connectorProfileName, 'connectorProfileName');
-    _s.validateStringLength(
-      'connectorProfileName',
-      connectorProfileName,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(connectorType, 'connectorType');
-    _s.validateStringLength(
-      'kmsArn',
-      kmsArn,
-      20,
-      2048,
-    );
     final $payload = <String, dynamic>{
       'connectionMode': connectionMode.toValue(),
       'connectorProfileConfig': connectorProfileConfig,
@@ -212,28 +200,9 @@ class Appflow {
     ArgumentError.checkNotNull(
         destinationFlowConfigList, 'destinationFlowConfigList');
     ArgumentError.checkNotNull(flowName, 'flowName');
-    _s.validateStringLength(
-      'flowName',
-      flowName,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceFlowConfig, 'sourceFlowConfig');
     ArgumentError.checkNotNull(tasks, 'tasks');
     ArgumentError.checkNotNull(triggerConfig, 'triggerConfig');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'kmsArn',
-      kmsArn,
-      20,
-      2048,
-    );
     final $payload = <String, dynamic>{
       'destinationFlowConfigList': destinationFlowConfigList,
       'flowName': flowName,
@@ -271,13 +240,6 @@ class Appflow {
     bool? forceDelete,
   }) async {
     ArgumentError.checkNotNull(connectorProfileName, 'connectorProfileName');
-    _s.validateStringLength(
-      'connectorProfileName',
-      connectorProfileName,
-      0,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'connectorProfileName': connectorProfileName,
       if (forceDelete != null) 'forceDelete': forceDelete,
@@ -310,13 +272,6 @@ class Appflow {
     bool? forceDelete,
   }) async {
     ArgumentError.checkNotNull(flowName, 'flowName');
-    _s.validateStringLength(
-      'flowName',
-      flowName,
-      0,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'flowName': flowName,
       if (forceDelete != null) 'forceDelete': forceDelete,
@@ -354,19 +309,6 @@ class Appflow {
     ConnectorType? connectorType,
   }) async {
     ArgumentError.checkNotNull(connectorEntityName, 'connectorEntityName');
-    _s.validateStringLength(
-      'connectorEntityName',
-      connectorEntityName,
-      0,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'connectorProfileName',
-      connectorProfileName,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'connectorEntityName': connectorEntityName,
       if (connectorProfileName != null)
@@ -420,12 +362,6 @@ class Appflow {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
     final $payload = <String, dynamic>{
       if (connectorProfileNames != null)
         'connectorProfileNames': connectorProfileNames,
@@ -461,12 +397,6 @@ class Appflow {
     List<ConnectorType>? connectorTypes,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
     final $payload = <String, dynamic>{
       if (connectorTypes != null)
         'connectorTypes': connectorTypes.map((e) => e.toValue()).toList(),
@@ -493,13 +423,6 @@ class Appflow {
     required String flowName,
   }) async {
     ArgumentError.checkNotNull(flowName, 'flowName');
-    _s.validateStringLength(
-      'flowName',
-      flowName,
-      0,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'flowName': flowName,
     };
@@ -535,24 +458,11 @@ class Appflow {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(flowName, 'flowName');
-    _s.validateStringLength(
-      'flowName',
-      flowName,
-      0,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $payload = <String, dynamic>{
       'flowName': flowName,
@@ -599,18 +509,6 @@ class Appflow {
     ConnectorType? connectorType,
     String? entitiesPath,
   }) async {
-    _s.validateStringLength(
-      'connectorProfileName',
-      connectorProfileName,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'entitiesPath',
-      entitiesPath,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (connectorProfileName != null)
         'connectorProfileName': connectorProfileName,
@@ -647,12 +545,6 @@ class Appflow {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'maxResults': maxResults,
       if (nextToken != null) 'nextToken': nextToken,
@@ -678,13 +570,6 @@ class Appflow {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      512,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -710,13 +595,6 @@ class Appflow {
     required String flowName,
   }) async {
     ArgumentError.checkNotNull(flowName, 'flowName');
-    _s.validateStringLength(
-      'flowName',
-      flowName,
-      0,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'flowName': flowName,
     };
@@ -745,13 +623,6 @@ class Appflow {
     required String flowName,
   }) async {
     ArgumentError.checkNotNull(flowName, 'flowName');
-    _s.validateStringLength(
-      'flowName',
-      flowName,
-      0,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'flowName': flowName,
     };
@@ -780,13 +651,6 @@ class Appflow {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      512,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -816,13 +680,6 @@ class Appflow {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      512,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -862,13 +719,6 @@ class Appflow {
     ArgumentError.checkNotNull(
         connectorProfileConfig, 'connectorProfileConfig');
     ArgumentError.checkNotNull(connectorProfileName, 'connectorProfileName');
-    _s.validateStringLength(
-      'connectorProfileName',
-      connectorProfileName,
-      0,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'connectionMode': connectionMode.toValue(),
       'connectorProfileConfig': connectorProfileConfig,
@@ -921,22 +771,9 @@ class Appflow {
     ArgumentError.checkNotNull(
         destinationFlowConfigList, 'destinationFlowConfigList');
     ArgumentError.checkNotNull(flowName, 'flowName');
-    _s.validateStringLength(
-      'flowName',
-      flowName,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceFlowConfig, 'sourceFlowConfig');
     ArgumentError.checkNotNull(tasks, 'tasks');
     ArgumentError.checkNotNull(triggerConfig, 'triggerConfig');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
     final $payload = <String, dynamic>{
       'destinationFlowConfigList': destinationFlowConfigList,
       'flowName': flowName,

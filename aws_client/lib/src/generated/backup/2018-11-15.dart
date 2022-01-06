@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -236,19 +237,6 @@ class Backup {
   }) async {
     ArgumentError.checkNotNull(frameworkControls, 'frameworkControls');
     ArgumentError.checkNotNull(frameworkName, 'frameworkName');
-    _s.validateStringLength(
-      'frameworkName',
-      frameworkName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'frameworkDescription',
-      frameworkDescription,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'FrameworkControls': frameworkControls,
       'FrameworkName': frameworkName,
@@ -323,20 +311,7 @@ class Backup {
   }) async {
     ArgumentError.checkNotNull(reportDeliveryChannel, 'reportDeliveryChannel');
     ArgumentError.checkNotNull(reportPlanName, 'reportPlanName');
-    _s.validateStringLength(
-      'reportPlanName',
-      reportPlanName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(reportSetting, 'reportSetting');
-    _s.validateStringLength(
-      'reportPlanDescription',
-      reportPlanDescription,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'ReportDeliveryChannel': reportDeliveryChannel,
       'ReportPlanName': reportPlanName,
@@ -531,13 +506,6 @@ class Backup {
     required String frameworkName,
   }) async {
     ArgumentError.checkNotNull(frameworkName, 'frameworkName');
-    _s.validateStringLength(
-      'frameworkName',
-      frameworkName,
-      1,
-      256,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -598,13 +566,6 @@ class Backup {
     required String reportPlanName,
   }) async {
     ArgumentError.checkNotNull(reportPlanName, 'reportPlanName');
-    _s.validateStringLength(
-      'reportPlanName',
-      reportPlanName,
-      1,
-      256,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -697,13 +658,6 @@ class Backup {
     required String frameworkName,
   }) async {
     ArgumentError.checkNotNull(frameworkName, 'frameworkName');
-    _s.validateStringLength(
-      'frameworkName',
-      frameworkName,
-      1,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -844,13 +798,6 @@ class Backup {
     required String reportPlanName,
   }) async {
     ArgumentError.checkNotNull(reportPlanName, 'reportPlanName');
-    _s.validateStringLength(
-      'reportPlanName',
-      reportPlanName,
-      1,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1847,12 +1794,6 @@ class Backup {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'byReportPlanName',
-      byReportPlanName,
-      1,
-      256,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2416,13 +2357,6 @@ class Backup {
     String? idempotencyToken,
   }) async {
     ArgumentError.checkNotNull(reportPlanName, 'reportPlanName');
-    _s.validateStringLength(
-      'reportPlanName',
-      reportPlanName,
-      1,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'IdempotencyToken': idempotencyToken ?? _s.generateIdempotencyToken(),
     };
@@ -2717,19 +2651,6 @@ class Backup {
     String? idempotencyToken,
   }) async {
     ArgumentError.checkNotNull(frameworkName, 'frameworkName');
-    _s.validateStringLength(
-      'frameworkName',
-      frameworkName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'frameworkDescription',
-      frameworkDescription,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       if (frameworkControls != null) 'FrameworkControls': frameworkControls,
       if (frameworkDescription != null)
@@ -2921,19 +2842,6 @@ class Backup {
     ReportSetting? reportSetting,
   }) async {
     ArgumentError.checkNotNull(reportPlanName, 'reportPlanName');
-    _s.validateStringLength(
-      'reportPlanName',
-      reportPlanName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'reportPlanDescription',
-      reportPlanDescription,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'IdempotencyToken': idempotencyToken ?? _s.generateIdempotencyToken(),
       if (reportDeliveryChannel != null)

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -105,19 +106,6 @@ class Efs {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(fileSystemId, 'fileSystemId');
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'FileSystemId': fileSystemId,
       'ClientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -334,24 +322,6 @@ class Efs {
     List<Tag>? tags,
     ThroughputMode? throughputMode,
   }) async {
-    _s.validateStringLength(
-      'availabilityZoneName',
-      availabilityZoneName,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'creationToken',
-      creationToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      0,
-      2048,
-    );
     _s.validateNumRange(
       'provisionedThroughputInMibps',
       provisionedThroughputInMibps,
@@ -569,27 +539,7 @@ class Efs {
     List<String>? securityGroups,
   }) async {
     ArgumentError.checkNotNull(fileSystemId, 'fileSystemId');
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subnetId, 'subnetId');
-    _s.validateStringLength(
-      'subnetId',
-      subnetId,
-      15,
-      47,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'ipAddress',
-      ipAddress,
-      7,
-      15,
-    );
     final $payload = <String, dynamic>{
       'FileSystemId': fileSystemId,
       'SubnetId': subnetId,
@@ -636,13 +586,6 @@ class Efs {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(fileSystemId, 'fileSystemId');
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -674,13 +617,6 @@ class Efs {
     required String accessPointId,
   }) async {
     ArgumentError.checkNotNull(accessPointId, 'accessPointId');
-    _s.validateStringLength(
-      'accessPointId',
-      accessPointId,
-      0,
-      128,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -719,13 +655,6 @@ class Efs {
     required String fileSystemId,
   }) async {
     ArgumentError.checkNotNull(fileSystemId, 'fileSystemId');
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -756,13 +685,6 @@ class Efs {
     required String fileSystemId,
   }) async {
     ArgumentError.checkNotNull(fileSystemId, 'fileSystemId');
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -817,13 +739,6 @@ class Efs {
     required String mountTargetId,
   }) async {
     ArgumentError.checkNotNull(mountTargetId, 'mountTargetId');
-    _s.validateStringLength(
-      'mountTargetId',
-      mountTargetId,
-      13,
-      45,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -862,13 +777,6 @@ class Efs {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(fileSystemId, 'fileSystemId');
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $payload = <String, dynamic>{
       'TagKeys': tagKeys,
@@ -920,29 +828,11 @@ class Efs {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'accessPointId',
-      accessPointId,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      128,
     );
     final $query = <String, List<String>>{
       if (accessPointId != null) 'AccessPointId': [accessPointId],
@@ -987,12 +877,6 @@ class Efs {
       1,
       1152921504606846976,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      128,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1017,13 +901,6 @@ class Efs {
     required String fileSystemId,
   }) async {
     ArgumentError.checkNotNull(fileSystemId, 'fileSystemId');
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1051,13 +928,6 @@ class Efs {
     required String fileSystemId,
   }) async {
     ArgumentError.checkNotNull(fileSystemId, 'fileSystemId');
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1124,24 +994,6 @@ class Efs {
     String? marker,
     int? maxItems,
   }) async {
-    _s.validateStringLength(
-      'creationToken',
-      creationToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      1,
-      128,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -1189,13 +1041,6 @@ class Efs {
     required String fileSystemId,
   }) async {
     ArgumentError.checkNotNull(fileSystemId, 'fileSystemId');
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1236,13 +1081,6 @@ class Efs {
     required String mountTargetId,
   }) async {
     ArgumentError.checkNotNull(mountTargetId, 'mountTargetId');
-    _s.validateStringLength(
-      'mountTargetId',
-      mountTargetId,
-      13,
-      45,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1305,35 +1143,11 @@ class Efs {
     int? maxItems,
     String? mountTargetId,
   }) async {
-    _s.validateStringLength(
-      'accessPointId',
-      accessPointId,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      1,
-      128,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'mountTargetId',
-      mountTargetId,
-      13,
-      45,
     );
     final $query = <String, List<String>>{
       if (accessPointId != null) 'AccessPointId': [accessPointId],
@@ -1388,19 +1202,6 @@ class Efs {
     int? maxItems,
   }) async {
     ArgumentError.checkNotNull(fileSystemId, 'fileSystemId');
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      1,
-      128,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -1450,24 +1251,11 @@ class Efs {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      0,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      128,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
@@ -1524,13 +1312,6 @@ class Efs {
     List<String>? securityGroups,
   }) async {
     ArgumentError.checkNotNull(mountTargetId, 'mountTargetId');
-    _s.validateStringLength(
-      'mountTargetId',
-      mountTargetId,
-      13,
-      45,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (securityGroups != null) 'SecurityGroups': securityGroups,
     };
@@ -1608,13 +1389,6 @@ class Efs {
   }) async {
     ArgumentError.checkNotNull(backupPolicy, 'backupPolicy');
     ArgumentError.checkNotNull(fileSystemId, 'fileSystemId');
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'BackupPolicy': backupPolicy,
     };
@@ -1677,21 +1451,7 @@ class Efs {
     bool? bypassPolicyLockoutSafetyCheck,
   }) async {
     ArgumentError.checkNotNull(fileSystemId, 'fileSystemId');
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policy, 'policy');
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      20000,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Policy': policy,
       if (bypassPolicyLockoutSafetyCheck != null)
@@ -1788,13 +1548,6 @@ class Efs {
     required List<LifecyclePolicy> lifecyclePolicies,
   }) async {
     ArgumentError.checkNotNull(fileSystemId, 'fileSystemId');
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lifecyclePolicies, 'lifecyclePolicies');
     final $payload = <String, dynamic>{
       'LifecyclePolicies': lifecyclePolicies,
@@ -1831,13 +1584,6 @@ class Efs {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      0,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -1873,13 +1619,6 @@ class Efs {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      0,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -1927,13 +1666,6 @@ class Efs {
     ThroughputMode? throughputMode,
   }) async {
     ArgumentError.checkNotNull(fileSystemId, 'fileSystemId');
-    _s.validateStringLength(
-      'fileSystemId',
-      fileSystemId,
-      0,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'provisionedThroughputInMibps',
       provisionedThroughputInMibps,

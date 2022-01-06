@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -65,12 +66,6 @@ class IoTWireless {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(sidewalk, 'sidewalk');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'Sidewalk': sidewalk,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
@@ -98,21 +93,7 @@ class IoTWireless {
     required String multicastGroupId,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(multicastGroupId, 'multicastGroupId');
-    _s.validateStringLength(
-      'multicastGroupId',
-      multicastGroupId,
-      0,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'MulticastGroupId': multicastGroupId,
     };
@@ -137,21 +118,7 @@ class IoTWireless {
     required String wirelessDeviceId,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(wirelessDeviceId, 'wirelessDeviceId');
-    _s.validateStringLength(
-      'wirelessDeviceId',
-      wirelessDeviceId,
-      0,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'WirelessDeviceId': wirelessDeviceId,
     };
@@ -176,21 +143,7 @@ class IoTWireless {
     required String wirelessDeviceId,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(wirelessDeviceId, 'wirelessDeviceId');
-    _s.validateStringLength(
-      'wirelessDeviceId',
-      wirelessDeviceId,
-      0,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'WirelessDeviceId': wirelessDeviceId,
     };
@@ -222,13 +175,6 @@ class IoTWireless {
     required String thingArn,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(thingArn, 'thingArn');
     final $payload = <String, dynamic>{
       'ThingArn': thingArn,
@@ -261,21 +207,7 @@ class IoTWireless {
     required String iotCertificateId,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(iotCertificateId, 'iotCertificateId');
-    _s.validateStringLength(
-      'iotCertificateId',
-      iotCertificateId,
-      1,
-      4096,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'IotCertificateId': iotCertificateId,
     };
@@ -307,13 +239,6 @@ class IoTWireless {
     required String thingArn,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(thingArn, 'thingArn');
     final $payload = <String, dynamic>{
       'ThingArn': thingArn,
@@ -338,13 +263,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -396,42 +314,9 @@ class IoTWireless {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(expression, 'expression');
-    _s.validateStringLength(
-      'expression',
-      expression,
-      0,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(expressionType, 'expressionType');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
     final $payload = <String, dynamic>{
       'Expression': expression,
       'ExpressionType': expressionType.toValue(),
@@ -479,18 +364,6 @@ class IoTWireless {
     String? name,
     List<Tag>? tags,
   }) async {
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
       if (loRaWAN != null) 'LoRaWAN': loRaWAN,
@@ -524,39 +397,7 @@ class IoTWireless {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(firmwareUpdateImage, 'firmwareUpdateImage');
-    _s.validateStringLength(
-      'firmwareUpdateImage',
-      firmwareUpdateImage,
-      1,
-      4096,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(firmwareUpdateRole, 'firmwareUpdateRole');
-    _s.validateStringLength(
-      'firmwareUpdateRole',
-      firmwareUpdateRole,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'FirmwareUpdateImage': firmwareUpdateImage,
       'FirmwareUpdateRole': firmwareUpdateRole,
@@ -600,24 +441,6 @@ class IoTWireless {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(loRaWAN, 'loRaWAN');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'LoRaWAN': loRaWAN,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
@@ -663,18 +486,6 @@ class IoTWireless {
     String? name,
     List<Tag>? tags,
   }) async {
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
       if (loRaWAN != null) 'LoRaWAN': loRaWAN,
@@ -733,32 +544,7 @@ class IoTWireless {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(destinationName, 'destinationName');
-    _s.validateStringLength(
-      'destinationName',
-      destinationName,
-      0,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'DestinationName': destinationName,
       'Type': type.toValue(),
@@ -812,24 +598,6 @@ class IoTWireless {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(loRaWAN, 'loRaWAN');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'LoRaWAN': loRaWAN,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
@@ -865,22 +633,8 @@ class IoTWireless {
     required String wirelessGatewayTaskDefinitionId,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         wirelessGatewayTaskDefinitionId, 'wirelessGatewayTaskDefinitionId');
-    _s.validateStringLength(
-      'wirelessGatewayTaskDefinitionId',
-      wirelessGatewayTaskDefinitionId,
-      0,
-      36,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'WirelessGatewayTaskDefinitionId': wirelessGatewayTaskDefinitionId,
     };
@@ -931,18 +685,6 @@ class IoTWireless {
     UpdateWirelessGatewayTaskCreate? update,
   }) async {
     ArgumentError.checkNotNull(autoCreateTasks, 'autoCreateTasks');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-    );
     final $payload = <String, dynamic>{
       'AutoCreateTasks': autoCreateTasks,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
@@ -974,13 +716,6 @@ class IoTWireless {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1004,13 +739,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1030,13 +758,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1057,13 +778,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1087,13 +801,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1116,13 +823,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1145,13 +845,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1174,13 +867,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1204,13 +890,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1240,13 +919,6 @@ class IoTWireless {
     required PartnerType partnerType,
   }) async {
     ArgumentError.checkNotNull(partnerAccountId, 'partnerAccountId');
-    _s.validateStringLength(
-      'partnerAccountId',
-      partnerAccountId,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partnerType, 'partnerType');
     final $query = <String, List<String>>{
       'partnerType': [partnerType.toValue()],
@@ -1272,21 +944,7 @@ class IoTWireless {
     required String multicastGroupId,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(multicastGroupId, 'multicastGroupId');
-    _s.validateStringLength(
-      'multicastGroupId',
-      multicastGroupId,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1309,21 +967,7 @@ class IoTWireless {
     required String wirelessDeviceId,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(wirelessDeviceId, 'wirelessDeviceId');
-    _s.validateStringLength(
-      'wirelessDeviceId',
-      wirelessDeviceId,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1345,21 +989,7 @@ class IoTWireless {
     required String wirelessDeviceId,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(wirelessDeviceId, 'wirelessDeviceId');
-    _s.validateStringLength(
-      'wirelessDeviceId',
-      wirelessDeviceId,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1384,13 +1014,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1414,13 +1037,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1444,13 +1060,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1473,13 +1082,6 @@ class IoTWireless {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1503,13 +1105,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1530,13 +1125,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1577,13 +1165,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1604,13 +1185,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1632,13 +1206,6 @@ class IoTWireless {
     required String configurationName,
   }) async {
     ArgumentError.checkNotNull(configurationName, 'configurationName');
-    _s.validateStringLength(
-      'configurationName',
-      configurationName,
-      1,
-      1024,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1668,13 +1235,6 @@ class IoTWireless {
     required PartnerType partnerType,
   }) async {
     ArgumentError.checkNotNull(partnerAccountId, 'partnerAccountId');
-    _s.validateStringLength(
-      'partnerAccountId',
-      partnerAccountId,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partnerType, 'partnerType');
     final $query = <String, List<String>>{
       'partnerType': [partnerType.toValue()],
@@ -1712,13 +1272,6 @@ class IoTWireless {
     EventNotificationPartnerType? partnerType,
   }) async {
     ArgumentError.checkNotNull(identifier, 'identifier');
-    _s.validateStringLength(
-      'identifier',
-      identifier,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(identifierType, 'identifierType');
     final $query = <String, List<String>>{
       'identifierType': [identifierType.toValue()],
@@ -1751,13 +1304,6 @@ class IoTWireless {
     required String resourceType,
   }) async {
     ArgumentError.checkNotNull(resourceIdentifier, 'resourceIdentifier');
-    _s.validateStringLength(
-      'resourceIdentifier',
-      resourceIdentifier,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
     final $query = <String, List<String>>{
       'resourceType': [resourceType],
@@ -1814,13 +1360,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1848,13 +1387,6 @@ class IoTWireless {
     required WirelessDeviceIdType identifierType,
   }) async {
     ArgumentError.checkNotNull(identifier, 'identifier');
-    _s.validateStringLength(
-      'identifier',
-      identifier,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(identifierType, 'identifierType');
     final $query = <String, List<String>>{
       'identifierType': [identifierType.toValue()],
@@ -1883,13 +1415,6 @@ class IoTWireless {
     required String wirelessDeviceId,
   }) async {
     ArgumentError.checkNotNull(wirelessDeviceId, 'wirelessDeviceId');
-    _s.validateStringLength(
-      'wirelessDeviceId',
-      wirelessDeviceId,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1918,13 +1443,6 @@ class IoTWireless {
     required WirelessGatewayIdType identifierType,
   }) async {
     ArgumentError.checkNotNull(identifier, 'identifier');
-    _s.validateStringLength(
-      'identifier',
-      identifier,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(identifierType, 'identifierType');
     final $query = <String, List<String>>{
       'identifierType': [identifierType.toValue()],
@@ -1954,13 +1472,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1985,13 +1496,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2016,13 +1520,6 @@ class IoTWireless {
     required String wirelessGatewayId,
   }) async {
     ArgumentError.checkNotNull(wirelessGatewayId, 'wirelessGatewayId');
-    _s.validateStringLength(
-      'wirelessGatewayId',
-      wirelessGatewayId,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2047,13 +1544,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2078,13 +1568,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2118,12 +1601,6 @@ class IoTWireless {
       maxResults,
       0,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -2163,12 +1640,6 @@ class IoTWireless {
       0,
       250,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -2203,12 +1674,6 @@ class IoTWireless {
       maxResults,
       0,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -2245,12 +1710,6 @@ class IoTWireless {
       0,
       250,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -2284,24 +1743,11 @@ class IoTWireless {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       0,
       250,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -2341,12 +1787,6 @@ class IoTWireless {
       0,
       250,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -2385,12 +1825,6 @@ class IoTWireless {
       0,
       250,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -2419,13 +1853,6 @@ class IoTWireless {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'resourceArn': [resourceArn],
     };
@@ -2476,47 +1903,11 @@ class IoTWireless {
     String? serviceProfileId,
     WirelessDeviceType? wirelessDeviceType,
   }) async {
-    _s.validateStringLength(
-      'destinationName',
-      destinationName,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'deviceProfileId',
-      deviceProfileId,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'fuotaTaskId',
-      fuotaTaskId,
-      0,
-      256,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       0,
       250,
-    );
-    _s.validateStringLength(
-      'multicastGroupId',
-      multicastGroupId,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
-    );
-    _s.validateStringLength(
-      'serviceProfileId',
-      serviceProfileId,
-      0,
-      256,
     );
     final $query = <String, List<String>>{
       if (destinationName != null) 'destinationName': [destinationName],
@@ -2570,12 +1961,6 @@ class IoTWireless {
       0,
       250,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -2616,12 +2001,6 @@ class IoTWireless {
       0,
       250,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -2656,13 +2035,6 @@ class IoTWireless {
   }) async {
     ArgumentError.checkNotNull(logLevel, 'logLevel');
     ArgumentError.checkNotNull(resourceIdentifier, 'resourceIdentifier');
-    _s.validateStringLength(
-      'resourceIdentifier',
-      resourceIdentifier,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
     final $query = <String, List<String>>{
       'resourceType': [resourceType],
@@ -2713,13 +2085,6 @@ class IoTWireless {
     required String resourceType,
   }) async {
     ArgumentError.checkNotNull(resourceIdentifier, 'resourceIdentifier');
-    _s.validateStringLength(
-      'resourceIdentifier',
-      resourceIdentifier,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceType, 'resourceType');
     final $query = <String, List<String>>{
       'resourceType': [resourceType],
@@ -2747,21 +2112,7 @@ class IoTWireless {
     required MulticastWirelessMetadata wirelessMetadata,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(payloadData, 'payloadData');
-    _s.validateStringLength(
-      'payloadData',
-      payloadData,
-      0,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(wirelessMetadata, 'wirelessMetadata');
     final $payload = <String, dynamic>{
       'PayloadData': payloadData,
@@ -2800,21 +2151,7 @@ class IoTWireless {
     WirelessMetadata? wirelessMetadata,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(payloadData, 'payloadData');
-    _s.validateStringLength(
-      'payloadData',
-      payloadData,
-      0,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(transmitMode, 'transmitMode');
     _s.validateNumRange(
       'transmitMode',
@@ -2851,19 +2188,6 @@ class IoTWireless {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'queryString',
-      queryString,
-      0,
-      4096,
-    );
     final $payload = <String, dynamic>{
       if (queryString != null) 'QueryString': queryString,
       if (tags != null) 'Tags': tags,
@@ -2890,19 +2214,6 @@ class IoTWireless {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'queryString',
-      queryString,
-      0,
-      4096,
-    );
     final $payload = <String, dynamic>{
       if (queryString != null) 'QueryString': queryString,
       if (tags != null) 'Tags': tags,
@@ -2928,13 +2239,6 @@ class IoTWireless {
     LoRaWANStartFuotaTask? loRaWAN,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (loRaWAN != null) 'LoRaWAN': loRaWAN,
     };
@@ -2959,13 +2263,6 @@ class IoTWireless {
     required LoRaWANMulticastSession loRaWAN,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(loRaWAN, 'loRaWAN');
     final $payload = <String, dynamic>{
       'LoRaWAN': loRaWAN,
@@ -2998,13 +2295,6 @@ class IoTWireless {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $query = <String, List<String>>{
       'resourceArn': [resourceArn],
@@ -3035,13 +2325,6 @@ class IoTWireless {
     required String id,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -3069,13 +2352,6 @@ class IoTWireless {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'resourceArn': [resourceArn],
@@ -3120,31 +2396,6 @@ class IoTWireless {
     String? roleArn,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'expression',
-      expression,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (expression != null) 'Expression': expression,
@@ -3176,37 +2427,6 @@ class IoTWireless {
     String? name,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'firmwareUpdateImage',
-      firmwareUpdateImage,
-      1,
-      4096,
-    );
-    _s.validateStringLength(
-      'firmwareUpdateRole',
-      firmwareUpdateRole,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (firmwareUpdateImage != null)
@@ -3268,25 +2488,6 @@ class IoTWireless {
     String? name,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (loRaWAN != null) 'LoRaWAN': loRaWAN,
@@ -3328,13 +2529,6 @@ class IoTWireless {
     List<String>? wirelessGatewaysToRemove,
   }) async {
     ArgumentError.checkNotNull(configurationName, 'configurationName');
-    _s.validateStringLength(
-      'configurationName',
-      configurationName,
-      1,
-      1024,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (traceContent != null) 'TraceContent': traceContent,
       if (wirelessDevicesToAdd != null)
@@ -3376,13 +2570,6 @@ class IoTWireless {
     required SidewalkUpdateAccount sidewalk,
   }) async {
     ArgumentError.checkNotNull(partnerAccountId, 'partnerAccountId');
-    _s.validateStringLength(
-      'partnerAccountId',
-      partnerAccountId,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partnerType, 'partnerType');
     ArgumentError.checkNotNull(sidewalk, 'sidewalk');
     final $query = <String, List<String>>{
@@ -3432,13 +2619,6 @@ class IoTWireless {
     ProximityEventConfiguration? proximity,
   }) async {
     ArgumentError.checkNotNull(identifier, 'identifier');
-    _s.validateStringLength(
-      'identifier',
-      identifier,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(identifierType, 'identifierType');
     final $query = <String, List<String>>{
       'identifierType': [identifierType.toValue()],
@@ -3488,31 +2668,6 @@ class IoTWireless {
     String? name,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'destinationName',
-      destinationName,
-      0,
-      128,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (destinationName != null) 'DestinationName': destinationName,
@@ -3551,25 +2706,6 @@ class IoTWireless {
     List<String>? netIdFilters,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      0,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (joinEuiFilters != null) 'JoinEuiFilters': joinEuiFilters,

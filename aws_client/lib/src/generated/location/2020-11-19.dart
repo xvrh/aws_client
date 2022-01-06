@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -78,21 +79,7 @@ class Location {
     required String trackerName,
   }) async {
     ArgumentError.checkNotNull(consumerArn, 'consumerArn');
-    _s.validateStringLength(
-      'consumerArn',
-      consumerArn,
-      0,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(trackerName, 'trackerName');
-    _s.validateStringLength(
-      'trackerName',
-      trackerName,
-      1,
-      100,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'ConsumerArn': consumerArn,
     };
@@ -134,13 +121,6 @@ class Location {
   }) async {
     ArgumentError.checkNotNull(deviceIds, 'deviceIds');
     ArgumentError.checkNotNull(trackerName, 'trackerName');
-    _s.validateStringLength(
-      'trackerName',
-      trackerName,
-      1,
-      100,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DeviceIds': deviceIds,
     };
@@ -175,13 +155,6 @@ class Location {
     required List<String> geofenceIds,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
-    _s.validateStringLength(
-      'collectionName',
-      collectionName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(geofenceIds, 'geofenceIds');
     final $payload = <String, dynamic>{
       'GeofenceIds': geofenceIds,
@@ -240,13 +213,6 @@ class Location {
     required List<DevicePositionUpdate> devicePositionUpdates,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
-    _s.validateStringLength(
-      'collectionName',
-      collectionName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(devicePositionUpdates, 'devicePositionUpdates');
     final $payload = <String, dynamic>{
       'DevicePositionUpdates': devicePositionUpdates,
@@ -287,13 +253,6 @@ class Location {
   }) async {
     ArgumentError.checkNotNull(deviceIds, 'deviceIds');
     ArgumentError.checkNotNull(trackerName, 'trackerName');
-    _s.validateStringLength(
-      'trackerName',
-      trackerName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DeviceIds': deviceIds,
     };
@@ -327,13 +286,6 @@ class Location {
     required List<BatchPutGeofenceRequestEntry> entries,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
-    _s.validateStringLength(
-      'collectionName',
-      collectionName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(entries, 'entries');
     final $payload = <String, dynamic>{
       'Entries': entries,
@@ -392,13 +344,6 @@ class Location {
     required List<DevicePositionUpdate> updates,
   }) async {
     ArgumentError.checkNotNull(trackerName, 'trackerName');
-    _s.validateStringLength(
-      'trackerName',
-      trackerName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(updates, 'updates');
     final $payload = <String, dynamic>{
       'Updates': updates,
@@ -606,13 +551,6 @@ class Location {
     List<List<double>>? waypointPositions,
   }) async {
     ArgumentError.checkNotNull(calculatorName, 'calculatorName');
-    _s.validateStringLength(
-      'calculatorName',
-      calculatorName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(departurePosition, 'departurePosition');
     ArgumentError.checkNotNull(destinationPosition, 'destinationPosition');
     final $payload = <String, dynamic>{
@@ -740,25 +678,6 @@ class Location {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
-    _s.validateStringLength(
-      'collectionName',
-      collectionName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      1,
-      2048,
-    );
     final $payload = <String, dynamic>{
       'CollectionName': collectionName,
       if (description != null) 'Description': description,
@@ -857,19 +776,6 @@ class Location {
   }) async {
     ArgumentError.checkNotNull(configuration, 'configuration');
     ArgumentError.checkNotNull(mapName, 'mapName');
-    _s.validateStringLength(
-      'mapName',
-      mapName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'Configuration': configuration,
       'MapName': mapName,
@@ -1005,19 +911,6 @@ class Location {
   }) async {
     ArgumentError.checkNotNull(dataSource, 'dataSource');
     ArgumentError.checkNotNull(indexName, 'indexName');
-    _s.validateStringLength(
-      'indexName',
-      indexName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'DataSource': dataSource,
       'IndexName': indexName,
@@ -1153,20 +1046,7 @@ class Location {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(calculatorName, 'calculatorName');
-    _s.validateStringLength(
-      'calculatorName',
-      calculatorName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSource, 'dataSource');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'CalculatorName': calculatorName,
       'DataSource': dataSource,
@@ -1323,25 +1203,6 @@ class Location {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(trackerName, 'trackerName');
-    _s.validateStringLength(
-      'trackerName',
-      trackerName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      1,
-      2048,
-    );
     final $payload = <String, dynamic>{
       'TrackerName': trackerName,
       if (description != null) 'Description': description,
@@ -1381,13 +1242,6 @@ class Location {
     required String collectionName,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
-    _s.validateStringLength(
-      'collectionName',
-      collectionName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1415,13 +1269,6 @@ class Location {
     required String mapName,
   }) async {
     ArgumentError.checkNotNull(mapName, 'mapName');
-    _s.validateStringLength(
-      'mapName',
-      mapName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1447,13 +1294,6 @@ class Location {
     required String indexName,
   }) async {
     ArgumentError.checkNotNull(indexName, 'indexName');
-    _s.validateStringLength(
-      'indexName',
-      indexName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1479,13 +1319,6 @@ class Location {
     required String calculatorName,
   }) async {
     ArgumentError.checkNotNull(calculatorName, 'calculatorName');
-    _s.validateStringLength(
-      'calculatorName',
-      calculatorName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1514,13 +1347,6 @@ class Location {
     required String trackerName,
   }) async {
     ArgumentError.checkNotNull(trackerName, 'trackerName');
-    _s.validateStringLength(
-      'trackerName',
-      trackerName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1543,13 +1369,6 @@ class Location {
     required String collectionName,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
-    _s.validateStringLength(
-      'collectionName',
-      collectionName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1574,13 +1393,6 @@ class Location {
     required String mapName,
   }) async {
     ArgumentError.checkNotNull(mapName, 'mapName');
-    _s.validateStringLength(
-      'mapName',
-      mapName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1604,13 +1416,6 @@ class Location {
     required String indexName,
   }) async {
     ArgumentError.checkNotNull(indexName, 'indexName');
-    _s.validateStringLength(
-      'indexName',
-      indexName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1634,13 +1439,6 @@ class Location {
     required String calculatorName,
   }) async {
     ArgumentError.checkNotNull(calculatorName, 'calculatorName');
-    _s.validateStringLength(
-      'calculatorName',
-      calculatorName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1665,13 +1463,6 @@ class Location {
     required String trackerName,
   }) async {
     ArgumentError.checkNotNull(trackerName, 'trackerName');
-    _s.validateStringLength(
-      'trackerName',
-      trackerName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1713,21 +1504,7 @@ class Location {
     required String trackerName,
   }) async {
     ArgumentError.checkNotNull(consumerArn, 'consumerArn');
-    _s.validateStringLength(
-      'consumerArn',
-      consumerArn,
-      0,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(trackerName, 'trackerName');
-    _s.validateStringLength(
-      'trackerName',
-      trackerName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1758,21 +1535,7 @@ class Location {
     required String trackerName,
   }) async {
     ArgumentError.checkNotNull(deviceId, 'deviceId');
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(trackerName, 'trackerName');
-    _s.validateStringLength(
-      'trackerName',
-      trackerName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1845,27 +1608,7 @@ class Location {
     DateTime? startTimeInclusive,
   }) async {
     ArgumentError.checkNotNull(deviceId, 'deviceId');
-    _s.validateStringLength(
-      'deviceId',
-      deviceId,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(trackerName, 'trackerName');
-    _s.validateStringLength(
-      'trackerName',
-      trackerName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
-    );
     final $payload = <String, dynamic>{
       if (endTimeExclusive != null)
         'EndTimeExclusive': iso8601ToJson(endTimeExclusive),
@@ -1901,21 +1644,7 @@ class Location {
     required String geofenceId,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
-    _s.validateStringLength(
-      'collectionName',
-      collectionName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(geofenceId, 'geofenceId');
-    _s.validateStringLength(
-      'geofenceId',
-      geofenceId,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1993,13 +1722,6 @@ class Location {
     ArgumentError.checkNotNull(fontStack, 'fontStack');
     ArgumentError.checkNotNull(fontUnicodeRange, 'fontUnicodeRange');
     ArgumentError.checkNotNull(mapName, 'mapName');
-    _s.validateStringLength(
-      'mapName',
-      mapName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.sendRaw(
       payload: null,
       method: 'GET',
@@ -2055,13 +1777,6 @@ class Location {
   }) async {
     ArgumentError.checkNotNull(fileName, 'fileName');
     ArgumentError.checkNotNull(mapName, 'mapName');
-    _s.validateStringLength(
-      'mapName',
-      mapName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.sendRaw(
       payload: null,
       method: 'GET',
@@ -2095,13 +1810,6 @@ class Location {
     required String mapName,
   }) async {
     ArgumentError.checkNotNull(mapName, 'mapName');
-    _s.validateStringLength(
-      'mapName',
-      mapName,
-      1,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.sendRaw(
       payload: null,
       method: 'GET',
@@ -2149,13 +1857,6 @@ class Location {
     required String z,
   }) async {
     ArgumentError.checkNotNull(mapName, 'mapName');
-    _s.validateStringLength(
-      'mapName',
-      mapName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(x, 'x');
     ArgumentError.checkNotNull(y, 'y');
     ArgumentError.checkNotNull(z, 'z');
@@ -2199,24 +1900,11 @@ class Location {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(trackerName, 'trackerName');
-    _s.validateStringLength(
-      'trackerName',
-      trackerName,
-      1,
-      100,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
     );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
@@ -2259,12 +1947,6 @@ class Location {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
-    );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
       if (nextToken != null) 'NextToken': nextToken,
@@ -2299,19 +1981,6 @@ class Location {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
-    _s.validateStringLength(
-      'collectionName',
-      collectionName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
-    );
     final $payload = <String, dynamic>{
       if (nextToken != null) 'NextToken': nextToken,
     };
@@ -2351,12 +2020,6 @@ class Location {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
     );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
@@ -2399,12 +2062,6 @@ class Location {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
-    );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
       if (nextToken != null) 'NextToken': nextToken,
@@ -2445,12 +2102,6 @@ class Location {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
-    );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
       if (nextToken != null) 'NextToken': nextToken,
@@ -2487,13 +2138,6 @@ class Location {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1600,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2532,24 +2176,11 @@ class Location {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(trackerName, 'trackerName');
-    _s.validateStringLength(
-      'trackerName',
-      trackerName,
-      1,
-      100,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
     );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
@@ -2591,12 +2222,6 @@ class Location {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2000,
     );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
@@ -2642,21 +2267,7 @@ class Location {
     required GeofenceGeometry geometry,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
-    _s.validateStringLength(
-      'collectionName',
-      collectionName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(geofenceId, 'geofenceId');
-    _s.validateStringLength(
-      'geofenceId',
-      geofenceId,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(geometry, 'geometry');
     final $payload = <String, dynamic>{
       'Geometry': geometry,
@@ -2714,20 +2325,7 @@ class Location {
     int? maxResults,
   }) async {
     ArgumentError.checkNotNull(indexName, 'indexName');
-    _s.validateStringLength(
-      'indexName',
-      indexName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(position, 'position');
-    _s.validateStringLength(
-      'language',
-      language,
-      2,
-      35,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2851,27 +2449,7 @@ class Location {
     int? maxResults,
   }) async {
     ArgumentError.checkNotNull(indexName, 'indexName');
-    _s.validateStringLength(
-      'indexName',
-      indexName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(text, 'text');
-    _s.validateStringLength(
-      'text',
-      text,
-      1,
-      200,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'language',
-      language,
-      2,
-      35,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2995,27 +2573,7 @@ class Location {
     int? maxResults,
   }) async {
     ArgumentError.checkNotNull(indexName, 'indexName');
-    _s.validateStringLength(
-      'indexName',
-      indexName,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(text, 'text');
-    _s.validateStringLength(
-      'text',
-      text,
-      1,
-      200,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'language',
-      language,
-      2,
-      35,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3105,13 +2663,6 @@ class Location {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -3150,13 +2701,6 @@ class Location {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -3217,19 +2761,6 @@ class Location {
     String? pricingPlanDataSource,
   }) async {
     ArgumentError.checkNotNull(collectionName, 'collectionName');
-    _s.validateStringLength(
-      'collectionName',
-      collectionName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
@@ -3272,19 +2803,6 @@ class Location {
     PricingPlan? pricingPlan,
   }) async {
     ArgumentError.checkNotNull(mapName, 'mapName');
-    _s.validateStringLength(
-      'mapName',
-      mapName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
@@ -3328,19 +2846,6 @@ class Location {
     PricingPlan? pricingPlan,
   }) async {
     ArgumentError.checkNotNull(indexName, 'indexName');
-    _s.validateStringLength(
-      'indexName',
-      indexName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       if (dataSourceConfiguration != null)
         'DataSourceConfiguration': dataSourceConfiguration,
@@ -3382,19 +2887,6 @@ class Location {
     PricingPlan? pricingPlan,
   }) async {
     ArgumentError.checkNotNull(calculatorName, 'calculatorName');
-    _s.validateStringLength(
-      'calculatorName',
-      calculatorName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (pricingPlan != null) 'PricingPlan': pricingPlan.toValue(),
@@ -3490,19 +2982,6 @@ class Location {
     String? pricingPlanDataSource,
   }) async {
     ArgumentError.checkNotNull(trackerName, 'trackerName');
-    _s.validateStringLength(
-      'trackerName',
-      trackerName,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (positionFiltering != null)

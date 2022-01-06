@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -79,13 +80,6 @@ class MarketplaceMetering {
     required List<UsageRecord> usageRecords,
   }) async {
     ArgumentError.checkNotNull(productCode, 'productCode');
-    _s.validateStringLength(
-      'productCode',
-      productCode,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(usageRecords, 'usageRecords');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -166,22 +160,8 @@ class MarketplaceMetering {
     int? usageQuantity,
   }) async {
     ArgumentError.checkNotNull(productCode, 'productCode');
-    _s.validateStringLength(
-      'productCode',
-      productCode,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(timestamp, 'timestamp');
     ArgumentError.checkNotNull(usageDimension, 'usageDimension');
-    _s.validateStringLength(
-      'usageDimension',
-      usageDimension,
-      1,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'usageQuantity',
       usageQuantity,
@@ -277,13 +257,6 @@ class MarketplaceMetering {
     String? nonce,
   }) async {
     ArgumentError.checkNotNull(productCode, 'productCode');
-    _s.validateStringLength(
-      'productCode',
-      productCode,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(publicKeyVersion, 'publicKeyVersion');
     _s.validateNumRange(
       'publicKeyVersion',
@@ -291,12 +264,6 @@ class MarketplaceMetering {
       1,
       1152921504606846976,
       isRequired: true,
-    );
-    _s.validateStringLength(
-      'nonce',
-      nonce,
-      0,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

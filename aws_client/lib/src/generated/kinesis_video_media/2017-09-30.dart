@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -118,18 +119,6 @@ class KinesisVideoMedia {
     String? streamName,
   }) async {
     ArgumentError.checkNotNull(startSelector, 'startSelector');
-    _s.validateStringLength(
-      'streamARN',
-      streamARN,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'streamName',
-      streamName,
-      1,
-      256,
-    );
     final $payload = <String, dynamic>{
       'StartSelector': startSelector,
       if (streamARN != null) 'StreamARN': streamARN,

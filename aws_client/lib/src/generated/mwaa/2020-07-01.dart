@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -50,13 +51,6 @@ class Mwaa {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      80,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -228,56 +222,10 @@ class Mwaa {
     String? weeklyMaintenanceWindowStart,
   }) async {
     ArgumentError.checkNotNull(dagS3Path, 'dagS3Path');
-    _s.validateStringLength(
-      'dagS3Path',
-      dagS3Path,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(executionRoleArn, 'executionRoleArn');
-    _s.validateStringLength(
-      'executionRoleArn',
-      executionRoleArn,
-      1,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      80,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(networkConfiguration, 'networkConfiguration');
     ArgumentError.checkNotNull(sourceBucketArn, 'sourceBucketArn');
-    _s.validateStringLength(
-      'sourceBucketArn',
-      sourceBucketArn,
-      1,
-      1224,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'airflowVersion',
-      airflowVersion,
-      1,
-      32,
-    );
-    _s.validateStringLength(
-      'environmentClass',
-      environmentClass,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'kmsKey',
-      kmsKey,
-      1,
-      1224,
-    );
     _s.validateNumRange(
       'maxWorkers',
       maxWorkers,
@@ -290,41 +238,11 @@ class Mwaa {
       1,
       1152921504606846976,
     );
-    _s.validateStringLength(
-      'pluginsS3ObjectVersion',
-      pluginsS3ObjectVersion,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'pluginsS3Path',
-      pluginsS3Path,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'requirementsS3ObjectVersion',
-      requirementsS3ObjectVersion,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'requirementsS3Path',
-      requirementsS3Path,
-      1,
-      1024,
-    );
     _s.validateNumRange(
       'schedulers',
       schedulers,
       0,
       5,
-    );
-    _s.validateStringLength(
-      'weeklyMaintenanceWindowStart',
-      weeklyMaintenanceWindowStart,
-      1,
-      9,
     );
     final $payload = <String, dynamic>{
       'DagS3Path': dagS3Path,
@@ -376,13 +294,6 @@ class Mwaa {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      80,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -405,13 +316,6 @@ class Mwaa {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      80,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -434,13 +338,6 @@ class Mwaa {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      80,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -470,12 +367,6 @@ class Mwaa {
       maxResults,
       1,
       25,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
@@ -507,13 +398,6 @@ class Mwaa {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1224,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -539,13 +423,6 @@ class Mwaa {
     required List<MetricDatum> metricData,
   }) async {
     ArgumentError.checkNotNull(environmentName, 'environmentName');
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      1,
-      80,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(metricData, 'metricData');
     final $payload = <String, dynamic>{
       'MetricData': metricData,
@@ -581,13 +458,6 @@ class Mwaa {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -621,13 +491,6 @@ class Mwaa {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -788,37 +651,6 @@ class Mwaa {
     String? weeklyMaintenanceWindowStart,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      80,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'airflowVersion',
-      airflowVersion,
-      1,
-      32,
-    );
-    _s.validateStringLength(
-      'dagS3Path',
-      dagS3Path,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'environmentClass',
-      environmentClass,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'executionRoleArn',
-      executionRoleArn,
-      1,
-      1224,
-    );
     _s.validateNumRange(
       'maxWorkers',
       maxWorkers,
@@ -831,47 +663,11 @@ class Mwaa {
       1,
       1152921504606846976,
     );
-    _s.validateStringLength(
-      'pluginsS3ObjectVersion',
-      pluginsS3ObjectVersion,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'pluginsS3Path',
-      pluginsS3Path,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'requirementsS3ObjectVersion',
-      requirementsS3ObjectVersion,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'requirementsS3Path',
-      requirementsS3Path,
-      1,
-      1024,
-    );
     _s.validateNumRange(
       'schedulers',
       schedulers,
       0,
       5,
-    );
-    _s.validateStringLength(
-      'sourceBucketArn',
-      sourceBucketArn,
-      1,
-      1224,
-    );
-    _s.validateStringLength(
-      'weeklyMaintenanceWindowStart',
-      weeklyMaintenanceWindowStart,
-      1,
-      9,
     );
     final $payload = <String, dynamic>{
       if (airflowConfigurationOptions != null)

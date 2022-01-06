@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -106,13 +107,6 @@ class GameLift {
     ArgumentError.checkNotNull(acceptanceType, 'acceptanceType');
     ArgumentError.checkNotNull(playerIds, 'playerIds');
     ArgumentError.checkNotNull(ticketId, 'ticketId');
-    _s.validateStringLength(
-      'ticketId',
-      ticketId,
-      0,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.AcceptMatch'
@@ -217,25 +211,6 @@ class GameLift {
     String? gameServerId,
   }) async {
     ArgumentError.checkNotNull(gameServerGroupName, 'gameServerGroupName');
-    _s.validateStringLength(
-      'gameServerGroupName',
-      gameServerGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'gameServerData',
-      gameServerData,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'gameServerId',
-      gameServerId,
-      3,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.ClaimGameServer'
@@ -317,20 +292,7 @@ class GameLift {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(routingStrategy, 'routingStrategy');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.CreateAlias'
@@ -459,18 +421,6 @@ class GameLift {
     List<Tag>? tags,
     String? version,
   }) async {
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'version',
-      version,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.CreateBuild'
@@ -745,49 +695,6 @@ class GameLift {
   }) async {
     ArgumentError.checkNotNull(eC2InstanceType, 'eC2InstanceType');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'instanceRoleArn',
-      instanceRoleArn,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'peerVpcAwsAccountId',
-      peerVpcAwsAccountId,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'peerVpcId',
-      peerVpcId,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'serverLaunchParameters',
-      serverLaunchParameters,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'serverLaunchPath',
-      serverLaunchPath,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.CreateFleet'
@@ -1120,13 +1027,6 @@ class GameLift {
     List<String>? vpcSubnets,
   }) async {
     ArgumentError.checkNotNull(gameServerGroupName, 'gameServerGroupName');
-    _s.validateStringLength(
-      'gameServerGroupName',
-      gameServerGroupName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceDefinitions, 'instanceDefinitions');
     ArgumentError.checkNotNull(launchTemplate, 'launchTemplate');
     ArgumentError.checkNotNull(maxSize, 'maxSize');
@@ -1146,13 +1046,6 @@ class GameLift {
       isRequired: true,
     );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.CreateGameServerGroup'
@@ -1335,42 +1228,6 @@ class GameLift {
       1152921504606846976,
       isRequired: true,
     );
-    _s.validateStringLength(
-      'creatorId',
-      creatorId,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'gameSessionData',
-      gameSessionData,
-      1,
-      262144,
-    );
-    _s.validateStringLength(
-      'gameSessionId',
-      gameSessionId,
-      1,
-      48,
-    );
-    _s.validateStringLength(
-      'idempotencyToken',
-      idempotencyToken,
-      1,
-      48,
-    );
-    _s.validateStringLength(
-      'location',
-      location,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.CreateGameSession'
@@ -1522,25 +1379,6 @@ class GameLift {
     int? timeoutInSeconds,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'customEventData',
-      customEventData,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'notificationTarget',
-      notificationTarget,
-      0,
-      300,
-    );
     _s.validateNumRange(
       'timeoutInSeconds',
       timeoutInSeconds,
@@ -1769,13 +1607,6 @@ class GameLift {
   }) async {
     ArgumentError.checkNotNull(acceptanceRequired, 'acceptanceRequired');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(requestTimeoutSeconds, 'requestTimeoutSeconds');
     _s.validateNumRange(
       'requestTimeoutSeconds',
@@ -1785,13 +1616,6 @@ class GameLift {
       isRequired: true,
     );
     ArgumentError.checkNotNull(ruleSetName, 'ruleSetName');
-    _s.validateStringLength(
-      'ruleSetName',
-      ruleSetName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'acceptanceTimeoutSeconds',
       acceptanceTimeoutSeconds,
@@ -1803,30 +1627,6 @@ class GameLift {
       additionalPlayerCount,
       0,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'customEventData',
-      customEventData,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'gameSessionData',
-      gameSessionData,
-      1,
-      4096,
-    );
-    _s.validateStringLength(
-      'notificationTarget',
-      notificationTarget,
-      0,
-      300,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1940,21 +1740,7 @@ class GameLift {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(ruleSetBody, 'ruleSetBody');
-    _s.validateStringLength(
-      'ruleSetBody',
-      ruleSetBody,
-      1,
-      65535,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.CreateMatchmakingRuleSet'
@@ -2023,27 +1809,7 @@ class GameLift {
     String? playerData,
   }) async {
     ArgumentError.checkNotNull(gameSessionId, 'gameSessionId');
-    _s.validateStringLength(
-      'gameSessionId',
-      gameSessionId,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(playerId, 'playerId');
-    _s.validateStringLength(
-      'playerId',
-      playerId,
-      1,
-      1024,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'playerData',
-      playerData,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.CreatePlayerSession'
@@ -2116,13 +1882,6 @@ class GameLift {
     Map<String, String>? playerDataMap,
   }) async {
     ArgumentError.checkNotNull(gameSessionId, 'gameSessionId');
-    _s.validateStringLength(
-      'gameSessionId',
-      gameSessionId,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(playerIds, 'playerIds');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2244,18 +2003,6 @@ class GameLift {
     String? version,
     Uint8List? zipFile,
   }) async {
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'version',
-      version,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.CreateScript'
@@ -2342,21 +2089,7 @@ class GameLift {
     required String peerVpcId,
   }) async {
     ArgumentError.checkNotNull(gameLiftAwsAccountId, 'gameLiftAwsAccountId');
-    _s.validateStringLength(
-      'gameLiftAwsAccountId',
-      gameLiftAwsAccountId,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(peerVpcId, 'peerVpcId');
-    _s.validateStringLength(
-      'peerVpcId',
-      peerVpcId,
-      1,
-      1024,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.CreateVpcPeeringAuthorization'
@@ -2442,21 +2175,7 @@ class GameLift {
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
     ArgumentError.checkNotNull(peerVpcAwsAccountId, 'peerVpcAwsAccountId');
-    _s.validateStringLength(
-      'peerVpcAwsAccountId',
-      peerVpcAwsAccountId,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(peerVpcId, 'peerVpcId');
-    _s.validateStringLength(
-      'peerVpcId',
-      peerVpcId,
-      1,
-      1024,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.CreateVpcPeeringConnection'
@@ -2774,13 +2493,6 @@ class GameLift {
     GameServerGroupDeleteOption? deleteOption,
   }) async {
     ArgumentError.checkNotNull(gameServerGroupName, 'gameServerGroupName');
-    _s.validateStringLength(
-      'gameServerGroupName',
-      gameServerGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DeleteGameServerGroup'
@@ -2831,13 +2543,6 @@ class GameLift {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DeleteGameSessionQueue'
@@ -2882,13 +2587,6 @@ class GameLift {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DeleteMatchmakingConfiguration'
@@ -2943,13 +2641,6 @@ class GameLift {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DeleteMatchmakingRuleSet'
@@ -3001,13 +2692,6 @@ class GameLift {
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1024,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DeleteScalingPolicy'
@@ -3114,21 +2798,7 @@ class GameLift {
     required String peerVpcId,
   }) async {
     ArgumentError.checkNotNull(gameLiftAwsAccountId, 'gameLiftAwsAccountId');
-    _s.validateStringLength(
-      'gameLiftAwsAccountId',
-      gameLiftAwsAccountId,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(peerVpcId, 'peerVpcId');
-    _s.validateStringLength(
-      'peerVpcId',
-      peerVpcId,
-      1,
-      1024,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DeleteVpcPeeringAuthorization'
@@ -3188,13 +2858,6 @@ class GameLift {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
     ArgumentError.checkNotNull(
         vpcPeeringConnectionId, 'vpcPeeringConnectionId');
-    _s.validateStringLength(
-      'vpcPeeringConnectionId',
-      vpcPeeringConnectionId,
-      1,
-      1024,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DeleteVpcPeeringConnection'
@@ -3253,21 +2916,7 @@ class GameLift {
     required String gameServerId,
   }) async {
     ArgumentError.checkNotNull(gameServerGroupName, 'gameServerGroupName');
-    _s.validateStringLength(
-      'gameServerGroupName',
-      gameServerGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gameServerId, 'gameServerId');
-    _s.validateStringLength(
-      'gameServerId',
-      gameServerId,
-      3,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DeregisterGameServer'
@@ -3469,12 +3118,6 @@ class GameLift {
     EC2InstanceType? eC2InstanceType,
     String? location,
   }) async {
-    _s.validateStringLength(
-      'location',
-      location,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeEC2InstanceLimits'
@@ -3567,12 +3210,6 @@ class GameLift {
       limit,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3678,12 +3315,6 @@ class GameLift {
       1,
       1152921504606846976,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeFleetCapacity'
@@ -3773,12 +3404,6 @@ class GameLift {
       limit,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3880,12 +3505,6 @@ class GameLift {
       1,
       1152921504606846976,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeFleetLocationAttributes'
@@ -3960,13 +3579,6 @@ class GameLift {
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
     ArgumentError.checkNotNull(location, 'location');
-    _s.validateStringLength(
-      'location',
-      location,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeFleetLocationCapacity'
@@ -4039,13 +3651,6 @@ class GameLift {
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
     ArgumentError.checkNotNull(location, 'location');
-    _s.validateStringLength(
-      'location',
-      location,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeFleetLocationUtilization'
@@ -4122,12 +3727,6 @@ class GameLift {
     String? location,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringLength(
-      'location',
-      location,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeFleetPortSettings'
@@ -4230,12 +3829,6 @@ class GameLift {
       1,
       1152921504606846976,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeFleetUtilization'
@@ -4297,21 +3890,7 @@ class GameLift {
     required String gameServerId,
   }) async {
     ArgumentError.checkNotNull(gameServerGroupName, 'gameServerGroupName');
-    _s.validateStringLength(
-      'gameServerGroupName',
-      gameServerGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gameServerId, 'gameServerId');
-    _s.validateStringLength(
-      'gameServerId',
-      gameServerId,
-      3,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeGameServer'
@@ -4370,13 +3949,6 @@ class GameLift {
     required String gameServerGroupName,
   }) async {
     ArgumentError.checkNotNull(gameServerGroupName, 'gameServerGroupName');
-    _s.validateStringLength(
-      'gameServerGroupName',
-      gameServerGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeGameServerGroup'
@@ -4462,24 +4034,11 @@ class GameLift {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(gameServerGroupName, 'gameServerGroupName');
-    _s.validateStringLength(
-      'gameServerGroupName',
-      gameServerGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4599,35 +4158,11 @@ class GameLift {
     String? nextToken,
     String? statusFilter,
   }) async {
-    _s.validateStringLength(
-      'gameSessionId',
-      gameSessionId,
-      1,
-      256,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'location',
-      location,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'statusFilter',
-      statusFilter,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4681,13 +4216,6 @@ class GameLift {
     required String placementId,
   }) async {
     ArgumentError.checkNotNull(placementId, 'placementId');
-    _s.validateStringLength(
-      'placementId',
-      placementId,
-      1,
-      48,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeGameSessionPlacement'
@@ -4755,12 +4283,6 @@ class GameLift {
       limit,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4880,35 +4402,11 @@ class GameLift {
     String? nextToken,
     String? statusFilter,
   }) async {
-    _s.validateStringLength(
-      'gameSessionId',
-      gameSessionId,
-      1,
-      256,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'location',
-      location,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'statusFilter',
-      statusFilter,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5015,18 +4513,6 @@ class GameLift {
       limit,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'location',
-      location,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5178,18 +4664,6 @@ class GameLift {
       1,
       1152921504606846976,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'ruleSetName',
-      ruleSetName,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.DescribeMatchmakingConfigurations'
@@ -5265,12 +4739,6 @@ class GameLift {
       limit,
       1,
       10,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5383,35 +4851,11 @@ class GameLift {
     String? playerSessionId,
     String? playerSessionStatusFilter,
   }) async {
-    _s.validateStringLength(
-      'gameSessionId',
-      gameSessionId,
-      1,
-      256,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'playerId',
-      playerId,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'playerSessionStatusFilter',
-      playerSessionStatusFilter,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5586,18 +5030,6 @@ class GameLift {
       limit,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'location',
-      location,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5784,13 +5216,6 @@ class GameLift {
     required String gameSessionId,
   }) async {
     ArgumentError.checkNotNull(gameSessionId, 'gameSessionId');
-    _s.validateStringLength(
-      'gameSessionId',
-      gameSessionId,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.GetGameSessionLogUrl'
@@ -5948,18 +5373,6 @@ class GameLift {
       1,
       1152921504606846976,
     );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1152921504606846976,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.ListAliases'
@@ -6045,12 +5458,6 @@ class GameLift {
     _s.validateNumRange(
       'limit',
       limit,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
       1,
       1152921504606846976,
     );
@@ -6158,12 +5565,6 @@ class GameLift {
       1,
       1152921504606846976,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.ListFleets'
@@ -6228,12 +5629,6 @@ class GameLift {
       limit,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6306,24 +5701,11 @@ class GameLift {
     SortOrder? sortOrder,
   }) async {
     ArgumentError.checkNotNull(gameServerGroupName, 'gameServerGroupName');
-    _s.validateStringLength(
-      'gameServerGroupName',
-      gameServerGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6381,12 +5763,6 @@ class GameLift {
     _s.validateNumRange(
       'limit',
       limit,
-      1,
-      1152921504606846976,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
       1,
       1152921504606846976,
     );
@@ -6473,13 +5849,6 @@ class GameLift {
     required String resourceARN,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.ListTagsForResource'
@@ -6722,13 +6091,6 @@ class GameLift {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
     ArgumentError.checkNotNull(metricName, 'metricName');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1024,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'evaluationPeriods',
       evaluationPeriods,
@@ -6838,41 +6200,8 @@ class GameLift {
     String? gameServerData,
   }) async {
     ArgumentError.checkNotNull(gameServerGroupName, 'gameServerGroupName');
-    _s.validateStringLength(
-      'gameServerGroupName',
-      gameServerGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gameServerId, 'gameServerId');
-    _s.validateStringLength(
-      'gameServerId',
-      gameServerId,
-      3,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceId, 'instanceId');
-    _s.validateStringLength(
-      'instanceId',
-      instanceId,
-      19,
-      19,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'connectionInfo',
-      connectionInfo,
-      1,
-      512,
-    );
-    _s.validateStringLength(
-      'gameServerData',
-      gameServerData,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.RegisterGameServer'
@@ -7034,13 +6363,6 @@ class GameLift {
     required List<GameServerGroupAction> resumeActions,
   }) async {
     ArgumentError.checkNotNull(gameServerGroupName, 'gameServerGroupName');
-    _s.validateStringLength(
-      'gameServerGroupName',
-      gameServerGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resumeActions, 'resumeActions');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7279,35 +6601,11 @@ class GameLift {
     String? nextToken,
     String? sortExpression,
   }) async {
-    _s.validateStringLength(
-      'filterExpression',
-      filterExpression,
-      1,
-      1024,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'location',
-      location,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'sortExpression',
-      sortExpression,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7394,12 +6692,6 @@ class GameLift {
   }) async {
     ArgumentError.checkNotNull(actions, 'actions');
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringLength(
-      'location',
-      location,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.StartFleetActions'
@@ -7540,13 +6832,6 @@ class GameLift {
     List<PlayerLatency>? playerLatencies,
   }) async {
     ArgumentError.checkNotNull(gameSessionQueueName, 'gameSessionQueueName');
-    _s.validateStringLength(
-      'gameSessionQueueName',
-      gameSessionQueueName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         maximumPlayerSessionCount, 'maximumPlayerSessionCount');
     _s.validateNumRange(
@@ -7557,25 +6842,6 @@ class GameLift {
       isRequired: true,
     );
     ArgumentError.checkNotNull(placementId, 'placementId');
-    _s.validateStringLength(
-      'placementId',
-      placementId,
-      1,
-      48,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'gameSessionData',
-      gameSessionData,
-      1,
-      262144,
-    );
-    _s.validateStringLength(
-      'gameSessionName',
-      gameSessionName,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.StartGameSessionPlacement'
@@ -7705,26 +6971,7 @@ class GameLift {
     String? ticketId,
   }) async {
     ArgumentError.checkNotNull(configurationName, 'configurationName');
-    _s.validateStringLength(
-      'configurationName',
-      configurationName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(players, 'players');
-    _s.validateStringLength(
-      'gameSessionArn',
-      gameSessionArn,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'ticketId',
-      ticketId,
-      0,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.StartMatchBackfill'
@@ -7816,20 +7063,7 @@ class GameLift {
     String? ticketId,
   }) async {
     ArgumentError.checkNotNull(configurationName, 'configurationName');
-    _s.validateStringLength(
-      'configurationName',
-      configurationName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(players, 'players');
-    _s.validateStringLength(
-      'ticketId',
-      ticketId,
-      0,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.StartMatchmaking'
@@ -7915,12 +7149,6 @@ class GameLift {
   }) async {
     ArgumentError.checkNotNull(actions, 'actions');
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringLength(
-      'location',
-      location,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.StopFleetActions'
@@ -7966,13 +7194,6 @@ class GameLift {
     required String placementId,
   }) async {
     ArgumentError.checkNotNull(placementId, 'placementId');
-    _s.validateStringLength(
-      'placementId',
-      placementId,
-      1,
-      48,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.StopGameSessionPlacement'
@@ -8030,13 +7251,6 @@ class GameLift {
     required String ticketId,
   }) async {
     ArgumentError.checkNotNull(ticketId, 'ticketId');
-    _s.validateStringLength(
-      'ticketId',
-      ticketId,
-      0,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.StopMatchmaking'
@@ -8109,13 +7323,6 @@ class GameLift {
     required List<GameServerGroupAction> suspendActions,
   }) async {
     ArgumentError.checkNotNull(gameServerGroupName, 'gameServerGroupName');
-    _s.validateStringLength(
-      'gameServerGroupName',
-      gameServerGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(suspendActions, 'suspendActions');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8211,13 +7418,6 @@ class GameLift {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8308,13 +7508,6 @@ class GameLift {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -8371,18 +7564,6 @@ class GameLift {
     RoutingStrategy? routingStrategy,
   }) async {
     ArgumentError.checkNotNull(aliasId, 'aliasId');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.UpdateAlias'
@@ -8444,18 +7625,6 @@ class GameLift {
     String? version,
   }) async {
     ArgumentError.checkNotNull(buildId, 'buildId');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'version',
-      version,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.UpdateBuild'
@@ -8553,18 +7722,6 @@ class GameLift {
     ResourceCreationLimitPolicy? resourceCreationLimitPolicy,
   }) async {
     ArgumentError.checkNotNull(fleetId, 'fleetId');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.UpdateFleetAttributes'
@@ -8693,12 +7850,6 @@ class GameLift {
       desiredInstances,
       0,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'location',
-      location,
-      1,
-      64,
     );
     _s.validateNumRange(
       'maxSize',
@@ -8888,27 +8039,7 @@ class GameLift {
     GameServerUtilizationStatus? utilizationStatus,
   }) async {
     ArgumentError.checkNotNull(gameServerGroupName, 'gameServerGroupName');
-    _s.validateStringLength(
-      'gameServerGroupName',
-      gameServerGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(gameServerId, 'gameServerId');
-    _s.validateStringLength(
-      'gameServerId',
-      gameServerId,
-      3,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'gameServerData',
-      gameServerData,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.UpdateGameServer'
@@ -9038,19 +8169,6 @@ class GameLift {
     String? roleArn,
   }) async {
     ArgumentError.checkNotNull(gameServerGroupName, 'gameServerGroupName');
-    _s.validateStringLength(
-      'gameServerGroupName',
-      gameServerGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.UpdateGameServerGroup'
@@ -9136,24 +8254,11 @@ class GameLift {
     ProtectionPolicy? protectionPolicy,
   }) async {
     ArgumentError.checkNotNull(gameSessionId, 'gameSessionId');
-    _s.validateStringLength(
-      'gameSessionId',
-      gameSessionId,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maximumPlayerSessionCount',
       maximumPlayerSessionCount,
       0,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9263,25 +8368,6 @@ class GameLift {
     int? timeoutInSeconds,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'customEventData',
-      customEventData,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'notificationTarget',
-      notificationTarget,
-      0,
-      300,
-    );
     _s.validateNumRange(
       'timeoutInSeconds',
       timeoutInSeconds,
@@ -9466,13 +8552,6 @@ class GameLift {
     String? ruleSetName,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'acceptanceTimeoutSeconds',
       acceptanceTimeoutSeconds,
@@ -9485,41 +8564,11 @@ class GameLift {
       0,
       1152921504606846976,
     );
-    _s.validateStringLength(
-      'customEventData',
-      customEventData,
-      0,
-      256,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'gameSessionData',
-      gameSessionData,
-      1,
-      4096,
-    );
-    _s.validateStringLength(
-      'notificationTarget',
-      notificationTarget,
-      0,
-      300,
-    );
     _s.validateNumRange(
       'requestTimeoutSeconds',
       requestTimeoutSeconds,
       1,
       43200,
-    );
-    _s.validateStringLength(
-      'ruleSetName',
-      ruleSetName,
-      1,
-      256,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9704,18 +8753,6 @@ class GameLift {
     Uint8List? zipFile,
   }) async {
     ArgumentError.checkNotNull(scriptId, 'scriptId');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'version',
-      version,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.UpdateScript'
@@ -9773,13 +8810,6 @@ class GameLift {
     required String ruleSetBody,
   }) async {
     ArgumentError.checkNotNull(ruleSetBody, 'ruleSetBody');
-    _s.validateStringLength(
-      'ruleSetBody',
-      ruleSetBody,
-      1,
-      65535,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'GameLift.ValidateMatchmakingRuleSet'

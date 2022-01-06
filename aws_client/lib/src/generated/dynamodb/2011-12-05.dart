@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -148,13 +149,6 @@ class DynamoDB {
     ArgumentError.checkNotNull(keySchema, 'keySchema');
     ArgumentError.checkNotNull(provisionedThroughput, 'provisionedThroughput');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20111205.CreateTable'
@@ -200,13 +194,6 @@ class DynamoDB {
   }) async {
     ArgumentError.checkNotNull(key, 'key');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20111205.DeleteItem'
@@ -249,13 +236,6 @@ class DynamoDB {
     required String tableName,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20111205.DeleteTable'
@@ -291,13 +271,6 @@ class DynamoDB {
     required String tableName,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20111205.DescribeTable'
@@ -341,13 +314,6 @@ class DynamoDB {
   }) async {
     ArgumentError.checkNotNull(key, 'key');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20111205.GetItem'
@@ -383,12 +349,6 @@ class DynamoDB {
     String? exclusiveStartTableName,
     int? limit,
   }) async {
-    _s.validateStringLength(
-      'exclusiveStartTableName',
-      exclusiveStartTableName,
-      3,
-      255,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -443,13 +403,6 @@ class DynamoDB {
   }) async {
     ArgumentError.checkNotNull(item, 'item');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20111205.PutItem'
@@ -538,13 +491,6 @@ class DynamoDB {
   }) async {
     ArgumentError.checkNotNull(hashKeyValue, 'hashKeyValue');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -628,13 +574,6 @@ class DynamoDB {
     Map<String, Condition>? scanFilter,
   }) async {
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
@@ -692,13 +631,6 @@ class DynamoDB {
     ArgumentError.checkNotNull(attributeUpdates, 'attributeUpdates');
     ArgumentError.checkNotNull(key, 'key');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20111205.UpdateItem'
@@ -741,13 +673,6 @@ class DynamoDB {
   }) async {
     ArgumentError.checkNotNull(provisionedThroughput, 'provisionedThroughput');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      3,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'DynamoDB_20111205.UpdateTable'

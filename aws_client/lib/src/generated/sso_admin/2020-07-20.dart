@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -84,29 +85,8 @@ class SsoAdmin {
     required String permissionSetArn,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(managedPolicyArn, 'managedPolicyArn');
-    _s.validateStringLength(
-      'managedPolicyArn',
-      managedPolicyArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionSetArn, 'permissionSetArn');
-    _s.validateStringLength(
-      'permissionSetArn',
-      permissionSetArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SWBExternalService.AttachManagedPolicyToPermissionSet'
@@ -185,29 +165,8 @@ class SsoAdmin {
     required TargetType targetType,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionSetArn, 'permissionSetArn');
-    _s.validateStringLength(
-      'permissionSetArn',
-      permissionSetArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(principalId, 'principalId');
-    _s.validateStringLength(
-      'principalId',
-      principalId,
-      1,
-      47,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(principalType, 'principalType');
     ArgumentError.checkNotNull(targetId, 'targetId');
     ArgumentError.checkNotNull(targetType, 'targetType');
@@ -267,13 +226,6 @@ class SsoAdmin {
     ArgumentError.checkNotNull(instanceAccessControlAttributeConfiguration,
         'instanceAccessControlAttributeConfiguration');
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -339,39 +291,7 @@ class SsoAdmin {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      32,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      700,
-    );
-    _s.validateStringLength(
-      'relayState',
-      relayState,
-      1,
-      240,
-    );
-    _s.validateStringLength(
-      'sessionDuration',
-      sessionDuration,
-      1,
-      100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SWBExternalService.CreatePermissionSet'
@@ -441,29 +361,8 @@ class SsoAdmin {
     required TargetType targetType,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionSetArn, 'permissionSetArn');
-    _s.validateStringLength(
-      'permissionSetArn',
-      permissionSetArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(principalId, 'principalId');
-    _s.validateStringLength(
-      'principalId',
-      principalId,
-      1,
-      47,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(principalType, 'principalType');
     ArgumentError.checkNotNull(targetId, 'targetId');
     ArgumentError.checkNotNull(targetType, 'targetType');
@@ -513,21 +412,7 @@ class SsoAdmin {
     required String permissionSetArn,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionSetArn, 'permissionSetArn');
-    _s.validateStringLength(
-      'permissionSetArn',
-      permissionSetArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SWBExternalService.DeleteInlinePolicyFromPermissionSet'
@@ -567,13 +452,6 @@ class SsoAdmin {
     required String instanceArn,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -614,21 +492,7 @@ class SsoAdmin {
     required String permissionSetArn,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionSetArn, 'permissionSetArn');
-    _s.validateStringLength(
-      'permissionSetArn',
-      permissionSetArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SWBExternalService.DeletePermissionSet'
@@ -671,13 +535,6 @@ class SsoAdmin {
     ArgumentError.checkNotNull(accountAssignmentCreationRequestId,
         'accountAssignmentCreationRequestId');
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -725,13 +582,6 @@ class SsoAdmin {
     ArgumentError.checkNotNull(accountAssignmentDeletionRequestId,
         'accountAssignmentDeletionRequestId');
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -775,13 +625,6 @@ class SsoAdmin {
     required String instanceArn,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -824,21 +667,7 @@ class SsoAdmin {
     required String permissionSetArn,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionSetArn, 'permissionSetArn');
-    _s.validateStringLength(
-      'permissionSetArn',
-      permissionSetArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SWBExternalService.DescribePermissionSet'
@@ -882,13 +711,6 @@ class SsoAdmin {
     required String provisionPermissionSetRequestId,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         provisionPermissionSetRequestId, 'provisionPermissionSetRequestId');
     final headers = <String, String>{
@@ -941,29 +763,8 @@ class SsoAdmin {
     required String permissionSetArn,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(managedPolicyArn, 'managedPolicyArn');
-    _s.validateStringLength(
-      'managedPolicyArn',
-      managedPolicyArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionSetArn, 'permissionSetArn');
-    _s.validateStringLength(
-      'permissionSetArn',
-      permissionSetArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SWBExternalService.DetachManagedPolicyFromPermissionSet'
@@ -1005,21 +806,7 @@ class SsoAdmin {
     required String permissionSetArn,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionSetArn, 'permissionSetArn');
-    _s.validateStringLength(
-      'permissionSetArn',
-      permissionSetArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SWBExternalService.GetInlinePolicyForPermissionSet'
@@ -1072,24 +859,11 @@ class SsoAdmin {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1146,24 +920,11 @@ class SsoAdmin {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1225,32 +986,12 @@ class SsoAdmin {
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionSetArn, 'permissionSetArn');
-    _s.validateStringLength(
-      'permissionSetArn',
-      permissionSetArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1312,32 +1053,12 @@ class SsoAdmin {
     ProvisioningStatus? provisioningStatus,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionSetArn, 'permissionSetArn');
-    _s.validateStringLength(
-      'permissionSetArn',
-      permissionSetArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1386,12 +1107,6 @@ class SsoAdmin {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1445,32 +1160,12 @@ class SsoAdmin {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionSetArn, 'permissionSetArn');
-    _s.validateStringLength(
-      'permissionSetArn',
-      permissionSetArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1527,24 +1222,11 @@ class SsoAdmin {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1595,24 +1277,11 @@ class SsoAdmin {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1673,24 +1342,11 @@ class SsoAdmin {
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1744,27 +1400,7 @@ class SsoAdmin {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      10,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SWBExternalService.ListTagsForResource'
@@ -1818,21 +1454,7 @@ class SsoAdmin {
     String? targetId,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionSetArn, 'permissionSetArn');
-    _s.validateStringLength(
-      'permissionSetArn',
-      permissionSetArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targetType, 'targetType');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1889,29 +1511,8 @@ class SsoAdmin {
     required String permissionSetArn,
   }) async {
     ArgumentError.checkNotNull(inlinePolicy, 'inlinePolicy');
-    _s.validateStringLength(
-      'inlinePolicy',
-      inlinePolicy,
-      1,
-      10240,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionSetArn, 'permissionSetArn');
-    _s.validateStringLength(
-      'permissionSetArn',
-      permissionSetArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SWBExternalService.PutInlinePolicyToPermissionSet'
@@ -1958,21 +1559,7 @@ class SsoAdmin {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      10,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2019,21 +1606,7 @@ class SsoAdmin {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      10,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2084,13 +1657,6 @@ class SsoAdmin {
     ArgumentError.checkNotNull(instanceAccessControlAttributeConfiguration,
         'instanceAccessControlAttributeConfiguration');
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -2147,39 +1713,7 @@ class SsoAdmin {
     String? sessionDuration,
   }) async {
     ArgumentError.checkNotNull(instanceArn, 'instanceArn');
-    _s.validateStringLength(
-      'instanceArn',
-      instanceArn,
-      10,
-      1224,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionSetArn, 'permissionSetArn');
-    _s.validateStringLength(
-      'permissionSetArn',
-      permissionSetArn,
-      10,
-      1224,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      700,
-    );
-    _s.validateStringLength(
-      'relayState',
-      relayState,
-      1,
-      240,
-    );
-    _s.validateStringLength(
-      'sessionDuration',
-      sessionDuration,
-      1,
-      100,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'SWBExternalService.UpdatePermissionSet'

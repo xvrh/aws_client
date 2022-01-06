@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -63,22 +64,8 @@ class QuickSight {
     required String ingestionId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     ArgumentError.checkNotNull(ingestionId, 'ingestionId');
-    _s.validateStringLength(
-      'ingestionId',
-      ingestionId,
-      1,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -156,19 +143,6 @@ class QuickSight {
   }) async {
     ArgumentError.checkNotNull(accountCustomization, 'accountCustomization');
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-    );
     final $query = <String, List<String>>{
       if (namespace != null) 'namespace': [namespace],
     };
@@ -247,29 +221,8 @@ class QuickSight {
     String? themeArn,
   }) async {
     ArgumentError.checkNotNull(analysisId, 'analysisId');
-    _s.validateStringLength(
-      'analysisId',
-      analysisId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceEntity, 'sourceEntity');
     final $payload = <String, dynamic>{
       'Name': name,
@@ -398,36 +351,9 @@ class QuickSight {
     String? versionDescription,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
-    _s.validateStringLength(
-      'dashboardId',
-      dashboardId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceEntity, 'sourceEntity');
-    _s.validateStringLength(
-      'versionDescription',
-      versionDescription,
-      1,
-      512,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       'SourceEntity': sourceEntity,
@@ -526,23 +452,9 @@ class QuickSight {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     ArgumentError.checkNotNull(importMode, 'importMode');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(physicalTableMap, 'physicalTableMap');
     final $payload = <String, dynamic>{
       'DataSetId': dataSetId,
@@ -636,22 +548,8 @@ class QuickSight {
     VpcConnectionProperties? vpcConnectionProperties,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSourceId, 'dataSourceId');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
     final $payload = <String, dynamic>{
       'DataSourceId': dataSourceId,
@@ -725,27 +623,7 @@ class QuickSight {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(folderId, 'folderId');
-    _s.validateStringLength(
-      'folderId',
-      folderId,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      200,
-    );
     final $payload = <String, dynamic>{
       if (folderType != null) 'FolderType': folderType.toValue(),
       if (name != null) 'Name': name,
@@ -793,29 +671,8 @@ class QuickSight {
     required MemberType memberType,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(folderId, 'folderId');
-    _s.validateStringLength(
-      'folderId',
-      folderId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberId, 'memberId');
-    _s.validateStringLength(
-      'memberId',
-      memberId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberType, 'memberType');
     final response = await _protocol.send(
       payload: null,
@@ -865,35 +722,8 @@ class QuickSight {
     String? description,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      512,
-    );
     final $payload = <String, dynamic>{
       'GroupName': groupName,
       if (description != null) 'Description': description,
@@ -938,37 +768,9 @@ class QuickSight {
     required String namespace,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberName, 'memberName');
-    _s.validateStringLength(
-      'memberName',
-      memberName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'PUT',
@@ -1038,30 +840,9 @@ class QuickSight {
     String? policyArn,
   }) async {
     ArgumentError.checkNotNull(assignmentName, 'assignmentName');
-    _s.validateStringLength(
-      'assignmentName',
-      assignmentName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(assignmentStatus, 'assignmentStatus');
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'AssignmentName': assignmentName,
       'AssignmentStatus': assignmentStatus.toValue(),
@@ -1117,22 +898,8 @@ class QuickSight {
     IngestionType? ingestionType,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     ArgumentError.checkNotNull(ingestionId, 'ingestionId');
-    _s.validateStringLength(
-      'ingestionId',
-      ingestionId,
-      1,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (ingestionType != null) 'IngestionType': ingestionType.toValue(),
     };
@@ -1191,22 +958,8 @@ class QuickSight {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(identityStore, 'identityStore');
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'IdentityStore': identityStore.toValue(),
       'Namespace': namespace,
@@ -1293,34 +1046,8 @@ class QuickSight {
     String? versionDescription,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceEntity, 'sourceEntity');
     ArgumentError.checkNotNull(templateId, 'templateId');
-    _s.validateStringLength(
-      'templateId',
-      templateId,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'versionDescription',
-      versionDescription,
-      1,
-      512,
-    );
     final $payload = <String, dynamic>{
       'SourceEntity': sourceEntity,
       if (name != null) 'Name': name,
@@ -1370,29 +1097,8 @@ class QuickSight {
     required int templateVersionNumber,
   }) async {
     ArgumentError.checkNotNull(aliasName, 'aliasName');
-    _s.validateStringLength(
-      'aliasName',
-      aliasName,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
-    _s.validateStringLength(
-      'templateId',
-      templateId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateVersionNumber, 'templateVersionNumber');
     _s.validateNumRange(
       'templateVersionNumber',
@@ -1474,44 +1180,10 @@ class QuickSight {
     String? versionDescription,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(baseThemeId, 'baseThemeId');
-    _s.validateStringLength(
-      'baseThemeId',
-      baseThemeId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(configuration, 'configuration');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
-    _s.validateStringLength(
-      'themeId',
-      themeId,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'versionDescription',
-      versionDescription,
-      1,
-      512,
-    );
     final $payload = <String, dynamic>{
       'BaseThemeId': baseThemeId,
       'Configuration': configuration,
@@ -1562,29 +1234,8 @@ class QuickSight {
     required int themeVersionNumber,
   }) async {
     ArgumentError.checkNotNull(aliasName, 'aliasName');
-    _s.validateStringLength(
-      'aliasName',
-      aliasName,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
-    _s.validateStringLength(
-      'themeId',
-      themeId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeVersionNumber, 'themeVersionNumber');
     _s.validateNumRange(
       'themeVersionNumber',
@@ -1630,19 +1281,6 @@ class QuickSight {
     String? namespace,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-    );
     final $query = <String, List<String>>{
       if (namespace != null) 'namespace': [namespace],
     };
@@ -1706,21 +1344,7 @@ class QuickSight {
     int? recoveryWindowInDays,
   }) async {
     ArgumentError.checkNotNull(analysisId, 'analysisId');
-    _s.validateStringLength(
-      'analysisId',
-      analysisId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'recoveryWindowInDays',
       recoveryWindowInDays,
@@ -1771,21 +1395,7 @@ class QuickSight {
     int? versionNumber,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
-    _s.validateStringLength(
-      'dashboardId',
-      dashboardId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'versionNumber',
       versionNumber,
@@ -1825,13 +1435,6 @@ class QuickSight {
     required String dataSetId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     final response = await _protocol.send(
       payload: null,
@@ -1863,13 +1466,6 @@ class QuickSight {
     required String dataSourceId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSourceId, 'dataSourceId');
     final response = await _protocol.send(
       payload: null,
@@ -1902,21 +1498,7 @@ class QuickSight {
     required String folderId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(folderId, 'folderId');
-    _s.validateStringLength(
-      'folderId',
-      folderId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -1957,29 +1539,8 @@ class QuickSight {
     required MemberType memberType,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(folderId, 'folderId');
-    _s.validateStringLength(
-      'folderId',
-      folderId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberId, 'memberId');
-    _s.validateStringLength(
-      'memberId',
-      memberId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberType, 'memberType');
     final response = await _protocol.send(
       payload: null,
@@ -2017,29 +1578,8 @@ class QuickSight {
     required String namespace,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2081,37 +1621,9 @@ class QuickSight {
     required String namespace,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberName, 'memberName');
-    _s.validateStringLength(
-      'memberName',
-      memberName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2147,29 +1659,8 @@ class QuickSight {
     required String namespace,
   }) async {
     ArgumentError.checkNotNull(assignmentName, 'assignmentName');
-    _s.validateStringLength(
-      'assignmentName',
-      assignmentName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2204,21 +1695,7 @@ class QuickSight {
     required String namespace,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2256,21 +1733,7 @@ class QuickSight {
     int? versionNumber,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
-    _s.validateStringLength(
-      'templateId',
-      templateId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'versionNumber',
       versionNumber,
@@ -2319,29 +1782,8 @@ class QuickSight {
     required String templateId,
   }) async {
     ArgumentError.checkNotNull(aliasName, 'aliasName');
-    _s.validateStringLength(
-      'aliasName',
-      aliasName,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
-    _s.validateStringLength(
-      'templateId',
-      templateId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2380,21 +1822,7 @@ class QuickSight {
     int? versionNumber,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
-    _s.validateStringLength(
-      'themeId',
-      themeId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'versionNumber',
       versionNumber,
@@ -2441,29 +1869,8 @@ class QuickSight {
     required String themeId,
   }) async {
     ArgumentError.checkNotNull(aliasName, 'aliasName');
-    _s.validateStringLength(
-      'aliasName',
-      aliasName,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
-    _s.validateStringLength(
-      'themeId',
-      themeId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2502,29 +1909,8 @@ class QuickSight {
     required String userName,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userName, 'userName');
-    _s.validateStringLength(
-      'userName',
-      userName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2561,21 +1947,7 @@ class QuickSight {
     required String principalId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(principalId, 'principalId');
     final response = await _protocol.send(
       payload: null,
@@ -2687,19 +2059,6 @@ class QuickSight {
     bool? resolved,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-    );
     final $query = <String, List<String>>{
       if (namespace != null) 'namespace': [namespace],
       if (resolved != null) 'resolved': [resolved.toString()],
@@ -2732,13 +2091,6 @@ class QuickSight {
     required String awsAccountId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2769,21 +2121,7 @@ class QuickSight {
     required String awsAccountId,
   }) async {
     ArgumentError.checkNotNull(analysisId, 'analysisId');
-    _s.validateStringLength(
-      'analysisId',
-      analysisId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2815,21 +2153,7 @@ class QuickSight {
     required String awsAccountId,
   }) async {
     ArgumentError.checkNotNull(analysisId, 'analysisId');
-    _s.validateStringLength(
-      'analysisId',
-      analysisId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2869,27 +2193,7 @@ class QuickSight {
     int? versionNumber,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
-    _s.validateStringLength(
-      'dashboardId',
-      dashboardId,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'aliasName',
-      aliasName,
-      1,
-      2048,
-    );
     _s.validateNumRange(
       'versionNumber',
       versionNumber,
@@ -2930,21 +2234,7 @@ class QuickSight {
     required String dashboardId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
-    _s.validateStringLength(
-      'dashboardId',
-      dashboardId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -2975,13 +2265,6 @@ class QuickSight {
     required String dataSetId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     final response = await _protocol.send(
       payload: null,
@@ -3015,13 +2298,6 @@ class QuickSight {
     required String dataSetId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     final response = await _protocol.send(
       payload: null,
@@ -3052,13 +2328,6 @@ class QuickSight {
     required String dataSourceId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSourceId, 'dataSourceId');
     final response = await _protocol.send(
       payload: null,
@@ -3089,13 +2358,6 @@ class QuickSight {
     required String dataSourceId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSourceId, 'dataSourceId');
     final response = await _protocol.send(
       payload: null,
@@ -3126,21 +2388,7 @@ class QuickSight {
     required String folderId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(folderId, 'folderId');
-    _s.validateStringLength(
-      'folderId',
-      folderId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3170,21 +2418,7 @@ class QuickSight {
     required String folderId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(folderId, 'folderId');
-    _s.validateStringLength(
-      'folderId',
-      folderId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3217,21 +2451,7 @@ class QuickSight {
     required String folderId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(folderId, 'folderId');
-    _s.validateStringLength(
-      'folderId',
-      folderId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3269,29 +2489,8 @@ class QuickSight {
     required String namespace,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3327,29 +2526,8 @@ class QuickSight {
     required String namespace,
   }) async {
     ArgumentError.checkNotNull(assignmentName, 'assignmentName');
-    _s.validateStringLength(
-      'assignmentName',
-      assignmentName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3383,22 +2561,8 @@ class QuickSight {
     required String ingestionId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     ArgumentError.checkNotNull(ingestionId, 'ingestionId');
-    _s.validateStringLength(
-      'ingestionId',
-      ingestionId,
-      1,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3423,13 +2587,6 @@ class QuickSight {
     required String awsAccountId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3460,21 +2617,7 @@ class QuickSight {
     required String namespace,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3521,27 +2664,7 @@ class QuickSight {
     int? versionNumber,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
-    _s.validateStringLength(
-      'templateId',
-      templateId,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'aliasName',
-      aliasName,
-      1,
-      2048,
-    );
     _s.validateNumRange(
       'versionNumber',
       versionNumber,
@@ -3589,29 +2712,8 @@ class QuickSight {
     required String templateId,
   }) async {
     ArgumentError.checkNotNull(aliasName, 'aliasName');
-    _s.validateStringLength(
-      'aliasName',
-      aliasName,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
-    _s.validateStringLength(
-      'templateId',
-      templateId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3642,21 +2744,7 @@ class QuickSight {
     required String templateId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
-    _s.validateStringLength(
-      'templateId',
-      templateId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3703,19 +2791,6 @@ class QuickSight {
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
     ArgumentError.checkNotNull(themeId, 'themeId');
-    _s.validateStringLength(
-      'themeId',
-      themeId,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'aliasName',
-      aliasName,
-      1,
-      2048,
-    );
     _s.validateNumRange(
       'versionNumber',
       versionNumber,
@@ -3761,29 +2836,8 @@ class QuickSight {
     required String themeId,
   }) async {
     ArgumentError.checkNotNull(aliasName, 'aliasName');
-    _s.validateStringLength(
-      'aliasName',
-      aliasName,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
-    _s.validateStringLength(
-      'themeId',
-      themeId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3814,21 +2868,7 @@ class QuickSight {
     required String themeId,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
-    _s.validateStringLength(
-      'themeId',
-      themeId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3865,29 +2905,8 @@ class QuickSight {
     required String userName,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userName, 'userName');
-    _s.validateStringLength(
-      'userName',
-      userName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3988,23 +3007,9 @@ class QuickSight {
     ArgumentError.checkNotNull(
         authorizedResourceArns, 'authorizedResourceArns');
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         experienceConfiguration, 'experienceConfiguration');
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'sessionLifetimeInMinutes',
       sessionLifetimeInMinutes,
@@ -4099,13 +3104,6 @@ class QuickSight {
     int? sessionLifetimeInMinutes,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         experienceConfiguration, 'experienceConfiguration');
     ArgumentError.checkNotNull(userArn, 'userArn');
@@ -4257,28 +3255,8 @@ class QuickSight {
     String? userArn,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
-    _s.validateStringLength(
-      'dashboardId',
-      dashboardId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(identityType, 'identityType');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-    );
     _s.validateNumRange(
       'sessionLifetimeInMinutes',
       sessionLifetimeInMinutes,
@@ -4411,19 +3389,6 @@ class QuickSight {
     String? userArn,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'entryPoint',
-      entryPoint,
-      1,
-      1000,
-    );
     _s.validateNumRange(
       'sessionLifetimeInMinutes',
       sessionLifetimeInMinutes,
@@ -4469,13 +3434,6 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4526,21 +3484,7 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
-    _s.validateStringLength(
-      'dashboardId',
-      dashboardId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4585,13 +3529,6 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4639,13 +3576,6 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4690,13 +3620,6 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4747,21 +3670,7 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(folderId, 'folderId');
-    _s.validateStringLength(
-      'folderId',
-      folderId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4808,13 +3717,6 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4870,29 +3772,8 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -4945,21 +3826,7 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5014,21 +3881,7 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5086,29 +3939,8 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userName, 'userName');
-    _s.validateStringLength(
-      'userName',
-      userName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5159,13 +3991,6 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     _s.validateNumRange(
       'maxResults',
@@ -5214,13 +4039,6 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5293,21 +4111,7 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
-    _s.validateStringLength(
-      'templateId',
-      templateId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5359,21 +4163,7 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
-    _s.validateStringLength(
-      'templateId',
-      templateId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5420,13 +4210,6 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5477,21 +4260,7 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
-    _s.validateStringLength(
-      'themeId',
-      themeId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5544,21 +4313,7 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
-    _s.validateStringLength(
-      'themeId',
-      themeId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5625,13 +4380,6 @@ class QuickSight {
     ThemeType? type,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5689,29 +4437,8 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userName, 'userName');
-    _s.validateStringLength(
-      'userName',
-      userName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5765,21 +4492,7 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -5967,42 +4680,10 @@ class QuickSight {
     String? userName,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(email, 'email');
     ArgumentError.checkNotNull(identityType, 'identityType');
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userRole, 'userRole');
-    _s.validateStringLength(
-      'customPermissionsName',
-      customPermissionsName,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'sessionName',
-      sessionName,
-      2,
-      64,
-    );
-    _s.validateStringLength(
-      'userName',
-      userName,
-      1,
-      1152921504606846976,
-    );
     final $payload = <String, dynamic>{
       'Email': email,
       'IdentityType': identityType.toValue(),
@@ -6048,21 +4729,7 @@ class QuickSight {
     required String awsAccountId,
   }) async {
     ArgumentError.checkNotNull(analysisId, 'analysisId');
-    _s.validateStringLength(
-      'analysisId',
-      analysisId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -6106,13 +4773,6 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(filters, 'filters');
     _s.validateNumRange(
       'maxResults',
@@ -6171,13 +4831,6 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(filters, 'filters');
     _s.validateNumRange(
       'maxResults',
@@ -6232,13 +4885,6 @@ class QuickSight {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(filters, 'filters');
     _s.validateNumRange(
       'maxResults',
@@ -6391,19 +5037,6 @@ class QuickSight {
   }) async {
     ArgumentError.checkNotNull(accountCustomization, 'accountCustomization');
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-    );
     final $query = <String, List<String>>{
       if (namespace != null) 'namespace': [namespace],
     };
@@ -6451,21 +5084,7 @@ class QuickSight {
     String? notificationEmail,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(defaultNamespace, 'defaultNamespace');
-    _s.validateStringLength(
-      'defaultNamespace',
-      defaultNamespace,
-      0,
-      64,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DefaultNamespace': defaultNamespace,
       if (notificationEmail != null) 'NotificationEmail': notificationEmail,
@@ -6524,29 +5143,8 @@ class QuickSight {
     String? themeArn,
   }) async {
     ArgumentError.checkNotNull(analysisId, 'analysisId');
-    _s.validateStringLength(
-      'analysisId',
-      analysisId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceEntity, 'sourceEntity');
     final $payload = <String, dynamic>{
       'Name': name,
@@ -6596,21 +5194,7 @@ class QuickSight {
     List<ResourcePermission>? revokePermissions,
   }) async {
     ArgumentError.checkNotNull(analysisId, 'analysisId');
-    _s.validateStringLength(
-      'analysisId',
-      analysisId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (grantPermissions != null) 'GrantPermissions': grantPermissions,
       if (revokePermissions != null) 'RevokePermissions': revokePermissions,
@@ -6718,36 +5302,9 @@ class QuickSight {
     String? versionDescription,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
-    _s.validateStringLength(
-      'dashboardId',
-      dashboardId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceEntity, 'sourceEntity');
-    _s.validateStringLength(
-      'versionDescription',
-      versionDescription,
-      1,
-      512,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       'SourceEntity': sourceEntity,
@@ -6803,21 +5360,7 @@ class QuickSight {
     List<ResourcePermission>? revokePermissions,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
-    _s.validateStringLength(
-      'dashboardId',
-      dashboardId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (grantLinkPermissions != null)
         'GrantLinkPermissions': grantLinkPermissions,
@@ -6861,21 +5404,7 @@ class QuickSight {
     required int versionNumber,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dashboardId, 'dashboardId');
-    _s.validateStringLength(
-      'dashboardId',
-      dashboardId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(versionNumber, 'versionNumber');
     _s.validateNumRange(
       'versionNumber',
@@ -6961,23 +5490,9 @@ class QuickSight {
     RowLevelPermissionTagConfiguration? rowLevelPermissionTagConfiguration,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     ArgumentError.checkNotNull(importMode, 'importMode');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(physicalTableMap, 'physicalTableMap');
     final $payload = <String, dynamic>{
       'ImportMode': importMode.toValue(),
@@ -7038,13 +5553,6 @@ class QuickSight {
     List<ResourcePermission>? revokePermissions,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSetId, 'dataSetId');
     final $payload = <String, dynamic>{
       if (grantPermissions != null) 'GrantPermissions': grantPermissions,
@@ -7105,22 +5613,8 @@ class QuickSight {
     VpcConnectionProperties? vpcConnectionProperties,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSourceId, 'dataSourceId');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       if (credentials != null) 'Credentials': credentials,
@@ -7168,13 +5662,6 @@ class QuickSight {
     List<ResourcePermission>? revokePermissions,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(dataSourceId, 'dataSourceId');
     final $payload = <String, dynamic>{
       if (grantPermissions != null) 'GrantPermissions': grantPermissions,
@@ -7216,29 +5703,8 @@ class QuickSight {
     required String name,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(folderId, 'folderId');
-    _s.validateStringLength(
-      'folderId',
-      folderId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      200,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
     };
@@ -7281,21 +5747,7 @@ class QuickSight {
     List<ResourcePermission>? revokePermissions,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(folderId, 'folderId');
-    _s.validateStringLength(
-      'folderId',
-      folderId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (grantPermissions != null) 'GrantPermissions': grantPermissions,
       if (revokePermissions != null) 'RevokePermissions': revokePermissions,
@@ -7340,35 +5792,8 @@ class QuickSight {
     String? description,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      512,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
     };
@@ -7439,29 +5864,8 @@ class QuickSight {
     String? policyArn,
   }) async {
     ArgumentError.checkNotNull(assignmentName, 'assignmentName');
-    _s.validateStringLength(
-      'assignmentName',
-      assignmentName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (assignmentStatus != null)
         'AssignmentStatus': assignmentStatus.toValue(),
@@ -7504,13 +5908,6 @@ class QuickSight {
     Map<String, String>? ipRestrictionRuleMap,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (enabled != null) 'Enabled': enabled,
       if (ipRestrictionRuleMap != null)
@@ -7577,34 +5974,8 @@ class QuickSight {
     String? versionDescription,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceEntity, 'sourceEntity');
     ArgumentError.checkNotNull(templateId, 'templateId');
-    _s.validateStringLength(
-      'templateId',
-      templateId,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'versionDescription',
-      versionDescription,
-      1,
-      512,
-    );
     final $payload = <String, dynamic>{
       'SourceEntity': sourceEntity,
       if (name != null) 'Name': name,
@@ -7652,29 +6023,8 @@ class QuickSight {
     required int templateVersionNumber,
   }) async {
     ArgumentError.checkNotNull(aliasName, 'aliasName');
-    _s.validateStringLength(
-      'aliasName',
-      aliasName,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
-    _s.validateStringLength(
-      'templateId',
-      templateId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateVersionNumber, 'templateVersionNumber');
     _s.validateNumRange(
       'templateVersionNumber',
@@ -7723,21 +6073,7 @@ class QuickSight {
     List<ResourcePermission>? revokePermissions,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(templateId, 'templateId');
-    _s.validateStringLength(
-      'templateId',
-      templateId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (grantPermissions != null) 'GrantPermissions': grantPermissions,
       if (revokePermissions != null) 'RevokePermissions': revokePermissions,
@@ -7794,41 +6130,8 @@ class QuickSight {
     String? versionDescription,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(baseThemeId, 'baseThemeId');
-    _s.validateStringLength(
-      'baseThemeId',
-      baseThemeId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
-    _s.validateStringLength(
-      'themeId',
-      themeId,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'versionDescription',
-      versionDescription,
-      1,
-      512,
-    );
     final $payload = <String, dynamic>{
       'BaseThemeId': baseThemeId,
       if (configuration != null) 'Configuration': configuration,
@@ -7874,29 +6177,8 @@ class QuickSight {
     required int themeVersionNumber,
   }) async {
     ArgumentError.checkNotNull(aliasName, 'aliasName');
-    _s.validateStringLength(
-      'aliasName',
-      aliasName,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
-    _s.validateStringLength(
-      'themeId',
-      themeId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeVersionNumber, 'themeVersionNumber');
     _s.validateNumRange(
       'themeVersionNumber',
@@ -8012,21 +6294,7 @@ class QuickSight {
     List<ResourcePermission>? revokePermissions,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(themeId, 'themeId');
-    _s.validateStringLength(
-      'themeId',
-      themeId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (grantPermissions != null) 'GrantPermissions': grantPermissions,
       if (revokePermissions != null) 'RevokePermissions': revokePermissions,
@@ -8173,37 +6441,10 @@ class QuickSight {
     bool? unapplyCustomPermissions,
   }) async {
     ArgumentError.checkNotNull(awsAccountId, 'awsAccountId');
-    _s.validateStringLength(
-      'awsAccountId',
-      awsAccountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(email, 'email');
     ArgumentError.checkNotNull(namespace, 'namespace');
-    _s.validateStringLength(
-      'namespace',
-      namespace,
-      0,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(role, 'role');
     ArgumentError.checkNotNull(userName, 'userName');
-    _s.validateStringLength(
-      'userName',
-      userName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'customPermissionsName',
-      customPermissionsName,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'Email': email,
       'Role': role.toValue(),

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -177,13 +178,6 @@ class Support {
     List<String>? ccEmailAddresses,
   }) async {
     ArgumentError.checkNotNull(communicationBody, 'communicationBody');
-    _s.validateStringLength(
-      'communicationBody',
-      communicationBody,
-      1,
-      8000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSSupport_20130415.AddCommunicationToCase'
@@ -328,13 +322,6 @@ class Support {
     String? severityCode,
   }) async {
     ArgumentError.checkNotNull(communicationBody, 'communicationBody');
-    _s.validateStringLength(
-      'communicationBody',
-      communicationBody,
-      1,
-      8000,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subject, 'subject');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

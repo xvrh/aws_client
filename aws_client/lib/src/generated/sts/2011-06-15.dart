@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -15,8 +16,8 @@ import '../../shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import '2011-06-15.meta.dart';
 
+import '2011-06-15.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// Security Token Service (STS) enables you to request temporary,
@@ -417,56 +418,12 @@ class Sts {
     List<String>? transitiveTagKeys,
   }) async {
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleSessionName, 'roleSessionName');
-    _s.validateStringLength(
-      'roleSessionName',
-      roleSessionName,
-      2,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'durationSeconds',
       durationSeconds,
       900,
       43200,
-    );
-    _s.validateStringLength(
-      'externalId',
-      externalId,
-      2,
-      1224,
-    );
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'serialNumber',
-      serialNumber,
-      9,
-      256,
-    );
-    _s.validateStringLength(
-      'sourceIdentity',
-      sourceIdentity,
-      2,
-      64,
-    );
-    _s.validateStringLength(
-      'tokenCode',
-      tokenCode,
-      6,
-      6,
     );
     final $request = <String, dynamic>{};
     $request['RoleArn'] = roleArn;
@@ -769,40 +726,13 @@ class Sts {
     List<PolicyDescriptorType>? policyArns,
   }) async {
     ArgumentError.checkNotNull(principalArn, 'principalArn');
-    _s.validateStringLength(
-      'principalArn',
-      principalArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sAMLAssertion, 'sAMLAssertion');
-    _s.validateStringLength(
-      'sAMLAssertion',
-      sAMLAssertion,
-      4,
-      100000,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'durationSeconds',
       durationSeconds,
       900,
       43200,
-    );
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      2048,
     );
     final $request = <String, dynamic>{};
     $request['PrincipalArn'] = principalArn;
@@ -1138,46 +1068,13 @@ class Sts {
     String? providerId,
   }) async {
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleSessionName, 'roleSessionName');
-    _s.validateStringLength(
-      'roleSessionName',
-      roleSessionName,
-      2,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(webIdentityToken, 'webIdentityToken');
-    _s.validateStringLength(
-      'webIdentityToken',
-      webIdentityToken,
-      4,
-      20000,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'durationSeconds',
       durationSeconds,
       900,
       43200,
-    );
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      2048,
-    );
-    _s.validateStringLength(
-      'providerId',
-      providerId,
-      4,
-      2048,
     );
     final $request = <String, dynamic>{};
     $request['RoleArn'] = roleArn;
@@ -1255,13 +1152,6 @@ class Sts {
     required String encodedMessage,
   }) async {
     ArgumentError.checkNotNull(encodedMessage, 'encodedMessage');
-    _s.validateStringLength(
-      'encodedMessage',
-      encodedMessage,
-      1,
-      10240,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['EncodedMessage'] = encodedMessage;
     final $result = await _protocol.send(
@@ -1316,13 +1206,6 @@ class Sts {
     required String accessKeyId,
   }) async {
     ArgumentError.checkNotNull(accessKeyId, 'accessKeyId');
-    _s.validateStringLength(
-      'accessKeyId',
-      accessKeyId,
-      16,
-      128,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AccessKeyId'] = accessKeyId;
     final $result = await _protocol.send(
@@ -1636,24 +1519,11 @@ class Sts {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      2,
-      32,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'durationSeconds',
       durationSeconds,
       900,
       129600,
-    );
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      2048,
     );
     final $request = <String, dynamic>{};
     $request['Name'] = name;
@@ -1788,18 +1658,6 @@ class Sts {
       durationSeconds,
       900,
       129600,
-    );
-    _s.validateStringLength(
-      'serialNumber',
-      serialNumber,
-      9,
-      256,
-    );
-    _s.validateStringLength(
-      'tokenCode',
-      tokenCode,
-      6,
-      6,
     );
     final $request = <String, dynamic>{};
     durationSeconds?.also((arg) => $request['DurationSeconds'] = arg);

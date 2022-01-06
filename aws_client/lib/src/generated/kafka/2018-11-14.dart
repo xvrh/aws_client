@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -158,21 +159,7 @@ class Kafka {
   }) async {
     ArgumentError.checkNotNull(brokerNodeGroupInfo, 'brokerNodeGroupInfo');
     ArgumentError.checkNotNull(clusterName, 'clusterName');
-    _s.validateStringLength(
-      'clusterName',
-      clusterName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(kafkaVersion, 'kafkaVersion');
-    _s.validateStringLength(
-      'kafkaVersion',
-      kafkaVersion,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(numberOfBrokerNodes, 'numberOfBrokerNodes');
     _s.validateNumRange(
       'numberOfBrokerNodes',
@@ -243,13 +230,6 @@ class Kafka {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(clusterName, 'clusterName');
-    _s.validateStringLength(
-      'clusterName',
-      clusterName,
-      1,
-      64,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'clusterName': clusterName,
       if (provisioned != null) 'provisioned': provisioned,

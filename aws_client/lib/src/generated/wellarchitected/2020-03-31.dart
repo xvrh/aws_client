@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -110,21 +111,7 @@ class WellArchitected {
     String? clientRequestToken,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sharedWith, 'sharedWith');
-    _s.validateStringLength(
-      'sharedWith',
-      sharedWith,
-      12,
-      2048,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'SharedWith': sharedWith,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
@@ -167,21 +154,7 @@ class WellArchitected {
     bool? isMajorVersion,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lensVersion, 'lensVersion');
-    _s.validateStringLength(
-      'lensVersion',
-      lensVersion,
-      1,
-      32,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'LensVersion': lensVersion,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
@@ -211,13 +184,6 @@ class WellArchitected {
     String? clientRequestToken,
   }) async {
     ArgumentError.checkNotNull(milestoneName, 'milestoneName');
-    _s.validateStringLength(
-      'milestoneName',
-      milestoneName,
-      3,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
     final $payload = <String, dynamic>{
       'MilestoneName': milestoneName,
@@ -269,55 +235,10 @@ class WellArchitected {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(description, 'description');
-    _s.validateStringLength(
-      'description',
-      description,
-      3,
-      250,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(environment, 'environment');
     ArgumentError.checkNotNull(lenses, 'lenses');
     ArgumentError.checkNotNull(reviewOwner, 'reviewOwner');
-    _s.validateStringLength(
-      'reviewOwner',
-      reviewOwner,
-      3,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workloadName, 'workloadName');
-    _s.validateStringLength(
-      'workloadName',
-      workloadName,
-      3,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'architecturalDesign',
-      architecturalDesign,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'industry',
-      industry,
-      0,
-      100,
-    );
-    _s.validateStringLength(
-      'industryType',
-      industryType,
-      0,
-      100,
-    );
-    _s.validateStringLength(
-      'notes',
-      notes,
-      0,
-      2084,
-    );
     final $payload = <String, dynamic>{
       'Description': description,
       'Environment': environment.toValue(),
@@ -371,13 +292,6 @@ class WellArchitected {
   }) async {
     ArgumentError.checkNotNull(permissionType, 'permissionType');
     ArgumentError.checkNotNull(sharedWith, 'sharedWith');
-    _s.validateStringLength(
-      'sharedWith',
-      sharedWith,
-      12,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
     final $payload = <String, dynamic>{
       'PermissionType': permissionType.toValue(),
@@ -425,13 +339,6 @@ class WellArchitected {
     String? clientRequestToken,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lensStatus, 'lensStatus');
     final $query = <String, List<String>>{
       'LensStatus': [lensStatus.toValue()],
@@ -475,13 +382,6 @@ class WellArchitected {
     String? clientRequestToken,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(shareId, 'shareId');
     final $query = <String, List<String>>{
       if (clientRequestToken != null)
@@ -616,19 +516,6 @@ class WellArchitected {
     String? lensVersion,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'lensVersion',
-      lensVersion,
-      1,
-      32,
-    );
     final $query = <String, List<String>>{
       if (lensVersion != null) 'LensVersion': [lensVersion],
     };
@@ -656,21 +543,7 @@ class WellArchitected {
     int? milestoneNumber,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(questionId, 'questionId');
-    _s.validateStringLength(
-      'questionId',
-      questionId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
     _s.validateNumRange(
       'milestoneNumber',
@@ -708,19 +581,6 @@ class WellArchitected {
     String? lensVersion,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'lensVersion',
-      lensVersion,
-      1,
-      32,
-    );
     final $query = <String, List<String>>{
       if (lensVersion != null) 'LensVersion': [lensVersion],
     };
@@ -747,13 +607,6 @@ class WellArchitected {
     int? milestoneNumber,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
     _s.validateNumRange(
       'milestoneNumber',
@@ -789,13 +642,6 @@ class WellArchitected {
     int? milestoneNumber,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
     _s.validateNumRange(
       'milestoneNumber',
@@ -837,25 +683,6 @@ class WellArchitected {
     String? targetLensVersion,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'baseLensVersion',
-      baseLensVersion,
-      1,
-      32,
-    );
-    _s.validateStringLength(
-      'targetLensVersion',
-      targetLensVersion,
-      1,
-      32,
-    );
     final $query = <String, List<String>>{
       if (baseLensVersion != null) 'BaseLensVersion': [baseLensVersion],
       if (targetLensVersion != null) 'TargetLensVersion': [targetLensVersion],
@@ -962,19 +789,6 @@ class WellArchitected {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(jSONString, 'jSONString');
-    _s.validateStringLength(
-      'jSONString',
-      jSONString,
-      2,
-      500000,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-    );
     final $payload = <String, dynamic>{
       'JSONString': jSONString,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
@@ -1009,13 +823,6 @@ class WellArchitected {
     String? pillarId,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
     _s.validateNumRange(
       'maxResults',
@@ -1028,12 +835,6 @@ class WellArchitected {
       milestoneNumber,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'pillarId',
-      pillarId,
-      1,
-      64,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
@@ -1072,13 +873,6 @@ class WellArchitected {
     String? pillarId,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
     _s.validateNumRange(
       'maxResults',
@@ -1091,12 +885,6 @@ class WellArchitected {
       milestoneNumber,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'pillarId',
-      pillarId,
-      1,
-      64,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
@@ -1179,24 +967,11 @@ class WellArchitected {
     String? sharedWithPrefix,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'sharedWithPrefix',
-      sharedWithPrefix,
-      0,
-      100,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
@@ -1232,12 +1007,6 @@ class WellArchitected {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'lensName',
-      lensName,
-      1,
-      128,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1351,23 +1120,11 @@ class WellArchitected {
     ShareResourceType? shareResourceType,
     String? workloadNamePrefix,
   }) async {
-    _s.validateStringLength(
-      'lensNamePrefix',
-      lensNamePrefix,
-      0,
-      100,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'workloadNamePrefix',
-      workloadNamePrefix,
-      0,
-      100,
     );
     final $query = <String, List<String>>{
       if (lensNamePrefix != null) 'LensNamePrefix': [lensNamePrefix],
@@ -1432,12 +1189,6 @@ class WellArchitected {
       1,
       50,
     );
-    _s.validateStringLength(
-      'sharedWithPrefix',
-      sharedWithPrefix,
-      0,
-      100,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
       if (nextToken != null) 'NextToken': [nextToken],
@@ -1472,12 +1223,6 @@ class WellArchitected {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'workloadNamePrefix',
-      workloadNamePrefix,
-      0,
-      100,
     );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
@@ -1574,28 +1319,8 @@ class WellArchitected {
     List<String>? selectedChoices,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(questionId, 'questionId');
-    _s.validateStringLength(
-      'questionId',
-      questionId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringLength(
-      'notes',
-      notes,
-      0,
-      2084,
-    );
     final $payload = <String, dynamic>{
       if (choiceUpdates != null) 'ChoiceUpdates': choiceUpdates,
       if (isApplicable != null) 'IsApplicable': isApplicable,
@@ -1628,20 +1353,7 @@ class WellArchitected {
     Map<String, String>? pillarNotes,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringLength(
-      'lensNotes',
-      lensNotes,
-      0,
-      2084,
-    );
     final $payload = <String, dynamic>{
       if (lensNotes != null) 'LensNotes': lensNotes,
       if (pillarNotes != null) 'PillarNotes': pillarNotes,
@@ -1719,48 +1431,6 @@ class WellArchitected {
     String? workloadName,
   }) async {
     ArgumentError.checkNotNull(workloadId, 'workloadId');
-    _s.validateStringLength(
-      'architecturalDesign',
-      architecturalDesign,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      3,
-      250,
-    );
-    _s.validateStringLength(
-      'industry',
-      industry,
-      0,
-      100,
-    );
-    _s.validateStringLength(
-      'industryType',
-      industryType,
-      0,
-      100,
-    );
-    _s.validateStringLength(
-      'notes',
-      notes,
-      0,
-      2084,
-    );
-    _s.validateStringLength(
-      'reviewOwner',
-      reviewOwner,
-      3,
-      255,
-    );
-    _s.validateStringLength(
-      'workloadName',
-      workloadName,
-      3,
-      100,
-    );
     final $payload = <String, dynamic>{
       if (accountIds != null) 'AccountIds': accountIds,
       if (architecturalDesign != null)
@@ -1833,21 +1503,7 @@ class WellArchitected {
     String? clientRequestToken,
   }) async {
     ArgumentError.checkNotNull(lensAlias, 'lensAlias');
-    _s.validateStringLength(
-      'lensAlias',
-      lensAlias,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(milestoneName, 'milestoneName');
-    _s.validateStringLength(
-      'milestoneName',
-      milestoneName,
-      3,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workloadId, 'workloadId');
     final $payload = <String, dynamic>{
       'MilestoneName': milestoneName,

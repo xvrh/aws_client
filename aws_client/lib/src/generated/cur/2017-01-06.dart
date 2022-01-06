@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -65,12 +66,6 @@ class CostAndUsageReport {
   Future<DeleteReportDefinitionResponse> deleteReportDefinition({
     String? reportName,
   }) async {
-    _s.validateStringLength(
-      'reportName',
-      reportName,
-      0,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSOrigamiServiceGatewayService.DeleteReportDefinition'
@@ -102,12 +97,6 @@ class CostAndUsageReport {
       5,
       5,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -138,13 +127,6 @@ class CostAndUsageReport {
   }) async {
     ArgumentError.checkNotNull(reportDefinition, 'reportDefinition');
     ArgumentError.checkNotNull(reportName, 'reportName');
-    _s.validateStringLength(
-      'reportName',
-      reportName,
-      0,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSOrigamiServiceGatewayService.ModifyReportDefinition'

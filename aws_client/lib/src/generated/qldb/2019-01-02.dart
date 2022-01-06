@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -59,21 +60,7 @@ class Qldb {
     required String streamId,
   }) async {
     ArgumentError.checkNotNull(ledgerName, 'ledgerName');
-    _s.validateStringLength(
-      'ledgerName',
-      ledgerName,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(streamId, 'streamId');
-    _s.validateStringLength(
-      'streamId',
-      streamId,
-      22,
-      22,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -210,20 +197,7 @@ class Qldb {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionsMode, 'permissionsMode');
-    _s.validateStringLength(
-      'kmsKey',
-      kmsKey,
-      0,
-      1600,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       'PermissionsMode': permissionsMode.toValue(),
@@ -257,13 +231,6 @@ class Qldb {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      32,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -297,21 +264,7 @@ class Qldb {
     required String streamId,
   }) async {
     ArgumentError.checkNotNull(ledgerName, 'ledgerName');
-    _s.validateStringLength(
-      'ledgerName',
-      ledgerName,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(streamId, 'streamId');
-    _s.validateStringLength(
-      'streamId',
-      streamId,
-      22,
-      22,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -350,21 +303,7 @@ class Qldb {
     required String name,
   }) async {
     ArgumentError.checkNotNull(exportId, 'exportId');
-    _s.validateStringLength(
-      'exportId',
-      exportId,
-      22,
-      22,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      32,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -387,13 +326,6 @@ class Qldb {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      32,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -492,21 +424,7 @@ class Qldb {
     ArgumentError.checkNotNull(exclusiveEndTime, 'exclusiveEndTime');
     ArgumentError.checkNotNull(inclusiveStartTime, 'inclusiveStartTime');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(s3ExportConfiguration, 's3ExportConfiguration');
     final $payload = <String, dynamic>{
       'ExclusiveEndTime': unixTimestampToJson(exclusiveEndTime),
@@ -570,13 +488,6 @@ class Qldb {
   }) async {
     ArgumentError.checkNotNull(blockAddress, 'blockAddress');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      32,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'BlockAddress': blockAddress,
       if (digestTipAddress != null) 'DigestTipAddress': digestTipAddress,
@@ -603,13 +514,6 @@ class Qldb {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      32,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -657,21 +561,7 @@ class Qldb {
   }) async {
     ArgumentError.checkNotNull(blockAddress, 'blockAddress');
     ArgumentError.checkNotNull(documentId, 'documentId');
-    _s.validateStringLength(
-      'documentId',
-      documentId,
-      22,
-      22,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      32,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'BlockAddress': blockAddress,
       'DocumentId': documentId,
@@ -723,24 +613,11 @@ class Qldb {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(ledgerName, 'ledgerName');
-    _s.validateStringLength(
-      'ledgerName',
-      ledgerName,
-      1,
-      32,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      4,
-      1024,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max_results': [maxResults.toString()],
@@ -789,12 +666,6 @@ class Qldb {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      4,
-      1024,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max_results': [maxResults.toString()],
       if (nextToken != null) 'next_token': [nextToken],
@@ -840,24 +711,11 @@ class Qldb {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      32,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      4,
-      1024,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max_results': [maxResults.toString()],
@@ -900,12 +758,6 @@ class Qldb {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      4,
-      1024,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max_results': [maxResults.toString()],
       if (nextToken != null) 'next_token': [nextToken],
@@ -933,13 +785,6 @@ class Qldb {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      1600,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1021,29 +866,8 @@ class Qldb {
     ArgumentError.checkNotNull(inclusiveStartTime, 'inclusiveStartTime');
     ArgumentError.checkNotNull(kinesisConfiguration, 'kinesisConfiguration');
     ArgumentError.checkNotNull(ledgerName, 'ledgerName');
-    _s.validateStringLength(
-      'ledgerName',
-      ledgerName,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(roleArn, 'roleArn');
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(streamName, 'streamName');
-    _s.validateStringLength(
-      'streamName',
-      streamName,
-      1,
-      32,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'InclusiveStartTime': unixTimestampToJson(inclusiveStartTime),
       'KinesisConfiguration': kinesisConfiguration,
@@ -1087,13 +911,6 @@ class Qldb {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'Tags': tags,
@@ -1124,13 +941,6 @@ class Qldb {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -1220,19 +1030,6 @@ class Qldb {
     String? kmsKey,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      32,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'kmsKey',
-      kmsKey,
-      0,
-      1600,
-    );
     final $payload = <String, dynamic>{
       if (deletionProtection != null) 'DeletionProtection': deletionProtection,
       if (kmsKey != null) 'KmsKey': kmsKey,
@@ -1300,13 +1097,6 @@ class Qldb {
     required PermissionsMode permissionsMode,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(permissionsMode, 'permissionsMode');
     final $payload = <String, dynamic>{
       'PermissionsMode': permissionsMode.toValue(),

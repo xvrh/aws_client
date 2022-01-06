@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -69,21 +70,7 @@ class CustomerProfiles {
     required List<String> values,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(keyName, 'keyName');
-    _s.validateStringLength(
-      'keyName',
-      keyName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(profileId, 'profileId');
     ArgumentError.checkNotNull(values, 'values');
     final $payload = <String, dynamic>{
@@ -173,25 +160,6 @@ class CustomerProfiles {
       isRequired: true,
     );
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'deadLetterQueueUrl',
-      deadLetterQueueUrl,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'defaultEncryptionKey',
-      defaultEncryptionKey,
-      0,
-      255,
-    );
     final $payload = <String, dynamic>{
       'DefaultExpirationDays': defaultExpirationDays,
       if (deadLetterQueueUrl != null) 'DeadLetterQueueUrl': deadLetterQueueUrl,
@@ -313,97 +281,6 @@ class CustomerProfiles {
     Address? shippingAddress,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'accountNumber',
-      accountNumber,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'additionalInformation',
-      additionalInformation,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'birthDate',
-      birthDate,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'businessEmailAddress',
-      businessEmailAddress,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'businessName',
-      businessName,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'businessPhoneNumber',
-      businessPhoneNumber,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'emailAddress',
-      emailAddress,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'firstName',
-      firstName,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'homePhoneNumber',
-      homePhoneNumber,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'lastName',
-      lastName,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'middleName',
-      middleName,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'mobilePhoneNumber',
-      mobilePhoneNumber,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'personalEmailAddress',
-      personalEmailAddress,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'phoneNumber',
-      phoneNumber,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       if (accountNumber != null) 'AccountNumber': accountNumber,
       if (additionalInformation != null)
@@ -455,13 +332,6 @@ class CustomerProfiles {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -489,21 +359,7 @@ class CustomerProfiles {
     required String uri,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(uri, 'uri');
-    _s.validateStringLength(
-      'uri',
-      uri,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Uri': uri,
     };
@@ -536,13 +392,6 @@ class CustomerProfiles {
     required String profileId,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(profileId, 'profileId');
     final $payload = <String, dynamic>{
       'ProfileId': profileId,
@@ -582,21 +431,7 @@ class CustomerProfiles {
     required List<String> values,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(keyName, 'keyName');
-    _s.validateStringLength(
-      'keyName',
-      keyName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(profileId, 'profileId');
     ArgumentError.checkNotNull(values, 'values');
     final $payload = <String, dynamic>{
@@ -640,31 +475,10 @@ class CustomerProfiles {
     required String profileObjectUniqueKey,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objectTypeName, 'objectTypeName');
-    _s.validateStringLength(
-      'objectTypeName',
-      objectTypeName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(profileId, 'profileId');
     ArgumentError.checkNotNull(
         profileObjectUniqueKey, 'profileObjectUniqueKey');
-    _s.validateStringLength(
-      'profileObjectUniqueKey',
-      profileObjectUniqueKey,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'ObjectTypeName': objectTypeName,
       'ProfileId': profileId,
@@ -701,21 +515,7 @@ class CustomerProfiles {
     required String objectTypeName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objectTypeName, 'objectTypeName');
-    _s.validateStringLength(
-      'objectTypeName',
-      objectTypeName,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -767,13 +567,6 @@ class CustomerProfiles {
     ArgumentError.checkNotNull(conflictResolution, 'conflictResolution');
     ArgumentError.checkNotNull(consolidation, 'consolidation');
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'ConflictResolution': conflictResolution,
       'Consolidation': consolidation,
@@ -802,13 +595,6 @@ class CustomerProfiles {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -841,13 +627,6 @@ class CustomerProfiles {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobId, 'jobId');
     final response = await _protocol.send(
       payload: null,
@@ -877,21 +656,7 @@ class CustomerProfiles {
     required String uri,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(uri, 'uri');
-    _s.validateStringLength(
-      'uri',
-      uri,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Uri': uri,
     };
@@ -984,24 +749,11 @@ class CustomerProfiles {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -1035,21 +787,7 @@ class CustomerProfiles {
     required String objectTypeName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objectTypeName, 'objectTypeName');
-    _s.validateStringLength(
-      'objectTypeName',
-      objectTypeName,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1079,13 +817,6 @@ class CustomerProfiles {
     required String templateId,
   }) async {
     ArgumentError.checkNotNull(templateId, 'templateId');
-    _s.validateStringLength(
-      'templateId',
-      templateId,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1118,24 +849,11 @@ class CustomerProfiles {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(uri, 'uri');
-    _s.validateStringLength(
-      'uri',
-      uri,
-      1,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -1178,12 +896,6 @@ class CustomerProfiles {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
       if (nextToken != null) 'next-token': [nextToken],
@@ -1222,24 +934,11 @@ class CustomerProfiles {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -1278,24 +977,11 @@ class CustomerProfiles {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -1335,12 +1021,6 @@ class CustomerProfiles {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
       if (nextToken != null) 'next-token': [nextToken],
@@ -1377,24 +1057,11 @@ class CustomerProfiles {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -1447,33 +1114,13 @@ class CustomerProfiles {
     ObjectFilter? objectFilter,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objectTypeName, 'objectTypeName');
-    _s.validateStringLength(
-      'objectTypeName',
-      objectTypeName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(profileId, 'profileId');
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -1509,13 +1156,6 @@ class CustomerProfiles {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1592,13 +1232,6 @@ class CustomerProfiles {
     FieldSourceProfileIds? fieldSourceProfileIds,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(mainProfileId, 'mainProfileId');
     ArgumentError.checkNotNull(profileIdsToBeMerged, 'profileIdsToBeMerged');
     final $payload = <String, dynamic>{
@@ -1662,25 +1295,6 @@ class CustomerProfiles {
     String? uri,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'objectTypeName',
-      objectTypeName,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'uri',
-      uri,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       if (flowDefinition != null) 'FlowDefinition': flowDefinition,
       if (objectTypeName != null) 'ObjectTypeName': objectTypeName,
@@ -1732,29 +1346,8 @@ class CustomerProfiles {
     required String objectTypeName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(object, 'object');
-    _s.validateStringLength(
-      'object',
-      object,
-      1,
-      256000,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objectTypeName, 'objectTypeName');
-    _s.validateStringLength(
-      'objectTypeName',
-      objectTypeName,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Object': object,
       'ObjectTypeName': objectTypeName,
@@ -1830,52 +1423,13 @@ class CustomerProfiles {
     String? templateId,
   }) async {
     ArgumentError.checkNotNull(description, 'description');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      1000,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objectTypeName, 'objectTypeName');
-    _s.validateStringLength(
-      'objectTypeName',
-      objectTypeName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'encryptionKey',
-      encryptionKey,
-      0,
-      255,
-    );
     _s.validateNumRange(
       'expirationDays',
       expirationDays,
       1,
       1098,
-    );
-    _s.validateStringLength(
-      'sourceLastUpdatedTimestampFormat',
-      sourceLastUpdatedTimestampFormat,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'templateId',
-      templateId,
-      1,
-      64,
     );
     final $payload = <String, dynamic>{
       'Description': description,
@@ -1937,33 +1491,13 @@ class CustomerProfiles {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(keyName, 'keyName');
-    _s.validateStringLength(
-      'keyName',
-      keyName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(values, 'values');
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -2015,13 +1549,6 @@ class CustomerProfiles {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -2052,13 +1579,6 @@ class CustomerProfiles {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      0,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -2136,25 +1656,6 @@ class CustomerProfiles {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'deadLetterQueueUrl',
-      deadLetterQueueUrl,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'defaultEncryptionKey',
-      defaultEncryptionKey,
-      0,
-      255,
-    );
     _s.validateNumRange(
       'defaultExpirationDays',
       defaultExpirationDays,
@@ -2289,98 +1790,7 @@ class CustomerProfiles {
     UpdateAddress? shippingAddress,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(profileId, 'profileId');
-    _s.validateStringLength(
-      'accountNumber',
-      accountNumber,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'additionalInformation',
-      additionalInformation,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'birthDate',
-      birthDate,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'businessEmailAddress',
-      businessEmailAddress,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'businessName',
-      businessName,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'businessPhoneNumber',
-      businessPhoneNumber,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'emailAddress',
-      emailAddress,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'firstName',
-      firstName,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'homePhoneNumber',
-      homePhoneNumber,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'lastName',
-      lastName,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'middleName',
-      middleName,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'mobilePhoneNumber',
-      mobilePhoneNumber,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'personalEmailAddress',
-      personalEmailAddress,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'phoneNumber',
-      phoneNumber,
-      0,
-      255,
-    );
     final $payload = <String, dynamic>{
       'ProfileId': profileId,
       if (accountNumber != null) 'AccountNumber': accountNumber,

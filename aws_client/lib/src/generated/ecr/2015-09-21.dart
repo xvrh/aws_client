@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -76,13 +77,6 @@ class Ecr {
   }) async {
     ArgumentError.checkNotNull(layerDigests, 'layerDigests');
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -138,13 +132,6 @@ class Ecr {
   }) async {
     ArgumentError.checkNotNull(imageIds, 'imageIds');
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonEC2ContainerRegistry_V20150921.BatchDeleteImage'
@@ -203,13 +190,6 @@ class Ecr {
   }) async {
     ArgumentError.checkNotNull(imageIds, 'imageIds');
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonEC2ContainerRegistry_V20150921.BatchGetImage'
@@ -311,13 +291,6 @@ class Ecr {
   }) async {
     ArgumentError.checkNotNull(layerDigests, 'layerDigests');
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(uploadId, 'uploadId');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -369,13 +342,6 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(ecrRepositoryPrefix, 'ecrRepositoryPrefix');
-    _s.validateStringLength(
-      'ecrRepositoryPrefix',
-      ecrRepositoryPrefix,
-      2,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(upstreamRegistryUrl, 'upstreamRegistryUrl');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -452,13 +418,6 @@ class Ecr {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonEC2ContainerRegistry_V20150921.CreateRepository'
@@ -504,13 +463,6 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -551,13 +503,6 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(ecrRepositoryPrefix, 'ecrRepositoryPrefix');
-    _s.validateStringLength(
-      'ecrRepositoryPrefix',
-      ecrRepositoryPrefix,
-      2,
-      20,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -627,13 +572,6 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonEC2ContainerRegistry_V20150921.DeleteRepository'
@@ -674,13 +612,6 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -723,13 +654,6 @@ class Ecr {
   }) async {
     ArgumentError.checkNotNull(imageId, 'imageId');
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -797,13 +721,6 @@ class Ecr {
   }) async {
     ArgumentError.checkNotNull(imageId, 'imageId');
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -891,13 +808,6 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1177,13 +1087,6 @@ class Ecr {
   }) async {
     ArgumentError.checkNotNull(layerDigest, 'layerDigest');
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -1224,13 +1127,6 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonEC2ContainerRegistry_V20150921.GetLifecyclePolicy'
@@ -1305,13 +1201,6 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1406,13 +1295,6 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonEC2ContainerRegistry_V20150921.GetRepositoryPolicy'
@@ -1461,13 +1343,6 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonEC2ContainerRegistry_V20150921.InitiateLayerUpload'
@@ -1543,13 +1418,6 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1664,27 +1532,7 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(imageManifest, 'imageManifest');
-    _s.validateStringLength(
-      'imageManifest',
-      imageManifest,
-      1,
-      4194304,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'imageTag',
-      imageTag,
-      1,
-      300,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonEC2ContainerRegistry_V20150921.PutImage'
@@ -1738,13 +1586,6 @@ class Ecr {
     ArgumentError.checkNotNull(
         imageScanningConfiguration, 'imageScanningConfiguration');
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -1798,13 +1639,6 @@ class Ecr {
   }) async {
     ArgumentError.checkNotNull(imageTagMutability, 'imageTagMutability');
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -1851,21 +1685,7 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(lifecyclePolicyText, 'lifecyclePolicyText');
-    _s.validateStringLength(
-      'lifecyclePolicyText',
-      lifecyclePolicyText,
-      100,
-      30720,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonEC2ContainerRegistry_V20150921.PutLifecyclePolicy'
@@ -1909,13 +1729,6 @@ class Ecr {
     required String policyText,
   }) async {
     ArgumentError.checkNotNull(policyText, 'policyText');
-    _s.validateStringLength(
-      'policyText',
-      policyText,
-      0,
-      10240,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonEC2ContainerRegistry_V20150921.PutRegistryPolicy'
@@ -2063,21 +1876,7 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(policyText, 'policyText');
-    _s.validateStringLength(
-      'policyText',
-      policyText,
-      0,
-      10240,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonEC2ContainerRegistry_V20150921.SetRepositoryPolicy'
@@ -2127,13 +1926,6 @@ class Ecr {
   }) async {
     ArgumentError.checkNotNull(imageId, 'imageId');
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AmazonEC2ContainerRegistry_V20150921.StartImageScan'
@@ -2181,19 +1973,6 @@ class Ecr {
     String? registryId,
   }) async {
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'lifecyclePolicyText',
-      lifecyclePolicyText,
-      100,
-      30720,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -2362,13 +2141,6 @@ class Ecr {
       isRequired: true,
     );
     ArgumentError.checkNotNull(repositoryName, 'repositoryName');
-    _s.validateStringLength(
-      'repositoryName',
-      repositoryName,
-      2,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(uploadId, 'uploadId');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

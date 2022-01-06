@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -162,12 +163,6 @@ class ResourceGroupsTaggingApi {
       maxResults,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'paginationToken',
-      paginationToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -378,12 +373,6 @@ class ResourceGroupsTaggingApi {
     List<TagFilter>? tagFilters,
     int? tagsPerPage,
   }) async {
-    _s.validateStringLength(
-      'paginationToken',
-      paginationToken,
-      0,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ResourceGroupsTaggingAPI_20170126.GetResources'
@@ -435,12 +424,6 @@ class ResourceGroupsTaggingApi {
   Future<GetTagKeysOutput> getTagKeys({
     String? paginationToken,
   }) async {
-    _s.validateStringLength(
-      'paginationToken',
-      paginationToken,
-      0,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ResourceGroupsTaggingAPI_20170126.GetTagKeys'
@@ -489,19 +472,6 @@ class ResourceGroupsTaggingApi {
     String? paginationToken,
   }) async {
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'paginationToken',
-      paginationToken,
-      0,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ResourceGroupsTaggingAPI_20170126.GetTagValues'
@@ -551,13 +521,6 @@ class ResourceGroupsTaggingApi {
     required String s3Bucket,
   }) async {
     ArgumentError.checkNotNull(s3Bucket, 's3Bucket');
-    _s.validateStringLength(
-      's3Bucket',
-      s3Bucket,
-      3,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'ResourceGroupsTaggingAPI_20170126.StartReportCreation'

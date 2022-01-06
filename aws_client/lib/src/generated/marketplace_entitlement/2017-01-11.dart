@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -72,13 +73,6 @@ class MarketplaceEntitlement {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(productCode, 'productCode');
-    _s.validateStringLength(
-      'productCode',
-      productCode,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSMPEntitlementService.GetEntitlements'

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -96,13 +97,6 @@ class Kms {
     required String keyId,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.CancelKeyDeletion'
@@ -211,13 +205,6 @@ class Kms {
     required String customKeyStoreId,
   }) async {
     ArgumentError.checkNotNull(customKeyStoreId, 'customKeyStoreId');
-    _s.validateStringLength(
-      'customKeyStoreId',
-      customKeyStoreId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.ConnectCustomKeyStore'
@@ -359,21 +346,7 @@ class Kms {
     required String targetKeyId,
   }) async {
     ArgumentError.checkNotNull(aliasName, 'aliasName');
-    _s.validateStringLength(
-      'aliasName',
-      aliasName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targetKeyId, 'targetKeyId');
-    _s.validateStringLength(
-      'targetKeyId',
-      targetKeyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.CreateAlias'
@@ -495,38 +468,10 @@ class Kms {
     required String trustAnchorCertificate,
   }) async {
     ArgumentError.checkNotNull(cloudHsmClusterId, 'cloudHsmClusterId');
-    _s.validateStringLength(
-      'cloudHsmClusterId',
-      cloudHsmClusterId,
-      19,
-      24,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(customKeyStoreName, 'customKeyStoreName');
-    _s.validateStringLength(
-      'customKeyStoreName',
-      customKeyStoreName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(keyStorePassword, 'keyStorePassword');
-    _s.validateStringLength(
-      'keyStorePassword',
-      keyStorePassword,
-      7,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         trustAnchorCertificate, 'trustAnchorCertificate');
-    _s.validateStringLength(
-      'trustAnchorCertificate',
-      trustAnchorCertificate,
-      1,
-      5000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.CreateCustomKeyStore'
@@ -760,34 +705,8 @@ class Kms {
     String? retiringPrincipal,
   }) async {
     ArgumentError.checkNotNull(granteePrincipal, 'granteePrincipal');
-    _s.validateStringLength(
-      'granteePrincipal',
-      granteePrincipal,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(operations, 'operations');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-    );
-    _s.validateStringLength(
-      'retiringPrincipal',
-      retiringPrincipal,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.CreateGrant'
@@ -1259,24 +1178,6 @@ class Kms {
     String? policy,
     List<Tag>? tags,
   }) async {
-    _s.validateStringLength(
-      'customKeyStoreId',
-      customKeyStoreId,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      8192,
-    );
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      131072,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.CreateKey'
@@ -1506,12 +1407,6 @@ class Kms {
     String? keyId,
   }) async {
     ArgumentError.checkNotNull(ciphertextBlob, 'ciphertextBlob');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.Decrypt'
@@ -1601,13 +1496,6 @@ class Kms {
     required String aliasName,
   }) async {
     ArgumentError.checkNotNull(aliasName, 'aliasName');
-    _s.validateStringLength(
-      'aliasName',
-      aliasName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.DeleteAlias'
@@ -1700,13 +1588,6 @@ class Kms {
     required String customKeyStoreId,
   }) async {
     ArgumentError.checkNotNull(customKeyStoreId, 'customKeyStoreId');
-    _s.validateStringLength(
-      'customKeyStoreId',
-      customKeyStoreId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.DeleteCustomKeyStore'
@@ -1790,13 +1671,6 @@ class Kms {
     required String keyId,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.DeleteImportedKeyMaterial'
@@ -1912,29 +1786,11 @@ class Kms {
     int? limit,
     String? marker,
   }) async {
-    _s.validateStringLength(
-      'customKeyStoreId',
-      customKeyStoreId,
-      1,
-      64,
-    );
-    _s.validateStringLength(
-      'customKeyStoreName',
-      customKeyStoreName,
-      1,
-      256,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2098,13 +1954,6 @@ class Kms {
     List<String>? grantTokens,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.DescribeKey'
@@ -2178,13 +2027,6 @@ class Kms {
     required String keyId,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.DisableKey'
@@ -2277,13 +2119,6 @@ class Kms {
     required String keyId,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.DisableKeyRotation'
@@ -2364,13 +2199,6 @@ class Kms {
     required String customKeyStoreId,
   }) async {
     ArgumentError.checkNotNull(customKeyStoreId, 'customKeyStoreId');
-    _s.validateStringLength(
-      'customKeyStoreId',
-      customKeyStoreId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.DisconnectCustomKeyStore'
@@ -2436,13 +2264,6 @@ class Kms {
     required String keyId,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.EnableKey'
@@ -2537,13 +2358,6 @@ class Kms {
     required String keyId,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.EnableKeyRotation'
@@ -2774,13 +2588,6 @@ class Kms {
     List<String>? grantTokens,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(plaintext, 'plaintext');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3008,13 +2815,6 @@ class Kms {
     int? numberOfBytes,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'numberOfBytes',
       numberOfBytes,
@@ -3211,13 +3011,6 @@ class Kms {
     List<String>? grantTokens,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(keyPairSpec, 'keyPairSpec');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3397,13 +3190,6 @@ class Kms {
     List<String>? grantTokens,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(keyPairSpec, 'keyPairSpec');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3587,13 +3373,6 @@ class Kms {
     int? numberOfBytes,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'numberOfBytes',
       numberOfBytes,
@@ -3664,12 +3443,6 @@ class Kms {
     String? customKeyStoreId,
     int? numberOfBytes,
   }) async {
-    _s.validateStringLength(
-      'customKeyStoreId',
-      customKeyStoreId,
-      1,
-      64,
-    );
     _s.validateNumRange(
       'numberOfBytes',
       numberOfBytes,
@@ -3740,21 +3513,7 @@ class Kms {
     required String policyName,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyName, 'policyName');
-    _s.validateStringLength(
-      'policyName',
-      policyName,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.GetKeyPolicy'
@@ -3857,13 +3616,6 @@ class Kms {
     required String keyId,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.GetKeyRotationStatus'
@@ -3973,13 +3725,6 @@ class Kms {
     required WrappingKeySpec wrappingKeySpec,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(wrappingAlgorithm, 'wrappingAlgorithm');
     ArgumentError.checkNotNull(wrappingKeySpec, 'wrappingKeySpec');
     final headers = <String, String>{
@@ -4127,13 +3872,6 @@ class Kms {
     List<String>? grantTokens,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.GetPublicKey'
@@ -4304,13 +4042,6 @@ class Kms {
     ArgumentError.checkNotNull(encryptedKeyMaterial, 'encryptedKeyMaterial');
     ArgumentError.checkNotNull(importToken, 'importToken');
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.ImportKeyMaterial'
@@ -4426,23 +4157,11 @@ class Kms {
     int? limit,
     String? marker,
   }) async {
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4566,36 +4285,11 @@ class Kms {
     String? marker,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'grantId',
-      grantId,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'granteePrincipal',
-      granteePrincipal,
-      1,
-      256,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4687,24 +4381,11 @@ class Kms {
     String? marker,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4778,12 +4459,6 @@ class Kms {
       limit,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4883,24 +4558,11 @@ class Kms {
     String? marker,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5004,24 +4666,11 @@ class Kms {
     String? marker,
   }) async {
     ArgumentError.checkNotNull(retiringPrincipal, 'retiringPrincipal');
-    _s.validateStringLength(
-      'retiringPrincipal',
-      retiringPrincipal,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'marker',
-      marker,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5153,29 +4802,8 @@ class Kms {
     bool? bypassPolicyLockoutSafetyCheck,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policy, 'policy');
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      131072,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(policyName, 'policyName');
-    _s.validateStringLength(
-      'policyName',
-      policyName,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.PutKeyPolicy'
@@ -5475,19 +5103,6 @@ class Kms {
   }) async {
     ArgumentError.checkNotNull(ciphertextBlob, 'ciphertextBlob');
     ArgumentError.checkNotNull(destinationKeyId, 'destinationKeyId');
-    _s.validateStringLength(
-      'destinationKeyId',
-      destinationKeyId,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'sourceKeyId',
-      sourceKeyId,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.ReEncrypt'
@@ -5782,33 +5397,7 @@ class Kms {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(replicaRegion, 'replicaRegion');
-    _s.validateStringLength(
-      'replicaRegion',
-      replicaRegion,
-      1,
-      32,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      8192,
-    );
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      131072,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.ReplicateKey'
@@ -5924,24 +5513,6 @@ class Kms {
     String? grantToken,
     String? keyId,
   }) async {
-    _s.validateStringLength(
-      'grantId',
-      grantId,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'grantToken',
-      grantToken,
-      1,
-      8192,
-    );
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.RetireGrant'
@@ -6044,21 +5615,7 @@ class Kms {
     required String keyId,
   }) async {
     ArgumentError.checkNotNull(grantId, 'grantId');
-    _s.validateStringLength(
-      'grantId',
-      grantId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.RevokeGrant'
@@ -6179,13 +5736,6 @@ class Kms {
     int? pendingWindowInDays,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'pendingWindowInDays',
       pendingWindowInDays,
@@ -6353,13 +5903,6 @@ class Kms {
     MessageType? messageType,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(message, 'message');
     ArgumentError.checkNotNull(signingAlgorithm, 'signingAlgorithm');
     final headers = <String, String>{
@@ -6490,13 +6033,6 @@ class Kms {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6599,13 +6135,6 @@ class Kms {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6746,21 +6275,7 @@ class Kms {
     required String targetKeyId,
   }) async {
     ArgumentError.checkNotNull(aliasName, 'aliasName');
-    _s.validateStringLength(
-      'aliasName',
-      aliasName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targetKeyId, 'targetKeyId');
-    _s.validateStringLength(
-      'targetKeyId',
-      targetKeyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.UpdateAlias'
@@ -6903,31 +6418,6 @@ class Kms {
     String? newCustomKeyStoreName,
   }) async {
     ArgumentError.checkNotNull(customKeyStoreId, 'customKeyStoreId');
-    _s.validateStringLength(
-      'customKeyStoreId',
-      customKeyStoreId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'cloudHsmClusterId',
-      cloudHsmClusterId,
-      19,
-      24,
-    );
-    _s.validateStringLength(
-      'keyStorePassword',
-      keyStorePassword,
-      7,
-      32,
-    );
-    _s.validateStringLength(
-      'newCustomKeyStoreName',
-      newCustomKeyStoreName,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.UpdateCustomKeyStore'
@@ -7007,21 +6497,7 @@ class Kms {
     required String keyId,
   }) async {
     ArgumentError.checkNotNull(description, 'description');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      8192,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.UpdateKeyDescription'
@@ -7173,21 +6649,7 @@ class Kms {
     required String primaryRegion,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(primaryRegion, 'primaryRegion');
-    _s.validateStringLength(
-      'primaryRegion',
-      primaryRegion,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'TrentService.UpdatePrimaryRegion'
@@ -7343,13 +6805,6 @@ class Kms {
     MessageType? messageType,
   }) async {
     ArgumentError.checkNotNull(keyId, 'keyId');
-    _s.validateStringLength(
-      'keyId',
-      keyId,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(message, 'message');
     ArgumentError.checkNotNull(signature, 'signature');
     ArgumentError.checkNotNull(signingAlgorithm, 'signingAlgorithm');

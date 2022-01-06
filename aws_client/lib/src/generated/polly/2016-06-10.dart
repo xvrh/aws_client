@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -120,12 +121,6 @@ class Polly {
     LanguageCode? languageCode,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
-    );
     final $query = <String, List<String>>{
       if (engine != null) 'Engine': [engine.toValue()],
       if (includeAdditionalLanguageCodes != null)
@@ -207,12 +202,6 @@ class Polly {
   Future<ListLexiconsOutput> listLexicons({
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
-    );
     final $query = <String, List<String>>{
       if (nextToken != null) 'NextToken': [nextToken],
     };
@@ -252,12 +241,6 @@ class Polly {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],

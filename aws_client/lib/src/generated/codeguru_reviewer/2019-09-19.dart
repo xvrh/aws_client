@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -136,12 +137,6 @@ class CodeGuruReviewer {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(repository, 'repository');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'Repository': repository,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
@@ -202,29 +197,9 @@ class CodeGuruReviewer {
     String? clientRequestToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         repositoryAssociationArn, 'repositoryAssociationArn');
-    _s.validateStringLength(
-      'repositoryAssociationArn',
-      repositoryAssociationArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       'RepositoryAssociationArn': repositoryAssociationArn,
@@ -257,13 +232,6 @@ class CodeGuruReviewer {
     required String codeReviewArn,
   }) async {
     ArgumentError.checkNotNull(codeReviewArn, 'codeReviewArn');
-    _s.validateStringLength(
-      'codeReviewArn',
-      codeReviewArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -307,27 +275,7 @@ class CodeGuruReviewer {
     String? userId,
   }) async {
     ArgumentError.checkNotNull(codeReviewArn, 'codeReviewArn');
-    _s.validateStringLength(
-      'codeReviewArn',
-      codeReviewArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(recommendationId, 'recommendationId');
-    _s.validateStringLength(
-      'recommendationId',
-      recommendationId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'userId',
-      userId,
-      1,
-      256,
-    );
     final $query = <String, List<String>>{
       'RecommendationId': [recommendationId],
       if (userId != null) 'UserId': [userId],
@@ -364,13 +312,6 @@ class CodeGuruReviewer {
     required String associationArn,
   }) async {
     ArgumentError.checkNotNull(associationArn, 'associationArn');
-    _s.validateStringLength(
-      'associationArn',
-      associationArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -400,13 +341,6 @@ class CodeGuruReviewer {
     required String associationArn,
   }) async {
     ArgumentError.checkNotNull(associationArn, 'associationArn');
-    _s.validateStringLength(
-      'associationArn',
-      associationArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -483,12 +417,6 @@ class CodeGuruReviewer {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
-    );
     final $query = <String, List<String>>{
       'Type': [type.toValue()],
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
@@ -556,24 +484,11 @@ class CodeGuruReviewer {
     List<String>? userIds,
   }) async {
     ArgumentError.checkNotNull(codeReviewArn, 'codeReviewArn');
-    _s.validateStringLength(
-      'codeReviewArn',
-      codeReviewArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
@@ -617,24 +532,11 @@ class CodeGuruReviewer {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(codeReviewArn, 'codeReviewArn');
-    _s.validateStringLength(
-      'codeReviewArn',
-      codeReviewArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
@@ -765,12 +667,6 @@ class CodeGuruReviewer {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'MaxResults': [maxResults.toString()],
       if (names != null) 'Name': names,
@@ -808,13 +704,6 @@ class CodeGuruReviewer {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -852,22 +741,8 @@ class CodeGuruReviewer {
     required String recommendationId,
   }) async {
     ArgumentError.checkNotNull(codeReviewArn, 'codeReviewArn');
-    _s.validateStringLength(
-      'codeReviewArn',
-      codeReviewArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(reactions, 'reactions');
     ArgumentError.checkNotNull(recommendationId, 'recommendationId');
-    _s.validateStringLength(
-      'recommendationId',
-      recommendationId,
-      1,
-      64,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'CodeReviewArn': codeReviewArn,
       'Reactions': reactions.map((e) => e.toValue()).toList(),
@@ -918,13 +793,6 @@ class CodeGuruReviewer {
   }) async {
     ArgumentError.checkNotNull(tags, 'tags');
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Tags': tags,
     };
@@ -959,13 +827,6 @@ class CodeGuruReviewer {
   }) async {
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      1600,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
     };

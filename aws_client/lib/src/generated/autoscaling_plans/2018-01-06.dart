@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -71,13 +72,6 @@ class AutoScalingPlans {
     ArgumentError.checkNotNull(applicationSource, 'applicationSource');
     ArgumentError.checkNotNull(scalingInstructions, 'scalingInstructions');
     ArgumentError.checkNotNull(scalingPlanName, 'scalingPlanName');
-    _s.validateStringLength(
-      'scalingPlanName',
-      scalingPlanName,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AnyScaleScalingPlannerFrontendService.CreateScalingPlan'
@@ -122,13 +116,6 @@ class AutoScalingPlans {
     required int scalingPlanVersion,
   }) async {
     ArgumentError.checkNotNull(scalingPlanName, 'scalingPlanName');
-    _s.validateStringLength(
-      'scalingPlanName',
-      scalingPlanName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scalingPlanVersion, 'scalingPlanVersion');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -174,13 +161,6 @@ class AutoScalingPlans {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(scalingPlanName, 'scalingPlanName');
-    _s.validateStringLength(
-      'scalingPlanName',
-      scalingPlanName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scalingPlanVersion, 'scalingPlanVersion');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -346,13 +326,6 @@ class AutoScalingPlans {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
     ArgumentError.checkNotNull(scalableDimension, 'scalableDimension');
     ArgumentError.checkNotNull(scalingPlanName, 'scalingPlanName');
-    _s.validateStringLength(
-      'scalingPlanName',
-      scalingPlanName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scalingPlanVersion, 'scalingPlanVersion');
     ArgumentError.checkNotNull(serviceNamespace, 'serviceNamespace');
     ArgumentError.checkNotNull(startTime, 'startTime');
@@ -420,13 +393,6 @@ class AutoScalingPlans {
     List<ScalingInstruction>? scalingInstructions,
   }) async {
     ArgumentError.checkNotNull(scalingPlanName, 'scalingPlanName');
-    _s.validateStringLength(
-      'scalingPlanName',
-      scalingPlanName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scalingPlanVersion, 'scalingPlanVersion');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

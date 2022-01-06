@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -15,8 +16,8 @@ import '../../shared/shared.dart'
         unixTimestampToJson,
         nonNullableTimeStampFromJson,
         timeStampFromJson;
-import '2015-02-02.meta.dart';
 
+import '2015-02-02.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// Amazon ElastiCache is a web service that makes it easier to set up, operate,
@@ -1950,21 +1951,7 @@ class ElastiCache {
     ArgumentError.checkNotNull(accessString, 'accessString');
     ArgumentError.checkNotNull(engine, 'engine');
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userName, 'userName');
-    _s.validateStringLength(
-      'userName',
-      userName,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['AccessString'] = accessString;
     $request['Engine'] = engine;
@@ -2540,13 +2527,6 @@ class ElastiCache {
     required String userId,
   }) async {
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['UserId'] = userId;
     final $result = await _protocol.send(
@@ -3937,12 +3917,6 @@ class ElastiCache {
     int? maxRecords,
     String? userId,
   }) async {
-    _s.validateStringLength(
-      'userId',
-      userId,
-      1,
-      1152921504606846976,
-    );
     final $request = <String, dynamic>{};
     engine?.also((arg) => $request['Engine'] = arg);
     filters?.also((arg) => $request['Filters'] = arg);
@@ -5291,13 +5265,6 @@ class ElastiCache {
     List<String>? passwords,
   }) async {
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $request = <String, dynamic>{};
     $request['UserId'] = userId;
     accessString?.also((arg) => $request['AccessString'] = arg);
@@ -5812,13 +5779,6 @@ class ElastiCache {
     required String replicationGroupId,
   }) async {
     ArgumentError.checkNotNull(nodeGroupId, 'nodeGroupId');
-    _s.validateStringLength(
-      'nodeGroupId',
-      nodeGroupId,
-      1,
-      4,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(replicationGroupId, 'replicationGroupId');
     final $request = <String, dynamic>{};
     $request['NodeGroupId'] = nodeGroupId;

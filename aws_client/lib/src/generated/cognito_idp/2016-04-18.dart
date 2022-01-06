@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -66,13 +67,6 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(customAttributes, 'customAttributes');
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AddCustomAttributes'
@@ -115,29 +109,8 @@ class CognitoIdentityProvider {
     required String username,
   }) async {
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AdminAddUserToGroup'
@@ -221,21 +194,7 @@ class CognitoIdentityProvider {
     Map<String, String>? clientMetadata,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AdminConfirmSignUp'
@@ -465,27 +424,7 @@ class CognitoIdentityProvider {
     List<AttributeType>? validationData,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'temporaryPassword',
-      temporaryPassword,
-      6,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AdminCreateUser'
@@ -536,21 +475,7 @@ class CognitoIdentityProvider {
     required String username,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AdminDeleteUser'
@@ -600,21 +525,7 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(userAttributeNames, 'userAttributeNames');
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -731,21 +642,7 @@ class CognitoIdentityProvider {
     required String username,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AdminDisableUser'
@@ -784,21 +681,7 @@ class CognitoIdentityProvider {
     required String username,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AdminEnableUser'
@@ -842,29 +725,8 @@ class CognitoIdentityProvider {
     required String username,
   }) async {
     ArgumentError.checkNotNull(deviceKey, 'deviceKey');
-    _s.validateStringLength(
-      'deviceKey',
-      deviceKey,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AdminForgetDevice'
@@ -908,29 +770,8 @@ class CognitoIdentityProvider {
     required String username,
   }) async {
     ArgumentError.checkNotNull(deviceKey, 'deviceKey');
-    _s.validateStringLength(
-      'deviceKey',
-      deviceKey,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AdminGetDevice'
@@ -974,21 +815,7 @@ class CognitoIdentityProvider {
     required String username,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AdminGetUser'
@@ -1235,21 +1062,7 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(authFlow, 'authFlow');
     ArgumentError.checkNotNull(clientId, 'clientId');
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AdminInitiateAuth'
@@ -1409,32 +1222,12 @@ class CognitoIdentityProvider {
     String? paginationToken,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       0,
       60,
-    );
-    _s.validateStringLength(
-      'paginationToken',
-      paginationToken,
-      1,
-      1152921504606846976,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1487,32 +1280,12 @@ class CognitoIdentityProvider {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       0,
       60,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1152921504606846976,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1564,32 +1337,12 @@ class CognitoIdentityProvider {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       0,
       60,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1152921504606846976,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1638,29 +1391,8 @@ class CognitoIdentityProvider {
     required String username,
   }) async {
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -1781,21 +1513,7 @@ class CognitoIdentityProvider {
     Map<String, String>? clientMetadata,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AdminResetUserPassword'
@@ -1978,27 +1696,7 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(challengeName, 'challengeName');
     ArgumentError.checkNotNull(clientId, 'clientId');
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'session',
-      session,
-      20,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -2059,21 +1757,7 @@ class CognitoIdentityProvider {
     SoftwareTokenMfaSettingsType? softwareTokenMfaSettings,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -2136,29 +1820,8 @@ class CognitoIdentityProvider {
     bool? permanent,
   }) async {
     ArgumentError.checkNotNull(password, 'password');
-    _s.validateStringLength(
-      'password',
-      password,
-      6,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AdminSetUserPassword'
@@ -2207,21 +1870,7 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(mFAOptions, 'mFAOptions');
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AdminSetUserSettings'
@@ -2270,30 +1919,9 @@ class CognitoIdentityProvider {
     required String username,
   }) async {
     ArgumentError.checkNotNull(eventId, 'eventId');
-    _s.validateStringLength(
-      'eventId',
-      eventId,
-      1,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(feedbackValue, 'feedbackValue');
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -2344,29 +1972,8 @@ class CognitoIdentityProvider {
     DeviceRememberedStatusType? deviceRememberedStatus,
   }) async {
     ArgumentError.checkNotNull(deviceKey, 'deviceKey');
-    _s.validateStringLength(
-      'deviceKey',
-      deviceKey,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -2493,21 +2100,7 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(userAttributes, 'userAttributes');
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -2552,21 +2145,7 @@ class CognitoIdentityProvider {
     required String username,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AdminUserGlobalSignOut'
@@ -2614,12 +2193,6 @@ class CognitoIdentityProvider {
     String? accessToken,
     String? session,
   }) async {
-    _s.validateStringLength(
-      'session',
-      session,
-      20,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.AssociateSoftwareToken'
@@ -2667,21 +2240,7 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
     ArgumentError.checkNotNull(previousPassword, 'previousPassword');
-    _s.validateStringLength(
-      'previousPassword',
-      previousPassword,
-      6,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(proposedPassword, 'proposedPassword');
-    _s.validateStringLength(
-      'proposedPassword',
-      proposedPassword,
-      6,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.ChangePassword'
@@ -2735,19 +2294,6 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
     ArgumentError.checkNotNull(deviceKey, 'deviceKey');
-    _s.validateStringLength(
-      'deviceKey',
-      deviceKey,
-      1,
-      55,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'deviceName',
-      deviceName,
-      1,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.ConfirmDevice'
@@ -2866,43 +2412,9 @@ class CognitoIdentityProvider {
     UserContextDataType? userContextData,
   }) async {
     ArgumentError.checkNotNull(clientId, 'clientId');
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(confirmationCode, 'confirmationCode');
-    _s.validateStringLength(
-      'confirmationCode',
-      confirmationCode,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(password, 'password');
-    _s.validateStringLength(
-      'password',
-      password,
-      6,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'secretHash',
-      secretHash,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.ConfirmForgotPassword'
@@ -3025,35 +2537,8 @@ class CognitoIdentityProvider {
     UserContextDataType? userContextData,
   }) async {
     ArgumentError.checkNotNull(clientId, 'clientId');
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(confirmationCode, 'confirmationCode');
-    _s.validateStringLength(
-      'confirmationCode',
-      confirmationCode,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'secretHash',
-      secretHash,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.ConfirmSignUp'
@@ -3128,38 +2613,12 @@ class CognitoIdentityProvider {
     String? roleArn,
   }) async {
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
     _s.validateNumRange(
       'precedence',
       precedence,
       0,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3323,22 +2782,8 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(providerDetails, 'providerDetails');
     ArgumentError.checkNotNull(providerName, 'providerName');
-    _s.validateStringLength(
-      'providerName',
-      providerName,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(providerType, 'providerType');
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.CreateIdentityProvider'
@@ -3392,29 +2837,8 @@ class CognitoIdentityProvider {
     List<ResourceServerScopeType>? scopes,
   }) async {
     ArgumentError.checkNotNull(identifier, 'identifier');
-    _s.validateStringLength(
-      'identifier',
-      identifier,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.CreateResourceServer'
@@ -3461,29 +2885,8 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(cloudWatchLogsRoleArn, 'cloudWatchLogsRoleArn');
-    _s.validateStringLength(
-      'cloudWatchLogsRoleArn',
-      cloudWatchLogsRoleArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobName, 'jobName');
-    _s.validateStringLength(
-      'jobName',
-      jobName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.CreateUserImportJob'
@@ -3664,37 +3067,6 @@ class CognitoIdentityProvider {
     VerificationMessageTemplateType? verificationMessageTemplate,
   }) async {
     ArgumentError.checkNotNull(poolName, 'poolName');
-    _s.validateStringLength(
-      'poolName',
-      poolName,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'emailVerificationMessage',
-      emailVerificationMessage,
-      6,
-      20000,
-    );
-    _s.validateStringLength(
-      'emailVerificationSubject',
-      emailVerificationSubject,
-      1,
-      140,
-    );
-    _s.validateStringLength(
-      'smsAuthenticationMessage',
-      smsAuthenticationMessage,
-      6,
-      140,
-    );
-    _s.validateStringLength(
-      'smsVerificationMessage',
-      smsVerificationMessage,
-      6,
-      140,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.CreateUserPool'
@@ -3994,32 +3366,12 @@ class CognitoIdentityProvider {
     List<String>? writeAttributes,
   }) async {
     ArgumentError.checkNotNull(clientName, 'clientName');
-    _s.validateStringLength(
-      'clientName',
-      clientName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'accessTokenValidity',
       accessTokenValidity,
       1,
       86400,
-    );
-    _s.validateStringLength(
-      'defaultRedirectURI',
-      defaultRedirectURI,
-      1,
-      1024,
     );
     _s.validateNumRange(
       'idTokenValidity',
@@ -4115,21 +3467,7 @@ class CognitoIdentityProvider {
     CustomDomainConfigType? customDomainConfig,
   }) async {
     ArgumentError.checkNotNull(domain, 'domain');
-    _s.validateStringLength(
-      'domain',
-      domain,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.CreateUserPoolDomain'
@@ -4171,21 +3509,7 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.DeleteGroup'
@@ -4222,21 +3546,7 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(providerName, 'providerName');
-    _s.validateStringLength(
-      'providerName',
-      providerName,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.DeleteIdentityProvider'
@@ -4272,21 +3582,7 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(identifier, 'identifier');
-    _s.validateStringLength(
-      'identifier',
-      identifier,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.DeleteResourceServer'
@@ -4395,13 +3691,6 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.DeleteUserPool'
@@ -4436,21 +3725,7 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(clientId, 'clientId');
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.DeleteUserPoolClient'
@@ -4485,21 +3760,7 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(domain, 'domain');
-    _s.validateStringLength(
-      'domain',
-      domain,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.DeleteUserPoolDomain'
@@ -4535,21 +3796,7 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(providerName, 'providerName');
-    _s.validateStringLength(
-      'providerName',
-      providerName,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -4588,21 +3835,7 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(identifier, 'identifier');
-    _s.validateStringLength(
-      'identifier',
-      identifier,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.DescribeResourceServer'
@@ -4641,19 +3874,6 @@ class CognitoIdentityProvider {
     String? clientId,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -4692,21 +3912,7 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.DescribeUserImportJob'
@@ -4742,13 +3948,6 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.DescribeUserPool'
@@ -4786,21 +3985,7 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(clientId, 'clientId');
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.DescribeUserPoolClient'
@@ -4833,13 +4018,6 @@ class CognitoIdentityProvider {
     required String domain,
   }) async {
     ArgumentError.checkNotNull(domain, 'domain');
-    _s.validateStringLength(
-      'domain',
-      domain,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.DescribeUserPoolDomain'
@@ -4880,13 +4058,6 @@ class CognitoIdentityProvider {
     String? accessToken,
   }) async {
     ArgumentError.checkNotNull(deviceKey, 'deviceKey');
-    _s.validateStringLength(
-      'deviceKey',
-      deviceKey,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.ForgetDevice'
@@ -5023,27 +4194,7 @@ class CognitoIdentityProvider {
     UserContextDataType? userContextData,
   }) async {
     ArgumentError.checkNotNull(clientId, 'clientId');
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'secretHash',
-      secretHash,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.ForgotPassword'
@@ -5082,13 +4233,6 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.GetCSVHeader'
@@ -5129,13 +4273,6 @@ class CognitoIdentityProvider {
     String? accessToken,
   }) async {
     ArgumentError.checkNotNull(deviceKey, 'deviceKey');
-    _s.validateStringLength(
-      'deviceKey',
-      deviceKey,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.GetDevice'
@@ -5175,21 +4312,7 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.GetGroup'
@@ -5228,21 +4351,7 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(idpIdentifier, 'idpIdentifier');
-    _s.validateStringLength(
-      'idpIdentifier',
-      idpIdentifier,
-      1,
-      40,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -5275,13 +4384,6 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.GetSigningCertificate'
@@ -5322,19 +4424,6 @@ class CognitoIdentityProvider {
     String? clientId,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.GetUICustomization'
@@ -5486,13 +4575,6 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
     ArgumentError.checkNotNull(attributeName, 'attributeName');
-    _s.validateStringLength(
-      'attributeName',
-      attributeName,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -5528,13 +4610,6 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.GetUserPoolMfaConfig'
@@ -5800,13 +4875,6 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(authFlow, 'authFlow');
     ArgumentError.checkNotNull(clientId, 'clientId');
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.InitiateAuth'
@@ -5862,12 +4930,6 @@ class CognitoIdentityProvider {
       0,
       60,
     );
-    _s.validateStringLength(
-      'paginationToken',
-      paginationToken,
-      1,
-      1152921504606846976,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.ListDevices'
@@ -5913,24 +4975,11 @@ class CognitoIdentityProvider {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       0,
       60,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1152921504606846976,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -5974,24 +5023,11 @@ class CognitoIdentityProvider {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       0,
       60,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1152921504606846976,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6035,24 +5071,11 @@ class CognitoIdentityProvider {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1152921504606846976,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6095,13 +5118,6 @@ class CognitoIdentityProvider {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.ListTagsForResource'
@@ -6152,19 +5168,6 @@ class CognitoIdentityProvider {
       isRequired: true,
     );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'paginationToken',
-      paginationToken,
-      1,
-      1152921504606846976,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.ListUserImportJobs'
@@ -6210,24 +5213,11 @@ class CognitoIdentityProvider {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       60,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1152921504606846976,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6274,12 +5264,6 @@ class CognitoIdentityProvider {
       1,
       60,
       isRequired: true,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1152921504606846976,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6400,30 +5384,11 @@ class CognitoIdentityProvider {
     String? paginationToken,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'filter',
-      filter,
-      0,
-      256,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       0,
       60,
-    );
-    _s.validateStringLength(
-      'paginationToken',
-      paginationToken,
-      1,
-      1152921504606846976,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6476,32 +5441,12 @@ class CognitoIdentityProvider {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       0,
       60,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1152921504606846976,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -6631,27 +5576,7 @@ class CognitoIdentityProvider {
     UserContextDataType? userContextData,
   }) async {
     ArgumentError.checkNotNull(clientId, 'clientId');
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'secretHash',
-      secretHash,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.ResendConfirmationCode'
@@ -6837,19 +5762,6 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(challengeName, 'challengeName');
     ArgumentError.checkNotNull(clientId, 'clientId');
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'session',
-      session,
-      20,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.RespondToAuthChallenge'
@@ -6901,20 +5813,7 @@ class CognitoIdentityProvider {
     String? clientSecret,
   }) async {
     ArgumentError.checkNotNull(clientId, 'clientId');
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(token, 'token');
-    _s.validateStringLength(
-      'clientSecret',
-      clientSecret,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.RevokeToken'
@@ -6980,19 +5879,6 @@ class CognitoIdentityProvider {
     RiskExceptionConfigurationType? riskExceptionConfiguration,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.SetRiskConfiguration'
@@ -7058,19 +5944,6 @@ class CognitoIdentityProvider {
     Uint8List? imageFile,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.SetUICustomization'
@@ -7212,13 +6085,6 @@ class CognitoIdentityProvider {
     SoftwareTokenMfaConfigType? softwareTokenMfaConfiguration,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.SetUserPoolMfaConfig'
@@ -7408,35 +6274,8 @@ class CognitoIdentityProvider {
     List<AttributeType>? validationData,
   }) async {
     ArgumentError.checkNotNull(clientId, 'clientId');
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(password, 'password');
-    _s.validateStringLength(
-      'password',
-      password,
-      6,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'secretHash',
-      secretHash,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.SignUp'
@@ -7482,21 +6321,7 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.StartUserImportJob'
@@ -7535,21 +6360,7 @@ class CognitoIdentityProvider {
     required String userPoolId,
   }) async {
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.StopUserImportJob'
@@ -7605,13 +6416,6 @@ class CognitoIdentityProvider {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7650,13 +6454,6 @@ class CognitoIdentityProvider {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7709,31 +6506,10 @@ class CognitoIdentityProvider {
     required String username,
   }) async {
     ArgumentError.checkNotNull(eventId, 'eventId');
-    _s.validateStringLength(
-      'eventId',
-      eventId,
-      1,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(feedbackToken, 'feedbackToken');
     ArgumentError.checkNotNull(feedbackValue, 'feedbackValue');
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(username, 'username');
-    _s.validateStringLength(
-      'username',
-      username,
-      1,
-      128,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -7782,13 +6558,6 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
     ArgumentError.checkNotNull(deviceKey, 'deviceKey');
-    _s.validateStringLength(
-      'deviceKey',
-      deviceKey,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.UpdateDeviceStatus'
@@ -7844,38 +6613,12 @@ class CognitoIdentityProvider {
     String? roleArn,
   }) async {
     ArgumentError.checkNotNull(groupName, 'groupName');
-    _s.validateStringLength(
-      'groupName',
-      groupName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      2048,
-    );
     _s.validateNumRange(
       'precedence',
       precedence,
       0,
       1152921504606846976,
-    );
-    _s.validateStringLength(
-      'roleArn',
-      roleArn,
-      20,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -7931,21 +6674,7 @@ class CognitoIdentityProvider {
     Map<String, String>? providerDetails,
   }) async {
     ArgumentError.checkNotNull(providerName, 'providerName');
-    _s.validateStringLength(
-      'providerName',
-      providerName,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.UpdateIdentityProvider'
@@ -7999,29 +6728,8 @@ class CognitoIdentityProvider {
     List<ResourceServerScopeType>? scopes,
   }) async {
     ArgumentError.checkNotNull(identifier, 'identifier');
-    _s.validateStringLength(
-      'identifier',
-      identifier,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.UpdateResourceServer'
@@ -8299,37 +7007,6 @@ class CognitoIdentityProvider {
     VerificationMessageTemplateType? verificationMessageTemplate,
   }) async {
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'emailVerificationMessage',
-      emailVerificationMessage,
-      6,
-      20000,
-    );
-    _s.validateStringLength(
-      'emailVerificationSubject',
-      emailVerificationSubject,
-      1,
-      140,
-    );
-    _s.validateStringLength(
-      'smsAuthenticationMessage',
-      smsAuthenticationMessage,
-      6,
-      140,
-    );
-    _s.validateStringLength(
-      'smsVerificationMessage',
-      smsVerificationMessage,
-      6,
-      140,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.UpdateUserPool'
@@ -8606,38 +7283,12 @@ class CognitoIdentityProvider {
     List<String>? writeAttributes,
   }) async {
     ArgumentError.checkNotNull(clientId, 'clientId');
-    _s.validateStringLength(
-      'clientId',
-      clientId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'accessTokenValidity',
       accessTokenValidity,
       1,
       86400,
-    );
-    _s.validateStringLength(
-      'clientName',
-      clientName,
-      1,
-      128,
-    );
-    _s.validateStringLength(
-      'defaultRedirectURI',
-      defaultRedirectURI,
-      1,
-      1024,
     );
     _s.validateNumRange(
       'idTokenValidity',
@@ -8764,21 +7415,7 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(customDomainConfig, 'customDomainConfig');
     ArgumentError.checkNotNull(domain, 'domain');
-    _s.validateStringLength(
-      'domain',
-      domain,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userPoolId, 'userPoolId');
-    _s.validateStringLength(
-      'userPoolId',
-      userPoolId,
-      1,
-      55,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.UpdateUserPoolDomain'
@@ -8837,19 +7474,6 @@ class CognitoIdentityProvider {
     String? session,
   }) async {
     ArgumentError.checkNotNull(userCode, 'userCode');
-    _s.validateStringLength(
-      'userCode',
-      userCode,
-      6,
-      6,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'session',
-      session,
-      20,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.VerifySoftwareToken'
@@ -8901,21 +7525,7 @@ class CognitoIdentityProvider {
   }) async {
     ArgumentError.checkNotNull(accessToken, 'accessToken');
     ArgumentError.checkNotNull(attributeName, 'attributeName');
-    _s.validateStringLength(
-      'attributeName',
-      attributeName,
-      1,
-      32,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(code, 'code');
-    _s.validateStringLength(
-      'code',
-      code,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSCognitoIdentityProviderService.VerifyUserAttribute'

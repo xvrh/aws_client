@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -50,13 +51,6 @@ class OpenSearch {
     required String connectionId,
   }) async {
     ArgumentError.checkNotNull(connectionId, 'connectionId');
-    _s.validateStringLength(
-      'connectionId',
-      connectionId,
-      10,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'PUT',
@@ -88,13 +82,6 @@ class OpenSearch {
     required List<Tag> tagList,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagList, 'tagList');
     final $payload = <String, dynamic>{
       'ARN': arn,
@@ -128,13 +115,6 @@ class OpenSearch {
     required String packageID,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(packageID, 'packageID');
     final response = await _protocol.send(
       payload: null,
@@ -163,13 +143,6 @@ class OpenSearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DomainName': domainName,
     };
@@ -287,25 +260,6 @@ class OpenSearch {
     VPCOptions? vPCOptions,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'accessPolicies',
-      accessPolicies,
-      0,
-      102400,
-    );
-    _s.validateStringLength(
-      'engineVersion',
-      engineVersion,
-      14,
-      18,
-    );
     final $payload = <String, dynamic>{
       'DomainName': domainName,
       if (accessPolicies != null) 'AccessPolicies': accessPolicies,
@@ -364,13 +318,6 @@ class OpenSearch {
     required DomainInformationContainer remoteDomainInfo,
   }) async {
     ArgumentError.checkNotNull(connectionAlias, 'connectionAlias');
-    _s.validateStringLength(
-      'connectionAlias',
-      connectionAlias,
-      2,
-      100,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(localDomainInfo, 'localDomainInfo');
     ArgumentError.checkNotNull(remoteDomainInfo, 'remoteDomainInfo');
     final $payload = <String, dynamic>{
@@ -415,21 +362,8 @@ class OpenSearch {
     String? packageDescription,
   }) async {
     ArgumentError.checkNotNull(packageName, 'packageName');
-    _s.validateStringLength(
-      'packageName',
-      packageName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(packageSource, 'packageSource');
     ArgumentError.checkNotNull(packageType, 'packageType');
-    _s.validateStringLength(
-      'packageDescription',
-      packageDescription,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'PackageName': packageName,
       'PackageSource': packageSource,
@@ -459,13 +393,6 @@ class OpenSearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -488,13 +415,6 @@ class OpenSearch {
     required String connectionId,
   }) async {
     ArgumentError.checkNotNull(connectionId, 'connectionId');
-    _s.validateStringLength(
-      'connectionId',
-      connectionId,
-      10,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -517,13 +437,6 @@ class OpenSearch {
     required String connectionId,
   }) async {
     ArgumentError.checkNotNull(connectionId, 'connectionId');
-    _s.validateStringLength(
-      'connectionId',
-      connectionId,
-      10,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -573,13 +486,6 @@ class OpenSearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -614,13 +520,6 @@ class OpenSearch {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -652,13 +551,6 @@ class OpenSearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -771,20 +663,7 @@ class OpenSearch {
     String? domainName,
   }) async {
     ArgumentError.checkNotNull(engineVersion, 'engineVersion');
-    _s.validateStringLength(
-      'engineVersion',
-      engineVersion,
-      14,
-      18,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(instanceType, 'instanceType');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-    );
     final $query = <String, List<String>>{
       if (domainName != null) 'domainName': [domainName],
     };
@@ -922,12 +801,6 @@ class OpenSearch {
       0,
       100,
     );
-    _s.validateStringLength(
-      'reservedInstanceOfferingId',
-      reservedInstanceOfferingId,
-      36,
-      36,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -973,12 +846,6 @@ class OpenSearch {
       0,
       100,
     );
-    _s.validateStringLength(
-      'reservedInstanceId',
-      reservedInstanceId,
-      36,
-      36,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -1014,13 +881,6 @@ class OpenSearch {
     required String packageID,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(packageID, 'packageID');
     final response = await _protocol.send(
       payload: null,
@@ -1045,12 +905,6 @@ class OpenSearch {
   Future<GetCompatibleVersionsResponse> getCompatibleVersions({
     String? domainName,
   }) async {
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-    );
     final $query = <String, List<String>>{
       if (domainName != null) 'domainName': [domainName],
     };
@@ -1123,13 +977,6 @@ class OpenSearch {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1163,13 +1010,6 @@ class OpenSearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1260,19 +1100,6 @@ class OpenSearch {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(engineVersion, 'engineVersion');
-    _s.validateStringLength(
-      'engineVersion',
-      engineVersion,
-      14,
-      18,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1318,13 +1145,6 @@ class OpenSearch {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1360,13 +1180,6 @@ class OpenSearch {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'arn': [arn],
     };
@@ -1438,22 +1251,8 @@ class OpenSearch {
     int? instanceCount,
   }) async {
     ArgumentError.checkNotNull(reservationName, 'reservationName');
-    _s.validateStringLength(
-      'reservationName',
-      reservationName,
-      5,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         reservedInstanceOfferingId, 'reservedInstanceOfferingId');
-    _s.validateStringLength(
-      'reservedInstanceOfferingId',
-      reservedInstanceOfferingId,
-      36,
-      36,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'instanceCount',
       instanceCount,
@@ -1486,13 +1285,6 @@ class OpenSearch {
     required String connectionId,
   }) async {
     ArgumentError.checkNotNull(connectionId, 'connectionId');
-    _s.validateStringLength(
-      'connectionId',
-      connectionId,
-      10,
-      256,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'PUT',
@@ -1520,13 +1312,6 @@ class OpenSearch {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $payload = <String, dynamic>{
       'ARN': arn,
@@ -1555,13 +1340,6 @@ class OpenSearch {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DomainName': domainName,
     };
@@ -1664,19 +1442,6 @@ class OpenSearch {
     VPCOptions? vPCOptions,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'accessPolicies',
-      accessPolicies,
-      0,
-      102400,
-    );
     final $payload = <String, dynamic>{
       if (accessPolicies != null) 'AccessPolicies': accessPolicies,
       if (advancedOptions != null) 'AdvancedOptions': advancedOptions,
@@ -1735,18 +1500,6 @@ class OpenSearch {
   }) async {
     ArgumentError.checkNotNull(packageID, 'packageID');
     ArgumentError.checkNotNull(packageSource, 'packageSource');
-    _s.validateStringLength(
-      'commitMessage',
-      commitMessage,
-      0,
-      160,
-    );
-    _s.validateStringLength(
-      'packageDescription',
-      packageDescription,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'PackageID': packageID,
       'PackageSource': packageSource,
@@ -1785,21 +1538,7 @@ class OpenSearch {
     bool? performCheckOnly,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      3,
-      28,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targetVersion, 'targetVersion');
-    _s.validateStringLength(
-      'targetVersion',
-      targetVersion,
-      14,
-      18,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DomainName': domainName,
       'TargetVersion': targetVersion,

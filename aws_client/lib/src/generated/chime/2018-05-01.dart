@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -311,20 +312,7 @@ class Chime {
     ChannelMembershipType? type,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberArns, 'memberArns');
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -611,13 +599,6 @@ class Chime {
     required String name,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
     };
@@ -663,25 +644,6 @@ class Chime {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      2,
-      64,
-    );
-    _s.validateStringLength(
-      'metadata',
-      metadata,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
@@ -732,21 +694,7 @@ class Chime {
     required String appInstanceArn,
   }) async {
     ArgumentError.checkNotNull(appInstanceAdminArn, 'appInstanceAdminArn');
-    _s.validateStringLength(
-      'appInstanceAdminArn',
-      appInstanceAdminArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'AppInstanceAdminArn': appInstanceAdminArn,
     };
@@ -799,41 +747,8 @@ class Chime {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appInstanceUserId, 'appInstanceUserId');
-    _s.validateStringLength(
-      'appInstanceUserId',
-      appInstanceUserId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      2,
-      64,
-    );
-    _s.validateStringLength(
-      'metadata',
-      metadata,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'AppInstanceArn': appInstanceArn,
       'AppInstanceUserId': appInstanceUserId,
@@ -880,13 +795,6 @@ class Chime {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(externalUserId, 'externalUserId');
-    _s.validateStringLength(
-      'externalUserId',
-      externalUserId,
-      2,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(meetingId, 'meetingId');
     final $payload = <String, dynamic>{
       'ExternalUserId': externalUserId,
@@ -997,39 +905,7 @@ class Chime {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      2,
-      64,
-    );
-    _s.validateStringLength(
-      'metadata',
-      metadata,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -1089,27 +965,7 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberArn, 'memberArn');
-    _s.validateStringLength(
-      'memberArn',
-      memberArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -1194,28 +1050,8 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberArn, 'memberArn');
-    _s.validateStringLength(
-      'memberArn',
-      memberArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(type, 'type');
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -1280,27 +1116,7 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(channelModeratorArn, 'channelModeratorArn');
-    _s.validateStringLength(
-      'channelModeratorArn',
-      channelModeratorArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -1356,29 +1172,9 @@ class Chime {
     String? clientRequestToken,
   }) async {
     ArgumentError.checkNotNull(sinkArn, 'sinkArn');
-    _s.validateStringLength(
-      'sinkArn',
-      sinkArn,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sinkType, 'sinkType');
     ArgumentError.checkNotNull(sourceArn, 'sourceArn');
-    _s.validateStringLength(
-      'sourceArn',
-      sourceArn,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sourceType, 'sourceType');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      2,
-      64,
-    );
     final $payload = <String, dynamic>{
       'SinkArn': sinkArn,
       'SinkType': sinkType.toValue(),
@@ -1451,24 +1247,6 @@ class Chime {
     MeetingNotificationConfiguration? notificationsConfiguration,
     List<Tag>? tags,
   }) async {
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      2,
-      64,
-    );
-    _s.validateStringLength(
-      'externalMeetingId',
-      externalMeetingId,
-      2,
-      64,
-    );
-    _s.validateStringLength(
-      'meetingHostId',
-      meetingHostId,
-      2,
-      64,
-    );
     final $payload = <String, dynamic>{
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
       if (externalMeetingId != null) 'ExternalMeetingId': externalMeetingId,
@@ -1525,13 +1303,6 @@ class Chime {
   }) async {
     ArgumentError.checkNotNull(fromPhoneNumber, 'fromPhoneNumber');
     ArgumentError.checkNotNull(joinToken, 'joinToken');
-    _s.validateStringLength(
-      'joinToken',
-      joinToken,
-      2,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(meetingId, 'meetingId');
     ArgumentError.checkNotNull(toPhoneNumber, 'toPhoneNumber');
     final $payload = <String, dynamic>{
@@ -1601,24 +1372,6 @@ class Chime {
     MeetingNotificationConfiguration? notificationsConfiguration,
     List<Tag>? tags,
   }) async {
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      2,
-      64,
-    );
-    _s.validateStringLength(
-      'externalMeetingId',
-      externalMeetingId,
-      2,
-      64,
-    );
-    _s.validateStringLength(
-      'meetingHostId',
-      meetingHostId,
-      2,
-      64,
-    );
     final $payload = <String, dynamic>{
       if (attendees != null) 'Attendees': attendees,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
@@ -1726,13 +1479,6 @@ class Chime {
     ArgumentError.checkNotNull(
         participantPhoneNumbers, 'participantPhoneNumbers');
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringLength(
-      'voiceConnectorId',
-      voiceConnectorId,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'expiryMinutes',
       expiryMinutes,
@@ -1785,12 +1531,6 @@ class Chime {
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      2,
-      64,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       'ClientRequestToken': clientRequestToken ?? _s.generateIdempotencyToken(),
@@ -1881,13 +1621,6 @@ class Chime {
     ArgumentError.checkNotNull(awsRegion, 'awsRegion');
     ArgumentError.checkNotNull(endpoints, 'endpoints');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'AwsRegion': awsRegion,
       'Endpoints': endpoints,
@@ -1996,13 +1729,6 @@ class Chime {
     bool? disabled,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(targetApplications, 'targetApplications');
     ArgumentError.checkNotNull(triggerType, 'triggerType');
     ArgumentError.checkNotNull(triggerValue, 'triggerValue');
@@ -2099,13 +1825,6 @@ class Chime {
     VoiceConnectorAwsRegion? awsRegion,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(requireEncryption, 'requireEncryption');
     final $payload = <String, dynamic>{
       'Name': name,
@@ -2149,13 +1868,6 @@ class Chime {
     List<VoiceConnectorItem>? voiceConnectorItems,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       if (voiceConnectorItems != null)
@@ -2225,13 +1937,6 @@ class Chime {
     required String appInstanceArn,
   }) async {
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2261,21 +1966,7 @@ class Chime {
     required String appInstanceArn,
   }) async {
     ArgumentError.checkNotNull(appInstanceAdminArn, 'appInstanceAdminArn');
-    _s.validateStringLength(
-      'appInstanceAdminArn',
-      appInstanceAdminArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2301,13 +1992,6 @@ class Chime {
     required String appInstanceArn,
   }) async {
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2332,13 +2016,6 @@ class Chime {
     required String appInstanceUserArn,
   }) async {
     ArgumentError.checkNotNull(appInstanceUserArn, 'appInstanceUserArn');
-    _s.validateStringLength(
-      'appInstanceUserArn',
-      appInstanceUserArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2408,19 +2085,6 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -2462,27 +2126,7 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberArn, 'memberArn');
-    _s.validateStringLength(
-      'memberArn',
-      memberArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -2525,27 +2169,7 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberArn, 'memberArn');
-    _s.validateStringLength(
-      'memberArn',
-      memberArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -2589,27 +2213,7 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(messageId, 'messageId');
-    _s.validateStringLength(
-      'messageId',
-      messageId,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -2651,27 +2255,7 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(channelModeratorArn, 'channelModeratorArn');
-    _s.validateStringLength(
-      'channelModeratorArn',
-      channelModeratorArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -2818,21 +2402,7 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(proxySessionId, 'proxySessionId');
-    _s.validateStringLength(
-      'proxySessionId',
-      proxySessionId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringLength(
-      'voiceConnectorId',
-      voiceConnectorId,
-      1,
-      128,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -3086,13 +2656,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringLength(
-      'voiceConnectorId',
-      voiceConnectorId,
-      1,
-      128,
-      isRequired: true,
-    );
     await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -3208,13 +2771,6 @@ class Chime {
     required String appInstanceArn,
   }) async {
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3243,21 +2799,7 @@ class Chime {
     required String appInstanceArn,
   }) async {
     ArgumentError.checkNotNull(appInstanceAdminArn, 'appInstanceAdminArn');
-    _s.validateStringLength(
-      'appInstanceAdminArn',
-      appInstanceAdminArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3283,13 +2825,6 @@ class Chime {
     required String appInstanceUserArn,
   }) async {
     ArgumentError.checkNotNull(appInstanceUserArn, 'appInstanceUserArn');
-    _s.validateStringLength(
-      'appInstanceUserArn',
-      appInstanceUserArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3325,19 +2860,6 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -3380,27 +2902,7 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberArn, 'memberArn');
-    _s.validateStringLength(
-      'memberArn',
-      memberArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -3444,27 +2946,7 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(memberArn, 'memberArn');
-    _s.validateStringLength(
-      'memberArn',
-      memberArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -3509,27 +2991,7 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(appInstanceUserArn, 'appInstanceUserArn');
-    _s.validateStringLength(
-      'appInstanceUserArn',
-      appInstanceUserArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -3579,27 +3041,7 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(appInstanceUserArn, 'appInstanceUserArn');
-    _s.validateStringLength(
-      'appInstanceUserArn',
-      appInstanceUserArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -3647,27 +3089,7 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(channelModeratorArn, 'channelModeratorArn');
-    _s.validateStringLength(
-      'channelModeratorArn',
-      channelModeratorArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -3893,13 +3315,6 @@ class Chime {
     required String appInstanceArn,
   }) async {
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -3927,13 +3342,6 @@ class Chime {
     required String appInstanceArn,
   }) async {
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4039,27 +3447,7 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(messageId, 'messageId');
-    _s.validateStringLength(
-      'messageId',
-      messageId,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -4291,21 +3679,7 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(proxySessionId, 'proxySessionId');
-    _s.validateStringLength(
-      'proxySessionId',
-      proxySessionId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringLength(
-      'voiceConnectorId',
-      voiceConnectorId,
-      1,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4681,13 +4055,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringLength(
-      'voiceConnectorId',
-      voiceConnectorId,
-      1,
-      128,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -4861,12 +4228,6 @@ class Chime {
       1,
       200,
     );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
       if (name != null) 'name': [name],
@@ -4907,24 +4268,11 @@ class Chime {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -4966,24 +4314,11 @@ class Chime {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       'app-instance-arn': [appInstanceArn],
@@ -5025,12 +4360,6 @@ class Chime {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -5203,30 +4532,11 @@ class Chime {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
@@ -5287,30 +4597,11 @@ class Chime {
     ChannelMembershipType? type,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
@@ -5366,29 +4657,11 @@ class Chime {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'appInstanceUserArn',
-      appInstanceUserArn,
-      5,
-      1600,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
@@ -5462,30 +4735,11 @@ class Chime {
     SortOrder? sortOrder,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
@@ -5543,30 +4797,11 @@ class Chime {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
@@ -5637,30 +4872,11 @@ class Chime {
     ChannelPrivacy? privacy,
   }) async {
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
@@ -5715,29 +4931,11 @@ class Chime {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'appInstanceUserArn',
-      appInstanceUserArn,
-      5,
-      1600,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2048,
     );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
@@ -5992,24 +5190,11 @@ class Chime {
     ProxySessionStatus? status,
   }) async {
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringLength(
-      'voiceConnectorId',
-      voiceConnectorId,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       99,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      65535,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -6153,12 +5338,6 @@ class Chime {
       1,
       99,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      65535,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
       if (nextToken != null) 'next-token': [nextToken],
@@ -6200,12 +5379,6 @@ class Chime {
       maxResults,
       1,
       99,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      65535,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'max-results': [maxResults.toString()],
@@ -6268,13 +5441,6 @@ class Chime {
     required String resourceARN,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1024,
-      isRequired: true,
-    );
     final $query = <String, List<String>>{
       'arn': [resourceARN],
     };
@@ -6503,13 +5669,6 @@ class Chime {
     required AppInstanceRetentionSettings appInstanceRetentionSettings,
   }) async {
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         appInstanceRetentionSettings, 'appInstanceRetentionSettings');
     final $payload = <String, dynamic>{
@@ -6547,13 +5706,6 @@ class Chime {
         appInstanceStreamingConfigurations,
   }) async {
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(appInstanceStreamingConfigurations,
         'appInstanceStreamingConfigurations');
     final $payload = <String, dynamic>{
@@ -6855,13 +6007,6 @@ class Chime {
     ArgumentError.checkNotNull(
         phoneNumberPoolCountries, 'phoneNumberPoolCountries');
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringLength(
-      'voiceConnectorId',
-      voiceConnectorId,
-      1,
-      128,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'DefaultSessionExpiryMinutes': defaultSessionExpiryMinutes,
       'PhoneNumberPoolCountries': phoneNumberPoolCountries,
@@ -7019,27 +6164,7 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(messageId, 'messageId');
-    _s.validateStringLength(
-      'messageId',
-      messageId,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -7274,12 +6399,6 @@ class Chime {
       1,
       500,
     );
-    _s.validateStringLength(
-      'tollFreePrefix',
-      tollFreePrefix,
-      3,
-      3,
-    );
     final $query = <String, List<String>>{
       if (areaCode != null) 'area-code': [areaCode],
       if (city != null) 'city': [city],
@@ -7351,41 +6470,9 @@ class Chime {
     String? metadata,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(content, 'content');
-    _s.validateStringLength(
-      'content',
-      content,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(persistence, 'persistence');
     ArgumentError.checkNotNull(type, 'type');
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
-    _s.validateStringLength(
-      'clientRequestToken',
-      clientRequestToken,
-      2,
-      64,
-    );
-    _s.validateStringLength(
-      'metadata',
-      metadata,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -7563,13 +6650,6 @@ class Chime {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'ResourceARN': resourceARN,
@@ -7674,13 +6754,6 @@ class Chime {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $payload = <String, dynamic>{
       'ResourceARN': resourceARN,
@@ -7720,12 +6793,6 @@ class Chime {
     String? name,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-    );
     final $payload = <String, dynamic>{
       if (defaultLicense != null) 'DefaultLicense': defaultLicense.toValue(),
       if (name != null) 'Name': name,
@@ -7800,27 +6867,7 @@ class Chime {
     String? metadata,
   }) async {
     ArgumentError.checkNotNull(appInstanceArn, 'appInstanceArn');
-    _s.validateStringLength(
-      'appInstanceArn',
-      appInstanceArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'metadata',
-      metadata,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       if (metadata != null) 'Metadata': metadata,
@@ -7859,27 +6906,7 @@ class Chime {
     String? metadata,
   }) async {
     ArgumentError.checkNotNull(appInstanceUserArn, 'appInstanceUserArn');
-    _s.validateStringLength(
-      'appInstanceUserArn',
-      appInstanceUserArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'metadata',
-      metadata,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'Name': name,
       if (metadata != null) 'Metadata': metadata,
@@ -7972,34 +6999,8 @@ class Chime {
     String? metadata,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(mode, 'mode');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
-    _s.validateStringLength(
-      'metadata',
-      metadata,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -8055,39 +7056,7 @@ class Chime {
     String? metadata,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(messageId, 'messageId');
-    _s.validateStringLength(
-      'messageId',
-      messageId,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
-    _s.validateStringLength(
-      'content',
-      content,
-      0,
-      4096,
-    );
-    _s.validateStringLength(
-      'metadata',
-      metadata,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -8131,19 +7100,6 @@ class Chime {
     String? chimeBearer,
   }) async {
     ArgumentError.checkNotNull(channelArn, 'channelArn');
-    _s.validateStringLength(
-      'channelArn',
-      channelArn,
-      5,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'chimeBearer',
-      chimeBearer,
-      5,
-      1600,
-    );
     final headers = <String, String>{
       if (chimeBearer != null) 'x-amz-chime-bearer': chimeBearer.toString(),
     };
@@ -8296,21 +7252,7 @@ class Chime {
   }) async {
     ArgumentError.checkNotNull(capabilities, 'capabilities');
     ArgumentError.checkNotNull(proxySessionId, 'proxySessionId');
-    _s.validateStringLength(
-      'proxySessionId',
-      proxySessionId,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
-    _s.validateStringLength(
-      'voiceConnectorId',
-      voiceConnectorId,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'expiryMinutes',
       expiryMinutes,
@@ -8441,12 +7383,6 @@ class Chime {
     String? name,
   }) async {
     ArgumentError.checkNotNull(sipMediaApplicationId, 'sipMediaApplicationId');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (endpoints != null) 'Endpoints': endpoints,
       if (name != null) 'Name': name,
@@ -8535,13 +7471,6 @@ class Chime {
     List<SipRuleTargetApplication>? targetApplications,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(sipRuleId, 'sipRuleId');
     final $payload = <String, dynamic>{
       'Name': name,
@@ -8671,13 +7600,6 @@ class Chime {
     required String voiceConnectorId,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(requireEncryption, 'requireEncryption');
     ArgumentError.checkNotNull(voiceConnectorId, 'voiceConnectorId');
     final $payload = <String, dynamic>{
@@ -8719,13 +7641,6 @@ class Chime {
     required List<VoiceConnectorItem> voiceConnectorItems,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(voiceConnectorGroupId, 'voiceConnectorGroupId');
     ArgumentError.checkNotNull(voiceConnectorItems, 'voiceConnectorItems');
     final $payload = <String, dynamic>{

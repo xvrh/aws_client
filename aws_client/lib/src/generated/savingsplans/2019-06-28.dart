@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -153,12 +154,6 @@ class SavingsPlans {
       1,
       1000,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'savingsPlanId': savingsPlanId,
       if (filters != null) 'filters': filters,
@@ -210,12 +205,6 @@ class SavingsPlans {
       maxResults,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      1024,
     );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
@@ -287,12 +276,6 @@ class SavingsPlans {
       maxResults,
       0,
       1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      1024,
     );
     final $payload = <String, dynamic>{
       if (filters != null) 'filters': filters,
@@ -385,12 +368,6 @@ class SavingsPlans {
       maxResults,
       0,
       1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      1024,
     );
     final $payload = <String, dynamic>{
       if (currencies != null)

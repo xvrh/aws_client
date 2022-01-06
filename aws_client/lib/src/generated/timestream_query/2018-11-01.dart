@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -57,13 +58,6 @@ class TimestreamQuery {
     required String queryId,
   }) async {
     ArgumentError.checkNotNull(queryId, 'queryId');
-    _s.validateStringLength(
-      'queryId',
-      queryId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'Timestream_20181101.CancelQuery'
@@ -175,45 +169,12 @@ class TimestreamQuery {
     ArgumentError.checkNotNull(
         errorReportConfiguration, 'errorReportConfiguration');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         notificationConfiguration, 'notificationConfiguration');
     ArgumentError.checkNotNull(queryString, 'queryString');
-    _s.validateStringLength(
-      'queryString',
-      queryString,
-      1,
-      262144,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scheduleConfiguration, 'scheduleConfiguration');
     ArgumentError.checkNotNull(
         scheduledQueryExecutionRoleArn, 'scheduledQueryExecutionRoleArn');
-    _s.validateStringLength(
-      'scheduledQueryExecutionRoleArn',
-      scheduledQueryExecutionRoleArn,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      32,
-      128,
-    );
-    _s.validateStringLength(
-      'kmsKeyId',
-      kmsKeyId,
-      1,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'Timestream_20181101.CreateScheduledQuery'
@@ -257,13 +218,6 @@ class TimestreamQuery {
     required String scheduledQueryArn,
   }) async {
     ArgumentError.checkNotNull(scheduledQueryArn, 'scheduledQueryArn');
-    _s.validateStringLength(
-      'scheduledQueryArn',
-      scheduledQueryArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'Timestream_20181101.DeleteScheduledQuery'
@@ -341,13 +295,6 @@ class TimestreamQuery {
     required String scheduledQueryArn,
   }) async {
     ArgumentError.checkNotNull(scheduledQueryArn, 'scheduledQueryArn');
-    _s.validateStringLength(
-      'scheduledQueryArn',
-      scheduledQueryArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'Timestream_20181101.DescribeScheduledQuery'
@@ -391,19 +338,6 @@ class TimestreamQuery {
   }) async {
     ArgumentError.checkNotNull(invocationTime, 'invocationTime');
     ArgumentError.checkNotNull(scheduledQueryArn, 'scheduledQueryArn');
-    _s.validateStringLength(
-      'scheduledQueryArn',
-      scheduledQueryArn,
-      1,
-      2048,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      32,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'Timestream_20181101.ExecuteScheduledQuery'
@@ -491,13 +425,6 @@ class TimestreamQuery {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -549,13 +476,6 @@ class TimestreamQuery {
     bool? validateOnly,
   }) async {
     ArgumentError.checkNotNull(queryString, 'queryString');
-    _s.validateStringLength(
-      'queryString',
-      queryString,
-      1,
-      262144,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
       'X-Amz-Target': 'Timestream_20181101.PrepareQuery'
@@ -722,30 +642,11 @@ class TimestreamQuery {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(queryString, 'queryString');
-    _s.validateStringLength(
-      'queryString',
-      queryString,
-      1,
-      262144,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      32,
-      128,
-    );
     _s.validateNumRange(
       'maxRows',
       maxRows,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      2048,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -789,13 +690,6 @@ class TimestreamQuery {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -833,13 +727,6 @@ class TimestreamQuery {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',
@@ -877,13 +764,6 @@ class TimestreamQuery {
     required ScheduledQueryState state,
   }) async {
     ArgumentError.checkNotNull(scheduledQueryArn, 'scheduledQueryArn');
-    _s.validateStringLength(
-      'scheduledQueryArn',
-      scheduledQueryArn,
-      1,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(state, 'state');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.0',

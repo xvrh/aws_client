@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -86,13 +87,6 @@ class Acm {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(certificateArn, 'certificateArn');
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -139,13 +133,6 @@ class Acm {
     required String certificateArn,
   }) async {
     ArgumentError.checkNotNull(certificateArn, 'certificateArn');
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CertificateManager.DeleteCertificate'
@@ -180,13 +167,6 @@ class Acm {
     required String certificateArn,
   }) async {
     ArgumentError.checkNotNull(certificateArn, 'certificateArn');
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CertificateManager.DescribeCertificate'
@@ -237,13 +217,6 @@ class Acm {
     required Uint8List passphrase,
   }) async {
     ArgumentError.checkNotNull(certificateArn, 'certificateArn');
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(passphrase, 'passphrase');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -308,13 +281,6 @@ class Acm {
     required String certificateArn,
   }) async {
     ArgumentError.checkNotNull(certificateArn, 'certificateArn');
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CertificateManager.GetCertificate'
@@ -448,12 +414,6 @@ class Acm {
   }) async {
     ArgumentError.checkNotNull(certificate, 'certificate');
     ArgumentError.checkNotNull(privateKey, 'privateKey');
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      20,
-      2048,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CertificateManager.ImportCertificate'
@@ -515,12 +475,6 @@ class Acm {
       1,
       1000,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      10000,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CertificateManager.ListCertificates'
@@ -565,13 +519,6 @@ class Acm {
     required String certificateArn,
   }) async {
     ArgumentError.checkNotNull(certificateArn, 'certificateArn');
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CertificateManager.ListTagsForCertificate'
@@ -618,13 +565,6 @@ class Acm {
     ExpiryEventsConfiguration? expiryEvents,
   }) async {
     ArgumentError.checkNotNull(idempotencyToken, 'idempotencyToken');
-    _s.validateStringLength(
-      'idempotencyToken',
-      idempotencyToken,
-      1,
-      32,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CertificateManager.PutAccountConfiguration'
@@ -676,13 +616,6 @@ class Acm {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(certificateArn, 'certificateArn');
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -726,13 +659,6 @@ class Acm {
     required String certificateArn,
   }) async {
     ArgumentError.checkNotNull(certificateArn, 'certificateArn');
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CertificateManager.RenewCertificate'
@@ -878,25 +804,6 @@ class Acm {
     ValidationMethod? validationMethod,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      253,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'certificateAuthorityArn',
-      certificateAuthorityArn,
-      20,
-      2048,
-    );
-    _s.validateStringLength(
-      'idempotencyToken',
-      idempotencyToken,
-      1,
-      32,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CertificateManager.RequestCertificate'
@@ -991,29 +898,8 @@ class Acm {
     required String validationDomain,
   }) async {
     ArgumentError.checkNotNull(certificateArn, 'certificateArn');
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domain, 'domain');
-    _s.validateStringLength(
-      'domain',
-      domain,
-      1,
-      253,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(validationDomain, 'validationDomain');
-    _s.validateStringLength(
-      'validationDomain',
-      validationDomain,
-      1,
-      253,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'CertificateManager.ResendValidationEmail'
@@ -1060,13 +946,6 @@ class Acm {
     required CertificateOptions options,
   }) async {
     ArgumentError.checkNotNull(certificateArn, 'certificateArn');
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(options, 'options');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -65,19 +66,6 @@ class Schemas {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(sourceArn, 'sourceArn');
-    _s.validateStringLength(
-      'sourceArn',
-      sourceArn,
-      20,
-      1600,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'SourceArn': sourceArn,
       if (crossAccount != null) 'CrossAccount': crossAccount,
@@ -116,12 +104,6 @@ class Schemas {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(registryName, 'registryName');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
       if (tags != null) 'tags': tags,
@@ -171,22 +153,9 @@ class Schemas {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(content, 'content');
-    _s.validateStringLength(
-      'content',
-      content,
-      1,
-      100000,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(registryName, 'registryName');
     ArgumentError.checkNotNull(schemaName, 'schemaName');
     ArgumentError.checkNotNull(type, 'type');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'Content': content,
       'Type': type.toValue(),
@@ -1067,12 +1036,6 @@ class Schemas {
     String? description,
   }) async {
     ArgumentError.checkNotNull(discovererId, 'discovererId');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (crossAccount != null) 'CrossAccount': crossAccount,
       if (description != null) 'Description': description,
@@ -1105,12 +1068,6 @@ class Schemas {
     String? description,
   }) async {
     ArgumentError.checkNotNull(registryName, 'registryName');
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       if (description != null) 'Description': description,
     };
@@ -1161,24 +1118,6 @@ class Schemas {
   }) async {
     ArgumentError.checkNotNull(registryName, 'registryName');
     ArgumentError.checkNotNull(schemaName, 'schemaName');
-    _s.validateStringLength(
-      'clientTokenId',
-      clientTokenId,
-      0,
-      36,
-    );
-    _s.validateStringLength(
-      'content',
-      content,
-      1,
-      100000,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      256,
-    );
     final $payload = <String, dynamic>{
       'ClientTokenId': clientTokenId ?? _s.generateIdempotencyToken(),
       if (content != null) 'Content': content,

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -137,61 +138,6 @@ class Amplify {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'accessToken',
-      accessToken,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'basicAuthCredentials',
-      basicAuthCredentials,
-      0,
-      2000,
-    );
-    _s.validateStringLength(
-      'buildSpec',
-      buildSpec,
-      1,
-      25000,
-    );
-    _s.validateStringLength(
-      'customHeaders',
-      customHeaders,
-      1,
-      25000,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'iamServiceRoleArn',
-      iamServiceRoleArn,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'oauthToken',
-      oauthToken,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'repository',
-      repository,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'name': name,
       if (accessToken != null) 'accessToken': accessToken,
@@ -255,33 +201,7 @@ class Amplify {
     String? stackName,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(environmentName, 'environmentName');
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'deploymentArtifacts',
-      deploymentArtifacts,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'stackName',
-      stackName,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'environmentName': environmentName,
       if (deploymentArtifacts != null)
@@ -386,63 +306,7 @@ class Amplify {
     String? ttl,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(branchName, 'branchName');
-    _s.validateStringLength(
-      'branchName',
-      branchName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'backendEnvironmentArn',
-      backendEnvironmentArn,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'basicAuthCredentials',
-      basicAuthCredentials,
-      0,
-      2000,
-    );
-    _s.validateStringLength(
-      'buildSpec',
-      buildSpec,
-      1,
-      25000,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'framework',
-      framework,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'pullRequestEnvironmentName',
-      pullRequestEnvironmentName,
-      0,
-      20,
-    );
     final $payload = <String, dynamic>{
       'branchName': branchName,
       if (backendEnvironmentArn != null)
@@ -502,21 +366,7 @@ class Amplify {
     Map<String, String>? fileMap,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(branchName, 'branchName');
-    _s.validateStringLength(
-      'branchName',
-      branchName,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (fileMap != null) 'fileMap': fileMap,
     };
@@ -567,28 +417,8 @@ class Amplify {
     bool? enableAutoSubDomain,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subDomainSettings, 'subDomainSettings');
-    _s.validateStringLength(
-      'autoSubDomainIAMRole',
-      autoSubDomainIAMRole,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'domainName': domainName,
       'subDomainSettings': subDomainSettings,
@@ -631,27 +461,7 @@ class Amplify {
     String? description,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(branchName, 'branchName');
-    _s.validateStringLength(
-      'branchName',
-      branchName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'branchName': branchName,
       if (description != null) 'description': description,
@@ -679,13 +489,6 @@ class Amplify {
     required String appId,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -713,21 +516,7 @@ class Amplify {
     required String environmentName,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(environmentName, 'environmentName');
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -756,21 +545,7 @@ class Amplify {
     required String branchName,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(branchName, 'branchName');
-    _s.validateStringLength(
-      'branchName',
-      branchName,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -799,21 +574,7 @@ class Amplify {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -846,29 +607,8 @@ class Amplify {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(branchName, 'branchName');
-    _s.validateStringLength(
-      'branchName',
-      branchName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      0,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -893,13 +633,6 @@ class Amplify {
     required String webhookId,
   }) async {
     ArgumentError.checkNotNull(webhookId, 'webhookId');
-    _s.validateStringLength(
-      'webhookId',
-      webhookId,
-      0,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -937,21 +670,7 @@ class Amplify {
     DateTime? startTime,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'domainName': domainName,
       if (endTime != null) 'endTime': unixTimestampToJson(endTime),
@@ -979,13 +698,6 @@ class Amplify {
     required String appId,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1009,13 +721,6 @@ class Amplify {
     required String artifactId,
   }) async {
     ArgumentError.checkNotNull(artifactId, 'artifactId');
-    _s.validateStringLength(
-      'artifactId',
-      artifactId,
-      0,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1042,21 +747,7 @@ class Amplify {
     required String environmentName,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(environmentName, 'environmentName');
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1084,21 +775,7 @@ class Amplify {
     required String branchName,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(branchName, 'branchName');
-    _s.validateStringLength(
-      'branchName',
-      branchName,
-      1,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1126,21 +803,7 @@ class Amplify {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1173,29 +836,8 @@ class Amplify {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(branchName, 'branchName');
-    _s.validateStringLength(
-      'branchName',
-      branchName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      0,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1221,13 +863,6 @@ class Amplify {
     required String webhookId,
   }) async {
     ArgumentError.checkNotNull(webhookId, 'webhookId');
-    _s.validateStringLength(
-      'webhookId',
-      webhookId,
-      0,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -1258,12 +893,6 @@ class Amplify {
       maxResults,
       0,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2000,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1310,40 +939,13 @@ class Amplify {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(branchName, 'branchName');
-    _s.validateStringLength(
-      'branchName',
-      branchName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      0,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       0,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2000,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1386,30 +988,11 @@ class Amplify {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'environmentName',
-      environmentName,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       0,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2000,
     );
     final $query = <String, List<String>>{
       if (environmentName != null) 'environmentName': [environmentName],
@@ -1448,24 +1031,11 @@ class Amplify {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       0,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2000,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1503,24 +1073,11 @@ class Amplify {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       0,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2000,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1563,32 +1120,12 @@ class Amplify {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(branchName, 'branchName');
-    _s.validateStringLength(
-      'branchName',
-      branchName,
-      1,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       0,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2000,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1649,24 +1186,11 @@ class Amplify {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       0,
       100,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2000,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -1712,33 +1236,7 @@ class Amplify {
     String? sourceUrl,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(branchName, 'branchName');
-    _s.validateStringLength(
-      'branchName',
-      branchName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'sourceUrl',
-      sourceUrl,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       if (jobId != null) 'jobId': jobId,
       if (sourceUrl != null) 'sourceUrl': sourceUrl,
@@ -1800,46 +1298,8 @@ class Amplify {
     String? jobReason,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(branchName, 'branchName');
-    _s.validateStringLength(
-      'branchName',
-      branchName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobType, 'jobType');
-    _s.validateStringLength(
-      'commitId',
-      commitId,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'commitMessage',
-      commitMessage,
-      0,
-      10000,
-    );
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'jobReason',
-      jobReason,
-      0,
-      255,
-    );
     final $payload = <String, dynamic>{
       'jobType': jobType.toValue(),
       if (commitId != null) 'commitId': commitId,
@@ -1880,29 +1340,8 @@ class Amplify {
     required String jobId,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(branchName, 'branchName');
-    _s.validateStringLength(
-      'branchName',
-      branchName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(jobId, 'jobId');
-    _s.validateStringLength(
-      'jobId',
-      jobId,
-      0,
-      255,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -2061,67 +1500,6 @@ class Amplify {
     String? repository,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'accessToken',
-      accessToken,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'basicAuthCredentials',
-      basicAuthCredentials,
-      0,
-      2000,
-    );
-    _s.validateStringLength(
-      'buildSpec',
-      buildSpec,
-      1,
-      25000,
-    );
-    _s.validateStringLength(
-      'customHeaders',
-      customHeaders,
-      1,
-      25000,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'iamServiceRoleArn',
-      iamServiceRoleArn,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'oauthToken',
-      oauthToken,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'repository',
-      repository,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       if (accessToken != null) 'accessToken': accessToken,
       if (autoBranchCreationConfig != null)
@@ -2242,63 +1620,7 @@ class Amplify {
     String? ttl,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(branchName, 'branchName');
-    _s.validateStringLength(
-      'branchName',
-      branchName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'backendEnvironmentArn',
-      backendEnvironmentArn,
-      1,
-      1000,
-    );
-    _s.validateStringLength(
-      'basicAuthCredentials',
-      basicAuthCredentials,
-      0,
-      2000,
-    );
-    _s.validateStringLength(
-      'buildSpec',
-      buildSpec,
-      1,
-      25000,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
-    _s.validateStringLength(
-      'displayName',
-      displayName,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'framework',
-      framework,
-      0,
-      255,
-    );
-    _s.validateStringLength(
-      'pullRequestEnvironmentName',
-      pullRequestEnvironmentName,
-      0,
-      20,
-    );
     final $payload = <String, dynamic>{
       if (backendEnvironmentArn != null)
         'backendEnvironmentArn': backendEnvironmentArn,
@@ -2367,28 +1689,8 @@ class Amplify {
     bool? enableAutoSubDomain,
   }) async {
     ArgumentError.checkNotNull(appId, 'appId');
-    _s.validateStringLength(
-      'appId',
-      appId,
-      1,
-      20,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(subDomainSettings, 'subDomainSettings');
-    _s.validateStringLength(
-      'autoSubDomainIAMRole',
-      autoSubDomainIAMRole,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'subDomainSettings': subDomainSettings,
       if (autoSubDomainCreationPatterns != null)
@@ -2430,25 +1732,6 @@ class Amplify {
     String? description,
   }) async {
     ArgumentError.checkNotNull(webhookId, 'webhookId');
-    _s.validateStringLength(
-      'webhookId',
-      webhookId,
-      0,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'branchName',
-      branchName,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'description',
-      description,
-      0,
-      1000,
-    );
     final $payload = <String, dynamic>{
       if (branchName != null) 'branchName': branchName,
       if (description != null) 'description': description,

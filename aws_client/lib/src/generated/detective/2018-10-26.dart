@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -278,12 +279,6 @@ class Detective {
   }) async {
     ArgumentError.checkNotNull(accounts, 'accounts');
     ArgumentError.checkNotNull(graphArn, 'graphArn');
-    _s.validateStringLength(
-      'message',
-      message,
-      1,
-      1000,
-    );
     final $payload = <String, dynamic>{
       'Accounts': accounts,
       'GraphArn': graphArn,
@@ -483,13 +478,6 @@ class Detective {
     required String accountId,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringLength(
-      'accountId',
-      accountId,
-      12,
-      12,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'AccountId': accountId,
     };
@@ -566,12 +554,6 @@ class Detective {
       1,
       200,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
       if (nextToken != null) 'NextToken': nextToken,
@@ -617,12 +599,6 @@ class Detective {
       maxResults,
       1,
       200,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
@@ -675,12 +651,6 @@ class Detective {
       1,
       200,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
     final $payload = <String, dynamic>{
       'GraphArn': graphArn,
       if (maxResults != null) 'MaxResults': maxResults,
@@ -718,12 +688,6 @@ class Detective {
       maxResults,
       1,
       200,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final $payload = <String, dynamic>{
       if (maxResults != null) 'MaxResults': maxResults,
@@ -827,13 +791,6 @@ class Detective {
     required String graphArn,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringLength(
-      'accountId',
-      accountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(graphArn, 'graphArn');
     final $payload = <String, dynamic>{
       'AccountId': accountId,

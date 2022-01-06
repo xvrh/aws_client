@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -77,13 +78,6 @@ class Route53Domains {
     required String password,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(password, 'password');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -136,13 +130,6 @@ class Route53Domains {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -211,19 +198,6 @@ class Route53Domains {
     String? idnLangCode,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'idnLangCode',
-      idnLangCode,
-      0,
-      3,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.CheckDomainAvailability'
@@ -283,19 +257,6 @@ class Route53Domains {
     String? authCode,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'authCode',
-      authCode,
-      0,
-      1024,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.CheckDomainTransferability'
@@ -350,13 +311,6 @@ class Route53Domains {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.DeleteDomain'
@@ -394,13 +348,6 @@ class Route53Domains {
     required List<String> tagsToDelete,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagsToDelete, 'tagsToDelete');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -431,13 +378,6 @@ class Route53Domains {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.DisableDomainAutoRenew'
@@ -474,13 +414,6 @@ class Route53Domains {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.DisableDomainTransferLock'
@@ -521,13 +454,6 @@ class Route53Domains {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.EnableDomainAutoRenew'
@@ -562,13 +488,6 @@ class Route53Domains {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.EnableDomainTransferLock'
@@ -605,12 +524,6 @@ class Route53Domains {
   Future<GetContactReachabilityStatusResponse> getContactReachabilityStatus({
     String? domainName,
   }) async {
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.GetContactReachabilityStatus'
@@ -642,13 +555,6 @@ class Route53Domains {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.GetDomainDetail'
@@ -721,13 +627,6 @@ class Route53Domains {
     required int suggestionCount,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(onlyAvailable, 'onlyAvailable');
     ArgumentError.checkNotNull(suggestionCount, 'suggestionCount');
     final headers = <String, String>{
@@ -762,13 +661,6 @@ class Route53Domains {
     required String operationId,
   }) async {
     ArgumentError.checkNotNull(operationId, 'operationId');
-    _s.validateStringLength(
-      'operationId',
-      operationId,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.GetOperationDetail'
@@ -824,12 +716,6 @@ class Route53Domains {
     int? maxItems,
     SortCondition? sortCondition,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      4096,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -888,12 +774,6 @@ class Route53Domains {
     int? maxItems,
     DateTime? submittedSince,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      4096,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
@@ -973,23 +853,11 @@ class Route53Domains {
     int? maxItems,
     String? tld,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      4096,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,
       0,
       100,
-    );
-    _s.validateStringLength(
-      'tld',
-      tld,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1027,13 +895,6 @@ class Route53Domains {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.ListTagsForDomain'
@@ -1220,13 +1081,6 @@ class Route53Domains {
   }) async {
     ArgumentError.checkNotNull(adminContact, 'adminContact');
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(durationInYears, 'durationInYears');
     _s.validateNumRange(
       'durationInYears',
@@ -1237,12 +1091,6 @@ class Route53Domains {
     );
     ArgumentError.checkNotNull(registrantContact, 'registrantContact');
     ArgumentError.checkNotNull(techContact, 'techContact');
-    _s.validateStringLength(
-      'idnLangCode',
-      idnLangCode,
-      0,
-      3,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.RegisterDomain'
@@ -1301,13 +1149,6 @@ class Route53Domains {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -1368,13 +1209,6 @@ class Route53Domains {
   }) async {
     ArgumentError.checkNotNull(currentExpiryYear, 'currentExpiryYear');
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'durationInYears',
       durationInYears,
@@ -1417,12 +1251,6 @@ class Route53Domains {
       resendContactReachabilityEmail({
     String? domainName,
   }) async {
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.ResendContactReachabilityEmail'
@@ -1453,13 +1281,6 @@ class Route53Domains {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.RetrieveDomainAuthCode'
@@ -1644,13 +1465,6 @@ class Route53Domains {
   }) async {
     ArgumentError.checkNotNull(adminContact, 'adminContact');
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(durationInYears, 'durationInYears');
     _s.validateNumRange(
       'durationInYears',
@@ -1661,18 +1475,6 @@ class Route53Domains {
     );
     ArgumentError.checkNotNull(registrantContact, 'registrantContact');
     ArgumentError.checkNotNull(techContact, 'techContact');
-    _s.validateStringLength(
-      'authCode',
-      authCode,
-      0,
-      1024,
-    );
-    _s.validateStringLength(
-      'idnLangCode',
-      idnLangCode,
-      0,
-      3,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.TransferDomain'
@@ -1761,21 +1563,7 @@ class Route53Domains {
     required String domainName,
   }) async {
     ArgumentError.checkNotNull(accountId, 'accountId');
-    _s.validateStringLength(
-      'accountId',
-      accountId,
-      12,
-      12,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target':
@@ -1830,13 +1618,6 @@ class Route53Domains {
     ContactDetail? techContact,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.UpdateDomainContact'
@@ -1937,13 +1718,6 @@ class Route53Domains {
     bool? techPrivacy,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.UpdateDomainContactPrivacy'
@@ -1994,20 +1768,7 @@ class Route53Domains {
     String? fIAuthKey,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(nameservers, 'nameservers');
-    _s.validateStringLength(
-      'fIAuthKey',
-      fIAuthKey,
-      0,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.UpdateDomainNameservers'
@@ -2049,13 +1810,6 @@ class Route53Domains {
     List<Tag>? tagsToUpdate,
   }) async {
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      0,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Domains_v20140515.UpdateTagsForDomain'
@@ -2111,12 +1865,6 @@ class Route53Domains {
     int? maxItems,
     DateTime? start,
   }) async {
-    _s.validateStringLength(
-      'marker',
-      marker,
-      0,
-      4096,
-    );
     _s.validateNumRange(
       'maxItems',
       maxItems,

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -95,13 +96,6 @@ class IoTDeviceAdvisor {
     required String suiteDefinitionId,
   }) async {
     ArgumentError.checkNotNull(suiteDefinitionId, 'suiteDefinitionId');
-    _s.validateStringLength(
-      'suiteDefinitionId',
-      suiteDefinitionId,
-      12,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -125,18 +119,6 @@ class IoTDeviceAdvisor {
     String? certificateArn,
     String? thingArn,
   }) async {
-    _s.validateStringLength(
-      'certificateArn',
-      certificateArn,
-      20,
-      2048,
-    );
-    _s.validateStringLength(
-      'thingArn',
-      thingArn,
-      20,
-      2048,
-    );
     final $query = <String, List<String>>{
       if (certificateArn != null) 'certificateArn': [certificateArn],
       if (thingArn != null) 'thingArn': [thingArn],
@@ -171,19 +153,6 @@ class IoTDeviceAdvisor {
     String? suiteDefinitionVersion,
   }) async {
     ArgumentError.checkNotNull(suiteDefinitionId, 'suiteDefinitionId');
-    _s.validateStringLength(
-      'suiteDefinitionId',
-      suiteDefinitionId,
-      12,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'suiteDefinitionVersion',
-      suiteDefinitionVersion,
-      2,
-      255,
-    );
     final $query = <String, List<String>>{
       if (suiteDefinitionVersion != null)
         'suiteDefinitionVersion': [suiteDefinitionVersion],
@@ -218,21 +187,7 @@ class IoTDeviceAdvisor {
     required String suiteRunId,
   }) async {
     ArgumentError.checkNotNull(suiteDefinitionId, 'suiteDefinitionId');
-    _s.validateStringLength(
-      'suiteDefinitionId',
-      suiteDefinitionId,
-      12,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(suiteRunId, 'suiteRunId');
-    _s.validateStringLength(
-      'suiteRunId',
-      suiteRunId,
-      12,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -264,21 +219,7 @@ class IoTDeviceAdvisor {
     required String suiteRunId,
   }) async {
     ArgumentError.checkNotNull(suiteDefinitionId, 'suiteDefinitionId');
-    _s.validateStringLength(
-      'suiteDefinitionId',
-      suiteDefinitionId,
-      12,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(suiteRunId, 'suiteRunId');
-    _s.validateStringLength(
-      'suiteRunId',
-      suiteRunId,
-      12,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -312,12 +253,6 @@ class IoTDeviceAdvisor {
       maxResults,
       1,
       50,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2000,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -369,24 +304,6 @@ class IoTDeviceAdvisor {
       1,
       50,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      2000,
-    );
-    _s.validateStringLength(
-      'suiteDefinitionId',
-      suiteDefinitionId,
-      12,
-      36,
-    );
-    _s.validateStringLength(
-      'suiteDefinitionVersion',
-      suiteDefinitionVersion,
-      2,
-      255,
-    );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
       if (nextToken != null) 'nextToken': [nextToken],
@@ -420,13 +337,6 @@ class IoTDeviceAdvisor {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -464,19 +374,6 @@ class IoTDeviceAdvisor {
     Map<String, String>? tags,
   }) async {
     ArgumentError.checkNotNull(suiteDefinitionId, 'suiteDefinitionId');
-    _s.validateStringLength(
-      'suiteDefinitionId',
-      suiteDefinitionId,
-      12,
-      36,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'suiteDefinitionVersion',
-      suiteDefinitionVersion,
-      2,
-      255,
-    );
     final $payload = <String, dynamic>{
       if (suiteDefinitionVersion != null)
         'suiteDefinitionVersion': suiteDefinitionVersion,
@@ -514,21 +411,7 @@ class IoTDeviceAdvisor {
     required String suiteRunId,
   }) async {
     ArgumentError.checkNotNull(suiteDefinitionId, 'suiteDefinitionId');
-    _s.validateStringLength(
-      'suiteDefinitionId',
-      suiteDefinitionId,
-      12,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(suiteRunId, 'suiteRunId');
-    _s.validateStringLength(
-      'suiteRunId',
-      suiteRunId,
-      12,
-      36,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'POST',
@@ -558,13 +441,6 @@ class IoTDeviceAdvisor {
     required Map<String, String> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final $payload = <String, dynamic>{
       'tags': tags,
@@ -597,13 +473,6 @@ class IoTDeviceAdvisor {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final $query = <String, List<String>>{
       'tagKeys': tagKeys,
@@ -636,13 +505,6 @@ class IoTDeviceAdvisor {
     SuiteDefinitionConfiguration? suiteDefinitionConfiguration,
   }) async {
     ArgumentError.checkNotNull(suiteDefinitionId, 'suiteDefinitionId');
-    _s.validateStringLength(
-      'suiteDefinitionId',
-      suiteDefinitionId,
-      12,
-      36,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       if (suiteDefinitionConfiguration != null)
         'suiteDefinitionConfiguration': suiteDefinitionConfiguration,

@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -80,18 +81,6 @@ class ApplicationInsights {
     String? resourceGroupName,
     List<Tag>? tags,
   }) async {
-    _s.validateStringLength(
-      'opsItemSNSTopicArn',
-      opsItemSNSTopicArn,
-      20,
-      300,
-    );
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.CreateApplication'
@@ -139,21 +128,7 @@ class ApplicationInsights {
     required List<String> resourceList,
   }) async {
     ArgumentError.checkNotNull(componentName, 'componentName');
-    _s.validateStringLength(
-      'componentName',
-      componentName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceList, 'resourceList');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -214,38 +189,10 @@ class ApplicationInsights {
     required String resourceGroupName,
   }) async {
     ArgumentError.checkNotNull(pattern, 'pattern');
-    _s.validateStringLength(
-      'pattern',
-      pattern,
-      1,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(patternName, 'patternName');
-    _s.validateStringLength(
-      'patternName',
-      patternName,
-      1,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(patternSetName, 'patternSetName');
-    _s.validateStringLength(
-      'patternSetName',
-      patternSetName,
-      1,
-      30,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(rank, 'rank');
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.CreateLogPattern'
@@ -282,13 +229,6 @@ class ApplicationInsights {
     required String resourceGroupName,
   }) async {
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.DeleteApplication'
@@ -323,21 +263,7 @@ class ApplicationInsights {
     required String resourceGroupName,
   }) async {
     ArgumentError.checkNotNull(componentName, 'componentName');
-    _s.validateStringLength(
-      'componentName',
-      componentName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.DeleteComponent'
@@ -376,29 +302,8 @@ class ApplicationInsights {
     required String resourceGroupName,
   }) async {
     ArgumentError.checkNotNull(patternName, 'patternName');
-    _s.validateStringLength(
-      'patternName',
-      patternName,
-      1,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(patternSetName, 'patternSetName');
-    _s.validateStringLength(
-      'patternSetName',
-      patternSetName,
-      1,
-      30,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.DeleteLogPattern'
@@ -429,13 +334,6 @@ class ApplicationInsights {
     required String resourceGroupName,
   }) async {
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.DescribeApplication'
@@ -471,21 +369,7 @@ class ApplicationInsights {
     required String resourceGroupName,
   }) async {
     ArgumentError.checkNotNull(componentName, 'componentName');
-    _s.validateStringLength(
-      'componentName',
-      componentName,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.DescribeComponent'
@@ -522,21 +406,7 @@ class ApplicationInsights {
     required String resourceGroupName,
   }) async {
     ArgumentError.checkNotNull(componentName, 'componentName');
-    _s.validateStringLength(
-      'componentName',
-      componentName,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.DescribeComponentConfiguration'
@@ -580,21 +450,7 @@ class ApplicationInsights {
     required Tier tier,
   }) async {
     ArgumentError.checkNotNull(componentName, 'componentName');
-    _s.validateStringLength(
-      'componentName',
-      componentName,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tier, 'tier');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -638,29 +494,8 @@ class ApplicationInsights {
     required String resourceGroupName,
   }) async {
     ArgumentError.checkNotNull(patternName, 'patternName');
-    _s.validateStringLength(
-      'patternName',
-      patternName,
-      1,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(patternSetName, 'patternSetName');
-    _s.validateStringLength(
-      'patternSetName',
-      patternSetName,
-      1,
-      30,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.DescribeLogPattern'
@@ -693,13 +528,6 @@ class ApplicationInsights {
     required String observationId,
   }) async {
     ArgumentError.checkNotNull(observationId, 'observationId');
-    _s.validateStringLength(
-      'observationId',
-      observationId,
-      38,
-      38,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.DescribeObservation'
@@ -730,13 +558,6 @@ class ApplicationInsights {
     required String problemId,
   }) async {
     ArgumentError.checkNotNull(problemId, 'problemId');
-    _s.validateStringLength(
-      'problemId',
-      problemId,
-      38,
-      38,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.DescribeProblem'
@@ -767,13 +588,6 @@ class ApplicationInsights {
     required String problemId,
   }) async {
     ArgumentError.checkNotNull(problemId, 'problemId');
-    _s.validateStringLength(
-      'problemId',
-      problemId,
-      38,
-      38,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.DescribeProblemObservations'
@@ -813,12 +627,6 @@ class ApplicationInsights {
       maxResults,
       1,
       40,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -862,24 +670,11 @@ class ApplicationInsights {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       40,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -966,18 +761,6 @@ class ApplicationInsights {
       1,
       40,
     );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.ListConfigurationHistory'
@@ -1023,24 +806,11 @@ class ApplicationInsights {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       40,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1088,30 +858,11 @@ class ApplicationInsights {
     String? patternSetName,
   }) async {
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       40,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'patternSetName',
-      patternSetName,
-      1,
-      30,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1167,29 +918,11 @@ class ApplicationInsights {
     String? resourceGroupName,
     DateTime? startTime,
   }) async {
-    _s.validateStringLength(
-      'componentName',
-      componentName,
-      1,
-      1011,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       40,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      1,
-      1024,
-    );
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1231,13 +964,6 @@ class ApplicationInsights {
     required String resourceARN,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.ListTagsForResource'
@@ -1284,13 +1010,6 @@ class ApplicationInsights {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1331,13 +1050,6 @@ class ApplicationInsights {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1391,19 +1103,6 @@ class ApplicationInsights {
     bool? removeSNSTopic,
   }) async {
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'opsItemSNSTopicArn',
-      opsItemSNSTopicArn,
-      20,
-      300,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.UpdateApplication'
@@ -1454,27 +1153,7 @@ class ApplicationInsights {
     List<String>? resourceList,
   }) async {
     ArgumentError.checkNotNull(componentName, 'componentName');
-    _s.validateStringLength(
-      'componentName',
-      componentName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'newComponentName',
-      newComponentName,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.UpdateComponent'
@@ -1537,27 +1216,7 @@ class ApplicationInsights {
     Tier? tier,
   }) async {
     ArgumentError.checkNotNull(componentName, 'componentName');
-    _s.validateStringLength(
-      'componentName',
-      componentName,
-      1,
-      1011,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'componentConfiguration',
-      componentConfiguration,
-      1,
-      10000,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.UpdateComponentConfiguration'
@@ -1621,35 +1280,8 @@ class ApplicationInsights {
     int? rank,
   }) async {
     ArgumentError.checkNotNull(patternName, 'patternName');
-    _s.validateStringLength(
-      'patternName',
-      patternName,
-      1,
-      50,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(patternSetName, 'patternSetName');
-    _s.validateStringLength(
-      'patternSetName',
-      patternSetName,
-      1,
-      30,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceGroupName, 'resourceGroupName');
-    _s.validateStringLength(
-      'resourceGroupName',
-      resourceGroupName,
-      1,
-      256,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'pattern',
-      pattern,
-      1,
-      50,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'EC2WindowsBarleyService.UpdateLogPattern'

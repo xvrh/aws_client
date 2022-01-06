@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -122,13 +123,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(uploadId, 'uploadId');
     final headers = <String, String>{
       if (expectedBucketOwner != null)
@@ -322,13 +316,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(uploadId, 'uploadId');
     final headers = <String, String>{
       if (expectedBucketOwner != null)
@@ -859,13 +846,6 @@ class S3 {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(copySource, 'copySource');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'x-amz-copy-source': copySource.toString(),
       if (acl != null) 'x-amz-acl': acl.toValue(),
@@ -1689,13 +1669,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (acl != null) 'x-amz-acl': acl.toValue(),
       if (bucketKeyEnabled != null)
@@ -2603,13 +2576,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (bypassGovernanceRetention != null)
         'x-amz-bypass-governance-retention':
@@ -2709,13 +2675,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -4532,13 +4491,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -4724,13 +4676,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -4796,13 +4741,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -4907,13 +4845,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -5009,13 +4940,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -5086,13 +5010,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -5467,13 +5384,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -6520,13 +6430,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(uploadId, 'uploadId');
     final headers = <String, String>{
       if (expectedBucketOwner != null)
@@ -9143,13 +9046,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (acl != null) 'x-amz-acl': acl.toValue(),
       if (bucketKeyEnabled != null)
@@ -9540,13 +9436,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (acl != null) 'x-amz-acl': acl.toValue(),
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
@@ -9632,13 +9521,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
       if (expectedBucketOwner != null)
@@ -9807,13 +9689,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (bypassGovernanceRetention != null)
         'x-amz-bypass-governance-retention':
@@ -9977,13 +9852,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagging, 'tagging');
     final headers = <String, String>{
       if (contentMD5 != null) 'Content-MD5': contentMD5.toString(),
@@ -10436,13 +10304,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (expectedBucketOwner != null)
         'x-amz-expected-bucket-owner': expectedBucketOwner.toString(),
@@ -10678,13 +10539,6 @@ class S3 {
     ArgumentError.checkNotNull(expressionType, 'expressionType');
     ArgumentError.checkNotNull(inputSerialization, 'inputSerialization');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(outputSerialization, 'outputSerialization');
     final headers = <String, String>{
       if (expectedBucketOwner != null)
@@ -10941,13 +10795,6 @@ class S3 {
   }) async {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partNumber, 'partNumber');
     ArgumentError.checkNotNull(uploadId, 'uploadId');
     final headers = <String, String>{
@@ -11325,13 +11172,6 @@ class S3 {
     ArgumentError.checkNotNull(bucket, 'bucket');
     ArgumentError.checkNotNull(copySource, 'copySource');
     ArgumentError.checkNotNull(key, 'key');
-    _s.validateStringLength(
-      'key',
-      key,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(partNumber, 'partNumber');
     ArgumentError.checkNotNull(uploadId, 'uploadId');
     final headers = <String, String>{

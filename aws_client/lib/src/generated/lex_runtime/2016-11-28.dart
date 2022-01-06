@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -71,13 +72,6 @@ class LexRuntime {
     ArgumentError.checkNotNull(botAlias, 'botAlias');
     ArgumentError.checkNotNull(botName, 'botName');
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      2,
-      100,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'DELETE',
@@ -120,19 +114,6 @@ class LexRuntime {
     ArgumentError.checkNotNull(botAlias, 'botAlias');
     ArgumentError.checkNotNull(botName, 'botName');
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      2,
-      100,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'checkpointLabelFilter',
-      checkpointLabelFilter,
-      1,
-      255,
-    );
     final $query = <String, List<String>>{
       if (checkpointLabelFilter != null)
         'checkpointLabelFilter': [checkpointLabelFilter],
@@ -424,13 +405,6 @@ class LexRuntime {
     ArgumentError.checkNotNull(contentType, 'contentType');
     ArgumentError.checkNotNull(inputStream, 'inputStream');
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      2,
-      100,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': contentType.toString(),
       if (accept != null) 'Accept': accept.toString(),
@@ -654,21 +628,7 @@ class LexRuntime {
     ArgumentError.checkNotNull(botAlias, 'botAlias');
     ArgumentError.checkNotNull(botName, 'botName');
     ArgumentError.checkNotNull(inputText, 'inputText');
-    _s.validateStringLength(
-      'inputText',
-      inputText,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      2,
-      100,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'inputText': inputText,
       if (activeContexts != null) 'activeContexts': activeContexts,
@@ -811,13 +771,6 @@ class LexRuntime {
     ArgumentError.checkNotNull(botAlias, 'botAlias');
     ArgumentError.checkNotNull(botName, 'botName');
     ArgumentError.checkNotNull(userId, 'userId');
-    _s.validateStringLength(
-      'userId',
-      userId,
-      2,
-      100,
-      isRequired: true,
-    );
     final headers = <String, String>{
       if (accept != null) 'Accept': accept.toString(),
     };

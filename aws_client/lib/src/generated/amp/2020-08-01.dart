@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -63,19 +64,6 @@ class Prometheus {
   }) async {
     ArgumentError.checkNotNull(data, 'data');
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringLength(
-      'workspaceId',
-      workspaceId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'data': base64Encode(data),
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -124,27 +112,7 @@ class Prometheus {
   }) async {
     ArgumentError.checkNotNull(data, 'data');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringLength(
-      'workspaceId',
-      workspaceId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'data': base64Encode(data),
       'name': name,
@@ -185,18 +153,6 @@ class Prometheus {
     String? clientToken,
     Map<String, String>? tags,
   }) async {
-    _s.validateStringLength(
-      'alias',
-      alias,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       if (alias != null) 'alias': alias,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -231,19 +187,6 @@ class Prometheus {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringLength(
-      'workspaceId',
-      workspaceId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
     };
@@ -281,27 +224,7 @@ class Prometheus {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringLength(
-      'workspaceId',
-      workspaceId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
     };
@@ -335,19 +258,6 @@ class Prometheus {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringLength(
-      'workspaceId',
-      workspaceId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $query = <String, List<String>>{
       if (clientToken != null) 'clientToken': [clientToken],
     };
@@ -375,13 +285,6 @@ class Prometheus {
     required String workspaceId,
   }) async {
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringLength(
-      'workspaceId',
-      workspaceId,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -410,21 +313,7 @@ class Prometheus {
     required String workspaceId,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringLength(
-      'workspaceId',
-      workspaceId,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -449,13 +338,6 @@ class Prometheus {
     required String workspaceId,
   }) async {
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringLength(
-      'workspaceId',
-      workspaceId,
-      1,
-      64,
-      isRequired: true,
-    );
     final response = await _protocol.send(
       payload: null,
       method: 'GET',
@@ -494,24 +376,11 @@ class Prometheus {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringLength(
-      'workspaceId',
-      workspaceId,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
     );
     final $query = <String, List<String>>{
       if (maxResults != null) 'maxResults': [maxResults.toString()],
@@ -574,12 +443,6 @@ class Prometheus {
     int? maxResults,
     String? nextToken,
   }) async {
-    _s.validateStringLength(
-      'alias',
-      alias,
-      1,
-      100,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -627,19 +490,6 @@ class Prometheus {
   }) async {
     ArgumentError.checkNotNull(data, 'data');
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringLength(
-      'workspaceId',
-      workspaceId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'data': base64Encode(data),
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -684,27 +534,7 @@ class Prometheus {
   }) async {
     ArgumentError.checkNotNull(data, 'data');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringLength(
-      'workspaceId',
-      workspaceId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       'data': base64Encode(data),
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),
@@ -802,25 +632,6 @@ class Prometheus {
     String? clientToken,
   }) async {
     ArgumentError.checkNotNull(workspaceId, 'workspaceId');
-    _s.validateStringLength(
-      'workspaceId',
-      workspaceId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'alias',
-      alias,
-      1,
-      100,
-    );
-    _s.validateStringLength(
-      'clientToken',
-      clientToken,
-      1,
-      64,
-    );
     final $payload = <String, dynamic>{
       if (alias != null) 'alias': alias,
       'clientToken': clientToken ?? _s.generateIdempotencyToken(),

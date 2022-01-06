@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -64,12 +65,6 @@ class LakeFormation {
   }) async {
     ArgumentError.checkNotNull(lFTags, 'lFTags');
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'LFTags': lFTags,
       'Resource': resource,
@@ -103,12 +98,6 @@ class LakeFormation {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(entries, 'entries');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'Entries': entries,
       if (catalogId != null) 'CatalogId': catalogId,
@@ -141,12 +130,6 @@ class LakeFormation {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(entries, 'entries');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'Entries': entries,
       if (catalogId != null) 'CatalogId': catalogId,
@@ -177,13 +160,6 @@ class LakeFormation {
     required String transactionId,
   }) async {
     ArgumentError.checkNotNull(transactionId, 'transactionId');
-    _s.validateStringLength(
-      'transactionId',
-      transactionId,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'TransactionId': transactionId,
     };
@@ -212,13 +188,6 @@ class LakeFormation {
     required String transactionId,
   }) async {
     ArgumentError.checkNotNull(transactionId, 'transactionId');
-    _s.validateStringLength(
-      'transactionId',
-      transactionId,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'TransactionId': transactionId,
     };
@@ -286,20 +255,7 @@ class LakeFormation {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(tagKey, 'tagKey');
-    _s.validateStringLength(
-      'tagKey',
-      tagKey,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagValues, 'tagValues');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'TagKey': tagKey,
       'TagValues': tagValues,
@@ -338,30 +294,6 @@ class LakeFormation {
     String? tableCatalogId,
     String? tableName,
   }) async {
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'tableCatalogId',
-      tableCatalogId,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       if (databaseName != null) 'DatabaseName': databaseName,
       if (name != null) 'Name': name,
@@ -402,19 +334,6 @@ class LakeFormation {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(tagKey, 'tagKey');
-    _s.validateStringLength(
-      'tagKey',
-      tagKey,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'TagKey': tagKey,
       if (catalogId != null) 'CatalogId': catalogId,
@@ -472,36 +391,9 @@ class LakeFormation {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(objects, 'objects');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(transactionId, 'transactionId');
-    _s.validateStringLength(
-      'transactionId',
-      transactionId,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'DatabaseName': databaseName,
       'Objects': objects,
@@ -584,13 +476,6 @@ class LakeFormation {
     required String transactionId,
   }) async {
     ArgumentError.checkNotNull(transactionId, 'transactionId');
-    _s.validateStringLength(
-      'transactionId',
-      transactionId,
-      1,
-      255,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'TransactionId': transactionId,
     };
@@ -622,12 +507,6 @@ class LakeFormation {
   Future<void> extendTransaction({
     String? transactionId,
   }) async {
-    _s.validateStringLength(
-      'transactionId',
-      transactionId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       if (transactionId != null) 'TransactionId': transactionId,
     };
@@ -654,12 +533,6 @@ class LakeFormation {
   Future<GetDataLakeSettingsResponse> getDataLakeSettings({
     String? catalogId,
   }) async {
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       if (catalogId != null) 'CatalogId': catalogId,
     };
@@ -705,12 +578,6 @@ class LakeFormation {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -753,19 +620,6 @@ class LakeFormation {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(tagKey, 'tagKey');
-    _s.validateStringLength(
-      'tagKey',
-      tagKey,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'TagKey': tagKey,
       if (catalogId != null) 'CatalogId': catalogId,
@@ -795,13 +649,6 @@ class LakeFormation {
     required String queryId,
   }) async {
     ArgumentError.checkNotNull(queryId, 'queryId');
-    _s.validateStringLength(
-      'queryId',
-      queryId,
-      36,
-      36,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'QueryId': queryId,
     };
@@ -829,13 +676,6 @@ class LakeFormation {
     required String queryId,
   }) async {
     ArgumentError.checkNotNull(queryId, 'queryId');
-    _s.validateStringLength(
-      'queryId',
-      queryId,
-      36,
-      36,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'QueryId': queryId,
     };
@@ -875,12 +715,6 @@ class LakeFormation {
     bool? showAssignedLFTags,
   }) async {
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'Resource': resource,
       if (catalogId != null) 'CatalogId': catalogId,
@@ -963,50 +797,12 @@ class LakeFormation {
     String? transactionId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
-    );
-    _s.validateStringLength(
-      'partitionPredicate',
-      partitionPredicate,
-      0,
-      2048,
-    );
-    _s.validateStringLength(
-      'transactionId',
-      transactionId,
-      1,
-      255,
     );
     final $payload = <String, dynamic>{
       'DatabaseName': databaseName,
@@ -1193,13 +989,6 @@ class LakeFormation {
     required String workUnitToken,
   }) async {
     ArgumentError.checkNotNull(queryId, 'queryId');
-    _s.validateStringLength(
-      'queryId',
-      queryId,
-      36,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(workUnitId, 'workUnitId');
     _s.validateNumRange(
       'workUnitId',
@@ -1209,13 +998,6 @@ class LakeFormation {
       isRequired: true,
     );
     ArgumentError.checkNotNull(workUnitToken, 'workUnitToken');
-    _s.validateStringLength(
-      'workUnitToken',
-      workUnitToken,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'QueryId': queryId,
       'WorkUnitId': workUnitId,
@@ -1259,13 +1041,6 @@ class LakeFormation {
     int? pageSize,
   }) async {
     ArgumentError.checkNotNull(queryId, 'queryId');
-    _s.validateStringLength(
-      'queryId',
-      queryId,
-      36,
-      36,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'QueryId': queryId,
       if (nextToken != null) 'NextToken': nextToken,
@@ -1331,12 +1106,6 @@ class LakeFormation {
     ArgumentError.checkNotNull(permissions, 'permissions');
     ArgumentError.checkNotNull(principal, 'principal');
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'Permissions': permissions.map((e) => e.toValue()).toList(),
       'Principal': principal,
@@ -1426,12 +1195,6 @@ class LakeFormation {
     String? nextToken,
     ResourceShareType? resourceShareType,
   }) async {
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1505,18 +1268,6 @@ class LakeFormation {
     Resource? resource,
     DataLakeResourceType? resourceType,
   }) async {
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
-    _s.validateStringLength(
-      'includeRelated',
-      includeRelated,
-      1,
-      5,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1618,27 +1369,7 @@ class LakeFormation {
     OptimizerType? storageOptimizerType,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -1695,23 +1426,11 @@ class LakeFormation {
     String? nextToken,
     TransactionStatusFilter? statusFilter,
   }) async {
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       1000,
-    );
-    _s.validateStringLength(
-      'nextToken',
-      nextToken,
-      0,
-      4096,
     );
     final $payload = <String, dynamic>{
       if (catalogId != null) 'CatalogId': catalogId,
@@ -1755,12 +1474,6 @@ class LakeFormation {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(dataLakeSettings, 'dataLakeSettings');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'DataLakeSettings': dataLakeSettings,
       if (catalogId != null) 'CatalogId': catalogId,
@@ -1868,12 +1581,6 @@ class LakeFormation {
   }) async {
     ArgumentError.checkNotNull(lFTags, 'lFTags');
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'LFTags': lFTags,
       'Resource': resource,
@@ -1926,12 +1633,6 @@ class LakeFormation {
     ArgumentError.checkNotNull(permissions, 'permissions');
     ArgumentError.checkNotNull(principal, 'principal');
     ArgumentError.checkNotNull(resource, 'resource');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'Permissions': permissions.map((e) => e.toValue()).toList(),
       'Principal': principal,
@@ -1985,12 +1686,6 @@ class LakeFormation {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(expression, 'expression');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2048,12 +1743,6 @@ class LakeFormation {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(expression, 'expression');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2097,13 +1786,6 @@ class LakeFormation {
   }) async {
     ArgumentError.checkNotNull(queryPlanningContext, 'queryPlanningContext');
     ArgumentError.checkNotNull(queryString, 'queryString');
-    _s.validateStringLength(
-      'queryString',
-      queryString,
-      1,
-      1152921504606846976,
-      isRequired: true,
-    );
     final $payload = <String, dynamic>{
       'QueryPlanningContext': queryPlanningContext,
       'QueryString': queryString,
@@ -2177,19 +1859,6 @@ class LakeFormation {
     List<String>? tagValuesToDelete,
   }) async {
     ArgumentError.checkNotNull(tagKey, 'tagKey');
-    _s.validateStringLength(
-      'tagKey',
-      tagKey,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'TagKey': tagKey,
       if (catalogId != null) 'CatalogId': catalogId,
@@ -2272,36 +1941,9 @@ class LakeFormation {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(transactionId, 'transactionId');
-    _s.validateStringLength(
-      'transactionId',
-      transactionId,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(writeOperations, 'writeOperations');
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'DatabaseName': databaseName,
       'TableName': tableName,
@@ -2342,29 +1984,9 @@ class LakeFormation {
     String? catalogId,
   }) async {
     ArgumentError.checkNotNull(databaseName, 'databaseName');
-    _s.validateStringLength(
-      'databaseName',
-      databaseName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         storageOptimizerConfig, 'storageOptimizerConfig');
     ArgumentError.checkNotNull(tableName, 'tableName');
-    _s.validateStringLength(
-      'tableName',
-      tableName,
-      1,
-      255,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'catalogId',
-      catalogId,
-      1,
-      255,
-    );
     final $payload = <String, dynamic>{
       'DatabaseName': databaseName,
       'StorageOptimizerConfig':

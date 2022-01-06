@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -606,13 +607,6 @@ class Lightsail {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(bucketName, 'bucketName');
-    _s.validateStringLength(
-      'bucketName',
-      bucketName,
-      3,
-      54,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(bundleId, 'bundleId');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -667,13 +661,6 @@ class Lightsail {
     required String bucketName,
   }) async {
     ArgumentError.checkNotNull(bucketName, 'bucketName');
-    _s.validateStringLength(
-      'bucketName',
-      bucketName,
-      3,
-      54,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateBucketAccessKey'
@@ -882,13 +869,6 @@ class Lightsail {
     required ContactProtocol protocol,
   }) async {
     ArgumentError.checkNotNull(contactEndpoint, 'contactEndpoint');
-    _s.validateStringLength(
-      'contactEndpoint',
-      contactEndpoint,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(protocol, 'protocol');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1033,13 +1013,6 @@ class Lightsail {
       isRequired: true,
     );
     ArgumentError.checkNotNull(serviceName, 'serviceName');
-    _s.validateStringLength(
-      'serviceName',
-      serviceName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateContainerService'
@@ -1102,13 +1075,6 @@ class Lightsail {
     EndpointRequest? publicEndpoint,
   }) async {
     ArgumentError.checkNotNull(serviceName, 'serviceName');
-    _s.validateStringLength(
-      'serviceName',
-      serviceName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.CreateContainerServiceDeployment'
@@ -2995,13 +2961,6 @@ class Lightsail {
     bool? forceDelete,
   }) async {
     ArgumentError.checkNotNull(bucketName, 'bucketName');
-    _s.validateStringLength(
-      'bucketName',
-      bucketName,
-      3,
-      54,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteBucket'
@@ -3051,13 +3010,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(accessKeyId, 'accessKeyId');
     ArgumentError.checkNotNull(bucketName, 'bucketName');
-    _s.validateStringLength(
-      'bucketName',
-      bucketName,
-      3,
-      54,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteBucketAccessKey'
@@ -3196,13 +3148,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(image, 'image');
     ArgumentError.checkNotNull(serviceName, 'serviceName');
-    _s.validateStringLength(
-      'serviceName',
-      serviceName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteContainerImage'
@@ -3234,13 +3179,6 @@ class Lightsail {
     required String serviceName,
   }) async {
     ArgumentError.checkNotNull(serviceName, 'serviceName');
-    _s.validateStringLength(
-      'serviceName',
-      serviceName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.DeleteContainerService'
@@ -4417,13 +4355,6 @@ class Lightsail {
     required String bucketName,
   }) async {
     ArgumentError.checkNotNull(bucketName, 'bucketName');
-    _s.validateStringLength(
-      'bucketName',
-      bucketName,
-      3,
-      54,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetBucketAccessKeys'
@@ -4590,13 +4521,6 @@ class Lightsail {
     required MetricUnit unit,
   }) async {
     ArgumentError.checkNotNull(bucketName, 'bucketName');
-    _s.validateStringLength(
-      'bucketName',
-      bucketName,
-      3,
-      54,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(endTime, 'endTime');
     ArgumentError.checkNotNull(metricName, 'metricName');
     ArgumentError.checkNotNull(period, 'period');
@@ -4668,12 +4592,6 @@ class Lightsail {
     bool? includeConnectedResources,
     String? pageToken,
   }) async {
-    _s.validateStringLength(
-      'bucketName',
-      bucketName,
-      3,
-      54,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetBuckets'
@@ -4936,13 +4854,6 @@ class Lightsail {
     required String serviceName,
   }) async {
     ArgumentError.checkNotNull(serviceName, 'serviceName');
-    _s.validateStringLength(
-      'serviceName',
-      serviceName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetContainerImages'
@@ -5072,13 +4983,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(containerName, 'containerName');
     ArgumentError.checkNotNull(serviceName, 'serviceName');
-    _s.validateStringLength(
-      'serviceName',
-      serviceName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetContainerLog'
@@ -5128,13 +5032,6 @@ class Lightsail {
     required String serviceName,
   }) async {
     ArgumentError.checkNotNull(serviceName, 'serviceName');
-    _s.validateStringLength(
-      'serviceName',
-      serviceName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetContainerServiceDeployments'
@@ -5266,13 +5163,6 @@ class Lightsail {
       isRequired: true,
     );
     ArgumentError.checkNotNull(serviceName, 'serviceName');
-    _s.validateStringLength(
-      'serviceName',
-      serviceName,
-      1,
-      63,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(startTime, 'startTime');
     ArgumentError.checkNotNull(statistics, 'statistics');
     final headers = <String, String>{
@@ -5342,12 +5232,6 @@ class Lightsail {
   Future<ContainerServicesListResult> getContainerServices({
     String? serviceName,
   }) async {
-    _s.validateStringLength(
-      'serviceName',
-      serviceName,
-      1,
-      63,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.GetContainerServices'
@@ -8436,21 +8320,7 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(digest, 'digest');
     ArgumentError.checkNotNull(label, 'label');
-    _s.validateStringLength(
-      'label',
-      label,
-      1,
-      53,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(serviceName, 'serviceName');
-    _s.validateStringLength(
-      'serviceName',
-      serviceName,
-      1,
-      63,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.RegisterContainerImage'
@@ -8698,13 +8568,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(access, 'access');
     ArgumentError.checkNotNull(bucketName, 'bucketName');
-    _s.validateStringLength(
-      'bucketName',
-      bucketName,
-      3,
-      54,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceName, 'resourceName');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9175,13 +9038,6 @@ class Lightsail {
     String? versioning,
   }) async {
     ArgumentError.checkNotNull(bucketName, 'bucketName');
-    _s.validateStringLength(
-      'bucketName',
-      bucketName,
-      3,
-      54,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Lightsail_20161128.UpdateBucket'
@@ -9243,13 +9099,6 @@ class Lightsail {
     required String bundleId,
   }) async {
     ArgumentError.checkNotNull(bucketName, 'bucketName');
-    _s.validateStringLength(
-      'bucketName',
-      bucketName,
-      3,
-      54,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(bundleId, 'bundleId');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -9334,13 +9183,6 @@ class Lightsail {
     int? scale,
   }) async {
     ArgumentError.checkNotNull(serviceName, 'serviceName');
-    _s.validateStringLength(
-      'serviceName',
-      serviceName,
-      1,
-      63,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'scale',
       scale,
@@ -9580,13 +9422,6 @@ class Lightsail {
   }) async {
     ArgumentError.checkNotNull(attributeName, 'attributeName');
     ArgumentError.checkNotNull(attributeValue, 'attributeValue');
-    _s.validateStringLength(
-      'attributeValue',
-      attributeValue,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(loadBalancerName, 'loadBalancerName');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',

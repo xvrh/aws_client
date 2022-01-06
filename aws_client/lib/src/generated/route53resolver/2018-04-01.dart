@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -134,36 +135,9 @@ class Route53Resolver {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(firewallRuleGroupId, 'firewallRuleGroupId');
-    _s.validateStringLength(
-      'firewallRuleGroupId',
-      firewallRuleGroupId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(priority, 'priority');
     ArgumentError.checkNotNull(vpcId, 'vpcId');
-    _s.validateStringLength(
-      'vpcId',
-      vpcId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'creatorRequestId',
-      creatorRequestId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.AssociateFirewallRuleGroup'
@@ -220,13 +194,6 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(ipAddress, 'ipAddress');
     ArgumentError.checkNotNull(resolverEndpointId, 'resolverEndpointId');
-    _s.validateStringLength(
-      'resolverEndpointId',
-      resolverEndpointId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.AssociateResolverEndpointIpAddress'
@@ -285,21 +252,7 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(
         resolverQueryLogConfigId, 'resolverQueryLogConfigId');
-    _s.validateStringLength(
-      'resolverQueryLogConfigId',
-      resolverQueryLogConfigId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.AssociateResolverQueryLogConfig'
@@ -352,27 +305,7 @@ class Route53Resolver {
     String? name,
   }) async {
     ArgumentError.checkNotNull(resolverRuleId, 'resolverRuleId');
-    _s.validateStringLength(
-      'resolverRuleId',
-      resolverRuleId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(vPCId, 'vPCId');
-    _s.validateStringLength(
-      'vPCId',
-      vPCId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.AssociateResolverRule'
@@ -422,19 +355,6 @@ class Route53Resolver {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'creatorRequestId',
-      creatorRequestId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.CreateFirewallDomainList'
@@ -569,47 +489,14 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(action, 'action');
     ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
-    _s.validateStringLength(
-      'firewallDomainListId',
-      firewallDomainListId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(firewallRuleGroupId, 'firewallRuleGroupId');
-    _s.validateStringLength(
-      'firewallRuleGroupId',
-      firewallRuleGroupId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(priority, 'priority');
-    _s.validateStringLength(
-      'blockOverrideDomain',
-      blockOverrideDomain,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'blockOverrideTtl',
       blockOverrideTtl,
       0,
       604800,
-    );
-    _s.validateStringLength(
-      'creatorRequestId',
-      creatorRequestId,
-      1,
-      255,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -667,19 +554,6 @@ class Route53Resolver {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'creatorRequestId',
-      creatorRequestId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.CreateFirewallRuleGroup'
@@ -771,22 +645,9 @@ class Route53Resolver {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(creatorRequestId, 'creatorRequestId');
-    _s.validateStringLength(
-      'creatorRequestId',
-      creatorRequestId,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(direction, 'direction');
     ArgumentError.checkNotNull(ipAddresses, 'ipAddresses');
     ArgumentError.checkNotNull(securityGroupIds, 'securityGroupIds');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.CreateResolverEndpoint'
@@ -881,27 +742,7 @@ class Route53Resolver {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(destinationArn, 'destinationArn');
-    _s.validateStringLength(
-      'destinationArn',
-      destinationArn,
-      1,
-      600,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'creatorRequestId',
-      creatorRequestId,
-      1,
-      255,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.CreateResolverQueryLogConfig'
@@ -995,34 +836,8 @@ class Route53Resolver {
     List<TargetAddress>? targetIps,
   }) async {
     ArgumentError.checkNotNull(creatorRequestId, 'creatorRequestId');
-    _s.validateStringLength(
-      'creatorRequestId',
-      creatorRequestId,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(domainName, 'domainName');
-    _s.validateStringLength(
-      'domainName',
-      domainName,
-      1,
-      256,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(ruleType, 'ruleType');
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      64,
-    );
-    _s.validateStringLength(
-      'resolverEndpointId',
-      resolverEndpointId,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.CreateResolverRule'
@@ -1062,13 +877,6 @@ class Route53Resolver {
     required String firewallDomainListId,
   }) async {
     ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
-    _s.validateStringLength(
-      'firewallDomainListId',
-      firewallDomainListId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.DeleteFirewallDomainList'
@@ -1105,21 +913,7 @@ class Route53Resolver {
     required String firewallRuleGroupId,
   }) async {
     ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
-    _s.validateStringLength(
-      'firewallDomainListId',
-      firewallDomainListId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(firewallRuleGroupId, 'firewallRuleGroupId');
-    _s.validateStringLength(
-      'firewallRuleGroupId',
-      firewallRuleGroupId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.DeleteFirewallRule'
@@ -1154,13 +948,6 @@ class Route53Resolver {
     required String firewallRuleGroupId,
   }) async {
     ArgumentError.checkNotNull(firewallRuleGroupId, 'firewallRuleGroupId');
-    _s.validateStringLength(
-      'firewallRuleGroupId',
-      firewallRuleGroupId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.DeleteFirewallRuleGroup'
@@ -1205,13 +992,6 @@ class Route53Resolver {
     required String resolverEndpointId,
   }) async {
     ArgumentError.checkNotNull(resolverEndpointId, 'resolverEndpointId');
-    _s.validateStringLength(
-      'resolverEndpointId',
-      resolverEndpointId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.DeleteResolverEndpoint'
@@ -1262,13 +1042,6 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(
         resolverQueryLogConfigId, 'resolverQueryLogConfigId');
-    _s.validateStringLength(
-      'resolverQueryLogConfigId',
-      resolverQueryLogConfigId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.DeleteResolverQueryLogConfig'
@@ -1304,13 +1077,6 @@ class Route53Resolver {
     required String resolverRuleId,
   }) async {
     ArgumentError.checkNotNull(resolverRuleId, 'resolverRuleId');
-    _s.validateStringLength(
-      'resolverRuleId',
-      resolverRuleId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.DeleteResolverRule'
@@ -1346,13 +1112,6 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(
         firewallRuleGroupAssociationId, 'firewallRuleGroupAssociationId');
-    _s.validateStringLength(
-      'firewallRuleGroupAssociationId',
-      firewallRuleGroupAssociationId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.DisassociateFirewallRuleGroup'
@@ -1399,13 +1158,6 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(ipAddress, 'ipAddress');
     ArgumentError.checkNotNull(resolverEndpointId, 'resolverEndpointId');
-    _s.validateStringLength(
-      'resolverEndpointId',
-      resolverEndpointId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.DisassociateResolverEndpointIpAddress'
@@ -1464,21 +1216,7 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(
         resolverQueryLogConfigId, 'resolverQueryLogConfigId');
-    _s.validateStringLength(
-      'resolverQueryLogConfigId',
-      resolverQueryLogConfigId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.DisassociateResolverQueryLogConfig'
@@ -1522,21 +1260,7 @@ class Route53Resolver {
     required String vPCId,
   }) async {
     ArgumentError.checkNotNull(resolverRuleId, 'resolverRuleId');
-    _s.validateStringLength(
-      'resolverRuleId',
-      resolverRuleId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(vPCId, 'vPCId');
-    _s.validateStringLength(
-      'vPCId',
-      vPCId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.DisassociateResolverRule'
@@ -1571,13 +1295,6 @@ class Route53Resolver {
     required String resourceId,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.GetFirewallConfig'
@@ -1609,13 +1326,6 @@ class Route53Resolver {
     required String firewallDomainListId,
   }) async {
     ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
-    _s.validateStringLength(
-      'firewallDomainListId',
-      firewallDomainListId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.GetFirewallDomainList'
@@ -1647,13 +1357,6 @@ class Route53Resolver {
     required String firewallRuleGroupId,
   }) async {
     ArgumentError.checkNotNull(firewallRuleGroupId, 'firewallRuleGroupId');
-    _s.validateStringLength(
-      'firewallRuleGroupId',
-      firewallRuleGroupId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.GetFirewallRuleGroup'
@@ -1690,13 +1393,6 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(
         firewallRuleGroupAssociationId, 'firewallRuleGroupAssociationId');
-    _s.validateStringLength(
-      'firewallRuleGroupAssociationId',
-      firewallRuleGroupAssociationId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.GetFirewallRuleGroupAssociation'
@@ -1731,13 +1427,6 @@ class Route53Resolver {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.GetFirewallRuleGroupPolicy'
@@ -1771,13 +1460,6 @@ class Route53Resolver {
     required String resourceId,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.GetResolverConfig'
@@ -1812,13 +1494,6 @@ class Route53Resolver {
     required String resourceId,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.GetResolverDnssecConfig'
@@ -1852,13 +1527,6 @@ class Route53Resolver {
     required String resolverEndpointId,
   }) async {
     ArgumentError.checkNotNull(resolverEndpointId, 'resolverEndpointId');
-    _s.validateStringLength(
-      'resolverEndpointId',
-      resolverEndpointId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.GetResolverEndpoint'
@@ -1896,13 +1564,6 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(
         resolverQueryLogConfigId, 'resolverQueryLogConfigId');
-    _s.validateStringLength(
-      'resolverQueryLogConfigId',
-      resolverQueryLogConfigId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.GetResolverQueryLogConfig'
@@ -1942,13 +1603,6 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(resolverQueryLogConfigAssociationId,
         'resolverQueryLogConfigAssociationId');
-    _s.validateStringLength(
-      'resolverQueryLogConfigAssociationId',
-      resolverQueryLogConfigAssociationId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.GetResolverQueryLogConfigAssociation'
@@ -1987,13 +1641,6 @@ class Route53Resolver {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.GetResolverQueryLogConfigPolicy'
@@ -2027,13 +1674,6 @@ class Route53Resolver {
     required String resolverRuleId,
   }) async {
     ArgumentError.checkNotNull(resolverRuleId, 'resolverRuleId');
-    _s.validateStringLength(
-      'resolverRuleId',
-      resolverRuleId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.GetResolverRule'
@@ -2069,13 +1709,6 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(
         resolverRuleAssociationId, 'resolverRuleAssociationId');
-    _s.validateStringLength(
-      'resolverRuleAssociationId',
-      resolverRuleAssociationId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.GetResolverRuleAssociation'
@@ -2110,13 +1743,6 @@ class Route53Resolver {
     required String arn,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      1,
-      255,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.GetResolverRulePolicy'
@@ -2185,21 +1811,7 @@ class Route53Resolver {
     required FirewallDomainImportOperation operation,
   }) async {
     ArgumentError.checkNotNull(domainFileUrl, 'domainFileUrl');
-    _s.validateStringLength(
-      'domainFileUrl',
-      domainFileUrl,
-      1,
-      1024,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
-    _s.validateStringLength(
-      'firewallDomainListId',
-      firewallDomainListId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(operation, 'operation');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2374,13 +1986,6 @@ class Route53Resolver {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
-    _s.validateStringLength(
-      'firewallDomainListId',
-      firewallDomainListId,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2464,23 +2069,11 @@ class Route53Resolver {
     FirewallRuleGroupAssociationStatus? status,
     String? vpcId,
   }) async {
-    _s.validateStringLength(
-      'firewallRuleGroupId',
-      firewallRuleGroupId,
-      1,
-      64,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'vpcId',
-      vpcId,
-      1,
-      64,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2634,13 +2227,6 @@ class Route53Resolver {
     int? priority,
   }) async {
     ArgumentError.checkNotNull(firewallRuleGroupId, 'firewallRuleGroupId');
-    _s.validateStringLength(
-      'firewallRuleGroupId',
-      firewallRuleGroupId,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -2819,13 +2405,6 @@ class Route53Resolver {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resolverEndpointId, 'resolverEndpointId');
-    _s.validateStringLength(
-      'resolverEndpointId',
-      resolverEndpointId,
-      1,
-      64,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3049,12 +2628,6 @@ class Route53Resolver {
       1,
       100,
     );
-    _s.validateStringLength(
-      'sortBy',
-      sortBy,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.ListResolverQueryLogConfigAssociations'
@@ -3216,12 +2789,6 @@ class Route53Resolver {
       maxResults,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'sortBy',
-      sortBy,
-      1,
-      64,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3402,13 +2969,6 @@ class Route53Resolver {
     String? nextToken,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      255,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'maxResults',
       maxResults,
@@ -3456,22 +3016,8 @@ class Route53Resolver {
     required String firewallRuleGroupPolicy,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         firewallRuleGroupPolicy, 'firewallRuleGroupPolicy');
-    _s.validateStringLength(
-      'firewallRuleGroupPolicy',
-      firewallRuleGroupPolicy,
-      0,
-      30000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.PutFirewallRuleGroupPolicy'
@@ -3537,22 +3083,8 @@ class Route53Resolver {
     required String resolverQueryLogConfigPolicy,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(
         resolverQueryLogConfigPolicy, 'resolverQueryLogConfigPolicy');
-    _s.validateStringLength(
-      'resolverQueryLogConfigPolicy',
-      resolverQueryLogConfigPolicy,
-      0,
-      30000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.PutResolverQueryLogConfigPolicy'
@@ -3617,21 +3149,7 @@ class Route53Resolver {
     required String resolverRulePolicy,
   }) async {
     ArgumentError.checkNotNull(arn, 'arn');
-    _s.validateStringLength(
-      'arn',
-      arn,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resolverRulePolicy, 'resolverRulePolicy');
-    _s.validateStringLength(
-      'resolverRulePolicy',
-      resolverRulePolicy,
-      0,
-      5000,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.PutResolverRulePolicy'
@@ -3700,13 +3218,6 @@ class Route53Resolver {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3772,13 +3283,6 @@ class Route53Resolver {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3834,13 +3338,6 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(firewallFailOpen, 'firewallFailOpen');
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.UpdateFirewallConfig'
@@ -3917,13 +3414,6 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(domains, 'domains');
     ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
-    _s.validateStringLength(
-      'firewallDomainListId',
-      firewallDomainListId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(operation, 'operation');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4039,38 +3529,12 @@ class Route53Resolver {
     int? priority,
   }) async {
     ArgumentError.checkNotNull(firewallDomainListId, 'firewallDomainListId');
-    _s.validateStringLength(
-      'firewallDomainListId',
-      firewallDomainListId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(firewallRuleGroupId, 'firewallRuleGroupId');
-    _s.validateStringLength(
-      'firewallRuleGroupId',
-      firewallRuleGroupId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'blockOverrideDomain',
-      blockOverrideDomain,
-      1,
-      255,
-    );
     _s.validateNumRange(
       'blockOverrideTtl',
       blockOverrideTtl,
       0,
       604800,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      64,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4141,19 +3605,6 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(
         firewallRuleGroupAssociationId, 'firewallRuleGroupAssociationId');
-    _s.validateStringLength(
-      'firewallRuleGroupAssociationId',
-      firewallRuleGroupAssociationId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.UpdateFirewallRuleGroupAssociation'
@@ -4210,13 +3661,6 @@ class Route53Resolver {
     ArgumentError.checkNotNull(
         autodefinedReverseFlag, 'autodefinedReverseFlag');
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.UpdateResolverConfig'
@@ -4259,13 +3703,6 @@ class Route53Resolver {
     required Validation validation,
   }) async {
     ArgumentError.checkNotNull(resourceId, 'resourceId');
-    _s.validateStringLength(
-      'resourceId',
-      resourceId,
-      1,
-      64,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(validation, 'validation');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -4304,19 +3741,6 @@ class Route53Resolver {
     String? name,
   }) async {
     ArgumentError.checkNotNull(resolverEndpointId, 'resolverEndpointId');
-    _s.validateStringLength(
-      'resolverEndpointId',
-      resolverEndpointId,
-      1,
-      64,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      0,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.UpdateResolverEndpoint'
@@ -4359,13 +3783,6 @@ class Route53Resolver {
   }) async {
     ArgumentError.checkNotNull(config, 'config');
     ArgumentError.checkNotNull(resolverRuleId, 'resolverRuleId');
-    _s.validateStringLength(
-      'resolverRuleId',
-      resolverRuleId,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'Route53Resolver.UpdateResolverRule'

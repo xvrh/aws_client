@@ -7,6 +7,7 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -89,21 +90,7 @@ class Wafv2 {
     required String webACLArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(webACLArn, 'webACLArn');
-    _s.validateStringLength(
-      'webACLArn',
-      webACLArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.AssociateWebACL'
@@ -278,20 +265,7 @@ class Wafv2 {
     ArgumentError.checkNotNull(addresses, 'addresses');
     ArgumentError.checkNotNull(iPAddressVersion, 'iPAddressVersion');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.CreateIPSet'
@@ -365,21 +339,8 @@ class Wafv2 {
     List<Tag>? tags,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(regularExpressionList, 'regularExpressionList');
     ArgumentError.checkNotNull(scope, 'scope');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.CreateRegexPatternSet'
@@ -513,21 +474,8 @@ class Wafv2 {
       isRequired: true,
     );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     ArgumentError.checkNotNull(visibilityConfig, 'visibilityConfig');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.CreateRuleGroup'
@@ -659,21 +607,8 @@ class Wafv2 {
   }) async {
     ArgumentError.checkNotNull(defaultAction, 'defaultAction');
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     ArgumentError.checkNotNull(visibilityConfig, 'visibilityConfig');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.CreateWebACL'
@@ -732,21 +667,7 @@ class Wafv2 {
     required String webACLLockToken,
   }) async {
     ArgumentError.checkNotNull(webACLArn, 'webACLArn');
-    _s.validateStringLength(
-      'webACLArn',
-      webACLArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(webACLLockToken, 'webACLLockToken');
-    _s.validateStringLength(
-      'webACLLockToken',
-      webACLLockToken,
-      1,
-      36,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.DeleteFirewallManagerRuleGroups'
@@ -821,29 +742,8 @@ class Wafv2 {
     required Scope scope,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lockToken, 'lockToken');
-    _s.validateStringLength(
-      'lockToken',
-      lockToken,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -879,13 +779,6 @@ class Wafv2 {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.DeleteLoggingConfiguration'
@@ -919,13 +812,6 @@ class Wafv2 {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.DeletePermissionPolicy'
@@ -996,29 +882,8 @@ class Wafv2 {
     required Scope scope,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lockToken, 'lockToken');
-    _s.validateStringLength(
-      'lockToken',
-      lockToken,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1094,29 +959,8 @@ class Wafv2 {
     required Scope scope,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lockToken, 'lockToken');
-    _s.validateStringLength(
-      'lockToken',
-      lockToken,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1195,29 +1039,8 @@ class Wafv2 {
     required Scope scope,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lockToken, 'lockToken');
-    _s.validateStringLength(
-      'lockToken',
-      lockToken,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1285,28 +1108,8 @@ class Wafv2 {
     String? versionName,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     ArgumentError.checkNotNull(vendorName, 'vendorName');
-    _s.validateStringLength(
-      'vendorName',
-      vendorName,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'versionName',
-      versionName,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.DescribeManagedRuleGroup'
@@ -1370,13 +1173,6 @@ class Wafv2 {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.DisassociateWebACL'
@@ -1432,21 +1228,7 @@ class Wafv2 {
     required Scope scope,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1482,13 +1264,6 @@ class Wafv2 {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.GetLoggingConfiguration'
@@ -1559,21 +1334,7 @@ class Wafv2 {
     required Scope scope,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1610,13 +1371,6 @@ class Wafv2 {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.GetPermissionPolicy'
@@ -1704,36 +1458,9 @@ class Wafv2 {
     String? ruleGroupRuleName,
   }) async {
     ArgumentError.checkNotNull(ruleName, 'ruleName');
-    _s.validateStringLength(
-      'ruleName',
-      ruleName,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     ArgumentError.checkNotNull(webACLId, 'webACLId');
-    _s.validateStringLength(
-      'webACLId',
-      webACLId,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(webACLName, 'webACLName');
-    _s.validateStringLength(
-      'webACLName',
-      webACLName,
-      1,
-      128,
-      isRequired: true,
-    );
-    _s.validateStringLength(
-      'ruleGroupRuleName',
-      ruleGroupRuleName,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.GetRateBasedStatementManagedKeys'
@@ -1794,21 +1521,7 @@ class Wafv2 {
     required Scope scope,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -1872,24 +1585,6 @@ class Wafv2 {
     String? name,
     Scope? scope,
   }) async {
-    _s.validateStringLength(
-      'arn',
-      arn,
-      20,
-      2048,
-    );
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-    );
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.GetRuleGroup'
@@ -1985,23 +1680,9 @@ class Wafv2 {
       isRequired: true,
     );
     ArgumentError.checkNotNull(ruleMetricName, 'ruleMetricName');
-    _s.validateStringLength(
-      'ruleMetricName',
-      ruleMetricName,
-      1,
-      255,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     ArgumentError.checkNotNull(timeWindow, 'timeWindow');
     ArgumentError.checkNotNull(webAclArn, 'webAclArn');
-    _s.validateStringLength(
-      'webAclArn',
-      webAclArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.GetSampledRequests'
@@ -2063,21 +1744,7 @@ class Wafv2 {
     required Scope scope,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2113,13 +1780,6 @@ class Wafv2 {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.GetWebACLForResource'
@@ -2192,33 +1852,13 @@ class Wafv2 {
     String? nextMarker,
   }) async {
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     ArgumentError.checkNotNull(vendorName, 'vendorName');
-    _s.validateStringLength(
-      'vendorName',
-      vendorName,
-      1,
-      128,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextMarker',
-      nextMarker,
-      1,
-      256,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2295,12 +1935,6 @@ class Wafv2 {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextMarker',
-      nextMarker,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.ListAvailableManagedRuleGroups'
@@ -2370,12 +2004,6 @@ class Wafv2 {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextMarker',
-      nextMarker,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.ListIPSets'
@@ -2443,12 +2071,6 @@ class Wafv2 {
       limit,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextMarker',
-      nextMarker,
-      1,
-      256,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2528,12 +2150,6 @@ class Wafv2 {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextMarker',
-      nextMarker,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.ListManagedRuleSets'
@@ -2603,12 +2219,6 @@ class Wafv2 {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextMarker',
-      nextMarker,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.ListRegexPatternSets'
@@ -2651,13 +2261,6 @@ class Wafv2 {
     ResourceType? resourceType,
   }) async {
     ArgumentError.checkNotNull(webACLArn, 'webACLArn');
-    _s.validateStringLength(
-      'webACLArn',
-      webACLArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.ListResourcesForWebACL'
@@ -2726,12 +2329,6 @@ class Wafv2 {
       1,
       100,
     );
-    _s.validateStringLength(
-      'nextMarker',
-      nextMarker,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.ListRuleGroups'
@@ -2791,24 +2388,11 @@ class Wafv2 {
     String? nextMarker,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      20,
-      2048,
-      isRequired: true,
-    );
     _s.validateNumRange(
       'limit',
       limit,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextMarker',
-      nextMarker,
-      1,
-      256,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -2878,12 +2462,6 @@ class Wafv2 {
       limit,
       1,
       100,
-    );
-    _s.validateStringLength(
-      'nextMarker',
-      nextMarker,
-      1,
-      256,
     );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3058,36 +2636,9 @@ class Wafv2 {
     Map<String, VersionToPublish>? versionsToPublish,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lockToken, 'lockToken');
-    _s.validateStringLength(
-      'lockToken',
-      lockToken,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
-    _s.validateStringLength(
-      'recommendedVersion',
-      recommendedVersion,
-      1,
-      64,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.PutManagedRuleSetVersions'
@@ -3177,21 +2728,7 @@ class Wafv2 {
     required String resourceArn,
   }) async {
     ArgumentError.checkNotNull(policy, 'policy');
-    _s.validateStringLength(
-      'policy',
-      policy,
-      1,
-      395000,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(resourceArn, 'resourceArn');
-    _s.validateStringLength(
-      'resourceArn',
-      resourceArn,
-      20,
-      2048,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.PutPermissionPolicy'
@@ -3238,13 +2775,6 @@ class Wafv2 {
     required List<Tag> tags,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tags, 'tags');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3286,13 +2816,6 @@ class Wafv2 {
     required List<String> tagKeys,
   }) async {
     ArgumentError.checkNotNull(resourceARN, 'resourceARN');
-    _s.validateStringLength(
-      'resourceARN',
-      resourceARN,
-      20,
-      2048,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(tagKeys, 'tagKeys');
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
@@ -3411,36 +2934,9 @@ class Wafv2 {
   }) async {
     ArgumentError.checkNotNull(addresses, 'addresses');
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lockToken, 'lockToken');
-    _s.validateStringLength(
-      'lockToken',
-      lockToken,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.UpdateIPSet'
@@ -3546,38 +3042,10 @@ class Wafv2 {
   }) async {
     ArgumentError.checkNotNull(expiryTimestamp, 'expiryTimestamp');
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lockToken, 'lockToken');
-    _s.validateStringLength(
-      'lockToken',
-      lockToken,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     ArgumentError.checkNotNull(versionToExpire, 'versionToExpire');
-    _s.validateStringLength(
-      'versionToExpire',
-      versionToExpire,
-      1,
-      64,
-      isRequired: true,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.UpdateManagedRuleSetVersionExpiryDate'
@@ -3670,37 +3138,10 @@ class Wafv2 {
     String? description,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lockToken, 'lockToken');
-    _s.validateStringLength(
-      'lockToken',
-      lockToken,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(regularExpressionList, 'regularExpressionList');
     ArgumentError.checkNotNull(scope, 'scope');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.UpdateRegexPatternSet'
@@ -3828,37 +3269,10 @@ class Wafv2 {
     List<Rule>? rules,
   }) async {
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lockToken, 'lockToken');
-    _s.validateStringLength(
-      'lockToken',
-      lockToken,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     ArgumentError.checkNotNull(visibilityConfig, 'visibilityConfig');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.UpdateRuleGroup'
@@ -4009,37 +3423,10 @@ class Wafv2 {
   }) async {
     ArgumentError.checkNotNull(defaultAction, 'defaultAction');
     ArgumentError.checkNotNull(id, 'id');
-    _s.validateStringLength(
-      'id',
-      id,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(lockToken, 'lockToken');
-    _s.validateStringLength(
-      'lockToken',
-      lockToken,
-      1,
-      36,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(name, 'name');
-    _s.validateStringLength(
-      'name',
-      name,
-      1,
-      128,
-      isRequired: true,
-    );
     ArgumentError.checkNotNull(scope, 'scope');
     ArgumentError.checkNotNull(visibilityConfig, 'visibilityConfig');
-    _s.validateStringLength(
-      'description',
-      description,
-      1,
-      256,
-    );
     final headers = <String, String>{
       'Content-Type': 'application/x-amz-json-1.1',
       'X-Amz-Target': 'AWSWAF_20190729.UpdateWebACL'
