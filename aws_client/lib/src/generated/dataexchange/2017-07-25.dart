@@ -7,7 +7,6 @@
 
 import 'dart:convert';
 import 'dart:typed_data';
-
 import '../../shared/shared.dart' as _s;
 import '../../shared/shared.dart'
     show
@@ -790,7 +789,7 @@ class DataExchange {
     );
     final $json = await _s.jsonFromResponse(response);
     return SendApiAssetResponse(
-      body: string.fromJson($json),
+      body: jsonEncode($json),
       responseHeaders: _s.extractHeaderMapValues(response.headers, ''),
     );
   }
