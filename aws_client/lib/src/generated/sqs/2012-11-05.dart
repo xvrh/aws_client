@@ -712,7 +712,8 @@ class Sqs {
     ArgumentError.checkNotNull(queueName, 'queueName');
     final $request = <String, dynamic>{};
     $request['QueueName'] = queueName;
-    attributes?.also((arg) => $request['Attributes'] = arg);
+    attributes?.also((arg) =>
+        $request['Attributes'] = arg.map((k, v) => MapEntry(k.toValue(), v)));
     tags?.also((arg) => $request['tags'] = arg);
     final $result = await _protocol.send(
       $request,
@@ -1879,8 +1880,8 @@ class Sqs {
     messageDeduplicationId
         ?.also((arg) => $request['MessageDeduplicationId'] = arg);
     messageGroupId?.also((arg) => $request['MessageGroupId'] = arg);
-    messageSystemAttributes
-        ?.also((arg) => $request['MessageSystemAttributes'] = arg);
+    messageSystemAttributes?.also((arg) => $request['MessageSystemAttributes'] =
+        arg.map((k, v) => MapEntry(k.toValue(), v)));
     final $result = await _protocol.send(
       $request,
       action: 'SendMessage',
@@ -2203,7 +2204,7 @@ class Sqs {
     ArgumentError.checkNotNull(attributes, 'attributes');
     ArgumentError.checkNotNull(queueUrl, 'queueUrl');
     final $request = <String, dynamic>{};
-    $request['Attributes'] = attributes;
+    $request['Attributes'] = attributes.map((k, v) => MapEntry(k.toValue(), v));
     $request['QueueUrl'] = queueUrl;
     await _protocol.send(
       $request,
