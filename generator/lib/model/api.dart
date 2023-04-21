@@ -135,6 +135,25 @@ class Api {
         'sts',
         'waf',
       }.contains(metadata.endpointPrefix);
+
+  String get directoryName {
+    final candidates = <String?>[
+      metadata.uid?.split('-20').first,
+      metadata.serviceId?.replaceAll(RegExp(r'\W'), '').toLowerCase(),
+      (metadata.serviceAbbreviation ?? metadata.serviceFullName)
+          .replaceAll(RegExp(r'\W'), '')
+          .toLowerCase(),
+      metadata.endpointPrefix
+    ];
+    final identified = candidates
+        .firstWhere((c) => awsCliServiceNames.contains(c), orElse: () => null);
+
+    if (identified == null) {
+      throw ArgumentError('API not recognized: ${metadata.serviceFullName}');
+    }
+
+    return identified.replaceAll('-', '_');
+  }
 }
 
 @JsonSerializable(createToJson: false, disallowUnrecognizedKeys: true)

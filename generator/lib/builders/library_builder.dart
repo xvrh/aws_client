@@ -15,7 +15,8 @@ import 'package:aws_client.generator/utils/string_utils.dart';
 
 import '../utils/documentation_utils.dart';
 
-String buildService(Api api) {
+String buildService(Api api,
+    {String sharedLibraryPath = 'package:shared_aws_api'}) {
   api.initReferences();
 
   ServiceBuilder builder;
@@ -45,13 +46,13 @@ String buildService(Api api) {
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:shared_aws_api/shared.dart' as _s;
-import 'package:shared_aws_api/shared.dart'
+import '$sharedLibraryPath/shared.dart' as _s;
+import '$sharedLibraryPath/shared.dart'
   show rfc822ToJson, iso8601ToJson, unixTimestampToJson, nonNullableTimeStampFromJson, timeStampFromJson;
 """);
   buf.writeln(builder.imports());
   buf.writeln(
-      "export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;\n");
+      "export '$sharedLibraryPath/shared.dart' show AwsClientCredentials;\n");
 
   final body = StringBuffer()
     ..putMainClass(api, builder)
