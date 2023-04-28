@@ -8,6 +8,7 @@ import 'package:aws_client.generator/model/api.dart';
 import 'package:aws_client.generator/model_thin/api.dart' as thin;
 import 'package:dart_style/dart_style.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:path/path.dart' as p;
 
 import 'builders/library_builder.dart';
 import 'generate_command.dart';
@@ -38,6 +39,7 @@ class GenerateSinglePackageCommand extends Command {
   Future _generateClasses() async {
     print('Generating Dart classes...');
 
+    Api.isGeneratingSinglePackage = true;
     final dir = Directory('./apis');
     final files = dir.listSync().whereType<File>().toList();
     files.sort((a, b) => a.path.compareTo(b.path));
@@ -56,8 +58,10 @@ class GenerateSinglePackageCommand extends Command {
     final apisDir = '$libDir/apis';
     final generatedDir = '$libDir/src/generated';
 
-    _clearDir(apisDir);
-    _clearDir(generatedDir);
+    _clearDir('$libDir/apis');
+    _clearDir('$libDir/src');
+
+    _copyPackages();
 
     for (var i = 0; i < services.length; i++) {
       final service = services.elementAt(i);
@@ -140,10 +144,67 @@ export '../../src/generated/${api.directoryName}/${api.fileBasename}.dart';
     final endpointConfigCode =
         _formatter.format(buildEndpointConfig(configData));
 
-    File('../aws_client/lib/src/shared/protocol/endpoint_config_data.dart')
+    File('../aws_client/lib/src/shared/src/protocol/endpoint_config_data.dart')
       ..createSync(recursive: true)
       ..writeAsStringSync(endpointConfigCode);
 
     print('Generated endpoint_config_data file');
   }
+
+  void _copyPackages() {
+    _copy('../shared_aws_api/lib', '../aws_client/lib/src/shared');
+    _copy('../document_client/lib', '../aws_client/lib/src/dynamo_document');
+    _copy('../aws_credential_providers/lib',
+        '../aws_client/lib/src/credential_providers');
+
+    _searchAndReplace('../aws_client/lib/src', {
+      'package:aws_dynamodb_api/dynamodb-2012-08-10.dart':
+          'package:aws_client/apis/dynamodb/2012_08_10.dart',
+      'package:aws_sts_api/sts-2011-06-15.dart':
+          'package:aws_client/apis/sts/2011_06_15.dart',
+      'package:shared_aws_api/shared.dart':
+          'package:aws_client/src/shared/shared.dart',
+    });
+    _replaceInFile(
+        File('../aws_client/lib/src/credential_providers/src/ini/ini_io.dart'),
+        {'STS(': 'Sts('});
+  }
+
+  void _copy(String source, String destination) {
+    _clearDir(destination);
+    _copyDirectory(Directory(source), Directory(destination));
+  }
+}
+
+void _copyDirectory(Directory source, Directory destination) {
+  for (var entity in source.listSync(recursive: false)) {
+    if (entity is Directory) {
+      final newDirectory =
+          Directory(p.join(destination.absolute.path, p.basename(entity.path)));
+      newDirectory.createSync(recursive: true);
+
+      _copyDirectory(entity.absolute, newDirectory);
+    } else if (entity is File) {
+      final destPath = p.join(destination.path, p.basename(entity.path));
+      File(destPath).parent.createSync(recursive: true);
+      entity.copySync(destPath);
+    }
+  }
+}
+
+void _searchAndReplace(String directory, Map<String, String> terms) {
+  for (var file in Directory(directory)
+      .listSync(recursive: true)
+      .whereType<File>()
+      .where((f) => f.path.endsWith('.dart'))) {
+    _replaceInFile(file, terms);
+  }
+}
+
+void _replaceInFile(File file, Map<String, String> terms) {
+  var content = file.readAsStringSync();
+  for (var term in terms.entries) {
+    content = content.replaceAll(term.key, term.value);
+  }
+  file.writeAsStringSync(content);
 }

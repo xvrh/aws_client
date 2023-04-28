@@ -28,7 +28,8 @@ Operation _$OperationFromJson(Map<String, dynamic> json) {
       'internal',
       'internalonly',
       'httpChecksumRequired',
-      'methodNameOverride'
+      'methodNameOverride',
+      'httpChecksum'
     ],
   );
   return Operation(
@@ -59,6 +60,7 @@ Operation _$OperationFromJson(Map<String, dynamic> json) {
     json['internalonly'] as bool?,
     json['httpChecksumRequired'] as bool? ?? false,
     json['methodNameOverride'] as String?,
+    json['httpChecksum'],
   );
 }
 

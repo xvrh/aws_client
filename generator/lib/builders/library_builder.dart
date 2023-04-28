@@ -143,11 +143,8 @@ ${builder.constructor()}
         final max = member.shapeClass?.max ?? pow(2, 60).toInt();
         final min = member.shapeClass?.min ?? pow(2, -60).toInt();
 
-        if (member.dartType == 'String') {
-          final isRequired = member.isRequired ? 'isRequired: true,' : '';
-          writeln(
-              "_s.validateStringLength('$name', $name, $min, $max, $isRequired);");
-        } else if (member.dartType == 'int' || member.dartType == 'double') {
+        // We don't validate String as they are some errors in the definition files
+        if (member.dartType == 'int' || member.dartType == 'double') {
           final isRequired = member.isRequired ? 'isRequired: true,' : '';
           writeln(
               "_s.validateNumRange('$name', $name, $min, $max, $isRequired);");
@@ -256,7 +253,7 @@ ${builder.constructor()}
       }
 
       if (shape.generateFromJson) {
-        final members = shape.members.where((m) => m.isBody).toList();
+        final members = shape.members.toList();
         writeln(
             '\n  factory $name.fromJson(Map<String, dynamic> ${members.isEmpty ? '_' : 'json'}) {');
         writeln('return $name(');
@@ -304,7 +301,7 @@ ${builder.constructor()}
 
       if (shape.generateToJson) {
         writeln('\n  Map<String, dynamic> toJson() {');
-        for (var member in shape.members.where((m) => m.isBody)) {
+        for (var member in shape.members) {
           writeln('final ${member.fieldName} = this.${member.fieldName};');
         }
         writeln('return {');
@@ -488,7 +485,7 @@ String extractXmlCode(Shape shapeRef,
       }
     } else {
       fn = '$elemVar.findElements(\'$memberElemName\')'
-          '.map((c) => ${shapeRef.member!.dartType}.fromXml(c)).toList()';
+          '.map(${shapeRef.member!.dartType}.fromXml).toList()';
     }
     if (!flattened) {
       if (nullability.outputNullable) {
@@ -524,7 +521,7 @@ String extractXmlCode(Shape shapeRef,
         '.map((c) => MapEntry($keyExtractor, $valueExtractor,),)$mapFallback,)';
   } else {
     if (nullability.outputNullable) {
-      final fromXmlCode = '?.let((e)=>${shapeRef.className}.fromXml(e))';
+      final fromXmlCode = '?.let(${shapeRef.className}.fromXml)';
       if (container?.payload == elemName) {
         return '$elemVar$fromXmlCode';
       } else {

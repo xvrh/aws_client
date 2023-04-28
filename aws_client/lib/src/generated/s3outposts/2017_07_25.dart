@@ -1,0 +1,530 @@
+// ignore_for_file: unused_element
+// ignore_for_file: unused_field
+// ignore_for_file: unused_import
+// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_shown_name
+
+import 'dart:convert';
+import 'dart:typed_data';
+
+import '../../shared/shared.dart' as _s;
+import '../../shared/shared.dart'
+    show
+        rfc822ToJson,
+        iso8601ToJson,
+        unixTimestampToJson,
+        nonNullableTimeStampFromJson,
+        timeStampFromJson;
+
+export '../../shared/shared.dart' show AwsClientCredentials;
+
+/// Amazon S3 on Outposts provides access to S3 on Outposts operations.
+class S3Outposts {
+  final _s.RestJsonProtocol _protocol;
+  S3Outposts({
+    required String region,
+    _s.AwsClientCredentials? credentials,
+    _s.AwsClientCredentialsProvider? credentialsProvider,
+    _s.Client? client,
+    String? endpointUrl,
+  }) : _protocol = _s.RestJsonProtocol(
+          client: client,
+          service: _s.ServiceMetadata(
+            endpointPrefix: 's3-outposts',
+            signingName: 's3-outposts',
+          ),
+          region: region,
+          credentials: credentials,
+          credentialsProvider: credentialsProvider,
+          endpointUrl: endpointUrl,
+        );
+
+  /// Closes the internal HTTP client if none was provided at creation.
+  /// If a client was passed as a constructor argument, this becomes a noop.
+  ///
+  /// It's important to close all clients when it's done being used; failing to
+  /// do so can cause the Dart process to hang.
+  void close() {
+    _protocol.close();
+  }
+
+  /// Creates an endpoint and associates it with the specified Outpost.
+  /// <note>
+  /// It can take up to 5 minutes for this action to finish.
+  /// </note> <p/>
+  /// Related actions include:
+  ///
+  /// <ul>
+  /// <li>
+  /// <a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_DeleteEndpoint.html">DeleteEndpoint</a>
+  /// </li>
+  /// <li>
+  /// <a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListEndpoints.html">ListEndpoints</a>
+  /// </li>
+  /// </ul>
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [ValidationException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ConflictException].
+  ///
+  /// Parameter [outpostId] :
+  /// The ID of the Outposts.
+  ///
+  /// Parameter [securityGroupId] :
+  /// The ID of the security group to use with the endpoint.
+  ///
+  /// Parameter [subnetId] :
+  /// The ID of the subnet in the selected VPC. The endpoint subnet must belong
+  /// to the Outpost that has Amazon S3 on Outposts provisioned.
+  ///
+  /// Parameter [accessType] :
+  /// The type of access for the network connectivity for the Amazon S3 on
+  /// Outposts endpoint. To use the Amazon Web Services VPC, choose
+  /// <code>Private</code>. To use the endpoint with an on-premises network,
+  /// choose <code>CustomerOwnedIp</code>. If you choose
+  /// <code>CustomerOwnedIp</code>, you must also provide the customer-owned IP
+  /// address pool (CoIP pool).
+  /// <note>
+  /// <code>Private</code> is the default access type value.
+  /// </note>
+  ///
+  /// Parameter [customerOwnedIpv4Pool] :
+  /// The ID of the customer-owned IPv4 address pool (CoIP pool) for the
+  /// endpoint. IP addresses are allocated from this pool for the endpoint.
+  Future<CreateEndpointResult> createEndpoint({
+    required String outpostId,
+    required String securityGroupId,
+    required String subnetId,
+    EndpointAccessType? accessType,
+    String? customerOwnedIpv4Pool,
+  }) async {
+    ArgumentError.checkNotNull(outpostId, 'outpostId');
+    ArgumentError.checkNotNull(securityGroupId, 'securityGroupId');
+    ArgumentError.checkNotNull(subnetId, 'subnetId');
+    final $payload = <String, dynamic>{
+      'OutpostId': outpostId,
+      'SecurityGroupId': securityGroupId,
+      'SubnetId': subnetId,
+      if (accessType != null) 'AccessType': accessType.toValue(),
+      if (customerOwnedIpv4Pool != null)
+        'CustomerOwnedIpv4Pool': customerOwnedIpv4Pool,
+    };
+    final response = await _protocol.send(
+      payload: $payload,
+      method: 'POST',
+      requestUri: '/S3Outposts/CreateEndpoint',
+      exceptionFnMap: _exceptionFns,
+    );
+    return CreateEndpointResult.fromJson(response);
+  }
+
+  /// Deletes an endpoint.
+  /// <note>
+  /// It can take up to 5 minutes for this action to finish.
+  /// </note> <p/>
+  /// Related actions include:
+  ///
+  /// <ul>
+  /// <li>
+  /// <a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_CreateEndpoint.html">CreateEndpoint</a>
+  /// </li>
+  /// <li>
+  /// <a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListEndpoints.html">ListEndpoints</a>
+  /// </li>
+  /// </ul>
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [endpointId] :
+  /// The ID of the endpoint.
+  ///
+  /// Parameter [outpostId] :
+  /// The ID of the Outposts.
+  Future<void> deleteEndpoint({
+    required String endpointId,
+    required String outpostId,
+  }) async {
+    ArgumentError.checkNotNull(endpointId, 'endpointId');
+    ArgumentError.checkNotNull(outpostId, 'outpostId');
+    final $query = <String, List<String>>{
+      'endpointId': [endpointId],
+      'outpostId': [outpostId],
+    };
+    await _protocol.send(
+      payload: null,
+      method: 'DELETE',
+      requestUri: '/S3Outposts/DeleteEndpoint',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+  }
+
+  /// Lists endpoints associated with the specified Outpost.
+  ///
+  /// Related actions include:
+  ///
+  /// <ul>
+  /// <li>
+  /// <a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_CreateEndpoint.html">CreateEndpoint</a>
+  /// </li>
+  /// <li>
+  /// <a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_DeleteEndpoint.html">DeleteEndpoint</a>
+  /// </li>
+  /// </ul>
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of endpoints that will be returned in the response.
+  ///
+  /// Parameter [nextToken] :
+  /// If a previous response from this operation included a
+  /// <code>NextToken</code> value, provide that value here to retrieve the next
+  /// page of results.
+  Future<ListEndpointsResult> listEndpoints({
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      0,
+      100,
+    );
+    final $query = <String, List<String>>{
+      if (maxResults != null) 'maxResults': [maxResults.toString()],
+      if (nextToken != null) 'nextToken': [nextToken],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/S3Outposts/ListEndpoints',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListEndpointsResult.fromJson(response);
+  }
+
+  /// Lists all endpoints associated with an Outpost that has been shared by
+  /// Amazon Web Services Resource Access Manager (RAM).
+  ///
+  /// Related actions include:
+  ///
+  /// <ul>
+  /// <li>
+  /// <a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_CreateEndpoint.html">CreateEndpoint</a>
+  /// </li>
+  /// <li>
+  /// <a
+  /// href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_DeleteEndpoint.html">DeleteEndpoint</a>
+  /// </li>
+  /// </ul>
+  ///
+  /// May throw [InternalServerException].
+  /// May throw [ResourceNotFoundException].
+  /// May throw [AccessDeniedException].
+  /// May throw [ValidationException].
+  ///
+  /// Parameter [outpostId] :
+  /// The ID of the Amazon Web Services Outpost.
+  ///
+  /// Parameter [maxResults] :
+  /// The maximum number of endpoints that will be returned in the response.
+  ///
+  /// Parameter [nextToken] :
+  /// If a previous response from this operation included a
+  /// <code>NextToken</code> value, you can provide that value here to retrieve
+  /// the next page of results.
+  Future<ListSharedEndpointsResult> listSharedEndpoints({
+    required String outpostId,
+    int? maxResults,
+    String? nextToken,
+  }) async {
+    ArgumentError.checkNotNull(outpostId, 'outpostId');
+    _s.validateNumRange(
+      'maxResults',
+      maxResults,
+      0,
+      100,
+    );
+    final $query = <String, List<String>>{
+      'outpostId': [outpostId],
+      if (maxResults != null) 'maxResults': [maxResults.toString()],
+      if (nextToken != null) 'nextToken': [nextToken],
+    };
+    final response = await _protocol.send(
+      payload: null,
+      method: 'GET',
+      requestUri: '/S3Outposts/ListSharedEndpoints',
+      queryParams: $query,
+      exceptionFnMap: _exceptionFns,
+    );
+    return ListSharedEndpointsResult.fromJson(response);
+  }
+}
+
+class CreateEndpointResult {
+  /// The Amazon Resource Name (ARN) of the endpoint.
+  final String? endpointArn;
+
+  CreateEndpointResult({
+    this.endpointArn,
+  });
+  factory CreateEndpointResult.fromJson(Map<String, dynamic> json) {
+    return CreateEndpointResult(
+      endpointArn: json['EndpointArn'] as String?,
+    );
+  }
+}
+
+/// Amazon S3 on Outposts Access Points simplify managing data access at scale
+/// for shared datasets in S3 on Outposts. S3 on Outposts uses endpoints to
+/// connect to Outposts buckets so that you can perform actions within your
+/// virtual private cloud (VPC). For more information, see <a
+/// href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/WorkingWithS3Outposts.html">
+/// Accessing S3 on Outposts using VPC-only access points</a> in the <i>Amazon
+/// Simple Storage Service User Guide</i>.
+class Endpoint {
+  /// The type of connectivity used to access the Amazon S3 on Outposts endpoint.
+  final EndpointAccessType? accessType;
+
+  /// The VPC CIDR committed by this endpoint.
+  final String? cidrBlock;
+
+  /// The time the endpoint was created.
+  final DateTime? creationTime;
+
+  /// The ID of the customer-owned IPv4 address pool used for the endpoint.
+  final String? customerOwnedIpv4Pool;
+
+  /// The Amazon Resource Name (ARN) of the endpoint.
+  final String? endpointArn;
+
+  /// The network interface of the endpoint.
+  final List<NetworkInterface>? networkInterfaces;
+
+  /// The ID of the Outposts.
+  final String? outpostsId;
+
+  /// The ID of the security group used for the endpoint.
+  final String? securityGroupId;
+
+  /// The status of the endpoint.
+  final EndpointStatus? status;
+
+  /// The ID of the subnet used for the endpoint.
+  final String? subnetId;
+
+  /// The ID of the VPC used for the endpoint.
+  final String? vpcId;
+
+  Endpoint({
+    this.accessType,
+    this.cidrBlock,
+    this.creationTime,
+    this.customerOwnedIpv4Pool,
+    this.endpointArn,
+    this.networkInterfaces,
+    this.outpostsId,
+    this.securityGroupId,
+    this.status,
+    this.subnetId,
+    this.vpcId,
+  });
+  factory Endpoint.fromJson(Map<String, dynamic> json) {
+    return Endpoint(
+      accessType: (json['AccessType'] as String?)?.toEndpointAccessType(),
+      cidrBlock: json['CidrBlock'] as String?,
+      creationTime: timeStampFromJson(json['CreationTime']),
+      customerOwnedIpv4Pool: json['CustomerOwnedIpv4Pool'] as String?,
+      endpointArn: json['EndpointArn'] as String?,
+      networkInterfaces: (json['NetworkInterfaces'] as List?)
+          ?.whereNotNull()
+          .map((e) => NetworkInterface.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      outpostsId: json['OutpostsId'] as String?,
+      securityGroupId: json['SecurityGroupId'] as String?,
+      status: (json['Status'] as String?)?.toEndpointStatus(),
+      subnetId: json['SubnetId'] as String?,
+      vpcId: json['VpcId'] as String?,
+    );
+  }
+}
+
+enum EndpointAccessType {
+  private,
+  customerOwnedIp,
+}
+
+extension EndpointAccessTypeValueExtension on EndpointAccessType {
+  String toValue() {
+    switch (this) {
+      case EndpointAccessType.private:
+        return 'Private';
+      case EndpointAccessType.customerOwnedIp:
+        return 'CustomerOwnedIp';
+    }
+  }
+}
+
+extension EndpointAccessTypeFromString on String {
+  EndpointAccessType toEndpointAccessType() {
+    switch (this) {
+      case 'Private':
+        return EndpointAccessType.private;
+      case 'CustomerOwnedIp':
+        return EndpointAccessType.customerOwnedIp;
+    }
+    throw Exception('$this is not known in enum EndpointAccessType');
+  }
+}
+
+enum EndpointStatus {
+  pending,
+  available,
+  deleting,
+}
+
+extension EndpointStatusValueExtension on EndpointStatus {
+  String toValue() {
+    switch (this) {
+      case EndpointStatus.pending:
+        return 'Pending';
+      case EndpointStatus.available:
+        return 'Available';
+      case EndpointStatus.deleting:
+        return 'Deleting';
+    }
+  }
+}
+
+extension EndpointStatusFromString on String {
+  EndpointStatus toEndpointStatus() {
+    switch (this) {
+      case 'Pending':
+        return EndpointStatus.pending;
+      case 'Available':
+        return EndpointStatus.available;
+      case 'Deleting':
+        return EndpointStatus.deleting;
+    }
+    throw Exception('$this is not known in enum EndpointStatus');
+  }
+}
+
+class ListEndpointsResult {
+  /// The list of endpoints associated with the specified Outpost.
+  final List<Endpoint>? endpoints;
+
+  /// If the number of endpoints associated with the specified Outpost exceeds
+  /// <code>MaxResults</code>, you can include this value in subsequent calls to
+  /// this operation to retrieve more results.
+  final String? nextToken;
+
+  ListEndpointsResult({
+    this.endpoints,
+    this.nextToken,
+  });
+  factory ListEndpointsResult.fromJson(Map<String, dynamic> json) {
+    return ListEndpointsResult(
+      endpoints: (json['Endpoints'] as List?)
+          ?.whereNotNull()
+          .map((e) => Endpoint.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+class ListSharedEndpointsResult {
+  /// The list of endpoints associated with the specified Outpost that have been
+  /// shared by Amazon Web Services Resource Access Manager (RAM).
+  final List<Endpoint>? endpoints;
+
+  /// If the number of endpoints associated with the specified Outpost exceeds
+  /// <code>MaxResults</code>, you can include this value in subsequent calls to
+  /// this operation to retrieve more results.
+  final String? nextToken;
+
+  ListSharedEndpointsResult({
+    this.endpoints,
+    this.nextToken,
+  });
+  factory ListSharedEndpointsResult.fromJson(Map<String, dynamic> json) {
+    return ListSharedEndpointsResult(
+      endpoints: (json['Endpoints'] as List?)
+          ?.whereNotNull()
+          .map((e) => Endpoint.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextToken: json['NextToken'] as String?,
+    );
+  }
+}
+
+/// The container for the network interface.
+class NetworkInterface {
+  /// The ID for the network interface.
+  final String? networkInterfaceId;
+
+  NetworkInterface({
+    this.networkInterfaceId,
+  });
+  factory NetworkInterface.fromJson(Map<String, dynamic> json) {
+    return NetworkInterface(
+      networkInterfaceId: json['NetworkInterfaceId'] as String?,
+    );
+  }
+}
+
+class AccessDeniedException extends _s.GenericAwsException {
+  AccessDeniedException({String? type, String? message})
+      : super(type: type, code: 'AccessDeniedException', message: message);
+}
+
+class ConflictException extends _s.GenericAwsException {
+  ConflictException({String? type, String? message})
+      : super(type: type, code: 'ConflictException', message: message);
+}
+
+class InternalServerException extends _s.GenericAwsException {
+  InternalServerException({String? type, String? message})
+      : super(type: type, code: 'InternalServerException', message: message);
+}
+
+class ResourceNotFoundException extends _s.GenericAwsException {
+  ResourceNotFoundException({String? type, String? message})
+      : super(type: type, code: 'ResourceNotFoundException', message: message);
+}
+
+class ValidationException extends _s.GenericAwsException {
+  ValidationException({String? type, String? message})
+      : super(type: type, code: 'ValidationException', message: message);
+}
+
+final _exceptionFns = <String, _s.AwsExceptionFn>{
+  'AccessDeniedException': (type, message) =>
+      AccessDeniedException(type: type, message: message),
+  'ConflictException': (type, message) =>
+      ConflictException(type: type, message: message),
+  'InternalServerException': (type, message) =>
+      InternalServerException(type: type, message: message),
+  'ResourceNotFoundException': (type, message) =>
+      ResourceNotFoundException(type: type, message: message),
+  'ValidationException': (type, message) =>
+      ValidationException(type: type, message: message),
+};

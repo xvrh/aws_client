@@ -40,7 +40,8 @@ Shape _$ShapeFromJson(Map<String, dynamic> json) {
       'xmlNamespace',
       'eventstream',
       'union',
-      'requiresLength'
+      'requiresLength',
+      'document'
     ],
   );
   return Shape(
@@ -87,6 +88,7 @@ Shape _$ShapeFromJson(Map<String, dynamic> json) {
     json['eventstream'] as bool? ?? false,
     json['union'] as bool? ?? false,
     json['requiresLength'] as bool? ?? false,
+    json['document'] as bool? ?? false,
   );
 }
 
@@ -112,7 +114,8 @@ Member _$MemberFromJson(Map<String, dynamic> json) {
       'xmlAttribute',
       'eventpayload',
       'tags',
-      'timestampFormat'
+      'timestampFormat',
+      'pattern'
     ],
   );
   return Member(
@@ -137,5 +140,6 @@ Member _$MemberFromJson(Map<String, dynamic> json) {
     json['eventpayload'] as bool? ?? false,
     (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
     json['timestampFormat'] as String?,
+    json['pattern'] as String?,
   );
 }

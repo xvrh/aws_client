@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:shared_aws_api/src/credentials.dart';
-import 'package:shared_aws_api/src/credentials/ini_config.dart';
+import '../credentials.dart';
+import '../credentials/ini_config.dart';
 
 class CredentialsUtil {
   static AwsClientCredentials? resolve() {
