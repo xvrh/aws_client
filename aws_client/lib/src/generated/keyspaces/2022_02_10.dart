@@ -1076,6 +1076,7 @@ class CapacitySpecification {
     this.readCapacityUnits,
     this.writeCapacityUnits,
   });
+
   Map<String, dynamic> toJson() {
     final throughputMode = this.throughputMode;
     final readCapacityUnits = this.readCapacityUnits;
@@ -1139,6 +1140,22 @@ class CapacitySpecificationSummary {
       readCapacityUnits: json['readCapacityUnits'] as int?,
       writeCapacityUnits: json['writeCapacityUnits'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final throughputMode = this.throughputMode;
+    final lastUpdateToPayPerRequestTimestamp =
+        this.lastUpdateToPayPerRequestTimestamp;
+    final readCapacityUnits = this.readCapacityUnits;
+    final writeCapacityUnits = this.writeCapacityUnits;
+    return {
+      'throughputMode': throughputMode.toValue(),
+      if (lastUpdateToPayPerRequestTimestamp != null)
+        'lastUpdateToPayPerRequestTimestamp':
+            unixTimestampToJson(lastUpdateToPayPerRequestTimestamp),
+      if (readCapacityUnits != null) 'readCapacityUnits': readCapacityUnits,
+      if (writeCapacityUnits != null) 'writeCapacityUnits': writeCapacityUnits,
+    };
   }
 }
 
@@ -1239,6 +1256,13 @@ class CreateKeyspaceResponse {
       resourceArn: json['resourceArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    return {
+      'resourceArn': resourceArn,
+    };
+  }
 }
 
 class CreateTableResponse {
@@ -1254,6 +1278,13 @@ class CreateTableResponse {
       resourceArn: json['resourceArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    return {
+      'resourceArn': resourceArn,
+    };
+  }
 }
 
 class DeleteKeyspaceResponse {
@@ -1261,12 +1292,20 @@ class DeleteKeyspaceResponse {
   factory DeleteKeyspaceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteKeyspaceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteTableResponse {
   DeleteTableResponse();
   factory DeleteTableResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTableResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1378,6 +1417,15 @@ class GetKeyspaceResponse {
       resourceArn: json['resourceArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyspaceName = this.keyspaceName;
+    final resourceArn = this.resourceArn;
+    return {
+      'keyspaceName': keyspaceName,
+      'resourceArn': resourceArn,
+    };
+  }
 }
 
 class GetTableResponse {
@@ -1467,6 +1515,39 @@ class GetTableResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyspaceName = this.keyspaceName;
+    final resourceArn = this.resourceArn;
+    final tableName = this.tableName;
+    final capacitySpecification = this.capacitySpecification;
+    final comment = this.comment;
+    final creationTimestamp = this.creationTimestamp;
+    final defaultTimeToLive = this.defaultTimeToLive;
+    final encryptionSpecification = this.encryptionSpecification;
+    final pointInTimeRecovery = this.pointInTimeRecovery;
+    final schemaDefinition = this.schemaDefinition;
+    final status = this.status;
+    final ttl = this.ttl;
+    return {
+      'keyspaceName': keyspaceName,
+      'resourceArn': resourceArn,
+      'tableName': tableName,
+      if (capacitySpecification != null)
+        'capacitySpecification': capacitySpecification,
+      if (comment != null) 'comment': comment,
+      if (creationTimestamp != null)
+        'creationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (defaultTimeToLive != null) 'defaultTimeToLive': defaultTimeToLive,
+      if (encryptionSpecification != null)
+        'encryptionSpecification': encryptionSpecification,
+      if (pointInTimeRecovery != null)
+        'pointInTimeRecovery': pointInTimeRecovery,
+      if (schemaDefinition != null) 'schemaDefinition': schemaDefinition,
+      if (status != null) 'status': status.toValue(),
+      if (ttl != null) 'ttl': ttl,
+    };
+  }
 }
 
 /// Represents the properties of a keyspace.
@@ -1487,6 +1568,15 @@ class KeyspaceSummary {
       keyspaceName: json['keyspaceName'] as String,
       resourceArn: json['resourceArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyspaceName = this.keyspaceName;
+    final resourceArn = this.resourceArn;
+    return {
+      'keyspaceName': keyspaceName,
+      'resourceArn': resourceArn,
+    };
   }
 }
 
@@ -1511,6 +1601,15 @@ class ListKeyspacesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyspaces = this.keyspaces;
+    final nextToken = this.nextToken;
+    return {
+      'keyspaces': keyspaces,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTablesResponse {
@@ -1534,6 +1633,15 @@ class ListTablesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tables = this.tables;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tables != null) 'tables': tables,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1556,6 +1664,15 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1601,6 +1718,7 @@ class PointInTimeRecovery {
   PointInTimeRecovery({
     required this.status,
   });
+
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
@@ -1658,6 +1776,17 @@ class PointInTimeRecoverySummary {
           timeStampFromJson(json['earliestRestorableTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final earliestRestorableTimestamp = this.earliestRestorableTimestamp;
+    return {
+      'status': status.toValue(),
+      if (earliestRestorableTimestamp != null)
+        'earliestRestorableTimestamp':
+            unixTimestampToJson(earliestRestorableTimestamp),
+    };
+  }
 }
 
 class RestoreTableResponse {
@@ -1671,6 +1800,13 @@ class RestoreTableResponse {
     return RestoreTableResponse(
       restoredTableARN: json['restoredTableARN'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final restoredTableARN = this.restoredTableARN;
+    return {
+      'restoredTableARN': restoredTableARN,
+    };
   }
 }
 
@@ -1859,6 +1995,17 @@ class TableSummary {
       tableName: json['tableName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyspaceName = this.keyspaceName;
+    final resourceArn = this.resourceArn;
+    final tableName = this.tableName;
+    return {
+      'keyspaceName': keyspaceName,
+      'resourceArn': resourceArn,
+      'tableName': tableName,
+    };
+  }
 }
 
 /// Describes a tag. A tag is a key-value pair. You can add up to 50 tags to a
@@ -1909,6 +2056,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1996,6 +2147,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateTableResponse {
@@ -2009,6 +2164,13 @@ class UpdateTableResponse {
     return UpdateTableResponse(
       resourceArn: json['resourceArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    return {
+      'resourceArn': resourceArn,
+    };
   }
 }
 

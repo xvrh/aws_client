@@ -3988,6 +3988,15 @@ class BatchDetectDominantLanguageItemResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final index = this.index;
+    final languages = this.languages;
+    return {
+      if (index != null) 'Index': index,
+      if (languages != null) 'Languages': languages,
+    };
+  }
 }
 
 class BatchDetectDominantLanguageResponse {
@@ -4021,6 +4030,15 @@ class BatchDetectDominantLanguageResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorList = this.errorList;
+    final resultList = this.resultList;
+    return {
+      'ErrorList': errorList,
+      'ResultList': resultList,
+    };
+  }
 }
 
 /// The result of calling the operation. The operation returns one object for
@@ -4045,6 +4063,15 @@ class BatchDetectEntitiesItemResult {
           .toList(),
       index: json['Index'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entities = this.entities;
+    final index = this.index;
+    return {
+      if (entities != null) 'Entities': entities,
+      if (index != null) 'Index': index,
+    };
   }
 }
 
@@ -4078,6 +4105,15 @@ class BatchDetectEntitiesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorList = this.errorList;
+    final resultList = this.resultList;
+    return {
+      'ErrorList': errorList,
+      'ResultList': resultList,
+    };
+  }
 }
 
 /// The result of calling the operation. The operation returns one object for
@@ -4102,6 +4138,15 @@ class BatchDetectKeyPhrasesItemResult {
           .map((e) => KeyPhrase.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final index = this.index;
+    final keyPhrases = this.keyPhrases;
+    return {
+      if (index != null) 'Index': index,
+      if (keyPhrases != null) 'KeyPhrases': keyPhrases,
+    };
   }
 }
 
@@ -4135,6 +4180,15 @@ class BatchDetectKeyPhrasesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorList = this.errorList;
+    final resultList = this.resultList;
+    return {
+      'ErrorList': errorList,
+      'ResultList': resultList,
+    };
+  }
 }
 
 /// The result of calling the operation. The operation returns one object for
@@ -4164,6 +4218,17 @@ class BatchDetectSentimentItemResult {
               json['SentimentScore'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final index = this.index;
+    final sentiment = this.sentiment;
+    final sentimentScore = this.sentimentScore;
+    return {
+      if (index != null) 'Index': index,
+      if (sentiment != null) 'Sentiment': sentiment.toValue(),
+      if (sentimentScore != null) 'SentimentScore': sentimentScore,
+    };
   }
 }
 
@@ -4197,6 +4262,15 @@ class BatchDetectSentimentResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorList = this.errorList;
+    final resultList = this.resultList;
+    return {
+      'ErrorList': errorList,
+      'ResultList': resultList,
+    };
+  }
 }
 
 /// The result of calling the operation. The operation returns one object that
@@ -4220,6 +4294,15 @@ class BatchDetectSyntaxItemResult {
           .map((e) => SyntaxToken.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final index = this.index;
+    final syntaxTokens = this.syntaxTokens;
+    return {
+      if (index != null) 'Index': index,
+      if (syntaxTokens != null) 'SyntaxTokens': syntaxTokens,
+    };
   }
 }
 
@@ -4253,6 +4336,15 @@ class BatchDetectSyntaxResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorList = this.errorList;
+    final resultList = this.resultList;
+    return {
+      'ErrorList': errorList,
+      'ResultList': resultList,
+    };
+  }
 }
 
 /// Describes an error that occurred while processing a document in a batch. The
@@ -4279,6 +4371,17 @@ class BatchItemError {
       errorMessage: json['ErrorMessage'] as String?,
       index: json['Index'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final index = this.index;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (index != null) 'Index': index,
+    };
   }
 }
 
@@ -4354,6 +4457,27 @@ class ClassifierEvaluationMetrics {
       recall: json['Recall'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accuracy = this.accuracy;
+    final f1Score = this.f1Score;
+    final hammingLoss = this.hammingLoss;
+    final microF1Score = this.microF1Score;
+    final microPrecision = this.microPrecision;
+    final microRecall = this.microRecall;
+    final precision = this.precision;
+    final recall = this.recall;
+    return {
+      if (accuracy != null) 'Accuracy': accuracy,
+      if (f1Score != null) 'F1Score': f1Score,
+      if (hammingLoss != null) 'HammingLoss': hammingLoss,
+      if (microF1Score != null) 'MicroF1Score': microF1Score,
+      if (microPrecision != null) 'MicroPrecision': microPrecision,
+      if (microRecall != null) 'MicroRecall': microRecall,
+      if (precision != null) 'Precision': precision,
+      if (recall != null) 'Recall': recall,
+    };
+  }
 }
 
 /// Provides information about a document classifier.
@@ -4391,6 +4515,21 @@ class ClassifierMetadata {
       numberOfTrainedDocuments: json['NumberOfTrainedDocuments'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final evaluationMetrics = this.evaluationMetrics;
+    final numberOfLabels = this.numberOfLabels;
+    final numberOfTestDocuments = this.numberOfTestDocuments;
+    final numberOfTrainedDocuments = this.numberOfTrainedDocuments;
+    return {
+      if (evaluationMetrics != null) 'EvaluationMetrics': evaluationMetrics,
+      if (numberOfLabels != null) 'NumberOfLabels': numberOfLabels,
+      if (numberOfTestDocuments != null)
+        'NumberOfTestDocuments': numberOfTestDocuments,
+      if (numberOfTrainedDocuments != null)
+        'NumberOfTrainedDocuments': numberOfTrainedDocuments,
+    };
+  }
 }
 
 class ClassifyDocumentResponse {
@@ -4423,6 +4562,15 @@ class ClassifyDocumentResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final classes = this.classes;
+    final labels = this.labels;
+    return {
+      if (classes != null) 'Classes': classes,
+      if (labels != null) 'Labels': labels,
+    };
+  }
 }
 
 class ContainsPiiEntitiesResponse {
@@ -4441,6 +4589,13 @@ class ContainsPiiEntitiesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final labels = this.labels;
+    return {
+      if (labels != null) 'Labels': labels,
+    };
+  }
 }
 
 class CreateDocumentClassifierResponse {
@@ -4454,6 +4609,14 @@ class CreateDocumentClassifierResponse {
     return CreateDocumentClassifierResponse(
       documentClassifierArn: json['DocumentClassifierArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final documentClassifierArn = this.documentClassifierArn;
+    return {
+      if (documentClassifierArn != null)
+        'DocumentClassifierArn': documentClassifierArn,
+    };
   }
 }
 
@@ -4469,6 +4632,13 @@ class CreateEndpointResponse {
       endpointArn: json['EndpointArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointArn = this.endpointArn;
+    return {
+      if (endpointArn != null) 'EndpointArn': endpointArn,
+    };
+  }
 }
 
 class CreateEntityRecognizerResponse {
@@ -4483,12 +4653,24 @@ class CreateEntityRecognizerResponse {
       entityRecognizerArn: json['EntityRecognizerArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entityRecognizerArn = this.entityRecognizerArn;
+    return {
+      if (entityRecognizerArn != null)
+        'EntityRecognizerArn': entityRecognizerArn,
+    };
+  }
 }
 
 class DeleteDocumentClassifierResponse {
   DeleteDocumentClassifierResponse();
   factory DeleteDocumentClassifierResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDocumentClassifierResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4497,6 +4679,10 @@ class DeleteEndpointResponse {
   factory DeleteEndpointResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEndpointResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteEntityRecognizerResponse {
@@ -4504,12 +4690,20 @@ class DeleteEntityRecognizerResponse {
   factory DeleteEntityRecognizerResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEntityRecognizerResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteResourcePolicyResponse {
   DeleteResourcePolicyResponse();
   factory DeleteResourcePolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteResourcePolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4533,6 +4727,16 @@ class DescribeDocumentClassificationJobResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final documentClassificationJobProperties =
+        this.documentClassificationJobProperties;
+    return {
+      if (documentClassificationJobProperties != null)
+        'DocumentClassificationJobProperties':
+            documentClassificationJobProperties,
+    };
+  }
 }
 
 class DescribeDocumentClassifierResponse {
@@ -4551,6 +4755,14 @@ class DescribeDocumentClassifierResponse {
               json['DocumentClassifierProperties'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final documentClassifierProperties = this.documentClassifierProperties;
+    return {
+      if (documentClassifierProperties != null)
+        'DocumentClassifierProperties': documentClassifierProperties,
+    };
   }
 }
 
@@ -4574,6 +4786,16 @@ class DescribeDominantLanguageDetectionJobResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dominantLanguageDetectionJobProperties =
+        this.dominantLanguageDetectionJobProperties;
+    return {
+      if (dominantLanguageDetectionJobProperties != null)
+        'DominantLanguageDetectionJobProperties':
+            dominantLanguageDetectionJobProperties,
+    };
+  }
 }
 
 class DescribeEndpointResponse {
@@ -4590,6 +4812,13 @@ class DescribeEndpointResponse {
               json['EndpointProperties'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointProperties = this.endpointProperties;
+    return {
+      if (endpointProperties != null) 'EndpointProperties': endpointProperties,
+    };
   }
 }
 
@@ -4611,6 +4840,14 @@ class DescribeEntitiesDetectionJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entitiesDetectionJobProperties = this.entitiesDetectionJobProperties;
+    return {
+      if (entitiesDetectionJobProperties != null)
+        'EntitiesDetectionJobProperties': entitiesDetectionJobProperties,
+    };
+  }
 }
 
 class DescribeEntityRecognizerResponse {
@@ -4627,6 +4864,14 @@ class DescribeEntityRecognizerResponse {
               json['EntityRecognizerProperties'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entityRecognizerProperties = this.entityRecognizerProperties;
+    return {
+      if (entityRecognizerProperties != null)
+        'EntityRecognizerProperties': entityRecognizerProperties,
+    };
   }
 }
 
@@ -4646,6 +4891,14 @@ class DescribeEventsDetectionJobResponse {
               json['EventsDetectionJobProperties'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventsDetectionJobProperties = this.eventsDetectionJobProperties;
+    return {
+      if (eventsDetectionJobProperties != null)
+        'EventsDetectionJobProperties': eventsDetectionJobProperties,
+    };
   }
 }
 
@@ -4668,6 +4921,15 @@ class DescribeKeyPhrasesDetectionJobResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyPhrasesDetectionJobProperties =
+        this.keyPhrasesDetectionJobProperties;
+    return {
+      if (keyPhrasesDetectionJobProperties != null)
+        'KeyPhrasesDetectionJobProperties': keyPhrasesDetectionJobProperties,
+    };
+  }
 }
 
 class DescribePiiEntitiesDetectionJobResponse {
@@ -4686,6 +4948,15 @@ class DescribePiiEntitiesDetectionJobResponse {
                       as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final piiEntitiesDetectionJobProperties =
+        this.piiEntitiesDetectionJobProperties;
+    return {
+      if (piiEntitiesDetectionJobProperties != null)
+        'PiiEntitiesDetectionJobProperties': piiEntitiesDetectionJobProperties,
+    };
   }
 }
 
@@ -4718,6 +4989,21 @@ class DescribeResourcePolicyResponse {
       resourcePolicy: json['ResourcePolicy'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final policyRevisionId = this.policyRevisionId;
+    final resourcePolicy = this.resourcePolicy;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (policyRevisionId != null) 'PolicyRevisionId': policyRevisionId,
+      if (resourcePolicy != null) 'ResourcePolicy': resourcePolicy,
+    };
+  }
 }
 
 class DescribeSentimentDetectionJobResponse {
@@ -4738,6 +5024,15 @@ class DescribeSentimentDetectionJobResponse {
                       as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sentimentDetectionJobProperties =
+        this.sentimentDetectionJobProperties;
+    return {
+      if (sentimentDetectionJobProperties != null)
+        'SentimentDetectionJobProperties': sentimentDetectionJobProperties,
+    };
   }
 }
 
@@ -4761,6 +5056,16 @@ class DescribeTargetedSentimentDetectionJobResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final targetedSentimentDetectionJobProperties =
+        this.targetedSentimentDetectionJobProperties;
+    return {
+      if (targetedSentimentDetectionJobProperties != null)
+        'TargetedSentimentDetectionJobProperties':
+            targetedSentimentDetectionJobProperties,
+    };
+  }
 }
 
 class DescribeTopicsDetectionJobResponse {
@@ -4778,6 +5083,14 @@ class DescribeTopicsDetectionJobResponse {
               json['TopicsDetectionJobProperties'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final topicsDetectionJobProperties = this.topicsDetectionJobProperties;
+    return {
+      if (topicsDetectionJobProperties != null)
+        'TopicsDetectionJobProperties': topicsDetectionJobProperties,
+    };
   }
 }
 
@@ -4800,6 +5113,13 @@ class DetectDominantLanguageResponse {
           .map((e) => DominantLanguage.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final languages = this.languages;
+    return {
+      if (languages != null) 'Languages': languages,
+    };
   }
 }
 
@@ -4826,6 +5146,13 @@ class DetectEntitiesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entities = this.entities;
+    return {
+      if (entities != null) 'Entities': entities,
+    };
+  }
 }
 
 class DetectKeyPhrasesResponse {
@@ -4846,6 +5173,13 @@ class DetectKeyPhrasesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyPhrases = this.keyPhrases;
+    return {
+      if (keyPhrases != null) 'KeyPhrases': keyPhrases,
+    };
+  }
 }
 
 class DetectPiiEntitiesResponse {
@@ -4865,6 +5199,13 @@ class DetectPiiEntitiesResponse {
           .map((e) => PiiEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entities = this.entities;
+    return {
+      if (entities != null) 'Entities': entities,
+    };
   }
 }
 
@@ -4890,6 +5231,15 @@ class DetectSentimentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sentiment = this.sentiment;
+    final sentimentScore = this.sentimentScore;
+    return {
+      if (sentiment != null) 'Sentiment': sentiment.toValue(),
+      if (sentimentScore != null) 'SentimentScore': sentimentScore,
+    };
+  }
 }
 
 class DetectSyntaxResponse {
@@ -4909,6 +5259,13 @@ class DetectSyntaxResponse {
           .map((e) => SyntaxToken.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final syntaxTokens = this.syntaxTokens;
+    return {
+      if (syntaxTokens != null) 'SyntaxTokens': syntaxTokens,
+    };
   }
 }
 
@@ -4930,6 +5287,15 @@ class DocumentClass {
       name: json['Name'] as String?,
       score: json['Score'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final score = this.score;
+    return {
+      if (name != null) 'Name': name,
+      if (score != null) 'Score': score,
+    };
   }
 }
 
@@ -4960,6 +5326,7 @@ class DocumentClassificationJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   Map<String, dynamic> toJson() {
     final jobName = this.jobName;
     final jobStatus = this.jobStatus;
@@ -5088,6 +5455,38 @@ class DocumentClassificationJobProperties {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final documentClassifierArn = this.documentClassifierArn;
+    final endTime = this.endTime;
+    final inputDataConfig = this.inputDataConfig;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobStatus = this.jobStatus;
+    final message = this.message;
+    final outputDataConfig = this.outputDataConfig;
+    final submitTime = this.submitTime;
+    final volumeKmsKeyId = this.volumeKmsKeyId;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (documentClassifierArn != null)
+        'DocumentClassifierArn': documentClassifierArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (message != null) 'Message': message,
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (submitTime != null) 'SubmitTime': unixTimestampToJson(submitTime),
+      if (volumeKmsKeyId != null) 'VolumeKmsKeyId': volumeKmsKeyId,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 enum DocumentClassifierDataFormat {
@@ -5147,6 +5546,7 @@ class DocumentClassifierFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   Map<String, dynamic> toJson() {
     final documentClassifierName = this.documentClassifierName;
     final status = this.status;
@@ -5510,6 +5910,50 @@ class DocumentClassifierProperties {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final classifierMetadata = this.classifierMetadata;
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final documentClassifierArn = this.documentClassifierArn;
+    final endTime = this.endTime;
+    final inputDataConfig = this.inputDataConfig;
+    final languageCode = this.languageCode;
+    final message = this.message;
+    final mode = this.mode;
+    final modelKmsKeyId = this.modelKmsKeyId;
+    final outputDataConfig = this.outputDataConfig;
+    final sourceModelArn = this.sourceModelArn;
+    final status = this.status;
+    final submitTime = this.submitTime;
+    final trainingEndTime = this.trainingEndTime;
+    final trainingStartTime = this.trainingStartTime;
+    final versionName = this.versionName;
+    final volumeKmsKeyId = this.volumeKmsKeyId;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (classifierMetadata != null) 'ClassifierMetadata': classifierMetadata,
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (documentClassifierArn != null)
+        'DocumentClassifierArn': documentClassifierArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (message != null) 'Message': message,
+      if (mode != null) 'Mode': mode.toValue(),
+      if (modelKmsKeyId != null) 'ModelKmsKeyId': modelKmsKeyId,
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (sourceModelArn != null) 'SourceModelArn': sourceModelArn,
+      if (status != null) 'Status': status.toValue(),
+      if (submitTime != null) 'SubmitTime': unixTimestampToJson(submitTime),
+      if (trainingEndTime != null)
+        'TrainingEndTime': unixTimestampToJson(trainingEndTime),
+      if (trainingStartTime != null)
+        'TrainingStartTime': unixTimestampToJson(trainingStartTime),
+      if (versionName != null) 'VersionName': versionName,
+      if (volumeKmsKeyId != null) 'VolumeKmsKeyId': volumeKmsKeyId,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 /// Describes information about a document classifier and its versions.
@@ -5547,6 +5991,24 @@ class DocumentClassifierSummary {
       numberOfVersions: json['NumberOfVersions'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final documentClassifierName = this.documentClassifierName;
+    final latestVersionCreatedAt = this.latestVersionCreatedAt;
+    final latestVersionName = this.latestVersionName;
+    final latestVersionStatus = this.latestVersionStatus;
+    final numberOfVersions = this.numberOfVersions;
+    return {
+      if (documentClassifierName != null)
+        'DocumentClassifierName': documentClassifierName,
+      if (latestVersionCreatedAt != null)
+        'LatestVersionCreatedAt': unixTimestampToJson(latestVersionCreatedAt),
+      if (latestVersionName != null) 'LatestVersionName': latestVersionName,
+      if (latestVersionStatus != null)
+        'LatestVersionStatus': latestVersionStatus.toValue(),
+      if (numberOfVersions != null) 'NumberOfVersions': numberOfVersions,
+    };
+  }
 }
 
 /// Specifies one of the label or labels that categorize the document being
@@ -5568,6 +6030,15 @@ class DocumentLabel {
       name: json['Name'] as String?,
       score: json['Score'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final score = this.score;
+    return {
+      if (name != null) 'Name': name,
+      if (score != null) 'Score': score,
+    };
   }
 }
 
@@ -5756,6 +6227,15 @@ class DominantLanguage {
       score: json['Score'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final languageCode = this.languageCode;
+    final score = this.score;
+    return {
+      if (languageCode != null) 'LanguageCode': languageCode,
+      if (score != null) 'Score': score,
+    };
+  }
 }
 
 /// Provides information for filtering a list of dominant language detection
@@ -5784,6 +6264,7 @@ class DominantLanguageDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   Map<String, dynamic> toJson() {
     final jobName = this.jobName;
     final jobStatus = this.jobStatus;
@@ -5908,6 +6389,35 @@ class DominantLanguageDetectionJobProperties {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final endTime = this.endTime;
+    final inputDataConfig = this.inputDataConfig;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobStatus = this.jobStatus;
+    final message = this.message;
+    final outputDataConfig = this.outputDataConfig;
+    final submitTime = this.submitTime;
+    final volumeKmsKeyId = this.volumeKmsKeyId;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (message != null) 'Message': message,
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (submitTime != null) 'SubmitTime': unixTimestampToJson(submitTime),
+      if (volumeKmsKeyId != null) 'VolumeKmsKeyId': volumeKmsKeyId,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 /// The filter used to determine which endpoints are returned. You can filter
@@ -5936,6 +6446,7 @@ class EndpointFilter {
     this.modelArn,
     this.status,
   });
+
   Map<String, dynamic> toJson() {
     final creationTimeAfter = this.creationTimeAfter;
     final creationTimeBefore = this.creationTimeBefore;
@@ -6028,6 +6539,38 @@ class EndpointProperties {
       status: (json['Status'] as String?)?.toEndpointStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final currentInferenceUnits = this.currentInferenceUnits;
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final desiredDataAccessRoleArn = this.desiredDataAccessRoleArn;
+    final desiredInferenceUnits = this.desiredInferenceUnits;
+    final desiredModelArn = this.desiredModelArn;
+    final endpointArn = this.endpointArn;
+    final lastModifiedTime = this.lastModifiedTime;
+    final message = this.message;
+    final modelArn = this.modelArn;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (currentInferenceUnits != null)
+        'CurrentInferenceUnits': currentInferenceUnits,
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (desiredDataAccessRoleArn != null)
+        'DesiredDataAccessRoleArn': desiredDataAccessRoleArn,
+      if (desiredInferenceUnits != null)
+        'DesiredInferenceUnits': desiredInferenceUnits,
+      if (desiredModelArn != null) 'DesiredModelArn': desiredModelArn,
+      if (endpointArn != null) 'EndpointArn': endpointArn,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (message != null) 'Message': message,
+      if (modelArn != null) 'ModelArn': modelArn,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 enum EndpointStatus {
@@ -6099,6 +6642,7 @@ class EntitiesDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   Map<String, dynamic> toJson() {
     final jobName = this.jobName;
     final jobStatus = this.jobStatus;
@@ -6231,6 +6775,40 @@ class EntitiesDetectionJobProperties {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final endTime = this.endTime;
+    final entityRecognizerArn = this.entityRecognizerArn;
+    final inputDataConfig = this.inputDataConfig;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobStatus = this.jobStatus;
+    final languageCode = this.languageCode;
+    final message = this.message;
+    final outputDataConfig = this.outputDataConfig;
+    final submitTime = this.submitTime;
+    final volumeKmsKeyId = this.volumeKmsKeyId;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (entityRecognizerArn != null)
+        'EntityRecognizerArn': entityRecognizerArn,
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (message != null) 'Message': message,
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (submitTime != null) 'SubmitTime': unixTimestampToJson(submitTime),
+      if (volumeKmsKeyId != null) 'VolumeKmsKeyId': volumeKmsKeyId,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 /// Provides information about an entity.
@@ -6277,6 +6855,21 @@ class Entity {
       type: (json['Type'] as String?)?.toEntityType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final beginOffset = this.beginOffset;
+    final endOffset = this.endOffset;
+    final score = this.score;
+    final text = this.text;
+    final type = this.type;
+    return {
+      if (beginOffset != null) 'BeginOffset': beginOffset,
+      if (endOffset != null) 'EndOffset': endOffset,
+      if (score != null) 'Score': score,
+      if (text != null) 'Text': text,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Specifies one of the label or labels that categorize the personally
@@ -6298,6 +6891,15 @@ class EntityLabel {
       name: (json['Name'] as String?)?.toPiiEntityType(),
       score: json['Score'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final score = this.score;
+    return {
+      if (name != null) 'Name': name.toValue(),
+      if (score != null) 'Score': score,
+    };
   }
 }
 
@@ -6464,6 +7066,17 @@ class EntityRecognizerEvaluationMetrics {
       recall: json['Recall'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final f1Score = this.f1Score;
+    final precision = this.precision;
+    final recall = this.recall;
+    return {
+      if (f1Score != null) 'F1Score': f1Score,
+      if (precision != null) 'Precision': precision,
+      if (recall != null) 'Recall': recall,
+    };
+  }
 }
 
 /// Provides information for filtering a list of entity recognizers. You can
@@ -6492,6 +7105,7 @@ class EntityRecognizerFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   Map<String, dynamic> toJson() {
     final recognizerName = this.recognizerName;
     final status = this.status;
@@ -6662,6 +7276,21 @@ class EntityRecognizerMetadata {
       numberOfTrainedDocuments: json['NumberOfTrainedDocuments'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entityTypes = this.entityTypes;
+    final evaluationMetrics = this.evaluationMetrics;
+    final numberOfTestDocuments = this.numberOfTestDocuments;
+    final numberOfTrainedDocuments = this.numberOfTrainedDocuments;
+    return {
+      if (entityTypes != null) 'EntityTypes': entityTypes,
+      if (evaluationMetrics != null) 'EvaluationMetrics': evaluationMetrics,
+      if (numberOfTestDocuments != null)
+        'NumberOfTestDocuments': numberOfTestDocuments,
+      if (numberOfTrainedDocuments != null)
+        'NumberOfTrainedDocuments': numberOfTrainedDocuments,
+    };
+  }
 }
 
 /// Individual item from the list of entity types in the metadata of an entity
@@ -6694,6 +7323,18 @@ class EntityRecognizerMetadataEntityTypesListItem {
       numberOfTrainMentions: json['NumberOfTrainMentions'] as int?,
       type: json['Type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evaluationMetrics = this.evaluationMetrics;
+    final numberOfTrainMentions = this.numberOfTrainMentions;
+    final type = this.type;
+    return {
+      if (evaluationMetrics != null) 'EvaluationMetrics': evaluationMetrics,
+      if (numberOfTrainMentions != null)
+        'NumberOfTrainMentions': numberOfTrainMentions,
+      if (type != null) 'Type': type,
+    };
   }
 }
 
@@ -6826,6 +7467,46 @@ class EntityRecognizerProperties {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final endTime = this.endTime;
+    final entityRecognizerArn = this.entityRecognizerArn;
+    final inputDataConfig = this.inputDataConfig;
+    final languageCode = this.languageCode;
+    final message = this.message;
+    final modelKmsKeyId = this.modelKmsKeyId;
+    final recognizerMetadata = this.recognizerMetadata;
+    final sourceModelArn = this.sourceModelArn;
+    final status = this.status;
+    final submitTime = this.submitTime;
+    final trainingEndTime = this.trainingEndTime;
+    final trainingStartTime = this.trainingStartTime;
+    final versionName = this.versionName;
+    final volumeKmsKeyId = this.volumeKmsKeyId;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (entityRecognizerArn != null)
+        'EntityRecognizerArn': entityRecognizerArn,
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (message != null) 'Message': message,
+      if (modelKmsKeyId != null) 'ModelKmsKeyId': modelKmsKeyId,
+      if (recognizerMetadata != null) 'RecognizerMetadata': recognizerMetadata,
+      if (sourceModelArn != null) 'SourceModelArn': sourceModelArn,
+      if (status != null) 'Status': status.toValue(),
+      if (submitTime != null) 'SubmitTime': unixTimestampToJson(submitTime),
+      if (trainingEndTime != null)
+        'TrainingEndTime': unixTimestampToJson(trainingEndTime),
+      if (trainingStartTime != null)
+        'TrainingStartTime': unixTimestampToJson(trainingStartTime),
+      if (versionName != null) 'VersionName': versionName,
+      if (volumeKmsKeyId != null) 'VolumeKmsKeyId': volumeKmsKeyId,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 /// Describes the information about an entity recognizer and its versions.
@@ -6862,6 +7543,23 @@ class EntityRecognizerSummary {
       numberOfVersions: json['NumberOfVersions'] as int?,
       recognizerName: json['RecognizerName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final latestVersionCreatedAt = this.latestVersionCreatedAt;
+    final latestVersionName = this.latestVersionName;
+    final latestVersionStatus = this.latestVersionStatus;
+    final numberOfVersions = this.numberOfVersions;
+    final recognizerName = this.recognizerName;
+    return {
+      if (latestVersionCreatedAt != null)
+        'LatestVersionCreatedAt': unixTimestampToJson(latestVersionCreatedAt),
+      if (latestVersionName != null) 'LatestVersionName': latestVersionName,
+      if (latestVersionStatus != null)
+        'LatestVersionStatus': latestVersionStatus.toValue(),
+      if (numberOfVersions != null) 'NumberOfVersions': numberOfVersions,
+      if (recognizerName != null) 'RecognizerName': recognizerName,
+    };
   }
 }
 
@@ -6959,6 +7657,17 @@ class EntityTypesEvaluationMetrics {
       recall: json['Recall'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final f1Score = this.f1Score;
+    final precision = this.precision;
+    final recall = this.recall;
+    return {
+      if (f1Score != null) 'F1Score': f1Score,
+      if (precision != null) 'Precision': precision,
+      if (recall != null) 'Recall': recall,
+    };
+  }
 }
 
 /// An entity type within a labeled training dataset that Amazon Comprehend uses
@@ -7014,6 +7723,7 @@ class EventsDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   Map<String, dynamic> toJson() {
     final jobName = this.jobName;
     final jobStatus = this.jobStatus;
@@ -7118,6 +7828,35 @@ class EventsDetectionJobProperties {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final endTime = this.endTime;
+    final inputDataConfig = this.inputDataConfig;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobStatus = this.jobStatus;
+    final languageCode = this.languageCode;
+    final message = this.message;
+    final outputDataConfig = this.outputDataConfig;
+    final submitTime = this.submitTime;
+    final targetEventTypes = this.targetEventTypes;
+    return {
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (message != null) 'Message': message,
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (submitTime != null) 'SubmitTime': unixTimestampToJson(submitTime),
+      if (targetEventTypes != null) 'TargetEventTypes': targetEventTypes,
+    };
+  }
 }
 
 class ImportModelResponse {
@@ -7131,6 +7870,13 @@ class ImportModelResponse {
     return ImportModelResponse(
       modelArn: json['ModelArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelArn = this.modelArn;
+    return {
+      if (modelArn != null) 'ModelArn': modelArn,
+    };
   }
 }
 
@@ -7312,6 +8058,19 @@ class KeyPhrase {
       text: json['Text'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final beginOffset = this.beginOffset;
+    final endOffset = this.endOffset;
+    final score = this.score;
+    final text = this.text;
+    return {
+      if (beginOffset != null) 'BeginOffset': beginOffset,
+      if (endOffset != null) 'EndOffset': endOffset,
+      if (score != null) 'Score': score,
+      if (text != null) 'Text': text,
+    };
+  }
 }
 
 /// Provides information for filtering a list of dominant language detection
@@ -7340,6 +8099,7 @@ class KeyPhrasesDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   Map<String, dynamic> toJson() {
     final jobName = this.jobName;
     final jobStatus = this.jobStatus;
@@ -7467,6 +8227,37 @@ class KeyPhrasesDetectionJobProperties {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final endTime = this.endTime;
+    final inputDataConfig = this.inputDataConfig;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobStatus = this.jobStatus;
+    final languageCode = this.languageCode;
+    final message = this.message;
+    final outputDataConfig = this.outputDataConfig;
+    final submitTime = this.submitTime;
+    final volumeKmsKeyId = this.volumeKmsKeyId;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (message != null) 'Message': message,
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (submitTime != null) 'SubmitTime': unixTimestampToJson(submitTime),
+      if (volumeKmsKeyId != null) 'VolumeKmsKeyId': volumeKmsKeyId,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 enum LanguageCode {
@@ -7571,6 +8362,18 @@ class ListDocumentClassificationJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final documentClassificationJobPropertiesList =
+        this.documentClassificationJobPropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      if (documentClassificationJobPropertiesList != null)
+        'DocumentClassificationJobPropertiesList':
+            documentClassificationJobPropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDocumentClassifierSummariesResponse {
@@ -7596,6 +8399,17 @@ class ListDocumentClassifierSummariesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final documentClassifierSummariesList =
+        this.documentClassifierSummariesList;
+    final nextToken = this.nextToken;
+    return {
+      if (documentClassifierSummariesList != null)
+        'DocumentClassifierSummariesList': documentClassifierSummariesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDocumentClassifiersResponse {
@@ -7619,6 +8433,17 @@ class ListDocumentClassifiersResponse {
               .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final documentClassifierPropertiesList =
+        this.documentClassifierPropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      if (documentClassifierPropertiesList != null)
+        'DocumentClassifierPropertiesList': documentClassifierPropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -7646,6 +8471,18 @@ class ListDominantLanguageDetectionJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dominantLanguageDetectionJobPropertiesList =
+        this.dominantLanguageDetectionJobPropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      if (dominantLanguageDetectionJobPropertiesList != null)
+        'DominantLanguageDetectionJobPropertiesList':
+            dominantLanguageDetectionJobPropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListEndpointsResponse {
@@ -7668,6 +8505,16 @@ class ListEndpointsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointPropertiesList = this.endpointPropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      if (endpointPropertiesList != null)
+        'EndpointPropertiesList': endpointPropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -7695,6 +8542,18 @@ class ListEntitiesDetectionJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entitiesDetectionJobPropertiesList =
+        this.entitiesDetectionJobPropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      if (entitiesDetectionJobPropertiesList != null)
+        'EntitiesDetectionJobPropertiesList':
+            entitiesDetectionJobPropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListEntityRecognizerSummariesResponse {
@@ -7720,6 +8579,16 @@ class ListEntityRecognizerSummariesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entityRecognizerSummariesList = this.entityRecognizerSummariesList;
+    final nextToken = this.nextToken;
+    return {
+      if (entityRecognizerSummariesList != null)
+        'EntityRecognizerSummariesList': entityRecognizerSummariesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListEntityRecognizersResponse {
@@ -7744,6 +8613,16 @@ class ListEntityRecognizersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entityRecognizerPropertiesList = this.entityRecognizerPropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      if (entityRecognizerPropertiesList != null)
+        'EntityRecognizerPropertiesList': entityRecognizerPropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListEventsDetectionJobsResponse {
@@ -7767,6 +8646,17 @@ class ListEventsDetectionJobsResponse {
               .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventsDetectionJobPropertiesList =
+        this.eventsDetectionJobPropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      if (eventsDetectionJobPropertiesList != null)
+        'EventsDetectionJobPropertiesList': eventsDetectionJobPropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -7794,6 +8684,18 @@ class ListKeyPhrasesDetectionJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyPhrasesDetectionJobPropertiesList =
+        this.keyPhrasesDetectionJobPropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      if (keyPhrasesDetectionJobPropertiesList != null)
+        'KeyPhrasesDetectionJobPropertiesList':
+            keyPhrasesDetectionJobPropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListPiiEntitiesDetectionJobsResponse {
@@ -7819,6 +8721,18 @@ class ListPiiEntitiesDetectionJobsResponse {
                   e as Map<String, dynamic>))
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final piiEntitiesDetectionJobPropertiesList =
+        this.piiEntitiesDetectionJobPropertiesList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (piiEntitiesDetectionJobPropertiesList != null)
+        'PiiEntitiesDetectionJobPropertiesList':
+            piiEntitiesDetectionJobPropertiesList,
+    };
   }
 }
 
@@ -7846,6 +8760,18 @@ class ListSentimentDetectionJobsResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final sentimentDetectionJobPropertiesList =
+        this.sentimentDetectionJobPropertiesList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (sentimentDetectionJobPropertiesList != null)
+        'SentimentDetectionJobPropertiesList':
+            sentimentDetectionJobPropertiesList,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -7871,6 +8797,15 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final tags = this.tags;
+    return {
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -7898,6 +8833,18 @@ class ListTargetedSentimentDetectionJobsResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final targetedSentimentDetectionJobPropertiesList =
+        this.targetedSentimentDetectionJobPropertiesList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (targetedSentimentDetectionJobPropertiesList != null)
+        'TargetedSentimentDetectionJobPropertiesList':
+            targetedSentimentDetectionJobPropertiesList,
+    };
+  }
 }
 
 class ListTopicsDetectionJobsResponse {
@@ -7921,6 +8868,17 @@ class ListTopicsDetectionJobsResponse {
                   e as Map<String, dynamic>))
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final topicsDetectionJobPropertiesList =
+        this.topicsDetectionJobPropertiesList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (topicsDetectionJobPropertiesList != null)
+        'TopicsDetectionJobPropertiesList': topicsDetectionJobPropertiesList,
+    };
   }
 }
 
@@ -8061,6 +9019,15 @@ class PartOfSpeechTag {
       tag: (json['Tag'] as String?)?.toPartOfSpeechTagType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final score = this.score;
+    final tag = this.tag;
+    return {
+      if (score != null) 'Score': score,
+      if (tag != null) 'Tag': tag.toValue(),
+    };
+  }
 }
 
 enum PartOfSpeechTagType {
@@ -8196,6 +9163,7 @@ class PiiEntitiesDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   Map<String, dynamic> toJson() {
     final jobName = this.jobName;
     final jobStatus = this.jobStatus;
@@ -8313,6 +9281,37 @@ class PiiEntitiesDetectionJobProperties {
       submitTime: timeStampFromJson(json['SubmitTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final endTime = this.endTime;
+    final inputDataConfig = this.inputDataConfig;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobStatus = this.jobStatus;
+    final languageCode = this.languageCode;
+    final message = this.message;
+    final mode = this.mode;
+    final outputDataConfig = this.outputDataConfig;
+    final redactionConfig = this.redactionConfig;
+    final submitTime = this.submitTime;
+    return {
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (message != null) 'Message': message,
+      if (mode != null) 'Mode': mode.toValue(),
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (redactionConfig != null) 'RedactionConfig': redactionConfig,
+      if (submitTime != null) 'SubmitTime': unixTimestampToJson(submitTime),
+    };
+  }
 }
 
 enum PiiEntitiesDetectionMaskMode {
@@ -8408,6 +9407,19 @@ class PiiEntity {
       score: json['Score'] as double?,
       type: (json['Type'] as String?)?.toPiiEntityType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final beginOffset = this.beginOffset;
+    final endOffset = this.endOffset;
+    final score = this.score;
+    final type = this.type;
+    return {
+      if (beginOffset != null) 'BeginOffset': beginOffset,
+      if (endOffset != null) 'EndOffset': endOffset,
+      if (score != null) 'Score': score,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -8640,6 +9652,15 @@ class PiiOutputDataConfig {
       kmsKeyId: json['KmsKeyId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final s3Uri = this.s3Uri;
+    final kmsKeyId = this.kmsKeyId;
+    return {
+      'S3Uri': s3Uri,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+    };
+  }
 }
 
 class PutResourcePolicyResponse {
@@ -8655,6 +9676,13 @@ class PutResourcePolicyResponse {
     return PutResourcePolicyResponse(
       policyRevisionId: json['PolicyRevisionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyRevisionId = this.policyRevisionId;
+    return {
+      if (policyRevisionId != null) 'PolicyRevisionId': policyRevisionId,
+    };
   }
 }
 
@@ -8726,6 +9754,7 @@ class SentimentDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   Map<String, dynamic> toJson() {
     final jobName = this.jobName;
     final jobStatus = this.jobStatus;
@@ -8853,6 +9882,37 @@ class SentimentDetectionJobProperties {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final endTime = this.endTime;
+    final inputDataConfig = this.inputDataConfig;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobStatus = this.jobStatus;
+    final languageCode = this.languageCode;
+    final message = this.message;
+    final outputDataConfig = this.outputDataConfig;
+    final submitTime = this.submitTime;
+    final volumeKmsKeyId = this.volumeKmsKeyId;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (message != null) 'Message': message,
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (submitTime != null) 'SubmitTime': unixTimestampToJson(submitTime),
+      if (volumeKmsKeyId != null) 'VolumeKmsKeyId': volumeKmsKeyId,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 /// Describes the level of confidence that Amazon Comprehend has in the accuracy
@@ -8887,6 +9947,19 @@ class SentimentScore {
       neutral: json['Neutral'] as double?,
       positive: json['Positive'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mixed = this.mixed;
+    final negative = this.negative;
+    final neutral = this.neutral;
+    final positive = this.positive;
+    return {
+      if (mixed != null) 'Mixed': mixed,
+      if (negative != null) 'Negative': negative,
+      if (neutral != null) 'Neutral': neutral,
+      if (positive != null) 'Positive': positive,
+    };
   }
 }
 
@@ -9010,6 +10083,17 @@ class StartDocumentClassificationJobResponse {
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 class StartDominantLanguageDetectionJobResponse {
@@ -9058,6 +10142,17 @@ class StartDominantLanguageDetectionJobResponse {
       jobId: json['JobId'] as String?,
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
   }
 }
 
@@ -9115,6 +10210,17 @@ class StartEntitiesDetectionJobResponse {
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 class StartEventsDetectionJobResponse {
@@ -9147,6 +10253,17 @@ class StartEventsDetectionJobResponse {
       jobId: json['JobId'] as String?,
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
   }
 }
 
@@ -9197,6 +10314,17 @@ class StartKeyPhrasesDetectionJobResponse {
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 class StartPiiEntitiesDetectionJobResponse {
@@ -9229,6 +10357,17 @@ class StartPiiEntitiesDetectionJobResponse {
       jobId: json['JobId'] as String?,
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
   }
 }
 
@@ -9279,6 +10418,17 @@ class StartSentimentDetectionJobResponse {
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 class StartTargetedSentimentDetectionJobResponse {
@@ -9327,6 +10477,17 @@ class StartTargetedSentimentDetectionJobResponse {
       jobId: json['JobId'] as String?,
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
   }
 }
 
@@ -9377,6 +10538,17 @@ class StartTopicsDetectionJobResponse {
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 class StopDominantLanguageDetectionJobResponse {
@@ -9399,6 +10571,15 @@ class StopDominantLanguageDetectionJobResponse {
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 class StopEntitiesDetectionJobResponse {
@@ -9420,6 +10601,15 @@ class StopEntitiesDetectionJobResponse {
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 class StopEventsDetectionJobResponse {
@@ -9438,6 +10628,15 @@ class StopEventsDetectionJobResponse {
       jobId: json['JobId'] as String?,
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
   }
 }
 
@@ -9461,6 +10660,15 @@ class StopKeyPhrasesDetectionJobResponse {
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 class StopPiiEntitiesDetectionJobResponse {
@@ -9480,6 +10688,15 @@ class StopPiiEntitiesDetectionJobResponse {
       jobId: json['JobId'] as String?,
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
   }
 }
 
@@ -9503,6 +10720,15 @@ class StopSentimentDetectionJobResponse {
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 class StopTargetedSentimentDetectionJobResponse {
@@ -9525,6 +10751,15 @@ class StopTargetedSentimentDetectionJobResponse {
       jobStatus: (json['JobStatus'] as String?)?.toJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    return {
+      if (jobId != null) 'JobId': jobId,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 class StopTrainingDocumentClassifierResponse {
@@ -9533,6 +10768,10 @@ class StopTrainingDocumentClassifierResponse {
       Map<String, dynamic> _) {
     return StopTrainingDocumentClassifierResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class StopTrainingEntityRecognizerResponse {
@@ -9540,6 +10779,10 @@ class StopTrainingEntityRecognizerResponse {
   factory StopTrainingEntityRecognizerResponse.fromJson(
       Map<String, dynamic> _) {
     return StopTrainingEntityRecognizerResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -9633,6 +10876,21 @@ class SyntaxToken {
       tokenId: json['TokenId'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final beginOffset = this.beginOffset;
+    final endOffset = this.endOffset;
+    final partOfSpeech = this.partOfSpeech;
+    final text = this.text;
+    final tokenId = this.tokenId;
+    return {
+      if (beginOffset != null) 'BeginOffset': beginOffset,
+      if (endOffset != null) 'EndOffset': endOffset,
+      if (partOfSpeech != null) 'PartOfSpeech': partOfSpeech,
+      if (text != null) 'Text': text,
+      if (tokenId != null) 'TokenId': tokenId,
+    };
+  }
 }
 
 /// A key-value pair that adds as a metadata to a resource used by Amazon
@@ -9678,6 +10936,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Provides information for filtering a list of dominant language detection
@@ -9706,6 +10968,7 @@ class TargetedSentimentDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   Map<String, dynamic> toJson() {
     final jobName = this.jobName;
     final jobStatus = this.jobStatus;
@@ -9823,6 +11086,37 @@ class TargetedSentimentDetectionJobProperties {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final endTime = this.endTime;
+    final inputDataConfig = this.inputDataConfig;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobStatus = this.jobStatus;
+    final languageCode = this.languageCode;
+    final message = this.message;
+    final outputDataConfig = this.outputDataConfig;
+    final submitTime = this.submitTime;
+    final volumeKmsKeyId = this.volumeKmsKeyId;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (message != null) 'Message': message,
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (submitTime != null) 'SubmitTime': unixTimestampToJson(submitTime),
+      if (volumeKmsKeyId != null) 'VolumeKmsKeyId': volumeKmsKeyId,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 /// Provides information for filtering topic detection jobs. For more
@@ -9851,6 +11145,7 @@ class TopicsDetectionJobFilter {
     this.submitTimeAfter,
     this.submitTimeBefore,
   });
+
   Map<String, dynamic> toJson() {
     final jobName = this.jobName;
     final jobStatus = this.jobStatus;
@@ -9979,6 +11274,37 @@ class TopicsDetectionJobProperties {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final endTime = this.endTime;
+    final inputDataConfig = this.inputDataConfig;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobStatus = this.jobStatus;
+    final message = this.message;
+    final numberOfTopics = this.numberOfTopics;
+    final outputDataConfig = this.outputDataConfig;
+    final submitTime = this.submitTime;
+    final volumeKmsKeyId = this.volumeKmsKeyId;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (message != null) 'Message': message,
+      if (numberOfTopics != null) 'NumberOfTopics': numberOfTopics,
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (submitTime != null) 'SubmitTime': unixTimestampToJson(submitTime),
+      if (volumeKmsKeyId != null) 'VolumeKmsKeyId': volumeKmsKeyId,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 class UntagResourceResponse {
@@ -9986,12 +11312,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateEndpointResponse {
   UpdateEndpointResponse();
   factory UpdateEndpointResponse.fromJson(Map<String, dynamic> _) {
     return UpdateEndpointResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

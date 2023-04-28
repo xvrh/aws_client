@@ -1626,6 +1626,13 @@ class AddAttributesToFindingsResponse {
           MapEntry(k, FailedItemDetails.fromJson(e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedItems = this.failedItems;
+    return {
+      'failedItems': failedItems,
+    };
+  }
 }
 
 /// Contains information about an Amazon Inspector agent. This data type is used
@@ -1644,6 +1651,7 @@ class AgentFilter {
     required this.agentHealthCodes,
     required this.agentHealths,
   });
+
   Map<String, dynamic> toJson() {
     final agentHealthCodes = this.agentHealthCodes;
     final agentHealths = this.agentHealths;
@@ -1787,6 +1795,27 @@ class AgentPreview {
       operatingSystem: json['operatingSystem'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentId = this.agentId;
+    final agentHealth = this.agentHealth;
+    final agentVersion = this.agentVersion;
+    final autoScalingGroup = this.autoScalingGroup;
+    final hostname = this.hostname;
+    final ipv4Address = this.ipv4Address;
+    final kernelVersion = this.kernelVersion;
+    final operatingSystem = this.operatingSystem;
+    return {
+      'agentId': agentId,
+      if (agentHealth != null) 'agentHealth': agentHealth.toValue(),
+      if (agentVersion != null) 'agentVersion': agentVersion,
+      if (autoScalingGroup != null) 'autoScalingGroup': autoScalingGroup,
+      if (hostname != null) 'hostname': hostname,
+      if (ipv4Address != null) 'ipv4Address': ipv4Address,
+      if (kernelVersion != null) 'kernelVersion': kernelVersion,
+      if (operatingSystem != null) 'operatingSystem': operatingSystem,
+    };
+  }
 }
 
 /// A snapshot of an Amazon Inspector assessment run that contains the findings
@@ -1895,6 +1924,41 @@ class AssessmentRun {
       startedAt: timeStampFromJson(json['startedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assessmentTemplateArn = this.assessmentTemplateArn;
+    final createdAt = this.createdAt;
+    final dataCollected = this.dataCollected;
+    final durationInSeconds = this.durationInSeconds;
+    final findingCounts = this.findingCounts;
+    final name = this.name;
+    final notifications = this.notifications;
+    final rulesPackageArns = this.rulesPackageArns;
+    final state = this.state;
+    final stateChangedAt = this.stateChangedAt;
+    final stateChanges = this.stateChanges;
+    final userAttributesForFindings = this.userAttributesForFindings;
+    final completedAt = this.completedAt;
+    final startedAt = this.startedAt;
+    return {
+      'arn': arn,
+      'assessmentTemplateArn': assessmentTemplateArn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'dataCollected': dataCollected,
+      'durationInSeconds': durationInSeconds,
+      'findingCounts': findingCounts.map((k, e) => MapEntry(k.toValue(), e)),
+      'name': name,
+      'notifications': notifications,
+      'rulesPackageArns': rulesPackageArns,
+      'state': state.toValue(),
+      'stateChangedAt': unixTimestampToJson(stateChangedAt),
+      'stateChanges': stateChanges,
+      'userAttributesForFindings': userAttributesForFindings,
+      if (completedAt != null) 'completedAt': unixTimestampToJson(completedAt),
+      if (startedAt != null) 'startedAt': unixTimestampToJson(startedAt),
+    };
+  }
 }
 
 /// Contains information about an Amazon Inspector agent. This data type is used
@@ -1945,6 +2009,25 @@ class AssessmentRunAgent {
       agentHealthDetails: json['agentHealthDetails'] as String?,
       autoScalingGroup: json['autoScalingGroup'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final agentHealth = this.agentHealth;
+    final agentHealthCode = this.agentHealthCode;
+    final agentId = this.agentId;
+    final assessmentRunArn = this.assessmentRunArn;
+    final telemetryMetadata = this.telemetryMetadata;
+    final agentHealthDetails = this.agentHealthDetails;
+    final autoScalingGroup = this.autoScalingGroup;
+    return {
+      'agentHealth': agentHealth.toValue(),
+      'agentHealthCode': agentHealthCode.toValue(),
+      'agentId': agentId,
+      'assessmentRunArn': assessmentRunArn,
+      'telemetryMetadata': telemetryMetadata,
+      if (agentHealthDetails != null) 'agentHealthDetails': agentHealthDetails,
+      if (autoScalingGroup != null) 'autoScalingGroup': autoScalingGroup,
+    };
   }
 }
 
@@ -1998,6 +2081,7 @@ class AssessmentRunFilter {
     this.stateChangeTimeRange,
     this.states,
   });
+
   Map<String, dynamic> toJson() {
     final completionTimeRange = this.completionTimeRange;
     final durationRange = this.durationRange;
@@ -2059,6 +2143,24 @@ class AssessmentRunNotification {
           ?.toAssessmentRunNotificationSnsStatusCode(),
       snsTopicArn: json['snsTopicArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final error = this.error;
+    final event = this.event;
+    final message = this.message;
+    final snsPublishStatusCode = this.snsPublishStatusCode;
+    final snsTopicArn = this.snsTopicArn;
+    return {
+      'date': unixTimestampToJson(date),
+      'error': error,
+      'event': event.toValue(),
+      if (message != null) 'message': message,
+      if (snsPublishStatusCode != null)
+        'snsPublishStatusCode': snsPublishStatusCode.toValue(),
+      if (snsTopicArn != null) 'snsTopicArn': snsTopicArn,
+    };
   }
 }
 
@@ -2205,6 +2307,15 @@ class AssessmentRunStateChange {
           nonNullableTimeStampFromJson(json['stateChangedAt'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final stateChangedAt = this.stateChangedAt;
+    return {
+      'state': state.toValue(),
+      'stateChangedAt': unixTimestampToJson(stateChangedAt),
+    };
+  }
 }
 
 /// Contains information about an Amazon Inspector application. This data type
@@ -2243,6 +2354,21 @@ class AssessmentTarget {
       resourceGroupArn: json['resourceGroupArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final name = this.name;
+    final updatedAt = this.updatedAt;
+    final resourceGroupArn = this.resourceGroupArn;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'name': name,
+      'updatedAt': unixTimestampToJson(updatedAt),
+      if (resourceGroupArn != null) 'resourceGroupArn': resourceGroupArn,
+    };
+  }
 }
 
 /// Used as the request parameter in the <a>ListAssessmentTargets</a> action.
@@ -2256,6 +2382,7 @@ class AssessmentTargetFilter {
   AssessmentTargetFilter({
     this.assessmentTargetNamePattern,
   });
+
   Map<String, dynamic> toJson() {
     final assessmentTargetNamePattern = this.assessmentTargetNamePattern;
     return {
@@ -2333,6 +2460,30 @@ class AssessmentTemplate {
       lastAssessmentRunArn: json['lastAssessmentRunArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assessmentRunCount = this.assessmentRunCount;
+    final assessmentTargetArn = this.assessmentTargetArn;
+    final createdAt = this.createdAt;
+    final durationInSeconds = this.durationInSeconds;
+    final name = this.name;
+    final rulesPackageArns = this.rulesPackageArns;
+    final userAttributesForFindings = this.userAttributesForFindings;
+    final lastAssessmentRunArn = this.lastAssessmentRunArn;
+    return {
+      'arn': arn,
+      'assessmentRunCount': assessmentRunCount,
+      'assessmentTargetArn': assessmentTargetArn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'durationInSeconds': durationInSeconds,
+      'name': name,
+      'rulesPackageArns': rulesPackageArns,
+      'userAttributesForFindings': userAttributesForFindings,
+      if (lastAssessmentRunArn != null)
+        'lastAssessmentRunArn': lastAssessmentRunArn,
+    };
+  }
 }
 
 /// Used as the request parameter in the <a>ListAssessmentTemplates</a> action.
@@ -2359,6 +2510,7 @@ class AssessmentTemplateFilter {
     this.namePattern,
     this.rulesPackageArns,
   });
+
   Map<String, dynamic> toJson() {
     final durationRange = this.durationRange;
     final namePattern = this.namePattern;
@@ -2432,6 +2584,27 @@ class AssetAttributes {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final schemaVersion = this.schemaVersion;
+    final agentId = this.agentId;
+    final amiId = this.amiId;
+    final autoScalingGroup = this.autoScalingGroup;
+    final hostname = this.hostname;
+    final ipv4Addresses = this.ipv4Addresses;
+    final networkInterfaces = this.networkInterfaces;
+    final tags = this.tags;
+    return {
+      'schemaVersion': schemaVersion,
+      if (agentId != null) 'agentId': agentId,
+      if (amiId != null) 'amiId': amiId,
+      if (autoScalingGroup != null) 'autoScalingGroup': autoScalingGroup,
+      if (hostname != null) 'hostname': hostname,
+      if (ipv4Addresses != null) 'ipv4Addresses': ipv4Addresses,
+      if (networkInterfaces != null) 'networkInterfaces': networkInterfaces,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum AssetType {
@@ -2499,6 +2672,13 @@ class CreateAssessmentTargetResponse {
       assessmentTargetArn: json['assessmentTargetArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentTargetArn = this.assessmentTargetArn;
+    return {
+      'assessmentTargetArn': assessmentTargetArn,
+    };
+  }
 }
 
 class CreateAssessmentTemplateResponse {
@@ -2512,6 +2692,13 @@ class CreateAssessmentTemplateResponse {
     return CreateAssessmentTemplateResponse(
       assessmentTemplateArn: json['assessmentTemplateArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assessmentTemplateArn = this.assessmentTemplateArn;
+    return {
+      'assessmentTemplateArn': assessmentTemplateArn,
+    };
   }
 }
 
@@ -2529,6 +2716,13 @@ class CreateExclusionsPreviewResponse {
       previewToken: json['previewToken'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final previewToken = this.previewToken;
+    return {
+      'previewToken': previewToken,
+    };
+  }
 }
 
 class CreateResourceGroupResponse {
@@ -2542,6 +2736,13 @@ class CreateResourceGroupResponse {
     return CreateResourceGroupResponse(
       resourceGroupArn: json['resourceGroupArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceGroupArn = this.resourceGroupArn;
+    return {
+      'resourceGroupArn': resourceGroupArn,
+    };
   }
 }
 
@@ -2566,6 +2767,15 @@ class DescribeAssessmentRunsResponse {
       failedItems: (json['failedItems'] as Map<String, dynamic>).map((k, e) =>
           MapEntry(k, FailedItemDetails.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assessmentRuns = this.assessmentRuns;
+    final failedItems = this.failedItems;
+    return {
+      'assessmentRuns': assessmentRuns,
+      'failedItems': failedItems,
+    };
   }
 }
 
@@ -2592,6 +2802,15 @@ class DescribeAssessmentTargetsResponse {
           MapEntry(k, FailedItemDetails.fromJson(e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentTargets = this.assessmentTargets;
+    final failedItems = this.failedItems;
+    return {
+      'assessmentTargets': assessmentTargets,
+      'failedItems': failedItems,
+    };
+  }
 }
 
 class DescribeAssessmentTemplatesResponse {
@@ -2616,6 +2835,15 @@ class DescribeAssessmentTemplatesResponse {
       failedItems: (json['failedItems'] as Map<String, dynamic>).map((k, e) =>
           MapEntry(k, FailedItemDetails.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assessmentTemplates = this.assessmentTemplates;
+    final failedItems = this.failedItems;
+    return {
+      'assessmentTemplates': assessmentTemplates,
+      'failedItems': failedItems,
+    };
   }
 }
 
@@ -2645,6 +2873,17 @@ class DescribeCrossAccountAccessRoleResponse {
       valid: json['valid'] as bool,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final registeredAt = this.registeredAt;
+    final roleArn = this.roleArn;
+    final valid = this.valid;
+    return {
+      'registeredAt': unixTimestampToJson(registeredAt),
+      'roleArn': roleArn,
+      'valid': valid,
+    };
+  }
 }
 
 class DescribeExclusionsResponse {
@@ -2666,6 +2905,15 @@ class DescribeExclusionsResponse {
       failedItems: (json['failedItems'] as Map<String, dynamic>).map((k, e) =>
           MapEntry(k, FailedItemDetails.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exclusions = this.exclusions;
+    final failedItems = this.failedItems;
+    return {
+      'exclusions': exclusions,
+      'failedItems': failedItems,
+    };
   }
 }
 
@@ -2691,6 +2939,15 @@ class DescribeFindingsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedItems = this.failedItems;
+    final findings = this.findings;
+    return {
+      'failedItems': failedItems,
+      'findings': findings,
+    };
+  }
 }
 
 class DescribeResourceGroupsResponse {
@@ -2714,6 +2971,15 @@ class DescribeResourceGroupsResponse {
           .map((e) => ResourceGroup.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedItems = this.failedItems;
+    final resourceGroups = this.resourceGroups;
+    return {
+      'failedItems': failedItems,
+      'resourceGroups': resourceGroups,
+    };
   }
 }
 
@@ -2739,6 +3005,15 @@ class DescribeRulesPackagesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedItems = this.failedItems;
+    final rulesPackages = this.rulesPackages;
+    return {
+      'failedItems': failedItems,
+      'rulesPackages': rulesPackages,
+    };
+  }
 }
 
 /// This data type is used in the <a>AssessmentTemplateFilter</a> data type.
@@ -2754,6 +3029,7 @@ class DurationRange {
     this.maxSeconds,
     this.minSeconds,
   });
+
   Map<String, dynamic> toJson() {
     final maxSeconds = this.maxSeconds;
     final minSeconds = this.minSeconds;
@@ -2783,6 +3059,15 @@ class EventSubscription {
       subscribedAt:
           nonNullableTimeStampFromJson(json['subscribedAt'] as Object),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final event = this.event;
+    final subscribedAt = this.subscribedAt;
+    return {
+      'event': event.toValue(),
+      'subscribedAt': unixTimestampToJson(subscribedAt),
+    };
   }
 }
 
@@ -2830,6 +3115,23 @@ class Exclusion {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final recommendation = this.recommendation;
+    final scopes = this.scopes;
+    final title = this.title;
+    final attributes = this.attributes;
+    return {
+      'arn': arn,
+      'description': description,
+      'recommendation': recommendation,
+      'scopes': scopes,
+      'title': title,
+      if (attributes != null) 'attributes': attributes,
+    };
+  }
 }
 
 /// Contains information about what is excluded from an assessment run given the
@@ -2872,6 +3174,21 @@ class ExclusionPreview {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final recommendation = this.recommendation;
+    final scopes = this.scopes;
+    final title = this.title;
+    final attributes = this.attributes;
+    return {
+      'description': description,
+      'recommendation': recommendation,
+      'scopes': scopes,
+      'title': title,
+      if (attributes != null) 'attributes': attributes,
+    };
+  }
 }
 
 /// Includes details about the failed items.
@@ -2892,6 +3209,15 @@ class FailedItemDetails {
       failureCode: (json['failureCode'] as String).toFailedItemErrorCode(),
       retryable: json['retryable'] as bool,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failureCode = this.failureCode;
+    final retryable = this.retryable;
+    return {
+      'failureCode': failureCode.toValue(),
+      'retryable': retryable,
+    };
   }
 }
 
@@ -3055,6 +3381,48 @@ class Finding {
       title: json['title'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attributes = this.attributes;
+    final createdAt = this.createdAt;
+    final updatedAt = this.updatedAt;
+    final userAttributes = this.userAttributes;
+    final assetAttributes = this.assetAttributes;
+    final assetType = this.assetType;
+    final confidence = this.confidence;
+    final description = this.description;
+    final id = this.id;
+    final indicatorOfCompromise = this.indicatorOfCompromise;
+    final numericSeverity = this.numericSeverity;
+    final recommendation = this.recommendation;
+    final schemaVersion = this.schemaVersion;
+    final service = this.service;
+    final serviceAttributes = this.serviceAttributes;
+    final severity = this.severity;
+    final title = this.title;
+    return {
+      'arn': arn,
+      'attributes': attributes,
+      'createdAt': unixTimestampToJson(createdAt),
+      'updatedAt': unixTimestampToJson(updatedAt),
+      'userAttributes': userAttributes,
+      if (assetAttributes != null) 'assetAttributes': assetAttributes,
+      if (assetType != null) 'assetType': assetType.toValue(),
+      if (confidence != null) 'confidence': confidence,
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (indicatorOfCompromise != null)
+        'indicatorOfCompromise': indicatorOfCompromise,
+      if (numericSeverity != null) 'numericSeverity': numericSeverity,
+      if (recommendation != null) 'recommendation': recommendation,
+      if (schemaVersion != null) 'schemaVersion': schemaVersion,
+      if (service != null) 'service': service,
+      if (serviceAttributes != null) 'serviceAttributes': serviceAttributes,
+      if (severity != null) 'severity': severity.toValue(),
+      if (title != null) 'title': title,
+    };
+  }
 }
 
 /// This data type is used as a request parameter in the <a>ListFindings</a>
@@ -3108,6 +3476,7 @@ class FindingFilter {
     this.severities,
     this.userAttributes,
   });
+
   Map<String, dynamic> toJson() {
     final agentIds = this.agentIds;
     final attributes = this.attributes;
@@ -3149,6 +3518,15 @@ class GetAssessmentReportResponse {
       url: json['url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final url = this.url;
+    return {
+      'status': status.toValue(),
+      if (url != null) 'url': url,
+    };
+  }
 }
 
 class GetExclusionsPreviewResponse {
@@ -3179,6 +3557,17 @@ class GetExclusionsPreviewResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final previewStatus = this.previewStatus;
+    final exclusionPreviews = this.exclusionPreviews;
+    final nextToken = this.nextToken;
+    return {
+      'previewStatus': previewStatus.toValue(),
+      if (exclusionPreviews != null) 'exclusionPreviews': exclusionPreviews,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetTelemetryMetadataResponse {
@@ -3195,6 +3584,13 @@ class GetTelemetryMetadataResponse {
           .map((e) => TelemetryMetadata.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final telemetryMetadata = this.telemetryMetadata;
+    return {
+      'telemetryMetadata': telemetryMetadata,
+    };
   }
 }
 
@@ -3264,6 +3660,17 @@ class InspectorServiceAttributes {
       rulesPackageArn: json['rulesPackageArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final schemaVersion = this.schemaVersion;
+    final assessmentRunArn = this.assessmentRunArn;
+    final rulesPackageArn = this.rulesPackageArn;
+    return {
+      'schemaVersion': schemaVersion,
+      if (assessmentRunArn != null) 'assessmentRunArn': assessmentRunArn,
+      if (rulesPackageArn != null) 'rulesPackageArn': rulesPackageArn,
+    };
+  }
 }
 
 class ListAssessmentRunAgentsResponse {
@@ -3288,6 +3695,15 @@ class ListAssessmentRunAgentsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assessmentRunAgents = this.assessmentRunAgents;
+    final nextToken = this.nextToken;
+    return {
+      'assessmentRunAgents': assessmentRunAgents,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3315,6 +3731,15 @@ class ListAssessmentRunsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentRunArns = this.assessmentRunArns;
+    final nextToken = this.nextToken;
+    return {
+      'assessmentRunArns': assessmentRunArns,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAssessmentTargetsResponse {
@@ -3340,6 +3765,15 @@ class ListAssessmentTargetsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assessmentTargetArns = this.assessmentTargetArns;
+    final nextToken = this.nextToken;
+    return {
+      'assessmentTargetArns': assessmentTargetArns,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3367,6 +3801,15 @@ class ListAssessmentTemplatesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentTemplateArns = this.assessmentTemplateArns;
+    final nextToken = this.nextToken;
+    return {
+      'assessmentTemplateArns': assessmentTemplateArns,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListEventSubscriptionsResponse {
@@ -3391,6 +3834,15 @@ class ListEventSubscriptionsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subscriptions = this.subscriptions;
+    final nextToken = this.nextToken;
+    return {
+      'subscriptions': subscriptions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3417,6 +3869,15 @@ class ListExclusionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exclusionArns = this.exclusionArns;
+    final nextToken = this.nextToken;
+    return {
+      'exclusionArns': exclusionArns,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListFindingsResponse {
@@ -3441,6 +3902,15 @@ class ListFindingsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final findingArns = this.findingArns;
+    final nextToken = this.nextToken;
+    return {
+      'findingArns': findingArns,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3467,6 +3937,15 @@ class ListRulesPackagesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rulesPackageArns = this.rulesPackageArns;
+    final nextToken = this.nextToken;
+    return {
+      'rulesPackageArns': rulesPackageArns,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3483,6 +3962,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      'tags': tags,
+    };
   }
 }
 
@@ -3580,6 +4066,31 @@ class NetworkInterface {
       vpcId: json['vpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ipv6Addresses = this.ipv6Addresses;
+    final networkInterfaceId = this.networkInterfaceId;
+    final privateDnsName = this.privateDnsName;
+    final privateIpAddress = this.privateIpAddress;
+    final privateIpAddresses = this.privateIpAddresses;
+    final publicDnsName = this.publicDnsName;
+    final publicIp = this.publicIp;
+    final securityGroups = this.securityGroups;
+    final subnetId = this.subnetId;
+    final vpcId = this.vpcId;
+    return {
+      if (ipv6Addresses != null) 'ipv6Addresses': ipv6Addresses,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (privateDnsName != null) 'privateDnsName': privateDnsName,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+      if (privateIpAddresses != null) 'privateIpAddresses': privateIpAddresses,
+      if (publicDnsName != null) 'publicDnsName': publicDnsName,
+      if (publicIp != null) 'publicIp': publicIp,
+      if (securityGroups != null) 'securityGroups': securityGroups,
+      if (subnetId != null) 'subnetId': subnetId,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 class PreviewAgentsResponse {
@@ -3604,6 +4115,15 @@ class PreviewAgentsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final agentPreviews = this.agentPreviews;
+    final nextToken = this.nextToken;
+    return {
+      'agentPreviews': agentPreviews,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3655,6 +4175,15 @@ class PrivateIp {
       privateIpAddress: json['privateIpAddress'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final privateDnsName = this.privateDnsName;
+    final privateIpAddress = this.privateIpAddress;
+    return {
+      if (privateDnsName != null) 'privateDnsName': privateDnsName,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+    };
+  }
 }
 
 class RemoveAttributesFromFindingsResponse {
@@ -3671,6 +4200,13 @@ class RemoveAttributesFromFindingsResponse {
       failedItems: (json['failedItems'] as Map<String, dynamic>).map((k, e) =>
           MapEntry(k, FailedItemDetails.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedItems = this.failedItems;
+    return {
+      'failedItems': failedItems,
+    };
   }
 }
 
@@ -3793,6 +4329,17 @@ class ResourceGroup {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'tags': tags,
+    };
+  }
 }
 
 /// This data type is used as one of the elements of the <a>ResourceGroup</a>
@@ -3859,6 +4406,21 @@ class RulesPackage {
       description: json['description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final provider = this.provider;
+    final version = this.version;
+    final description = this.description;
+    return {
+      'arn': arn,
+      'name': name,
+      'provider': provider,
+      'version': version,
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 /// This data type contains key-value pairs that identify various Amazon
@@ -3879,6 +4441,15 @@ class Scope {
       key: (json['key'] as String?)?.toScopeType(),
       value: json['value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'key': key.toValue(),
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -3929,6 +4500,15 @@ class SecurityGroup {
       groupId: json['groupId'] as String?,
       groupName: json['groupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    return {
+      if (groupId != null) 'groupId': groupId,
+      if (groupName != null) 'groupName': groupName,
+    };
   }
 }
 
@@ -3986,6 +4566,13 @@ class StartAssessmentRunResponse {
     return StartAssessmentRunResponse(
       assessmentRunArn: json['assessmentRunArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assessmentRunArn = this.assessmentRunArn;
+    return {
+      'assessmentRunArn': assessmentRunArn,
+    };
   }
 }
 
@@ -4046,6 +4633,17 @@ class Subscription {
       topicArn: json['topicArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscriptions = this.eventSubscriptions;
+    final resourceArn = this.resourceArn;
+    final topicArn = this.topicArn;
+    return {
+      'eventSubscriptions': eventSubscriptions,
+      'resourceArn': resourceArn,
+      'topicArn': topicArn,
+    };
+  }
 }
 
 /// A key and value pair. This data type is used as a request parameter in the
@@ -4105,6 +4703,17 @@ class TelemetryMetadata {
       dataSize: json['dataSize'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final messageType = this.messageType;
+    final dataSize = this.dataSize;
+    return {
+      'count': count,
+      'messageType': messageType,
+      if (dataSize != null) 'dataSize': dataSize,
+    };
+  }
 }
 
 /// This data type is used in the <a>AssessmentRunFilter</a> data type.
@@ -4119,6 +4728,7 @@ class TimestampRange {
     this.beginDate,
     this.endDate,
   });
+
   Map<String, dynamic> toJson() {
     final beginDate = this.beginDate;
     final endDate = this.endDate;

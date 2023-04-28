@@ -767,6 +767,19 @@ class CreateChatTokenResponse {
       tokenExpirationTime: timeStampFromJson(json['tokenExpirationTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sessionExpirationTime = this.sessionExpirationTime;
+    final token = this.token;
+    final tokenExpirationTime = this.tokenExpirationTime;
+    return {
+      if (sessionExpirationTime != null)
+        'sessionExpirationTime': iso8601ToJson(sessionExpirationTime),
+      if (token != null) 'token': token,
+      if (tokenExpirationTime != null)
+        'tokenExpirationTime': iso8601ToJson(tokenExpirationTime),
+    };
+  }
 }
 
 class CreateRoomResponse {
@@ -829,6 +842,32 @@ class CreateRoomResponse {
       updateTime: timeStampFromJson(json['updateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createTime = this.createTime;
+    final id = this.id;
+    final maximumMessageLength = this.maximumMessageLength;
+    final maximumMessageRatePerSecond = this.maximumMessageRatePerSecond;
+    final messageReviewHandler = this.messageReviewHandler;
+    final name = this.name;
+    final tags = this.tags;
+    final updateTime = this.updateTime;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (id != null) 'id': id,
+      if (maximumMessageLength != null)
+        'maximumMessageLength': maximumMessageLength,
+      if (maximumMessageRatePerSecond != null)
+        'maximumMessageRatePerSecond': maximumMessageRatePerSecond,
+      if (messageReviewHandler != null)
+        'messageReviewHandler': messageReviewHandler,
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+      if (updateTime != null) 'updateTime': iso8601ToJson(updateTime),
+    };
+  }
 }
 
 class DeleteMessageResponse {
@@ -843,12 +882,23 @@ class DeleteMessageResponse {
       id: json['id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'id': id,
+    };
+  }
 }
 
 class DisconnectUserResponse {
   DisconnectUserResponse();
   factory DisconnectUserResponse.fromJson(Map<String, dynamic> _) {
     return DisconnectUserResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -943,6 +993,32 @@ class GetRoomResponse {
       updateTime: timeStampFromJson(json['updateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createTime = this.createTime;
+    final id = this.id;
+    final maximumMessageLength = this.maximumMessageLength;
+    final maximumMessageRatePerSecond = this.maximumMessageRatePerSecond;
+    final messageReviewHandler = this.messageReviewHandler;
+    final name = this.name;
+    final tags = this.tags;
+    final updateTime = this.updateTime;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (id != null) 'id': id,
+      if (maximumMessageLength != null)
+        'maximumMessageLength': maximumMessageLength,
+      if (maximumMessageRatePerSecond != null)
+        'maximumMessageRatePerSecond': maximumMessageRatePerSecond,
+      if (messageReviewHandler != null)
+        'messageReviewHandler': messageReviewHandler,
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+      if (updateTime != null) 'updateTime': iso8601ToJson(updateTime),
+    };
+  }
 }
 
 class ListRoomsResponse {
@@ -966,6 +1042,15 @@ class ListRoomsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rooms = this.rooms;
+    final nextToken = this.nextToken;
+    return {
+      'rooms': rooms,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -981,6 +1066,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>)
           .map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      'tags': tags,
+    };
   }
 }
 
@@ -1070,6 +1162,26 @@ class RoomSummary {
       updateTime: timeStampFromJson(json['updateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createTime = this.createTime;
+    final id = this.id;
+    final messageReviewHandler = this.messageReviewHandler;
+    final name = this.name;
+    final tags = this.tags;
+    final updateTime = this.updateTime;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (id != null) 'id': id,
+      if (messageReviewHandler != null)
+        'messageReviewHandler': messageReviewHandler,
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+      if (updateTime != null) 'updateTime': iso8601ToJson(updateTime),
+    };
+  }
 }
 
 class SendEventResponse {
@@ -1085,6 +1197,13 @@ class SendEventResponse {
       id: json['id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'id': id,
+    };
+  }
 }
 
 class TagResourceResponse {
@@ -1092,12 +1211,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1160,6 +1287,32 @@ class UpdateRoomResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
       updateTime: timeStampFromJson(json['updateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createTime = this.createTime;
+    final id = this.id;
+    final maximumMessageLength = this.maximumMessageLength;
+    final maximumMessageRatePerSecond = this.maximumMessageRatePerSecond;
+    final messageReviewHandler = this.messageReviewHandler;
+    final name = this.name;
+    final tags = this.tags;
+    final updateTime = this.updateTime;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (id != null) 'id': id,
+      if (maximumMessageLength != null)
+        'maximumMessageLength': maximumMessageLength,
+      if (maximumMessageRatePerSecond != null)
+        'maximumMessageRatePerSecond': maximumMessageRatePerSecond,
+      if (messageReviewHandler != null)
+        'messageReviewHandler': messageReviewHandler,
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+      if (updateTime != null) 'updateTime': iso8601ToJson(updateTime),
+    };
   }
 }
 

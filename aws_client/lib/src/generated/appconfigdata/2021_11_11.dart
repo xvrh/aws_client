@@ -245,6 +245,16 @@ class GetLatestConfigurationResponse {
     this.nextPollConfigurationToken,
     this.nextPollIntervalInSeconds,
   });
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    final contentType = this.contentType;
+    final nextPollConfigurationToken = this.nextPollConfigurationToken;
+    final nextPollIntervalInSeconds = this.nextPollIntervalInSeconds;
+    return {
+      if (configuration != null) 'Configuration': base64Encode(configuration),
+    };
+  }
 }
 
 class StartConfigurationSessionResponse {
@@ -268,6 +278,14 @@ class StartConfigurationSessionResponse {
     return StartConfigurationSessionResponse(
       initialConfigurationToken: json['InitialConfigurationToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final initialConfigurationToken = this.initialConfigurationToken;
+    return {
+      if (initialConfigurationToken != null)
+        'InitialConfigurationToken': initialConfigurationToken,
+    };
   }
 }
 

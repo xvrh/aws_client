@@ -102,6 +102,13 @@ class BadRequestException implements _s.AwsException {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// A JSON object representing a batch of unique event occurrences in your app.
@@ -140,6 +147,7 @@ class Event {
     this.session,
     this.version,
   });
+
   Map<String, dynamic> toJson() {
     final eventType = this.eventType;
     final timestamp = this.timestamp;
@@ -180,6 +188,7 @@ class Session {
     this.startTimestamp,
     this.stopTimestamp,
   });
+
   Map<String, dynamic> toJson() {
     final duration = this.duration;
     final id = this.id;

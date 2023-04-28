@@ -4396,6 +4396,13 @@ class AcceptHandshakeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final handshake = this.handshake;
+    return {
+      if (handshake != null) 'Handshake': handshake,
+    };
+  }
 }
 
 /// Contains information about an Amazon Web Services account that is a member
@@ -4457,6 +4464,26 @@ class Account {
       name: json['Name'] as String?,
       status: (json['Status'] as String?)?.toAccountStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final email = this.email;
+    final id = this.id;
+    final joinedMethod = this.joinedMethod;
+    final joinedTimestamp = this.joinedTimestamp;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (email != null) 'Email': email,
+      if (id != null) 'Id': id,
+      if (joinedMethod != null) 'JoinedMethod': joinedMethod.toValue(),
+      if (joinedTimestamp != null)
+        'JoinedTimestamp': unixTimestampToJson(joinedTimestamp),
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -4573,6 +4600,13 @@ class CancelHandshakeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final handshake = this.handshake;
+    return {
+      if (handshake != null) 'Handshake': handshake,
+    };
+  }
 }
 
 /// Contains a list of child entities, either OUs or accounts.
@@ -4607,6 +4641,15 @@ class Child {
       id: json['Id'] as String?,
       type: (json['Type'] as String?)?.toChildType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final type = this.type;
+    return {
+      if (id != null) 'Id': id,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -4750,6 +4793,14 @@ class CreateAccountResponse {
               json['CreateAccountStatus'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createAccountStatus = this.createAccountStatus;
+    return {
+      if (createAccountStatus != null)
+        'CreateAccountStatus': createAccountStatus,
+    };
   }
 }
 
@@ -4916,6 +4967,29 @@ class CreateAccountStatus {
       state: (json['State'] as String?)?.toCreateAccountState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final accountName = this.accountName;
+    final completedTimestamp = this.completedTimestamp;
+    final failureReason = this.failureReason;
+    final govCloudAccountId = this.govCloudAccountId;
+    final id = this.id;
+    final requestedTimestamp = this.requestedTimestamp;
+    final state = this.state;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (accountName != null) 'AccountName': accountName,
+      if (completedTimestamp != null)
+        'CompletedTimestamp': unixTimestampToJson(completedTimestamp),
+      if (failureReason != null) 'FailureReason': failureReason.toValue(),
+      if (govCloudAccountId != null) 'GovCloudAccountId': govCloudAccountId,
+      if (id != null) 'Id': id,
+      if (requestedTimestamp != null)
+        'RequestedTimestamp': unixTimestampToJson(requestedTimestamp),
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class CreateGovCloudAccountResponse {
@@ -4932,6 +5006,14 @@ class CreateGovCloudAccountResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createAccountStatus = this.createAccountStatus;
+    return {
+      if (createAccountStatus != null)
+        'CreateAccountStatus': createAccountStatus,
+    };
+  }
 }
 
 class CreateOrganizationResponse {
@@ -4947,6 +5029,13 @@ class CreateOrganizationResponse {
           ? Organization.fromJson(json['Organization'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final organization = this.organization;
+    return {
+      if (organization != null) 'Organization': organization,
+    };
   }
 }
 
@@ -4965,6 +5054,13 @@ class CreateOrganizationalUnitResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final organizationalUnit = this.organizationalUnit;
+    return {
+      if (organizationalUnit != null) 'OrganizationalUnit': organizationalUnit,
+    };
+  }
 }
 
 class CreatePolicyResponse {
@@ -4980,6 +5076,13 @@ class CreatePolicyResponse {
           ? Policy.fromJson(json['Policy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -4997,6 +5100,13 @@ class DeclineHandshakeResponse {
           ? Handshake.fromJson(json['Handshake'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final handshake = this.handshake;
+    return {
+      if (handshake != null) 'Handshake': handshake,
+    };
   }
 }
 
@@ -5051,6 +5161,29 @@ class DelegatedAdministrator {
       status: (json['Status'] as String?)?.toAccountStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final delegationEnabledDate = this.delegationEnabledDate;
+    final email = this.email;
+    final id = this.id;
+    final joinedMethod = this.joinedMethod;
+    final joinedTimestamp = this.joinedTimestamp;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (delegationEnabledDate != null)
+        'DelegationEnabledDate': unixTimestampToJson(delegationEnabledDate),
+      if (email != null) 'Email': email,
+      if (id != null) 'Id': id,
+      if (joinedMethod != null) 'JoinedMethod': joinedMethod.toValue(),
+      if (joinedTimestamp != null)
+        'JoinedTimestamp': unixTimestampToJson(joinedTimestamp),
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Contains information about the Amazon Web Services service for which the
@@ -5074,6 +5207,16 @@ class DelegatedService {
       servicePrincipal: json['ServicePrincipal'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final delegationEnabledDate = this.delegationEnabledDate;
+    final servicePrincipal = this.servicePrincipal;
+    return {
+      if (delegationEnabledDate != null)
+        'DelegationEnabledDate': unixTimestampToJson(delegationEnabledDate),
+      if (servicePrincipal != null) 'ServicePrincipal': servicePrincipal,
+    };
+  }
 }
 
 class DescribeAccountResponse {
@@ -5089,6 +5232,13 @@ class DescribeAccountResponse {
           ? Account.fromJson(json['Account'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final account = this.account;
+    return {
+      if (account != null) 'Account': account,
+    };
   }
 }
 
@@ -5108,6 +5258,14 @@ class DescribeCreateAccountStatusResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createAccountStatus = this.createAccountStatus;
+    return {
+      if (createAccountStatus != null)
+        'CreateAccountStatus': createAccountStatus,
+    };
+  }
 }
 
 class DescribeEffectivePolicyResponse {
@@ -5125,6 +5283,13 @@ class DescribeEffectivePolicyResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final effectivePolicy = this.effectivePolicy;
+    return {
+      if (effectivePolicy != null) 'EffectivePolicy': effectivePolicy,
+    };
+  }
 }
 
 class DescribeHandshakeResponse {
@@ -5140,6 +5305,13 @@ class DescribeHandshakeResponse {
           ? Handshake.fromJson(json['Handshake'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final handshake = this.handshake;
+    return {
+      if (handshake != null) 'Handshake': handshake,
+    };
   }
 }
 
@@ -5164,6 +5336,13 @@ class DescribeOrganizationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final organization = this.organization;
+    return {
+      if (organization != null) 'Organization': organization,
+    };
+  }
 }
 
 class DescribeOrganizationalUnitResponse {
@@ -5182,6 +5361,13 @@ class DescribeOrganizationalUnitResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final organizationalUnit = this.organizationalUnit;
+    return {
+      if (organizationalUnit != null) 'OrganizationalUnit': organizationalUnit,
+    };
+  }
 }
 
 class DescribePolicyResponse {
@@ -5197,6 +5383,13 @@ class DescribePolicyResponse {
           ? Policy.fromJson(json['Policy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -5214,6 +5407,13 @@ class DisablePolicyTypeResponse {
           ? Root.fromJson(json['Root'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final root = this.root;
+    return {
+      if (root != null) 'Root': root,
+    };
   }
 }
 
@@ -5246,6 +5446,20 @@ class EffectivePolicy {
       policyType: (json['PolicyType'] as String?)?.toEffectivePolicyType(),
       targetId: json['TargetId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final policyContent = this.policyContent;
+    final policyType = this.policyType;
+    final targetId = this.targetId;
+    return {
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (policyContent != null) 'PolicyContent': policyContent,
+      if (policyType != null) 'PolicyType': policyType.toValue(),
+      if (targetId != null) 'TargetId': targetId,
+    };
   }
 }
 
@@ -5297,6 +5511,13 @@ class EnableAllFeaturesResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final handshake = this.handshake;
+    return {
+      if (handshake != null) 'Handshake': handshake,
+    };
+  }
 }
 
 class EnablePolicyTypeResponse {
@@ -5313,6 +5534,13 @@ class EnablePolicyTypeResponse {
           ? Root.fromJson(json['Root'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final root = this.root;
+    return {
+      if (root != null) 'Root': root,
+    };
   }
 }
 
@@ -5336,6 +5564,15 @@ class EnabledServicePrincipal {
       dateEnabled: timeStampFromJson(json['DateEnabled']),
       servicePrincipal: json['ServicePrincipal'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dateEnabled = this.dateEnabled;
+    final servicePrincipal = this.servicePrincipal;
+    return {
+      if (dateEnabled != null) 'DateEnabled': unixTimestampToJson(dateEnabled),
+      if (servicePrincipal != null) 'ServicePrincipal': servicePrincipal,
+    };
   }
 }
 
@@ -5470,6 +5707,29 @@ class Handshake {
       state: (json['State'] as String?)?.toHandshakeState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final arn = this.arn;
+    final expirationTimestamp = this.expirationTimestamp;
+    final id = this.id;
+    final parties = this.parties;
+    final requestedTimestamp = this.requestedTimestamp;
+    final resources = this.resources;
+    final state = this.state;
+    return {
+      if (action != null) 'Action': action.toValue(),
+      if (arn != null) 'Arn': arn,
+      if (expirationTimestamp != null)
+        'ExpirationTimestamp': unixTimestampToJson(expirationTimestamp),
+      if (id != null) 'Id': id,
+      if (parties != null) 'Parties': parties,
+      if (requestedTimestamp != null)
+        'RequestedTimestamp': unixTimestampToJson(requestedTimestamp),
+      if (resources != null) 'Resources': resources,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 /// Specifies the criteria that are used to select the handshakes for the
@@ -5496,6 +5756,7 @@ class HandshakeFilter {
     this.actionType,
     this.parentHandshakeId,
   });
+
   Map<String, dynamic> toJson() {
     final actionType = this.actionType;
     final parentHandshakeId = this.parentHandshakeId;
@@ -5626,6 +5887,17 @@ class HandshakeResource {
       type: (json['Type'] as String?)?.toHandshakeResourceType(),
       value: json['Value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resources = this.resources;
+    final type = this.type;
+    final value = this.value;
+    return {
+      if (resources != null) 'Resources': resources,
+      if (type != null) 'Type': type.toValue(),
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -5779,6 +6051,13 @@ class InviteAccountToOrganizationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final handshake = this.handshake;
+    return {
+      if (handshake != null) 'Handshake': handshake,
+    };
+  }
 }
 
 class ListAWSServiceAccessForOrganizationResponse {
@@ -5810,6 +6089,16 @@ class ListAWSServiceAccessForOrganizationResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final enabledServicePrincipals = this.enabledServicePrincipals;
+    final nextToken = this.nextToken;
+    return {
+      if (enabledServicePrincipals != null)
+        'EnabledServicePrincipals': enabledServicePrincipals,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListAccountsForParentResponse {
@@ -5835,6 +6124,15 @@ class ListAccountsForParentResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accounts = this.accounts;
+    final nextToken = this.nextToken;
+    return {
+      if (accounts != null) 'Accounts': accounts,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5862,6 +6160,15 @@ class ListAccountsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accounts = this.accounts;
+    final nextToken = this.nextToken;
+    return {
+      if (accounts != null) 'Accounts': accounts,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListChildrenResponse {
@@ -5887,6 +6194,15 @@ class ListChildrenResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final children = this.children;
+    final nextToken = this.nextToken;
+    return {
+      if (children != null) 'Children': children,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5916,6 +6232,16 @@ class ListCreateAccountStatusResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createAccountStatuses = this.createAccountStatuses;
+    final nextToken = this.nextToken;
+    return {
+      if (createAccountStatuses != null)
+        'CreateAccountStatuses': createAccountStatuses,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDelegatedAdministratorsResponse {
@@ -5944,6 +6270,16 @@ class ListDelegatedAdministratorsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final delegatedAdministrators = this.delegatedAdministrators;
+    final nextToken = this.nextToken;
+    return {
+      if (delegatedAdministrators != null)
+        'DelegatedAdministrators': delegatedAdministrators,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDelegatedServicesForAccountResponse {
@@ -5971,6 +6307,15 @@ class ListDelegatedServicesForAccountResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final delegatedServices = this.delegatedServices;
+    final nextToken = this.nextToken;
+    return {
+      if (delegatedServices != null) 'DelegatedServices': delegatedServices,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListHandshakesForAccountResponse {
@@ -5997,6 +6342,15 @@ class ListHandshakesForAccountResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final handshakes = this.handshakes;
+    final nextToken = this.nextToken;
+    return {
+      if (handshakes != null) 'Handshakes': handshakes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6026,6 +6380,15 @@ class ListHandshakesForOrganizationResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final handshakes = this.handshakes;
+    final nextToken = this.nextToken;
+    return {
+      if (handshakes != null) 'Handshakes': handshakes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListOrganizationalUnitsForParentResponse {
@@ -6053,6 +6416,16 @@ class ListOrganizationalUnitsForParentResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final organizationalUnits = this.organizationalUnits;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (organizationalUnits != null)
+        'OrganizationalUnits': organizationalUnits,
+    };
+  }
 }
 
 class ListParentsResponse {
@@ -6079,6 +6452,15 @@ class ListParentsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final parents = this.parents;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (parents != null) 'Parents': parents,
+    };
+  }
 }
 
 class ListPoliciesForTargetResponse {
@@ -6104,6 +6486,15 @@ class ListPoliciesForTargetResponse {
           .map((e) => PolicySummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final policies = this.policies;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (policies != null) 'Policies': policies,
+    };
   }
 }
 
@@ -6133,6 +6524,15 @@ class ListPoliciesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final policies = this.policies;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (policies != null) 'Policies': policies,
+    };
+  }
 }
 
 class ListRootsResponse {
@@ -6158,6 +6558,15 @@ class ListRootsResponse {
           .map((e) => Root.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final roots = this.roots;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (roots != null) 'Roots': roots,
+    };
   }
 }
 
@@ -6185,6 +6594,15 @@ class ListTagsForResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class ListTargetsForPolicyResponse {
@@ -6211,6 +6629,15 @@ class ListTargetsForPolicyResponse {
           .map((e) => PolicyTargetSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final targets = this.targets;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (targets != null) 'Targets': targets,
+    };
   }
 }
 
@@ -6294,6 +6721,26 @@ class Organization {
       masterAccountId: json['MasterAccountId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final availablePolicyTypes = this.availablePolicyTypes;
+    final featureSet = this.featureSet;
+    final id = this.id;
+    final masterAccountArn = this.masterAccountArn;
+    final masterAccountEmail = this.masterAccountEmail;
+    final masterAccountId = this.masterAccountId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (availablePolicyTypes != null)
+        'AvailablePolicyTypes': availablePolicyTypes,
+      if (featureSet != null) 'FeatureSet': featureSet.toValue(),
+      if (id != null) 'Id': id,
+      if (masterAccountArn != null) 'MasterAccountArn': masterAccountArn,
+      if (masterAccountEmail != null) 'MasterAccountEmail': masterAccountEmail,
+      if (masterAccountId != null) 'MasterAccountId': masterAccountId,
+    };
+  }
 }
 
 enum OrganizationFeatureSet {
@@ -6365,6 +6812,17 @@ class OrganizationalUnit {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Contains information about either a root or an organizational unit (OU) that
@@ -6401,6 +6859,15 @@ class Parent {
       id: json['Id'] as String?,
       type: (json['Type'] as String?)?.toParentType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final type = this.type;
+    return {
+      if (id != null) 'Id': id,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -6454,6 +6921,15 @@ class Policy {
               json['PolicySummary'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    final policySummary = this.policySummary;
+    return {
+      if (content != null) 'Content': content,
+      if (policySummary != null) 'PolicySummary': policySummary,
+    };
   }
 }
 
@@ -6510,6 +6986,23 @@ class PolicySummary {
       name: json['Name'] as String?,
       type: (json['Type'] as String?)?.toPolicyType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final awsManaged = this.awsManaged;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (awsManaged != null) 'AwsManaged': awsManaged,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -6569,6 +7062,19 @@ class PolicyTargetSummary {
       targetId: json['TargetId'] as String?,
       type: (json['Type'] as String?)?.toTargetType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final targetId = this.targetId;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+      if (targetId != null) 'TargetId': targetId,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -6665,6 +7171,15 @@ class PolicyTypeSummary {
       type: (json['Type'] as String?)?.toPolicyType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (status != null) 'Status': status.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Contains details about a root. A root is a top-level parent node in the
@@ -6721,6 +7236,19 @@ class Root {
           .map((e) => PolicyTypeSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    final policyTypes = this.policyTypes;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (policyTypes != null) 'PolicyTypes': policyTypes,
+    };
   }
 }
 
@@ -6821,6 +7349,13 @@ class UpdateOrganizationalUnitResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final organizationalUnit = this.organizationalUnit;
+    return {
+      if (organizationalUnit != null) 'OrganizationalUnit': organizationalUnit,
+    };
+  }
 }
 
 class UpdatePolicyResponse {
@@ -6837,6 +7372,13 @@ class UpdatePolicyResponse {
           ? Policy.fromJson(json['Policy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 

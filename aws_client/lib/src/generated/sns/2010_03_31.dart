@@ -2554,6 +2554,19 @@ class BatchResultErrorEntry {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final id = this.id;
+    final senderFault = this.senderFault;
+    final message = this.message;
+    return {
+      'Code': code,
+      'Id': id,
+      'SenderFault': senderFault,
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// The response from the <code>CheckIfPhoneNumberIsOptedOut</code> action.
@@ -2580,6 +2593,13 @@ class CheckIfPhoneNumberIsOptedOutResponse {
       isOptedOut: _s.extractXmlBoolValue(elem, 'isOptedOut'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isOptedOut = this.isOptedOut;
+    return {
+      if (isOptedOut != null) 'isOptedOut': isOptedOut,
+    };
+  }
 }
 
 /// Response for ConfirmSubscriptions action.
@@ -2595,6 +2615,13 @@ class ConfirmSubscriptionResponse {
       subscriptionArn: _s.extractXmlStringValue(elem, 'SubscriptionArn'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final subscriptionArn = this.subscriptionArn;
+    return {
+      if (subscriptionArn != null) 'SubscriptionArn': subscriptionArn,
+    };
+  }
 }
 
 /// Response from CreateEndpoint action.
@@ -2609,6 +2636,13 @@ class CreateEndpointResponse {
     return CreateEndpointResponse(
       endpointArn: _s.extractXmlStringValue(elem, 'EndpointArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointArn = this.endpointArn;
+    return {
+      if (endpointArn != null) 'EndpointArn': endpointArn,
+    };
   }
 }
 
@@ -2626,6 +2660,14 @@ class CreatePlatformApplicationResponse {
           _s.extractXmlStringValue(elem, 'PlatformApplicationArn'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final platformApplicationArn = this.platformApplicationArn;
+    return {
+      if (platformApplicationArn != null)
+        'PlatformApplicationArn': platformApplicationArn,
+    };
+  }
 }
 
 class CreateSMSSandboxPhoneNumberResult {
@@ -2634,6 +2676,10 @@ class CreateSMSSandboxPhoneNumberResult {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateSMSSandboxPhoneNumberResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2650,6 +2696,13 @@ class CreateTopicResponse {
       topicArn: _s.extractXmlStringValue(elem, 'TopicArn'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final topicArn = this.topicArn;
+    return {
+      if (topicArn != null) 'TopicArn': topicArn,
+    };
+  }
 }
 
 class DeleteSMSSandboxPhoneNumberResult {
@@ -2658,6 +2711,10 @@ class DeleteSMSSandboxPhoneNumberResult {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteSMSSandboxPhoneNumberResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2686,6 +2743,15 @@ class Endpoint {
       ),
       endpointArn: _s.extractXmlStringValue(elem, 'EndpointArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final endpointArn = this.endpointArn;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (endpointArn != null) 'EndpointArn': endpointArn,
+    };
   }
 }
 
@@ -2730,6 +2796,13 @@ class GetEndpointAttributesResponse {
             {},
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
   }
 }
 
@@ -2786,6 +2859,13 @@ class GetPlatformApplicationAttributesResponse {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
+  }
 }
 
 /// The response from the <code>GetSMSAttributes</code> request.
@@ -2809,6 +2889,13 @@ class GetSMSAttributesResponse {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'attributes': attributes,
+    };
+  }
 }
 
 class GetSMSSandboxAccountStatusResult {
@@ -2823,6 +2910,13 @@ class GetSMSSandboxAccountStatusResult {
     return GetSMSSandboxAccountStatusResult(
       isInSandbox: _s.extractXmlBoolValue(elem, 'IsInSandbox')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isInSandbox = this.isInSandbox;
+    return {
+      'IsInSandbox': isInSandbox,
+    };
   }
 }
 
@@ -2921,6 +3015,13 @@ class GetSubscriptionAttributesResponse {
             {},
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
   }
 }
 
@@ -3033,6 +3134,13 @@ class GetTopicAttributesResponse {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
+  }
 }
 
 /// Supported language code for sending OTP message
@@ -3140,6 +3248,15 @@ class ListEndpointsByPlatformApplicationResponse {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoints = this.endpoints;
+    final nextToken = this.nextToken;
+    return {
+      if (endpoints != null) 'Endpoints': endpoints,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListOriginationNumbersResult {
@@ -3163,6 +3280,15 @@ class ListOriginationNumbersResult {
           .map(PhoneNumberInformation.fromXml)
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final phoneNumbers = this.phoneNumbers;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (phoneNumbers != null) 'PhoneNumbers': phoneNumbers,
+    };
   }
 }
 
@@ -3188,6 +3314,15 @@ class ListPhoneNumbersOptedOutResponse {
           .extractXmlChild(elem, 'phoneNumbers')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final phoneNumbers = this.phoneNumbers;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (phoneNumbers != null) 'phoneNumbers': phoneNumbers,
+    };
   }
 }
 
@@ -3215,6 +3350,16 @@ class ListPlatformApplicationsResponse {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final platformApplications = this.platformApplications;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (platformApplications != null)
+        'PlatformApplications': platformApplications,
+    };
+  }
 }
 
 class ListSMSSandboxPhoneNumbersResult {
@@ -3240,6 +3385,15 @@ class ListSMSSandboxPhoneNumbersResult {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumbers = this.phoneNumbers;
+    final nextToken = this.nextToken;
+    return {
+      'PhoneNumbers': phoneNumbers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Response for ListSubscriptionsByTopic action.
@@ -3263,6 +3417,15 @@ class ListSubscriptionsByTopicResponse {
           elem.findElements('member').map(Subscription.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final subscriptions = this.subscriptions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (subscriptions != null) 'Subscriptions': subscriptions,
+    };
+  }
 }
 
 /// Response for ListSubscriptions action
@@ -3285,6 +3448,15 @@ class ListSubscriptionsResponse {
           elem.findElements('member').map(Subscription.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final subscriptions = this.subscriptions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (subscriptions != null) 'Subscriptions': subscriptions,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3299,6 +3471,13 @@ class ListTagsForResourceResponse {
       tags: _s.extractXmlChild(elem, 'Tags')?.let(
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3321,6 +3500,15 @@ class ListTopicsResponse {
       topics: _s.extractXmlChild(elem, 'Topics')?.let(
           (elem) => elem.findElements('member').map(Topic.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final topics = this.topics;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (topics != null) 'Topics': topics,
+    };
   }
 }
 
@@ -3360,6 +3548,7 @@ class MessageAttributeValue {
     this.binaryValue,
     this.stringValue,
   });
+
   Map<String, dynamic> toJson() {
     final dataType = this.dataType;
     final binaryValue = this.binaryValue;
@@ -3414,6 +3603,10 @@ class OptInPhoneNumberResponse {
       _s.XmlElement elem) {
     return OptInPhoneNumberResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A list of phone numbers and their metadata.
@@ -3459,6 +3652,25 @@ class PhoneNumberInformation {
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final iso2CountryCode = this.iso2CountryCode;
+    final numberCapabilities = this.numberCapabilities;
+    final phoneNumber = this.phoneNumber;
+    final routeType = this.routeType;
+    final status = this.status;
+    return {
+      if (createdAt != null) 'CreatedAt': iso8601ToJson(createdAt),
+      if (iso2CountryCode != null) 'Iso2CountryCode': iso2CountryCode,
+      if (numberCapabilities != null)
+        'NumberCapabilities':
+            numberCapabilities.map((e) => e.toValue()).toList(),
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (routeType != null) 'RouteType': routeType.toValue(),
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// Platform application object.
@@ -3487,6 +3699,16 @@ class PlatformApplication {
       platformApplicationArn:
           _s.extractXmlStringValue(elem, 'PlatformApplicationArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final platformApplicationArn = this.platformApplicationArn;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (platformApplicationArn != null)
+        'PlatformApplicationArn': platformApplicationArn,
+    };
   }
 }
 
@@ -3628,6 +3850,7 @@ class PublishBatchRequestEntry {
     this.messageStructure,
     this.subject,
   });
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final message = this.message;
@@ -3672,6 +3895,15 @@ class PublishBatchResponse {
           .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final successful = this.successful;
+    return {
+      if (failed != null) 'Failed': failed,
+      if (successful != null) 'Successful': successful,
+    };
+  }
 }
 
 /// Encloses data related to a successful message in a batch request for topic.
@@ -3703,6 +3935,17 @@ class PublishBatchResultEntry {
       sequenceNumber: _s.extractXmlStringValue(elem, 'SequenceNumber'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final messageId = this.messageId;
+    final sequenceNumber = this.sequenceNumber;
+    return {
+      if (id != null) 'Id': id,
+      if (messageId != null) 'MessageId': messageId,
+      if (sequenceNumber != null) 'SequenceNumber': sequenceNumber,
+    };
+  }
 }
 
 /// Response for Publish action.
@@ -3729,6 +3972,15 @@ class PublishResponse {
       messageId: _s.extractXmlStringValue(elem, 'MessageId'),
       sequenceNumber: _s.extractXmlStringValue(elem, 'SequenceNumber'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    final sequenceNumber = this.sequenceNumber;
+    return {
+      if (messageId != null) 'MessageId': messageId,
+      if (sequenceNumber != null) 'SequenceNumber': sequenceNumber,
+    };
   }
 }
 
@@ -3799,6 +4051,15 @@ class SMSSandboxPhoneNumber {
           ?.toSMSSandboxPhoneNumberVerificationStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumber = this.phoneNumber;
+    final status = this.status;
+    return {
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Enum listing out all supported destination phone number verification
@@ -3844,6 +4105,10 @@ class SetSMSAttributesResponse {
       _s.XmlElement elem) {
     return SetSMSAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Response for Subscribe action.
@@ -3862,6 +4127,13 @@ class SubscribeResponse {
     return SubscribeResponse(
       subscriptionArn: _s.extractXmlStringValue(elem, 'SubscriptionArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subscriptionArn = this.subscriptionArn;
+    return {
+      if (subscriptionArn != null) 'SubscriptionArn': subscriptionArn,
+    };
   }
 }
 
@@ -3897,6 +4169,21 @@ class Subscription {
       subscriptionArn: _s.extractXmlStringValue(elem, 'SubscriptionArn'),
       topicArn: _s.extractXmlStringValue(elem, 'TopicArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    final owner = this.owner;
+    final protocol = this.protocol;
+    final subscriptionArn = this.subscriptionArn;
+    final topicArn = this.topicArn;
+    return {
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (owner != null) 'Owner': owner,
+      if (protocol != null) 'Protocol': protocol,
+      if (subscriptionArn != null) 'SubscriptionArn': subscriptionArn,
+      if (topicArn != null) 'TopicArn': topicArn,
+    };
   }
 }
 
@@ -3936,6 +4223,10 @@ class TagResourceResponse {
       _s.XmlElement elem) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A wrapper type for the topic's Amazon Resource Name (ARN). To retrieve a
@@ -3952,6 +4243,13 @@ class Topic {
       topicArn: _s.extractXmlStringValue(elem, 'TopicArn'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final topicArn = this.topicArn;
+    return {
+      if (topicArn != null) 'TopicArn': topicArn,
+    };
+  }
 }
 
 class UntagResourceResponse {
@@ -3960,6 +4258,10 @@ class UntagResourceResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3970,6 +4272,10 @@ class VerifySMSSandboxPhoneNumberResult {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return VerifySMSSandboxPhoneNumberResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

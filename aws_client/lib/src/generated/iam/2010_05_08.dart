@@ -10924,6 +10924,25 @@ class AccessDetail {
           _s.extractXmlIntValue(elem, 'TotalAuthenticatedEntities'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceName = this.serviceName;
+    final serviceNamespace = this.serviceNamespace;
+    final entityPath = this.entityPath;
+    final lastAuthenticatedTime = this.lastAuthenticatedTime;
+    final region = this.region;
+    final totalAuthenticatedEntities = this.totalAuthenticatedEntities;
+    return {
+      'ServiceName': serviceName,
+      'ServiceNamespace': serviceNamespace,
+      if (entityPath != null) 'EntityPath': entityPath,
+      if (lastAuthenticatedTime != null)
+        'LastAuthenticatedTime': iso8601ToJson(lastAuthenticatedTime),
+      if (region != null) 'Region': region,
+      if (totalAuthenticatedEntities != null)
+        'TotalAuthenticatedEntities': totalAuthenticatedEntities,
+    };
+  }
 }
 
 /// Contains information about an Amazon Web Services access key.
@@ -10968,6 +10987,21 @@ class AccessKey {
       userName: _s.extractXmlStringValue(elem, 'UserName')!,
       createDate: _s.extractXmlDateTimeValue(elem, 'CreateDate'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final secretAccessKey = this.secretAccessKey;
+    final status = this.status;
+    final userName = this.userName;
+    final createDate = this.createDate;
+    return {
+      'AccessKeyId': accessKeyId,
+      'SecretAccessKey': secretAccessKey,
+      'Status': status.toValue(),
+      'UserName': userName,
+      if (createDate != null) 'CreateDate': iso8601ToJson(createDate),
+    };
   }
 }
 
@@ -11045,6 +11079,17 @@ class AccessKeyLastUsed {
       serviceName: _s.extractXmlStringValue(elem, 'ServiceName')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastUsedDate = this.lastUsedDate;
+    final region = this.region;
+    final serviceName = this.serviceName;
+    return {
+      'LastUsedDate': iso8601ToJson(lastUsedDate),
+      'Region': region,
+      'ServiceName': serviceName,
+    };
+  }
 }
 
 /// Contains information about an Amazon Web Services access key, without its
@@ -11080,6 +11125,19 @@ class AccessKeyMetadata {
       userName: _s.extractXmlStringValue(elem, 'UserName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final createDate = this.createDate;
+    final status = this.status;
+    final userName = this.userName;
+    return {
+      if (accessKeyId != null) 'AccessKeyId': accessKeyId,
+      if (createDate != null) 'CreateDate': iso8601ToJson(createDate),
+      if (status != null) 'Status': status.toValue(),
+      if (userName != null) 'UserName': userName,
+    };
+  }
 }
 
 /// Contains information about an attached permissions boundary.
@@ -11113,6 +11171,17 @@ class AttachedPermissionsBoundary {
           ?.toPermissionsBoundaryAttachmentType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final permissionsBoundaryArn = this.permissionsBoundaryArn;
+    final permissionsBoundaryType = this.permissionsBoundaryType;
+    return {
+      if (permissionsBoundaryArn != null)
+        'PermissionsBoundaryArn': permissionsBoundaryArn,
+      if (permissionsBoundaryType != null)
+        'PermissionsBoundaryType': permissionsBoundaryType.toValue(),
+    };
+  }
 }
 
 /// Contains information about an attached policy.
@@ -11142,6 +11211,15 @@ class AttachedPolicy {
       policyName: _s.extractXmlStringValue(elem, 'PolicyName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyArn = this.policyArn;
+    final policyName = this.policyName;
+    return {
+      if (policyArn != null) 'PolicyArn': policyArn,
+      if (policyName != null) 'PolicyName': policyName,
+    };
+  }
 }
 
 /// Contains information about a condition context key. It includes the name of
@@ -11170,6 +11248,7 @@ class ContextEntry {
     this.contextKeyType,
     this.contextKeyValues,
   });
+
   Map<String, dynamic> toJson() {
     final contextKeyName = this.contextKeyName;
     final contextKeyType = this.contextKeyType;
@@ -11273,6 +11352,13 @@ class CreateAccessKeyResponse {
       accessKey: AccessKey.fromXml(_s.extractXmlChild(elem, 'AccessKey')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessKey = this.accessKey;
+    return {
+      'AccessKey': accessKey,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>CreateGroup</a> request.
@@ -11287,6 +11373,13 @@ class CreateGroupResponse {
     return CreateGroupResponse(
       group: Group.fromXml(_s.extractXmlChild(elem, 'Group')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    return {
+      'Group': group,
+    };
   }
 }
 
@@ -11304,6 +11397,13 @@ class CreateInstanceProfileResponse {
           InstanceProfile.fromXml(_s.extractXmlChild(elem, 'InstanceProfile')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceProfile = this.instanceProfile;
+    return {
+      'InstanceProfile': instanceProfile,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>CreateLoginProfile</a> request.
@@ -11319,6 +11419,13 @@ class CreateLoginProfileResponse {
       loginProfile:
           LoginProfile.fromXml(_s.extractXmlChild(elem, 'LoginProfile')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loginProfile = this.loginProfile;
+    return {
+      'LoginProfile': loginProfile,
+    };
   }
 }
 
@@ -11348,6 +11455,16 @@ class CreateOpenIDConnectProviderResponse {
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final openIDConnectProviderArn = this.openIDConnectProviderArn;
+    final tags = this.tags;
+    return {
+      if (openIDConnectProviderArn != null)
+        'OpenIDConnectProviderArn': openIDConnectProviderArn,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>CreatePolicy</a> request.
@@ -11362,6 +11479,13 @@ class CreatePolicyResponse {
     return CreatePolicyResponse(
       policy: _s.extractXmlChild(elem, 'Policy')?.let(Policy.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -11379,6 +11503,13 @@ class CreatePolicyVersionResponse {
           _s.extractXmlChild(elem, 'PolicyVersion')?.let(PolicyVersion.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyVersion = this.policyVersion;
+    return {
+      if (policyVersion != null) 'PolicyVersion': policyVersion,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>CreateRole</a> request.
@@ -11393,6 +11524,13 @@ class CreateRoleResponse {
     return CreateRoleResponse(
       role: Role.fromXml(_s.extractXmlChild(elem, 'Role')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final role = this.role;
+    return {
+      'Role': role,
+    };
   }
 }
 
@@ -11419,6 +11557,15 @@ class CreateSAMLProviderResponse {
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sAMLProviderArn = this.sAMLProviderArn;
+    final tags = this.tags;
+    return {
+      if (sAMLProviderArn != null) 'SAMLProviderArn': sAMLProviderArn,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class CreateServiceLinkedRoleResponse {
@@ -11432,6 +11579,13 @@ class CreateServiceLinkedRoleResponse {
     return CreateServiceLinkedRoleResponse(
       role: _s.extractXmlChild(elem, 'Role')?.let(Role.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final role = this.role;
+    return {
+      if (role != null) 'Role': role,
+    };
   }
 }
 
@@ -11455,6 +11609,14 @@ class CreateServiceSpecificCredentialResponse {
           ?.let(ServiceSpecificCredential.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceSpecificCredential = this.serviceSpecificCredential;
+    return {
+      if (serviceSpecificCredential != null)
+        'ServiceSpecificCredential': serviceSpecificCredential,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>CreateUser</a> request.
@@ -11469,6 +11631,13 @@ class CreateUserResponse {
     return CreateUserResponse(
       user: _s.extractXmlChild(elem, 'User')?.let(User.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
   }
 }
 
@@ -11486,6 +11655,13 @@ class CreateVirtualMFADeviceResponse {
           _s.extractXmlChild(elem, 'VirtualMFADevice')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final virtualMFADevice = this.virtualMFADevice;
+    return {
+      'VirtualMFADevice': virtualMFADevice,
+    };
+  }
 }
 
 class DeleteServiceLinkedRoleResponse {
@@ -11501,6 +11677,13 @@ class DeleteServiceLinkedRoleResponse {
     return DeleteServiceLinkedRoleResponse(
       deletionTaskId: _s.extractXmlStringValue(elem, 'DeletionTaskId')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deletionTaskId = this.deletionTaskId;
+    return {
+      'DeletionTaskId': deletionTaskId,
+    };
   }
 }
 
@@ -11531,6 +11714,15 @@ class DeletionTaskFailureReasonType {
       roleUsageList: _s.extractXmlChild(elem, 'RoleUsageList')?.let((elem) =>
           elem.findElements('member').map(RoleUsageType.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reason = this.reason;
+    final roleUsageList = this.roleUsageList;
+    return {
+      if (reason != null) 'Reason': reason,
+      if (roleUsageList != null) 'RoleUsageList': roleUsageList,
+    };
   }
 }
 
@@ -11604,6 +11796,16 @@ class EntityDetails {
       lastAuthenticated: _s.extractXmlDateTimeValue(elem, 'LastAuthenticated'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entityInfo = this.entityInfo;
+    final lastAuthenticated = this.lastAuthenticated;
+    return {
+      'EntityInfo': entityInfo,
+      if (lastAuthenticated != null)
+        'LastAuthenticated': iso8601ToJson(lastAuthenticated),
+    };
+  }
 }
 
 /// Contains details about the specified entity (user or role).
@@ -11642,6 +11844,21 @@ class EntityInfo {
       type: _s.extractXmlStringValue(elem, 'Type')!.toPolicyOwnerEntityType(),
       path: _s.extractXmlStringValue(elem, 'Path'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    final type = this.type;
+    final path = this.path;
+    return {
+      'Arn': arn,
+      'Id': id,
+      'Name': name,
+      'Type': type.toValue(),
+      if (path != null) 'Path': path,
+    };
   }
 }
 
@@ -11709,6 +11926,15 @@ class ErrorDetails {
       code: _s.extractXmlStringValue(elem, 'Code')!,
       message: _s.extractXmlStringValue(elem, 'Message')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      'Code': code,
+      'Message': message,
+    };
   }
 }
 
@@ -11828,6 +12054,36 @@ class EvaluationResult {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final evalActionName = this.evalActionName;
+    final evalDecision = this.evalDecision;
+    final evalDecisionDetails = this.evalDecisionDetails;
+    final evalResourceName = this.evalResourceName;
+    final matchedStatements = this.matchedStatements;
+    final missingContextValues = this.missingContextValues;
+    final organizationsDecisionDetail = this.organizationsDecisionDetail;
+    final permissionsBoundaryDecisionDetail =
+        this.permissionsBoundaryDecisionDetail;
+    final resourceSpecificResults = this.resourceSpecificResults;
+    return {
+      'EvalActionName': evalActionName,
+      'EvalDecision': evalDecision.toValue(),
+      if (evalDecisionDetails != null)
+        'EvalDecisionDetails':
+            evalDecisionDetails.map((k, e) => MapEntry(k, e.toValue())),
+      if (evalResourceName != null) 'EvalResourceName': evalResourceName,
+      if (matchedStatements != null) 'MatchedStatements': matchedStatements,
+      if (missingContextValues != null)
+        'MissingContextValues': missingContextValues,
+      if (organizationsDecisionDetail != null)
+        'OrganizationsDecisionDetail': organizationsDecisionDetail,
+      if (permissionsBoundaryDecisionDetail != null)
+        'PermissionsBoundaryDecisionDetail': permissionsBoundaryDecisionDetail,
+      if (resourceSpecificResults != null)
+        'ResourceSpecificResults': resourceSpecificResults,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>GenerateCredentialReport</a>
@@ -11849,6 +12105,15 @@ class GenerateCredentialReportResponse {
       state: _s.extractXmlStringValue(elem, 'State')?.toReportStateType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final state = this.state;
+    return {
+      if (description != null) 'Description': description,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class GenerateOrganizationsAccessReportResponse {
@@ -11864,6 +12129,13 @@ class GenerateOrganizationsAccessReportResponse {
     return GenerateOrganizationsAccessReportResponse(
       jobId: _s.extractXmlStringValue(elem, 'JobId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
   }
 }
 
@@ -11885,6 +12157,13 @@ class GenerateServiceLastAccessedDetailsResponse {
     return GenerateServiceLastAccessedDetailsResponse(
       jobId: _s.extractXmlStringValue(elem, 'JobId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
   }
 }
 
@@ -11910,6 +12189,15 @@ class GetAccessKeyLastUsedResponse {
           ?.let(AccessKeyLastUsed.fromXml),
       userName: _s.extractXmlStringValue(elem, 'UserName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyLastUsed = this.accessKeyLastUsed;
+    final userName = this.userName;
+    return {
+      if (accessKeyLastUsed != null) 'AccessKeyLastUsed': accessKeyLastUsed,
+      if (userName != null) 'UserName': userName,
+    };
   }
 }
 
@@ -11967,6 +12255,23 @@ class GetAccountAuthorizationDetailsResponse {
           elem.findElements('member').map(UserDetail.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groupDetailList = this.groupDetailList;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final policies = this.policies;
+    final roleDetailList = this.roleDetailList;
+    final userDetailList = this.userDetailList;
+    return {
+      if (groupDetailList != null) 'GroupDetailList': groupDetailList,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+      if (policies != null) 'Policies': policies,
+      if (roleDetailList != null) 'RoleDetailList': roleDetailList,
+      if (userDetailList != null) 'UserDetailList': userDetailList,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>GetAccountPasswordPolicy</a>
@@ -11983,6 +12288,13 @@ class GetAccountPasswordPolicyResponse {
       passwordPolicy:
           PasswordPolicy.fromXml(_s.extractXmlChild(elem, 'PasswordPolicy')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final passwordPolicy = this.passwordPolicy;
+    return {
+      'PasswordPolicy': passwordPolicy,
+    };
   }
 }
 
@@ -12008,6 +12320,14 @@ class GetAccountSummaryResponse {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final summaryMap = this.summaryMap;
+    return {
+      if (summaryMap != null)
+        'SummaryMap': summaryMap.map((k, e) => MapEntry(k.toValue(), e)),
+    };
+  }
 }
 
 /// Contains the response to a successful
@@ -12026,6 +12346,13 @@ class GetContextKeysForPolicyResponse {
           .extractXmlChild(elem, 'ContextKeyNames')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contextKeyNames = this.contextKeyNames;
+    return {
+      if (contextKeyNames != null) 'ContextKeyNames': contextKeyNames,
+    };
   }
 }
 
@@ -12053,6 +12380,17 @@ class GetCredentialReportResponse {
       reportFormat:
           _s.extractXmlStringValue(elem, 'ReportFormat')?.toReportFormatType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    final generatedTime = this.generatedTime;
+    final reportFormat = this.reportFormat;
+    return {
+      if (content != null) 'Content': base64Encode(content),
+      if (generatedTime != null) 'GeneratedTime': iso8601ToJson(generatedTime),
+      if (reportFormat != null) 'ReportFormat': reportFormat.toValue(),
+    };
   }
 }
 
@@ -12082,6 +12420,17 @@ class GetGroupPolicyResponse {
       policyDocument: _s.extractXmlStringValue(elem, 'PolicyDocument')!,
       policyName: _s.extractXmlStringValue(elem, 'PolicyName')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupName = this.groupName;
+    final policyDocument = this.policyDocument;
+    final policyName = this.policyName;
+    return {
+      'GroupName': groupName,
+      'PolicyDocument': policyDocument,
+      'PolicyName': policyName,
+    };
   }
 }
 
@@ -12125,6 +12474,19 @@ class GetGroupResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    final users = this.users;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Group': group,
+      'Users': users,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>GetInstanceProfile</a> request.
@@ -12140,6 +12502,13 @@ class GetInstanceProfileResponse {
       instanceProfile:
           InstanceProfile.fromXml(_s.extractXmlChild(elem, 'InstanceProfile')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceProfile = this.instanceProfile;
+    return {
+      'InstanceProfile': instanceProfile,
+    };
   }
 }
 
@@ -12157,6 +12526,13 @@ class GetLoginProfileResponse {
       loginProfile:
           LoginProfile.fromXml(_s.extractXmlChild(elem, 'LoginProfile')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loginProfile = this.loginProfile;
+    return {
+      'LoginProfile': loginProfile,
+    };
   }
 }
 
@@ -12208,6 +12584,21 @@ class GetOpenIDConnectProviderResponse {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
       url: _s.extractXmlStringValue(elem, 'Url'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientIDList = this.clientIDList;
+    final createDate = this.createDate;
+    final tags = this.tags;
+    final thumbprintList = this.thumbprintList;
+    final url = this.url;
+    return {
+      if (clientIDList != null) 'ClientIDList': clientIDList,
+      if (createDate != null) 'CreateDate': iso8601ToJson(createDate),
+      if (tags != null) 'Tags': tags,
+      if (thumbprintList != null) 'ThumbprintList': thumbprintList,
+      if (url != null) 'Url': url,
+    };
   }
 }
 
@@ -12281,6 +12672,32 @@ class GetOrganizationsAccessReportResponse {
           _s.extractXmlIntValue(elem, 'NumberOfServicesNotAccessed'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobCreationDate = this.jobCreationDate;
+    final jobStatus = this.jobStatus;
+    final accessDetails = this.accessDetails;
+    final errorDetails = this.errorDetails;
+    final isTruncated = this.isTruncated;
+    final jobCompletionDate = this.jobCompletionDate;
+    final marker = this.marker;
+    final numberOfServicesAccessible = this.numberOfServicesAccessible;
+    final numberOfServicesNotAccessed = this.numberOfServicesNotAccessed;
+    return {
+      'JobCreationDate': iso8601ToJson(jobCreationDate),
+      'JobStatus': jobStatus.toValue(),
+      if (accessDetails != null) 'AccessDetails': accessDetails,
+      if (errorDetails != null) 'ErrorDetails': errorDetails,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (jobCompletionDate != null)
+        'JobCompletionDate': iso8601ToJson(jobCompletionDate),
+      if (marker != null) 'Marker': marker,
+      if (numberOfServicesAccessible != null)
+        'NumberOfServicesAccessible': numberOfServicesAccessible,
+      if (numberOfServicesNotAccessed != null)
+        'NumberOfServicesNotAccessed': numberOfServicesNotAccessed,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>GetPolicy</a> request.
@@ -12295,6 +12712,13 @@ class GetPolicyResponse {
     return GetPolicyResponse(
       policy: _s.extractXmlChild(elem, 'Policy')?.let(Policy.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -12311,6 +12735,13 @@ class GetPolicyVersionResponse {
       policyVersion:
           _s.extractXmlChild(elem, 'PolicyVersion')?.let(PolicyVersion.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyVersion = this.policyVersion;
+    return {
+      if (policyVersion != null) 'PolicyVersion': policyVersion,
+    };
   }
 }
 
@@ -12341,6 +12772,17 @@ class GetRolePolicyResponse {
       roleName: _s.extractXmlStringValue(elem, 'RoleName')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyDocument = this.policyDocument;
+    final policyName = this.policyName;
+    final roleName = this.roleName;
+    return {
+      'PolicyDocument': policyDocument,
+      'PolicyName': policyName,
+      'RoleName': roleName,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>GetRole</a> request.
@@ -12355,6 +12797,13 @@ class GetRoleResponse {
     return GetRoleResponse(
       role: Role.fromXml(_s.extractXmlChild(elem, 'Role')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final role = this.role;
+    return {
+      'Role': role,
+    };
   }
 }
 
@@ -12393,6 +12842,20 @@ class GetSAMLProviderResponse {
       validUntil: _s.extractXmlDateTimeValue(elem, 'ValidUntil'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createDate = this.createDate;
+    final sAMLMetadataDocument = this.sAMLMetadataDocument;
+    final tags = this.tags;
+    final validUntil = this.validUntil;
+    return {
+      if (createDate != null) 'CreateDate': iso8601ToJson(createDate),
+      if (sAMLMetadataDocument != null)
+        'SAMLMetadataDocument': sAMLMetadataDocument,
+      if (tags != null) 'Tags': tags,
+      if (validUntil != null) 'ValidUntil': iso8601ToJson(validUntil),
+    };
+  }
 }
 
 /// Contains the response to a successful <a>GetSSHPublicKey</a> request.
@@ -12409,6 +12872,13 @@ class GetSSHPublicKeyResponse {
           _s.extractXmlChild(elem, 'SSHPublicKey')?.let(SSHPublicKey.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sSHPublicKey = this.sSHPublicKey;
+    return {
+      if (sSHPublicKey != null) 'SSHPublicKey': sSHPublicKey,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>GetServerCertificate</a> request.
@@ -12424,6 +12894,13 @@ class GetServerCertificateResponse {
       serverCertificate: ServerCertificate.fromXml(
           _s.extractXmlChild(elem, 'ServerCertificate')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverCertificate = this.serverCertificate;
+    return {
+      'ServerCertificate': serverCertificate,
+    };
   }
 }
 
@@ -12496,6 +12973,27 @@ class GetServiceLastAccessedDetailsResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobCompletionDate = this.jobCompletionDate;
+    final jobCreationDate = this.jobCreationDate;
+    final jobStatus = this.jobStatus;
+    final servicesLastAccessed = this.servicesLastAccessed;
+    final error = this.error;
+    final isTruncated = this.isTruncated;
+    final jobType = this.jobType;
+    final marker = this.marker;
+    return {
+      'JobCompletionDate': iso8601ToJson(jobCompletionDate),
+      'JobCreationDate': iso8601ToJson(jobCreationDate),
+      'JobStatus': jobStatus.toValue(),
+      'ServicesLastAccessed': servicesLastAccessed,
+      if (error != null) 'Error': error,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (jobType != null) 'JobType': jobType.toValue(),
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 class GetServiceLastAccessedDetailsWithEntitiesResponse {
@@ -12560,6 +13058,25 @@ class GetServiceLastAccessedDetailsWithEntitiesResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entityDetailsList = this.entityDetailsList;
+    final jobCompletionDate = this.jobCompletionDate;
+    final jobCreationDate = this.jobCreationDate;
+    final jobStatus = this.jobStatus;
+    final error = this.error;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'EntityDetailsList': entityDetailsList,
+      'JobCompletionDate': iso8601ToJson(jobCompletionDate),
+      'JobCreationDate': iso8601ToJson(jobCreationDate),
+      'JobStatus': jobStatus.toValue(),
+      if (error != null) 'Error': error,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 class GetServiceLinkedRoleDeletionStatusResponse {
@@ -12582,6 +13099,15 @@ class GetServiceLinkedRoleDeletionStatusResponse {
           .extractXmlChild(elem, 'Reason')
           ?.let(DeletionTaskFailureReasonType.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final reason = this.reason;
+    return {
+      'Status': status.toValue(),
+      if (reason != null) 'Reason': reason,
+    };
   }
 }
 
@@ -12611,6 +13137,17 @@ class GetUserPolicyResponse {
       policyName: _s.extractXmlStringValue(elem, 'PolicyName')!,
       userName: _s.extractXmlStringValue(elem, 'UserName')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyDocument = this.policyDocument;
+    final policyName = this.policyName;
+    final userName = this.userName;
+    return {
+      'PolicyDocument': policyDocument,
+      'PolicyName': policyName,
+      'UserName': userName,
+    };
   }
 }
 
@@ -12647,6 +13184,13 @@ class GetUserResponse {
     return GetUserResponse(
       user: User.fromXml(_s.extractXmlChild(elem, 'User')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      'User': user,
+    };
   }
 }
 
@@ -12706,6 +13250,21 @@ class Group {
       path: _s.extractXmlStringValue(elem, 'Path')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createDate = this.createDate;
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    final path = this.path;
+    return {
+      'Arn': arn,
+      'CreateDate': iso8601ToJson(createDate),
+      'GroupId': groupId,
+      'GroupName': groupName,
+      'Path': path,
+    };
+  }
 }
 
 /// Contains information about an IAM group, including all of the group's
@@ -12764,6 +13323,26 @@ class GroupDetail {
               elem.findElements('member').map(PolicyDetail.fromXml).toList()),
       path: _s.extractXmlStringValue(elem, 'Path'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attachedManagedPolicies = this.attachedManagedPolicies;
+    final createDate = this.createDate;
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    final groupPolicyList = this.groupPolicyList;
+    final path = this.path;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (attachedManagedPolicies != null)
+        'AttachedManagedPolicies': attachedManagedPolicies,
+      if (createDate != null) 'CreateDate': iso8601ToJson(createDate),
+      if (groupId != null) 'GroupId': groupId,
+      if (groupName != null) 'GroupName': groupName,
+      if (groupPolicyList != null) 'GroupPolicyList': groupPolicyList,
+      if (path != null) 'Path': path,
+    };
   }
 }
 
@@ -12844,6 +13423,25 @@ class InstanceProfile {
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createDate = this.createDate;
+    final instanceProfileId = this.instanceProfileId;
+    final instanceProfileName = this.instanceProfileName;
+    final path = this.path;
+    final roles = this.roles;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      'CreateDate': iso8601ToJson(createDate),
+      'InstanceProfileId': instanceProfileId,
+      'InstanceProfileName': instanceProfileName,
+      'Path': path,
+      'Roles': roles,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListAccessKeys</a> request.
@@ -12881,6 +13479,17 @@ class ListAccessKeysResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyMetadata = this.accessKeyMetadata;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'AccessKeyMetadata': accessKeyMetadata,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListAccountAliases</a> request.
@@ -12915,6 +13524,17 @@ class ListAccountAliasesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountAliases = this.accountAliases;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'AccountAliases': accountAliases,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -12952,6 +13572,17 @@ class ListAttachedGroupPoliciesResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachedPolicies = this.attachedPolicies;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      if (attachedPolicies != null) 'AttachedPolicies': attachedPolicies,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListAttachedRolePolicies</a>
@@ -12988,6 +13619,17 @@ class ListAttachedRolePoliciesResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachedPolicies = this.attachedPolicies;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      if (attachedPolicies != null) 'AttachedPolicies': attachedPolicies,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListAttachedUserPolicies</a>
@@ -13023,6 +13665,17 @@ class ListAttachedUserPoliciesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachedPolicies = this.attachedPolicies;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      if (attachedPolicies != null) 'AttachedPolicies': attachedPolicies,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -13070,6 +13723,21 @@ class ListEntitiesForPolicyResponse {
           elem.findElements('member').map(PolicyUser.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final policyGroups = this.policyGroups;
+    final policyRoles = this.policyRoles;
+    final policyUsers = this.policyUsers;
+    return {
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+      if (policyGroups != null) 'PolicyGroups': policyGroups,
+      if (policyRoles != null) 'PolicyRoles': policyRoles,
+      if (policyUsers != null) 'PolicyUsers': policyUsers,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListGroupPolicies</a> request.
@@ -13109,6 +13777,17 @@ class ListGroupPoliciesResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyNames = this.policyNames;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'PolicyNames': policyNames,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListGroupsForUser</a> request.
@@ -13146,6 +13825,17 @@ class ListGroupsForUserResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Groups': groups,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListGroups</a> request.
@@ -13182,6 +13872,17 @@ class ListGroupsResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Groups': groups,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -13221,6 +13922,17 @@ class ListInstanceProfileTagsResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListInstanceProfilesForRole</a>
@@ -13259,6 +13971,17 @@ class ListInstanceProfilesForRoleResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceProfiles = this.instanceProfiles;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'InstanceProfiles': instanceProfiles,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListInstanceProfiles</a> request.
@@ -13295,6 +14018,17 @@ class ListInstanceProfilesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceProfiles = this.instanceProfiles;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'InstanceProfiles': instanceProfiles,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -13334,6 +14068,17 @@ class ListMFADeviceTagsResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListMFADevices</a> request.
@@ -13370,6 +14115,17 @@ class ListMFADevicesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mFADevices = this.mFADevices;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'MFADevices': mFADevices,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -13410,6 +14166,17 @@ class ListOpenIDConnectProviderTagsResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListOpenIDConnectProviders</a>
@@ -13431,6 +14198,14 @@ class ListOpenIDConnectProvidersResponse {
               .map(OpenIDConnectProviderListEntry.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final openIDConnectProviderList = this.openIDConnectProviderList;
+    return {
+      if (openIDConnectProviderList != null)
+        'OpenIDConnectProviderList': openIDConnectProviderList,
+    };
   }
 }
 
@@ -13471,6 +14246,15 @@ class ListPoliciesGrantingServiceAccessEntry {
       serviceNamespace: _s.extractXmlStringValue(elem, 'ServiceNamespace'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policies = this.policies;
+    final serviceNamespace = this.serviceNamespace;
+    return {
+      if (policies != null) 'Policies': policies,
+      if (serviceNamespace != null) 'ServiceNamespace': serviceNamespace,
+    };
+  }
 }
 
 class ListPoliciesGrantingServiceAccessResponse {
@@ -13509,6 +14293,17 @@ class ListPoliciesGrantingServiceAccessResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policiesGrantingServiceAccess = this.policiesGrantingServiceAccess;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'PoliciesGrantingServiceAccess': policiesGrantingServiceAccess,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListPolicies</a> request.
@@ -13542,6 +14337,17 @@ class ListPoliciesResponse {
       policies: _s.extractXmlChild(elem, 'Policies')?.let(
           (elem) => elem.findElements('member').map(Policy.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final policies = this.policies;
+    return {
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+      if (policies != null) 'Policies': policies,
+    };
   }
 }
 
@@ -13581,6 +14387,17 @@ class ListPolicyTagsResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListPolicyVersions</a> request.
@@ -13619,6 +14436,17 @@ class ListPolicyVersionsResponse {
           elem.findElements('member').map(PolicyVersion.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final versions = this.versions;
+    return {
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+      if (versions != null) 'Versions': versions,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListRolePolicies</a> request.
@@ -13652,6 +14480,17 @@ class ListRolePoliciesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyNames = this.policyNames;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'PolicyNames': policyNames,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -13691,6 +14530,17 @@ class ListRoleTagsResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListRoles</a> request.
@@ -13727,6 +14577,17 @@ class ListRolesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final roles = this.roles;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Roles': roles,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -13767,6 +14628,17 @@ class ListSAMLProviderTagsResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListSAMLProviders</a> request.
@@ -13786,6 +14658,13 @@ class ListSAMLProvidersResponse {
               .map(SAMLProviderListEntry.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sAMLProviderList = this.sAMLProviderList;
+    return {
+      if (sAMLProviderList != null) 'SAMLProviderList': sAMLProviderList,
+    };
   }
 }
 
@@ -13823,6 +14702,17 @@ class ListSSHPublicKeysResponse {
               .map(SSHPublicKeyMetadata.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final sSHPublicKeys = this.sSHPublicKeys;
+    return {
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+      if (sSHPublicKeys != null) 'SSHPublicKeys': sSHPublicKeys,
+    };
   }
 }
 
@@ -13862,6 +14752,17 @@ class ListServerCertificateTagsResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListServerCertificates</a> request.
@@ -13899,6 +14800,17 @@ class ListServerCertificatesResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serverCertificateMetadataList = this.serverCertificateMetadataList;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'ServerCertificateMetadataList': serverCertificateMetadataList,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 class ListServiceSpecificCredentialsResponse {
@@ -13918,6 +14830,14 @@ class ListServiceSpecificCredentialsResponse {
               .map(ServiceSpecificCredentialMetadata.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceSpecificCredentials = this.serviceSpecificCredentials;
+    return {
+      if (serviceSpecificCredentials != null)
+        'ServiceSpecificCredentials': serviceSpecificCredentials,
+    };
   }
 }
 
@@ -13957,6 +14877,17 @@ class ListSigningCertificatesResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificates = this.certificates;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Certificates': certificates,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListUserPolicies</a> request.
@@ -13990,6 +14921,17 @@ class ListUserPoliciesResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyNames = this.policyNames;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'PolicyNames': policyNames,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -14029,6 +14971,17 @@ class ListUserTagsResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Tags': tags,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>ListUsers</a> request.
@@ -14065,6 +15018,17 @@ class ListUsersResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final users = this.users;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'Users': users,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -14104,6 +15068,17 @@ class ListVirtualMFADevicesResponse {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final virtualMFADevices = this.virtualMFADevices;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      'VirtualMFADevices': virtualMFADevices,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Contains the user name and password create date for a user.
@@ -14135,6 +15110,18 @@ class LoginProfile {
           _s.extractXmlBoolValue(elem, 'PasswordResetRequired'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createDate = this.createDate;
+    final userName = this.userName;
+    final passwordResetRequired = this.passwordResetRequired;
+    return {
+      'CreateDate': iso8601ToJson(createDate),
+      'UserName': userName,
+      if (passwordResetRequired != null)
+        'PasswordResetRequired': passwordResetRequired,
+    };
+  }
 }
 
 /// Contains information about an MFA device.
@@ -14163,6 +15150,17 @@ class MFADevice {
       serialNumber: _s.extractXmlStringValue(elem, 'SerialNumber')!,
       userName: _s.extractXmlStringValue(elem, 'UserName')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enableDate = this.enableDate;
+    final serialNumber = this.serialNumber;
+    final userName = this.userName;
+    return {
+      'EnableDate': iso8601ToJson(enableDate),
+      'SerialNumber': serialNumber,
+      'UserName': userName,
+    };
   }
 }
 
@@ -14271,6 +15269,36 @@ class ManagedPolicyDetail {
       updateDate: _s.extractXmlDateTimeValue(elem, 'UpdateDate'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attachmentCount = this.attachmentCount;
+    final createDate = this.createDate;
+    final defaultVersionId = this.defaultVersionId;
+    final description = this.description;
+    final isAttachable = this.isAttachable;
+    final path = this.path;
+    final permissionsBoundaryUsageCount = this.permissionsBoundaryUsageCount;
+    final policyId = this.policyId;
+    final policyName = this.policyName;
+    final policyVersionList = this.policyVersionList;
+    final updateDate = this.updateDate;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (attachmentCount != null) 'AttachmentCount': attachmentCount,
+      if (createDate != null) 'CreateDate': iso8601ToJson(createDate),
+      if (defaultVersionId != null) 'DefaultVersionId': defaultVersionId,
+      if (description != null) 'Description': description,
+      if (isAttachable != null) 'IsAttachable': isAttachable,
+      if (path != null) 'Path': path,
+      if (permissionsBoundaryUsageCount != null)
+        'PermissionsBoundaryUsageCount': permissionsBoundaryUsageCount,
+      if (policyId != null) 'PolicyId': policyId,
+      if (policyName != null) 'PolicyName': policyName,
+      if (policyVersionList != null) 'PolicyVersionList': policyVersionList,
+      if (updateDate != null) 'UpdateDate': iso8601ToJson(updateDate),
+    };
+  }
 }
 
 /// Contains the Amazon Resource Name (ARN) for an IAM OpenID Connect provider.
@@ -14284,6 +15312,13 @@ class OpenIDConnectProviderListEntry {
     return OpenIDConnectProviderListEntry(
       arn: _s.extractXmlStringValue(elem, 'Arn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -14302,6 +15337,14 @@ class OrganizationsDecisionDetail {
       allowedByOrganizations:
           _s.extractXmlBoolValue(elem, 'AllowedByOrganizations'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowedByOrganizations = this.allowedByOrganizations;
+    return {
+      if (allowedByOrganizations != null)
+        'AllowedByOrganizations': allowedByOrganizations,
+    };
   }
 }
 
@@ -14389,6 +15432,36 @@ class PasswordPolicy {
           _s.extractXmlBoolValue(elem, 'RequireUppercaseCharacters'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowUsersToChangePassword = this.allowUsersToChangePassword;
+    final expirePasswords = this.expirePasswords;
+    final hardExpiry = this.hardExpiry;
+    final maxPasswordAge = this.maxPasswordAge;
+    final minimumPasswordLength = this.minimumPasswordLength;
+    final passwordReusePrevention = this.passwordReusePrevention;
+    final requireLowercaseCharacters = this.requireLowercaseCharacters;
+    final requireNumbers = this.requireNumbers;
+    final requireSymbols = this.requireSymbols;
+    final requireUppercaseCharacters = this.requireUppercaseCharacters;
+    return {
+      if (allowUsersToChangePassword != null)
+        'AllowUsersToChangePassword': allowUsersToChangePassword,
+      if (expirePasswords != null) 'ExpirePasswords': expirePasswords,
+      if (hardExpiry != null) 'HardExpiry': hardExpiry,
+      if (maxPasswordAge != null) 'MaxPasswordAge': maxPasswordAge,
+      if (minimumPasswordLength != null)
+        'MinimumPasswordLength': minimumPasswordLength,
+      if (passwordReusePrevention != null)
+        'PasswordReusePrevention': passwordReusePrevention,
+      if (requireLowercaseCharacters != null)
+        'RequireLowercaseCharacters': requireLowercaseCharacters,
+      if (requireNumbers != null) 'RequireNumbers': requireNumbers,
+      if (requireSymbols != null) 'RequireSymbols': requireSymbols,
+      if (requireUppercaseCharacters != null)
+        'RequireUppercaseCharacters': requireUppercaseCharacters,
+    };
+  }
 }
 
 enum PermissionsBoundaryAttachmentType {
@@ -14438,6 +15511,14 @@ class PermissionsBoundaryDecisionDetail {
       allowedByPermissionsBoundary:
           _s.extractXmlBoolValue(elem, 'AllowedByPermissionsBoundary'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowedByPermissionsBoundary = this.allowedByPermissionsBoundary;
+    return {
+      if (allowedByPermissionsBoundary != null)
+        'AllowedByPermissionsBoundary': allowedByPermissionsBoundary,
+    };
   }
 }
 
@@ -14545,6 +15626,36 @@ class Policy {
       updateDate: _s.extractXmlDateTimeValue(elem, 'UpdateDate'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attachmentCount = this.attachmentCount;
+    final createDate = this.createDate;
+    final defaultVersionId = this.defaultVersionId;
+    final description = this.description;
+    final isAttachable = this.isAttachable;
+    final path = this.path;
+    final permissionsBoundaryUsageCount = this.permissionsBoundaryUsageCount;
+    final policyId = this.policyId;
+    final policyName = this.policyName;
+    final tags = this.tags;
+    final updateDate = this.updateDate;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (attachmentCount != null) 'AttachmentCount': attachmentCount,
+      if (createDate != null) 'CreateDate': iso8601ToJson(createDate),
+      if (defaultVersionId != null) 'DefaultVersionId': defaultVersionId,
+      if (description != null) 'Description': description,
+      if (isAttachable != null) 'IsAttachable': isAttachable,
+      if (path != null) 'Path': path,
+      if (permissionsBoundaryUsageCount != null)
+        'PermissionsBoundaryUsageCount': permissionsBoundaryUsageCount,
+      if (policyId != null) 'PolicyId': policyId,
+      if (policyName != null) 'PolicyName': policyName,
+      if (tags != null) 'Tags': tags,
+      if (updateDate != null) 'UpdateDate': iso8601ToJson(updateDate),
+    };
+  }
 }
 
 /// Contains information about an IAM policy, including the policy document.
@@ -14567,6 +15678,15 @@ class PolicyDetail {
       policyDocument: _s.extractXmlStringValue(elem, 'PolicyDocument'),
       policyName: _s.extractXmlStringValue(elem, 'PolicyName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyDocument = this.policyDocument;
+    final policyName = this.policyName;
+    return {
+      if (policyDocument != null) 'PolicyDocument': policyDocument,
+      if (policyName != null) 'PolicyName': policyName,
+    };
   }
 }
 
@@ -14655,6 +15775,21 @@ class PolicyGrantingServiceAccess {
       policyArn: _s.extractXmlStringValue(elem, 'PolicyArn'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyName = this.policyName;
+    final policyType = this.policyType;
+    final entityName = this.entityName;
+    final entityType = this.entityType;
+    final policyArn = this.policyArn;
+    return {
+      'PolicyName': policyName,
+      'PolicyType': policyType.toValue(),
+      if (entityName != null) 'EntityName': entityName,
+      if (entityType != null) 'EntityType': entityType.toValue(),
+      if (policyArn != null) 'PolicyArn': policyArn,
+    };
+  }
 }
 
 /// Contains information about a group that a managed policy is attached to.
@@ -14685,6 +15820,15 @@ class PolicyGroup {
       groupName: _s.extractXmlStringValue(elem, 'GroupName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    return {
+      if (groupId != null) 'GroupId': groupId,
+      if (groupName != null) 'GroupName': groupName,
+    };
+  }
 }
 
 /// Contains information about a role that a managed policy is attached to.
@@ -14714,6 +15858,15 @@ class PolicyRole {
       roleId: _s.extractXmlStringValue(elem, 'RoleId'),
       roleName: _s.extractXmlStringValue(elem, 'RoleName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final roleId = this.roleId;
+    final roleName = this.roleName;
+    return {
+      if (roleId != null) 'RoleId': roleId,
+      if (roleName != null) 'RoleName': roleName,
+    };
   }
 }
 
@@ -14832,6 +15985,15 @@ class PolicyUser {
       userName: _s.extractXmlStringValue(elem, 'UserName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userId = this.userId;
+    final userName = this.userName;
+    return {
+      if (userId != null) 'UserId': userId,
+      if (userName != null) 'UserName': userName,
+    };
+  }
 }
 
 /// Contains information about a version of a managed policy.
@@ -14888,6 +16050,19 @@ class PolicyVersion {
       versionId: _s.extractXmlStringValue(elem, 'VersionId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createDate = this.createDate;
+    final document = this.document;
+    final isDefaultVersion = this.isDefaultVersion;
+    final versionId = this.versionId;
+    return {
+      if (createDate != null) 'CreateDate': iso8601ToJson(createDate),
+      if (document != null) 'Document': document,
+      if (isDefaultVersion != null) 'IsDefaultVersion': isDefaultVersion,
+      if (versionId != null) 'VersionId': versionId,
+    };
+  }
 }
 
 /// Contains the row and column of a location of a <code>Statement</code>
@@ -14911,6 +16086,15 @@ class Position {
       column: _s.extractXmlIntValue(elem, 'Column'),
       line: _s.extractXmlIntValue(elem, 'Line'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final column = this.column;
+    final line = this.line;
+    return {
+      if (column != null) 'Column': column,
+      if (line != null) 'Line': line,
+    };
   }
 }
 
@@ -14988,6 +16172,14 @@ class ResetServiceSpecificCredentialResponse {
           .extractXmlChild(elem, 'ServiceSpecificCredential')
           ?.let(ServiceSpecificCredential.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceSpecificCredential = this.serviceSpecificCredential;
+    return {
+      if (serviceSpecificCredential != null)
+        'ServiceSpecificCredential': serviceSpecificCredential,
+    };
   }
 }
 
@@ -15067,6 +16259,28 @@ class ResourceSpecificResult {
           .extractXmlChild(elem, 'PermissionsBoundaryDecisionDetail')
           ?.let(PermissionsBoundaryDecisionDetail.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evalResourceDecision = this.evalResourceDecision;
+    final evalResourceName = this.evalResourceName;
+    final evalDecisionDetails = this.evalDecisionDetails;
+    final matchedStatements = this.matchedStatements;
+    final missingContextValues = this.missingContextValues;
+    final permissionsBoundaryDecisionDetail =
+        this.permissionsBoundaryDecisionDetail;
+    return {
+      'EvalResourceDecision': evalResourceDecision.toValue(),
+      'EvalResourceName': evalResourceName,
+      if (evalDecisionDetails != null)
+        'EvalDecisionDetails':
+            evalDecisionDetails.map((k, e) => MapEntry(k, e.toValue())),
+      if (matchedStatements != null) 'MatchedStatements': matchedStatements,
+      if (missingContextValues != null)
+        'MissingContextValues': missingContextValues,
+      if (permissionsBoundaryDecisionDetail != null)
+        'PermissionsBoundaryDecisionDetail': permissionsBoundaryDecisionDetail,
+    };
   }
 }
 
@@ -15164,6 +16378,35 @@ class Role {
       tags: _s.extractXmlChild(elem, 'Tags')?.let(
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createDate = this.createDate;
+    final path = this.path;
+    final roleId = this.roleId;
+    final roleName = this.roleName;
+    final assumeRolePolicyDocument = this.assumeRolePolicyDocument;
+    final description = this.description;
+    final maxSessionDuration = this.maxSessionDuration;
+    final permissionsBoundary = this.permissionsBoundary;
+    final roleLastUsed = this.roleLastUsed;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      'CreateDate': iso8601ToJson(createDate),
+      'Path': path,
+      'RoleId': roleId,
+      'RoleName': roleName,
+      if (assumeRolePolicyDocument != null)
+        'AssumeRolePolicyDocument': assumeRolePolicyDocument,
+      if (description != null) 'Description': description,
+      if (maxSessionDuration != null) 'MaxSessionDuration': maxSessionDuration,
+      if (permissionsBoundary != null)
+        'PermissionsBoundary': permissionsBoundary,
+      if (roleLastUsed != null) 'RoleLastUsed': roleLastUsed,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -15273,6 +16516,39 @@ class RoleDetail {
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assumeRolePolicyDocument = this.assumeRolePolicyDocument;
+    final attachedManagedPolicies = this.attachedManagedPolicies;
+    final createDate = this.createDate;
+    final instanceProfileList = this.instanceProfileList;
+    final path = this.path;
+    final permissionsBoundary = this.permissionsBoundary;
+    final roleId = this.roleId;
+    final roleLastUsed = this.roleLastUsed;
+    final roleName = this.roleName;
+    final rolePolicyList = this.rolePolicyList;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (assumeRolePolicyDocument != null)
+        'AssumeRolePolicyDocument': assumeRolePolicyDocument,
+      if (attachedManagedPolicies != null)
+        'AttachedManagedPolicies': attachedManagedPolicies,
+      if (createDate != null) 'CreateDate': iso8601ToJson(createDate),
+      if (instanceProfileList != null)
+        'InstanceProfileList': instanceProfileList,
+      if (path != null) 'Path': path,
+      if (permissionsBoundary != null)
+        'PermissionsBoundary': permissionsBoundary,
+      if (roleId != null) 'RoleId': roleId,
+      if (roleLastUsed != null) 'RoleLastUsed': roleLastUsed,
+      if (roleName != null) 'RoleName': roleName,
+      if (rolePolicyList != null) 'RolePolicyList': rolePolicyList,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Contains information about the last time that an IAM role was used. This
@@ -15309,6 +16585,15 @@ class RoleLastUsed {
       region: _s.extractXmlStringValue(elem, 'Region'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastUsedDate = this.lastUsedDate;
+    final region = this.region;
+    return {
+      if (lastUsedDate != null) 'LastUsedDate': iso8601ToJson(lastUsedDate),
+      if (region != null) 'Region': region,
+    };
+  }
 }
 
 /// An object that contains details about how a service-linked role is used, if
@@ -15335,6 +16620,15 @@ class RoleUsageType {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final region = this.region;
+    final resources = this.resources;
+    return {
+      if (region != null) 'Region': region,
+      if (resources != null) 'Resources': resources,
+    };
+  }
 }
 
 /// Contains the list of SAML providers for this account.
@@ -15359,6 +16653,17 @@ class SAMLProviderListEntry {
       createDate: _s.extractXmlDateTimeValue(elem, 'CreateDate'),
       validUntil: _s.extractXmlDateTimeValue(elem, 'ValidUntil'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createDate = this.createDate;
+    final validUntil = this.validUntil;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createDate != null) 'CreateDate': iso8601ToJson(createDate),
+      if (validUntil != null) 'ValidUntil': iso8601ToJson(validUntil),
+    };
   }
 }
 
@@ -15406,6 +16711,23 @@ class SSHPublicKey {
       uploadDate: _s.extractXmlDateTimeValue(elem, 'UploadDate'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fingerprint = this.fingerprint;
+    final sSHPublicKeyBody = this.sSHPublicKeyBody;
+    final sSHPublicKeyId = this.sSHPublicKeyId;
+    final status = this.status;
+    final userName = this.userName;
+    final uploadDate = this.uploadDate;
+    return {
+      'Fingerprint': fingerprint,
+      'SSHPublicKeyBody': sSHPublicKeyBody,
+      'SSHPublicKeyId': sSHPublicKeyId,
+      'Status': status.toValue(),
+      'UserName': userName,
+      if (uploadDate != null) 'UploadDate': iso8601ToJson(uploadDate),
+    };
+  }
 }
 
 /// Contains information about an SSH public key, without the key's body or
@@ -15442,6 +16764,19 @@ class SSHPublicKeyMetadata {
       uploadDate: _s.extractXmlDateTimeValue(elem, 'UploadDate')!,
       userName: _s.extractXmlStringValue(elem, 'UserName')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sSHPublicKeyId = this.sSHPublicKeyId;
+    final status = this.status;
+    final uploadDate = this.uploadDate;
+    final userName = this.userName;
+    return {
+      'SSHPublicKeyId': sSHPublicKeyId,
+      'Status': status.toValue(),
+      'UploadDate': iso8601ToJson(uploadDate),
+      'UserName': userName,
+    };
   }
 }
 
@@ -15481,6 +16816,19 @@ class ServerCertificate {
       tags: _s.extractXmlChild(elem, 'Tags')?.let(
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateBody = this.certificateBody;
+    final serverCertificateMetadata = this.serverCertificateMetadata;
+    final certificateChain = this.certificateChain;
+    final tags = this.tags;
+    return {
+      'CertificateBody': certificateBody,
+      'ServerCertificateMetadata': serverCertificateMetadata,
+      if (certificateChain != null) 'CertificateChain': certificateChain,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -15535,6 +16883,23 @@ class ServerCertificateMetadata {
       expiration: _s.extractXmlDateTimeValue(elem, 'Expiration'),
       uploadDate: _s.extractXmlDateTimeValue(elem, 'UploadDate'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final path = this.path;
+    final serverCertificateId = this.serverCertificateId;
+    final serverCertificateName = this.serverCertificateName;
+    final expiration = this.expiration;
+    final uploadDate = this.uploadDate;
+    return {
+      'Arn': arn,
+      'Path': path,
+      'ServerCertificateId': serverCertificateId,
+      'ServerCertificateName': serverCertificateName,
+      if (expiration != null) 'Expiration': iso8601ToJson(expiration),
+      if (uploadDate != null) 'UploadDate': iso8601ToJson(uploadDate),
+    };
   }
 }
 
@@ -15639,6 +17004,30 @@ class ServiceLastAccessed {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceName = this.serviceName;
+    final serviceNamespace = this.serviceNamespace;
+    final lastAuthenticated = this.lastAuthenticated;
+    final lastAuthenticatedEntity = this.lastAuthenticatedEntity;
+    final lastAuthenticatedRegion = this.lastAuthenticatedRegion;
+    final totalAuthenticatedEntities = this.totalAuthenticatedEntities;
+    final trackedActionsLastAccessed = this.trackedActionsLastAccessed;
+    return {
+      'ServiceName': serviceName,
+      'ServiceNamespace': serviceNamespace,
+      if (lastAuthenticated != null)
+        'LastAuthenticated': iso8601ToJson(lastAuthenticated),
+      if (lastAuthenticatedEntity != null)
+        'LastAuthenticatedEntity': lastAuthenticatedEntity,
+      if (lastAuthenticatedRegion != null)
+        'LastAuthenticatedRegion': lastAuthenticatedRegion,
+      if (totalAuthenticatedEntities != null)
+        'TotalAuthenticatedEntities': totalAuthenticatedEntities,
+      if (trackedActionsLastAccessed != null)
+        'TrackedActionsLastAccessed': trackedActionsLastAccessed,
+    };
+  }
 }
 
 /// Contains the details of a service-specific credential.
@@ -15691,6 +17080,25 @@ class ServiceSpecificCredential {
       userName: _s.extractXmlStringValue(elem, 'UserName')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createDate = this.createDate;
+    final serviceName = this.serviceName;
+    final servicePassword = this.servicePassword;
+    final serviceSpecificCredentialId = this.serviceSpecificCredentialId;
+    final serviceUserName = this.serviceUserName;
+    final status = this.status;
+    final userName = this.userName;
+    return {
+      'CreateDate': iso8601ToJson(createDate),
+      'ServiceName': serviceName,
+      'ServicePassword': servicePassword,
+      'ServiceSpecificCredentialId': serviceSpecificCredentialId,
+      'ServiceUserName': serviceUserName,
+      'Status': status.toValue(),
+      'UserName': userName,
+    };
+  }
 }
 
 /// Contains additional details about a service-specific credential.
@@ -15735,6 +17143,23 @@ class ServiceSpecificCredentialMetadata {
       userName: _s.extractXmlStringValue(elem, 'UserName')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createDate = this.createDate;
+    final serviceName = this.serviceName;
+    final serviceSpecificCredentialId = this.serviceSpecificCredentialId;
+    final serviceUserName = this.serviceUserName;
+    final status = this.status;
+    final userName = this.userName;
+    return {
+      'CreateDate': iso8601ToJson(createDate),
+      'ServiceName': serviceName,
+      'ServiceSpecificCredentialId': serviceSpecificCredentialId,
+      'ServiceUserName': serviceUserName,
+      'Status': status.toValue(),
+      'UserName': userName,
+    };
+  }
 }
 
 /// Contains information about an X.509 signing certificate.
@@ -15775,6 +17200,21 @@ class SigningCertificate {
       uploadDate: _s.extractXmlDateTimeValue(elem, 'UploadDate'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateBody = this.certificateBody;
+    final certificateId = this.certificateId;
+    final status = this.status;
+    final userName = this.userName;
+    final uploadDate = this.uploadDate;
+    return {
+      'CertificateBody': certificateBody,
+      'CertificateId': certificateId,
+      'Status': status.toValue(),
+      'UserName': userName,
+      if (uploadDate != null) 'UploadDate': iso8601ToJson(uploadDate),
+    };
+  }
 }
 
 /// Contains the response to a successful <a>SimulatePrincipalPolicy</a> or
@@ -15812,6 +17252,17 @@ class SimulatePolicyResponse {
       isTruncated: _s.extractXmlBoolValue(elem, 'IsTruncated'),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evaluationResults = this.evaluationResults;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    return {
+      if (evaluationResults != null) 'EvaluationResults': evaluationResults,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -15851,6 +17302,20 @@ class Statement {
       startPosition:
           _s.extractXmlChild(elem, 'StartPosition')?.let(Position.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endPosition = this.endPosition;
+    final sourcePolicyId = this.sourcePolicyId;
+    final sourcePolicyType = this.sourcePolicyType;
+    final startPosition = this.startPosition;
+    return {
+      if (endPosition != null) 'EndPosition': endPosition,
+      if (sourcePolicyId != null) 'SourcePolicyId': sourcePolicyId,
+      if (sourcePolicyType != null)
+        'SourcePolicyType': sourcePolicyType.toValue(),
+      if (startPosition != null) 'StartPosition': startPosition,
+    };
   }
 }
 
@@ -15945,6 +17410,20 @@ class TrackedActionLastAccessed {
       lastAccessedTime: _s.extractXmlDateTimeValue(elem, 'LastAccessedTime'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionName = this.actionName;
+    final lastAccessedEntity = this.lastAccessedEntity;
+    final lastAccessedRegion = this.lastAccessedRegion;
+    final lastAccessedTime = this.lastAccessedTime;
+    return {
+      if (actionName != null) 'ActionName': actionName,
+      if (lastAccessedEntity != null) 'LastAccessedEntity': lastAccessedEntity,
+      if (lastAccessedRegion != null) 'LastAccessedRegion': lastAccessedRegion,
+      if (lastAccessedTime != null)
+        'LastAccessedTime': iso8601ToJson(lastAccessedTime),
+    };
+  }
 }
 
 class UpdateRoleDescriptionResponse {
@@ -15959,6 +17438,13 @@ class UpdateRoleDescriptionResponse {
       role: _s.extractXmlChild(elem, 'Role')?.let(Role.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final role = this.role;
+    return {
+      if (role != null) 'Role': role,
+    };
+  }
 }
 
 class UpdateRoleResponse {
@@ -15967,6 +17453,10 @@ class UpdateRoleResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return UpdateRoleResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15983,6 +17473,13 @@ class UpdateSAMLProviderResponse {
       sAMLProviderArn: _s.extractXmlStringValue(elem, 'SAMLProviderArn'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sAMLProviderArn = this.sAMLProviderArn;
+    return {
+      if (sAMLProviderArn != null) 'SAMLProviderArn': sAMLProviderArn,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>UploadSSHPublicKey</a> request.
@@ -15998,6 +17495,13 @@ class UploadSSHPublicKeyResponse {
       sSHPublicKey:
           _s.extractXmlChild(elem, 'SSHPublicKey')?.let(SSHPublicKey.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sSHPublicKey = this.sSHPublicKey;
+    return {
+      if (sSHPublicKey != null) 'SSHPublicKey': sSHPublicKey,
+    };
   }
 }
 
@@ -16028,6 +17532,16 @@ class UploadServerCertificateResponse {
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serverCertificateMetadata = this.serverCertificateMetadata;
+    final tags = this.tags;
+    return {
+      if (serverCertificateMetadata != null)
+        'ServerCertificateMetadata': serverCertificateMetadata,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>UploadSigningCertificate</a>
@@ -16044,6 +17558,13 @@ class UploadSigningCertificateResponse {
       certificate:
           SigningCertificate.fromXml(_s.extractXmlChild(elem, 'Certificate')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    return {
+      'Certificate': certificate,
+    };
   }
 }
 
@@ -16152,6 +17673,29 @@ class User {
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createDate = this.createDate;
+    final path = this.path;
+    final userId = this.userId;
+    final userName = this.userName;
+    final passwordLastUsed = this.passwordLastUsed;
+    final permissionsBoundary = this.permissionsBoundary;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      'CreateDate': iso8601ToJson(createDate),
+      'Path': path,
+      'UserId': userId,
+      'UserName': userName,
+      if (passwordLastUsed != null)
+        'PasswordLastUsed': iso8601ToJson(passwordLastUsed),
+      if (permissionsBoundary != null)
+        'PermissionsBoundary': permissionsBoundary,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Contains information about an IAM user, including all the user's policies
@@ -16237,6 +17781,33 @@ class UserDetail {
           elem.findElements('member').map(PolicyDetail.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attachedManagedPolicies = this.attachedManagedPolicies;
+    final createDate = this.createDate;
+    final groupList = this.groupList;
+    final path = this.path;
+    final permissionsBoundary = this.permissionsBoundary;
+    final tags = this.tags;
+    final userId = this.userId;
+    final userName = this.userName;
+    final userPolicyList = this.userPolicyList;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (attachedManagedPolicies != null)
+        'AttachedManagedPolicies': attachedManagedPolicies,
+      if (createDate != null) 'CreateDate': iso8601ToJson(createDate),
+      if (groupList != null) 'GroupList': groupList,
+      if (path != null) 'Path': path,
+      if (permissionsBoundary != null)
+        'PermissionsBoundary': permissionsBoundary,
+      if (tags != null) 'Tags': tags,
+      if (userId != null) 'UserId': userId,
+      if (userName != null) 'UserName': userName,
+      if (userPolicyList != null) 'UserPolicyList': userPolicyList,
+    };
+  }
 }
 
 /// Contains information about a virtual MFA device.
@@ -16287,6 +17858,24 @@ class VirtualMFADevice {
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
       user: _s.extractXmlChild(elem, 'User')?.let(User.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serialNumber = this.serialNumber;
+    final base32StringSeed = this.base32StringSeed;
+    final enableDate = this.enableDate;
+    final qRCodePNG = this.qRCodePNG;
+    final tags = this.tags;
+    final user = this.user;
+    return {
+      'SerialNumber': serialNumber,
+      if (base32StringSeed != null)
+        'Base32StringSeed': base64Encode(base32StringSeed),
+      if (enableDate != null) 'EnableDate': iso8601ToJson(enableDate),
+      if (qRCodePNG != null) 'QRCodePNG': base64Encode(qRCodePNG),
+      if (tags != null) 'Tags': tags,
+      if (user != null) 'User': user,
+    };
   }
 }
 

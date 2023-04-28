@@ -1434,6 +1434,10 @@ class AddApplicationCloudWatchLoggingOptionResponse {
       Map<String, dynamic> _) {
     return AddApplicationCloudWatchLoggingOptionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AddApplicationInputProcessingConfigurationResponse {
@@ -1441,6 +1445,10 @@ class AddApplicationInputProcessingConfigurationResponse {
   factory AddApplicationInputProcessingConfigurationResponse.fromJson(
       Map<String, dynamic> _) {
     return AddApplicationInputProcessingConfigurationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1450,6 +1458,10 @@ class AddApplicationInputResponse {
   factory AddApplicationInputResponse.fromJson(Map<String, dynamic> _) {
     return AddApplicationInputResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// <p/>
@@ -1457,6 +1469,10 @@ class AddApplicationOutputResponse {
   AddApplicationOutputResponse();
   factory AddApplicationOutputResponse.fromJson(Map<String, dynamic> _) {
     return AddApplicationOutputResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1466,6 +1482,10 @@ class AddApplicationReferenceDataSourceResponse {
   factory AddApplicationReferenceDataSourceResponse.fromJson(
       Map<String, dynamic> _) {
     return AddApplicationReferenceDataSourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1576,6 +1596,43 @@ class ApplicationDetail {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationName = this.applicationName;
+    final applicationStatus = this.applicationStatus;
+    final applicationVersionId = this.applicationVersionId;
+    final applicationCode = this.applicationCode;
+    final applicationDescription = this.applicationDescription;
+    final cloudWatchLoggingOptionDescriptions =
+        this.cloudWatchLoggingOptionDescriptions;
+    final createTimestamp = this.createTimestamp;
+    final inputDescriptions = this.inputDescriptions;
+    final lastUpdateTimestamp = this.lastUpdateTimestamp;
+    final outputDescriptions = this.outputDescriptions;
+    final referenceDataSourceDescriptions =
+        this.referenceDataSourceDescriptions;
+    return {
+      'ApplicationARN': applicationARN,
+      'ApplicationName': applicationName,
+      'ApplicationStatus': applicationStatus.toValue(),
+      'ApplicationVersionId': applicationVersionId,
+      if (applicationCode != null) 'ApplicationCode': applicationCode,
+      if (applicationDescription != null)
+        'ApplicationDescription': applicationDescription,
+      if (cloudWatchLoggingOptionDescriptions != null)
+        'CloudWatchLoggingOptionDescriptions':
+            cloudWatchLoggingOptionDescriptions,
+      if (createTimestamp != null)
+        'CreateTimestamp': unixTimestampToJson(createTimestamp),
+      if (inputDescriptions != null) 'InputDescriptions': inputDescriptions,
+      if (lastUpdateTimestamp != null)
+        'LastUpdateTimestamp': unixTimestampToJson(lastUpdateTimestamp),
+      if (outputDescriptions != null) 'OutputDescriptions': outputDescriptions,
+      if (referenceDataSourceDescriptions != null)
+        'ReferenceDataSourceDescriptions': referenceDataSourceDescriptions,
+    };
+  }
 }
 
 enum ApplicationStatus {
@@ -1658,6 +1715,17 @@ class ApplicationSummary {
           (json['ApplicationStatus'] as String).toApplicationStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationName = this.applicationName;
+    final applicationStatus = this.applicationStatus;
+    return {
+      'ApplicationARN': applicationARN,
+      'ApplicationName': applicationName,
+      'ApplicationStatus': applicationStatus.toValue(),
+    };
+  }
 }
 
 /// Describes updates to apply to an existing Amazon Kinesis Analytics
@@ -1685,6 +1753,7 @@ class ApplicationUpdate {
     this.outputUpdates,
     this.referenceDataSourceUpdates,
   });
+
   Map<String, dynamic> toJson() {
     final applicationCodeUpdate = this.applicationCodeUpdate;
     final cloudWatchLoggingOptionUpdates = this.cloudWatchLoggingOptionUpdates;
@@ -1757,6 +1826,7 @@ class CloudWatchLoggingOption {
     required this.logStreamARN,
     required this.roleARN,
   });
+
   Map<String, dynamic> toJson() {
     final logStreamARN = this.logStreamARN;
     final roleARN = this.roleARN;
@@ -1793,6 +1863,18 @@ class CloudWatchLoggingOptionDescription {
       cloudWatchLoggingOptionId: json['CloudWatchLoggingOptionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logStreamARN = this.logStreamARN;
+    final roleARN = this.roleARN;
+    final cloudWatchLoggingOptionId = this.cloudWatchLoggingOptionId;
+    return {
+      'LogStreamARN': logStreamARN,
+      'RoleARN': roleARN,
+      if (cloudWatchLoggingOptionId != null)
+        'CloudWatchLoggingOptionId': cloudWatchLoggingOptionId,
+    };
+  }
 }
 
 /// Describes CloudWatch logging option updates.
@@ -1813,6 +1895,7 @@ class CloudWatchLoggingOptionUpdate {
     this.logStreamARNUpdate,
     this.roleARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final cloudWatchLoggingOptionId = this.cloudWatchLoggingOptionId;
     final logStreamARNUpdate = this.logStreamARNUpdate;
@@ -1841,6 +1924,13 @@ class CreateApplicationResponse {
           json['ApplicationSummary'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationSummary = this.applicationSummary;
+    return {
+      'ApplicationSummary': applicationSummary,
+    };
+  }
 }
 
 class DeleteApplicationCloudWatchLoggingOptionResponse {
@@ -1848,6 +1938,10 @@ class DeleteApplicationCloudWatchLoggingOptionResponse {
   factory DeleteApplicationCloudWatchLoggingOptionResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteApplicationCloudWatchLoggingOptionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1857,6 +1951,10 @@ class DeleteApplicationInputProcessingConfigurationResponse {
       Map<String, dynamic> _) {
     return DeleteApplicationInputProcessingConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// <p/>
@@ -1864,6 +1962,10 @@ class DeleteApplicationOutputResponse {
   DeleteApplicationOutputResponse();
   factory DeleteApplicationOutputResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApplicationOutputResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1873,6 +1975,10 @@ class DeleteApplicationReferenceDataSourceResponse {
       Map<String, dynamic> _) {
     return DeleteApplicationReferenceDataSourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// <p/>
@@ -1880,6 +1986,10 @@ class DeleteApplicationResponse {
   DeleteApplicationResponse();
   factory DeleteApplicationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1898,6 +2008,13 @@ class DescribeApplicationResponse {
       applicationDetail: ApplicationDetail.fromJson(
           json['ApplicationDetail'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationDetail = this.applicationDetail;
+    return {
+      'ApplicationDetail': applicationDetail,
+    };
   }
 }
 
@@ -1971,6 +2088,20 @@ class DiscoverInputSchemaResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inputSchema = this.inputSchema;
+    final parsedInputRecords = this.parsedInputRecords;
+    final processedInputRecords = this.processedInputRecords;
+    final rawInputRecords = this.rawInputRecords;
+    return {
+      if (inputSchema != null) 'InputSchema': inputSchema,
+      if (parsedInputRecords != null) 'ParsedInputRecords': parsedInputRecords,
+      if (processedInputRecords != null)
+        'ProcessedInputRecords': processedInputRecords,
+      if (rawInputRecords != null) 'RawInputRecords': rawInputRecords,
+    };
+  }
 }
 
 /// When you configure the application input, you specify the streaming source,
@@ -2034,6 +2165,7 @@ class Input {
     this.kinesisFirehoseInput,
     this.kinesisStreamsInput,
   });
+
   Map<String, dynamic> toJson() {
     final inputSchema = this.inputSchema;
     final namePrefix = this.namePrefix;
@@ -2072,6 +2204,7 @@ class InputConfiguration {
     required this.id,
     required this.inputStartingPositionConfiguration,
   });
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final inputStartingPositionConfiguration =
@@ -2177,6 +2310,38 @@ class InputDescription {
       namePrefix: json['NamePrefix'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inAppStreamNames = this.inAppStreamNames;
+    final inputId = this.inputId;
+    final inputParallelism = this.inputParallelism;
+    final inputProcessingConfigurationDescription =
+        this.inputProcessingConfigurationDescription;
+    final inputSchema = this.inputSchema;
+    final inputStartingPositionConfiguration =
+        this.inputStartingPositionConfiguration;
+    final kinesisFirehoseInputDescription =
+        this.kinesisFirehoseInputDescription;
+    final kinesisStreamsInputDescription = this.kinesisStreamsInputDescription;
+    final namePrefix = this.namePrefix;
+    return {
+      if (inAppStreamNames != null) 'InAppStreamNames': inAppStreamNames,
+      if (inputId != null) 'InputId': inputId,
+      if (inputParallelism != null) 'InputParallelism': inputParallelism,
+      if (inputProcessingConfigurationDescription != null)
+        'InputProcessingConfigurationDescription':
+            inputProcessingConfigurationDescription,
+      if (inputSchema != null) 'InputSchema': inputSchema,
+      if (inputStartingPositionConfiguration != null)
+        'InputStartingPositionConfiguration':
+            inputStartingPositionConfiguration,
+      if (kinesisFirehoseInputDescription != null)
+        'KinesisFirehoseInputDescription': kinesisFirehoseInputDescription,
+      if (kinesisStreamsInputDescription != null)
+        'KinesisStreamsInputDescription': kinesisStreamsInputDescription,
+      if (namePrefix != null) 'NamePrefix': namePrefix,
+    };
+  }
 }
 
 /// An object that contains the Amazon Resource Name (ARN) of the <a
@@ -2202,6 +2367,7 @@ class InputLambdaProcessor {
     required this.resourceARN,
     required this.roleARN,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARN = this.resourceARN;
     final roleARN = this.roleARN;
@@ -2234,6 +2400,15 @@ class InputLambdaProcessorDescription {
       roleARN: json['RoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    final roleARN = this.roleARN;
+    return {
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 /// Represents an update to the <a
@@ -2259,6 +2434,7 @@ class InputLambdaProcessorUpdate {
     this.resourceARNUpdate,
     this.roleARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARNUpdate = this.resourceARNUpdate;
     final roleARNUpdate = this.roleARNUpdate;
@@ -2304,6 +2480,7 @@ class InputParallelismUpdate {
   InputParallelismUpdate({
     this.countUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final countUpdate = this.countUpdate;
     return {
@@ -2326,6 +2503,7 @@ class InputProcessingConfiguration {
   InputProcessingConfiguration({
     required this.inputLambdaProcessor,
   });
+
   Map<String, dynamic> toJson() {
     final inputLambdaProcessor = this.inputLambdaProcessor;
     return {
@@ -2356,6 +2534,15 @@ class InputProcessingConfigurationDescription {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inputLambdaProcessorDescription =
+        this.inputLambdaProcessorDescription;
+    return {
+      if (inputLambdaProcessorDescription != null)
+        'InputLambdaProcessorDescription': inputLambdaProcessorDescription,
+    };
+  }
 }
 
 /// Describes updates to an <a
@@ -2368,6 +2555,7 @@ class InputProcessingConfigurationUpdate {
   InputProcessingConfigurationUpdate({
     required this.inputLambdaProcessorUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final inputLambdaProcessorUpdate = this.inputLambdaProcessorUpdate;
     return {
@@ -2395,6 +2583,7 @@ class InputSchemaUpdate {
     this.recordEncodingUpdate,
     this.recordFormatUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final recordColumnUpdates = this.recordColumnUpdates;
     final recordEncodingUpdate = this.recordEncodingUpdate;
@@ -2523,6 +2712,7 @@ class InputUpdate {
     this.kinesisStreamsInputUpdate,
     this.namePrefixUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final inputId = this.inputId;
     final inputParallelismUpdate = this.inputParallelismUpdate;
@@ -2589,6 +2779,7 @@ class KinesisFirehoseInput {
     required this.resourceARN,
     required this.roleARN,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARN = this.resourceARN;
     final roleARN = this.roleARN;
@@ -2619,6 +2810,15 @@ class KinesisFirehoseInputDescription {
       roleARN: json['RoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    final roleARN = this.roleARN;
+    return {
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 /// When updating application input configuration, provides information about an
@@ -2637,6 +2837,7 @@ class KinesisFirehoseInputUpdate {
     this.resourceARNUpdate,
     this.roleARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARNUpdate = this.resourceARNUpdate;
     final roleARNUpdate = this.roleARNUpdate;
@@ -2664,6 +2865,7 @@ class KinesisFirehoseOutput {
     required this.resourceARN,
     required this.roleARN,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARN = this.resourceARN;
     final roleARN = this.roleARN;
@@ -2694,6 +2896,15 @@ class KinesisFirehoseOutputDescription {
       roleARN: json['RoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    final roleARN = this.roleARN;
+    return {
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 /// When updating an output configuration using the <a
@@ -2714,6 +2925,7 @@ class KinesisFirehoseOutputUpdate {
     this.resourceARNUpdate,
     this.roleARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARNUpdate = this.resourceARNUpdate;
     final roleARNUpdate = this.roleARNUpdate;
@@ -2740,6 +2952,7 @@ class KinesisStreamsInput {
     required this.resourceARN,
     required this.roleARN,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARN = this.resourceARN;
     final roleARN = this.roleARN;
@@ -2770,6 +2983,15 @@ class KinesisStreamsInputDescription {
       roleARN: json['RoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    final roleARN = this.roleARN;
+    return {
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 /// When updating application input configuration, provides information about an
@@ -2787,6 +3009,7 @@ class KinesisStreamsInputUpdate {
     this.resourceARNUpdate,
     this.roleARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARNUpdate = this.resourceARNUpdate;
     final roleARNUpdate = this.roleARNUpdate;
@@ -2814,6 +3037,7 @@ class KinesisStreamsOutput {
     required this.resourceARN,
     required this.roleARN,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARN = this.resourceARN;
     final roleARN = this.roleARN;
@@ -2844,6 +3068,15 @@ class KinesisStreamsOutputDescription {
       roleARN: json['RoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    final roleARN = this.roleARN;
+    return {
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 /// When updating an output configuration using the <a
@@ -2864,6 +3097,7 @@ class KinesisStreamsOutputUpdate {
     this.resourceARNUpdate,
     this.roleARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARNUpdate = this.resourceARNUpdate;
     final roleARNUpdate = this.roleARNUpdate;
@@ -2898,6 +3132,7 @@ class LambdaOutput {
     required this.resourceARN,
     required this.roleARN,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARN = this.resourceARN;
     final roleARN = this.roleARN;
@@ -2928,6 +3163,15 @@ class LambdaOutputDescription {
       roleARN: json['RoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    final roleARN = this.roleARN;
+    return {
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 /// When updating an output configuration using the <a
@@ -2954,6 +3198,7 @@ class LambdaOutputUpdate {
     this.resourceARNUpdate,
     this.roleARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARNUpdate = this.resourceARNUpdate;
     final roleARNUpdate = this.roleARNUpdate;
@@ -2985,6 +3230,15 @@ class ListApplicationsResponse {
       hasMoreApplications: json['HasMoreApplications'] as bool,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationSummaries = this.applicationSummaries;
+    final hasMoreApplications = this.hasMoreApplications;
+    return {
+      'ApplicationSummaries': applicationSummaries,
+      'HasMoreApplications': hasMoreApplications,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3001,6 +3255,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3080,6 +3341,7 @@ class Output {
     this.kinesisStreamsOutput,
     this.lambdaOutput,
   });
+
   Map<String, dynamic> toJson() {
     final destinationSchema = this.destinationSchema;
     final name = this.name;
@@ -3158,6 +3420,28 @@ class OutputDescription {
       outputId: json['OutputId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationSchema = this.destinationSchema;
+    final kinesisFirehoseOutputDescription =
+        this.kinesisFirehoseOutputDescription;
+    final kinesisStreamsOutputDescription =
+        this.kinesisStreamsOutputDescription;
+    final lambdaOutputDescription = this.lambdaOutputDescription;
+    final name = this.name;
+    final outputId = this.outputId;
+    return {
+      if (destinationSchema != null) 'DestinationSchema': destinationSchema,
+      if (kinesisFirehoseOutputDescription != null)
+        'KinesisFirehoseOutputDescription': kinesisFirehoseOutputDescription,
+      if (kinesisStreamsOutputDescription != null)
+        'KinesisStreamsOutputDescription': kinesisStreamsOutputDescription,
+      if (lambdaOutputDescription != null)
+        'LambdaOutputDescription': lambdaOutputDescription,
+      if (name != null) 'Name': name,
+      if (outputId != null) 'OutputId': outputId,
+    };
+  }
 }
 
 /// Describes updates to the output configuration identified by the
@@ -3194,6 +3478,7 @@ class OutputUpdate {
     this.lambdaOutputUpdate,
     this.nameUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final outputId = this.outputId;
     final destinationSchemaUpdate = this.destinationSchemaUpdate;
@@ -3349,6 +3634,7 @@ class ReferenceDataSource {
     required this.tableName,
     this.s3ReferenceDataSource,
   });
+
   Map<String, dynamic> toJson() {
     final referenceSchema = this.referenceSchema;
     final tableName = this.tableName;
@@ -3404,6 +3690,20 @@ class ReferenceDataSourceDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final referenceId = this.referenceId;
+    final s3ReferenceDataSourceDescription =
+        this.s3ReferenceDataSourceDescription;
+    final tableName = this.tableName;
+    final referenceSchema = this.referenceSchema;
+    return {
+      'ReferenceId': referenceId,
+      'S3ReferenceDataSourceDescription': s3ReferenceDataSourceDescription,
+      'TableName': tableName,
+      if (referenceSchema != null) 'ReferenceSchema': referenceSchema,
+    };
+  }
 }
 
 /// When you update a reference data source configuration for an application,
@@ -3435,6 +3735,7 @@ class ReferenceDataSourceUpdate {
     this.s3ReferenceDataSourceUpdate,
     this.tableNameUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final referenceId = this.referenceId;
     final referenceSchemaUpdate = this.referenceSchemaUpdate;
@@ -3470,6 +3771,7 @@ class S3Configuration {
     required this.fileKey,
     required this.roleARN,
   });
+
   Map<String, dynamic> toJson() {
     final bucketARN = this.bucketARN;
     final fileKey = this.fileKey;
@@ -3508,6 +3810,7 @@ class S3ReferenceDataSource {
     required this.fileKey,
     required this.referenceRoleARN,
   });
+
   Map<String, dynamic> toJson() {
     final bucketARN = this.bucketARN;
     final fileKey = this.fileKey;
@@ -3545,6 +3848,17 @@ class S3ReferenceDataSourceDescription {
       referenceRoleARN: json['ReferenceRoleARN'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucketARN = this.bucketARN;
+    final fileKey = this.fileKey;
+    final referenceRoleARN = this.referenceRoleARN;
+    return {
+      'BucketARN': bucketARN,
+      'FileKey': fileKey,
+      'ReferenceRoleARN': referenceRoleARN,
+    };
+  }
 }
 
 /// Describes the S3 bucket name, object key name, and IAM role that Amazon
@@ -3566,6 +3880,7 @@ class S3ReferenceDataSourceUpdate {
     this.fileKeyUpdate,
     this.referenceRoleARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final bucketARNUpdate = this.bucketARNUpdate;
     final fileKeyUpdate = this.fileKeyUpdate;
@@ -3627,6 +3942,10 @@ class StartApplicationResponse {
   factory StartApplicationResponse.fromJson(Map<String, dynamic> _) {
     return StartApplicationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// <p/>
@@ -3634,6 +3953,10 @@ class StopApplicationResponse {
   StopApplicationResponse();
   factory StopApplicationResponse.fromJson(Map<String, dynamic> _) {
     return StopApplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3677,6 +4000,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
@@ -3684,12 +4011,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateApplicationResponse {
   UpdateApplicationResponse();
   factory UpdateApplicationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateApplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

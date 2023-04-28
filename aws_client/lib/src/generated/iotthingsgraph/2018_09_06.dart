@@ -1686,6 +1686,10 @@ class AssociateEntityToThingResponse {
   factory AssociateEntityToThingResponse.fromJson(Map<String, dynamic> _) {
     return AssociateEntityToThingResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateFlowTemplateResponse {
@@ -1702,6 +1706,13 @@ class CreateFlowTemplateResponse {
               json['summary'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final summary = this.summary;
+    return {
+      if (summary != null) 'summary': summary,
+    };
   }
 }
 
@@ -1720,6 +1731,13 @@ class CreateSystemInstanceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final summary = this.summary;
+    return {
+      if (summary != null) 'summary': summary,
+    };
+  }
 }
 
 class CreateSystemTemplateResponse {
@@ -1736,6 +1754,13 @@ class CreateSystemTemplateResponse {
               json['summary'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final summary = this.summary;
+    return {
+      if (summary != null) 'summary': summary,
+    };
   }
 }
 
@@ -1797,6 +1822,10 @@ class DeleteFlowTemplateResponse {
   factory DeleteFlowTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFlowTemplateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteNamespaceResponse {
@@ -1816,6 +1845,15 @@ class DeleteNamespaceResponse {
       namespaceName: json['namespaceName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final namespaceArn = this.namespaceArn;
+    final namespaceName = this.namespaceName;
+    return {
+      if (namespaceArn != null) 'namespaceArn': namespaceArn,
+      if (namespaceName != null) 'namespaceName': namespaceName,
+    };
+  }
 }
 
 class DeleteSystemInstanceResponse {
@@ -1823,12 +1861,20 @@ class DeleteSystemInstanceResponse {
   factory DeleteSystemInstanceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSystemInstanceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteSystemTemplateResponse {
   DeleteSystemTemplateResponse();
   factory DeleteSystemTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSystemTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1851,6 +1897,15 @@ class DependencyRevision {
       revisionNumber: json['revisionNumber'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final revisionNumber = this.revisionNumber;
+    return {
+      if (id != null) 'id': id,
+      if (revisionNumber != null) 'revisionNumber': revisionNumber,
+    };
+  }
 }
 
 class DeploySystemInstanceResponse {
@@ -1871,6 +1926,16 @@ class DeploySystemInstanceResponse {
           json['summary'] as Map<String, dynamic>),
       greengrassDeploymentId: json['greengrassDeploymentId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final summary = this.summary;
+    final greengrassDeploymentId = this.greengrassDeploymentId;
+    return {
+      'summary': summary,
+      if (greengrassDeploymentId != null)
+        'greengrassDeploymentId': greengrassDeploymentId,
+    };
   }
 }
 
@@ -1907,12 +1972,20 @@ class DeprecateFlowTemplateResponse {
   factory DeprecateFlowTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeprecateFlowTemplateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeprecateSystemTemplateResponse {
   DeprecateSystemTemplateResponse();
   factory DeprecateSystemTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeprecateSystemTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1949,12 +2022,33 @@ class DescribeNamespaceResponse {
       trackingNamespaceVersion: json['trackingNamespaceVersion'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final namespaceArn = this.namespaceArn;
+    final namespaceName = this.namespaceName;
+    final namespaceVersion = this.namespaceVersion;
+    final trackingNamespaceName = this.trackingNamespaceName;
+    final trackingNamespaceVersion = this.trackingNamespaceVersion;
+    return {
+      if (namespaceArn != null) 'namespaceArn': namespaceArn,
+      if (namespaceName != null) 'namespaceName': namespaceName,
+      if (namespaceVersion != null) 'namespaceVersion': namespaceVersion,
+      if (trackingNamespaceName != null)
+        'trackingNamespaceName': trackingNamespaceName,
+      if (trackingNamespaceVersion != null)
+        'trackingNamespaceVersion': trackingNamespaceVersion,
+    };
+  }
 }
 
 class DissociateEntityFromThingResponse {
   DissociateEntityFromThingResponse();
   factory DissociateEntityFromThingResponse.fromJson(Map<String, dynamic> _) {
     return DissociateEntityFromThingResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1994,6 +2088,21 @@ class EntityDescription {
       type: (json['type'] as String?)?.toEntityType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final definition = this.definition;
+    final id = this.id;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (definition != null) 'definition': definition,
+      if (id != null) 'id': id,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// An object that filters an entity search. Multiple filters function as OR
@@ -2016,6 +2125,7 @@ class EntityFilter {
     this.name,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -2263,6 +2373,19 @@ class FlowExecutionMessage {
       timestamp: timeStampFromJson(json['timestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventType = this.eventType;
+    final messageId = this.messageId;
+    final payload = this.payload;
+    final timestamp = this.timestamp;
+    return {
+      if (eventType != null) 'eventType': eventType.toValue(),
+      if (messageId != null) 'messageId': messageId,
+      if (payload != null) 'payload': payload,
+      if (timestamp != null) 'timestamp': unixTimestampToJson(timestamp),
+    };
+  }
 }
 
 enum FlowExecutionStatus {
@@ -2341,6 +2464,23 @@ class FlowExecutionSummary {
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final flowExecutionId = this.flowExecutionId;
+    final flowTemplateId = this.flowTemplateId;
+    final status = this.status;
+    final systemInstanceId = this.systemInstanceId;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (flowExecutionId != null) 'flowExecutionId': flowExecutionId,
+      if (flowTemplateId != null) 'flowTemplateId': flowTemplateId,
+      if (status != null) 'status': status.toValue(),
+      if (systemInstanceId != null) 'systemInstanceId': systemInstanceId,
+      if (updatedAt != null) 'updatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 /// An object that contains a workflow's definition and summary information.
@@ -2373,6 +2513,18 @@ class FlowTemplateDescription {
       validatedNamespaceVersion: json['validatedNamespaceVersion'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final definition = this.definition;
+    final summary = this.summary;
+    final validatedNamespaceVersion = this.validatedNamespaceVersion;
+    return {
+      if (definition != null) 'definition': definition,
+      if (summary != null) 'summary': summary,
+      if (validatedNamespaceVersion != null)
+        'validatedNamespaceVersion': validatedNamespaceVersion,
+    };
+  }
 }
 
 /// An object that filters a workflow search.
@@ -2388,6 +2540,7 @@ class FlowTemplateFilter {
     required this.name,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -2449,6 +2602,19 @@ class FlowTemplateSummary {
       revisionNumber: json['revisionNumber'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final id = this.id;
+    final revisionNumber = this.revisionNumber;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (id != null) 'id': id,
+      if (revisionNumber != null) 'revisionNumber': revisionNumber,
+    };
+  }
 }
 
 class GetEntitiesResponse {
@@ -2466,6 +2632,13 @@ class GetEntitiesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final descriptions = this.descriptions;
+    return {
+      if (descriptions != null) 'descriptions': descriptions,
+    };
+  }
 }
 
 class GetFlowTemplateResponse {
@@ -2482,6 +2655,13 @@ class GetFlowTemplateResponse {
               json['description'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    return {
+      if (description != null) 'description': description,
+    };
   }
 }
 
@@ -2505,6 +2685,15 @@ class GetFlowTemplateRevisionsResponse {
           .map((e) => FlowTemplateSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final summaries = this.summaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (summaries != null) 'summaries': summaries,
+    };
   }
 }
 
@@ -2542,6 +2731,21 @@ class GetNamespaceDeletionStatusResponse {
       status: (json['status'] as String?)?.toNamespaceDeletionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final namespaceArn = this.namespaceArn;
+    final namespaceName = this.namespaceName;
+    final status = this.status;
+    return {
+      if (errorCode != null) 'errorCode': errorCode.toValue(),
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (namespaceArn != null) 'namespaceArn': namespaceArn,
+      if (namespaceName != null) 'namespaceName': namespaceName,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class GetSystemInstanceResponse {
@@ -2559,6 +2763,13 @@ class GetSystemInstanceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    return {
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 class GetSystemTemplateResponse {
@@ -2575,6 +2786,13 @@ class GetSystemTemplateResponse {
               json['description'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    return {
+      if (description != null) 'description': description,
+    };
   }
 }
 
@@ -2600,6 +2818,15 @@ class GetSystemTemplateRevisionsResponse {
           .map((e) => SystemTemplateSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final summaries = this.summaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (summaries != null) 'summaries': summaries,
+    };
   }
 }
 
@@ -2650,6 +2877,25 @@ class GetUploadStatusResponse {
       namespaceVersion: json['namespaceVersion'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final uploadId = this.uploadId;
+    final uploadStatus = this.uploadStatus;
+    final failureReason = this.failureReason;
+    final namespaceArn = this.namespaceArn;
+    final namespaceName = this.namespaceName;
+    final namespaceVersion = this.namespaceVersion;
+    return {
+      'createdDate': unixTimestampToJson(createdDate),
+      'uploadId': uploadId,
+      'uploadStatus': uploadStatus.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (namespaceArn != null) 'namespaceArn': namespaceArn,
+      if (namespaceName != null) 'namespaceName': namespaceName,
+      if (namespaceVersion != null) 'namespaceVersion': namespaceVersion,
+    };
+  }
 }
 
 class ListFlowExecutionMessagesResponse {
@@ -2675,6 +2921,15 @@ class ListFlowExecutionMessagesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final messages = this.messages;
+    final nextToken = this.nextToken;
+    return {
+      if (messages != null) 'messages': messages,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2696,6 +2951,15 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2808,6 +3072,15 @@ class SearchEntitiesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final descriptions = this.descriptions;
+    final nextToken = this.nextToken;
+    return {
+      if (descriptions != null) 'descriptions': descriptions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class SearchFlowExecutionsResponse {
@@ -2831,6 +3104,15 @@ class SearchFlowExecutionsResponse {
           .map((e) => FlowExecutionSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final summaries = this.summaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (summaries != null) 'summaries': summaries,
+    };
   }
 }
 
@@ -2856,6 +3138,15 @@ class SearchFlowTemplatesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final summaries = this.summaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (summaries != null) 'summaries': summaries,
+    };
+  }
 }
 
 class SearchSystemInstancesResponse {
@@ -2879,6 +3170,15 @@ class SearchSystemInstancesResponse {
           .map((e) => SystemInstanceSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final summaries = this.summaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (summaries != null) 'summaries': summaries,
+    };
   }
 }
 
@@ -2904,6 +3204,15 @@ class SearchSystemTemplatesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final summaries = this.summaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (summaries != null) 'summaries': summaries,
+    };
+  }
 }
 
 class SearchThingsResponse {
@@ -2926,6 +3235,15 @@ class SearchThingsResponse {
           .map((e) => Thing.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final things = this.things;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (things != null) 'things': things,
+    };
   }
 }
 
@@ -3049,6 +3367,28 @@ class SystemInstanceDescription {
       validatedNamespaceVersion: json['validatedNamespaceVersion'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final definition = this.definition;
+    final flowActionsRoleArn = this.flowActionsRoleArn;
+    final metricsConfiguration = this.metricsConfiguration;
+    final s3BucketName = this.s3BucketName;
+    final summary = this.summary;
+    final validatedDependencyRevisions = this.validatedDependencyRevisions;
+    final validatedNamespaceVersion = this.validatedNamespaceVersion;
+    return {
+      if (definition != null) 'definition': definition,
+      if (flowActionsRoleArn != null) 'flowActionsRoleArn': flowActionsRoleArn,
+      if (metricsConfiguration != null)
+        'metricsConfiguration': metricsConfiguration,
+      if (s3BucketName != null) 's3BucketName': s3BucketName,
+      if (summary != null) 'summary': summary,
+      if (validatedDependencyRevisions != null)
+        'validatedDependencyRevisions': validatedDependencyRevisions,
+      if (validatedNamespaceVersion != null)
+        'validatedNamespaceVersion': validatedNamespaceVersion,
+    };
+  }
 }
 
 /// An object that filters a system instance search. Multiple filters function
@@ -3067,6 +3407,7 @@ class SystemInstanceFilter {
     this.name,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -3163,6 +3504,31 @@ class SystemInstanceSummary {
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final greengrassGroupId = this.greengrassGroupId;
+    final greengrassGroupName = this.greengrassGroupName;
+    final greengrassGroupVersionId = this.greengrassGroupVersionId;
+    final id = this.id;
+    final status = this.status;
+    final target = this.target;
+    final updatedAt = this.updatedAt;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (greengrassGroupId != null) 'greengrassGroupId': greengrassGroupId,
+      if (greengrassGroupName != null)
+        'greengrassGroupName': greengrassGroupName,
+      if (greengrassGroupVersionId != null)
+        'greengrassGroupVersionId': greengrassGroupVersionId,
+      if (id != null) 'id': id,
+      if (status != null) 'status': status.toValue(),
+      if (target != null) 'target': target.toValue(),
+      if (updatedAt != null) 'updatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 /// An object that contains a system's definition document and summary
@@ -3196,6 +3562,18 @@ class SystemTemplateDescription {
       validatedNamespaceVersion: json['validatedNamespaceVersion'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final definition = this.definition;
+    final summary = this.summary;
+    final validatedNamespaceVersion = this.validatedNamespaceVersion;
+    return {
+      if (definition != null) 'definition': definition,
+      if (summary != null) 'summary': summary,
+      if (validatedNamespaceVersion != null)
+        'validatedNamespaceVersion': validatedNamespaceVersion,
+    };
+  }
 }
 
 /// An object that filters a system search.
@@ -3211,6 +3589,7 @@ class SystemTemplateFilter {
     required this.name,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -3272,6 +3651,19 @@ class SystemTemplateSummary {
       revisionNumber: json['revisionNumber'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final id = this.id;
+    final revisionNumber = this.revisionNumber;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (id != null) 'id': id,
+      if (revisionNumber != null) 'revisionNumber': revisionNumber,
+    };
+  }
 }
 
 /// Metadata assigned to an AWS IoT Things Graph resource consisting of a
@@ -3311,6 +3703,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An AWS IoT thing.
@@ -3331,6 +3727,15 @@ class Thing {
       thingName: json['thingName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final thingArn = this.thingArn;
+    final thingName = this.thingName;
+    return {
+      if (thingArn != null) 'thingArn': thingArn,
+      if (thingName != null) 'thingName': thingName,
+    };
+  }
 }
 
 class UndeploySystemInstanceResponse {
@@ -3349,12 +3754,23 @@ class UndeploySystemInstanceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final summary = this.summary;
+    return {
+      if (summary != null) 'summary': summary,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3373,6 +3789,13 @@ class UpdateFlowTemplateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final summary = this.summary;
+    return {
+      if (summary != null) 'summary': summary,
+    };
+  }
 }
 
 class UpdateSystemTemplateResponse {
@@ -3390,6 +3813,13 @@ class UpdateSystemTemplateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final summary = this.summary;
+    return {
+      if (summary != null) 'summary': summary,
+    };
+  }
 }
 
 class UploadEntityDefinitionsResponse {
@@ -3404,6 +3834,13 @@ class UploadEntityDefinitionsResponse {
     return UploadEntityDefinitionsResponse(
       uploadId: json['uploadId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final uploadId = this.uploadId;
+    return {
+      'uploadId': uploadId,
+    };
   }
 }
 

@@ -1366,6 +1366,7 @@ class AssociateClientDeviceWithCoreDeviceEntry {
   AssociateClientDeviceWithCoreDeviceEntry({
     required this.thingName,
   });
+
   Map<String, dynamic> toJson() {
     final thingName = this.thingName;
     return {
@@ -1401,6 +1402,17 @@ class AssociateClientDeviceWithCoreDeviceErrorEntry {
       thingName: json['thingName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    final thingName = this.thingName;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+      if (thingName != null) 'thingName': thingName,
+    };
+  }
 }
 
 class AssociateServiceRoleToAccountResponse {
@@ -1416,6 +1428,13 @@ class AssociateServiceRoleToAccountResponse {
     return AssociateServiceRoleToAccountResponse(
       associatedAt: json['AssociatedAt'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associatedAt = this.associatedAt;
+    return {
+      if (associatedAt != null) 'AssociatedAt': associatedAt,
+    };
   }
 }
 
@@ -1439,6 +1458,16 @@ class AssociatedClientDevice {
       thingName: json['thingName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associationTimestamp = this.associationTimestamp;
+    final thingName = this.thingName;
+    return {
+      if (associationTimestamp != null)
+        'associationTimestamp': unixTimestampToJson(associationTimestamp),
+      if (thingName != null) 'thingName': thingName,
+    };
+  }
 }
 
 class BatchAssociateClientDeviceWithCoreDeviceResponse {
@@ -1458,6 +1487,13 @@ class BatchAssociateClientDeviceWithCoreDeviceResponse {
               e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorEntries = this.errorEntries;
+    return {
+      if (errorEntries != null) 'errorEntries': errorEntries,
+    };
   }
 }
 
@@ -1479,6 +1515,13 @@ class BatchDisassociateClientDeviceFromCoreDeviceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorEntries = this.errorEntries;
+    return {
+      if (errorEntries != null) 'errorEntries': errorEntries,
+    };
+  }
 }
 
 class CancelDeploymentResponse {
@@ -1492,6 +1535,13 @@ class CancelDeploymentResponse {
     return CancelDeploymentResponse(
       message: json['message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -1598,6 +1648,22 @@ class CloudComponentStatus {
       vendorGuidanceMessage: json['vendorGuidanceMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final componentState = this.componentState;
+    final errors = this.errors;
+    final message = this.message;
+    final vendorGuidance = this.vendorGuidance;
+    final vendorGuidanceMessage = this.vendorGuidanceMessage;
+    return {
+      if (componentState != null) 'componentState': componentState.toValue(),
+      if (errors != null) 'errors': errors,
+      if (message != null) 'message': message,
+      if (vendorGuidance != null) 'vendorGuidance': vendorGuidance.toValue(),
+      if (vendorGuidanceMessage != null)
+        'vendorGuidanceMessage': vendorGuidanceMessage,
+    };
+  }
 }
 
 /// Contains information about a component.
@@ -1628,6 +1694,17 @@ class Component {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final componentName = this.componentName;
+    final latestVersion = this.latestVersion;
+    return {
+      if (arn != null) 'arn': arn,
+      if (componentName != null) 'componentName': componentName,
+      if (latestVersion != null) 'latestVersion': latestVersion,
+    };
+  }
 }
 
 /// Contains information about a component that is a candidate to deploy to a
@@ -1651,6 +1728,7 @@ class ComponentCandidate {
     this.componentVersion,
     this.versionRequirements,
   });
+
   Map<String, dynamic> toJson() {
     final componentName = this.componentName;
     final componentVersion = this.componentVersion;
@@ -1742,6 +1820,7 @@ class ComponentDependencyRequirement {
     this.dependencyType,
     this.versionRequirement,
   });
+
   Map<String, dynamic> toJson() {
     final dependencyType = this.dependencyType;
     final versionRequirement = this.versionRequirement;
@@ -1878,6 +1957,24 @@ class ComponentLatestVersion {
           .toList(),
       publisher: json['publisher'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final componentVersion = this.componentVersion;
+    final creationTimestamp = this.creationTimestamp;
+    final description = this.description;
+    final platforms = this.platforms;
+    final publisher = this.publisher;
+    return {
+      if (arn != null) 'arn': arn,
+      if (componentVersion != null) 'componentVersion': componentVersion,
+      if (creationTimestamp != null)
+        'creationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (description != null) 'description': description,
+      if (platforms != null) 'platforms': platforms,
+      if (publisher != null) 'publisher': publisher,
+    };
   }
 }
 
@@ -2017,6 +2114,17 @@ class ComponentVersionListItem {
       componentVersion: json['componentVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final componentName = this.componentName;
+    final componentVersion = this.componentVersion;
+    return {
+      if (arn != null) 'arn': arn,
+      if (componentName != null) 'componentName': componentName,
+      if (componentVersion != null) 'componentVersion': componentVersion,
+    };
+  }
 }
 
 enum ComponentVisibilityScope {
@@ -2132,6 +2240,20 @@ class CoreDevice {
       status: (json['status'] as String?)?.toCoreDeviceStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreDeviceThingName = this.coreDeviceThingName;
+    final lastStatusUpdateTimestamp = this.lastStatusUpdateTimestamp;
+    final status = this.status;
+    return {
+      if (coreDeviceThingName != null)
+        'coreDeviceThingName': coreDeviceThingName,
+      if (lastStatusUpdateTimestamp != null)
+        'lastStatusUpdateTimestamp':
+            unixTimestampToJson(lastStatusUpdateTimestamp),
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 enum CoreDeviceStatus {
@@ -2199,6 +2321,21 @@ class CreateComponentVersionResponse {
       arn: json['arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final componentName = this.componentName;
+    final componentVersion = this.componentVersion;
+    final creationTimestamp = this.creationTimestamp;
+    final status = this.status;
+    final arn = this.arn;
+    return {
+      'componentName': componentName,
+      'componentVersion': componentVersion,
+      'creationTimestamp': unixTimestampToJson(creationTimestamp),
+      'status': status,
+      if (arn != null) 'arn': arn,
+    };
+  }
 }
 
 class CreateDeploymentResponse {
@@ -2224,6 +2361,17 @@ class CreateDeploymentResponse {
       iotJobArn: json['iotJobArn'] as String?,
       iotJobId: json['iotJobId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentId = this.deploymentId;
+    final iotJobArn = this.iotJobArn;
+    final iotJobId = this.iotJobId;
+    return {
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (iotJobArn != null) 'iotJobArn': iotJobArn,
+      if (iotJobId != null) 'iotJobId': iotJobId,
+    };
   }
 }
 
@@ -2272,6 +2420,27 @@ class Deployment {
       revisionId: json['revisionId'] as String?,
       targetArn: json['targetArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final deploymentId = this.deploymentId;
+    final deploymentName = this.deploymentName;
+    final deploymentStatus = this.deploymentStatus;
+    final isLatestForTarget = this.isLatestForTarget;
+    final revisionId = this.revisionId;
+    final targetArn = this.targetArn;
+    return {
+      if (creationTimestamp != null)
+        'creationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (deploymentName != null) 'deploymentName': deploymentName,
+      if (deploymentStatus != null)
+        'deploymentStatus': deploymentStatus.toValue(),
+      if (isLatestForTarget != null) 'isLatestForTarget': isLatestForTarget,
+      if (revisionId != null) 'revisionId': revisionId,
+      if (targetArn != null) 'targetArn': targetArn,
+    };
   }
 }
 
@@ -2672,6 +2841,30 @@ class DescribeComponentResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final componentName = this.componentName;
+    final componentVersion = this.componentVersion;
+    final creationTimestamp = this.creationTimestamp;
+    final description = this.description;
+    final platforms = this.platforms;
+    final publisher = this.publisher;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (componentName != null) 'componentName': componentName,
+      if (componentVersion != null) 'componentVersion': componentVersion,
+      if (creationTimestamp != null)
+        'creationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (description != null) 'description': description,
+      if (platforms != null) 'platforms': platforms,
+      if (publisher != null) 'publisher': publisher,
+      if (status != null) 'status': status,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Contains a request to disassociate a client device from a core device. The
@@ -2685,6 +2878,7 @@ class DisassociateClientDeviceFromCoreDeviceEntry {
   DisassociateClientDeviceFromCoreDeviceEntry({
     required this.thingName,
   });
+
   Map<String, dynamic> toJson() {
     final thingName = this.thingName;
     return {
@@ -2720,6 +2914,17 @@ class DisassociateClientDeviceFromCoreDeviceErrorEntry {
       thingName: json['thingName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    final thingName = this.thingName;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+      if (thingName != null) 'thingName': thingName,
+    };
+  }
 }
 
 class DisassociateServiceRoleFromAccountResponse {
@@ -2735,6 +2940,13 @@ class DisassociateServiceRoleFromAccountResponse {
     return DisassociateServiceRoleFromAccountResponse(
       disassociatedAt: json['DisassociatedAt'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final disassociatedAt = this.disassociatedAt;
+    return {
+      if (disassociatedAt != null) 'DisassociatedAt': disassociatedAt,
+    };
   }
 }
 
@@ -2804,6 +3016,31 @@ class EffectiveDeployment {
       iotJobId: json['iotJobId'] as String?,
       reason: json['reason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final coreDeviceExecutionStatus = this.coreDeviceExecutionStatus;
+    final creationTimestamp = this.creationTimestamp;
+    final deploymentId = this.deploymentId;
+    final deploymentName = this.deploymentName;
+    final modifiedTimestamp = this.modifiedTimestamp;
+    final targetArn = this.targetArn;
+    final description = this.description;
+    final iotJobArn = this.iotJobArn;
+    final iotJobId = this.iotJobId;
+    final reason = this.reason;
+    return {
+      'coreDeviceExecutionStatus': coreDeviceExecutionStatus.toValue(),
+      'creationTimestamp': unixTimestampToJson(creationTimestamp),
+      'deploymentId': deploymentId,
+      'deploymentName': deploymentName,
+      'modifiedTimestamp': unixTimestampToJson(modifiedTimestamp),
+      'targetArn': targetArn,
+      if (description != null) 'description': description,
+      if (iotJobArn != null) 'iotJobArn': iotJobArn,
+      if (iotJobId != null) 'iotJobId': iotJobId,
+      if (reason != null) 'reason': reason,
+    };
   }
 }
 
@@ -2889,6 +3126,17 @@ class GetComponentResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recipe = this.recipe;
+    final recipeOutputFormat = this.recipeOutputFormat;
+    final tags = this.tags;
+    return {
+      'recipe': base64Encode(recipe),
+      'recipeOutputFormat': recipeOutputFormat.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetComponentVersionArtifactResponse {
@@ -2903,6 +3151,13 @@ class GetComponentVersionArtifactResponse {
     return GetComponentVersionArtifactResponse(
       preSignedUrl: json['preSignedUrl'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final preSignedUrl = this.preSignedUrl;
+    return {
+      'preSignedUrl': preSignedUrl,
+    };
   }
 }
 
@@ -2925,6 +3180,15 @@ class GetConnectivityInfoResponse {
           .toList(),
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectivityInfo = this.connectivityInfo;
+    final message = this.message;
+    return {
+      if (connectivityInfo != null) 'ConnectivityInfo': connectivityInfo,
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -2990,6 +3254,28 @@ class GetCoreDeviceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final architecture = this.architecture;
+    final coreDeviceThingName = this.coreDeviceThingName;
+    final coreVersion = this.coreVersion;
+    final lastStatusUpdateTimestamp = this.lastStatusUpdateTimestamp;
+    final platform = this.platform;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (architecture != null) 'architecture': architecture,
+      if (coreDeviceThingName != null)
+        'coreDeviceThingName': coreDeviceThingName,
+      if (coreVersion != null) 'coreVersion': coreVersion,
+      if (lastStatusUpdateTimestamp != null)
+        'lastStatusUpdateTimestamp':
+            unixTimestampToJson(lastStatusUpdateTimestamp),
+      if (platform != null) 'platform': platform,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3089,6 +3375,40 @@ class GetDeploymentResponse {
       targetArn: json['targetArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final components = this.components;
+    final creationTimestamp = this.creationTimestamp;
+    final deploymentId = this.deploymentId;
+    final deploymentName = this.deploymentName;
+    final deploymentPolicies = this.deploymentPolicies;
+    final deploymentStatus = this.deploymentStatus;
+    final iotJobArn = this.iotJobArn;
+    final iotJobConfiguration = this.iotJobConfiguration;
+    final iotJobId = this.iotJobId;
+    final isLatestForTarget = this.isLatestForTarget;
+    final revisionId = this.revisionId;
+    final tags = this.tags;
+    final targetArn = this.targetArn;
+    return {
+      if (components != null) 'components': components,
+      if (creationTimestamp != null)
+        'creationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (deploymentName != null) 'deploymentName': deploymentName,
+      if (deploymentPolicies != null) 'deploymentPolicies': deploymentPolicies,
+      if (deploymentStatus != null)
+        'deploymentStatus': deploymentStatus.toValue(),
+      if (iotJobArn != null) 'iotJobArn': iotJobArn,
+      if (iotJobConfiguration != null)
+        'iotJobConfiguration': iotJobConfiguration,
+      if (iotJobId != null) 'iotJobId': iotJobId,
+      if (isLatestForTarget != null) 'isLatestForTarget': isLatestForTarget,
+      if (revisionId != null) 'revisionId': revisionId,
+      if (tags != null) 'tags': tags,
+      if (targetArn != null) 'targetArn': targetArn,
+    };
+  }
 }
 
 class GetServiceRoleForAccountResponse {
@@ -3109,6 +3429,15 @@ class GetServiceRoleForAccountResponse {
       associatedAt: json['AssociatedAt'] as String?,
       roleArn: json['RoleArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associatedAt = this.associatedAt;
+    final roleArn = this.roleArn;
+    return {
+      if (associatedAt != null) 'AssociatedAt': associatedAt,
+      if (roleArn != null) 'RoleArn': roleArn,
+    };
   }
 }
 
@@ -3145,6 +3474,22 @@ class InstalledComponent {
           ?.toInstalledComponentLifecycleState(),
       lifecycleStateDetails: json['lifecycleStateDetails'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final componentName = this.componentName;
+    final componentVersion = this.componentVersion;
+    final isRoot = this.isRoot;
+    final lifecycleState = this.lifecycleState;
+    final lifecycleStateDetails = this.lifecycleStateDetails;
+    return {
+      if (componentName != null) 'componentName': componentName,
+      if (componentVersion != null) 'componentVersion': componentVersion,
+      if (isRoot != null) 'isRoot': isRoot,
+      if (lifecycleState != null) 'lifecycleState': lifecycleState.toValue(),
+      if (lifecycleStateDetails != null)
+        'lifecycleStateDetails': lifecycleStateDetails,
+    };
   }
 }
 
@@ -3525,6 +3870,7 @@ class LambdaContainerParams {
     this.mountROSysfs,
     this.volumes,
   });
+
   Map<String, dynamic> toJson() {
     final devices = this.devices;
     final memorySizeInKB = this.memorySizeInKB;
@@ -3561,6 +3907,7 @@ class LambdaDeviceMount {
     this.addGroupOwner,
     this.permission,
   });
+
   Map<String, dynamic> toJson() {
     final path = this.path;
     final addGroupOwner = this.addGroupOwner;
@@ -3600,6 +3947,7 @@ class LambdaEventSource {
     required this.topic,
     required this.type,
   });
+
   Map<String, dynamic> toJson() {
     final topic = this.topic;
     final type = this.type;
@@ -3712,6 +4060,7 @@ class LambdaExecutionParameters {
     this.statusTimeoutInSeconds,
     this.timeoutInSeconds,
   });
+
   Map<String, dynamic> toJson() {
     final environmentVariables = this.environmentVariables;
     final eventSources = this.eventSources;
@@ -3812,6 +4161,7 @@ class LambdaFunctionRecipeSource {
     this.componentPlatforms,
     this.componentVersion,
   });
+
   Map<String, dynamic> toJson() {
     final lambdaArn = this.lambdaArn;
     final componentDependencies = this.componentDependencies;
@@ -3906,6 +4256,7 @@ class LambdaLinuxProcessParams {
     this.containerParams,
     this.isolationMode,
   });
+
   Map<String, dynamic> toJson() {
     final containerParams = this.containerParams;
     final isolationMode = this.isolationMode;
@@ -3944,6 +4295,7 @@ class LambdaVolumeMount {
     this.addGroupOwner,
     this.permission,
   });
+
   Map<String, dynamic> toJson() {
     final destinationPath = this.destinationPath;
     final sourcePath = this.sourcePath;
@@ -3982,6 +4334,16 @@ class ListClientDevicesAssociatedWithCoreDeviceResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associatedClientDevices = this.associatedClientDevices;
+    final nextToken = this.nextToken;
+    return {
+      if (associatedClientDevices != null)
+        'associatedClientDevices': associatedClientDevices,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListComponentVersionsResponse {
@@ -4006,6 +4368,15 @@ class ListComponentVersionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final componentVersions = this.componentVersions;
+    final nextToken = this.nextToken;
+    return {
+      if (componentVersions != null) 'componentVersions': componentVersions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListComponentsResponse {
@@ -4028,6 +4399,15 @@ class ListComponentsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final components = this.components;
+    final nextToken = this.nextToken;
+    return {
+      if (components != null) 'components': components,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4052,6 +4432,15 @@ class ListCoreDevicesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreDevices = this.coreDevices;
+    final nextToken = this.nextToken;
+    return {
+      if (coreDevices != null) 'coreDevices': coreDevices,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDeploymentsResponse {
@@ -4074,6 +4463,15 @@ class ListDeploymentsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deployments = this.deployments;
+    final nextToken = this.nextToken;
+    return {
+      if (deployments != null) 'deployments': deployments,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4098,6 +4496,16 @@ class ListEffectiveDeploymentsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final effectiveDeployments = this.effectiveDeployments;
+    final nextToken = this.nextToken;
+    return {
+      if (effectiveDeployments != null)
+        'effectiveDeployments': effectiveDeployments,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListInstalledComponentsResponse {
@@ -4121,6 +4529,16 @@ class ListInstalledComponentsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final installedComponents = this.installedComponents;
+    final nextToken = this.nextToken;
+    return {
+      if (installedComponents != null)
+        'installedComponents': installedComponents,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -4138,6 +4556,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4187,6 +4612,14 @@ class ResolveComponentCandidatesResponse {
               ResolvedComponentVersion.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolvedComponentVersions = this.resolvedComponentVersions;
+    return {
+      if (resolvedComponentVersions != null)
+        'resolvedComponentVersions': resolvedComponentVersions,
+    };
   }
 }
 
@@ -4252,6 +4685,23 @@ class ResolvedComponentVersion {
       vendorGuidance: (json['vendorGuidance'] as String?)?.toVendorGuidance(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final componentName = this.componentName;
+    final componentVersion = this.componentVersion;
+    final message = this.message;
+    final recipe = this.recipe;
+    final vendorGuidance = this.vendorGuidance;
+    return {
+      if (arn != null) 'arn': arn,
+      if (componentName != null) 'componentName': componentName,
+      if (componentVersion != null) 'componentVersion': componentVersion,
+      if (message != null) 'message': message,
+      if (recipe != null) 'recipe': base64Encode(recipe),
+      if (vendorGuidance != null) 'vendorGuidance': vendorGuidance.toValue(),
+    };
+  }
 }
 
 /// Contains information about system resource limits that the IoT Greengrass
@@ -4301,12 +4751,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4326,6 +4784,15 @@ class UpdateConnectivityInfoResponse {
       message: json['Message'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final version = this.version;
+    return {
+      if (message != null) 'Message': message,
+      if (version != null) 'Version': version,
+    };
   }
 }
 

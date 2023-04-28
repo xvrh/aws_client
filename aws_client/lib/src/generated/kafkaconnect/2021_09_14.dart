@@ -564,6 +564,7 @@ class ApacheKafkaCluster {
     required this.bootstrapServers,
     required this.vpc,
   });
+
   Map<String, dynamic> toJson() {
     final bootstrapServers = this.bootstrapServers;
     final vpc = this.vpc;
@@ -596,6 +597,15 @@ class ApacheKafkaClusterDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bootstrapServers = this.bootstrapServers;
+    final vpc = this.vpc;
+    return {
+      if (bootstrapServers != null) 'bootstrapServers': bootstrapServers,
+      if (vpc != null) 'vpc': vpc,
+    };
+  }
 }
 
 /// Specifies how the connector scales.
@@ -623,6 +633,7 @@ class AutoScaling {
     this.scaleInPolicy,
     this.scaleOutPolicy,
   });
+
   Map<String, dynamic> toJson() {
     final maxWorkerCount = this.maxWorkerCount;
     final mcuCount = this.mcuCount;
@@ -679,6 +690,21 @@ class AutoScalingDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final maxWorkerCount = this.maxWorkerCount;
+    final mcuCount = this.mcuCount;
+    final minWorkerCount = this.minWorkerCount;
+    final scaleInPolicy = this.scaleInPolicy;
+    final scaleOutPolicy = this.scaleOutPolicy;
+    return {
+      if (maxWorkerCount != null) 'maxWorkerCount': maxWorkerCount,
+      if (mcuCount != null) 'mcuCount': mcuCount,
+      if (minWorkerCount != null) 'minWorkerCount': minWorkerCount,
+      if (scaleInPolicy != null) 'scaleInPolicy': scaleInPolicy,
+      if (scaleOutPolicy != null) 'scaleOutPolicy': scaleOutPolicy,
+    };
+  }
 }
 
 /// The updates to the auto scaling parameters for the connector.
@@ -706,6 +732,7 @@ class AutoScalingUpdate {
     required this.scaleInPolicy,
     required this.scaleOutPolicy,
   });
+
   Map<String, dynamic> toJson() {
     final maxWorkerCount = this.maxWorkerCount;
     final mcuCount = this.mcuCount;
@@ -735,6 +762,7 @@ class Capacity {
     this.autoScaling,
     this.provisionedCapacity,
   });
+
   Map<String, dynamic> toJson() {
     final autoScaling = this.autoScaling;
     final provisionedCapacity = this.provisionedCapacity;
@@ -770,6 +798,16 @@ class CapacityDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScaling = this.autoScaling;
+    final provisionedCapacity = this.provisionedCapacity;
+    return {
+      if (autoScaling != null) 'autoScaling': autoScaling,
+      if (provisionedCapacity != null)
+        'provisionedCapacity': provisionedCapacity,
+    };
+  }
 }
 
 /// The target capacity for the connector. The capacity can be auto scaled or
@@ -785,6 +823,7 @@ class CapacityUpdate {
     this.autoScaling,
     this.provisionedCapacity,
   });
+
   Map<String, dynamic> toJson() {
     final autoScaling = this.autoScaling;
     final provisionedCapacity = this.provisionedCapacity;
@@ -809,6 +848,7 @@ class CloudWatchLogsLogDelivery {
     required this.enabled,
     this.logGroup,
   });
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     final logGroup = this.logGroup;
@@ -838,6 +878,15 @@ class CloudWatchLogsLogDeliveryDescription {
       enabled: json['enabled'] as bool?,
       logGroup: json['logGroup'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final logGroup = this.logGroup;
+    return {
+      if (enabled != null) 'enabled': enabled,
+      if (logGroup != null) 'logGroup': logGroup,
+    };
   }
 }
 
@@ -997,6 +1046,49 @@ class ConnectorSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capacity = this.capacity;
+    final connectorArn = this.connectorArn;
+    final connectorDescription = this.connectorDescription;
+    final connectorName = this.connectorName;
+    final connectorState = this.connectorState;
+    final creationTime = this.creationTime;
+    final currentVersion = this.currentVersion;
+    final kafkaCluster = this.kafkaCluster;
+    final kafkaClusterClientAuthentication =
+        this.kafkaClusterClientAuthentication;
+    final kafkaClusterEncryptionInTransit =
+        this.kafkaClusterEncryptionInTransit;
+    final kafkaConnectVersion = this.kafkaConnectVersion;
+    final logDelivery = this.logDelivery;
+    final plugins = this.plugins;
+    final serviceExecutionRoleArn = this.serviceExecutionRoleArn;
+    final workerConfiguration = this.workerConfiguration;
+    return {
+      if (capacity != null) 'capacity': capacity,
+      if (connectorArn != null) 'connectorArn': connectorArn,
+      if (connectorDescription != null)
+        'connectorDescription': connectorDescription,
+      if (connectorName != null) 'connectorName': connectorName,
+      if (connectorState != null) 'connectorState': connectorState.toValue(),
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (currentVersion != null) 'currentVersion': currentVersion,
+      if (kafkaCluster != null) 'kafkaCluster': kafkaCluster,
+      if (kafkaClusterClientAuthentication != null)
+        'kafkaClusterClientAuthentication': kafkaClusterClientAuthentication,
+      if (kafkaClusterEncryptionInTransit != null)
+        'kafkaClusterEncryptionInTransit': kafkaClusterEncryptionInTransit,
+      if (kafkaConnectVersion != null)
+        'kafkaConnectVersion': kafkaConnectVersion,
+      if (logDelivery != null) 'logDelivery': logDelivery,
+      if (plugins != null) 'plugins': plugins,
+      if (serviceExecutionRoleArn != null)
+        'serviceExecutionRoleArn': serviceExecutionRoleArn,
+      if (workerConfiguration != null)
+        'workerConfiguration': workerConfiguration,
+    };
+  }
 }
 
 class CreateConnectorResponse {
@@ -1020,6 +1112,17 @@ class CreateConnectorResponse {
       connectorName: json['connectorName'] as String?,
       connectorState: (json['connectorState'] as String?)?.toConnectorState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectorArn = this.connectorArn;
+    final connectorName = this.connectorName;
+    final connectorState = this.connectorState;
+    return {
+      if (connectorArn != null) 'connectorArn': connectorArn,
+      if (connectorName != null) 'connectorName': connectorName,
+      if (connectorState != null) 'connectorState': connectorState.toValue(),
+    };
   }
 }
 
@@ -1050,6 +1153,20 @@ class CreateCustomPluginResponse {
       name: json['name'] as String?,
       revision: json['revision'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customPluginArn = this.customPluginArn;
+    final customPluginState = this.customPluginState;
+    final name = this.name;
+    final revision = this.revision;
+    return {
+      if (customPluginArn != null) 'customPluginArn': customPluginArn,
+      if (customPluginState != null)
+        'customPluginState': customPluginState.toValue(),
+      if (name != null) 'name': name,
+      if (revision != null) 'revision': revision,
+    };
   }
 }
 
@@ -1085,6 +1202,20 @@ class CreateWorkerConfigurationResponse {
       workerConfigurationArn: json['workerConfigurationArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final latestRevision = this.latestRevision;
+    final name = this.name;
+    final workerConfigurationArn = this.workerConfigurationArn;
+    return {
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (latestRevision != null) 'latestRevision': latestRevision,
+      if (name != null) 'name': name,
+      if (workerConfigurationArn != null)
+        'workerConfigurationArn': workerConfigurationArn,
+    };
+  }
 }
 
 /// A plugin is an AWS resource that contains the code that defines a
@@ -1100,6 +1231,7 @@ class CustomPlugin {
     required this.customPluginArn,
     required this.revision,
   });
+
   Map<String, dynamic> toJson() {
     final customPluginArn = this.customPluginArn;
     final revision = this.revision;
@@ -1156,6 +1288,15 @@ class CustomPluginDescription {
       revision: json['revision'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customPluginArn = this.customPluginArn;
+    final revision = this.revision;
+    return {
+      if (customPluginArn != null) 'customPluginArn': customPluginArn,
+      if (revision != null) 'revision': revision,
+    };
+  }
 }
 
 /// Details about a custom plugin file.
@@ -1178,6 +1319,15 @@ class CustomPluginFileDescription {
       fileSize: json['fileSize'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fileMd5 = this.fileMd5;
+    final fileSize = this.fileSize;
+    return {
+      if (fileMd5 != null) 'fileMd5': fileMd5,
+      if (fileSize != null) 'fileSize': fileSize,
+    };
+  }
 }
 
 /// Information about the location of a custom plugin.
@@ -1189,6 +1339,7 @@ class CustomPluginLocation {
   CustomPluginLocation({
     required this.s3Location,
   });
+
   Map<String, dynamic> toJson() {
     final s3Location = this.s3Location;
     return {
@@ -1213,6 +1364,13 @@ class CustomPluginLocationDescription {
               json['s3Location'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final s3Location = this.s3Location;
+    return {
+      if (s3Location != null) 's3Location': s3Location,
+    };
   }
 }
 
@@ -1260,6 +1418,23 @@ class CustomPluginRevisionSummary {
           : null,
       revision: json['revision'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final fileDescription = this.fileDescription;
+    final location = this.location;
+    final revision = this.revision;
+    return {
+      if (contentType != null) 'contentType': contentType.toValue(),
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (description != null) 'description': description,
+      if (fileDescription != null) 'fileDescription': fileDescription,
+      if (location != null) 'location': location,
+      if (revision != null) 'revision': revision,
+    };
   }
 }
 
@@ -1353,6 +1528,24 @@ class CustomPluginSummary {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final customPluginArn = this.customPluginArn;
+    final customPluginState = this.customPluginState;
+    final description = this.description;
+    final latestRevision = this.latestRevision;
+    final name = this.name;
+    return {
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (customPluginArn != null) 'customPluginArn': customPluginArn,
+      if (customPluginState != null)
+        'customPluginState': customPluginState.toValue(),
+      if (description != null) 'description': description,
+      if (latestRevision != null) 'latestRevision': latestRevision,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 class DeleteConnectorResponse {
@@ -1372,6 +1565,15 @@ class DeleteConnectorResponse {
       connectorArn: json['connectorArn'] as String?,
       connectorState: (json['connectorState'] as String?)?.toConnectorState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectorArn = this.connectorArn;
+    final connectorState = this.connectorState;
+    return {
+      if (connectorArn != null) 'connectorArn': connectorArn,
+      if (connectorState != null) 'connectorState': connectorState.toValue(),
+    };
   }
 }
 
@@ -1393,6 +1595,16 @@ class DeleteCustomPluginResponse {
       customPluginState:
           (json['customPluginState'] as String?)?.toCustomPluginState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customPluginArn = this.customPluginArn;
+    final customPluginState = this.customPluginState;
+    return {
+      if (customPluginArn != null) 'customPluginArn': customPluginArn,
+      if (customPluginState != null)
+        'customPluginState': customPluginState.toValue(),
+    };
   }
 }
 
@@ -1524,6 +1736,54 @@ class DescribeConnectorResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capacity = this.capacity;
+    final connectorArn = this.connectorArn;
+    final connectorConfiguration = this.connectorConfiguration;
+    final connectorDescription = this.connectorDescription;
+    final connectorName = this.connectorName;
+    final connectorState = this.connectorState;
+    final creationTime = this.creationTime;
+    final currentVersion = this.currentVersion;
+    final kafkaCluster = this.kafkaCluster;
+    final kafkaClusterClientAuthentication =
+        this.kafkaClusterClientAuthentication;
+    final kafkaClusterEncryptionInTransit =
+        this.kafkaClusterEncryptionInTransit;
+    final kafkaConnectVersion = this.kafkaConnectVersion;
+    final logDelivery = this.logDelivery;
+    final plugins = this.plugins;
+    final serviceExecutionRoleArn = this.serviceExecutionRoleArn;
+    final stateDescription = this.stateDescription;
+    final workerConfiguration = this.workerConfiguration;
+    return {
+      if (capacity != null) 'capacity': capacity,
+      if (connectorArn != null) 'connectorArn': connectorArn,
+      if (connectorConfiguration != null)
+        'connectorConfiguration': connectorConfiguration,
+      if (connectorDescription != null)
+        'connectorDescription': connectorDescription,
+      if (connectorName != null) 'connectorName': connectorName,
+      if (connectorState != null) 'connectorState': connectorState.toValue(),
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (currentVersion != null) 'currentVersion': currentVersion,
+      if (kafkaCluster != null) 'kafkaCluster': kafkaCluster,
+      if (kafkaClusterClientAuthentication != null)
+        'kafkaClusterClientAuthentication': kafkaClusterClientAuthentication,
+      if (kafkaClusterEncryptionInTransit != null)
+        'kafkaClusterEncryptionInTransit': kafkaClusterEncryptionInTransit,
+      if (kafkaConnectVersion != null)
+        'kafkaConnectVersion': kafkaConnectVersion,
+      if (logDelivery != null) 'logDelivery': logDelivery,
+      if (plugins != null) 'plugins': plugins,
+      if (serviceExecutionRoleArn != null)
+        'serviceExecutionRoleArn': serviceExecutionRoleArn,
+      if (stateDescription != null) 'stateDescription': stateDescription,
+      if (workerConfiguration != null)
+        'workerConfiguration': workerConfiguration,
+    };
+  }
 }
 
 class DescribeCustomPluginResponse {
@@ -1576,6 +1836,26 @@ class DescribeCustomPluginResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final customPluginArn = this.customPluginArn;
+    final customPluginState = this.customPluginState;
+    final description = this.description;
+    final latestRevision = this.latestRevision;
+    final name = this.name;
+    final stateDescription = this.stateDescription;
+    return {
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (customPluginArn != null) 'customPluginArn': customPluginArn,
+      if (customPluginState != null)
+        'customPluginState': customPluginState.toValue(),
+      if (description != null) 'description': description,
+      if (latestRevision != null) 'latestRevision': latestRevision,
+      if (name != null) 'name': name,
+      if (stateDescription != null) 'stateDescription': stateDescription,
+    };
+  }
 }
 
 class DescribeWorkerConfigurationResponse {
@@ -1614,6 +1894,22 @@ class DescribeWorkerConfigurationResponse {
       workerConfigurationArn: json['workerConfigurationArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final latestRevision = this.latestRevision;
+    final name = this.name;
+    final workerConfigurationArn = this.workerConfigurationArn;
+    return {
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (description != null) 'description': description,
+      if (latestRevision != null) 'latestRevision': latestRevision,
+      if (name != null) 'name': name,
+      if (workerConfigurationArn != null)
+        'workerConfigurationArn': workerConfigurationArn,
+    };
+  }
 }
 
 /// The settings for delivering logs to Amazon Kinesis Data Firehose.
@@ -1630,6 +1926,7 @@ class FirehoseLogDelivery {
     required this.enabled,
     this.deliveryStream,
   });
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     final deliveryStream = this.deliveryStream;
@@ -1661,6 +1958,15 @@ class FirehoseLogDeliveryDescription {
       enabled: json['enabled'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deliveryStream = this.deliveryStream;
+    final enabled = this.enabled;
+    return {
+      if (deliveryStream != null) 'deliveryStream': deliveryStream,
+      if (enabled != null) 'enabled': enabled,
+    };
+  }
 }
 
 /// The details of the Apache Kafka cluster to which the connector is connected.
@@ -1671,6 +1977,7 @@ class KafkaCluster {
   KafkaCluster({
     required this.apacheKafkaCluster,
   });
+
   Map<String, dynamic> toJson() {
     final apacheKafkaCluster = this.apacheKafkaCluster;
     return {
@@ -1689,6 +1996,7 @@ class KafkaClusterClientAuthentication {
   KafkaClusterClientAuthentication({
     required this.authenticationType,
   });
+
   Map<String, dynamic> toJson() {
     final authenticationType = this.authenticationType;
     return {
@@ -1713,6 +2021,14 @@ class KafkaClusterClientAuthenticationDescription {
       authenticationType: (json['authenticationType'] as String?)
           ?.toKafkaClusterClientAuthenticationType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authenticationType = this.authenticationType;
+    return {
+      if (authenticationType != null)
+        'authenticationType': authenticationType.toValue(),
+    };
   }
 }
 
@@ -1763,6 +2079,13 @@ class KafkaClusterDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apacheKafkaCluster = this.apacheKafkaCluster;
+    return {
+      if (apacheKafkaCluster != null) 'apacheKafkaCluster': apacheKafkaCluster,
+    };
+  }
 }
 
 /// Details of encryption in transit to the Apache Kafka cluster.
@@ -1773,6 +2096,7 @@ class KafkaClusterEncryptionInTransit {
   KafkaClusterEncryptionInTransit({
     required this.encryptionType,
   });
+
   Map<String, dynamic> toJson() {
     final encryptionType = this.encryptionType;
     return {
@@ -1795,6 +2119,13 @@ class KafkaClusterEncryptionInTransitDescription {
       encryptionType: (json['encryptionType'] as String?)
           ?.toKafkaClusterEncryptionInTransitType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final encryptionType = this.encryptionType;
+    return {
+      if (encryptionType != null) 'encryptionType': encryptionType.toValue(),
+    };
   }
 }
 
@@ -1850,6 +2181,15 @@ class ListConnectorsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectors = this.connectors;
+    final nextToken = this.nextToken;
+    return {
+      if (connectors != null) 'connectors': connectors,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListCustomPluginsResponse {
@@ -1873,6 +2213,15 @@ class ListCustomPluginsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customPlugins = this.customPlugins;
+    final nextToken = this.nextToken;
+    return {
+      if (customPlugins != null) 'customPlugins': customPlugins,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1899,6 +2248,16 @@ class ListWorkerConfigurationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final workerConfigurations = this.workerConfigurations;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (workerConfigurations != null)
+        'workerConfigurations': workerConfigurations,
+    };
+  }
 }
 
 /// Details about log delivery.
@@ -1910,6 +2269,7 @@ class LogDelivery {
   LogDelivery({
     required this.workerLogDelivery,
   });
+
   Map<String, dynamic> toJson() {
     final workerLogDelivery = this.workerLogDelivery;
     return {
@@ -1935,6 +2295,13 @@ class LogDeliveryDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final workerLogDelivery = this.workerLogDelivery;
+    return {
+      if (workerLogDelivery != null) 'workerLogDelivery': workerLogDelivery,
+    };
+  }
 }
 
 /// A plugin is an AWS resource that contains the code that defines your
@@ -1946,6 +2313,7 @@ class Plugin {
   Plugin({
     required this.customPlugin,
   });
+
   Map<String, dynamic> toJson() {
     final customPlugin = this.customPlugin;
     return {
@@ -1970,6 +2338,13 @@ class PluginDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customPlugin = this.customPlugin;
+    return {
+      if (customPlugin != null) 'customPlugin': customPlugin,
+    };
+  }
 }
 
 /// Details about a connector's provisioned capacity.
@@ -1985,6 +2360,7 @@ class ProvisionedCapacity {
     required this.mcuCount,
     required this.workerCount,
   });
+
   Map<String, dynamic> toJson() {
     final mcuCount = this.mcuCount;
     final workerCount = this.workerCount;
@@ -2014,6 +2390,15 @@ class ProvisionedCapacityDescription {
       workerCount: json['workerCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final mcuCount = this.mcuCount;
+    final workerCount = this.workerCount;
+    return {
+      if (mcuCount != null) 'mcuCount': mcuCount,
+      if (workerCount != null) 'workerCount': workerCount,
+    };
+  }
 }
 
 /// An update to a connector's fixed capacity.
@@ -2029,6 +2414,7 @@ class ProvisionedCapacityUpdate {
     required this.mcuCount,
     required this.workerCount,
   });
+
   Map<String, dynamic> toJson() {
     final mcuCount = this.mcuCount;
     final workerCount = this.workerCount;
@@ -2055,6 +2441,7 @@ class S3Location {
     required this.fileKey,
     this.objectVersion,
   });
+
   Map<String, dynamic> toJson() {
     final bucketArn = this.bucketArn;
     final fileKey = this.fileKey;
@@ -2090,6 +2477,17 @@ class S3LocationDescription {
       objectVersion: json['objectVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucketArn = this.bucketArn;
+    final fileKey = this.fileKey;
+    final objectVersion = this.objectVersion;
+    return {
+      if (bucketArn != null) 'bucketArn': bucketArn,
+      if (fileKey != null) 'fileKey': fileKey,
+      if (objectVersion != null) 'objectVersion': objectVersion,
+    };
+  }
 }
 
 /// Details about delivering logs to Amazon S3.
@@ -2109,6 +2507,7 @@ class S3LogDelivery {
     this.bucket,
     this.prefix,
   });
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     final bucket = this.bucket;
@@ -2145,6 +2544,17 @@ class S3LogDeliveryDescription {
       prefix: json['prefix'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final enabled = this.enabled;
+    final prefix = this.prefix;
+    return {
+      if (bucket != null) 'bucket': bucket,
+      if (enabled != null) 'enabled': enabled,
+      if (prefix != null) 'prefix': prefix,
+    };
+  }
 }
 
 /// The scale-in policy for the connector.
@@ -2156,6 +2566,7 @@ class ScaleInPolicy {
   ScaleInPolicy({
     required this.cpuUtilizationPercentage,
   });
+
   Map<String, dynamic> toJson() {
     final cpuUtilizationPercentage = this.cpuUtilizationPercentage;
     return {
@@ -2178,6 +2589,14 @@ class ScaleInPolicyDescription {
       cpuUtilizationPercentage: json['cpuUtilizationPercentage'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cpuUtilizationPercentage = this.cpuUtilizationPercentage;
+    return {
+      if (cpuUtilizationPercentage != null)
+        'cpuUtilizationPercentage': cpuUtilizationPercentage,
+    };
+  }
 }
 
 /// An update to the connector's scale-in policy.
@@ -2189,6 +2608,7 @@ class ScaleInPolicyUpdate {
   ScaleInPolicyUpdate({
     required this.cpuUtilizationPercentage,
   });
+
   Map<String, dynamic> toJson() {
     final cpuUtilizationPercentage = this.cpuUtilizationPercentage;
     return {
@@ -2206,6 +2626,7 @@ class ScaleOutPolicy {
   ScaleOutPolicy({
     required this.cpuUtilizationPercentage,
   });
+
   Map<String, dynamic> toJson() {
     final cpuUtilizationPercentage = this.cpuUtilizationPercentage;
     return {
@@ -2228,6 +2649,14 @@ class ScaleOutPolicyDescription {
       cpuUtilizationPercentage: json['cpuUtilizationPercentage'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cpuUtilizationPercentage = this.cpuUtilizationPercentage;
+    return {
+      if (cpuUtilizationPercentage != null)
+        'cpuUtilizationPercentage': cpuUtilizationPercentage,
+    };
+  }
 }
 
 /// An update to the connector's scale-out policy.
@@ -2239,6 +2668,7 @@ class ScaleOutPolicyUpdate {
   ScaleOutPolicyUpdate({
     required this.cpuUtilizationPercentage,
   });
+
   Map<String, dynamic> toJson() {
     final cpuUtilizationPercentage = this.cpuUtilizationPercentage;
     return {
@@ -2265,6 +2695,15 @@ class StateDescription {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 class UpdateConnectorResponse {
@@ -2284,6 +2723,15 @@ class UpdateConnectorResponse {
       connectorState: (json['connectorState'] as String?)?.toConnectorState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectorArn = this.connectorArn;
+    final connectorState = this.connectorState;
+    return {
+      if (connectorArn != null) 'connectorArn': connectorArn,
+      if (connectorState != null) 'connectorState': connectorState.toValue(),
+    };
+  }
 }
 
 /// Information about the VPC in which the connector resides.
@@ -2298,6 +2746,7 @@ class Vpc {
     required this.subnets,
     this.securityGroups,
   });
+
   Map<String, dynamic> toJson() {
     final subnets = this.subnets;
     final securityGroups = this.securityGroups;
@@ -2332,6 +2781,15 @@ class VpcDescription {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final securityGroups = this.securityGroups;
+    final subnets = this.subnets;
+    return {
+      if (securityGroups != null) 'securityGroups': securityGroups,
+      if (subnets != null) 'subnets': subnets,
+    };
+  }
 }
 
 /// The configuration of the workers, which are the processes that run the
@@ -2347,6 +2805,7 @@ class WorkerConfiguration {
     required this.revision,
     required this.workerConfigurationArn,
   });
+
   Map<String, dynamic> toJson() {
     final revision = this.revision;
     final workerConfigurationArn = this.workerConfigurationArn;
@@ -2374,6 +2833,16 @@ class WorkerConfigurationDescription {
       revision: json['revision'] as int?,
       workerConfigurationArn: json['workerConfigurationArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final revision = this.revision;
+    final workerConfigurationArn = this.workerConfigurationArn;
+    return {
+      if (revision != null) 'revision': revision,
+      if (workerConfigurationArn != null)
+        'workerConfigurationArn': workerConfigurationArn,
+    };
   }
 }
 
@@ -2406,6 +2875,20 @@ class WorkerConfigurationRevisionDescription {
       revision: json['revision'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final propertiesFileContent = this.propertiesFileContent;
+    final revision = this.revision;
+    return {
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (description != null) 'description': description,
+      if (propertiesFileContent != null)
+        'propertiesFileContent': propertiesFileContent,
+      if (revision != null) 'revision': revision,
+    };
+  }
 }
 
 /// The summary of a worker configuration revision.
@@ -2431,6 +2914,17 @@ class WorkerConfigurationRevisionSummary {
       description: json['description'] as String?,
       revision: json['revision'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final revision = this.revision;
+    return {
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (description != null) 'description': description,
+      if (revision != null) 'revision': revision,
+    };
   }
 }
 
@@ -2470,6 +2964,22 @@ class WorkerConfigurationSummary {
       workerConfigurationArn: json['workerConfigurationArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final latestRevision = this.latestRevision;
+    final name = this.name;
+    final workerConfigurationArn = this.workerConfigurationArn;
+    return {
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (description != null) 'description': description,
+      if (latestRevision != null) 'latestRevision': latestRevision,
+      if (name != null) 'name': name,
+      if (workerConfigurationArn != null)
+        'workerConfigurationArn': workerConfigurationArn,
+    };
+  }
 }
 
 /// Workers can send worker logs to different destination types. This
@@ -2489,6 +2999,7 @@ class WorkerLogDelivery {
     this.firehose,
     this.s3,
   });
+
   Map<String, dynamic> toJson() {
     final cloudWatchLogs = this.cloudWatchLogs;
     final firehose = this.firehose;
@@ -2533,6 +3044,17 @@ class WorkerLogDeliveryDescription {
               json['s3'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogs = this.cloudWatchLogs;
+    final firehose = this.firehose;
+    final s3 = this.s3;
+    return {
+      if (cloudWatchLogs != null) 'cloudWatchLogs': cloudWatchLogs,
+      if (firehose != null) 'firehose': firehose,
+      if (s3 != null) 's3': s3,
+    };
   }
 }
 

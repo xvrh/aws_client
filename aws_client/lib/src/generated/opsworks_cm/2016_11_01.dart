@@ -1473,6 +1473,17 @@ class AccountAttribute {
       used: json['Used'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final maximum = this.maximum;
+    final name = this.name;
+    final used = this.used;
+    return {
+      if (maximum != null) 'Maximum': maximum,
+      if (name != null) 'Name': name,
+      if (used != null) 'Used': used,
+    };
+  }
 }
 
 class AssociateNodeResponse {
@@ -1488,6 +1499,14 @@ class AssociateNodeResponse {
     return AssociateNodeResponse(
       nodeAssociationStatusToken: json['NodeAssociationStatusToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nodeAssociationStatusToken = this.nodeAssociationStatusToken;
+    return {
+      if (nodeAssociationStatusToken != null)
+        'NodeAssociationStatusToken': nodeAssociationStatusToken,
+    };
   }
 }
 
@@ -1640,6 +1659,61 @@ class Backup {
       userArn: json['UserArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupArn = this.backupArn;
+    final backupId = this.backupId;
+    final backupType = this.backupType;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final engine = this.engine;
+    final engineModel = this.engineModel;
+    final engineVersion = this.engineVersion;
+    final instanceProfileArn = this.instanceProfileArn;
+    final instanceType = this.instanceType;
+    final keyPair = this.keyPair;
+    final preferredBackupWindow = this.preferredBackupWindow;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final s3DataSize = this.s3DataSize;
+    final s3DataUrl = this.s3DataUrl;
+    final s3LogUrl = this.s3LogUrl;
+    final securityGroupIds = this.securityGroupIds;
+    final serverName = this.serverName;
+    final serviceRoleArn = this.serviceRoleArn;
+    final status = this.status;
+    final statusDescription = this.statusDescription;
+    final subnetIds = this.subnetIds;
+    final toolsVersion = this.toolsVersion;
+    final userArn = this.userArn;
+    return {
+      if (backupArn != null) 'BackupArn': backupArn,
+      if (backupId != null) 'BackupId': backupId,
+      if (backupType != null) 'BackupType': backupType.toValue(),
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (engine != null) 'Engine': engine,
+      if (engineModel != null) 'EngineModel': engineModel,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (instanceProfileArn != null) 'InstanceProfileArn': instanceProfileArn,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (keyPair != null) 'KeyPair': keyPair,
+      if (preferredBackupWindow != null)
+        'PreferredBackupWindow': preferredBackupWindow,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (s3DataSize != null) 'S3DataSize': s3DataSize,
+      if (s3DataUrl != null) 'S3DataUrl': s3DataUrl,
+      if (s3LogUrl != null) 'S3LogUrl': s3LogUrl,
+      if (securityGroupIds != null) 'SecurityGroupIds': securityGroupIds,
+      if (serverName != null) 'ServerName': serverName,
+      if (serviceRoleArn != null) 'ServiceRoleArn': serviceRoleArn,
+      if (status != null) 'Status': status.toValue(),
+      if (statusDescription != null) 'StatusDescription': statusDescription,
+      if (subnetIds != null) 'SubnetIds': subnetIds,
+      if (toolsVersion != null) 'ToolsVersion': toolsVersion,
+      if (userArn != null) 'UserArn': userArn,
+    };
+  }
 }
 
 enum BackupStatus {
@@ -1722,6 +1796,13 @@ class CreateBackupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backup = this.backup;
+    return {
+      if (backup != null) 'Backup': backup,
+    };
+  }
 }
 
 class CreateServerResponse {
@@ -1738,6 +1819,13 @@ class CreateServerResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final server = this.server;
+    return {
+      if (server != null) 'Server': server,
+    };
+  }
 }
 
 class DeleteBackupResponse {
@@ -1745,12 +1833,20 @@ class DeleteBackupResponse {
   factory DeleteBackupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteBackupResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteServerResponse {
   DeleteServerResponse();
   factory DeleteServerResponse.fromJson(Map<String, dynamic> _) {
     return DeleteServerResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1769,6 +1865,13 @@ class DescribeAccountAttributesResponse {
           .map((e) => AccountAttribute.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
   }
 }
 
@@ -1791,6 +1894,15 @@ class DescribeBackupsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backups = this.backups;
+    final nextToken = this.nextToken;
+    return {
+      if (backups != null) 'Backups': backups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1821,6 +1933,15 @@ class DescribeEventsResponse {
           .map((e) => ServerEvent.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final serverEvents = this.serverEvents;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (serverEvents != null) 'ServerEvents': serverEvents,
+    };
   }
 }
 
@@ -1860,6 +1981,16 @@ class DescribeNodeAssociationStatusResponse {
       nodeAssociationStatus:
           (json['NodeAssociationStatus'] as String?)?.toNodeAssociationStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final engineAttributes = this.engineAttributes;
+    final nodeAssociationStatus = this.nodeAssociationStatus;
+    return {
+      if (engineAttributes != null) 'EngineAttributes': engineAttributes,
+      if (nodeAssociationStatus != null)
+        'NodeAssociationStatus': nodeAssociationStatus.toValue(),
+    };
   }
 }
 
@@ -1909,6 +2040,15 @@ class DescribeServersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final servers = this.servers;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (servers != null) 'Servers': servers,
+    };
+  }
 }
 
 class DisassociateNodeResponse {
@@ -1924,6 +2064,14 @@ class DisassociateNodeResponse {
     return DisassociateNodeResponse(
       nodeAssociationStatusToken: json['NodeAssociationStatusToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nodeAssociationStatusToken = this.nodeAssociationStatusToken;
+    return {
+      if (nodeAssociationStatusToken != null)
+        'NodeAssociationStatusToken': nodeAssociationStatusToken,
+    };
   }
 }
 
@@ -1977,6 +2125,15 @@ class ExportServerEngineAttributeResponse {
       serverName: json['ServerName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final engineAttribute = this.engineAttribute;
+    final serverName = this.serverName;
+    return {
+      if (engineAttribute != null) 'EngineAttribute': engineAttribute,
+      if (serverName != null) 'ServerName': serverName,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1999,6 +2156,15 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2090,6 +2256,13 @@ class RestoreServerResponse {
           ? Server.fromJson(json['Server'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final server = this.server;
+    return {
+      if (server != null) 'Server': server,
+    };
   }
 }
 
@@ -2284,6 +2457,66 @@ class Server {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associatePublicIpAddress = this.associatePublicIpAddress;
+    final backupRetentionCount = this.backupRetentionCount;
+    final cloudFormationStackArn = this.cloudFormationStackArn;
+    final createdAt = this.createdAt;
+    final customDomain = this.customDomain;
+    final disableAutomatedBackup = this.disableAutomatedBackup;
+    final endpoint = this.endpoint;
+    final engine = this.engine;
+    final engineAttributes = this.engineAttributes;
+    final engineModel = this.engineModel;
+    final engineVersion = this.engineVersion;
+    final instanceProfileArn = this.instanceProfileArn;
+    final instanceType = this.instanceType;
+    final keyPair = this.keyPair;
+    final maintenanceStatus = this.maintenanceStatus;
+    final preferredBackupWindow = this.preferredBackupWindow;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final securityGroupIds = this.securityGroupIds;
+    final serverArn = this.serverArn;
+    final serverName = this.serverName;
+    final serviceRoleArn = this.serviceRoleArn;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    final subnetIds = this.subnetIds;
+    return {
+      if (associatePublicIpAddress != null)
+        'AssociatePublicIpAddress': associatePublicIpAddress,
+      if (backupRetentionCount != null)
+        'BackupRetentionCount': backupRetentionCount,
+      if (cloudFormationStackArn != null)
+        'CloudFormationStackArn': cloudFormationStackArn,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (customDomain != null) 'CustomDomain': customDomain,
+      if (disableAutomatedBackup != null)
+        'DisableAutomatedBackup': disableAutomatedBackup,
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (engine != null) 'Engine': engine,
+      if (engineAttributes != null) 'EngineAttributes': engineAttributes,
+      if (engineModel != null) 'EngineModel': engineModel,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (instanceProfileArn != null) 'InstanceProfileArn': instanceProfileArn,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (keyPair != null) 'KeyPair': keyPair,
+      if (maintenanceStatus != null)
+        'MaintenanceStatus': maintenanceStatus.toValue(),
+      if (preferredBackupWindow != null)
+        'PreferredBackupWindow': preferredBackupWindow,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (securityGroupIds != null) 'SecurityGroupIds': securityGroupIds,
+      if (serverArn != null) 'ServerArn': serverArn,
+      if (serverName != null) 'ServerName': serverName,
+      if (serviceRoleArn != null) 'ServiceRoleArn': serviceRoleArn,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+      if (subnetIds != null) 'SubnetIds': subnetIds,
+    };
+  }
 }
 
 /// An event that is related to the server, such as the start of maintenance or
@@ -2314,6 +2547,19 @@ class ServerEvent {
       message: json['Message'] as String?,
       serverName: json['ServerName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final logUrl = this.logUrl;
+    final message = this.message;
+    final serverName = this.serverName;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (logUrl != null) 'LogUrl': logUrl,
+      if (message != null) 'Message': message,
+      if (serverName != null) 'ServerName': serverName,
+    };
   }
 }
 
@@ -2414,6 +2660,13 @@ class StartMaintenanceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final server = this.server;
+    return {
+      if (server != null) 'Server': server,
+    };
+  }
 }
 
 /// A map that contains tag keys and tag values to attach to an AWS OpsWorks for
@@ -2459,12 +2712,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2484,6 +2745,13 @@ class UpdateServerEngineAttributesResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final server = this.server;
+    return {
+      if (server != null) 'Server': server,
+    };
+  }
 }
 
 class UpdateServerResponse {
@@ -2499,6 +2767,13 @@ class UpdateServerResponse {
           ? Server.fromJson(json['Server'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final server = this.server;
+    return {
+      if (server != null) 'Server': server,
+    };
   }
 }
 

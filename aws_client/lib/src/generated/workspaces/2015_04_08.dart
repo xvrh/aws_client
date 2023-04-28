@@ -3030,6 +3030,28 @@ class AccountModification {
       startTime: timeStampFromJson(json['StartTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dedicatedTenancyManagementCidrRange =
+        this.dedicatedTenancyManagementCidrRange;
+    final dedicatedTenancySupport = this.dedicatedTenancySupport;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final modificationState = this.modificationState;
+    final startTime = this.startTime;
+    return {
+      if (dedicatedTenancyManagementCidrRange != null)
+        'DedicatedTenancyManagementCidrRange':
+            dedicatedTenancyManagementCidrRange,
+      if (dedicatedTenancySupport != null)
+        'DedicatedTenancySupport': dedicatedTenancySupport.toValue(),
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (modificationState != null)
+        'ModificationState': modificationState.toValue(),
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+    };
+  }
 }
 
 enum Application {
@@ -3074,12 +3096,24 @@ class AssociateConnectionAliasResult {
       connectionIdentifier: json['ConnectionIdentifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionIdentifier = this.connectionIdentifier;
+    return {
+      if (connectionIdentifier != null)
+        'ConnectionIdentifier': connectionIdentifier,
+    };
+  }
 }
 
 class AssociateIpGroupsResult {
   AssociateIpGroupsResult();
   factory AssociateIpGroupsResult.fromJson(Map<String, dynamic> _) {
     return AssociateIpGroupsResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3130,6 +3164,10 @@ class AuthorizeIpRulesResult {
   AuthorizeIpRulesResult();
   factory AuthorizeIpRulesResult.fromJson(Map<String, dynamic> _) {
     return AuthorizeIpRulesResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3227,6 +3265,15 @@ class ClientPropertiesResult {
           : null,
       resourceId: json['ResourceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientProperties = this.clientProperties;
+    final resourceId = this.resourceId;
+    return {
+      if (clientProperties != null) 'ClientProperties': clientProperties,
+      if (resourceId != null) 'ResourceId': resourceId,
+    };
   }
 }
 
@@ -3343,6 +3390,19 @@ class ConnectClientAddIn {
       url: json['URL'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addInId = this.addInId;
+    final name = this.name;
+    final resourceId = this.resourceId;
+    final url = this.url;
+    return {
+      if (addInId != null) 'AddInId': addInId,
+      if (name != null) 'Name': name,
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (url != null) 'URL': url,
+    };
+  }
 }
 
 /// Describes a connection alias. Connection aliases are used for cross-Region
@@ -3388,6 +3448,21 @@ class ConnectionAlias {
       state: (json['State'] as String?)?.toConnectionAliasState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliasId = this.aliasId;
+    final associations = this.associations;
+    final connectionString = this.connectionString;
+    final ownerAccountId = this.ownerAccountId;
+    final state = this.state;
+    return {
+      if (aliasId != null) 'AliasId': aliasId,
+      if (associations != null) 'Associations': associations,
+      if (connectionString != null) 'ConnectionString': connectionString,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 /// Describes a connection alias association that is used for cross-Region
@@ -3424,6 +3499,22 @@ class ConnectionAliasAssociation {
       connectionIdentifier: json['ConnectionIdentifier'] as String?,
       resourceId: json['ResourceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associatedAccountId = this.associatedAccountId;
+    final associationStatus = this.associationStatus;
+    final connectionIdentifier = this.connectionIdentifier;
+    final resourceId = this.resourceId;
+    return {
+      if (associatedAccountId != null)
+        'AssociatedAccountId': associatedAccountId,
+      if (associationStatus != null)
+        'AssociationStatus': associationStatus.toValue(),
+      if (connectionIdentifier != null)
+        'ConnectionIdentifier': connectionIdentifier,
+      if (resourceId != null) 'ResourceId': resourceId,
+    };
   }
 }
 
@@ -3539,6 +3630,13 @@ class CopyWorkspaceImageResult {
       imageId: json['ImageId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    return {
+      if (imageId != null) 'ImageId': imageId,
+    };
+  }
 }
 
 class CreateConnectClientAddInResult {
@@ -3552,6 +3650,13 @@ class CreateConnectClientAddInResult {
     return CreateConnectClientAddInResult(
       addInId: json['AddInId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final addInId = this.addInId;
+    return {
+      if (addInId != null) 'AddInId': addInId,
+    };
   }
 }
 
@@ -3567,6 +3672,13 @@ class CreateConnectionAliasResult {
       aliasId: json['AliasId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliasId = this.aliasId;
+    return {
+      if (aliasId != null) 'AliasId': aliasId,
+    };
+  }
 }
 
 class CreateIpGroupResult {
@@ -3581,12 +3693,23 @@ class CreateIpGroupResult {
       groupId: json['GroupId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groupId = this.groupId;
+    return {
+      if (groupId != null) 'GroupId': groupId,
+    };
+  }
 }
 
 class CreateTagsResult {
   CreateTagsResult();
   factory CreateTagsResult.fromJson(Map<String, dynamic> _) {
     return CreateTagsResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3603,6 +3726,13 @@ class CreateUpdatedWorkspaceImageResult {
       imageId: json['ImageId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    return {
+      if (imageId != null) 'ImageId': imageId,
+    };
+  }
 }
 
 class CreateWorkspaceBundleResult {
@@ -3618,6 +3748,13 @@ class CreateWorkspaceBundleResult {
               json['WorkspaceBundle'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workspaceBundle = this.workspaceBundle;
+    return {
+      if (workspaceBundle != null) 'WorkspaceBundle': workspaceBundle,
+    };
   }
 }
 
@@ -3676,6 +3813,27 @@ class CreateWorkspaceImageResult {
       state: (json['State'] as String?)?.toWorkspaceImageState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final created = this.created;
+    final description = this.description;
+    final imageId = this.imageId;
+    final name = this.name;
+    final operatingSystem = this.operatingSystem;
+    final ownerAccountId = this.ownerAccountId;
+    final requiredTenancy = this.requiredTenancy;
+    final state = this.state;
+    return {
+      if (created != null) 'Created': unixTimestampToJson(created),
+      if (description != null) 'Description': description,
+      if (imageId != null) 'ImageId': imageId,
+      if (name != null) 'Name': name,
+      if (operatingSystem != null) 'OperatingSystem': operatingSystem,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (requiredTenancy != null) 'RequiredTenancy': requiredTenancy.toValue(),
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class CreateWorkspacesResult {
@@ -3706,6 +3864,15 @@ class CreateWorkspacesResult {
           .map((e) => Workspace.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedRequests = this.failedRequests;
+    final pendingRequests = this.pendingRequests;
+    return {
+      if (failedRequests != null) 'FailedRequests': failedRequests,
+      if (pendingRequests != null) 'PendingRequests': pendingRequests,
+    };
   }
 }
 
@@ -3867,6 +4034,21 @@ class DefaultClientBrandingAttributes {
       supportLink: json['SupportLink'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final forgotPasswordLink = this.forgotPasswordLink;
+    final loginMessage = this.loginMessage;
+    final logoUrl = this.logoUrl;
+    final supportEmail = this.supportEmail;
+    final supportLink = this.supportLink;
+    return {
+      if (forgotPasswordLink != null) 'ForgotPasswordLink': forgotPasswordLink,
+      if (loginMessage != null) 'LoginMessage': loginMessage,
+      if (logoUrl != null) 'LogoUrl': logoUrl,
+      if (supportEmail != null) 'SupportEmail': supportEmail,
+      if (supportLink != null) 'SupportLink': supportLink,
+    };
+  }
 }
 
 /// The default client branding attributes to be imported. These attributes
@@ -3927,6 +4109,7 @@ class DefaultImportClientBrandingAttributes {
     this.supportEmail,
     this.supportLink,
   });
+
   Map<String, dynamic> toJson() {
     final forgotPasswordLink = this.forgotPasswordLink;
     final loginMessage = this.loginMessage;
@@ -4004,6 +4187,28 @@ class DefaultWorkspaceCreationProperties {
           json['UserEnabledAsLocalAdministrator'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customSecurityGroupId = this.customSecurityGroupId;
+    final defaultOu = this.defaultOu;
+    final enableInternetAccess = this.enableInternetAccess;
+    final enableMaintenanceMode = this.enableMaintenanceMode;
+    final enableWorkDocs = this.enableWorkDocs;
+    final userEnabledAsLocalAdministrator =
+        this.userEnabledAsLocalAdministrator;
+    return {
+      if (customSecurityGroupId != null)
+        'CustomSecurityGroupId': customSecurityGroupId,
+      if (defaultOu != null) 'DefaultOu': defaultOu,
+      if (enableInternetAccess != null)
+        'EnableInternetAccess': enableInternetAccess,
+      if (enableMaintenanceMode != null)
+        'EnableMaintenanceMode': enableMaintenanceMode,
+      if (enableWorkDocs != null) 'EnableWorkDocs': enableWorkDocs,
+      if (userEnabledAsLocalAdministrator != null)
+        'UserEnabledAsLocalAdministrator': userEnabledAsLocalAdministrator,
+    };
+  }
 }
 
 enum DeletableSamlProperty {
@@ -4039,12 +4244,20 @@ class DeleteClientBrandingResult {
   factory DeleteClientBrandingResult.fromJson(Map<String, dynamic> _) {
     return DeleteClientBrandingResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteConnectClientAddInResult {
   DeleteConnectClientAddInResult();
   factory DeleteConnectClientAddInResult.fromJson(Map<String, dynamic> _) {
     return DeleteConnectClientAddInResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4053,12 +4266,20 @@ class DeleteConnectionAliasResult {
   factory DeleteConnectionAliasResult.fromJson(Map<String, dynamic> _) {
     return DeleteConnectionAliasResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteIpGroupResult {
   DeleteIpGroupResult();
   factory DeleteIpGroupResult.fromJson(Map<String, dynamic> _) {
     return DeleteIpGroupResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4067,12 +4288,20 @@ class DeleteTagsResult {
   factory DeleteTagsResult.fromJson(Map<String, dynamic> _) {
     return DeleteTagsResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteWorkspaceBundleResult {
   DeleteWorkspaceBundleResult();
   factory DeleteWorkspaceBundleResult.fromJson(Map<String, dynamic> _) {
     return DeleteWorkspaceBundleResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4081,12 +4310,20 @@ class DeleteWorkspaceImageResult {
   factory DeleteWorkspaceImageResult.fromJson(Map<String, dynamic> _) {
     return DeleteWorkspaceImageResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeregisterWorkspaceDirectoryResult {
   DeregisterWorkspaceDirectoryResult();
   factory DeregisterWorkspaceDirectoryResult.fromJson(Map<String, dynamic> _) {
     return DeregisterWorkspaceDirectoryResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4111,6 +4348,16 @@ class DescribeAccountModificationsResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountModifications = this.accountModifications;
+    final nextToken = this.nextToken;
+    return {
+      if (accountModifications != null)
+        'AccountModifications': accountModifications,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4138,6 +4385,19 @@ class DescribeAccountResult {
       dedicatedTenancySupport: (json['DedicatedTenancySupport'] as String?)
           ?.toDedicatedTenancySupportResultEnum(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dedicatedTenancyManagementCidrRange =
+        this.dedicatedTenancyManagementCidrRange;
+    final dedicatedTenancySupport = this.dedicatedTenancySupport;
+    return {
+      if (dedicatedTenancyManagementCidrRange != null)
+        'DedicatedTenancyManagementCidrRange':
+            dedicatedTenancyManagementCidrRange,
+      if (dedicatedTenancySupport != null)
+        'DedicatedTenancySupport': dedicatedTenancySupport.toValue(),
+    };
   }
 }
 
@@ -4196,6 +4456,23 @@ class DescribeClientBrandingResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceTypeAndroid = this.deviceTypeAndroid;
+    final deviceTypeIos = this.deviceTypeIos;
+    final deviceTypeLinux = this.deviceTypeLinux;
+    final deviceTypeOsx = this.deviceTypeOsx;
+    final deviceTypeWeb = this.deviceTypeWeb;
+    final deviceTypeWindows = this.deviceTypeWindows;
+    return {
+      if (deviceTypeAndroid != null) 'DeviceTypeAndroid': deviceTypeAndroid,
+      if (deviceTypeIos != null) 'DeviceTypeIos': deviceTypeIos,
+      if (deviceTypeLinux != null) 'DeviceTypeLinux': deviceTypeLinux,
+      if (deviceTypeOsx != null) 'DeviceTypeOsx': deviceTypeOsx,
+      if (deviceTypeWeb != null) 'DeviceTypeWeb': deviceTypeWeb,
+      if (deviceTypeWindows != null) 'DeviceTypeWindows': deviceTypeWindows,
+    };
+  }
 }
 
 class DescribeClientPropertiesResult {
@@ -4213,6 +4490,14 @@ class DescribeClientPropertiesResult {
               (e) => ClientPropertiesResult.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientPropertiesList = this.clientPropertiesList;
+    return {
+      if (clientPropertiesList != null)
+        'ClientPropertiesList': clientPropertiesList,
+    };
   }
 }
 
@@ -4237,6 +4522,15 @@ class DescribeConnectClientAddInsResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final addIns = this.addIns;
+    final nextToken = this.nextToken;
+    return {
+      if (addIns != null) 'AddIns': addIns,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4268,6 +4562,18 @@ class DescribeConnectionAliasPermissionsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliasId = this.aliasId;
+    final connectionAliasPermissions = this.connectionAliasPermissions;
+    final nextToken = this.nextToken;
+    return {
+      if (aliasId != null) 'AliasId': aliasId,
+      if (connectionAliasPermissions != null)
+        'ConnectionAliasPermissions': connectionAliasPermissions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeConnectionAliasesResult {
@@ -4290,6 +4596,15 @@ class DescribeConnectionAliasesResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectionAliases = this.connectionAliases;
+    final nextToken = this.nextToken;
+    return {
+      if (connectionAliases != null) 'ConnectionAliases': connectionAliases,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4314,6 +4629,15 @@ class DescribeIpGroupsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final result = this.result;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (result != null) 'Result': result,
+    };
+  }
 }
 
 class DescribeTagsResult {
@@ -4330,6 +4654,13 @@ class DescribeTagsResult {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      if (tagList != null) 'TagList': tagList,
+    };
   }
 }
 
@@ -4355,6 +4686,15 @@ class DescribeWorkspaceBundlesResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bundles = this.bundles;
+    final nextToken = this.nextToken;
+    return {
+      if (bundles != null) 'Bundles': bundles,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeWorkspaceDirectoriesResult {
@@ -4378,6 +4718,15 @@ class DescribeWorkspaceDirectoriesResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final directories = this.directories;
+    final nextToken = this.nextToken;
+    return {
+      if (directories != null) 'Directories': directories,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4409,6 +4758,17 @@ class DescribeWorkspaceImagePermissionsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    final imagePermissions = this.imagePermissions;
+    final nextToken = this.nextToken;
+    return {
+      if (imageId != null) 'ImageId': imageId,
+      if (imagePermissions != null) 'ImagePermissions': imagePermissions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeWorkspaceImagesResult {
@@ -4431,6 +4791,15 @@ class DescribeWorkspaceImagesResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final images = this.images;
+    final nextToken = this.nextToken;
+    return {
+      if (images != null) 'Images': images,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4459,6 +4828,15 @@ class DescribeWorkspaceSnapshotsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rebuildSnapshots = this.rebuildSnapshots;
+    final restoreSnapshots = this.restoreSnapshots;
+    return {
+      if (rebuildSnapshots != null) 'RebuildSnapshots': rebuildSnapshots,
+      if (restoreSnapshots != null) 'RestoreSnapshots': restoreSnapshots,
+    };
+  }
 }
 
 class DescribeWorkspacesConnectionStatusResult {
@@ -4483,6 +4861,16 @@ class DescribeWorkspacesConnectionStatusResult {
               WorkspaceConnectionStatus.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final workspacesConnectionStatus = this.workspacesConnectionStatus;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (workspacesConnectionStatus != null)
+        'WorkspacesConnectionStatus': workspacesConnectionStatus,
+    };
   }
 }
 
@@ -4510,6 +4898,15 @@ class DescribeWorkspacesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final workspaces = this.workspaces;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (workspaces != null) 'Workspaces': workspaces,
+    };
+  }
 }
 
 class DisassociateConnectionAliasResult {
@@ -4517,12 +4914,20 @@ class DisassociateConnectionAliasResult {
   factory DisassociateConnectionAliasResult.fromJson(Map<String, dynamic> _) {
     return DisassociateConnectionAliasResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateIpGroupsResult {
   DisassociateIpGroupsResult();
   factory DisassociateIpGroupsResult.fromJson(Map<String, dynamic> _) {
     return DisassociateIpGroupsResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4553,6 +4958,17 @@ class FailedCreateWorkspaceRequest {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final workspaceRequest = this.workspaceRequest;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (workspaceRequest != null) 'WorkspaceRequest': workspaceRequest,
+    };
+  }
 }
 
 /// Describes a WorkSpace that could not be rebooted. (<a>RebootWorkspaces</a>),
@@ -4582,6 +4998,17 @@ class FailedWorkspaceChangeRequest {
       workspaceId: json['WorkspaceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final workspaceId = this.workspaceId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (workspaceId != null) 'WorkspaceId': workspaceId,
+    };
+  }
 }
 
 /// Describes the Amazon Web Services accounts that have been granted permission
@@ -4600,6 +5027,13 @@ class ImagePermission {
     return ImagePermission(
       sharedAccountId: json['SharedAccountId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sharedAccountId = this.sharedAccountId;
+    return {
+      if (sharedAccountId != null) 'SharedAccountId': sharedAccountId,
+    };
   }
 }
 
@@ -4686,6 +5120,23 @@ class ImportClientBrandingResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceTypeAndroid = this.deviceTypeAndroid;
+    final deviceTypeIos = this.deviceTypeIos;
+    final deviceTypeLinux = this.deviceTypeLinux;
+    final deviceTypeOsx = this.deviceTypeOsx;
+    final deviceTypeWeb = this.deviceTypeWeb;
+    final deviceTypeWindows = this.deviceTypeWindows;
+    return {
+      if (deviceTypeAndroid != null) 'DeviceTypeAndroid': deviceTypeAndroid,
+      if (deviceTypeIos != null) 'DeviceTypeIos': deviceTypeIos,
+      if (deviceTypeLinux != null) 'DeviceTypeLinux': deviceTypeLinux,
+      if (deviceTypeOsx != null) 'DeviceTypeOsx': deviceTypeOsx,
+      if (deviceTypeWeb != null) 'DeviceTypeWeb': deviceTypeWeb,
+      if (deviceTypeWindows != null) 'DeviceTypeWindows': deviceTypeWindows,
+    };
+  }
 }
 
 class ImportWorkspaceImageResult {
@@ -4699,6 +5150,13 @@ class ImportWorkspaceImageResult {
     return ImportWorkspaceImageResult(
       imageId: json['ImageId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    return {
+      if (imageId != null) 'ImageId': imageId,
+    };
   }
 }
 
@@ -4796,6 +5254,25 @@ class IosClientBrandingAttributes {
       supportLink: json['SupportLink'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final forgotPasswordLink = this.forgotPasswordLink;
+    final loginMessage = this.loginMessage;
+    final logo2xUrl = this.logo2xUrl;
+    final logo3xUrl = this.logo3xUrl;
+    final logoUrl = this.logoUrl;
+    final supportEmail = this.supportEmail;
+    final supportLink = this.supportLink;
+    return {
+      if (forgotPasswordLink != null) 'ForgotPasswordLink': forgotPasswordLink,
+      if (loginMessage != null) 'LoginMessage': loginMessage,
+      if (logo2xUrl != null) 'Logo2xUrl': logo2xUrl,
+      if (logo3xUrl != null) 'Logo3xUrl': logo3xUrl,
+      if (logoUrl != null) 'LogoUrl': logoUrl,
+      if (supportEmail != null) 'SupportEmail': supportEmail,
+      if (supportLink != null) 'SupportLink': supportLink,
+    };
+  }
 }
 
 /// The client branding attributes to import for iOS device types. These
@@ -4880,6 +5357,7 @@ class IosImportClientBrandingAttributes {
     this.supportEmail,
     this.supportLink,
   });
+
   Map<String, dynamic> toJson() {
     final forgotPasswordLink = this.forgotPasswordLink;
     final loginMessage = this.loginMessage;
@@ -4951,6 +5429,16 @@ class ListAvailableManagementCidrRangesResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final managementCidrRanges = this.managementCidrRanges;
+    final nextToken = this.nextToken;
+    return {
+      if (managementCidrRanges != null)
+        'ManagementCidrRanges': managementCidrRanges,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class MigrateWorkspaceResult {
@@ -4971,6 +5459,15 @@ class MigrateWorkspaceResult {
       sourceWorkspaceId: json['SourceWorkspaceId'] as String?,
       targetWorkspaceId: json['TargetWorkspaceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sourceWorkspaceId = this.sourceWorkspaceId;
+    final targetWorkspaceId = this.targetWorkspaceId;
+    return {
+      if (sourceWorkspaceId != null) 'SourceWorkspaceId': sourceWorkspaceId,
+      if (targetWorkspaceId != null) 'TargetWorkspaceId': targetWorkspaceId,
+    };
   }
 }
 
@@ -5025,6 +5522,15 @@ class ModificationState {
       state: (json['State'] as String?)?.toModificationStateEnum(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resource = this.resource;
+    final state = this.state;
+    return {
+      if (resource != null) 'Resource': resource.toValue(),
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 enum ModificationStateEnum {
@@ -5060,12 +5566,20 @@ class ModifyAccountResult {
   factory ModifyAccountResult.fromJson(Map<String, dynamic> _) {
     return ModifyAccountResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class ModifyClientPropertiesResult {
   ModifyClientPropertiesResult();
   factory ModifyClientPropertiesResult.fromJson(Map<String, dynamic> _) {
     return ModifyClientPropertiesResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5074,12 +5588,20 @@ class ModifySamlPropertiesResult {
   factory ModifySamlPropertiesResult.fromJson(Map<String, dynamic> _) {
     return ModifySamlPropertiesResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class ModifySelfservicePermissionsResult {
   ModifySelfservicePermissionsResult();
   factory ModifySelfservicePermissionsResult.fromJson(Map<String, dynamic> _) {
     return ModifySelfservicePermissionsResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5089,6 +5611,10 @@ class ModifyWorkspaceAccessPropertiesResult {
       Map<String, dynamic> _) {
     return ModifyWorkspaceAccessPropertiesResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class ModifyWorkspaceCreationPropertiesResult {
@@ -5097,6 +5623,10 @@ class ModifyWorkspaceCreationPropertiesResult {
       Map<String, dynamic> _) {
     return ModifyWorkspaceCreationPropertiesResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class ModifyWorkspacePropertiesResult {
@@ -5104,12 +5634,20 @@ class ModifyWorkspacePropertiesResult {
   factory ModifyWorkspacePropertiesResult.fromJson(Map<String, dynamic> _) {
     return ModifyWorkspacePropertiesResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class ModifyWorkspaceStateResult {
   ModifyWorkspaceStateResult();
   factory ModifyWorkspaceStateResult.fromJson(Map<String, dynamic> _) {
     return ModifyWorkspaceStateResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5125,6 +5663,13 @@ class OperatingSystem {
     return OperatingSystem(
       type: (json['Type'] as String?)?.toOperatingSystemType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    return {
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -5164,6 +5709,7 @@ class RebootRequest {
   RebootRequest({
     required this.workspaceId,
   });
+
   Map<String, dynamic> toJson() {
     final workspaceId = this.workspaceId;
     return {
@@ -5188,6 +5734,13 @@ class RebootWorkspacesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedRequests = this.failedRequests;
+    return {
+      if (failedRequests != null) 'FailedRequests': failedRequests,
+    };
+  }
 }
 
 /// Describes the information used to rebuild a WorkSpace.
@@ -5198,6 +5751,7 @@ class RebuildRequest {
   RebuildRequest({
     required this.workspaceId,
   });
+
   Map<String, dynamic> toJson() {
     final workspaceId = this.workspaceId;
     return {
@@ -5221,6 +5775,13 @@ class RebuildWorkspacesResult {
               FailedWorkspaceChangeRequest.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedRequests = this.failedRequests;
+    return {
+      if (failedRequests != null) 'FailedRequests': failedRequests,
+    };
   }
 }
 
@@ -5257,6 +5818,10 @@ class RegisterWorkspaceDirectoryResult {
   factory RegisterWorkspaceDirectoryResult.fromJson(Map<String, dynamic> _) {
     return RegisterWorkspaceDirectoryResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class RestoreWorkspaceResult {
@@ -5264,12 +5829,20 @@ class RestoreWorkspaceResult {
   factory RestoreWorkspaceResult.fromJson(Map<String, dynamic> _) {
     return RestoreWorkspaceResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class RevokeIpRulesResult {
   RevokeIpRulesResult();
   factory RevokeIpRulesResult.fromJson(Map<String, dynamic> _) {
     return RevokeIpRulesResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5505,6 +6078,14 @@ class Snapshot {
       snapshotTime: timeStampFromJson(json['SnapshotTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snapshotTime = this.snapshotTime;
+    return {
+      if (snapshotTime != null)
+        'SnapshotTime': unixTimestampToJson(snapshotTime),
+    };
+  }
 }
 
 /// Information used to start a WorkSpace.
@@ -5515,6 +6096,7 @@ class StartRequest {
   StartRequest({
     this.workspaceId,
   });
+
   Map<String, dynamic> toJson() {
     final workspaceId = this.workspaceId;
     return {
@@ -5539,6 +6121,13 @@ class StartWorkspacesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedRequests = this.failedRequests;
+    return {
+      if (failedRequests != null) 'FailedRequests': failedRequests,
+    };
+  }
 }
 
 /// Describes the information used to stop a WorkSpace.
@@ -5549,6 +6138,7 @@ class StopRequest {
   StopRequest({
     this.workspaceId,
   });
+
   Map<String, dynamic> toJson() {
     final workspaceId = this.workspaceId;
     return {
@@ -5572,6 +6162,13 @@ class StopWorkspacesResult {
               FailedWorkspaceChangeRequest.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedRequests = this.failedRequests;
+    return {
+      if (failedRequests != null) 'FailedRequests': failedRequests,
+    };
   }
 }
 
@@ -5668,6 +6265,7 @@ class TerminateRequest {
   TerminateRequest({
     required this.workspaceId,
   });
+
   Map<String, dynamic> toJson() {
     final workspaceId = this.workspaceId;
     return {
@@ -5692,12 +6290,23 @@ class TerminateWorkspacesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedRequests = this.failedRequests;
+    return {
+      if (failedRequests != null) 'FailedRequests': failedRequests,
+    };
+  }
 }
 
 class UpdateConnectClientAddInResult {
   UpdateConnectClientAddInResult();
   factory UpdateConnectClientAddInResult.fromJson(Map<String, dynamic> _) {
     return UpdateConnectClientAddInResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5706,6 +6315,10 @@ class UpdateConnectionAliasPermissionResult {
   factory UpdateConnectionAliasPermissionResult.fromJson(
       Map<String, dynamic> _) {
     return UpdateConnectionAliasPermissionResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5734,12 +6347,25 @@ class UpdateResult {
       updateAvailable: json['UpdateAvailable'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final updateAvailable = this.updateAvailable;
+    return {
+      if (description != null) 'Description': description,
+      if (updateAvailable != null) 'UpdateAvailable': updateAvailable,
+    };
+  }
 }
 
 class UpdateRulesOfIpGroupResult {
   UpdateRulesOfIpGroupResult();
   factory UpdateRulesOfIpGroupResult.fromJson(Map<String, dynamic> _) {
     return UpdateRulesOfIpGroupResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5748,6 +6374,10 @@ class UpdateWorkspaceBundleResult {
   factory UpdateWorkspaceBundleResult.fromJson(Map<String, dynamic> _) {
     return UpdateWorkspaceBundleResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateWorkspaceImagePermissionResult {
@@ -5755,6 +6385,10 @@ class UpdateWorkspaceImagePermissionResult {
   factory UpdateWorkspaceImagePermissionResult.fromJson(
       Map<String, dynamic> _) {
     return UpdateWorkspaceImagePermissionResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5882,6 +6516,45 @@ class Workspace {
               json['WorkspaceProperties'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bundleId = this.bundleId;
+    final computerName = this.computerName;
+    final directoryId = this.directoryId;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final ipAddress = this.ipAddress;
+    final modificationStates = this.modificationStates;
+    final rootVolumeEncryptionEnabled = this.rootVolumeEncryptionEnabled;
+    final state = this.state;
+    final subnetId = this.subnetId;
+    final userName = this.userName;
+    final userVolumeEncryptionEnabled = this.userVolumeEncryptionEnabled;
+    final volumeEncryptionKey = this.volumeEncryptionKey;
+    final workspaceId = this.workspaceId;
+    final workspaceProperties = this.workspaceProperties;
+    return {
+      if (bundleId != null) 'BundleId': bundleId,
+      if (computerName != null) 'ComputerName': computerName,
+      if (directoryId != null) 'DirectoryId': directoryId,
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (ipAddress != null) 'IpAddress': ipAddress,
+      if (modificationStates != null) 'ModificationStates': modificationStates,
+      if (rootVolumeEncryptionEnabled != null)
+        'RootVolumeEncryptionEnabled': rootVolumeEncryptionEnabled,
+      if (state != null) 'State': state.toValue(),
+      if (subnetId != null) 'SubnetId': subnetId,
+      if (userName != null) 'UserName': userName,
+      if (userVolumeEncryptionEnabled != null)
+        'UserVolumeEncryptionEnabled': userVolumeEncryptionEnabled,
+      if (volumeEncryptionKey != null)
+        'VolumeEncryptionKey': volumeEncryptionKey,
+      if (workspaceId != null) 'WorkspaceId': workspaceId,
+      if (workspaceProperties != null)
+        'WorkspaceProperties': workspaceProperties,
+    };
   }
 }
 
@@ -6040,6 +6713,33 @@ class WorkspaceBundle {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bundleId = this.bundleId;
+    final computeType = this.computeType;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final imageId = this.imageId;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final owner = this.owner;
+    final rootStorage = this.rootStorage;
+    final userStorage = this.userStorage;
+    return {
+      if (bundleId != null) 'BundleId': bundleId,
+      if (computeType != null) 'ComputeType': computeType,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (imageId != null) 'ImageId': imageId,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (owner != null) 'Owner': owner,
+      if (rootStorage != null) 'RootStorage': rootStorage,
+      if (userStorage != null) 'UserStorage': userStorage,
+    };
+  }
 }
 
 /// Describes the connection status of a WorkSpace.
@@ -6073,6 +6773,24 @@ class WorkspaceConnectionStatus {
           timeStampFromJson(json['LastKnownUserConnectionTimestamp']),
       workspaceId: json['WorkspaceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectionState = this.connectionState;
+    final connectionStateCheckTimestamp = this.connectionStateCheckTimestamp;
+    final lastKnownUserConnectionTimestamp =
+        this.lastKnownUserConnectionTimestamp;
+    final workspaceId = this.workspaceId;
+    return {
+      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (connectionStateCheckTimestamp != null)
+        'ConnectionStateCheckTimestamp':
+            unixTimestampToJson(connectionStateCheckTimestamp),
+      if (lastKnownUserConnectionTimestamp != null)
+        'LastKnownUserConnectionTimestamp':
+            unixTimestampToJson(lastKnownUserConnectionTimestamp),
+      if (workspaceId != null) 'WorkspaceId': workspaceId,
+    };
   }
 }
 
@@ -6144,6 +6862,7 @@ class WorkspaceCreationProperties {
     this.enableWorkDocs,
     this.userEnabledAsLocalAdministrator,
   });
+
   Map<String, dynamic> toJson() {
     final customSecurityGroupId = this.customSecurityGroupId;
     final defaultOu = this.defaultOu;
@@ -6299,6 +7018,49 @@ class WorkspaceDirectory {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alias = this.alias;
+    final customerUserName = this.customerUserName;
+    final directoryId = this.directoryId;
+    final directoryName = this.directoryName;
+    final directoryType = this.directoryType;
+    final dnsIpAddresses = this.dnsIpAddresses;
+    final iamRoleId = this.iamRoleId;
+    final registrationCode = this.registrationCode;
+    final samlProperties = this.samlProperties;
+    final selfservicePermissions = this.selfservicePermissions;
+    final state = this.state;
+    final subnetIds = this.subnetIds;
+    final tenancy = this.tenancy;
+    final workspaceAccessProperties = this.workspaceAccessProperties;
+    final workspaceCreationProperties = this.workspaceCreationProperties;
+    final workspaceSecurityGroupId = this.workspaceSecurityGroupId;
+    final ipGroupIds = this.ipGroupIds;
+    return {
+      if (alias != null) 'Alias': alias,
+      if (customerUserName != null) 'CustomerUserName': customerUserName,
+      if (directoryId != null) 'DirectoryId': directoryId,
+      if (directoryName != null) 'DirectoryName': directoryName,
+      if (directoryType != null) 'DirectoryType': directoryType.toValue(),
+      if (dnsIpAddresses != null) 'DnsIpAddresses': dnsIpAddresses,
+      if (iamRoleId != null) 'IamRoleId': iamRoleId,
+      if (registrationCode != null) 'RegistrationCode': registrationCode,
+      if (samlProperties != null) 'SamlProperties': samlProperties,
+      if (selfservicePermissions != null)
+        'SelfservicePermissions': selfservicePermissions,
+      if (state != null) 'State': state.toValue(),
+      if (subnetIds != null) 'SubnetIds': subnetIds,
+      if (tenancy != null) 'Tenancy': tenancy.toValue(),
+      if (workspaceAccessProperties != null)
+        'WorkspaceAccessProperties': workspaceAccessProperties,
+      if (workspaceCreationProperties != null)
+        'WorkspaceCreationProperties': workspaceCreationProperties,
+      if (workspaceSecurityGroupId != null)
+        'WorkspaceSecurityGroupId': workspaceSecurityGroupId,
+      if (ipGroupIds != null) 'ipGroupIds': ipGroupIds,
+    };
+  }
 }
 
 enum WorkspaceDirectoryState {
@@ -6446,6 +7208,33 @@ class WorkspaceImage {
           ? UpdateResult.fromJson(json['Updates'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final created = this.created;
+    final description = this.description;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final imageId = this.imageId;
+    final name = this.name;
+    final operatingSystem = this.operatingSystem;
+    final ownerAccountId = this.ownerAccountId;
+    final requiredTenancy = this.requiredTenancy;
+    final state = this.state;
+    final updates = this.updates;
+    return {
+      if (created != null) 'Created': unixTimestampToJson(created),
+      if (description != null) 'Description': description,
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (imageId != null) 'ImageId': imageId,
+      if (name != null) 'Name': name,
+      if (operatingSystem != null) 'OperatingSystem': operatingSystem,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (requiredTenancy != null) 'RequiredTenancy': requiredTenancy.toValue(),
+      if (state != null) 'State': state.toValue(),
+      if (updates != null) 'Updates': updates,
+    };
   }
 }
 
@@ -6839,6 +7628,19 @@ class WorkspacesIpGroup {
           .map((e) => IpRuleItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupDesc = this.groupDesc;
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    final userRules = this.userRules;
+    return {
+      if (groupDesc != null) 'groupDesc': groupDesc,
+      if (groupId != null) 'groupId': groupId,
+      if (groupName != null) 'groupName': groupName,
+      if (userRules != null) 'userRules': userRules,
+    };
   }
 }
 

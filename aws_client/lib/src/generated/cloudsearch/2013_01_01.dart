@@ -1065,6 +1065,15 @@ class AccessPoliciesStatus {
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 enum AlgorithmicStemming {
@@ -1437,6 +1446,15 @@ class AnalysisSchemeStatus {
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// The status and configuration of the domain's availability options.
@@ -1455,6 +1473,15 @@ class AvailabilityOptionsStatus {
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// The result of a <code>BuildSuggester</code> request. Contains a list of the
@@ -1472,6 +1499,13 @@ class BuildSuggestersResponse {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fieldNames = this.fieldNames;
+    return {
+      if (fieldNames != null) 'FieldNames': fieldNames,
+    };
+  }
 }
 
 /// The result of a <code>CreateDomainRequest</code>. Contains the status of a
@@ -1487,6 +1521,13 @@ class CreateDomainResponse {
       domainStatus:
           _s.extractXmlChild(elem, 'DomainStatus')?.let(DomainStatus.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainStatus = this.domainStatus;
+    return {
+      if (domainStatus != null) 'DomainStatus': domainStatus,
+    };
   }
 }
 
@@ -1614,6 +1655,13 @@ class DefineAnalysisSchemeResponse {
           _s.extractXmlChild(elem, 'AnalysisScheme')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysisScheme = this.analysisScheme;
+    return {
+      'AnalysisScheme': analysisScheme,
+    };
+  }
 }
 
 /// The result of a <code>DefineExpression</code> request. Contains the status
@@ -1629,6 +1677,13 @@ class DefineExpressionResponse {
       expression:
           ExpressionStatus.fromXml(_s.extractXmlChild(elem, 'Expression')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final expression = this.expression;
+    return {
+      'Expression': expression,
+    };
   }
 }
 
@@ -1646,6 +1701,13 @@ class DefineIndexFieldResponse {
           IndexFieldStatus.fromXml(_s.extractXmlChild(elem, 'IndexField')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final indexField = this.indexField;
+    return {
+      'IndexField': indexField,
+    };
+  }
 }
 
 /// The result of a <code>DefineSuggester</code> request. Contains the status of
@@ -1661,6 +1723,13 @@ class DefineSuggesterResponse {
       suggester:
           SuggesterStatus.fromXml(_s.extractXmlChild(elem, 'Suggester')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final suggester = this.suggester;
+    return {
+      'Suggester': suggester,
+    };
   }
 }
 
@@ -1679,6 +1748,13 @@ class DeleteAnalysisSchemeResponse {
           _s.extractXmlChild(elem, 'AnalysisScheme')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysisScheme = this.analysisScheme;
+    return {
+      'AnalysisScheme': analysisScheme,
+    };
+  }
 }
 
 /// The result of a <code>DeleteDomain</code> request. Contains the status of a
@@ -1695,6 +1771,13 @@ class DeleteDomainResponse {
       domainStatus:
           _s.extractXmlChild(elem, 'DomainStatus')?.let(DomainStatus.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainStatus = this.domainStatus;
+    return {
+      if (domainStatus != null) 'DomainStatus': domainStatus,
+    };
   }
 }
 
@@ -1713,6 +1796,13 @@ class DeleteExpressionResponse {
           ExpressionStatus.fromXml(_s.extractXmlChild(elem, 'Expression')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final expression = this.expression;
+    return {
+      'Expression': expression,
+    };
+  }
 }
 
 /// The result of a <code><a>DeleteIndexField</a></code> request.
@@ -1728,6 +1818,13 @@ class DeleteIndexFieldResponse {
       indexField:
           IndexFieldStatus.fromXml(_s.extractXmlChild(elem, 'IndexField')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexField = this.indexField;
+    return {
+      'IndexField': indexField,
+    };
   }
 }
 
@@ -1745,6 +1842,13 @@ class DeleteSuggesterResponse {
       suggester:
           SuggesterStatus.fromXml(_s.extractXmlChild(elem, 'Suggester')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final suggester = this.suggester;
+    return {
+      'Suggester': suggester,
+    };
   }
 }
 
@@ -1766,6 +1870,13 @@ class DescribeAnalysisSchemesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysisSchemes = this.analysisSchemes;
+    return {
+      'AnalysisSchemes': analysisSchemes,
+    };
+  }
 }
 
 /// The result of a <code>DescribeAvailabilityOptions</code> request. Indicates
@@ -1786,6 +1897,14 @@ class DescribeAvailabilityOptionsResponse {
           ?.let(AvailabilityOptionsStatus.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityOptions = this.availabilityOptions;
+    return {
+      if (availabilityOptions != null)
+        'AvailabilityOptions': availabilityOptions,
+    };
+  }
 }
 
 /// The result of a <code>DescribeDomainEndpointOptions</code> request. Contains
@@ -1803,6 +1922,14 @@ class DescribeDomainEndpointOptionsResponse {
           .extractXmlChild(elem, 'DomainEndpointOptions')
           ?.let(DomainEndpointOptionsStatus.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainEndpointOptions = this.domainEndpointOptions;
+    return {
+      if (domainEndpointOptions != null)
+        'DomainEndpointOptions': domainEndpointOptions,
+    };
   }
 }
 
@@ -1822,6 +1949,13 @@ class DescribeDomainsResponse {
           .map(DomainStatus.fromXml)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainStatusList = this.domainStatusList;
+    return {
+      'DomainStatusList': domainStatusList,
+    };
   }
 }
 
@@ -1843,6 +1977,13 @@ class DescribeExpressionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final expressions = this.expressions;
+    return {
+      'Expressions': expressions,
+    };
+  }
 }
 
 /// The result of a <code>DescribeIndexFields</code> request. Contains the index
@@ -1863,6 +2004,13 @@ class DescribeIndexFieldsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final indexFields = this.indexFields;
+    return {
+      'IndexFields': indexFields,
+    };
+  }
 }
 
 /// The result of a <code>DescribeScalingParameters</code> request. Contains the
@@ -1879,6 +2027,13 @@ class DescribeScalingParametersResponse {
           _s.extractXmlChild(elem, 'ScalingParameters')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final scalingParameters = this.scalingParameters;
+    return {
+      'ScalingParameters': scalingParameters,
+    };
+  }
 }
 
 /// The result of a <code>DescribeServiceAccessPolicies</code> request.
@@ -1894,6 +2049,13 @@ class DescribeServiceAccessPoliciesResponse {
       accessPolicies: AccessPoliciesStatus.fromXml(
           _s.extractXmlChild(elem, 'AccessPolicies')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessPolicies = this.accessPolicies;
+    return {
+      'AccessPolicies': accessPolicies,
+    };
   }
 }
 
@@ -1913,6 +2075,13 @@ class DescribeSuggestersResponse {
           .map(SuggesterStatus.fromXml)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final suggesters = this.suggesters;
+    return {
+      'Suggesters': suggesters,
+    };
   }
 }
 
@@ -2016,6 +2185,15 @@ class DomainEndpointOptionsStatus {
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// The current status of the search domain.
@@ -2097,6 +2275,39 @@ class DomainStatus {
           .extractXmlChild(elem, 'SearchService')
           ?.let(ServiceEndpoint.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainId = this.domainId;
+    final domainName = this.domainName;
+    final requiresIndexDocuments = this.requiresIndexDocuments;
+    final arn = this.arn;
+    final created = this.created;
+    final deleted = this.deleted;
+    final docService = this.docService;
+    final limits = this.limits;
+    final processing = this.processing;
+    final searchInstanceCount = this.searchInstanceCount;
+    final searchInstanceType = this.searchInstanceType;
+    final searchPartitionCount = this.searchPartitionCount;
+    final searchService = this.searchService;
+    return {
+      'DomainId': domainId,
+      'DomainName': domainName,
+      'RequiresIndexDocuments': requiresIndexDocuments,
+      if (arn != null) 'ARN': arn,
+      if (created != null) 'Created': created,
+      if (deleted != null) 'Deleted': deleted,
+      if (docService != null) 'DocService': docService,
+      if (limits != null) 'Limits': limits,
+      if (processing != null) 'Processing': processing,
+      if (searchInstanceCount != null)
+        'SearchInstanceCount': searchInstanceCount,
+      if (searchInstanceType != null) 'SearchInstanceType': searchInstanceType,
+      if (searchPartitionCount != null)
+        'SearchPartitionCount': searchPartitionCount,
+      if (searchService != null) 'SearchService': searchService,
+    };
   }
 }
 
@@ -2259,6 +2470,15 @@ class ExpressionStatus {
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// The result of an <code>IndexDocuments</code> request. Contains the status of
@@ -2276,6 +2496,13 @@ class IndexDocumentsResponse {
           .extractXmlChild(elem, 'FieldNames')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldNames = this.fieldNames;
+    return {
+      if (fieldNames != null) 'FieldNames': fieldNames,
+    };
   }
 }
 
@@ -2409,6 +2636,15 @@ class IndexFieldStatus {
       options: IndexField.fromXml(_s.extractXmlChild(elem, 'Options')!),
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -2677,6 +2913,15 @@ class Limits {
           _s.extractXmlIntValue(elem, 'MaximumReplicationCount')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final maximumPartitionCount = this.maximumPartitionCount;
+    final maximumReplicationCount = this.maximumReplicationCount;
+    return {
+      'MaximumPartitionCount': maximumPartitionCount,
+      'MaximumReplicationCount': maximumReplicationCount,
+    };
+  }
 }
 
 /// The result of a <code>ListDomainNames</code> request. Contains a list of the
@@ -2700,6 +2945,13 @@ class ListDomainNamesResponse {
             {},
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainNames = this.domainNames;
+    return {
+      if (domainNames != null) 'DomainNames': domainNames,
+    };
   }
 }
 
@@ -2908,6 +3160,21 @@ class OptionStatus {
       updateVersion: _s.extractXmlIntValue(elem, 'UpdateVersion'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final state = this.state;
+    final updateDate = this.updateDate;
+    final pendingDeletion = this.pendingDeletion;
+    final updateVersion = this.updateVersion;
+    return {
+      'CreationDate': iso8601ToJson(creationDate),
+      'State': state.toValue(),
+      'UpdateDate': iso8601ToJson(updateDate),
+      if (pendingDeletion != null) 'PendingDeletion': pendingDeletion,
+      if (updateVersion != null) 'UpdateVersion': updateVersion,
+    };
+  }
 }
 
 /// The instance type (such as <code>search.m1.small</code>) on which an index
@@ -3076,6 +3343,15 @@ class ScalingParametersStatus {
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// The endpoint to which service requests can be submitted.
@@ -3089,6 +3365,13 @@ class ServiceEndpoint {
     return ServiceEndpoint(
       endpoint: _s.extractXmlStringValue(elem, 'Endpoint'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    return {
+      if (endpoint != null) 'Endpoint': endpoint,
+    };
   }
 }
 
@@ -3169,6 +3452,15 @@ class SuggesterStatus {
       options: Suggester.fromXml(_s.extractXmlChild(elem, 'Options')!),
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -3328,6 +3620,14 @@ class UpdateAvailabilityOptionsResponse {
           ?.let(AvailabilityOptionsStatus.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityOptions = this.availabilityOptions;
+    return {
+      if (availabilityOptions != null)
+        'AvailabilityOptions': availabilityOptions,
+    };
+  }
 }
 
 /// The result of a <code>UpdateDomainEndpointOptions</code> request. Contains
@@ -3346,6 +3646,14 @@ class UpdateDomainEndpointOptionsResponse {
           ?.let(DomainEndpointOptionsStatus.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainEndpointOptions = this.domainEndpointOptions;
+    return {
+      if (domainEndpointOptions != null)
+        'DomainEndpointOptions': domainEndpointOptions,
+    };
+  }
 }
 
 /// The result of a <code>UpdateScalingParameters</code> request. Contains the
@@ -3361,6 +3669,13 @@ class UpdateScalingParametersResponse {
       scalingParameters: ScalingParametersStatus.fromXml(
           _s.extractXmlChild(elem, 'ScalingParameters')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final scalingParameters = this.scalingParameters;
+    return {
+      'ScalingParameters': scalingParameters,
+    };
   }
 }
 
@@ -3378,6 +3693,13 @@ class UpdateServiceAccessPoliciesResponse {
       accessPolicies: AccessPoliciesStatus.fromXml(
           _s.extractXmlChild(elem, 'AccessPolicies')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessPolicies = this.accessPolicies;
+    return {
+      'AccessPolicies': accessPolicies,
+    };
   }
 }
 

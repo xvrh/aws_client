@@ -2518,6 +2518,16 @@ class AppInstanceUserMembershipSummary {
       type: (json['Type'] as String?)?.toChannelMembershipType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final readMarkerTimestamp = this.readMarkerTimestamp;
+    final type = this.type;
+    return {
+      if (readMarkerTimestamp != null)
+        'ReadMarkerTimestamp': unixTimestampToJson(readMarkerTimestamp),
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// The membership information, including member ARNs, the channel ARN, and
@@ -2554,6 +2564,19 @@ class BatchChannelMemberships {
       type: (json['Type'] as String?)?.toChannelMembershipType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final invitedBy = this.invitedBy;
+    final members = this.members;
+    final type = this.type;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (invitedBy != null) 'InvitedBy': invitedBy,
+      if (members != null) 'Members': members,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// A list of failed member ARNs, error codes, and error messages.
@@ -2580,6 +2603,17 @@ class BatchCreateChannelMembershipError {
       errorMessage: json['ErrorMessage'] as String?,
       memberArn: json['MemberArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final memberArn = this.memberArn;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (memberArn != null) 'MemberArn': memberArn,
+    };
   }
 }
 
@@ -2609,6 +2643,16 @@ class BatchCreateChannelMembershipResponse {
               e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final batchChannelMemberships = this.batchChannelMemberships;
+    final errors = this.errors;
+    return {
+      if (batchChannelMemberships != null)
+        'BatchChannelMemberships': batchChannelMemberships,
+      if (errors != null) 'Errors': errors,
+    };
   }
 }
 
@@ -2672,6 +2716,34 @@ class Channel {
       privacy: (json['Privacy'] as String?)?.toChannelPrivacy(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final channelFlowArn = this.channelFlowArn;
+    final createdBy = this.createdBy;
+    final createdTimestamp = this.createdTimestamp;
+    final lastMessageTimestamp = this.lastMessageTimestamp;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final metadata = this.metadata;
+    final mode = this.mode;
+    final name = this.name;
+    final privacy = this.privacy;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (channelFlowArn != null) 'ChannelFlowArn': channelFlowArn,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (lastMessageTimestamp != null)
+        'LastMessageTimestamp': unixTimestampToJson(lastMessageTimestamp),
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (metadata != null) 'Metadata': metadata,
+      if (mode != null) 'Mode': mode.toValue(),
+      if (name != null) 'Name': name,
+      if (privacy != null) 'Privacy': privacy.toValue(),
+    };
+  }
 }
 
 /// Summary of details of a channel associated with channel flow.
@@ -2707,6 +2779,21 @@ class ChannelAssociatedWithFlowSummary {
       privacy: (json['Privacy'] as String?)?.toChannelPrivacy(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final metadata = this.metadata;
+    final mode = this.mode;
+    final name = this.name;
+    final privacy = this.privacy;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (metadata != null) 'Metadata': metadata,
+      if (mode != null) 'Mode': mode.toValue(),
+      if (name != null) 'Name': name,
+      if (privacy != null) 'Privacy': privacy.toValue(),
+    };
+  }
 }
 
 /// The details of a channel ban.
@@ -2741,6 +2828,20 @@ class ChannelBan {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final createdBy = this.createdBy;
+    final createdTimestamp = this.createdTimestamp;
+    final member = this.member;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (member != null) 'Member': member,
+    };
+  }
 }
 
 /// Summary of the details of a <code>ChannelBan</code>.
@@ -2757,6 +2858,13 @@ class ChannelBanSummary {
           ? Identity.fromJson(json['Member'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final member = this.member;
+    return {
+      if (member != null) 'Member': member,
+    };
   }
 }
 
@@ -2796,6 +2904,23 @@ class ChannelFlow {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelFlowArn = this.channelFlowArn;
+    final createdTimestamp = this.createdTimestamp;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final name = this.name;
+    final processors = this.processors;
+    return {
+      if (channelFlowArn != null) 'ChannelFlowArn': channelFlowArn,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (name != null) 'Name': name,
+      if (processors != null) 'Processors': processors,
+    };
+  }
 }
 
 class ChannelFlowCallbackResponse {
@@ -2814,6 +2939,15 @@ class ChannelFlowCallbackResponse {
       callbackId: json['CallbackId'] as String?,
       channelArn: json['ChannelArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callbackId = this.callbackId;
+    final channelArn = this.channelArn;
+    return {
+      if (callbackId != null) 'CallbackId': callbackId,
+      if (channelArn != null) 'ChannelArn': channelArn,
+    };
   }
 }
 
@@ -2842,6 +2976,17 @@ class ChannelFlowSummary {
           .map((e) => Processor.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelFlowArn = this.channelFlowArn;
+    final name = this.name;
+    final processors = this.processors;
+    return {
+      if (channelFlowArn != null) 'ChannelFlowArn': channelFlowArn,
+      if (name != null) 'Name': name,
+      if (processors != null) 'Processors': processors,
+    };
   }
 }
 
@@ -2887,6 +3032,25 @@ class ChannelMembership {
       type: (json['Type'] as String?)?.toChannelMembershipType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final createdTimestamp = this.createdTimestamp;
+    final invitedBy = this.invitedBy;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final member = this.member;
+    final type = this.type;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (invitedBy != null) 'InvitedBy': invitedBy,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (member != null) 'Member': member,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Summary of the channel membership details of an
@@ -2916,6 +3080,17 @@ class ChannelMembershipForAppInstanceUserSummary {
               json['ChannelSummary'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUserMembershipSummary =
+        this.appInstanceUserMembershipSummary;
+    final channelSummary = this.channelSummary;
+    return {
+      if (appInstanceUserMembershipSummary != null)
+        'AppInstanceUserMembershipSummary': appInstanceUserMembershipSummary,
+      if (channelSummary != null) 'ChannelSummary': channelSummary,
+    };
   }
 }
 
@@ -2958,6 +3133,13 @@ class ChannelMembershipSummary {
           ? Identity.fromJson(json['Member'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final member = this.member;
+    return {
+      if (member != null) 'Member': member,
+    };
   }
 }
 
@@ -3072,6 +3254,40 @@ class ChannelMessage {
       type: (json['Type'] as String?)?.toChannelMessageType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final content = this.content;
+    final createdTimestamp = this.createdTimestamp;
+    final lastEditedTimestamp = this.lastEditedTimestamp;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final messageAttributes = this.messageAttributes;
+    final messageId = this.messageId;
+    final metadata = this.metadata;
+    final persistence = this.persistence;
+    final redacted = this.redacted;
+    final sender = this.sender;
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (content != null) 'Content': content,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (lastEditedTimestamp != null)
+        'LastEditedTimestamp': unixTimestampToJson(lastEditedTimestamp),
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (messageAttributes != null) 'MessageAttributes': messageAttributes,
+      if (messageId != null) 'MessageId': messageId,
+      if (metadata != null) 'Metadata': metadata,
+      if (persistence != null) 'Persistence': persistence.toValue(),
+      if (redacted != null) 'Redacted': redacted,
+      if (sender != null) 'Sender': sender,
+      if (status != null) 'Status': status,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Stores information about a callback.
@@ -3100,6 +3316,7 @@ class ChannelMessageCallback {
     this.metadata,
     this.pushNotification,
   });
+
   Map<String, dynamic> toJson() {
     final messageId = this.messageId;
     final content = this.content;
@@ -3201,6 +3418,15 @@ class ChannelMessageStatusStructure {
       value: (json['Value'] as String?)?.toChannelMessageStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final detail = this.detail;
+    final value = this.value;
+    return {
+      if (detail != null) 'Detail': detail,
+      if (value != null) 'Value': value.toValue(),
+    };
+  }
 }
 
 /// Summary of the messages in a <code>Channel</code>.
@@ -3274,6 +3500,36 @@ class ChannelMessageSummary {
           : null,
       type: (json['Type'] as String?)?.toChannelMessageType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    final createdTimestamp = this.createdTimestamp;
+    final lastEditedTimestamp = this.lastEditedTimestamp;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final messageAttributes = this.messageAttributes;
+    final messageId = this.messageId;
+    final metadata = this.metadata;
+    final redacted = this.redacted;
+    final sender = this.sender;
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (content != null) 'Content': content,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (lastEditedTimestamp != null)
+        'LastEditedTimestamp': unixTimestampToJson(lastEditedTimestamp),
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (messageAttributes != null) 'MessageAttributes': messageAttributes,
+      if (messageId != null) 'MessageId': messageId,
+      if (metadata != null) 'Metadata': metadata,
+      if (redacted != null) 'Redacted': redacted,
+      if (sender != null) 'Sender': sender,
+      if (status != null) 'Status': status,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -3350,6 +3606,13 @@ class ChannelModeratedByAppInstanceUserSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelSummary = this.channelSummary;
+    return {
+      if (channelSummary != null) 'ChannelSummary': channelSummary,
+    };
+  }
 }
 
 /// The details of a channel moderator.
@@ -3384,6 +3647,20 @@ class ChannelModerator {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final createdBy = this.createdBy;
+    final createdTimestamp = this.createdTimestamp;
+    final moderator = this.moderator;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (moderator != null) 'Moderator': moderator,
+    };
+  }
 }
 
 /// Summary of the details of a <code>ChannelModerator</code>.
@@ -3400,6 +3677,13 @@ class ChannelModeratorSummary {
           ? Identity.fromJson(json['Moderator'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final moderator = this.moderator;
+    return {
+      if (moderator != null) 'Moderator': moderator,
+    };
   }
 }
 
@@ -3469,6 +3753,24 @@ class ChannelSummary {
       privacy: (json['Privacy'] as String?)?.toChannelPrivacy(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final lastMessageTimestamp = this.lastMessageTimestamp;
+    final metadata = this.metadata;
+    final mode = this.mode;
+    final name = this.name;
+    final privacy = this.privacy;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (lastMessageTimestamp != null)
+        'LastMessageTimestamp': unixTimestampToJson(lastMessageTimestamp),
+      if (metadata != null) 'Metadata': metadata,
+      if (mode != null) 'Mode': mode.toValue(),
+      if (name != null) 'Name': name,
+      if (privacy != null) 'Privacy': privacy.toValue(),
+    };
+  }
 }
 
 class CreateChannelBanResponse {
@@ -3491,6 +3793,15 @@ class CreateChannelBanResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final member = this.member;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (member != null) 'Member': member,
+    };
+  }
 }
 
 class CreateChannelFlowResponse {
@@ -3504,6 +3815,13 @@ class CreateChannelFlowResponse {
     return CreateChannelFlowResponse(
       channelFlowArn: json['ChannelFlowArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelFlowArn = this.channelFlowArn;
+    return {
+      if (channelFlowArn != null) 'ChannelFlowArn': channelFlowArn,
+    };
   }
 }
 
@@ -3526,6 +3844,15 @@ class CreateChannelMembershipResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final member = this.member;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (member != null) 'Member': member,
+    };
+  }
 }
 
 class CreateChannelModeratorResponse {
@@ -3547,6 +3874,15 @@ class CreateChannelModeratorResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final channelModerator = this.channelModerator;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (channelModerator != null) 'ChannelModerator': channelModerator,
+    };
+  }
 }
 
 class CreateChannelResponse {
@@ -3560,6 +3896,13 @@ class CreateChannelResponse {
     return CreateChannelResponse(
       channelArn: json['ChannelArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+    };
   }
 }
 
@@ -3577,6 +3920,13 @@ class DescribeChannelBanResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelBan = this.channelBan;
+    return {
+      if (channelBan != null) 'ChannelBan': channelBan,
+    };
+  }
 }
 
 class DescribeChannelFlowResponse {
@@ -3592,6 +3942,13 @@ class DescribeChannelFlowResponse {
           ? ChannelFlow.fromJson(json['ChannelFlow'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelFlow = this.channelFlow;
+    return {
+      if (channelFlow != null) 'ChannelFlow': channelFlow,
+    };
   }
 }
 
@@ -3611,6 +3968,13 @@ class DescribeChannelMembershipForAppInstanceUserResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelMembership = this.channelMembership;
+    return {
+      if (channelMembership != null) 'ChannelMembership': channelMembership,
+    };
+  }
 }
 
 class DescribeChannelMembershipResponse {
@@ -3628,6 +3992,13 @@ class DescribeChannelMembershipResponse {
               json['ChannelMembership'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelMembership = this.channelMembership;
+    return {
+      if (channelMembership != null) 'ChannelMembership': channelMembership,
+    };
   }
 }
 
@@ -3647,6 +4018,13 @@ class DescribeChannelModeratedByAppInstanceUserResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channel = this.channel;
+    return {
+      if (channel != null) 'Channel': channel,
+    };
+  }
 }
 
 class DescribeChannelModeratorResponse {
@@ -3664,6 +4042,13 @@ class DescribeChannelModeratorResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelModerator = this.channelModerator;
+    return {
+      if (channelModerator != null) 'ChannelModerator': channelModerator,
+    };
+  }
 }
 
 class DescribeChannelResponse {
@@ -3679,6 +4064,13 @@ class DescribeChannelResponse {
           ? Channel.fromJson(json['Channel'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channel = this.channel;
+    return {
+      if (channel != null) 'Channel': channel,
+    };
   }
 }
 
@@ -3831,6 +4223,17 @@ class GetChannelMembershipPreferencesResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final member = this.member;
+    final preferences = this.preferences;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (member != null) 'Member': member,
+      if (preferences != null) 'Preferences': preferences,
+    };
+  }
 }
 
 class GetChannelMessageResponse {
@@ -3847,6 +4250,13 @@ class GetChannelMessageResponse {
               json['ChannelMessage'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelMessage = this.channelMessage;
+    return {
+      if (channelMessage != null) 'ChannelMessage': channelMessage,
+    };
   }
 }
 
@@ -3865,6 +4275,13 @@ class GetChannelMessageStatusResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 class GetMessagingSessionEndpointResponse {
@@ -3882,6 +4299,13 @@ class GetMessagingSessionEndpointResponse {
               json['Endpoint'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    return {
+      if (endpoint != null) 'Endpoint': endpoint,
+    };
   }
 }
 
@@ -3902,6 +4326,15 @@ class Identity {
       arn: json['Arn'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -3983,6 +4416,17 @@ class ListChannelBansResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final channelBans = this.channelBans;
+    final nextToken = this.nextToken;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (channelBans != null) 'ChannelBans': channelBans,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListChannelFlowsResponse {
@@ -4005,6 +4449,15 @@ class ListChannelFlowsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelFlows = this.channelFlows;
+    final nextToken = this.nextToken;
+    return {
+      if (channelFlows != null) 'ChannelFlows': channelFlows,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4030,6 +4483,15 @@ class ListChannelMembershipsForAppInstanceUserResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelMemberships = this.channelMemberships;
+    final nextToken = this.nextToken;
+    return {
+      if (channelMemberships != null) 'ChannelMemberships': channelMemberships,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4060,6 +4522,17 @@ class ListChannelMembershipsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final channelMemberships = this.channelMemberships;
+    final nextToken = this.nextToken;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (channelMemberships != null) 'ChannelMemberships': channelMemberships,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListChannelMessagesResponse {
@@ -4087,6 +4560,17 @@ class ListChannelMessagesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final channelMessages = this.channelMessages;
+    final nextToken = this.nextToken;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (channelMessages != null) 'ChannelMessages': channelMessages,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4117,6 +4601,17 @@ class ListChannelModeratorsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final channelModerators = this.channelModerators;
+    final nextToken = this.nextToken;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (channelModerators != null) 'ChannelModerators': channelModerators,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListChannelsAssociatedWithChannelFlowResponse {
@@ -4141,6 +4636,15 @@ class ListChannelsAssociatedWithChannelFlowResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channels = this.channels;
+    final nextToken = this.nextToken;
+    return {
+      if (channels != null) 'Channels': channels,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4167,6 +4671,15 @@ class ListChannelsModeratedByAppInstanceUserResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channels = this.channels;
+    final nextToken = this.nextToken;
+    return {
+      if (channels != null) 'Channels': channels,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListChannelsResponse {
@@ -4190,6 +4703,15 @@ class ListChannelsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channels = this.channels;
+    final nextToken = this.nextToken;
+    return {
+      if (channels != null) 'Channels': channels,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -4206,6 +4728,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -4246,6 +4775,13 @@ class MessagingSessionEndpoint {
     return MessagingSessionEndpoint(
       url: json['Url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final url = this.url;
+    return {
+      if (url != null) 'Url': url,
+    };
   }
 }
 
@@ -4344,6 +4880,7 @@ class PushNotificationConfiguration {
     this.title,
     this.type,
   });
+
   Map<String, dynamic> toJson() {
     final body = this.body;
     final title = this.title;
@@ -4446,6 +4983,17 @@ class PutChannelMembershipPreferencesResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final member = this.member;
+    final preferences = this.preferences;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (member != null) 'Member': member,
+      if (preferences != null) 'Preferences': preferences,
+    };
+  }
 }
 
 class RedactChannelMessageResponse {
@@ -4464,6 +5012,15 @@ class RedactChannelMessageResponse {
       channelArn: json['ChannelArn'] as String?,
       messageId: json['MessageId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final messageId = this.messageId;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (messageId != null) 'MessageId': messageId,
+    };
   }
 }
 
@@ -4487,6 +5044,15 @@ class SearchChannelsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channels = this.channels;
+    final nextToken = this.nextToken;
+    return {
+      if (channels != null) 'Channels': channels,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4519,6 +5085,7 @@ class SearchField {
     required this.operator,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final operator = this.operator;
@@ -4607,6 +5174,17 @@ class SendChannelMessageResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final messageId = this.messageId;
+    final status = this.status;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (messageId != null) 'MessageId': messageId,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 enum SortOrder {
@@ -4678,6 +5256,13 @@ class UpdateChannelFlowResponse {
       channelFlowArn: json['ChannelFlowArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelFlowArn = this.channelFlowArn;
+    return {
+      if (channelFlowArn != null) 'ChannelFlowArn': channelFlowArn,
+    };
+  }
 }
 
 class UpdateChannelMessageResponse {
@@ -4705,6 +5290,17 @@ class UpdateChannelMessageResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final messageId = this.messageId;
+    final status = this.status;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (messageId != null) 'MessageId': messageId,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 class UpdateChannelReadMarkerResponse {
@@ -4719,6 +5315,13 @@ class UpdateChannelReadMarkerResponse {
       channelArn: json['ChannelArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+    };
+  }
 }
 
 class UpdateChannelResponse {
@@ -4732,6 +5335,13 @@ class UpdateChannelResponse {
     return UpdateChannelResponse(
       channelArn: json['ChannelArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+    };
   }
 }
 

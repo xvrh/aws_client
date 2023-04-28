@@ -4618,6 +4618,23 @@ class AccountLimit {
           json['UnreservedConcurrentExecutions'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeSizeUnzipped = this.codeSizeUnzipped;
+    final codeSizeZipped = this.codeSizeZipped;
+    final concurrentExecutions = this.concurrentExecutions;
+    final totalCodeSize = this.totalCodeSize;
+    final unreservedConcurrentExecutions = this.unreservedConcurrentExecutions;
+    return {
+      if (codeSizeUnzipped != null) 'CodeSizeUnzipped': codeSizeUnzipped,
+      if (codeSizeZipped != null) 'CodeSizeZipped': codeSizeZipped,
+      if (concurrentExecutions != null)
+        'ConcurrentExecutions': concurrentExecutions,
+      if (totalCodeSize != null) 'TotalCodeSize': totalCodeSize,
+      if (unreservedConcurrentExecutions != null)
+        'UnreservedConcurrentExecutions': unreservedConcurrentExecutions,
+    };
+  }
 }
 
 /// The number of functions and amount of storage in use.
@@ -4639,6 +4656,15 @@ class AccountUsage {
       totalCodeSize: json['TotalCodeSize'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final functionCount = this.functionCount;
+    final totalCodeSize = this.totalCodeSize;
+    return {
+      if (functionCount != null) 'FunctionCount': functionCount,
+      if (totalCodeSize != null) 'TotalCodeSize': totalCodeSize,
+    };
+  }
 }
 
 class AddLayerVersionPermissionResponse {
@@ -4659,6 +4685,15 @@ class AddLayerVersionPermissionResponse {
       statement: json['Statement'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final revisionId = this.revisionId;
+    final statement = this.statement;
+    return {
+      if (revisionId != null) 'RevisionId': revisionId,
+      if (statement != null) 'Statement': statement,
+    };
+  }
 }
 
 class AddPermissionResponse {
@@ -4672,6 +4707,13 @@ class AddPermissionResponse {
     return AddPermissionResponse(
       statement: json['Statement'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final statement = this.statement;
+    return {
+      if (statement != null) 'Statement': statement,
+    };
   }
 }
 
@@ -4718,6 +4760,23 @@ class AliasConfiguration {
               json['RoutingConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aliasArn = this.aliasArn;
+    final description = this.description;
+    final functionVersion = this.functionVersion;
+    final name = this.name;
+    final revisionId = this.revisionId;
+    final routingConfig = this.routingConfig;
+    return {
+      if (aliasArn != null) 'AliasArn': aliasArn,
+      if (description != null) 'Description': description,
+      if (functionVersion != null) 'FunctionVersion': functionVersion,
+      if (name != null) 'Name': name,
+      if (revisionId != null) 'RevisionId': revisionId,
+      if (routingConfig != null) 'RoutingConfig': routingConfig,
+    };
   }
 }
 
@@ -4846,6 +4905,23 @@ class CodeSigningConfig {
       description: json['Description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowedPublishers = this.allowedPublishers;
+    final codeSigningConfigArn = this.codeSigningConfigArn;
+    final codeSigningConfigId = this.codeSigningConfigId;
+    final codeSigningPolicies = this.codeSigningPolicies;
+    final lastModified = this.lastModified;
+    final description = this.description;
+    return {
+      'AllowedPublishers': allowedPublishers,
+      'CodeSigningConfigArn': codeSigningConfigArn,
+      'CodeSigningConfigId': codeSigningConfigId,
+      'CodeSigningPolicies': codeSigningPolicies,
+      'LastModified': lastModified,
+      if (description != null) 'Description': description,
+    };
+  }
 }
 
 /// Code signing configuration <a
@@ -4925,6 +5001,14 @@ class Concurrency {
       reservedConcurrentExecutions:
           json['ReservedConcurrentExecutions'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reservedConcurrentExecutions = this.reservedConcurrentExecutions;
+    return {
+      if (reservedConcurrentExecutions != null)
+        'ReservedConcurrentExecutions': reservedConcurrentExecutions,
+    };
   }
 }
 
@@ -5029,6 +5113,13 @@ class CreateCodeSigningConfigResponse {
           json['CodeSigningConfig'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeSigningConfig = this.codeSigningConfig;
+    return {
+      'CodeSigningConfig': codeSigningConfig,
+    };
+  }
 }
 
 class CreateFunctionUrlConfigResponse {
@@ -5074,6 +5165,21 @@ class CreateFunctionUrlConfigResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authType = this.authType;
+    final creationTime = this.creationTime;
+    final functionArn = this.functionArn;
+    final functionUrl = this.functionUrl;
+    final cors = this.cors;
+    return {
+      'AuthType': authType.toValue(),
+      'CreationTime': creationTime,
+      'FunctionArn': functionArn,
+      'FunctionUrl': functionUrl,
+      if (cors != null) 'Cors': cors,
+    };
+  }
 }
 
 /// The <a
@@ -5104,6 +5210,10 @@ class DeleteCodeSigningConfigResponse {
   DeleteCodeSigningConfigResponse();
   factory DeleteCodeSigningConfigResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCodeSigningConfigResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5177,6 +5287,7 @@ class Environment {
   Environment({
     this.variables,
   });
+
   Map<String, dynamic> toJson() {
     final variables = this.variables;
     return {
@@ -5203,6 +5314,15 @@ class EnvironmentError {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final message = this.message;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// The results of an operation to update or read environment variables. If the
@@ -5227,6 +5347,15 @@ class EnvironmentResponse {
       variables: (json['Variables'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final variables = this.variables;
+    return {
+      if (error != null) 'Error': error,
+      if (variables != null) 'Variables': variables,
+    };
   }
 }
 
@@ -5440,6 +5569,73 @@ class EventSourceMappingConfiguration {
       uuid: json['UUID'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchSize = this.batchSize;
+    final bisectBatchOnFunctionError = this.bisectBatchOnFunctionError;
+    final destinationConfig = this.destinationConfig;
+    final eventSourceArn = this.eventSourceArn;
+    final filterCriteria = this.filterCriteria;
+    final functionArn = this.functionArn;
+    final functionResponseTypes = this.functionResponseTypes;
+    final lastModified = this.lastModified;
+    final lastProcessingResult = this.lastProcessingResult;
+    final maximumBatchingWindowInSeconds = this.maximumBatchingWindowInSeconds;
+    final maximumRecordAgeInSeconds = this.maximumRecordAgeInSeconds;
+    final maximumRetryAttempts = this.maximumRetryAttempts;
+    final parallelizationFactor = this.parallelizationFactor;
+    final queues = this.queues;
+    final selfManagedEventSource = this.selfManagedEventSource;
+    final sourceAccessConfigurations = this.sourceAccessConfigurations;
+    final startingPosition = this.startingPosition;
+    final startingPositionTimestamp = this.startingPositionTimestamp;
+    final state = this.state;
+    final stateTransitionReason = this.stateTransitionReason;
+    final topics = this.topics;
+    final tumblingWindowInSeconds = this.tumblingWindowInSeconds;
+    final uuid = this.uuid;
+    return {
+      if (batchSize != null) 'BatchSize': batchSize,
+      if (bisectBatchOnFunctionError != null)
+        'BisectBatchOnFunctionError': bisectBatchOnFunctionError,
+      if (destinationConfig != null) 'DestinationConfig': destinationConfig,
+      if (eventSourceArn != null) 'EventSourceArn': eventSourceArn,
+      if (filterCriteria != null) 'FilterCriteria': filterCriteria,
+      if (functionArn != null) 'FunctionArn': functionArn,
+      if (functionResponseTypes != null)
+        'FunctionResponseTypes':
+            functionResponseTypes.map((e) => e.toValue()).toList(),
+      if (lastModified != null)
+        'LastModified': unixTimestampToJson(lastModified),
+      if (lastProcessingResult != null)
+        'LastProcessingResult': lastProcessingResult,
+      if (maximumBatchingWindowInSeconds != null)
+        'MaximumBatchingWindowInSeconds': maximumBatchingWindowInSeconds,
+      if (maximumRecordAgeInSeconds != null)
+        'MaximumRecordAgeInSeconds': maximumRecordAgeInSeconds,
+      if (maximumRetryAttempts != null)
+        'MaximumRetryAttempts': maximumRetryAttempts,
+      if (parallelizationFactor != null)
+        'ParallelizationFactor': parallelizationFactor,
+      if (queues != null) 'Queues': queues,
+      if (selfManagedEventSource != null)
+        'SelfManagedEventSource': selfManagedEventSource,
+      if (sourceAccessConfigurations != null)
+        'SourceAccessConfigurations': sourceAccessConfigurations,
+      if (startingPosition != null)
+        'StartingPosition': startingPosition.toValue(),
+      if (startingPositionTimestamp != null)
+        'StartingPositionTimestamp':
+            unixTimestampToJson(startingPositionTimestamp),
+      if (state != null) 'State': state,
+      if (stateTransitionReason != null)
+        'StateTransitionReason': stateTransitionReason,
+      if (topics != null) 'Topics': topics,
+      if (tumblingWindowInSeconds != null)
+        'TumblingWindowInSeconds': tumblingWindowInSeconds,
+      if (uuid != null) 'UUID': uuid,
+    };
+  }
 }
 
 enum EventSourcePosition {
@@ -5589,6 +5785,7 @@ class FunctionCode {
     this.s3ObjectVersion,
     this.zipFile,
   });
+
   Map<String, dynamic> toJson() {
     final imageUri = this.imageUri;
     final s3Bucket = this.s3Bucket;
@@ -5632,6 +5829,19 @@ class FunctionCodeLocation {
       repositoryType: json['RepositoryType'] as String?,
       resolvedImageUri: json['ResolvedImageUri'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageUri = this.imageUri;
+    final location = this.location;
+    final repositoryType = this.repositoryType;
+    final resolvedImageUri = this.resolvedImageUri;
+    return {
+      if (imageUri != null) 'ImageUri': imageUri,
+      if (location != null) 'Location': location,
+      if (repositoryType != null) 'RepositoryType': repositoryType,
+      if (resolvedImageUri != null) 'ResolvedImageUri': resolvedImageUri,
+    };
   }
 }
 
@@ -5856,6 +6066,83 @@ class FunctionConfiguration {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final architectures = this.architectures;
+    final codeSha256 = this.codeSha256;
+    final codeSize = this.codeSize;
+    final deadLetterConfig = this.deadLetterConfig;
+    final description = this.description;
+    final environment = this.environment;
+    final ephemeralStorage = this.ephemeralStorage;
+    final fileSystemConfigs = this.fileSystemConfigs;
+    final functionArn = this.functionArn;
+    final functionName = this.functionName;
+    final handler = this.handler;
+    final imageConfigResponse = this.imageConfigResponse;
+    final kMSKeyArn = this.kMSKeyArn;
+    final lastModified = this.lastModified;
+    final lastUpdateStatus = this.lastUpdateStatus;
+    final lastUpdateStatusReason = this.lastUpdateStatusReason;
+    final lastUpdateStatusReasonCode = this.lastUpdateStatusReasonCode;
+    final layers = this.layers;
+    final masterArn = this.masterArn;
+    final memorySize = this.memorySize;
+    final packageType = this.packageType;
+    final revisionId = this.revisionId;
+    final role = this.role;
+    final runtime = this.runtime;
+    final signingJobArn = this.signingJobArn;
+    final signingProfileVersionArn = this.signingProfileVersionArn;
+    final state = this.state;
+    final stateReason = this.stateReason;
+    final stateReasonCode = this.stateReasonCode;
+    final timeout = this.timeout;
+    final tracingConfig = this.tracingConfig;
+    final version = this.version;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (architectures != null)
+        'Architectures': architectures.map((e) => e.toValue()).toList(),
+      if (codeSha256 != null) 'CodeSha256': codeSha256,
+      if (codeSize != null) 'CodeSize': codeSize,
+      if (deadLetterConfig != null) 'DeadLetterConfig': deadLetterConfig,
+      if (description != null) 'Description': description,
+      if (environment != null) 'Environment': environment,
+      if (ephemeralStorage != null) 'EphemeralStorage': ephemeralStorage,
+      if (fileSystemConfigs != null) 'FileSystemConfigs': fileSystemConfigs,
+      if (functionArn != null) 'FunctionArn': functionArn,
+      if (functionName != null) 'FunctionName': functionName,
+      if (handler != null) 'Handler': handler,
+      if (imageConfigResponse != null)
+        'ImageConfigResponse': imageConfigResponse,
+      if (kMSKeyArn != null) 'KMSKeyArn': kMSKeyArn,
+      if (lastModified != null) 'LastModified': lastModified,
+      if (lastUpdateStatus != null)
+        'LastUpdateStatus': lastUpdateStatus.toValue(),
+      if (lastUpdateStatusReason != null)
+        'LastUpdateStatusReason': lastUpdateStatusReason,
+      if (lastUpdateStatusReasonCode != null)
+        'LastUpdateStatusReasonCode': lastUpdateStatusReasonCode.toValue(),
+      if (layers != null) 'Layers': layers,
+      if (masterArn != null) 'MasterArn': masterArn,
+      if (memorySize != null) 'MemorySize': memorySize,
+      if (packageType != null) 'PackageType': packageType.toValue(),
+      if (revisionId != null) 'RevisionId': revisionId,
+      if (role != null) 'Role': role,
+      if (runtime != null) 'Runtime': runtime.toValue(),
+      if (signingJobArn != null) 'SigningJobArn': signingJobArn,
+      if (signingProfileVersionArn != null)
+        'SigningProfileVersionArn': signingProfileVersionArn,
+      if (state != null) 'State': state.toValue(),
+      if (stateReason != null) 'StateReason': stateReason,
+      if (stateReasonCode != null) 'StateReasonCode': stateReasonCode.toValue(),
+      if (timeout != null) 'Timeout': timeout,
+      if (tracingConfig != null) 'TracingConfig': tracingConfig,
+      if (version != null) 'Version': version,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 class FunctionEventInvokeConfig {
@@ -5909,6 +6196,24 @@ class FunctionEventInvokeConfig {
       maximumEventAgeInSeconds: json['MaximumEventAgeInSeconds'] as int?,
       maximumRetryAttempts: json['MaximumRetryAttempts'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destinationConfig = this.destinationConfig;
+    final functionArn = this.functionArn;
+    final lastModified = this.lastModified;
+    final maximumEventAgeInSeconds = this.maximumEventAgeInSeconds;
+    final maximumRetryAttempts = this.maximumRetryAttempts;
+    return {
+      if (destinationConfig != null) 'DestinationConfig': destinationConfig,
+      if (functionArn != null) 'FunctionArn': functionArn,
+      if (lastModified != null)
+        'LastModified': unixTimestampToJson(lastModified),
+      if (maximumEventAgeInSeconds != null)
+        'MaximumEventAgeInSeconds': maximumEventAgeInSeconds,
+      if (maximumRetryAttempts != null)
+        'MaximumRetryAttempts': maximumRetryAttempts,
+    };
   }
 }
 
@@ -6014,6 +6319,23 @@ class FunctionUrlConfig {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authType = this.authType;
+    final creationTime = this.creationTime;
+    final functionArn = this.functionArn;
+    final functionUrl = this.functionUrl;
+    final lastModifiedTime = this.lastModifiedTime;
+    final cors = this.cors;
+    return {
+      'AuthType': authType.toValue(),
+      'CreationTime': creationTime,
+      'FunctionArn': functionArn,
+      'FunctionUrl': functionUrl,
+      'LastModifiedTime': lastModifiedTime,
+      if (cors != null) 'Cors': cors,
+    };
+  }
 }
 
 enum FunctionVersion {
@@ -6060,6 +6382,15 @@ class GetAccountSettingsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountLimit = this.accountLimit;
+    final accountUsage = this.accountUsage;
+    return {
+      if (accountLimit != null) 'AccountLimit': accountLimit,
+      if (accountUsage != null) 'AccountUsage': accountUsage,
+    };
+  }
 }
 
 class GetCodeSigningConfigResponse {
@@ -6074,6 +6405,13 @@ class GetCodeSigningConfigResponse {
       codeSigningConfig: CodeSigningConfig.fromJson(
           json['CodeSigningConfig'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final codeSigningConfig = this.codeSigningConfig;
+    return {
+      'CodeSigningConfig': codeSigningConfig,
+    };
   }
 }
 
@@ -6111,6 +6449,15 @@ class GetFunctionCodeSigningConfigResponse {
       functionName: json['FunctionName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeSigningConfigArn = this.codeSigningConfigArn;
+    final functionName = this.functionName;
+    return {
+      'CodeSigningConfigArn': codeSigningConfigArn,
+      'FunctionName': functionName,
+    };
+  }
 }
 
 class GetFunctionConcurrencyResponse {
@@ -6125,6 +6472,14 @@ class GetFunctionConcurrencyResponse {
       reservedConcurrentExecutions:
           json['ReservedConcurrentExecutions'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reservedConcurrentExecutions = this.reservedConcurrentExecutions;
+    return {
+      if (reservedConcurrentExecutions != null)
+        'ReservedConcurrentExecutions': reservedConcurrentExecutions,
+    };
   }
 }
 
@@ -6165,6 +6520,19 @@ class GetFunctionResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final concurrency = this.concurrency;
+    final configuration = this.configuration;
+    final tags = this.tags;
+    return {
+      if (code != null) 'Code': code,
+      if (concurrency != null) 'Concurrency': concurrency,
+      if (configuration != null) 'Configuration': configuration,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -6218,6 +6586,23 @@ class GetFunctionUrlConfigResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authType = this.authType;
+    final creationTime = this.creationTime;
+    final functionArn = this.functionArn;
+    final functionUrl = this.functionUrl;
+    final lastModifiedTime = this.lastModifiedTime;
+    final cors = this.cors;
+    return {
+      'AuthType': authType.toValue(),
+      'CreationTime': creationTime,
+      'FunctionArn': functionArn,
+      'FunctionUrl': functionUrl,
+      'LastModifiedTime': lastModifiedTime,
+      if (cors != null) 'Cors': cors,
+    };
+  }
 }
 
 class GetLayerVersionPolicyResponse {
@@ -6236,6 +6621,15 @@ class GetLayerVersionPolicyResponse {
       policy: json['Policy'] as String?,
       revisionId: json['RevisionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final revisionId = this.revisionId;
+    return {
+      if (policy != null) 'Policy': policy,
+      if (revisionId != null) 'RevisionId': revisionId,
+    };
   }
 }
 
@@ -6304,6 +6698,33 @@ class GetLayerVersionResponse {
       version: json['Version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final compatibleArchitectures = this.compatibleArchitectures;
+    final compatibleRuntimes = this.compatibleRuntimes;
+    final content = this.content;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final layerArn = this.layerArn;
+    final layerVersionArn = this.layerVersionArn;
+    final licenseInfo = this.licenseInfo;
+    final version = this.version;
+    return {
+      if (compatibleArchitectures != null)
+        'CompatibleArchitectures':
+            compatibleArchitectures.map((e) => e.toValue()).toList(),
+      if (compatibleRuntimes != null)
+        'CompatibleRuntimes':
+            compatibleRuntimes.map((e) => e.toValue()).toList(),
+      if (content != null) 'Content': content,
+      if (createdDate != null) 'CreatedDate': createdDate,
+      if (description != null) 'Description': description,
+      if (layerArn != null) 'LayerArn': layerArn,
+      if (layerVersionArn != null) 'LayerVersionArn': layerVersionArn,
+      if (licenseInfo != null) 'LicenseInfo': licenseInfo,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class GetPolicyResponse {
@@ -6322,6 +6743,15 @@ class GetPolicyResponse {
       policy: json['Policy'] as String?,
       revisionId: json['RevisionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final revisionId = this.revisionId;
+    return {
+      if (policy != null) 'Policy': policy,
+      if (revisionId != null) 'RevisionId': revisionId,
+    };
   }
 }
 
@@ -6368,6 +6798,32 @@ class GetProvisionedConcurrencyConfigResponse {
       status: (json['Status'] as String?)?.toProvisionedConcurrencyStatusEnum(),
       statusReason: json['StatusReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allocatedProvisionedConcurrentExecutions =
+        this.allocatedProvisionedConcurrentExecutions;
+    final availableProvisionedConcurrentExecutions =
+        this.availableProvisionedConcurrentExecutions;
+    final lastModified = this.lastModified;
+    final requestedProvisionedConcurrentExecutions =
+        this.requestedProvisionedConcurrentExecutions;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (allocatedProvisionedConcurrentExecutions != null)
+        'AllocatedProvisionedConcurrentExecutions':
+            allocatedProvisionedConcurrentExecutions,
+      if (availableProvisionedConcurrentExecutions != null)
+        'AvailableProvisionedConcurrentExecutions':
+            availableProvisionedConcurrentExecutions,
+      if (lastModified != null) 'LastModified': lastModified,
+      if (requestedProvisionedConcurrentExecutions != null)
+        'RequestedProvisionedConcurrentExecutions':
+            requestedProvisionedConcurrentExecutions,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
   }
 }
 
@@ -6435,6 +6891,15 @@ class ImageConfigError {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final message = this.message;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Response to GetFunctionConfiguration request.
@@ -6458,6 +6923,15 @@ class ImageConfigResponse {
           ? ImageConfig.fromJson(json['ImageConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final imageConfig = this.imageConfig;
+    return {
+      if (error != null) 'Error': error,
+      if (imageConfig != null) 'ImageConfig': imageConfig,
+    };
   }
 }
 
@@ -6489,6 +6963,17 @@ class InvocationResponse {
     this.payload,
     this.statusCode,
   });
+
+  Map<String, dynamic> toJson() {
+    final executedVersion = this.executedVersion;
+    final functionError = this.functionError;
+    final logResult = this.logResult;
+    final payload = this.payload;
+    final statusCode = this.statusCode;
+    return {
+      if (payload != null) 'Payload': base64Encode(payload),
+    };
+  }
 }
 
 enum InvocationType {
@@ -6538,6 +7023,11 @@ class InvokeAsyncResponse {
     return InvokeAsyncResponse(
       status: json['Status'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {};
   }
 }
 
@@ -6673,6 +7163,20 @@ class Layer {
       signingProfileVersionArn: json['SigningProfileVersionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final codeSize = this.codeSize;
+    final signingJobArn = this.signingJobArn;
+    final signingProfileVersionArn = this.signingProfileVersionArn;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (codeSize != null) 'CodeSize': codeSize,
+      if (signingJobArn != null) 'SigningJobArn': signingJobArn,
+      if (signingProfileVersionArn != null)
+        'SigningProfileVersionArn': signingProfileVersionArn,
+    };
+  }
 }
 
 /// A ZIP archive that contains the contents of an <a
@@ -6699,6 +7203,7 @@ class LayerVersionContentInput {
     this.s3ObjectVersion,
     this.zipFile,
   });
+
   Map<String, dynamic> toJson() {
     final s3Bucket = this.s3Bucket;
     final s3Key = this.s3Key;
@@ -6747,6 +7252,22 @@ class LayerVersionContentOutput {
       signingJobArn: json['SigningJobArn'] as String?,
       signingProfileVersionArn: json['SigningProfileVersionArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final codeSha256 = this.codeSha256;
+    final codeSize = this.codeSize;
+    final location = this.location;
+    final signingJobArn = this.signingJobArn;
+    final signingProfileVersionArn = this.signingProfileVersionArn;
+    return {
+      if (codeSha256 != null) 'CodeSha256': codeSha256,
+      if (codeSize != null) 'CodeSize': codeSize,
+      if (location != null) 'Location': location,
+      if (signingJobArn != null) 'SigningJobArn': signingJobArn,
+      if (signingProfileVersionArn != null)
+        'SigningProfileVersionArn': signingProfileVersionArn,
+    };
   }
 }
 
@@ -6804,6 +7325,29 @@ class LayerVersionsListItem {
       version: json['Version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final compatibleArchitectures = this.compatibleArchitectures;
+    final compatibleRuntimes = this.compatibleRuntimes;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final layerVersionArn = this.layerVersionArn;
+    final licenseInfo = this.licenseInfo;
+    final version = this.version;
+    return {
+      if (compatibleArchitectures != null)
+        'CompatibleArchitectures':
+            compatibleArchitectures.map((e) => e.toValue()).toList(),
+      if (compatibleRuntimes != null)
+        'CompatibleRuntimes':
+            compatibleRuntimes.map((e) => e.toValue()).toList(),
+      if (createdDate != null) 'CreatedDate': createdDate,
+      if (description != null) 'Description': description,
+      if (layerVersionArn != null) 'LayerVersionArn': layerVersionArn,
+      if (licenseInfo != null) 'LicenseInfo': licenseInfo,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// Details about an <a
@@ -6834,6 +7378,18 @@ class LayersListItem {
       layerName: json['LayerName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final latestMatchingVersion = this.latestMatchingVersion;
+    final layerArn = this.layerArn;
+    final layerName = this.layerName;
+    return {
+      if (latestMatchingVersion != null)
+        'LatestMatchingVersion': latestMatchingVersion,
+      if (layerArn != null) 'LayerArn': layerArn,
+      if (layerName != null) 'LayerName': layerName,
+    };
+  }
 }
 
 class ListAliasesResponse {
@@ -6856,6 +7412,15 @@ class ListAliasesResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliases = this.aliases;
+    final nextMarker = this.nextMarker;
+    return {
+      if (aliases != null) 'Aliases': aliases,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class ListCodeSigningConfigsResponse {
@@ -6877,6 +7442,15 @@ class ListCodeSigningConfigsResponse {
           .toList(),
       nextMarker: json['NextMarker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final codeSigningConfigs = this.codeSigningConfigs;
+    final nextMarker = this.nextMarker;
+    return {
+      if (codeSigningConfigs != null) 'CodeSigningConfigs': codeSigningConfigs,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -6902,6 +7476,16 @@ class ListEventSourceMappingsResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventSourceMappings = this.eventSourceMappings;
+    final nextMarker = this.nextMarker;
+    return {
+      if (eventSourceMappings != null)
+        'EventSourceMappings': eventSourceMappings,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class ListFunctionEventInvokeConfigsResponse {
@@ -6926,6 +7510,16 @@ class ListFunctionEventInvokeConfigsResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final functionEventInvokeConfigs = this.functionEventInvokeConfigs;
+    final nextMarker = this.nextMarker;
+    return {
+      if (functionEventInvokeConfigs != null)
+        'FunctionEventInvokeConfigs': functionEventInvokeConfigs,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class ListFunctionUrlConfigsResponse {
@@ -6947,6 +7541,15 @@ class ListFunctionUrlConfigsResponse {
           .toList(),
       nextMarker: json['NextMarker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final functionUrlConfigs = this.functionUrlConfigs;
+    final nextMarker = this.nextMarker;
+    return {
+      'FunctionUrlConfigs': functionUrlConfigs,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -6971,6 +7574,15 @@ class ListFunctionsByCodeSigningConfigResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final functionArns = this.functionArns;
+    final nextMarker = this.nextMarker;
+    return {
+      if (functionArns != null) 'FunctionArns': functionArns,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 /// A list of Lambda functions.
@@ -6994,6 +7606,15 @@ class ListFunctionsResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final functions = this.functions;
+    final nextMarker = this.nextMarker;
+    return {
+      if (functions != null) 'Functions': functions,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class ListLayerVersionsResponse {
@@ -7016,6 +7637,15 @@ class ListLayerVersionsResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final layerVersions = this.layerVersions;
+    final nextMarker = this.nextMarker;
+    return {
+      if (layerVersions != null) 'LayerVersions': layerVersions,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class ListLayersResponse {
@@ -7037,6 +7667,15 @@ class ListLayersResponse {
           .toList(),
       nextMarker: json['NextMarker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final layers = this.layers;
+    final nextMarker = this.nextMarker;
+    return {
+      if (layers != null) 'Layers': layers,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -7064,6 +7703,16 @@ class ListProvisionedConcurrencyConfigsResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final provisionedConcurrencyConfigs = this.provisionedConcurrencyConfigs;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (provisionedConcurrencyConfigs != null)
+        'ProvisionedConcurrencyConfigs': provisionedConcurrencyConfigs,
+    };
+  }
 }
 
 class ListTagsResponse {
@@ -7078,6 +7727,13 @@ class ListTagsResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -7100,6 +7756,15 @@ class ListVersionsByFunctionResponse {
           .map((e) => FunctionConfiguration.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final versions = this.versions;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (versions != null) 'Versions': versions,
+    };
   }
 }
 
@@ -7254,6 +7919,34 @@ class ProvisionedConcurrencyConfigListItem {
       statusReason: json['StatusReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allocatedProvisionedConcurrentExecutions =
+        this.allocatedProvisionedConcurrentExecutions;
+    final availableProvisionedConcurrentExecutions =
+        this.availableProvisionedConcurrentExecutions;
+    final functionArn = this.functionArn;
+    final lastModified = this.lastModified;
+    final requestedProvisionedConcurrentExecutions =
+        this.requestedProvisionedConcurrentExecutions;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (allocatedProvisionedConcurrentExecutions != null)
+        'AllocatedProvisionedConcurrentExecutions':
+            allocatedProvisionedConcurrentExecutions,
+      if (availableProvisionedConcurrentExecutions != null)
+        'AvailableProvisionedConcurrentExecutions':
+            availableProvisionedConcurrentExecutions,
+      if (functionArn != null) 'FunctionArn': functionArn,
+      if (lastModified != null) 'LastModified': lastModified,
+      if (requestedProvisionedConcurrentExecutions != null)
+        'RequestedProvisionedConcurrentExecutions':
+            requestedProvisionedConcurrentExecutions,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
+  }
 }
 
 enum ProvisionedConcurrencyStatusEnum {
@@ -7356,6 +8049,33 @@ class PublishLayerVersionResponse {
       version: json['Version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final compatibleArchitectures = this.compatibleArchitectures;
+    final compatibleRuntimes = this.compatibleRuntimes;
+    final content = this.content;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final layerArn = this.layerArn;
+    final layerVersionArn = this.layerVersionArn;
+    final licenseInfo = this.licenseInfo;
+    final version = this.version;
+    return {
+      if (compatibleArchitectures != null)
+        'CompatibleArchitectures':
+            compatibleArchitectures.map((e) => e.toValue()).toList(),
+      if (compatibleRuntimes != null)
+        'CompatibleRuntimes':
+            compatibleRuntimes.map((e) => e.toValue()).toList(),
+      if (content != null) 'Content': content,
+      if (createdDate != null) 'CreatedDate': createdDate,
+      if (description != null) 'Description': description,
+      if (layerArn != null) 'LayerArn': layerArn,
+      if (layerVersionArn != null) 'LayerVersionArn': layerVersionArn,
+      if (licenseInfo != null) 'LicenseInfo': licenseInfo,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 class PutFunctionCodeSigningConfigResponse {
@@ -7391,6 +8111,15 @@ class PutFunctionCodeSigningConfigResponse {
       codeSigningConfigArn: json['CodeSigningConfigArn'] as String,
       functionName: json['FunctionName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final codeSigningConfigArn = this.codeSigningConfigArn;
+    final functionName = this.functionName;
+    return {
+      'CodeSigningConfigArn': codeSigningConfigArn,
+      'FunctionName': functionName,
+    };
   }
 }
 
@@ -7437,6 +8166,32 @@ class PutProvisionedConcurrencyConfigResponse {
       status: (json['Status'] as String?)?.toProvisionedConcurrencyStatusEnum(),
       statusReason: json['StatusReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allocatedProvisionedConcurrentExecutions =
+        this.allocatedProvisionedConcurrentExecutions;
+    final availableProvisionedConcurrentExecutions =
+        this.availableProvisionedConcurrentExecutions;
+    final lastModified = this.lastModified;
+    final requestedProvisionedConcurrentExecutions =
+        this.requestedProvisionedConcurrentExecutions;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (allocatedProvisionedConcurrentExecutions != null)
+        'AllocatedProvisionedConcurrentExecutions':
+            allocatedProvisionedConcurrentExecutions,
+      if (availableProvisionedConcurrentExecutions != null)
+        'AvailableProvisionedConcurrentExecutions':
+            availableProvisionedConcurrentExecutions,
+      if (lastModified != null) 'LastModified': lastModified,
+      if (requestedProvisionedConcurrentExecutions != null)
+        'RequestedProvisionedConcurrentExecutions':
+            requestedProvisionedConcurrentExecutions,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
   }
 }
 
@@ -7891,6 +8646,7 @@ class TracingConfig {
   TracingConfig({
     this.mode,
   });
+
   Map<String, dynamic> toJson() {
     final mode = this.mode;
     return {
@@ -7911,6 +8667,13 @@ class TracingConfigResponse {
     return TracingConfigResponse(
       mode: (json['Mode'] as String?)?.toTracingMode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mode = this.mode;
+    return {
+      if (mode != null) 'Mode': mode.toValue(),
+    };
   }
 }
 
@@ -7954,6 +8717,13 @@ class UpdateCodeSigningConfigResponse {
       codeSigningConfig: CodeSigningConfig.fromJson(
           json['CodeSigningConfig'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final codeSigningConfig = this.codeSigningConfig;
+    return {
+      'CodeSigningConfig': codeSigningConfig,
+    };
   }
 }
 
@@ -8007,6 +8777,23 @@ class UpdateFunctionUrlConfigResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authType = this.authType;
+    final creationTime = this.creationTime;
+    final functionArn = this.functionArn;
+    final functionUrl = this.functionUrl;
+    final lastModifiedTime = this.lastModifiedTime;
+    final cors = this.cors;
+    return {
+      'AuthType': authType.toValue(),
+      'CreationTime': creationTime,
+      'FunctionArn': functionArn,
+      'FunctionUrl': functionUrl,
+      'LastModifiedTime': lastModifiedTime,
+      if (cors != null) 'Cors': cors,
+    };
+  }
 }
 
 /// The VPC security groups and subnets that are attached to a Lambda function.
@@ -8024,6 +8811,7 @@ class VpcConfig {
     this.securityGroupIds,
     this.subnetIds,
   });
+
   Map<String, dynamic> toJson() {
     final securityGroupIds = this.securityGroupIds;
     final subnetIds = this.subnetIds;
@@ -8062,6 +8850,17 @@ class VpcConfigResponse {
           .toList(),
       vpcId: json['VpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityGroupIds = this.securityGroupIds;
+    final subnetIds = this.subnetIds;
+    final vpcId = this.vpcId;
+    return {
+      if (securityGroupIds != null) 'SecurityGroupIds': securityGroupIds,
+      if (subnetIds != null) 'SubnetIds': subnetIds,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 

@@ -3909,6 +3909,14 @@ class AbortIncompleteMultipartUpload {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final daysAfterInitiation = this.daysAfterInitiation;
+    return {
+      if (daysAfterInitiation != null)
+        'DaysAfterInitiation': daysAfterInitiation,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final daysAfterInitiation = this.daysAfterInitiation;
     final $children = <_s.XmlNode>[
@@ -3977,6 +3985,23 @@ class AccessPoint {
           ?.let(VpcConfiguration.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final name = this.name;
+    final networkOrigin = this.networkOrigin;
+    final accessPointArn = this.accessPointArn;
+    final alias = this.alias;
+    final vpcConfiguration = this.vpcConfiguration;
+    return {
+      'Bucket': bucket,
+      'Name': name,
+      'NetworkOrigin': networkOrigin.toValue(),
+      if (accessPointArn != null) 'AccessPointArn': accessPointArn,
+      if (alias != null) 'Alias': alias,
+      if (vpcConfiguration != null) 'VpcConfiguration': vpcConfiguration,
+    };
+  }
 }
 
 /// A container for the account level Amazon S3 Storage Lens configuration.
@@ -3999,6 +4024,15 @@ class AccountLevel {
           .extractXmlChild(elem, 'ActivityMetrics')
           ?.let(ActivityMetrics.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucketLevel = this.bucketLevel;
+    final activityMetrics = this.activityMetrics;
+    return {
+      'BucketLevel': bucketLevel,
+      if (activityMetrics != null) 'ActivityMetrics': activityMetrics,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4031,6 +4065,13 @@ class ActivityMetrics {
     return ActivityMetrics(
       isEnabled: _s.extractXmlBoolValue(elem, 'IsEnabled'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isEnabled = this.isEnabled;
+    return {
+      if (isEnabled != null) 'IsEnabled': isEnabled,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4077,6 +4118,19 @@ class AsyncErrorDetails {
       resource: _s.extractXmlStringValue(elem, 'Resource'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    final requestId = this.requestId;
+    final resource = this.resource;
+    return {
+      if (code != null) 'Code': code,
+      if (message != null) 'Message': message,
+      if (requestId != null) 'RequestId': requestId,
+      if (resource != null) 'Resource': resource,
+    };
+  }
 }
 
 /// A container for the information about an asynchronous operation.
@@ -4121,6 +4175,23 @@ class AsyncOperation {
           .extractXmlChild(elem, 'ResponseDetails')
           ?.let(AsyncResponseDetails.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final operation = this.operation;
+    final requestParameters = this.requestParameters;
+    final requestStatus = this.requestStatus;
+    final requestTokenARN = this.requestTokenARN;
+    final responseDetails = this.responseDetails;
+    return {
+      if (creationTime != null) 'CreationTime': iso8601ToJson(creationTime),
+      if (operation != null) 'Operation': operation.toValue(),
+      if (requestParameters != null) 'RequestParameters': requestParameters,
+      if (requestStatus != null) 'RequestStatus': requestStatus,
+      if (requestTokenARN != null) 'RequestTokenARN': requestTokenARN,
+      if (responseDetails != null) 'ResponseDetails': responseDetails,
+    };
   }
 }
 
@@ -4194,6 +4265,26 @@ class AsyncRequestParameters {
           ?.let(PutMultiRegionAccessPointPolicyInput.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createMultiRegionAccessPointRequest =
+        this.createMultiRegionAccessPointRequest;
+    final deleteMultiRegionAccessPointRequest =
+        this.deleteMultiRegionAccessPointRequest;
+    final putMultiRegionAccessPointPolicyRequest =
+        this.putMultiRegionAccessPointPolicyRequest;
+    return {
+      if (createMultiRegionAccessPointRequest != null)
+        'CreateMultiRegionAccessPointRequest':
+            createMultiRegionAccessPointRequest,
+      if (deleteMultiRegionAccessPointRequest != null)
+        'DeleteMultiRegionAccessPointRequest':
+            deleteMultiRegionAccessPointRequest,
+      if (putMultiRegionAccessPointPolicyRequest != null)
+        'PutMultiRegionAccessPointPolicyRequest':
+            putMultiRegionAccessPointPolicyRequest,
+    };
+  }
 }
 
 /// A container for the response details that are returned when querying about
@@ -4219,6 +4310,16 @@ class AsyncResponseDetails {
           ?.let(MultiRegionAccessPointsAsyncResponse.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorDetails = this.errorDetails;
+    final multiRegionAccessPointDetails = this.multiRegionAccessPointDetails;
+    return {
+      if (errorDetails != null) 'ErrorDetails': errorDetails,
+      if (multiRegionAccessPointDetails != null)
+        'MultiRegionAccessPointDetails': multiRegionAccessPointDetails,
+    };
+  }
 }
 
 /// Lambda function used to transform objects through an Object Lambda Access
@@ -4240,6 +4341,15 @@ class AwsLambdaTransformation {
       functionArn: _s.extractXmlStringValue(elem, 'FunctionArn')!,
       functionPayload: _s.extractXmlStringValue(elem, 'FunctionPayload'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final functionArn = this.functionArn;
+    final functionPayload = this.functionPayload;
+    return {
+      'FunctionArn': functionArn,
+      if (functionPayload != null) 'FunctionPayload': functionPayload,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4319,6 +4429,15 @@ class BucketLevel {
       prefixLevel:
           _s.extractXmlChild(elem, 'PrefixLevel')?.let(PrefixLevel.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activityMetrics = this.activityMetrics;
+    final prefixLevel = this.prefixLevel;
+    return {
+      if (activityMetrics != null) 'ActivityMetrics': activityMetrics,
+      if (prefixLevel != null) 'PrefixLevel': prefixLevel,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4435,6 +4554,13 @@ class CloudWatchMetrics {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final isEnabled = this.isEnabled;
+    return {
+      'IsEnabled': isEnabled,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final isEnabled = this.isEnabled;
     final $children = <_s.XmlNode>[
@@ -4467,6 +4593,16 @@ class CreateAccessPointForObjectLambdaRequest {
     required this.configuration,
     required this.name,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final configuration = this.configuration;
+    final name = this.name;
+    return {
+      'Configuration': configuration,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accountId = this.accountId;
     final configuration = this.configuration;
@@ -4497,6 +4633,14 @@ class CreateAccessPointForObjectLambdaResult {
       objectLambdaAccessPointArn:
           _s.extractXmlStringValue(elem, 'ObjectLambdaAccessPointArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final objectLambdaAccessPointArn = this.objectLambdaAccessPointArn;
+    return {
+      if (objectLambdaAccessPointArn != null)
+        'ObjectLambdaAccessPointArn': objectLambdaAccessPointArn,
+    };
   }
 }
 
@@ -4542,6 +4686,21 @@ class CreateAccessPointRequest {
     this.publicAccessBlockConfiguration,
     this.vpcConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final bucket = this.bucket;
+    final name = this.name;
+    final publicAccessBlockConfiguration = this.publicAccessBlockConfiguration;
+    final vpcConfiguration = this.vpcConfiguration;
+    return {
+      'Bucket': bucket,
+      if (publicAccessBlockConfiguration != null)
+        'PublicAccessBlockConfiguration': publicAccessBlockConfiguration,
+      if (vpcConfiguration != null) 'VpcConfiguration': vpcConfiguration,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accountId = this.accountId;
     final bucket = this.bucket;
@@ -4585,6 +4744,15 @@ class CreateAccessPointResult {
       alias: _s.extractXmlStringValue(elem, 'Alias'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessPointArn = this.accessPointArn;
+    final alias = this.alias;
+    return {
+      if (accessPointArn != null) 'AccessPointArn': accessPointArn,
+      if (alias != null) 'Alias': alias,
+    };
+  }
 }
 
 /// The container for the bucket configuration.
@@ -4603,6 +4771,15 @@ class CreateBucketConfiguration {
   CreateBucketConfiguration({
     this.locationConstraint,
   });
+
+  Map<String, dynamic> toJson() {
+    final locationConstraint = this.locationConstraint;
+    return {
+      if (locationConstraint != null)
+        'LocationConstraint': locationConstraint.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final locationConstraint = this.locationConstraint;
     final $children = <_s.XmlNode>[
@@ -4644,6 +4821,14 @@ class CreateBucketResult {
     this.bucketArn,
     this.location,
   });
+
+  Map<String, dynamic> toJson() {
+    final bucketArn = this.bucketArn;
+    final location = this.location;
+    return {
+      if (bucketArn != null) 'BucketArn': bucketArn,
+    };
+  }
 }
 
 class CreateJobRequest {
@@ -4706,6 +4891,34 @@ class CreateJobRequest {
     this.manifestGenerator,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final operation = this.operation;
+    final priority = this.priority;
+    final report = this.report;
+    final roleArn = this.roleArn;
+    final clientRequestToken = this.clientRequestToken;
+    final confirmationRequired = this.confirmationRequired;
+    final description = this.description;
+    final manifest = this.manifest;
+    final manifestGenerator = this.manifestGenerator;
+    final tags = this.tags;
+    return {
+      'Operation': operation,
+      'Priority': priority,
+      'Report': report,
+      'RoleArn': roleArn,
+      if (clientRequestToken != null) 'ClientRequestToken': clientRequestToken,
+      if (confirmationRequired != null)
+        'ConfirmationRequired': confirmationRequired,
+      if (description != null) 'Description': description,
+      if (manifest != null) 'Manifest': manifest,
+      if (manifestGenerator != null) 'ManifestGenerator': manifestGenerator,
+      if (tags != null) 'Tags': tags,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accountId = this.accountId;
     final operation = this.operation;
@@ -4760,6 +4973,13 @@ class CreateJobResult {
       jobId: _s.extractXmlStringValue(elem, 'JobId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
+  }
 }
 
 /// A container for the information associated with a <a
@@ -4791,6 +5011,17 @@ class CreateMultiRegionAccessPointInput {
           .extractXmlChild(elem, 'PublicAccessBlock')
           ?.let(PublicAccessBlockConfiguration.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final regions = this.regions;
+    final publicAccessBlock = this.publicAccessBlock;
+    return {
+      'Name': name,
+      'Regions': regions,
+      if (publicAccessBlock != null) 'PublicAccessBlock': publicAccessBlock,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4833,6 +5064,17 @@ class CreateMultiRegionAccessPointRequest {
     required this.details,
     this.clientToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final details = this.details;
+    final clientToken = this.clientToken;
+    return {
+      'Details': details,
+      if (clientToken != null) 'ClientToken': clientToken,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accountId = this.accountId;
     final details = this.details;
@@ -4868,6 +5110,13 @@ class CreateMultiRegionAccessPointResult {
       requestTokenARN: _s.extractXmlStringValue(elem, 'RequestTokenARN'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final requestTokenARN = this.requestTokenARN;
+    return {
+      if (requestTokenARN != null) 'RequestTokenARN': requestTokenARN,
+    };
+  }
 }
 
 class DeleteJobTaggingResult {
@@ -4876,6 +5125,10 @@ class DeleteJobTaggingResult {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteJobTaggingResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4893,6 +5146,13 @@ class DeleteMultiRegionAccessPointInput {
     return DeleteMultiRegionAccessPointInput(
       name: _s.extractXmlStringValue(elem, 'Name')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'Name': name,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4928,6 +5188,17 @@ class DeleteMultiRegionAccessPointRequest {
     required this.details,
     this.clientToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final details = this.details;
+    final clientToken = this.clientToken;
+    return {
+      'Details': details,
+      if (clientToken != null) 'ClientToken': clientToken,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accountId = this.accountId;
     final details = this.details;
@@ -4963,6 +5234,13 @@ class DeleteMultiRegionAccessPointResult {
       requestTokenARN: _s.extractXmlStringValue(elem, 'RequestTokenARN'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final requestTokenARN = this.requestTokenARN;
+    return {
+      if (requestTokenARN != null) 'RequestTokenARN': requestTokenARN,
+    };
+  }
 }
 
 class DeleteStorageLensConfigurationTaggingResult {
@@ -4971,6 +5249,10 @@ class DeleteStorageLensConfigurationTaggingResult {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteStorageLensConfigurationTaggingResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4986,6 +5268,13 @@ class DescribeJobResult {
     return DescribeJobResult(
       job: _s.extractXmlChild(elem, 'Job')?.let(JobDescriptor.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'Job': job,
+    };
   }
 }
 
@@ -5003,6 +5292,13 @@ class DescribeMultiRegionAccessPointOperationResult {
           .extractXmlChild(elem, 'AsyncOperation')
           ?.let(AsyncOperation.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final asyncOperation = this.asyncOperation;
+    return {
+      if (asyncOperation != null) 'AsyncOperation': asyncOperation,
+    };
   }
 }
 
@@ -5023,6 +5319,13 @@ class EstablishedMultiRegionAccessPointPolicy {
     return EstablishedMultiRegionAccessPointPolicy(
       policy: _s.extractXmlStringValue(elem, 'Policy'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -5047,6 +5350,15 @@ class Exclude {
           .extractXmlChild(elem, 'Regions')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'Region')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final buckets = this.buckets;
+    final regions = this.regions;
+    return {
+      if (buckets != null) 'Buckets': buckets,
+      if (regions != null) 'Regions': regions,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5148,6 +5460,15 @@ class GeneratedManifestEncryption {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final ssekms = this.ssekms;
+    final sses3 = this.sses3;
+    return {
+      if (ssekms != null) 'SSE-KMS': ssekms,
+      if (sses3 != null) 'SSE-S3': sses3,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final ssekms = this.ssekms;
     final sses3 = this.sses3;
@@ -5204,6 +5525,13 @@ class GetAccessPointConfigurationForObjectLambdaResult {
           ?.let(ObjectLambdaConfiguration.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    return {
+      if (configuration != null) 'Configuration': configuration,
+    };
+  }
 }
 
 class GetAccessPointForObjectLambdaResult {
@@ -5231,6 +5559,18 @@ class GetAccessPointForObjectLambdaResult {
           ?.let(PublicAccessBlockConfiguration.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final name = this.name;
+    final publicAccessBlockConfiguration = this.publicAccessBlockConfiguration;
+    return {
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (name != null) 'Name': name,
+      if (publicAccessBlockConfiguration != null)
+        'PublicAccessBlockConfiguration': publicAccessBlockConfiguration,
+    };
+  }
 }
 
 class GetAccessPointPolicyForObjectLambdaResult {
@@ -5246,6 +5586,13 @@ class GetAccessPointPolicyForObjectLambdaResult {
       policy: _s.extractXmlStringValue(elem, 'Policy'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
+  }
 }
 
 class GetAccessPointPolicyResult {
@@ -5259,6 +5606,13 @@ class GetAccessPointPolicyResult {
     return GetAccessPointPolicyResult(
       policy: _s.extractXmlStringValue(elem, 'Policy'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -5275,6 +5629,13 @@ class GetAccessPointPolicyStatusForObjectLambdaResult {
           _s.extractXmlChild(elem, 'PolicyStatus')?.let(PolicyStatus.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyStatus = this.policyStatus;
+    return {
+      if (policyStatus != null) 'PolicyStatus': policyStatus,
+    };
+  }
 }
 
 class GetAccessPointPolicyStatusResult {
@@ -5289,6 +5650,13 @@ class GetAccessPointPolicyStatusResult {
       policyStatus:
           _s.extractXmlChild(elem, 'PolicyStatus')?.let(PolicyStatus.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyStatus = this.policyStatus;
+    return {
+      if (policyStatus != null) 'PolicyStatus': policyStatus,
+    };
   }
 }
 
@@ -5367,6 +5735,30 @@ class GetAccessPointResult {
           ?.let(VpcConfiguration.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessPointArn = this.accessPointArn;
+    final alias = this.alias;
+    final bucket = this.bucket;
+    final creationDate = this.creationDate;
+    final endpoints = this.endpoints;
+    final name = this.name;
+    final networkOrigin = this.networkOrigin;
+    final publicAccessBlockConfiguration = this.publicAccessBlockConfiguration;
+    final vpcConfiguration = this.vpcConfiguration;
+    return {
+      if (accessPointArn != null) 'AccessPointArn': accessPointArn,
+      if (alias != null) 'Alias': alias,
+      if (bucket != null) 'Bucket': bucket,
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (endpoints != null) 'Endpoints': endpoints,
+      if (name != null) 'Name': name,
+      if (networkOrigin != null) 'NetworkOrigin': networkOrigin.toValue(),
+      if (publicAccessBlockConfiguration != null)
+        'PublicAccessBlockConfiguration': publicAccessBlockConfiguration,
+      if (vpcConfiguration != null) 'VpcConfiguration': vpcConfiguration,
+    };
+  }
 }
 
 class GetBucketLifecycleConfigurationResult {
@@ -5382,6 +5774,13 @@ class GetBucketLifecycleConfigurationResult {
           elem.findElements('Rule').map(LifecycleRule.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rules = this.rules;
+    return {
+      if (rules != null) 'Rules': rules,
+    };
+  }
 }
 
 class GetBucketPolicyResult {
@@ -5395,6 +5794,13 @@ class GetBucketPolicyResult {
     return GetBucketPolicyResult(
       policy: _s.extractXmlStringValue(elem, 'Policy'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -5421,6 +5827,18 @@ class GetBucketResult {
           _s.extractXmlBoolValue(elem, 'PublicAccessBlockEnabled'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final creationDate = this.creationDate;
+    final publicAccessBlockEnabled = this.publicAccessBlockEnabled;
+    return {
+      if (bucket != null) 'Bucket': bucket,
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (publicAccessBlockEnabled != null)
+        'PublicAccessBlockEnabled': publicAccessBlockEnabled,
+    };
+  }
 }
 
 class GetBucketTaggingResult {
@@ -5439,6 +5857,13 @@ class GetBucketTaggingResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tagSet = this.tagSet;
+    return {
+      'TagSet': tagSet,
+    };
+  }
 }
 
 class GetJobTaggingResult {
@@ -5453,6 +5878,13 @@ class GetJobTaggingResult {
       tags: _s.extractXmlChild(elem, 'Tags')?.let(
           (elem) => elem.findElements('member').map(S3Tag.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -5470,6 +5902,13 @@ class GetMultiRegionAccessPointPolicyResult {
           ?.let(MultiRegionAccessPointPolicyDocument.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
+  }
 }
 
 class GetMultiRegionAccessPointPolicyStatusResult {
@@ -5484,6 +5923,13 @@ class GetMultiRegionAccessPointPolicyStatusResult {
       established:
           _s.extractXmlChild(elem, 'Established')?.let(PolicyStatus.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final established = this.established;
+    return {
+      if (established != null) 'Established': established,
+    };
   }
 }
 
@@ -5502,6 +5948,13 @@ class GetMultiRegionAccessPointResult {
           ?.let(MultiRegionAccessPointReport.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessPoint = this.accessPoint;
+    return {
+      if (accessPoint != null) 'AccessPoint': accessPoint,
+    };
+  }
 }
 
 class GetPublicAccessBlockOutput {
@@ -5512,6 +5965,14 @@ class GetPublicAccessBlockOutput {
   GetPublicAccessBlockOutput({
     this.publicAccessBlockConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final publicAccessBlockConfiguration = this.publicAccessBlockConfiguration;
+    return {
+      if (publicAccessBlockConfiguration != null)
+        'PublicAccessBlockConfiguration': publicAccessBlockConfiguration,
+    };
+  }
 }
 
 class GetStorageLensConfigurationResult {
@@ -5521,6 +5982,14 @@ class GetStorageLensConfigurationResult {
   GetStorageLensConfigurationResult({
     this.storageLensConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final storageLensConfiguration = this.storageLensConfiguration;
+    return {
+      if (storageLensConfiguration != null)
+        'StorageLensConfiguration': storageLensConfiguration,
+    };
+  }
 }
 
 class GetStorageLensConfigurationTaggingResult {
@@ -5535,6 +6004,13 @@ class GetStorageLensConfigurationTaggingResult {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('Tag').map(StorageLensTag.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -5559,6 +6035,15 @@ class Include {
           .extractXmlChild(elem, 'Regions')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'Region')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final buckets = this.buckets;
+    final regions = this.regions;
+    return {
+      if (buckets != null) 'Buckets': buckets,
+      if (regions != null) 'Regions': regions,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5711,6 +6196,52 @@ class JobDescriptor {
       terminationDate: _s.extractXmlDateTimeValue(elem, 'TerminationDate'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confirmationRequired = this.confirmationRequired;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final failureReasons = this.failureReasons;
+    final generatedManifestDescriptor = this.generatedManifestDescriptor;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final manifest = this.manifest;
+    final manifestGenerator = this.manifestGenerator;
+    final operation = this.operation;
+    final priority = this.priority;
+    final progressSummary = this.progressSummary;
+    final report = this.report;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    final statusUpdateReason = this.statusUpdateReason;
+    final suspendedCause = this.suspendedCause;
+    final suspendedDate = this.suspendedDate;
+    final terminationDate = this.terminationDate;
+    return {
+      if (confirmationRequired != null)
+        'ConfirmationRequired': confirmationRequired,
+      if (creationTime != null) 'CreationTime': iso8601ToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (failureReasons != null) 'FailureReasons': failureReasons,
+      if (generatedManifestDescriptor != null)
+        'GeneratedManifestDescriptor': generatedManifestDescriptor,
+      if (jobArn != null) 'JobArn': jobArn,
+      if (jobId != null) 'JobId': jobId,
+      if (manifest != null) 'Manifest': manifest,
+      if (manifestGenerator != null) 'ManifestGenerator': manifestGenerator,
+      if (operation != null) 'Operation': operation,
+      if (priority != null) 'Priority': priority,
+      if (progressSummary != null) 'ProgressSummary': progressSummary,
+      if (report != null) 'Report': report,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (status != null) 'Status': status.toValue(),
+      if (statusUpdateReason != null) 'StatusUpdateReason': statusUpdateReason,
+      if (suspendedCause != null) 'SuspendedCause': suspendedCause,
+      if (suspendedDate != null) 'SuspendedDate': iso8601ToJson(suspendedDate),
+      if (terminationDate != null)
+        'TerminationDate': iso8601ToJson(terminationDate),
+    };
+  }
 }
 
 /// If this job failed, this element indicates why the job failed.
@@ -5730,6 +6261,15 @@ class JobFailure {
       failureCode: _s.extractXmlStringValue(elem, 'FailureCode'),
       failureReason: _s.extractXmlStringValue(elem, 'FailureReason'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    return {
+      if (failureCode != null) 'FailureCode': failureCode,
+      if (failureReason != null) 'FailureReason': failureReason,
+    };
   }
 }
 
@@ -5789,6 +6329,28 @@ class JobListDescriptor {
       terminationDate: _s.extractXmlDateTimeValue(elem, 'TerminationDate'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final jobId = this.jobId;
+    final operation = this.operation;
+    final priority = this.priority;
+    final progressSummary = this.progressSummary;
+    final status = this.status;
+    final terminationDate = this.terminationDate;
+    return {
+      if (creationTime != null) 'CreationTime': iso8601ToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (jobId != null) 'JobId': jobId,
+      if (operation != null) 'Operation': operation.toValue(),
+      if (priority != null) 'Priority': priority,
+      if (progressSummary != null) 'ProgressSummary': progressSummary,
+      if (status != null) 'Status': status.toValue(),
+      if (terminationDate != null)
+        'TerminationDate': iso8601ToJson(terminationDate),
+    };
+  }
 }
 
 /// Contains the configuration information for a job's manifest.
@@ -5810,6 +6372,15 @@ class JobManifest {
           JobManifestLocation.fromXml(_s.extractXmlChild(elem, 'Location')!),
       spec: JobManifestSpec.fromXml(_s.extractXmlChild(elem, 'Spec')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final location = this.location;
+    final spec = this.spec;
+    return {
+      'Location': location,
+      'Spec': spec,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5912,6 +6483,14 @@ class JobManifestGenerator {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final s3JobManifestGenerator = this.s3JobManifestGenerator;
+    return {
+      if (s3JobManifestGenerator != null)
+        'S3JobManifestGenerator': s3JobManifestGenerator,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final s3JobManifestGenerator = this.s3JobManifestGenerator;
     final $children = <_s.XmlNode>[
@@ -5966,6 +6545,22 @@ class JobManifestGeneratorFilter {
               .map((s) => s.toReplicationStatus())
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAfter = this.createdAfter;
+    final createdBefore = this.createdBefore;
+    final eligibleForReplication = this.eligibleForReplication;
+    final objectReplicationStatuses = this.objectReplicationStatuses;
+    return {
+      if (createdAfter != null) 'CreatedAfter': iso8601ToJson(createdAfter),
+      if (createdBefore != null) 'CreatedBefore': iso8601ToJson(createdBefore),
+      if (eligibleForReplication != null)
+        'EligibleForReplication': eligibleForReplication,
+      if (objectReplicationStatuses != null)
+        'ObjectReplicationStatuses':
+            objectReplicationStatuses.map((e) => e.toValue()).toList(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6029,6 +6624,17 @@ class JobManifestLocation {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
+    final objectArn = this.objectArn;
+    final objectVersionId = this.objectVersionId;
+    return {
+      'ETag': eTag,
+      'ObjectArn': objectArn,
+      if (objectVersionId != null) 'ObjectVersionId': objectVersionId,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final eTag = this.eTag;
     final objectArn = this.objectArn;
@@ -6073,6 +6679,15 @@ class JobManifestSpec {
           .map((s) => s.toJobManifestFieldName())
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final format = this.format;
+    final fields = this.fields;
+    return {
+      'Format': format.toValue(),
+      if (fields != null) 'Fields': fields.map((e) => e.toValue()).toList(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6173,6 +6788,33 @@ class JobOperation {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final lambdaInvoke = this.lambdaInvoke;
+    final s3DeleteObjectTagging = this.s3DeleteObjectTagging;
+    final s3InitiateRestoreObject = this.s3InitiateRestoreObject;
+    final s3PutObjectAcl = this.s3PutObjectAcl;
+    final s3PutObjectCopy = this.s3PutObjectCopy;
+    final s3PutObjectLegalHold = this.s3PutObjectLegalHold;
+    final s3PutObjectRetention = this.s3PutObjectRetention;
+    final s3PutObjectTagging = this.s3PutObjectTagging;
+    final s3ReplicateObject = this.s3ReplicateObject;
+    return {
+      if (lambdaInvoke != null) 'LambdaInvoke': lambdaInvoke,
+      if (s3DeleteObjectTagging != null)
+        'S3DeleteObjectTagging': s3DeleteObjectTagging,
+      if (s3InitiateRestoreObject != null)
+        'S3InitiateRestoreObject': s3InitiateRestoreObject,
+      if (s3PutObjectAcl != null) 'S3PutObjectAcl': s3PutObjectAcl,
+      if (s3PutObjectCopy != null) 'S3PutObjectCopy': s3PutObjectCopy,
+      if (s3PutObjectLegalHold != null)
+        'S3PutObjectLegalHold': s3PutObjectLegalHold,
+      if (s3PutObjectRetention != null)
+        'S3PutObjectRetention': s3PutObjectRetention,
+      if (s3PutObjectTagging != null) 'S3PutObjectTagging': s3PutObjectTagging,
+      if (s3ReplicateObject != null) 'S3ReplicateObject': s3ReplicateObject,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final lambdaInvoke = this.lambdaInvoke;
     final s3DeleteObjectTagging = this.s3DeleteObjectTagging;
@@ -6241,6 +6883,21 @@ class JobProgressSummary {
       totalNumberOfTasks: _s.extractXmlIntValue(elem, 'TotalNumberOfTasks'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final numberOfTasksFailed = this.numberOfTasksFailed;
+    final numberOfTasksSucceeded = this.numberOfTasksSucceeded;
+    final timers = this.timers;
+    final totalNumberOfTasks = this.totalNumberOfTasks;
+    return {
+      if (numberOfTasksFailed != null)
+        'NumberOfTasksFailed': numberOfTasksFailed,
+      if (numberOfTasksSucceeded != null)
+        'NumberOfTasksSucceeded': numberOfTasksSucceeded,
+      if (timers != null) 'Timers': timers,
+      if (totalNumberOfTasks != null) 'TotalNumberOfTasks': totalNumberOfTasks,
+    };
+  }
 }
 
 /// Contains the configuration parameters for a job-completion report.
@@ -6280,6 +6937,21 @@ class JobReport {
       reportScope:
           _s.extractXmlStringValue(elem, 'ReportScope')?.toJobReportScope(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final bucket = this.bucket;
+    final format = this.format;
+    final prefix = this.prefix;
+    final reportScope = this.reportScope;
+    return {
+      'Enabled': enabled,
+      if (bucket != null) 'Bucket': bucket,
+      if (format != null) 'Format': format.toValue(),
+      if (prefix != null) 'Prefix': prefix,
+      if (reportScope != null) 'ReportScope': reportScope.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6456,6 +7128,14 @@ class JobTimers {
           _s.extractXmlIntValue(elem, 'ElapsedTimeInActiveSeconds'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final elapsedTimeInActiveSeconds = this.elapsedTimeInActiveSeconds;
+    return {
+      if (elapsedTimeInActiveSeconds != null)
+        'ElapsedTimeInActiveSeconds': elapsedTimeInActiveSeconds,
+    };
+  }
 }
 
 /// Contains the configuration parameters for a <code>Lambda Invoke</code>
@@ -6472,6 +7152,13 @@ class LambdaInvokeOperation {
     return LambdaInvokeOperation(
       functionArn: _s.extractXmlStringValue(elem, 'FunctionArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final functionArn = this.functionArn;
+    return {
+      if (functionArn != null) 'FunctionArn': functionArn,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6499,6 +7186,14 @@ class LifecycleConfiguration {
   LifecycleConfiguration({
     this.rules,
   });
+
+  Map<String, dynamic> toJson() {
+    final rules = this.rules;
+    return {
+      if (rules != null) 'Rules': rules,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final rules = this.rules;
     final $children = <_s.XmlNode>[
@@ -6545,6 +7240,18 @@ class LifecycleExpiration {
       expiredObjectDeleteMarker:
           _s.extractXmlBoolValue(elem, 'ExpiredObjectDeleteMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final days = this.days;
+    final expiredObjectDeleteMarker = this.expiredObjectDeleteMarker;
+    return {
+      if (date != null) 'Date': iso8601ToJson(date),
+      if (days != null) 'Days': days,
+      if (expiredObjectDeleteMarker != null)
+        'ExpiredObjectDeleteMarker': expiredObjectDeleteMarker,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -6652,6 +7359,30 @@ class LifecycleRule {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final abortIncompleteMultipartUpload = this.abortIncompleteMultipartUpload;
+    final expiration = this.expiration;
+    final filter = this.filter;
+    final id = this.id;
+    final noncurrentVersionExpiration = this.noncurrentVersionExpiration;
+    final noncurrentVersionTransitions = this.noncurrentVersionTransitions;
+    final transitions = this.transitions;
+    return {
+      'Status': status.toValue(),
+      if (abortIncompleteMultipartUpload != null)
+        'AbortIncompleteMultipartUpload': abortIncompleteMultipartUpload,
+      if (expiration != null) 'Expiration': expiration,
+      if (filter != null) 'Filter': filter,
+      if (id != null) 'ID': id,
+      if (noncurrentVersionExpiration != null)
+        'NoncurrentVersionExpiration': noncurrentVersionExpiration,
+      if (noncurrentVersionTransitions != null)
+        'NoncurrentVersionTransitions': noncurrentVersionTransitions,
+      if (transitions != null) 'Transitions': transitions,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final status = this.status;
     final abortIncompleteMultipartUpload = this.abortIncompleteMultipartUpload;
@@ -6712,6 +7443,15 @@ class LifecycleRuleAndOperator {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final prefix = this.prefix;
+    final tags = this.tags;
+    return {
+      if (prefix != null) 'Prefix': prefix,
+      if (tags != null) 'Tags': tags,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final prefix = this.prefix;
     final tags = this.tags;
@@ -6762,6 +7502,17 @@ class LifecycleRuleFilter {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final and = this.and;
+    final prefix = this.prefix;
+    final tag = this.tag;
+    return {
+      if (and != null) 'And': and,
+      if (prefix != null) 'Prefix': prefix,
+      if (tag != null) 'Tag': tag,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final and = this.and;
     final prefix = this.prefix;
@@ -6806,6 +7557,16 @@ class ListAccessPointsForObjectLambdaResult {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final objectLambdaAccessPointList = this.objectLambdaAccessPointList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (objectLambdaAccessPointList != null)
+        'ObjectLambdaAccessPointList': objectLambdaAccessPointList,
+    };
+  }
 }
 
 class ListAccessPointsResult {
@@ -6833,6 +7594,15 @@ class ListAccessPointsResult {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessPointList = this.accessPointList;
+    final nextToken = this.nextToken;
+    return {
+      if (accessPointList != null) 'AccessPointList': accessPointList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListJobsResult {
@@ -6854,6 +7624,15 @@ class ListJobsResult {
           elem.findElements('member').map(JobListDescriptor.fromXml).toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    final nextToken = this.nextToken;
+    return {
+      if (jobs != null) 'Jobs': jobs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6880,6 +7659,15 @@ class ListMultiRegionAccessPointsResult {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessPoints = this.accessPoints;
+    final nextToken = this.nextToken;
+    return {
+      if (accessPoints != null) 'AccessPoints': accessPoints,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListRegionalBucketsResult {
@@ -6905,6 +7693,15 @@ class ListRegionalBucketsResult {
               .map(RegionalBucket.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final regionalBucketList = this.regionalBucketList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (regionalBucketList != null) 'RegionalBucketList': regionalBucketList,
+    };
   }
 }
 
@@ -6940,6 +7737,19 @@ class ListStorageLensConfigurationEntry {
       isEnabled: _s.extractXmlBoolValue(elem, 'IsEnabled'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final homeRegion = this.homeRegion;
+    final id = this.id;
+    final storageLensArn = this.storageLensArn;
+    final isEnabled = this.isEnabled;
+    return {
+      'HomeRegion': homeRegion,
+      'Id': id,
+      'StorageLensArn': storageLensArn,
+      if (isEnabled != null) 'IsEnabled': isEnabled,
+    };
+  }
 }
 
 class ListStorageLensConfigurationsResult {
@@ -6963,6 +7773,16 @@ class ListStorageLensConfigurationsResult {
           .map(ListStorageLensConfigurationEntry.fromXml)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final storageLensConfigurationList = this.storageLensConfigurationList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (storageLensConfigurationList != null)
+        'StorageLensConfigurationList': storageLensConfigurationList,
+    };
   }
 }
 
@@ -6993,6 +7813,15 @@ class MultiRegionAccessPointPolicyDocument {
           ?.let(ProposedMultiRegionAccessPointPolicy.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final established = this.established;
+    final proposed = this.proposed;
+    return {
+      if (established != null) 'Established': established,
+      if (proposed != null) 'Proposed': proposed,
+    };
+  }
 }
 
 /// Status information for a single Multi-Region Access Point Region.
@@ -7012,6 +7841,15 @@ class MultiRegionAccessPointRegionalResponse {
       name: _s.extractXmlStringValue(elem, 'Name'),
       requestStatus: _s.extractXmlStringValue(elem, 'RequestStatus'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final requestStatus = this.requestStatus;
+    return {
+      if (name != null) 'Name': name,
+      if (requestStatus != null) 'RequestStatus': requestStatus,
+    };
   }
 }
 
@@ -7069,6 +7907,23 @@ class MultiRegionAccessPointReport {
           .extractXmlStringValue(elem, 'Status')
           ?.toMultiRegionAccessPointStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alias = this.alias;
+    final createdAt = this.createdAt;
+    final name = this.name;
+    final publicAccessBlock = this.publicAccessBlock;
+    final regions = this.regions;
+    final status = this.status;
+    return {
+      if (alias != null) 'Alias': alias,
+      if (createdAt != null) 'CreatedAt': iso8601ToJson(createdAt),
+      if (name != null) 'Name': name,
+      if (publicAccessBlock != null) 'PublicAccessBlock': publicAccessBlock,
+      if (regions != null) 'Regions': regions,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -7139,6 +7994,13 @@ class MultiRegionAccessPointsAsyncResponse {
           .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final regions = this.regions;
+    return {
+      if (regions != null) 'Regions': regions,
+    };
+  }
 }
 
 enum NetworkOrigin {
@@ -7188,6 +8050,13 @@ class NoncurrentVersionExpiration {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final noncurrentDays = this.noncurrentDays;
+    return {
+      if (noncurrentDays != null) 'NoncurrentDays': noncurrentDays,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final noncurrentDays = this.noncurrentDays;
     final $children = <_s.XmlNode>[
@@ -7231,6 +8100,15 @@ class NoncurrentVersionTransition {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final noncurrentDays = this.noncurrentDays;
+    final storageClass = this.storageClass;
+    return {
+      if (noncurrentDays != null) 'NoncurrentDays': noncurrentDays,
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final noncurrentDays = this.noncurrentDays;
     final storageClass = this.storageClass;
@@ -7270,6 +8148,16 @@ class ObjectLambdaAccessPoint {
       objectLambdaAccessPointArn:
           _s.extractXmlStringValue(elem, 'ObjectLambdaAccessPointArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final objectLambdaAccessPointArn = this.objectLambdaAccessPointArn;
+    return {
+      'Name': name,
+      if (objectLambdaAccessPointArn != null)
+        'ObjectLambdaAccessPointArn': objectLambdaAccessPointArn,
+    };
   }
 }
 
@@ -7344,6 +8232,21 @@ class ObjectLambdaConfiguration {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final supportingAccessPoint = this.supportingAccessPoint;
+    final transformationConfigurations = this.transformationConfigurations;
+    final allowedFeatures = this.allowedFeatures;
+    final cloudWatchMetricsEnabled = this.cloudWatchMetricsEnabled;
+    return {
+      'SupportingAccessPoint': supportingAccessPoint,
+      'TransformationConfigurations': transformationConfigurations,
+      if (allowedFeatures != null)
+        'AllowedFeatures': allowedFeatures.map((e) => e.toValue()).toList(),
+      if (cloudWatchMetricsEnabled != null)
+        'CloudWatchMetricsEnabled': cloudWatchMetricsEnabled,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final supportingAccessPoint = this.supportingAccessPoint;
     final transformationConfigurations = this.transformationConfigurations;
@@ -7393,6 +8296,13 @@ class ObjectLambdaContentTransformation {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final awsLambda = this.awsLambda;
+    return {
+      if (awsLambda != null) 'AwsLambda': awsLambda,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final awsLambda = this.awsLambda;
     final $children = <_s.XmlNode>[
@@ -7434,6 +8344,15 @@ class ObjectLambdaTransformationConfiguration {
       contentTransformation: ObjectLambdaContentTransformation.fromXml(
           _s.extractXmlChild(elem, 'ContentTransformation')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final contentTransformation = this.contentTransformation;
+    return {
+      'Actions': actions.map((e) => e.toValue()).toList(),
+      'ContentTransformation': contentTransformation,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -7584,6 +8503,13 @@ class PolicyStatus {
       isPublic: _s.extractXmlBoolValue(elem, 'IsPublic'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isPublic = this.isPublic;
+    return {
+      if (isPublic != null) 'IsPublic': isPublic,
+    };
+  }
 }
 
 /// A container for the prefix-level configuration.
@@ -7599,6 +8525,13 @@ class PrefixLevel {
       storageMetrics: PrefixLevelStorageMetrics.fromXml(
           _s.extractXmlChild(elem, 'StorageMetrics')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final storageMetrics = this.storageMetrics;
+    return {
+      'StorageMetrics': storageMetrics,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -7634,6 +8567,15 @@ class PrefixLevelStorageMetrics {
           .extractXmlChild(elem, 'SelectionCriteria')
           ?.let(SelectionCriteria.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isEnabled = this.isEnabled;
+    final selectionCriteria = this.selectionCriteria;
+    return {
+      if (isEnabled != null) 'IsEnabled': isEnabled,
+      if (selectionCriteria != null) 'SelectionCriteria': selectionCriteria,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -7672,6 +8614,13 @@ class ProposedMultiRegionAccessPointPolicy {
     return ProposedMultiRegionAccessPointPolicy(
       policy: _s.extractXmlStringValue(elem, 'Policy'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -7753,6 +8702,20 @@ class PublicAccessBlockConfiguration {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final blockPublicAcls = this.blockPublicAcls;
+    final blockPublicPolicy = this.blockPublicPolicy;
+    final ignorePublicAcls = this.ignorePublicAcls;
+    final restrictPublicBuckets = this.restrictPublicBuckets;
+    return {
+      if (blockPublicAcls != null) 'BlockPublicAcls': blockPublicAcls,
+      if (blockPublicPolicy != null) 'BlockPublicPolicy': blockPublicPolicy,
+      if (ignorePublicAcls != null) 'IgnorePublicAcls': ignorePublicAcls,
+      if (restrictPublicBuckets != null)
+        'RestrictPublicBuckets': restrictPublicBuckets,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final blockPublicAcls = this.blockPublicAcls;
     final blockPublicPolicy = this.blockPublicPolicy;
@@ -7795,6 +8758,16 @@ class PutAccessPointConfigurationForObjectLambdaRequest {
     required this.configuration,
     required this.name,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final configuration = this.configuration;
+    final name = this.name;
+    return {
+      'Configuration': configuration,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accountId = this.accountId;
     final configuration = this.configuration;
@@ -7829,6 +8802,16 @@ class PutAccessPointPolicyForObjectLambdaRequest {
     required this.name,
     required this.policy,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final name = this.name;
+    final policy = this.policy;
+    return {
+      'Policy': policy,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accountId = this.accountId;
     final name = this.name;
@@ -7881,6 +8864,16 @@ class PutAccessPointPolicyRequest {
     required this.name,
     required this.policy,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final name = this.name;
+    final policy = this.policy;
+    return {
+      'Policy': policy,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accountId = this.accountId;
     final name = this.name;
@@ -7934,6 +8927,17 @@ class PutBucketPolicyRequest {
     required this.policy,
     this.confirmRemoveSelfBucketAccess,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final bucket = this.bucket;
+    final policy = this.policy;
+    final confirmRemoveSelfBucketAccess = this.confirmRemoveSelfBucketAccess;
+    return {
+      'Policy': policy,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accountId = this.accountId;
     final bucket = this.bucket;
@@ -7969,6 +8973,16 @@ class PutJobTaggingRequest {
     required this.jobId,
     required this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final jobId = this.jobId;
+    final tags = this.tags;
+    return {
+      'Tags': tags,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accountId = this.accountId;
     final jobId = this.jobId;
@@ -7994,6 +9008,10 @@ class PutJobTaggingResult {
       _s.XmlElement elem) {
     return PutJobTaggingResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A container for the information associated with a <a
@@ -8015,6 +9033,15 @@ class PutMultiRegionAccessPointPolicyInput {
       name: _s.extractXmlStringValue(elem, 'Name')!,
       policy: _s.extractXmlStringValue(elem, 'Policy')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final policy = this.policy;
+    return {
+      'Name': name,
+      'Policy': policy,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -8053,6 +9080,17 @@ class PutMultiRegionAccessPointPolicyRequest {
     required this.details,
     this.clientToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final details = this.details;
+    final clientToken = this.clientToken;
+    return {
+      'Details': details,
+      if (clientToken != null) 'ClientToken': clientToken,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accountId = this.accountId;
     final details = this.details;
@@ -8088,6 +9126,13 @@ class PutMultiRegionAccessPointPolicyResult {
       requestTokenARN: _s.extractXmlStringValue(elem, 'RequestTokenARN'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final requestTokenARN = this.requestTokenARN;
+    return {
+      if (requestTokenARN != null) 'RequestTokenARN': requestTokenARN,
+    };
+  }
 }
 
 class PutStorageLensConfigurationRequest {
@@ -8112,6 +9157,18 @@ class PutStorageLensConfigurationRequest {
     required this.storageLensConfiguration,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final configId = this.configId;
+    final storageLensConfiguration = this.storageLensConfiguration;
+    final tags = this.tags;
+    return {
+      'StorageLensConfiguration': storageLensConfiguration,
+      if (tags != null) 'Tags': tags,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accountId = this.accountId;
     final configId = this.configId;
@@ -8151,6 +9208,16 @@ class PutStorageLensConfigurationTaggingRequest {
     required this.configId,
     required this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final configId = this.configId;
+    final tags = this.tags;
+    return {
+      'Tags': tags,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accountId = this.accountId;
     final configId = this.configId;
@@ -8176,6 +9243,10 @@ class PutStorageLensConfigurationTaggingResult {
       _s.XmlElement elem) {
     return PutStorageLensConfigurationTaggingResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A Region that supports a Multi-Region Access Point as well as the associated
@@ -8191,6 +9262,13 @@ class Region {
     return Region(
       bucket: _s.extractXmlStringValue(elem, 'Bucket')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    return {
+      'Bucket': bucket,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -8228,6 +9306,15 @@ class RegionReport {
       region: _s.extractXmlStringValue(elem, 'Region'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final region = this.region;
+    return {
+      if (bucket != null) 'Bucket': bucket,
+      if (region != null) 'Region': region,
+    };
+  }
 }
 
 /// The container for the regional bucket.
@@ -8263,6 +9350,21 @@ class RegionalBucket {
       bucketArn: _s.extractXmlStringValue(elem, 'BucketArn'),
       outpostId: _s.extractXmlStringValue(elem, 'OutpostId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final creationDate = this.creationDate;
+    final publicAccessBlockEnabled = this.publicAccessBlockEnabled;
+    final bucketArn = this.bucketArn;
+    final outpostId = this.outpostId;
+    return {
+      'Bucket': bucket,
+      'CreationDate': iso8601ToJson(creationDate),
+      'PublicAccessBlockEnabled': publicAccessBlockEnabled,
+      if (bucketArn != null) 'BucketArn': bucketArn,
+      if (outpostId != null) 'OutpostId': outpostId,
+    };
   }
 }
 
@@ -8352,6 +9454,15 @@ class S3AccessControlList {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final owner = this.owner;
+    final grants = this.grants;
+    return {
+      'Owner': owner,
+      if (grants != null) 'Grants': grants,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final owner = this.owner;
     final grants = this.grants;
@@ -8393,6 +9504,16 @@ class S3AccessControlPolicy {
           .extractXmlStringValue(elem, 'CannedAccessControlList')
           ?.toS3CannedAccessControlList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessControlList = this.accessControlList;
+    final cannedAccessControlList = this.cannedAccessControlList;
+    return {
+      if (accessControlList != null) 'AccessControlList': accessControlList,
+      if (cannedAccessControlList != null)
+        'CannedAccessControlList': cannedAccessControlList.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -8462,6 +9583,23 @@ class S3BucketDestination {
           ?.let(StorageLensDataExportEncryption.fromXml),
       prefix: _s.extractXmlStringValue(elem, 'Prefix'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final arn = this.arn;
+    final format = this.format;
+    final outputSchemaVersion = this.outputSchemaVersion;
+    final encryption = this.encryption;
+    final prefix = this.prefix;
+    return {
+      'AccountId': accountId,
+      'Arn': arn,
+      'Format': format.toValue(),
+      'OutputSchemaVersion': outputSchemaVersion.toValue(),
+      if (encryption != null) 'Encryption': encryption,
+      if (prefix != null) 'Prefix': prefix,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -8723,6 +9861,55 @@ class S3CopyObjectOperation {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final accessControlGrants = this.accessControlGrants;
+    final bucketKeyEnabled = this.bucketKeyEnabled;
+    final cannedAccessControlList = this.cannedAccessControlList;
+    final checksumAlgorithm = this.checksumAlgorithm;
+    final metadataDirective = this.metadataDirective;
+    final modifiedSinceConstraint = this.modifiedSinceConstraint;
+    final newObjectMetadata = this.newObjectMetadata;
+    final newObjectTagging = this.newObjectTagging;
+    final objectLockLegalHoldStatus = this.objectLockLegalHoldStatus;
+    final objectLockMode = this.objectLockMode;
+    final objectLockRetainUntilDate = this.objectLockRetainUntilDate;
+    final redirectLocation = this.redirectLocation;
+    final requesterPays = this.requesterPays;
+    final sSEAwsKmsKeyId = this.sSEAwsKmsKeyId;
+    final storageClass = this.storageClass;
+    final targetKeyPrefix = this.targetKeyPrefix;
+    final targetResource = this.targetResource;
+    final unModifiedSinceConstraint = this.unModifiedSinceConstraint;
+    return {
+      if (accessControlGrants != null)
+        'AccessControlGrants': accessControlGrants,
+      if (bucketKeyEnabled != null) 'BucketKeyEnabled': bucketKeyEnabled,
+      if (cannedAccessControlList != null)
+        'CannedAccessControlList': cannedAccessControlList.toValue(),
+      if (checksumAlgorithm != null)
+        'ChecksumAlgorithm': checksumAlgorithm.toValue(),
+      if (metadataDirective != null)
+        'MetadataDirective': metadataDirective.toValue(),
+      if (modifiedSinceConstraint != null)
+        'ModifiedSinceConstraint': iso8601ToJson(modifiedSinceConstraint),
+      if (newObjectMetadata != null) 'NewObjectMetadata': newObjectMetadata,
+      if (newObjectTagging != null) 'NewObjectTagging': newObjectTagging,
+      if (objectLockLegalHoldStatus != null)
+        'ObjectLockLegalHoldStatus': objectLockLegalHoldStatus.toValue(),
+      if (objectLockMode != null) 'ObjectLockMode': objectLockMode.toValue(),
+      if (objectLockRetainUntilDate != null)
+        'ObjectLockRetainUntilDate': iso8601ToJson(objectLockRetainUntilDate),
+      if (redirectLocation != null) 'RedirectLocation': redirectLocation,
+      if (requesterPays != null) 'RequesterPays': requesterPays,
+      if (sSEAwsKmsKeyId != null) 'SSEAwsKmsKeyId': sSEAwsKmsKeyId,
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+      if (targetKeyPrefix != null) 'TargetKeyPrefix': targetKeyPrefix,
+      if (targetResource != null) 'TargetResource': targetResource,
+      if (unModifiedSinceConstraint != null)
+        'UnModifiedSinceConstraint': iso8601ToJson(unModifiedSinceConstraint),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accessControlGrants = this.accessControlGrants;
     final bucketKeyEnabled = this.bucketKeyEnabled;
@@ -8811,6 +9998,10 @@ class S3DeleteObjectTaggingOperation {
     return S3DeleteObjectTaggingOperation();
   }
 
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final $children = <_s.XmlNode>[];
     final $attributes = <_s.XmlAttribute>[
@@ -8844,6 +10035,15 @@ class S3GeneratedManifestDescriptor {
           .extractXmlChild(elem, 'Location')
           ?.let(JobManifestLocation.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final format = this.format;
+    final location = this.location;
+    return {
+      if (format != null) 'Format': format.toValue(),
+      if (location != null) 'Location': location,
+    };
   }
 }
 
@@ -8895,6 +10095,15 @@ class S3Grant {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final grantee = this.grantee;
+    final permission = this.permission;
+    return {
+      if (grantee != null) 'Grantee': grantee,
+      if (permission != null) 'Permission': permission.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final grantee = this.grantee;
     final permission = this.permission;
@@ -8938,6 +10147,17 @@ class S3Grantee {
           .extractXmlStringValue(elem, 'TypeIdentifier')
           ?.toS3GranteeTypeIdentifier(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final displayName = this.displayName;
+    final identifier = this.identifier;
+    final typeIdentifier = this.typeIdentifier;
+    return {
+      if (displayName != null) 'DisplayName': displayName,
+      if (identifier != null) 'Identifier': identifier,
+      if (typeIdentifier != null) 'TypeIdentifier': typeIdentifier.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -9037,6 +10257,15 @@ class S3InitiateRestoreObjectOperation {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final expirationInDays = this.expirationInDays;
+    final glacierJobTier = this.glacierJobTier;
+    return {
+      if (expirationInDays != null) 'ExpirationInDays': expirationInDays,
+      if (glacierJobTier != null) 'GlacierJobTier': glacierJobTier.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final expirationInDays = this.expirationInDays;
     final glacierJobTier = this.glacierJobTier;
@@ -9099,6 +10328,23 @@ class S3JobManifestGenerator {
           .extractXmlChild(elem, 'ManifestOutputLocation')
           ?.let(S3ManifestOutputLocation.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enableManifestOutput = this.enableManifestOutput;
+    final sourceBucket = this.sourceBucket;
+    final expectedBucketOwner = this.expectedBucketOwner;
+    final filter = this.filter;
+    final manifestOutputLocation = this.manifestOutputLocation;
+    return {
+      'EnableManifestOutput': enableManifestOutput,
+      'SourceBucket': sourceBucket,
+      if (expectedBucketOwner != null)
+        'ExpectedBucketOwner': expectedBucketOwner,
+      if (filter != null) 'Filter': filter,
+      if (manifestOutputLocation != null)
+        'ManifestOutputLocation': manifestOutputLocation,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -9165,6 +10411,22 @@ class S3ManifestOutputLocation {
           ?.let(GeneratedManifestEncryption.fromXml),
       manifestPrefix: _s.extractXmlStringValue(elem, 'ManifestPrefix'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final manifestFormat = this.manifestFormat;
+    final expectedManifestBucketOwner = this.expectedManifestBucketOwner;
+    final manifestEncryption = this.manifestEncryption;
+    final manifestPrefix = this.manifestPrefix;
+    return {
+      'Bucket': bucket,
+      'ManifestFormat': manifestFormat.toValue(),
+      if (expectedManifestBucketOwner != null)
+        'ExpectedManifestBucketOwner': expectedManifestBucketOwner,
+      if (manifestEncryption != null) 'ManifestEncryption': manifestEncryption,
+      if (manifestPrefix != null) 'ManifestPrefix': manifestPrefix,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -9239,6 +10501,13 @@ class S3ObjectLockLegalHold {
           .extractXmlStringValue(elem, 'Status')!
           .toS3ObjectLockLegalHoldStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'Status': status.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -9415,6 +10684,34 @@ class S3ObjectMetadata {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final cacheControl = this.cacheControl;
+    final contentDisposition = this.contentDisposition;
+    final contentEncoding = this.contentEncoding;
+    final contentLanguage = this.contentLanguage;
+    final contentLength = this.contentLength;
+    final contentMD5 = this.contentMD5;
+    final contentType = this.contentType;
+    final httpExpiresDate = this.httpExpiresDate;
+    final requesterCharged = this.requesterCharged;
+    final sSEAlgorithm = this.sSEAlgorithm;
+    final userMetadata = this.userMetadata;
+    return {
+      if (cacheControl != null) 'CacheControl': cacheControl,
+      if (contentDisposition != null) 'ContentDisposition': contentDisposition,
+      if (contentEncoding != null) 'ContentEncoding': contentEncoding,
+      if (contentLanguage != null) 'ContentLanguage': contentLanguage,
+      if (contentLength != null) 'ContentLength': contentLength,
+      if (contentMD5 != null) 'ContentMD5': contentMD5,
+      if (contentType != null) 'ContentType': contentType,
+      if (httpExpiresDate != null)
+        'HttpExpiresDate': iso8601ToJson(httpExpiresDate),
+      if (requesterCharged != null) 'RequesterCharged': requesterCharged,
+      if (sSEAlgorithm != null) 'SSEAlgorithm': sSEAlgorithm.toValue(),
+      if (userMetadata != null) 'UserMetadata': userMetadata,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final cacheControl = this.cacheControl;
     final contentDisposition = this.contentDisposition;
@@ -9485,6 +10782,15 @@ class S3ObjectOwner {
       displayName: _s.extractXmlStringValue(elem, 'DisplayName'),
       id: _s.extractXmlStringValue(elem, 'ID'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final displayName = this.displayName;
+    final id = this.id;
+    return {
+      if (displayName != null) 'DisplayName': displayName,
+      if (id != null) 'ID': id,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -9559,6 +10865,10 @@ class S3ReplicateObjectOperation {
     return S3ReplicateObjectOperation();
   }
 
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final $children = <_s.XmlNode>[];
     final $attributes = <_s.XmlAttribute>[
@@ -9598,6 +10908,16 @@ class S3Retention {
           _s.extractXmlStringValue(elem, 'Mode')?.toS3ObjectLockRetentionMode(),
       retainUntilDate: _s.extractXmlDateTimeValue(elem, 'RetainUntilDate'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mode = this.mode;
+    final retainUntilDate = this.retainUntilDate;
+    return {
+      if (mode != null) 'Mode': mode.toValue(),
+      if (retainUntilDate != null)
+        'RetainUntilDate': iso8601ToJson(retainUntilDate),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -9667,6 +10987,14 @@ class S3SetObjectAclOperation {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final accessControlPolicy = this.accessControlPolicy;
+    return {
+      if (accessControlPolicy != null)
+        'AccessControlPolicy': accessControlPolicy,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accessControlPolicy = this.accessControlPolicy;
     final $children = <_s.XmlNode>[
@@ -9703,6 +11031,13 @@ class S3SetObjectLegalHoldOperation {
       legalHold:
           S3ObjectLockLegalHold.fromXml(_s.extractXmlChild(elem, 'LegalHold')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final legalHold = this.legalHold;
+    return {
+      'LegalHold': legalHold,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -9751,6 +11086,16 @@ class S3SetObjectRetentionOperation {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final retention = this.retention;
+    final bypassGovernanceRetention = this.bypassGovernanceRetention;
+    return {
+      'Retention': retention,
+      if (bypassGovernanceRetention != null)
+        'BypassGovernanceRetention': bypassGovernanceRetention,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final retention = this.retention;
     final bypassGovernanceRetention = this.bypassGovernanceRetention;
@@ -9788,6 +11133,13 @@ class S3SetObjectTaggingOperation {
       tagSet: _s.extractXmlChild(elem, 'TagSet')?.let(
           (elem) => elem.findElements('member').map(S3Tag.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagSet = this.tagSet;
+    return {
+      if (tagSet != null) 'TagSet': tagSet,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -9880,6 +11232,15 @@ class S3Tag {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      'Key': key,
+      'Value': value,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final key = this.key;
     final value = this.value;
@@ -9915,6 +11276,13 @@ class SSEKMS {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final keyId = this.keyId;
+    return {
+      'KeyId': keyId,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final keyId = this.keyId;
     final $children = <_s.XmlNode>[
@@ -9947,6 +11315,13 @@ class SSEKMSEncryption {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final keyId = this.keyId;
+    return {
+      'KeyId': keyId,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final keyId = this.keyId;
     final $children = <_s.XmlNode>[
@@ -9972,6 +11347,10 @@ class SSES3 {
     return SSES3();
   }
 
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final $children = <_s.XmlNode>[];
     final $attributes = <_s.XmlAttribute>[
@@ -9992,6 +11371,10 @@ class SSES3Encryption {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SSES3Encryption();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -10036,6 +11419,18 @@ class SelectionCriteria {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final delimiter = this.delimiter;
+    final maxDepth = this.maxDepth;
+    final minStorageBytesPercentage = this.minStorageBytesPercentage;
+    return {
+      if (delimiter != null) 'Delimiter': delimiter,
+      if (maxDepth != null) 'MaxDepth': maxDepth,
+      if (minStorageBytesPercentage != null)
+        'MinStorageBytesPercentage': minStorageBytesPercentage,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final delimiter = this.delimiter;
     final maxDepth = this.maxDepth;
@@ -10074,6 +11469,13 @@ class StorageLensAwsOrg {
     return StorageLensAwsOrg(
       arn: _s.extractXmlStringValue(elem, 'Arn')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      'Arn': arn,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -10155,6 +11557,27 @@ class StorageLensConfiguration {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final accountLevel = this.accountLevel;
+    final id = this.id;
+    final isEnabled = this.isEnabled;
+    final awsOrg = this.awsOrg;
+    final dataExport = this.dataExport;
+    final exclude = this.exclude;
+    final include = this.include;
+    final storageLensArn = this.storageLensArn;
+    return {
+      'AccountLevel': accountLevel,
+      'Id': id,
+      'IsEnabled': isEnabled,
+      if (awsOrg != null) 'AwsOrg': awsOrg,
+      if (dataExport != null) 'DataExport': dataExport,
+      if (exclude != null) 'Exclude': exclude,
+      if (include != null) 'Include': include,
+      if (storageLensArn != null) 'StorageLensArn': storageLensArn,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accountLevel = this.accountLevel;
     final id = this.id;
@@ -10216,6 +11639,16 @@ class StorageLensDataExport {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final cloudWatchMetrics = this.cloudWatchMetrics;
+    final s3BucketDestination = this.s3BucketDestination;
+    return {
+      if (cloudWatchMetrics != null) 'CloudWatchMetrics': cloudWatchMetrics,
+      if (s3BucketDestination != null)
+        'S3BucketDestination': s3BucketDestination,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final cloudWatchMetrics = this.cloudWatchMetrics;
     final s3BucketDestination = this.s3BucketDestination;
@@ -10255,6 +11688,15 @@ class StorageLensDataExportEncryption {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final ssekms = this.ssekms;
+    final sses3 = this.sses3;
+    return {
+      if (ssekms != null) 'SSE-KMS': ssekms,
+      if (sses3 != null) 'SSE-S3': sses3,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final ssekms = this.ssekms;
     final sses3 = this.sses3;
@@ -10292,6 +11734,15 @@ class StorageLensTag {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      'Key': key,
+      'Value': value,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final key = this.key;
     final value = this.value;
@@ -10318,6 +11769,14 @@ class Tagging {
   Tagging({
     required this.tagSet,
   });
+
+  Map<String, dynamic> toJson() {
+    final tagSet = this.tagSet;
+    return {
+      'TagSet': tagSet,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final tagSet = this.tagSet;
     final $children = <_s.XmlNode>[
@@ -10365,6 +11824,17 @@ class Transition {
           .extractXmlStringValue(elem, 'StorageClass')
           ?.toTransitionStorageClass(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final days = this.days;
+    final storageClass = this.storageClass;
+    return {
+      if (date != null) 'Date': iso8601ToJson(date),
+      if (days != null) 'Days': days,
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -10448,6 +11918,15 @@ class UpdateJobPriorityResult {
       priority: _s.extractXmlIntValue(elem, 'Priority')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final priority = this.priority;
+    return {
+      'JobId': jobId,
+      'Priority': priority,
+    };
+  }
 }
 
 class UpdateJobStatusResult {
@@ -10472,6 +11951,17 @@ class UpdateJobStatusResult {
       statusUpdateReason: _s.extractXmlStringValue(elem, 'StatusUpdateReason'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final status = this.status;
+    final statusUpdateReason = this.statusUpdateReason;
+    return {
+      if (jobId != null) 'JobId': jobId,
+      if (status != null) 'Status': status.toValue(),
+      if (statusUpdateReason != null) 'StatusUpdateReason': statusUpdateReason,
+    };
+  }
 }
 
 /// The virtual private cloud (VPC) configuration for an access point.
@@ -10487,6 +11977,13 @@ class VpcConfiguration {
     return VpcConfiguration(
       vpcId: _s.extractXmlStringValue(elem, 'VpcId')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpcId = this.vpcId;
+    return {
+      'VpcId': vpcId,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {

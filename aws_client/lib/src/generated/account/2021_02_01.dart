@@ -427,6 +427,22 @@ class AlternateContact {
       title: json['Title'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alternateContactType = this.alternateContactType;
+    final emailAddress = this.emailAddress;
+    final name = this.name;
+    final phoneNumber = this.phoneNumber;
+    final title = this.title;
+    return {
+      if (alternateContactType != null)
+        'AlternateContactType': alternateContactType.toValue(),
+      if (emailAddress != null) 'EmailAddress': emailAddress,
+      if (name != null) 'Name': name,
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (title != null) 'Title': title,
+    };
+  }
 }
 
 enum AlternateContactType {
@@ -581,6 +597,13 @@ class GetAlternateContactResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alternateContact = this.alternateContact;
+    return {
+      if (alternateContact != null) 'AlternateContact': alternateContact,
+    };
+  }
 }
 
 class GetContactInformationResponse {
@@ -598,6 +621,13 @@ class GetContactInformationResponse {
               json['ContactInformation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contactInformation = this.contactInformation;
+    return {
+      if (contactInformation != null) 'ContactInformation': contactInformation,
+    };
   }
 }
 

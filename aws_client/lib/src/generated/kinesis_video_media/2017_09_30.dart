@@ -230,6 +230,14 @@ class GetMediaOutput {
     this.contentType,
     this.payload,
   });
+
+  Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
+    final payload = this.payload;
+    return {
+      if (payload != null) 'Payload': base64Encode(payload),
+    };
+  }
 }
 
 /// Identifies the chunk on the Kinesis video stream where you want the
@@ -303,6 +311,7 @@ class StartSelector {
     this.continuationToken,
     this.startTimestamp,
   });
+
   Map<String, dynamic> toJson() {
     final startSelectorType = this.startSelectorType;
     final afterFragmentNumber = this.afterFragmentNumber;

@@ -932,6 +932,10 @@ class AssociateServiceQuotaTemplateResponse {
       Map<String, dynamic> _) {
     return AssociateServiceQuotaTemplateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteServiceQuotaIncreaseRequestFromTemplateResponse {
@@ -940,6 +944,10 @@ class DeleteServiceQuotaIncreaseRequestFromTemplateResponse {
       Map<String, dynamic> _) {
     return DeleteServiceQuotaIncreaseRequestFromTemplateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateServiceQuotaTemplateResponse {
@@ -947,6 +955,10 @@ class DisassociateServiceQuotaTemplateResponse {
   factory DisassociateServiceQuotaTemplateResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateServiceQuotaTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1025,6 +1037,15 @@ class ErrorReason {
       errorMessage: json['ErrorMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+    };
+  }
 }
 
 class GetAWSDefaultServiceQuotaResponse {
@@ -1041,6 +1062,13 @@ class GetAWSDefaultServiceQuotaResponse {
           ? ServiceQuota.fromJson(json['Quota'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quota = this.quota;
+    return {
+      if (quota != null) 'Quota': quota,
+    };
   }
 }
 
@@ -1062,6 +1090,16 @@ class GetAssociationForServiceQuotaTemplateResponse {
               ?.toServiceQuotaTemplateAssociationStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceQuotaTemplateAssociationStatus =
+        this.serviceQuotaTemplateAssociationStatus;
+    return {
+      if (serviceQuotaTemplateAssociationStatus != null)
+        'ServiceQuotaTemplateAssociationStatus':
+            serviceQuotaTemplateAssociationStatus.toValue(),
+    };
+  }
 }
 
 class GetRequestedServiceQuotaChangeResponse {
@@ -1079,6 +1117,13 @@ class GetRequestedServiceQuotaChangeResponse {
               json['RequestedQuota'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestedQuota = this.requestedQuota;
+    return {
+      if (requestedQuota != null) 'RequestedQuota': requestedQuota,
+    };
   }
 }
 
@@ -1101,6 +1146,16 @@ class GetServiceQuotaIncreaseRequestFromTemplateResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceQuotaIncreaseRequestInTemplate =
+        this.serviceQuotaIncreaseRequestInTemplate;
+    return {
+      if (serviceQuotaIncreaseRequestInTemplate != null)
+        'ServiceQuotaIncreaseRequestInTemplate':
+            serviceQuotaIncreaseRequestInTemplate,
+    };
+  }
 }
 
 class GetServiceQuotaResponse {
@@ -1116,6 +1171,13 @@ class GetServiceQuotaResponse {
           ? ServiceQuota.fromJson(json['Quota'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quota = this.quota;
+    return {
+      if (quota != null) 'Quota': quota,
+    };
   }
 }
 
@@ -1140,6 +1202,15 @@ class ListAWSDefaultServiceQuotasResponse {
           .map((e) => ServiceQuota.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final quotas = this.quotas;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (quotas != null) 'Quotas': quotas,
+    };
   }
 }
 
@@ -1166,6 +1237,15 @@ class ListRequestedServiceQuotaChangeHistoryByQuotaResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final requestedQuotas = this.requestedQuotas;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestedQuotas != null) 'RequestedQuotas': requestedQuotas,
+    };
+  }
 }
 
 class ListRequestedServiceQuotaChangeHistoryResponse {
@@ -1190,6 +1270,15 @@ class ListRequestedServiceQuotaChangeHistoryResponse {
               RequestedServiceQuotaChange.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final requestedQuotas = this.requestedQuotas;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestedQuotas != null) 'RequestedQuotas': requestedQuotas,
+    };
   }
 }
 
@@ -1218,6 +1307,18 @@ class ListServiceQuotaIncreaseRequestsInTemplateResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final serviceQuotaIncreaseRequestInTemplateList =
+        this.serviceQuotaIncreaseRequestInTemplateList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (serviceQuotaIncreaseRequestInTemplateList != null)
+        'ServiceQuotaIncreaseRequestInTemplateList':
+            serviceQuotaIncreaseRequestInTemplateList,
+    };
+  }
 }
 
 class ListServiceQuotasResponse {
@@ -1240,6 +1341,15 @@ class ListServiceQuotasResponse {
           .map((e) => ServiceQuota.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final quotas = this.quotas;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (quotas != null) 'Quotas': quotas,
+    };
   }
 }
 
@@ -1264,6 +1374,15 @@ class ListServicesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final services = this.services;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (services != null) 'Services': services,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1280,6 +1399,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1313,6 +1439,20 @@ class MetricInfo {
       metricStatisticRecommendation:
           json['MetricStatisticRecommendation'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricDimensions = this.metricDimensions;
+    final metricName = this.metricName;
+    final metricNamespace = this.metricNamespace;
+    final metricStatisticRecommendation = this.metricStatisticRecommendation;
+    return {
+      if (metricDimensions != null) 'MetricDimensions': metricDimensions,
+      if (metricName != null) 'MetricName': metricName,
+      if (metricNamespace != null) 'MetricNamespace': metricNamespace,
+      if (metricStatisticRecommendation != null)
+        'MetricStatisticRecommendation': metricStatisticRecommendation,
+    };
   }
 }
 
@@ -1388,6 +1528,16 @@ class PutServiceQuotaIncreaseRequestIntoTemplateResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceQuotaIncreaseRequestInTemplate =
+        this.serviceQuotaIncreaseRequestInTemplate;
+    return {
+      if (serviceQuotaIncreaseRequestInTemplate != null)
+        'ServiceQuotaIncreaseRequestInTemplate':
+            serviceQuotaIncreaseRequestInTemplate,
+    };
+  }
 }
 
 /// Information about the quota period.
@@ -1408,6 +1558,15 @@ class QuotaPeriod {
       periodValue: json['PeriodValue'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final periodUnit = this.periodUnit;
+    final periodValue = this.periodValue;
+    return {
+      if (periodUnit != null) 'PeriodUnit': periodUnit.toValue(),
+      if (periodValue != null) 'PeriodValue': periodValue,
+    };
+  }
 }
 
 class RequestServiceQuotaIncreaseResponse {
@@ -1425,6 +1584,13 @@ class RequestServiceQuotaIncreaseResponse {
               json['RequestedQuota'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final requestedQuota = this.requestedQuota;
+    return {
+      if (requestedQuota != null) 'RequestedQuota': requestedQuota,
+    };
   }
 }
 
@@ -1550,6 +1716,39 @@ class RequestedServiceQuotaChange {
       unit: json['Unit'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final caseId = this.caseId;
+    final created = this.created;
+    final desiredValue = this.desiredValue;
+    final globalQuota = this.globalQuota;
+    final id = this.id;
+    final lastUpdated = this.lastUpdated;
+    final quotaArn = this.quotaArn;
+    final quotaCode = this.quotaCode;
+    final quotaName = this.quotaName;
+    final requester = this.requester;
+    final serviceCode = this.serviceCode;
+    final serviceName = this.serviceName;
+    final status = this.status;
+    final unit = this.unit;
+    return {
+      if (caseId != null) 'CaseId': caseId,
+      if (created != null) 'Created': unixTimestampToJson(created),
+      if (desiredValue != null) 'DesiredValue': desiredValue,
+      if (globalQuota != null) 'GlobalQuota': globalQuota,
+      if (id != null) 'Id': id,
+      if (lastUpdated != null) 'LastUpdated': unixTimestampToJson(lastUpdated),
+      if (quotaArn != null) 'QuotaArn': quotaArn,
+      if (quotaCode != null) 'QuotaCode': quotaCode,
+      if (quotaName != null) 'QuotaName': quotaName,
+      if (requester != null) 'Requester': requester,
+      if (serviceCode != null) 'ServiceCode': serviceCode,
+      if (serviceName != null) 'ServiceName': serviceName,
+      if (status != null) 'Status': status.toValue(),
+      if (unit != null) 'Unit': unit,
+    };
+  }
 }
 
 /// Information about a service.
@@ -1569,6 +1768,15 @@ class ServiceInfo {
       serviceCode: json['ServiceCode'] as String?,
       serviceName: json['ServiceName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceCode = this.serviceCode;
+    final serviceName = this.serviceName;
+    return {
+      if (serviceCode != null) 'ServiceCode': serviceCode,
+      if (serviceName != null) 'ServiceName': serviceName,
+    };
   }
 }
 
@@ -1646,6 +1854,35 @@ class ServiceQuota {
       value: json['Value'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adjustable = this.adjustable;
+    final errorReason = this.errorReason;
+    final globalQuota = this.globalQuota;
+    final period = this.period;
+    final quotaArn = this.quotaArn;
+    final quotaCode = this.quotaCode;
+    final quotaName = this.quotaName;
+    final serviceCode = this.serviceCode;
+    final serviceName = this.serviceName;
+    final unit = this.unit;
+    final usageMetric = this.usageMetric;
+    final value = this.value;
+    return {
+      if (adjustable != null) 'Adjustable': adjustable,
+      if (errorReason != null) 'ErrorReason': errorReason,
+      if (globalQuota != null) 'GlobalQuota': globalQuota,
+      if (period != null) 'Period': period,
+      if (quotaArn != null) 'QuotaArn': quotaArn,
+      if (quotaCode != null) 'QuotaCode': quotaCode,
+      if (quotaName != null) 'QuotaName': quotaName,
+      if (serviceCode != null) 'ServiceCode': serviceCode,
+      if (serviceName != null) 'ServiceName': serviceName,
+      if (unit != null) 'Unit': unit,
+      if (usageMetric != null) 'UsageMetric': usageMetric,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// Information about a quota increase request.
@@ -1696,6 +1933,27 @@ class ServiceQuotaIncreaseRequestInTemplate {
       serviceName: json['ServiceName'] as String?,
       unit: json['Unit'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final awsRegion = this.awsRegion;
+    final desiredValue = this.desiredValue;
+    final globalQuota = this.globalQuota;
+    final quotaCode = this.quotaCode;
+    final quotaName = this.quotaName;
+    final serviceCode = this.serviceCode;
+    final serviceName = this.serviceName;
+    final unit = this.unit;
+    return {
+      if (awsRegion != null) 'AwsRegion': awsRegion,
+      if (desiredValue != null) 'DesiredValue': desiredValue,
+      if (globalQuota != null) 'GlobalQuota': globalQuota,
+      if (quotaCode != null) 'QuotaCode': quotaCode,
+      if (quotaName != null) 'QuotaName': quotaName,
+      if (serviceCode != null) 'ServiceCode': serviceCode,
+      if (serviceName != null) 'ServiceName': serviceName,
+      if (unit != null) 'Unit': unit,
+    };
   }
 }
 
@@ -1768,12 +2026,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

@@ -878,6 +878,13 @@ class AssociateTeamMemberResult {
       clientRequestToken: json['clientRequestToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientRequestToken = this.clientRequestToken;
+    return {
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+    };
+  }
 }
 
 /// Location and destination information about the source code files provided
@@ -898,6 +905,7 @@ class Code {
     required this.destination,
     required this.source,
   });
+
   Map<String, dynamic> toJson() {
     final destination = this.destination;
     final source = this.source;
@@ -918,6 +926,7 @@ class CodeCommitCodeDestination {
   CodeCommitCodeDestination({
     required this.name,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     return {
@@ -945,6 +954,7 @@ class CodeDestination {
     this.codeCommit,
     this.gitHub,
   });
+
   Map<String, dynamic> toJson() {
     final codeCommit = this.codeCommit;
     final gitHub = this.gitHub;
@@ -965,6 +975,7 @@ class CodeSource {
   CodeSource({
     required this.s3,
   });
+
   Map<String, dynamic> toJson() {
     final s3 = this.s3;
     return {
@@ -1000,6 +1011,19 @@ class CreateProjectResult {
       clientRequestToken: json['clientRequestToken'] as String?,
       projectTemplateId: json['projectTemplateId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final clientRequestToken = this.clientRequestToken;
+    final projectTemplateId = this.projectTemplateId;
+    return {
+      'arn': arn,
+      'id': id,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (projectTemplateId != null) 'projectTemplateId': projectTemplateId,
+    };
   }
 }
 
@@ -1045,6 +1069,25 @@ class CreateUserProfileResult {
       sshPublicKey: json['sshPublicKey'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userArn = this.userArn;
+    final createdTimestamp = this.createdTimestamp;
+    final displayName = this.displayName;
+    final emailAddress = this.emailAddress;
+    final lastModifiedTimestamp = this.lastModifiedTimestamp;
+    final sshPublicKey = this.sshPublicKey;
+    return {
+      'userArn': userArn,
+      if (createdTimestamp != null)
+        'createdTimestamp': unixTimestampToJson(createdTimestamp),
+      if (displayName != null) 'displayName': displayName,
+      if (emailAddress != null) 'emailAddress': emailAddress,
+      if (lastModifiedTimestamp != null)
+        'lastModifiedTimestamp': unixTimestampToJson(lastModifiedTimestamp),
+      if (sshPublicKey != null) 'sshPublicKey': sshPublicKey,
+    };
+  }
 }
 
 class DeleteProjectResult {
@@ -1065,6 +1108,15 @@ class DeleteProjectResult {
       stackId: json['stackId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final projectArn = this.projectArn;
+    final stackId = this.stackId;
+    return {
+      if (projectArn != null) 'projectArn': projectArn,
+      if (stackId != null) 'stackId': stackId,
+    };
+  }
 }
 
 class DeleteUserProfileResult {
@@ -1078,6 +1130,13 @@ class DeleteUserProfileResult {
     return DeleteUserProfileResult(
       userArn: json['userArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userArn = this.userArn;
+    return {
+      'userArn': userArn,
+    };
   }
 }
 
@@ -1137,6 +1196,30 @@ class DescribeProjectResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final clientRequestToken = this.clientRequestToken;
+    final createdTimeStamp = this.createdTimeStamp;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final projectTemplateId = this.projectTemplateId;
+    final stackId = this.stackId;
+    final status = this.status;
+    return {
+      if (arn != null) 'arn': arn,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (createdTimeStamp != null)
+        'createdTimeStamp': unixTimestampToJson(createdTimeStamp),
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (projectTemplateId != null) 'projectTemplateId': projectTemplateId,
+      if (stackId != null) 'stackId': stackId,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class DescribeUserProfileResult {
@@ -1192,12 +1275,33 @@ class DescribeUserProfileResult {
       sshPublicKey: json['sshPublicKey'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final lastModifiedTimestamp = this.lastModifiedTimestamp;
+    final userArn = this.userArn;
+    final displayName = this.displayName;
+    final emailAddress = this.emailAddress;
+    final sshPublicKey = this.sshPublicKey;
+    return {
+      'createdTimestamp': unixTimestampToJson(createdTimestamp),
+      'lastModifiedTimestamp': unixTimestampToJson(lastModifiedTimestamp),
+      'userArn': userArn,
+      if (displayName != null) 'displayName': displayName,
+      if (emailAddress != null) 'emailAddress': emailAddress,
+      if (sshPublicKey != null) 'sshPublicKey': sshPublicKey,
+    };
+  }
 }
 
 class DisassociateTeamMemberResult {
   DisassociateTeamMemberResult();
   factory DisassociateTeamMemberResult.fromJson(Map<String, dynamic> _) {
     return DisassociateTeamMemberResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1239,6 +1343,7 @@ class GitHubCodeDestination {
     required this.type,
     this.description,
   });
+
   Map<String, dynamic> toJson() {
     final issuesEnabled = this.issuesEnabled;
     final name = this.name;
@@ -1280,6 +1385,15 @@ class ListProjectsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final projects = this.projects;
+    final nextToken = this.nextToken;
+    return {
+      'projects': projects,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListResourcesResult {
@@ -1303,6 +1417,15 @@ class ListResourcesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resources = this.resources;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resources != null) 'resources': resources,
+    };
+  }
 }
 
 class ListTagsForProjectResult {
@@ -1322,6 +1445,15 @@ class ListTagsForProjectResult {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1346,6 +1478,15 @@ class ListTeamMembersResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final teamMembers = this.teamMembers;
+    final nextToken = this.nextToken;
+    return {
+      'teamMembers': teamMembers,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListUserProfilesResult {
@@ -1369,6 +1510,15 @@ class ListUserProfilesResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userProfiles = this.userProfiles;
+    final nextToken = this.nextToken;
+    return {
+      'userProfiles': userProfiles,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// An indication of whether a project creation or deletion is failed or
@@ -1391,6 +1541,15 @@ class ProjectStatus {
       reason: json['reason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final reason = this.reason;
+    return {
+      'state': state,
+      if (reason != null) 'reason': reason,
+    };
+  }
 }
 
 /// Information about the metadata for a project.
@@ -1411,6 +1570,15 @@ class ProjectSummary {
       projectId: json['projectId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final projectArn = this.projectArn;
+    final projectId = this.projectId;
+    return {
+      if (projectArn != null) 'projectArn': projectArn,
+      if (projectId != null) 'projectId': projectId,
+    };
+  }
 }
 
 /// Information about a resource for a project.
@@ -1425,6 +1593,13 @@ class Resource {
     return Resource(
       id: json['id'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      'id': id,
+    };
   }
 }
 
@@ -1443,6 +1618,7 @@ class S3Location {
     this.bucketKey,
     this.bucketName,
   });
+
   Map<String, dynamic> toJson() {
     final bucketKey = this.bucketKey;
     final bucketName = this.bucketName;
@@ -1465,6 +1641,13 @@ class TagProjectResult {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1495,6 +1678,18 @@ class TeamMember {
       remoteAccessAllowed: json['remoteAccessAllowed'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final projectRole = this.projectRole;
+    final userArn = this.userArn;
+    final remoteAccessAllowed = this.remoteAccessAllowed;
+    return {
+      'projectRole': projectRole,
+      'userArn': userArn,
+      if (remoteAccessAllowed != null)
+        'remoteAccessAllowed': remoteAccessAllowed,
+    };
+  }
 }
 
 /// The toolchain template file provided with the project request. AWS CodeStar
@@ -1518,6 +1713,7 @@ class Toolchain {
     this.roleArn,
     this.stackParameters,
   });
+
   Map<String, dynamic> toJson() {
     final source = this.source;
     final roleArn = this.roleArn;
@@ -1541,6 +1737,7 @@ class ToolchainSource {
   ToolchainSource({
     required this.s3,
   });
+
   Map<String, dynamic> toJson() {
     final s3 = this.s3;
     return {
@@ -1554,12 +1751,20 @@ class UntagProjectResult {
   factory UntagProjectResult.fromJson(Map<String, dynamic> _) {
     return UntagProjectResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateProjectResult {
   UpdateProjectResult();
   factory UpdateProjectResult.fromJson(Map<String, dynamic> _) {
     return UpdateProjectResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1586,6 +1791,18 @@ class UpdateTeamMemberResult {
       remoteAccessAllowed: json['remoteAccessAllowed'] as bool?,
       userArn: json['userArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final projectRole = this.projectRole;
+    final remoteAccessAllowed = this.remoteAccessAllowed;
+    final userArn = this.userArn;
+    return {
+      if (projectRole != null) 'projectRole': projectRole,
+      if (remoteAccessAllowed != null)
+        'remoteAccessAllowed': remoteAccessAllowed,
+      if (userArn != null) 'userArn': userArn,
+    };
   }
 }
 
@@ -1631,6 +1848,25 @@ class UpdateUserProfileResult {
       sshPublicKey: json['sshPublicKey'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userArn = this.userArn;
+    final createdTimestamp = this.createdTimestamp;
+    final displayName = this.displayName;
+    final emailAddress = this.emailAddress;
+    final lastModifiedTimestamp = this.lastModifiedTimestamp;
+    final sshPublicKey = this.sshPublicKey;
+    return {
+      'userArn': userArn,
+      if (createdTimestamp != null)
+        'createdTimestamp': unixTimestampToJson(createdTimestamp),
+      if (displayName != null) 'displayName': displayName,
+      if (emailAddress != null) 'emailAddress': emailAddress,
+      if (lastModifiedTimestamp != null)
+        'lastModifiedTimestamp': unixTimestampToJson(lastModifiedTimestamp),
+      if (sshPublicKey != null) 'sshPublicKey': sshPublicKey,
+    };
+  }
 }
 
 /// Information about a user's profile in AWS CodeStar.
@@ -1670,6 +1906,19 @@ class UserProfileSummary {
       sshPublicKey: json['sshPublicKey'] as String?,
       userArn: json['userArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final displayName = this.displayName;
+    final emailAddress = this.emailAddress;
+    final sshPublicKey = this.sshPublicKey;
+    final userArn = this.userArn;
+    return {
+      if (displayName != null) 'displayName': displayName,
+      if (emailAddress != null) 'emailAddress': emailAddress,
+      if (sshPublicKey != null) 'sshPublicKey': sshPublicKey,
+      if (userArn != null) 'userArn': userArn,
+    };
   }
 }
 

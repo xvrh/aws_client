@@ -906,6 +906,25 @@ class AssertionRule {
       waitPeriodMs: json['WaitPeriodMs'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assertedControls = this.assertedControls;
+    final controlPanelArn = this.controlPanelArn;
+    final name = this.name;
+    final ruleConfig = this.ruleConfig;
+    final safetyRuleArn = this.safetyRuleArn;
+    final status = this.status;
+    final waitPeriodMs = this.waitPeriodMs;
+    return {
+      'AssertedControls': assertedControls,
+      'ControlPanelArn': controlPanelArn,
+      'Name': name,
+      'RuleConfig': ruleConfig,
+      'SafetyRuleArn': safetyRuleArn,
+      'Status': status.toValue(),
+      'WaitPeriodMs': waitPeriodMs,
+    };
+  }
 }
 
 /// An update to an assertion rule. You can update the name or the evaluation
@@ -930,6 +949,7 @@ class AssertionRuleUpdate {
     required this.safetyRuleArn,
     required this.waitPeriodMs,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final safetyRuleArn = this.safetyRuleArn;
@@ -980,6 +1000,19 @@ class Cluster {
       status: (json['Status'] as String?)?.toStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final clusterEndpoints = this.clusterEndpoints;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (clusterArn != null) 'ClusterArn': clusterArn,
+      if (clusterEndpoints != null) 'ClusterEndpoints': clusterEndpoints,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// A cluster endpoint. Specify an endpoint when you want to set or retrieve a
@@ -1004,6 +1037,15 @@ class ClusterEndpoint {
       endpoint: json['Endpoint'] as String?,
       region: json['Region'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    final region = this.region;
+    return {
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (region != null) 'Region': region,
+    };
   }
 }
 
@@ -1053,6 +1095,25 @@ class ControlPanel {
       status: (json['Status'] as String?)?.toStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final controlPanelArn = this.controlPanelArn;
+    final defaultControlPanel = this.defaultControlPanel;
+    final name = this.name;
+    final routingControlCount = this.routingControlCount;
+    final status = this.status;
+    return {
+      if (clusterArn != null) 'ClusterArn': clusterArn,
+      if (controlPanelArn != null) 'ControlPanelArn': controlPanelArn,
+      if (defaultControlPanel != null)
+        'DefaultControlPanel': defaultControlPanel,
+      if (name != null) 'Name': name,
+      if (routingControlCount != null)
+        'RoutingControlCount': routingControlCount,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class CreateClusterResponse {
@@ -1068,6 +1129,13 @@ class CreateClusterResponse {
           ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -1085,6 +1153,13 @@ class CreateControlPanelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final controlPanel = this.controlPanel;
+    return {
+      if (controlPanel != null) 'ControlPanel': controlPanel,
+    };
+  }
 }
 
 class CreateRoutingControlResponse {
@@ -1101,6 +1176,13 @@ class CreateRoutingControlResponse {
               json['RoutingControl'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final routingControl = this.routingControl;
+    return {
+      if (routingControl != null) 'RoutingControl': routingControl,
+    };
   }
 }
 
@@ -1126,12 +1208,25 @@ class CreateSafetyRuleResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assertionRule = this.assertionRule;
+    final gatingRule = this.gatingRule;
+    return {
+      if (assertionRule != null) 'AssertionRule': assertionRule,
+      if (gatingRule != null) 'GatingRule': gatingRule,
+    };
+  }
 }
 
 class DeleteClusterResponse {
   DeleteClusterResponse();
   factory DeleteClusterResponse.fromJson(Map<String, dynamic> _) {
     return DeleteClusterResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1140,6 +1235,10 @@ class DeleteControlPanelResponse {
   factory DeleteControlPanelResponse.fromJson(Map<String, dynamic> _) {
     return DeleteControlPanelResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteRoutingControlResponse {
@@ -1147,12 +1246,20 @@ class DeleteRoutingControlResponse {
   factory DeleteRoutingControlResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRoutingControlResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteSafetyRuleResponse {
   DeleteSafetyRuleResponse();
   factory DeleteSafetyRuleResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSafetyRuleResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1170,6 +1277,13 @@ class DescribeClusterResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
+  }
 }
 
 class DescribeControlPanelResponse {
@@ -1185,6 +1299,13 @@ class DescribeControlPanelResponse {
           ? ControlPanel.fromJson(json['ControlPanel'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final controlPanel = this.controlPanel;
+    return {
+      if (controlPanel != null) 'ControlPanel': controlPanel,
+    };
   }
 }
 
@@ -1202,6 +1323,13 @@ class DescribeRoutingControlResponse {
               json['RoutingControl'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final routingControl = this.routingControl;
+    return {
+      if (routingControl != null) 'RoutingControl': routingControl,
+    };
   }
 }
 
@@ -1226,6 +1354,15 @@ class DescribeSafetyRuleResponse {
           ? GatingRule.fromJson(json['GatingRule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assertionRule = this.assertionRule;
+    final gatingRule = this.gatingRule;
+    return {
+      if (assertionRule != null) 'AssertionRule': assertionRule,
+      if (gatingRule != null) 'GatingRule': gatingRule,
+    };
   }
 }
 
@@ -1308,6 +1445,27 @@ class GatingRule {
       waitPeriodMs: json['WaitPeriodMs'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final controlPanelArn = this.controlPanelArn;
+    final gatingControls = this.gatingControls;
+    final name = this.name;
+    final ruleConfig = this.ruleConfig;
+    final safetyRuleArn = this.safetyRuleArn;
+    final status = this.status;
+    final targetControls = this.targetControls;
+    final waitPeriodMs = this.waitPeriodMs;
+    return {
+      'ControlPanelArn': controlPanelArn,
+      'GatingControls': gatingControls,
+      'Name': name,
+      'RuleConfig': ruleConfig,
+      'SafetyRuleArn': safetyRuleArn,
+      'Status': status.toValue(),
+      'TargetControls': targetControls,
+      'WaitPeriodMs': waitPeriodMs,
+    };
+  }
 }
 
 /// Update to a gating rule. You can update the name or the evaluation period
@@ -1332,6 +1490,7 @@ class GatingRuleUpdate {
     required this.safetyRuleArn,
     required this.waitPeriodMs,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final safetyRuleArn = this.safetyRuleArn;
@@ -1365,6 +1524,15 @@ class ListAssociatedRoute53HealthChecksResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final healthCheckIds = this.healthCheckIds;
+    final nextToken = this.nextToken;
+    return {
+      if (healthCheckIds != null) 'HealthCheckIds': healthCheckIds,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListClustersResponse {
@@ -1386,6 +1554,15 @@ class ListClustersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusters = this.clusters;
+    final nextToken = this.nextToken;
+    return {
+      if (clusters != null) 'Clusters': clusters,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1409,6 +1586,15 @@ class ListControlPanelsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final controlPanels = this.controlPanels;
+    final nextToken = this.nextToken;
+    return {
+      if (controlPanels != null) 'ControlPanels': controlPanels,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListRoutingControlsResponse {
@@ -1430,6 +1616,15 @@ class ListRoutingControlsResponse {
           .map((e) => RoutingControl.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final routingControls = this.routingControls;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (routingControls != null) 'RoutingControls': routingControls,
+    };
   }
 }
 
@@ -1453,6 +1648,15 @@ class ListSafetyRulesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final safetyRules = this.safetyRules;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (safetyRules != null) 'SafetyRules': safetyRules,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1467,6 +1671,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1506,6 +1717,7 @@ class NewAssertionRule {
     required this.ruleConfig,
     required this.waitPeriodMs,
   });
+
   Map<String, dynamic> toJson() {
     final assertedControls = this.assertedControls;
     final controlPanelArn = this.controlPanelArn;
@@ -1565,6 +1777,7 @@ class NewGatingRule {
     required this.targetControls,
     required this.waitPeriodMs,
   });
+
   Map<String, dynamic> toJson() {
     final controlPanelArn = this.controlPanelArn;
     final gatingControls = this.gatingControls;
@@ -1615,6 +1828,19 @@ class RoutingControl {
       status: (json['Status'] as String?)?.toStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final controlPanelArn = this.controlPanelArn;
+    final name = this.name;
+    final routingControlArn = this.routingControlArn;
+    final status = this.status;
+    return {
+      if (controlPanelArn != null) 'ControlPanelArn': controlPanelArn,
+      if (name != null) 'Name': name,
+      if (routingControlArn != null) 'RoutingControlArn': routingControlArn,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// A safety rule. A safety rule can be an assertion rule or a gating rule.
@@ -1652,6 +1878,15 @@ class Rule {
           ? GatingRule.fromJson(json['GATING'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assertion = this.assertion;
+    final gating = this.gating;
+    return {
+      if (assertion != null) 'ASSERTION': assertion,
+      if (gating != null) 'GATING': gating,
+    };
   }
 }
 
@@ -1786,12 +2021,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1809,6 +2052,13 @@ class UpdateControlPanelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final controlPanel = this.controlPanel;
+    return {
+      if (controlPanel != null) 'ControlPanel': controlPanel,
+    };
+  }
 }
 
 class UpdateRoutingControlResponse {
@@ -1825,6 +2075,13 @@ class UpdateRoutingControlResponse {
               json['RoutingControl'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final routingControl = this.routingControl;
+    return {
+      if (routingControl != null) 'RoutingControl': routingControl,
+    };
   }
 }
 
@@ -1849,6 +2106,15 @@ class UpdateSafetyRuleResponse {
           ? GatingRule.fromJson(json['GatingRule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assertionRule = this.assertionRule;
+    final gatingRule = this.gatingRule;
+    return {
+      if (assertionRule != null) 'AssertionRule': assertionRule,
+      if (gatingRule != null) 'GatingRule': gatingRule,
+    };
   }
 }
 

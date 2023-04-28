@@ -1390,6 +1390,15 @@ class CPU {
       modelName: json['modelName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cores = this.cores;
+    final modelName = this.modelName;
+    return {
+      if (cores != null) 'cores': cores,
+      if (modelName != null) 'modelName': modelName,
+    };
+  }
 }
 
 /// The request to change the source server migration lifecycle state.
@@ -1400,6 +1409,7 @@ class ChangeServerLifeCycleStateSourceServerLifecycle {
   ChangeServerLifeCycleStateSourceServerLifecycle({
     required this.state,
   });
+
   Map<String, dynamic> toJson() {
     final state = this.state;
     return {
@@ -1464,6 +1474,15 @@ class DataReplicationError {
       error: (json['error'] as String?)?.toDataReplicationErrorString(),
       rawError: json['rawError'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final rawError = this.rawError;
+    return {
+      if (error != null) 'error': error.toValue(),
+      if (rawError != null) 'rawError': rawError,
+    };
   }
 }
 
@@ -1622,6 +1641,29 @@ class DataReplicationInfo {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataReplicationError = this.dataReplicationError;
+    final dataReplicationInitiation = this.dataReplicationInitiation;
+    final dataReplicationState = this.dataReplicationState;
+    final etaDateTime = this.etaDateTime;
+    final lagDuration = this.lagDuration;
+    final lastSnapshotDateTime = this.lastSnapshotDateTime;
+    final replicatedDisks = this.replicatedDisks;
+    return {
+      if (dataReplicationError != null)
+        'dataReplicationError': dataReplicationError,
+      if (dataReplicationInitiation != null)
+        'dataReplicationInitiation': dataReplicationInitiation,
+      if (dataReplicationState != null)
+        'dataReplicationState': dataReplicationState.toValue(),
+      if (etaDateTime != null) 'etaDateTime': etaDateTime,
+      if (lagDuration != null) 'lagDuration': lagDuration,
+      if (lastSnapshotDateTime != null)
+        'lastSnapshotDateTime': lastSnapshotDateTime,
+      if (replicatedDisks != null) 'replicatedDisks': replicatedDisks,
+    };
+  }
 }
 
 /// Request to query disks replicated.
@@ -1658,6 +1700,24 @@ class DataReplicationInfoReplicatedDisk {
       totalStorageBytes: json['totalStorageBytes'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backloggedStorageBytes = this.backloggedStorageBytes;
+    final deviceName = this.deviceName;
+    final replicatedStorageBytes = this.replicatedStorageBytes;
+    final rescannedStorageBytes = this.rescannedStorageBytes;
+    final totalStorageBytes = this.totalStorageBytes;
+    return {
+      if (backloggedStorageBytes != null)
+        'backloggedStorageBytes': backloggedStorageBytes,
+      if (deviceName != null) 'deviceName': deviceName,
+      if (replicatedStorageBytes != null)
+        'replicatedStorageBytes': replicatedStorageBytes,
+      if (rescannedStorageBytes != null)
+        'rescannedStorageBytes': rescannedStorageBytes,
+      if (totalStorageBytes != null) 'totalStorageBytes': totalStorageBytes,
+    };
+  }
 }
 
 /// Data replication initiation.
@@ -1687,6 +1747,18 @@ class DataReplicationInitiation {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextAttemptDateTime = this.nextAttemptDateTime;
+    final startDateTime = this.startDateTime;
+    final steps = this.steps;
+    return {
+      if (nextAttemptDateTime != null)
+        'nextAttemptDateTime': nextAttemptDateTime,
+      if (startDateTime != null) 'startDateTime': startDateTime,
+      if (steps != null) 'steps': steps,
+    };
+  }
 }
 
 /// Data replication initiation step.
@@ -1707,6 +1779,15 @@ class DataReplicationInitiationStep {
       status:
           (json['status'] as String?)?.toDataReplicationInitiationStepStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (name != null) 'name': name.toValue(),
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -1914,6 +1995,10 @@ class DeleteJobResponse {
   factory DeleteJobResponse.fromJson(Map<String, dynamic> _) {
     return DeleteJobResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteLaunchConfigurationTemplateResponse {
@@ -1921,6 +2006,10 @@ class DeleteLaunchConfigurationTemplateResponse {
   factory DeleteLaunchConfigurationTemplateResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteLaunchConfigurationTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1930,12 +2019,20 @@ class DeleteReplicationConfigurationTemplateResponse {
       Map<String, dynamic> _) {
     return DeleteReplicationConfigurationTemplateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteSourceServerResponse {
   DeleteSourceServerResponse();
   factory DeleteSourceServerResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSourceServerResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1959,6 +2056,15 @@ class DescribeJobLogItemsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Request to describe Job log filters.
@@ -1977,6 +2083,7 @@ class DescribeJobsRequestFilters {
     this.jobIDs,
     this.toDate,
   });
+
   Map<String, dynamic> toJson() {
     final fromDate = this.fromDate;
     final jobIDs = this.jobIDs;
@@ -2009,6 +2116,15 @@ class DescribeJobsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeLaunchConfigurationTemplatesResponse {
@@ -2032,6 +2148,15 @@ class DescribeLaunchConfigurationTemplatesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2057,6 +2182,15 @@ class DescribeReplicationConfigurationTemplatesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Request to filter Source Servers list.
@@ -2079,6 +2213,7 @@ class DescribeSourceServersRequestFilters {
     this.replicationTypes,
     this.sourceServerIDs,
   });
+
   Map<String, dynamic> toJson() {
     final isArchived = this.isArchived;
     final lifeCycleStates = this.lifeCycleStates;
@@ -2115,6 +2250,15 @@ class DescribeSourceServersResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeVcenterClientsResponse {
@@ -2137,6 +2281,15 @@ class DescribeVcenterClientsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// The disk identifier.
@@ -2156,6 +2309,15 @@ class Disk {
       bytes: json['bytes'] as int?,
       deviceName: json['deviceName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bytes = this.bytes;
+    final deviceName = this.deviceName;
+    return {
+      if (bytes != null) 'bytes': bytes,
+      if (deviceName != null) 'deviceName': deviceName,
+    };
   }
 }
 
@@ -2230,12 +2392,31 @@ class IdentificationHints {
       vmWareUuid: json['vmWareUuid'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsInstanceID = this.awsInstanceID;
+    final fqdn = this.fqdn;
+    final hostname = this.hostname;
+    final vmPath = this.vmPath;
+    final vmWareUuid = this.vmWareUuid;
+    return {
+      if (awsInstanceID != null) 'awsInstanceID': awsInstanceID,
+      if (fqdn != null) 'fqdn': fqdn,
+      if (hostname != null) 'hostname': hostname,
+      if (vmPath != null) 'vmPath': vmPath,
+      if (vmWareUuid != null) 'vmWareUuid': vmWareUuid,
+    };
+  }
 }
 
 class InitializeServiceResponse {
   InitializeServiceResponse();
   factory InitializeServiceResponse.fromJson(Map<String, dynamic> _) {
     return InitializeServiceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2334,6 +2515,30 @@ class Job {
       type: (json['type'] as String?)?.toJobType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobID = this.jobID;
+    final arn = this.arn;
+    final creationDateTime = this.creationDateTime;
+    final endDateTime = this.endDateTime;
+    final initiatedBy = this.initiatedBy;
+    final participatingServers = this.participatingServers;
+    final status = this.status;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      'jobID': jobID,
+      if (arn != null) 'arn': arn,
+      if (creationDateTime != null) 'creationDateTime': creationDateTime,
+      if (endDateTime != null) 'endDateTime': endDateTime,
+      if (initiatedBy != null) 'initiatedBy': initiatedBy.toValue(),
+      if (participatingServers != null)
+        'participatingServers': participatingServers,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// Job log.
@@ -2360,6 +2565,17 @@ class JobLog {
           : null,
       logDateTime: json['logDateTime'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final event = this.event;
+    final eventData = this.eventData;
+    final logDateTime = this.logDateTime;
+    return {
+      if (event != null) 'event': event.toValue(),
+      if (eventData != null) 'eventData': eventData,
+      if (logDateTime != null) 'logDateTime': logDateTime,
+    };
   }
 }
 
@@ -2489,6 +2705,19 @@ class JobLogEventData {
       targetInstanceID: json['targetInstanceID'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final conversionServerID = this.conversionServerID;
+    final rawError = this.rawError;
+    final sourceServerID = this.sourceServerID;
+    final targetInstanceID = this.targetInstanceID;
+    return {
+      if (conversionServerID != null) 'conversionServerID': conversionServerID,
+      if (rawError != null) 'rawError': rawError,
+      if (sourceServerID != null) 'sourceServerID': sourceServerID,
+      if (targetInstanceID != null) 'targetInstanceID': targetInstanceID,
+    };
+  }
 }
 
 /// Job type.
@@ -2527,6 +2756,21 @@ class JobPostLaunchActionsLaunchStatus {
       ssmDocumentType:
           (json['ssmDocumentType'] as String?)?.toSsmDocumentType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final executionID = this.executionID;
+    final executionStatus = this.executionStatus;
+    final failureReason = this.failureReason;
+    final ssmDocument = this.ssmDocument;
+    final ssmDocumentType = this.ssmDocumentType;
+    return {
+      if (executionID != null) 'executionID': executionID,
+      if (executionStatus != null) 'executionStatus': executionStatus.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (ssmDocument != null) 'ssmDocument': ssmDocument,
+      if (ssmDocumentType != null) 'ssmDocumentType': ssmDocumentType.toValue(),
+    };
   }
 }
 
@@ -2655,6 +2899,36 @@ class LaunchConfiguration {
               ?.toTargetInstanceTypeRightSizingMethod(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bootMode = this.bootMode;
+    final copyPrivateIp = this.copyPrivateIp;
+    final copyTags = this.copyTags;
+    final ec2LaunchTemplateID = this.ec2LaunchTemplateID;
+    final launchDisposition = this.launchDisposition;
+    final licensing = this.licensing;
+    final name = this.name;
+    final postLaunchActions = this.postLaunchActions;
+    final sourceServerID = this.sourceServerID;
+    final targetInstanceTypeRightSizingMethod =
+        this.targetInstanceTypeRightSizingMethod;
+    return {
+      if (bootMode != null) 'bootMode': bootMode.toValue(),
+      if (copyPrivateIp != null) 'copyPrivateIp': copyPrivateIp,
+      if (copyTags != null) 'copyTags': copyTags,
+      if (ec2LaunchTemplateID != null)
+        'ec2LaunchTemplateID': ec2LaunchTemplateID,
+      if (launchDisposition != null)
+        'launchDisposition': launchDisposition.toValue(),
+      if (licensing != null) 'licensing': licensing,
+      if (name != null) 'name': name,
+      if (postLaunchActions != null) 'postLaunchActions': postLaunchActions,
+      if (sourceServerID != null) 'sourceServerID': sourceServerID,
+      if (targetInstanceTypeRightSizingMethod != null)
+        'targetInstanceTypeRightSizingMethod':
+            targetInstanceTypeRightSizingMethod.toValue(),
+    };
+  }
 }
 
 class LaunchConfigurationTemplate {
@@ -2688,6 +2962,19 @@ class LaunchConfigurationTemplate {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final launchConfigurationTemplateID = this.launchConfigurationTemplateID;
+    final arn = this.arn;
+    final postLaunchActions = this.postLaunchActions;
+    final tags = this.tags;
+    return {
+      'launchConfigurationTemplateID': launchConfigurationTemplateID,
+      if (arn != null) 'arn': arn,
+      if (postLaunchActions != null) 'postLaunchActions': postLaunchActions,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2785,6 +3072,17 @@ class LaunchedInstance {
       jobID: json['jobID'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ec2InstanceID = this.ec2InstanceID;
+    final firstBoot = this.firstBoot;
+    final jobID = this.jobID;
+    return {
+      if (ec2InstanceID != null) 'ec2InstanceID': ec2InstanceID,
+      if (firstBoot != null) 'firstBoot': firstBoot.toValue(),
+      if (jobID != null) 'jobID': jobID,
+    };
+  }
 }
 
 /// Configure Licensing.
@@ -2857,6 +3155,28 @@ class LifeCycle {
       state: (json['state'] as String?)?.toLifeCycleState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addedToServiceDateTime = this.addedToServiceDateTime;
+    final elapsedReplicationDuration = this.elapsedReplicationDuration;
+    final firstByteDateTime = this.firstByteDateTime;
+    final lastCutover = this.lastCutover;
+    final lastSeenByServiceDateTime = this.lastSeenByServiceDateTime;
+    final lastTest = this.lastTest;
+    final state = this.state;
+    return {
+      if (addedToServiceDateTime != null)
+        'addedToServiceDateTime': addedToServiceDateTime,
+      if (elapsedReplicationDuration != null)
+        'elapsedReplicationDuration': elapsedReplicationDuration,
+      if (firstByteDateTime != null) 'firstByteDateTime': firstByteDateTime,
+      if (lastCutover != null) 'lastCutover': lastCutover,
+      if (lastSeenByServiceDateTime != null)
+        'lastSeenByServiceDateTime': lastSeenByServiceDateTime,
+      if (lastTest != null) 'lastTest': lastTest,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 /// Lifecycle last Cutover .
@@ -2891,6 +3211,17 @@ class LifeCycleLastCutover {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final finalized = this.finalized;
+    final initiated = this.initiated;
+    final reverted = this.reverted;
+    return {
+      if (finalized != null) 'finalized': finalized,
+      if (initiated != null) 'initiated': initiated,
+      if (reverted != null) 'reverted': reverted,
+    };
+  }
 }
 
 /// Lifecycle Cutover finalized
@@ -2905,6 +3236,13 @@ class LifeCycleLastCutoverFinalized {
     return LifeCycleLastCutoverFinalized(
       apiCallDateTime: json['apiCallDateTime'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiCallDateTime = this.apiCallDateTime;
+    return {
+      if (apiCallDateTime != null) 'apiCallDateTime': apiCallDateTime,
+    };
   }
 }
 
@@ -2926,6 +3264,15 @@ class LifeCycleLastCutoverInitiated {
       jobID: json['jobID'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiCallDateTime = this.apiCallDateTime;
+    final jobID = this.jobID;
+    return {
+      if (apiCallDateTime != null) 'apiCallDateTime': apiCallDateTime,
+      if (jobID != null) 'jobID': jobID,
+    };
+  }
 }
 
 /// Lifecycle last Cutover reverted.
@@ -2940,6 +3287,13 @@ class LifeCycleLastCutoverReverted {
     return LifeCycleLastCutoverReverted(
       apiCallDateTime: json['apiCallDateTime'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiCallDateTime = this.apiCallDateTime;
+    return {
+      if (apiCallDateTime != null) 'apiCallDateTime': apiCallDateTime,
+    };
   }
 }
 
@@ -2975,6 +3329,17 @@ class LifeCycleLastTest {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final finalized = this.finalized;
+    final initiated = this.initiated;
+    final reverted = this.reverted;
+    return {
+      if (finalized != null) 'finalized': finalized,
+      if (initiated != null) 'initiated': initiated,
+      if (reverted != null) 'reverted': reverted,
+    };
+  }
 }
 
 /// Lifecycle last Test finalized.
@@ -2989,6 +3354,13 @@ class LifeCycleLastTestFinalized {
     return LifeCycleLastTestFinalized(
       apiCallDateTime: json['apiCallDateTime'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiCallDateTime = this.apiCallDateTime;
+    return {
+      if (apiCallDateTime != null) 'apiCallDateTime': apiCallDateTime,
+    };
   }
 }
 
@@ -3010,6 +3382,15 @@ class LifeCycleLastTestInitiated {
       jobID: json['jobID'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiCallDateTime = this.apiCallDateTime;
+    final jobID = this.jobID;
+    return {
+      if (apiCallDateTime != null) 'apiCallDateTime': apiCallDateTime,
+      if (jobID != null) 'jobID': jobID,
+    };
+  }
 }
 
 /// Lifecycle last Test reverted.
@@ -3024,6 +3405,13 @@ class LifeCycleLastTestReverted {
     return LifeCycleLastTestReverted(
       apiCallDateTime: json['apiCallDateTime'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiCallDateTime = this.apiCallDateTime;
+    return {
+      if (apiCallDateTime != null) 'apiCallDateTime': apiCallDateTime,
+    };
   }
 }
 
@@ -3103,6 +3491,13 @@ class ListTagsForResourceResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Network interface.
@@ -3131,6 +3526,17 @@ class NetworkInterface {
       macAddress: json['macAddress'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ips = this.ips;
+    final isPrimary = this.isPrimary;
+    final macAddress = this.macAddress;
+    return {
+      if (ips != null) 'ips': ips,
+      if (isPrimary != null) 'isPrimary': isPrimary,
+      if (macAddress != null) 'macAddress': macAddress,
+    };
+  }
 }
 
 /// Operating System.
@@ -3145,6 +3551,13 @@ class OS {
     return OS(
       fullString: json['fullString'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fullString = this.fullString;
+    return {
+      if (fullString != null) 'fullString': fullString,
+    };
   }
 }
 
@@ -3178,6 +3591,21 @@ class ParticipatingServer {
               json['postLaunchActionsStatus'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sourceServerID = this.sourceServerID;
+    final launchStatus = this.launchStatus;
+    final launchedEc2InstanceID = this.launchedEc2InstanceID;
+    final postLaunchActionsStatus = this.postLaunchActionsStatus;
+    return {
+      'sourceServerID': sourceServerID,
+      if (launchStatus != null) 'launchStatus': launchStatus.toValue(),
+      if (launchedEc2InstanceID != null)
+        'launchedEc2InstanceID': launchedEc2InstanceID,
+      if (postLaunchActionsStatus != null)
+        'postLaunchActionsStatus': postLaunchActionsStatus,
+    };
   }
 }
 
@@ -3325,6 +3753,18 @@ class PostLaunchActionsStatus {
       ssmAgentDiscoveryDatetime: json['ssmAgentDiscoveryDatetime'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final postLaunchActionsLaunchStatusList =
+        this.postLaunchActionsLaunchStatusList;
+    final ssmAgentDiscoveryDatetime = this.ssmAgentDiscoveryDatetime;
+    return {
+      if (postLaunchActionsLaunchStatusList != null)
+        'postLaunchActionsLaunchStatusList': postLaunchActionsLaunchStatusList,
+      if (ssmAgentDiscoveryDatetime != null)
+        'ssmAgentDiscoveryDatetime': ssmAgentDiscoveryDatetime,
+    };
+  }
 }
 
 class ReplicationConfiguration {
@@ -3426,6 +3866,52 @@ class ReplicationConfiguration {
       useDedicatedReplicationServer:
           json['useDedicatedReplicationServer'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associateDefaultSecurityGroup = this.associateDefaultSecurityGroup;
+    final bandwidthThrottling = this.bandwidthThrottling;
+    final createPublicIP = this.createPublicIP;
+    final dataPlaneRouting = this.dataPlaneRouting;
+    final defaultLargeStagingDiskType = this.defaultLargeStagingDiskType;
+    final ebsEncryption = this.ebsEncryption;
+    final ebsEncryptionKeyArn = this.ebsEncryptionKeyArn;
+    final name = this.name;
+    final replicatedDisks = this.replicatedDisks;
+    final replicationServerInstanceType = this.replicationServerInstanceType;
+    final replicationServersSecurityGroupsIDs =
+        this.replicationServersSecurityGroupsIDs;
+    final sourceServerID = this.sourceServerID;
+    final stagingAreaSubnetId = this.stagingAreaSubnetId;
+    final stagingAreaTags = this.stagingAreaTags;
+    final useDedicatedReplicationServer = this.useDedicatedReplicationServer;
+    return {
+      if (associateDefaultSecurityGroup != null)
+        'associateDefaultSecurityGroup': associateDefaultSecurityGroup,
+      if (bandwidthThrottling != null)
+        'bandwidthThrottling': bandwidthThrottling,
+      if (createPublicIP != null) 'createPublicIP': createPublicIP,
+      if (dataPlaneRouting != null)
+        'dataPlaneRouting': dataPlaneRouting.toValue(),
+      if (defaultLargeStagingDiskType != null)
+        'defaultLargeStagingDiskType': defaultLargeStagingDiskType.toValue(),
+      if (ebsEncryption != null) 'ebsEncryption': ebsEncryption.toValue(),
+      if (ebsEncryptionKeyArn != null)
+        'ebsEncryptionKeyArn': ebsEncryptionKeyArn,
+      if (name != null) 'name': name,
+      if (replicatedDisks != null) 'replicatedDisks': replicatedDisks,
+      if (replicationServerInstanceType != null)
+        'replicationServerInstanceType': replicationServerInstanceType,
+      if (replicationServersSecurityGroupsIDs != null)
+        'replicationServersSecurityGroupsIDs':
+            replicationServersSecurityGroupsIDs,
+      if (sourceServerID != null) 'sourceServerID': sourceServerID,
+      if (stagingAreaSubnetId != null)
+        'stagingAreaSubnetId': stagingAreaSubnetId,
+      if (stagingAreaTags != null) 'stagingAreaTags': stagingAreaTags,
+      if (useDedicatedReplicationServer != null)
+        'useDedicatedReplicationServer': useDedicatedReplicationServer,
+    };
   }
 }
 
@@ -3740,6 +4226,53 @@ class ReplicationConfigurationTemplate {
           json['useDedicatedReplicationServer'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationConfigurationTemplateID =
+        this.replicationConfigurationTemplateID;
+    final arn = this.arn;
+    final associateDefaultSecurityGroup = this.associateDefaultSecurityGroup;
+    final bandwidthThrottling = this.bandwidthThrottling;
+    final createPublicIP = this.createPublicIP;
+    final dataPlaneRouting = this.dataPlaneRouting;
+    final defaultLargeStagingDiskType = this.defaultLargeStagingDiskType;
+    final ebsEncryption = this.ebsEncryption;
+    final ebsEncryptionKeyArn = this.ebsEncryptionKeyArn;
+    final replicationServerInstanceType = this.replicationServerInstanceType;
+    final replicationServersSecurityGroupsIDs =
+        this.replicationServersSecurityGroupsIDs;
+    final stagingAreaSubnetId = this.stagingAreaSubnetId;
+    final stagingAreaTags = this.stagingAreaTags;
+    final tags = this.tags;
+    final useDedicatedReplicationServer = this.useDedicatedReplicationServer;
+    return {
+      'replicationConfigurationTemplateID': replicationConfigurationTemplateID,
+      if (arn != null) 'arn': arn,
+      if (associateDefaultSecurityGroup != null)
+        'associateDefaultSecurityGroup': associateDefaultSecurityGroup,
+      if (bandwidthThrottling != null)
+        'bandwidthThrottling': bandwidthThrottling,
+      if (createPublicIP != null) 'createPublicIP': createPublicIP,
+      if (dataPlaneRouting != null)
+        'dataPlaneRouting': dataPlaneRouting.toValue(),
+      if (defaultLargeStagingDiskType != null)
+        'defaultLargeStagingDiskType': defaultLargeStagingDiskType.toValue(),
+      if (ebsEncryption != null) 'ebsEncryption': ebsEncryption.toValue(),
+      if (ebsEncryptionKeyArn != null)
+        'ebsEncryptionKeyArn': ebsEncryptionKeyArn,
+      if (replicationServerInstanceType != null)
+        'replicationServerInstanceType': replicationServerInstanceType,
+      if (replicationServersSecurityGroupsIDs != null)
+        'replicationServersSecurityGroupsIDs':
+            replicationServersSecurityGroupsIDs,
+      if (stagingAreaSubnetId != null)
+        'stagingAreaSubnetId': stagingAreaSubnetId,
+      if (stagingAreaTags != null) 'stagingAreaTags': stagingAreaTags,
+      if (tags != null) 'tags': tags,
+      if (useDedicatedReplicationServer != null)
+        'useDedicatedReplicationServer': useDedicatedReplicationServer,
+    };
+  }
 }
 
 enum ReplicationType {
@@ -3832,6 +4365,30 @@ class SourceProperties {
       recommendedInstanceType: json['recommendedInstanceType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cpus = this.cpus;
+    final disks = this.disks;
+    final identificationHints = this.identificationHints;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final networkInterfaces = this.networkInterfaces;
+    final os = this.os;
+    final ramBytes = this.ramBytes;
+    final recommendedInstanceType = this.recommendedInstanceType;
+    return {
+      if (cpus != null) 'cpus': cpus,
+      if (disks != null) 'disks': disks,
+      if (identificationHints != null)
+        'identificationHints': identificationHints,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': lastUpdatedDateTime,
+      if (networkInterfaces != null) 'networkInterfaces': networkInterfaces,
+      if (os != null) 'os': os,
+      if (ramBytes != null) 'ramBytes': ramBytes,
+      if (recommendedInstanceType != null)
+        'recommendedInstanceType': recommendedInstanceType,
+    };
+  }
 }
 
 class SourceServer {
@@ -3903,6 +4460,32 @@ class SourceServer {
           ?.map((k, e) => MapEntry(k, e as String)),
       vcenterClientID: json['vcenterClientID'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dataReplicationInfo = this.dataReplicationInfo;
+    final isArchived = this.isArchived;
+    final launchedInstance = this.launchedInstance;
+    final lifeCycle = this.lifeCycle;
+    final replicationType = this.replicationType;
+    final sourceProperties = this.sourceProperties;
+    final sourceServerID = this.sourceServerID;
+    final tags = this.tags;
+    final vcenterClientID = this.vcenterClientID;
+    return {
+      if (arn != null) 'arn': arn,
+      if (dataReplicationInfo != null)
+        'dataReplicationInfo': dataReplicationInfo,
+      if (isArchived != null) 'isArchived': isArchived,
+      if (launchedInstance != null) 'launchedInstance': launchedInstance,
+      if (lifeCycle != null) 'lifeCycle': lifeCycle,
+      if (replicationType != null) 'replicationType': replicationType.toValue(),
+      if (sourceProperties != null) 'sourceProperties': sourceProperties,
+      if (sourceServerID != null) 'sourceServerID': sourceServerID,
+      if (tags != null) 'tags': tags,
+      if (vcenterClientID != null) 'vcenterClientID': vcenterClientID,
+    };
   }
 }
 
@@ -4061,6 +4644,13 @@ class StartCutoverResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'job': job,
+    };
+  }
 }
 
 class StartTestResponse {
@@ -4076,6 +4666,13 @@ class StartTestResponse {
           ? Job.fromJson(json['job'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'job': job,
+    };
   }
 }
 
@@ -4122,6 +4719,13 @@ class TerminateTargetInstancesResponse {
           ? Job.fromJson(json['job'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'job': job,
+    };
   }
 }
 
@@ -4174,6 +4778,27 @@ class VcenterClient {
       vcenterClientID: json['vcenterClientID'] as String?,
       vcenterUUID: json['vcenterUUID'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final datacenterName = this.datacenterName;
+    final hostname = this.hostname;
+    final lastSeenDatetime = this.lastSeenDatetime;
+    final sourceServerTags = this.sourceServerTags;
+    final tags = this.tags;
+    final vcenterClientID = this.vcenterClientID;
+    final vcenterUUID = this.vcenterUUID;
+    return {
+      if (arn != null) 'arn': arn,
+      if (datacenterName != null) 'datacenterName': datacenterName,
+      if (hostname != null) 'hostname': hostname,
+      if (lastSeenDatetime != null) 'lastSeenDatetime': lastSeenDatetime,
+      if (sourceServerTags != null) 'sourceServerTags': sourceServerTags,
+      if (tags != null) 'tags': tags,
+      if (vcenterClientID != null) 'vcenterClientID': vcenterClientID,
+      if (vcenterUUID != null) 'vcenterUUID': vcenterUUID,
+    };
   }
 }
 

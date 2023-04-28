@@ -1401,6 +1401,25 @@ class AssistantAssociationData {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assistantArn = this.assistantArn;
+    final assistantAssociationArn = this.assistantAssociationArn;
+    final assistantAssociationId = this.assistantAssociationId;
+    final assistantId = this.assistantId;
+    final associationData = this.associationData;
+    final associationType = this.associationType;
+    final tags = this.tags;
+    return {
+      'assistantArn': assistantArn,
+      'assistantAssociationArn': assistantAssociationArn,
+      'assistantAssociationId': assistantAssociationId,
+      'assistantId': assistantId,
+      'associationData': associationData,
+      'associationType': associationType.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// The data that is input into Wisdom as a result of the assistant association.
@@ -1411,6 +1430,7 @@ class AssistantAssociationInputData {
   AssistantAssociationInputData({
     this.knowledgeBaseId,
   });
+
   Map<String, dynamic> toJson() {
     final knowledgeBaseId = this.knowledgeBaseId;
     return {
@@ -1434,6 +1454,14 @@ class AssistantAssociationOutputData {
               json['knowledgeBaseAssociation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final knowledgeBaseAssociation = this.knowledgeBaseAssociation;
+    return {
+      if (knowledgeBaseAssociation != null)
+        'knowledgeBaseAssociation': knowledgeBaseAssociation,
+    };
   }
 }
 
@@ -1481,6 +1509,25 @@ class AssistantAssociationSummary {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assistantArn = this.assistantArn;
+    final assistantAssociationArn = this.assistantAssociationArn;
+    final assistantAssociationId = this.assistantAssociationId;
+    final assistantId = this.assistantId;
+    final associationData = this.associationData;
+    final associationType = this.associationType;
+    final tags = this.tags;
+    return {
+      'assistantArn': assistantArn,
+      'assistantAssociationArn': assistantAssociationArn,
+      'assistantAssociationId': assistantAssociationId,
+      'assistantId': assistantId,
+      'associationData': associationData,
+      'associationType': associationType.toValue(),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1537,6 +1584,29 @@ class AssistantData {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assistantArn = this.assistantArn;
+    final assistantId = this.assistantId;
+    final name = this.name;
+    final status = this.status;
+    final type = this.type;
+    final description = this.description;
+    final serverSideEncryptionConfiguration =
+        this.serverSideEncryptionConfiguration;
+    final tags = this.tags;
+    return {
+      'assistantArn': assistantArn,
+      'assistantId': assistantId,
+      'name': name,
+      'status': status.toValue(),
+      'type': type.toValue(),
+      if (description != null) 'description': description,
+      if (serverSideEncryptionConfiguration != null)
+        'serverSideEncryptionConfiguration': serverSideEncryptionConfiguration,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1641,6 +1711,29 @@ class AssistantSummary {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assistantArn = this.assistantArn;
+    final assistantId = this.assistantId;
+    final name = this.name;
+    final status = this.status;
+    final type = this.type;
+    final description = this.description;
+    final serverSideEncryptionConfiguration =
+        this.serverSideEncryptionConfiguration;
+    final tags = this.tags;
+    return {
+      'assistantArn': assistantArn,
+      'assistantId': assistantId,
+      'name': name,
+      'status': status.toValue(),
+      'type': type.toValue(),
+      if (description != null) 'description': description,
+      if (serverSideEncryptionConfiguration != null)
+        'serverSideEncryptionConfiguration': serverSideEncryptionConfiguration,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1773,6 +1866,39 @@ class ContentData {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentArn = this.contentArn;
+    final contentId = this.contentId;
+    final contentType = this.contentType;
+    final knowledgeBaseArn = this.knowledgeBaseArn;
+    final knowledgeBaseId = this.knowledgeBaseId;
+    final metadata = this.metadata;
+    final name = this.name;
+    final revisionId = this.revisionId;
+    final status = this.status;
+    final title = this.title;
+    final url = this.url;
+    final urlExpiry = this.urlExpiry;
+    final linkOutUri = this.linkOutUri;
+    final tags = this.tags;
+    return {
+      'contentArn': contentArn,
+      'contentId': contentId,
+      'contentType': contentType,
+      'knowledgeBaseArn': knowledgeBaseArn,
+      'knowledgeBaseId': knowledgeBaseId,
+      'metadata': metadata,
+      'name': name,
+      'revisionId': revisionId,
+      'status': status.toValue(),
+      'title': title,
+      'url': url,
+      'urlExpiry': unixTimestampToJson(urlExpiry),
+      if (linkOutUri != null) 'linkOutUri': linkOutUri,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Reference information about the content.
@@ -1802,6 +1928,19 @@ class ContentReference {
       knowledgeBaseArn: json['knowledgeBaseArn'] as String?,
       knowledgeBaseId: json['knowledgeBaseId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contentArn = this.contentArn;
+    final contentId = this.contentId;
+    final knowledgeBaseArn = this.knowledgeBaseArn;
+    final knowledgeBaseId = this.knowledgeBaseId;
+    return {
+      if (contentArn != null) 'contentArn': contentArn,
+      if (contentId != null) 'contentId': contentId,
+      if (knowledgeBaseArn != null) 'knowledgeBaseArn': knowledgeBaseArn,
+      if (knowledgeBaseId != null) 'knowledgeBaseId': knowledgeBaseId,
+    };
   }
 }
 
@@ -1926,6 +2065,33 @@ class ContentSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentArn = this.contentArn;
+    final contentId = this.contentId;
+    final contentType = this.contentType;
+    final knowledgeBaseArn = this.knowledgeBaseArn;
+    final knowledgeBaseId = this.knowledgeBaseId;
+    final metadata = this.metadata;
+    final name = this.name;
+    final revisionId = this.revisionId;
+    final status = this.status;
+    final title = this.title;
+    final tags = this.tags;
+    return {
+      'contentArn': contentArn,
+      'contentId': contentId,
+      'contentType': contentType,
+      'knowledgeBaseArn': knowledgeBaseArn,
+      'knowledgeBaseId': knowledgeBaseId,
+      'metadata': metadata,
+      'name': name,
+      'revisionId': revisionId,
+      'status': status.toValue(),
+      'title': title,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class CreateAssistantAssociationResponse {
@@ -1944,6 +2110,14 @@ class CreateAssistantAssociationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assistantAssociation = this.assistantAssociation;
+    return {
+      if (assistantAssociation != null)
+        'assistantAssociation': assistantAssociation,
+    };
+  }
 }
 
 class CreateAssistantResponse {
@@ -1960,6 +2134,13 @@ class CreateAssistantResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assistant = this.assistant;
+    return {
+      if (assistant != null) 'assistant': assistant,
+    };
+  }
 }
 
 class CreateContentResponse {
@@ -1975,6 +2156,13 @@ class CreateContentResponse {
           ? ContentData.fromJson(json['content'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    return {
+      if (content != null) 'content': content,
+    };
   }
 }
 
@@ -1993,6 +2181,13 @@ class CreateKnowledgeBaseResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final knowledgeBase = this.knowledgeBase;
+    return {
+      if (knowledgeBase != null) 'knowledgeBase': knowledgeBase,
+    };
+  }
 }
 
 class CreateSessionResponse {
@@ -2009,12 +2204,23 @@ class CreateSessionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final session = this.session;
+    return {
+      if (session != null) 'session': session,
+    };
+  }
 }
 
 class DeleteAssistantAssociationResponse {
   DeleteAssistantAssociationResponse();
   factory DeleteAssistantAssociationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAssistantAssociationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2023,6 +2229,10 @@ class DeleteAssistantResponse {
   factory DeleteAssistantResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAssistantResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteContentResponse {
@@ -2030,12 +2240,20 @@ class DeleteContentResponse {
   factory DeleteContentResponse.fromJson(Map<String, dynamic> _) {
     return DeleteContentResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteKnowledgeBaseResponse {
   DeleteKnowledgeBaseResponse();
   factory DeleteKnowledgeBaseResponse.fromJson(Map<String, dynamic> _) {
     return DeleteKnowledgeBaseResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2067,6 +2285,17 @@ class Document {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentReference = this.contentReference;
+    final excerpt = this.excerpt;
+    final title = this.title;
+    return {
+      'contentReference': contentReference,
+      if (excerpt != null) 'excerpt': excerpt,
+      if (title != null) 'title': title,
+    };
+  }
 }
 
 /// The text of the document.
@@ -2090,6 +2319,15 @@ class DocumentText {
       text: json['text'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final highlights = this.highlights;
+    final text = this.text;
+    return {
+      if (highlights != null) 'highlights': highlights,
+      if (text != null) 'text': text,
+    };
+  }
 }
 
 /// A search filter.
@@ -2108,6 +2346,7 @@ class Filter {
     required this.operator,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final field = this.field;
     final operator = this.operator;
@@ -2181,6 +2420,14 @@ class GetAssistantAssociationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assistantAssociation = this.assistantAssociation;
+    return {
+      if (assistantAssociation != null)
+        'assistantAssociation': assistantAssociation,
+    };
+  }
 }
 
 class GetAssistantResponse {
@@ -2197,6 +2444,13 @@ class GetAssistantResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assistant = this.assistant;
+    return {
+      if (assistant != null) 'assistant': assistant,
+    };
+  }
 }
 
 class GetContentResponse {
@@ -2212,6 +2466,13 @@ class GetContentResponse {
           ? ContentData.fromJson(json['content'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    return {
+      if (content != null) 'content': content,
+    };
   }
 }
 
@@ -2230,6 +2491,13 @@ class GetContentSummaryResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentSummary = this.contentSummary;
+    return {
+      if (contentSummary != null) 'contentSummary': contentSummary,
+    };
+  }
 }
 
 class GetKnowledgeBaseResponse {
@@ -2246,6 +2514,13 @@ class GetKnowledgeBaseResponse {
               json['knowledgeBase'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final knowledgeBase = this.knowledgeBase;
+    return {
+      if (knowledgeBase != null) 'knowledgeBase': knowledgeBase,
+    };
   }
 }
 
@@ -2272,6 +2547,15 @@ class GetRecommendationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recommendations = this.recommendations;
+    final triggers = this.triggers;
+    return {
+      'recommendations': recommendations,
+      if (triggers != null) 'triggers': triggers,
+    };
+  }
 }
 
 class GetSessionResponse {
@@ -2287,6 +2571,13 @@ class GetSessionResponse {
           ? SessionData.fromJson(json['session'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final session = this.session;
+    return {
+      if (session != null) 'session': session,
+    };
   }
 }
 
@@ -2309,6 +2600,16 @@ class Highlight {
       endOffsetExclusive: json['endOffsetExclusive'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final beginOffsetInclusive = this.beginOffsetInclusive;
+    final endOffsetExclusive = this.endOffsetExclusive;
+    return {
+      if (beginOffsetInclusive != null)
+        'beginOffsetInclusive': beginOffsetInclusive,
+      if (endOffsetExclusive != null) 'endOffsetExclusive': endOffsetExclusive,
+    };
+  }
 }
 
 /// Association information about the knowledge base.
@@ -2328,6 +2629,15 @@ class KnowledgeBaseAssociationData {
       knowledgeBaseArn: json['knowledgeBaseArn'] as String?,
       knowledgeBaseId: json['knowledgeBaseId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final knowledgeBaseArn = this.knowledgeBaseArn;
+    final knowledgeBaseId = this.knowledgeBaseId;
+    return {
+      if (knowledgeBaseArn != null) 'knowledgeBaseArn': knowledgeBaseArn,
+      if (knowledgeBaseId != null) 'knowledgeBaseId': knowledgeBaseId,
+    };
   }
 }
 
@@ -2409,6 +2719,39 @@ class KnowledgeBaseData {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final knowledgeBaseArn = this.knowledgeBaseArn;
+    final knowledgeBaseId = this.knowledgeBaseId;
+    final knowledgeBaseType = this.knowledgeBaseType;
+    final name = this.name;
+    final status = this.status;
+    final description = this.description;
+    final lastContentModificationTime = this.lastContentModificationTime;
+    final renderingConfiguration = this.renderingConfiguration;
+    final serverSideEncryptionConfiguration =
+        this.serverSideEncryptionConfiguration;
+    final sourceConfiguration = this.sourceConfiguration;
+    final tags = this.tags;
+    return {
+      'knowledgeBaseArn': knowledgeBaseArn,
+      'knowledgeBaseId': knowledgeBaseId,
+      'knowledgeBaseType': knowledgeBaseType.toValue(),
+      'name': name,
+      'status': status.toValue(),
+      if (description != null) 'description': description,
+      if (lastContentModificationTime != null)
+        'lastContentModificationTime':
+            unixTimestampToJson(lastContentModificationTime),
+      if (renderingConfiguration != null)
+        'renderingConfiguration': renderingConfiguration,
+      if (serverSideEncryptionConfiguration != null)
+        'serverSideEncryptionConfiguration': serverSideEncryptionConfiguration,
+      if (sourceConfiguration != null)
+        'sourceConfiguration': sourceConfiguration,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2531,6 +2874,35 @@ class KnowledgeBaseSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final knowledgeBaseArn = this.knowledgeBaseArn;
+    final knowledgeBaseId = this.knowledgeBaseId;
+    final knowledgeBaseType = this.knowledgeBaseType;
+    final name = this.name;
+    final status = this.status;
+    final description = this.description;
+    final renderingConfiguration = this.renderingConfiguration;
+    final serverSideEncryptionConfiguration =
+        this.serverSideEncryptionConfiguration;
+    final sourceConfiguration = this.sourceConfiguration;
+    final tags = this.tags;
+    return {
+      'knowledgeBaseArn': knowledgeBaseArn,
+      'knowledgeBaseId': knowledgeBaseId,
+      'knowledgeBaseType': knowledgeBaseType.toValue(),
+      'name': name,
+      'status': status.toValue(),
+      if (description != null) 'description': description,
+      if (renderingConfiguration != null)
+        'renderingConfiguration': renderingConfiguration,
+      if (serverSideEncryptionConfiguration != null)
+        'serverSideEncryptionConfiguration': serverSideEncryptionConfiguration,
+      if (sourceConfiguration != null)
+        'sourceConfiguration': sourceConfiguration,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum KnowledgeBaseType {
@@ -2585,6 +2957,15 @@ class ListAssistantAssociationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assistantAssociationSummaries = this.assistantAssociationSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'assistantAssociationSummaries': assistantAssociationSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAssistantsResponse {
@@ -2607,6 +2988,15 @@ class ListAssistantsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assistantSummaries = this.assistantSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'assistantSummaries': assistantSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2631,6 +3021,15 @@ class ListContentsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentSummaries = this.contentSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'contentSummaries': contentSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListKnowledgeBasesResponse {
@@ -2654,6 +3053,15 @@ class ListKnowledgeBasesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final knowledgeBaseSummaries = this.knowledgeBaseSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'knowledgeBaseSummaries': knowledgeBaseSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2668,6 +3076,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2689,6 +3104,15 @@ class NotifyRecommendationsReceivedError {
       message: json['message'] as String?,
       recommendationId: json['recommendationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final recommendationId = this.recommendationId;
+    return {
+      if (message != null) 'message': message,
+      if (recommendationId != null) 'recommendationId': recommendationId,
+    };
   }
 }
 
@@ -2717,6 +3141,15 @@ class NotifyRecommendationsReceivedResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final recommendationIds = this.recommendationIds;
+    return {
+      if (errors != null) 'errors': errors,
+      if (recommendationIds != null) 'recommendationIds': recommendationIds,
+    };
+  }
 }
 
 class QueryAssistantResponse {
@@ -2740,6 +3173,15 @@ class QueryAssistantResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final results = this.results;
+    final nextToken = this.nextToken;
+    return {
+      'results': results,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Data associated with the QUERY RecommendationTriggerType.
@@ -2754,6 +3196,13 @@ class QueryRecommendationTriggerData {
     return QueryRecommendationTriggerData(
       text: json['text'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final text = this.text;
+    return {
+      if (text != null) 'text': text,
+    };
   }
 }
 
@@ -2789,6 +3238,21 @@ class RecommendationData {
       relevanceScore: json['relevanceScore'] as double?,
       type: (json['type'] as String?)?.toRecommendationType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final document = this.document;
+    final recommendationId = this.recommendationId;
+    final relevanceLevel = this.relevanceLevel;
+    final relevanceScore = this.relevanceScore;
+    final type = this.type;
+    return {
+      'document': document,
+      'recommendationId': recommendationId,
+      if (relevanceLevel != null) 'relevanceLevel': relevanceLevel.toValue(),
+      if (relevanceScore != null) 'relevanceScore': relevanceScore,
+      if (type != null) 'type': type.toValue(),
+    };
   }
 }
 
@@ -2875,6 +3339,21 @@ class RecommendationTrigger {
       type: (json['type'] as String).toRecommendationTriggerType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final data = this.data;
+    final id = this.id;
+    final recommendationIds = this.recommendationIds;
+    final source = this.source;
+    final type = this.type;
+    return {
+      'data': data,
+      'id': id,
+      'recommendationIds': recommendationIds,
+      'source': source.toValue(),
+      'type': type.toValue(),
+    };
+  }
 }
 
 /// A union type containing information related to the trigger.
@@ -2892,6 +3371,13 @@ class RecommendationTriggerData {
               json['query'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final query = this.query;
+    return {
+      if (query != null) 'query': query,
+    };
   }
 }
 
@@ -2980,6 +3466,10 @@ class RemoveKnowledgeBaseTemplateUriResponse {
       Map<String, dynamic> _) {
     return RemoveKnowledgeBaseTemplateUriResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Information about how to render the content.
@@ -3046,6 +3536,17 @@ class ResultData {
       relevanceScore: json['relevanceScore'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final document = this.document;
+    final resultId = this.resultId;
+    final relevanceScore = this.relevanceScore;
+    return {
+      'document': document,
+      'resultId': resultId,
+      if (relevanceScore != null) 'relevanceScore': relevanceScore,
+    };
+  }
 }
 
 class SearchContentResponse {
@@ -3069,6 +3570,15 @@ class SearchContentResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentSummaries = this.contentSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'contentSummaries': contentSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// The search expression.
@@ -3079,6 +3589,7 @@ class SearchExpression {
   SearchExpression({
     required this.filters,
   });
+
   Map<String, dynamic> toJson() {
     final filters = this.filters;
     return {
@@ -3107,6 +3618,15 @@ class SearchSessionsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sessionSummaries = this.sessionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'sessionSummaries': sessionSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3169,6 +3689,21 @@ class SessionData {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final sessionArn = this.sessionArn;
+    final sessionId = this.sessionId;
+    final description = this.description;
+    final tags = this.tags;
+    return {
+      'name': name,
+      'sessionArn': sessionArn,
+      'sessionId': sessionId,
+      if (description != null) 'description': description,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Summary information about the session.
@@ -3198,6 +3733,19 @@ class SessionSummary {
       sessionArn: json['sessionArn'] as String,
       sessionId: json['sessionId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assistantArn = this.assistantArn;
+    final assistantId = this.assistantId;
+    final sessionArn = this.sessionArn;
+    final sessionId = this.sessionId;
+    return {
+      'assistantArn': assistantArn,
+      'assistantId': assistantId,
+      'sessionArn': sessionArn,
+      'sessionId': sessionId,
+    };
   }
 }
 
@@ -3255,6 +3803,19 @@ class StartContentUploadResponse {
       urlExpiry: nonNullableTimeStampFromJson(json['urlExpiry'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final headersToInclude = this.headersToInclude;
+    final uploadId = this.uploadId;
+    final url = this.url;
+    final urlExpiry = this.urlExpiry;
+    return {
+      'headersToInclude': headersToInclude,
+      'uploadId': uploadId,
+      'url': url,
+      'urlExpiry': unixTimestampToJson(urlExpiry),
+    };
+  }
 }
 
 class TagResourceResponse {
@@ -3262,12 +3823,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3284,6 +3853,13 @@ class UpdateContentResponse {
           ? ContentData.fromJson(json['content'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    return {
+      if (content != null) 'content': content,
+    };
   }
 }
 
@@ -3302,6 +3878,13 @@ class UpdateKnowledgeBaseTemplateUriResponse {
               json['knowledgeBase'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final knowledgeBase = this.knowledgeBase;
+    return {
+      if (knowledgeBase != null) 'knowledgeBase': knowledgeBase,
+    };
   }
 }
 

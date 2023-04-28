@@ -2773,6 +2773,33 @@ class ApiDestination {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiDestinationArn = this.apiDestinationArn;
+    final apiDestinationState = this.apiDestinationState;
+    final connectionArn = this.connectionArn;
+    final creationTime = this.creationTime;
+    final httpMethod = this.httpMethod;
+    final invocationEndpoint = this.invocationEndpoint;
+    final invocationRateLimitPerSecond = this.invocationRateLimitPerSecond;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    return {
+      if (apiDestinationArn != null) 'ApiDestinationArn': apiDestinationArn,
+      if (apiDestinationState != null)
+        'ApiDestinationState': apiDestinationState.toValue(),
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (httpMethod != null) 'HttpMethod': httpMethod.toValue(),
+      if (invocationEndpoint != null) 'InvocationEndpoint': invocationEndpoint,
+      if (invocationRateLimitPerSecond != null)
+        'InvocationRateLimitPerSecond': invocationRateLimitPerSecond,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 enum ApiDestinationHttpMethod {
@@ -2904,6 +2931,28 @@ class Archive {
       state: (json['State'] as String?)?.toArchiveState(),
       stateReason: json['StateReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final archiveName = this.archiveName;
+    final creationTime = this.creationTime;
+    final eventCount = this.eventCount;
+    final eventSourceArn = this.eventSourceArn;
+    final retentionDays = this.retentionDays;
+    final sizeBytes = this.sizeBytes;
+    final state = this.state;
+    final stateReason = this.stateReason;
+    return {
+      if (archiveName != null) 'ArchiveName': archiveName,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (eventCount != null) 'EventCount': eventCount,
+      if (eventSourceArn != null) 'EventSourceArn': eventSourceArn,
+      if (retentionDays != null) 'RetentionDays': retentionDays,
+      if (sizeBytes != null) 'SizeBytes': sizeBytes,
+      if (state != null) 'State': state.toValue(),
+      if (stateReason != null) 'StateReason': stateReason,
+    };
   }
 }
 
@@ -3164,6 +3213,17 @@ class CancelReplayResponse {
       stateReason: json['StateReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replayArn = this.replayArn;
+    final state = this.state;
+    final stateReason = this.stateReason;
+    return {
+      if (replayArn != null) 'ReplayArn': replayArn,
+      if (state != null) 'State': state.toValue(),
+      if (stateReason != null) 'StateReason': stateReason,
+    };
+  }
 }
 
 /// The details of a capacity provider strategy. To learn more, see <a
@@ -3238,6 +3298,7 @@ class Condition {
     required this.type,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final type = this.type;
@@ -3300,6 +3361,31 @@ class Connection {
       stateReason: json['StateReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorizationType = this.authorizationType;
+    final connectionArn = this.connectionArn;
+    final connectionState = this.connectionState;
+    final creationTime = this.creationTime;
+    final lastAuthorizedTime = this.lastAuthorizedTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final stateReason = this.stateReason;
+    return {
+      if (authorizationType != null)
+        'AuthorizationType': authorizationType.toValue(),
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastAuthorizedTime != null)
+        'LastAuthorizedTime': unixTimestampToJson(lastAuthorizedTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (name != null) 'Name': name,
+      if (stateReason != null) 'StateReason': stateReason,
+    };
+  }
 }
 
 /// Contains the authorization parameters for the connection if API Key is
@@ -3317,6 +3403,13 @@ class ConnectionApiKeyAuthResponseParameters {
     return ConnectionApiKeyAuthResponseParameters(
       apiKeyName: json['ApiKeyName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiKeyName = this.apiKeyName;
+    return {
+      if (apiKeyName != null) 'ApiKeyName': apiKeyName,
+    };
   }
 }
 
@@ -3360,6 +3453,22 @@ class ConnectionAuthResponseParameters {
               json['OAuthParameters'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiKeyAuthParameters = this.apiKeyAuthParameters;
+    final basicAuthParameters = this.basicAuthParameters;
+    final invocationHttpParameters = this.invocationHttpParameters;
+    final oAuthParameters = this.oAuthParameters;
+    return {
+      if (apiKeyAuthParameters != null)
+        'ApiKeyAuthParameters': apiKeyAuthParameters,
+      if (basicAuthParameters != null)
+        'BasicAuthParameters': basicAuthParameters,
+      if (invocationHttpParameters != null)
+        'InvocationHttpParameters': invocationHttpParameters,
+      if (oAuthParameters != null) 'OAuthParameters': oAuthParameters,
+    };
   }
 }
 
@@ -3411,6 +3520,13 @@ class ConnectionBasicAuthResponseParameters {
     return ConnectionBasicAuthResponseParameters(
       username: json['Username'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final username = this.username;
+    return {
+      if (username != null) 'Username': username,
+    };
   }
 }
 
@@ -3554,6 +3670,13 @@ class ConnectionOAuthClientResponseParameters {
       clientID: json['ClientID'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientID = this.clientID;
+    return {
+      if (clientID != null) 'ClientID': clientID,
+    };
+  }
 }
 
 enum ConnectionOAuthHttpMethod {
@@ -3627,6 +3750,21 @@ class ConnectionOAuthResponseParameters {
               json['OAuthHttpParameters'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authorizationEndpoint = this.authorizationEndpoint;
+    final clientParameters = this.clientParameters;
+    final httpMethod = this.httpMethod;
+    final oAuthHttpParameters = this.oAuthHttpParameters;
+    return {
+      if (authorizationEndpoint != null)
+        'AuthorizationEndpoint': authorizationEndpoint,
+      if (clientParameters != null) 'ClientParameters': clientParameters,
+      if (httpMethod != null) 'HttpMethod': httpMethod.toValue(),
+      if (oAuthHttpParameters != null)
+        'OAuthHttpParameters': oAuthHttpParameters,
+    };
   }
 }
 
@@ -3749,6 +3887,22 @@ class CreateApiDestinationResponse {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiDestinationArn = this.apiDestinationArn;
+    final apiDestinationState = this.apiDestinationState;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      if (apiDestinationArn != null) 'ApiDestinationArn': apiDestinationArn,
+      if (apiDestinationState != null)
+        'ApiDestinationState': apiDestinationState.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
+  }
 }
 
 class CreateArchiveResponse {
@@ -3778,6 +3932,20 @@ class CreateArchiveResponse {
       stateReason: json['StateReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final archiveArn = this.archiveArn;
+    final creationTime = this.creationTime;
+    final state = this.state;
+    final stateReason = this.stateReason;
+    return {
+      if (archiveArn != null) 'ArchiveArn': archiveArn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (state != null) 'State': state.toValue(),
+      if (stateReason != null) 'StateReason': stateReason,
+    };
+  }
 }
 
 /// Contains the API key authorization parameters for the connection.
@@ -3792,6 +3960,7 @@ class CreateConnectionApiKeyAuthRequestParameters {
     required this.apiKeyName,
     required this.apiKeyValue,
   });
+
   Map<String, dynamic> toJson() {
     final apiKeyName = this.apiKeyName;
     final apiKeyValue = this.apiKeyValue;
@@ -3829,6 +3998,7 @@ class CreateConnectionAuthRequestParameters {
     this.invocationHttpParameters,
     this.oAuthParameters,
   });
+
   Map<String, dynamic> toJson() {
     final apiKeyAuthParameters = this.apiKeyAuthParameters;
     final basicAuthParameters = this.basicAuthParameters;
@@ -3858,6 +4028,7 @@ class CreateConnectionBasicAuthRequestParameters {
     required this.password,
     required this.username,
   });
+
   Map<String, dynamic> toJson() {
     final password = this.password;
     final username = this.username;
@@ -3881,6 +4052,7 @@ class CreateConnectionOAuthClientRequestParameters {
     required this.clientID,
     required this.clientSecret,
   });
+
   Map<String, dynamic> toJson() {
     final clientID = this.clientID;
     final clientSecret = this.clientSecret;
@@ -3914,6 +4086,7 @@ class CreateConnectionOAuthRequestParameters {
     required this.httpMethod,
     this.oAuthHttpParameters,
   });
+
   Map<String, dynamic> toJson() {
     final authorizationEndpoint = this.authorizationEndpoint;
     final clientParameters = this.clientParameters;
@@ -3957,6 +4130,21 @@ class CreateConnectionResponse {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionArn = this.connectionArn;
+    final connectionState = this.connectionState;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
+  }
 }
 
 class CreateEventBusResponse {
@@ -3971,6 +4159,13 @@ class CreateEventBusResponse {
       eventBusArn: json['EventBusArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventBusArn = this.eventBusArn;
+    return {
+      if (eventBusArn != null) 'EventBusArn': eventBusArn,
+    };
+  }
 }
 
 class CreatePartnerEventSourceResponse {
@@ -3984,6 +4179,13 @@ class CreatePartnerEventSourceResponse {
     return CreatePartnerEventSourceResponse(
       eventSourceArn: json['EventSourceArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSourceArn = this.eventSourceArn;
+    return {
+      if (eventSourceArn != null) 'EventSourceArn': eventSourceArn,
+    };
   }
 }
 
@@ -4043,6 +4245,24 @@ class DeauthorizeConnectionResponse {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionArn = this.connectionArn;
+    final connectionState = this.connectionState;
+    final creationTime = this.creationTime;
+    final lastAuthorizedTime = this.lastAuthorizedTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastAuthorizedTime != null)
+        'LastAuthorizedTime': unixTimestampToJson(lastAuthorizedTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
+  }
 }
 
 class DeleteApiDestinationResponse {
@@ -4050,12 +4270,20 @@ class DeleteApiDestinationResponse {
   factory DeleteApiDestinationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApiDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteArchiveResponse {
   DeleteArchiveResponse();
   factory DeleteArchiveResponse.fromJson(Map<String, dynamic> _) {
     return DeleteArchiveResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4093,6 +4321,24 @@ class DeleteConnectionResponse {
       lastAuthorizedTime: timeStampFromJson(json['LastAuthorizedTime']),
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectionArn = this.connectionArn;
+    final connectionState = this.connectionState;
+    final creationTime = this.creationTime;
+    final lastAuthorizedTime = this.lastAuthorizedTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastAuthorizedTime != null)
+        'LastAuthorizedTime': unixTimestampToJson(lastAuthorizedTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
   }
 }
 
@@ -4161,6 +4407,35 @@ class DescribeApiDestinationResponse {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiDestinationArn = this.apiDestinationArn;
+    final apiDestinationState = this.apiDestinationState;
+    final connectionArn = this.connectionArn;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final httpMethod = this.httpMethod;
+    final invocationEndpoint = this.invocationEndpoint;
+    final invocationRateLimitPerSecond = this.invocationRateLimitPerSecond;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    return {
+      if (apiDestinationArn != null) 'ApiDestinationArn': apiDestinationArn,
+      if (apiDestinationState != null)
+        'ApiDestinationState': apiDestinationState.toValue(),
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (httpMethod != null) 'HttpMethod': httpMethod.toValue(),
+      if (invocationEndpoint != null) 'InvocationEndpoint': invocationEndpoint,
+      if (invocationRateLimitPerSecond != null)
+        'InvocationRateLimitPerSecond': invocationRateLimitPerSecond,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class DescribeArchiveResponse {
@@ -4224,6 +4499,34 @@ class DescribeArchiveResponse {
       state: (json['State'] as String?)?.toArchiveState(),
       stateReason: json['StateReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final archiveArn = this.archiveArn;
+    final archiveName = this.archiveName;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final eventCount = this.eventCount;
+    final eventPattern = this.eventPattern;
+    final eventSourceArn = this.eventSourceArn;
+    final retentionDays = this.retentionDays;
+    final sizeBytes = this.sizeBytes;
+    final state = this.state;
+    final stateReason = this.stateReason;
+    return {
+      if (archiveArn != null) 'ArchiveArn': archiveArn,
+      if (archiveName != null) 'ArchiveName': archiveName,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (eventCount != null) 'EventCount': eventCount,
+      if (eventPattern != null) 'EventPattern': eventPattern,
+      if (eventSourceArn != null) 'EventSourceArn': eventSourceArn,
+      if (retentionDays != null) 'RetentionDays': retentionDays,
+      if (sizeBytes != null) 'SizeBytes': sizeBytes,
+      if (state != null) 'State': state.toValue(),
+      if (stateReason != null) 'StateReason': stateReason,
+    };
   }
 }
 
@@ -4295,6 +4598,37 @@ class DescribeConnectionResponse {
       stateReason: json['StateReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authParameters = this.authParameters;
+    final authorizationType = this.authorizationType;
+    final connectionArn = this.connectionArn;
+    final connectionState = this.connectionState;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final lastAuthorizedTime = this.lastAuthorizedTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final secretArn = this.secretArn;
+    final stateReason = this.stateReason;
+    return {
+      if (authParameters != null) 'AuthParameters': authParameters,
+      if (authorizationType != null)
+        'AuthorizationType': authorizationType.toValue(),
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (lastAuthorizedTime != null)
+        'LastAuthorizedTime': unixTimestampToJson(lastAuthorizedTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (name != null) 'Name': name,
+      if (secretArn != null) 'SecretArn': secretArn,
+      if (stateReason != null) 'StateReason': stateReason,
+    };
+  }
 }
 
 class DescribeEventBusResponse {
@@ -4319,6 +4653,17 @@ class DescribeEventBusResponse {
       name: json['Name'] as String?,
       policy: json['Policy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final policy = this.policy;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -4364,6 +4709,25 @@ class DescribeEventSourceResponse {
       state: (json['State'] as String?)?.toEventSourceState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final expirationTime = this.expirationTime;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (expirationTime != null)
+        'ExpirationTime': unixTimestampToJson(expirationTime),
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class DescribePartnerEventSourceResponse {
@@ -4383,6 +4747,15 @@ class DescribePartnerEventSourceResponse {
       arn: json['Arn'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -4457,6 +4830,40 @@ class DescribeReplayResponse {
       stateReason: json['StateReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final destination = this.destination;
+    final eventEndTime = this.eventEndTime;
+    final eventLastReplayedTime = this.eventLastReplayedTime;
+    final eventSourceArn = this.eventSourceArn;
+    final eventStartTime = this.eventStartTime;
+    final replayArn = this.replayArn;
+    final replayEndTime = this.replayEndTime;
+    final replayName = this.replayName;
+    final replayStartTime = this.replayStartTime;
+    final state = this.state;
+    final stateReason = this.stateReason;
+    return {
+      if (description != null) 'Description': description,
+      if (destination != null) 'Destination': destination,
+      if (eventEndTime != null)
+        'EventEndTime': unixTimestampToJson(eventEndTime),
+      if (eventLastReplayedTime != null)
+        'EventLastReplayedTime': unixTimestampToJson(eventLastReplayedTime),
+      if (eventSourceArn != null) 'EventSourceArn': eventSourceArn,
+      if (eventStartTime != null)
+        'EventStartTime': unixTimestampToJson(eventStartTime),
+      if (replayArn != null) 'ReplayArn': replayArn,
+      if (replayEndTime != null)
+        'ReplayEndTime': unixTimestampToJson(replayEndTime),
+      if (replayName != null) 'ReplayName': replayName,
+      if (replayStartTime != null)
+        'ReplayStartTime': unixTimestampToJson(replayStartTime),
+      if (state != null) 'State': state.toValue(),
+      if (stateReason != null) 'StateReason': stateReason,
+    };
+  }
 }
 
 class DescribeRuleResponse {
@@ -4524,6 +4931,31 @@ class DescribeRuleResponse {
       scheduleExpression: json['ScheduleExpression'] as String?,
       state: (json['State'] as String?)?.toRuleState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdBy = this.createdBy;
+    final description = this.description;
+    final eventBusName = this.eventBusName;
+    final eventPattern = this.eventPattern;
+    final managedBy = this.managedBy;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    final scheduleExpression = this.scheduleExpression;
+    final state = this.state;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (description != null) 'Description': description,
+      if (eventBusName != null) 'EventBusName': eventBusName,
+      if (eventPattern != null) 'EventPattern': eventPattern,
+      if (managedBy != null) 'ManagedBy': managedBy,
+      if (name != null) 'Name': name,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (scheduleExpression != null) 'ScheduleExpression': scheduleExpression,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -4737,6 +5169,17 @@ class EventBus {
       policy: json['Policy'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final policy = this.policy;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+      if (policy != null) 'Policy': policy,
+    };
+  }
 }
 
 /// A partner event source is created by an SaaS partner. If a customer creates
@@ -4783,6 +5226,25 @@ class EventSource {
       name: json['Name'] as String?,
       state: (json['State'] as String?)?.toEventSourceState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final expirationTime = this.expirationTime;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (expirationTime != null)
+        'ExpirationTime': unixTimestampToJson(expirationTime),
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -5048,6 +5510,15 @@ class ListApiDestinationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiDestinations = this.apiDestinations;
+    final nextToken = this.nextToken;
+    return {
+      if (apiDestinations != null) 'ApiDestinations': apiDestinations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListArchivesResponse {
@@ -5070,6 +5541,15 @@ class ListArchivesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final archives = this.archives;
+    final nextToken = this.nextToken;
+    return {
+      if (archives != null) 'Archives': archives,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5094,6 +5574,15 @@ class ListConnectionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connections = this.connections;
+    final nextToken = this.nextToken;
+    return {
+      if (connections != null) 'Connections': connections,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListEventBusesResponse {
@@ -5117,6 +5606,15 @@ class ListEventBusesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventBuses = this.eventBuses;
+    final nextToken = this.nextToken;
+    return {
+      if (eventBuses != null) 'EventBuses': eventBuses,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListEventSourcesResponse {
@@ -5139,6 +5637,15 @@ class ListEventSourcesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSources = this.eventSources;
+    final nextToken = this.nextToken;
+    return {
+      if (eventSources != null) 'EventSources': eventSources,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5165,6 +5672,16 @@ class ListPartnerEventSourceAccountsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final partnerEventSourceAccounts = this.partnerEventSourceAccounts;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (partnerEventSourceAccounts != null)
+        'PartnerEventSourceAccounts': partnerEventSourceAccounts,
+    };
+  }
 }
 
 class ListPartnerEventSourcesResponse {
@@ -5187,6 +5704,16 @@ class ListPartnerEventSourcesResponse {
           .map((e) => PartnerEventSource.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final partnerEventSources = this.partnerEventSources;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (partnerEventSources != null)
+        'PartnerEventSources': partnerEventSources,
+    };
   }
 }
 
@@ -5211,6 +5738,15 @@ class ListReplaysResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final replays = this.replays;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (replays != null) 'Replays': replays,
+    };
+  }
 }
 
 class ListRuleNamesByTargetResponse {
@@ -5233,6 +5769,15 @@ class ListRuleNamesByTargetResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final ruleNames = this.ruleNames;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (ruleNames != null) 'RuleNames': ruleNames,
+    };
   }
 }
 
@@ -5257,6 +5802,15 @@ class ListRulesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final rules = this.rules;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (rules != null) 'Rules': rules,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -5273,6 +5827,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -5296,6 +5857,15 @@ class ListTargetsByRuleResponse {
           .map((e) => Target.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final targets = this.targets;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (targets != null) 'Targets': targets,
+    };
   }
 }
 
@@ -5347,6 +5917,15 @@ class PartnerEventSource {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// The Amazon Web Services account that a partner event source has been offered
@@ -5383,6 +5962,21 @@ class PartnerEventSourceAccount {
       expirationTime: timeStampFromJson(json['ExpirationTime']),
       state: (json['State'] as String?)?.toEventSourceState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final account = this.account;
+    final creationTime = this.creationTime;
+    final expirationTime = this.expirationTime;
+    final state = this.state;
+    return {
+      if (account != null) 'Account': account,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (expirationTime != null)
+        'ExpirationTime': unixTimestampToJson(expirationTime),
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -5598,6 +6192,7 @@ class PutEventsRequestEntry {
     this.time,
     this.traceHeader,
   });
+
   Map<String, dynamic> toJson() {
     final detail = this.detail;
     final detailType = this.detailType;
@@ -5641,6 +6236,15 @@ class PutEventsResponse {
       failedEntryCount: json['FailedEntryCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entries = this.entries;
+    final failedEntryCount = this.failedEntryCount;
+    return {
+      if (entries != null) 'Entries': entries,
+      if (failedEntryCount != null) 'FailedEntryCount': failedEntryCount,
+    };
+  }
 }
 
 /// Represents an event that failed to be submitted.
@@ -5665,6 +6269,17 @@ class PutEventsResultEntry {
       errorMessage: json['ErrorMessage'] as String?,
       eventId: json['EventId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final eventId = this.eventId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (eventId != null) 'EventId': eventId,
+    };
   }
 }
 
@@ -5695,6 +6310,7 @@ class PutPartnerEventsRequestEntry {
     this.source,
     this.time,
   });
+
   Map<String, dynamic> toJson() {
     final detail = this.detail;
     final detailType = this.detailType;
@@ -5734,6 +6350,15 @@ class PutPartnerEventsResponse {
       failedEntryCount: json['FailedEntryCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entries = this.entries;
+    final failedEntryCount = this.failedEntryCount;
+    return {
+      if (entries != null) 'Entries': entries,
+      if (failedEntryCount != null) 'FailedEntryCount': failedEntryCount,
+    };
+  }
 }
 
 /// Represents an event that a partner tried to generate, but failed.
@@ -5759,6 +6384,17 @@ class PutPartnerEventsResultEntry {
       eventId: json['EventId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final eventId = this.eventId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (eventId != null) 'EventId': eventId,
+    };
+  }
 }
 
 class PutRuleResponse {
@@ -5772,6 +6408,13 @@ class PutRuleResponse {
     return PutRuleResponse(
       ruleArn: json['RuleArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ruleArn = this.ruleArn;
+    return {
+      if (ruleArn != null) 'RuleArn': ruleArn,
+    };
   }
 }
 
@@ -5794,6 +6437,15 @@ class PutTargetsResponse {
           .toList(),
       failedEntryCount: json['FailedEntryCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedEntries = this.failedEntries;
+    final failedEntryCount = this.failedEntryCount;
+    return {
+      if (failedEntries != null) 'FailedEntries': failedEntries,
+      if (failedEntryCount != null) 'FailedEntryCount': failedEntryCount,
+    };
   }
 }
 
@@ -5821,6 +6473,17 @@ class PutTargetsResultEntry {
       errorMessage: json['ErrorMessage'] as String?,
       targetId: json['TargetId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final targetId = this.targetId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (targetId != null) 'TargetId': targetId,
+    };
   }
 }
 
@@ -5909,6 +6572,15 @@ class RemoveTargetsResponse {
       failedEntryCount: json['FailedEntryCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedEntries = this.failedEntries;
+    final failedEntryCount = this.failedEntryCount;
+    return {
+      if (failedEntries != null) 'FailedEntries': failedEntries,
+      if (failedEntryCount != null) 'FailedEntryCount': failedEntryCount,
+    };
+  }
 }
 
 /// Represents a target that failed to be removed from a rule.
@@ -5935,6 +6607,17 @@ class RemoveTargetsResultEntry {
       errorMessage: json['ErrorMessage'] as String?,
       targetId: json['TargetId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final targetId = this.targetId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (targetId != null) 'TargetId': targetId,
+    };
   }
 }
 
@@ -5993,6 +6676,34 @@ class Replay {
       state: (json['State'] as String?)?.toReplayState(),
       stateReason: json['StateReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventEndTime = this.eventEndTime;
+    final eventLastReplayedTime = this.eventLastReplayedTime;
+    final eventSourceArn = this.eventSourceArn;
+    final eventStartTime = this.eventStartTime;
+    final replayEndTime = this.replayEndTime;
+    final replayName = this.replayName;
+    final replayStartTime = this.replayStartTime;
+    final state = this.state;
+    final stateReason = this.stateReason;
+    return {
+      if (eventEndTime != null)
+        'EventEndTime': unixTimestampToJson(eventEndTime),
+      if (eventLastReplayedTime != null)
+        'EventLastReplayedTime': unixTimestampToJson(eventLastReplayedTime),
+      if (eventSourceArn != null) 'EventSourceArn': eventSourceArn,
+      if (eventStartTime != null)
+        'EventStartTime': unixTimestampToJson(eventStartTime),
+      if (replayEndTime != null)
+        'ReplayEndTime': unixTimestampToJson(replayEndTime),
+      if (replayName != null) 'ReplayName': replayName,
+      if (replayStartTime != null)
+        'ReplayStartTime': unixTimestampToJson(replayStartTime),
+      if (state != null) 'State': state.toValue(),
+      if (stateReason != null) 'StateReason': stateReason,
+    };
   }
 }
 
@@ -6179,6 +6890,29 @@ class Rule {
       scheduleExpression: json['ScheduleExpression'] as String?,
       state: (json['State'] as String?)?.toRuleState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final eventBusName = this.eventBusName;
+    final eventPattern = this.eventPattern;
+    final managedBy = this.managedBy;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    final scheduleExpression = this.scheduleExpression;
+    final state = this.state;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (eventBusName != null) 'EventBusName': eventBusName,
+      if (eventPattern != null) 'EventPattern': eventPattern,
+      if (managedBy != null) 'ManagedBy': managedBy,
+      if (name != null) 'Name': name,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (scheduleExpression != null) 'ScheduleExpression': scheduleExpression,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -6383,6 +7117,20 @@ class StartReplayResponse {
       stateReason: json['StateReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replayArn = this.replayArn;
+    final replayStartTime = this.replayStartTime;
+    final state = this.state;
+    final stateReason = this.stateReason;
+    return {
+      if (replayArn != null) 'ReplayArn': replayArn,
+      if (replayStartTime != null)
+        'ReplayStartTime': unixTimestampToJson(replayStartTime),
+      if (state != null) 'State': state.toValue(),
+      if (stateReason != null) 'StateReason': stateReason,
+    };
+  }
 }
 
 /// A key-value pair associated with an Amazon Web Services resource. In
@@ -6420,6 +7168,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6651,12 +7403,23 @@ class TestEventPatternResponse {
       result: json['Result'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final result = this.result;
+    return {
+      if (result != null) 'Result': result,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6688,6 +7451,22 @@ class UpdateApiDestinationResponse {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiDestinationArn = this.apiDestinationArn;
+    final apiDestinationState = this.apiDestinationState;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      if (apiDestinationArn != null) 'ApiDestinationArn': apiDestinationArn,
+      if (apiDestinationState != null)
+        'ApiDestinationState': apiDestinationState.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
+  }
 }
 
 class UpdateArchiveResponse {
@@ -6717,6 +7496,20 @@ class UpdateArchiveResponse {
       stateReason: json['StateReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final archiveArn = this.archiveArn;
+    final creationTime = this.creationTime;
+    final state = this.state;
+    final stateReason = this.stateReason;
+    return {
+      if (archiveArn != null) 'ArchiveArn': archiveArn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (state != null) 'State': state.toValue(),
+      if (stateReason != null) 'StateReason': stateReason,
+    };
+  }
 }
 
 /// Contains the API key authorization parameters to use to update the
@@ -6732,6 +7525,7 @@ class UpdateConnectionApiKeyAuthRequestParameters {
     this.apiKeyName,
     this.apiKeyValue,
   });
+
   Map<String, dynamic> toJson() {
     final apiKeyName = this.apiKeyName;
     final apiKeyValue = this.apiKeyValue;
@@ -6766,6 +7560,7 @@ class UpdateConnectionAuthRequestParameters {
     this.invocationHttpParameters,
     this.oAuthParameters,
   });
+
   Map<String, dynamic> toJson() {
     final apiKeyAuthParameters = this.apiKeyAuthParameters;
     final basicAuthParameters = this.basicAuthParameters;
@@ -6795,6 +7590,7 @@ class UpdateConnectionBasicAuthRequestParameters {
     this.password,
     this.username,
   });
+
   Map<String, dynamic> toJson() {
     final password = this.password;
     final username = this.username;
@@ -6818,6 +7614,7 @@ class UpdateConnectionOAuthClientRequestParameters {
     this.clientID,
     this.clientSecret,
   });
+
   Map<String, dynamic> toJson() {
     final clientID = this.clientID;
     final clientSecret = this.clientSecret;
@@ -6851,6 +7648,7 @@ class UpdateConnectionOAuthRequestParameters {
     this.httpMethod,
     this.oAuthHttpParameters,
   });
+
   Map<String, dynamic> toJson() {
     final authorizationEndpoint = this.authorizationEndpoint;
     final clientParameters = this.clientParameters;
@@ -6899,6 +7697,24 @@ class UpdateConnectionResponse {
       lastAuthorizedTime: timeStampFromJson(json['LastAuthorizedTime']),
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectionArn = this.connectionArn;
+    final connectionState = this.connectionState;
+    final creationTime = this.creationTime;
+    final lastAuthorizedTime = this.lastAuthorizedTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastAuthorizedTime != null)
+        'LastAuthorizedTime': unixTimestampToJson(lastAuthorizedTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
   }
 }
 

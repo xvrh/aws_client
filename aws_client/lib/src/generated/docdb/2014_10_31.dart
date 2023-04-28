@@ -4160,6 +4160,13 @@ class AddSourceIdentifierToSubscriptionResult {
           ?.let(EventSubscription.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
+  }
 }
 
 enum ApplyMethod {
@@ -4203,6 +4210,15 @@ class ApplyPendingMaintenanceActionResult {
           ?.let(ResourcePendingMaintenanceActions.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourcePendingMaintenanceActions =
+        this.resourcePendingMaintenanceActions;
+    return {
+      if (resourcePendingMaintenanceActions != null)
+        'ResourcePendingMaintenanceActions': resourcePendingMaintenanceActions,
+    };
+  }
 }
 
 /// Information about an Availability Zone.
@@ -4217,6 +4233,13 @@ class AvailabilityZone {
     return AvailabilityZone(
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -4269,6 +4292,24 @@ class Certificate {
       validTill: _s.extractXmlDateTimeValue(elem, 'ValidTill'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final certificateIdentifier = this.certificateIdentifier;
+    final certificateType = this.certificateType;
+    final thumbprint = this.thumbprint;
+    final validFrom = this.validFrom;
+    final validTill = this.validTill;
+    return {
+      if (certificateArn != null) 'CertificateArn': certificateArn,
+      if (certificateIdentifier != null)
+        'CertificateIdentifier': certificateIdentifier,
+      if (certificateType != null) 'CertificateType': certificateType,
+      if (thumbprint != null) 'Thumbprint': thumbprint,
+      if (validFrom != null) 'ValidFrom': iso8601ToJson(validFrom),
+      if (validTill != null) 'ValidTill': iso8601ToJson(validTill),
+    };
+  }
 }
 
 class CertificateMessage {
@@ -4293,6 +4334,15 @@ class CertificateMessage {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificates = this.certificates;
+    final marker = this.marker;
+    return {
+      if (certificates != null) 'Certificates': certificates,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// The configuration setting for the log types to be enabled for export to
@@ -4312,6 +4362,7 @@ class CloudwatchLogsExportConfiguration {
     this.disableLogTypes,
     this.enableLogTypes,
   });
+
   Map<String, dynamic> toJson() {
     final disableLogTypes = this.disableLogTypes;
     final enableLogTypes = this.enableLogTypes;
@@ -4335,6 +4386,14 @@ class CopyDBClusterParameterGroupResult {
           ?.let(DBClusterParameterGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterParameterGroup = this.dBClusterParameterGroup;
+    return {
+      if (dBClusterParameterGroup != null)
+        'DBClusterParameterGroup': dBClusterParameterGroup,
+    };
+  }
 }
 
 class CopyDBClusterSnapshotResult {
@@ -4349,6 +4408,13 @@ class CopyDBClusterSnapshotResult {
           .extractXmlChild(elem, 'DBClusterSnapshot')
           ?.let(DBClusterSnapshot.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterSnapshot = this.dBClusterSnapshot;
+    return {
+      if (dBClusterSnapshot != null) 'DBClusterSnapshot': dBClusterSnapshot,
+    };
   }
 }
 
@@ -4365,6 +4431,14 @@ class CreateDBClusterParameterGroupResult {
           ?.let(DBClusterParameterGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterParameterGroup = this.dBClusterParameterGroup;
+    return {
+      if (dBClusterParameterGroup != null)
+        'DBClusterParameterGroup': dBClusterParameterGroup,
+    };
+  }
 }
 
 class CreateDBClusterResult {
@@ -4377,6 +4451,13 @@ class CreateDBClusterResult {
     return CreateDBClusterResult(
       dBCluster: _s.extractXmlChild(elem, 'DBCluster')?.let(DBCluster.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -4393,6 +4474,13 @@ class CreateDBClusterSnapshotResult {
           ?.let(DBClusterSnapshot.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterSnapshot = this.dBClusterSnapshot;
+    return {
+      if (dBClusterSnapshot != null) 'DBClusterSnapshot': dBClusterSnapshot,
+    };
+  }
 }
 
 class CreateDBInstanceResult {
@@ -4407,6 +4495,13 @@ class CreateDBInstanceResult {
           _s.extractXmlChild(elem, 'DBInstance')?.let(DBInstance.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBInstance = this.dBInstance;
+    return {
+      if (dBInstance != null) 'DBInstance': dBInstance,
+    };
+  }
 }
 
 class CreateDBSubnetGroupResult {
@@ -4420,6 +4515,13 @@ class CreateDBSubnetGroupResult {
       dBSubnetGroup:
           _s.extractXmlChild(elem, 'DBSubnetGroup')?.let(DBSubnetGroup.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBSubnetGroup = this.dBSubnetGroup;
+    return {
+      if (dBSubnetGroup != null) 'DBSubnetGroup': dBSubnetGroup,
+    };
   }
 }
 
@@ -4436,6 +4538,13 @@ class CreateEventSubscriptionResult {
           ?.let(EventSubscription.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
+  }
 }
 
 class CreateGlobalClusterResult {
@@ -4449,6 +4558,13 @@ class CreateGlobalClusterResult {
       globalCluster:
           _s.extractXmlChild(elem, 'GlobalCluster')?.let(GlobalCluster.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalCluster = this.globalCluster;
+    return {
+      if (globalCluster != null) 'GlobalCluster': globalCluster,
+    };
   }
 }
 
@@ -4681,6 +4797,87 @@ class DBCluster {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associatedRoles = this.associatedRoles;
+    final availabilityZones = this.availabilityZones;
+    final backupRetentionPeriod = this.backupRetentionPeriod;
+    final cloneGroupId = this.cloneGroupId;
+    final clusterCreateTime = this.clusterCreateTime;
+    final dBClusterArn = this.dBClusterArn;
+    final dBClusterIdentifier = this.dBClusterIdentifier;
+    final dBClusterMembers = this.dBClusterMembers;
+    final dBClusterParameterGroup = this.dBClusterParameterGroup;
+    final dBSubnetGroup = this.dBSubnetGroup;
+    final dbClusterResourceId = this.dbClusterResourceId;
+    final deletionProtection = this.deletionProtection;
+    final earliestRestorableTime = this.earliestRestorableTime;
+    final enabledCloudwatchLogsExports = this.enabledCloudwatchLogsExports;
+    final endpoint = this.endpoint;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final hostedZoneId = this.hostedZoneId;
+    final kmsKeyId = this.kmsKeyId;
+    final latestRestorableTime = this.latestRestorableTime;
+    final masterUsername = this.masterUsername;
+    final multiAZ = this.multiAZ;
+    final percentProgress = this.percentProgress;
+    final port = this.port;
+    final preferredBackupWindow = this.preferredBackupWindow;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final readReplicaIdentifiers = this.readReplicaIdentifiers;
+    final readerEndpoint = this.readerEndpoint;
+    final replicationSourceIdentifier = this.replicationSourceIdentifier;
+    final status = this.status;
+    final storageEncrypted = this.storageEncrypted;
+    final vpcSecurityGroups = this.vpcSecurityGroups;
+    return {
+      if (associatedRoles != null) 'AssociatedRoles': associatedRoles,
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (backupRetentionPeriod != null)
+        'BackupRetentionPeriod': backupRetentionPeriod,
+      if (cloneGroupId != null) 'CloneGroupId': cloneGroupId,
+      if (clusterCreateTime != null)
+        'ClusterCreateTime': iso8601ToJson(clusterCreateTime),
+      if (dBClusterArn != null) 'DBClusterArn': dBClusterArn,
+      if (dBClusterIdentifier != null)
+        'DBClusterIdentifier': dBClusterIdentifier,
+      if (dBClusterMembers != null) 'DBClusterMembers': dBClusterMembers,
+      if (dBClusterParameterGroup != null)
+        'DBClusterParameterGroup': dBClusterParameterGroup,
+      if (dBSubnetGroup != null) 'DBSubnetGroup': dBSubnetGroup,
+      if (dbClusterResourceId != null)
+        'DbClusterResourceId': dbClusterResourceId,
+      if (deletionProtection != null) 'DeletionProtection': deletionProtection,
+      if (earliestRestorableTime != null)
+        'EarliestRestorableTime': iso8601ToJson(earliestRestorableTime),
+      if (enabledCloudwatchLogsExports != null)
+        'EnabledCloudwatchLogsExports': enabledCloudwatchLogsExports,
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (hostedZoneId != null) 'HostedZoneId': hostedZoneId,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (latestRestorableTime != null)
+        'LatestRestorableTime': iso8601ToJson(latestRestorableTime),
+      if (masterUsername != null) 'MasterUsername': masterUsername,
+      if (multiAZ != null) 'MultiAZ': multiAZ,
+      if (percentProgress != null) 'PercentProgress': percentProgress,
+      if (port != null) 'Port': port,
+      if (preferredBackupWindow != null)
+        'PreferredBackupWindow': preferredBackupWindow,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (readReplicaIdentifiers != null)
+        'ReadReplicaIdentifiers': readReplicaIdentifiers,
+      if (readerEndpoint != null) 'ReaderEndpoint': readerEndpoint,
+      if (replicationSourceIdentifier != null)
+        'ReplicationSourceIdentifier': replicationSourceIdentifier,
+      if (status != null) 'Status': status,
+      if (storageEncrypted != null) 'StorageEncrypted': storageEncrypted,
+      if (vpcSecurityGroups != null) 'VpcSecurityGroups': vpcSecurityGroups,
+    };
+  }
 }
 
 /// Contains information about an instance that is part of a cluster.
@@ -4717,6 +4914,21 @@ class DBClusterMember {
       promotionTier: _s.extractXmlIntValue(elem, 'PromotionTier'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterParameterGroupStatus = this.dBClusterParameterGroupStatus;
+    final dBInstanceIdentifier = this.dBInstanceIdentifier;
+    final isClusterWriter = this.isClusterWriter;
+    final promotionTier = this.promotionTier;
+    return {
+      if (dBClusterParameterGroupStatus != null)
+        'DBClusterParameterGroupStatus': dBClusterParameterGroupStatus,
+      if (dBInstanceIdentifier != null)
+        'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (isClusterWriter != null) 'IsClusterWriter': isClusterWriter,
+      if (promotionTier != null) 'PromotionTier': promotionTier,
+    };
+  }
 }
 
 /// Represents the output of <a>DescribeDBClusters</a>.
@@ -4739,6 +4951,15 @@ class DBClusterMessage {
           elem.findElements('DBCluster').map(DBCluster.fromXml).toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusters = this.dBClusters;
+    final marker = this.marker;
+    return {
+      if (dBClusters != null) 'DBClusters': dBClusters,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -4775,6 +4996,22 @@ class DBClusterParameterGroup {
       description: _s.extractXmlStringValue(elem, 'Description'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterParameterGroupArn = this.dBClusterParameterGroupArn;
+    final dBClusterParameterGroupName = this.dBClusterParameterGroupName;
+    final dBParameterGroupFamily = this.dBParameterGroupFamily;
+    final description = this.description;
+    return {
+      if (dBClusterParameterGroupArn != null)
+        'DBClusterParameterGroupArn': dBClusterParameterGroupArn,
+      if (dBClusterParameterGroupName != null)
+        'DBClusterParameterGroupName': dBClusterParameterGroupName,
+      if (dBParameterGroupFamily != null)
+        'DBParameterGroupFamily': dBParameterGroupFamily,
+      if (description != null) 'Description': description,
+    };
+  }
 }
 
 /// Represents the output of <a>DBClusterParameterGroup</a>.
@@ -4797,6 +5034,15 @@ class DBClusterParameterGroupDetails {
       parameters: _s.extractXmlChild(elem, 'Parameters')?.let((elem) =>
           elem.findElements('Parameter').map(Parameter.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final parameters = this.parameters;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (parameters != null) 'Parameters': parameters,
+    };
   }
 }
 
@@ -4830,6 +5076,14 @@ class DBClusterParameterGroupNameMessage {
           _s.extractXmlStringValue(elem, 'DBClusterParameterGroupName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterParameterGroupName = this.dBClusterParameterGroupName;
+    return {
+      if (dBClusterParameterGroupName != null)
+        'DBClusterParameterGroupName': dBClusterParameterGroupName,
+    };
+  }
 }
 
 /// Represents the output of <a>DBClusterParameterGroups</a>.
@@ -4856,6 +5110,16 @@ class DBClusterParameterGroupsMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterParameterGroups = this.dBClusterParameterGroups;
+    final marker = this.marker;
+    return {
+      if (dBClusterParameterGroups != null)
+        'DBClusterParameterGroups': dBClusterParameterGroups,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -4894,6 +5158,15 @@ class DBClusterRole {
       roleArn: _s.extractXmlStringValue(elem, 'RoleArn'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final roleArn = this.roleArn;
+    final status = this.status;
+    return {
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -5003,6 +5276,51 @@ class DBClusterSnapshot {
       vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final clusterCreateTime = this.clusterCreateTime;
+    final dBClusterIdentifier = this.dBClusterIdentifier;
+    final dBClusterSnapshotArn = this.dBClusterSnapshotArn;
+    final dBClusterSnapshotIdentifier = this.dBClusterSnapshotIdentifier;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final kmsKeyId = this.kmsKeyId;
+    final masterUsername = this.masterUsername;
+    final percentProgress = this.percentProgress;
+    final port = this.port;
+    final snapshotCreateTime = this.snapshotCreateTime;
+    final snapshotType = this.snapshotType;
+    final sourceDBClusterSnapshotArn = this.sourceDBClusterSnapshotArn;
+    final status = this.status;
+    final storageEncrypted = this.storageEncrypted;
+    final vpcId = this.vpcId;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (clusterCreateTime != null)
+        'ClusterCreateTime': iso8601ToJson(clusterCreateTime),
+      if (dBClusterIdentifier != null)
+        'DBClusterIdentifier': dBClusterIdentifier,
+      if (dBClusterSnapshotArn != null)
+        'DBClusterSnapshotArn': dBClusterSnapshotArn,
+      if (dBClusterSnapshotIdentifier != null)
+        'DBClusterSnapshotIdentifier': dBClusterSnapshotIdentifier,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (masterUsername != null) 'MasterUsername': masterUsername,
+      if (percentProgress != null) 'PercentProgress': percentProgress,
+      if (port != null) 'Port': port,
+      if (snapshotCreateTime != null)
+        'SnapshotCreateTime': iso8601ToJson(snapshotCreateTime),
+      if (snapshotType != null) 'SnapshotType': snapshotType,
+      if (sourceDBClusterSnapshotArn != null)
+        'SourceDBClusterSnapshotArn': sourceDBClusterSnapshotArn,
+      if (status != null) 'Status': status,
+      if (storageEncrypted != null) 'StorageEncrypted': storageEncrypted,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 /// Contains the name and values of a manual cluster snapshot attribute.
@@ -5037,6 +5355,15 @@ class DBClusterSnapshotAttribute {
           (elem) => _s.extractXmlStringListValues(elem, 'AttributeValue')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributeName = this.attributeName;
+    final attributeValues = this.attributeValues;
+    return {
+      if (attributeName != null) 'AttributeName': attributeName,
+      if (attributeValues != null) 'AttributeValues': attributeValues,
+    };
+  }
 }
 
 /// Detailed information about the attributes that are associated with a cluster
@@ -5064,6 +5391,17 @@ class DBClusterSnapshotAttributesResult {
           _s.extractXmlStringValue(elem, 'DBClusterSnapshotIdentifier'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterSnapshotAttributes = this.dBClusterSnapshotAttributes;
+    final dBClusterSnapshotIdentifier = this.dBClusterSnapshotIdentifier;
+    return {
+      if (dBClusterSnapshotAttributes != null)
+        'DBClusterSnapshotAttributes': dBClusterSnapshotAttributes,
+      if (dBClusterSnapshotIdentifier != null)
+        'DBClusterSnapshotIdentifier': dBClusterSnapshotIdentifier,
+    };
+  }
 }
 
 /// Represents the output of <a>DescribeDBClusterSnapshots</a>.
@@ -5089,6 +5427,15 @@ class DBClusterSnapshotMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterSnapshots = this.dBClusterSnapshots;
+    final marker = this.marker;
+    return {
+      if (dBClusterSnapshots != null) 'DBClusterSnapshots': dBClusterSnapshots,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -5153,6 +5500,33 @@ class DBEngineVersion {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBEngineDescription = this.dBEngineDescription;
+    final dBEngineVersionDescription = this.dBEngineVersionDescription;
+    final dBParameterGroupFamily = this.dBParameterGroupFamily;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final exportableLogTypes = this.exportableLogTypes;
+    final supportsLogExportsToCloudwatchLogs =
+        this.supportsLogExportsToCloudwatchLogs;
+    final validUpgradeTarget = this.validUpgradeTarget;
+    return {
+      if (dBEngineDescription != null)
+        'DBEngineDescription': dBEngineDescription,
+      if (dBEngineVersionDescription != null)
+        'DBEngineVersionDescription': dBEngineVersionDescription,
+      if (dBParameterGroupFamily != null)
+        'DBParameterGroupFamily': dBParameterGroupFamily,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (exportableLogTypes != null) 'ExportableLogTypes': exportableLogTypes,
+      if (supportsLogExportsToCloudwatchLogs != null)
+        'SupportsLogExportsToCloudwatchLogs':
+            supportsLogExportsToCloudwatchLogs,
+      if (validUpgradeTarget != null) 'ValidUpgradeTarget': validUpgradeTarget,
+    };
+  }
 }
 
 /// Represents the output of <a>DescribeDBEngineVersions</a>.
@@ -5178,6 +5552,15 @@ class DBEngineVersionMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBEngineVersions = this.dBEngineVersions;
+    final marker = this.marker;
+    return {
+      if (dBEngineVersions != null) 'DBEngineVersions': dBEngineVersions,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -5366,6 +5749,76 @@ class DBInstance {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoMinorVersionUpgrade = this.autoMinorVersionUpgrade;
+    final availabilityZone = this.availabilityZone;
+    final backupRetentionPeriod = this.backupRetentionPeriod;
+    final cACertificateIdentifier = this.cACertificateIdentifier;
+    final copyTagsToSnapshot = this.copyTagsToSnapshot;
+    final dBClusterIdentifier = this.dBClusterIdentifier;
+    final dBInstanceArn = this.dBInstanceArn;
+    final dBInstanceClass = this.dBInstanceClass;
+    final dBInstanceIdentifier = this.dBInstanceIdentifier;
+    final dBInstanceStatus = this.dBInstanceStatus;
+    final dBSubnetGroup = this.dBSubnetGroup;
+    final dbiResourceId = this.dbiResourceId;
+    final enabledCloudwatchLogsExports = this.enabledCloudwatchLogsExports;
+    final endpoint = this.endpoint;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final instanceCreateTime = this.instanceCreateTime;
+    final kmsKeyId = this.kmsKeyId;
+    final latestRestorableTime = this.latestRestorableTime;
+    final pendingModifiedValues = this.pendingModifiedValues;
+    final preferredBackupWindow = this.preferredBackupWindow;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final promotionTier = this.promotionTier;
+    final publiclyAccessible = this.publiclyAccessible;
+    final statusInfos = this.statusInfos;
+    final storageEncrypted = this.storageEncrypted;
+    final vpcSecurityGroups = this.vpcSecurityGroups;
+    return {
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade,
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (backupRetentionPeriod != null)
+        'BackupRetentionPeriod': backupRetentionPeriod,
+      if (cACertificateIdentifier != null)
+        'CACertificateIdentifier': cACertificateIdentifier,
+      if (copyTagsToSnapshot != null) 'CopyTagsToSnapshot': copyTagsToSnapshot,
+      if (dBClusterIdentifier != null)
+        'DBClusterIdentifier': dBClusterIdentifier,
+      if (dBInstanceArn != null) 'DBInstanceArn': dBInstanceArn,
+      if (dBInstanceClass != null) 'DBInstanceClass': dBInstanceClass,
+      if (dBInstanceIdentifier != null)
+        'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (dBInstanceStatus != null) 'DBInstanceStatus': dBInstanceStatus,
+      if (dBSubnetGroup != null) 'DBSubnetGroup': dBSubnetGroup,
+      if (dbiResourceId != null) 'DbiResourceId': dbiResourceId,
+      if (enabledCloudwatchLogsExports != null)
+        'EnabledCloudwatchLogsExports': enabledCloudwatchLogsExports,
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (instanceCreateTime != null)
+        'InstanceCreateTime': iso8601ToJson(instanceCreateTime),
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (latestRestorableTime != null)
+        'LatestRestorableTime': iso8601ToJson(latestRestorableTime),
+      if (pendingModifiedValues != null)
+        'PendingModifiedValues': pendingModifiedValues,
+      if (preferredBackupWindow != null)
+        'PreferredBackupWindow': preferredBackupWindow,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (promotionTier != null) 'PromotionTier': promotionTier,
+      if (publiclyAccessible != null) 'PubliclyAccessible': publiclyAccessible,
+      if (statusInfos != null) 'StatusInfos': statusInfos,
+      if (storageEncrypted != null) 'StorageEncrypted': storageEncrypted,
+      if (vpcSecurityGroups != null) 'VpcSecurityGroups': vpcSecurityGroups,
+    };
+  }
 }
 
 /// Represents the output of <a>DescribeDBInstances</a>.
@@ -5388,6 +5841,15 @@ class DBInstanceMessage {
           elem.findElements('DBInstance').map(DBInstance.fromXml).toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBInstances = this.dBInstances;
+    final marker = this.marker;
+    return {
+      if (dBInstances != null) 'DBInstances': dBInstances,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -5422,6 +5884,19 @@ class DBInstanceStatusInfo {
       status: _s.extractXmlStringValue(elem, 'Status'),
       statusType: _s.extractXmlStringValue(elem, 'StatusType'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final normal = this.normal;
+    final status = this.status;
+    final statusType = this.statusType;
+    return {
+      if (message != null) 'Message': message,
+      if (normal != null) 'Normal': normal,
+      if (status != null) 'Status': status,
+      if (statusType != null) 'StatusType': statusType,
+    };
   }
 }
 
@@ -5465,6 +5940,24 @@ class DBSubnetGroup {
       vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBSubnetGroupArn = this.dBSubnetGroupArn;
+    final dBSubnetGroupDescription = this.dBSubnetGroupDescription;
+    final dBSubnetGroupName = this.dBSubnetGroupName;
+    final subnetGroupStatus = this.subnetGroupStatus;
+    final subnets = this.subnets;
+    final vpcId = this.vpcId;
+    return {
+      if (dBSubnetGroupArn != null) 'DBSubnetGroupArn': dBSubnetGroupArn,
+      if (dBSubnetGroupDescription != null)
+        'DBSubnetGroupDescription': dBSubnetGroupDescription,
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (subnetGroupStatus != null) 'SubnetGroupStatus': subnetGroupStatus,
+      if (subnets != null) 'Subnets': subnets,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 /// Represents the output of <a>DescribeDBSubnetGroups</a>.
@@ -5491,6 +5984,15 @@ class DBSubnetGroupMessage {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBSubnetGroups = this.dBSubnetGroups;
+    final marker = this.marker;
+    return {
+      if (dBSubnetGroups != null) 'DBSubnetGroups': dBSubnetGroups,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 class DeleteDBClusterResult {
@@ -5503,6 +6005,13 @@ class DeleteDBClusterResult {
     return DeleteDBClusterResult(
       dBCluster: _s.extractXmlChild(elem, 'DBCluster')?.let(DBCluster.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -5519,6 +6028,13 @@ class DeleteDBClusterSnapshotResult {
           ?.let(DBClusterSnapshot.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterSnapshot = this.dBClusterSnapshot;
+    return {
+      if (dBClusterSnapshot != null) 'DBClusterSnapshot': dBClusterSnapshot,
+    };
+  }
 }
 
 class DeleteDBInstanceResult {
@@ -5532,6 +6048,13 @@ class DeleteDBInstanceResult {
       dBInstance:
           _s.extractXmlChild(elem, 'DBInstance')?.let(DBInstance.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBInstance = this.dBInstance;
+    return {
+      if (dBInstance != null) 'DBInstance': dBInstance,
+    };
   }
 }
 
@@ -5548,6 +6071,13 @@ class DeleteEventSubscriptionResult {
           ?.let(EventSubscription.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
+  }
 }
 
 class DeleteGlobalClusterResult {
@@ -5561,6 +6091,13 @@ class DeleteGlobalClusterResult {
       globalCluster:
           _s.extractXmlChild(elem, 'GlobalCluster')?.let(GlobalCluster.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalCluster = this.globalCluster;
+    return {
+      if (globalCluster != null) 'GlobalCluster': globalCluster,
+    };
   }
 }
 
@@ -5578,6 +6115,15 @@ class DescribeDBClusterSnapshotAttributesResult {
           ?.let(DBClusterSnapshotAttributesResult.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterSnapshotAttributesResult =
+        this.dBClusterSnapshotAttributesResult;
+    return {
+      if (dBClusterSnapshotAttributesResult != null)
+        'DBClusterSnapshotAttributesResult': dBClusterSnapshotAttributesResult,
+    };
+  }
 }
 
 class DescribeEngineDefaultClusterParametersResult {
@@ -5593,6 +6139,13 @@ class DescribeEngineDefaultClusterParametersResult {
           .extractXmlChild(elem, 'EngineDefaults')
           ?.let(EngineDefaults.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final engineDefaults = this.engineDefaults;
+    return {
+      if (engineDefaults != null) 'EngineDefaults': engineDefaults,
+    };
   }
 }
 
@@ -5619,6 +6172,17 @@ class Endpoint {
       hostedZoneId: _s.extractXmlStringValue(elem, 'HostedZoneId'),
       port: _s.extractXmlIntValue(elem, 'Port'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final hostedZoneId = this.hostedZoneId;
+    final port = this.port;
+    return {
+      if (address != null) 'Address': address,
+      if (hostedZoneId != null) 'HostedZoneId': hostedZoneId,
+      if (port != null) 'Port': port,
+    };
   }
 }
 
@@ -5650,6 +6214,18 @@ class EngineDefaults {
       parameters: _s.extractXmlChild(elem, 'Parameters')?.let((elem) =>
           elem.findElements('Parameter').map(Parameter.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBParameterGroupFamily = this.dBParameterGroupFamily;
+    final marker = this.marker;
+    final parameters = this.parameters;
+    return {
+      if (dBParameterGroupFamily != null)
+        'DBParameterGroupFamily': dBParameterGroupFamily,
+      if (marker != null) 'Marker': marker,
+      if (parameters != null) 'Parameters': parameters,
+    };
   }
 }
 
@@ -5693,6 +6269,23 @@ class Event {
       sourceType: _s.extractXmlStringValue(elem, 'SourceType')?.toSourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final eventCategories = this.eventCategories;
+    final message = this.message;
+    final sourceArn = this.sourceArn;
+    final sourceIdentifier = this.sourceIdentifier;
+    final sourceType = this.sourceType;
+    return {
+      if (date != null) 'Date': iso8601ToJson(date),
+      if (eventCategories != null) 'EventCategories': eventCategories,
+      if (message != null) 'Message': message,
+      if (sourceArn != null) 'SourceArn': sourceArn,
+      if (sourceIdentifier != null) 'SourceIdentifier': sourceIdentifier,
+      if (sourceType != null) 'SourceType': sourceType.toValue(),
+    };
+  }
 }
 
 /// An event source type, accompanied by one or more event category names.
@@ -5715,6 +6308,15 @@ class EventCategoriesMap {
       sourceType: _s.extractXmlStringValue(elem, 'SourceType'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventCategories = this.eventCategories;
+    final sourceType = this.sourceType;
+    return {
+      if (eventCategories != null) 'EventCategories': eventCategories,
+      if (sourceType != null) 'SourceType': sourceType,
+    };
+  }
 }
 
 /// Represents the output of <a>DescribeEventCategories</a>.
@@ -5734,6 +6336,14 @@ class EventCategoriesMessage {
               .map(EventCategoriesMap.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventCategoriesMapList = this.eventCategoriesMapList;
+    return {
+      if (eventCategoriesMapList != null)
+        'EventCategoriesMapList': eventCategoriesMapList,
+    };
   }
 }
 
@@ -5817,6 +6427,34 @@ class EventSubscription {
           _s.extractXmlStringValue(elem, 'SubscriptionCreationTime'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final custSubscriptionId = this.custSubscriptionId;
+    final customerAwsId = this.customerAwsId;
+    final enabled = this.enabled;
+    final eventCategoriesList = this.eventCategoriesList;
+    final eventSubscriptionArn = this.eventSubscriptionArn;
+    final snsTopicArn = this.snsTopicArn;
+    final sourceIdsList = this.sourceIdsList;
+    final sourceType = this.sourceType;
+    final status = this.status;
+    final subscriptionCreationTime = this.subscriptionCreationTime;
+    return {
+      if (custSubscriptionId != null) 'CustSubscriptionId': custSubscriptionId,
+      if (customerAwsId != null) 'CustomerAwsId': customerAwsId,
+      if (enabled != null) 'Enabled': enabled,
+      if (eventCategoriesList != null)
+        'EventCategoriesList': eventCategoriesList,
+      if (eventSubscriptionArn != null)
+        'EventSubscriptionArn': eventSubscriptionArn,
+      if (snsTopicArn != null) 'SnsTopicArn': snsTopicArn,
+      if (sourceIdsList != null) 'SourceIdsList': sourceIdsList,
+      if (sourceType != null) 'SourceType': sourceType,
+      if (status != null) 'Status': status,
+      if (subscriptionCreationTime != null)
+        'SubscriptionCreationTime': subscriptionCreationTime,
+    };
+  }
 }
 
 /// Represents the output of <a>DescribeEventSubscriptions</a>.
@@ -5844,6 +6482,16 @@ class EventSubscriptionsMessage {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscriptionsList = this.eventSubscriptionsList;
+    final marker = this.marker;
+    return {
+      if (eventSubscriptionsList != null)
+        'EventSubscriptionsList': eventSubscriptionsList,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Represents the output of <a>DescribeEvents</a>.
@@ -5867,6 +6515,15 @@ class EventsMessage {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final marker = this.marker;
+    return {
+      if (events != null) 'Events': events,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 class FailoverDBClusterResult {
@@ -5879,6 +6536,13 @@ class FailoverDBClusterResult {
     return FailoverDBClusterResult(
       dBCluster: _s.extractXmlChild(elem, 'DBCluster')?.let(DBCluster.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -5898,6 +6562,7 @@ class Filter {
     required this.name,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -5977,6 +6642,34 @@ class GlobalCluster {
       storageEncrypted: _s.extractXmlBoolValue(elem, 'StorageEncrypted'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final databaseName = this.databaseName;
+    final deletionProtection = this.deletionProtection;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final globalClusterArn = this.globalClusterArn;
+    final globalClusterIdentifier = this.globalClusterIdentifier;
+    final globalClusterMembers = this.globalClusterMembers;
+    final globalClusterResourceId = this.globalClusterResourceId;
+    final status = this.status;
+    final storageEncrypted = this.storageEncrypted;
+    return {
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (deletionProtection != null) 'DeletionProtection': deletionProtection,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (globalClusterArn != null) 'GlobalClusterArn': globalClusterArn,
+      if (globalClusterIdentifier != null)
+        'GlobalClusterIdentifier': globalClusterIdentifier,
+      if (globalClusterMembers != null)
+        'GlobalClusterMembers': globalClusterMembers,
+      if (globalClusterResourceId != null)
+        'GlobalClusterResourceId': globalClusterResourceId,
+      if (status != null) 'Status': status,
+      if (storageEncrypted != null) 'StorageEncrypted': storageEncrypted,
+    };
+  }
 }
 
 /// A data structure with information about any primary and secondary clusters
@@ -6008,6 +6701,17 @@ class GlobalClusterMember {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterArn = this.dBClusterArn;
+    final isWriter = this.isWriter;
+    final readers = this.readers;
+    return {
+      if (dBClusterArn != null) 'DBClusterArn': dBClusterArn,
+      if (isWriter != null) 'IsWriter': isWriter,
+      if (readers != null) 'Readers': readers,
+    };
+  }
 }
 
 class GlobalClustersMessage {
@@ -6031,6 +6735,15 @@ class GlobalClustersMessage {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalClusters = this.globalClusters;
+    final marker = this.marker;
+    return {
+      if (globalClusters != null) 'GlobalClusters': globalClusters,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 class ModifyDBClusterResult {
@@ -6043,6 +6756,13 @@ class ModifyDBClusterResult {
     return ModifyDBClusterResult(
       dBCluster: _s.extractXmlChild(elem, 'DBCluster')?.let(DBCluster.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -6059,6 +6779,15 @@ class ModifyDBClusterSnapshotAttributeResult {
           ?.let(DBClusterSnapshotAttributesResult.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBClusterSnapshotAttributesResult =
+        this.dBClusterSnapshotAttributesResult;
+    return {
+      if (dBClusterSnapshotAttributesResult != null)
+        'DBClusterSnapshotAttributesResult': dBClusterSnapshotAttributesResult,
+    };
+  }
 }
 
 class ModifyDBInstanceResult {
@@ -6073,6 +6802,13 @@ class ModifyDBInstanceResult {
           _s.extractXmlChild(elem, 'DBInstance')?.let(DBInstance.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBInstance = this.dBInstance;
+    return {
+      if (dBInstance != null) 'DBInstance': dBInstance,
+    };
+  }
 }
 
 class ModifyDBSubnetGroupResult {
@@ -6086,6 +6822,13 @@ class ModifyDBSubnetGroupResult {
       dBSubnetGroup:
           _s.extractXmlChild(elem, 'DBSubnetGroup')?.let(DBSubnetGroup.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBSubnetGroup = this.dBSubnetGroup;
+    return {
+      if (dBSubnetGroup != null) 'DBSubnetGroup': dBSubnetGroup,
+    };
   }
 }
 
@@ -6102,6 +6845,13 @@ class ModifyEventSubscriptionResult {
           ?.let(EventSubscription.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
+  }
 }
 
 class ModifyGlobalClusterResult {
@@ -6115,6 +6865,13 @@ class ModifyGlobalClusterResult {
       globalCluster:
           _s.extractXmlChild(elem, 'GlobalCluster')?.let(GlobalCluster.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalCluster = this.globalCluster;
+    return {
+      if (globalCluster != null) 'GlobalCluster': globalCluster,
+    };
   }
 }
 
@@ -6160,6 +6917,23 @@ class OrderableDBInstanceOption {
       vpc: _s.extractXmlBoolValue(elem, 'Vpc'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final dBInstanceClass = this.dBInstanceClass;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final licenseModel = this.licenseModel;
+    final vpc = this.vpc;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (dBInstanceClass != null) 'DBInstanceClass': dBInstanceClass,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (licenseModel != null) 'LicenseModel': licenseModel,
+      if (vpc != null) 'Vpc': vpc,
+    };
+  }
 }
 
 /// Represents the output of <a>DescribeOrderableDBInstanceOptions</a>.
@@ -6186,6 +6960,16 @@ class OrderableDBInstanceOptionsMessage {
               .map(OrderableDBInstanceOption.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final orderableDBInstanceOptions = this.orderableDBInstanceOptions;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (orderableDBInstanceOptions != null)
+        'OrderableDBInstanceOptions': orderableDBInstanceOptions,
+    };
   }
 }
 
@@ -6304,6 +7088,15 @@ class PendingCloudwatchLogsExports {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logTypesToDisable = this.logTypesToDisable;
+    final logTypesToEnable = this.logTypesToEnable;
+    return {
+      if (logTypesToDisable != null) 'LogTypesToDisable': logTypesToDisable,
+      if (logTypesToEnable != null) 'LogTypesToEnable': logTypesToEnable,
+    };
+  }
 }
 
 /// Provides information about a pending maintenance action for a resource.
@@ -6353,6 +7146,26 @@ class PendingMaintenanceAction {
       optInStatus: _s.extractXmlStringValue(elem, 'OptInStatus'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final autoAppliedAfterDate = this.autoAppliedAfterDate;
+    final currentApplyDate = this.currentApplyDate;
+    final description = this.description;
+    final forcedApplyDate = this.forcedApplyDate;
+    final optInStatus = this.optInStatus;
+    return {
+      if (action != null) 'Action': action,
+      if (autoAppliedAfterDate != null)
+        'AutoAppliedAfterDate': iso8601ToJson(autoAppliedAfterDate),
+      if (currentApplyDate != null)
+        'CurrentApplyDate': iso8601ToJson(currentApplyDate),
+      if (description != null) 'Description': description,
+      if (forcedApplyDate != null)
+        'ForcedApplyDate': iso8601ToJson(forcedApplyDate),
+      if (optInStatus != null) 'OptInStatus': optInStatus,
+    };
+  }
 }
 
 /// Represents the output of <a>DescribePendingMaintenanceActions</a>.
@@ -6379,6 +7192,16 @@ class PendingMaintenanceActionsMessage {
               .map(ResourcePendingMaintenanceActions.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final pendingMaintenanceActions = this.pendingMaintenanceActions;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (pendingMaintenanceActions != null)
+        'PendingMaintenanceActions': pendingMaintenanceActions,
+    };
   }
 }
 
@@ -6477,6 +7300,43 @@ class PendingModifiedValues {
       storageType: _s.extractXmlStringValue(elem, 'StorageType'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allocatedStorage = this.allocatedStorage;
+    final backupRetentionPeriod = this.backupRetentionPeriod;
+    final cACertificateIdentifier = this.cACertificateIdentifier;
+    final dBInstanceClass = this.dBInstanceClass;
+    final dBInstanceIdentifier = this.dBInstanceIdentifier;
+    final dBSubnetGroupName = this.dBSubnetGroupName;
+    final engineVersion = this.engineVersion;
+    final iops = this.iops;
+    final licenseModel = this.licenseModel;
+    final masterUserPassword = this.masterUserPassword;
+    final multiAZ = this.multiAZ;
+    final pendingCloudwatchLogsExports = this.pendingCloudwatchLogsExports;
+    final port = this.port;
+    final storageType = this.storageType;
+    return {
+      if (allocatedStorage != null) 'AllocatedStorage': allocatedStorage,
+      if (backupRetentionPeriod != null)
+        'BackupRetentionPeriod': backupRetentionPeriod,
+      if (cACertificateIdentifier != null)
+        'CACertificateIdentifier': cACertificateIdentifier,
+      if (dBInstanceClass != null) 'DBInstanceClass': dBInstanceClass,
+      if (dBInstanceIdentifier != null)
+        'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (iops != null) 'Iops': iops,
+      if (licenseModel != null) 'LicenseModel': licenseModel,
+      if (masterUserPassword != null) 'MasterUserPassword': masterUserPassword,
+      if (multiAZ != null) 'MultiAZ': multiAZ,
+      if (pendingCloudwatchLogsExports != null)
+        'PendingCloudwatchLogsExports': pendingCloudwatchLogsExports,
+      if (port != null) 'Port': port,
+      if (storageType != null) 'StorageType': storageType,
+    };
+  }
 }
 
 class RebootDBInstanceResult {
@@ -6491,6 +7351,13 @@ class RebootDBInstanceResult {
           _s.extractXmlChild(elem, 'DBInstance')?.let(DBInstance.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBInstance = this.dBInstance;
+    return {
+      if (dBInstance != null) 'DBInstance': dBInstance,
+    };
+  }
 }
 
 class RemoveFromGlobalClusterResult {
@@ -6504,6 +7371,13 @@ class RemoveFromGlobalClusterResult {
       globalCluster:
           _s.extractXmlChild(elem, 'GlobalCluster')?.let(GlobalCluster.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalCluster = this.globalCluster;
+    return {
+      if (globalCluster != null) 'GlobalCluster': globalCluster,
+    };
   }
 }
 
@@ -6520,6 +7394,13 @@ class RemoveSourceIdentifierFromSubscriptionResult {
           .extractXmlChild(elem, 'EventSubscription')
           ?.let(EventSubscription.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
   }
 }
 
@@ -6548,6 +7429,17 @@ class ResourcePendingMaintenanceActions {
       resourceIdentifier: _s.extractXmlStringValue(elem, 'ResourceIdentifier'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pendingMaintenanceActionDetails =
+        this.pendingMaintenanceActionDetails;
+    final resourceIdentifier = this.resourceIdentifier;
+    return {
+      if (pendingMaintenanceActionDetails != null)
+        'PendingMaintenanceActionDetails': pendingMaintenanceActionDetails,
+      if (resourceIdentifier != null) 'ResourceIdentifier': resourceIdentifier,
+    };
+  }
 }
 
 class RestoreDBClusterFromSnapshotResult {
@@ -6561,6 +7453,13 @@ class RestoreDBClusterFromSnapshotResult {
       dBCluster: _s.extractXmlChild(elem, 'DBCluster')?.let(DBCluster.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
+  }
 }
 
 class RestoreDBClusterToPointInTimeResult {
@@ -6573,6 +7472,13 @@ class RestoreDBClusterToPointInTimeResult {
     return RestoreDBClusterToPointInTimeResult(
       dBCluster: _s.extractXmlChild(elem, 'DBCluster')?.let(DBCluster.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -6635,6 +7541,13 @@ class StartDBClusterResult {
       dBCluster: _s.extractXmlChild(elem, 'DBCluster')?.let(DBCluster.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
+  }
 }
 
 class StopDBClusterResult {
@@ -6647,6 +7560,13 @@ class StopDBClusterResult {
     return StopDBClusterResult(
       dBCluster: _s.extractXmlChild(elem, 'DBCluster')?.let(DBCluster.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dBCluster = this.dBCluster;
+    return {
+      if (dBCluster != null) 'DBCluster': dBCluster,
+    };
   }
 }
 
@@ -6674,6 +7594,18 @@ class Subnet {
       subnetIdentifier: _s.extractXmlStringValue(elem, 'SubnetIdentifier'),
       subnetStatus: _s.extractXmlStringValue(elem, 'SubnetStatus'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subnetAvailabilityZone = this.subnetAvailabilityZone;
+    final subnetIdentifier = this.subnetIdentifier;
+    final subnetStatus = this.subnetStatus;
+    return {
+      if (subnetAvailabilityZone != null)
+        'SubnetAvailabilityZone': subnetAvailabilityZone,
+      if (subnetIdentifier != null) 'SubnetIdentifier': subnetIdentifier,
+      if (subnetStatus != null) 'SubnetStatus': subnetStatus,
+    };
   }
 }
 
@@ -6730,6 +7662,13 @@ class TagListMessage {
           ?.let((elem) => elem.findElements('Tag').map(Tag.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      if (tagList != null) 'TagList': tagList,
+    };
+  }
 }
 
 /// The version of the database engine that an instance can be upgraded to.
@@ -6769,6 +7708,22 @@ class UpgradeTarget {
           _s.extractXmlBoolValue(elem, 'IsMajorVersionUpgrade'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoUpgrade = this.autoUpgrade;
+    final description = this.description;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final isMajorVersionUpgrade = this.isMajorVersionUpgrade;
+    return {
+      if (autoUpgrade != null) 'AutoUpgrade': autoUpgrade,
+      if (description != null) 'Description': description,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (isMajorVersionUpgrade != null)
+        'IsMajorVersionUpgrade': isMajorVersionUpgrade,
+    };
+  }
 }
 
 /// Used as a response element for queries on virtual private cloud (VPC)
@@ -6789,6 +7744,15 @@ class VpcSecurityGroupMembership {
       status: _s.extractXmlStringValue(elem, 'Status'),
       vpcSecurityGroupId: _s.extractXmlStringValue(elem, 'VpcSecurityGroupId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final vpcSecurityGroupId = this.vpcSecurityGroupId;
+    return {
+      if (status != null) 'Status': status,
+      if (vpcSecurityGroupId != null) 'VpcSecurityGroupId': vpcSecurityGroupId,
+    };
   }
 }
 

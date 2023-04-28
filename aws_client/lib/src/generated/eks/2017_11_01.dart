@@ -2212,6 +2212,32 @@ class Addon {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addonArn = this.addonArn;
+    final addonName = this.addonName;
+    final addonVersion = this.addonVersion;
+    final clusterName = this.clusterName;
+    final createdAt = this.createdAt;
+    final health = this.health;
+    final modifiedAt = this.modifiedAt;
+    final serviceAccountRoleArn = this.serviceAccountRoleArn;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (addonArn != null) 'addonArn': addonArn,
+      if (addonName != null) 'addonName': addonName,
+      if (addonVersion != null) 'addonVersion': addonVersion,
+      if (clusterName != null) 'clusterName': clusterName,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (health != null) 'health': health,
+      if (modifiedAt != null) 'modifiedAt': unixTimestampToJson(modifiedAt),
+      if (serviceAccountRoleArn != null)
+        'serviceAccountRoleArn': serviceAccountRoleArn,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// The health of the add-on.
@@ -2229,6 +2255,13 @@ class AddonHealth {
           .map((e) => AddonIssue.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final issues = this.issues;
+    return {
+      if (issues != null) 'issues': issues,
+    };
   }
 }
 
@@ -2259,6 +2292,17 @@ class AddonInfo {
       type: json['type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addonName = this.addonName;
+    final addonVersions = this.addonVersions;
+    final type = this.type;
+    return {
+      if (addonName != null) 'addonName': addonName,
+      if (addonVersions != null) 'addonVersions': addonVersions,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 /// An issue related to an add-on.
@@ -2286,6 +2330,17 @@ class AddonIssue {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    final resourceIds = this.resourceIds;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+      if (resourceIds != null) 'resourceIds': resourceIds,
+    };
   }
 }
 
@@ -2429,6 +2484,17 @@ class AddonVersionInfo {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addonVersion = this.addonVersion;
+    final architecture = this.architecture;
+    final compatibilities = this.compatibilities;
+    return {
+      if (addonVersion != null) 'addonVersion': addonVersion,
+      if (architecture != null) 'architecture': architecture,
+      if (compatibilities != null) 'compatibilities': compatibilities,
+    };
+  }
 }
 
 class AssociateEncryptionConfigResponse {
@@ -2444,6 +2510,13 @@ class AssociateEncryptionConfigResponse {
           ? Update.fromJson(json['update'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final update = this.update;
+    return {
+      if (update != null) 'update': update,
+    };
   }
 }
 
@@ -2466,6 +2539,15 @@ class AssociateIdentityProviderConfigResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final update = this.update;
+    return {
+      if (tags != null) 'tags': tags,
+      if (update != null) 'update': update,
+    };
+  }
 }
 
 /// An Auto Scaling group that is associated with an Amazon EKS managed node
@@ -2482,6 +2564,13 @@ class AutoScalingGroup {
     return AutoScalingGroup(
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -2528,6 +2617,13 @@ class Certificate {
     return Certificate(
       data: json['data'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = this.data;
+    return {
+      if (data != null) 'data': data,
+    };
   }
 }
 
@@ -2659,6 +2755,47 @@ class Cluster {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final certificateAuthority = this.certificateAuthority;
+    final clientRequestToken = this.clientRequestToken;
+    final connectorConfig = this.connectorConfig;
+    final createdAt = this.createdAt;
+    final encryptionConfig = this.encryptionConfig;
+    final endpoint = this.endpoint;
+    final identity = this.identity;
+    final kubernetesNetworkConfig = this.kubernetesNetworkConfig;
+    final logging = this.logging;
+    final name = this.name;
+    final platformVersion = this.platformVersion;
+    final resourcesVpcConfig = this.resourcesVpcConfig;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    final tags = this.tags;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (certificateAuthority != null)
+        'certificateAuthority': certificateAuthority,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (connectorConfig != null) 'connectorConfig': connectorConfig,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (encryptionConfig != null) 'encryptionConfig': encryptionConfig,
+      if (endpoint != null) 'endpoint': endpoint,
+      if (identity != null) 'identity': identity,
+      if (kubernetesNetworkConfig != null)
+        'kubernetesNetworkConfig': kubernetesNetworkConfig,
+      if (logging != null) 'logging': logging,
+      if (name != null) 'name': name,
+      if (platformVersion != null) 'platformVersion': platformVersion,
+      if (resourcesVpcConfig != null) 'resourcesVpcConfig': resourcesVpcConfig,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 enum ClusterStatus {
@@ -2734,6 +2871,17 @@ class Compatibility {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterVersion = this.clusterVersion;
+    final defaultVersion = this.defaultVersion;
+    final platformVersions = this.platformVersions;
+    return {
+      if (clusterVersion != null) 'clusterVersion': clusterVersion,
+      if (defaultVersion != null) 'defaultVersion': defaultVersion,
+      if (platformVersions != null) 'platformVersions': platformVersions,
+    };
   }
 }
 
@@ -2813,6 +2961,7 @@ class ConnectorConfigRequest {
     required this.provider,
     required this.roleArn,
   });
+
   Map<String, dynamic> toJson() {
     final provider = this.provider;
     final roleArn = this.roleArn;
@@ -2858,6 +3007,22 @@ class ConnectorConfigResponse {
       roleArn: json['roleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activationCode = this.activationCode;
+    final activationExpiry = this.activationExpiry;
+    final activationId = this.activationId;
+    final provider = this.provider;
+    final roleArn = this.roleArn;
+    return {
+      if (activationCode != null) 'activationCode': activationCode,
+      if (activationExpiry != null)
+        'activationExpiry': unixTimestampToJson(activationExpiry),
+      if (activationId != null) 'activationId': activationId,
+      if (provider != null) 'provider': provider,
+      if (roleArn != null) 'roleArn': roleArn,
+    };
+  }
 }
 
 class CreateAddonResponse {
@@ -2872,6 +3037,13 @@ class CreateAddonResponse {
           ? Addon.fromJson(json['addon'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final addon = this.addon;
+    return {
+      if (addon != null) 'addon': addon,
+    };
   }
 }
 
@@ -2888,6 +3060,13 @@ class CreateClusterResponse {
           ? Cluster.fromJson(json['cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'cluster': cluster,
+    };
   }
 }
 
@@ -2906,6 +3085,13 @@ class CreateFargateProfileResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fargateProfile = this.fargateProfile;
+    return {
+      if (fargateProfile != null) 'fargateProfile': fargateProfile,
+    };
+  }
 }
 
 class CreateNodegroupResponse {
@@ -2922,6 +3108,13 @@ class CreateNodegroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nodegroup = this.nodegroup;
+    return {
+      if (nodegroup != null) 'nodegroup': nodegroup,
+    };
+  }
 }
 
 class DeleteAddonResponse {
@@ -2936,6 +3129,13 @@ class DeleteAddonResponse {
           ? Addon.fromJson(json['addon'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final addon = this.addon;
+    return {
+      if (addon != null) 'addon': addon,
+    };
   }
 }
 
@@ -2952,6 +3152,13 @@ class DeleteClusterResponse {
           ? Cluster.fromJson(json['cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'cluster': cluster,
+    };
   }
 }
 
@@ -2970,6 +3177,13 @@ class DeleteFargateProfileResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fargateProfile = this.fargateProfile;
+    return {
+      if (fargateProfile != null) 'fargateProfile': fargateProfile,
+    };
+  }
 }
 
 class DeleteNodegroupResponse {
@@ -2986,6 +3200,13 @@ class DeleteNodegroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nodegroup = this.nodegroup;
+    return {
+      if (nodegroup != null) 'nodegroup': nodegroup,
+    };
+  }
 }
 
 class DeregisterClusterResponse {
@@ -3001,6 +3222,13 @@ class DeregisterClusterResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'cluster': cluster,
+    };
+  }
 }
 
 class DescribeAddonResponse {
@@ -3015,6 +3243,13 @@ class DescribeAddonResponse {
           ? Addon.fromJson(json['addon'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final addon = this.addon;
+    return {
+      if (addon != null) 'addon': addon,
+    };
   }
 }
 
@@ -3046,6 +3281,15 @@ class DescribeAddonVersionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addons = this.addons;
+    final nextToken = this.nextToken;
+    return {
+      if (addons != null) 'addons': addons,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeClusterResponse {
@@ -3061,6 +3305,13 @@ class DescribeClusterResponse {
           ? Cluster.fromJson(json['cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'cluster': cluster,
+    };
   }
 }
 
@@ -3078,6 +3329,13 @@ class DescribeFargateProfileResponse {
               json['fargateProfile'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fargateProfile = this.fargateProfile;
+    return {
+      if (fargateProfile != null) 'fargateProfile': fargateProfile,
+    };
   }
 }
 
@@ -3098,6 +3356,14 @@ class DescribeIdentityProviderConfigResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityProviderConfig = this.identityProviderConfig;
+    return {
+      if (identityProviderConfig != null)
+        'identityProviderConfig': identityProviderConfig,
+    };
+  }
 }
 
 class DescribeNodegroupResponse {
@@ -3113,6 +3379,13 @@ class DescribeNodegroupResponse {
           ? Nodegroup.fromJson(json['nodegroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nodegroup = this.nodegroup;
+    return {
+      if (nodegroup != null) 'nodegroup': nodegroup,
+    };
   }
 }
 
@@ -3130,6 +3403,13 @@ class DescribeUpdateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final update = this.update;
+    return {
+      if (update != null) 'update': update,
+    };
+  }
 }
 
 class DisassociateIdentityProviderConfigResponse {
@@ -3145,6 +3425,13 @@ class DisassociateIdentityProviderConfigResponse {
           ? Update.fromJson(json['update'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final update = this.update;
+    return {
+      if (update != null) 'update': update,
+    };
   }
 }
 
@@ -3342,6 +3629,17 @@ class ErrorDetail {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final resourceIds = this.resourceIds;
+    return {
+      if (errorCode != null) 'errorCode': errorCode.toValue(),
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (resourceIds != null) 'resourceIds': resourceIds,
+    };
+  }
 }
 
 /// An object representing an Fargate profile.
@@ -3413,6 +3711,30 @@ class FargateProfile {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterName = this.clusterName;
+    final createdAt = this.createdAt;
+    final fargateProfileArn = this.fargateProfileArn;
+    final fargateProfileName = this.fargateProfileName;
+    final podExecutionRoleArn = this.podExecutionRoleArn;
+    final selectors = this.selectors;
+    final status = this.status;
+    final subnets = this.subnets;
+    final tags = this.tags;
+    return {
+      if (clusterName != null) 'clusterName': clusterName,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (fargateProfileArn != null) 'fargateProfileArn': fargateProfileArn,
+      if (fargateProfileName != null) 'fargateProfileName': fargateProfileName,
+      if (podExecutionRoleArn != null)
+        'podExecutionRoleArn': podExecutionRoleArn,
+      if (selectors != null) 'selectors': selectors,
+      if (status != null) 'status': status.toValue(),
+      if (subnets != null) 'subnets': subnets,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3507,6 +3829,13 @@ class Identity {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final oidc = this.oidc;
+    return {
+      if (oidc != null) 'oidc': oidc,
+    };
+  }
 }
 
 /// An object representing an identity provider configuration.
@@ -3555,6 +3884,13 @@ class IdentityProviderConfigResponse {
               json['oidc'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final oidc = this.oidc;
+    return {
+      if (oidc != null) 'oidc': oidc,
+    };
   }
 }
 
@@ -3696,6 +4032,17 @@ class Issue {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    final resourceIds = this.resourceIds;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+      if (resourceIds != null) 'resourceIds': resourceIds,
+    };
+  }
 }
 
 /// The Kubernetes network configuration for the cluster.
@@ -3748,6 +4095,7 @@ class KubernetesNetworkConfigRequest {
     this.ipFamily,
     this.serviceIpv4Cidr,
   });
+
   Map<String, dynamic> toJson() {
     final ipFamily = this.ipFamily;
     final serviceIpv4Cidr = this.serviceIpv4Cidr;
@@ -3795,6 +4143,17 @@ class KubernetesNetworkConfigResponse {
       serviceIpv4Cidr: json['serviceIpv4Cidr'] as String?,
       serviceIpv6Cidr: json['serviceIpv6Cidr'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ipFamily = this.ipFamily;
+    final serviceIpv4Cidr = this.serviceIpv4Cidr;
+    final serviceIpv6Cidr = this.serviceIpv6Cidr;
+    return {
+      if (ipFamily != null) 'ipFamily': ipFamily.toValue(),
+      if (serviceIpv4Cidr != null) 'serviceIpv4Cidr': serviceIpv4Cidr,
+      if (serviceIpv6Cidr != null) 'serviceIpv6Cidr': serviceIpv6Cidr,
+    };
   }
 }
 
@@ -3882,6 +4241,15 @@ class ListAddonsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addons = this.addons;
+    final nextToken = this.nextToken;
+    return {
+      if (addons != null) 'addons': addons,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListClustersResponse {
@@ -3908,6 +4276,15 @@ class ListClustersResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusters = this.clusters;
+    final nextToken = this.nextToken;
+    return {
+      if (clusters != null) 'clusters': clusters,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListFargateProfilesResponse {
@@ -3933,6 +4310,16 @@ class ListFargateProfilesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fargateProfileNames = this.fargateProfileNames;
+    final nextToken = this.nextToken;
+    return {
+      if (fargateProfileNames != null)
+        'fargateProfileNames': fargateProfileNames,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3962,6 +4349,16 @@ class ListIdentityProviderConfigsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityProviderConfigs = this.identityProviderConfigs;
+    final nextToken = this.nextToken;
+    return {
+      if (identityProviderConfigs != null)
+        'identityProviderConfigs': identityProviderConfigs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListNodegroupsResponse {
@@ -3988,6 +4385,15 @@ class ListNodegroupsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final nodegroups = this.nodegroups;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (nodegroups != null) 'nodegroups': nodegroups,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -4002,6 +4408,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4028,6 +4441,15 @@ class ListUpdatesResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final updateIds = this.updateIds;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (updateIds != null) 'updateIds': updateIds,
+    };
   }
 }
 
@@ -4323,6 +4745,57 @@ class Nodegroup {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amiType = this.amiType;
+    final capacityType = this.capacityType;
+    final clusterName = this.clusterName;
+    final createdAt = this.createdAt;
+    final diskSize = this.diskSize;
+    final health = this.health;
+    final instanceTypes = this.instanceTypes;
+    final labels = this.labels;
+    final launchTemplate = this.launchTemplate;
+    final modifiedAt = this.modifiedAt;
+    final nodeRole = this.nodeRole;
+    final nodegroupArn = this.nodegroupArn;
+    final nodegroupName = this.nodegroupName;
+    final releaseVersion = this.releaseVersion;
+    final remoteAccess = this.remoteAccess;
+    final resources = this.resources;
+    final scalingConfig = this.scalingConfig;
+    final status = this.status;
+    final subnets = this.subnets;
+    final tags = this.tags;
+    final taints = this.taints;
+    final updateConfig = this.updateConfig;
+    final version = this.version;
+    return {
+      if (amiType != null) 'amiType': amiType.toValue(),
+      if (capacityType != null) 'capacityType': capacityType.toValue(),
+      if (clusterName != null) 'clusterName': clusterName,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (diskSize != null) 'diskSize': diskSize,
+      if (health != null) 'health': health,
+      if (instanceTypes != null) 'instanceTypes': instanceTypes,
+      if (labels != null) 'labels': labels,
+      if (launchTemplate != null) 'launchTemplate': launchTemplate,
+      if (modifiedAt != null) 'modifiedAt': unixTimestampToJson(modifiedAt),
+      if (nodeRole != null) 'nodeRole': nodeRole,
+      if (nodegroupArn != null) 'nodegroupArn': nodegroupArn,
+      if (nodegroupName != null) 'nodegroupName': nodegroupName,
+      if (releaseVersion != null) 'releaseVersion': releaseVersion,
+      if (remoteAccess != null) 'remoteAccess': remoteAccess,
+      if (resources != null) 'resources': resources,
+      if (scalingConfig != null) 'scalingConfig': scalingConfig,
+      if (status != null) 'status': status.toValue(),
+      if (subnets != null) 'subnets': subnets,
+      if (tags != null) 'tags': tags,
+      if (taints != null) 'taints': taints,
+      if (updateConfig != null) 'updateConfig': updateConfig,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// An object representing the health status of the node group.
@@ -4340,6 +4813,13 @@ class NodegroupHealth {
           .map((e) => Issue.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final issues = this.issues;
+    return {
+      if (issues != null) 'issues': issues,
+    };
   }
 }
 
@@ -4478,6 +4958,16 @@ class NodegroupResources {
           .toList(),
       remoteAccessSecurityGroup: json['remoteAccessSecurityGroup'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingGroups = this.autoScalingGroups;
+    final remoteAccessSecurityGroup = this.remoteAccessSecurityGroup;
+    return {
+      if (autoScalingGroups != null) 'autoScalingGroups': autoScalingGroups,
+      if (remoteAccessSecurityGroup != null)
+        'remoteAccessSecurityGroup': remoteAccessSecurityGroup,
+    };
   }
 }
 
@@ -4645,6 +5135,13 @@ class OIDC {
       issuer: json['issuer'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final issuer = this.issuer;
+    return {
+      if (issuer != null) 'issuer': issuer,
+    };
+  }
 }
 
 /// An object that represents the configuration for an OpenID Connect (OIDC)
@@ -4729,6 +5226,37 @@ class OidcIdentityProviderConfig {
       usernamePrefix: json['usernamePrefix'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientId = this.clientId;
+    final clusterName = this.clusterName;
+    final groupsClaim = this.groupsClaim;
+    final groupsPrefix = this.groupsPrefix;
+    final identityProviderConfigArn = this.identityProviderConfigArn;
+    final identityProviderConfigName = this.identityProviderConfigName;
+    final issuerUrl = this.issuerUrl;
+    final requiredClaims = this.requiredClaims;
+    final status = this.status;
+    final tags = this.tags;
+    final usernameClaim = this.usernameClaim;
+    final usernamePrefix = this.usernamePrefix;
+    return {
+      if (clientId != null) 'clientId': clientId,
+      if (clusterName != null) 'clusterName': clusterName,
+      if (groupsClaim != null) 'groupsClaim': groupsClaim,
+      if (groupsPrefix != null) 'groupsPrefix': groupsPrefix,
+      if (identityProviderConfigArn != null)
+        'identityProviderConfigArn': identityProviderConfigArn,
+      if (identityProviderConfigName != null)
+        'identityProviderConfigName': identityProviderConfigName,
+      if (issuerUrl != null) 'issuerUrl': issuerUrl,
+      if (requiredClaims != null) 'requiredClaims': requiredClaims,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+      if (usernameClaim != null) 'usernameClaim': usernameClaim,
+      if (usernamePrefix != null) 'usernamePrefix': usernamePrefix,
+    };
+  }
 }
 
 /// An object representing an OpenID Connect (OIDC) configuration. Before
@@ -4797,6 +5325,7 @@ class OidcIdentityProviderConfigRequest {
     this.usernameClaim,
     this.usernamePrefix,
   });
+
   Map<String, dynamic> toJson() {
     final clientId = this.clientId;
     final identityProviderConfigName = this.identityProviderConfigName;
@@ -4859,6 +5388,13 @@ class RegisterClusterResponse {
           ? Cluster.fromJson(json['cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'cluster': cluster,
+    };
   }
 }
 
@@ -4939,6 +5475,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A property that allows a node to repel a set of pods. For more information,
@@ -5018,6 +5558,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An object representing an asynchronous update.
@@ -5064,6 +5608,23 @@ class Update {
       type: (json['type'] as String?)?.toUpdateType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final errors = this.errors;
+    final id = this.id;
+    final params = this.params;
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (errors != null) 'errors': errors,
+      if (id != null) 'id': id,
+      if (params != null) 'params': params,
+      if (status != null) 'status': status.toValue(),
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 class UpdateAddonResponse {
@@ -5079,6 +5640,13 @@ class UpdateAddonResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final update = this.update;
+    return {
+      if (update != null) 'update': update,
+    };
+  }
 }
 
 class UpdateClusterConfigResponse {
@@ -5093,6 +5661,13 @@ class UpdateClusterConfigResponse {
           ? Update.fromJson(json['update'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final update = this.update;
+    return {
+      if (update != null) 'update': update,
+    };
   }
 }
 
@@ -5110,6 +5685,13 @@ class UpdateClusterVersionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final update = this.update;
+    return {
+      if (update != null) 'update': update,
+    };
+  }
 }
 
 /// An object representing a Kubernetes label change for a managed node group.
@@ -5124,6 +5706,7 @@ class UpdateLabelsPayload {
     this.addOrUpdateLabels,
     this.removeLabels,
   });
+
   Map<String, dynamic> toJson() {
     final addOrUpdateLabels = this.addOrUpdateLabels;
     final removeLabels = this.removeLabels;
@@ -5147,6 +5730,13 @@ class UpdateNodegroupConfigResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final update = this.update;
+    return {
+      if (update != null) 'update': update,
+    };
+  }
 }
 
 class UpdateNodegroupVersionResponse {
@@ -5161,6 +5751,13 @@ class UpdateNodegroupVersionResponse {
           ? Update.fromJson(json['update'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final update = this.update;
+    return {
+      if (update != null) 'update': update,
+    };
   }
 }
 
@@ -5181,6 +5778,15 @@ class UpdateParam {
       type: (json['type'] as String?)?.toUpdateParamType(),
       value: json['value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final value = this.value;
+    return {
+      if (type != null) 'type': type.toValue(),
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -5370,6 +5976,7 @@ class UpdateTaintsPayload {
     this.addOrUpdateTaints,
     this.removeTaints,
   });
+
   Map<String, dynamic> toJson() {
     final addOrUpdateTaints = this.addOrUpdateTaints;
     final removeTaints = this.removeTaints;
@@ -5509,6 +6116,7 @@ class VpcConfigRequest {
     this.securityGroupIds,
     this.subnetIds,
   });
+
   Map<String, dynamic> toJson() {
     final endpointPrivateAccess = this.endpointPrivateAccess;
     final endpointPublicAccess = this.endpointPublicAccess;
@@ -5602,6 +6210,28 @@ class VpcConfigResponse {
           .toList(),
       vpcId: json['vpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterSecurityGroupId = this.clusterSecurityGroupId;
+    final endpointPrivateAccess = this.endpointPrivateAccess;
+    final endpointPublicAccess = this.endpointPublicAccess;
+    final publicAccessCidrs = this.publicAccessCidrs;
+    final securityGroupIds = this.securityGroupIds;
+    final subnetIds = this.subnetIds;
+    final vpcId = this.vpcId;
+    return {
+      if (clusterSecurityGroupId != null)
+        'clusterSecurityGroupId': clusterSecurityGroupId,
+      if (endpointPrivateAccess != null)
+        'endpointPrivateAccess': endpointPrivateAccess,
+      if (endpointPublicAccess != null)
+        'endpointPublicAccess': endpointPublicAccess,
+      if (publicAccessCidrs != null) 'publicAccessCidrs': publicAccessCidrs,
+      if (securityGroupIds != null) 'securityGroupIds': securityGroupIds,
+      if (subnetIds != null) 'subnetIds': subnetIds,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
   }
 }
 

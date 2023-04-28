@@ -4491,6 +4491,15 @@ class ActivitiesType {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activities = this.activities;
+    final nextToken = this.nextToken;
+    return {
+      'Activities': activities,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Describes scaling activity, which is a long-running process that represents
@@ -4569,6 +4578,37 @@ class Activity {
       statusMessage: _s.extractXmlStringValue(elem, 'StatusMessage'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activityId = this.activityId;
+    final autoScalingGroupName = this.autoScalingGroupName;
+    final cause = this.cause;
+    final startTime = this.startTime;
+    final statusCode = this.statusCode;
+    final autoScalingGroupARN = this.autoScalingGroupARN;
+    final autoScalingGroupState = this.autoScalingGroupState;
+    final description = this.description;
+    final details = this.details;
+    final endTime = this.endTime;
+    final progress = this.progress;
+    final statusMessage = this.statusMessage;
+    return {
+      'ActivityId': activityId,
+      'AutoScalingGroupName': autoScalingGroupName,
+      'Cause': cause,
+      'StartTime': iso8601ToJson(startTime),
+      'StatusCode': statusCode.toValue(),
+      if (autoScalingGroupARN != null)
+        'AutoScalingGroupARN': autoScalingGroupARN,
+      if (autoScalingGroupState != null)
+        'AutoScalingGroupState': autoScalingGroupState,
+      if (description != null) 'Description': description,
+      if (details != null) 'Details': details,
+      if (endTime != null) 'EndTime': iso8601ToJson(endTime),
+      if (progress != null) 'Progress': progress,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 class ActivityType {
@@ -4582,6 +4622,13 @@ class ActivityType {
     return ActivityType(
       activity: _s.extractXmlChild(elem, 'Activity')?.let(Activity.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activity = this.activity;
+    return {
+      if (activity != null) 'Activity': activity,
+    };
   }
 }
 
@@ -4599,6 +4646,13 @@ class AdjustmentType {
     return AdjustmentType(
       adjustmentType: _s.extractXmlStringValue(elem, 'AdjustmentType'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final adjustmentType = this.adjustmentType;
+    return {
+      if (adjustmentType != null) 'AdjustmentType': adjustmentType,
+    };
   }
 }
 
@@ -4620,6 +4674,15 @@ class Alarm {
       alarmName: _s.extractXmlStringValue(elem, 'AlarmName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarmARN = this.alarmARN;
+    final alarmName = this.alarmName;
+    return {
+      if (alarmARN != null) 'AlarmARN': alarmARN,
+      if (alarmName != null) 'AlarmName': alarmName,
+    };
+  }
 }
 
 class AttachLoadBalancerTargetGroupsResultType {
@@ -4629,6 +4692,10 @@ class AttachLoadBalancerTargetGroupsResultType {
       _s.XmlElement elem) {
     return AttachLoadBalancerTargetGroupsResultType();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AttachLoadBalancersResultType {
@@ -4637,6 +4704,10 @@ class AttachLoadBalancersResultType {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return AttachLoadBalancersResultType();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4852,6 +4923,89 @@ class AutoScalingGroup {
       warmPoolSize: _s.extractXmlIntValue(elem, 'WarmPoolSize'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingGroupName = this.autoScalingGroupName;
+    final availabilityZones = this.availabilityZones;
+    final createdTime = this.createdTime;
+    final defaultCooldown = this.defaultCooldown;
+    final desiredCapacity = this.desiredCapacity;
+    final healthCheckType = this.healthCheckType;
+    final maxSize = this.maxSize;
+    final minSize = this.minSize;
+    final autoScalingGroupARN = this.autoScalingGroupARN;
+    final capacityRebalance = this.capacityRebalance;
+    final context = this.context;
+    final defaultInstanceWarmup = this.defaultInstanceWarmup;
+    final desiredCapacityType = this.desiredCapacityType;
+    final enabledMetrics = this.enabledMetrics;
+    final healthCheckGracePeriod = this.healthCheckGracePeriod;
+    final instances = this.instances;
+    final launchConfigurationName = this.launchConfigurationName;
+    final launchTemplate = this.launchTemplate;
+    final loadBalancerNames = this.loadBalancerNames;
+    final maxInstanceLifetime = this.maxInstanceLifetime;
+    final mixedInstancesPolicy = this.mixedInstancesPolicy;
+    final newInstancesProtectedFromScaleIn =
+        this.newInstancesProtectedFromScaleIn;
+    final placementGroup = this.placementGroup;
+    final predictedCapacity = this.predictedCapacity;
+    final serviceLinkedRoleARN = this.serviceLinkedRoleARN;
+    final status = this.status;
+    final suspendedProcesses = this.suspendedProcesses;
+    final tags = this.tags;
+    final targetGroupARNs = this.targetGroupARNs;
+    final terminationPolicies = this.terminationPolicies;
+    final vPCZoneIdentifier = this.vPCZoneIdentifier;
+    final warmPoolConfiguration = this.warmPoolConfiguration;
+    final warmPoolSize = this.warmPoolSize;
+    return {
+      'AutoScalingGroupName': autoScalingGroupName,
+      'AvailabilityZones': availabilityZones,
+      'CreatedTime': iso8601ToJson(createdTime),
+      'DefaultCooldown': defaultCooldown,
+      'DesiredCapacity': desiredCapacity,
+      'HealthCheckType': healthCheckType,
+      'MaxSize': maxSize,
+      'MinSize': minSize,
+      if (autoScalingGroupARN != null)
+        'AutoScalingGroupARN': autoScalingGroupARN,
+      if (capacityRebalance != null) 'CapacityRebalance': capacityRebalance,
+      if (context != null) 'Context': context,
+      if (defaultInstanceWarmup != null)
+        'DefaultInstanceWarmup': defaultInstanceWarmup,
+      if (desiredCapacityType != null)
+        'DesiredCapacityType': desiredCapacityType,
+      if (enabledMetrics != null) 'EnabledMetrics': enabledMetrics,
+      if (healthCheckGracePeriod != null)
+        'HealthCheckGracePeriod': healthCheckGracePeriod,
+      if (instances != null) 'Instances': instances,
+      if (launchConfigurationName != null)
+        'LaunchConfigurationName': launchConfigurationName,
+      if (launchTemplate != null) 'LaunchTemplate': launchTemplate,
+      if (loadBalancerNames != null) 'LoadBalancerNames': loadBalancerNames,
+      if (maxInstanceLifetime != null)
+        'MaxInstanceLifetime': maxInstanceLifetime,
+      if (mixedInstancesPolicy != null)
+        'MixedInstancesPolicy': mixedInstancesPolicy,
+      if (newInstancesProtectedFromScaleIn != null)
+        'NewInstancesProtectedFromScaleIn': newInstancesProtectedFromScaleIn,
+      if (placementGroup != null) 'PlacementGroup': placementGroup,
+      if (predictedCapacity != null) 'PredictedCapacity': predictedCapacity,
+      if (serviceLinkedRoleARN != null)
+        'ServiceLinkedRoleARN': serviceLinkedRoleARN,
+      if (status != null) 'Status': status,
+      if (suspendedProcesses != null) 'SuspendedProcesses': suspendedProcesses,
+      if (tags != null) 'Tags': tags,
+      if (targetGroupARNs != null) 'TargetGroupARNs': targetGroupARNs,
+      if (terminationPolicies != null)
+        'TerminationPolicies': terminationPolicies,
+      if (vPCZoneIdentifier != null) 'VPCZoneIdentifier': vPCZoneIdentifier,
+      if (warmPoolConfiguration != null)
+        'WarmPoolConfiguration': warmPoolConfiguration,
+      if (warmPoolSize != null) 'WarmPoolSize': warmPoolSize,
+    };
+  }
 }
 
 class AutoScalingGroupsType {
@@ -4877,6 +5031,15 @@ class AutoScalingGroupsType {
           .toList(),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingGroups = this.autoScalingGroups;
+    final nextToken = this.nextToken;
+    return {
+      'AutoScalingGroups': autoScalingGroups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4966,6 +5129,32 @@ class AutoScalingInstanceDetails {
       weightedCapacity: _s.extractXmlStringValue(elem, 'WeightedCapacity'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingGroupName = this.autoScalingGroupName;
+    final availabilityZone = this.availabilityZone;
+    final healthStatus = this.healthStatus;
+    final instanceId = this.instanceId;
+    final lifecycleState = this.lifecycleState;
+    final protectedFromScaleIn = this.protectedFromScaleIn;
+    final instanceType = this.instanceType;
+    final launchConfigurationName = this.launchConfigurationName;
+    final launchTemplate = this.launchTemplate;
+    final weightedCapacity = this.weightedCapacity;
+    return {
+      'AutoScalingGroupName': autoScalingGroupName,
+      'AvailabilityZone': availabilityZone,
+      'HealthStatus': healthStatus,
+      'InstanceId': instanceId,
+      'LifecycleState': lifecycleState,
+      'ProtectedFromScaleIn': protectedFromScaleIn,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (launchConfigurationName != null)
+        'LaunchConfigurationName': launchConfigurationName,
+      if (launchTemplate != null) 'LaunchTemplate': launchTemplate,
+      if (weightedCapacity != null) 'WeightedCapacity': weightedCapacity,
+    };
+  }
 }
 
 class AutoScalingInstancesType {
@@ -4992,6 +5181,16 @@ class AutoScalingInstancesType {
               .toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingInstances = this.autoScalingInstances;
+    final nextToken = this.nextToken;
+    return {
+      if (autoScalingInstances != null)
+        'AutoScalingInstances': autoScalingInstances,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5077,6 +5276,14 @@ class BatchDeleteScheduledActionAnswer {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedScheduledActions = this.failedScheduledActions;
+    return {
+      if (failedScheduledActions != null)
+        'FailedScheduledActions': failedScheduledActions,
+    };
+  }
 }
 
 class BatchPutScheduledUpdateGroupActionAnswer {
@@ -5097,6 +5304,15 @@ class BatchPutScheduledUpdateGroupActionAnswer {
               .map(FailedScheduledUpdateGroupActionRequest.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedScheduledUpdateGroupActions =
+        this.failedScheduledUpdateGroupActions;
+    return {
+      if (failedScheduledUpdateGroupActions != null)
+        'FailedScheduledUpdateGroupActions': failedScheduledUpdateGroupActions,
+    };
   }
 }
 
@@ -5206,6 +5422,13 @@ class CancelInstanceRefreshAnswer {
       instanceRefreshId: _s.extractXmlStringValue(elem, 'InstanceRefreshId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceRefreshId = this.instanceRefreshId;
+    return {
+      if (instanceRefreshId != null) 'InstanceRefreshId': instanceRefreshId,
+    };
+  }
 }
 
 /// A <code>GetPredictiveScalingForecast</code> call returns the capacity
@@ -5231,6 +5454,15 @@ class CapacityForecast {
           _s.extractXmlChild(elem, 'Values')!, 'member'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final timestamps = this.timestamps;
+    final values = this.values;
+    return {
+      'Timestamps': timestamps.map(unixTimestampToJson).toList(),
+      'Values': values,
+    };
+  }
 }
 
 class CompleteLifecycleActionAnswer {
@@ -5239,6 +5471,10 @@ class CompleteLifecycleActionAnswer {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CompleteLifecycleActionAnswer();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5374,6 +5610,10 @@ class DeleteLifecycleHookAnswer {
       _s.XmlElement elem) {
     return DeleteLifecycleHookAnswer();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteWarmPoolAnswer {
@@ -5382,6 +5622,10 @@ class DeleteWarmPoolAnswer {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteWarmPoolAnswer();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5418,6 +5662,24 @@ class DescribeAccountLimitsAnswer {
           _s.extractXmlIntValue(elem, 'NumberOfLaunchConfigurations'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final maxNumberOfAutoScalingGroups = this.maxNumberOfAutoScalingGroups;
+    final maxNumberOfLaunchConfigurations =
+        this.maxNumberOfLaunchConfigurations;
+    final numberOfAutoScalingGroups = this.numberOfAutoScalingGroups;
+    final numberOfLaunchConfigurations = this.numberOfLaunchConfigurations;
+    return {
+      if (maxNumberOfAutoScalingGroups != null)
+        'MaxNumberOfAutoScalingGroups': maxNumberOfAutoScalingGroups,
+      if (maxNumberOfLaunchConfigurations != null)
+        'MaxNumberOfLaunchConfigurations': maxNumberOfLaunchConfigurations,
+      if (numberOfAutoScalingGroups != null)
+        'NumberOfAutoScalingGroups': numberOfAutoScalingGroups,
+      if (numberOfLaunchConfigurations != null)
+        'NumberOfLaunchConfigurations': numberOfLaunchConfigurations,
+    };
+  }
 }
 
 class DescribeAdjustmentTypesAnswer {
@@ -5433,6 +5695,13 @@ class DescribeAdjustmentTypesAnswer {
           (elem) =>
               elem.findElements('member').map(AdjustmentType.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final adjustmentTypes = this.adjustmentTypes;
+    return {
+      if (adjustmentTypes != null) 'AdjustmentTypes': adjustmentTypes,
+    };
   }
 }
 
@@ -5450,6 +5719,14 @@ class DescribeAutoScalingNotificationTypesAnswer {
           .extractXmlChild(elem, 'AutoScalingNotificationTypes')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingNotificationTypes = this.autoScalingNotificationTypes;
+    return {
+      if (autoScalingNotificationTypes != null)
+        'AutoScalingNotificationTypes': autoScalingNotificationTypes,
+    };
   }
 }
 
@@ -5478,6 +5755,15 @@ class DescribeInstanceRefreshesAnswer {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceRefreshes = this.instanceRefreshes;
+    final nextToken = this.nextToken;
+    return {
+      if (instanceRefreshes != null) 'InstanceRefreshes': instanceRefreshes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeLifecycleHookTypesAnswer {
@@ -5494,6 +5780,13 @@ class DescribeLifecycleHookTypesAnswer {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lifecycleHookTypes = this.lifecycleHookTypes;
+    return {
+      if (lifecycleHookTypes != null) 'LifecycleHookTypes': lifecycleHookTypes,
+    };
+  }
 }
 
 class DescribeLifecycleHooksAnswer {
@@ -5508,6 +5801,13 @@ class DescribeLifecycleHooksAnswer {
       lifecycleHooks: _s.extractXmlChild(elem, 'LifecycleHooks')?.let((elem) =>
           elem.findElements('member').map(LifecycleHook.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lifecycleHooks = this.lifecycleHooks;
+    return {
+      if (lifecycleHooks != null) 'LifecycleHooks': lifecycleHooks,
+    };
   }
 }
 
@@ -5536,6 +5836,16 @@ class DescribeLoadBalancerTargetGroupsResponse {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancerTargetGroups = this.loadBalancerTargetGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (loadBalancerTargetGroups != null)
+        'LoadBalancerTargetGroups': loadBalancerTargetGroups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeLoadBalancersResponse {
@@ -5558,6 +5868,15 @@ class DescribeLoadBalancersResponse {
           elem.findElements('member').map(LoadBalancerState.fromXml).toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancers = this.loadBalancers;
+    final nextToken = this.nextToken;
+    return {
+      if (loadBalancers != null) 'LoadBalancers': loadBalancers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5585,6 +5904,15 @@ class DescribeMetricCollectionTypesAnswer {
           .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final granularities = this.granularities;
+    final metrics = this.metrics;
+    return {
+      if (granularities != null) 'Granularities': granularities,
+      if (metrics != null) 'Metrics': metrics,
+    };
+  }
 }
 
 class DescribeNotificationConfigurationsAnswer {
@@ -5611,6 +5939,15 @@ class DescribeNotificationConfigurationsAnswer {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final notificationConfigurations = this.notificationConfigurations;
+    final nextToken = this.nextToken;
+    return {
+      'NotificationConfigurations': notificationConfigurations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeTerminationPolicyTypesAnswer {
@@ -5630,6 +5967,14 @@ class DescribeTerminationPolicyTypesAnswer {
           .extractXmlChild(elem, 'TerminationPolicyTypes')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final terminationPolicyTypes = this.terminationPolicyTypes;
+    return {
+      if (terminationPolicyTypes != null)
+        'TerminationPolicyTypes': terminationPolicyTypes,
+    };
   }
 }
 
@@ -5658,6 +6003,18 @@ class DescribeWarmPoolAnswer {
           .extractXmlChild(elem, 'WarmPoolConfiguration')
           ?.let(WarmPoolConfiguration.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    final nextToken = this.nextToken;
+    final warmPoolConfiguration = this.warmPoolConfiguration;
+    return {
+      if (instances != null) 'Instances': instances,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (warmPoolConfiguration != null)
+        'WarmPoolConfiguration': warmPoolConfiguration,
+    };
   }
 }
 
@@ -5709,6 +6066,13 @@ class DetachInstancesAnswer {
           (elem) => elem.findElements('member').map(Activity.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activities = this.activities;
+    return {
+      if (activities != null) 'Activities': activities,
+    };
+  }
 }
 
 class DetachLoadBalancerTargetGroupsResultType {
@@ -5718,6 +6082,10 @@ class DetachLoadBalancerTargetGroupsResultType {
       _s.XmlElement elem) {
     return DetachLoadBalancerTargetGroupsResultType();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DetachLoadBalancersResultType {
@@ -5726,6 +6094,10 @@ class DetachLoadBalancersResultType {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DetachLoadBalancersResultType();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5953,6 +6325,15 @@ class EnabledMetric {
       metric: _s.extractXmlStringValue(elem, 'Metric'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final granularity = this.granularity;
+    final metric = this.metric;
+    return {
+      if (granularity != null) 'Granularity': granularity,
+      if (metric != null) 'Metric': metric,
+    };
+  }
 }
 
 class EnterStandbyAnswer {
@@ -5968,6 +6349,13 @@ class EnterStandbyAnswer {
           (elem) => elem.findElements('member').map(Activity.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activities = this.activities;
+    return {
+      if (activities != null) 'Activities': activities,
+    };
+  }
 }
 
 class ExitStandbyAnswer {
@@ -5982,6 +6370,13 @@ class ExitStandbyAnswer {
       activities: _s.extractXmlChild(elem, 'Activities')?.let(
           (elem) => elem.findElements('member').map(Activity.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activities = this.activities;
+    return {
+      if (activities != null) 'Activities': activities,
+    };
   }
 }
 
@@ -6008,6 +6403,17 @@ class FailedScheduledUpdateGroupActionRequest {
       errorCode: _s.extractXmlStringValue(elem, 'ErrorCode'),
       errorMessage: _s.extractXmlStringValue(elem, 'ErrorMessage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final scheduledActionName = this.scheduledActionName;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    return {
+      'ScheduledActionName': scheduledActionName,
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+    };
   }
 }
 
@@ -6089,6 +6495,7 @@ class Filter {
     this.name,
     this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -6125,6 +6532,17 @@ class GetPredictiveScalingForecastAnswer {
           .toList(),
       updateTime: _s.extractXmlDateTimeValue(elem, 'UpdateTime')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final capacityForecast = this.capacityForecast;
+    final loadForecast = this.loadForecast;
+    final updateTime = this.updateTime;
+    return {
+      'CapacityForecast': capacityForecast,
+      'LoadForecast': loadForecast,
+      'UpdateTime': iso8601ToJson(updateTime),
+    };
   }
 }
 
@@ -6195,6 +6613,30 @@ class Instance {
           ?.let(LaunchTemplateSpecification.fromXml),
       weightedCapacity: _s.extractXmlStringValue(elem, 'WeightedCapacity'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final healthStatus = this.healthStatus;
+    final instanceId = this.instanceId;
+    final lifecycleState = this.lifecycleState;
+    final protectedFromScaleIn = this.protectedFromScaleIn;
+    final instanceType = this.instanceType;
+    final launchConfigurationName = this.launchConfigurationName;
+    final launchTemplate = this.launchTemplate;
+    final weightedCapacity = this.weightedCapacity;
+    return {
+      'AvailabilityZone': availabilityZone,
+      'HealthStatus': healthStatus,
+      'InstanceId': instanceId,
+      'LifecycleState': lifecycleState.toValue(),
+      'ProtectedFromScaleIn': protectedFromScaleIn,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (launchConfigurationName != null)
+        'LaunchConfigurationName': launchConfigurationName,
+      if (launchTemplate != null) 'LaunchTemplate': launchTemplate,
+      if (weightedCapacity != null) 'WeightedCapacity': weightedCapacity,
+    };
   }
 }
 
@@ -6475,6 +6917,35 @@ class InstanceRefresh {
       statusReason: _s.extractXmlStringValue(elem, 'StatusReason'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingGroupName = this.autoScalingGroupName;
+    final desiredConfiguration = this.desiredConfiguration;
+    final endTime = this.endTime;
+    final instanceRefreshId = this.instanceRefreshId;
+    final instancesToUpdate = this.instancesToUpdate;
+    final percentageComplete = this.percentageComplete;
+    final preferences = this.preferences;
+    final progressDetails = this.progressDetails;
+    final startTime = this.startTime;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (autoScalingGroupName != null)
+        'AutoScalingGroupName': autoScalingGroupName,
+      if (desiredConfiguration != null)
+        'DesiredConfiguration': desiredConfiguration,
+      if (endTime != null) 'EndTime': iso8601ToJson(endTime),
+      if (instanceRefreshId != null) 'InstanceRefreshId': instanceRefreshId,
+      if (instancesToUpdate != null) 'InstancesToUpdate': instancesToUpdate,
+      if (percentageComplete != null) 'PercentageComplete': percentageComplete,
+      if (preferences != null) 'Preferences': preferences,
+      if (progressDetails != null) 'ProgressDetails': progressDetails,
+      if (startTime != null) 'StartTime': iso8601ToJson(startTime),
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
+  }
 }
 
 /// Reports the progress of an instance refresh on instances that are in the
@@ -6499,6 +6970,15 @@ class InstanceRefreshLivePoolProgress {
       instancesToUpdate: _s.extractXmlIntValue(elem, 'InstancesToUpdate'),
       percentageComplete: _s.extractXmlIntValue(elem, 'PercentageComplete'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instancesToUpdate = this.instancesToUpdate;
+    final percentageComplete = this.percentageComplete;
+    return {
+      if (instancesToUpdate != null) 'InstancesToUpdate': instancesToUpdate,
+      if (percentageComplete != null) 'PercentageComplete': percentageComplete,
+    };
   }
 }
 
@@ -6527,6 +7007,15 @@ class InstanceRefreshProgressDetails {
           .extractXmlChild(elem, 'WarmPoolProgress')
           ?.let(InstanceRefreshWarmPoolProgress.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final livePoolProgress = this.livePoolProgress;
+    final warmPoolProgress = this.warmPoolProgress;
+    return {
+      if (livePoolProgress != null) 'LivePoolProgress': livePoolProgress,
+      if (warmPoolProgress != null) 'WarmPoolProgress': warmPoolProgress,
+    };
   }
 }
 
@@ -6600,6 +7089,15 @@ class InstanceRefreshWarmPoolProgress {
       instancesToUpdate: _s.extractXmlIntValue(elem, 'InstancesToUpdate'),
       percentageComplete: _s.extractXmlIntValue(elem, 'PercentageComplete'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instancesToUpdate = this.instancesToUpdate;
+    final percentageComplete = this.percentageComplete;
+    return {
+      if (instancesToUpdate != null) 'InstancesToUpdate': instancesToUpdate,
+      if (percentageComplete != null) 'PercentageComplete': percentageComplete,
+    };
   }
 }
 
@@ -7377,6 +7875,55 @@ class LaunchConfiguration {
       userData: _s.extractXmlStringValue(elem, 'UserData'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTime = this.createdTime;
+    final imageId = this.imageId;
+    final instanceType = this.instanceType;
+    final launchConfigurationName = this.launchConfigurationName;
+    final associatePublicIpAddress = this.associatePublicIpAddress;
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final classicLinkVPCId = this.classicLinkVPCId;
+    final classicLinkVPCSecurityGroups = this.classicLinkVPCSecurityGroups;
+    final ebsOptimized = this.ebsOptimized;
+    final iamInstanceProfile = this.iamInstanceProfile;
+    final instanceMonitoring = this.instanceMonitoring;
+    final kernelId = this.kernelId;
+    final keyName = this.keyName;
+    final launchConfigurationARN = this.launchConfigurationARN;
+    final metadataOptions = this.metadataOptions;
+    final placementTenancy = this.placementTenancy;
+    final ramdiskId = this.ramdiskId;
+    final securityGroups = this.securityGroups;
+    final spotPrice = this.spotPrice;
+    final userData = this.userData;
+    return {
+      'CreatedTime': iso8601ToJson(createdTime),
+      'ImageId': imageId,
+      'InstanceType': instanceType,
+      'LaunchConfigurationName': launchConfigurationName,
+      if (associatePublicIpAddress != null)
+        'AssociatePublicIpAddress': associatePublicIpAddress,
+      if (blockDeviceMappings != null)
+        'BlockDeviceMappings': blockDeviceMappings,
+      if (classicLinkVPCId != null) 'ClassicLinkVPCId': classicLinkVPCId,
+      if (classicLinkVPCSecurityGroups != null)
+        'ClassicLinkVPCSecurityGroups': classicLinkVPCSecurityGroups,
+      if (ebsOptimized != null) 'EbsOptimized': ebsOptimized,
+      if (iamInstanceProfile != null) 'IamInstanceProfile': iamInstanceProfile,
+      if (instanceMonitoring != null) 'InstanceMonitoring': instanceMonitoring,
+      if (kernelId != null) 'KernelId': kernelId,
+      if (keyName != null) 'KeyName': keyName,
+      if (launchConfigurationARN != null)
+        'LaunchConfigurationARN': launchConfigurationARN,
+      if (metadataOptions != null) 'MetadataOptions': metadataOptions,
+      if (placementTenancy != null) 'PlacementTenancy': placementTenancy,
+      if (ramdiskId != null) 'RamdiskId': ramdiskId,
+      if (securityGroups != null) 'SecurityGroups': securityGroups,
+      if (spotPrice != null) 'SpotPrice': spotPrice,
+      if (userData != null) 'UserData': userData,
+    };
+  }
 }
 
 class LaunchConfigurationsType {
@@ -7402,6 +7949,15 @@ class LaunchConfigurationsType {
           .toList(),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final launchConfigurations = this.launchConfigurations;
+    final nextToken = this.nextToken;
+    return {
+      'LaunchConfigurations': launchConfigurations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -7663,6 +8219,33 @@ class LifecycleHook {
       roleARN: _s.extractXmlStringValue(elem, 'RoleARN'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingGroupName = this.autoScalingGroupName;
+    final defaultResult = this.defaultResult;
+    final globalTimeout = this.globalTimeout;
+    final heartbeatTimeout = this.heartbeatTimeout;
+    final lifecycleHookName = this.lifecycleHookName;
+    final lifecycleTransition = this.lifecycleTransition;
+    final notificationMetadata = this.notificationMetadata;
+    final notificationTargetARN = this.notificationTargetARN;
+    final roleARN = this.roleARN;
+    return {
+      if (autoScalingGroupName != null)
+        'AutoScalingGroupName': autoScalingGroupName,
+      if (defaultResult != null) 'DefaultResult': defaultResult,
+      if (globalTimeout != null) 'GlobalTimeout': globalTimeout,
+      if (heartbeatTimeout != null) 'HeartbeatTimeout': heartbeatTimeout,
+      if (lifecycleHookName != null) 'LifecycleHookName': lifecycleHookName,
+      if (lifecycleTransition != null)
+        'LifecycleTransition': lifecycleTransition,
+      if (notificationMetadata != null)
+        'NotificationMetadata': notificationMetadata,
+      if (notificationTargetARN != null)
+        'NotificationTargetARN': notificationTargetARN,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 /// Describes information used to specify a lifecycle hook for an Auto Scaling
@@ -7733,6 +8316,7 @@ class LifecycleHookSpecification {
     this.notificationTargetARN,
     this.roleARN,
   });
+
   Map<String, dynamic> toJson() {
     final lifecycleHookName = this.lifecycleHookName;
     final lifecycleTransition = this.lifecycleTransition;
@@ -7931,6 +8515,15 @@ class LoadBalancerState {
       state: _s.extractXmlStringValue(elem, 'State'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancerName = this.loadBalancerName;
+    final state = this.state;
+    return {
+      if (loadBalancerName != null) 'LoadBalancerName': loadBalancerName,
+      if (state != null) 'State': state,
+    };
+  }
 }
 
 /// Describes the state of a target group.
@@ -7977,6 +8570,16 @@ class LoadBalancerTargetGroupState {
       state: _s.extractXmlStringValue(elem, 'State'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancerTargetGroupARN = this.loadBalancerTargetGroupARN;
+    final state = this.state;
+    return {
+      if (loadBalancerTargetGroupARN != null)
+        'LoadBalancerTargetGroupARN': loadBalancerTargetGroupARN,
+      if (state != null) 'State': state,
+    };
+  }
 }
 
 /// A <code>GetPredictiveScalingForecast</code> call returns the load forecast
@@ -8007,6 +8610,17 @@ class LoadForecast {
       values: _s.extractXmlDoubleListValues(
           _s.extractXmlChild(elem, 'Values')!, 'member'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricSpecification = this.metricSpecification;
+    final timestamps = this.timestamps;
+    final values = this.values;
+    return {
+      'MetricSpecification': metricSpecification,
+      'Timestamps': timestamps.map(unixTimestampToJson).toList(),
+      'Values': values,
+    };
   }
 }
 
@@ -8255,6 +8869,13 @@ class MetricCollectionType {
       metric: _s.extractXmlStringValue(elem, 'Metric'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metric = this.metric;
+    return {
+      if (metric != null) 'Metric': metric,
+    };
+  }
 }
 
 /// The metric data to return. Also defines whether this call is returning data
@@ -8386,6 +9007,13 @@ class MetricGranularityType {
     return MetricGranularityType(
       granularity: _s.extractXmlStringValue(elem, 'Granularity'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final granularity = this.granularity;
+    return {
+      if (granularity != null) 'Granularity': granularity,
+    };
   }
 }
 
@@ -8639,6 +9267,18 @@ class NotificationConfiguration {
       topicARN: _s.extractXmlStringValue(elem, 'TopicARN'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingGroupName = this.autoScalingGroupName;
+    final notificationType = this.notificationType;
+    final topicARN = this.topicARN;
+    return {
+      if (autoScalingGroupName != null)
+        'AutoScalingGroupName': autoScalingGroupName,
+      if (notificationType != null) 'NotificationType': notificationType,
+      if (topicARN != null) 'TopicARN': topicARN,
+    };
+  }
 }
 
 class PoliciesType {
@@ -8663,6 +9303,15 @@ class PoliciesType {
               elem.findElements('member').map(ScalingPolicy.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final scalingPolicies = this.scalingPolicies;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (scalingPolicies != null) 'ScalingPolicies': scalingPolicies,
+    };
+  }
 }
 
 /// Contains the output of PutScalingPolicy.
@@ -8683,6 +9332,15 @@ class PolicyARNType {
           (elem) => elem.findElements('member').map(Alarm.fromXml).toList()),
       policyARN: _s.extractXmlStringValue(elem, 'PolicyARN'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alarms = this.alarms;
+    final policyARN = this.policyARN;
+    return {
+      if (alarms != null) 'Alarms': alarms,
+      if (policyARN != null) 'PolicyARN': policyARN,
+    };
   }
 }
 
@@ -9515,6 +10173,13 @@ class ProcessType {
       processName: _s.extractXmlStringValue(elem, 'ProcessName')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final processName = this.processName;
+    return {
+      'ProcessName': processName,
+    };
+  }
 }
 
 class ProcessesType {
@@ -9530,6 +10195,13 @@ class ProcessesType {
           elem.findElements('member').map(ProcessType.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final processes = this.processes;
+    return {
+      if (processes != null) 'Processes': processes,
+    };
+  }
 }
 
 class PutLifecycleHookAnswer {
@@ -9538,6 +10210,10 @@ class PutLifecycleHookAnswer {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return PutLifecycleHookAnswer();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -9548,6 +10224,10 @@ class PutWarmPoolAnswer {
       _s.XmlElement elem) {
     return PutWarmPoolAnswer();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class RecordLifecycleActionHeartbeatAnswer {
@@ -9556,6 +10236,10 @@ class RecordLifecycleActionHeartbeatAnswer {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return RecordLifecycleActionHeartbeatAnswer();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -9876,6 +10560,49 @@ class ScalingPolicy {
           ?.let(TargetTrackingConfiguration.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adjustmentType = this.adjustmentType;
+    final alarms = this.alarms;
+    final autoScalingGroupName = this.autoScalingGroupName;
+    final cooldown = this.cooldown;
+    final enabled = this.enabled;
+    final estimatedInstanceWarmup = this.estimatedInstanceWarmup;
+    final metricAggregationType = this.metricAggregationType;
+    final minAdjustmentMagnitude = this.minAdjustmentMagnitude;
+    final minAdjustmentStep = this.minAdjustmentStep;
+    final policyARN = this.policyARN;
+    final policyName = this.policyName;
+    final policyType = this.policyType;
+    final predictiveScalingConfiguration = this.predictiveScalingConfiguration;
+    final scalingAdjustment = this.scalingAdjustment;
+    final stepAdjustments = this.stepAdjustments;
+    final targetTrackingConfiguration = this.targetTrackingConfiguration;
+    return {
+      if (adjustmentType != null) 'AdjustmentType': adjustmentType,
+      if (alarms != null) 'Alarms': alarms,
+      if (autoScalingGroupName != null)
+        'AutoScalingGroupName': autoScalingGroupName,
+      if (cooldown != null) 'Cooldown': cooldown,
+      if (enabled != null) 'Enabled': enabled,
+      if (estimatedInstanceWarmup != null)
+        'EstimatedInstanceWarmup': estimatedInstanceWarmup,
+      if (metricAggregationType != null)
+        'MetricAggregationType': metricAggregationType,
+      if (minAdjustmentMagnitude != null)
+        'MinAdjustmentMagnitude': minAdjustmentMagnitude,
+      if (minAdjustmentStep != null) 'MinAdjustmentStep': minAdjustmentStep,
+      if (policyARN != null) 'PolicyARN': policyARN,
+      if (policyName != null) 'PolicyName': policyName,
+      if (policyType != null) 'PolicyType': policyType,
+      if (predictiveScalingConfiguration != null)
+        'PredictiveScalingConfiguration': predictiveScalingConfiguration,
+      if (scalingAdjustment != null) 'ScalingAdjustment': scalingAdjustment,
+      if (stepAdjustments != null) 'StepAdjustments': stepAdjustments,
+      if (targetTrackingConfiguration != null)
+        'TargetTrackingConfiguration': targetTrackingConfiguration,
+    };
+  }
 }
 
 class ScheduledActionsType {
@@ -9902,6 +10629,16 @@ class ScheduledActionsType {
               .map(ScheduledUpdateGroupAction.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final scheduledUpdateGroupActions = this.scheduledUpdateGroupActions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (scheduledUpdateGroupActions != null)
+        'ScheduledUpdateGroupActions': scheduledUpdateGroupActions,
+    };
   }
 }
 
@@ -9977,6 +10714,35 @@ class ScheduledUpdateGroupAction {
       timeZone: _s.extractXmlStringValue(elem, 'TimeZone'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingGroupName = this.autoScalingGroupName;
+    final desiredCapacity = this.desiredCapacity;
+    final endTime = this.endTime;
+    final maxSize = this.maxSize;
+    final minSize = this.minSize;
+    final recurrence = this.recurrence;
+    final scheduledActionARN = this.scheduledActionARN;
+    final scheduledActionName = this.scheduledActionName;
+    final startTime = this.startTime;
+    final time = this.time;
+    final timeZone = this.timeZone;
+    return {
+      if (autoScalingGroupName != null)
+        'AutoScalingGroupName': autoScalingGroupName,
+      if (desiredCapacity != null) 'DesiredCapacity': desiredCapacity,
+      if (endTime != null) 'EndTime': iso8601ToJson(endTime),
+      if (maxSize != null) 'MaxSize': maxSize,
+      if (minSize != null) 'MinSize': minSize,
+      if (recurrence != null) 'Recurrence': recurrence,
+      if (scheduledActionARN != null) 'ScheduledActionARN': scheduledActionARN,
+      if (scheduledActionName != null)
+        'ScheduledActionName': scheduledActionName,
+      if (startTime != null) 'StartTime': iso8601ToJson(startTime),
+      if (time != null) 'Time': iso8601ToJson(time),
+      if (timeZone != null) 'TimeZone': timeZone,
+    };
+  }
 }
 
 /// Describes information used for one or more scheduled scaling action updates
@@ -10042,6 +10808,7 @@ class ScheduledUpdateGroupActionRequest {
     this.startTime,
     this.timeZone,
   });
+
   Map<String, dynamic> toJson() {
     final scheduledActionName = this.scheduledActionName;
     final desiredCapacity = this.desiredCapacity;
@@ -10071,6 +10838,10 @@ class SetInstanceProtectionAnswer {
       _s.XmlElement elem) {
     return SetInstanceProtectionAnswer();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class StartInstanceRefreshAnswer {
@@ -10084,6 +10855,13 @@ class StartInstanceRefreshAnswer {
     return StartInstanceRefreshAnswer(
       instanceRefreshId: _s.extractXmlStringValue(elem, 'InstanceRefreshId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceRefreshId = this.instanceRefreshId;
+    return {
+      if (instanceRefreshId != null) 'InstanceRefreshId': instanceRefreshId,
+    };
   }
 }
 
@@ -10206,6 +10984,15 @@ class SuspendedProcess {
       suspensionReason: _s.extractXmlStringValue(elem, 'SuspensionReason'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final processName = this.processName;
+    final suspensionReason = this.suspensionReason;
+    return {
+      if (processName != null) 'ProcessName': processName,
+      if (suspensionReason != null) 'SuspensionReason': suspensionReason,
+    };
+  }
 }
 
 /// Describes a tag for an Auto Scaling group.
@@ -10234,6 +11021,7 @@ class Tag {
     this.resourceType,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final propagateAtLaunch = this.propagateAtLaunch;
@@ -10285,6 +11073,21 @@ class TagDescription {
       value: _s.extractXmlStringValue(elem, 'Value'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final propagateAtLaunch = this.propagateAtLaunch;
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (propagateAtLaunch != null) 'PropagateAtLaunch': propagateAtLaunch,
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 class TagsType {
@@ -10307,6 +11110,15 @@ class TagsType {
       tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
           elem.findElements('member').map(TagDescription.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -10471,6 +11283,23 @@ class WarmPoolConfiguration {
       poolState: _s.extractXmlStringValue(elem, 'PoolState')?.toWarmPoolState(),
       status: _s.extractXmlStringValue(elem, 'Status')?.toWarmPoolStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceReusePolicy = this.instanceReusePolicy;
+    final maxGroupPreparedCapacity = this.maxGroupPreparedCapacity;
+    final minSize = this.minSize;
+    final poolState = this.poolState;
+    final status = this.status;
+    return {
+      if (instanceReusePolicy != null)
+        'InstanceReusePolicy': instanceReusePolicy,
+      if (maxGroupPreparedCapacity != null)
+        'MaxGroupPreparedCapacity': maxGroupPreparedCapacity,
+      if (minSize != null) 'MinSize': minSize,
+      if (poolState != null) 'PoolState': poolState.toValue(),
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 

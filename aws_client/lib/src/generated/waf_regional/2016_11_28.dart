@@ -6350,6 +6350,10 @@ class AssociateWebACLResponse {
   factory AssociateWebACLResponse.fromJson(Map<String, dynamic> _) {
     return AssociateWebACLResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// <note>
@@ -6411,6 +6415,17 @@ class ByteMatchSet {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final byteMatchSetId = this.byteMatchSetId;
+    final byteMatchTuples = this.byteMatchTuples;
+    final name = this.name;
+    return {
+      'ByteMatchSetId': byteMatchSetId,
+      'ByteMatchTuples': byteMatchTuples,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// <note>
@@ -6452,6 +6467,15 @@ class ByteMatchSetSummary {
       name: json['Name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final byteMatchSetId = this.byteMatchSetId;
+    final name = this.name;
+    return {
+      'ByteMatchSetId': byteMatchSetId,
+      'Name': name,
+    };
+  }
 }
 
 /// <note>
@@ -6484,6 +6508,7 @@ class ByteMatchSetUpdate {
     required this.action,
     required this.byteMatchTuple,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final byteMatchTuple = this.byteMatchTuple;
@@ -6903,6 +6928,15 @@ class CreateByteMatchSetResponse {
       changeToken: json['ChangeToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final byteMatchSet = this.byteMatchSet;
+    final changeToken = this.changeToken;
+    return {
+      if (byteMatchSet != null) 'ByteMatchSet': byteMatchSet,
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
+  }
 }
 
 class CreateGeoMatchSetResponse {
@@ -6929,6 +6963,15 @@ class CreateGeoMatchSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    final geoMatchSet = this.geoMatchSet;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+      if (geoMatchSet != null) 'GeoMatchSet': geoMatchSet,
+    };
+  }
 }
 
 class CreateIPSetResponse {
@@ -6952,6 +6995,15 @@ class CreateIPSetResponse {
           ? IPSet.fromJson(json['IPSet'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    final iPSet = this.iPSet;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+      if (iPSet != null) 'IPSet': iPSet,
+    };
   }
 }
 
@@ -6977,6 +7029,15 @@ class CreateRateBasedRuleResponse {
           ? RateBasedRule.fromJson(json['Rule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    final rule = this.rule;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+      if (rule != null) 'Rule': rule,
+    };
   }
 }
 
@@ -7004,6 +7065,15 @@ class CreateRegexMatchSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    final regexMatchSet = this.regexMatchSet;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+      if (regexMatchSet != null) 'RegexMatchSet': regexMatchSet,
+    };
+  }
 }
 
 class CreateRegexPatternSetResponse {
@@ -7029,6 +7099,15 @@ class CreateRegexPatternSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    final regexPatternSet = this.regexPatternSet;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+      if (regexPatternSet != null) 'RegexPatternSet': regexPatternSet,
+    };
+  }
 }
 
 class CreateRuleGroupResponse {
@@ -7053,6 +7132,15 @@ class CreateRuleGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    final ruleGroup = this.ruleGroup;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+      if (ruleGroup != null) 'RuleGroup': ruleGroup,
+    };
+  }
 }
 
 class CreateRuleResponse {
@@ -7076,6 +7164,15 @@ class CreateRuleResponse {
           ? Rule.fromJson(json['Rule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    final rule = this.rule;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+      if (rule != null) 'Rule': rule,
+    };
   }
 }
 
@@ -7102,6 +7199,15 @@ class CreateSizeConstraintSetResponse {
               json['SizeConstraintSet'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    final sizeConstraintSet = this.sizeConstraintSet;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+      if (sizeConstraintSet != null) 'SizeConstraintSet': sizeConstraintSet,
+    };
   }
 }
 
@@ -7130,6 +7236,16 @@ class CreateSqlInjectionMatchSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    final sqlInjectionMatchSet = this.sqlInjectionMatchSet;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+      if (sqlInjectionMatchSet != null)
+        'SqlInjectionMatchSet': sqlInjectionMatchSet,
+    };
+  }
 }
 
 class CreateWebACLMigrationStackResponse {
@@ -7144,6 +7260,13 @@ class CreateWebACLMigrationStackResponse {
     return CreateWebACLMigrationStackResponse(
       s3ObjectUrl: json['S3ObjectUrl'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final s3ObjectUrl = this.s3ObjectUrl;
+    return {
+      'S3ObjectUrl': s3ObjectUrl,
+    };
   }
 }
 
@@ -7168,6 +7291,15 @@ class CreateWebACLResponse {
           ? WebACL.fromJson(json['WebACL'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    final webACL = this.webACL;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+      if (webACL != null) 'WebACL': webACL,
+    };
   }
 }
 
@@ -7194,6 +7326,15 @@ class CreateXssMatchSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    final xssMatchSet = this.xssMatchSet;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+      if (xssMatchSet != null) 'XssMatchSet': xssMatchSet,
+    };
+  }
 }
 
 class DeleteByteMatchSetResponse {
@@ -7210,6 +7351,13 @@ class DeleteByteMatchSetResponse {
     return DeleteByteMatchSetResponse(
       changeToken: json['ChangeToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
   }
 }
 
@@ -7228,6 +7376,13 @@ class DeleteGeoMatchSetResponse {
       changeToken: json['ChangeToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
+  }
 }
 
 class DeleteIPSetResponse {
@@ -7245,6 +7400,13 @@ class DeleteIPSetResponse {
       changeToken: json['ChangeToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
+  }
 }
 
 class DeleteLoggingConfigurationResponse {
@@ -7252,12 +7414,20 @@ class DeleteLoggingConfigurationResponse {
   factory DeleteLoggingConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLoggingConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeletePermissionPolicyResponse {
   DeletePermissionPolicyResponse();
   factory DeletePermissionPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeletePermissionPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7276,6 +7446,13 @@ class DeleteRateBasedRuleResponse {
       changeToken: json['ChangeToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
+  }
 }
 
 class DeleteRegexMatchSetResponse {
@@ -7292,6 +7469,13 @@ class DeleteRegexMatchSetResponse {
     return DeleteRegexMatchSetResponse(
       changeToken: json['ChangeToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
   }
 }
 
@@ -7310,6 +7494,13 @@ class DeleteRegexPatternSetResponse {
       changeToken: json['ChangeToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
+  }
 }
 
 class DeleteRuleGroupResponse {
@@ -7326,6 +7517,13 @@ class DeleteRuleGroupResponse {
     return DeleteRuleGroupResponse(
       changeToken: json['ChangeToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
   }
 }
 
@@ -7344,6 +7542,13 @@ class DeleteRuleResponse {
       changeToken: json['ChangeToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
+  }
 }
 
 class DeleteSizeConstraintSetResponse {
@@ -7360,6 +7565,13 @@ class DeleteSizeConstraintSetResponse {
     return DeleteSizeConstraintSetResponse(
       changeToken: json['ChangeToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
   }
 }
 
@@ -7381,6 +7593,13 @@ class DeleteSqlInjectionMatchSetResponse {
       changeToken: json['ChangeToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
+  }
 }
 
 class DeleteWebACLResponse {
@@ -7397,6 +7616,13 @@ class DeleteWebACLResponse {
     return DeleteWebACLResponse(
       changeToken: json['ChangeToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
   }
 }
 
@@ -7416,12 +7642,23 @@ class DeleteXssMatchSetResponse {
       changeToken: json['ChangeToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
+  }
 }
 
 class DisassociateWebACLResponse {
   DisassociateWebACLResponse();
   factory DisassociateWebACLResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateWebACLResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8933,6 +9170,17 @@ class GeoMatchSet {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final geoMatchConstraints = this.geoMatchConstraints;
+    final geoMatchSetId = this.geoMatchSetId;
+    final name = this.name;
+    return {
+      'GeoMatchConstraints': geoMatchConstraints,
+      'GeoMatchSetId': geoMatchSetId,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// <note>
@@ -8967,6 +9215,15 @@ class GeoMatchSetSummary {
       name: json['Name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final geoMatchSetId = this.geoMatchSetId;
+    final name = this.name;
+    return {
+      'GeoMatchSetId': geoMatchSetId,
+      'Name': name,
+    };
+  }
 }
 
 /// <note>
@@ -8995,6 +9252,7 @@ class GeoMatchSetUpdate {
     required this.action,
     required this.geoMatchConstraint,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final geoMatchConstraint = this.geoMatchConstraint;
@@ -9037,6 +9295,13 @@ class GetByteMatchSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final byteMatchSet = this.byteMatchSet;
+    return {
+      if (byteMatchSet != null) 'ByteMatchSet': byteMatchSet,
+    };
+  }
 }
 
 class GetChangeTokenResponse {
@@ -9053,6 +9318,13 @@ class GetChangeTokenResponse {
       changeToken: json['ChangeToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
+  }
 }
 
 class GetChangeTokenStatusResponse {
@@ -9067,6 +9339,14 @@ class GetChangeTokenStatusResponse {
       changeTokenStatus:
           (json['ChangeTokenStatus'] as String?)?.toChangeTokenStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeTokenStatus = this.changeTokenStatus;
+    return {
+      if (changeTokenStatus != null)
+        'ChangeTokenStatus': changeTokenStatus.toValue(),
+    };
   }
 }
 
@@ -9087,6 +9367,13 @@ class GetGeoMatchSetResponse {
           ? GeoMatchSet.fromJson(json['GeoMatchSet'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final geoMatchSet = this.geoMatchSet;
+    return {
+      if (geoMatchSet != null) 'GeoMatchSet': geoMatchSet,
+    };
   }
 }
 
@@ -9118,6 +9405,13 @@ class GetIPSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final iPSet = this.iPSet;
+    return {
+      if (iPSet != null) 'IPSet': iPSet,
+    };
+  }
 }
 
 class GetLoggingConfigurationResponse {
@@ -9135,6 +9429,14 @@ class GetLoggingConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loggingConfiguration = this.loggingConfiguration;
+    return {
+      if (loggingConfiguration != null)
+        'LoggingConfiguration': loggingConfiguration,
+    };
+  }
 }
 
 class GetPermissionPolicyResponse {
@@ -9148,6 +9450,13 @@ class GetPermissionPolicyResponse {
     return GetPermissionPolicyResponse(
       policy: json['Policy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -9173,6 +9482,15 @@ class GetRateBasedRuleManagedKeysResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final managedKeys = this.managedKeys;
+    final nextMarker = this.nextMarker;
+    return {
+      if (managedKeys != null) 'ManagedKeys': managedKeys,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class GetRateBasedRuleResponse {
@@ -9189,6 +9507,13 @@ class GetRateBasedRuleResponse {
           ? RateBasedRule.fromJson(json['Rule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rule = this.rule;
+    return {
+      if (rule != null) 'Rule': rule,
+    };
   }
 }
 
@@ -9208,6 +9533,13 @@ class GetRegexMatchSetResponse {
               json['RegexMatchSet'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final regexMatchSet = this.regexMatchSet;
+    return {
+      if (regexMatchSet != null) 'RegexMatchSet': regexMatchSet,
+    };
   }
 }
 
@@ -9229,6 +9561,13 @@ class GetRegexPatternSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final regexPatternSet = this.regexPatternSet;
+    return {
+      if (regexPatternSet != null) 'RegexPatternSet': regexPatternSet,
+    };
+  }
 }
 
 class GetRuleGroupResponse {
@@ -9245,6 +9584,13 @@ class GetRuleGroupResponse {
           ? RuleGroup.fromJson(json['RuleGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ruleGroup = this.ruleGroup;
+    return {
+      if (ruleGroup != null) 'RuleGroup': ruleGroup,
+    };
   }
 }
 
@@ -9274,6 +9620,13 @@ class GetRuleResponse {
           ? Rule.fromJson(json['Rule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rule = this.rule;
+    return {
+      if (rule != null) 'Rule': rule,
+    };
   }
 }
 
@@ -9313,6 +9666,17 @@ class GetSampledRequestsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final populationSize = this.populationSize;
+    final sampledRequests = this.sampledRequests;
+    final timeWindow = this.timeWindow;
+    return {
+      if (populationSize != null) 'PopulationSize': populationSize,
+      if (sampledRequests != null) 'SampledRequests': sampledRequests,
+      if (timeWindow != null) 'TimeWindow': timeWindow,
+    };
+  }
 }
 
 class GetSizeConstraintSetResponse {
@@ -9347,6 +9711,13 @@ class GetSizeConstraintSetResponse {
               json['SizeConstraintSet'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sizeConstraintSet = this.sizeConstraintSet;
+    return {
+      if (sizeConstraintSet != null) 'SizeConstraintSet': sizeConstraintSet,
+    };
   }
 }
 
@@ -9384,6 +9755,14 @@ class GetSqlInjectionMatchSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sqlInjectionMatchSet = this.sqlInjectionMatchSet;
+    return {
+      if (sqlInjectionMatchSet != null)
+        'SqlInjectionMatchSet': sqlInjectionMatchSet,
+    };
+  }
 }
 
 class GetWebACLForResourceResponse {
@@ -9402,6 +9781,13 @@ class GetWebACLForResourceResponse {
               json['WebACLSummary'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final webACLSummary = this.webACLSummary;
+    return {
+      if (webACLSummary != null) 'WebACLSummary': webACLSummary,
+    };
   }
 }
 
@@ -9441,6 +9827,13 @@ class GetWebACLResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final webACL = this.webACL;
+    return {
+      if (webACL != null) 'WebACL': webACL,
+    };
+  }
 }
 
 /// The response to a <a>GetXssMatchSet</a> request.
@@ -9473,6 +9866,13 @@ class GetXssMatchSetResponse {
           ? XssMatchSet.fromJson(json['XssMatchSet'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final xssMatchSet = this.xssMatchSet;
+    return {
+      if (xssMatchSet != null) 'XssMatchSet': xssMatchSet,
+    };
   }
 }
 
@@ -9508,6 +9908,15 @@ class HTTPHeader {
       name: json['Name'] as String?,
       value: json['Value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -9589,6 +9998,23 @@ class HTTPRequest {
       uri: json['URI'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientIP = this.clientIP;
+    final country = this.country;
+    final hTTPVersion = this.hTTPVersion;
+    final headers = this.headers;
+    final method = this.method;
+    final uri = this.uri;
+    return {
+      if (clientIP != null) 'ClientIP': clientIP,
+      if (country != null) 'Country': country,
+      if (hTTPVersion != null) 'HTTPVersion': hTTPVersion,
+      if (headers != null) 'Headers': headers,
+      if (method != null) 'Method': method,
+      if (uri != null) 'URI': uri,
+    };
+  }
 }
 
 /// <note>
@@ -9651,6 +10077,17 @@ class IPSet {
       iPSetId: json['IPSetId'] as String,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final iPSetDescriptors = this.iPSetDescriptors;
+    final iPSetId = this.iPSetId;
+    final name = this.name;
+    return {
+      'IPSetDescriptors': iPSetDescriptors,
+      'IPSetId': iPSetId,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -9786,6 +10223,15 @@ class IPSetSummary {
       name: json['Name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final iPSetId = this.iPSetId;
+    final name = this.name;
+    return {
+      'IPSetId': iPSetId,
+      'Name': name,
+    };
+  }
 }
 
 /// <note>
@@ -9813,6 +10259,7 @@ class IPSetUpdate {
     required this.action,
     required this.iPSetDescriptor,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final iPSetDescriptor = this.iPSetDescriptor;
@@ -9849,6 +10296,15 @@ class ListActivatedRulesInRuleGroupResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activatedRules = this.activatedRules;
+    final nextMarker = this.nextMarker;
+    return {
+      if (activatedRules != null) 'ActivatedRules': activatedRules,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class ListByteMatchSetsResponse {
@@ -9875,6 +10331,15 @@ class ListByteMatchSetsResponse {
           .toList(),
       nextMarker: json['NextMarker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final byteMatchSets = this.byteMatchSets;
+    final nextMarker = this.nextMarker;
+    return {
+      if (byteMatchSets != null) 'ByteMatchSets': byteMatchSets,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -9903,6 +10368,15 @@ class ListGeoMatchSetsResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final geoMatchSets = this.geoMatchSets;
+    final nextMarker = this.nextMarker;
+    return {
+      if (geoMatchSets != null) 'GeoMatchSets': geoMatchSets,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class ListIPSetsResponse {
@@ -9926,6 +10400,15 @@ class ListIPSetsResponse {
           .toList(),
       nextMarker: json['NextMarker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final iPSets = this.iPSets;
+    final nextMarker = this.nextMarker;
+    return {
+      if (iPSets != null) 'IPSets': iPSets,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -9956,6 +10439,16 @@ class ListLoggingConfigurationsResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loggingConfigurations = this.loggingConfigurations;
+    final nextMarker = this.nextMarker;
+    return {
+      if (loggingConfigurations != null)
+        'LoggingConfigurations': loggingConfigurations,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class ListRateBasedRulesResponse {
@@ -9983,6 +10476,15 @@ class ListRateBasedRulesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final rules = this.rules;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (rules != null) 'Rules': rules,
+    };
+  }
 }
 
 class ListRegexMatchSetsResponse {
@@ -10009,6 +10511,15 @@ class ListRegexMatchSetsResponse {
           .map((e) => RegexMatchSetSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final regexMatchSets = this.regexMatchSets;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (regexMatchSets != null) 'RegexMatchSets': regexMatchSets,
+    };
   }
 }
 
@@ -10038,6 +10549,15 @@ class ListRegexPatternSetsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final regexPatternSets = this.regexPatternSets;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (regexPatternSets != null) 'RegexPatternSets': regexPatternSets,
+    };
+  }
 }
 
 class ListResourcesForWebACLResponse {
@@ -10056,6 +10576,13 @@ class ListResourcesForWebACLResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceArns = this.resourceArns;
+    return {
+      if (resourceArns != null) 'ResourceArns': resourceArns,
+    };
   }
 }
 
@@ -10084,6 +10611,15 @@ class ListRuleGroupsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final ruleGroups = this.ruleGroups;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (ruleGroups != null) 'RuleGroups': ruleGroups,
+    };
+  }
 }
 
 class ListRulesResponse {
@@ -10110,6 +10646,15 @@ class ListRulesResponse {
           .map((e) => RuleSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final rules = this.rules;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (rules != null) 'Rules': rules,
+    };
   }
 }
 
@@ -10138,6 +10683,15 @@ class ListSizeConstraintSetsResponse {
               SizeConstraintSetSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final sizeConstraintSets = this.sizeConstraintSets;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (sizeConstraintSets != null) 'SizeConstraintSets': sizeConstraintSets,
+    };
   }
 }
 
@@ -10170,6 +10724,16 @@ class ListSqlInjectionMatchSetsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final sqlInjectionMatchSets = this.sqlInjectionMatchSets;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (sqlInjectionMatchSets != null)
+        'SqlInjectionMatchSets': sqlInjectionMatchSets,
+    };
+  }
 }
 
 class ListSubscribedRuleGroupsResponse {
@@ -10198,6 +10762,15 @@ class ListSubscribedRuleGroupsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final ruleGroups = this.ruleGroups;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (ruleGroups != null) 'RuleGroups': ruleGroups,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -10219,6 +10792,15 @@ class ListTagsForResourceResponse {
               json['TagInfoForResource'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final tagInfoForResource = this.tagInfoForResource;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (tagInfoForResource != null) 'TagInfoForResource': tagInfoForResource,
+    };
   }
 }
 
@@ -10247,6 +10829,15 @@ class ListWebACLsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final webACLs = this.webACLs;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (webACLs != null) 'WebACLs': webACLs,
+    };
+  }
 }
 
 /// The response to a <a>ListXssMatchSets</a> request.
@@ -10274,6 +10865,15 @@ class ListXssMatchSetsResponse {
           .map((e) => XssMatchSetSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final xssMatchSets = this.xssMatchSets;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (xssMatchSets != null) 'XssMatchSets': xssMatchSets,
+    };
   }
 }
 
@@ -10567,12 +11167,24 @@ class PutLoggingConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loggingConfiguration = this.loggingConfiguration;
+    return {
+      if (loggingConfiguration != null)
+        'LoggingConfiguration': loggingConfiguration,
+    };
+  }
 }
 
 class PutPermissionPolicyResponse {
   PutPermissionPolicyResponse();
   factory PutPermissionPolicyResponse.fromJson(Map<String, dynamic> _) {
     return PutPermissionPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -10669,6 +11281,23 @@ class RateBasedRule {
       metricName: json['MetricName'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final matchPredicates = this.matchPredicates;
+    final rateKey = this.rateKey;
+    final rateLimit = this.rateLimit;
+    final ruleId = this.ruleId;
+    final metricName = this.metricName;
+    final name = this.name;
+    return {
+      'MatchPredicates': matchPredicates,
+      'RateKey': rateKey.toValue(),
+      'RateLimit': rateLimit,
+      'RuleId': ruleId,
+      if (metricName != null) 'MetricName': metricName,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -10768,6 +11397,17 @@ class RegexMatchSet {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final regexMatchSetId = this.regexMatchSetId;
+    final regexMatchTuples = this.regexMatchTuples;
+    return {
+      if (name != null) 'Name': name,
+      if (regexMatchSetId != null) 'RegexMatchSetId': regexMatchSetId,
+      if (regexMatchTuples != null) 'RegexMatchTuples': regexMatchTuples,
+    };
+  }
 }
 
 /// <note>
@@ -10809,6 +11449,15 @@ class RegexMatchSetSummary {
       regexMatchSetId: json['RegexMatchSetId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final regexMatchSetId = this.regexMatchSetId;
+    return {
+      'Name': name,
+      'RegexMatchSetId': regexMatchSetId,
+    };
+  }
 }
 
 /// <note>
@@ -10841,6 +11490,7 @@ class RegexMatchSetUpdate {
     required this.action,
     required this.regexMatchTuple,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final regexMatchTuple = this.regexMatchTuple;
@@ -11075,6 +11725,17 @@ class RegexPatternSet {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final regexPatternSetId = this.regexPatternSetId;
+    final regexPatternStrings = this.regexPatternStrings;
+    final name = this.name;
+    return {
+      'RegexPatternSetId': regexPatternSetId,
+      'RegexPatternStrings': regexPatternStrings,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// <note>
@@ -11116,6 +11777,15 @@ class RegexPatternSetSummary {
       regexPatternSetId: json['RegexPatternSetId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final regexPatternSetId = this.regexPatternSetId;
+    return {
+      'Name': name,
+      'RegexPatternSetId': regexPatternSetId,
+    };
+  }
 }
 
 /// <note>
@@ -11145,6 +11815,7 @@ class RegexPatternSetUpdate {
     required this.action,
     required this.regexPatternString,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final regexPatternString = this.regexPatternString;
@@ -11259,6 +11930,19 @@ class Rule {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final predicates = this.predicates;
+    final ruleId = this.ruleId;
+    final metricName = this.metricName;
+    final name = this.name;
+    return {
+      'Predicates': predicates,
+      'RuleId': ruleId,
+      if (metricName != null) 'MetricName': metricName,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// <note>
@@ -11325,6 +12009,17 @@ class RuleGroup {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ruleGroupId = this.ruleGroupId;
+    final metricName = this.metricName;
+    final name = this.name;
+    return {
+      'RuleGroupId': ruleGroupId,
+      if (metricName != null) 'MetricName': metricName,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// <note>
@@ -11367,6 +12062,15 @@ class RuleGroupSummary {
       ruleGroupId: json['RuleGroupId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final ruleGroupId = this.ruleGroupId;
+    return {
+      'Name': name,
+      'RuleGroupId': ruleGroupId,
+    };
+  }
 }
 
 /// <note>
@@ -11400,6 +12104,7 @@ class RuleGroupUpdate {
     required this.action,
     required this.activatedRule,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final activatedRule = this.activatedRule;
@@ -11449,6 +12154,15 @@ class RuleSummary {
       ruleId: json['RuleId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final ruleId = this.ruleId;
+    return {
+      'Name': name,
+      'RuleId': ruleId,
+    };
+  }
 }
 
 /// <note>
@@ -11479,6 +12193,7 @@ class RuleUpdate {
     required this.action,
     required this.predicate,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final predicate = this.predicate;
@@ -11546,6 +12261,22 @@ class SampledHTTPRequest {
       ruleWithinRuleGroup: json['RuleWithinRuleGroup'] as String?,
       timestamp: timeStampFromJson(json['Timestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final request = this.request;
+    final weight = this.weight;
+    final action = this.action;
+    final ruleWithinRuleGroup = this.ruleWithinRuleGroup;
+    final timestamp = this.timestamp;
+    return {
+      'Request': request,
+      'Weight': weight,
+      if (action != null) 'Action': action,
+      if (ruleWithinRuleGroup != null)
+        'RuleWithinRuleGroup': ruleWithinRuleGroup,
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+    };
   }
 }
 
@@ -11799,6 +12530,17 @@ class SizeConstraintSet {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sizeConstraintSetId = this.sizeConstraintSetId;
+    final sizeConstraints = this.sizeConstraints;
+    final name = this.name;
+    return {
+      'SizeConstraintSetId': sizeConstraintSetId,
+      'SizeConstraints': sizeConstraints,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// <note>
@@ -11841,6 +12583,15 @@ class SizeConstraintSetSummary {
       sizeConstraintSetId: json['SizeConstraintSetId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final sizeConstraintSetId = this.sizeConstraintSetId;
+    return {
+      'Name': name,
+      'SizeConstraintSetId': sizeConstraintSetId,
+    };
+  }
 }
 
 /// <note>
@@ -11875,6 +12626,7 @@ class SizeConstraintSetUpdate {
     required this.action,
     required this.sizeConstraint,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final sizeConstraint = this.sizeConstraint;
@@ -11941,6 +12693,17 @@ class SqlInjectionMatchSet {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sqlInjectionMatchSetId = this.sqlInjectionMatchSetId;
+    final sqlInjectionMatchTuples = this.sqlInjectionMatchTuples;
+    final name = this.name;
+    return {
+      'SqlInjectionMatchSetId': sqlInjectionMatchSetId,
+      'SqlInjectionMatchTuples': sqlInjectionMatchTuples,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// <note>
@@ -11985,6 +12748,15 @@ class SqlInjectionMatchSetSummary {
       sqlInjectionMatchSetId: json['SqlInjectionMatchSetId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final sqlInjectionMatchSetId = this.sqlInjectionMatchSetId;
+    return {
+      'Name': name,
+      'SqlInjectionMatchSetId': sqlInjectionMatchSetId,
+    };
+  }
 }
 
 /// <note>
@@ -12018,6 +12790,7 @@ class SqlInjectionMatchSetUpdate {
     required this.action,
     required this.sqlInjectionMatchTuple,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final sqlInjectionMatchTuple = this.sqlInjectionMatchTuple;
@@ -12210,6 +12983,17 @@ class SubscribedRuleGroupSummary {
       ruleGroupId: json['RuleGroupId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricName = this.metricName;
+    final name = this.name;
+    final ruleGroupId = this.ruleGroupId;
+    return {
+      'MetricName': metricName,
+      'Name': name,
+      'RuleGroupId': ruleGroupId,
+    };
+  }
 }
 
 /// <note>
@@ -12302,12 +13086,25 @@ class TagInfoForResource {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    final tagList = this.tagList;
+    return {
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (tagList != null) 'TagList': tagList,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -12429,6 +13226,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateByteMatchSetResponse {
@@ -12445,6 +13246,13 @@ class UpdateByteMatchSetResponse {
     return UpdateByteMatchSetResponse(
       changeToken: json['ChangeToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
   }
 }
 
@@ -12463,6 +13271,13 @@ class UpdateGeoMatchSetResponse {
       changeToken: json['ChangeToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
+  }
 }
 
 class UpdateIPSetResponse {
@@ -12479,6 +13294,13 @@ class UpdateIPSetResponse {
     return UpdateIPSetResponse(
       changeToken: json['ChangeToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
   }
 }
 
@@ -12497,6 +13319,13 @@ class UpdateRateBasedRuleResponse {
       changeToken: json['ChangeToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
+  }
 }
 
 class UpdateRegexMatchSetResponse {
@@ -12513,6 +13342,13 @@ class UpdateRegexMatchSetResponse {
     return UpdateRegexMatchSetResponse(
       changeToken: json['ChangeToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
   }
 }
 
@@ -12531,6 +13367,13 @@ class UpdateRegexPatternSetResponse {
       changeToken: json['ChangeToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
+  }
 }
 
 class UpdateRuleGroupResponse {
@@ -12547,6 +13390,13 @@ class UpdateRuleGroupResponse {
     return UpdateRuleGroupResponse(
       changeToken: json['ChangeToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
   }
 }
 
@@ -12565,6 +13415,13 @@ class UpdateRuleResponse {
       changeToken: json['ChangeToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
+  }
 }
 
 class UpdateSizeConstraintSetResponse {
@@ -12581,6 +13438,13 @@ class UpdateSizeConstraintSetResponse {
     return UpdateSizeConstraintSetResponse(
       changeToken: json['ChangeToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
   }
 }
 
@@ -12601,6 +13465,13 @@ class UpdateSqlInjectionMatchSetResponse {
       changeToken: json['ChangeToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
+  }
 }
 
 class UpdateWebACLResponse {
@@ -12617,6 +13488,13 @@ class UpdateWebACLResponse {
     return UpdateWebACLResponse(
       changeToken: json['ChangeToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
   }
 }
 
@@ -12635,6 +13513,13 @@ class UpdateXssMatchSetResponse {
     return UpdateXssMatchSetResponse(
       changeToken: json['ChangeToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeToken = this.changeToken;
+    return {
+      if (changeToken != null) 'ChangeToken': changeToken,
+    };
   }
 }
 
@@ -12900,6 +13785,23 @@ class WebACL {
       webACLArn: json['WebACLArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final defaultAction = this.defaultAction;
+    final rules = this.rules;
+    final webACLId = this.webACLId;
+    final metricName = this.metricName;
+    final name = this.name;
+    final webACLArn = this.webACLArn;
+    return {
+      'DefaultAction': defaultAction,
+      'Rules': rules,
+      'WebACLId': webACLId,
+      if (metricName != null) 'MetricName': metricName,
+      if (name != null) 'Name': name,
+      if (webACLArn != null) 'WebACLArn': webACLArn,
+    };
+  }
 }
 
 /// <note>
@@ -12938,6 +13840,15 @@ class WebACLSummary {
       webACLId: json['WebACLId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final webACLId = this.webACLId;
+    return {
+      'Name': name,
+      'WebACLId': webACLId,
+    };
+  }
 }
 
 /// <note>
@@ -12970,6 +13881,7 @@ class WebACLUpdate {
     required this.action,
     required this.activatedRule,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final activatedRule = this.activatedRule;
@@ -13033,6 +13945,17 @@ class XssMatchSet {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final xssMatchSetId = this.xssMatchSetId;
+    final xssMatchTuples = this.xssMatchTuples;
+    final name = this.name;
+    return {
+      'XssMatchSetId': xssMatchSetId,
+      'XssMatchTuples': xssMatchTuples,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// <note>
@@ -13074,6 +13997,15 @@ class XssMatchSetSummary {
       xssMatchSetId: json['XssMatchSetId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final xssMatchSetId = this.xssMatchSetId;
+    return {
+      'Name': name,
+      'XssMatchSetId': xssMatchSetId,
+    };
+  }
 }
 
 /// <note>
@@ -13105,6 +14037,7 @@ class XssMatchSetUpdate {
     required this.action,
     required this.xssMatchTuple,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final xssMatchTuple = this.xssMatchTuple;

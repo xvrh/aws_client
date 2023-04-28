@@ -5115,6 +5115,18 @@ class ArchivalSummary {
       archivalReason: json['ArchivalReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final archivalBackupArn = this.archivalBackupArn;
+    final archivalDateTime = this.archivalDateTime;
+    final archivalReason = this.archivalReason;
+    return {
+      if (archivalBackupArn != null) 'ArchivalBackupArn': archivalBackupArn,
+      if (archivalDateTime != null)
+        'ArchivalDateTime': unixTimestampToJson(archivalDateTime),
+      if (archivalReason != null) 'ArchivalReason': archivalReason,
+    };
+  }
 }
 
 enum AttributeAction {
@@ -5438,6 +5450,7 @@ class AttributeValueUpdate {
     this.action,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final value = this.value;
@@ -5472,6 +5485,18 @@ class AutoScalingPolicyDescription {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyName = this.policyName;
+    final targetTrackingScalingPolicyConfiguration =
+        this.targetTrackingScalingPolicyConfiguration;
+    return {
+      if (policyName != null) 'PolicyName': policyName,
+      if (targetTrackingScalingPolicyConfiguration != null)
+        'TargetTrackingScalingPolicyConfiguration':
+            targetTrackingScalingPolicyConfiguration,
+    };
+  }
 }
 
 /// Represents the auto scaling policy to be modified.
@@ -5487,6 +5512,7 @@ class AutoScalingPolicyUpdate {
     required this.targetTrackingScalingPolicyConfiguration,
     this.policyName,
   });
+
   Map<String, dynamic> toJson() {
     final targetTrackingScalingPolicyConfiguration =
         this.targetTrackingScalingPolicyConfiguration;
@@ -5539,6 +5565,22 @@ class AutoScalingSettingsDescription {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingDisabled = this.autoScalingDisabled;
+    final autoScalingRoleArn = this.autoScalingRoleArn;
+    final maximumUnits = this.maximumUnits;
+    final minimumUnits = this.minimumUnits;
+    final scalingPolicies = this.scalingPolicies;
+    return {
+      if (autoScalingDisabled != null)
+        'AutoScalingDisabled': autoScalingDisabled,
+      if (autoScalingRoleArn != null) 'AutoScalingRoleArn': autoScalingRoleArn,
+      if (maximumUnits != null) 'MaximumUnits': maximumUnits,
+      if (minimumUnits != null) 'MinimumUnits': minimumUnits,
+      if (scalingPolicies != null) 'ScalingPolicies': scalingPolicies,
+    };
+  }
 }
 
 /// Represents the auto scaling settings to be modified for a global table or
@@ -5569,6 +5611,7 @@ class AutoScalingSettingsUpdate {
     this.minimumUnits,
     this.scalingPolicyUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final autoScalingDisabled = this.autoScalingDisabled;
     final autoScalingRoleArn = this.autoScalingRoleArn;
@@ -5632,6 +5675,19 @@ class AutoScalingTargetTrackingScalingPolicyConfigurationDescription {
       scaleOutCooldown: json['ScaleOutCooldown'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final targetValue = this.targetValue;
+    final disableScaleIn = this.disableScaleIn;
+    final scaleInCooldown = this.scaleInCooldown;
+    final scaleOutCooldown = this.scaleOutCooldown;
+    return {
+      'TargetValue': targetValue,
+      if (disableScaleIn != null) 'DisableScaleIn': disableScaleIn,
+      if (scaleInCooldown != null) 'ScaleInCooldown': scaleInCooldown,
+      if (scaleOutCooldown != null) 'ScaleOutCooldown': scaleOutCooldown,
+    };
+  }
 }
 
 /// Represents the settings of a target tracking scaling policy that will be
@@ -5671,6 +5727,7 @@ class AutoScalingTargetTrackingScalingPolicyConfigurationUpdate {
     this.scaleInCooldown,
     this.scaleOutCooldown,
   });
+
   Map<String, dynamic> toJson() {
     final targetValue = this.targetValue;
     final disableScaleIn = this.disableScaleIn;
@@ -5717,6 +5774,18 @@ class BackupDescription {
               json['SourceTableFeatureDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupDetails = this.backupDetails;
+    final sourceTableDetails = this.sourceTableDetails;
+    final sourceTableFeatureDetails = this.sourceTableFeatureDetails;
+    return {
+      if (backupDetails != null) 'BackupDetails': backupDetails,
+      if (sourceTableDetails != null) 'SourceTableDetails': sourceTableDetails,
+      if (sourceTableFeatureDetails != null)
+        'SourceTableFeatureDetails': sourceTableFeatureDetails,
+    };
   }
 }
 
@@ -5785,6 +5854,26 @@ class BackupDetails {
       backupExpiryDateTime: timeStampFromJson(json['BackupExpiryDateTime']),
       backupSizeBytes: json['BackupSizeBytes'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupArn = this.backupArn;
+    final backupCreationDateTime = this.backupCreationDateTime;
+    final backupName = this.backupName;
+    final backupStatus = this.backupStatus;
+    final backupType = this.backupType;
+    final backupExpiryDateTime = this.backupExpiryDateTime;
+    final backupSizeBytes = this.backupSizeBytes;
+    return {
+      'BackupArn': backupArn,
+      'BackupCreationDateTime': unixTimestampToJson(backupCreationDateTime),
+      'BackupName': backupName,
+      'BackupStatus': backupStatus.toValue(),
+      'BackupType': backupType.toValue(),
+      if (backupExpiryDateTime != null)
+        'BackupExpiryDateTime': unixTimestampToJson(backupExpiryDateTime),
+      if (backupSizeBytes != null) 'BackupSizeBytes': backupSizeBytes,
+    };
   }
 }
 
@@ -5899,6 +5988,33 @@ class BackupSummary {
       tableName: json['TableName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupArn = this.backupArn;
+    final backupCreationDateTime = this.backupCreationDateTime;
+    final backupExpiryDateTime = this.backupExpiryDateTime;
+    final backupName = this.backupName;
+    final backupSizeBytes = this.backupSizeBytes;
+    final backupStatus = this.backupStatus;
+    final backupType = this.backupType;
+    final tableArn = this.tableArn;
+    final tableId = this.tableId;
+    final tableName = this.tableName;
+    return {
+      if (backupArn != null) 'BackupArn': backupArn,
+      if (backupCreationDateTime != null)
+        'BackupCreationDateTime': unixTimestampToJson(backupCreationDateTime),
+      if (backupExpiryDateTime != null)
+        'BackupExpiryDateTime': unixTimestampToJson(backupExpiryDateTime),
+      if (backupName != null) 'BackupName': backupName,
+      if (backupSizeBytes != null) 'BackupSizeBytes': backupSizeBytes,
+      if (backupStatus != null) 'BackupStatus': backupStatus.toValue(),
+      if (backupType != null) 'BackupType': backupType.toValue(),
+      if (tableArn != null) 'TableArn': tableArn,
+      if (tableId != null) 'TableId': tableId,
+      if (tableName != null) 'TableName': tableName,
+    };
+  }
 }
 
 enum BackupType {
@@ -5997,6 +6113,15 @@ class BatchExecuteStatementOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacity = this.consumedCapacity;
+    final responses = this.responses;
+    return {
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
+      if (responses != null) 'Responses': responses,
+    };
+  }
 }
 
 /// Represents the output of a <code>BatchGetItem</code> operation.
@@ -6074,6 +6199,17 @@ class BatchGetItemOutput {
               k, KeysAndAttributes.fromJson(e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacity = this.consumedCapacity;
+    final responses = this.responses;
+    final unprocessedKeys = this.unprocessedKeys;
+    return {
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
+      if (responses != null) 'Responses': responses,
+      if (unprocessedKeys != null) 'UnprocessedKeys': unprocessedKeys,
+    };
+  }
 }
 
 /// An error associated with a statement in a PartiQL batch that was run.
@@ -6093,6 +6229,15 @@ class BatchStatementError {
       code: (json['Code'] as String?)?.toBatchStatementErrorCodeEnum(),
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code.toValue(),
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6186,6 +6331,7 @@ class BatchStatementRequest {
     this.consistentRead,
     this.parameters,
   });
+
   Map<String, dynamic> toJson() {
     final statement = this.statement;
     final consistentRead = this.consistentRead;
@@ -6223,6 +6369,17 @@ class BatchStatementResponse {
           MapEntry(k, AttributeValue.fromJson(e as Map<String, dynamic>))),
       tableName: json['TableName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final item = this.item;
+    final tableName = this.tableName;
+    return {
+      if (error != null) 'Error': error,
+      if (item != null) 'Item': item,
+      if (tableName != null) 'TableName': tableName,
+    };
   }
 }
 
@@ -6344,6 +6501,18 @@ class BatchWriteItemOutput {
                   .toList())),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacity = this.consumedCapacity;
+    final itemCollectionMetrics = this.itemCollectionMetrics;
+    final unprocessedItems = this.unprocessedItems;
+    return {
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
+      if (itemCollectionMetrics != null)
+        'ItemCollectionMetrics': itemCollectionMetrics,
+      if (unprocessedItems != null) 'UnprocessedItems': unprocessedItems,
+    };
+  }
 }
 
 enum BillingMode {
@@ -6408,6 +6577,18 @@ class BillingModeSummary {
           timeStampFromJson(json['LastUpdateToPayPerRequestDateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final billingMode = this.billingMode;
+    final lastUpdateToPayPerRequestDateTime =
+        this.lastUpdateToPayPerRequestDateTime;
+    return {
+      if (billingMode != null) 'BillingMode': billingMode.toValue(),
+      if (lastUpdateToPayPerRequestDateTime != null)
+        'LastUpdateToPayPerRequestDateTime':
+            unixTimestampToJson(lastUpdateToPayPerRequestDateTime),
+    };
+  }
 }
 
 /// Represents the amount of provisioned throughput capacity consumed on a table
@@ -6433,6 +6614,17 @@ class Capacity {
       readCapacityUnits: json['ReadCapacityUnits'] as double?,
       writeCapacityUnits: json['WriteCapacityUnits'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final capacityUnits = this.capacityUnits;
+    final readCapacityUnits = this.readCapacityUnits;
+    final writeCapacityUnits = this.writeCapacityUnits;
+    return {
+      if (capacityUnits != null) 'CapacityUnits': capacityUnits,
+      if (readCapacityUnits != null) 'ReadCapacityUnits': readCapacityUnits,
+      if (writeCapacityUnits != null) 'WriteCapacityUnits': writeCapacityUnits,
+    };
   }
 }
 
@@ -6733,6 +6925,7 @@ class Condition {
     required this.comparisonOperator,
     this.attributeValueList,
   });
+
   Map<String, dynamic> toJson() {
     final comparisonOperator = this.comparisonOperator;
     final attributeValueList = this.attributeValueList;
@@ -6778,6 +6971,7 @@ class ConditionCheck {
     this.expressionAttributeValues,
     this.returnValuesOnConditionCheckFailure,
   });
+
   Map<String, dynamic> toJson() {
     final conditionExpression = this.conditionExpression;
     final key = this.key;
@@ -6887,6 +7081,27 @@ class ConsumedCapacity {
       writeCapacityUnits: json['WriteCapacityUnits'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capacityUnits = this.capacityUnits;
+    final globalSecondaryIndexes = this.globalSecondaryIndexes;
+    final localSecondaryIndexes = this.localSecondaryIndexes;
+    final readCapacityUnits = this.readCapacityUnits;
+    final table = this.table;
+    final tableName = this.tableName;
+    final writeCapacityUnits = this.writeCapacityUnits;
+    return {
+      if (capacityUnits != null) 'CapacityUnits': capacityUnits,
+      if (globalSecondaryIndexes != null)
+        'GlobalSecondaryIndexes': globalSecondaryIndexes,
+      if (localSecondaryIndexes != null)
+        'LocalSecondaryIndexes': localSecondaryIndexes,
+      if (readCapacityUnits != null) 'ReadCapacityUnits': readCapacityUnits,
+      if (table != null) 'Table': table,
+      if (tableName != null) 'TableName': tableName,
+      if (writeCapacityUnits != null) 'WriteCapacityUnits': writeCapacityUnits,
+    };
+  }
 }
 
 /// Represents the continuous backups and point in time recovery settings on the
@@ -6913,6 +7128,16 @@ class ContinuousBackupsDescription {
               json['PointInTimeRecoveryDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final continuousBackupsStatus = this.continuousBackupsStatus;
+    final pointInTimeRecoveryDescription = this.pointInTimeRecoveryDescription;
+    return {
+      'ContinuousBackupsStatus': continuousBackupsStatus.toValue(),
+      if (pointInTimeRecoveryDescription != null)
+        'PointInTimeRecoveryDescription': pointInTimeRecoveryDescription,
+    };
   }
 }
 
@@ -7040,6 +7265,18 @@ class ContributorInsightsSummary {
       tableName: json['TableName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contributorInsightsStatus = this.contributorInsightsStatus;
+    final indexName = this.indexName;
+    final tableName = this.tableName;
+    return {
+      if (contributorInsightsStatus != null)
+        'ContributorInsightsStatus': contributorInsightsStatus.toValue(),
+      if (indexName != null) 'IndexName': indexName,
+      if (tableName != null) 'TableName': tableName,
+    };
+  }
 }
 
 class CreateBackupOutput {
@@ -7056,6 +7293,13 @@ class CreateBackupOutput {
               json['BackupDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupDetails = this.backupDetails;
+    return {
+      if (backupDetails != null) 'BackupDetails': backupDetails,
+    };
   }
 }
 
@@ -7086,6 +7330,7 @@ class CreateGlobalSecondaryIndexAction {
     required this.projection,
     this.provisionedThroughput,
   });
+
   Map<String, dynamic> toJson() {
     final indexName = this.indexName;
     final keySchema = this.keySchema;
@@ -7116,6 +7361,14 @@ class CreateGlobalTableOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalTableDescription = this.globalTableDescription;
+    return {
+      if (globalTableDescription != null)
+        'GlobalTableDescription': globalTableDescription,
+    };
+  }
 }
 
 /// Represents a replica to be added.
@@ -7126,6 +7379,7 @@ class CreateReplicaAction {
   CreateReplicaAction({
     required this.regionName,
   });
+
   Map<String, dynamic> toJson() {
     final regionName = this.regionName;
     return {
@@ -7163,6 +7417,7 @@ class CreateReplicationGroupMemberAction {
     this.provisionedThroughputOverride,
     this.tableClassOverride,
   });
+
   Map<String, dynamic> toJson() {
     final regionName = this.regionName;
     final globalSecondaryIndexes = this.globalSecondaryIndexes;
@@ -7197,6 +7452,13 @@ class CreateTableOutput {
               json['TableDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tableDescription = this.tableDescription;
+    return {
+      if (tableDescription != null) 'TableDescription': tableDescription,
+    };
   }
 }
 
@@ -7234,6 +7496,7 @@ class Delete {
     this.expressionAttributeValues,
     this.returnValuesOnConditionCheckFailure,
   });
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final tableName = this.tableName;
@@ -7273,6 +7536,13 @@ class DeleteBackupOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupDescription = this.backupDescription;
+    return {
+      if (backupDescription != null) 'BackupDescription': backupDescription,
+    };
+  }
 }
 
 /// Represents a global secondary index to be deleted from an existing table.
@@ -7283,6 +7553,7 @@ class DeleteGlobalSecondaryIndexAction {
   DeleteGlobalSecondaryIndexAction({
     required this.indexName,
   });
+
   Map<String, dynamic> toJson() {
     final indexName = this.indexName;
     return {
@@ -7356,6 +7627,18 @@ class DeleteItemOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final consumedCapacity = this.consumedCapacity;
+    final itemCollectionMetrics = this.itemCollectionMetrics;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
+      if (itemCollectionMetrics != null)
+        'ItemCollectionMetrics': itemCollectionMetrics,
+    };
+  }
 }
 
 /// Represents a replica to be removed.
@@ -7366,6 +7649,7 @@ class DeleteReplicaAction {
   DeleteReplicaAction({
     required this.regionName,
   });
+
   Map<String, dynamic> toJson() {
     final regionName = this.regionName;
     return {
@@ -7382,6 +7666,7 @@ class DeleteReplicationGroupMemberAction {
   DeleteReplicationGroupMemberAction({
     required this.regionName,
   });
+
   Map<String, dynamic> toJson() {
     final regionName = this.regionName;
     return {
@@ -7432,6 +7717,13 @@ class DeleteTableOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tableDescription = this.tableDescription;
+    return {
+      if (tableDescription != null) 'TableDescription': tableDescription,
+    };
+  }
 }
 
 class DescribeBackupOutput {
@@ -7448,6 +7740,13 @@ class DescribeBackupOutput {
               json['BackupDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupDescription = this.backupDescription;
+    return {
+      if (backupDescription != null) 'BackupDescription': backupDescription,
+    };
   }
 }
 
@@ -7466,6 +7765,14 @@ class DescribeContinuousBackupsOutput {
               json['ContinuousBackupsDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final continuousBackupsDescription = this.continuousBackupsDescription;
+    return {
+      if (continuousBackupsDescription != null)
+        'ContinuousBackupsDescription': continuousBackupsDescription,
+    };
   }
 }
 
@@ -7537,6 +7844,26 @@ class DescribeContributorInsightsOutput {
       tableName: json['TableName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contributorInsightsRuleList = this.contributorInsightsRuleList;
+    final contributorInsightsStatus = this.contributorInsightsStatus;
+    final failureException = this.failureException;
+    final indexName = this.indexName;
+    final lastUpdateDateTime = this.lastUpdateDateTime;
+    final tableName = this.tableName;
+    return {
+      if (contributorInsightsRuleList != null)
+        'ContributorInsightsRuleList': contributorInsightsRuleList,
+      if (contributorInsightsStatus != null)
+        'ContributorInsightsStatus': contributorInsightsStatus.toValue(),
+      if (failureException != null) 'FailureException': failureException,
+      if (indexName != null) 'IndexName': indexName,
+      if (lastUpdateDateTime != null)
+        'LastUpdateDateTime': unixTimestampToJson(lastUpdateDateTime),
+      if (tableName != null) 'TableName': tableName,
+    };
+  }
 }
 
 class DescribeEndpointsResponse {
@@ -7553,6 +7880,13 @@ class DescribeEndpointsResponse {
           .map((e) => Endpoint.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpoints = this.endpoints;
+    return {
+      'Endpoints': endpoints,
+    };
   }
 }
 
@@ -7571,6 +7905,13 @@ class DescribeExportOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exportDescription = this.exportDescription;
+    return {
+      if (exportDescription != null) 'ExportDescription': exportDescription,
+    };
+  }
 }
 
 class DescribeGlobalTableOutput {
@@ -7587,6 +7928,14 @@ class DescribeGlobalTableOutput {
               json['GlobalTableDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalTableDescription = this.globalTableDescription;
+    return {
+      if (globalTableDescription != null)
+        'GlobalTableDescription': globalTableDescription,
+    };
   }
 }
 
@@ -7612,6 +7961,15 @@ class DescribeGlobalTableSettingsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalTableName = this.globalTableName;
+    final replicaSettings = this.replicaSettings;
+    return {
+      if (globalTableName != null) 'GlobalTableName': globalTableName,
+      if (replicaSettings != null) 'ReplicaSettings': replicaSettings,
+    };
+  }
 }
 
 class DescribeKinesisStreamingDestinationOutput {
@@ -7636,6 +7994,16 @@ class DescribeKinesisStreamingDestinationOutput {
           .toList(),
       tableName: json['TableName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final kinesisDataStreamDestinations = this.kinesisDataStreamDestinations;
+    final tableName = this.tableName;
+    return {
+      if (kinesisDataStreamDestinations != null)
+        'KinesisDataStreamDestinations': kinesisDataStreamDestinations,
+      if (tableName != null) 'TableName': tableName,
+    };
   }
 }
 
@@ -7674,6 +8042,23 @@ class DescribeLimitsOutput {
       tableMaxWriteCapacityUnits: json['TableMaxWriteCapacityUnits'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountMaxReadCapacityUnits = this.accountMaxReadCapacityUnits;
+    final accountMaxWriteCapacityUnits = this.accountMaxWriteCapacityUnits;
+    final tableMaxReadCapacityUnits = this.tableMaxReadCapacityUnits;
+    final tableMaxWriteCapacityUnits = this.tableMaxWriteCapacityUnits;
+    return {
+      if (accountMaxReadCapacityUnits != null)
+        'AccountMaxReadCapacityUnits': accountMaxReadCapacityUnits,
+      if (accountMaxWriteCapacityUnits != null)
+        'AccountMaxWriteCapacityUnits': accountMaxWriteCapacityUnits,
+      if (tableMaxReadCapacityUnits != null)
+        'TableMaxReadCapacityUnits': tableMaxReadCapacityUnits,
+      if (tableMaxWriteCapacityUnits != null)
+        'TableMaxWriteCapacityUnits': tableMaxWriteCapacityUnits,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeTable</code> operation.
@@ -7690,6 +8075,13 @@ class DescribeTableOutput {
           ? TableDescription.fromJson(json['Table'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final table = this.table;
+    return {
+      if (table != null) 'Table': table,
+    };
   }
 }
 
@@ -7709,6 +8101,14 @@ class DescribeTableReplicaAutoScalingOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tableAutoScalingDescription = this.tableAutoScalingDescription;
+    return {
+      if (tableAutoScalingDescription != null)
+        'TableAutoScalingDescription': tableAutoScalingDescription,
+    };
+  }
 }
 
 class DescribeTimeToLiveOutput {
@@ -7725,6 +8125,14 @@ class DescribeTimeToLiveOutput {
               json['TimeToLiveDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final timeToLiveDescription = this.timeToLiveDescription;
+    return {
+      if (timeToLiveDescription != null)
+        'TimeToLiveDescription': timeToLiveDescription,
+    };
   }
 }
 
@@ -7789,6 +8197,15 @@ class Endpoint {
       cachePeriodInMinutes: json['CachePeriodInMinutes'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final cachePeriodInMinutes = this.cachePeriodInMinutes;
+    return {
+      'Address': address,
+      'CachePeriodInMinutes': cachePeriodInMinutes,
+    };
+  }
 }
 
 class ExecuteStatementOutput {
@@ -7837,6 +8254,19 @@ class ExecuteStatementOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacity = this.consumedCapacity;
+    final items = this.items;
+    final lastEvaluatedKey = this.lastEvaluatedKey;
+    final nextToken = this.nextToken;
+    return {
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
+      if (items != null) 'Items': items,
+      if (lastEvaluatedKey != null) 'LastEvaluatedKey': lastEvaluatedKey,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ExecuteTransactionOutput {
@@ -7862,6 +8292,15 @@ class ExecuteTransactionOutput {
           .map((e) => ItemResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacity = this.consumedCapacity;
+    final responses = this.responses;
+    return {
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
+      if (responses != null) 'Responses': responses,
+    };
   }
 }
 
@@ -8136,6 +8575,7 @@ class ExpectedAttributeValue {
     this.exists,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final attributeValueList = this.attributeValueList;
     final comparisonOperator = this.comparisonOperator;
@@ -8271,6 +8711,49 @@ class ExportDescription {
       tableId: json['TableId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final billedSizeBytes = this.billedSizeBytes;
+    final clientToken = this.clientToken;
+    final endTime = this.endTime;
+    final exportArn = this.exportArn;
+    final exportFormat = this.exportFormat;
+    final exportManifest = this.exportManifest;
+    final exportStatus = this.exportStatus;
+    final exportTime = this.exportTime;
+    final failureCode = this.failureCode;
+    final failureMessage = this.failureMessage;
+    final itemCount = this.itemCount;
+    final s3Bucket = this.s3Bucket;
+    final s3BucketOwner = this.s3BucketOwner;
+    final s3Prefix = this.s3Prefix;
+    final s3SseAlgorithm = this.s3SseAlgorithm;
+    final s3SseKmsKeyId = this.s3SseKmsKeyId;
+    final startTime = this.startTime;
+    final tableArn = this.tableArn;
+    final tableId = this.tableId;
+    return {
+      if (billedSizeBytes != null) 'BilledSizeBytes': billedSizeBytes,
+      if (clientToken != null) 'ClientToken': clientToken,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (exportArn != null) 'ExportArn': exportArn,
+      if (exportFormat != null) 'ExportFormat': exportFormat.toValue(),
+      if (exportManifest != null) 'ExportManifest': exportManifest,
+      if (exportStatus != null) 'ExportStatus': exportStatus.toValue(),
+      if (exportTime != null) 'ExportTime': unixTimestampToJson(exportTime),
+      if (failureCode != null) 'FailureCode': failureCode,
+      if (failureMessage != null) 'FailureMessage': failureMessage,
+      if (itemCount != null) 'ItemCount': itemCount,
+      if (s3Bucket != null) 'S3Bucket': s3Bucket,
+      if (s3BucketOwner != null) 'S3BucketOwner': s3BucketOwner,
+      if (s3Prefix != null) 'S3Prefix': s3Prefix,
+      if (s3SseAlgorithm != null) 'S3SseAlgorithm': s3SseAlgorithm.toValue(),
+      if (s3SseKmsKeyId != null) 'S3SseKmsKeyId': s3SseKmsKeyId,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (tableArn != null) 'TableArn': tableArn,
+      if (tableId != null) 'TableId': tableId,
+    };
+  }
 }
 
 enum ExportFormat {
@@ -8353,6 +8836,15 @@ class ExportSummary {
       exportStatus: (json['ExportStatus'] as String?)?.toExportStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exportArn = this.exportArn;
+    final exportStatus = this.exportStatus;
+    return {
+      if (exportArn != null) 'ExportArn': exportArn,
+      if (exportStatus != null) 'ExportStatus': exportStatus.toValue(),
+    };
+  }
 }
 
 class ExportTableToPointInTimeOutput {
@@ -8369,6 +8861,13 @@ class ExportTableToPointInTimeOutput {
               json['ExportDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exportDescription = this.exportDescription;
+    return {
+      if (exportDescription != null) 'ExportDescription': exportDescription,
+    };
   }
 }
 
@@ -8389,6 +8888,16 @@ class FailureException {
       exceptionDescription: json['ExceptionDescription'] as String?,
       exceptionName: json['ExceptionName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exceptionDescription = this.exceptionDescription;
+    final exceptionName = this.exceptionName;
+    return {
+      if (exceptionDescription != null)
+        'ExceptionDescription': exceptionDescription,
+      if (exceptionName != null) 'ExceptionName': exceptionName,
+    };
   }
 }
 
@@ -8419,6 +8928,7 @@ class Get {
     this.expressionAttributeNames,
     this.projectionExpression,
   });
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final tableName = this.tableName;
@@ -8464,6 +8974,15 @@ class GetItemOutput {
       item: (json['Item'] as Map<String, dynamic>?)?.map((k, e) =>
           MapEntry(k, AttributeValue.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacity = this.consumedCapacity;
+    final item = this.item;
+    return {
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
+      if (item != null) 'Item': item,
+    };
   }
 }
 
@@ -8515,6 +9034,7 @@ class GlobalSecondaryIndex {
     required this.projection,
     this.provisionedThroughput,
   });
+
   Map<String, dynamic> toJson() {
     final indexName = this.indexName;
     final keySchema = this.keySchema;
@@ -8541,6 +9061,7 @@ class GlobalSecondaryIndexAutoScalingUpdate {
     this.indexName,
     this.provisionedWriteCapacityAutoScalingUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final indexName = this.indexName;
     final provisionedWriteCapacityAutoScalingUpdate =
@@ -8677,6 +9198,30 @@ class GlobalSecondaryIndexDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backfilling = this.backfilling;
+    final indexArn = this.indexArn;
+    final indexName = this.indexName;
+    final indexSizeBytes = this.indexSizeBytes;
+    final indexStatus = this.indexStatus;
+    final itemCount = this.itemCount;
+    final keySchema = this.keySchema;
+    final projection = this.projection;
+    final provisionedThroughput = this.provisionedThroughput;
+    return {
+      if (backfilling != null) 'Backfilling': backfilling,
+      if (indexArn != null) 'IndexArn': indexArn,
+      if (indexName != null) 'IndexName': indexName,
+      if (indexSizeBytes != null) 'IndexSizeBytes': indexSizeBytes,
+      if (indexStatus != null) 'IndexStatus': indexStatus.toValue(),
+      if (itemCount != null) 'ItemCount': itemCount,
+      if (keySchema != null) 'KeySchema': keySchema,
+      if (projection != null) 'Projection': projection,
+      if (provisionedThroughput != null)
+        'ProvisionedThroughput': provisionedThroughput,
+    };
+  }
 }
 
 /// Represents the properties of a global secondary index for the table when the
@@ -8739,6 +9284,20 @@ class GlobalSecondaryIndexInfo {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final indexName = this.indexName;
+    final keySchema = this.keySchema;
+    final projection = this.projection;
+    final provisionedThroughput = this.provisionedThroughput;
+    return {
+      if (indexName != null) 'IndexName': indexName,
+      if (keySchema != null) 'KeySchema': keySchema,
+      if (projection != null) 'Projection': projection,
+      if (provisionedThroughput != null)
+        'ProvisionedThroughput': provisionedThroughput,
+    };
+  }
 }
 
 /// Represents one of the following:
@@ -8790,6 +9349,7 @@ class GlobalSecondaryIndexUpdate {
     this.delete,
     this.update,
   });
+
   Map<String, dynamic> toJson() {
     final create = this.create;
     final delete = this.delete;
@@ -8822,6 +9382,15 @@ class GlobalTable {
           .map((e) => Replica.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalTableName = this.globalTableName;
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (globalTableName != null) 'GlobalTableName': globalTableName,
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
   }
 }
 
@@ -8877,6 +9446,23 @@ class GlobalTableDescription {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final globalTableArn = this.globalTableArn;
+    final globalTableName = this.globalTableName;
+    final globalTableStatus = this.globalTableStatus;
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (globalTableArn != null) 'GlobalTableArn': globalTableArn,
+      if (globalTableName != null) 'GlobalTableName': globalTableName,
+      if (globalTableStatus != null)
+        'GlobalTableStatus': globalTableStatus.toValue(),
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
+  }
 }
 
 /// Represents the settings of a global secondary index for a global table that
@@ -8900,6 +9486,7 @@ class GlobalTableGlobalSecondaryIndexSettingsUpdate {
     this.provisionedWriteCapacityAutoScalingSettingsUpdate,
     this.provisionedWriteCapacityUnits,
   });
+
   Map<String, dynamic> toJson() {
     final indexName = this.indexName;
     final provisionedWriteCapacityAutoScalingSettingsUpdate =
@@ -9027,6 +9614,16 @@ class ItemCollectionMetrics {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final itemCollectionKey = this.itemCollectionKey;
+    final sizeEstimateRangeGB = this.sizeEstimateRangeGB;
+    return {
+      if (itemCollectionKey != null) 'ItemCollectionKey': itemCollectionKey,
+      if (sizeEstimateRangeGB != null)
+        'SizeEstimateRangeGB': sizeEstimateRangeGB,
+    };
+  }
 }
 
 /// Details for the requested item.
@@ -9042,6 +9639,13 @@ class ItemResponse {
       item: (json['Item'] as Map<String, dynamic>?)?.map((k, e) =>
           MapEntry(k, AttributeValue.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final item = this.item;
+    return {
+      if (item != null) 'Item': item,
+    };
   }
 }
 
@@ -9292,6 +9896,19 @@ class KinesisDataStreamDestination {
       streamArn: json['StreamArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationStatus = this.destinationStatus;
+    final destinationStatusDescription = this.destinationStatusDescription;
+    final streamArn = this.streamArn;
+    return {
+      if (destinationStatus != null)
+        'DestinationStatus': destinationStatus.toValue(),
+      if (destinationStatusDescription != null)
+        'DestinationStatusDescription': destinationStatusDescription,
+      if (streamArn != null) 'StreamArn': streamArn,
+    };
+  }
 }
 
 class KinesisStreamingDestinationOutput {
@@ -9317,6 +9934,18 @@ class KinesisStreamingDestinationOutput {
       streamArn: json['StreamArn'] as String?,
       tableName: json['TableName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destinationStatus = this.destinationStatus;
+    final streamArn = this.streamArn;
+    final tableName = this.tableName;
+    return {
+      if (destinationStatus != null)
+        'DestinationStatus': destinationStatus.toValue(),
+      if (streamArn != null) 'StreamArn': streamArn,
+      if (tableName != null) 'TableName': tableName,
+    };
   }
 }
 
@@ -9352,6 +9981,16 @@ class ListBackupsOutput {
       lastEvaluatedBackupArn: json['LastEvaluatedBackupArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupSummaries = this.backupSummaries;
+    final lastEvaluatedBackupArn = this.lastEvaluatedBackupArn;
+    return {
+      if (backupSummaries != null) 'BackupSummaries': backupSummaries,
+      if (lastEvaluatedBackupArn != null)
+        'LastEvaluatedBackupArn': lastEvaluatedBackupArn,
+    };
+  }
 }
 
 class ListContributorInsightsOutput {
@@ -9375,6 +10014,16 @@ class ListContributorInsightsOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contributorInsightsSummaries = this.contributorInsightsSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (contributorInsightsSummaries != null)
+        'ContributorInsightsSummaries': contributorInsightsSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -9400,6 +10049,15 @@ class ListExportsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exportSummaries = this.exportSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (exportSummaries != null) 'ExportSummaries': exportSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListGlobalTablesOutput {
@@ -9422,6 +10080,16 @@ class ListGlobalTablesOutput {
       lastEvaluatedGlobalTableName:
           json['LastEvaluatedGlobalTableName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalTables = this.globalTables;
+    final lastEvaluatedGlobalTableName = this.lastEvaluatedGlobalTableName;
+    return {
+      if (globalTables != null) 'GlobalTables': globalTables,
+      if (lastEvaluatedGlobalTableName != null)
+        'LastEvaluatedGlobalTableName': lastEvaluatedGlobalTableName,
+    };
   }
 }
 
@@ -9457,6 +10125,16 @@ class ListTablesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastEvaluatedTableName = this.lastEvaluatedTableName;
+    final tableNames = this.tableNames;
+    return {
+      if (lastEvaluatedTableName != null)
+        'LastEvaluatedTableName': lastEvaluatedTableName,
+      if (tableNames != null) 'TableNames': tableNames,
+    };
+  }
 }
 
 class ListTagsOfResourceOutput {
@@ -9480,6 +10158,15 @@ class ListTagsOfResourceOutput {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -9522,6 +10209,7 @@ class LocalSecondaryIndex {
     required this.keySchema,
     required this.projection,
   });
+
   Map<String, dynamic> toJson() {
     final indexName = this.indexName;
     final keySchema = this.keySchema;
@@ -9603,6 +10291,23 @@ class LocalSecondaryIndexDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final indexArn = this.indexArn;
+    final indexName = this.indexName;
+    final indexSizeBytes = this.indexSizeBytes;
+    final itemCount = this.itemCount;
+    final keySchema = this.keySchema;
+    final projection = this.projection;
+    return {
+      if (indexArn != null) 'IndexArn': indexArn,
+      if (indexName != null) 'IndexName': indexName,
+      if (indexSizeBytes != null) 'IndexSizeBytes': indexSizeBytes,
+      if (itemCount != null) 'ItemCount': itemCount,
+      if (keySchema != null) 'KeySchema': keySchema,
+      if (projection != null) 'Projection': projection,
+    };
+  }
 }
 
 /// Represents the properties of a local secondary index for the table when the
@@ -9656,6 +10361,17 @@ class LocalSecondaryIndexInfo {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final indexName = this.indexName;
+    final keySchema = this.keySchema;
+    final projection = this.projection;
+    return {
+      if (indexName != null) 'IndexName': indexName,
+      if (keySchema != null) 'KeySchema': keySchema,
+      if (projection != null) 'Projection': projection,
+    };
+  }
 }
 
 /// Represents a PartiQL statment that uses parameters.
@@ -9670,6 +10386,7 @@ class ParameterizedStatement {
     required this.statement,
     this.parameters,
   });
+
   Map<String, dynamic> toJson() {
     final statement = this.statement;
     final parameters = this.parameters;
@@ -9717,6 +10434,22 @@ class PointInTimeRecoveryDescription {
           ?.toPointInTimeRecoveryStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final earliestRestorableDateTime = this.earliestRestorableDateTime;
+    final latestRestorableDateTime = this.latestRestorableDateTime;
+    final pointInTimeRecoveryStatus = this.pointInTimeRecoveryStatus;
+    return {
+      if (earliestRestorableDateTime != null)
+        'EarliestRestorableDateTime':
+            unixTimestampToJson(earliestRestorableDateTime),
+      if (latestRestorableDateTime != null)
+        'LatestRestorableDateTime':
+            unixTimestampToJson(latestRestorableDateTime),
+      if (pointInTimeRecoveryStatus != null)
+        'PointInTimeRecoveryStatus': pointInTimeRecoveryStatus.toValue(),
+    };
+  }
 }
 
 /// Represents the settings used to enable point in time recovery.
@@ -9728,6 +10461,7 @@ class PointInTimeRecoverySpecification {
   PointInTimeRecoverySpecification({
     required this.pointInTimeRecoveryEnabled,
   });
+
   Map<String, dynamic> toJson() {
     final pointInTimeRecoveryEnabled = this.pointInTimeRecoveryEnabled;
     return {
@@ -9949,6 +10683,24 @@ class ProvisionedThroughputDescription {
       writeCapacityUnits: json['WriteCapacityUnits'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastDecreaseDateTime = this.lastDecreaseDateTime;
+    final lastIncreaseDateTime = this.lastIncreaseDateTime;
+    final numberOfDecreasesToday = this.numberOfDecreasesToday;
+    final readCapacityUnits = this.readCapacityUnits;
+    final writeCapacityUnits = this.writeCapacityUnits;
+    return {
+      if (lastDecreaseDateTime != null)
+        'LastDecreaseDateTime': unixTimestampToJson(lastDecreaseDateTime),
+      if (lastIncreaseDateTime != null)
+        'LastIncreaseDateTime': unixTimestampToJson(lastIncreaseDateTime),
+      if (numberOfDecreasesToday != null)
+        'NumberOfDecreasesToday': numberOfDecreasesToday,
+      if (readCapacityUnits != null) 'ReadCapacityUnits': readCapacityUnits,
+      if (writeCapacityUnits != null) 'WriteCapacityUnits': writeCapacityUnits,
+    };
+  }
 }
 
 /// Replica-specific provisioned throughput settings. If not specified, uses the
@@ -10013,6 +10765,7 @@ class Put {
     this.expressionAttributeValues,
     this.returnValuesOnConditionCheckFailure,
   });
+
   Map<String, dynamic> toJson() {
     final item = this.item;
     final tableName = this.tableName;
@@ -10100,6 +10853,18 @@ class PutItemOutput {
               json['ItemCollectionMetrics'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final consumedCapacity = this.consumedCapacity;
+    final itemCollectionMetrics = this.itemCollectionMetrics;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
+      if (itemCollectionMetrics != null)
+        'ItemCollectionMetrics': itemCollectionMetrics,
+    };
   }
 }
 
@@ -10207,6 +10972,21 @@ class QueryOutput {
       scannedCount: json['ScannedCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacity = this.consumedCapacity;
+    final count = this.count;
+    final items = this.items;
+    final lastEvaluatedKey = this.lastEvaluatedKey;
+    final scannedCount = this.scannedCount;
+    return {
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
+      if (count != null) 'Count': count,
+      if (items != null) 'Items': items,
+      if (lastEvaluatedKey != null) 'LastEvaluatedKey': lastEvaluatedKey,
+      if (scannedCount != null) 'ScannedCount': scannedCount,
+    };
+  }
 }
 
 /// Represents the properties of a replica.
@@ -10293,6 +11073,28 @@ class ReplicaAutoScalingDescription {
       replicaStatus: (json['ReplicaStatus'] as String?)?.toReplicaStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalSecondaryIndexes = this.globalSecondaryIndexes;
+    final regionName = this.regionName;
+    final replicaProvisionedReadCapacityAutoScalingSettings =
+        this.replicaProvisionedReadCapacityAutoScalingSettings;
+    final replicaProvisionedWriteCapacityAutoScalingSettings =
+        this.replicaProvisionedWriteCapacityAutoScalingSettings;
+    final replicaStatus = this.replicaStatus;
+    return {
+      if (globalSecondaryIndexes != null)
+        'GlobalSecondaryIndexes': globalSecondaryIndexes,
+      if (regionName != null) 'RegionName': regionName,
+      if (replicaProvisionedReadCapacityAutoScalingSettings != null)
+        'ReplicaProvisionedReadCapacityAutoScalingSettings':
+            replicaProvisionedReadCapacityAutoScalingSettings,
+      if (replicaProvisionedWriteCapacityAutoScalingSettings != null)
+        'ReplicaProvisionedWriteCapacityAutoScalingSettings':
+            replicaProvisionedWriteCapacityAutoScalingSettings,
+      if (replicaStatus != null) 'ReplicaStatus': replicaStatus.toValue(),
+    };
+  }
 }
 
 /// Represents the auto scaling settings of a replica that will be modified.
@@ -10312,6 +11114,7 @@ class ReplicaAutoScalingUpdate {
     this.replicaGlobalSecondaryIndexUpdates,
     this.replicaProvisionedReadCapacityAutoScalingUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final regionName = this.regionName;
     final replicaGlobalSecondaryIndexUpdates =
@@ -10430,6 +11233,36 @@ class ReplicaDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalSecondaryIndexes = this.globalSecondaryIndexes;
+    final kMSMasterKeyId = this.kMSMasterKeyId;
+    final provisionedThroughputOverride = this.provisionedThroughputOverride;
+    final regionName = this.regionName;
+    final replicaInaccessibleDateTime = this.replicaInaccessibleDateTime;
+    final replicaStatus = this.replicaStatus;
+    final replicaStatusDescription = this.replicaStatusDescription;
+    final replicaStatusPercentProgress = this.replicaStatusPercentProgress;
+    final replicaTableClassSummary = this.replicaTableClassSummary;
+    return {
+      if (globalSecondaryIndexes != null)
+        'GlobalSecondaryIndexes': globalSecondaryIndexes,
+      if (kMSMasterKeyId != null) 'KMSMasterKeyId': kMSMasterKeyId,
+      if (provisionedThroughputOverride != null)
+        'ProvisionedThroughputOverride': provisionedThroughputOverride,
+      if (regionName != null) 'RegionName': regionName,
+      if (replicaInaccessibleDateTime != null)
+        'ReplicaInaccessibleDateTime':
+            unixTimestampToJson(replicaInaccessibleDateTime),
+      if (replicaStatus != null) 'ReplicaStatus': replicaStatus.toValue(),
+      if (replicaStatusDescription != null)
+        'ReplicaStatusDescription': replicaStatusDescription,
+      if (replicaStatusPercentProgress != null)
+        'ReplicaStatusPercentProgress': replicaStatusPercentProgress,
+      if (replicaTableClassSummary != null)
+        'ReplicaTableClassSummary': replicaTableClassSummary,
+    };
+  }
 }
 
 /// Represents the properties of a replica global secondary index.
@@ -10445,6 +11278,7 @@ class ReplicaGlobalSecondaryIndex {
     required this.indexName,
     this.provisionedThroughputOverride,
   });
+
   Map<String, dynamic> toJson() {
     final indexName = this.indexName;
     final provisionedThroughputOverride = this.provisionedThroughputOverride;
@@ -10509,6 +11343,25 @@ class ReplicaGlobalSecondaryIndexAutoScalingDescription {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final indexName = this.indexName;
+    final indexStatus = this.indexStatus;
+    final provisionedReadCapacityAutoScalingSettings =
+        this.provisionedReadCapacityAutoScalingSettings;
+    final provisionedWriteCapacityAutoScalingSettings =
+        this.provisionedWriteCapacityAutoScalingSettings;
+    return {
+      if (indexName != null) 'IndexName': indexName,
+      if (indexStatus != null) 'IndexStatus': indexStatus.toValue(),
+      if (provisionedReadCapacityAutoScalingSettings != null)
+        'ProvisionedReadCapacityAutoScalingSettings':
+            provisionedReadCapacityAutoScalingSettings,
+      if (provisionedWriteCapacityAutoScalingSettings != null)
+        'ProvisionedWriteCapacityAutoScalingSettings':
+            provisionedWriteCapacityAutoScalingSettings,
+    };
+  }
 }
 
 /// Represents the auto scaling settings of a global secondary index for a
@@ -10522,6 +11375,7 @@ class ReplicaGlobalSecondaryIndexAutoScalingUpdate {
     this.indexName,
     this.provisionedReadCapacityAutoScalingUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final indexName = this.indexName;
     final provisionedReadCapacityAutoScalingUpdate =
@@ -10557,6 +11411,16 @@ class ReplicaGlobalSecondaryIndexDescription {
                   json['ProvisionedThroughputOverride'] as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexName = this.indexName;
+    final provisionedThroughputOverride = this.provisionedThroughputOverride;
+    return {
+      if (indexName != null) 'IndexName': indexName,
+      if (provisionedThroughputOverride != null)
+        'ProvisionedThroughputOverride': provisionedThroughputOverride,
+    };
   }
 }
 
@@ -10633,6 +11497,31 @@ class ReplicaGlobalSecondaryIndexSettingsDescription {
           json['ProvisionedWriteCapacityUnits'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final indexName = this.indexName;
+    final indexStatus = this.indexStatus;
+    final provisionedReadCapacityAutoScalingSettings =
+        this.provisionedReadCapacityAutoScalingSettings;
+    final provisionedReadCapacityUnits = this.provisionedReadCapacityUnits;
+    final provisionedWriteCapacityAutoScalingSettings =
+        this.provisionedWriteCapacityAutoScalingSettings;
+    final provisionedWriteCapacityUnits = this.provisionedWriteCapacityUnits;
+    return {
+      'IndexName': indexName,
+      if (indexStatus != null) 'IndexStatus': indexStatus.toValue(),
+      if (provisionedReadCapacityAutoScalingSettings != null)
+        'ProvisionedReadCapacityAutoScalingSettings':
+            provisionedReadCapacityAutoScalingSettings,
+      if (provisionedReadCapacityUnits != null)
+        'ProvisionedReadCapacityUnits': provisionedReadCapacityUnits,
+      if (provisionedWriteCapacityAutoScalingSettings != null)
+        'ProvisionedWriteCapacityAutoScalingSettings':
+            provisionedWriteCapacityAutoScalingSettings,
+      if (provisionedWriteCapacityUnits != null)
+        'ProvisionedWriteCapacityUnits': provisionedWriteCapacityUnits,
+    };
+  }
 }
 
 /// Represents the settings of a global secondary index for a global table that
@@ -10656,6 +11545,7 @@ class ReplicaGlobalSecondaryIndexSettingsUpdate {
     this.provisionedReadCapacityAutoScalingSettingsUpdate,
     this.provisionedReadCapacityUnits,
   });
+
   Map<String, dynamic> toJson() {
     final indexName = this.indexName;
     final provisionedReadCapacityAutoScalingSettingsUpdate =
@@ -10774,6 +11664,46 @@ class ReplicaSettingsDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final regionName = this.regionName;
+    final replicaBillingModeSummary = this.replicaBillingModeSummary;
+    final replicaGlobalSecondaryIndexSettings =
+        this.replicaGlobalSecondaryIndexSettings;
+    final replicaProvisionedReadCapacityAutoScalingSettings =
+        this.replicaProvisionedReadCapacityAutoScalingSettings;
+    final replicaProvisionedReadCapacityUnits =
+        this.replicaProvisionedReadCapacityUnits;
+    final replicaProvisionedWriteCapacityAutoScalingSettings =
+        this.replicaProvisionedWriteCapacityAutoScalingSettings;
+    final replicaProvisionedWriteCapacityUnits =
+        this.replicaProvisionedWriteCapacityUnits;
+    final replicaStatus = this.replicaStatus;
+    final replicaTableClassSummary = this.replicaTableClassSummary;
+    return {
+      'RegionName': regionName,
+      if (replicaBillingModeSummary != null)
+        'ReplicaBillingModeSummary': replicaBillingModeSummary,
+      if (replicaGlobalSecondaryIndexSettings != null)
+        'ReplicaGlobalSecondaryIndexSettings':
+            replicaGlobalSecondaryIndexSettings,
+      if (replicaProvisionedReadCapacityAutoScalingSettings != null)
+        'ReplicaProvisionedReadCapacityAutoScalingSettings':
+            replicaProvisionedReadCapacityAutoScalingSettings,
+      if (replicaProvisionedReadCapacityUnits != null)
+        'ReplicaProvisionedReadCapacityUnits':
+            replicaProvisionedReadCapacityUnits,
+      if (replicaProvisionedWriteCapacityAutoScalingSettings != null)
+        'ReplicaProvisionedWriteCapacityAutoScalingSettings':
+            replicaProvisionedWriteCapacityAutoScalingSettings,
+      if (replicaProvisionedWriteCapacityUnits != null)
+        'ReplicaProvisionedWriteCapacityUnits':
+            replicaProvisionedWriteCapacityUnits,
+      if (replicaStatus != null) 'ReplicaStatus': replicaStatus.toValue(),
+      if (replicaTableClassSummary != null)
+        'ReplicaTableClassSummary': replicaTableClassSummary,
+    };
+  }
 }
 
 /// Represents the settings for a global table in a Region that will be
@@ -10811,6 +11741,7 @@ class ReplicaSettingsUpdate {
     this.replicaProvisionedReadCapacityUnits,
     this.replicaTableClass,
   });
+
   Map<String, dynamic> toJson() {
     final regionName = this.regionName;
     final replicaGlobalSecondaryIndexSettingsUpdate =
@@ -10914,6 +11845,7 @@ class ReplicaUpdate {
     this.create,
     this.delete,
   });
+
   Map<String, dynamic> toJson() {
     final create = this.create;
     final delete = this.delete;
@@ -10961,6 +11893,7 @@ class ReplicationGroupUpdate {
     this.delete,
     this.update,
   });
+
   Map<String, dynamic> toJson() {
     final create = this.create;
     final delete = this.delete;
@@ -11003,6 +11936,19 @@ class RestoreSummary {
       sourceTableArn: json['SourceTableArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final restoreDateTime = this.restoreDateTime;
+    final restoreInProgress = this.restoreInProgress;
+    final sourceBackupArn = this.sourceBackupArn;
+    final sourceTableArn = this.sourceTableArn;
+    return {
+      'RestoreDateTime': unixTimestampToJson(restoreDateTime),
+      'RestoreInProgress': restoreInProgress,
+      if (sourceBackupArn != null) 'SourceBackupArn': sourceBackupArn,
+      if (sourceTableArn != null) 'SourceTableArn': sourceTableArn,
+    };
+  }
 }
 
 class RestoreTableFromBackupOutput {
@@ -11020,6 +11966,13 @@ class RestoreTableFromBackupOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tableDescription = this.tableDescription;
+    return {
+      if (tableDescription != null) 'TableDescription': tableDescription,
+    };
+  }
 }
 
 class RestoreTableToPointInTimeOutput {
@@ -11036,6 +11989,13 @@ class RestoreTableToPointInTimeOutput {
               json['TableDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tableDescription = this.tableDescription;
+    return {
+      if (tableDescription != null) 'TableDescription': tableDescription,
+    };
   }
 }
 
@@ -11276,6 +12236,21 @@ class SSEDescription {
       status: (json['Status'] as String?)?.toSSEStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inaccessibleEncryptionDateTime = this.inaccessibleEncryptionDateTime;
+    final kMSMasterKeyArn = this.kMSMasterKeyArn;
+    final sSEType = this.sSEType;
+    final status = this.status;
+    return {
+      if (inaccessibleEncryptionDateTime != null)
+        'InaccessibleEncryptionDateTime':
+            unixTimestampToJson(inaccessibleEncryptionDateTime),
+      if (kMSMasterKeyArn != null) 'KMSMasterKeyArn': kMSMasterKeyArn,
+      if (sSEType != null) 'SSEType': sSEType.toValue(),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Represents the settings used to enable server-side encryption.
@@ -11308,6 +12283,7 @@ class SSESpecification {
     this.kMSMasterKeyId,
     this.sSEType,
   });
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     final kMSMasterKeyId = this.kMSMasterKeyId;
@@ -11500,6 +12476,21 @@ class ScanOutput {
       scannedCount: json['ScannedCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacity = this.consumedCapacity;
+    final count = this.count;
+    final items = this.items;
+    final lastEvaluatedKey = this.lastEvaluatedKey;
+    final scannedCount = this.scannedCount;
+    return {
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
+      if (count != null) 'Count': count,
+      if (items != null) 'Items': items,
+      if (lastEvaluatedKey != null) 'LastEvaluatedKey': lastEvaluatedKey,
+      if (scannedCount != null) 'ScannedCount': scannedCount,
+    };
+  }
 }
 
 enum Select {
@@ -11612,6 +12603,29 @@ class SourceTableDetails {
       tableSizeBytes: json['TableSizeBytes'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keySchema = this.keySchema;
+    final provisionedThroughput = this.provisionedThroughput;
+    final tableCreationDateTime = this.tableCreationDateTime;
+    final tableId = this.tableId;
+    final tableName = this.tableName;
+    final billingMode = this.billingMode;
+    final itemCount = this.itemCount;
+    final tableArn = this.tableArn;
+    final tableSizeBytes = this.tableSizeBytes;
+    return {
+      'KeySchema': keySchema,
+      'ProvisionedThroughput': provisionedThroughput,
+      'TableCreationDateTime': unixTimestampToJson(tableCreationDateTime),
+      'TableId': tableId,
+      'TableName': tableName,
+      if (billingMode != null) 'BillingMode': billingMode.toValue(),
+      if (itemCount != null) 'ItemCount': itemCount,
+      if (tableArn != null) 'TableArn': tableArn,
+      if (tableSizeBytes != null) 'TableSizeBytes': tableSizeBytes,
+    };
+  }
 }
 
 /// Contains the details of the features enabled on the table when the backup
@@ -11669,6 +12683,24 @@ class SourceTableFeatureDetails {
               json['TimeToLiveDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalSecondaryIndexes = this.globalSecondaryIndexes;
+    final localSecondaryIndexes = this.localSecondaryIndexes;
+    final sSEDescription = this.sSEDescription;
+    final streamDescription = this.streamDescription;
+    final timeToLiveDescription = this.timeToLiveDescription;
+    return {
+      if (globalSecondaryIndexes != null)
+        'GlobalSecondaryIndexes': globalSecondaryIndexes,
+      if (localSecondaryIndexes != null)
+        'LocalSecondaryIndexes': localSecondaryIndexes,
+      if (sSEDescription != null) 'SSEDescription': sSEDescription,
+      if (streamDescription != null) 'StreamDescription': streamDescription,
+      if (timeToLiveDescription != null)
+        'TimeToLiveDescription': timeToLiveDescription,
+    };
   }
 }
 
@@ -11803,6 +12835,17 @@ class TableAutoScalingDescription {
       tableStatus: (json['TableStatus'] as String?)?.toTableStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicas = this.replicas;
+    final tableName = this.tableName;
+    final tableStatus = this.tableStatus;
+    return {
+      if (replicas != null) 'Replicas': replicas,
+      if (tableName != null) 'TableName': tableName,
+      if (tableStatus != null) 'TableStatus': tableStatus.toValue(),
+    };
+  }
 }
 
 enum TableClass {
@@ -11851,6 +12894,16 @@ class TableClassSummary {
       lastUpdateDateTime: timeStampFromJson(json['LastUpdateDateTime']),
       tableClass: (json['TableClass'] as String?)?.toTableClass(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastUpdateDateTime = this.lastUpdateDateTime;
+    final tableClass = this.tableClass;
+    return {
+      if (lastUpdateDateTime != null)
+        'LastUpdateDateTime': unixTimestampToJson(lastUpdateDateTime),
+      if (tableClass != null) 'TableClass': tableClass.toValue(),
+    };
   }
 }
 
@@ -12264,6 +13317,61 @@ class TableDescription {
       tableStatus: (json['TableStatus'] as String?)?.toTableStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final archivalSummary = this.archivalSummary;
+    final attributeDefinitions = this.attributeDefinitions;
+    final billingModeSummary = this.billingModeSummary;
+    final creationDateTime = this.creationDateTime;
+    final globalSecondaryIndexes = this.globalSecondaryIndexes;
+    final globalTableVersion = this.globalTableVersion;
+    final itemCount = this.itemCount;
+    final keySchema = this.keySchema;
+    final latestStreamArn = this.latestStreamArn;
+    final latestStreamLabel = this.latestStreamLabel;
+    final localSecondaryIndexes = this.localSecondaryIndexes;
+    final provisionedThroughput = this.provisionedThroughput;
+    final replicas = this.replicas;
+    final restoreSummary = this.restoreSummary;
+    final sSEDescription = this.sSEDescription;
+    final streamSpecification = this.streamSpecification;
+    final tableArn = this.tableArn;
+    final tableClassSummary = this.tableClassSummary;
+    final tableId = this.tableId;
+    final tableName = this.tableName;
+    final tableSizeBytes = this.tableSizeBytes;
+    final tableStatus = this.tableStatus;
+    return {
+      if (archivalSummary != null) 'ArchivalSummary': archivalSummary,
+      if (attributeDefinitions != null)
+        'AttributeDefinitions': attributeDefinitions,
+      if (billingModeSummary != null) 'BillingModeSummary': billingModeSummary,
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (globalSecondaryIndexes != null)
+        'GlobalSecondaryIndexes': globalSecondaryIndexes,
+      if (globalTableVersion != null) 'GlobalTableVersion': globalTableVersion,
+      if (itemCount != null) 'ItemCount': itemCount,
+      if (keySchema != null) 'KeySchema': keySchema,
+      if (latestStreamArn != null) 'LatestStreamArn': latestStreamArn,
+      if (latestStreamLabel != null) 'LatestStreamLabel': latestStreamLabel,
+      if (localSecondaryIndexes != null)
+        'LocalSecondaryIndexes': localSecondaryIndexes,
+      if (provisionedThroughput != null)
+        'ProvisionedThroughput': provisionedThroughput,
+      if (replicas != null) 'Replicas': replicas,
+      if (restoreSummary != null) 'RestoreSummary': restoreSummary,
+      if (sSEDescription != null) 'SSEDescription': sSEDescription,
+      if (streamSpecification != null)
+        'StreamSpecification': streamSpecification,
+      if (tableArn != null) 'TableArn': tableArn,
+      if (tableClassSummary != null) 'TableClassSummary': tableClassSummary,
+      if (tableId != null) 'TableId': tableId,
+      if (tableName != null) 'TableName': tableName,
+      if (tableSizeBytes != null) 'TableSizeBytes': tableSizeBytes,
+      if (tableStatus != null) 'TableStatus': tableStatus.toValue(),
+    };
+  }
 }
 
 enum TableStatus {
@@ -12380,6 +13488,16 @@ class TimeToLiveDescription {
           (json['TimeToLiveStatus'] as String?)?.toTimeToLiveStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributeName = this.attributeName;
+    final timeToLiveStatus = this.timeToLiveStatus;
+    return {
+      if (attributeName != null) 'AttributeName': attributeName,
+      if (timeToLiveStatus != null)
+        'TimeToLiveStatus': timeToLiveStatus.toValue(),
+    };
+  }
 }
 
 /// Represents the settings used to enable or disable Time to Live (TTL) for the
@@ -12462,6 +13580,7 @@ class TransactGetItem {
   TransactGetItem({
     required this.get,
   });
+
   Map<String, dynamic> toJson() {
     final get = this.get;
     return {
@@ -12507,6 +13626,15 @@ class TransactGetItemsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacity = this.consumedCapacity;
+    final responses = this.responses;
+    return {
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
+      if (responses != null) 'Responses': responses,
+    };
+  }
 }
 
 /// A list of requests that can perform update, put, delete, or check operations
@@ -12530,6 +13658,7 @@ class TransactWriteItem {
     this.put,
     this.update,
   });
+
   Map<String, dynamic> toJson() {
     final conditionCheck = this.conditionCheck;
     final delete = this.delete;
@@ -12577,6 +13706,16 @@ class TransactWriteItemsOutput {
                   .toList())),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final consumedCapacity = this.consumedCapacity;
+    final itemCollectionMetrics = this.itemCollectionMetrics;
+    return {
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
+      if (itemCollectionMetrics != null)
+        'ItemCollectionMetrics': itemCollectionMetrics,
+    };
+  }
 }
 
 /// Represents a request to perform an <code>UpdateItem</code> operation.
@@ -12618,6 +13757,7 @@ class Update {
     this.expressionAttributeValues,
     this.returnValuesOnConditionCheckFailure,
   });
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final tableName = this.tableName;
@@ -12660,6 +13800,14 @@ class UpdateContinuousBackupsOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final continuousBackupsDescription = this.continuousBackupsDescription;
+    return {
+      if (continuousBackupsDescription != null)
+        'ContinuousBackupsDescription': continuousBackupsDescription,
+    };
+  }
 }
 
 class UpdateContributorInsightsOutput {
@@ -12685,6 +13833,18 @@ class UpdateContributorInsightsOutput {
       tableName: json['TableName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contributorInsightsStatus = this.contributorInsightsStatus;
+    final indexName = this.indexName;
+    final tableName = this.tableName;
+    return {
+      if (contributorInsightsStatus != null)
+        'ContributorInsightsStatus': contributorInsightsStatus.toValue(),
+      if (indexName != null) 'IndexName': indexName,
+      if (tableName != null) 'TableName': tableName,
+    };
+  }
 }
 
 /// Represents the new provisioned throughput settings to be applied to a global
@@ -12705,6 +13865,7 @@ class UpdateGlobalSecondaryIndexAction {
     required this.indexName,
     required this.provisionedThroughput,
   });
+
   Map<String, dynamic> toJson() {
     final indexName = this.indexName;
     final provisionedThroughput = this.provisionedThroughput;
@@ -12730,6 +13891,14 @@ class UpdateGlobalTableOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalTableDescription = this.globalTableDescription;
+    return {
+      if (globalTableDescription != null)
+        'GlobalTableDescription': globalTableDescription,
+    };
+  }
 }
 
 class UpdateGlobalTableSettingsOutput {
@@ -12752,6 +13921,15 @@ class UpdateGlobalTableSettingsOutput {
               ReplicaSettingsDescription.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalTableName = this.globalTableName;
+    final replicaSettings = this.replicaSettings;
+    return {
+      if (globalTableName != null) 'GlobalTableName': globalTableName,
+      if (replicaSettings != null) 'ReplicaSettings': replicaSettings,
+    };
   }
 }
 
@@ -12822,6 +14000,18 @@ class UpdateItemOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final consumedCapacity = this.consumedCapacity;
+    final itemCollectionMetrics = this.itemCollectionMetrics;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
+      if (itemCollectionMetrics != null)
+        'ItemCollectionMetrics': itemCollectionMetrics,
+    };
+  }
 }
 
 /// Represents a replica to be modified.
@@ -12853,6 +14043,7 @@ class UpdateReplicationGroupMemberAction {
     this.provisionedThroughputOverride,
     this.tableClassOverride,
   });
+
   Map<String, dynamic> toJson() {
     final regionName = this.regionName;
     final globalSecondaryIndexes = this.globalSecondaryIndexes;
@@ -12888,6 +14079,13 @@ class UpdateTableOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tableDescription = this.tableDescription;
+    return {
+      if (tableDescription != null) 'TableDescription': tableDescription,
+    };
+  }
 }
 
 class UpdateTableReplicaAutoScalingOutput {
@@ -12907,6 +14105,14 @@ class UpdateTableReplicaAutoScalingOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tableAutoScalingDescription = this.tableAutoScalingDescription;
+    return {
+      if (tableAutoScalingDescription != null)
+        'TableAutoScalingDescription': tableAutoScalingDescription,
+    };
+  }
 }
 
 class UpdateTimeToLiveOutput {
@@ -12923,6 +14129,14 @@ class UpdateTimeToLiveOutput {
               json['TimeToLiveSpecification'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final timeToLiveSpecification = this.timeToLiveSpecification;
+    return {
+      if (timeToLiveSpecification != null)
+        'TimeToLiveSpecification': timeToLiveSpecification,
+    };
   }
 }
 

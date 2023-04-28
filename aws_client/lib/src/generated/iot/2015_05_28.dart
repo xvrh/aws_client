@@ -11349,6 +11349,37 @@ class ActiveViolation {
       violationStartTime: timeStampFromJson(json['violationStartTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final behavior = this.behavior;
+    final lastViolationTime = this.lastViolationTime;
+    final lastViolationValue = this.lastViolationValue;
+    final securityProfileName = this.securityProfileName;
+    final thingName = this.thingName;
+    final verificationState = this.verificationState;
+    final verificationStateDescription = this.verificationStateDescription;
+    final violationEventAdditionalInfo = this.violationEventAdditionalInfo;
+    final violationId = this.violationId;
+    final violationStartTime = this.violationStartTime;
+    return {
+      if (behavior != null) 'behavior': behavior,
+      if (lastViolationTime != null)
+        'lastViolationTime': unixTimestampToJson(lastViolationTime),
+      if (lastViolationValue != null) 'lastViolationValue': lastViolationValue,
+      if (securityProfileName != null)
+        'securityProfileName': securityProfileName,
+      if (thingName != null) 'thingName': thingName,
+      if (verificationState != null)
+        'verificationState': verificationState.toValue(),
+      if (verificationStateDescription != null)
+        'verificationStateDescription': verificationStateDescription,
+      if (violationEventAdditionalInfo != null)
+        'violationEventAdditionalInfo': violationEventAdditionalInfo,
+      if (violationId != null) 'violationId': violationId,
+      if (violationStartTime != null)
+        'violationStartTime': unixTimestampToJson(violationStartTime),
+    };
+  }
 }
 
 class AddThingToBillingGroupResponse {
@@ -11356,12 +11387,20 @@ class AddThingToBillingGroupResponse {
   factory AddThingToBillingGroupResponse.fromJson(Map<String, dynamic> _) {
     return AddThingToBillingGroupResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AddThingToThingGroupResponse {
   AddThingToThingGroupResponse();
   factory AddThingToThingGroupResponse.fromJson(Map<String, dynamic> _) {
     return AddThingToThingGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -11538,6 +11577,13 @@ class Allowed {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policies = this.policies;
+    return {
+      if (policies != null) 'policies': policies,
+    };
+  }
 }
 
 /// An asset property timestamp entry containing the following information.
@@ -11680,12 +11726,27 @@ class AssociateTargetsWithJobResponse {
       jobId: json['jobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    return {
+      if (description != null) 'description': description,
+      if (jobArn != null) 'jobArn': jobArn,
+      if (jobId != null) 'jobId': jobId,
+    };
+  }
 }
 
 class AttachSecurityProfileResponse {
   AttachSecurityProfileResponse();
   factory AttachSecurityProfileResponse.fromJson(Map<String, dynamic> _) {
     return AttachSecurityProfileResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -11694,6 +11755,10 @@ class AttachThingPrincipalResponse {
   AttachThingPrincipalResponse();
   factory AttachThingPrincipalResponse.fromJson(Map<String, dynamic> _) {
     return AttachThingPrincipalResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -11810,6 +11875,30 @@ class AuditCheckDetails {
           json['suppressedNonCompliantResourcesCount'] as int?,
       totalResourcesCount: json['totalResourcesCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final checkCompliant = this.checkCompliant;
+    final checkRunStatus = this.checkRunStatus;
+    final errorCode = this.errorCode;
+    final message = this.message;
+    final nonCompliantResourcesCount = this.nonCompliantResourcesCount;
+    final suppressedNonCompliantResourcesCount =
+        this.suppressedNonCompliantResourcesCount;
+    final totalResourcesCount = this.totalResourcesCount;
+    return {
+      if (checkCompliant != null) 'checkCompliant': checkCompliant,
+      if (checkRunStatus != null) 'checkRunStatus': checkRunStatus.toValue(),
+      if (errorCode != null) 'errorCode': errorCode,
+      if (message != null) 'message': message,
+      if (nonCompliantResourcesCount != null)
+        'nonCompliantResourcesCount': nonCompliantResourcesCount,
+      if (suppressedNonCompliantResourcesCount != null)
+        'suppressedNonCompliantResourcesCount':
+            suppressedNonCompliantResourcesCount,
+      if (totalResourcesCount != null)
+        'totalResourcesCount': totalResourcesCount,
+    };
   }
 }
 
@@ -11930,6 +12019,37 @@ class AuditFinding {
       taskId: json['taskId'] as String?,
       taskStartTime: timeStampFromJson(json['taskStartTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final checkName = this.checkName;
+    final findingId = this.findingId;
+    final findingTime = this.findingTime;
+    final isSuppressed = this.isSuppressed;
+    final nonCompliantResource = this.nonCompliantResource;
+    final reasonForNonCompliance = this.reasonForNonCompliance;
+    final reasonForNonComplianceCode = this.reasonForNonComplianceCode;
+    final relatedResources = this.relatedResources;
+    final severity = this.severity;
+    final taskId = this.taskId;
+    final taskStartTime = this.taskStartTime;
+    return {
+      if (checkName != null) 'checkName': checkName,
+      if (findingId != null) 'findingId': findingId,
+      if (findingTime != null) 'findingTime': unixTimestampToJson(findingTime),
+      if (isSuppressed != null) 'isSuppressed': isSuppressed,
+      if (nonCompliantResource != null)
+        'nonCompliantResource': nonCompliantResource,
+      if (reasonForNonCompliance != null)
+        'reasonForNonCompliance': reasonForNonCompliance,
+      if (reasonForNonComplianceCode != null)
+        'reasonForNonComplianceCode': reasonForNonComplianceCode,
+      if (relatedResources != null) 'relatedResources': relatedResources,
+      if (severity != null) 'severity': severity.toValue(),
+      if (taskId != null) 'taskId': taskId,
+      if (taskStartTime != null)
+        'taskStartTime': unixTimestampToJson(taskStartTime),
+    };
   }
 }
 
@@ -12067,6 +12187,29 @@ class AuditMitigationActionExecutionMetadata {
       taskId: json['taskId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionId = this.actionId;
+    final actionName = this.actionName;
+    final endTime = this.endTime;
+    final errorCode = this.errorCode;
+    final findingId = this.findingId;
+    final message = this.message;
+    final startTime = this.startTime;
+    final status = this.status;
+    final taskId = this.taskId;
+    return {
+      if (actionId != null) 'actionId': actionId,
+      if (actionName != null) 'actionName': actionName,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (errorCode != null) 'errorCode': errorCode,
+      if (findingId != null) 'findingId': findingId,
+      if (message != null) 'message': message,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (status != null) 'status': status.toValue(),
+      if (taskId != null) 'taskId': taskId,
+    };
+  }
 }
 
 enum AuditMitigationActionsExecutionStatus {
@@ -12145,6 +12288,17 @@ class AuditMitigationActionsTaskMetadata {
       taskStatus:
           (json['taskStatus'] as String?)?.toAuditMitigationActionsTaskStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final startTime = this.startTime;
+    final taskId = this.taskId;
+    final taskStatus = this.taskStatus;
+    return {
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (taskId != null) 'taskId': taskId,
+      if (taskStatus != null) 'taskStatus': taskStatus.toValue(),
+    };
   }
 }
 
@@ -12329,6 +12483,23 @@ class AuditSuppression {
       suppressIndefinitely: json['suppressIndefinitely'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checkName = this.checkName;
+    final resourceIdentifier = this.resourceIdentifier;
+    final description = this.description;
+    final expirationDate = this.expirationDate;
+    final suppressIndefinitely = this.suppressIndefinitely;
+    return {
+      'checkName': checkName,
+      'resourceIdentifier': resourceIdentifier,
+      if (description != null) 'description': description,
+      if (expirationDate != null)
+        'expirationDate': unixTimestampToJson(expirationDate),
+      if (suppressIndefinitely != null)
+        'suppressIndefinitely': suppressIndefinitely,
+    };
+  }
 }
 
 /// The audits that were performed.
@@ -12355,6 +12526,17 @@ class AuditTaskMetadata {
       taskStatus: (json['taskStatus'] as String?)?.toAuditTaskStatus(),
       taskType: (json['taskType'] as String?)?.toAuditTaskType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final taskId = this.taskId;
+    final taskStatus = this.taskStatus;
+    final taskType = this.taskType;
+    return {
+      if (taskId != null) 'taskId': taskId,
+      if (taskStatus != null) 'taskStatus': taskStatus.toValue(),
+      if (taskType != null) 'taskType': taskType.toValue(),
+    };
   }
 }
 
@@ -12534,6 +12716,22 @@ class AuthResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowed = this.allowed;
+    final authDecision = this.authDecision;
+    final authInfo = this.authInfo;
+    final denied = this.denied;
+    final missingContextValues = this.missingContextValues;
+    return {
+      if (allowed != null) 'allowed': allowed,
+      if (authDecision != null) 'authDecision': authDecision.toValue(),
+      if (authInfo != null) 'authInfo': authInfo,
+      if (denied != null) 'denied': denied,
+      if (missingContextValues != null)
+        'missingContextValues': missingContextValues,
+    };
+  }
 }
 
 /// An object that specifies the authorization service for a domain.
@@ -12632,6 +12830,36 @@ class AuthorizerDescription {
               ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorizerArn = this.authorizerArn;
+    final authorizerFunctionArn = this.authorizerFunctionArn;
+    final authorizerName = this.authorizerName;
+    final creationDate = this.creationDate;
+    final enableCachingForHttp = this.enableCachingForHttp;
+    final lastModifiedDate = this.lastModifiedDate;
+    final signingDisabled = this.signingDisabled;
+    final status = this.status;
+    final tokenKeyName = this.tokenKeyName;
+    final tokenSigningPublicKeys = this.tokenSigningPublicKeys;
+    return {
+      if (authorizerArn != null) 'authorizerArn': authorizerArn,
+      if (authorizerFunctionArn != null)
+        'authorizerFunctionArn': authorizerFunctionArn,
+      if (authorizerName != null) 'authorizerName': authorizerName,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (enableCachingForHttp != null)
+        'enableCachingForHttp': enableCachingForHttp,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (signingDisabled != null) 'signingDisabled': signingDisabled,
+      if (status != null) 'status': status.toValue(),
+      if (tokenKeyName != null) 'tokenKeyName': tokenKeyName,
+      if (tokenSigningPublicKeys != null)
+        'tokenSigningPublicKeys': tokenSigningPublicKeys,
+    };
+  }
 }
 
 enum AuthorizerStatus {
@@ -12680,6 +12908,15 @@ class AuthorizerSummary {
       authorizerName: json['authorizerName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorizerArn = this.authorizerArn;
+    final authorizerName = this.authorizerName;
+    return {
+      if (authorizerArn != null) 'authorizerArn': authorizerArn,
+      if (authorizerName != null) 'authorizerName': authorizerName,
+    };
+  }
 }
 
 enum AutoRegistrationStatus {
@@ -12718,6 +12955,7 @@ class AwsJobAbortConfig {
   AwsJobAbortConfig({
     required this.abortCriteriaList,
   });
+
   Map<String, dynamic> toJson() {
     final abortCriteriaList = this.abortCriteriaList;
     return {
@@ -12751,6 +12989,7 @@ class AwsJobAbortCriteria {
     required this.minNumberOfExecutedThings,
     required this.thresholdPercentage,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final failureType = this.failureType;
@@ -12983,6 +13222,7 @@ class AwsJobTimeoutConfig {
   AwsJobTimeoutConfig({
     this.inProgressTimeoutInMinutes,
   });
+
   Map<String, dynamic> toJson() {
     final inProgressTimeoutInMinutes = this.inProgressTimeoutInMinutes;
     return {
@@ -13234,6 +13474,29 @@ class BehaviorModelTrainingSummary {
           timeStampFromJson(json['trainingDataCollectionStartDate']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final behaviorName = this.behaviorName;
+    final datapointsCollectionPercentage = this.datapointsCollectionPercentage;
+    final lastModelRefreshDate = this.lastModelRefreshDate;
+    final modelStatus = this.modelStatus;
+    final securityProfileName = this.securityProfileName;
+    final trainingDataCollectionStartDate =
+        this.trainingDataCollectionStartDate;
+    return {
+      if (behaviorName != null) 'behaviorName': behaviorName,
+      if (datapointsCollectionPercentage != null)
+        'datapointsCollectionPercentage': datapointsCollectionPercentage,
+      if (lastModelRefreshDate != null)
+        'lastModelRefreshDate': unixTimestampToJson(lastModelRefreshDate),
+      if (modelStatus != null) 'modelStatus': modelStatus.toValue(),
+      if (securityProfileName != null)
+        'securityProfileName': securityProfileName,
+      if (trainingDataCollectionStartDate != null)
+        'trainingDataCollectionStartDate':
+            unixTimestampToJson(trainingDataCollectionStartDate),
+    };
+  }
 }
 
 /// Additional information about the billing group.
@@ -13248,6 +13511,14 @@ class BillingGroupMetadata {
     return BillingGroupMetadata(
       creationDate: timeStampFromJson(json['creationDate']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+    };
   }
 }
 
@@ -13293,6 +13564,15 @@ class Bucket {
       keyValue: json['keyValue'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final keyValue = this.keyValue;
+    return {
+      if (count != null) 'count': count,
+      if (keyValue != null) 'keyValue': keyValue,
+    };
+  }
 }
 
 /// The type of bucketed aggregation performed.
@@ -13305,6 +13585,7 @@ class BucketsAggregationType {
   BucketsAggregationType({
     this.termsAggregation,
   });
+
   Map<String, dynamic> toJson() {
     final termsAggregation = this.termsAggregation;
     return {
@@ -13342,6 +13623,20 @@ class CACertificate {
       creationDate: timeStampFromJson(json['creationDate']),
       status: (json['status'] as String?)?.toCACertificateStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final certificateId = this.certificateId;
+    final creationDate = this.creationDate;
+    final status = this.status;
+    return {
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (certificateId != null) 'certificateId': certificateId,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -13425,6 +13720,38 @@ class CACertificateDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoRegistrationStatus = this.autoRegistrationStatus;
+    final certificateArn = this.certificateArn;
+    final certificateId = this.certificateId;
+    final certificateMode = this.certificateMode;
+    final certificatePem = this.certificatePem;
+    final creationDate = this.creationDate;
+    final customerVersion = this.customerVersion;
+    final generationId = this.generationId;
+    final lastModifiedDate = this.lastModifiedDate;
+    final ownedBy = this.ownedBy;
+    final status = this.status;
+    final validity = this.validity;
+    return {
+      if (autoRegistrationStatus != null)
+        'autoRegistrationStatus': autoRegistrationStatus.toValue(),
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (certificateId != null) 'certificateId': certificateId,
+      if (certificateMode != null) 'certificateMode': certificateMode.toValue(),
+      if (certificatePem != null) 'certificatePem': certificatePem,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (customerVersion != null) 'customerVersion': customerVersion,
+      if (generationId != null) 'generationId': generationId,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (ownedBy != null) 'ownedBy': ownedBy,
+      if (status != null) 'status': status.toValue(),
+      if (validity != null) 'validity': validity,
+    };
+  }
 }
 
 enum CACertificateStatus {
@@ -13484,12 +13811,20 @@ class CancelAuditMitigationActionsTaskResponse {
       Map<String, dynamic> _) {
     return CancelAuditMitigationActionsTaskResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CancelAuditTaskResponse {
   CancelAuditTaskResponse();
   factory CancelAuditTaskResponse.fromJson(Map<String, dynamic> _) {
     return CancelAuditTaskResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -13498,6 +13833,10 @@ class CancelDetectMitigationActionsTaskResponse {
   factory CancelDetectMitigationActionsTaskResponse.fromJson(
       Map<String, dynamic> _) {
     return CancelDetectMitigationActionsTaskResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -13522,6 +13861,17 @@ class CancelJobResponse {
       jobArn: json['jobArn'] as String?,
       jobId: json['jobId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    return {
+      if (description != null) 'description': description,
+      if (jobArn != null) 'jobArn': jobArn,
+      if (jobId != null) 'jobId': jobId,
+    };
   }
 }
 
@@ -13634,6 +13984,22 @@ class Certificate {
       status: (json['status'] as String?)?.toCertificateStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final certificateId = this.certificateId;
+    final certificateMode = this.certificateMode;
+    final creationDate = this.creationDate;
+    final status = this.status;
+    return {
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (certificateId != null) 'certificateId': certificateId,
+      if (certificateMode != null) 'certificateMode': certificateMode.toValue(),
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Describes a certificate.
@@ -13739,6 +14105,41 @@ class CertificateDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final caCertificateId = this.caCertificateId;
+    final certificateArn = this.certificateArn;
+    final certificateId = this.certificateId;
+    final certificateMode = this.certificateMode;
+    final certificatePem = this.certificatePem;
+    final creationDate = this.creationDate;
+    final customerVersion = this.customerVersion;
+    final generationId = this.generationId;
+    final lastModifiedDate = this.lastModifiedDate;
+    final ownedBy = this.ownedBy;
+    final previousOwnedBy = this.previousOwnedBy;
+    final status = this.status;
+    final transferData = this.transferData;
+    final validity = this.validity;
+    return {
+      if (caCertificateId != null) 'caCertificateId': caCertificateId,
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (certificateId != null) 'certificateId': certificateId,
+      if (certificateMode != null) 'certificateMode': certificateMode.toValue(),
+      if (certificatePem != null) 'certificatePem': certificatePem,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (customerVersion != null) 'customerVersion': customerVersion,
+      if (generationId != null) 'generationId': generationId,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (ownedBy != null) 'ownedBy': ownedBy,
+      if (previousOwnedBy != null) 'previousOwnedBy': previousOwnedBy,
+      if (status != null) 'status': status.toValue(),
+      if (transferData != null) 'transferData': transferData,
+      if (validity != null) 'validity': validity,
+    };
+  }
 }
 
 enum CertificateMode {
@@ -13835,12 +14236,25 @@ class CertificateValidity {
       notBefore: timeStampFromJson(json['notBefore']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final notAfter = this.notAfter;
+    final notBefore = this.notBefore;
+    return {
+      if (notAfter != null) 'notAfter': unixTimestampToJson(notAfter),
+      if (notBefore != null) 'notBefore': unixTimestampToJson(notBefore),
+    };
+  }
 }
 
 class ClearDefaultAuthorizerResponse {
   ClearDefaultAuthorizerResponse();
   factory ClearDefaultAuthorizerResponse.fromJson(Map<String, dynamic> _) {
     return ClearDefaultAuthorizerResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -14203,12 +14617,20 @@ class ConfirmTopicRuleDestinationResponse {
   factory ConfirmTopicRuleDestinationResponse.fromJson(Map<String, dynamic> _) {
     return ConfirmTopicRuleDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateAuditSuppressionResponse {
   CreateAuditSuppressionResponse();
   factory CreateAuditSuppressionResponse.fromJson(Map<String, dynamic> _) {
     return CreateAuditSuppressionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -14228,6 +14650,15 @@ class CreateAuthorizerResponse {
       authorizerArn: json['authorizerArn'] as String?,
       authorizerName: json['authorizerName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authorizerArn = this.authorizerArn;
+    final authorizerName = this.authorizerName;
+    return {
+      if (authorizerArn != null) 'authorizerArn': authorizerArn,
+      if (authorizerName != null) 'authorizerName': authorizerName,
+    };
   }
 }
 
@@ -14252,6 +14683,17 @@ class CreateBillingGroupResponse {
       billingGroupId: json['billingGroupId'] as String?,
       billingGroupName: json['billingGroupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final billingGroupArn = this.billingGroupArn;
+    final billingGroupId = this.billingGroupId;
+    final billingGroupName = this.billingGroupName;
+    return {
+      if (billingGroupArn != null) 'billingGroupArn': billingGroupArn,
+      if (billingGroupId != null) 'billingGroupId': billingGroupId,
+      if (billingGroupName != null) 'billingGroupName': billingGroupName,
+    };
   }
 }
 
@@ -14280,6 +14722,17 @@ class CreateCertificateFromCsrResponse {
       certificatePem: json['certificatePem'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final certificateId = this.certificateId;
+    final certificatePem = this.certificatePem;
+    return {
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (certificateId != null) 'certificateId': certificateId,
+      if (certificatePem != null) 'certificatePem': certificatePem,
+    };
+  }
 }
 
 class CreateCustomMetricResponse {
@@ -14301,6 +14754,15 @@ class CreateCustomMetricResponse {
       metricName: json['metricName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricArn = this.metricArn;
+    final metricName = this.metricName;
+    return {
+      if (metricArn != null) 'metricArn': metricArn,
+      if (metricName != null) 'metricName': metricName,
+    };
+  }
 }
 
 class CreateDimensionResponse {
@@ -14319,6 +14781,15 @@ class CreateDimensionResponse {
       arn: json['arn'] as String?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -14339,6 +14810,17 @@ class CreateDomainConfigurationResponse {
       domainConfigurationArn: json['domainConfigurationArn'] as String?,
       domainConfigurationName: json['domainConfigurationName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainConfigurationArn = this.domainConfigurationArn;
+    final domainConfigurationName = this.domainConfigurationName;
+    return {
+      if (domainConfigurationArn != null)
+        'domainConfigurationArn': domainConfigurationArn,
+      if (domainConfigurationName != null)
+        'domainConfigurationName': domainConfigurationName,
+    };
   }
 }
 
@@ -14379,6 +14861,23 @@ class CreateDynamicThingGroupResponse {
       thingGroupName: json['thingGroupName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final indexName = this.indexName;
+    final queryString = this.queryString;
+    final queryVersion = this.queryVersion;
+    final thingGroupArn = this.thingGroupArn;
+    final thingGroupId = this.thingGroupId;
+    final thingGroupName = this.thingGroupName;
+    return {
+      if (indexName != null) 'indexName': indexName,
+      if (queryString != null) 'queryString': queryString,
+      if (queryVersion != null) 'queryVersion': queryVersion,
+      if (thingGroupArn != null) 'thingGroupArn': thingGroupArn,
+      if (thingGroupId != null) 'thingGroupId': thingGroupId,
+      if (thingGroupName != null) 'thingGroupName': thingGroupName,
+    };
+  }
 }
 
 class CreateFleetMetricResponse {
@@ -14397,6 +14896,15 @@ class CreateFleetMetricResponse {
       metricArn: json['metricArn'] as String?,
       metricName: json['metricName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricArn = this.metricArn;
+    final metricName = this.metricName;
+    return {
+      if (metricArn != null) 'metricArn': metricArn,
+      if (metricName != null) 'metricName': metricName,
+    };
   }
 }
 
@@ -14422,6 +14930,17 @@ class CreateJobResponse {
       jobId: json['jobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    return {
+      if (description != null) 'description': description,
+      if (jobArn != null) 'jobArn': jobArn,
+      if (jobId != null) 'jobId': jobId,
+    };
+  }
 }
 
 class CreateJobTemplateResponse {
@@ -14440,6 +14959,15 @@ class CreateJobTemplateResponse {
       jobTemplateArn: json['jobTemplateArn'] as String?,
       jobTemplateId: json['jobTemplateId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobTemplateArn = this.jobTemplateArn;
+    final jobTemplateId = this.jobTemplateId;
+    return {
+      if (jobTemplateArn != null) 'jobTemplateArn': jobTemplateArn,
+      if (jobTemplateId != null) 'jobTemplateId': jobTemplateId,
+    };
   }
 }
 
@@ -14474,6 +15002,19 @@ class CreateKeysAndCertificateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final certificateId = this.certificateId;
+    final certificatePem = this.certificatePem;
+    final keyPair = this.keyPair;
+    return {
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (certificateId != null) 'certificateId': certificateId,
+      if (certificatePem != null) 'certificatePem': certificatePem,
+      if (keyPair != null) 'keyPair': keyPair,
+    };
+  }
 }
 
 class CreateMitigationActionResponse {
@@ -14492,6 +15033,15 @@ class CreateMitigationActionResponse {
       actionArn: json['actionArn'] as String?,
       actionId: json['actionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionArn = this.actionArn;
+    final actionId = this.actionId;
+    return {
+      if (actionArn != null) 'actionArn': actionArn,
+      if (actionId != null) 'actionId': actionId,
+    };
   }
 }
 
@@ -14528,6 +15078,21 @@ class CreateOTAUpdateResponse {
           (json['otaUpdateStatus'] as String?)?.toOTAUpdateStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsIotJobArn = this.awsIotJobArn;
+    final awsIotJobId = this.awsIotJobId;
+    final otaUpdateArn = this.otaUpdateArn;
+    final otaUpdateId = this.otaUpdateId;
+    final otaUpdateStatus = this.otaUpdateStatus;
+    return {
+      if (awsIotJobArn != null) 'awsIotJobArn': awsIotJobArn,
+      if (awsIotJobId != null) 'awsIotJobId': awsIotJobId,
+      if (otaUpdateArn != null) 'otaUpdateArn': otaUpdateArn,
+      if (otaUpdateId != null) 'otaUpdateId': otaUpdateId,
+      if (otaUpdateStatus != null) 'otaUpdateStatus': otaUpdateStatus.toValue(),
+    };
+  }
 }
 
 /// The output from the CreatePolicy operation.
@@ -14558,6 +15123,19 @@ class CreatePolicyResponse {
       policyVersionId: json['policyVersionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyArn = this.policyArn;
+    final policyDocument = this.policyDocument;
+    final policyName = this.policyName;
+    final policyVersionId = this.policyVersionId;
+    return {
+      if (policyArn != null) 'policyArn': policyArn,
+      if (policyDocument != null) 'policyDocument': policyDocument,
+      if (policyName != null) 'policyName': policyName,
+      if (policyVersionId != null) 'policyVersionId': policyVersionId,
+    };
+  }
 }
 
 /// The output of the CreatePolicyVersion operation.
@@ -14587,6 +15165,19 @@ class CreatePolicyVersionResponse {
       policyDocument: json['policyDocument'] as String?,
       policyVersionId: json['policyVersionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isDefaultVersion = this.isDefaultVersion;
+    final policyArn = this.policyArn;
+    final policyDocument = this.policyDocument;
+    final policyVersionId = this.policyVersionId;
+    return {
+      if (isDefaultVersion != null) 'isDefaultVersion': isDefaultVersion,
+      if (policyArn != null) 'policyArn': policyArn,
+      if (policyDocument != null) 'policyDocument': policyDocument,
+      if (policyVersionId != null) 'policyVersionId': policyVersionId,
+    };
   }
 }
 
@@ -14619,6 +15210,19 @@ class CreateProvisioningClaimResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateId = this.certificateId;
+    final certificatePem = this.certificatePem;
+    final expiration = this.expiration;
+    final keyPair = this.keyPair;
+    return {
+      if (certificateId != null) 'certificateId': certificateId,
+      if (certificatePem != null) 'certificatePem': certificatePem,
+      if (expiration != null) 'expiration': unixTimestampToJson(expiration),
+      if (keyPair != null) 'keyPair': keyPair,
+    };
+  }
 }
 
 class CreateProvisioningTemplateResponse {
@@ -14643,6 +15247,17 @@ class CreateProvisioningTemplateResponse {
       templateArn: json['templateArn'] as String?,
       templateName: json['templateName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final defaultVersionId = this.defaultVersionId;
+    final templateArn = this.templateArn;
+    final templateName = this.templateName;
+    return {
+      if (defaultVersionId != null) 'defaultVersionId': defaultVersionId,
+      if (templateArn != null) 'templateArn': templateArn,
+      if (templateName != null) 'templateName': templateName,
+    };
   }
 }
 
@@ -14675,6 +15290,19 @@ class CreateProvisioningTemplateVersionResponse {
       versionId: json['versionId'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isDefaultVersion = this.isDefaultVersion;
+    final templateArn = this.templateArn;
+    final templateName = this.templateName;
+    final versionId = this.versionId;
+    return {
+      if (isDefaultVersion != null) 'isDefaultVersion': isDefaultVersion,
+      if (templateArn != null) 'templateArn': templateArn,
+      if (templateName != null) 'templateName': templateName,
+      if (versionId != null) 'versionId': versionId,
+    };
+  }
 }
 
 class CreateRoleAliasResponse {
@@ -14694,6 +15322,15 @@ class CreateRoleAliasResponse {
       roleAliasArn: json['roleAliasArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final roleAlias = this.roleAlias;
+    final roleAliasArn = this.roleAliasArn;
+    return {
+      if (roleAlias != null) 'roleAlias': roleAlias,
+      if (roleAliasArn != null) 'roleAliasArn': roleAliasArn,
+    };
+  }
 }
 
 class CreateScheduledAuditResponse {
@@ -14707,6 +15344,13 @@ class CreateScheduledAuditResponse {
     return CreateScheduledAuditResponse(
       scheduledAuditArn: json['scheduledAuditArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final scheduledAuditArn = this.scheduledAuditArn;
+    return {
+      if (scheduledAuditArn != null) 'scheduledAuditArn': scheduledAuditArn,
+    };
   }
 }
 
@@ -14726,6 +15370,16 @@ class CreateSecurityProfileResponse {
       securityProfileArn: json['securityProfileArn'] as String?,
       securityProfileName: json['securityProfileName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityProfileArn = this.securityProfileArn;
+    final securityProfileName = this.securityProfileName;
+    return {
+      if (securityProfileArn != null) 'securityProfileArn': securityProfileArn,
+      if (securityProfileName != null)
+        'securityProfileName': securityProfileName,
+    };
   }
 }
 
@@ -14756,6 +15410,19 @@ class CreateStreamResponse {
       streamVersion: json['streamVersion'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final streamArn = this.streamArn;
+    final streamId = this.streamId;
+    final streamVersion = this.streamVersion;
+    return {
+      if (description != null) 'description': description,
+      if (streamArn != null) 'streamArn': streamArn,
+      if (streamId != null) 'streamId': streamId,
+      if (streamVersion != null) 'streamVersion': streamVersion,
+    };
+  }
 }
 
 class CreateThingGroupResponse {
@@ -14779,6 +15446,17 @@ class CreateThingGroupResponse {
       thingGroupId: json['thingGroupId'] as String?,
       thingGroupName: json['thingGroupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final thingGroupArn = this.thingGroupArn;
+    final thingGroupId = this.thingGroupId;
+    final thingGroupName = this.thingGroupName;
+    return {
+      if (thingGroupArn != null) 'thingGroupArn': thingGroupArn,
+      if (thingGroupId != null) 'thingGroupId': thingGroupId,
+      if (thingGroupName != null) 'thingGroupName': thingGroupName,
+    };
   }
 }
 
@@ -14805,6 +15483,17 @@ class CreateThingResponse {
       thingName: json['thingName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final thingArn = this.thingArn;
+    final thingId = this.thingId;
+    final thingName = this.thingName;
+    return {
+      if (thingArn != null) 'thingArn': thingArn,
+      if (thingId != null) 'thingId': thingId,
+      if (thingName != null) 'thingName': thingName,
+    };
+  }
 }
 
 /// The output of the CreateThingType operation.
@@ -14830,6 +15519,17 @@ class CreateThingTypeResponse {
       thingTypeName: json['thingTypeName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final thingTypeArn = this.thingTypeArn;
+    final thingTypeId = this.thingTypeId;
+    final thingTypeName = this.thingTypeName;
+    return {
+      if (thingTypeArn != null) 'thingTypeArn': thingTypeArn,
+      if (thingTypeId != null) 'thingTypeId': thingTypeId,
+      if (thingTypeName != null) 'thingTypeName': thingTypeName,
+    };
+  }
 }
 
 class CreateTopicRuleDestinationResponse {
@@ -14847,6 +15547,14 @@ class CreateTopicRuleDestinationResponse {
               json['topicRuleDestination'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final topicRuleDestination = this.topicRuleDestination;
+    return {
+      if (topicRuleDestination != null)
+        'topicRuleDestination': topicRuleDestination,
+    };
   }
 }
 
@@ -15006,12 +15714,20 @@ class DeleteAccountAuditConfigurationResponse {
       Map<String, dynamic> _) {
     return DeleteAccountAuditConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteAuditSuppressionResponse {
   DeleteAuditSuppressionResponse();
   factory DeleteAuditSuppressionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAuditSuppressionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15020,12 +15736,20 @@ class DeleteAuthorizerResponse {
   factory DeleteAuthorizerResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAuthorizerResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteBillingGroupResponse {
   DeleteBillingGroupResponse();
   factory DeleteBillingGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteBillingGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15035,12 +15759,20 @@ class DeleteCACertificateResponse {
   factory DeleteCACertificateResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCACertificateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteCustomMetricResponse {
   DeleteCustomMetricResponse();
   factory DeleteCustomMetricResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCustomMetricResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15049,12 +15781,20 @@ class DeleteDimensionResponse {
   factory DeleteDimensionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDimensionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteDomainConfigurationResponse {
   DeleteDomainConfigurationResponse();
   factory DeleteDomainConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDomainConfigurationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15063,12 +15803,20 @@ class DeleteDynamicThingGroupResponse {
   factory DeleteDynamicThingGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDynamicThingGroupResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteMitigationActionResponse {
   DeleteMitigationActionResponse();
   factory DeleteMitigationActionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteMitigationActionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15077,12 +15825,20 @@ class DeleteOTAUpdateResponse {
   factory DeleteOTAUpdateResponse.fromJson(Map<String, dynamic> _) {
     return DeleteOTAUpdateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteProvisioningTemplateResponse {
   DeleteProvisioningTemplateResponse();
   factory DeleteProvisioningTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProvisioningTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15092,6 +15848,10 @@ class DeleteProvisioningTemplateVersionResponse {
       Map<String, dynamic> _) {
     return DeleteProvisioningTemplateVersionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The output for the DeleteRegistrationCode operation.
@@ -15100,12 +15860,20 @@ class DeleteRegistrationCodeResponse {
   factory DeleteRegistrationCodeResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRegistrationCodeResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteRoleAliasResponse {
   DeleteRoleAliasResponse();
   factory DeleteRoleAliasResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRoleAliasResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15114,12 +15882,20 @@ class DeleteScheduledAuditResponse {
   factory DeleteScheduledAuditResponse.fromJson(Map<String, dynamic> _) {
     return DeleteScheduledAuditResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteSecurityProfileResponse {
   DeleteSecurityProfileResponse();
   factory DeleteSecurityProfileResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSecurityProfileResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15128,12 +15904,20 @@ class DeleteStreamResponse {
   factory DeleteStreamResponse.fromJson(Map<String, dynamic> _) {
     return DeleteStreamResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteThingGroupResponse {
   DeleteThingGroupResponse();
   factory DeleteThingGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteThingGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15143,6 +15927,10 @@ class DeleteThingResponse {
   factory DeleteThingResponse.fromJson(Map<String, dynamic> _) {
     return DeleteThingResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The output for the DeleteThingType operation.
@@ -15151,12 +15939,20 @@ class DeleteThingTypeResponse {
   factory DeleteThingTypeResponse.fromJson(Map<String, dynamic> _) {
     return DeleteThingTypeResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteTopicRuleDestinationResponse {
   DeleteTopicRuleDestinationResponse();
   factory DeleteTopicRuleDestinationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTopicRuleDestinationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15184,6 +15980,15 @@ class Denied {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final explicitDeny = this.explicitDeny;
+    final implicitDeny = this.implicitDeny;
+    return {
+      if (explicitDeny != null) 'explicitDeny': explicitDeny,
+      if (implicitDeny != null) 'implicitDeny': implicitDeny,
+    };
+  }
 }
 
 /// The output for the DeprecateThingType operation.
@@ -15191,6 +15996,10 @@ class DeprecateThingTypeResponse {
   DeprecateThingTypeResponse();
   factory DeprecateThingTypeResponse.fromJson(Map<String, dynamic> _) {
     return DeprecateThingTypeResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15231,6 +16040,22 @@ class DescribeAccountAuditConfigurationResponse {
       roleArn: json['roleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final auditCheckConfigurations = this.auditCheckConfigurations;
+    final auditNotificationTargetConfigurations =
+        this.auditNotificationTargetConfigurations;
+    final roleArn = this.roleArn;
+    return {
+      if (auditCheckConfigurations != null)
+        'auditCheckConfigurations': auditCheckConfigurations,
+      if (auditNotificationTargetConfigurations != null)
+        'auditNotificationTargetConfigurations':
+            auditNotificationTargetConfigurations
+                .map((k, e) => MapEntry(k.toValue(), e)),
+      if (roleArn != null) 'roleArn': roleArn,
+    };
+  }
 }
 
 class DescribeAuditFindingResponse {
@@ -15245,6 +16070,13 @@ class DescribeAuditFindingResponse {
           ? AuditFinding.fromJson(json['finding'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final finding = this.finding;
+    return {
+      if (finding != null) 'finding': finding,
+    };
   }
 }
 
@@ -15307,6 +16139,26 @@ class DescribeAuditMitigationActionsTaskResponse {
           (json['taskStatus'] as String?)?.toAuditMitigationActionsTaskStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionsDefinition = this.actionsDefinition;
+    final auditCheckToActionsMapping = this.auditCheckToActionsMapping;
+    final endTime = this.endTime;
+    final startTime = this.startTime;
+    final target = this.target;
+    final taskStatistics = this.taskStatistics;
+    final taskStatus = this.taskStatus;
+    return {
+      if (actionsDefinition != null) 'actionsDefinition': actionsDefinition,
+      if (auditCheckToActionsMapping != null)
+        'auditCheckToActionsMapping': auditCheckToActionsMapping,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (target != null) 'target': target,
+      if (taskStatistics != null) 'taskStatistics': taskStatistics,
+      if (taskStatus != null) 'taskStatus': taskStatus.toValue(),
+    };
+  }
 }
 
 class DescribeAuditSuppressionResponse {
@@ -15340,6 +16192,23 @@ class DescribeAuditSuppressionResponse {
           : null,
       suppressIndefinitely: json['suppressIndefinitely'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final checkName = this.checkName;
+    final description = this.description;
+    final expirationDate = this.expirationDate;
+    final resourceIdentifier = this.resourceIdentifier;
+    final suppressIndefinitely = this.suppressIndefinitely;
+    return {
+      if (checkName != null) 'checkName': checkName,
+      if (description != null) 'description': description,
+      if (expirationDate != null)
+        'expirationDate': unixTimestampToJson(expirationDate),
+      if (resourceIdentifier != null) 'resourceIdentifier': resourceIdentifier,
+      if (suppressIndefinitely != null)
+        'suppressIndefinitely': suppressIndefinitely,
+    };
   }
 }
 
@@ -15386,6 +16255,24 @@ class DescribeAuditTaskResponse {
       taskType: (json['taskType'] as String?)?.toAuditTaskType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final auditDetails = this.auditDetails;
+    final scheduledAuditName = this.scheduledAuditName;
+    final taskStartTime = this.taskStartTime;
+    final taskStatistics = this.taskStatistics;
+    final taskStatus = this.taskStatus;
+    final taskType = this.taskType;
+    return {
+      if (auditDetails != null) 'auditDetails': auditDetails,
+      if (scheduledAuditName != null) 'scheduledAuditName': scheduledAuditName,
+      if (taskStartTime != null)
+        'taskStartTime': unixTimestampToJson(taskStartTime),
+      if (taskStatistics != null) 'taskStatistics': taskStatistics,
+      if (taskStatus != null) 'taskStatus': taskStatus.toValue(),
+      if (taskType != null) 'taskType': taskType.toValue(),
+    };
+  }
 }
 
 class DescribeAuthorizerResponse {
@@ -15402,6 +16289,14 @@ class DescribeAuthorizerResponse {
               json['authorizerDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authorizerDescription = this.authorizerDescription;
+    return {
+      if (authorizerDescription != null)
+        'authorizerDescription': authorizerDescription,
+    };
   }
 }
 
@@ -15448,6 +16343,25 @@ class DescribeBillingGroupResponse {
       version: json['version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final billingGroupArn = this.billingGroupArn;
+    final billingGroupId = this.billingGroupId;
+    final billingGroupMetadata = this.billingGroupMetadata;
+    final billingGroupName = this.billingGroupName;
+    final billingGroupProperties = this.billingGroupProperties;
+    final version = this.version;
+    return {
+      if (billingGroupArn != null) 'billingGroupArn': billingGroupArn,
+      if (billingGroupId != null) 'billingGroupId': billingGroupId,
+      if (billingGroupMetadata != null)
+        'billingGroupMetadata': billingGroupMetadata,
+      if (billingGroupName != null) 'billingGroupName': billingGroupName,
+      if (billingGroupProperties != null)
+        'billingGroupProperties': billingGroupProperties,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// The output from the DescribeCACertificate operation.
@@ -15474,6 +16388,16 @@ class DescribeCACertificateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateDescription = this.certificateDescription;
+    final registrationConfig = this.registrationConfig;
+    return {
+      if (certificateDescription != null)
+        'certificateDescription': certificateDescription,
+      if (registrationConfig != null) 'registrationConfig': registrationConfig,
+    };
+  }
 }
 
 /// The output of the DescribeCertificate operation.
@@ -15491,6 +16415,14 @@ class DescribeCertificateResponse {
               json['certificateDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateDescription = this.certificateDescription;
+    return {
+      if (certificateDescription != null)
+        'certificateDescription': certificateDescription,
+    };
   }
 }
 
@@ -15538,6 +16470,25 @@ class DescribeCustomMetricResponse {
       metricType: (json['metricType'] as String?)?.toCustomMetricType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final displayName = this.displayName;
+    final lastModifiedDate = this.lastModifiedDate;
+    final metricArn = this.metricArn;
+    final metricName = this.metricName;
+    final metricType = this.metricType;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (displayName != null) 'displayName': displayName,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (metricArn != null) 'metricArn': metricArn,
+      if (metricName != null) 'metricName': metricName,
+      if (metricType != null) 'metricType': metricType.toValue(),
+    };
+  }
 }
 
 class DescribeDefaultAuthorizerResponse {
@@ -15556,6 +16507,14 @@ class DescribeDefaultAuthorizerResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorizerDescription = this.authorizerDescription;
+    return {
+      if (authorizerDescription != null)
+        'authorizerDescription': authorizerDescription,
+    };
+  }
 }
 
 class DescribeDetectMitigationActionsTaskResponse {
@@ -15573,6 +16532,13 @@ class DescribeDetectMitigationActionsTaskResponse {
               json['taskSummary'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final taskSummary = this.taskSummary;
+    return {
+      if (taskSummary != null) 'taskSummary': taskSummary,
+    };
   }
 }
 
@@ -15616,6 +16582,25 @@ class DescribeDimensionResponse {
           .toList(),
       type: (json['type'] as String?)?.toDimensionType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final name = this.name;
+    final stringValues = this.stringValues;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (name != null) 'name': name,
+      if (stringValues != null) 'stringValues': stringValues,
+      if (type != null) 'type': type.toValue(),
+    };
   }
 }
 
@@ -15682,6 +16667,33 @@ class DescribeDomainConfigurationResponse {
       serviceType: (json['serviceType'] as String?)?.toServiceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorizerConfig = this.authorizerConfig;
+    final domainConfigurationArn = this.domainConfigurationArn;
+    final domainConfigurationName = this.domainConfigurationName;
+    final domainConfigurationStatus = this.domainConfigurationStatus;
+    final domainName = this.domainName;
+    final domainType = this.domainType;
+    final lastStatusChangeDate = this.lastStatusChangeDate;
+    final serverCertificates = this.serverCertificates;
+    final serviceType = this.serviceType;
+    return {
+      if (authorizerConfig != null) 'authorizerConfig': authorizerConfig,
+      if (domainConfigurationArn != null)
+        'domainConfigurationArn': domainConfigurationArn,
+      if (domainConfigurationName != null)
+        'domainConfigurationName': domainConfigurationName,
+      if (domainConfigurationStatus != null)
+        'domainConfigurationStatus': domainConfigurationStatus.toValue(),
+      if (domainName != null) 'domainName': domainName,
+      if (domainType != null) 'domainType': domainType.toValue(),
+      if (lastStatusChangeDate != null)
+        'lastStatusChangeDate': unixTimestampToJson(lastStatusChangeDate),
+      if (serverCertificates != null) 'serverCertificates': serverCertificates,
+      if (serviceType != null) 'serviceType': serviceType.toValue(),
+    };
+  }
 }
 
 /// The output from the DescribeEndpoint operation.
@@ -15697,6 +16709,13 @@ class DescribeEndpointResponse {
     return DescribeEndpointResponse(
       endpointAddress: json['endpointAddress'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointAddress = this.endpointAddress;
+    return {
+      if (endpointAddress != null) 'endpointAddress': endpointAddress,
+    };
   }
 }
 
@@ -15725,6 +16744,21 @@ class DescribeEventConfigurationsResponse {
                   Configuration.fromJson(e as Map<String, dynamic>))),
       lastModifiedDate: timeStampFromJson(json['lastModifiedDate']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final eventConfigurations = this.eventConfigurations;
+    final lastModifiedDate = this.lastModifiedDate;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (eventConfigurations != null)
+        'eventConfigurations':
+            eventConfigurations.map((k, e) => MapEntry(k.toValue(), e)),
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+    };
   }
 }
 
@@ -15807,6 +16841,39 @@ class DescribeFleetMetricResponse {
       version: json['version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aggregationField = this.aggregationField;
+    final aggregationType = this.aggregationType;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final indexName = this.indexName;
+    final lastModifiedDate = this.lastModifiedDate;
+    final metricArn = this.metricArn;
+    final metricName = this.metricName;
+    final period = this.period;
+    final queryString = this.queryString;
+    final queryVersion = this.queryVersion;
+    final unit = this.unit;
+    final version = this.version;
+    return {
+      if (aggregationField != null) 'aggregationField': aggregationField,
+      if (aggregationType != null) 'aggregationType': aggregationType,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (description != null) 'description': description,
+      if (indexName != null) 'indexName': indexName,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (metricArn != null) 'metricArn': metricArn,
+      if (metricName != null) 'metricName': metricName,
+      if (period != null) 'period': period,
+      if (queryString != null) 'queryString': queryString,
+      if (queryVersion != null) 'queryVersion': queryVersion,
+      if (unit != null) 'unit': unit.toValue(),
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class DescribeIndexResponse {
@@ -15855,6 +16922,17 @@ class DescribeIndexResponse {
       schema: json['schema'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final indexName = this.indexName;
+    final indexStatus = this.indexStatus;
+    final schema = this.schema;
+    return {
+      if (indexName != null) 'indexName': indexName,
+      if (indexStatus != null) 'indexStatus': indexStatus.toValue(),
+      if (schema != null) 'schema': schema,
+    };
+  }
 }
 
 class DescribeJobExecutionResponse {
@@ -15870,6 +16948,13 @@ class DescribeJobExecutionResponse {
           ? JobExecution.fromJson(json['execution'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final execution = this.execution;
+    return {
+      if (execution != null) 'execution': execution,
+    };
   }
 }
 
@@ -15891,6 +16976,15 @@ class DescribeJobResponse {
           ? Job.fromJson(json['job'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final documentSource = this.documentSource;
+    final job = this.job;
+    return {
+      if (documentSource != null) 'documentSource': documentSource,
+      if (job != null) 'job': job,
+    };
   }
 }
 
@@ -15964,6 +17058,35 @@ class DescribeJobTemplateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final abortConfig = this.abortConfig;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final document = this.document;
+    final documentSource = this.documentSource;
+    final jobExecutionsRetryConfig = this.jobExecutionsRetryConfig;
+    final jobExecutionsRolloutConfig = this.jobExecutionsRolloutConfig;
+    final jobTemplateArn = this.jobTemplateArn;
+    final jobTemplateId = this.jobTemplateId;
+    final presignedUrlConfig = this.presignedUrlConfig;
+    final timeoutConfig = this.timeoutConfig;
+    return {
+      if (abortConfig != null) 'abortConfig': abortConfig,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (description != null) 'description': description,
+      if (document != null) 'document': document,
+      if (documentSource != null) 'documentSource': documentSource,
+      if (jobExecutionsRetryConfig != null)
+        'jobExecutionsRetryConfig': jobExecutionsRetryConfig,
+      if (jobExecutionsRolloutConfig != null)
+        'jobExecutionsRolloutConfig': jobExecutionsRolloutConfig,
+      if (jobTemplateArn != null) 'jobTemplateArn': jobTemplateArn,
+      if (jobTemplateId != null) 'jobTemplateId': jobTemplateId,
+      if (presignedUrlConfig != null) 'presignedUrlConfig': presignedUrlConfig,
+      if (timeoutConfig != null) 'timeoutConfig': timeoutConfig,
+    };
+  }
 }
 
 class DescribeManagedJobTemplateResponse {
@@ -16021,6 +17144,25 @@ class DescribeManagedJobTemplateResponse {
       templateVersion: json['templateVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final document = this.document;
+    final documentParameters = this.documentParameters;
+    final environments = this.environments;
+    final templateArn = this.templateArn;
+    final templateName = this.templateName;
+    final templateVersion = this.templateVersion;
+    return {
+      if (description != null) 'description': description,
+      if (document != null) 'document': document,
+      if (documentParameters != null) 'documentParameters': documentParameters,
+      if (environments != null) 'environments': environments,
+      if (templateArn != null) 'templateArn': templateArn,
+      if (templateName != null) 'templateName': templateName,
+      if (templateVersion != null) 'templateVersion': templateVersion,
+    };
+  }
 }
 
 class DescribeMitigationActionResponse {
@@ -16074,6 +17216,29 @@ class DescribeMitigationActionResponse {
       lastModifiedDate: timeStampFromJson(json['lastModifiedDate']),
       roleArn: json['roleArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionArn = this.actionArn;
+    final actionId = this.actionId;
+    final actionName = this.actionName;
+    final actionParams = this.actionParams;
+    final actionType = this.actionType;
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final roleArn = this.roleArn;
+    return {
+      if (actionArn != null) 'actionArn': actionArn,
+      if (actionId != null) 'actionId': actionId,
+      if (actionName != null) 'actionName': actionName,
+      if (actionParams != null) 'actionParams': actionParams,
+      if (actionType != null) 'actionType': actionType.toValue(),
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (roleArn != null) 'roleArn': roleArn,
+    };
   }
 }
 
@@ -16139,6 +17304,35 @@ class DescribeProvisioningTemplateResponse {
       templateName: json['templateName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final defaultVersionId = this.defaultVersionId;
+    final description = this.description;
+    final enabled = this.enabled;
+    final lastModifiedDate = this.lastModifiedDate;
+    final preProvisioningHook = this.preProvisioningHook;
+    final provisioningRoleArn = this.provisioningRoleArn;
+    final templateArn = this.templateArn;
+    final templateBody = this.templateBody;
+    final templateName = this.templateName;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (defaultVersionId != null) 'defaultVersionId': defaultVersionId,
+      if (description != null) 'description': description,
+      if (enabled != null) 'enabled': enabled,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (preProvisioningHook != null)
+        'preProvisioningHook': preProvisioningHook,
+      if (provisioningRoleArn != null)
+        'provisioningRoleArn': provisioningRoleArn,
+      if (templateArn != null) 'templateArn': templateArn,
+      if (templateBody != null) 'templateBody': templateBody,
+      if (templateName != null) 'templateName': templateName,
+    };
+  }
 }
 
 class DescribeProvisioningTemplateVersionResponse {
@@ -16169,6 +17363,20 @@ class DescribeProvisioningTemplateVersionResponse {
       versionId: json['versionId'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final isDefaultVersion = this.isDefaultVersion;
+    final templateBody = this.templateBody;
+    final versionId = this.versionId;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (isDefaultVersion != null) 'isDefaultVersion': isDefaultVersion,
+      if (templateBody != null) 'templateBody': templateBody,
+      if (versionId != null) 'versionId': versionId,
+    };
+  }
 }
 
 class DescribeRoleAliasResponse {
@@ -16185,6 +17393,14 @@ class DescribeRoleAliasResponse {
               json['roleAliasDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final roleAliasDescription = this.roleAliasDescription;
+    return {
+      if (roleAliasDescription != null)
+        'roleAliasDescription': roleAliasDescription,
+    };
   }
 }
 
@@ -16240,6 +17456,23 @@ class DescribeScheduledAuditResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dayOfMonth = this.dayOfMonth;
+    final dayOfWeek = this.dayOfWeek;
+    final frequency = this.frequency;
+    final scheduledAuditArn = this.scheduledAuditArn;
+    final scheduledAuditName = this.scheduledAuditName;
+    final targetCheckNames = this.targetCheckNames;
+    return {
+      if (dayOfMonth != null) 'dayOfMonth': dayOfMonth,
+      if (dayOfWeek != null) 'dayOfWeek': dayOfWeek.toValue(),
+      if (frequency != null) 'frequency': frequency.toValue(),
+      if (scheduledAuditArn != null) 'scheduledAuditArn': scheduledAuditArn,
+      if (scheduledAuditName != null) 'scheduledAuditName': scheduledAuditName,
+      if (targetCheckNames != null) 'targetCheckNames': targetCheckNames,
+    };
   }
 }
 
@@ -16323,6 +17556,38 @@ class DescribeSecurityProfileResponse {
       version: json['version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalMetricsToRetain = this.additionalMetricsToRetain;
+    final additionalMetricsToRetainV2 = this.additionalMetricsToRetainV2;
+    final alertTargets = this.alertTargets;
+    final behaviors = this.behaviors;
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final securityProfileArn = this.securityProfileArn;
+    final securityProfileDescription = this.securityProfileDescription;
+    final securityProfileName = this.securityProfileName;
+    final version = this.version;
+    return {
+      if (additionalMetricsToRetain != null)
+        'additionalMetricsToRetain': additionalMetricsToRetain,
+      if (additionalMetricsToRetainV2 != null)
+        'additionalMetricsToRetainV2': additionalMetricsToRetainV2,
+      if (alertTargets != null)
+        'alertTargets': alertTargets.map((k, e) => MapEntry(k.toValue(), e)),
+      if (behaviors != null) 'behaviors': behaviors,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (securityProfileArn != null) 'securityProfileArn': securityProfileArn,
+      if (securityProfileDescription != null)
+        'securityProfileDescription': securityProfileDescription,
+      if (securityProfileName != null)
+        'securityProfileName': securityProfileName,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class DescribeStreamResponse {
@@ -16338,6 +17603,13 @@ class DescribeStreamResponse {
           ? StreamInfo.fromJson(json['streamInfo'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamInfo = this.streamInfo;
+    return {
+      if (streamInfo != null) 'streamInfo': streamInfo,
+    };
   }
 }
 
@@ -16403,6 +17675,32 @@ class DescribeThingGroupResponse {
           : null,
       version: json['version'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexName = this.indexName;
+    final queryString = this.queryString;
+    final queryVersion = this.queryVersion;
+    final status = this.status;
+    final thingGroupArn = this.thingGroupArn;
+    final thingGroupId = this.thingGroupId;
+    final thingGroupMetadata = this.thingGroupMetadata;
+    final thingGroupName = this.thingGroupName;
+    final thingGroupProperties = this.thingGroupProperties;
+    final version = this.version;
+    return {
+      if (indexName != null) 'indexName': indexName,
+      if (queryString != null) 'queryString': queryString,
+      if (queryVersion != null) 'queryVersion': queryVersion,
+      if (status != null) 'status': status.toValue(),
+      if (thingGroupArn != null) 'thingGroupArn': thingGroupArn,
+      if (thingGroupId != null) 'thingGroupId': thingGroupId,
+      if (thingGroupMetadata != null) 'thingGroupMetadata': thingGroupMetadata,
+      if (thingGroupName != null) 'thingGroupName': thingGroupName,
+      if (thingGroupProperties != null)
+        'thingGroupProperties': thingGroupProperties,
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -16474,6 +17772,37 @@ class DescribeThingRegistrationTaskResponse {
       templateBody: json['templateBody'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final failureCount = this.failureCount;
+    final inputFileBucket = this.inputFileBucket;
+    final inputFileKey = this.inputFileKey;
+    final lastModifiedDate = this.lastModifiedDate;
+    final message = this.message;
+    final percentageProgress = this.percentageProgress;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    final successCount = this.successCount;
+    final taskId = this.taskId;
+    final templateBody = this.templateBody;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (failureCount != null) 'failureCount': failureCount,
+      if (inputFileBucket != null) 'inputFileBucket': inputFileBucket,
+      if (inputFileKey != null) 'inputFileKey': inputFileKey,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (message != null) 'message': message,
+      if (percentageProgress != null) 'percentageProgress': percentageProgress,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (status != null) 'status': status.toValue(),
+      if (successCount != null) 'successCount': successCount,
+      if (taskId != null) 'taskId': taskId,
+      if (templateBody != null) 'templateBody': templateBody,
+    };
+  }
 }
 
 /// The output from the DescribeThing operation.
@@ -16537,6 +17866,27 @@ class DescribeThingResponse {
       version: json['version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final billingGroupName = this.billingGroupName;
+    final defaultClientId = this.defaultClientId;
+    final thingArn = this.thingArn;
+    final thingId = this.thingId;
+    final thingName = this.thingName;
+    final thingTypeName = this.thingTypeName;
+    final version = this.version;
+    return {
+      if (attributes != null) 'attributes': attributes,
+      if (billingGroupName != null) 'billingGroupName': billingGroupName,
+      if (defaultClientId != null) 'defaultClientId': defaultClientId,
+      if (thingArn != null) 'thingArn': thingArn,
+      if (thingId != null) 'thingId': thingId,
+      if (thingName != null) 'thingName': thingName,
+      if (thingTypeName != null) 'thingTypeName': thingTypeName,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// The output for the DescribeThingType operation.
@@ -16581,6 +17931,22 @@ class DescribeThingTypeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final thingTypeArn = this.thingTypeArn;
+    final thingTypeId = this.thingTypeId;
+    final thingTypeMetadata = this.thingTypeMetadata;
+    final thingTypeName = this.thingTypeName;
+    final thingTypeProperties = this.thingTypeProperties;
+    return {
+      if (thingTypeArn != null) 'thingTypeArn': thingTypeArn,
+      if (thingTypeId != null) 'thingTypeId': thingTypeId,
+      if (thingTypeMetadata != null) 'thingTypeMetadata': thingTypeMetadata,
+      if (thingTypeName != null) 'thingTypeName': thingTypeName,
+      if (thingTypeProperties != null)
+        'thingTypeProperties': thingTypeProperties,
+    };
+  }
 }
 
 /// Describes the location of the updated firmware.
@@ -16613,6 +17979,10 @@ class DetachSecurityProfileResponse {
   factory DetachSecurityProfileResponse.fromJson(Map<String, dynamic> _) {
     return DetachSecurityProfileResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The output from the DetachThingPrincipal operation.
@@ -16620,6 +17990,10 @@ class DetachThingPrincipalResponse {
   DetachThingPrincipalResponse();
   factory DetachThingPrincipalResponse.fromJson(Map<String, dynamic> _) {
     return DetachThingPrincipalResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -16676,6 +18050,31 @@ class DetectMitigationActionExecution {
       thingName: json['thingName'] as String?,
       violationId: json['violationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionName = this.actionName;
+    final errorCode = this.errorCode;
+    final executionEndDate = this.executionEndDate;
+    final executionStartDate = this.executionStartDate;
+    final message = this.message;
+    final status = this.status;
+    final taskId = this.taskId;
+    final thingName = this.thingName;
+    final violationId = this.violationId;
+    return {
+      if (actionName != null) 'actionName': actionName,
+      if (errorCode != null) 'errorCode': errorCode,
+      if (executionEndDate != null)
+        'executionEndDate': unixTimestampToJson(executionEndDate),
+      if (executionStartDate != null)
+        'executionStartDate': unixTimestampToJson(executionStartDate),
+      if (message != null) 'message': message,
+      if (status != null) 'status': status.toValue(),
+      if (taskId != null) 'taskId': taskId,
+      if (thingName != null) 'thingName': thingName,
+      if (violationId != null) 'violationId': violationId,
+    };
   }
 }
 
@@ -16743,6 +18142,17 @@ class DetectMitigationActionsTaskStatistics {
       actionsFailed: json['actionsFailed'] as int?,
       actionsSkipped: json['actionsSkipped'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionsExecuted = this.actionsExecuted;
+    final actionsFailed = this.actionsFailed;
+    final actionsSkipped = this.actionsSkipped;
+    return {
+      if (actionsExecuted != null) 'actionsExecuted': actionsExecuted,
+      if (actionsFailed != null) 'actionsFailed': actionsFailed,
+      if (actionsSkipped != null) 'actionsSkipped': actionsSkipped,
+    };
   }
 }
 
@@ -16860,6 +18270,35 @@ class DetectMitigationActionsTaskSummary {
                   json['violationEventOccurrenceRange'] as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionsDefinition = this.actionsDefinition;
+    final onlyActiveViolationsIncluded = this.onlyActiveViolationsIncluded;
+    final suppressedAlertsIncluded = this.suppressedAlertsIncluded;
+    final target = this.target;
+    final taskEndTime = this.taskEndTime;
+    final taskId = this.taskId;
+    final taskStartTime = this.taskStartTime;
+    final taskStatistics = this.taskStatistics;
+    final taskStatus = this.taskStatus;
+    final violationEventOccurrenceRange = this.violationEventOccurrenceRange;
+    return {
+      if (actionsDefinition != null) 'actionsDefinition': actionsDefinition,
+      if (onlyActiveViolationsIncluded != null)
+        'onlyActiveViolationsIncluded': onlyActiveViolationsIncluded,
+      if (suppressedAlertsIncluded != null)
+        'suppressedAlertsIncluded': suppressedAlertsIncluded,
+      if (target != null) 'target': target,
+      if (taskEndTime != null) 'taskEndTime': unixTimestampToJson(taskEndTime),
+      if (taskId != null) 'taskId': taskId,
+      if (taskStartTime != null)
+        'taskStartTime': unixTimestampToJson(taskStartTime),
+      if (taskStatistics != null) 'taskStatistics': taskStatistics,
+      if (taskStatus != null) 'taskStatus': taskStatus.toValue(),
+      if (violationEventOccurrenceRange != null)
+        'violationEventOccurrenceRange': violationEventOccurrenceRange,
+    };
   }
 }
 
@@ -17053,6 +18492,21 @@ class DocumentParameter {
       regex: json['regex'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final example = this.example;
+    final key = this.key;
+    final optional = this.optional;
+    final regex = this.regex;
+    return {
+      if (description != null) 'description': description,
+      if (example != null) 'example': example,
+      if (key != null) 'key': key,
+      if (optional != null) 'optional': optional,
+      if (regex != null) 'regex': regex,
+    };
+  }
 }
 
 enum DomainConfigurationStatus {
@@ -17121,6 +18575,19 @@ class DomainConfigurationSummary {
       domainConfigurationName: json['domainConfigurationName'] as String?,
       serviceType: (json['serviceType'] as String?)?.toServiceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainConfigurationArn = this.domainConfigurationArn;
+    final domainConfigurationName = this.domainConfigurationName;
+    final serviceType = this.serviceType;
+    return {
+      if (domainConfigurationArn != null)
+        'domainConfigurationArn': domainConfigurationArn,
+      if (domainConfigurationName != null)
+        'domainConfigurationName': domainConfigurationName,
+      if (serviceType != null) 'serviceType': serviceType.toValue(),
+    };
   }
 }
 
@@ -17386,6 +18853,17 @@ class EffectivePolicy {
       policyName: json['policyName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyArn = this.policyArn;
+    final policyDocument = this.policyDocument;
+    final policyName = this.policyName;
+    return {
+      if (policyArn != null) 'policyArn': policyArn,
+      if (policyDocument != null) 'policyDocument': policyDocument,
+      if (policyName != null) 'policyName': policyName,
+    };
+  }
 }
 
 /// Describes an action that writes data to an Amazon OpenSearch Service domain.
@@ -17493,6 +18971,15 @@ class ErrorInfo {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum EventType {
@@ -17583,6 +19070,13 @@ class ExplicitDeny {
           .map((e) => Policy.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policies = this.policies;
+    return {
+      if (policies != null) 'policies': policies,
+    };
   }
 }
 
@@ -17795,6 +19289,15 @@ class FleetMetricNameAndArn {
       metricName: json['metricName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricArn = this.metricArn;
+    final metricName = this.metricName;
+    return {
+      if (metricArn != null) 'metricArn': metricArn,
+      if (metricName != null) 'metricName': metricName,
+    };
+  }
 }
 
 enum FleetMetricUnit {
@@ -17974,6 +19477,15 @@ class GetBehaviorModelTrainingSummariesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final summaries = this.summaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (summaries != null) 'summaries': summaries,
+    };
+  }
 }
 
 class GetBucketsAggregationResponse {
@@ -18002,6 +19514,15 @@ class GetBucketsAggregationResponse {
       totalCount: json['totalCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final buckets = this.buckets;
+    final totalCount = this.totalCount;
+    return {
+      if (buckets != null) 'buckets': buckets,
+      if (totalCount != null) 'totalCount': totalCount,
+    };
+  }
 }
 
 class GetCardinalityResponse {
@@ -18015,6 +19536,13 @@ class GetCardinalityResponse {
     return GetCardinalityResponse(
       cardinality: json['cardinality'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cardinality = this.cardinality;
+    return {
+      if (cardinality != null) 'cardinality': cardinality,
+    };
   }
 }
 
@@ -18032,6 +19560,13 @@ class GetEffectivePoliciesResponse {
           .map((e) => EffectivePolicy.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final effectivePolicies = this.effectivePolicies;
+    return {
+      if (effectivePolicies != null) 'effectivePolicies': effectivePolicies,
+    };
   }
 }
 
@@ -18060,6 +19595,18 @@ class GetIndexingConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final thingGroupIndexingConfiguration =
+        this.thingGroupIndexingConfiguration;
+    final thingIndexingConfiguration = this.thingIndexingConfiguration;
+    return {
+      if (thingGroupIndexingConfiguration != null)
+        'thingGroupIndexingConfiguration': thingGroupIndexingConfiguration,
+      if (thingIndexingConfiguration != null)
+        'thingIndexingConfiguration': thingIndexingConfiguration,
+    };
+  }
 }
 
 class GetJobDocumentResponse {
@@ -18073,6 +19620,13 @@ class GetJobDocumentResponse {
     return GetJobDocumentResponse(
       document: json['document'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final document = this.document;
+    return {
+      if (document != null) 'document': document,
+    };
   }
 }
 
@@ -18094,6 +19648,15 @@ class GetLoggingOptionsResponse {
       roleArn: json['roleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logLevel = this.logLevel;
+    final roleArn = this.roleArn;
+    return {
+      if (logLevel != null) 'logLevel': logLevel.toValue(),
+      if (roleArn != null) 'roleArn': roleArn,
+    };
+  }
 }
 
 class GetOTAUpdateResponse {
@@ -18111,6 +19674,13 @@ class GetOTAUpdateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final otaUpdateInfo = this.otaUpdateInfo;
+    return {
+      if (otaUpdateInfo != null) 'otaUpdateInfo': otaUpdateInfo,
+    };
+  }
 }
 
 class GetPercentilesResponse {
@@ -18127,6 +19697,13 @@ class GetPercentilesResponse {
           .map((e) => PercentPair.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final percentiles = this.percentiles;
+    return {
+      if (percentiles != null) 'percentiles': percentiles,
+    };
   }
 }
 
@@ -18172,6 +19749,27 @@ class GetPolicyResponse {
       policyDocument: json['policyDocument'] as String?,
       policyName: json['policyName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final defaultVersionId = this.defaultVersionId;
+    final generationId = this.generationId;
+    final lastModifiedDate = this.lastModifiedDate;
+    final policyArn = this.policyArn;
+    final policyDocument = this.policyDocument;
+    final policyName = this.policyName;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (defaultVersionId != null) 'defaultVersionId': defaultVersionId,
+      if (generationId != null) 'generationId': generationId,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (policyArn != null) 'policyArn': policyArn,
+      if (policyDocument != null) 'policyDocument': policyDocument,
+      if (policyName != null) 'policyName': policyName,
+    };
   }
 }
 
@@ -18223,6 +19821,29 @@ class GetPolicyVersionResponse {
       policyVersionId: json['policyVersionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final generationId = this.generationId;
+    final isDefaultVersion = this.isDefaultVersion;
+    final lastModifiedDate = this.lastModifiedDate;
+    final policyArn = this.policyArn;
+    final policyDocument = this.policyDocument;
+    final policyName = this.policyName;
+    final policyVersionId = this.policyVersionId;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (generationId != null) 'generationId': generationId,
+      if (isDefaultVersion != null) 'isDefaultVersion': isDefaultVersion,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (policyArn != null) 'policyArn': policyArn,
+      if (policyDocument != null) 'policyDocument': policyDocument,
+      if (policyName != null) 'policyName': policyName,
+      if (policyVersionId != null) 'policyVersionId': policyVersionId,
+    };
+  }
 }
 
 /// The output from the GetRegistrationCode operation.
@@ -18237,6 +19858,13 @@ class GetRegistrationCodeResponse {
     return GetRegistrationCodeResponse(
       registrationCode: json['registrationCode'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final registrationCode = this.registrationCode;
+    return {
+      if (registrationCode != null) 'registrationCode': registrationCode,
+    };
   }
 }
 
@@ -18255,6 +19883,13 @@ class GetStatisticsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final statistics = this.statistics;
+    return {
+      if (statistics != null) 'statistics': statistics,
+    };
+  }
 }
 
 class GetTopicRuleDestinationResponse {
@@ -18271,6 +19906,14 @@ class GetTopicRuleDestinationResponse {
               json['topicRuleDestination'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final topicRuleDestination = this.topicRuleDestination;
+    return {
+      if (topicRuleDestination != null)
+        'topicRuleDestination': topicRuleDestination,
+    };
   }
 }
 
@@ -18293,6 +19936,15 @@ class GetTopicRuleResponse {
           : null,
       ruleArn: json['ruleArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rule = this.rule;
+    final ruleArn = this.ruleArn;
+    return {
+      if (rule != null) 'rule': rule,
+      if (ruleArn != null) 'ruleArn': ruleArn,
+    };
   }
 }
 
@@ -18318,6 +19970,17 @@ class GetV2LoggingOptionsResponse {
       roleArn: json['roleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final defaultLogLevel = this.defaultLogLevel;
+    final disableAllLogs = this.disableAllLogs;
+    final roleArn = this.roleArn;
+    return {
+      if (defaultLogLevel != null) 'defaultLogLevel': defaultLogLevel.toValue(),
+      if (disableAllLogs != null) 'disableAllLogs': disableAllLogs,
+      if (roleArn != null) 'roleArn': roleArn,
+    };
+  }
 }
 
 /// The name and ARN of a group.
@@ -18337,6 +20000,15 @@ class GroupNameAndArn {
       groupArn: json['groupArn'] as String?,
       groupName: json['groupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupArn = this.groupArn;
+    final groupName = this.groupName;
+    return {
+      if (groupArn != null) 'groupArn': groupArn,
+      if (groupName != null) 'groupName': groupName,
+    };
   }
 }
 
@@ -18462,6 +20134,7 @@ class HttpContext {
     this.headers,
     this.queryString,
   });
+
   Map<String, dynamic> toJson() {
     final headers = this.headers;
     final queryString = this.queryString;
@@ -18481,6 +20154,7 @@ class HttpUrlDestinationConfiguration {
   HttpUrlDestinationConfiguration({
     required this.confirmationUrl,
   });
+
   Map<String, dynamic> toJson() {
     final confirmationUrl = this.confirmationUrl;
     return {
@@ -18502,6 +20176,13 @@ class HttpUrlDestinationProperties {
       confirmationUrl: json['confirmationUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confirmationUrl = this.confirmationUrl;
+    return {
+      if (confirmationUrl != null) 'confirmationUrl': confirmationUrl,
+    };
+  }
 }
 
 /// Information about an HTTP URL destination.
@@ -18517,6 +20198,13 @@ class HttpUrlDestinationSummary {
     return HttpUrlDestinationSummary(
       confirmationUrl: json['confirmationUrl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final confirmationUrl = this.confirmationUrl;
+    return {
+      if (confirmationUrl != null) 'confirmationUrl': confirmationUrl,
+    };
   }
 }
 
@@ -18538,6 +20226,13 @@ class ImplicitDeny {
           .map((e) => Policy.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policies = this.policies;
+    return {
+      if (policies != null) 'policies': policies,
+    };
   }
 }
 
@@ -18936,6 +20631,58 @@ class Job {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final abortConfig = this.abortConfig;
+    final comment = this.comment;
+    final completedAt = this.completedAt;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final documentParameters = this.documentParameters;
+    final forceCanceled = this.forceCanceled;
+    final isConcurrent = this.isConcurrent;
+    final jobArn = this.jobArn;
+    final jobExecutionsRetryConfig = this.jobExecutionsRetryConfig;
+    final jobExecutionsRolloutConfig = this.jobExecutionsRolloutConfig;
+    final jobId = this.jobId;
+    final jobProcessDetails = this.jobProcessDetails;
+    final jobTemplateArn = this.jobTemplateArn;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final namespaceId = this.namespaceId;
+    final presignedUrlConfig = this.presignedUrlConfig;
+    final reasonCode = this.reasonCode;
+    final status = this.status;
+    final targetSelection = this.targetSelection;
+    final targets = this.targets;
+    final timeoutConfig = this.timeoutConfig;
+    return {
+      if (abortConfig != null) 'abortConfig': abortConfig,
+      if (comment != null) 'comment': comment,
+      if (completedAt != null) 'completedAt': unixTimestampToJson(completedAt),
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (description != null) 'description': description,
+      if (documentParameters != null) 'documentParameters': documentParameters,
+      if (forceCanceled != null) 'forceCanceled': forceCanceled,
+      if (isConcurrent != null) 'isConcurrent': isConcurrent,
+      if (jobArn != null) 'jobArn': jobArn,
+      if (jobExecutionsRetryConfig != null)
+        'jobExecutionsRetryConfig': jobExecutionsRetryConfig,
+      if (jobExecutionsRolloutConfig != null)
+        'jobExecutionsRolloutConfig': jobExecutionsRolloutConfig,
+      if (jobId != null) 'jobId': jobId,
+      if (jobProcessDetails != null) 'jobProcessDetails': jobProcessDetails,
+      if (jobTemplateArn != null) 'jobTemplateArn': jobTemplateArn,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (namespaceId != null) 'namespaceId': namespaceId,
+      if (presignedUrlConfig != null) 'presignedUrlConfig': presignedUrlConfig,
+      if (reasonCode != null) 'reasonCode': reasonCode,
+      if (status != null) 'status': status.toValue(),
+      if (targetSelection != null) 'targetSelection': targetSelection.toValue(),
+      if (targets != null) 'targets': targets,
+      if (timeoutConfig != null) 'timeoutConfig': timeoutConfig,
+    };
+  }
 }
 
 /// The job execution object represents the execution of a job on a particular
@@ -19017,6 +20764,36 @@ class JobExecution {
       thingArn: json['thingArn'] as String?,
       versionNumber: json['versionNumber'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final approximateSecondsBeforeTimedOut =
+        this.approximateSecondsBeforeTimedOut;
+    final executionNumber = this.executionNumber;
+    final forceCanceled = this.forceCanceled;
+    final jobId = this.jobId;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final queuedAt = this.queuedAt;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    final statusDetails = this.statusDetails;
+    final thingArn = this.thingArn;
+    final versionNumber = this.versionNumber;
+    return {
+      if (approximateSecondsBeforeTimedOut != null)
+        'approximateSecondsBeforeTimedOut': approximateSecondsBeforeTimedOut,
+      if (executionNumber != null) 'executionNumber': executionNumber,
+      if (forceCanceled != null) 'forceCanceled': forceCanceled,
+      if (jobId != null) 'jobId': jobId,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (queuedAt != null) 'queuedAt': unixTimestampToJson(queuedAt),
+      if (startedAt != null) 'startedAt': unixTimestampToJson(startedAt),
+      if (status != null) 'status': status.toValue(),
+      if (statusDetails != null) 'statusDetails': statusDetails,
+      if (thingArn != null) 'thingArn': thingArn,
+      if (versionNumber != null) 'versionNumber': versionNumber,
+    };
   }
 }
 
@@ -19130,6 +20907,13 @@ class JobExecutionStatusDetails {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final detailsMap = this.detailsMap;
+    return {
+      if (detailsMap != null) 'detailsMap': detailsMap,
+    };
+  }
 }
 
 /// The job execution summary.
@@ -19174,6 +20958,24 @@ class JobExecutionSummary {
       status: (json['status'] as String?)?.toJobExecutionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionNumber = this.executionNumber;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final queuedAt = this.queuedAt;
+    final retryAttempt = this.retryAttempt;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    return {
+      if (executionNumber != null) 'executionNumber': executionNumber,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (queuedAt != null) 'queuedAt': unixTimestampToJson(queuedAt),
+      if (retryAttempt != null) 'retryAttempt': retryAttempt,
+      if (startedAt != null) 'startedAt': unixTimestampToJson(startedAt),
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Contains a summary of information about job executions for a specific job.
@@ -19197,6 +20999,16 @@ class JobExecutionSummaryForJob {
       thingArn: json['thingArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobExecutionSummary = this.jobExecutionSummary;
+    final thingArn = this.thingArn;
+    return {
+      if (jobExecutionSummary != null)
+        'jobExecutionSummary': jobExecutionSummary,
+      if (thingArn != null) 'thingArn': thingArn,
+    };
+  }
 }
 
 /// The job execution summary for a thing.
@@ -19219,6 +21031,16 @@ class JobExecutionSummaryForThing {
           : null,
       jobId: json['jobId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobExecutionSummary = this.jobExecutionSummary;
+    final jobId = this.jobId;
+    return {
+      if (jobExecutionSummary != null)
+        'jobExecutionSummary': jobExecutionSummary,
+      if (jobId != null) 'jobId': jobId,
+    };
   }
 }
 
@@ -19343,6 +21165,37 @@ class JobProcessDetails {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final numberOfCanceledThings = this.numberOfCanceledThings;
+    final numberOfFailedThings = this.numberOfFailedThings;
+    final numberOfInProgressThings = this.numberOfInProgressThings;
+    final numberOfQueuedThings = this.numberOfQueuedThings;
+    final numberOfRejectedThings = this.numberOfRejectedThings;
+    final numberOfRemovedThings = this.numberOfRemovedThings;
+    final numberOfSucceededThings = this.numberOfSucceededThings;
+    final numberOfTimedOutThings = this.numberOfTimedOutThings;
+    final processingTargets = this.processingTargets;
+    return {
+      if (numberOfCanceledThings != null)
+        'numberOfCanceledThings': numberOfCanceledThings,
+      if (numberOfFailedThings != null)
+        'numberOfFailedThings': numberOfFailedThings,
+      if (numberOfInProgressThings != null)
+        'numberOfInProgressThings': numberOfInProgressThings,
+      if (numberOfQueuedThings != null)
+        'numberOfQueuedThings': numberOfQueuedThings,
+      if (numberOfRejectedThings != null)
+        'numberOfRejectedThings': numberOfRejectedThings,
+      if (numberOfRemovedThings != null)
+        'numberOfRemovedThings': numberOfRemovedThings,
+      if (numberOfSucceededThings != null)
+        'numberOfSucceededThings': numberOfSucceededThings,
+      if (numberOfTimedOutThings != null)
+        'numberOfTimedOutThings': numberOfTimedOutThings,
+      if (processingTargets != null) 'processingTargets': processingTargets,
+    };
+  }
 }
 
 enum JobStatus {
@@ -19449,6 +21302,30 @@ class JobSummary {
       thingGroupId: json['thingGroupId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completedAt = this.completedAt;
+    final createdAt = this.createdAt;
+    final isConcurrent = this.isConcurrent;
+    final jobArn = this.jobArn;
+    final jobId = this.jobId;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final status = this.status;
+    final targetSelection = this.targetSelection;
+    final thingGroupId = this.thingGroupId;
+    return {
+      if (completedAt != null) 'completedAt': unixTimestampToJson(completedAt),
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (isConcurrent != null) 'isConcurrent': isConcurrent,
+      if (jobArn != null) 'jobArn': jobArn,
+      if (jobId != null) 'jobId': jobId,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (status != null) 'status': status.toValue(),
+      if (targetSelection != null) 'targetSelection': targetSelection.toValue(),
+      if (thingGroupId != null) 'thingGroupId': thingGroupId,
+    };
+  }
 }
 
 /// An object that contains information about the job template.
@@ -19478,6 +21355,19 @@ class JobTemplateSummary {
       jobTemplateArn: json['jobTemplateArn'] as String?,
       jobTemplateId: json['jobTemplateId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final jobTemplateArn = this.jobTemplateArn;
+    final jobTemplateId = this.jobTemplateId;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (description != null) 'description': description,
+      if (jobTemplateArn != null) 'jobTemplateArn': jobTemplateArn,
+      if (jobTemplateId != null) 'jobTemplateId': jobTemplateId,
+    };
   }
 }
 
@@ -19550,6 +21440,15 @@ class KeyPair {
       privateKey: json['PrivateKey'] as String?,
       publicKey: json['PublicKey'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final privateKey = this.privateKey;
+    final publicKey = this.publicKey;
+    return {
+      if (privateKey != null) 'PrivateKey': privateKey,
+      if (publicKey != null) 'PublicKey': publicKey,
+    };
   }
 }
 
@@ -19632,6 +21531,15 @@ class ListActiveViolationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeViolations = this.activeViolations;
+    final nextToken = this.nextToken;
+    return {
+      if (activeViolations != null) 'activeViolations': activeViolations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAttachedPoliciesResponse {
@@ -19655,6 +21563,15 @@ class ListAttachedPoliciesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final policies = this.policies;
+    return {
+      if (nextMarker != null) 'nextMarker': nextMarker,
+      if (policies != null) 'policies': policies,
+    };
+  }
 }
 
 class ListAuditFindingsResponse {
@@ -19677,6 +21594,15 @@ class ListAuditFindingsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final findings = this.findings;
+    final nextToken = this.nextToken;
+    return {
+      if (findings != null) 'findings': findings,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -19703,6 +21629,15 @@ class ListAuditMitigationActionsExecutionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionsExecutions = this.actionsExecutions;
+    final nextToken = this.nextToken;
+    return {
+      if (actionsExecutions != null) 'actionsExecutions': actionsExecutions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAuditMitigationActionsTasksResponse {
@@ -19727,6 +21662,15 @@ class ListAuditMitigationActionsTasksResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tasks = this.tasks;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tasks != null) 'tasks': tasks,
+    };
+  }
 }
 
 class ListAuditSuppressionsResponse {
@@ -19749,6 +21693,15 @@ class ListAuditSuppressionsResponse {
           .map((e) => AuditSuppression.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final suppressions = this.suppressions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (suppressions != null) 'suppressions': suppressions,
+    };
   }
 }
 
@@ -19773,6 +21726,15 @@ class ListAuditTasksResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tasks = this.tasks;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tasks != null) 'tasks': tasks,
+    };
+  }
 }
 
 class ListAuthorizersResponse {
@@ -19794,6 +21756,15 @@ class ListAuthorizersResponse {
           .toList(),
       nextMarker: json['nextMarker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authorizers = this.authorizers;
+    final nextMarker = this.nextMarker;
+    return {
+      if (authorizers != null) 'authorizers': authorizers,
+      if (nextMarker != null) 'nextMarker': nextMarker,
+    };
   }
 }
 
@@ -19818,6 +21789,15 @@ class ListBillingGroupsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final billingGroups = this.billingGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (billingGroups != null) 'billingGroups': billingGroups,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// The output from the ListCACertificates operation.
@@ -19840,6 +21820,15 @@ class ListCACertificatesResponse {
           .toList(),
       nextMarker: json['nextMarker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificates = this.certificates;
+    final nextMarker = this.nextMarker;
+    return {
+      if (certificates != null) 'certificates': certificates,
+      if (nextMarker != null) 'nextMarker': nextMarker,
+    };
   }
 }
 
@@ -19865,6 +21854,15 @@ class ListCertificatesByCAResponse {
       nextMarker: json['nextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificates = this.certificates;
+    final nextMarker = this.nextMarker;
+    return {
+      if (certificates != null) 'certificates': certificates,
+      if (nextMarker != null) 'nextMarker': nextMarker,
+    };
+  }
 }
 
 /// The output of the ListCertificates operation.
@@ -19889,6 +21887,15 @@ class ListCertificatesResponse {
       nextMarker: json['nextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificates = this.certificates;
+    final nextMarker = this.nextMarker;
+    return {
+      if (certificates != null) 'certificates': certificates,
+      if (nextMarker != null) 'nextMarker': nextMarker,
+    };
+  }
 }
 
 class ListCustomMetricsResponse {
@@ -19911,6 +21918,15 @@ class ListCustomMetricsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricNames = this.metricNames;
+    final nextToken = this.nextToken;
+    return {
+      if (metricNames != null) 'metricNames': metricNames,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -19936,6 +21952,15 @@ class ListDetectMitigationActionsExecutionsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionsExecutions = this.actionsExecutions;
+    final nextToken = this.nextToken;
+    return {
+      if (actionsExecutions != null) 'actionsExecutions': actionsExecutions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -19963,6 +21988,15 @@ class ListDetectMitigationActionsTasksResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tasks = this.tasks;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tasks != null) 'tasks': tasks,
+    };
+  }
 }
 
 class ListDimensionsResponse {
@@ -19986,6 +22020,15 @@ class ListDimensionsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dimensionNames = this.dimensionNames;
+    final nextToken = this.nextToken;
+    return {
+      if (dimensionNames != null) 'dimensionNames': dimensionNames,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -20011,6 +22054,16 @@ class ListDomainConfigurationsResponse {
       nextMarker: json['nextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainConfigurations = this.domainConfigurations;
+    final nextMarker = this.nextMarker;
+    return {
+      if (domainConfigurations != null)
+        'domainConfigurations': domainConfigurations,
+      if (nextMarker != null) 'nextMarker': nextMarker,
+    };
+  }
 }
 
 class ListFleetMetricsResponse {
@@ -20033,6 +22086,15 @@ class ListFleetMetricsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fleetMetrics = this.fleetMetrics;
+    final nextToken = this.nextToken;
+    return {
+      if (fleetMetrics != null) 'fleetMetrics': fleetMetrics,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -20057,6 +22119,15 @@ class ListIndicesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final indexNames = this.indexNames;
+    final nextToken = this.nextToken;
+    return {
+      if (indexNames != null) 'indexNames': indexNames,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListJobExecutionsForJobResponse {
@@ -20080,6 +22151,15 @@ class ListJobExecutionsForJobResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final executionSummaries = this.executionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (executionSummaries != null) 'executionSummaries': executionSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -20106,6 +22186,15 @@ class ListJobExecutionsForThingResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionSummaries = this.executionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (executionSummaries != null) 'executionSummaries': executionSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListJobTemplatesResponse {
@@ -20128,6 +22217,15 @@ class ListJobTemplatesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobTemplates = this.jobTemplates;
+    final nextToken = this.nextToken;
+    return {
+      if (jobTemplates != null) 'jobTemplates': jobTemplates,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -20152,6 +22250,15 @@ class ListJobsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    final nextToken = this.nextToken;
+    return {
+      if (jobs != null) 'jobs': jobs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListManagedJobTemplatesResponse {
@@ -20174,6 +22281,16 @@ class ListManagedJobTemplatesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final managedJobTemplates = this.managedJobTemplates;
+    final nextToken = this.nextToken;
+    return {
+      if (managedJobTemplates != null)
+        'managedJobTemplates': managedJobTemplates,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -20198,6 +22315,15 @@ class ListMetricValuesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricDatumList = this.metricDatumList;
+    final nextToken = this.nextToken;
+    return {
+      if (metricDatumList != null) 'metricDatumList': metricDatumList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListMitigationActionsResponse {
@@ -20221,6 +22347,15 @@ class ListMitigationActionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionIdentifiers = this.actionIdentifiers;
+    final nextToken = this.nextToken;
+    return {
+      if (actionIdentifiers != null) 'actionIdentifiers': actionIdentifiers,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListOTAUpdatesResponse {
@@ -20242,6 +22377,15 @@ class ListOTAUpdatesResponse {
           .map((e) => OTAUpdateSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final otaUpdates = this.otaUpdates;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (otaUpdates != null) 'otaUpdates': otaUpdates,
+    };
   }
 }
 
@@ -20265,6 +22409,16 @@ class ListOutgoingCertificatesResponse {
           .map((e) => OutgoingCertificate.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final outgoingCertificates = this.outgoingCertificates;
+    return {
+      if (nextMarker != null) 'nextMarker': nextMarker,
+      if (outgoingCertificates != null)
+        'outgoingCertificates': outgoingCertificates,
+    };
   }
 }
 
@@ -20290,6 +22444,15 @@ class ListPoliciesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final policies = this.policies;
+    return {
+      if (nextMarker != null) 'nextMarker': nextMarker,
+      if (policies != null) 'policies': policies,
+    };
+  }
 }
 
 /// The output from the ListPolicyPrincipals operation.
@@ -20314,6 +22477,15 @@ class ListPolicyPrincipalsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final principals = this.principals;
+    return {
+      if (nextMarker != null) 'nextMarker': nextMarker,
+      if (principals != null) 'principals': principals,
+    };
+  }
 }
 
 /// The output from the ListPolicyVersions operation.
@@ -20331,6 +22503,13 @@ class ListPolicyVersionsResponse {
           .map((e) => PolicyVersion.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyVersions = this.policyVersions;
+    return {
+      if (policyVersions != null) 'policyVersions': policyVersions,
+    };
   }
 }
 
@@ -20356,6 +22535,15 @@ class ListPrincipalPoliciesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final policies = this.policies;
+    return {
+      if (nextMarker != null) 'nextMarker': nextMarker,
+      if (policies != null) 'policies': policies,
+    };
+  }
 }
 
 /// The output from the ListPrincipalThings operation.
@@ -20379,6 +22567,15 @@ class ListPrincipalThingsResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final things = this.things;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (things != null) 'things': things,
+    };
   }
 }
 
@@ -20404,6 +22601,15 @@ class ListProvisioningTemplateVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final versions = this.versions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (versions != null) 'versions': versions,
+    };
+  }
 }
 
 class ListProvisioningTemplatesResponse {
@@ -20428,6 +22634,15 @@ class ListProvisioningTemplatesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final templates = this.templates;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (templates != null) 'templates': templates,
+    };
+  }
 }
 
 class ListRoleAliasesResponse {
@@ -20449,6 +22664,15 @@ class ListRoleAliasesResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final roleAliases = this.roleAliases;
+    return {
+      if (nextMarker != null) 'nextMarker': nextMarker,
+      if (roleAliases != null) 'roleAliases': roleAliases,
+    };
   }
 }
 
@@ -20473,6 +22697,15 @@ class ListScheduledAuditsResponse {
               (e) => ScheduledAuditMetadata.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final scheduledAudits = this.scheduledAudits;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (scheduledAudits != null) 'scheduledAudits': scheduledAudits,
+    };
   }
 }
 
@@ -20500,6 +22733,16 @@ class ListSecurityProfilesForTargetResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final securityProfileTargetMappings = this.securityProfileTargetMappings;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (securityProfileTargetMappings != null)
+        'securityProfileTargetMappings': securityProfileTargetMappings,
+    };
+  }
 }
 
 class ListSecurityProfilesResponse {
@@ -20524,6 +22767,16 @@ class ListSecurityProfilesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final securityProfileIdentifiers = this.securityProfileIdentifiers;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (securityProfileIdentifiers != null)
+        'securityProfileIdentifiers': securityProfileIdentifiers,
+    };
+  }
 }
 
 class ListStreamsResponse {
@@ -20545,6 +22798,15 @@ class ListStreamsResponse {
           .map((e) => StreamSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final streams = this.streams;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (streams != null) 'streams': streams,
+    };
   }
 }
 
@@ -20569,6 +22831,15 @@ class ListTagsForResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class ListTargetsForPolicyResponse {
@@ -20590,6 +22861,15 @@ class ListTargetsForPolicyResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final targets = this.targets;
+    return {
+      if (nextMarker != null) 'nextMarker': nextMarker,
+      if (targets != null) 'targets': targets,
+    };
   }
 }
 
@@ -20615,6 +22895,16 @@ class ListTargetsForSecurityProfileResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final securityProfileTargets = this.securityProfileTargets;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (securityProfileTargets != null)
+        'securityProfileTargets': securityProfileTargets,
+    };
+  }
 }
 
 class ListThingGroupsForThingResponse {
@@ -20637,6 +22927,15 @@ class ListThingGroupsForThingResponse {
           .map((e) => GroupNameAndArn.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final thingGroups = this.thingGroups;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (thingGroups != null) 'thingGroups': thingGroups,
+    };
   }
 }
 
@@ -20661,6 +22960,15 @@ class ListThingGroupsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final thingGroups = this.thingGroups;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (thingGroups != null) 'thingGroups': thingGroups,
+    };
+  }
 }
 
 /// The output from the ListThingPrincipals operation.
@@ -20684,6 +22992,15 @@ class ListThingPrincipalsResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final principals = this.principals;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (principals != null) 'principals': principals,
+    };
   }
 }
 
@@ -20714,6 +23031,17 @@ class ListThingRegistrationTaskReportsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reportType = this.reportType;
+    final resourceLinks = this.resourceLinks;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (reportType != null) 'reportType': reportType.toValue(),
+      if (resourceLinks != null) 'resourceLinks': resourceLinks,
+    };
+  }
 }
 
 class ListThingRegistrationTasksResponse {
@@ -20737,6 +23065,15 @@ class ListThingRegistrationTasksResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final taskIds = this.taskIds;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (taskIds != null) 'taskIds': taskIds,
+    };
   }
 }
 
@@ -20762,6 +23099,15 @@ class ListThingTypesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final thingTypes = this.thingTypes;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (thingTypes != null) 'thingTypes': thingTypes,
+    };
+  }
 }
 
 class ListThingsInBillingGroupResponse {
@@ -20784,6 +23130,15 @@ class ListThingsInBillingGroupResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final things = this.things;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (things != null) 'things': things,
+    };
   }
 }
 
@@ -20808,6 +23163,15 @@ class ListThingsInThingGroupResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final things = this.things;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (things != null) 'things': things,
+    };
+  }
 }
 
 /// The output from the ListThings operation.
@@ -20831,6 +23195,15 @@ class ListThingsResponse {
           .map((e) => ThingAttribute.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final things = this.things;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (things != null) 'things': things,
+    };
   }
 }
 
@@ -20857,6 +23230,16 @@ class ListTopicRuleDestinationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationSummaries = this.destinationSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (destinationSummaries != null)
+        'destinationSummaries': destinationSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// The output from the ListTopicRules operation.
@@ -20880,6 +23263,15 @@ class ListTopicRulesResponse {
           .map((e) => TopicRuleListItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final rules = this.rules;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (rules != null) 'rules': rules,
+    };
   }
 }
 
@@ -20905,6 +23297,16 @@ class ListV2LoggingLevelsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logTargetConfigurations = this.logTargetConfigurations;
+    final nextToken = this.nextToken;
+    return {
+      if (logTargetConfigurations != null)
+        'logTargetConfigurations': logTargetConfigurations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListViolationEventsResponse {
@@ -20929,6 +23331,15 @@ class ListViolationEventsResponse {
           .map((e) => ViolationEvent.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final violationEvents = this.violationEvents;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (violationEvents != null) 'violationEvents': violationEvents,
+    };
   }
 }
 
@@ -21024,6 +23435,15 @@ class LogTargetConfiguration {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logLevel = this.logLevel;
+    final logTarget = this.logTarget;
+    return {
+      if (logLevel != null) 'logLevel': logLevel.toValue(),
+      if (logTarget != null) 'logTarget': logTarget,
+    };
+  }
 }
 
 enum LogTargetType {
@@ -21081,6 +23501,7 @@ class LoggingOptionsPayload {
     required this.roleArn,
     this.logLevel,
   });
+
   Map<String, dynamic> toJson() {
     final roleArn = this.roleArn;
     final logLevel = this.logLevel;
@@ -21150,6 +23571,21 @@ class ManagedJobTemplateSummary {
       templateVersion: json['templateVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final environments = this.environments;
+    final templateArn = this.templateArn;
+    final templateName = this.templateName;
+    final templateVersion = this.templateVersion;
+    return {
+      if (description != null) 'description': description,
+      if (environments != null) 'environments': environments,
+      if (templateArn != null) 'templateArn': templateArn,
+      if (templateName != null) 'templateName': templateName,
+      if (templateVersion != null) 'templateVersion': templateVersion,
+    };
+  }
 }
 
 enum MessageFormat {
@@ -21199,6 +23635,15 @@ class MetricDatum {
           ? MetricValue.fromJson(json['value'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final timestamp = this.timestamp;
+    final value = this.value;
+    return {
+      if (timestamp != null) 'timestamp': unixTimestampToJson(timestamp),
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -21373,6 +23818,19 @@ class MitigationAction {
       roleArn: json['roleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionParams = this.actionParams;
+    final id = this.id;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    return {
+      if (actionParams != null) 'actionParams': actionParams,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (roleArn != null) 'roleArn': roleArn,
+    };
+  }
 }
 
 /// Information that identifies a mitigation action. This information is
@@ -21398,6 +23856,18 @@ class MitigationActionIdentifier {
       actionName: json['actionName'] as String?,
       creationDate: timeStampFromJson(json['creationDate']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionArn = this.actionArn;
+    final actionName = this.actionName;
+    final creationDate = this.creationDate;
+    return {
+      if (actionArn != null) 'actionArn': actionArn,
+      if (actionName != null) 'actionName': actionName,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+    };
   }
 }
 
@@ -21593,6 +24063,7 @@ class MqttContext {
     this.password,
     this.username,
   });
+
   Map<String, dynamic> toJson() {
     final clientId = this.clientId;
     final password = this.password;
@@ -21659,6 +24130,17 @@ class NonCompliantResource {
           : null,
       resourceType: (json['resourceType'] as String?)?.toResourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final additionalInfo = this.additionalInfo;
+    final resourceIdentifier = this.resourceIdentifier;
+    final resourceType = this.resourceType;
+    return {
+      if (additionalInfo != null) 'additionalInfo': additionalInfo,
+      if (resourceIdentifier != null) 'resourceIdentifier': resourceIdentifier,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+    };
   }
 }
 
@@ -21843,6 +24325,49 @@ class OTAUpdateInfo {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalParameters = this.additionalParameters;
+    final awsIotJobArn = this.awsIotJobArn;
+    final awsIotJobId = this.awsIotJobId;
+    final awsJobExecutionsRolloutConfig = this.awsJobExecutionsRolloutConfig;
+    final awsJobPresignedUrlConfig = this.awsJobPresignedUrlConfig;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final errorInfo = this.errorInfo;
+    final lastModifiedDate = this.lastModifiedDate;
+    final otaUpdateArn = this.otaUpdateArn;
+    final otaUpdateFiles = this.otaUpdateFiles;
+    final otaUpdateId = this.otaUpdateId;
+    final otaUpdateStatus = this.otaUpdateStatus;
+    final protocols = this.protocols;
+    final targetSelection = this.targetSelection;
+    final targets = this.targets;
+    return {
+      if (additionalParameters != null)
+        'additionalParameters': additionalParameters,
+      if (awsIotJobArn != null) 'awsIotJobArn': awsIotJobArn,
+      if (awsIotJobId != null) 'awsIotJobId': awsIotJobId,
+      if (awsJobExecutionsRolloutConfig != null)
+        'awsJobExecutionsRolloutConfig': awsJobExecutionsRolloutConfig,
+      if (awsJobPresignedUrlConfig != null)
+        'awsJobPresignedUrlConfig': awsJobPresignedUrlConfig,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (description != null) 'description': description,
+      if (errorInfo != null) 'errorInfo': errorInfo,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (otaUpdateArn != null) 'otaUpdateArn': otaUpdateArn,
+      if (otaUpdateFiles != null) 'otaUpdateFiles': otaUpdateFiles,
+      if (otaUpdateId != null) 'otaUpdateId': otaUpdateId,
+      if (otaUpdateStatus != null) 'otaUpdateStatus': otaUpdateStatus.toValue(),
+      if (protocols != null)
+        'protocols': protocols.map((e) => e.toValue()).toList(),
+      if (targetSelection != null) 'targetSelection': targetSelection.toValue(),
+      if (targets != null) 'targets': targets,
+    };
+  }
 }
 
 enum OTAUpdateStatus {
@@ -21905,6 +24430,18 @@ class OTAUpdateSummary {
       otaUpdateArn: json['otaUpdateArn'] as String?,
       otaUpdateId: json['otaUpdateId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final otaUpdateArn = this.otaUpdateArn;
+    final otaUpdateId = this.otaUpdateId;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (otaUpdateArn != null) 'otaUpdateArn': otaUpdateArn,
+      if (otaUpdateId != null) 'otaUpdateId': otaUpdateId,
+    };
   }
 }
 
@@ -21996,6 +24533,25 @@ class OutgoingCertificate {
       transferredTo: json['transferredTo'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final certificateId = this.certificateId;
+    final creationDate = this.creationDate;
+    final transferDate = this.transferDate;
+    final transferMessage = this.transferMessage;
+    final transferredTo = this.transferredTo;
+    return {
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (certificateId != null) 'certificateId': certificateId,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (transferDate != null)
+        'transferDate': unixTimestampToJson(transferDate),
+      if (transferMessage != null) 'transferMessage': transferMessage,
+      if (transferredTo != null) 'transferredTo': transferredTo,
+    };
+  }
 }
 
 /// Describes the percentile and percentile value.
@@ -22016,6 +24572,15 @@ class PercentPair {
       value: json['value'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final percent = this.percent;
+    final value = this.value;
+    return {
+      if (percent != null) 'percent': percent,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Describes an IoT policy.
@@ -22035,6 +24600,15 @@ class Policy {
       policyArn: json['policyArn'] as String?,
       policyName: json['policyName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyArn = this.policyArn;
+    final policyName = this.policyName;
+    return {
+      if (policyArn != null) 'policyArn': policyArn,
+      if (policyName != null) 'policyName': policyName,
+    };
   }
 }
 
@@ -22083,6 +24657,17 @@ class PolicyVersion {
       isDefaultVersion: json['isDefaultVersion'] as bool?,
       versionId: json['versionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createDate = this.createDate;
+    final isDefaultVersion = this.isDefaultVersion;
+    final versionId = this.versionId;
+    return {
+      if (createDate != null) 'createDate': unixTimestampToJson(createDate),
+      if (isDefaultVersion != null) 'isDefaultVersion': isDefaultVersion,
+      if (versionId != null) 'versionId': versionId,
+    };
   }
 }
 
@@ -22254,6 +24839,25 @@ class ProvisioningTemplateSummary {
       templateName: json['templateName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final enabled = this.enabled;
+    final lastModifiedDate = this.lastModifiedDate;
+    final templateArn = this.templateArn;
+    final templateName = this.templateName;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (description != null) 'description': description,
+      if (enabled != null) 'enabled': enabled,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (templateArn != null) 'templateArn': templateArn,
+      if (templateName != null) 'templateName': templateName,
+    };
+  }
 }
 
 /// A summary of information about a fleet provision template version.
@@ -22280,6 +24884,18 @@ class ProvisioningTemplateVersionSummary {
       isDefaultVersion: json['isDefaultVersion'] as bool?,
       versionId: json['versionId'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final isDefaultVersion = this.isDefaultVersion;
+    final versionId = this.versionId;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (isDefaultVersion != null) 'isDefaultVersion': isDefaultVersion,
+      if (versionId != null) 'versionId': versionId,
+    };
   }
 }
 
@@ -22398,6 +25014,10 @@ class PutVerificationStateOnViolationResponse {
       Map<String, dynamic> _) {
     return PutVerificationStateOnViolationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Allows you to define a criteria to initiate the increase in rate of rollout
@@ -22452,6 +25072,15 @@ class RegisterCACertificateResponse {
       certificateId: json['certificateId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final certificateId = this.certificateId;
+    return {
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (certificateId != null) 'certificateId': certificateId,
+    };
+  }
 }
 
 /// The output from the RegisterCertificate operation.
@@ -22471,6 +25100,15 @@ class RegisterCertificateResponse {
       certificateArn: json['certificateArn'] as String?,
       certificateId: json['certificateId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final certificateId = this.certificateId;
+    return {
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (certificateId != null) 'certificateId': certificateId,
+    };
   }
 }
 
@@ -22493,6 +25131,15 @@ class RegisterCertificateWithoutCAResponse {
       certificateId: json['certificateId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final certificateId = this.certificateId;
+    return {
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (certificateId != null) 'certificateId': certificateId,
+    };
+  }
 }
 
 class RegisterThingResponse {
@@ -22512,6 +25159,15 @@ class RegisterThingResponse {
       resourceArns: (json['resourceArns'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificatePem = this.certificatePem;
+    final resourceArns = this.resourceArns;
+    return {
+      if (certificatePem != null) 'certificatePem': certificatePem,
+      if (resourceArns != null) 'resourceArns': resourceArns,
+    };
   }
 }
 
@@ -22571,6 +25227,17 @@ class RelatedResource {
       resourceType: (json['resourceType'] as String?)?.toResourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalInfo = this.additionalInfo;
+    final resourceIdentifier = this.resourceIdentifier;
+    final resourceType = this.resourceType;
+    return {
+      if (additionalInfo != null) 'additionalInfo': additionalInfo,
+      if (resourceIdentifier != null) 'resourceIdentifier': resourceIdentifier,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+    };
+  }
 }
 
 class RemoveThingFromBillingGroupResponse {
@@ -22578,12 +25245,20 @@ class RemoveThingFromBillingGroupResponse {
   factory RemoveThingFromBillingGroupResponse.fromJson(Map<String, dynamic> _) {
     return RemoveThingFromBillingGroupResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class RemoveThingFromThingGroupResponse {
   RemoveThingFromThingGroupResponse();
   factory RemoveThingFromThingGroupResponse.fromJson(Map<String, dynamic> _) {
     return RemoveThingFromThingGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -22918,6 +25593,28 @@ class RoleAliasDescription {
       roleArn: json['roleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final credentialDurationSeconds = this.credentialDurationSeconds;
+    final lastModifiedDate = this.lastModifiedDate;
+    final owner = this.owner;
+    final roleAlias = this.roleAlias;
+    final roleAliasArn = this.roleAliasArn;
+    final roleArn = this.roleArn;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (credentialDurationSeconds != null)
+        'credentialDurationSeconds': credentialDurationSeconds,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (owner != null) 'owner': owner,
+      if (roleAlias != null) 'roleAlias': roleAlias,
+      if (roleAliasArn != null) 'roleAliasArn': roleAliasArn,
+      if (roleArn != null) 'roleArn': roleArn,
+    };
+  }
 }
 
 /// Describes an action to write data to an Amazon S3 bucket.
@@ -23104,6 +25801,21 @@ class ScheduledAuditMetadata {
       scheduledAuditName: json['scheduledAuditName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dayOfMonth = this.dayOfMonth;
+    final dayOfWeek = this.dayOfWeek;
+    final frequency = this.frequency;
+    final scheduledAuditArn = this.scheduledAuditArn;
+    final scheduledAuditName = this.scheduledAuditName;
+    return {
+      if (dayOfMonth != null) 'dayOfMonth': dayOfMonth,
+      if (dayOfWeek != null) 'dayOfWeek': dayOfWeek.toValue(),
+      if (frequency != null) 'frequency': frequency.toValue(),
+      if (scheduledAuditArn != null) 'scheduledAuditArn': scheduledAuditArn,
+      if (scheduledAuditName != null) 'scheduledAuditName': scheduledAuditName,
+    };
+  }
 }
 
 class SearchIndexResponse {
@@ -23135,6 +25847,17 @@ class SearchIndexResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final thingGroups = this.thingGroups;
+    final things = this.things;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (thingGroups != null) 'thingGroups': thingGroups,
+      if (things != null) 'things': things,
+    };
+  }
 }
 
 /// Identifying information for a Device Defender security profile.
@@ -23155,6 +25878,15 @@ class SecurityProfileIdentifier {
       name: json['name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      'arn': arn,
+      'name': name,
+    };
+  }
 }
 
 /// A target to which an alert is sent when a security profile behavior is
@@ -23170,6 +25902,13 @@ class SecurityProfileTarget {
     return SecurityProfileTarget(
       arn: json['arn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      'arn': arn,
+    };
   }
 }
 
@@ -23197,6 +25936,16 @@ class SecurityProfileTargetMapping {
               json['target'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityProfileIdentifier = this.securityProfileIdentifier;
+    final target = this.target;
+    return {
+      if (securityProfileIdentifier != null)
+        'securityProfileIdentifier': securityProfileIdentifier,
+      if (target != null) 'target': target,
+    };
   }
 }
 
@@ -23253,6 +26002,20 @@ class ServerCertificateSummary {
           json['serverCertificateStatusDetail'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serverCertificateArn = this.serverCertificateArn;
+    final serverCertificateStatus = this.serverCertificateStatus;
+    final serverCertificateStatusDetail = this.serverCertificateStatusDetail;
+    return {
+      if (serverCertificateArn != null)
+        'serverCertificateArn': serverCertificateArn,
+      if (serverCertificateStatus != null)
+        'serverCertificateStatus': serverCertificateStatus.toValue(),
+      if (serverCertificateStatusDetail != null)
+        'serverCertificateStatusDetail': serverCertificateStatusDetail,
+    };
+  }
 }
 
 enum ServiceType {
@@ -23304,6 +26067,15 @@ class SetDefaultAuthorizerResponse {
       authorizerArn: json['authorizerArn'] as String?,
       authorizerName: json['authorizerName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authorizerArn = this.authorizerArn;
+    final authorizerName = this.authorizerName;
+    return {
+      if (authorizerArn != null) 'authorizerArn': authorizerArn,
+      if (authorizerName != null) 'authorizerName': authorizerName,
+    };
   }
 }
 
@@ -23474,6 +26246,13 @@ class StartAuditMitigationActionsTaskResponse {
       taskId: json['taskId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final taskId = this.taskId;
+    return {
+      if (taskId != null) 'taskId': taskId,
+    };
+  }
 }
 
 class StartDetectMitigationActionsTaskResponse {
@@ -23489,6 +26268,13 @@ class StartDetectMitigationActionsTaskResponse {
       taskId: json['taskId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final taskId = this.taskId;
+    return {
+      if (taskId != null) 'taskId': taskId,
+    };
+  }
 }
 
 class StartOnDemandAuditTaskResponse {
@@ -23502,6 +26288,13 @@ class StartOnDemandAuditTaskResponse {
     return StartOnDemandAuditTaskResponse(
       taskId: json['taskId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final taskId = this.taskId;
+    return {
+      if (taskId != null) 'taskId': taskId,
+    };
   }
 }
 
@@ -23559,6 +26352,13 @@ class StartThingRegistrationTaskResponse {
     return StartThingRegistrationTaskResponse(
       taskId: json['taskId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final taskId = this.taskId;
+    return {
+      if (taskId != null) 'taskId': taskId,
+    };
   }
 }
 
@@ -23644,6 +26444,27 @@ class Statistics {
       sumOfSquares: json['sumOfSquares'] as double?,
       variance: json['variance'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final average = this.average;
+    final count = this.count;
+    final maximum = this.maximum;
+    final minimum = this.minimum;
+    final stdDeviation = this.stdDeviation;
+    final sum = this.sum;
+    final sumOfSquares = this.sumOfSquares;
+    final variance = this.variance;
+    return {
+      if (average != null) 'average': average,
+      if (count != null) 'count': count,
+      if (maximum != null) 'maximum': maximum,
+      if (minimum != null) 'minimum': minimum,
+      if (stdDeviation != null) 'stdDeviation': stdDeviation,
+      if (sum != null) 'sum': sum,
+      if (sumOfSquares != null) 'sumOfSquares': sumOfSquares,
+      if (variance != null) 'variance': variance,
+    };
   }
 }
 
@@ -23735,6 +26556,10 @@ class StopThingRegistrationTaskResponse {
   StopThingRegistrationTaskResponse();
   factory StopThingRegistrationTaskResponse.fromJson(Map<String, dynamic> _) {
     return StopThingRegistrationTaskResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -23849,6 +26674,28 @@ class StreamInfo {
       streamVersion: json['streamVersion'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final files = this.files;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final roleArn = this.roleArn;
+    final streamArn = this.streamArn;
+    final streamId = this.streamId;
+    final streamVersion = this.streamVersion;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (description != null) 'description': description,
+      if (files != null) 'files': files,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (roleArn != null) 'roleArn': roleArn,
+      if (streamArn != null) 'streamArn': streamArn,
+      if (streamId != null) 'streamId': streamId,
+      if (streamVersion != null) 'streamVersion': streamVersion,
+    };
+  }
 }
 
 /// A summary of a stream.
@@ -23878,6 +26725,19 @@ class StreamSummary {
       streamId: json['streamId'] as String?,
       streamVersion: json['streamVersion'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final streamArn = this.streamArn;
+    final streamId = this.streamId;
+    final streamVersion = this.streamVersion;
+    return {
+      if (description != null) 'description': description,
+      if (streamArn != null) 'streamArn': streamArn,
+      if (streamId != null) 'streamId': streamId,
+      if (streamVersion != null) 'streamVersion': streamVersion,
+    };
   }
 }
 
@@ -23914,6 +26774,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -23989,6 +26853,26 @@ class TaskStatistics {
           json['waitingForDataCollectionChecks'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final canceledChecks = this.canceledChecks;
+    final compliantChecks = this.compliantChecks;
+    final failedChecks = this.failedChecks;
+    final inProgressChecks = this.inProgressChecks;
+    final nonCompliantChecks = this.nonCompliantChecks;
+    final totalChecks = this.totalChecks;
+    final waitingForDataCollectionChecks = this.waitingForDataCollectionChecks;
+    return {
+      if (canceledChecks != null) 'canceledChecks': canceledChecks,
+      if (compliantChecks != null) 'compliantChecks': compliantChecks,
+      if (failedChecks != null) 'failedChecks': failedChecks,
+      if (inProgressChecks != null) 'inProgressChecks': inProgressChecks,
+      if (nonCompliantChecks != null) 'nonCompliantChecks': nonCompliantChecks,
+      if (totalChecks != null) 'totalChecks': totalChecks,
+      if (waitingForDataCollectionChecks != null)
+        'waitingForDataCollectionChecks': waitingForDataCollectionChecks,
+    };
+  }
 }
 
 /// Provides summary counts of how many tasks for findings are in a particular
@@ -24030,6 +26914,25 @@ class TaskStatisticsForAuditCheck {
       totalFindingsCount: json['totalFindingsCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final canceledFindingsCount = this.canceledFindingsCount;
+    final failedFindingsCount = this.failedFindingsCount;
+    final skippedFindingsCount = this.skippedFindingsCount;
+    final succeededFindingsCount = this.succeededFindingsCount;
+    final totalFindingsCount = this.totalFindingsCount;
+    return {
+      if (canceledFindingsCount != null)
+        'canceledFindingsCount': canceledFindingsCount,
+      if (failedFindingsCount != null)
+        'failedFindingsCount': failedFindingsCount,
+      if (skippedFindingsCount != null)
+        'skippedFindingsCount': skippedFindingsCount,
+      if (succeededFindingsCount != null)
+        'succeededFindingsCount': succeededFindingsCount,
+      if (totalFindingsCount != null) 'totalFindingsCount': totalFindingsCount,
+    };
+  }
 }
 
 /// Performs an aggregation that will return a list of buckets. The list of
@@ -24042,6 +26945,7 @@ class TermsAggregation {
   TermsAggregation({
     this.maxBuckets,
   });
+
   Map<String, dynamic> toJson() {
     final maxBuckets = this.maxBuckets;
     return {
@@ -24064,6 +26968,13 @@ class TestAuthorizationResponse {
           .map((e) => AuthResult.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authResults = this.authResults;
+    return {
+      if (authResults != null) 'authResults': authResults,
+    };
   }
 }
 
@@ -24102,6 +27013,23 @@ class TestInvokeAuthorizerResponse {
       refreshAfterInSeconds: json['refreshAfterInSeconds'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final disconnectAfterInSeconds = this.disconnectAfterInSeconds;
+    final isAuthenticated = this.isAuthenticated;
+    final policyDocuments = this.policyDocuments;
+    final principalId = this.principalId;
+    final refreshAfterInSeconds = this.refreshAfterInSeconds;
+    return {
+      if (disconnectAfterInSeconds != null)
+        'disconnectAfterInSeconds': disconnectAfterInSeconds,
+      if (isAuthenticated != null) 'isAuthenticated': isAuthenticated,
+      if (policyDocuments != null) 'policyDocuments': policyDocuments,
+      if (principalId != null) 'principalId': principalId,
+      if (refreshAfterInSeconds != null)
+        'refreshAfterInSeconds': refreshAfterInSeconds,
+    };
+  }
 }
 
 /// The properties of the thing, including thing name, thing type name, and a
@@ -24139,6 +27067,21 @@ class ThingAttribute {
       version: json['version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final thingArn = this.thingArn;
+    final thingName = this.thingName;
+    final thingTypeName = this.thingTypeName;
+    final version = this.version;
+    return {
+      if (attributes != null) 'attributes': attributes,
+      if (thingArn != null) 'thingArn': thingArn,
+      if (thingName != null) 'thingName': thingName,
+      if (thingTypeName != null) 'thingTypeName': thingTypeName,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// The connectivity status of the thing.
@@ -24168,6 +27111,17 @@ class ThingConnectivity {
       disconnectReason: json['disconnectReason'] as String?,
       timestamp: json['timestamp'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connected = this.connected;
+    final disconnectReason = this.disconnectReason;
+    final timestamp = this.timestamp;
+    return {
+      if (connected != null) 'connected': connected,
+      if (disconnectReason != null) 'disconnectReason': disconnectReason,
+      if (timestamp != null) 'timestamp': timestamp,
+    };
   }
 }
 
@@ -24264,6 +27218,27 @@ class ThingDocument {
       thingTypeName: json['thingTypeName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final connectivity = this.connectivity;
+    final deviceDefender = this.deviceDefender;
+    final shadow = this.shadow;
+    final thingGroupNames = this.thingGroupNames;
+    final thingId = this.thingId;
+    final thingName = this.thingName;
+    final thingTypeName = this.thingTypeName;
+    return {
+      if (attributes != null) 'attributes': attributes,
+      if (connectivity != null) 'connectivity': connectivity,
+      if (deviceDefender != null) 'deviceDefender': deviceDefender,
+      if (shadow != null) 'shadow': shadow,
+      if (thingGroupNames != null) 'thingGroupNames': thingGroupNames,
+      if (thingId != null) 'thingId': thingId,
+      if (thingName != null) 'thingName': thingName,
+      if (thingTypeName != null) 'thingTypeName': thingTypeName,
+    };
+  }
 }
 
 /// The thing group search index document.
@@ -24302,6 +27277,22 @@ class ThingGroupDocument {
       thingGroupId: json['thingGroupId'] as String?,
       thingGroupName: json['thingGroupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final parentGroupNames = this.parentGroupNames;
+    final thingGroupDescription = this.thingGroupDescription;
+    final thingGroupId = this.thingGroupId;
+    final thingGroupName = this.thingGroupName;
+    return {
+      if (attributes != null) 'attributes': attributes,
+      if (parentGroupNames != null) 'parentGroupNames': parentGroupNames,
+      if (thingGroupDescription != null)
+        'thingGroupDescription': thingGroupDescription,
+      if (thingGroupId != null) 'thingGroupId': thingGroupId,
+      if (thingGroupName != null) 'thingGroupName': thingGroupName,
+    };
   }
 }
 
@@ -24406,6 +27397,19 @@ class ThingGroupMetadata {
           .map((e) => GroupNameAndArn.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final parentGroupName = this.parentGroupName;
+    final rootToParentThingGroups = this.rootToParentThingGroups;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (parentGroupName != null) 'parentGroupName': parentGroupName,
+      if (rootToParentThingGroups != null)
+        'rootToParentThingGroups': rootToParentThingGroups,
+    };
   }
 }
 
@@ -24649,6 +27653,20 @@ class ThingTypeDefinition {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final thingTypeArn = this.thingTypeArn;
+    final thingTypeMetadata = this.thingTypeMetadata;
+    final thingTypeName = this.thingTypeName;
+    final thingTypeProperties = this.thingTypeProperties;
+    return {
+      if (thingTypeArn != null) 'thingTypeArn': thingTypeArn,
+      if (thingTypeMetadata != null) 'thingTypeMetadata': thingTypeMetadata,
+      if (thingTypeName != null) 'thingTypeName': thingTypeName,
+      if (thingTypeProperties != null)
+        'thingTypeProperties': thingTypeProperties,
+    };
+  }
 }
 
 /// The ThingTypeMetadata contains additional information about the thing type
@@ -24676,6 +27694,19 @@ class ThingTypeMetadata {
       deprecated: json['deprecated'] as bool?,
       deprecationDate: timeStampFromJson(json['deprecationDate']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final deprecated = this.deprecated;
+    final deprecationDate = this.deprecationDate;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (deprecated != null) 'deprecated': deprecated,
+      if (deprecationDate != null)
+        'deprecationDate': unixTimestampToJson(deprecationDate),
+    };
   }
 }
 
@@ -24896,6 +27927,7 @@ class TlsContext {
   TlsContext({
     this.serverName,
   });
+
   Map<String, dynamic> toJson() {
     final serverName = this.serverName;
     return {
@@ -24957,6 +27989,27 @@ class TopicRule {
       ruleName: json['ruleName'] as String?,
       sql: json['sql'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final awsIotSqlVersion = this.awsIotSqlVersion;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final errorAction = this.errorAction;
+    final ruleDisabled = this.ruleDisabled;
+    final ruleName = this.ruleName;
+    final sql = this.sql;
+    return {
+      if (actions != null) 'actions': actions,
+      if (awsIotSqlVersion != null) 'awsIotSqlVersion': awsIotSqlVersion,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (description != null) 'description': description,
+      if (errorAction != null) 'errorAction': errorAction,
+      if (ruleDisabled != null) 'ruleDisabled': ruleDisabled,
+      if (ruleName != null) 'ruleName': ruleName,
+      if (sql != null) 'sql': sql,
+    };
   }
 }
 
@@ -25032,6 +28085,26 @@ class TopicRuleDestination {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final httpUrlProperties = this.httpUrlProperties;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    final vpcProperties = this.vpcProperties;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (httpUrlProperties != null) 'httpUrlProperties': httpUrlProperties,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (status != null) 'status': status.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+      if (vpcProperties != null) 'vpcProperties': vpcProperties,
+    };
+  }
 }
 
 /// Configuration of the topic rule destination.
@@ -25046,6 +28119,7 @@ class TopicRuleDestinationConfiguration {
     this.httpUrlConfiguration,
     this.vpcConfiguration,
   });
+
   Map<String, dynamic> toJson() {
     final httpUrlConfiguration = this.httpUrlConfiguration;
     final vpcConfiguration = this.vpcConfiguration;
@@ -25172,6 +28246,27 @@ class TopicRuleDestinationSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final httpUrlSummary = this.httpUrlSummary;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    final vpcDestinationSummary = this.vpcDestinationSummary;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (httpUrlSummary != null) 'httpUrlSummary': httpUrlSummary,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (status != null) 'status': status.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+      if (vpcDestinationSummary != null)
+        'vpcDestinationSummary': vpcDestinationSummary,
+    };
+  }
 }
 
 /// Describes a rule.
@@ -25207,6 +28302,21 @@ class TopicRuleListItem {
       topicPattern: json['topicPattern'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final ruleArn = this.ruleArn;
+    final ruleDisabled = this.ruleDisabled;
+    final ruleName = this.ruleName;
+    final topicPattern = this.topicPattern;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (ruleArn != null) 'ruleArn': ruleArn,
+      if (ruleDisabled != null) 'ruleDisabled': ruleDisabled,
+      if (ruleName != null) 'ruleName': ruleName,
+      if (topicPattern != null) 'topicPattern': topicPattern,
+    };
+  }
 }
 
 /// Describes a rule.
@@ -25239,6 +28349,7 @@ class TopicRulePayload {
     this.errorAction,
     this.ruleDisabled,
   });
+
   Map<String, dynamic> toJson() {
     final actions = this.actions;
     final sql = this.sql;
@@ -25269,6 +28380,14 @@ class TransferCertificateResponse {
     return TransferCertificateResponse(
       transferredCertificateArn: json['transferredCertificateArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transferredCertificateArn = this.transferredCertificateArn;
+    return {
+      if (transferredCertificateArn != null)
+        'transferredCertificateArn': transferredCertificateArn,
+    };
   }
 }
 
@@ -25305,12 +28424,32 @@ class TransferData {
       transferMessage: json['transferMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceptDate = this.acceptDate;
+    final rejectDate = this.rejectDate;
+    final rejectReason = this.rejectReason;
+    final transferDate = this.transferDate;
+    final transferMessage = this.transferMessage;
+    return {
+      if (acceptDate != null) 'acceptDate': unixTimestampToJson(acceptDate),
+      if (rejectDate != null) 'rejectDate': unixTimestampToJson(rejectDate),
+      if (rejectReason != null) 'rejectReason': rejectReason,
+      if (transferDate != null)
+        'transferDate': unixTimestampToJson(transferDate),
+      if (transferMessage != null) 'transferMessage': transferMessage,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -25320,12 +28459,20 @@ class UpdateAccountAuditConfigurationResponse {
       Map<String, dynamic> _) {
     return UpdateAccountAuditConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateAuditSuppressionResponse {
   UpdateAuditSuppressionResponse();
   factory UpdateAuditSuppressionResponse.fromJson(Map<String, dynamic> _) {
     return UpdateAuditSuppressionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -25346,6 +28493,15 @@ class UpdateAuthorizerResponse {
       authorizerName: json['authorizerName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorizerArn = this.authorizerArn;
+    final authorizerName = this.authorizerName;
+    return {
+      if (authorizerArn != null) 'authorizerArn': authorizerArn,
+      if (authorizerName != null) 'authorizerName': authorizerName,
+    };
+  }
 }
 
 class UpdateBillingGroupResponse {
@@ -25359,6 +28515,13 @@ class UpdateBillingGroupResponse {
     return UpdateBillingGroupResponse(
       version: json['version'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final version = this.version;
+    return {
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -25427,6 +28590,25 @@ class UpdateCustomMetricResponse {
       metricName: json['metricName'] as String?,
       metricType: (json['metricType'] as String?)?.toCustomMetricType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final displayName = this.displayName;
+    final lastModifiedDate = this.lastModifiedDate;
+    final metricArn = this.metricArn;
+    final metricName = this.metricName;
+    final metricType = this.metricType;
+    return {
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (displayName != null) 'displayName': displayName,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (metricArn != null) 'metricArn': metricArn,
+      if (metricName != null) 'metricName': metricName,
+      if (metricType != null) 'metricType': metricType.toValue(),
+    };
   }
 }
 
@@ -25497,6 +28679,25 @@ class UpdateDimensionResponse {
       type: (json['type'] as String?)?.toDimensionType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final name = this.name;
+    final stringValues = this.stringValues;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (name != null) 'name': name,
+      if (stringValues != null) 'stringValues': stringValues,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 class UpdateDomainConfigurationResponse {
@@ -25517,6 +28718,17 @@ class UpdateDomainConfigurationResponse {
       domainConfigurationName: json['domainConfigurationName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainConfigurationArn = this.domainConfigurationArn;
+    final domainConfigurationName = this.domainConfigurationName;
+    return {
+      if (domainConfigurationArn != null)
+        'domainConfigurationArn': domainConfigurationArn,
+      if (domainConfigurationName != null)
+        'domainConfigurationName': domainConfigurationName,
+    };
+  }
 }
 
 class UpdateDynamicThingGroupResponse {
@@ -25531,6 +28743,13 @@ class UpdateDynamicThingGroupResponse {
       version: json['version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final version = this.version;
+    return {
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class UpdateEventConfigurationsResponse {
@@ -25538,12 +28757,20 @@ class UpdateEventConfigurationsResponse {
   factory UpdateEventConfigurationsResponse.fromJson(Map<String, dynamic> _) {
     return UpdateEventConfigurationsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateIndexingConfigurationResponse {
   UpdateIndexingConfigurationResponse();
   factory UpdateIndexingConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateIndexingConfigurationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -25564,12 +28791,25 @@ class UpdateMitigationActionResponse {
       actionId: json['actionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionArn = this.actionArn;
+    final actionId = this.actionId;
+    return {
+      if (actionArn != null) 'actionArn': actionArn,
+      if (actionId != null) 'actionId': actionId,
+    };
+  }
 }
 
 class UpdateProvisioningTemplateResponse {
   UpdateProvisioningTemplateResponse();
   factory UpdateProvisioningTemplateResponse.fromJson(Map<String, dynamic> _) {
     return UpdateProvisioningTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -25590,6 +28830,15 @@ class UpdateRoleAliasResponse {
       roleAliasArn: json['roleAliasArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final roleAlias = this.roleAlias;
+    final roleAliasArn = this.roleAliasArn;
+    return {
+      if (roleAlias != null) 'roleAlias': roleAlias,
+      if (roleAliasArn != null) 'roleAliasArn': roleAliasArn,
+    };
+  }
 }
 
 class UpdateScheduledAuditResponse {
@@ -25603,6 +28852,13 @@ class UpdateScheduledAuditResponse {
     return UpdateScheduledAuditResponse(
       scheduledAuditArn: json['scheduledAuditArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final scheduledAuditArn = this.scheduledAuditArn;
+    return {
+      if (scheduledAuditArn != null) 'scheduledAuditArn': scheduledAuditArn,
+    };
   }
 }
 
@@ -25686,6 +28942,38 @@ class UpdateSecurityProfileResponse {
       version: json['version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalMetricsToRetain = this.additionalMetricsToRetain;
+    final additionalMetricsToRetainV2 = this.additionalMetricsToRetainV2;
+    final alertTargets = this.alertTargets;
+    final behaviors = this.behaviors;
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final securityProfileArn = this.securityProfileArn;
+    final securityProfileDescription = this.securityProfileDescription;
+    final securityProfileName = this.securityProfileName;
+    final version = this.version;
+    return {
+      if (additionalMetricsToRetain != null)
+        'additionalMetricsToRetain': additionalMetricsToRetain,
+      if (additionalMetricsToRetainV2 != null)
+        'additionalMetricsToRetainV2': additionalMetricsToRetainV2,
+      if (alertTargets != null)
+        'alertTargets': alertTargets.map((k, e) => MapEntry(k.toValue(), e)),
+      if (behaviors != null) 'behaviors': behaviors,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (securityProfileArn != null) 'securityProfileArn': securityProfileArn,
+      if (securityProfileDescription != null)
+        'securityProfileDescription': securityProfileDescription,
+      if (securityProfileName != null)
+        'securityProfileName': securityProfileName,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class UpdateStreamResponse {
@@ -25715,6 +29003,19 @@ class UpdateStreamResponse {
       streamVersion: json['streamVersion'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final streamArn = this.streamArn;
+    final streamId = this.streamId;
+    final streamVersion = this.streamVersion;
+    return {
+      if (description != null) 'description': description,
+      if (streamArn != null) 'streamArn': streamArn,
+      if (streamId != null) 'streamId': streamId,
+      if (streamVersion != null) 'streamVersion': streamVersion,
+    };
+  }
 }
 
 class UpdateThingGroupResponse {
@@ -25729,12 +29030,23 @@ class UpdateThingGroupResponse {
       version: json['version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final version = this.version;
+    return {
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class UpdateThingGroupsForThingResponse {
   UpdateThingGroupsForThingResponse();
   factory UpdateThingGroupsForThingResponse.fromJson(Map<String, dynamic> _) {
     return UpdateThingGroupsForThingResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -25744,12 +29056,20 @@ class UpdateThingResponse {
   factory UpdateThingResponse.fromJson(Map<String, dynamic> _) {
     return UpdateThingResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateTopicRuleDestinationResponse {
   UpdateTopicRuleDestinationResponse();
   factory UpdateTopicRuleDestinationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateTopicRuleDestinationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -25774,6 +29094,15 @@ class ValidateSecurityProfileBehaviorsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final valid = this.valid;
+    final validationErrors = this.validationErrors;
+    return {
+      if (valid != null) 'valid': valid,
+      if (validationErrors != null) 'validationErrors': validationErrors,
+    };
+  }
 }
 
 /// Information about an error found in a behavior specification.
@@ -25788,6 +29117,13 @@ class ValidationError {
     return ValidationError(
       errorMessage: json['errorMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorMessage = this.errorMessage;
+    return {
+      if (errorMessage != null) 'errorMessage': errorMessage,
+    };
   }
 }
 
@@ -25897,6 +29233,37 @@ class ViolationEvent {
       violationId: json['violationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final behavior = this.behavior;
+    final metricValue = this.metricValue;
+    final securityProfileName = this.securityProfileName;
+    final thingName = this.thingName;
+    final verificationState = this.verificationState;
+    final verificationStateDescription = this.verificationStateDescription;
+    final violationEventAdditionalInfo = this.violationEventAdditionalInfo;
+    final violationEventTime = this.violationEventTime;
+    final violationEventType = this.violationEventType;
+    final violationId = this.violationId;
+    return {
+      if (behavior != null) 'behavior': behavior,
+      if (metricValue != null) 'metricValue': metricValue,
+      if (securityProfileName != null)
+        'securityProfileName': securityProfileName,
+      if (thingName != null) 'thingName': thingName,
+      if (verificationState != null)
+        'verificationState': verificationState.toValue(),
+      if (verificationStateDescription != null)
+        'verificationStateDescription': verificationStateDescription,
+      if (violationEventAdditionalInfo != null)
+        'violationEventAdditionalInfo': violationEventAdditionalInfo,
+      if (violationEventTime != null)
+        'violationEventTime': unixTimestampToJson(violationEventTime),
+      if (violationEventType != null)
+        'violationEventType': violationEventType.toValue(),
+      if (violationId != null) 'violationId': violationId,
+    };
+  }
 }
 
 /// The details of a violation event.
@@ -25913,6 +29280,13 @@ class ViolationEventAdditionalInfo {
       confidenceLevel:
           (json['confidenceLevel'] as String?)?.toConfidenceLevel(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final confidenceLevel = this.confidenceLevel;
+    return {
+      if (confidenceLevel != null) 'confidenceLevel': confidenceLevel.toValue(),
+    };
   }
 }
 
@@ -25999,6 +29373,7 @@ class VpcDestinationConfiguration {
     required this.vpcId,
     this.securityGroups,
   });
+
   Map<String, dynamic> toJson() {
     final roleArn = this.roleArn;
     final subnetIds = this.subnetIds;
@@ -26048,6 +29423,19 @@ class VpcDestinationProperties {
       vpcId: json['vpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final roleArn = this.roleArn;
+    final securityGroups = this.securityGroups;
+    final subnetIds = this.subnetIds;
+    final vpcId = this.vpcId;
+    return {
+      if (roleArn != null) 'roleArn': roleArn,
+      if (securityGroups != null) 'securityGroups': securityGroups,
+      if (subnetIds != null) 'subnetIds': subnetIds,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// The summary of a virtual private cloud (VPC) destination.
@@ -26084,6 +29472,19 @@ class VpcDestinationSummary {
           .toList(),
       vpcId: json['vpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final roleArn = this.roleArn;
+    final securityGroups = this.securityGroups;
+    final subnetIds = this.subnetIds;
+    final vpcId = this.vpcId;
+    return {
+      if (roleArn != null) 'roleArn': roleArn,
+      if (securityGroups != null) 'securityGroups': securityGroups,
+      if (subnetIds != null) 'subnetIds': subnetIds,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
   }
 }
 

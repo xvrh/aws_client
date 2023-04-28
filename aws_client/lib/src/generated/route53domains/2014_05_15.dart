@@ -1920,6 +1920,13 @@ class AcceptDomainTransferFromAnotherAwsAccountResponse {
       operationId: json['OperationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
+  }
 }
 
 /// Information for one billing record.
@@ -1962,6 +1969,21 @@ class BillingRecord {
       price: json['Price'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final billDate = this.billDate;
+    final domainName = this.domainName;
+    final invoiceId = this.invoiceId;
+    final operation = this.operation;
+    final price = this.price;
+    return {
+      if (billDate != null) 'BillDate': unixTimestampToJson(billDate),
+      if (domainName != null) 'DomainName': domainName,
+      if (invoiceId != null) 'InvoiceId': invoiceId,
+      if (operation != null) 'Operation': operation.toValue(),
+      if (price != null) 'Price': price,
+    };
+  }
 }
 
 /// The <code>CancelDomainTransferToAnotherAwsAccount</code> response includes
@@ -1981,6 +2003,13 @@ class CancelDomainTransferToAnotherAwsAccountResponse {
     return CancelDomainTransferToAnotherAwsAccountResponse(
       operationId: json['OperationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
   }
 }
 
@@ -2025,6 +2054,13 @@ class CheckDomainAvailabilityResponse {
       availability: (json['Availability'] as String).toDomainAvailability(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availability = this.availability;
+    return {
+      'Availability': availability.toValue(),
+    };
+  }
 }
 
 /// The CheckDomainTransferability response includes the following elements.
@@ -2042,6 +2078,13 @@ class CheckDomainTransferabilityResponse {
       transferability: DomainTransferability.fromJson(
           json['Transferability'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transferability = this.transferability;
+    return {
+      'Transferability': transferability,
+    };
   }
 }
 
@@ -3520,6 +3563,13 @@ class DeleteDomainResponse {
       operationId: json['OperationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
+  }
 }
 
 class DeleteTagsForDomainResponse {
@@ -3527,12 +3577,20 @@ class DeleteTagsForDomainResponse {
   factory DeleteTagsForDomainResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTagsForDomainResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisableDomainAutoRenewResponse {
   DisableDomainAutoRenewResponse();
   factory DisableDomainAutoRenewResponse.fromJson(Map<String, dynamic> _) {
     return DisableDomainAutoRenewResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3551,6 +3609,13 @@ class DisableDomainTransferLockResponse {
     return DisableDomainTransferLockResponse(
       operationId: json['OperationId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      'OperationId': operationId,
+    };
   }
 }
 
@@ -3665,6 +3730,24 @@ class DomainPrice {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeOwnershipPrice = this.changeOwnershipPrice;
+    final name = this.name;
+    final registrationPrice = this.registrationPrice;
+    final renewalPrice = this.renewalPrice;
+    final restorationPrice = this.restorationPrice;
+    final transferPrice = this.transferPrice;
+    return {
+      if (changeOwnershipPrice != null)
+        'ChangeOwnershipPrice': changeOwnershipPrice,
+      if (name != null) 'Name': name,
+      if (registrationPrice != null) 'RegistrationPrice': registrationPrice,
+      if (renewalPrice != null) 'RenewalPrice': renewalPrice,
+      if (restorationPrice != null) 'RestorationPrice': restorationPrice,
+      if (transferPrice != null) 'TransferPrice': transferPrice,
+    };
+  }
 }
 
 /// Information about one suggested domain name.
@@ -3714,6 +3797,15 @@ class DomainSuggestion {
       domainName: json['DomainName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availability = this.availability;
+    final domainName = this.domainName;
+    return {
+      if (availability != null) 'Availability': availability,
+      if (domainName != null) 'DomainName': domainName,
+    };
+  }
 }
 
 /// Summary information about one domain.
@@ -3746,6 +3838,19 @@ class DomainSummary {
       transferLock: json['TransferLock'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final autoRenew = this.autoRenew;
+    final expiry = this.expiry;
+    final transferLock = this.transferLock;
+    return {
+      'DomainName': domainName,
+      if (autoRenew != null) 'AutoRenew': autoRenew,
+      if (expiry != null) 'Expiry': unixTimestampToJson(expiry),
+      if (transferLock != null) 'TransferLock': transferLock,
+    };
+  }
 }
 
 /// A complex type that contains information about whether the specified domain
@@ -3761,12 +3866,23 @@ class DomainTransferability {
       transferable: (json['Transferable'] as String?)?.toTransferable(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final transferable = this.transferable;
+    return {
+      if (transferable != null) 'Transferable': transferable.toValue(),
+    };
+  }
 }
 
 class EnableDomainAutoRenewResponse {
   EnableDomainAutoRenewResponse();
   factory EnableDomainAutoRenewResponse.fromJson(Map<String, dynamic> _) {
     return EnableDomainAutoRenewResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3783,6 +3899,13 @@ class EnableDomainTransferLockResponse {
     return EnableDomainTransferLockResponse(
       operationId: json['OperationId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      'OperationId': operationId,
+    };
   }
 }
 
@@ -4590,6 +4713,7 @@ class FilterCondition {
     required this.operator,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -4626,6 +4750,15 @@ class GetContactReachabilityStatusResponse {
       domainName: json['domainName'] as String?,
       status: (json['status'] as String?)?.toReachabilityStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final status = this.status;
+    return {
+      if (domainName != null) 'domainName': domainName,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -4793,6 +4926,55 @@ class GetDomainDetailResponse {
       whoIsServer: json['WhoIsServer'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adminContact = this.adminContact;
+    final domainName = this.domainName;
+    final nameservers = this.nameservers;
+    final registrantContact = this.registrantContact;
+    final techContact = this.techContact;
+    final abuseContactEmail = this.abuseContactEmail;
+    final abuseContactPhone = this.abuseContactPhone;
+    final adminPrivacy = this.adminPrivacy;
+    final autoRenew = this.autoRenew;
+    final creationDate = this.creationDate;
+    final dnsSec = this.dnsSec;
+    final expirationDate = this.expirationDate;
+    final registrantPrivacy = this.registrantPrivacy;
+    final registrarName = this.registrarName;
+    final registrarUrl = this.registrarUrl;
+    final registryDomainId = this.registryDomainId;
+    final reseller = this.reseller;
+    final statusList = this.statusList;
+    final techPrivacy = this.techPrivacy;
+    final updatedDate = this.updatedDate;
+    final whoIsServer = this.whoIsServer;
+    return {
+      'AdminContact': adminContact,
+      'DomainName': domainName,
+      'Nameservers': nameservers,
+      'RegistrantContact': registrantContact,
+      'TechContact': techContact,
+      if (abuseContactEmail != null) 'AbuseContactEmail': abuseContactEmail,
+      if (abuseContactPhone != null) 'AbuseContactPhone': abuseContactPhone,
+      if (adminPrivacy != null) 'AdminPrivacy': adminPrivacy,
+      if (autoRenew != null) 'AutoRenew': autoRenew,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (dnsSec != null) 'DnsSec': dnsSec,
+      if (expirationDate != null)
+        'ExpirationDate': unixTimestampToJson(expirationDate),
+      if (registrantPrivacy != null) 'RegistrantPrivacy': registrantPrivacy,
+      if (registrarName != null) 'RegistrarName': registrarName,
+      if (registrarUrl != null) 'RegistrarUrl': registrarUrl,
+      if (registryDomainId != null) 'RegistryDomainId': registryDomainId,
+      if (reseller != null) 'Reseller': reseller,
+      if (statusList != null) 'StatusList': statusList,
+      if (techPrivacy != null) 'TechPrivacy': techPrivacy,
+      if (updatedDate != null) 'UpdatedDate': unixTimestampToJson(updatedDate),
+      if (whoIsServer != null) 'WhoIsServer': whoIsServer,
+    };
+  }
 }
 
 class GetDomainSuggestionsResponse {
@@ -4811,6 +4993,13 @@ class GetDomainSuggestionsResponse {
           .map((e) => DomainSuggestion.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final suggestionsList = this.suggestionsList;
+    return {
+      if (suggestionsList != null) 'SuggestionsList': suggestionsList,
+    };
   }
 }
 
@@ -4851,6 +5040,24 @@ class GetOperationDetailResponse {
       submittedDate: timeStampFromJson(json['SubmittedDate']),
       type: (json['Type'] as String?)?.toOperationType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final message = this.message;
+    final operationId = this.operationId;
+    final status = this.status;
+    final submittedDate = this.submittedDate;
+    final type = this.type;
+    return {
+      if (domainName != null) 'DomainName': domainName,
+      if (message != null) 'Message': message,
+      if (operationId != null) 'OperationId': operationId,
+      if (status != null) 'Status': status.toValue(),
+      if (submittedDate != null)
+        'SubmittedDate': unixTimestampToJson(submittedDate),
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -4905,6 +5112,15 @@ class ListDomainsResponse {
       nextPageMarker: json['NextPageMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domains = this.domains;
+    final nextPageMarker = this.nextPageMarker;
+    return {
+      'Domains': domains,
+      if (nextPageMarker != null) 'NextPageMarker': nextPageMarker,
+    };
+  }
 }
 
 /// The ListOperations response includes the following elements.
@@ -4929,6 +5145,15 @@ class ListOperationsResponse {
           .toList(),
       nextPageMarker: json['NextPageMarker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operations = this.operations;
+    final nextPageMarker = this.nextPageMarker;
+    return {
+      'Operations': operations,
+      if (nextPageMarker != null) 'NextPageMarker': nextPageMarker,
+    };
   }
 }
 
@@ -4958,6 +5183,15 @@ class ListPricesResponse {
       nextPageMarker: json['NextPageMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final prices = this.prices;
+    final nextPageMarker = this.nextPageMarker;
+    return {
+      'Prices': prices,
+      if (nextPageMarker != null) 'NextPageMarker': nextPageMarker,
+    };
+  }
 }
 
 /// The ListTagsForDomain response includes the following elements.
@@ -4975,6 +5209,13 @@ class ListTagsForDomainResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      'TagList': tagList,
+    };
   }
 }
 
@@ -5088,6 +5329,19 @@ class OperationSummary {
           nonNullableTimeStampFromJson(json['SubmittedDate'] as Object),
       type: (json['Type'] as String).toOperationType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    final status = this.status;
+    final submittedDate = this.submittedDate;
+    final type = this.type;
+    return {
+      'OperationId': operationId,
+      'Status': status.toValue(),
+      'SubmittedDate': unixTimestampToJson(submittedDate),
+      'Type': type.toValue(),
+    };
   }
 }
 
@@ -5250,6 +5504,15 @@ class PriceWithCurrency {
       price: json['Price'] as double,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currency = this.currency;
+    final price = this.price;
+    return {
+      'Currency': currency,
+      'Price': price,
+    };
+  }
 }
 
 enum ReachabilityStatus {
@@ -5300,6 +5563,13 @@ class RegisterDomainResponse {
       operationId: json['OperationId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      'OperationId': operationId,
+    };
+  }
 }
 
 /// The RejectDomainTransferFromAnotherAwsAccount response includes the
@@ -5320,6 +5590,13 @@ class RejectDomainTransferFromAnotherAwsAccountResponse {
       operationId: json['OperationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
+  }
 }
 
 class RenewDomainResponse {
@@ -5335,6 +5612,13 @@ class RenewDomainResponse {
     return RenewDomainResponse(
       operationId: json['OperationId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      'OperationId': operationId,
+    };
   }
 }
 
@@ -5364,6 +5648,17 @@ class ResendContactReachabilityEmailResponse {
       isAlreadyVerified: json['isAlreadyVerified'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final emailAddress = this.emailAddress;
+    final isAlreadyVerified = this.isAlreadyVerified;
+    return {
+      if (domainName != null) 'domainName': domainName,
+      if (emailAddress != null) 'emailAddress': emailAddress,
+      if (isAlreadyVerified != null) 'isAlreadyVerified': isAlreadyVerified,
+    };
+  }
 }
 
 /// The RetrieveDomainAuthCode response includes the following element.
@@ -5378,6 +5673,13 @@ class RetrieveDomainAuthCodeResponse {
     return RetrieveDomainAuthCodeResponse(
       authCode: json['AuthCode'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authCode = this.authCode;
+    return {
+      'AuthCode': authCode,
+    };
   }
 }
 
@@ -5399,6 +5701,7 @@ class SortCondition {
     required this.name,
     required this.sortOrder,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final sortOrder = this.sortOrder;
@@ -5489,6 +5792,13 @@ class TransferDomainResponse {
       operationId: json['OperationId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      'OperationId': operationId,
+    };
+  }
 }
 
 /// The <code>TransferDomainToAnotherAwsAccount</code> response includes the
@@ -5517,6 +5827,15 @@ class TransferDomainToAnotherAwsAccountResponse {
       operationId: json['OperationId'] as String?,
       password: json['Password'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    final password = this.password;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+      if (password != null) 'Password': password,
+    };
   }
 }
 
@@ -5581,6 +5900,13 @@ class UpdateDomainContactPrivacyResponse {
       operationId: json['OperationId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      'OperationId': operationId,
+    };
+  }
 }
 
 /// The UpdateDomainContact response includes the following element.
@@ -5597,6 +5923,13 @@ class UpdateDomainContactResponse {
     return UpdateDomainContactResponse(
       operationId: json['OperationId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      'OperationId': operationId,
+    };
   }
 }
 
@@ -5615,12 +5948,23 @@ class UpdateDomainNameserversResponse {
       operationId: json['OperationId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      'OperationId': operationId,
+    };
+  }
 }
 
 class UpdateTagsForDomainResponse {
   UpdateTagsForDomainResponse();
   factory UpdateTagsForDomainResponse.fromJson(Map<String, dynamic> _) {
     return UpdateTagsForDomainResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5646,6 +5990,15 @@ class ViewBillingResponse {
           .toList(),
       nextPageMarker: json['NextPageMarker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final billingRecords = this.billingRecords;
+    final nextPageMarker = this.nextPageMarker;
+    return {
+      if (billingRecords != null) 'BillingRecords': billingRecords,
+      if (nextPageMarker != null) 'NextPageMarker': nextPageMarker,
+    };
   }
 }
 

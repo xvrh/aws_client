@@ -6090,6 +6090,15 @@ class AccountGateResult {
       statusReason: _s.extractXmlStringValue(elem, 'StatusReason'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
+  }
 }
 
 enum AccountGateStatus {
@@ -6164,6 +6173,15 @@ class AccountLimit {
       value: _s.extractXmlIntValue(elem, 'Value'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 class ActivateTypeOutput {
@@ -6178,6 +6196,13 @@ class ActivateTypeOutput {
     return ActivateTypeOutput(
       arn: _s.extractXmlStringValue(elem, 'Arn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -6245,6 +6270,18 @@ class BatchDescribeTypeConfigurationsError {
           ?.let(TypeConfigurationIdentifier.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final typeConfigurationIdentifier = this.typeConfigurationIdentifier;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (typeConfigurationIdentifier != null)
+        'TypeConfigurationIdentifier': typeConfigurationIdentifier,
+    };
+  }
 }
 
 class BatchDescribeTypeConfigurationsOutput {
@@ -6283,6 +6320,18 @@ class BatchDescribeTypeConfigurationsOutput {
               .map(TypeConfigurationIdentifier.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final typeConfigurations = this.typeConfigurations;
+    final unprocessedTypeConfigurations = this.unprocessedTypeConfigurations;
+    return {
+      if (errors != null) 'Errors': errors,
+      if (typeConfigurations != null) 'TypeConfigurations': typeConfigurations,
+      if (unprocessedTypeConfigurations != null)
+        'UnprocessedTypeConfigurations': unprocessedTypeConfigurations,
+    };
   }
 }
 
@@ -6414,6 +6463,18 @@ class Change {
       type: _s.extractXmlStringValue(elem, 'Type')?.toChangeType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hookInvocationCount = this.hookInvocationCount;
+    final resourceChange = this.resourceChange;
+    final type = this.type;
+    return {
+      if (hookInvocationCount != null)
+        'HookInvocationCount': hookInvocationCount,
+      if (resourceChange != null) 'ResourceChange': resourceChange,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum ChangeAction {
@@ -6542,6 +6603,24 @@ class ChangeSetHook {
       typeVersionId: _s.extractXmlStringValue(elem, 'TypeVersionId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failureMode = this.failureMode;
+    final invocationPoint = this.invocationPoint;
+    final targetDetails = this.targetDetails;
+    final typeConfigurationVersionId = this.typeConfigurationVersionId;
+    final typeName = this.typeName;
+    final typeVersionId = this.typeVersionId;
+    return {
+      if (failureMode != null) 'FailureMode': failureMode.toValue(),
+      if (invocationPoint != null) 'InvocationPoint': invocationPoint.toValue(),
+      if (targetDetails != null) 'TargetDetails': targetDetails,
+      if (typeConfigurationVersionId != null)
+        'TypeConfigurationVersionId': typeConfigurationVersionId,
+      if (typeName != null) 'TypeName': typeName,
+      if (typeVersionId != null) 'TypeVersionId': typeVersionId,
+    };
+  }
 }
 
 /// Specifies <code>RESOURCE</code> type target details for activated hooks.
@@ -6568,6 +6647,17 @@ class ChangeSetHookResourceTargetDetails {
       resourceType: _s.extractXmlStringValue(elem, 'ResourceType'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logicalResourceId = this.logicalResourceId;
+    final resourceAction = this.resourceAction;
+    final resourceType = this.resourceType;
+    return {
+      if (logicalResourceId != null) 'LogicalResourceId': logicalResourceId,
+      if (resourceAction != null) 'ResourceAction': resourceAction.toValue(),
+      if (resourceType != null) 'ResourceType': resourceType,
+    };
+  }
 }
 
 /// Specifies target details for an activated hook.
@@ -6590,6 +6680,16 @@ class ChangeSetHookTargetDetails {
       targetType:
           _s.extractXmlStringValue(elem, 'TargetType')?.toHookTargetType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceTargetDetails = this.resourceTargetDetails;
+    final targetType = this.targetType;
+    return {
+      if (resourceTargetDetails != null)
+        'ResourceTargetDetails': resourceTargetDetails,
+      if (targetType != null) 'TargetType': targetType.toValue(),
+    };
   }
 }
 
@@ -6762,6 +6862,36 @@ class ChangeSetSummary {
       statusReason: _s.extractXmlStringValue(elem, 'StatusReason'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeSetId = this.changeSetId;
+    final changeSetName = this.changeSetName;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final executionStatus = this.executionStatus;
+    final includeNestedStacks = this.includeNestedStacks;
+    final parentChangeSetId = this.parentChangeSetId;
+    final rootChangeSetId = this.rootChangeSetId;
+    final stackId = this.stackId;
+    final stackName = this.stackName;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (changeSetId != null) 'ChangeSetId': changeSetId,
+      if (changeSetName != null) 'ChangeSetName': changeSetName,
+      if (creationTime != null) 'CreationTime': iso8601ToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (executionStatus != null) 'ExecutionStatus': executionStatus.toValue(),
+      if (includeNestedStacks != null)
+        'IncludeNestedStacks': includeNestedStacks,
+      if (parentChangeSetId != null) 'ParentChangeSetId': parentChangeSetId,
+      if (rootChangeSetId != null) 'RootChangeSetId': rootChangeSetId,
+      if (stackId != null) 'StackId': stackId,
+      if (stackName != null) 'StackName': stackName,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
+  }
 }
 
 enum ChangeSetType {
@@ -6871,6 +7001,10 @@ class ContinueUpdateRollbackOutput {
       _s.XmlElement elem) {
     return ContinueUpdateRollbackOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The output for the <a>CreateChangeSet</a> action.
@@ -6891,6 +7025,15 @@ class CreateChangeSetOutput {
       stackId: _s.extractXmlStringValue(elem, 'StackId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final stackId = this.stackId;
+    return {
+      if (id != null) 'Id': id,
+      if (stackId != null) 'StackId': stackId,
+    };
+  }
 }
 
 class CreateStackInstancesOutput {
@@ -6904,6 +7047,13 @@ class CreateStackInstancesOutput {
     return CreateStackInstancesOutput(
       operationId: _s.extractXmlStringValue(elem, 'OperationId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
   }
 }
 
@@ -6920,6 +7070,13 @@ class CreateStackOutput {
       stackId: _s.extractXmlStringValue(elem, 'StackId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stackId = this.stackId;
+    return {
+      if (stackId != null) 'StackId': stackId,
+    };
+  }
 }
 
 class CreateStackSetOutput {
@@ -6934,6 +7091,13 @@ class CreateStackSetOutput {
       stackSetId: _s.extractXmlStringValue(elem, 'StackSetId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stackSetId = this.stackSetId;
+    return {
+      if (stackSetId != null) 'StackSetId': stackSetId,
+    };
+  }
 }
 
 class DeactivateTypeOutput {
@@ -6942,6 +7106,10 @@ class DeactivateTypeOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeactivateTypeOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6952,6 +7120,10 @@ class DeleteChangeSetOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteChangeSetOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6967,6 +7139,13 @@ class DeleteStackInstancesOutput {
       operationId: _s.extractXmlStringValue(elem, 'OperationId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
+  }
 }
 
 class DeleteStackSetOutput {
@@ -6975,6 +7154,10 @@ class DeleteStackSetOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteStackSetOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7101,6 +7284,10 @@ class DeregisterTypeOutput {
       _s.XmlElement elem) {
     return DeregisterTypeOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The output for the <a>DescribeAccountLimits</a> action.
@@ -7123,6 +7310,15 @@ class DescribeAccountLimitsOutput {
           elem.findElements('member').map(AccountLimit.fromXml).toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountLimits = this.accountLimits;
+    final nextToken = this.nextToken;
+    return {
+      if (accountLimits != null) 'AccountLimits': accountLimits,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -7169,6 +7365,25 @@ class DescribeChangeSetHooksOutput {
       status:
           _s.extractXmlStringValue(elem, 'Status')?.toChangeSetHooksStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeSetId = this.changeSetId;
+    final changeSetName = this.changeSetName;
+    final hooks = this.hooks;
+    final nextToken = this.nextToken;
+    final stackId = this.stackId;
+    final stackName = this.stackName;
+    final status = this.status;
+    return {
+      if (changeSetId != null) 'ChangeSetId': changeSetId,
+      if (changeSetName != null) 'ChangeSetName': changeSetName,
+      if (hooks != null) 'Hooks': hooks,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (stackId != null) 'StackId': stackId,
+      if (stackName != null) 'StackName': stackName,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -7307,6 +7522,52 @@ class DescribeChangeSetOutput {
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capabilities = this.capabilities;
+    final changeSetId = this.changeSetId;
+    final changeSetName = this.changeSetName;
+    final changes = this.changes;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final executionStatus = this.executionStatus;
+    final includeNestedStacks = this.includeNestedStacks;
+    final nextToken = this.nextToken;
+    final notificationARNs = this.notificationARNs;
+    final parameters = this.parameters;
+    final parentChangeSetId = this.parentChangeSetId;
+    final rollbackConfiguration = this.rollbackConfiguration;
+    final rootChangeSetId = this.rootChangeSetId;
+    final stackId = this.stackId;
+    final stackName = this.stackName;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    final tags = this.tags;
+    return {
+      if (capabilities != null)
+        'Capabilities': capabilities.map((e) => e.toValue()).toList(),
+      if (changeSetId != null) 'ChangeSetId': changeSetId,
+      if (changeSetName != null) 'ChangeSetName': changeSetName,
+      if (changes != null) 'Changes': changes,
+      if (creationTime != null) 'CreationTime': iso8601ToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (executionStatus != null) 'ExecutionStatus': executionStatus.toValue(),
+      if (includeNestedStacks != null)
+        'IncludeNestedStacks': includeNestedStacks,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (notificationARNs != null) 'NotificationARNs': notificationARNs,
+      if (parameters != null) 'Parameters': parameters,
+      if (parentChangeSetId != null) 'ParentChangeSetId': parentChangeSetId,
+      if (rollbackConfiguration != null)
+        'RollbackConfiguration': rollbackConfiguration,
+      if (rootChangeSetId != null) 'RootChangeSetId': rootChangeSetId,
+      if (stackId != null) 'StackId': stackId,
+      if (stackName != null) 'StackName': stackName,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class DescribePublisherOutput {
@@ -7341,6 +7602,20 @@ class DescribePublisherOutput {
           .extractXmlStringValue(elem, 'PublisherStatus')
           ?.toPublisherStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identityProvider = this.identityProvider;
+    final publisherId = this.publisherId;
+    final publisherProfile = this.publisherProfile;
+    final publisherStatus = this.publisherStatus;
+    return {
+      if (identityProvider != null)
+        'IdentityProvider': identityProvider.toValue(),
+      if (publisherId != null) 'PublisherId': publisherId,
+      if (publisherProfile != null) 'PublisherProfile': publisherProfile,
+      if (publisherStatus != null) 'PublisherStatus': publisherStatus.toValue(),
+    };
   }
 }
 
@@ -7442,6 +7717,28 @@ class DescribeStackDriftDetectionStatusOutput {
           ?.toStackDriftStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final detectionStatus = this.detectionStatus;
+    final stackDriftDetectionId = this.stackDriftDetectionId;
+    final stackId = this.stackId;
+    final timestamp = this.timestamp;
+    final detectionStatusReason = this.detectionStatusReason;
+    final driftedStackResourceCount = this.driftedStackResourceCount;
+    final stackDriftStatus = this.stackDriftStatus;
+    return {
+      'DetectionStatus': detectionStatus.toValue(),
+      'StackDriftDetectionId': stackDriftDetectionId,
+      'StackId': stackId,
+      'Timestamp': iso8601ToJson(timestamp),
+      if (detectionStatusReason != null)
+        'DetectionStatusReason': detectionStatusReason,
+      if (driftedStackResourceCount != null)
+        'DriftedStackResourceCount': driftedStackResourceCount,
+      if (stackDriftStatus != null)
+        'StackDriftStatus': stackDriftStatus.toValue(),
+    };
+  }
 }
 
 /// The output for a <a>DescribeStackEvents</a> action.
@@ -7464,6 +7761,15 @@ class DescribeStackEventsOutput {
           elem.findElements('member').map(StackEvent.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final stackEvents = this.stackEvents;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (stackEvents != null) 'StackEvents': stackEvents,
+    };
+  }
 }
 
 class DescribeStackInstanceOutput {
@@ -7478,6 +7784,13 @@ class DescribeStackInstanceOutput {
       stackInstance:
           _s.extractXmlChild(elem, 'StackInstance')?.let(StackInstance.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stackInstance = this.stackInstance;
+    return {
+      if (stackInstance != null) 'StackInstance': stackInstance,
+    };
   }
 }
 
@@ -7517,6 +7830,15 @@ class DescribeStackResourceDriftsOutput {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stackResourceDrifts = this.stackResourceDrifts;
+    final nextToken = this.nextToken;
+    return {
+      'StackResourceDrifts': stackResourceDrifts,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The output for a <a>DescribeStackResource</a> action.
@@ -7535,6 +7857,14 @@ class DescribeStackResourceOutput {
           ?.let(StackResourceDetail.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stackResourceDetail = this.stackResourceDetail;
+    return {
+      if (stackResourceDetail != null)
+        'StackResourceDetail': stackResourceDetail,
+    };
+  }
 }
 
 /// The output for a <a>DescribeStackResources</a> action.
@@ -7550,6 +7880,13 @@ class DescribeStackResourcesOutput {
       stackResources: _s.extractXmlChild(elem, 'StackResources')?.let((elem) =>
           elem.findElements('member').map(StackResource.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stackResources = this.stackResources;
+    return {
+      if (stackResources != null) 'StackResources': stackResources,
+    };
   }
 }
 
@@ -7567,6 +7904,13 @@ class DescribeStackSetOperationOutput {
           ?.let(StackSetOperation.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stackSetOperation = this.stackSetOperation;
+    return {
+      if (stackSetOperation != null) 'StackSetOperation': stackSetOperation,
+    };
+  }
 }
 
 class DescribeStackSetOutput {
@@ -7580,6 +7924,13 @@ class DescribeStackSetOutput {
     return DescribeStackSetOutput(
       stackSet: _s.extractXmlChild(elem, 'StackSet')?.let(StackSet.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stackSet = this.stackSet;
+    return {
+      if (stackSet != null) 'StackSet': stackSet,
+    };
   }
 }
 
@@ -7602,6 +7953,15 @@ class DescribeStacksOutput {
       stacks: _s.extractXmlChild(elem, 'Stacks')?.let(
           (elem) => elem.findElements('member').map(Stack.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final stacks = this.stacks;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (stacks != null) 'Stacks': stacks,
+    };
   }
 }
 
@@ -7949,6 +8309,72 @@ class DescribeTypeOutput {
       visibility: _s.extractXmlStringValue(elem, 'Visibility')?.toVisibility(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final autoUpdate = this.autoUpdate;
+    final configurationSchema = this.configurationSchema;
+    final defaultVersionId = this.defaultVersionId;
+    final deprecatedStatus = this.deprecatedStatus;
+    final description = this.description;
+    final documentationUrl = this.documentationUrl;
+    final executionRoleArn = this.executionRoleArn;
+    final isActivated = this.isActivated;
+    final isDefaultVersion = this.isDefaultVersion;
+    final lastUpdated = this.lastUpdated;
+    final latestPublicVersion = this.latestPublicVersion;
+    final loggingConfig = this.loggingConfig;
+    final originalTypeArn = this.originalTypeArn;
+    final originalTypeName = this.originalTypeName;
+    final provisioningType = this.provisioningType;
+    final publicVersionNumber = this.publicVersionNumber;
+    final publisherId = this.publisherId;
+    final requiredActivatedTypes = this.requiredActivatedTypes;
+    final schema = this.schema;
+    final sourceUrl = this.sourceUrl;
+    final timeCreated = this.timeCreated;
+    final type = this.type;
+    final typeName = this.typeName;
+    final typeTestsStatus = this.typeTestsStatus;
+    final typeTestsStatusDescription = this.typeTestsStatusDescription;
+    final visibility = this.visibility;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (autoUpdate != null) 'AutoUpdate': autoUpdate,
+      if (configurationSchema != null)
+        'ConfigurationSchema': configurationSchema,
+      if (defaultVersionId != null) 'DefaultVersionId': defaultVersionId,
+      if (deprecatedStatus != null)
+        'DeprecatedStatus': deprecatedStatus.toValue(),
+      if (description != null) 'Description': description,
+      if (documentationUrl != null) 'DocumentationUrl': documentationUrl,
+      if (executionRoleArn != null) 'ExecutionRoleArn': executionRoleArn,
+      if (isActivated != null) 'IsActivated': isActivated,
+      if (isDefaultVersion != null) 'IsDefaultVersion': isDefaultVersion,
+      if (lastUpdated != null) 'LastUpdated': iso8601ToJson(lastUpdated),
+      if (latestPublicVersion != null)
+        'LatestPublicVersion': latestPublicVersion,
+      if (loggingConfig != null) 'LoggingConfig': loggingConfig,
+      if (originalTypeArn != null) 'OriginalTypeArn': originalTypeArn,
+      if (originalTypeName != null) 'OriginalTypeName': originalTypeName,
+      if (provisioningType != null)
+        'ProvisioningType': provisioningType.toValue(),
+      if (publicVersionNumber != null)
+        'PublicVersionNumber': publicVersionNumber,
+      if (publisherId != null) 'PublisherId': publisherId,
+      if (requiredActivatedTypes != null)
+        'RequiredActivatedTypes': requiredActivatedTypes,
+      if (schema != null) 'Schema': schema,
+      if (sourceUrl != null) 'SourceUrl': sourceUrl,
+      if (timeCreated != null) 'TimeCreated': iso8601ToJson(timeCreated),
+      if (type != null) 'Type': type.toValue(),
+      if (typeName != null) 'TypeName': typeName,
+      if (typeTestsStatus != null) 'TypeTestsStatus': typeTestsStatus.toValue(),
+      if (typeTestsStatusDescription != null)
+        'TypeTestsStatusDescription': typeTestsStatusDescription,
+      if (visibility != null) 'Visibility': visibility.toValue(),
+    };
+  }
 }
 
 class DescribeTypeRegistrationOutput {
@@ -7987,6 +8413,19 @@ class DescribeTypeRegistrationOutput {
       typeVersionArn: _s.extractXmlStringValue(elem, 'TypeVersionArn'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final progressStatus = this.progressStatus;
+    final typeArn = this.typeArn;
+    final typeVersionArn = this.typeVersionArn;
+    return {
+      if (description != null) 'Description': description,
+      if (progressStatus != null) 'ProgressStatus': progressStatus.toValue(),
+      if (typeArn != null) 'TypeArn': typeArn,
+      if (typeVersionArn != null) 'TypeVersionArn': typeVersionArn,
+    };
+  }
 }
 
 class DetectStackDriftOutput {
@@ -8006,6 +8445,13 @@ class DetectStackDriftOutput {
           _s.extractXmlStringValue(elem, 'StackDriftDetectionId')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stackDriftDetectionId = this.stackDriftDetectionId;
+    return {
+      'StackDriftDetectionId': stackDriftDetectionId,
+    };
+  }
 }
 
 class DetectStackResourceDriftOutput {
@@ -8023,6 +8469,13 @@ class DetectStackResourceDriftOutput {
           _s.extractXmlChild(elem, 'StackResourceDrift')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stackResourceDrift = this.stackResourceDrift;
+    return {
+      'StackResourceDrift': stackResourceDrift,
+    };
+  }
 }
 
 class DetectStackSetDriftOutput {
@@ -8039,6 +8492,13 @@ class DetectStackSetDriftOutput {
     return DetectStackSetDriftOutput(
       operationId: _s.extractXmlStringValue(elem, 'OperationId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
   }
 }
 
@@ -8089,6 +8549,13 @@ class EstimateTemplateCostOutput {
       url: _s.extractXmlStringValue(elem, 'Url'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final url = this.url;
+    return {
+      if (url != null) 'Url': url,
+    };
+  }
 }
 
 enum EvaluationType {
@@ -8126,6 +8593,10 @@ class ExecuteChangeSetOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return ExecuteChangeSetOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8206,6 +8677,17 @@ class Export {
       value: _s.extractXmlStringValue(elem, 'Value'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exportingStackId = this.exportingStackId;
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (exportingStackId != null) 'ExportingStackId': exportingStackId,
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// The output for the <a>GetStackPolicy</a> action.
@@ -8222,6 +8704,13 @@ class GetStackPolicyOutput {
     return GetStackPolicyOutput(
       stackPolicyBody: _s.extractXmlStringValue(elem, 'StackPolicyBody'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stackPolicyBody = this.stackPolicyBody;
+    return {
+      if (stackPolicyBody != null) 'StackPolicyBody': stackPolicyBody,
+    };
   }
 }
 
@@ -8255,6 +8744,16 @@ class GetTemplateOutput {
               .toList()),
       templateBody: _s.extractXmlStringValue(elem, 'TemplateBody'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stagesAvailable = this.stagesAvailable;
+    final templateBody = this.templateBody;
+    return {
+      if (stagesAvailable != null)
+        'StagesAvailable': stagesAvailable.map((e) => e.toValue()).toList(),
+      if (templateBody != null) 'TemplateBody': templateBody,
+    };
   }
 }
 
@@ -8344,6 +8843,31 @@ class GetTemplateSummaryOutput {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
       version: _s.extractXmlStringValue(elem, 'Version'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final capabilities = this.capabilities;
+    final capabilitiesReason = this.capabilitiesReason;
+    final declaredTransforms = this.declaredTransforms;
+    final description = this.description;
+    final metadata = this.metadata;
+    final parameters = this.parameters;
+    final resourceIdentifierSummaries = this.resourceIdentifierSummaries;
+    final resourceTypes = this.resourceTypes;
+    final version = this.version;
+    return {
+      if (capabilities != null)
+        'Capabilities': capabilities.map((e) => e.toValue()).toList(),
+      if (capabilitiesReason != null) 'CapabilitiesReason': capabilitiesReason,
+      if (declaredTransforms != null) 'DeclaredTransforms': declaredTransforms,
+      if (description != null) 'Description': description,
+      if (metadata != null) 'Metadata': metadata,
+      if (parameters != null) 'Parameters': parameters,
+      if (resourceIdentifierSummaries != null)
+        'ResourceIdentifierSummaries': resourceIdentifierSummaries,
+      if (resourceTypes != null) 'ResourceTypes': resourceTypes,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -8612,6 +9136,13 @@ class ImportStacksToStackSetOutput {
       operationId: _s.extractXmlStringValue(elem, 'OperationId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
+  }
 }
 
 /// The output for the <a>ListChangeSets</a> action.
@@ -8635,6 +9166,15 @@ class ListChangeSetsOutput {
           elem.findElements('member').map(ChangeSetSummary.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final summaries = this.summaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (summaries != null) 'Summaries': summaries,
+    };
+  }
 }
 
 class ListExportsOutput {
@@ -8656,6 +9196,15 @@ class ListExportsOutput {
           (elem) => elem.findElements('member').map(Export.fromXml).toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exports = this.exports;
+    final nextToken = this.nextToken;
+    return {
+      if (exports != null) 'Exports': exports,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -8679,6 +9228,15 @@ class ListImportsOutput {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imports = this.imports;
+    final nextToken = this.nextToken;
+    return {
+      if (imports != null) 'Imports': imports,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -8707,6 +9265,15 @@ class ListStackInstancesOutput {
           .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final summaries = this.summaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (summaries != null) 'Summaries': summaries,
+    };
+  }
 }
 
 /// The output for a <a>ListStackResources</a> action.
@@ -8732,6 +9299,16 @@ class ListStackResourcesOutput {
               .map(StackResourceSummary.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final stackResourceSummaries = this.stackResourceSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (stackResourceSummaries != null)
+        'StackResourceSummaries': stackResourceSummaries,
+    };
   }
 }
 
@@ -8761,6 +9338,15 @@ class ListStackSetOperationResultsOutput {
           .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final summaries = this.summaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (summaries != null) 'Summaries': summaries,
+    };
+  }
 }
 
 class ListStackSetOperationsOutput {
@@ -8788,6 +9374,15 @@ class ListStackSetOperationsOutput {
           .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final summaries = this.summaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (summaries != null) 'Summaries': summaries,
+    };
+  }
 }
 
 class ListStackSetsOutput {
@@ -8813,6 +9408,15 @@ class ListStackSetsOutput {
           elem.findElements('member').map(StackSetSummary.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final summaries = this.summaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (summaries != null) 'Summaries': summaries,
+    };
+  }
 }
 
 /// The output for <a>ListStacks</a> action.
@@ -8835,6 +9439,15 @@ class ListStacksOutput {
       stackSummaries: _s.extractXmlChild(elem, 'StackSummaries')?.let((elem) =>
           elem.findElements('member').map(StackSummary.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final stackSummaries = this.stackSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (stackSummaries != null) 'StackSummaries': stackSummaries,
+    };
   }
 }
 
@@ -8863,6 +9476,16 @@ class ListTypeRegistrationsOutput {
           .extractXmlChild(elem, 'RegistrationTokenList')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final registrationTokenList = this.registrationTokenList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (registrationTokenList != null)
+        'RegistrationTokenList': registrationTokenList,
+    };
   }
 }
 
@@ -8893,6 +9516,16 @@ class ListTypeVersionsOutput {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final typeVersionSummaries = this.typeVersionSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (typeVersionSummaries != null)
+        'TypeVersionSummaries': typeVersionSummaries,
+    };
+  }
 }
 
 class ListTypesOutput {
@@ -8917,6 +9550,15 @@ class ListTypesOutput {
       typeSummaries: _s.extractXmlChild(elem, 'TypeSummaries')?.let((elem) =>
           elem.findElements('member').map(TypeSummary.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final typeSummaries = this.typeSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (typeSummaries != null) 'TypeSummaries': typeSummaries,
+    };
   }
 }
 
@@ -9029,6 +9671,15 @@ class ModuleInfo {
       typeHierarchy: _s.extractXmlStringValue(elem, 'TypeHierarchy'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logicalIdHierarchy = this.logicalIdHierarchy;
+    final typeHierarchy = this.typeHierarchy;
+    return {
+      if (logicalIdHierarchy != null) 'LogicalIdHierarchy': logicalIdHierarchy,
+      if (typeHierarchy != null) 'TypeHierarchy': typeHierarchy,
+    };
+  }
 }
 
 enum OnFailure {
@@ -9130,6 +9781,19 @@ class Output {
       outputValue: _s.extractXmlStringValue(elem, 'OutputValue'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final exportName = this.exportName;
+    final outputKey = this.outputKey;
+    final outputValue = this.outputValue;
+    return {
+      if (description != null) 'Description': description,
+      if (exportName != null) 'ExportName': exportName,
+      if (outputKey != null) 'OutputKey': outputKey,
+      if (outputValue != null) 'OutputValue': outputValue,
+    };
+  }
 }
 
 /// The Parameter data type.
@@ -9199,6 +9863,13 @@ class ParameterConstraints {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowedValues = this.allowedValues;
+    return {
+      if (allowedValues != null) 'AllowedValues': allowedValues,
+    };
+  }
 }
 
 /// The ParameterDeclaration data type.
@@ -9241,6 +9912,24 @@ class ParameterDeclaration {
       parameterKey: _s.extractXmlStringValue(elem, 'ParameterKey'),
       parameterType: _s.extractXmlStringValue(elem, 'ParameterType'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final defaultValue = this.defaultValue;
+    final description = this.description;
+    final noEcho = this.noEcho;
+    final parameterConstraints = this.parameterConstraints;
+    final parameterKey = this.parameterKey;
+    final parameterType = this.parameterType;
+    return {
+      if (defaultValue != null) 'DefaultValue': defaultValue,
+      if (description != null) 'Description': description,
+      if (noEcho != null) 'NoEcho': noEcho,
+      if (parameterConstraints != null)
+        'ParameterConstraints': parameterConstraints,
+      if (parameterKey != null) 'ParameterKey': parameterKey,
+      if (parameterType != null) 'ParameterType': parameterType,
+    };
   }
 }
 
@@ -9293,6 +9982,15 @@ class PhysicalResourceIdContextKeyValuePair {
       key: _s.extractXmlStringValue(elem, 'Key')!,
       value: _s.extractXmlStringValue(elem, 'Value')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      'Key': key,
+      'Value': value,
+    };
   }
 }
 
@@ -9348,6 +10046,19 @@ class PropertyDifference {
       propertyPath: _s.extractXmlStringValue(elem, 'PropertyPath')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actualValue = this.actualValue;
+    final differenceType = this.differenceType;
+    final expectedValue = this.expectedValue;
+    final propertyPath = this.propertyPath;
+    return {
+      'ActualValue': actualValue,
+      'DifferenceType': differenceType.toValue(),
+      'ExpectedValue': expectedValue,
+      'PropertyPath': propertyPath,
+    };
+  }
 }
 
 enum ProvisioningType {
@@ -9396,6 +10107,13 @@ class PublishTypeOutput {
       publicTypeArn: _s.extractXmlStringValue(elem, 'PublicTypeArn'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final publicTypeArn = this.publicTypeArn;
+    return {
+      if (publicTypeArn != null) 'PublicTypeArn': publicTypeArn,
+    };
+  }
 }
 
 enum PublisherStatus {
@@ -9432,6 +10150,10 @@ class RecordHandlerProgressOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return RecordHandlerProgressOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -9475,6 +10197,13 @@ class RegisterPublisherOutput {
       publisherId: _s.extractXmlStringValue(elem, 'PublisherId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final publisherId = this.publisherId;
+    return {
+      if (publisherId != null) 'PublisherId': publisherId,
+    };
+  }
 }
 
 class RegisterTypeOutput {
@@ -9492,6 +10221,13 @@ class RegisterTypeOutput {
     return RegisterTypeOutput(
       registrationToken: _s.extractXmlStringValue(elem, 'RegistrationToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final registrationToken = this.registrationToken;
+    return {
+      if (registrationToken != null) 'RegistrationToken': registrationToken,
+    };
   }
 }
 
@@ -9640,6 +10376,20 @@ class RequiredActivatedType {
           ?.let((elem) => _s.extractXmlIntListValues(elem, 'member')),
       typeNameAlias: _s.extractXmlStringValue(elem, 'TypeNameAlias'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final originalTypeName = this.originalTypeName;
+    final publisherId = this.publisherId;
+    final supportedMajorVersions = this.supportedMajorVersions;
+    final typeNameAlias = this.typeNameAlias;
+    return {
+      if (originalTypeName != null) 'OriginalTypeName': originalTypeName,
+      if (publisherId != null) 'PublisherId': publisherId,
+      if (supportedMajorVersions != null)
+        'SupportedMajorVersions': supportedMajorVersions,
+      if (typeNameAlias != null) 'TypeNameAlias': typeNameAlias,
+    };
   }
 }
 
@@ -9812,6 +10562,29 @@ class ResourceChange {
           .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final changeSetId = this.changeSetId;
+    final details = this.details;
+    final logicalResourceId = this.logicalResourceId;
+    final moduleInfo = this.moduleInfo;
+    final physicalResourceId = this.physicalResourceId;
+    final replacement = this.replacement;
+    final resourceType = this.resourceType;
+    final scope = this.scope;
+    return {
+      if (action != null) 'Action': action.toValue(),
+      if (changeSetId != null) 'ChangeSetId': changeSetId,
+      if (details != null) 'Details': details,
+      if (logicalResourceId != null) 'LogicalResourceId': logicalResourceId,
+      if (moduleInfo != null) 'ModuleInfo': moduleInfo,
+      if (physicalResourceId != null) 'PhysicalResourceId': physicalResourceId,
+      if (replacement != null) 'Replacement': replacement.toValue(),
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (scope != null) 'Scope': scope.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 /// For a resource with <code>Modify</code> as the action, the
@@ -9904,6 +10677,19 @@ class ResourceChangeDetail {
           ?.let(ResourceTargetDefinition.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final causingEntity = this.causingEntity;
+    final changeSource = this.changeSource;
+    final evaluation = this.evaluation;
+    final target = this.target;
+    return {
+      if (causingEntity != null) 'CausingEntity': causingEntity,
+      if (changeSource != null) 'ChangeSource': changeSource.toValue(),
+      if (evaluation != null) 'Evaluation': evaluation.toValue(),
+      if (target != null) 'Target': target,
+    };
+  }
 }
 
 /// Describes the target resources of a specific type in your import template
@@ -9938,6 +10724,18 @@ class ResourceIdentifierSummary {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
       resourceType: _s.extractXmlStringValue(elem, 'ResourceType'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logicalResourceIds = this.logicalResourceIds;
+    final resourceIdentifiers = this.resourceIdentifiers;
+    final resourceType = this.resourceType;
+    return {
+      if (logicalResourceIds != null) 'LogicalResourceIds': logicalResourceIds,
+      if (resourceIdentifiers != null)
+        'ResourceIdentifiers': resourceIdentifiers,
+      if (resourceType != null) 'ResourceType': resourceType,
+    };
   }
 }
 
@@ -10133,6 +10931,18 @@ class ResourceTargetDefinition {
           ?.toRequiresRecreation(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attribute = this.attribute;
+    final name = this.name;
+    final requiresRecreation = this.requiresRecreation;
+    return {
+      if (attribute != null) 'Attribute': attribute.toValue(),
+      if (name != null) 'Name': name,
+      if (requiresRecreation != null)
+        'RequiresRecreation': requiresRecreation.toValue(),
+    };
+  }
 }
 
 /// Describes the target resource of an import operation.
@@ -10157,6 +10967,7 @@ class ResourceToImport {
     required this.resourceIdentifier,
     required this.resourceType,
   });
+
   Map<String, dynamic> toJson() {
     final logicalResourceId = this.logicalResourceId;
     final resourceIdentifier = this.resourceIdentifier;
@@ -10268,6 +11079,13 @@ class RollbackStackOutput {
       stackId: _s.extractXmlStringValue(elem, 'StackId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stackId = this.stackId;
+    return {
+      if (stackId != null) 'StackId': stackId,
+    };
+  }
 }
 
 /// A rollback trigger CloudFormation monitors during creation and updating of
@@ -10325,6 +11143,13 @@ class SetTypeConfigurationOutput {
       configurationArn: _s.extractXmlStringValue(elem, 'ConfigurationArn'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationArn = this.configurationArn;
+    return {
+      if (configurationArn != null) 'ConfigurationArn': configurationArn,
+    };
+  }
 }
 
 class SetTypeDefaultVersionOutput {
@@ -10333,6 +11158,10 @@ class SetTypeDefaultVersionOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetTypeDefaultVersionOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -10505,6 +11334,59 @@ class Stack {
       timeoutInMinutes: _s.extractXmlIntValue(elem, 'TimeoutInMinutes'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final stackName = this.stackName;
+    final stackStatus = this.stackStatus;
+    final capabilities = this.capabilities;
+    final changeSetId = this.changeSetId;
+    final deletionTime = this.deletionTime;
+    final description = this.description;
+    final disableRollback = this.disableRollback;
+    final driftInformation = this.driftInformation;
+    final enableTerminationProtection = this.enableTerminationProtection;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final notificationARNs = this.notificationARNs;
+    final outputs = this.outputs;
+    final parameters = this.parameters;
+    final parentId = this.parentId;
+    final roleARN = this.roleARN;
+    final rollbackConfiguration = this.rollbackConfiguration;
+    final rootId = this.rootId;
+    final stackId = this.stackId;
+    final stackStatusReason = this.stackStatusReason;
+    final tags = this.tags;
+    final timeoutInMinutes = this.timeoutInMinutes;
+    return {
+      'CreationTime': iso8601ToJson(creationTime),
+      'StackName': stackName,
+      'StackStatus': stackStatus.toValue(),
+      if (capabilities != null)
+        'Capabilities': capabilities.map((e) => e.toValue()).toList(),
+      if (changeSetId != null) 'ChangeSetId': changeSetId,
+      if (deletionTime != null) 'DeletionTime': iso8601ToJson(deletionTime),
+      if (description != null) 'Description': description,
+      if (disableRollback != null) 'DisableRollback': disableRollback,
+      if (driftInformation != null) 'DriftInformation': driftInformation,
+      if (enableTerminationProtection != null)
+        'EnableTerminationProtection': enableTerminationProtection,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': iso8601ToJson(lastUpdatedTime),
+      if (notificationARNs != null) 'NotificationARNs': notificationARNs,
+      if (outputs != null) 'Outputs': outputs,
+      if (parameters != null) 'Parameters': parameters,
+      if (parentId != null) 'ParentId': parentId,
+      if (roleARN != null) 'RoleARN': roleARN,
+      if (rollbackConfiguration != null)
+        'RollbackConfiguration': rollbackConfiguration,
+      if (rootId != null) 'RootId': rootId,
+      if (stackId != null) 'StackId': stackId,
+      if (stackStatusReason != null) 'StackStatusReason': stackStatusReason,
+      if (tags != null) 'Tags': tags,
+      if (timeoutInMinutes != null) 'TimeoutInMinutes': timeoutInMinutes,
+    };
+  }
 }
 
 enum StackDriftDetectionStatus {
@@ -10585,6 +11467,16 @@ class StackDriftInformation {
           _s.extractXmlDateTimeValue(elem, 'LastCheckTimestamp'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stackDriftStatus = this.stackDriftStatus;
+    final lastCheckTimestamp = this.lastCheckTimestamp;
+    return {
+      'StackDriftStatus': stackDriftStatus.toValue(),
+      if (lastCheckTimestamp != null)
+        'LastCheckTimestamp': iso8601ToJson(lastCheckTimestamp),
+    };
+  }
 }
 
 /// Contains information about whether the stack's actual configuration differs,
@@ -10631,6 +11523,16 @@ class StackDriftInformationSummary {
       lastCheckTimestamp:
           _s.extractXmlDateTimeValue(elem, 'LastCheckTimestamp'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stackDriftStatus = this.stackDriftStatus;
+    final lastCheckTimestamp = this.lastCheckTimestamp;
+    return {
+      'StackDriftStatus': stackDriftStatus.toValue(),
+      if (lastCheckTimestamp != null)
+        'LastCheckTimestamp': iso8601ToJson(lastCheckTimestamp),
+    };
   }
 }
 
@@ -10795,6 +11697,45 @@ class StackEvent {
       resourceType: _s.extractXmlStringValue(elem, 'ResourceType'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventId = this.eventId;
+    final stackId = this.stackId;
+    final stackName = this.stackName;
+    final timestamp = this.timestamp;
+    final clientRequestToken = this.clientRequestToken;
+    final hookFailureMode = this.hookFailureMode;
+    final hookInvocationPoint = this.hookInvocationPoint;
+    final hookStatus = this.hookStatus;
+    final hookStatusReason = this.hookStatusReason;
+    final hookType = this.hookType;
+    final logicalResourceId = this.logicalResourceId;
+    final physicalResourceId = this.physicalResourceId;
+    final resourceProperties = this.resourceProperties;
+    final resourceStatus = this.resourceStatus;
+    final resourceStatusReason = this.resourceStatusReason;
+    final resourceType = this.resourceType;
+    return {
+      'EventId': eventId,
+      'StackId': stackId,
+      'StackName': stackName,
+      'Timestamp': iso8601ToJson(timestamp),
+      if (clientRequestToken != null) 'ClientRequestToken': clientRequestToken,
+      if (hookFailureMode != null) 'HookFailureMode': hookFailureMode.toValue(),
+      if (hookInvocationPoint != null)
+        'HookInvocationPoint': hookInvocationPoint.toValue(),
+      if (hookStatus != null) 'HookStatus': hookStatus.toValue(),
+      if (hookStatusReason != null) 'HookStatusReason': hookStatusReason,
+      if (hookType != null) 'HookType': hookType,
+      if (logicalResourceId != null) 'LogicalResourceId': logicalResourceId,
+      if (physicalResourceId != null) 'PhysicalResourceId': physicalResourceId,
+      if (resourceProperties != null) 'ResourceProperties': resourceProperties,
+      if (resourceStatus != null) 'ResourceStatus': resourceStatus.toValue(),
+      if (resourceStatusReason != null)
+        'ResourceStatusReason': resourceStatusReason,
+      if (resourceType != null) 'ResourceType': resourceType,
+    };
+  }
 }
 
 /// An CloudFormation stack, in a specific account and Region, that's part of a
@@ -10933,6 +11874,36 @@ class StackInstance {
       statusReason: _s.extractXmlStringValue(elem, 'StatusReason'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final account = this.account;
+    final driftStatus = this.driftStatus;
+    final lastDriftCheckTimestamp = this.lastDriftCheckTimestamp;
+    final organizationalUnitId = this.organizationalUnitId;
+    final parameterOverrides = this.parameterOverrides;
+    final region = this.region;
+    final stackId = this.stackId;
+    final stackInstanceStatus = this.stackInstanceStatus;
+    final stackSetId = this.stackSetId;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (account != null) 'Account': account,
+      if (driftStatus != null) 'DriftStatus': driftStatus.toValue(),
+      if (lastDriftCheckTimestamp != null)
+        'LastDriftCheckTimestamp': iso8601ToJson(lastDriftCheckTimestamp),
+      if (organizationalUnitId != null)
+        'OrganizationalUnitId': organizationalUnitId,
+      if (parameterOverrides != null) 'ParameterOverrides': parameterOverrides,
+      if (region != null) 'Region': region,
+      if (stackId != null) 'StackId': stackId,
+      if (stackInstanceStatus != null)
+        'StackInstanceStatus': stackInstanceStatus,
+      if (stackSetId != null) 'StackSetId': stackSetId,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
+  }
 }
 
 /// The detailed status of the stack instance.
@@ -10982,6 +11953,13 @@ class StackInstanceComprehensiveStatus {
           .extractXmlStringValue(elem, 'DetailedStatus')
           ?.toStackInstanceDetailedStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detailedStatus = this.detailedStatus;
+    return {
+      if (detailedStatus != null) 'DetailedStatus': detailedStatus.toValue(),
+    };
   }
 }
 
@@ -11046,6 +12024,7 @@ class StackInstanceFilter {
     this.name,
     this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -11234,6 +12213,34 @@ class StackInstanceSummary {
       statusReason: _s.extractXmlStringValue(elem, 'StatusReason'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final account = this.account;
+    final driftStatus = this.driftStatus;
+    final lastDriftCheckTimestamp = this.lastDriftCheckTimestamp;
+    final organizationalUnitId = this.organizationalUnitId;
+    final region = this.region;
+    final stackId = this.stackId;
+    final stackInstanceStatus = this.stackInstanceStatus;
+    final stackSetId = this.stackSetId;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (account != null) 'Account': account,
+      if (driftStatus != null) 'DriftStatus': driftStatus.toValue(),
+      if (lastDriftCheckTimestamp != null)
+        'LastDriftCheckTimestamp': iso8601ToJson(lastDriftCheckTimestamp),
+      if (organizationalUnitId != null)
+        'OrganizationalUnitId': organizationalUnitId,
+      if (region != null) 'Region': region,
+      if (stackId != null) 'StackId': stackId,
+      if (stackInstanceStatus != null)
+        'StackInstanceStatus': stackInstanceStatus,
+      if (stackSetId != null) 'StackSetId': stackSetId,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
+  }
 }
 
 /// The StackResource data type.
@@ -11312,6 +12319,34 @@ class StackResource {
       stackId: _s.extractXmlStringValue(elem, 'StackId'),
       stackName: _s.extractXmlStringValue(elem, 'StackName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logicalResourceId = this.logicalResourceId;
+    final resourceStatus = this.resourceStatus;
+    final resourceType = this.resourceType;
+    final timestamp = this.timestamp;
+    final description = this.description;
+    final driftInformation = this.driftInformation;
+    final moduleInfo = this.moduleInfo;
+    final physicalResourceId = this.physicalResourceId;
+    final resourceStatusReason = this.resourceStatusReason;
+    final stackId = this.stackId;
+    final stackName = this.stackName;
+    return {
+      'LogicalResourceId': logicalResourceId,
+      'ResourceStatus': resourceStatus.toValue(),
+      'ResourceType': resourceType,
+      'Timestamp': iso8601ToJson(timestamp),
+      if (description != null) 'Description': description,
+      if (driftInformation != null) 'DriftInformation': driftInformation,
+      if (moduleInfo != null) 'ModuleInfo': moduleInfo,
+      if (physicalResourceId != null) 'PhysicalResourceId': physicalResourceId,
+      if (resourceStatusReason != null)
+        'ResourceStatusReason': resourceStatusReason,
+      if (stackId != null) 'StackId': stackId,
+      if (stackName != null) 'StackName': stackName,
+    };
   }
 }
 
@@ -11400,6 +12435,36 @@ class StackResourceDetail {
       stackId: _s.extractXmlStringValue(elem, 'StackId'),
       stackName: _s.extractXmlStringValue(elem, 'StackName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final logicalResourceId = this.logicalResourceId;
+    final resourceStatus = this.resourceStatus;
+    final resourceType = this.resourceType;
+    final description = this.description;
+    final driftInformation = this.driftInformation;
+    final metadata = this.metadata;
+    final moduleInfo = this.moduleInfo;
+    final physicalResourceId = this.physicalResourceId;
+    final resourceStatusReason = this.resourceStatusReason;
+    final stackId = this.stackId;
+    final stackName = this.stackName;
+    return {
+      'LastUpdatedTimestamp': iso8601ToJson(lastUpdatedTimestamp),
+      'LogicalResourceId': logicalResourceId,
+      'ResourceStatus': resourceStatus.toValue(),
+      'ResourceType': resourceType,
+      if (description != null) 'Description': description,
+      if (driftInformation != null) 'DriftInformation': driftInformation,
+      if (metadata != null) 'Metadata': metadata,
+      if (moduleInfo != null) 'ModuleInfo': moduleInfo,
+      if (physicalResourceId != null) 'PhysicalResourceId': physicalResourceId,
+      if (resourceStatusReason != null)
+        'ResourceStatusReason': resourceStatusReason,
+      if (stackId != null) 'StackId': stackId,
+      if (stackName != null) 'StackName': stackName,
+    };
   }
 }
 
@@ -11532,6 +12597,35 @@ class StackResourceDrift {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logicalResourceId = this.logicalResourceId;
+    final resourceType = this.resourceType;
+    final stackId = this.stackId;
+    final stackResourceDriftStatus = this.stackResourceDriftStatus;
+    final timestamp = this.timestamp;
+    final actualProperties = this.actualProperties;
+    final expectedProperties = this.expectedProperties;
+    final moduleInfo = this.moduleInfo;
+    final physicalResourceId = this.physicalResourceId;
+    final physicalResourceIdContext = this.physicalResourceIdContext;
+    final propertyDifferences = this.propertyDifferences;
+    return {
+      'LogicalResourceId': logicalResourceId,
+      'ResourceType': resourceType,
+      'StackId': stackId,
+      'StackResourceDriftStatus': stackResourceDriftStatus.toValue(),
+      'Timestamp': iso8601ToJson(timestamp),
+      if (actualProperties != null) 'ActualProperties': actualProperties,
+      if (expectedProperties != null) 'ExpectedProperties': expectedProperties,
+      if (moduleInfo != null) 'ModuleInfo': moduleInfo,
+      if (physicalResourceId != null) 'PhysicalResourceId': physicalResourceId,
+      if (physicalResourceIdContext != null)
+        'PhysicalResourceIdContext': physicalResourceIdContext,
+      if (propertyDifferences != null)
+        'PropertyDifferences': propertyDifferences,
+    };
+  }
 }
 
 /// Contains information about whether the resource's actual configuration
@@ -11580,6 +12674,16 @@ class StackResourceDriftInformation {
       lastCheckTimestamp:
           _s.extractXmlDateTimeValue(elem, 'LastCheckTimestamp'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stackResourceDriftStatus = this.stackResourceDriftStatus;
+    final lastCheckTimestamp = this.lastCheckTimestamp;
+    return {
+      'StackResourceDriftStatus': stackResourceDriftStatus.toValue(),
+      if (lastCheckTimestamp != null)
+        'LastCheckTimestamp': iso8601ToJson(lastCheckTimestamp),
+    };
   }
 }
 
@@ -11635,6 +12739,16 @@ class StackResourceDriftInformationSummary {
       lastCheckTimestamp:
           _s.extractXmlDateTimeValue(elem, 'LastCheckTimestamp'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stackResourceDriftStatus = this.stackResourceDriftStatus;
+    final lastCheckTimestamp = this.lastCheckTimestamp;
+    return {
+      'StackResourceDriftStatus': stackResourceDriftStatus.toValue(),
+      if (lastCheckTimestamp != null)
+        'LastCheckTimestamp': iso8601ToJson(lastCheckTimestamp),
+    };
   }
 }
 
@@ -11738,6 +12852,28 @@ class StackResourceSummary {
       resourceStatusReason:
           _s.extractXmlStringValue(elem, 'ResourceStatusReason'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final logicalResourceId = this.logicalResourceId;
+    final resourceStatus = this.resourceStatus;
+    final resourceType = this.resourceType;
+    final driftInformation = this.driftInformation;
+    final moduleInfo = this.moduleInfo;
+    final physicalResourceId = this.physicalResourceId;
+    final resourceStatusReason = this.resourceStatusReason;
+    return {
+      'LastUpdatedTimestamp': iso8601ToJson(lastUpdatedTimestamp),
+      'LogicalResourceId': logicalResourceId,
+      'ResourceStatus': resourceStatus.toValue(),
+      'ResourceType': resourceType,
+      if (driftInformation != null) 'DriftInformation': driftInformation,
+      if (moduleInfo != null) 'ModuleInfo': moduleInfo,
+      if (physicalResourceId != null) 'PhysicalResourceId': physicalResourceId,
+      if (resourceStatusReason != null)
+        'ResourceStatusReason': resourceStatusReason,
+    };
   }
 }
 
@@ -11894,6 +13030,47 @@ class StackSet {
       templateBody: _s.extractXmlStringValue(elem, 'TemplateBody'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final administrationRoleARN = this.administrationRoleARN;
+    final autoDeployment = this.autoDeployment;
+    final capabilities = this.capabilities;
+    final description = this.description;
+    final executionRoleName = this.executionRoleName;
+    final managedExecution = this.managedExecution;
+    final organizationalUnitIds = this.organizationalUnitIds;
+    final parameters = this.parameters;
+    final permissionModel = this.permissionModel;
+    final stackSetARN = this.stackSetARN;
+    final stackSetDriftDetectionDetails = this.stackSetDriftDetectionDetails;
+    final stackSetId = this.stackSetId;
+    final stackSetName = this.stackSetName;
+    final status = this.status;
+    final tags = this.tags;
+    final templateBody = this.templateBody;
+    return {
+      if (administrationRoleARN != null)
+        'AdministrationRoleARN': administrationRoleARN,
+      if (autoDeployment != null) 'AutoDeployment': autoDeployment,
+      if (capabilities != null)
+        'Capabilities': capabilities.map((e) => e.toValue()).toList(),
+      if (description != null) 'Description': description,
+      if (executionRoleName != null) 'ExecutionRoleName': executionRoleName,
+      if (managedExecution != null) 'ManagedExecution': managedExecution,
+      if (organizationalUnitIds != null)
+        'OrganizationalUnitIds': organizationalUnitIds,
+      if (parameters != null) 'Parameters': parameters,
+      if (permissionModel != null) 'PermissionModel': permissionModel.toValue(),
+      if (stackSetARN != null) 'StackSetARN': stackSetARN,
+      if (stackSetDriftDetectionDetails != null)
+        'StackSetDriftDetectionDetails': stackSetDriftDetectionDetails,
+      if (stackSetId != null) 'StackSetId': stackSetId,
+      if (stackSetName != null) 'StackSetName': stackSetName,
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (templateBody != null) 'TemplateBody': templateBody,
+    };
+  }
 }
 
 /// Detailed information about the drift status of the stack set.
@@ -12030,6 +13207,34 @@ class StackSetDriftDetectionDetails {
       totalStackInstancesCount:
           _s.extractXmlIntValue(elem, 'TotalStackInstancesCount'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final driftDetectionStatus = this.driftDetectionStatus;
+    final driftStatus = this.driftStatus;
+    final driftedStackInstancesCount = this.driftedStackInstancesCount;
+    final failedStackInstancesCount = this.failedStackInstancesCount;
+    final inProgressStackInstancesCount = this.inProgressStackInstancesCount;
+    final inSyncStackInstancesCount = this.inSyncStackInstancesCount;
+    final lastDriftCheckTimestamp = this.lastDriftCheckTimestamp;
+    final totalStackInstancesCount = this.totalStackInstancesCount;
+    return {
+      if (driftDetectionStatus != null)
+        'DriftDetectionStatus': driftDetectionStatus.toValue(),
+      if (driftStatus != null) 'DriftStatus': driftStatus.toValue(),
+      if (driftedStackInstancesCount != null)
+        'DriftedStackInstancesCount': driftedStackInstancesCount,
+      if (failedStackInstancesCount != null)
+        'FailedStackInstancesCount': failedStackInstancesCount,
+      if (inProgressStackInstancesCount != null)
+        'InProgressStackInstancesCount': inProgressStackInstancesCount,
+      if (inSyncStackInstancesCount != null)
+        'InSyncStackInstancesCount': inSyncStackInstancesCount,
+      if (lastDriftCheckTimestamp != null)
+        'LastDriftCheckTimestamp': iso8601ToJson(lastDriftCheckTimestamp),
+      if (totalStackInstancesCount != null)
+        'TotalStackInstancesCount': totalStackInstancesCount,
+    };
   }
 }
 
@@ -12258,6 +13463,41 @@ class StackSetOperation {
           _s.extractXmlStringValue(elem, 'Status')?.toStackSetOperationStatus(),
       statusReason: _s.extractXmlStringValue(elem, 'StatusReason'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final administrationRoleARN = this.administrationRoleARN;
+    final creationTimestamp = this.creationTimestamp;
+    final deploymentTargets = this.deploymentTargets;
+    final endTimestamp = this.endTimestamp;
+    final executionRoleName = this.executionRoleName;
+    final operationId = this.operationId;
+    final operationPreferences = this.operationPreferences;
+    final retainStacks = this.retainStacks;
+    final stackSetDriftDetectionDetails = this.stackSetDriftDetectionDetails;
+    final stackSetId = this.stackSetId;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (action != null) 'Action': action.toValue(),
+      if (administrationRoleARN != null)
+        'AdministrationRoleARN': administrationRoleARN,
+      if (creationTimestamp != null)
+        'CreationTimestamp': iso8601ToJson(creationTimestamp),
+      if (deploymentTargets != null) 'DeploymentTargets': deploymentTargets,
+      if (endTimestamp != null) 'EndTimestamp': iso8601ToJson(endTimestamp),
+      if (executionRoleName != null) 'ExecutionRoleName': executionRoleName,
+      if (operationId != null) 'OperationId': operationId,
+      if (operationPreferences != null)
+        'OperationPreferences': operationPreferences,
+      if (retainStacks != null) 'RetainStacks': retainStacks,
+      if (stackSetDriftDetectionDetails != null)
+        'StackSetDriftDetectionDetails': stackSetDriftDetectionDetails,
+      if (stackSetId != null) 'StackSetId': stackSetId,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
   }
 }
 
@@ -12541,6 +13781,24 @@ class StackSetOperationResultSummary {
       statusReason: _s.extractXmlStringValue(elem, 'StatusReason'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final account = this.account;
+    final accountGateResult = this.accountGateResult;
+    final organizationalUnitId = this.organizationalUnitId;
+    final region = this.region;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (account != null) 'Account': account,
+      if (accountGateResult != null) 'AccountGateResult': accountGateResult,
+      if (organizationalUnitId != null)
+        'OrganizationalUnitId': organizationalUnitId,
+      if (region != null) 'Region': region,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
+  }
 }
 
 enum StackSetOperationStatus {
@@ -12674,6 +13932,24 @@ class StackSetOperationSummary {
           _s.extractXmlStringValue(elem, 'Status')?.toStackSetOperationStatus(),
       statusReason: _s.extractXmlStringValue(elem, 'StatusReason'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final creationTimestamp = this.creationTimestamp;
+    final endTimestamp = this.endTimestamp;
+    final operationId = this.operationId;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (action != null) 'Action': action.toValue(),
+      if (creationTimestamp != null)
+        'CreationTimestamp': iso8601ToJson(creationTimestamp),
+      if (endTimestamp != null) 'EndTimestamp': iso8601ToJson(endTimestamp),
+      if (operationId != null) 'OperationId': operationId,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
   }
 }
 
@@ -12812,6 +14088,30 @@ class StackSetSummary {
       stackSetName: _s.extractXmlStringValue(elem, 'StackSetName'),
       status: _s.extractXmlStringValue(elem, 'Status')?.toStackSetStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoDeployment = this.autoDeployment;
+    final description = this.description;
+    final driftStatus = this.driftStatus;
+    final lastDriftCheckTimestamp = this.lastDriftCheckTimestamp;
+    final managedExecution = this.managedExecution;
+    final permissionModel = this.permissionModel;
+    final stackSetId = this.stackSetId;
+    final stackSetName = this.stackSetName;
+    final status = this.status;
+    return {
+      if (autoDeployment != null) 'AutoDeployment': autoDeployment,
+      if (description != null) 'Description': description,
+      if (driftStatus != null) 'DriftStatus': driftStatus.toValue(),
+      if (lastDriftCheckTimestamp != null)
+        'LastDriftCheckTimestamp': iso8601ToJson(lastDriftCheckTimestamp),
+      if (managedExecution != null) 'ManagedExecution': managedExecution,
+      if (permissionModel != null) 'PermissionModel': permissionModel.toValue(),
+      if (stackSetId != null) 'StackSetId': stackSetId,
+      if (stackSetName != null) 'StackSetName': stackSetName,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -13032,6 +14332,35 @@ class StackSummary {
           _s.extractXmlStringValue(elem, 'TemplateDescription'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final stackName = this.stackName;
+    final stackStatus = this.stackStatus;
+    final deletionTime = this.deletionTime;
+    final driftInformation = this.driftInformation;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final parentId = this.parentId;
+    final rootId = this.rootId;
+    final stackId = this.stackId;
+    final stackStatusReason = this.stackStatusReason;
+    final templateDescription = this.templateDescription;
+    return {
+      'CreationTime': iso8601ToJson(creationTime),
+      'StackName': stackName,
+      'StackStatus': stackStatus.toValue(),
+      if (deletionTime != null) 'DeletionTime': iso8601ToJson(deletionTime),
+      if (driftInformation != null) 'DriftInformation': driftInformation,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': iso8601ToJson(lastUpdatedTime),
+      if (parentId != null) 'ParentId': parentId,
+      if (rootId != null) 'RootId': rootId,
+      if (stackId != null) 'StackId': stackId,
+      if (stackStatusReason != null) 'StackStatusReason': stackStatusReason,
+      if (templateDescription != null)
+        'TemplateDescription': templateDescription,
+    };
+  }
 }
 
 class StopStackSetOperationOutput {
@@ -13040,6 +14369,10 @@ class StopStackSetOperationOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return StopStackSetOperationOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -13105,6 +14438,19 @@ class TemplateParameter {
       parameterKey: _s.extractXmlStringValue(elem, 'ParameterKey'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final defaultValue = this.defaultValue;
+    final description = this.description;
+    final noEcho = this.noEcho;
+    final parameterKey = this.parameterKey;
+    return {
+      if (defaultValue != null) 'DefaultValue': defaultValue,
+      if (description != null) 'Description': description,
+      if (noEcho != null) 'NoEcho': noEcho,
+      if (parameterKey != null) 'ParameterKey': parameterKey,
+    };
+  }
 }
 
 enum TemplateStage {
@@ -13146,6 +14492,13 @@ class TestTypeOutput {
     return TestTypeOutput(
       typeVersionArn: _s.extractXmlStringValue(elem, 'TypeVersionArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final typeVersionArn = this.typeVersionArn;
+    return {
+      if (typeVersionArn != null) 'TypeVersionArn': typeVersionArn,
+    };
   }
 }
 
@@ -13248,6 +14601,26 @@ class TypeConfigurationDetails {
       typeArn: _s.extractXmlStringValue(elem, 'TypeArn'),
       typeName: _s.extractXmlStringValue(elem, 'TypeName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alias = this.alias;
+    final arn = this.arn;
+    final configuration = this.configuration;
+    final isDefaultConfiguration = this.isDefaultConfiguration;
+    final lastUpdated = this.lastUpdated;
+    final typeArn = this.typeArn;
+    final typeName = this.typeName;
+    return {
+      if (alias != null) 'Alias': alias,
+      if (arn != null) 'Arn': arn,
+      if (configuration != null) 'Configuration': configuration,
+      if (isDefaultConfiguration != null)
+        'IsDefaultConfiguration': isDefaultConfiguration,
+      if (lastUpdated != null) 'LastUpdated': iso8601ToJson(lastUpdated),
+      if (typeArn != null) 'TypeArn': typeArn,
+      if (typeName != null) 'TypeName': typeName,
+    };
   }
 }
 
@@ -13362,6 +14735,7 @@ class TypeFilters {
     this.publisherId,
     this.typeNamePrefix,
   });
+
   Map<String, dynamic> toJson() {
     final category = this.category;
     final publisherId = this.publisherId;
@@ -13519,6 +14893,40 @@ class TypeSummary {
       typeName: _s.extractXmlStringValue(elem, 'TypeName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final defaultVersionId = this.defaultVersionId;
+    final description = this.description;
+    final isActivated = this.isActivated;
+    final lastUpdated = this.lastUpdated;
+    final latestPublicVersion = this.latestPublicVersion;
+    final originalTypeName = this.originalTypeName;
+    final publicVersionNumber = this.publicVersionNumber;
+    final publisherId = this.publisherId;
+    final publisherIdentity = this.publisherIdentity;
+    final publisherName = this.publisherName;
+    final type = this.type;
+    final typeArn = this.typeArn;
+    final typeName = this.typeName;
+    return {
+      if (defaultVersionId != null) 'DefaultVersionId': defaultVersionId,
+      if (description != null) 'Description': description,
+      if (isActivated != null) 'IsActivated': isActivated,
+      if (lastUpdated != null) 'LastUpdated': iso8601ToJson(lastUpdated),
+      if (latestPublicVersion != null)
+        'LatestPublicVersion': latestPublicVersion,
+      if (originalTypeName != null) 'OriginalTypeName': originalTypeName,
+      if (publicVersionNumber != null)
+        'PublicVersionNumber': publicVersionNumber,
+      if (publisherId != null) 'PublisherId': publisherId,
+      if (publisherIdentity != null)
+        'PublisherIdentity': publisherIdentity.toValue(),
+      if (publisherName != null) 'PublisherName': publisherName,
+      if (type != null) 'Type': type.toValue(),
+      if (typeArn != null) 'TypeArn': typeArn,
+      if (typeName != null) 'TypeName': typeName,
+    };
+  }
 }
 
 enum TypeTestsStatus {
@@ -13626,6 +15034,28 @@ class TypeVersionSummary {
       versionId: _s.extractXmlStringValue(elem, 'VersionId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final isDefaultVersion = this.isDefaultVersion;
+    final publicVersionNumber = this.publicVersionNumber;
+    final timeCreated = this.timeCreated;
+    final type = this.type;
+    final typeName = this.typeName;
+    final versionId = this.versionId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (isDefaultVersion != null) 'IsDefaultVersion': isDefaultVersion,
+      if (publicVersionNumber != null)
+        'PublicVersionNumber': publicVersionNumber,
+      if (timeCreated != null) 'TimeCreated': iso8601ToJson(timeCreated),
+      if (type != null) 'Type': type.toValue(),
+      if (typeName != null) 'TypeName': typeName,
+      if (versionId != null) 'VersionId': versionId,
+    };
+  }
 }
 
 class UpdateStackInstancesOutput {
@@ -13639,6 +15069,13 @@ class UpdateStackInstancesOutput {
     return UpdateStackInstancesOutput(
       operationId: _s.extractXmlStringValue(elem, 'OperationId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
   }
 }
 
@@ -13655,6 +15092,13 @@ class UpdateStackOutput {
       stackId: _s.extractXmlStringValue(elem, 'StackId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stackId = this.stackId;
+    return {
+      if (stackId != null) 'StackId': stackId,
+    };
+  }
 }
 
 class UpdateStackSetOutput {
@@ -13669,6 +15113,13 @@ class UpdateStackSetOutput {
       operationId: _s.extractXmlStringValue(elem, 'OperationId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
+  }
 }
 
 class UpdateTerminationProtectionOutput {
@@ -13682,6 +15133,13 @@ class UpdateTerminationProtectionOutput {
     return UpdateTerminationProtectionOutput(
       stackId: _s.extractXmlStringValue(elem, 'StackId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stackId = this.stackId;
+    return {
+      if (stackId != null) 'StackId': stackId,
+    };
   }
 }
 
@@ -13732,6 +15190,22 @@ class ValidateTemplateOutput {
       parameters: _s.extractXmlChild(elem, 'Parameters')?.let((elem) =>
           elem.findElements('member').map(TemplateParameter.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final capabilities = this.capabilities;
+    final capabilitiesReason = this.capabilitiesReason;
+    final declaredTransforms = this.declaredTransforms;
+    final description = this.description;
+    final parameters = this.parameters;
+    return {
+      if (capabilities != null)
+        'Capabilities': capabilities.map((e) => e.toValue()).toList(),
+      if (capabilitiesReason != null) 'CapabilitiesReason': capabilitiesReason,
+      if (declaredTransforms != null) 'DeclaredTransforms': declaredTransforms,
+      if (description != null) 'Description': description,
+      if (parameters != null) 'Parameters': parameters,
+    };
   }
 }
 

@@ -495,6 +495,13 @@ class GenerateDataSetResult {
       dataSetRequestId: json['dataSetRequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSetRequestId = this.dataSetRequestId;
+    return {
+      if (dataSetRequestId != null) 'dataSetRequestId': dataSetRequestId,
+    };
+  }
 }
 
 /// Container for the result of the StartSupportDataExport operation.
@@ -511,6 +518,13 @@ class StartSupportDataExportResult {
     return StartSupportDataExportResult(
       dataSetRequestId: json['dataSetRequestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSetRequestId = this.dataSetRequestId;
+    return {
+      if (dataSetRequestId != null) 'dataSetRequestId': dataSetRequestId,
+    };
   }
 }
 

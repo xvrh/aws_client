@@ -1472,6 +1472,19 @@ class Credentials {
       sessionToken: json['SessionToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final expiration = this.expiration;
+    final secretKey = this.secretKey;
+    final sessionToken = this.sessionToken;
+    return {
+      if (accessKeyId != null) 'AccessKeyId': accessKeyId,
+      if (expiration != null) 'Expiration': unixTimestampToJson(expiration),
+      if (secretKey != null) 'SecretKey': secretKey,
+      if (sessionToken != null) 'SessionToken': sessionToken,
+    };
+  }
 }
 
 /// Returned in response to a successful <code>DeleteIdentities</code>
@@ -1491,6 +1504,14 @@ class DeleteIdentitiesResponse {
           .map((e) => UnprocessedIdentityId.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedIdentityIds = this.unprocessedIdentityIds;
+    return {
+      if (unprocessedIdentityIds != null)
+        'UnprocessedIdentityIds': unprocessedIdentityIds,
+    };
   }
 }
 
@@ -1544,6 +1565,15 @@ class GetCredentialsForIdentityResponse {
       identityId: json['IdentityId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final credentials = this.credentials;
+    final identityId = this.identityId;
+    return {
+      if (credentials != null) 'Credentials': credentials,
+      if (identityId != null) 'IdentityId': identityId,
+    };
+  }
 }
 
 /// Returned in response to a GetId request.
@@ -1558,6 +1588,13 @@ class GetIdResponse {
     return GetIdResponse(
       identityId: json['IdentityId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identityId = this.identityId;
+    return {
+      if (identityId != null) 'IdentityId': identityId,
+    };
   }
 }
 
@@ -1592,6 +1629,17 @@ class GetIdentityPoolRolesResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityPoolId = this.identityPoolId;
+    final roleMappings = this.roleMappings;
+    final roles = this.roles;
+    return {
+      if (identityPoolId != null) 'IdentityPoolId': identityPoolId,
+      if (roleMappings != null) 'RoleMappings': roleMappings,
+      if (roles != null) 'Roles': roles,
+    };
+  }
 }
 
 /// Returned in response to a successful
@@ -1614,6 +1662,15 @@ class GetOpenIdTokenForDeveloperIdentityResponse {
       token: json['Token'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityId = this.identityId;
+    final token = this.token;
+    return {
+      if (identityId != null) 'IdentityId': identityId,
+      if (token != null) 'Token': token,
+    };
+  }
 }
 
 /// Returned in response to a successful GetOpenIdToken request.
@@ -1634,6 +1691,15 @@ class GetOpenIdTokenResponse {
       identityId: json['IdentityId'] as String?,
       token: json['Token'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identityId = this.identityId;
+    final token = this.token;
+    return {
+      if (identityId != null) 'IdentityId': identityId,
+      if (token != null) 'Token': token,
+    };
   }
 }
 
@@ -1669,6 +1735,20 @@ class GetPrincipalTagAttributeMapResponse {
       useDefaults: json['UseDefaults'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityPoolId = this.identityPoolId;
+    final identityProviderName = this.identityProviderName;
+    final principalTags = this.principalTags;
+    final useDefaults = this.useDefaults;
+    return {
+      if (identityPoolId != null) 'IdentityPoolId': identityPoolId,
+      if (identityProviderName != null)
+        'IdentityProviderName': identityProviderName,
+      if (principalTags != null) 'PrincipalTags': principalTags,
+      if (useDefaults != null) 'UseDefaults': useDefaults,
+    };
+  }
 }
 
 /// A description of the identity.
@@ -1701,6 +1781,21 @@ class IdentityDescription {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final identityId = this.identityId;
+    final lastModifiedDate = this.lastModifiedDate;
+    final logins = this.logins;
+    return {
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (identityId != null) 'IdentityId': identityId,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (logins != null) 'Logins': logins,
+    };
   }
 }
 
@@ -1783,6 +1878,35 @@ class IdentityPool {
               ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowUnauthenticatedIdentities = this.allowUnauthenticatedIdentities;
+    final identityPoolId = this.identityPoolId;
+    final identityPoolName = this.identityPoolName;
+    final allowClassicFlow = this.allowClassicFlow;
+    final cognitoIdentityProviders = this.cognitoIdentityProviders;
+    final developerProviderName = this.developerProviderName;
+    final identityPoolTags = this.identityPoolTags;
+    final openIdConnectProviderARNs = this.openIdConnectProviderARNs;
+    final samlProviderARNs = this.samlProviderARNs;
+    final supportedLoginProviders = this.supportedLoginProviders;
+    return {
+      'AllowUnauthenticatedIdentities': allowUnauthenticatedIdentities,
+      'IdentityPoolId': identityPoolId,
+      'IdentityPoolName': identityPoolName,
+      if (allowClassicFlow != null) 'AllowClassicFlow': allowClassicFlow,
+      if (cognitoIdentityProviders != null)
+        'CognitoIdentityProviders': cognitoIdentityProviders,
+      if (developerProviderName != null)
+        'DeveloperProviderName': developerProviderName,
+      if (identityPoolTags != null) 'IdentityPoolTags': identityPoolTags,
+      if (openIdConnectProviderARNs != null)
+        'OpenIdConnectProviderARNs': openIdConnectProviderARNs,
+      if (samlProviderARNs != null) 'SamlProviderARNs': samlProviderARNs,
+      if (supportedLoginProviders != null)
+        'SupportedLoginProviders': supportedLoginProviders,
+    };
+  }
 }
 
 /// A description of the identity pool.
@@ -1802,6 +1926,15 @@ class IdentityPoolShortDescription {
       identityPoolId: json['IdentityPoolId'] as String?,
       identityPoolName: json['IdentityPoolName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identityPoolId = this.identityPoolId;
+    final identityPoolName = this.identityPoolName;
+    return {
+      if (identityPoolId != null) 'IdentityPoolId': identityPoolId,
+      if (identityPoolName != null) 'IdentityPoolName': identityPoolName,
+    };
   }
 }
 
@@ -1831,6 +1964,17 @@ class ListIdentitiesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identities = this.identities;
+    final identityPoolId = this.identityPoolId;
+    final nextToken = this.nextToken;
+    return {
+      if (identities != null) 'Identities': identities,
+      if (identityPoolId != null) 'IdentityPoolId': identityPoolId,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The result of a successful ListIdentityPools action.
@@ -1855,6 +1999,15 @@ class ListIdentityPoolsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityPools = this.identityPools;
+    final nextToken = this.nextToken;
+    return {
+      if (identityPools != null) 'IdentityPools': identityPools,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1869,6 +2022,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1907,6 +2067,18 @@ class LookupDeveloperIdentityResponse {
       identityId: json['IdentityId'] as String?,
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final developerUserIdentifierList = this.developerUserIdentifierList;
+    final identityId = this.identityId;
+    final nextToken = this.nextToken;
+    return {
+      if (developerUserIdentifierList != null)
+        'DeveloperUserIdentifierList': developerUserIdentifierList,
+      if (identityId != null) 'IdentityId': identityId,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2007,6 +2179,13 @@ class MergeDeveloperIdentitiesResponse {
     return MergeDeveloperIdentitiesResponse(
       identityId: json['IdentityId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identityId = this.identityId;
+    return {
+      if (identityId != null) 'IdentityId': identityId,
+    };
   }
 }
 
@@ -2150,12 +2329,30 @@ class SetPrincipalTagAttributeMapResponse {
       useDefaults: json['UseDefaults'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityPoolId = this.identityPoolId;
+    final identityProviderName = this.identityProviderName;
+    final principalTags = this.principalTags;
+    final useDefaults = this.useDefaults;
+    return {
+      if (identityPoolId != null) 'IdentityPoolId': identityPoolId,
+      if (identityProviderName != null)
+        'IdentityProviderName': identityProviderName,
+      if (principalTags != null) 'PrincipalTags': principalTags,
+      if (useDefaults != null) 'UseDefaults': useDefaults,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2178,12 +2375,25 @@ class UnprocessedIdentityId {
       identityId: json['IdentityId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final identityId = this.identityId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (identityId != null) 'IdentityId': identityId,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

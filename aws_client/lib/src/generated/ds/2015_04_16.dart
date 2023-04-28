@@ -3279,12 +3279,23 @@ class AcceptSharedDirectoryResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sharedDirectory = this.sharedDirectory;
+    return {
+      if (sharedDirectory != null) 'SharedDirectory': sharedDirectory,
+    };
+  }
 }
 
 class AddIpRoutesResult {
   AddIpRoutesResult();
   factory AddIpRoutesResult.fromJson(Map<String, dynamic> _) {
     return AddIpRoutesResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3293,12 +3304,20 @@ class AddRegionResult {
   factory AddRegionResult.fromJson(Map<String, dynamic> _) {
     return AddRegionResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AddTagsToResourceResult {
   AddTagsToResourceResult();
   factory AddTagsToResourceResult.fromJson(Map<String, dynamic> _) {
     return AddTagsToResourceResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3335,6 +3354,10 @@ class CancelSchemaExtensionResult {
   CancelSchemaExtensionResult();
   factory CancelSchemaExtensionResult.fromJson(Map<String, dynamic> _) {
     return CancelSchemaExtensionResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3392,6 +3415,30 @@ class Certificate {
       type: (json['Type'] as String?)?.toCertificateType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateId = this.certificateId;
+    final clientCertAuthSettings = this.clientCertAuthSettings;
+    final commonName = this.commonName;
+    final expiryDateTime = this.expiryDateTime;
+    final registeredDateTime = this.registeredDateTime;
+    final state = this.state;
+    final stateReason = this.stateReason;
+    final type = this.type;
+    return {
+      if (certificateId != null) 'CertificateId': certificateId,
+      if (clientCertAuthSettings != null)
+        'ClientCertAuthSettings': clientCertAuthSettings,
+      if (commonName != null) 'CommonName': commonName,
+      if (expiryDateTime != null)
+        'ExpiryDateTime': unixTimestampToJson(expiryDateTime),
+      if (registeredDateTime != null)
+        'RegisteredDateTime': unixTimestampToJson(registeredDateTime),
+      if (state != null) 'State': state.toValue(),
+      if (stateReason != null) 'StateReason': stateReason,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Contains general information about a certificate.
@@ -3428,6 +3475,22 @@ class CertificateInfo {
       state: (json['State'] as String?)?.toCertificateState(),
       type: (json['Type'] as String?)?.toCertificateType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateId = this.certificateId;
+    final commonName = this.commonName;
+    final expiryDateTime = this.expiryDateTime;
+    final state = this.state;
+    final type = this.type;
+    return {
+      if (certificateId != null) 'CertificateId': certificateId,
+      if (commonName != null) 'CommonName': commonName,
+      if (expiryDateTime != null)
+        'ExpiryDateTime': unixTimestampToJson(expiryDateTime),
+      if (state != null) 'State': state.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -3533,6 +3596,18 @@ class ClientAuthenticationSettingInfo {
       status: (json['Status'] as String?)?.toClientAuthenticationStatus(),
       type: (json['Type'] as String?)?.toClientAuthenticationType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (lastUpdatedDateTime != null)
+        'LastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (status != null) 'Status': status.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -3646,6 +3721,17 @@ class Computer {
       computerName: json['ComputerName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final computerAttributes = this.computerAttributes;
+    final computerId = this.computerId;
+    final computerName = this.computerName;
+    return {
+      if (computerAttributes != null) 'ComputerAttributes': computerAttributes,
+      if (computerId != null) 'ComputerId': computerId,
+      if (computerName != null) 'ComputerName': computerName,
+    };
+  }
 }
 
 /// Points to a remote domain with which you are setting up a trust
@@ -3682,6 +3768,18 @@ class ConditionalForwarder {
           (json['ReplicationScope'] as String?)?.toReplicationScope(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dnsIpAddrs = this.dnsIpAddrs;
+    final remoteDomainName = this.remoteDomainName;
+    final replicationScope = this.replicationScope;
+    return {
+      if (dnsIpAddrs != null) 'DnsIpAddrs': dnsIpAddrs,
+      if (remoteDomainName != null) 'RemoteDomainName': remoteDomainName,
+      if (replicationScope != null)
+        'ReplicationScope': replicationScope.toValue(),
+    };
+  }
 }
 
 /// Contains the results of the <a>ConnectDirectory</a> operation.
@@ -3696,6 +3794,13 @@ class ConnectDirectoryResult {
     return ConnectDirectoryResult(
       directoryId: json['DirectoryId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final directoryId = this.directoryId;
+    return {
+      if (directoryId != null) 'DirectoryId': directoryId,
+    };
   }
 }
 
@@ -3717,6 +3822,15 @@ class CreateAliasResult {
       directoryId: json['DirectoryId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alias = this.alias;
+    final directoryId = this.directoryId;
+    return {
+      if (alias != null) 'Alias': alias,
+      if (directoryId != null) 'DirectoryId': directoryId,
+    };
+  }
 }
 
 /// Contains the results for the <a>CreateComputer</a> operation.
@@ -3734,6 +3848,13 @@ class CreateComputerResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final computer = this.computer;
+    return {
+      if (computer != null) 'Computer': computer,
+    };
+  }
 }
 
 /// The result of a CreateConditinalForwarder request.
@@ -3741,6 +3862,10 @@ class CreateConditionalForwarderResult {
   CreateConditionalForwarderResult();
   factory CreateConditionalForwarderResult.fromJson(Map<String, dynamic> _) {
     return CreateConditionalForwarderResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3757,12 +3882,23 @@ class CreateDirectoryResult {
       directoryId: json['DirectoryId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directoryId = this.directoryId;
+    return {
+      if (directoryId != null) 'DirectoryId': directoryId,
+    };
+  }
 }
 
 class CreateLogSubscriptionResult {
   CreateLogSubscriptionResult();
   factory CreateLogSubscriptionResult.fromJson(Map<String, dynamic> _) {
     return CreateLogSubscriptionResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3779,6 +3915,13 @@ class CreateMicrosoftADResult {
       directoryId: json['DirectoryId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directoryId = this.directoryId;
+    return {
+      if (directoryId != null) 'DirectoryId': directoryId,
+    };
+  }
 }
 
 /// Contains the results of the <a>CreateSnapshot</a> operation.
@@ -3793,6 +3936,13 @@ class CreateSnapshotResult {
     return CreateSnapshotResult(
       snapshotId: json['SnapshotId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshotId = this.snapshotId;
+    return {
+      if (snapshotId != null) 'SnapshotId': snapshotId,
+    };
   }
 }
 
@@ -3809,6 +3959,13 @@ class CreateTrustResult {
       trustId: json['TrustId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trustId = this.trustId;
+    return {
+      if (trustId != null) 'TrustId': trustId,
+    };
+  }
 }
 
 /// The result of a DeleteConditionalForwarder request.
@@ -3816,6 +3973,10 @@ class DeleteConditionalForwarderResult {
   DeleteConditionalForwarderResult();
   factory DeleteConditionalForwarderResult.fromJson(Map<String, dynamic> _) {
     return DeleteConditionalForwarderResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3832,12 +3993,23 @@ class DeleteDirectoryResult {
       directoryId: json['DirectoryId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directoryId = this.directoryId;
+    return {
+      if (directoryId != null) 'DirectoryId': directoryId,
+    };
+  }
 }
 
 class DeleteLogSubscriptionResult {
   DeleteLogSubscriptionResult();
   factory DeleteLogSubscriptionResult.fromJson(Map<String, dynamic> _) {
     return DeleteLogSubscriptionResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3854,6 +4026,13 @@ class DeleteSnapshotResult {
       snapshotId: json['SnapshotId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snapshotId = this.snapshotId;
+    return {
+      if (snapshotId != null) 'SnapshotId': snapshotId,
+    };
+  }
 }
 
 /// The result of a DeleteTrust request.
@@ -3869,12 +4048,23 @@ class DeleteTrustResult {
       trustId: json['TrustId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trustId = this.trustId;
+    return {
+      if (trustId != null) 'TrustId': trustId,
+    };
+  }
 }
 
 class DeregisterCertificateResult {
   DeregisterCertificateResult();
   factory DeregisterCertificateResult.fromJson(Map<String, dynamic> _) {
     return DeregisterCertificateResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3883,6 +4073,10 @@ class DeregisterEventTopicResult {
   DeregisterEventTopicResult();
   factory DeregisterEventTopicResult.fromJson(Map<String, dynamic> _) {
     return DeregisterEventTopicResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3901,6 +4095,13 @@ class DescribeCertificateResult {
           ? Certificate.fromJson(json['Certificate'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    return {
+      if (certificate != null) 'Certificate': certificate,
+    };
   }
 }
 
@@ -3932,6 +4133,17 @@ class DescribeClientAuthenticationSettingsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientAuthenticationSettingsInfo =
+        this.clientAuthenticationSettingsInfo;
+    final nextToken = this.nextToken;
+    return {
+      if (clientAuthenticationSettingsInfo != null)
+        'ClientAuthenticationSettingsInfo': clientAuthenticationSettingsInfo,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The result of a DescribeConditionalForwarder request.
@@ -3950,6 +4162,14 @@ class DescribeConditionalForwardersResult {
           .map((e) => ConditionalForwarder.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final conditionalForwarders = this.conditionalForwarders;
+    return {
+      if (conditionalForwarders != null)
+        'ConditionalForwarders': conditionalForwarders,
+    };
   }
 }
 
@@ -3981,6 +4201,16 @@ class DescribeDirectoriesResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directoryDescriptions = this.directoryDescriptions;
+    final nextToken = this.nextToken;
+    return {
+      if (directoryDescriptions != null)
+        'DirectoryDescriptions': directoryDescriptions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeDomainControllersResult {
@@ -4005,6 +4235,15 @@ class DescribeDomainControllersResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainControllers = this.domainControllers;
+    final nextToken = this.nextToken;
+    return {
+      if (domainControllers != null) 'DomainControllers': domainControllers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The result of a DescribeEventTopic request.
@@ -4023,6 +4262,13 @@ class DescribeEventTopicsResult {
           .map((e) => EventTopic.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventTopics = this.eventTopics;
+    return {
+      if (eventTopics != null) 'EventTopics': eventTopics,
+    };
   }
 }
 
@@ -4049,6 +4295,15 @@ class DescribeLDAPSSettingsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lDAPSSettingsInfo = this.lDAPSSettingsInfo;
+    final nextToken = this.nextToken;
+    return {
+      if (lDAPSSettingsInfo != null) 'LDAPSSettingsInfo': lDAPSSettingsInfo,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeRegionsResult {
@@ -4073,6 +4328,15 @@ class DescribeRegionsResult {
           .map((e) => RegionDescription.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final regionsDescription = this.regionsDescription;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (regionsDescription != null) 'RegionsDescription': regionsDescription,
+    };
   }
 }
 
@@ -4108,6 +4372,17 @@ class DescribeSettingsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directoryId = this.directoryId;
+    final nextToken = this.nextToken;
+    final settingEntries = this.settingEntries;
+    return {
+      if (directoryId != null) 'DirectoryId': directoryId,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (settingEntries != null) 'SettingEntries': settingEntries,
+    };
+  }
 }
 
 class DescribeSharedDirectoriesResult {
@@ -4131,6 +4406,15 @@ class DescribeSharedDirectoriesResult {
           .map((e) => SharedDirectory.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final sharedDirectories = this.sharedDirectories;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (sharedDirectories != null) 'SharedDirectories': sharedDirectories,
+    };
   }
 }
 
@@ -4161,6 +4445,15 @@ class DescribeSnapshotsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final snapshots = this.snapshots;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (snapshots != null) 'Snapshots': snapshots,
+    };
+  }
 }
 
 /// The result of a DescribeTrust request.
@@ -4190,6 +4483,15 @@ class DescribeTrustsResult {
           .map((e) => Trust.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final trusts = this.trusts;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (trusts != null) 'Trusts': trusts,
+    };
   }
 }
 
@@ -4273,6 +4575,7 @@ class DirectoryConnectSettings {
     required this.subnetIds,
     required this.vpcId,
   });
+
   Map<String, dynamic> toJson() {
     final customerDnsIps = this.customerDnsIps;
     final customerUserName = this.customerUserName;
@@ -4334,6 +4637,23 @@ class DirectoryConnectSettingsDescription {
           .toList(),
       vpcId: json['VpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final connectIps = this.connectIps;
+    final customerUserName = this.customerUserName;
+    final securityGroupId = this.securityGroupId;
+    final subnetIds = this.subnetIds;
+    final vpcId = this.vpcId;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (connectIps != null) 'ConnectIps': connectIps,
+      if (customerUserName != null) 'CustomerUserName': customerUserName,
+      if (securityGroupId != null) 'SecurityGroupId': securityGroupId,
+      if (subnetIds != null) 'SubnetIds': subnetIds,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -4510,6 +4830,66 @@ class DirectoryDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessUrl = this.accessUrl;
+    final alias = this.alias;
+    final connectSettings = this.connectSettings;
+    final description = this.description;
+    final desiredNumberOfDomainControllers =
+        this.desiredNumberOfDomainControllers;
+    final directoryId = this.directoryId;
+    final dnsIpAddrs = this.dnsIpAddrs;
+    final edition = this.edition;
+    final launchTime = this.launchTime;
+    final name = this.name;
+    final ownerDirectoryDescription = this.ownerDirectoryDescription;
+    final radiusSettings = this.radiusSettings;
+    final radiusStatus = this.radiusStatus;
+    final regionsInfo = this.regionsInfo;
+    final shareMethod = this.shareMethod;
+    final shareNotes = this.shareNotes;
+    final shareStatus = this.shareStatus;
+    final shortName = this.shortName;
+    final size = this.size;
+    final ssoEnabled = this.ssoEnabled;
+    final stage = this.stage;
+    final stageLastUpdatedDateTime = this.stageLastUpdatedDateTime;
+    final stageReason = this.stageReason;
+    final type = this.type;
+    final vpcSettings = this.vpcSettings;
+    return {
+      if (accessUrl != null) 'AccessUrl': accessUrl,
+      if (alias != null) 'Alias': alias,
+      if (connectSettings != null) 'ConnectSettings': connectSettings,
+      if (description != null) 'Description': description,
+      if (desiredNumberOfDomainControllers != null)
+        'DesiredNumberOfDomainControllers': desiredNumberOfDomainControllers,
+      if (directoryId != null) 'DirectoryId': directoryId,
+      if (dnsIpAddrs != null) 'DnsIpAddrs': dnsIpAddrs,
+      if (edition != null) 'Edition': edition.toValue(),
+      if (launchTime != null) 'LaunchTime': unixTimestampToJson(launchTime),
+      if (name != null) 'Name': name,
+      if (ownerDirectoryDescription != null)
+        'OwnerDirectoryDescription': ownerDirectoryDescription,
+      if (radiusSettings != null) 'RadiusSettings': radiusSettings,
+      if (radiusStatus != null) 'RadiusStatus': radiusStatus.toValue(),
+      if (regionsInfo != null) 'RegionsInfo': regionsInfo,
+      if (shareMethod != null) 'ShareMethod': shareMethod.toValue(),
+      if (shareNotes != null) 'ShareNotes': shareNotes,
+      if (shareStatus != null) 'ShareStatus': shareStatus.toValue(),
+      if (shortName != null) 'ShortName': shortName,
+      if (size != null) 'Size': size.toValue(),
+      if (ssoEnabled != null) 'SsoEnabled': ssoEnabled,
+      if (stage != null) 'Stage': stage.toValue(),
+      if (stageLastUpdatedDateTime != null)
+        'StageLastUpdatedDateTime':
+            unixTimestampToJson(stageLastUpdatedDateTime),
+      if (stageReason != null) 'StageReason': stageReason,
+      if (type != null) 'Type': type.toValue(),
+      if (vpcSettings != null) 'VpcSettings': vpcSettings,
+    };
+  }
 }
 
 enum DirectoryEdition {
@@ -4599,6 +4979,44 @@ class DirectoryLimits {
       connectedDirectoriesLimitReached:
           json['ConnectedDirectoriesLimitReached'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudOnlyDirectoriesCurrentCount =
+        this.cloudOnlyDirectoriesCurrentCount;
+    final cloudOnlyDirectoriesLimit = this.cloudOnlyDirectoriesLimit;
+    final cloudOnlyDirectoriesLimitReached =
+        this.cloudOnlyDirectoriesLimitReached;
+    final cloudOnlyMicrosoftADCurrentCount =
+        this.cloudOnlyMicrosoftADCurrentCount;
+    final cloudOnlyMicrosoftADLimit = this.cloudOnlyMicrosoftADLimit;
+    final cloudOnlyMicrosoftADLimitReached =
+        this.cloudOnlyMicrosoftADLimitReached;
+    final connectedDirectoriesCurrentCount =
+        this.connectedDirectoriesCurrentCount;
+    final connectedDirectoriesLimit = this.connectedDirectoriesLimit;
+    final connectedDirectoriesLimitReached =
+        this.connectedDirectoriesLimitReached;
+    return {
+      if (cloudOnlyDirectoriesCurrentCount != null)
+        'CloudOnlyDirectoriesCurrentCount': cloudOnlyDirectoriesCurrentCount,
+      if (cloudOnlyDirectoriesLimit != null)
+        'CloudOnlyDirectoriesLimit': cloudOnlyDirectoriesLimit,
+      if (cloudOnlyDirectoriesLimitReached != null)
+        'CloudOnlyDirectoriesLimitReached': cloudOnlyDirectoriesLimitReached,
+      if (cloudOnlyMicrosoftADCurrentCount != null)
+        'CloudOnlyMicrosoftADCurrentCount': cloudOnlyMicrosoftADCurrentCount,
+      if (cloudOnlyMicrosoftADLimit != null)
+        'CloudOnlyMicrosoftADLimit': cloudOnlyMicrosoftADLimit,
+      if (cloudOnlyMicrosoftADLimitReached != null)
+        'CloudOnlyMicrosoftADLimitReached': cloudOnlyMicrosoftADLimitReached,
+      if (connectedDirectoriesCurrentCount != null)
+        'ConnectedDirectoriesCurrentCount': connectedDirectoriesCurrentCount,
+      if (connectedDirectoriesLimit != null)
+        'ConnectedDirectoriesLimit': connectedDirectoriesLimit,
+      if (connectedDirectoriesLimitReached != null)
+        'ConnectedDirectoriesLimitReached': connectedDirectoriesLimitReached,
+    };
   }
 }
 
@@ -4810,6 +5228,19 @@ class DirectoryVpcSettingsDescription {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final securityGroupId = this.securityGroupId;
+    final subnetIds = this.subnetIds;
+    final vpcId = this.vpcId;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (securityGroupId != null) 'SecurityGroupId': securityGroupId,
+      if (subnetIds != null) 'SubnetIds': subnetIds,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 class DisableClientAuthenticationResult {
@@ -4817,12 +5248,20 @@ class DisableClientAuthenticationResult {
   factory DisableClientAuthenticationResult.fromJson(Map<String, dynamic> _) {
     return DisableClientAuthenticationResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisableLDAPSResult {
   DisableLDAPSResult();
   factory DisableLDAPSResult.fromJson(Map<String, dynamic> _) {
     return DisableLDAPSResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4832,6 +5271,10 @@ class DisableRadiusResult {
   factory DisableRadiusResult.fromJson(Map<String, dynamic> _) {
     return DisableRadiusResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains the results of the <a>DisableSso</a> operation.
@@ -4839,6 +5282,10 @@ class DisableSsoResult {
   DisableSsoResult();
   factory DisableSsoResult.fromJson(Map<String, dynamic> _) {
     return DisableSsoResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4901,6 +5348,33 @@ class DomainController {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final directoryId = this.directoryId;
+    final dnsIpAddr = this.dnsIpAddr;
+    final domainControllerId = this.domainControllerId;
+    final launchTime = this.launchTime;
+    final status = this.status;
+    final statusLastUpdatedDateTime = this.statusLastUpdatedDateTime;
+    final statusReason = this.statusReason;
+    final subnetId = this.subnetId;
+    final vpcId = this.vpcId;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (directoryId != null) 'DirectoryId': directoryId,
+      if (dnsIpAddr != null) 'DnsIpAddr': dnsIpAddr,
+      if (domainControllerId != null) 'DomainControllerId': domainControllerId,
+      if (launchTime != null) 'LaunchTime': unixTimestampToJson(launchTime),
+      if (status != null) 'Status': status.toValue(),
+      if (statusLastUpdatedDateTime != null)
+        'StatusLastUpdatedDateTime':
+            unixTimestampToJson(statusLastUpdatedDateTime),
+      if (statusReason != null) 'StatusReason': statusReason,
+      if (subnetId != null) 'SubnetId': subnetId,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 enum DomainControllerStatus {
@@ -4961,12 +5435,20 @@ class EnableClientAuthenticationResult {
   factory EnableClientAuthenticationResult.fromJson(Map<String, dynamic> _) {
     return EnableClientAuthenticationResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class EnableLDAPSResult {
   EnableLDAPSResult();
   factory EnableLDAPSResult.fromJson(Map<String, dynamic> _) {
     return EnableLDAPSResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4976,6 +5458,10 @@ class EnableRadiusResult {
   factory EnableRadiusResult.fromJson(Map<String, dynamic> _) {
     return EnableRadiusResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains the results of the <a>EnableSso</a> operation.
@@ -4983,6 +5469,10 @@ class EnableSsoResult {
   EnableSsoResult();
   factory EnableSsoResult.fromJson(Map<String, dynamic> _) {
     return EnableSsoResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5023,6 +5513,22 @@ class EventTopic {
       topicName: json['TopicName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDateTime = this.createdDateTime;
+    final directoryId = this.directoryId;
+    final status = this.status;
+    final topicArn = this.topicArn;
+    final topicName = this.topicName;
+    return {
+      if (createdDateTime != null)
+        'CreatedDateTime': unixTimestampToJson(createdDateTime),
+      if (directoryId != null) 'DirectoryId': directoryId,
+      if (status != null) 'Status': status.toValue(),
+      if (topicArn != null) 'TopicArn': topicArn,
+      if (topicName != null) 'TopicName': topicName,
+    };
+  }
 }
 
 /// Contains the results of the <a>GetDirectoryLimits</a> operation.
@@ -5041,6 +5547,13 @@ class GetDirectoryLimitsResult {
               json['DirectoryLimits'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final directoryLimits = this.directoryLimits;
+    return {
+      if (directoryLimits != null) 'DirectoryLimits': directoryLimits,
+    };
   }
 }
 
@@ -5061,6 +5574,13 @@ class GetSnapshotLimitsResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snapshotLimits = this.snapshotLimits;
+    return {
+      if (snapshotLimits != null) 'SnapshotLimits': snapshotLimits,
+    };
+  }
 }
 
 /// IP address block. This is often the address block of the DNS server used for
@@ -5079,6 +5599,7 @@ class IpRoute {
     this.cidrIp,
     this.description,
   });
+
   Map<String, dynamic> toJson() {
     final cidrIp = this.cidrIp;
     final description = this.description;
@@ -5127,6 +5648,26 @@ class IpRouteInfo {
           (json['IpRouteStatusMsg'] as String?)?.toIpRouteStatusMsg(),
       ipRouteStatusReason: json['IpRouteStatusReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final addedDateTime = this.addedDateTime;
+    final cidrIp = this.cidrIp;
+    final description = this.description;
+    final directoryId = this.directoryId;
+    final ipRouteStatusMsg = this.ipRouteStatusMsg;
+    final ipRouteStatusReason = this.ipRouteStatusReason;
+    return {
+      if (addedDateTime != null)
+        'AddedDateTime': unixTimestampToJson(addedDateTime),
+      if (cidrIp != null) 'CidrIp': cidrIp,
+      if (description != null) 'Description': description,
+      if (directoryId != null) 'DirectoryId': directoryId,
+      if (ipRouteStatusMsg != null)
+        'IpRouteStatusMsg': ipRouteStatusMsg.toValue(),
+      if (ipRouteStatusReason != null)
+        'IpRouteStatusReason': ipRouteStatusReason,
+    };
   }
 }
 
@@ -5200,6 +5741,18 @@ class LDAPSSettingInfo {
       lDAPSStatusReason: json['LDAPSStatusReason'] as String?,
       lastUpdatedDateTime: timeStampFromJson(json['LastUpdatedDateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lDAPSStatus = this.lDAPSStatus;
+    final lDAPSStatusReason = this.lDAPSStatusReason;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    return {
+      if (lDAPSStatus != null) 'LDAPSStatus': lDAPSStatus.toValue(),
+      if (lDAPSStatusReason != null) 'LDAPSStatusReason': lDAPSStatusReason,
+      if (lastUpdatedDateTime != null)
+        'LastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+    };
   }
 }
 
@@ -5286,6 +5839,15 @@ class ListCertificatesResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificatesInfo = this.certificatesInfo;
+    final nextToken = this.nextToken;
+    return {
+      if (certificatesInfo != null) 'CertificatesInfo': certificatesInfo,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListIpRoutesResult {
@@ -5310,6 +5872,15 @@ class ListIpRoutesResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ipRoutesInfo = this.ipRoutesInfo;
+    final nextToken = this.nextToken;
+    return {
+      if (ipRoutesInfo != null) 'IpRoutesInfo': ipRoutesInfo,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListLogSubscriptionsResult {
@@ -5332,6 +5903,15 @@ class ListLogSubscriptionsResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logSubscriptions = this.logSubscriptions;
+    final nextToken = this.nextToken;
+    return {
+      if (logSubscriptions != null) 'LogSubscriptions': logSubscriptions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5357,6 +5937,16 @@ class ListSchemaExtensionsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final schemaExtensionsInfo = this.schemaExtensionsInfo;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (schemaExtensionsInfo != null)
+        'SchemaExtensionsInfo': schemaExtensionsInfo,
+    };
+  }
 }
 
 class ListTagsForResourceResult {
@@ -5378,6 +5968,15 @@ class ListTagsForResourceResult {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -5406,6 +6005,19 @@ class LogSubscription {
       subscriptionCreatedDateTime:
           timeStampFromJson(json['SubscriptionCreatedDateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final directoryId = this.directoryId;
+    final logGroupName = this.logGroupName;
+    final subscriptionCreatedDateTime = this.subscriptionCreatedDateTime;
+    return {
+      if (directoryId != null) 'DirectoryId': directoryId,
+      if (logGroupName != null) 'LogGroupName': logGroupName,
+      if (subscriptionCreatedDateTime != null)
+        'SubscriptionCreatedDateTime':
+            unixTimestampToJson(subscriptionCreatedDateTime),
+    };
   }
 }
 
@@ -5458,6 +6070,23 @@ class OwnerDirectoryDescription {
               json['VpcSettings'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final directoryId = this.directoryId;
+    final dnsIpAddrs = this.dnsIpAddrs;
+    final radiusSettings = this.radiusSettings;
+    final radiusStatus = this.radiusStatus;
+    final vpcSettings = this.vpcSettings;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (directoryId != null) 'DirectoryId': directoryId,
+      if (dnsIpAddrs != null) 'DnsIpAddrs': dnsIpAddrs,
+      if (radiusSettings != null) 'RadiusSettings': radiusSettings,
+      if (radiusStatus != null) 'RadiusStatus': radiusStatus.toValue(),
+      if (vpcSettings != null) 'VpcSettings': vpcSettings,
+    };
   }
 }
 
@@ -5672,6 +6301,34 @@ class RegionDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final desiredNumberOfDomainControllers =
+        this.desiredNumberOfDomainControllers;
+    final directoryId = this.directoryId;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final launchTime = this.launchTime;
+    final regionName = this.regionName;
+    final regionType = this.regionType;
+    final status = this.status;
+    final statusLastUpdatedDateTime = this.statusLastUpdatedDateTime;
+    final vpcSettings = this.vpcSettings;
+    return {
+      if (desiredNumberOfDomainControllers != null)
+        'DesiredNumberOfDomainControllers': desiredNumberOfDomainControllers,
+      if (directoryId != null) 'DirectoryId': directoryId,
+      if (lastUpdatedDateTime != null)
+        'LastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (launchTime != null) 'LaunchTime': unixTimestampToJson(launchTime),
+      if (regionName != null) 'RegionName': regionName,
+      if (regionType != null) 'RegionType': regionType.toValue(),
+      if (status != null) 'Status': status.toValue(),
+      if (statusLastUpdatedDateTime != null)
+        'StatusLastUpdatedDateTime':
+            unixTimestampToJson(statusLastUpdatedDateTime),
+      if (vpcSettings != null) 'VpcSettings': vpcSettings,
+    };
+  }
 }
 
 enum RegionType {
@@ -5725,6 +6382,15 @@ class RegionsInfo {
       primaryRegion: json['PrimaryRegion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalRegions = this.additionalRegions;
+    final primaryRegion = this.primaryRegion;
+    return {
+      if (additionalRegions != null) 'AdditionalRegions': additionalRegions,
+      if (primaryRegion != null) 'PrimaryRegion': primaryRegion,
+    };
+  }
 }
 
 class RegisterCertificateResult {
@@ -5739,6 +6405,13 @@ class RegisterCertificateResult {
       certificateId: json['CertificateId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateId = this.certificateId;
+    return {
+      if (certificateId != null) 'CertificateId': certificateId,
+    };
+  }
 }
 
 /// The result of a RegisterEventTopic request.
@@ -5746,6 +6419,10 @@ class RegisterEventTopicResult {
   RegisterEventTopicResult();
   factory RegisterEventTopicResult.fromJson(Map<String, dynamic> _) {
     return RegisterEventTopicResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5761,12 +6438,23 @@ class RejectSharedDirectoryResult {
       sharedDirectoryId: json['SharedDirectoryId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sharedDirectoryId = this.sharedDirectoryId;
+    return {
+      if (sharedDirectoryId != null) 'SharedDirectoryId': sharedDirectoryId,
+    };
+  }
 }
 
 class RemoveIpRoutesResult {
   RemoveIpRoutesResult();
   factory RemoveIpRoutesResult.fromJson(Map<String, dynamic> _) {
     return RemoveIpRoutesResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5775,12 +6463,20 @@ class RemoveRegionResult {
   factory RemoveRegionResult.fromJson(Map<String, dynamic> _) {
     return RemoveRegionResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class RemoveTagsFromResourceResult {
   RemoveTagsFromResourceResult();
   factory RemoveTagsFromResourceResult.fromJson(Map<String, dynamic> _) {
     return RemoveTagsFromResourceResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5812,6 +6508,10 @@ class ResetUserPasswordResult {
   factory ResetUserPasswordResult.fromJson(Map<String, dynamic> _) {
     return ResetUserPasswordResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains the results of the <a>RestoreFromSnapshot</a> operation.
@@ -5819,6 +6519,10 @@ class RestoreFromSnapshotResult {
   RestoreFromSnapshotResult();
   factory RestoreFromSnapshotResult.fromJson(Map<String, dynamic> _) {
     return RestoreFromSnapshotResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5867,6 +6571,28 @@ class SchemaExtensionInfo {
           json['SchemaExtensionStatusReason'] as String?,
       startDateTime: timeStampFromJson(json['StartDateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final directoryId = this.directoryId;
+    final endDateTime = this.endDateTime;
+    final schemaExtensionId = this.schemaExtensionId;
+    final schemaExtensionStatus = this.schemaExtensionStatus;
+    final schemaExtensionStatusReason = this.schemaExtensionStatusReason;
+    final startDateTime = this.startDateTime;
+    return {
+      if (description != null) 'Description': description,
+      if (directoryId != null) 'DirectoryId': directoryId,
+      if (endDateTime != null) 'EndDateTime': unixTimestampToJson(endDateTime),
+      if (schemaExtensionId != null) 'SchemaExtensionId': schemaExtensionId,
+      if (schemaExtensionStatus != null)
+        'SchemaExtensionStatus': schemaExtensionStatus.toValue(),
+      if (schemaExtensionStatusReason != null)
+        'SchemaExtensionStatusReason': schemaExtensionStatusReason,
+      if (startDateTime != null)
+        'StartDateTime': unixTimestampToJson(startDateTime),
+    };
   }
 }
 
@@ -5977,6 +6703,7 @@ class Setting {
     required this.name,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -6058,6 +6785,36 @@ class SettingEntry {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowedValues = this.allowedValues;
+    final appliedValue = this.appliedValue;
+    final lastRequestedDateTime = this.lastRequestedDateTime;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final requestDetailedStatus = this.requestDetailedStatus;
+    final requestStatus = this.requestStatus;
+    final requestStatusMessage = this.requestStatusMessage;
+    final requestedValue = this.requestedValue;
+    final type = this.type;
+    return {
+      if (allowedValues != null) 'AllowedValues': allowedValues,
+      if (appliedValue != null) 'AppliedValue': appliedValue,
+      if (lastRequestedDateTime != null)
+        'LastRequestedDateTime': unixTimestampToJson(lastRequestedDateTime),
+      if (lastUpdatedDateTime != null)
+        'LastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'Name': name,
+      if (requestDetailedStatus != null)
+        'RequestDetailedStatus':
+            requestDetailedStatus.map((k, e) => MapEntry(k, e.toValue())),
+      if (requestStatus != null) 'RequestStatus': requestStatus.toValue(),
+      if (requestStatusMessage != null)
+        'RequestStatusMessage': requestStatusMessage,
+      if (requestedValue != null) 'RequestedValue': requestedValue,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 class ShareDirectoryResult {
@@ -6072,6 +6829,13 @@ class ShareDirectoryResult {
     return ShareDirectoryResult(
       sharedDirectoryId: json['SharedDirectoryId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sharedDirectoryId = this.sharedDirectoryId;
+    return {
+      if (sharedDirectoryId != null) 'SharedDirectoryId': sharedDirectoryId,
+    };
   }
 }
 
@@ -6178,6 +6942,7 @@ class ShareTarget {
     required this.id,
     required this.type,
   });
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final type = this.type;
@@ -6251,6 +7016,31 @@ class SharedDirectory {
       sharedDirectoryId: json['SharedDirectoryId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDateTime = this.createdDateTime;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final ownerAccountId = this.ownerAccountId;
+    final ownerDirectoryId = this.ownerDirectoryId;
+    final shareMethod = this.shareMethod;
+    final shareNotes = this.shareNotes;
+    final shareStatus = this.shareStatus;
+    final sharedAccountId = this.sharedAccountId;
+    final sharedDirectoryId = this.sharedDirectoryId;
+    return {
+      if (createdDateTime != null)
+        'CreatedDateTime': unixTimestampToJson(createdDateTime),
+      if (lastUpdatedDateTime != null)
+        'LastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (ownerDirectoryId != null) 'OwnerDirectoryId': ownerDirectoryId,
+      if (shareMethod != null) 'ShareMethod': shareMethod.toValue(),
+      if (shareNotes != null) 'ShareNotes': shareNotes,
+      if (shareStatus != null) 'ShareStatus': shareStatus.toValue(),
+      if (sharedAccountId != null) 'SharedAccountId': sharedAccountId,
+      if (sharedDirectoryId != null) 'SharedDirectoryId': sharedDirectoryId,
+    };
+  }
 }
 
 /// Describes a directory snapshot.
@@ -6291,6 +7081,23 @@ class Snapshot {
       type: (json['Type'] as String?)?.toSnapshotType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directoryId = this.directoryId;
+    final name = this.name;
+    final snapshotId = this.snapshotId;
+    final startTime = this.startTime;
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (directoryId != null) 'DirectoryId': directoryId,
+      if (name != null) 'Name': name,
+      if (snapshotId != null) 'SnapshotId': snapshotId,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Contains manual snapshot limit information for a directory.
@@ -6315,6 +7122,20 @@ class SnapshotLimits {
       manualSnapshotsLimit: json['ManualSnapshotsLimit'] as int?,
       manualSnapshotsLimitReached: json['ManualSnapshotsLimitReached'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final manualSnapshotsCurrentCount = this.manualSnapshotsCurrentCount;
+    final manualSnapshotsLimit = this.manualSnapshotsLimit;
+    final manualSnapshotsLimitReached = this.manualSnapshotsLimitReached;
+    return {
+      if (manualSnapshotsCurrentCount != null)
+        'ManualSnapshotsCurrentCount': manualSnapshotsCurrentCount,
+      if (manualSnapshotsLimit != null)
+        'ManualSnapshotsLimit': manualSnapshotsLimit,
+      if (manualSnapshotsLimitReached != null)
+        'ManualSnapshotsLimitReached': manualSnapshotsLimitReached,
+    };
   }
 }
 
@@ -6390,6 +7211,13 @@ class StartSchemaExtensionResult {
     return StartSchemaExtensionResult(
       schemaExtensionId: json['SchemaExtensionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final schemaExtensionId = this.schemaExtensionId;
+    return {
+      if (schemaExtensionId != null) 'SchemaExtensionId': schemaExtensionId,
+    };
   }
 }
 
@@ -6556,6 +7384,37 @@ class Trust {
       trustType: (json['TrustType'] as String?)?.toTrustType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDateTime = this.createdDateTime;
+    final directoryId = this.directoryId;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final remoteDomainName = this.remoteDomainName;
+    final selectiveAuth = this.selectiveAuth;
+    final stateLastUpdatedDateTime = this.stateLastUpdatedDateTime;
+    final trustDirection = this.trustDirection;
+    final trustId = this.trustId;
+    final trustState = this.trustState;
+    final trustStateReason = this.trustStateReason;
+    final trustType = this.trustType;
+    return {
+      if (createdDateTime != null)
+        'CreatedDateTime': unixTimestampToJson(createdDateTime),
+      if (directoryId != null) 'DirectoryId': directoryId,
+      if (lastUpdatedDateTime != null)
+        'LastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (remoteDomainName != null) 'RemoteDomainName': remoteDomainName,
+      if (selectiveAuth != null) 'SelectiveAuth': selectiveAuth.toValue(),
+      if (stateLastUpdatedDateTime != null)
+        'StateLastUpdatedDateTime':
+            unixTimestampToJson(stateLastUpdatedDateTime),
+      if (trustDirection != null) 'TrustDirection': trustDirection.toValue(),
+      if (trustId != null) 'TrustId': trustId,
+      if (trustState != null) 'TrustState': trustState.toValue(),
+      if (trustStateReason != null) 'TrustStateReason': trustStateReason,
+      if (trustType != null) 'TrustType': trustType.toValue(),
+    };
+  }
 }
 
 enum TrustDirection {
@@ -6705,6 +7564,13 @@ class UnshareDirectoryResult {
       sharedDirectoryId: json['SharedDirectoryId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sharedDirectoryId = this.sharedDirectoryId;
+    return {
+      if (sharedDirectoryId != null) 'SharedDirectoryId': sharedDirectoryId,
+    };
+  }
 }
 
 /// Identifier that contains details about the directory consumer account with
@@ -6720,6 +7586,7 @@ class UnshareTarget {
     required this.id,
     required this.type,
   });
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final type = this.type;
@@ -6736,6 +7603,10 @@ class UpdateConditionalForwarderResult {
   factory UpdateConditionalForwarderResult.fromJson(Map<String, dynamic> _) {
     return UpdateConditionalForwarderResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateNumberOfDomainControllersResult {
@@ -6744,6 +7615,10 @@ class UpdateNumberOfDomainControllersResult {
       Map<String, dynamic> _) {
     return UpdateNumberOfDomainControllersResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains the results of the <a>UpdateRadius</a> operation.
@@ -6751,6 +7626,10 @@ class UpdateRadiusResult {
   UpdateRadiusResult();
   factory UpdateRadiusResult.fromJson(Map<String, dynamic> _) {
     return UpdateRadiusResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6765,6 +7644,13 @@ class UpdateSettingsResult {
     return UpdateSettingsResult(
       directoryId: json['DirectoryId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final directoryId = this.directoryId;
+    return {
+      if (directoryId != null) 'DirectoryId': directoryId,
+    };
   }
 }
 
@@ -6784,6 +7670,15 @@ class UpdateTrustResult {
       trustId: json['TrustId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final requestId = this.requestId;
+    final trustId = this.trustId;
+    return {
+      if (requestId != null) 'RequestId': requestId,
+      if (trustId != null) 'TrustId': trustId,
+    };
+  }
 }
 
 /// Result of a VerifyTrust request.
@@ -6798,6 +7693,13 @@ class VerifyTrustResult {
     return VerifyTrustResult(
       trustId: json['TrustId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trustId = this.trustId;
+    return {
+      if (trustId != null) 'TrustId': trustId,
+    };
   }
 }
 

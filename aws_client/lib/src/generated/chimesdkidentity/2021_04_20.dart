@@ -1043,6 +1043,23 @@ class AppInstance {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceArn = this.appInstanceArn;
+    final createdTimestamp = this.createdTimestamp;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final metadata = this.metadata;
+    final name = this.name;
+    return {
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (metadata != null) 'Metadata': metadata,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// The details of an <code>AppInstanceAdmin</code>.
@@ -1071,6 +1088,18 @@ class AppInstanceAdmin {
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final admin = this.admin;
+    final appInstanceArn = this.appInstanceArn;
+    final createdTimestamp = this.createdTimestamp;
+    return {
+      if (admin != null) 'Admin': admin,
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+    };
+  }
 }
 
 /// Summary of the details of an <code>AppInstanceAdmin</code>.
@@ -1087,6 +1116,13 @@ class AppInstanceAdminSummary {
           ? Identity.fromJson(json['Admin'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final admin = this.admin;
+    return {
+      if (admin != null) 'Admin': admin,
+    };
   }
 }
 
@@ -1139,6 +1175,17 @@ class AppInstanceSummary {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceArn = this.appInstanceArn;
+    final metadata = this.metadata;
+    final name = this.name;
+    return {
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+      if (metadata != null) 'Metadata': metadata,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// The details of an <code>AppInstanceUser</code>.
@@ -1173,6 +1220,23 @@ class AppInstanceUser {
       metadata: json['Metadata'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUserArn = this.appInstanceUserArn;
+    final createdTimestamp = this.createdTimestamp;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final metadata = this.metadata;
+    final name = this.name;
+    return {
+      if (appInstanceUserArn != null) 'AppInstanceUserArn': appInstanceUserArn,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (metadata != null) 'Metadata': metadata,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -1270,6 +1334,33 @@ class AppInstanceUserEndpoint {
       type: (json['Type'] as String?)?.toAppInstanceUserEndpointType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowMessages = this.allowMessages;
+    final appInstanceUserArn = this.appInstanceUserArn;
+    final createdTimestamp = this.createdTimestamp;
+    final endpointAttributes = this.endpointAttributes;
+    final endpointId = this.endpointId;
+    final endpointState = this.endpointState;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final name = this.name;
+    final resourceArn = this.resourceArn;
+    final type = this.type;
+    return {
+      if (allowMessages != null) 'AllowMessages': allowMessages.toValue(),
+      if (appInstanceUserArn != null) 'AppInstanceUserArn': appInstanceUserArn,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (endpointAttributes != null) 'EndpointAttributes': endpointAttributes,
+      if (endpointId != null) 'EndpointId': endpointId,
+      if (endpointState != null) 'EndpointState': endpointState,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (name != null) 'Name': name,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Summary of the details of an <code>AppInstanceUserEndpoint</code>.
@@ -1316,6 +1407,23 @@ class AppInstanceUserEndpointSummary {
       name: json['Name'] as String?,
       type: (json['Type'] as String?)?.toAppInstanceUserEndpointType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowMessages = this.allowMessages;
+    final appInstanceUserArn = this.appInstanceUserArn;
+    final endpointId = this.endpointId;
+    final endpointState = this.endpointState;
+    final name = this.name;
+    final type = this.type;
+    return {
+      if (allowMessages != null) 'AllowMessages': allowMessages.toValue(),
+      if (appInstanceUserArn != null) 'AppInstanceUserArn': appInstanceUserArn,
+      if (endpointId != null) 'EndpointId': endpointId,
+      if (endpointState != null) 'EndpointState': endpointState,
+      if (name != null) 'Name': name,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -1376,6 +1484,17 @@ class AppInstanceUserSummary {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUserArn = this.appInstanceUserArn;
+    final metadata = this.metadata;
+    final name = this.name;
+    return {
+      if (appInstanceUserArn != null) 'AppInstanceUserArn': appInstanceUserArn,
+      if (metadata != null) 'Metadata': metadata,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// The details of the retention settings for a channel.
@@ -1419,6 +1538,15 @@ class CreateAppInstanceAdminResponse {
       appInstanceArn: json['AppInstanceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceAdmin = this.appInstanceAdmin;
+    final appInstanceArn = this.appInstanceArn;
+    return {
+      if (appInstanceAdmin != null) 'AppInstanceAdmin': appInstanceAdmin,
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+    };
+  }
 }
 
 class CreateAppInstanceResponse {
@@ -1433,6 +1561,13 @@ class CreateAppInstanceResponse {
       appInstanceArn: json['AppInstanceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceArn = this.appInstanceArn;
+    return {
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+    };
+  }
 }
 
 class CreateAppInstanceUserResponse {
@@ -1446,6 +1581,13 @@ class CreateAppInstanceUserResponse {
     return CreateAppInstanceUserResponse(
       appInstanceUserArn: json['AppInstanceUserArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUserArn = this.appInstanceUserArn;
+    return {
+      if (appInstanceUserArn != null) 'AppInstanceUserArn': appInstanceUserArn,
+    };
   }
 }
 
@@ -1466,6 +1608,13 @@ class DescribeAppInstanceAdminResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceAdmin = this.appInstanceAdmin;
+    return {
+      if (appInstanceAdmin != null) 'AppInstanceAdmin': appInstanceAdmin,
+    };
+  }
 }
 
 class DescribeAppInstanceResponse {
@@ -1482,6 +1631,13 @@ class DescribeAppInstanceResponse {
           ? AppInstance.fromJson(json['AppInstance'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appInstance = this.appInstance;
+    return {
+      if (appInstance != null) 'AppInstance': appInstance,
+    };
   }
 }
 
@@ -1504,6 +1660,14 @@ class DescribeAppInstanceUserEndpointResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUserEndpoint = this.appInstanceUserEndpoint;
+    return {
+      if (appInstanceUserEndpoint != null)
+        'AppInstanceUserEndpoint': appInstanceUserEndpoint,
+    };
+  }
 }
 
 class DescribeAppInstanceUserResponse {
@@ -1520,6 +1684,13 @@ class DescribeAppInstanceUserResponse {
               json['AppInstanceUser'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUser = this.appInstanceUser;
+    return {
+      if (appInstanceUser != null) 'AppInstanceUser': appInstanceUser,
+    };
   }
 }
 
@@ -1594,6 +1765,15 @@ class EndpointState {
       status: (json['Status'] as String).toEndpointStatus(),
       statusReason: (json['StatusReason'] as String?)?.toEndpointStatusReason(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason.toValue(),
+    };
   }
 }
 
@@ -1676,6 +1856,18 @@ class GetAppInstanceRetentionSettingsResponse {
           timeStampFromJson(json['InitiateDeletionTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceRetentionSettings = this.appInstanceRetentionSettings;
+    final initiateDeletionTimestamp = this.initiateDeletionTimestamp;
+    return {
+      if (appInstanceRetentionSettings != null)
+        'AppInstanceRetentionSettings': appInstanceRetentionSettings,
+      if (initiateDeletionTimestamp != null)
+        'InitiateDeletionTimestamp':
+            unixTimestampToJson(initiateDeletionTimestamp),
+    };
+  }
 }
 
 /// The details of a user.
@@ -1695,6 +1887,15 @@ class Identity {
       arn: json['Arn'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -1725,6 +1926,17 @@ class ListAppInstanceAdminsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceAdmins = this.appInstanceAdmins;
+    final appInstanceArn = this.appInstanceArn;
+    final nextToken = this.nextToken;
+    return {
+      if (appInstanceAdmins != null) 'AppInstanceAdmins': appInstanceAdmins,
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListAppInstanceUserEndpointsResponse {
@@ -1749,6 +1961,16 @@ class ListAppInstanceUserEndpointsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUserEndpoints = this.appInstanceUserEndpoints;
+    final nextToken = this.nextToken;
+    return {
+      if (appInstanceUserEndpoints != null)
+        'AppInstanceUserEndpoints': appInstanceUserEndpoints,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1779,6 +2001,17 @@ class ListAppInstanceUsersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceArn = this.appInstanceArn;
+    final appInstanceUsers = this.appInstanceUsers;
+    final nextToken = this.nextToken;
+    return {
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+      if (appInstanceUsers != null) 'AppInstanceUsers': appInstanceUsers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListAppInstancesResponse {
@@ -1802,6 +2035,15 @@ class ListAppInstancesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstances = this.appInstances;
+    final nextToken = this.nextToken;
+    return {
+      if (appInstances != null) 'AppInstances': appInstances,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1818,6 +2060,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1843,6 +2092,18 @@ class PutAppInstanceRetentionSettingsResponse {
           timeStampFromJson(json['InitiateDeletionTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceRetentionSettings = this.appInstanceRetentionSettings;
+    final initiateDeletionTimestamp = this.initiateDeletionTimestamp;
+    return {
+      if (appInstanceRetentionSettings != null)
+        'AppInstanceRetentionSettings': appInstanceRetentionSettings,
+      if (initiateDeletionTimestamp != null)
+        'InitiateDeletionTimestamp':
+            unixTimestampToJson(initiateDeletionTimestamp),
+    };
+  }
 }
 
 class RegisterAppInstanceUserEndpointResponse {
@@ -1862,6 +2123,15 @@ class RegisterAppInstanceUserEndpointResponse {
       appInstanceUserArn: json['AppInstanceUserArn'] as String?,
       endpointId: json['EndpointId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUserArn = this.appInstanceUserArn;
+    final endpointId = this.endpointId;
+    return {
+      if (appInstanceUserArn != null) 'AppInstanceUserArn': appInstanceUserArn,
+      if (endpointId != null) 'EndpointId': endpointId,
+    };
   }
 }
 
@@ -1906,6 +2176,13 @@ class UpdateAppInstanceResponse {
       appInstanceArn: json['AppInstanceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceArn = this.appInstanceArn;
+    return {
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+    };
+  }
 }
 
 class UpdateAppInstanceUserEndpointResponse {
@@ -1926,6 +2203,15 @@ class UpdateAppInstanceUserEndpointResponse {
       endpointId: json['EndpointId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUserArn = this.appInstanceUserArn;
+    final endpointId = this.endpointId;
+    return {
+      if (appInstanceUserArn != null) 'AppInstanceUserArn': appInstanceUserArn,
+      if (endpointId != null) 'EndpointId': endpointId,
+    };
+  }
 }
 
 class UpdateAppInstanceUserResponse {
@@ -1939,6 +2225,13 @@ class UpdateAppInstanceUserResponse {
     return UpdateAppInstanceUserResponse(
       appInstanceUserArn: json['AppInstanceUserArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUserArn = this.appInstanceUserArn;
+    return {
+      if (appInstanceUserArn != null) 'AppInstanceUserArn': appInstanceUserArn,
+    };
   }
 }
 

@@ -617,6 +617,25 @@ class Campaign {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final connectInstanceId = this.connectInstanceId;
+    final dialerConfig = this.dialerConfig;
+    final id = this.id;
+    final name = this.name;
+    final outboundCallConfig = this.outboundCallConfig;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'connectInstanceId': connectInstanceId,
+      'dialerConfig': dialerConfig,
+      'id': id,
+      'name': name,
+      'outboundCallConfig': outboundCallConfig,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Filter model by type
@@ -626,6 +645,7 @@ class CampaignFilters {
   CampaignFilters({
     this.instanceIdFilter,
   });
+
   Map<String, dynamic> toJson() {
     final instanceIdFilter = this.instanceIdFilter;
     return {
@@ -699,6 +719,19 @@ class CampaignSummary {
       name: json['name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final connectInstanceId = this.connectInstanceId;
+    final id = this.id;
+    final name = this.name;
+    return {
+      'arn': arn,
+      'connectInstanceId': connectInstanceId,
+      'id': id,
+      'name': name,
+    };
+  }
 }
 
 /// The response for Create Campaign API
@@ -720,6 +753,17 @@ class CreateCampaignResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (id != null) 'id': id,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// DescribeCampaignResponse
@@ -736,6 +780,13 @@ class DescribeCampaignResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final campaign = this.campaign;
+    return {
+      if (campaign != null) 'campaign': campaign,
+    };
+  }
 }
 
 /// A dial request for a campaign.
@@ -751,6 +802,7 @@ class DialRequest {
     required this.expirationTime,
     required this.phoneNumber,
   });
+
   Map<String, dynamic> toJson() {
     final attributes = this.attributes;
     final clientToken = this.clientToken;
@@ -873,6 +925,15 @@ class FailedCampaignStateResponse {
           ?.toGetCampaignStateBatchFailureCode(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final campaignId = this.campaignId;
+    final failureCode = this.failureCode;
+    return {
+      if (campaignId != null) 'campaignId': campaignId,
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+    };
+  }
 }
 
 /// A failed request identified by the unique client token.
@@ -892,6 +953,17 @@ class FailedRequest {
       failureCode: (json['failureCode'] as String?)?.toFailureCode(),
       id: json['id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final failureCode = this.failureCode;
+    final id = this.id;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+      if (id != null) 'id': id,
+    };
   }
 }
 
@@ -984,6 +1056,15 @@ class GetCampaignStateBatchResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedRequests = this.failedRequests;
+    final successfulRequests = this.successfulRequests;
+    return {
+      if (failedRequests != null) 'failedRequests': failedRequests,
+      if (successfulRequests != null) 'successfulRequests': successfulRequests,
+    };
+  }
 }
 
 /// GetCampaignStateResponse
@@ -997,6 +1078,13 @@ class GetCampaignStateResponse {
     return GetCampaignStateResponse(
       state: (json['state'] as String?)?.toCampaignState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    return {
+      if (state != null) 'state': state.toValue(),
+    };
   }
 }
 
@@ -1014,6 +1102,14 @@ class GetConnectInstanceConfigResponse {
               json['connectInstanceConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectInstanceConfig = this.connectInstanceConfig;
+    return {
+      if (connectInstanceConfig != null)
+        'connectInstanceConfig': connectInstanceConfig,
+    };
   }
 }
 
@@ -1034,6 +1130,16 @@ class GetInstanceOnboardingJobStatusResponse {
                       as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectInstanceOnboardingJobStatus =
+        this.connectInstanceOnboardingJobStatus;
+    return {
+      if (connectInstanceOnboardingJobStatus != null)
+        'connectInstanceOnboardingJobStatus':
+            connectInstanceOnboardingJobStatus,
+    };
   }
 }
 
@@ -1056,6 +1162,17 @@ class InstanceConfig {
       serviceLinkedRoleArn: json['serviceLinkedRoleArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectInstanceId = this.connectInstanceId;
+    final encryptionConfig = this.encryptionConfig;
+    final serviceLinkedRoleArn = this.serviceLinkedRoleArn;
+    return {
+      'connectInstanceId': connectInstanceId,
+      'encryptionConfig': encryptionConfig,
+      'serviceLinkedRoleArn': serviceLinkedRoleArn,
+    };
+  }
 }
 
 /// Connect instance identifier filter
@@ -1067,6 +1184,7 @@ class InstanceIdFilter {
     required this.operator,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final operator = this.operator;
     final value = this.value;
@@ -1172,6 +1290,17 @@ class InstanceOnboardingJobStatus {
           ?.toInstanceOnboardingJobFailureCode(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectInstanceId = this.connectInstanceId;
+    final status = this.status;
+    final failureCode = this.failureCode;
+    return {
+      'connectInstanceId': connectInstanceId,
+      'status': status.toValue(),
+      if (failureCode != null) 'failureCode': failureCode.toValue(),
+    };
+  }
 }
 
 /// Enumeration of the possible states for instance onboarding job
@@ -1228,6 +1357,16 @@ class ListCampaignsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final campaignSummaryList = this.campaignSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (campaignSummaryList != null)
+        'campaignSummaryList': campaignSummaryList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// ListTagsForResponse
@@ -1242,6 +1381,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1349,6 +1495,15 @@ class PutDialRequestBatchResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedRequests = this.failedRequests;
+    final successfulRequests = this.successfulRequests;
+    return {
+      if (failedRequests != null) 'failedRequests': failedRequests,
+      if (successfulRequests != null) 'successfulRequests': successfulRequests,
+    };
+  }
 }
 
 /// The response for StartInstanceOnboardingJob API.
@@ -1369,6 +1524,16 @@ class StartInstanceOnboardingJobResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectInstanceOnboardingJobStatus =
+        this.connectInstanceOnboardingJobStatus;
+    return {
+      if (connectInstanceOnboardingJobStatus != null)
+        'connectInstanceOnboardingJobStatus':
+            connectInstanceOnboardingJobStatus,
+    };
+  }
 }
 
 /// Successful response of campaign state
@@ -1386,6 +1551,15 @@ class SuccessfulCampaignStateResponse {
       state: (json['state'] as String?)?.toCampaignState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final campaignId = this.campaignId;
+    final state = this.state;
+    return {
+      if (campaignId != null) 'campaignId': campaignId,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 /// A successful request identified by the unique client token.
@@ -1402,6 +1576,15 @@ class SuccessfulRequest {
       clientToken: json['clientToken'] as String?,
       id: json['id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final id = this.id;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (id != null) 'id': id,
+    };
   }
 }
 

@@ -594,6 +594,21 @@ class Action {
           MapEntry(k, ActionTarget.fromJson(e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final id = this.id;
+    final parameters = this.parameters;
+    final tags = this.tags;
+    final targets = this.targets;
+    return {
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (parameters != null) 'parameters': parameters,
+      if (tags != null) 'tags': tags,
+      if (targets != null) 'targets': targets,
+    };
+  }
 }
 
 /// Describes a parameter for an action.
@@ -613,6 +628,15 @@ class ActionParameter {
       description: json['description'] as String?,
       required: json['required'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final required = this.required;
+    return {
+      if (description != null) 'description': description,
+      if (required != null) 'required': required,
+    };
   }
 }
 
@@ -646,6 +670,19 @@ class ActionSummary {
           MapEntry(k, ActionTarget.fromJson(e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final id = this.id;
+    final tags = this.tags;
+    final targets = this.targets;
+    return {
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (tags != null) 'tags': tags,
+      if (targets != null) 'targets': targets,
+    };
+  }
 }
 
 /// Describes a target for an action.
@@ -660,6 +697,13 @@ class ActionTarget {
     return ActionTarget(
       resourceType: json['resourceType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceType = this.resourceType;
+    return {
+      if (resourceType != null) 'resourceType': resourceType,
+    };
   }
 }
 
@@ -694,6 +738,7 @@ class CreateExperimentTemplateActionInput {
     this.startAfter,
     this.targets,
   });
+
   Map<String, dynamic> toJson() {
     final actionId = this.actionId;
     final description = this.description;
@@ -727,6 +772,7 @@ class CreateExperimentTemplateLogConfigurationInput {
     this.cloudWatchLogsConfiguration,
     this.s3Configuration,
   });
+
   Map<String, dynamic> toJson() {
     final logSchemaVersion = this.logSchemaVersion;
     final cloudWatchLogsConfiguration = this.cloudWatchLogsConfiguration;
@@ -755,6 +801,13 @@ class CreateExperimentTemplateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final experimentTemplate = this.experimentTemplate;
+    return {
+      if (experimentTemplate != null) 'experimentTemplate': experimentTemplate,
+    };
+  }
 }
 
 /// Specifies a stop condition for an experiment template.
@@ -772,6 +825,7 @@ class CreateExperimentTemplateStopConditionInput {
     required this.source,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final source = this.source;
     final value = this.value;
@@ -835,6 +889,7 @@ class CreateExperimentTemplateTargetInput {
     this.resourceArns,
     this.resourceTags,
   });
+
   Map<String, dynamic> toJson() {
     final resourceType = this.resourceType;
     final selectionMode = this.selectionMode;
@@ -867,6 +922,13 @@ class DeleteExperimentTemplateResponse {
               json['experimentTemplate'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final experimentTemplate = this.experimentTemplate;
+    return {
+      if (experimentTemplate != null) 'experimentTemplate': experimentTemplate,
+    };
   }
 }
 
@@ -951,6 +1013,37 @@ class Experiment {
           MapEntry(k, ExperimentTarget.fromJson(e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final creationTime = this.creationTime;
+    final endTime = this.endTime;
+    final experimentTemplateId = this.experimentTemplateId;
+    final id = this.id;
+    final logConfiguration = this.logConfiguration;
+    final roleArn = this.roleArn;
+    final startTime = this.startTime;
+    final state = this.state;
+    final stopConditions = this.stopConditions;
+    final tags = this.tags;
+    final targets = this.targets;
+    return {
+      if (actions != null) 'actions': actions,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (experimentTemplateId != null)
+        'experimentTemplateId': experimentTemplateId,
+      if (id != null) 'id': id,
+      if (logConfiguration != null) 'logConfiguration': logConfiguration,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (state != null) 'state': state,
+      if (stopConditions != null) 'stopConditions': stopConditions,
+      if (tags != null) 'tags': tags,
+      if (targets != null) 'targets': targets,
+    };
+  }
 }
 
 /// Describes the action for an experiment.
@@ -1009,6 +1102,27 @@ class ExperimentAction {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionId = this.actionId;
+    final description = this.description;
+    final endTime = this.endTime;
+    final parameters = this.parameters;
+    final startAfter = this.startAfter;
+    final startTime = this.startTime;
+    final state = this.state;
+    final targets = this.targets;
+    return {
+      if (actionId != null) 'actionId': actionId,
+      if (description != null) 'description': description,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (parameters != null) 'parameters': parameters,
+      if (startAfter != null) 'startAfter': startAfter,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (state != null) 'state': state,
+      if (targets != null) 'targets': targets,
+    };
+  }
 }
 
 /// Describes the state of an action.
@@ -1028,6 +1142,15 @@ class ExperimentActionState {
       reason: json['reason'] as String?,
       status: (json['status'] as String?)?.toExperimentActionStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reason = this.reason;
+    final status = this.status;
+    return {
+      if (reason != null) 'reason': reason,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -1105,6 +1228,13 @@ class ExperimentCloudWatchLogsLogConfiguration {
       logGroupArn: json['logGroupArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logGroupArn = this.logGroupArn;
+    return {
+      if (logGroupArn != null) 'logGroupArn': logGroupArn,
+    };
+  }
 }
 
 /// Describes the configuration for experiment logging.
@@ -1136,6 +1266,18 @@ class ExperimentLogConfiguration {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsConfiguration = this.cloudWatchLogsConfiguration;
+    final logSchemaVersion = this.logSchemaVersion;
+    final s3Configuration = this.s3Configuration;
+    return {
+      if (cloudWatchLogsConfiguration != null)
+        'cloudWatchLogsConfiguration': cloudWatchLogsConfiguration,
+      if (logSchemaVersion != null) 'logSchemaVersion': logSchemaVersion,
+      if (s3Configuration != null) 's3Configuration': s3Configuration,
+    };
+  }
 }
 
 /// Describes the configuration for experiment logging to Amazon S3.
@@ -1156,6 +1298,15 @@ class ExperimentS3LogConfiguration {
       prefix: json['prefix'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucketName = this.bucketName;
+    final prefix = this.prefix;
+    return {
+      if (bucketName != null) 'bucketName': bucketName,
+      if (prefix != null) 'prefix': prefix,
+    };
+  }
 }
 
 /// Describes the state of an experiment.
@@ -1175,6 +1326,15 @@ class ExperimentState {
       reason: json['reason'] as String?,
       status: (json['status'] as String?)?.toExperimentStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reason = this.reason;
+    final status = this.status;
+    return {
+      if (reason != null) 'reason': reason,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -1249,6 +1409,15 @@ class ExperimentStopCondition {
       value: json['value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final source = this.source;
+    final value = this.value;
+    return {
+      if (source != null) 'source': source,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Provides a summary of an experiment.
@@ -1286,6 +1455,23 @@ class ExperimentSummary {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final experimentTemplateId = this.experimentTemplateId;
+    final id = this.id;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (experimentTemplateId != null)
+        'experimentTemplateId': experimentTemplateId,
+      if (id != null) 'id': id,
+      if (state != null) 'state': state,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1336,6 +1522,23 @@ class ExperimentTarget {
       selectionMode: json['selectionMode'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final filters = this.filters;
+    final parameters = this.parameters;
+    final resourceArns = this.resourceArns;
+    final resourceTags = this.resourceTags;
+    final resourceType = this.resourceType;
+    final selectionMode = this.selectionMode;
+    return {
+      if (filters != null) 'filters': filters,
+      if (parameters != null) 'parameters': parameters,
+      if (resourceArns != null) 'resourceArns': resourceArns,
+      if (resourceTags != null) 'resourceTags': resourceTags,
+      if (resourceType != null) 'resourceType': resourceType,
+      if (selectionMode != null) 'selectionMode': selectionMode,
+    };
+  }
 }
 
 /// Describes a filter used for the target resources in an experiment.
@@ -1358,6 +1561,15 @@ class ExperimentTargetFilter {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final path = this.path;
+    final values = this.values;
+    return {
+      if (path != null) 'path': path,
+      if (values != null) 'values': values,
+    };
   }
 }
 
@@ -1431,6 +1643,33 @@ class ExperimentTemplate {
               k, ExperimentTemplateTarget.fromJson(e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdateTime = this.lastUpdateTime;
+    final logConfiguration = this.logConfiguration;
+    final roleArn = this.roleArn;
+    final stopConditions = this.stopConditions;
+    final tags = this.tags;
+    final targets = this.targets;
+    return {
+      if (actions != null) 'actions': actions,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (logConfiguration != null) 'logConfiguration': logConfiguration,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (stopConditions != null) 'stopConditions': stopConditions,
+      if (tags != null) 'tags': tags,
+      if (targets != null) 'targets': targets,
+    };
+  }
 }
 
 /// Describes an action for an experiment template.
@@ -1472,6 +1711,21 @@ class ExperimentTemplateAction {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionId = this.actionId;
+    final description = this.description;
+    final parameters = this.parameters;
+    final startAfter = this.startAfter;
+    final targets = this.targets;
+    return {
+      if (actionId != null) 'actionId': actionId,
+      if (description != null) 'description': description,
+      if (parameters != null) 'parameters': parameters,
+      if (startAfter != null) 'startAfter': startAfter,
+      if (targets != null) 'targets': targets,
+    };
+  }
 }
 
 /// Describes the configuration for experiment logging to Amazon CloudWatch
@@ -1490,6 +1744,13 @@ class ExperimentTemplateCloudWatchLogsLogConfiguration {
       logGroupArn: json['logGroupArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logGroupArn = this.logGroupArn;
+    return {
+      if (logGroupArn != null) 'logGroupArn': logGroupArn,
+    };
+  }
 }
 
 /// Specifies the configuration for experiment logging to Amazon CloudWatch
@@ -1502,6 +1763,7 @@ class ExperimentTemplateCloudWatchLogsLogConfigurationInput {
   ExperimentTemplateCloudWatchLogsLogConfigurationInput({
     required this.logGroupArn,
   });
+
   Map<String, dynamic> toJson() {
     final logGroupArn = this.logGroupArn;
     return {
@@ -1541,6 +1803,18 @@ class ExperimentTemplateLogConfiguration {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsConfiguration = this.cloudWatchLogsConfiguration;
+    final logSchemaVersion = this.logSchemaVersion;
+    final s3Configuration = this.s3Configuration;
+    return {
+      if (cloudWatchLogsConfiguration != null)
+        'cloudWatchLogsConfiguration': cloudWatchLogsConfiguration,
+      if (logSchemaVersion != null) 'logSchemaVersion': logSchemaVersion,
+      if (s3Configuration != null) 's3Configuration': s3Configuration,
+    };
+  }
 }
 
 /// Describes the configuration for experiment logging to Amazon S3.
@@ -1562,6 +1836,15 @@ class ExperimentTemplateS3LogConfiguration {
       prefix: json['prefix'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucketName = this.bucketName;
+    final prefix = this.prefix;
+    return {
+      if (bucketName != null) 'bucketName': bucketName,
+      if (prefix != null) 'prefix': prefix,
+    };
+  }
 }
 
 /// Specifies the configuration for experiment logging to Amazon S3.
@@ -1576,6 +1859,7 @@ class ExperimentTemplateS3LogConfigurationInput {
     required this.bucketName,
     this.prefix,
   });
+
   Map<String, dynamic> toJson() {
     final bucketName = this.bucketName;
     final prefix = this.prefix;
@@ -1603,6 +1887,15 @@ class ExperimentTemplateStopCondition {
       source: json['source'] as String?,
       value: json['value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final source = this.source;
+    final value = this.value;
+    return {
+      if (source != null) 'source': source,
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -1639,6 +1932,23 @@ class ExperimentTemplateSummary {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdateTime = this.lastUpdateTime;
+    final tags = this.tags;
+    return {
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1689,6 +1999,23 @@ class ExperimentTemplateTarget {
       selectionMode: json['selectionMode'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final filters = this.filters;
+    final parameters = this.parameters;
+    final resourceArns = this.resourceArns;
+    final resourceTags = this.resourceTags;
+    final resourceType = this.resourceType;
+    final selectionMode = this.selectionMode;
+    return {
+      if (filters != null) 'filters': filters,
+      if (parameters != null) 'parameters': parameters,
+      if (resourceArns != null) 'resourceArns': resourceArns,
+      if (resourceTags != null) 'resourceTags': resourceTags,
+      if (resourceType != null) 'resourceType': resourceType,
+      if (selectionMode != null) 'selectionMode': selectionMode,
+    };
+  }
 }
 
 /// Describes a filter used for the target resources in an experiment template.
@@ -1712,6 +2039,15 @@ class ExperimentTemplateTargetFilter {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final path = this.path;
+    final values = this.values;
+    return {
+      if (path != null) 'path': path,
+      if (values != null) 'values': values,
+    };
+  }
 }
 
 /// Specifies a filter used for the target resource input in an experiment
@@ -1731,6 +2067,7 @@ class ExperimentTemplateTargetInputFilter {
     required this.path,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final path = this.path;
     final values = this.values;
@@ -1755,6 +2092,13 @@ class GetActionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    return {
+      if (action != null) 'action': action,
+    };
+  }
 }
 
 class GetExperimentResponse {
@@ -1770,6 +2114,13 @@ class GetExperimentResponse {
           ? Experiment.fromJson(json['experiment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final experiment = this.experiment;
+    return {
+      if (experiment != null) 'experiment': experiment,
+    };
   }
 }
 
@@ -1788,6 +2139,13 @@ class GetExperimentTemplateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final experimentTemplate = this.experimentTemplate;
+    return {
+      if (experimentTemplate != null) 'experimentTemplate': experimentTemplate,
+    };
+  }
 }
 
 class GetTargetResourceTypeResponse {
@@ -1804,6 +2162,13 @@ class GetTargetResourceTypeResponse {
               json['targetResourceType'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final targetResourceType = this.targetResourceType;
+    return {
+      if (targetResourceType != null) 'targetResourceType': targetResourceType,
+    };
   }
 }
 
@@ -1827,6 +2192,15 @@ class ListActionsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final nextToken = this.nextToken;
+    return {
+      if (actions != null) 'actions': actions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1852,6 +2226,16 @@ class ListExperimentTemplatesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final experimentTemplates = this.experimentTemplates;
+    final nextToken = this.nextToken;
+    return {
+      if (experimentTemplates != null)
+        'experimentTemplates': experimentTemplates,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListExperimentsResponse {
@@ -1875,6 +2259,15 @@ class ListExperimentsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final experiments = this.experiments;
+    final nextToken = this.nextToken;
+    return {
+      if (experiments != null) 'experiments': experiments,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1889,6 +2282,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1914,6 +2314,16 @@ class ListTargetResourceTypesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final targetResourceTypes = this.targetResourceTypes;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (targetResourceTypes != null)
+        'targetResourceTypes': targetResourceTypes,
+    };
+  }
 }
 
 class StartExperimentResponse {
@@ -1929,6 +2339,13 @@ class StartExperimentResponse {
           ? Experiment.fromJson(json['experiment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final experiment = this.experiment;
+    return {
+      if (experiment != null) 'experiment': experiment,
+    };
   }
 }
 
@@ -1946,12 +2363,23 @@ class StopExperimentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final experiment = this.experiment;
+    return {
+      if (experiment != null) 'experiment': experiment,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1980,6 +2408,17 @@ class TargetResourceType {
       resourceType: json['resourceType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final parameters = this.parameters;
+    final resourceType = this.resourceType;
+    return {
+      if (description != null) 'description': description,
+      if (parameters != null) 'parameters': parameters,
+      if (resourceType != null) 'resourceType': resourceType,
+    };
+  }
 }
 
 /// Describes the parameters for a resource type. Use parameters to determine
@@ -2001,6 +2440,15 @@ class TargetResourceTypeParameter {
       required: json['required'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final required = this.required;
+    return {
+      if (description != null) 'description': description,
+      if (required != null) 'required': required,
+    };
+  }
 }
 
 /// Describes a resource type.
@@ -2021,12 +2469,25 @@ class TargetResourceTypeSummary {
       resourceType: json['resourceType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final resourceType = this.resourceType;
+    return {
+      if (description != null) 'description': description,
+      if (resourceType != null) 'resourceType': resourceType,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2056,6 +2517,7 @@ class UpdateExperimentTemplateActionInputItem {
     this.startAfter,
     this.targets,
   });
+
   Map<String, dynamic> toJson() {
     final actionId = this.actionId;
     final description = this.description;
@@ -2089,6 +2551,7 @@ class UpdateExperimentTemplateLogConfigurationInput {
     this.logSchemaVersion,
     this.s3Configuration,
   });
+
   Map<String, dynamic> toJson() {
     final cloudWatchLogsConfiguration = this.cloudWatchLogsConfiguration;
     final logSchemaVersion = this.logSchemaVersion;
@@ -2117,6 +2580,13 @@ class UpdateExperimentTemplateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final experimentTemplate = this.experimentTemplate;
+    return {
+      if (experimentTemplate != null) 'experimentTemplate': experimentTemplate,
+    };
+  }
 }
 
 /// Specifies a stop condition for an experiment. You can define a stop
@@ -2134,6 +2604,7 @@ class UpdateExperimentTemplateStopConditionInput {
     required this.source,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final source = this.source;
     final value = this.value;
@@ -2174,6 +2645,7 @@ class UpdateExperimentTemplateTargetInput {
     this.resourceArns,
     this.resourceTags,
   });
+
   Map<String, dynamic> toJson() {
     final resourceType = this.resourceType;
     final selectionMode = this.selectionMode;

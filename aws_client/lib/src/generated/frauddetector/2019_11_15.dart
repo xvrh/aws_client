@@ -3479,6 +3479,19 @@ class ATIMetricDataPoint {
       threshold: json['threshold'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adr = this.adr;
+    final atodr = this.atodr;
+    final cr = this.cr;
+    final threshold = this.threshold;
+    return {
+      if (adr != null) 'adr': adr,
+      if (atodr != null) 'atodr': atodr,
+      if (cr != null) 'cr': cr,
+      if (threshold != null) 'threshold': threshold,
+    };
+  }
 }
 
 /// The Account Takeover Insights (ATI) model performance score.
@@ -3499,6 +3512,13 @@ class ATIModelPerformance {
     return ATIModelPerformance(
       asi: json['asi'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final asi = this.asi;
+    return {
+      if (asi != null) 'asi': asi,
+    };
   }
 }
 
@@ -3525,6 +3545,15 @@ class ATITrainingMetricsValue {
               json['modelPerformance'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricDataPoints = this.metricDataPoints;
+    final modelPerformance = this.modelPerformance;
+    return {
+      if (metricDataPoints != null) 'metricDataPoints': metricDataPoints,
+      if (modelPerformance != null) 'modelPerformance': modelPerformance,
+    };
   }
 }
 
@@ -3557,6 +3586,15 @@ class AggregatedLogOddsMetric {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aggregatedVariablesImportance = this.aggregatedVariablesImportance;
+    final variableNames = this.variableNames;
+    return {
+      'aggregatedVariablesImportance': aggregatedVariablesImportance,
+      'variableNames': variableNames,
+    };
   }
 }
 
@@ -3607,6 +3645,17 @@ class AggregatedVariablesImpactExplanation {
       relativeImpact: json['relativeImpact'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventVariableNames = this.eventVariableNames;
+    final logOddsImpact = this.logOddsImpact;
+    final relativeImpact = this.relativeImpact;
+    return {
+      if (eventVariableNames != null) 'eventVariableNames': eventVariableNames,
+      if (logOddsImpact != null) 'logOddsImpact': logOddsImpact,
+      if (relativeImpact != null) 'relativeImpact': relativeImpact,
+    };
+  }
 }
 
 /// The details of the relative importance of the aggregated variables.
@@ -3633,6 +3682,13 @@ class AggregatedVariablesImportanceMetrics {
               AggregatedLogOddsMetric.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logOddsMetrics = this.logOddsMetrics;
+    return {
+      if (logOddsMetrics != null) 'logOddsMetrics': logOddsMetrics,
+    };
   }
 }
 
@@ -3707,6 +3763,17 @@ class BatchCreateVariableError {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    final name = this.name;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 class BatchCreateVariableResult {
@@ -3724,6 +3791,13 @@ class BatchCreateVariableResult {
               BatchCreateVariableError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      if (errors != null) 'errors': errors,
+    };
   }
 }
 
@@ -3750,6 +3824,17 @@ class BatchGetVariableError {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    final name = this.name;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 class BatchGetVariableResult {
@@ -3774,6 +3859,15 @@ class BatchGetVariableResult {
           .map((e) => Variable.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final variables = this.variables;
+    return {
+      if (errors != null) 'errors': errors,
+      if (variables != null) 'variables': variables,
+    };
   }
 }
 
@@ -3849,6 +3943,38 @@ class BatchImport {
       status: (json['status'] as String?)?.toAsyncJobStatus(),
       totalRecordsCount: json['totalRecordsCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final completionTime = this.completionTime;
+    final eventTypeName = this.eventTypeName;
+    final failedRecordsCount = this.failedRecordsCount;
+    final failureReason = this.failureReason;
+    final iamRoleArn = this.iamRoleArn;
+    final inputPath = this.inputPath;
+    final jobId = this.jobId;
+    final outputPath = this.outputPath;
+    final processedRecordsCount = this.processedRecordsCount;
+    final startTime = this.startTime;
+    final status = this.status;
+    final totalRecordsCount = this.totalRecordsCount;
+    return {
+      if (arn != null) 'arn': arn,
+      if (completionTime != null) 'completionTime': completionTime,
+      if (eventTypeName != null) 'eventTypeName': eventTypeName,
+      if (failedRecordsCount != null) 'failedRecordsCount': failedRecordsCount,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (iamRoleArn != null) 'iamRoleArn': iamRoleArn,
+      if (inputPath != null) 'inputPath': inputPath,
+      if (jobId != null) 'jobId': jobId,
+      if (outputPath != null) 'outputPath': outputPath,
+      if (processedRecordsCount != null)
+        'processedRecordsCount': processedRecordsCount,
+      if (startTime != null) 'startTime': startTime,
+      if (status != null) 'status': status.toValue(),
+      if (totalRecordsCount != null) 'totalRecordsCount': totalRecordsCount,
+    };
   }
 }
 
@@ -3936,12 +4062,52 @@ class BatchPrediction {
       totalRecordsCount: json['totalRecordsCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final completionTime = this.completionTime;
+    final detectorName = this.detectorName;
+    final detectorVersion = this.detectorVersion;
+    final eventTypeName = this.eventTypeName;
+    final failureReason = this.failureReason;
+    final iamRoleArn = this.iamRoleArn;
+    final inputPath = this.inputPath;
+    final jobId = this.jobId;
+    final lastHeartbeatTime = this.lastHeartbeatTime;
+    final outputPath = this.outputPath;
+    final processedRecordsCount = this.processedRecordsCount;
+    final startTime = this.startTime;
+    final status = this.status;
+    final totalRecordsCount = this.totalRecordsCount;
+    return {
+      if (arn != null) 'arn': arn,
+      if (completionTime != null) 'completionTime': completionTime,
+      if (detectorName != null) 'detectorName': detectorName,
+      if (detectorVersion != null) 'detectorVersion': detectorVersion,
+      if (eventTypeName != null) 'eventTypeName': eventTypeName,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (iamRoleArn != null) 'iamRoleArn': iamRoleArn,
+      if (inputPath != null) 'inputPath': inputPath,
+      if (jobId != null) 'jobId': jobId,
+      if (lastHeartbeatTime != null) 'lastHeartbeatTime': lastHeartbeatTime,
+      if (outputPath != null) 'outputPath': outputPath,
+      if (processedRecordsCount != null)
+        'processedRecordsCount': processedRecordsCount,
+      if (startTime != null) 'startTime': startTime,
+      if (status != null) 'status': status.toValue(),
+      if (totalRecordsCount != null) 'totalRecordsCount': totalRecordsCount,
+    };
+  }
 }
 
 class CancelBatchImportJobResult {
   CancelBatchImportJobResult();
   factory CancelBatchImportJobResult.fromJson(Map<String, dynamic> _) {
     return CancelBatchImportJobResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3950,6 +4116,10 @@ class CancelBatchPredictionJobResult {
   factory CancelBatchPredictionJobResult.fromJson(Map<String, dynamic> _) {
     return CancelBatchPredictionJobResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateBatchImportJobResult {
@@ -3957,12 +4127,20 @@ class CreateBatchImportJobResult {
   factory CreateBatchImportJobResult.fromJson(Map<String, dynamic> _) {
     return CreateBatchImportJobResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateBatchPredictionJobResult {
   CreateBatchPredictionJobResult();
   factory CreateBatchPredictionJobResult.fromJson(Map<String, dynamic> _) {
     return CreateBatchPredictionJobResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3988,12 +4166,27 @@ class CreateDetectorVersionResult {
       status: (json['status'] as String?)?.toDetectorVersionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final detectorId = this.detectorId;
+    final detectorVersionId = this.detectorVersionId;
+    final status = this.status;
+    return {
+      if (detectorId != null) 'detectorId': detectorId,
+      if (detectorVersionId != null) 'detectorVersionId': detectorVersionId,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class CreateModelResult {
   CreateModelResult();
   factory CreateModelResult.fromJson(Map<String, dynamic> _) {
     return CreateModelResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4024,6 +4217,19 @@ class CreateModelVersionResult {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelId = this.modelId;
+    final modelType = this.modelType;
+    final modelVersionNumber = this.modelVersionNumber;
+    final status = this.status;
+    return {
+      if (modelId != null) 'modelId': modelId,
+      if (modelType != null) 'modelType': modelType.toValue(),
+      if (modelVersionNumber != null) 'modelVersionNumber': modelVersionNumber,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class CreateRuleResult {
@@ -4040,12 +4246,23 @@ class CreateRuleResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rule = this.rule;
+    return {
+      if (rule != null) 'rule': rule,
+    };
+  }
 }
 
 class CreateVariableResult {
   CreateVariableResult();
   factory CreateVariableResult.fromJson(Map<String, dynamic> _) {
     return CreateVariableResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4145,12 +4362,25 @@ class DataValidationMetrics {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fieldLevelMessages = this.fieldLevelMessages;
+    final fileLevelMessages = this.fileLevelMessages;
+    return {
+      if (fieldLevelMessages != null) 'fieldLevelMessages': fieldLevelMessages,
+      if (fileLevelMessages != null) 'fileLevelMessages': fileLevelMessages,
+    };
+  }
 }
 
 class DeleteBatchImportJobResult {
   DeleteBatchImportJobResult();
   factory DeleteBatchImportJobResult.fromJson(Map<String, dynamic> _) {
     return DeleteBatchImportJobResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4159,12 +4389,20 @@ class DeleteBatchPredictionJobResult {
   factory DeleteBatchPredictionJobResult.fromJson(Map<String, dynamic> _) {
     return DeleteBatchPredictionJobResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteDetectorResult {
   DeleteDetectorResult();
   factory DeleteDetectorResult.fromJson(Map<String, dynamic> _) {
     return DeleteDetectorResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4173,12 +4411,20 @@ class DeleteDetectorVersionResult {
   factory DeleteDetectorVersionResult.fromJson(Map<String, dynamic> _) {
     return DeleteDetectorVersionResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteEntityTypeResult {
   DeleteEntityTypeResult();
   factory DeleteEntityTypeResult.fromJson(Map<String, dynamic> _) {
     return DeleteEntityTypeResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4187,12 +4433,20 @@ class DeleteEventResult {
   factory DeleteEventResult.fromJson(Map<String, dynamic> _) {
     return DeleteEventResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteEventTypeResult {
   DeleteEventTypeResult();
   factory DeleteEventTypeResult.fromJson(Map<String, dynamic> _) {
     return DeleteEventTypeResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4213,12 +4467,26 @@ class DeleteEventsByEventTypeResult {
       eventsDeletionStatus: json['eventsDeletionStatus'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventTypeName = this.eventTypeName;
+    final eventsDeletionStatus = this.eventsDeletionStatus;
+    return {
+      if (eventTypeName != null) 'eventTypeName': eventTypeName,
+      if (eventsDeletionStatus != null)
+        'eventsDeletionStatus': eventsDeletionStatus,
+    };
+  }
 }
 
 class DeleteExternalModelResult {
   DeleteExternalModelResult();
   factory DeleteExternalModelResult.fromJson(Map<String, dynamic> _) {
     return DeleteExternalModelResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4227,12 +4495,20 @@ class DeleteLabelResult {
   factory DeleteLabelResult.fromJson(Map<String, dynamic> _) {
     return DeleteLabelResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteModelResult {
   DeleteModelResult();
   factory DeleteModelResult.fromJson(Map<String, dynamic> _) {
     return DeleteModelResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4241,12 +4517,20 @@ class DeleteModelVersionResult {
   factory DeleteModelVersionResult.fromJson(Map<String, dynamic> _) {
     return DeleteModelVersionResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteOutcomeResult {
   DeleteOutcomeResult();
   factory DeleteOutcomeResult.fromJson(Map<String, dynamic> _) {
     return DeleteOutcomeResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4255,12 +4539,20 @@ class DeleteRuleResult {
   factory DeleteRuleResult.fromJson(Map<String, dynamic> _) {
     return DeleteRuleResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteVariableResult {
   DeleteVariableResult();
   factory DeleteVariableResult.fromJson(Map<String, dynamic> _) {
     return DeleteVariableResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4295,6 +4587,20 @@ class DescribeDetectorResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final detectorId = this.detectorId;
+    final detectorVersionSummaries = this.detectorVersionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (arn != null) 'arn': arn,
+      if (detectorId != null) 'detectorId': detectorId,
+      if (detectorVersionSummaries != null)
+        'detectorVersionSummaries': detectorVersionSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeModelVersionsResult {
@@ -4316,6 +4622,16 @@ class DescribeModelVersionsResult {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelVersionDetails = this.modelVersionDetails;
+    final nextToken = this.nextToken;
+    return {
+      if (modelVersionDetails != null)
+        'modelVersionDetails': modelVersionDetails,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4356,6 +4672,23 @@ class Detector {
       eventTypeName: json['eventTypeName'] as String?,
       lastUpdatedTime: json['lastUpdatedTime'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final detectorId = this.detectorId;
+    final eventTypeName = this.eventTypeName;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdTime != null) 'createdTime': createdTime,
+      if (description != null) 'description': description,
+      if (detectorId != null) 'detectorId': detectorId,
+      if (eventTypeName != null) 'eventTypeName': eventTypeName,
+      if (lastUpdatedTime != null) 'lastUpdatedTime': lastUpdatedTime,
+    };
   }
 }
 
@@ -4419,6 +4752,19 @@ class DetectorVersionSummary {
       lastUpdatedTime: json['lastUpdatedTime'] as String?,
       status: (json['status'] as String?)?.toDetectorVersionStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final detectorVersionId = this.detectorVersionId;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final status = this.status;
+    return {
+      if (description != null) 'description': description,
+      if (detectorVersionId != null) 'detectorVersionId': detectorVersionId,
+      if (lastUpdatedTime != null) 'lastUpdatedTime': lastUpdatedTime,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -4485,6 +4831,21 @@ class EntityType {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdTime != null) 'createdTime': createdTime,
+      if (description != null) 'description': description,
+      if (lastUpdatedTime != null) 'lastUpdatedTime': lastUpdatedTime,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// The details of the external (Amazon Sagemaker) model evaluated for
@@ -4517,6 +4878,19 @@ class EvaluatedExternalModel {
           ?.map((k, e) => MapEntry(k, e as String)),
       useEventVariables: json['useEventVariables'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final inputVariables = this.inputVariables;
+    final modelEndpoint = this.modelEndpoint;
+    final outputVariables = this.outputVariables;
+    final useEventVariables = this.useEventVariables;
+    return {
+      if (inputVariables != null) 'inputVariables': inputVariables,
+      if (modelEndpoint != null) 'modelEndpoint': modelEndpoint,
+      if (outputVariables != null) 'outputVariables': outputVariables,
+      if (useEventVariables != null) 'useEventVariables': useEventVariables,
+    };
   }
 }
 
@@ -4554,6 +4928,19 @@ class EvaluatedModelVersion {
       modelType: json['modelType'] as String?,
       modelVersion: json['modelVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evaluations = this.evaluations;
+    final modelId = this.modelId;
+    final modelType = this.modelType;
+    final modelVersion = this.modelVersion;
+    return {
+      if (evaluations != null) 'evaluations': evaluations,
+      if (modelId != null) 'modelId': modelId,
+      if (modelType != null) 'modelType': modelType,
+      if (modelVersion != null) 'modelVersion': modelVersion,
+    };
   }
 }
 
@@ -4602,6 +4989,26 @@ class EvaluatedRule {
       ruleId: json['ruleId'] as String?,
       ruleVersion: json['ruleVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evaluated = this.evaluated;
+    final expression = this.expression;
+    final expressionWithValues = this.expressionWithValues;
+    final matched = this.matched;
+    final outcomes = this.outcomes;
+    final ruleId = this.ruleId;
+    final ruleVersion = this.ruleVersion;
+    return {
+      if (evaluated != null) 'evaluated': evaluated,
+      if (expression != null) 'expression': expression,
+      if (expressionWithValues != null)
+        'expressionWithValues': expressionWithValues,
+      if (matched != null) 'matched': matched,
+      if (outcomes != null) 'outcomes': outcomes,
+      if (ruleId != null) 'ruleId': ruleId,
+      if (ruleVersion != null) 'ruleVersion': ruleVersion,
+    };
   }
 }
 
@@ -4655,6 +5062,25 @@ class Event {
           ?.map((k, e) => MapEntry(k, e as String)),
       labelTimestamp: json['labelTimestamp'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currentLabel = this.currentLabel;
+    final entities = this.entities;
+    final eventId = this.eventId;
+    final eventTimestamp = this.eventTimestamp;
+    final eventTypeName = this.eventTypeName;
+    final eventVariables = this.eventVariables;
+    final labelTimestamp = this.labelTimestamp;
+    return {
+      if (currentLabel != null) 'currentLabel': currentLabel,
+      if (entities != null) 'entities': entities,
+      if (eventId != null) 'eventId': eventId,
+      if (eventTimestamp != null) 'eventTimestamp': eventTimestamp,
+      if (eventTypeName != null) 'eventTypeName': eventTypeName,
+      if (eventVariables != null) 'eventVariables': eventVariables,
+      if (labelTimestamp != null) 'labelTimestamp': labelTimestamp,
+    };
   }
 }
 
@@ -4723,6 +5149,24 @@ class EventPredictionSummary {
       eventTypeName: json['eventTypeName'] as String?,
       predictionTimestamp: json['predictionTimestamp'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detectorId = this.detectorId;
+    final detectorVersionId = this.detectorVersionId;
+    final eventId = this.eventId;
+    final eventTimestamp = this.eventTimestamp;
+    final eventTypeName = this.eventTypeName;
+    final predictionTimestamp = this.predictionTimestamp;
+    return {
+      if (detectorId != null) 'detectorId': detectorId,
+      if (detectorVersionId != null) 'detectorVersionId': detectorVersionId,
+      if (eventId != null) 'eventId': eventId,
+      if (eventTimestamp != null) 'eventTimestamp': eventTimestamp,
+      if (eventTypeName != null) 'eventTypeName': eventTypeName,
+      if (predictionTimestamp != null)
+        'predictionTimestamp': predictionTimestamp,
+    };
   }
 }
 
@@ -4800,6 +5244,32 @@ class EventType {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final entityTypes = this.entityTypes;
+    final eventIngestion = this.eventIngestion;
+    final eventVariables = this.eventVariables;
+    final ingestedEventStatistics = this.ingestedEventStatistics;
+    final labels = this.labels;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdTime != null) 'createdTime': createdTime,
+      if (description != null) 'description': description,
+      if (entityTypes != null) 'entityTypes': entityTypes,
+      if (eventIngestion != null) 'eventIngestion': eventIngestion.toValue(),
+      if (eventVariables != null) 'eventVariables': eventVariables,
+      if (ingestedEventStatistics != null)
+        'ingestedEventStatistics': ingestedEventStatistics,
+      if (labels != null) 'labels': labels,
+      if (lastUpdatedTime != null) 'lastUpdatedTime': lastUpdatedTime,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// Information about the summary of an event variable that was evaluated for
@@ -4825,6 +5295,17 @@ class EventVariableSummary {
       source: json['source'] as String?,
       value: json['value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final source = this.source;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name,
+      if (source != null) 'source': source,
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -4918,6 +5399,32 @@ class ExternalModel {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final inputConfiguration = this.inputConfiguration;
+    final invokeModelEndpointRoleArn = this.invokeModelEndpointRoleArn;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final modelEndpoint = this.modelEndpoint;
+    final modelEndpointStatus = this.modelEndpointStatus;
+    final modelSource = this.modelSource;
+    final outputConfiguration = this.outputConfiguration;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdTime != null) 'createdTime': createdTime,
+      if (inputConfiguration != null) 'inputConfiguration': inputConfiguration,
+      if (invokeModelEndpointRoleArn != null)
+        'invokeModelEndpointRoleArn': invokeModelEndpointRoleArn,
+      if (lastUpdatedTime != null) 'lastUpdatedTime': lastUpdatedTime,
+      if (modelEndpoint != null) 'modelEndpoint': modelEndpoint,
+      if (modelEndpointStatus != null)
+        'modelEndpointStatus': modelEndpointStatus.toValue(),
+      if (modelSource != null) 'modelSource': modelSource.toValue(),
+      if (outputConfiguration != null)
+        'outputConfiguration': outputConfiguration,
+    };
+  }
 }
 
 /// The fraud prediction scores from Amazon SageMaker model.
@@ -4942,6 +5449,15 @@ class ExternalModelOutputs {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final externalModel = this.externalModel;
+    final outputs = this.outputs;
+    return {
+      if (externalModel != null) 'externalModel': externalModel,
+      if (outputs != null) 'outputs': outputs,
+    };
+  }
 }
 
 /// The Amazon SageMaker model.
@@ -4961,6 +5477,15 @@ class ExternalModelSummary {
       modelEndpoint: json['modelEndpoint'] as String?,
       modelSource: (json['modelSource'] as String?)?.toModelSource(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelEndpoint = this.modelEndpoint;
+    final modelSource = this.modelSource;
+    return {
+      if (modelEndpoint != null) 'modelEndpoint': modelEndpoint,
+      if (modelSource != null) 'modelSource': modelSource.toValue(),
+    };
   }
 }
 
@@ -4997,6 +5522,21 @@ class FieldValidationMessage {
       type: json['type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    final fieldName = this.fieldName;
+    final identifier = this.identifier;
+    final title = this.title;
+    final type = this.type;
+    return {
+      if (content != null) 'content': content,
+      if (fieldName != null) 'fieldName': fieldName,
+      if (identifier != null) 'identifier': identifier,
+      if (title != null) 'title': title,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 /// The message details.
@@ -5022,6 +5562,17 @@ class FileValidationMessage {
       type: json['type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    final title = this.title;
+    final type = this.type;
+    return {
+      if (content != null) 'content': content,
+      if (title != null) 'title': title,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 /// A conditional statement for filtering a list of past predictions.
@@ -5033,6 +5584,7 @@ class FilterCondition {
   FilterCondition({
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final value = this.value;
     return {
@@ -5061,6 +5613,15 @@ class GetBatchImportJobsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchImports = this.batchImports;
+    final nextToken = this.nextToken;
+    return {
+      if (batchImports != null) 'batchImports': batchImports,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetBatchPredictionJobsResult {
@@ -5083,6 +5644,15 @@ class GetBatchPredictionJobsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchPredictions = this.batchPredictions;
+    final nextToken = this.nextToken;
+    return {
+      if (batchPredictions != null) 'batchPredictions': batchPredictions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetDeleteEventsByEventTypeStatusResult {
@@ -5103,6 +5673,16 @@ class GetDeleteEventsByEventTypeStatusResult {
       eventsDeletionStatus:
           (json['eventsDeletionStatus'] as String?)?.toAsyncJobStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventTypeName = this.eventTypeName;
+    final eventsDeletionStatus = this.eventsDeletionStatus;
+    return {
+      if (eventTypeName != null) 'eventTypeName': eventTypeName,
+      if (eventsDeletionStatus != null)
+        'eventsDeletionStatus': eventsDeletionStatus.toValue(),
+    };
   }
 }
 
@@ -5187,6 +5767,35 @@ class GetDetectorVersionResult {
       status: (json['status'] as String?)?.toDetectorVersionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final detectorId = this.detectorId;
+    final detectorVersionId = this.detectorVersionId;
+    final externalModelEndpoints = this.externalModelEndpoints;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final modelVersions = this.modelVersions;
+    final ruleExecutionMode = this.ruleExecutionMode;
+    final rules = this.rules;
+    final status = this.status;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdTime != null) 'createdTime': createdTime,
+      if (description != null) 'description': description,
+      if (detectorId != null) 'detectorId': detectorId,
+      if (detectorVersionId != null) 'detectorVersionId': detectorVersionId,
+      if (externalModelEndpoints != null)
+        'externalModelEndpoints': externalModelEndpoints,
+      if (lastUpdatedTime != null) 'lastUpdatedTime': lastUpdatedTime,
+      if (modelVersions != null) 'modelVersions': modelVersions,
+      if (ruleExecutionMode != null)
+        'ruleExecutionMode': ruleExecutionMode.toValue(),
+      if (rules != null) 'rules': rules,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class GetDetectorsResult {
@@ -5209,6 +5818,15 @@ class GetDetectorsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final detectors = this.detectors;
+    final nextToken = this.nextToken;
+    return {
+      if (detectors != null) 'detectors': detectors,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetEntityTypesResult {
@@ -5230,6 +5848,15 @@ class GetEntityTypesResult {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entityTypes = this.entityTypes;
+    final nextToken = this.nextToken;
+    return {
+      if (entityTypes != null) 'entityTypes': entityTypes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5335,6 +5962,46 @@ class GetEventPredictionMetadataResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final detectorId = this.detectorId;
+    final detectorVersionId = this.detectorVersionId;
+    final detectorVersionStatus = this.detectorVersionStatus;
+    final entityId = this.entityId;
+    final entityType = this.entityType;
+    final evaluatedExternalModels = this.evaluatedExternalModels;
+    final evaluatedModelVersions = this.evaluatedModelVersions;
+    final eventId = this.eventId;
+    final eventTimestamp = this.eventTimestamp;
+    final eventTypeName = this.eventTypeName;
+    final eventVariables = this.eventVariables;
+    final outcomes = this.outcomes;
+    final predictionTimestamp = this.predictionTimestamp;
+    final ruleExecutionMode = this.ruleExecutionMode;
+    final rules = this.rules;
+    return {
+      if (detectorId != null) 'detectorId': detectorId,
+      if (detectorVersionId != null) 'detectorVersionId': detectorVersionId,
+      if (detectorVersionStatus != null)
+        'detectorVersionStatus': detectorVersionStatus,
+      if (entityId != null) 'entityId': entityId,
+      if (entityType != null) 'entityType': entityType,
+      if (evaluatedExternalModels != null)
+        'evaluatedExternalModels': evaluatedExternalModels,
+      if (evaluatedModelVersions != null)
+        'evaluatedModelVersions': evaluatedModelVersions,
+      if (eventId != null) 'eventId': eventId,
+      if (eventTimestamp != null) 'eventTimestamp': eventTimestamp,
+      if (eventTypeName != null) 'eventTypeName': eventTypeName,
+      if (eventVariables != null) 'eventVariables': eventVariables,
+      if (outcomes != null) 'outcomes': outcomes,
+      if (predictionTimestamp != null)
+        'predictionTimestamp': predictionTimestamp,
+      if (ruleExecutionMode != null)
+        'ruleExecutionMode': ruleExecutionMode.toValue(),
+      if (rules != null) 'rules': rules,
+    };
+  }
 }
 
 class GetEventPredictionResult {
@@ -5372,6 +6039,18 @@ class GetEventPredictionResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final externalModelOutputs = this.externalModelOutputs;
+    final modelScores = this.modelScores;
+    final ruleResults = this.ruleResults;
+    return {
+      if (externalModelOutputs != null)
+        'externalModelOutputs': externalModelOutputs,
+      if (modelScores != null) 'modelScores': modelScores,
+      if (ruleResults != null) 'ruleResults': ruleResults,
+    };
+  }
 }
 
 class GetEventResult {
@@ -5387,6 +6066,13 @@ class GetEventResult {
           ? Event.fromJson(json['event'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final event = this.event;
+    return {
+      if (event != null) 'event': event,
+    };
   }
 }
 
@@ -5410,6 +6096,15 @@ class GetEventTypesResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventTypes = this.eventTypes;
+    final nextToken = this.nextToken;
+    return {
+      if (eventTypes != null) 'eventTypes': eventTypes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetExternalModelsResult {
@@ -5432,6 +6127,15 @@ class GetExternalModelsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final externalModels = this.externalModels;
+    final nextToken = this.nextToken;
+    return {
+      if (externalModels != null) 'externalModels': externalModels,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetKMSEncryptionKeyResult {
@@ -5447,6 +6151,13 @@ class GetKMSEncryptionKeyResult {
           ? KMSKey.fromJson(json['kmsKey'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final kmsKey = this.kmsKey;
+    return {
+      if (kmsKey != null) 'kmsKey': kmsKey,
+    };
   }
 }
 
@@ -5469,6 +6180,15 @@ class GetLabelsResult {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final labels = this.labels;
+    final nextToken = this.nextToken;
+    return {
+      if (labels != null) 'labels': labels,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5570,6 +6290,32 @@ class GetModelVersionResult {
           (json['trainingDataSource'] as String?)?.toTrainingDataSourceEnum(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final externalEventsDetail = this.externalEventsDetail;
+    final ingestedEventsDetail = this.ingestedEventsDetail;
+    final modelId = this.modelId;
+    final modelType = this.modelType;
+    final modelVersionNumber = this.modelVersionNumber;
+    final status = this.status;
+    final trainingDataSchema = this.trainingDataSchema;
+    final trainingDataSource = this.trainingDataSource;
+    return {
+      if (arn != null) 'arn': arn,
+      if (externalEventsDetail != null)
+        'externalEventsDetail': externalEventsDetail,
+      if (ingestedEventsDetail != null)
+        'ingestedEventsDetail': ingestedEventsDetail,
+      if (modelId != null) 'modelId': modelId,
+      if (modelType != null) 'modelType': modelType.toValue(),
+      if (modelVersionNumber != null) 'modelVersionNumber': modelVersionNumber,
+      if (status != null) 'status': status,
+      if (trainingDataSchema != null) 'trainingDataSchema': trainingDataSchema,
+      if (trainingDataSource != null)
+        'trainingDataSource': trainingDataSource.toValue(),
+    };
+  }
 }
 
 class GetModelsResult {
@@ -5591,6 +6337,15 @@ class GetModelsResult {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final models = this.models;
+    final nextToken = this.nextToken;
+    return {
+      if (models != null) 'models': models,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5614,6 +6369,15 @@ class GetOutcomesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final outcomes = this.outcomes;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (outcomes != null) 'outcomes': outcomes,
+    };
+  }
 }
 
 class GetRulesResult {
@@ -5636,6 +6400,15 @@ class GetRulesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final ruleDetails = this.ruleDetails;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (ruleDetails != null) 'ruleDetails': ruleDetails,
+    };
+  }
 }
 
 class GetVariablesResult {
@@ -5657,6 +6430,15 @@ class GetVariablesResult {
           .map((e) => Variable.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final variables = this.variables;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (variables != null) 'variables': variables,
+    };
   }
 }
 
@@ -5692,6 +6474,22 @@ class IngestedEventStatistics {
       mostRecentEvent: json['mostRecentEvent'] as String?,
       numberOfEvents: json['numberOfEvents'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventDataSizeInBytes = this.eventDataSizeInBytes;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final leastRecentEvent = this.leastRecentEvent;
+    final mostRecentEvent = this.mostRecentEvent;
+    final numberOfEvents = this.numberOfEvents;
+    return {
+      if (eventDataSizeInBytes != null)
+        'eventDataSizeInBytes': eventDataSizeInBytes,
+      if (lastUpdatedTime != null) 'lastUpdatedTime': lastUpdatedTime,
+      if (leastRecentEvent != null) 'leastRecentEvent': leastRecentEvent,
+      if (mostRecentEvent != null) 'mostRecentEvent': mostRecentEvent,
+      if (numberOfEvents != null) 'numberOfEvents': numberOfEvents,
+    };
   }
 }
 
@@ -5760,6 +6558,14 @@ class KMSKey {
       kmsEncryptionKeyArn: json['kmsEncryptionKeyArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final kmsEncryptionKeyArn = this.kmsEncryptionKeyArn;
+    return {
+      if (kmsEncryptionKeyArn != null)
+        'kmsEncryptionKeyArn': kmsEncryptionKeyArn,
+    };
+  }
 }
 
 /// The label details.
@@ -5794,6 +6600,21 @@ class Label {
       lastUpdatedTime: json['lastUpdatedTime'] as String?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdTime != null) 'createdTime': createdTime,
+      if (description != null) 'description': description,
+      if (lastUpdatedTime != null) 'lastUpdatedTime': lastUpdatedTime,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -5885,6 +6706,16 @@ class ListEventPredictionsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventPredictionSummaries = this.eventPredictionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (eventPredictionSummaries != null)
+        'eventPredictionSummaries': eventPredictionSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResult {
@@ -5906,6 +6737,15 @@ class ListTagsForResourceResult {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -5933,6 +6773,17 @@ class LogOddsMetric {
       variableName: json['variableName'] as String,
       variableType: json['variableType'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final variableImportance = this.variableImportance;
+    final variableName = this.variableName;
+    final variableType = this.variableType;
+    return {
+      'variableImportance': variableImportance,
+      'variableName': variableName,
+      'variableType': variableType,
+    };
   }
 }
 
@@ -5968,6 +6819,19 @@ class MetricDataPoint {
       threshold: json['threshold'] as double?,
       tpr: json['tpr'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fpr = this.fpr;
+    final precision = this.precision;
+    final threshold = this.threshold;
+    final tpr = this.tpr;
+    return {
+      if (fpr != null) 'fpr': fpr,
+      if (precision != null) 'precision': precision,
+      if (threshold != null) 'threshold': threshold,
+      if (tpr != null) 'tpr': tpr,
+    };
   }
 }
 
@@ -6014,6 +6878,25 @@ class Model {
       modelType: (json['modelType'] as String?)?.toModelTypeEnum(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final eventTypeName = this.eventTypeName;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final modelId = this.modelId;
+    final modelType = this.modelType;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdTime != null) 'createdTime': createdTime,
+      if (description != null) 'description': description,
+      if (eventTypeName != null) 'eventTypeName': eventTypeName,
+      if (lastUpdatedTime != null) 'lastUpdatedTime': lastUpdatedTime,
+      if (modelId != null) 'modelId': modelId,
+      if (modelType != null) 'modelType': modelType.toValue(),
+    };
+  }
 }
 
 /// A pre-formed Amazon SageMaker model input you can include if your detector
@@ -6030,6 +6913,7 @@ class ModelEndpointDataBlob {
     this.byteBuffer,
     this.contentType,
   });
+
   Map<String, dynamic> toJson() {
     final byteBuffer = this.byteBuffer;
     final contentType = this.contentType;
@@ -6245,6 +7129,15 @@ class ModelScores {
           ?.map((k, e) => MapEntry(k, e as double)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelVersion = this.modelVersion;
+    final scores = this.scores;
+    return {
+      if (modelVersion != null) 'modelVersion': modelVersion,
+      if (scores != null) 'scores': scores,
+    };
+  }
 }
 
 enum ModelSource {
@@ -6440,6 +7333,40 @@ class ModelVersionDetail {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final externalEventsDetail = this.externalEventsDetail;
+    final ingestedEventsDetail = this.ingestedEventsDetail;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final modelId = this.modelId;
+    final modelType = this.modelType;
+    final modelVersionNumber = this.modelVersionNumber;
+    final status = this.status;
+    final trainingDataSchema = this.trainingDataSchema;
+    final trainingDataSource = this.trainingDataSource;
+    final trainingResult = this.trainingResult;
+    final trainingResultV2 = this.trainingResultV2;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdTime != null) 'createdTime': createdTime,
+      if (externalEventsDetail != null)
+        'externalEventsDetail': externalEventsDetail,
+      if (ingestedEventsDetail != null)
+        'ingestedEventsDetail': ingestedEventsDetail,
+      if (lastUpdatedTime != null) 'lastUpdatedTime': lastUpdatedTime,
+      if (modelId != null) 'modelId': modelId,
+      if (modelType != null) 'modelType': modelType.toValue(),
+      if (modelVersionNumber != null) 'modelVersionNumber': modelVersionNumber,
+      if (status != null) 'status': status,
+      if (trainingDataSchema != null) 'trainingDataSchema': trainingDataSchema,
+      if (trainingDataSource != null)
+        'trainingDataSource': trainingDataSource.toValue(),
+      if (trainingResult != null) 'trainingResult': trainingResult,
+      if (trainingResultV2 != null) 'trainingResultV2': trainingResultV2,
+    };
+  }
 }
 
 /// The model version evalutions.
@@ -6467,6 +7394,18 @@ class ModelVersionEvaluation {
               json['predictionExplanations'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evaluationScore = this.evaluationScore;
+    final outputVariableName = this.outputVariableName;
+    final predictionExplanations = this.predictionExplanations;
+    return {
+      if (evaluationScore != null) 'evaluationScore': evaluationScore,
+      if (outputVariableName != null) 'outputVariableName': outputVariableName,
+      if (predictionExplanations != null)
+        'predictionExplanations': predictionExplanations,
+    };
   }
 }
 
@@ -6536,6 +7475,19 @@ class OFIMetricDataPoint {
       tpr: json['tpr'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fpr = this.fpr;
+    final precision = this.precision;
+    final threshold = this.threshold;
+    final tpr = this.tpr;
+    return {
+      if (fpr != null) 'fpr': fpr,
+      if (precision != null) 'precision': precision,
+      if (threshold != null) 'threshold': threshold,
+      if (tpr != null) 'tpr': tpr,
+    };
+  }
 }
 
 /// The Online Fraud Insights (OFI) model performance score.
@@ -6552,6 +7504,13 @@ class OFIModelPerformance {
     return OFIModelPerformance(
       auc: json['auc'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final auc = this.auc;
+    return {
+      if (auc != null) 'auc': auc,
+    };
   }
 }
 
@@ -6578,6 +7537,15 @@ class OFITrainingMetricsValue {
               json['modelPerformance'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricDataPoints = this.metricDataPoints;
+    final modelPerformance = this.modelPerformance;
+    return {
+      if (metricDataPoints != null) 'metricDataPoints': metricDataPoints,
+      if (modelPerformance != null) 'modelPerformance': modelPerformance,
+    };
   }
 }
 
@@ -6613,6 +7581,21 @@ class Outcome {
       lastUpdatedTime: json['lastUpdatedTime'] as String?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdTime != null) 'createdTime': createdTime,
+      if (description != null) 'description': description,
+      if (lastUpdatedTime != null) 'lastUpdatedTime': lastUpdatedTime,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -6652,6 +7635,19 @@ class PredictionExplanations {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aggregatedVariablesImpactExplanations =
+        this.aggregatedVariablesImpactExplanations;
+    final variableImpactExplanations = this.variableImpactExplanations;
+    return {
+      if (aggregatedVariablesImpactExplanations != null)
+        'aggregatedVariablesImpactExplanations':
+            aggregatedVariablesImpactExplanations,
+      if (variableImpactExplanations != null)
+        'variableImpactExplanations': variableImpactExplanations,
+    };
+  }
 }
 
 /// The time period for when the predictions were generated.
@@ -6666,6 +7662,7 @@ class PredictionTimeRange {
     required this.endTime,
     required this.startTime,
   });
+
   Map<String, dynamic> toJson() {
     final endTime = this.endTime;
     final startTime = this.startTime;
@@ -6681,12 +7678,20 @@ class PutDetectorResult {
   factory PutDetectorResult.fromJson(Map<String, dynamic> _) {
     return PutDetectorResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class PutEntityTypeResult {
   PutEntityTypeResult();
   factory PutEntityTypeResult.fromJson(Map<String, dynamic> _) {
     return PutEntityTypeResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6695,12 +7700,20 @@ class PutEventTypeResult {
   factory PutEventTypeResult.fromJson(Map<String, dynamic> _) {
     return PutEventTypeResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class PutExternalModelResult {
   PutExternalModelResult();
   factory PutExternalModelResult.fromJson(Map<String, dynamic> _) {
     return PutExternalModelResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6709,6 +7722,10 @@ class PutKMSEncryptionKeyResult {
   factory PutKMSEncryptionKeyResult.fromJson(Map<String, dynamic> _) {
     return PutKMSEncryptionKeyResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class PutLabelResult {
@@ -6716,12 +7733,20 @@ class PutLabelResult {
   factory PutLabelResult.fromJson(Map<String, dynamic> _) {
     return PutLabelResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class PutOutcomeResult {
   PutOutcomeResult();
   factory PutOutcomeResult.fromJson(Map<String, dynamic> _) {
     return PutOutcomeResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6822,6 +7847,31 @@ class RuleDetail {
       ruleVersion: json['ruleVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final detectorId = this.detectorId;
+    final expression = this.expression;
+    final language = this.language;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final outcomes = this.outcomes;
+    final ruleId = this.ruleId;
+    final ruleVersion = this.ruleVersion;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdTime != null) 'createdTime': createdTime,
+      if (description != null) 'description': description,
+      if (detectorId != null) 'detectorId': detectorId,
+      if (expression != null) 'expression': expression,
+      if (language != null) 'language': language.toValue(),
+      if (lastUpdatedTime != null) 'lastUpdatedTime': lastUpdatedTime,
+      if (outcomes != null) 'outcomes': outcomes,
+      if (ruleId != null) 'ruleId': ruleId,
+      if (ruleVersion != null) 'ruleVersion': ruleVersion,
+    };
+  }
 }
 
 enum RuleExecutionMode {
@@ -6873,12 +7923,25 @@ class RuleResult {
       ruleId: json['ruleId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final outcomes = this.outcomes;
+    final ruleId = this.ruleId;
+    return {
+      if (outcomes != null) 'outcomes': outcomes,
+      if (ruleId != null) 'ruleId': ruleId,
+    };
+  }
 }
 
 class SendEventResult {
   SendEventResult();
   factory SendEventResult.fromJson(Map<String, dynamic> _) {
     return SendEventResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6916,6 +7979,19 @@ class TFIMetricDataPoint {
       tpr: json['tpr'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fpr = this.fpr;
+    final precision = this.precision;
+    final threshold = this.threshold;
+    final tpr = this.tpr;
+    return {
+      if (fpr != null) 'fpr': fpr,
+      if (precision != null) 'precision': precision,
+      if (threshold != null) 'threshold': threshold,
+      if (tpr != null) 'tpr': tpr,
+    };
+  }
 }
 
 /// The Transaction Fraud Insights (TFI) model performance score.
@@ -6932,6 +8008,13 @@ class TFIModelPerformance {
     return TFIModelPerformance(
       auc: json['auc'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final auc = this.auc;
+    return {
+      if (auc != null) 'auc': auc,
+    };
   }
 }
 
@@ -6958,6 +8041,15 @@ class TFITrainingMetricsValue {
               json['modelPerformance'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricDataPoints = this.metricDataPoints;
+    final modelPerformance = this.modelPerformance;
+    return {
+      if (metricDataPoints != null) 'metricDataPoints': metricDataPoints,
+      if (modelPerformance != null) 'modelPerformance': modelPerformance,
+    };
   }
 }
 
@@ -6994,6 +8086,10 @@ class TagResourceResult {
   TagResourceResult();
   factory TagResourceResult.fromJson(Map<String, dynamic> _) {
     return TagResourceResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7081,6 +8177,15 @@ class TrainingMetrics {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final auc = this.auc;
+    final metricDataPoints = this.metricDataPoints;
+    return {
+      if (auc != null) 'auc': auc,
+      if (metricDataPoints != null) 'metricDataPoints': metricDataPoints,
+    };
+  }
 }
 
 /// The training metrics details.
@@ -7115,6 +8220,17 @@ class TrainingMetricsV2 {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ati = this.ati;
+    final ofi = this.ofi;
+    final tfi = this.tfi;
+    return {
+      if (ati != null) 'ati': ati,
+      if (ofi != null) 'ofi': ofi,
+      if (tfi != null) 'tfi': tfi,
+    };
+  }
 }
 
 /// The training result details.
@@ -7148,6 +8264,19 @@ class TrainingResult {
               json['variableImportanceMetrics'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataValidationMetrics = this.dataValidationMetrics;
+    final trainingMetrics = this.trainingMetrics;
+    final variableImportanceMetrics = this.variableImportanceMetrics;
+    return {
+      if (dataValidationMetrics != null)
+        'dataValidationMetrics': dataValidationMetrics,
+      if (trainingMetrics != null) 'trainingMetrics': trainingMetrics,
+      if (variableImportanceMetrics != null)
+        'variableImportanceMetrics': variableImportanceMetrics,
+    };
   }
 }
 
@@ -7197,6 +8326,24 @@ class TrainingResultV2 {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aggregatedVariablesImportanceMetrics =
+        this.aggregatedVariablesImportanceMetrics;
+    final dataValidationMetrics = this.dataValidationMetrics;
+    final trainingMetricsV2 = this.trainingMetricsV2;
+    final variableImportanceMetrics = this.variableImportanceMetrics;
+    return {
+      if (aggregatedVariablesImportanceMetrics != null)
+        'aggregatedVariablesImportanceMetrics':
+            aggregatedVariablesImportanceMetrics,
+      if (dataValidationMetrics != null)
+        'dataValidationMetrics': dataValidationMetrics,
+      if (trainingMetricsV2 != null) 'trainingMetricsV2': trainingMetricsV2,
+      if (variableImportanceMetrics != null)
+        'variableImportanceMetrics': variableImportanceMetrics,
+    };
+  }
 }
 
 enum UnlabeledEventsTreatment {
@@ -7237,12 +8384,20 @@ class UntagResourceResult {
   factory UntagResourceResult.fromJson(Map<String, dynamic> _) {
     return UntagResourceResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateDetectorVersionMetadataResult {
   UpdateDetectorVersionMetadataResult();
   factory UpdateDetectorVersionMetadataResult.fromJson(Map<String, dynamic> _) {
     return UpdateDetectorVersionMetadataResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7251,12 +8406,20 @@ class UpdateDetectorVersionResult {
   factory UpdateDetectorVersionResult.fromJson(Map<String, dynamic> _) {
     return UpdateDetectorVersionResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateDetectorVersionStatusResult {
   UpdateDetectorVersionStatusResult();
   factory UpdateDetectorVersionStatusResult.fromJson(Map<String, dynamic> _) {
     return UpdateDetectorVersionStatusResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7265,12 +8428,20 @@ class UpdateEventLabelResult {
   factory UpdateEventLabelResult.fromJson(Map<String, dynamic> _) {
     return UpdateEventLabelResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateModelResult {
   UpdateModelResult();
   factory UpdateModelResult.fromJson(Map<String, dynamic> _) {
     return UpdateModelResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7301,6 +8472,19 @@ class UpdateModelVersionResult {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelId = this.modelId;
+    final modelType = this.modelType;
+    final modelVersionNumber = this.modelVersionNumber;
+    final status = this.status;
+    return {
+      if (modelId != null) 'modelId': modelId,
+      if (modelType != null) 'modelType': modelType.toValue(),
+      if (modelVersionNumber != null) 'modelVersionNumber': modelVersionNumber,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class UpdateModelVersionStatusResult {
@@ -7308,12 +8492,20 @@ class UpdateModelVersionStatusResult {
   factory UpdateModelVersionStatusResult.fromJson(Map<String, dynamic> _) {
     return UpdateModelVersionStatusResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateRuleMetadataResult {
   UpdateRuleMetadataResult();
   factory UpdateRuleMetadataResult.fromJson(Map<String, dynamic> _) {
     return UpdateRuleMetadataResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7331,12 +8523,23 @@ class UpdateRuleVersionResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rule = this.rule;
+    return {
+      if (rule != null) 'rule': rule,
+    };
+  }
 }
 
 class UpdateVariableResult {
   UpdateVariableResult();
   factory UpdateVariableResult.fromJson(Map<String, dynamic> _) {
     return UpdateVariableResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7404,6 +8607,29 @@ class Variable {
       variableType: json['variableType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final dataSource = this.dataSource;
+    final dataType = this.dataType;
+    final defaultValue = this.defaultValue;
+    final description = this.description;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final variableType = this.variableType;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdTime != null) 'createdTime': createdTime,
+      if (dataSource != null) 'dataSource': dataSource.toValue(),
+      if (dataType != null) 'dataType': dataType.toValue(),
+      if (defaultValue != null) 'defaultValue': defaultValue,
+      if (description != null) 'description': description,
+      if (lastUpdatedTime != null) 'lastUpdatedTime': lastUpdatedTime,
+      if (name != null) 'name': name,
+      if (variableType != null) 'variableType': variableType,
+    };
+  }
 }
 
 /// A variable in the list of variables for the batch create variable request.
@@ -7445,6 +8671,7 @@ class VariableEntry {
     this.name,
     this.variableType,
   });
+
   Map<String, dynamic> toJson() {
     final dataSource = this.dataSource;
     final dataType = this.dataType;
@@ -7500,6 +8727,17 @@ class VariableImpactExplanation {
       relativeImpact: json['relativeImpact'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventVariableName = this.eventVariableName;
+    final logOddsImpact = this.logOddsImpact;
+    final relativeImpact = this.relativeImpact;
+    return {
+      if (eventVariableName != null) 'eventVariableName': eventVariableName,
+      if (logOddsImpact != null) 'logOddsImpact': logOddsImpact,
+      if (relativeImpact != null) 'relativeImpact': relativeImpact,
+    };
+  }
 }
 
 /// The variable importance metrics details.
@@ -7517,6 +8755,13 @@ class VariableImportanceMetrics {
           .map((e) => LogOddsMetric.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logOddsMetrics = this.logOddsMetrics;
+    return {
+      if (logOddsMetrics != null) 'logOddsMetrics': logOddsMetrics,
+    };
   }
 }
 

@@ -2637,6 +2637,13 @@ class CreateGatewayRouteOutput {
   CreateGatewayRouteOutput({
     required this.gatewayRoute,
   });
+
+  Map<String, dynamic> toJson() {
+    final gatewayRoute = this.gatewayRoute;
+    return {
+      'gatewayRoute': gatewayRoute,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2647,6 +2654,13 @@ class CreateMeshOutput {
   CreateMeshOutput({
     required this.mesh,
   });
+
+  Map<String, dynamic> toJson() {
+    final mesh = this.mesh;
+    return {
+      'mesh': mesh,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2657,6 +2671,13 @@ class CreateRouteOutput {
   CreateRouteOutput({
     required this.route,
   });
+
+  Map<String, dynamic> toJson() {
+    final route = this.route;
+    return {
+      'route': route,
+    };
+  }
 }
 
 class CreateVirtualGatewayOutput {
@@ -2666,6 +2687,13 @@ class CreateVirtualGatewayOutput {
   CreateVirtualGatewayOutput({
     required this.virtualGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualGateway = this.virtualGateway;
+    return {
+      'virtualGateway': virtualGateway,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2676,6 +2704,13 @@ class CreateVirtualNodeOutput {
   CreateVirtualNodeOutput({
     required this.virtualNode,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualNode = this.virtualNode;
+    return {
+      'virtualNode': virtualNode,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2686,6 +2721,13 @@ class CreateVirtualRouterOutput {
   CreateVirtualRouterOutput({
     required this.virtualRouter,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualRouter = this.virtualRouter;
+    return {
+      'virtualRouter': virtualRouter,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2696,6 +2738,13 @@ class CreateVirtualServiceOutput {
   CreateVirtualServiceOutput({
     required this.virtualService,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualService = this.virtualService;
+    return {
+      'virtualService': virtualService,
+    };
+  }
 }
 
 enum DefaultGatewayRouteRewrite {
@@ -2734,6 +2783,13 @@ class DeleteGatewayRouteOutput {
   DeleteGatewayRouteOutput({
     required this.gatewayRoute,
   });
+
+  Map<String, dynamic> toJson() {
+    final gatewayRoute = this.gatewayRoute;
+    return {
+      'gatewayRoute': gatewayRoute,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2744,6 +2800,13 @@ class DeleteMeshOutput {
   DeleteMeshOutput({
     required this.mesh,
   });
+
+  Map<String, dynamic> toJson() {
+    final mesh = this.mesh;
+    return {
+      'mesh': mesh,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2754,6 +2817,13 @@ class DeleteRouteOutput {
   DeleteRouteOutput({
     required this.route,
   });
+
+  Map<String, dynamic> toJson() {
+    final route = this.route;
+    return {
+      'route': route,
+    };
+  }
 }
 
 class DeleteVirtualGatewayOutput {
@@ -2763,6 +2833,13 @@ class DeleteVirtualGatewayOutput {
   DeleteVirtualGatewayOutput({
     required this.virtualGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualGateway = this.virtualGateway;
+    return {
+      'virtualGateway': virtualGateway,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2773,6 +2850,13 @@ class DeleteVirtualNodeOutput {
   DeleteVirtualNodeOutput({
     required this.virtualNode,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualNode = this.virtualNode;
+    return {
+      'virtualNode': virtualNode,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2783,6 +2867,13 @@ class DeleteVirtualRouterOutput {
   DeleteVirtualRouterOutput({
     required this.virtualRouter,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualRouter = this.virtualRouter;
+    return {
+      'virtualRouter': virtualRouter,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2793,6 +2884,13 @@ class DeleteVirtualServiceOutput {
   DeleteVirtualServiceOutput({
     required this.virtualService,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualService = this.virtualService;
+    return {
+      'virtualService': virtualService,
+    };
+  }
 }
 
 class DescribeGatewayRouteOutput {
@@ -2802,6 +2900,13 @@ class DescribeGatewayRouteOutput {
   DescribeGatewayRouteOutput({
     required this.gatewayRoute,
   });
+
+  Map<String, dynamic> toJson() {
+    final gatewayRoute = this.gatewayRoute;
+    return {
+      'gatewayRoute': gatewayRoute,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2812,6 +2917,13 @@ class DescribeMeshOutput {
   DescribeMeshOutput({
     required this.mesh,
   });
+
+  Map<String, dynamic> toJson() {
+    final mesh = this.mesh;
+    return {
+      'mesh': mesh,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2822,6 +2934,13 @@ class DescribeRouteOutput {
   DescribeRouteOutput({
     required this.route,
   });
+
+  Map<String, dynamic> toJson() {
+    final route = this.route;
+    return {
+      'route': route,
+    };
+  }
 }
 
 class DescribeVirtualGatewayOutput {
@@ -2831,6 +2950,13 @@ class DescribeVirtualGatewayOutput {
   DescribeVirtualGatewayOutput({
     required this.virtualGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualGateway = this.virtualGateway;
+    return {
+      'virtualGateway': virtualGateway,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2841,6 +2967,13 @@ class DescribeVirtualNodeOutput {
   DescribeVirtualNodeOutput({
     required this.virtualNode,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualNode = this.virtualNode;
+    return {
+      'virtualNode': virtualNode,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2851,6 +2984,13 @@ class DescribeVirtualRouterOutput {
   DescribeVirtualRouterOutput({
     required this.virtualRouter,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualRouter = this.virtualRouter;
+    return {
+      'virtualRouter': virtualRouter,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -2861,6 +3001,13 @@ class DescribeVirtualServiceOutput {
   DescribeVirtualServiceOutput({
     required this.virtualService,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualService = this.virtualService;
+    return {
+      'virtualService': virtualService,
+    };
+  }
 }
 
 enum DnsResponseType {
@@ -3107,6 +3254,23 @@ class GatewayRouteData {
       virtualGatewayName: json['virtualGatewayName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayRouteName = this.gatewayRouteName;
+    final meshName = this.meshName;
+    final metadata = this.metadata;
+    final spec = this.spec;
+    final status = this.status;
+    final virtualGatewayName = this.virtualGatewayName;
+    return {
+      'gatewayRouteName': gatewayRouteName,
+      'meshName': meshName,
+      'metadata': metadata,
+      'spec': spec,
+      'status': status,
+      'virtualGatewayName': virtualGatewayName,
+    };
+  }
 }
 
 /// An object representing the gateway route host name to match.
@@ -3226,6 +3390,29 @@ class GatewayRouteRef {
       virtualGatewayName: json['virtualGatewayName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final gatewayRouteName = this.gatewayRouteName;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final meshName = this.meshName;
+    final meshOwner = this.meshOwner;
+    final resourceOwner = this.resourceOwner;
+    final version = this.version;
+    final virtualGatewayName = this.virtualGatewayName;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'gatewayRouteName': gatewayRouteName,
+      'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      'meshName': meshName,
+      'meshOwner': meshOwner,
+      'resourceOwner': resourceOwner,
+      'version': version,
+      'virtualGatewayName': virtualGatewayName,
+    };
+  }
 }
 
 /// An object that represents a gateway route specification. Specify one gateway
@@ -3291,6 +3478,13 @@ class GatewayRouteStatus {
     return GatewayRouteStatus(
       status: (json['status'] as String).toGatewayRouteStatusCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -4889,6 +5083,15 @@ class ListGatewayRoutesOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayRoutes = this.gatewayRoutes;
+    final nextToken = this.nextToken;
+    return {
+      'gatewayRoutes': gatewayRoutes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -4915,6 +5118,15 @@ class ListMeshesOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final meshes = this.meshes;
+    final nextToken = this.nextToken;
+    return {
+      'meshes': meshes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4944,6 +5156,15 @@ class ListRoutesOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final routes = this.routes;
+    final nextToken = this.nextToken;
+    return {
+      'routes': routes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -4971,6 +5192,15 @@ class ListTagsForResourceOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final nextToken = this.nextToken;
+    return {
+      'tags': tags,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListVirtualGatewaysOutput {
@@ -4996,6 +5226,15 @@ class ListVirtualGatewaysOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final virtualGateways = this.virtualGateways;
+    final nextToken = this.nextToken;
+    return {
+      'virtualGateways': virtualGateways,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5024,6 +5263,15 @@ class ListVirtualNodesOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final virtualNodes = this.virtualNodes;
+    final nextToken = this.nextToken;
+    return {
+      'virtualNodes': virtualNodes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -5051,6 +5299,15 @@ class ListVirtualRoutersOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final virtualRouters = this.virtualRouters;
+    final nextToken = this.nextToken;
+    return {
+      'virtualRouters': virtualRouters,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -5077,6 +5334,15 @@ class ListVirtualServicesOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final virtualServices = this.virtualServices;
+    final nextToken = this.nextToken;
+    return {
+      'virtualServices': virtualServices,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5587,6 +5853,19 @@ class MeshData {
       status: MeshStatus.fromJson(json['status'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final meshName = this.meshName;
+    final metadata = this.metadata;
+    final spec = this.spec;
+    final status = this.status;
+    return {
+      'meshName': meshName,
+      'metadata': metadata,
+      'spec': spec,
+      'status': status,
+    };
+  }
 }
 
 /// An object that represents a service mesh returned by a list operation.
@@ -5642,6 +5921,25 @@ class MeshRef {
       resourceOwner: json['resourceOwner'] as String,
       version: json['version'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final meshName = this.meshName;
+    final meshOwner = this.meshOwner;
+    final resourceOwner = this.resourceOwner;
+    final version = this.version;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      'meshName': meshName,
+      'meshOwner': meshOwner,
+      'resourceOwner': resourceOwner,
+      'version': version,
+    };
   }
 }
 
@@ -5712,6 +6010,13 @@ class MeshStatus {
     return MeshStatus(
       status: (json['status'] as String?)?.toMeshStatusCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -5937,6 +6242,25 @@ class ResourceMetadata {
       version: json['version'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final meshOwner = this.meshOwner;
+    final resourceOwner = this.resourceOwner;
+    final uid = this.uid;
+    final version = this.version;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      'meshOwner': meshOwner,
+      'resourceOwner': resourceOwner,
+      'uid': uid,
+      'version': version,
+    };
+  }
 }
 
 /// An object that represents a route returned by a describe operation.
@@ -5977,6 +6301,23 @@ class RouteData {
       status: RouteStatus.fromJson(json['status'] as Map<String, dynamic>),
       virtualRouterName: json['virtualRouterName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final meshName = this.meshName;
+    final metadata = this.metadata;
+    final routeName = this.routeName;
+    final spec = this.spec;
+    final status = this.status;
+    final virtualRouterName = this.virtualRouterName;
+    return {
+      'meshName': meshName,
+      'metadata': metadata,
+      'routeName': routeName,
+      'spec': spec,
+      'status': status,
+      'virtualRouterName': virtualRouterName,
+    };
   }
 }
 
@@ -6043,6 +6384,29 @@ class RouteRef {
       version: json['version'] as int,
       virtualRouterName: json['virtualRouterName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final meshName = this.meshName;
+    final meshOwner = this.meshOwner;
+    final resourceOwner = this.resourceOwner;
+    final routeName = this.routeName;
+    final version = this.version;
+    final virtualRouterName = this.virtualRouterName;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      'meshName': meshName,
+      'meshOwner': meshOwner,
+      'resourceOwner': resourceOwner,
+      'routeName': routeName,
+      'version': version,
+      'virtualRouterName': virtualRouterName,
+    };
   }
 }
 
@@ -6117,6 +6481,13 @@ class RouteStatus {
     return RouteStatus(
       status: (json['status'] as String).toRouteStatusCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -6277,6 +6648,10 @@ class TagResourceOutput {
   TagResourceOutput();
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6555,6 +6930,10 @@ class UntagResourceOutput {
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateGatewayRouteOutput {
@@ -6564,6 +6943,13 @@ class UpdateGatewayRouteOutput {
   UpdateGatewayRouteOutput({
     required this.gatewayRoute,
   });
+
+  Map<String, dynamic> toJson() {
+    final gatewayRoute = this.gatewayRoute;
+    return {
+      'gatewayRoute': gatewayRoute,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -6573,6 +6959,13 @@ class UpdateMeshOutput {
   UpdateMeshOutput({
     required this.mesh,
   });
+
+  Map<String, dynamic> toJson() {
+    final mesh = this.mesh;
+    return {
+      'mesh': mesh,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -6583,6 +6976,13 @@ class UpdateRouteOutput {
   UpdateRouteOutput({
     required this.route,
   });
+
+  Map<String, dynamic> toJson() {
+    final route = this.route;
+    return {
+      'route': route,
+    };
+  }
 }
 
 class UpdateVirtualGatewayOutput {
@@ -6592,6 +6992,13 @@ class UpdateVirtualGatewayOutput {
   UpdateVirtualGatewayOutput({
     required this.virtualGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualGateway = this.virtualGateway;
+    return {
+      'virtualGateway': virtualGateway,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -6602,6 +7009,13 @@ class UpdateVirtualNodeOutput {
   UpdateVirtualNodeOutput({
     required this.virtualNode,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualNode = this.virtualNode;
+    return {
+      'virtualNode': virtualNode,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -6612,6 +7026,13 @@ class UpdateVirtualRouterOutput {
   UpdateVirtualRouterOutput({
     required this.virtualRouter,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualRouter = this.virtualRouter;
+    return {
+      'virtualRouter': virtualRouter,
+    };
+  }
 }
 
 /// <zonbook></zonbook><xhtml></xhtml>
@@ -6622,6 +7043,13 @@ class UpdateVirtualServiceOutput {
   UpdateVirtualServiceOutput({
     required this.virtualService,
   });
+
+  Map<String, dynamic> toJson() {
+    final virtualService = this.virtualService;
+    return {
+      'virtualService': virtualService,
+    };
+  }
 }
 
 /// The access log configuration for a virtual gateway.
@@ -6879,6 +7307,21 @@ class VirtualGatewayData {
           VirtualGatewayStatus.fromJson(json['status'] as Map<String, dynamic>),
       virtualGatewayName: json['virtualGatewayName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final meshName = this.meshName;
+    final metadata = this.metadata;
+    final spec = this.spec;
+    final status = this.status;
+    final virtualGatewayName = this.virtualGatewayName;
+    return {
+      'meshName': meshName,
+      'metadata': metadata,
+      'spec': spec,
+      'status': status,
+      'virtualGatewayName': virtualGatewayName,
+    };
   }
 }
 
@@ -7566,6 +8009,27 @@ class VirtualGatewayRef {
       virtualGatewayName: json['virtualGatewayName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final meshName = this.meshName;
+    final meshOwner = this.meshOwner;
+    final resourceOwner = this.resourceOwner;
+    final version = this.version;
+    final virtualGatewayName = this.virtualGatewayName;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      'meshName': meshName,
+      'meshOwner': meshOwner,
+      'resourceOwner': resourceOwner,
+      'version': version,
+      'virtualGatewayName': virtualGatewayName,
+    };
+  }
 }
 
 /// An object that represents the specification of a service mesh resource.
@@ -7625,6 +8089,13 @@ class VirtualGatewayStatus {
     return VirtualGatewayStatus(
       status: (json['status'] as String).toVirtualGatewayStatusCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -7928,6 +8399,21 @@ class VirtualNodeData {
       virtualNodeName: json['virtualNodeName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final meshName = this.meshName;
+    final metadata = this.metadata;
+    final spec = this.spec;
+    final status = this.status;
+    final virtualNodeName = this.virtualNodeName;
+    return {
+      'meshName': meshName,
+      'metadata': metadata,
+      'spec': spec,
+      'status': status,
+      'virtualNodeName': virtualNodeName,
+    };
+  }
 }
 
 /// An object that represents a type of connection pool.
@@ -8066,6 +8552,27 @@ class VirtualNodeRef {
       virtualNodeName: json['virtualNodeName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final meshName = this.meshName;
+    final meshOwner = this.meshOwner;
+    final resourceOwner = this.resourceOwner;
+    final version = this.version;
+    final virtualNodeName = this.virtualNodeName;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      'meshName': meshName,
+      'meshOwner': meshOwner,
+      'resourceOwner': resourceOwner,
+      'version': version,
+      'virtualNodeName': virtualNodeName,
+    };
+  }
 }
 
 /// An object that represents a virtual node service provider.
@@ -8171,6 +8678,13 @@ class VirtualNodeStatus {
       status: (json['status'] as String).toVirtualNodeStatusCode(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
+  }
 }
 
 enum VirtualNodeStatusCode {
@@ -8264,6 +8778,21 @@ class VirtualRouterData {
       virtualRouterName: json['virtualRouterName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final meshName = this.meshName;
+    final metadata = this.metadata;
+    final spec = this.spec;
+    final status = this.status;
+    final virtualRouterName = this.virtualRouterName;
+    return {
+      'meshName': meshName,
+      'metadata': metadata,
+      'spec': spec,
+      'status': status,
+      'virtualRouterName': virtualRouterName,
+    };
+  }
 }
 
 /// An object that represents a virtual router listener.
@@ -8347,6 +8876,27 @@ class VirtualRouterRef {
       virtualRouterName: json['virtualRouterName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final meshName = this.meshName;
+    final meshOwner = this.meshOwner;
+    final resourceOwner = this.resourceOwner;
+    final version = this.version;
+    final virtualRouterName = this.virtualRouterName;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      'meshName': meshName,
+      'meshOwner': meshOwner,
+      'resourceOwner': resourceOwner,
+      'version': version,
+      'virtualRouterName': virtualRouterName,
+    };
+  }
 }
 
 /// An object that represents a virtual node service provider.
@@ -8409,6 +8959,13 @@ class VirtualRouterStatus {
     return VirtualRouterStatus(
       status: (json['status'] as String).toVirtualRouterStatusCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -8510,6 +9067,21 @@ class VirtualServiceData {
       virtualServiceName: json['virtualServiceName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final meshName = this.meshName;
+    final metadata = this.metadata;
+    final spec = this.spec;
+    final status = this.status;
+    final virtualServiceName = this.virtualServiceName;
+    return {
+      'meshName': meshName,
+      'metadata': metadata,
+      'spec': spec,
+      'status': status,
+      'virtualServiceName': virtualServiceName,
+    };
+  }
 }
 
 /// An object that represents the provider for a virtual service.
@@ -8606,6 +9178,27 @@ class VirtualServiceRef {
       virtualServiceName: json['virtualServiceName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final meshName = this.meshName;
+    final meshOwner = this.meshOwner;
+    final resourceOwner = this.resourceOwner;
+    final version = this.version;
+    final virtualServiceName = this.virtualServiceName;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      'meshName': meshName,
+      'meshOwner': meshOwner,
+      'resourceOwner': resourceOwner,
+      'version': version,
+      'virtualServiceName': virtualServiceName,
+    };
+  }
 }
 
 /// An object that represents the specification of a virtual service.
@@ -8646,6 +9239,13 @@ class VirtualServiceStatus {
     return VirtualServiceStatus(
       status: (json['status'] as String).toVirtualServiceStatusCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
   }
 }
 

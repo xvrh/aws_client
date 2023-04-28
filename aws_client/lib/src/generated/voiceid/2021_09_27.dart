@@ -1049,6 +1049,13 @@ class AuthenticationConfiguration {
       acceptanceThreshold: json['AcceptanceThreshold'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceptanceThreshold = this.acceptanceThreshold;
+    return {
+      'AcceptanceThreshold': acceptanceThreshold,
+    };
+  }
 }
 
 enum AuthenticationDecision {
@@ -1172,6 +1179,31 @@ class AuthenticationResult {
       score: json['Score'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final audioAggregationEndedAt = this.audioAggregationEndedAt;
+    final audioAggregationStartedAt = this.audioAggregationStartedAt;
+    final authenticationResultId = this.authenticationResultId;
+    final configuration = this.configuration;
+    final customerSpeakerId = this.customerSpeakerId;
+    final decision = this.decision;
+    final generatedSpeakerId = this.generatedSpeakerId;
+    final score = this.score;
+    return {
+      if (audioAggregationEndedAt != null)
+        'AudioAggregationEndedAt': unixTimestampToJson(audioAggregationEndedAt),
+      if (audioAggregationStartedAt != null)
+        'AudioAggregationStartedAt':
+            unixTimestampToJson(audioAggregationStartedAt),
+      if (authenticationResultId != null)
+        'AuthenticationResultId': authenticationResultId,
+      if (configuration != null) 'Configuration': configuration,
+      if (customerSpeakerId != null) 'CustomerSpeakerId': customerSpeakerId,
+      if (decision != null) 'Decision': decision.toValue(),
+      if (generatedSpeakerId != null) 'GeneratedSpeakerId': generatedSpeakerId,
+      if (score != null) 'Score': score,
+    };
+  }
 }
 
 class CreateDomainResponse {
@@ -1188,6 +1220,13 @@ class CreateDomainResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    return {
+      if (domain != null) 'Domain': domain,
+    };
+  }
 }
 
 class DescribeDomainResponse {
@@ -1203,6 +1242,13 @@ class DescribeDomainResponse {
           ? Domain.fromJson(json['Domain'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    return {
+      if (domain != null) 'Domain': domain,
+    };
   }
 }
 
@@ -1222,6 +1268,13 @@ class DescribeFraudsterRegistrationJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'Job': job,
+    };
+  }
 }
 
 class DescribeFraudsterResponse {
@@ -1237,6 +1290,13 @@ class DescribeFraudsterResponse {
           ? Fraudster.fromJson(json['Fraudster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fraudster = this.fraudster;
+    return {
+      if (fraudster != null) 'Fraudster': fraudster,
+    };
   }
 }
 
@@ -1255,6 +1315,13 @@ class DescribeSpeakerEnrollmentJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'Job': job,
+    };
+  }
 }
 
 class DescribeSpeakerResponse {
@@ -1270,6 +1337,13 @@ class DescribeSpeakerResponse {
           ? Speaker.fromJson(json['Speaker'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final speaker = this.speaker;
+    return {
+      if (speaker != null) 'Speaker': speaker,
+    };
   }
 }
 
@@ -1339,6 +1413,33 @@ class Domain {
               : null,
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final domainId = this.domainId;
+    final domainStatus = this.domainStatus;
+    final name = this.name;
+    final serverSideEncryptionConfiguration =
+        this.serverSideEncryptionConfiguration;
+    final serverSideEncryptionUpdateDetails =
+        this.serverSideEncryptionUpdateDetails;
+    final updatedAt = this.updatedAt;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (domainId != null) 'DomainId': domainId,
+      if (domainStatus != null) 'DomainStatus': domainStatus.toValue(),
+      if (name != null) 'Name': name,
+      if (serverSideEncryptionConfiguration != null)
+        'ServerSideEncryptionConfiguration': serverSideEncryptionConfiguration,
+      if (serverSideEncryptionUpdateDetails != null)
+        'ServerSideEncryptionUpdateDetails': serverSideEncryptionUpdateDetails,
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
   }
 }
 
@@ -1441,6 +1542,33 @@ class DomainSummary {
               : null,
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final domainId = this.domainId;
+    final domainStatus = this.domainStatus;
+    final name = this.name;
+    final serverSideEncryptionConfiguration =
+        this.serverSideEncryptionConfiguration;
+    final serverSideEncryptionUpdateDetails =
+        this.serverSideEncryptionUpdateDetails;
+    final updatedAt = this.updatedAt;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (domainId != null) 'DomainId': domainId,
+      if (domainStatus != null) 'DomainStatus': domainStatus.toValue(),
+      if (name != null) 'Name': name,
+      if (serverSideEncryptionConfiguration != null)
+        'ServerSideEncryptionConfiguration': serverSideEncryptionConfiguration,
+      if (serverSideEncryptionUpdateDetails != null)
+        'ServerSideEncryptionUpdateDetails': serverSideEncryptionUpdateDetails,
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
   }
 }
 
@@ -1607,6 +1735,25 @@ class EvaluateSessionResponse {
           (json['StreamingStatus'] as String?)?.toStreamingStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authenticationResult = this.authenticationResult;
+    final domainId = this.domainId;
+    final fraudDetectionResult = this.fraudDetectionResult;
+    final sessionId = this.sessionId;
+    final sessionName = this.sessionName;
+    final streamingStatus = this.streamingStatus;
+    return {
+      if (authenticationResult != null)
+        'AuthenticationResult': authenticationResult,
+      if (domainId != null) 'DomainId': domainId,
+      if (fraudDetectionResult != null)
+        'FraudDetectionResult': fraudDetectionResult,
+      if (sessionId != null) 'SessionId': sessionId,
+      if (sessionName != null) 'SessionName': sessionName,
+      if (streamingStatus != null) 'StreamingStatus': streamingStatus.toValue(),
+    };
+  }
 }
 
 enum ExistingEnrollmentAction {
@@ -1655,6 +1802,15 @@ class FailureDetails {
       statusCode: json['StatusCode'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final statusCode = this.statusCode;
+    return {
+      if (message != null) 'Message': message,
+      if (statusCode != null) 'StatusCode': statusCode,
+    };
+  }
 }
 
 enum FraudDetectionAction {
@@ -1700,6 +1856,13 @@ class FraudDetectionConfiguration {
     return FraudDetectionConfiguration(
       riskThreshold: json['RiskThreshold'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final riskThreshold = this.riskThreshold;
+    return {
+      'RiskThreshold': riskThreshold,
+    };
   }
 }
 
@@ -1825,6 +1988,29 @@ class FraudDetectionResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final audioAggregationEndedAt = this.audioAggregationEndedAt;
+    final audioAggregationStartedAt = this.audioAggregationStartedAt;
+    final configuration = this.configuration;
+    final decision = this.decision;
+    final fraudDetectionResultId = this.fraudDetectionResultId;
+    final reasons = this.reasons;
+    final riskDetails = this.riskDetails;
+    return {
+      if (audioAggregationEndedAt != null)
+        'AudioAggregationEndedAt': unixTimestampToJson(audioAggregationEndedAt),
+      if (audioAggregationStartedAt != null)
+        'AudioAggregationStartedAt':
+            unixTimestampToJson(audioAggregationStartedAt),
+      if (configuration != null) 'Configuration': configuration,
+      if (decision != null) 'Decision': decision.toValue(),
+      if (fraudDetectionResultId != null)
+        'FraudDetectionResultId': fraudDetectionResultId,
+      if (reasons != null) 'Reasons': reasons.map((e) => e.toValue()).toList(),
+      if (riskDetails != null) 'RiskDetails': riskDetails,
+    };
+  }
 }
 
 /// Details regarding various fraud risk analyses performed against the current
@@ -1841,6 +2027,13 @@ class FraudRiskDetails {
       knownFraudsterRisk: KnownFraudsterRisk.fromJson(
           json['KnownFraudsterRisk'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final knownFraudsterRisk = this.knownFraudsterRisk;
+    return {
+      'KnownFraudsterRisk': knownFraudsterRisk,
+    };
   }
 }
 
@@ -1866,6 +2059,18 @@ class Fraudster {
       domainId: json['DomainId'] as String?,
       generatedFraudsterId: json['GeneratedFraudsterId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final domainId = this.domainId;
+    final generatedFraudsterId = this.generatedFraudsterId;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (domainId != null) 'DomainId': domainId,
+      if (generatedFraudsterId != null)
+        'GeneratedFraudsterId': generatedFraudsterId,
+    };
   }
 }
 
@@ -1963,6 +2168,35 @@ class FraudsterRegistrationJob {
               json['RegistrationConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final domainId = this.domainId;
+    final endedAt = this.endedAt;
+    final failureDetails = this.failureDetails;
+    final inputDataConfig = this.inputDataConfig;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobProgress = this.jobProgress;
+    final jobStatus = this.jobStatus;
+    final outputDataConfig = this.outputDataConfig;
+    final registrationConfig = this.registrationConfig;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (domainId != null) 'DomainId': domainId,
+      if (endedAt != null) 'EndedAt': unixTimestampToJson(endedAt),
+      if (failureDetails != null) 'FailureDetails': failureDetails,
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobProgress != null) 'JobProgress': jobProgress,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (registrationConfig != null) 'RegistrationConfig': registrationConfig,
+    };
   }
 }
 
@@ -2070,6 +2304,27 @@ class FraudsterRegistrationJobSummary {
           (json['JobStatus'] as String?)?.toFraudsterRegistrationJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final domainId = this.domainId;
+    final endedAt = this.endedAt;
+    final failureDetails = this.failureDetails;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobProgress = this.jobProgress;
+    final jobStatus = this.jobStatus;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (domainId != null) 'DomainId': domainId,
+      if (endedAt != null) 'EndedAt': unixTimestampToJson(endedAt),
+      if (failureDetails != null) 'FailureDetails': failureDetails,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobProgress != null) 'JobProgress': jobProgress,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 /// The configuration containing input file information for a batch job.
@@ -2109,6 +2364,13 @@ class JobProgress {
       percentComplete: json['PercentComplete'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final percentComplete = this.percentComplete;
+    return {
+      if (percentComplete != null) 'PercentComplete': percentComplete,
+    };
+  }
 }
 
 /// Contains details produced as a result of performing known fraudster risk
@@ -2131,6 +2393,16 @@ class KnownFraudsterRisk {
       riskScore: json['RiskScore'] as int,
       generatedFraudsterId: json['GeneratedFraudsterId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final riskScore = this.riskScore;
+    final generatedFraudsterId = this.generatedFraudsterId;
+    return {
+      'RiskScore': riskScore,
+      if (generatedFraudsterId != null)
+        'GeneratedFraudsterId': generatedFraudsterId,
+    };
   }
 }
 
@@ -2157,6 +2429,15 @@ class ListDomainsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainSummaries = this.domainSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (domainSummaries != null) 'DomainSummaries': domainSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2185,6 +2466,15 @@ class ListFraudsterRegistrationJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobSummaries = this.jobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (jobSummaries != null) 'JobSummaries': jobSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListSpeakerEnrollmentJobsResponse {
@@ -2212,6 +2502,15 @@ class ListSpeakerEnrollmentJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobSummaries = this.jobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (jobSummaries != null) 'JobSummaries': jobSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListSpeakersResponse {
@@ -2238,6 +2537,15 @@ class ListSpeakersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final speakerSummaries = this.speakerSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (speakerSummaries != null) 'SpeakerSummaries': speakerSummaries,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2255,6 +2563,13 @@ class ListTagsForResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class OptOutSpeakerResponse {
@@ -2270,6 +2585,13 @@ class OptOutSpeakerResponse {
           ? Speaker.fromJson(json['Speaker'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final speaker = this.speaker;
+    return {
+      if (speaker != null) 'Speaker': speaker,
+    };
   }
 }
 
@@ -2406,6 +2728,17 @@ class ServerSideEncryptionUpdateDetails {
           ?.toServerSideEncryptionUpdateStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final oldKmsKeyId = this.oldKmsKeyId;
+    final updateStatus = this.updateStatus;
+    return {
+      if (message != null) 'Message': message,
+      if (oldKmsKeyId != null) 'OldKmsKeyId': oldKmsKeyId,
+      if (updateStatus != null) 'UpdateStatus': updateStatus.toValue(),
+    };
+  }
 }
 
 enum ServerSideEncryptionUpdateStatus {
@@ -2487,6 +2820,26 @@ class Speaker {
       status: (json['Status'] as String?)?.toSpeakerStatus(),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final customerSpeakerId = this.customerSpeakerId;
+    final domainId = this.domainId;
+    final generatedSpeakerId = this.generatedSpeakerId;
+    final lastAccessedAt = this.lastAccessedAt;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (customerSpeakerId != null) 'CustomerSpeakerId': customerSpeakerId,
+      if (domainId != null) 'DomainId': domainId,
+      if (generatedSpeakerId != null) 'GeneratedSpeakerId': generatedSpeakerId,
+      if (lastAccessedAt != null)
+        'LastAccessedAt': unixTimestampToJson(lastAccessedAt),
+      if (status != null) 'Status': status.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
   }
 }
 
@@ -2582,6 +2935,35 @@ class SpeakerEnrollmentJob {
               json['OutputDataConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final domainId = this.domainId;
+    final endedAt = this.endedAt;
+    final enrollmentConfig = this.enrollmentConfig;
+    final failureDetails = this.failureDetails;
+    final inputDataConfig = this.inputDataConfig;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobProgress = this.jobProgress;
+    final jobStatus = this.jobStatus;
+    final outputDataConfig = this.outputDataConfig;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (domainId != null) 'DomainId': domainId,
+      if (endedAt != null) 'EndedAt': unixTimestampToJson(endedAt),
+      if (enrollmentConfig != null) 'EnrollmentConfig': enrollmentConfig,
+      if (failureDetails != null) 'FailureDetails': failureDetails,
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobProgress != null) 'JobProgress': jobProgress,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+    };
   }
 }
 
@@ -2687,6 +3069,27 @@ class SpeakerEnrollmentJobSummary {
       jobStatus: (json['JobStatus'] as String?)?.toSpeakerEnrollmentJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final domainId = this.domainId;
+    final endedAt = this.endedAt;
+    final failureDetails = this.failureDetails;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobProgress = this.jobProgress;
+    final jobStatus = this.jobStatus;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (domainId != null) 'DomainId': domainId,
+      if (endedAt != null) 'EndedAt': unixTimestampToJson(endedAt),
+      if (failureDetails != null) 'FailureDetails': failureDetails,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (jobProgress != null) 'JobProgress': jobProgress,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+    };
+  }
 }
 
 enum SpeakerStatus {
@@ -2772,6 +3175,26 @@ class SpeakerSummary {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final customerSpeakerId = this.customerSpeakerId;
+    final domainId = this.domainId;
+    final generatedSpeakerId = this.generatedSpeakerId;
+    final lastAccessedAt = this.lastAccessedAt;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (customerSpeakerId != null) 'CustomerSpeakerId': customerSpeakerId,
+      if (domainId != null) 'DomainId': domainId,
+      if (generatedSpeakerId != null) 'GeneratedSpeakerId': generatedSpeakerId,
+      if (lastAccessedAt != null)
+        'LastAccessedAt': unixTimestampToJson(lastAccessedAt),
+      if (status != null) 'Status': status.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 class StartFraudsterRegistrationJobResponse {
@@ -2790,6 +3213,13 @@ class StartFraudsterRegistrationJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'Job': job,
+    };
+  }
 }
 
 class StartSpeakerEnrollmentJobResponse {
@@ -2806,6 +3236,13 @@ class StartSpeakerEnrollmentJobResponse {
           ? SpeakerEnrollmentJob.fromJson(json['Job'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'Job': job,
+    };
   }
 }
 
@@ -2880,12 +3317,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2902,6 +3347,13 @@ class UpdateDomainResponse {
           ? Domain.fromJson(json['Domain'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    return {
+      if (domain != null) 'Domain': domain,
+    };
   }
 }
 

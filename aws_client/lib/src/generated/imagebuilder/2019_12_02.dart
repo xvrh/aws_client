@@ -2921,6 +2921,23 @@ class Ami {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final description = this.description;
+    final image = this.image;
+    final name = this.name;
+    final region = this.region;
+    final state = this.state;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (description != null) 'description': description,
+      if (image != null) 'image': image,
+      if (name != null) 'name': name,
+      if (region != null) 'region': region,
+      if (state != null) 'state': state,
+    };
+  }
 }
 
 /// Define and configure the output AMIs of the pipeline.
@@ -3045,6 +3062,18 @@ class CancelImageCreationResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final imageBuildVersionArn = this.imageBuildVersionArn;
+    final requestId = this.requestId;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (imageBuildVersionArn != null)
+        'imageBuildVersionArn': imageBuildVersionArn,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 /// A detailed view of a component.
@@ -3149,6 +3178,44 @@ class Component {
       type: (json['type'] as String?)?.toComponentType(),
       version: json['version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final changeDescription = this.changeDescription;
+    final data = this.data;
+    final dateCreated = this.dateCreated;
+    final description = this.description;
+    final encrypted = this.encrypted;
+    final kmsKeyId = this.kmsKeyId;
+    final name = this.name;
+    final owner = this.owner;
+    final parameters = this.parameters;
+    final platform = this.platform;
+    final state = this.state;
+    final supportedOsVersions = this.supportedOsVersions;
+    final tags = this.tags;
+    final type = this.type;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (changeDescription != null) 'changeDescription': changeDescription,
+      if (data != null) 'data': data,
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (description != null) 'description': description,
+      if (encrypted != null) 'encrypted': encrypted,
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (name != null) 'name': name,
+      if (owner != null) 'owner': owner,
+      if (parameters != null) 'parameters': parameters,
+      if (platform != null) 'platform': platform.toValue(),
+      if (state != null) 'state': state,
+      if (supportedOsVersions != null)
+        'supportedOsVersions': supportedOsVersions,
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type.toValue(),
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -3273,6 +3340,19 @@ class ComponentParameterDetail {
       description: json['description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    final defaultValue = this.defaultValue;
+    final description = this.description;
+    return {
+      'name': name,
+      'type': type,
+      if (defaultValue != null) 'defaultValue': defaultValue,
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 /// A group of fields that describe the current status of components that are no
@@ -3293,6 +3373,15 @@ class ComponentState {
       reason: json['reason'] as String?,
       status: (json['status'] as String?)?.toComponentStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reason = this.reason;
+    final status = this.status;
+    return {
+      if (reason != null) 'reason': reason,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -3395,6 +3484,36 @@ class ComponentSummary {
       type: (json['type'] as String?)?.toComponentType(),
       version: json['version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final changeDescription = this.changeDescription;
+    final dateCreated = this.dateCreated;
+    final description = this.description;
+    final name = this.name;
+    final owner = this.owner;
+    final platform = this.platform;
+    final state = this.state;
+    final supportedOsVersions = this.supportedOsVersions;
+    final tags = this.tags;
+    final type = this.type;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (changeDescription != null) 'changeDescription': changeDescription,
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (description != null) 'description': description,
+      if (name != null) 'name': name,
+      if (owner != null) 'owner': owner,
+      if (platform != null) 'platform': platform.toValue(),
+      if (state != null) 'state': state,
+      if (supportedOsVersions != null)
+        'supportedOsVersions': supportedOsVersions,
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type.toValue(),
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -3523,6 +3642,30 @@ class ComponentVersion {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dateCreated = this.dateCreated;
+    final description = this.description;
+    final name = this.name;
+    final owner = this.owner;
+    final platform = this.platform;
+    final supportedOsVersions = this.supportedOsVersions;
+    final type = this.type;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (description != null) 'description': description,
+      if (name != null) 'name': name,
+      if (owner != null) 'owner': owner,
+      if (platform != null) 'platform': platform.toValue(),
+      if (supportedOsVersions != null)
+        'supportedOsVersions': supportedOsVersions,
+      if (type != null) 'type': type.toValue(),
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// A container encapsulates the runtime environment for an application.
@@ -3546,6 +3689,15 @@ class Container {
           .toList(),
       region: json['region'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageUris = this.imageUris;
+    final region = this.region;
+    return {
+      if (imageUris != null) 'imageUris': imageUris,
+      if (region != null) 'region': region,
+    };
   }
 }
 
@@ -3738,6 +3890,47 @@ class ContainerRecipe {
       workingDirectory: json['workingDirectory'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final components = this.components;
+    final containerType = this.containerType;
+    final dateCreated = this.dateCreated;
+    final description = this.description;
+    final dockerfileTemplateData = this.dockerfileTemplateData;
+    final encrypted = this.encrypted;
+    final instanceConfiguration = this.instanceConfiguration;
+    final kmsKeyId = this.kmsKeyId;
+    final name = this.name;
+    final owner = this.owner;
+    final parentImage = this.parentImage;
+    final platform = this.platform;
+    final tags = this.tags;
+    final targetRepository = this.targetRepository;
+    final version = this.version;
+    final workingDirectory = this.workingDirectory;
+    return {
+      if (arn != null) 'arn': arn,
+      if (components != null) 'components': components,
+      if (containerType != null) 'containerType': containerType.toValue(),
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (description != null) 'description': description,
+      if (dockerfileTemplateData != null)
+        'dockerfileTemplateData': dockerfileTemplateData,
+      if (encrypted != null) 'encrypted': encrypted,
+      if (instanceConfiguration != null)
+        'instanceConfiguration': instanceConfiguration,
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (name != null) 'name': name,
+      if (owner != null) 'owner': owner,
+      if (parentImage != null) 'parentImage': parentImage,
+      if (platform != null) 'platform': platform.toValue(),
+      if (tags != null) 'tags': tags,
+      if (targetRepository != null) 'targetRepository': targetRepository,
+      if (version != null) 'version': version,
+      if (workingDirectory != null) 'workingDirectory': workingDirectory,
+    };
+  }
 }
 
 /// A summary of a container recipe
@@ -3788,6 +3981,27 @@ class ContainerRecipeSummary {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final containerType = this.containerType;
+    final dateCreated = this.dateCreated;
+    final name = this.name;
+    final owner = this.owner;
+    final parentImage = this.parentImage;
+    final platform = this.platform;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (containerType != null) 'containerType': containerType.toValue(),
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (name != null) 'name': name,
+      if (owner != null) 'owner': owner,
+      if (parentImage != null) 'parentImage': parentImage,
+      if (platform != null) 'platform': platform.toValue(),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3861,6 +4075,18 @@ class CreateComponentResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final componentBuildVersionArn = this.componentBuildVersionArn;
+    final requestId = this.requestId;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (componentBuildVersionArn != null)
+        'componentBuildVersionArn': componentBuildVersionArn,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class CreateContainerRecipeResponse {
@@ -3885,6 +4111,17 @@ class CreateContainerRecipeResponse {
       containerRecipeArn: json['containerRecipeArn'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final containerRecipeArn = this.containerRecipeArn;
+    final requestId = this.requestId;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (containerRecipeArn != null) 'containerRecipeArn': containerRecipeArn,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -3913,6 +4150,18 @@ class CreateDistributionConfigurationResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final distributionConfigurationArn = this.distributionConfigurationArn;
+    final requestId = this.requestId;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (distributionConfigurationArn != null)
+        'distributionConfigurationArn': distributionConfigurationArn,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class CreateImagePipelineResponse {
@@ -3937,6 +4186,17 @@ class CreateImagePipelineResponse {
       imagePipelineArn: json['imagePipelineArn'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final imagePipelineArn = this.imagePipelineArn;
+    final requestId = this.requestId;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (imagePipelineArn != null) 'imagePipelineArn': imagePipelineArn,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -3963,6 +4223,17 @@ class CreateImageRecipeResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final imageRecipeArn = this.imageRecipeArn;
+    final requestId = this.requestId;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (imageRecipeArn != null) 'imageRecipeArn': imageRecipeArn,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class CreateImageResponse {
@@ -3987,6 +4258,18 @@ class CreateImageResponse {
       imageBuildVersionArn: json['imageBuildVersionArn'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final imageBuildVersionArn = this.imageBuildVersionArn;
+    final requestId = this.requestId;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (imageBuildVersionArn != null)
+        'imageBuildVersionArn': imageBuildVersionArn,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -4015,6 +4298,18 @@ class CreateInfrastructureConfigurationResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final infrastructureConfigurationArn = this.infrastructureConfigurationArn;
+    final requestId = this.requestId;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (infrastructureConfigurationArn != null)
+        'infrastructureConfigurationArn': infrastructureConfigurationArn,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class DeleteComponentResponse {
@@ -4035,6 +4330,16 @@ class DeleteComponentResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final componentBuildVersionArn = this.componentBuildVersionArn;
+    final requestId = this.requestId;
+    return {
+      if (componentBuildVersionArn != null)
+        'componentBuildVersionArn': componentBuildVersionArn,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class DeleteContainerRecipeResponse {
@@ -4053,6 +4358,15 @@ class DeleteContainerRecipeResponse {
       containerRecipeArn: json['containerRecipeArn'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerRecipeArn = this.containerRecipeArn;
+    final requestId = this.requestId;
+    return {
+      if (containerRecipeArn != null) 'containerRecipeArn': containerRecipeArn,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -4076,6 +4390,16 @@ class DeleteDistributionConfigurationResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final distributionConfigurationArn = this.distributionConfigurationArn;
+    final requestId = this.requestId;
+    return {
+      if (distributionConfigurationArn != null)
+        'distributionConfigurationArn': distributionConfigurationArn,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class DeleteImagePipelineResponse {
@@ -4094,6 +4418,15 @@ class DeleteImagePipelineResponse {
       imagePipelineArn: json['imagePipelineArn'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imagePipelineArn = this.imagePipelineArn;
+    final requestId = this.requestId;
+    return {
+      if (imagePipelineArn != null) 'imagePipelineArn': imagePipelineArn,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -4114,6 +4447,15 @@ class DeleteImageRecipeResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageRecipeArn = this.imageRecipeArn;
+    final requestId = this.requestId;
+    return {
+      if (imageRecipeArn != null) 'imageRecipeArn': imageRecipeArn,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class DeleteImageResponse {
@@ -4133,6 +4475,16 @@ class DeleteImageResponse {
       imageBuildVersionArn: json['imageBuildVersionArn'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageBuildVersionArn = this.imageBuildVersionArn;
+    final requestId = this.requestId;
+    return {
+      if (imageBuildVersionArn != null)
+        'imageBuildVersionArn': imageBuildVersionArn,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -4155,6 +4507,16 @@ class DeleteInfrastructureConfigurationResponse {
           json['infrastructureConfigurationArn'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final infrastructureConfigurationArn = this.infrastructureConfigurationArn;
+    final requestId = this.requestId;
+    return {
+      if (infrastructureConfigurationArn != null)
+        'infrastructureConfigurationArn': infrastructureConfigurationArn,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -4343,6 +4705,27 @@ class DistributionConfiguration {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final timeoutMinutes = this.timeoutMinutes;
+    final arn = this.arn;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final description = this.description;
+    final distributions = this.distributions;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      'timeoutMinutes': timeoutMinutes,
+      if (arn != null) 'arn': arn,
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (dateUpdated != null) 'dateUpdated': dateUpdated,
+      if (description != null) 'description': description,
+      if (distributions != null) 'distributions': distributions,
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// A high-level overview of a distribution configuration.
@@ -4391,6 +4774,25 @@ class DistributionConfigurationSummary {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final description = this.description;
+    final name = this.name;
+    final regions = this.regions;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (dateUpdated != null) 'dateUpdated': dateUpdated,
+      if (description != null) 'description': description,
+      if (name != null) 'name': name,
+      if (regions != null) 'regions': regions,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4669,6 +5071,7 @@ class Filter {
     this.name,
     this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -4696,6 +5099,15 @@ class GetComponentPolicyResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final requestId = this.requestId;
+    return {
+      if (policy != null) 'policy': policy,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class GetComponentResponse {
@@ -4717,6 +5129,15 @@ class GetComponentResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final component = this.component;
+    final requestId = this.requestId;
+    return {
+      if (component != null) 'component': component,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class GetContainerRecipePolicyResponse {
@@ -4735,6 +5156,15 @@ class GetContainerRecipePolicyResponse {
       policy: json['policy'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final requestId = this.requestId;
+    return {
+      if (policy != null) 'policy': policy,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -4757,6 +5187,15 @@ class GetContainerRecipeResponse {
           : null,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerRecipe = this.containerRecipe;
+    final requestId = this.requestId;
+    return {
+      if (containerRecipe != null) 'containerRecipe': containerRecipe,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -4781,6 +5220,16 @@ class GetDistributionConfigurationResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final distributionConfiguration = this.distributionConfiguration;
+    final requestId = this.requestId;
+    return {
+      if (distributionConfiguration != null)
+        'distributionConfiguration': distributionConfiguration,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class GetImagePipelineResponse {
@@ -4803,6 +5252,15 @@ class GetImagePipelineResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imagePipeline = this.imagePipeline;
+    final requestId = this.requestId;
+    return {
+      if (imagePipeline != null) 'imagePipeline': imagePipeline,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class GetImagePolicyResponse {
@@ -4822,6 +5280,15 @@ class GetImagePolicyResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final requestId = this.requestId;
+    return {
+      if (policy != null) 'policy': policy,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class GetImageRecipePolicyResponse {
@@ -4840,6 +5307,15 @@ class GetImageRecipePolicyResponse {
       policy: json['policy'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final requestId = this.requestId;
+    return {
+      if (policy != null) 'policy': policy,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -4862,6 +5338,15 @@ class GetImageRecipeResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageRecipe = this.imageRecipe;
+    final requestId = this.requestId;
+    return {
+      if (imageRecipe != null) 'imageRecipe': imageRecipe,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class GetImageResponse {
@@ -4882,6 +5367,15 @@ class GetImageResponse {
           : null,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final image = this.image;
+    final requestId = this.requestId;
+    return {
+      if (image != null) 'image': image,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -4906,6 +5400,16 @@ class GetInfrastructureConfigurationResponse {
           : null,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final infrastructureConfiguration = this.infrastructureConfiguration;
+    final requestId = this.requestId;
+    return {
+      if (infrastructureConfiguration != null)
+        'infrastructureConfiguration': infrastructureConfiguration,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -5093,6 +5597,53 @@ class Image {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final buildType = this.buildType;
+    final containerRecipe = this.containerRecipe;
+    final dateCreated = this.dateCreated;
+    final distributionConfiguration = this.distributionConfiguration;
+    final enhancedImageMetadataEnabled = this.enhancedImageMetadataEnabled;
+    final imageRecipe = this.imageRecipe;
+    final imageTestsConfiguration = this.imageTestsConfiguration;
+    final infrastructureConfiguration = this.infrastructureConfiguration;
+    final name = this.name;
+    final osVersion = this.osVersion;
+    final outputResources = this.outputResources;
+    final platform = this.platform;
+    final sourcePipelineArn = this.sourcePipelineArn;
+    final sourcePipelineName = this.sourcePipelineName;
+    final state = this.state;
+    final tags = this.tags;
+    final type = this.type;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (buildType != null) 'buildType': buildType.toValue(),
+      if (containerRecipe != null) 'containerRecipe': containerRecipe,
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (distributionConfiguration != null)
+        'distributionConfiguration': distributionConfiguration,
+      if (enhancedImageMetadataEnabled != null)
+        'enhancedImageMetadataEnabled': enhancedImageMetadataEnabled,
+      if (imageRecipe != null) 'imageRecipe': imageRecipe,
+      if (imageTestsConfiguration != null)
+        'imageTestsConfiguration': imageTestsConfiguration,
+      if (infrastructureConfiguration != null)
+        'infrastructureConfiguration': infrastructureConfiguration,
+      if (name != null) 'name': name,
+      if (osVersion != null) 'osVersion': osVersion,
+      if (outputResources != null) 'outputResources': outputResources,
+      if (platform != null) 'platform': platform.toValue(),
+      if (sourcePipelineArn != null) 'sourcePipelineArn': sourcePipelineArn,
+      if (sourcePipelineName != null) 'sourcePipelineName': sourcePipelineName,
+      if (state != null) 'state': state,
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type.toValue(),
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// Represents a package installed on an Image Builder image.
@@ -5113,6 +5664,15 @@ class ImagePackage {
       packageName: json['packageName'] as String?,
       packageVersion: json['packageVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final packageName = this.packageName;
+    final packageVersion = this.packageVersion;
+    return {
+      if (packageName != null) 'packageName': packageName,
+      if (packageVersion != null) 'packageVersion': packageVersion,
+    };
   }
 }
 
@@ -5225,6 +5785,49 @@ class ImagePipeline {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final containerRecipeArn = this.containerRecipeArn;
+    final dateCreated = this.dateCreated;
+    final dateLastRun = this.dateLastRun;
+    final dateNextRun = this.dateNextRun;
+    final dateUpdated = this.dateUpdated;
+    final description = this.description;
+    final distributionConfigurationArn = this.distributionConfigurationArn;
+    final enhancedImageMetadataEnabled = this.enhancedImageMetadataEnabled;
+    final imageRecipeArn = this.imageRecipeArn;
+    final imageTestsConfiguration = this.imageTestsConfiguration;
+    final infrastructureConfigurationArn = this.infrastructureConfigurationArn;
+    final name = this.name;
+    final platform = this.platform;
+    final schedule = this.schedule;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (containerRecipeArn != null) 'containerRecipeArn': containerRecipeArn,
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (dateLastRun != null) 'dateLastRun': dateLastRun,
+      if (dateNextRun != null) 'dateNextRun': dateNextRun,
+      if (dateUpdated != null) 'dateUpdated': dateUpdated,
+      if (description != null) 'description': description,
+      if (distributionConfigurationArn != null)
+        'distributionConfigurationArn': distributionConfigurationArn,
+      if (enhancedImageMetadataEnabled != null)
+        'enhancedImageMetadataEnabled': enhancedImageMetadataEnabled,
+      if (imageRecipeArn != null) 'imageRecipeArn': imageRecipeArn,
+      if (imageTestsConfiguration != null)
+        'imageTestsConfiguration': imageTestsConfiguration,
+      if (infrastructureConfigurationArn != null)
+        'infrastructureConfigurationArn': infrastructureConfigurationArn,
+      if (name != null) 'name': name,
+      if (platform != null) 'platform': platform.toValue(),
+      if (schedule != null) 'schedule': schedule,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// An image recipe.
@@ -5323,6 +5926,42 @@ class ImageRecipe {
       workingDirectory: json['workingDirectory'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalInstanceConfiguration =
+        this.additionalInstanceConfiguration;
+    final arn = this.arn;
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final components = this.components;
+    final dateCreated = this.dateCreated;
+    final description = this.description;
+    final name = this.name;
+    final owner = this.owner;
+    final parentImage = this.parentImage;
+    final platform = this.platform;
+    final tags = this.tags;
+    final type = this.type;
+    final version = this.version;
+    final workingDirectory = this.workingDirectory;
+    return {
+      if (additionalInstanceConfiguration != null)
+        'additionalInstanceConfiguration': additionalInstanceConfiguration,
+      if (arn != null) 'arn': arn,
+      if (blockDeviceMappings != null)
+        'blockDeviceMappings': blockDeviceMappings,
+      if (components != null) 'components': components,
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (description != null) 'description': description,
+      if (name != null) 'name': name,
+      if (owner != null) 'owner': owner,
+      if (parentImage != null) 'parentImage': parentImage,
+      if (platform != null) 'platform': platform.toValue(),
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type.toValue(),
+      if (version != null) 'version': version,
+      if (workingDirectory != null) 'workingDirectory': workingDirectory,
+    };
+  }
 }
 
 /// A summary of an image recipe.
@@ -5369,6 +6008,25 @@ class ImageRecipeSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dateCreated = this.dateCreated;
+    final name = this.name;
+    final owner = this.owner;
+    final parentImage = this.parentImage;
+    final platform = this.platform;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (name != null) 'name': name,
+      if (owner != null) 'owner': owner,
+      if (parentImage != null) 'parentImage': parentImage,
+      if (platform != null) 'platform': platform.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Image state shows the image status and the reason for that status.
@@ -5388,6 +6046,15 @@ class ImageState {
       reason: json['reason'] as String?,
       status: (json['status'] as String?)?.toImageStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reason = this.reason;
+    final status = this.status;
+    return {
+      if (reason != null) 'reason': reason,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -5553,6 +6220,35 @@ class ImageSummary {
       type: (json['type'] as String?)?.toImageType(),
       version: json['version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final buildType = this.buildType;
+    final dateCreated = this.dateCreated;
+    final name = this.name;
+    final osVersion = this.osVersion;
+    final outputResources = this.outputResources;
+    final owner = this.owner;
+    final platform = this.platform;
+    final state = this.state;
+    final tags = this.tags;
+    final type = this.type;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (buildType != null) 'buildType': buildType.toValue(),
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (name != null) 'name': name,
+      if (osVersion != null) 'osVersion': osVersion,
+      if (outputResources != null) 'outputResources': outputResources,
+      if (owner != null) 'owner': owner,
+      if (platform != null) 'platform': platform.toValue(),
+      if (state != null) 'state': state,
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type.toValue(),
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -5727,6 +6423,29 @@ class ImageVersion {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final buildType = this.buildType;
+    final dateCreated = this.dateCreated;
+    final name = this.name;
+    final osVersion = this.osVersion;
+    final owner = this.owner;
+    final platform = this.platform;
+    final type = this.type;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (buildType != null) 'buildType': buildType.toValue(),
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (name != null) 'name': name,
+      if (osVersion != null) 'osVersion': osVersion,
+      if (owner != null) 'owner': owner,
+      if (platform != null) 'platform': platform.toValue(),
+      if (type != null) 'type': type.toValue(),
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 class ImportComponentResponse {
@@ -5750,6 +6469,18 @@ class ImportComponentResponse {
       componentBuildVersionArn: json['componentBuildVersionArn'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final componentBuildVersionArn = this.componentBuildVersionArn;
+    final requestId = this.requestId;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (componentBuildVersionArn != null)
+        'componentBuildVersionArn': componentBuildVersionArn,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -5776,6 +6507,17 @@ class ImportVmImageResponse {
       imageArn: json['imageArn'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final imageArn = this.imageArn;
+    final requestId = this.requestId;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (imageArn != null) 'imageArn': imageArn,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -5888,6 +6630,46 @@ class InfrastructureConfiguration {
       terminateInstanceOnFailure: json['terminateInstanceOnFailure'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final description = this.description;
+    final instanceMetadataOptions = this.instanceMetadataOptions;
+    final instanceProfileName = this.instanceProfileName;
+    final instanceTypes = this.instanceTypes;
+    final keyPair = this.keyPair;
+    final logging = this.logging;
+    final name = this.name;
+    final resourceTags = this.resourceTags;
+    final securityGroupIds = this.securityGroupIds;
+    final snsTopicArn = this.snsTopicArn;
+    final subnetId = this.subnetId;
+    final tags = this.tags;
+    final terminateInstanceOnFailure = this.terminateInstanceOnFailure;
+    return {
+      if (arn != null) 'arn': arn,
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (dateUpdated != null) 'dateUpdated': dateUpdated,
+      if (description != null) 'description': description,
+      if (instanceMetadataOptions != null)
+        'instanceMetadataOptions': instanceMetadataOptions,
+      if (instanceProfileName != null)
+        'instanceProfileName': instanceProfileName,
+      if (instanceTypes != null) 'instanceTypes': instanceTypes,
+      if (keyPair != null) 'keyPair': keyPair,
+      if (logging != null) 'logging': logging,
+      if (name != null) 'name': name,
+      if (resourceTags != null) 'resourceTags': resourceTags,
+      if (securityGroupIds != null) 'securityGroupIds': securityGroupIds,
+      if (snsTopicArn != null) 'snsTopicArn': snsTopicArn,
+      if (subnetId != null) 'subnetId': subnetId,
+      if (tags != null) 'tags': tags,
+      if (terminateInstanceOnFailure != null)
+        'terminateInstanceOnFailure': terminateInstanceOnFailure,
+    };
+  }
 }
 
 /// The infrastructure used when building Amazon EC2 AMIs.
@@ -5948,6 +6730,30 @@ class InfrastructureConfigurationSummary {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final description = this.description;
+    final instanceProfileName = this.instanceProfileName;
+    final instanceTypes = this.instanceTypes;
+    final name = this.name;
+    final resourceTags = this.resourceTags;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (dateCreated != null) 'dateCreated': dateCreated,
+      if (dateUpdated != null) 'dateUpdated': dateUpdated,
+      if (description != null) 'description': description,
+      if (instanceProfileName != null)
+        'instanceProfileName': instanceProfileName,
+      if (instanceTypes != null) 'instanceTypes': instanceTypes,
+      if (name != null) 'name': name,
+      if (resourceTags != null) 'resourceTags': resourceTags,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -6225,6 +7031,18 @@ class ListComponentBuildVersionsResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final componentSummaryList = this.componentSummaryList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (componentSummaryList != null)
+        'componentSummaryList': componentSummaryList,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class ListComponentsResponse {
@@ -6259,6 +7077,18 @@ class ListComponentsResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final componentVersionList = this.componentVersionList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (componentVersionList != null)
+        'componentVersionList': componentVersionList,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class ListContainerRecipesResponse {
@@ -6289,6 +7119,18 @@ class ListContainerRecipesResponse {
       nextToken: json['nextToken'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerRecipeSummaryList = this.containerRecipeSummaryList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (containerRecipeSummaryList != null)
+        'containerRecipeSummaryList': containerRecipeSummaryList,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -6323,6 +7165,20 @@ class ListDistributionConfigurationsResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final distributionConfigurationSummaryList =
+        this.distributionConfigurationSummaryList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (distributionConfigurationSummaryList != null)
+        'distributionConfigurationSummaryList':
+            distributionConfigurationSummaryList,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class ListImageBuildVersionsResponse {
@@ -6352,6 +7208,17 @@ class ListImageBuildVersionsResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageSummaryList = this.imageSummaryList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (imageSummaryList != null) 'imageSummaryList': imageSummaryList,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class ListImagePackagesResponse {
@@ -6379,6 +7246,17 @@ class ListImagePackagesResponse {
       nextToken: json['nextToken'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imagePackageList = this.imagePackageList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (imagePackageList != null) 'imagePackageList': imagePackageList,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -6409,6 +7287,17 @@ class ListImagePipelineImagesResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageSummaryList = this.imageSummaryList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (imageSummaryList != null) 'imageSummaryList': imageSummaryList,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class ListImagePipelinesResponse {
@@ -6438,6 +7327,17 @@ class ListImagePipelinesResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imagePipelineList = this.imagePipelineList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (imagePipelineList != null) 'imagePipelineList': imagePipelineList,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class ListImageRecipesResponse {
@@ -6466,6 +7366,18 @@ class ListImageRecipesResponse {
       nextToken: json['nextToken'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageRecipeSummaryList = this.imageRecipeSummaryList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (imageRecipeSummaryList != null)
+        'imageRecipeSummaryList': imageRecipeSummaryList,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -6506,6 +7418,17 @@ class ListImagesResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageVersionList = this.imageVersionList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (imageVersionList != null) 'imageVersionList': imageVersionList,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class ListInfrastructureConfigurationsResponse {
@@ -6539,6 +7462,20 @@ class ListInfrastructureConfigurationsResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final infrastructureConfigurationSummaryList =
+        this.infrastructureConfigurationSummaryList;
+    final nextToken = this.nextToken;
+    final requestId = this.requestId;
+    return {
+      if (infrastructureConfigurationSummaryList != null)
+        'infrastructureConfigurationSummaryList':
+            infrastructureConfigurationSummaryList,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -6553,6 +7490,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -6604,6 +7548,15 @@ class OutputResources {
           .map((e) => Container.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final amis = this.amis;
+    final containers = this.containers;
+    return {
+      if (amis != null) 'amis': amis,
+      if (containers != null) 'containers': containers,
+    };
   }
 }
 
@@ -6746,6 +7699,15 @@ class PutComponentPolicyResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final componentArn = this.componentArn;
+    final requestId = this.requestId;
+    return {
+      if (componentArn != null) 'componentArn': componentArn,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class PutContainerRecipePolicyResponse {
@@ -6766,6 +7728,15 @@ class PutContainerRecipePolicyResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final containerRecipeArn = this.containerRecipeArn;
+    final requestId = this.requestId;
+    return {
+      if (containerRecipeArn != null) 'containerRecipeArn': containerRecipeArn,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class PutImagePolicyResponse {
@@ -6784,6 +7755,15 @@ class PutImagePolicyResponse {
       imageArn: json['imageArn'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageArn = this.imageArn;
+    final requestId = this.requestId;
+    return {
+      if (imageArn != null) 'imageArn': imageArn,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -6804,6 +7784,15 @@ class PutImageRecipePolicyResponse {
       imageRecipeArn: json['imageRecipeArn'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageRecipeArn = this.imageRecipeArn;
+    final requestId = this.requestId;
+    return {
+      if (imageRecipeArn != null) 'imageRecipeArn': imageRecipeArn,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -6981,6 +7970,18 @@ class StartImagePipelineExecutionResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final imageBuildVersionArn = this.imageBuildVersionArn;
+    final requestId = this.requestId;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (imageBuildVersionArn != null)
+        'imageBuildVersionArn': imageBuildVersionArn,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 /// Contains settings for the Systems Manager agent on your build instance.
@@ -7013,6 +8014,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7051,6 +8056,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateDistributionConfigurationResponse {
@@ -7078,6 +8087,18 @@ class UpdateDistributionConfigurationResponse {
       requestId: json['requestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final distributionConfigurationArn = this.distributionConfigurationArn;
+    final requestId = this.requestId;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (distributionConfigurationArn != null)
+        'distributionConfigurationArn': distributionConfigurationArn,
+      if (requestId != null) 'requestId': requestId,
+    };
+  }
 }
 
 class UpdateImagePipelineResponse {
@@ -7102,6 +8123,17 @@ class UpdateImagePipelineResponse {
       imagePipelineArn: json['imagePipelineArn'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final imagePipelineArn = this.imagePipelineArn;
+    final requestId = this.requestId;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (imagePipelineArn != null) 'imagePipelineArn': imagePipelineArn,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 
@@ -7129,6 +8161,18 @@ class UpdateInfrastructureConfigurationResponse {
           json['infrastructureConfigurationArn'] as String?,
       requestId: json['requestId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final infrastructureConfigurationArn = this.infrastructureConfigurationArn;
+    final requestId = this.requestId;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (infrastructureConfigurationArn != null)
+        'infrastructureConfigurationArn': infrastructureConfigurationArn,
+      if (requestId != null) 'requestId': requestId,
+    };
   }
 }
 

@@ -2449,12 +2449,20 @@ class AcceptAdministratorInvitationResponse {
       Map<String, dynamic> _) {
     return AcceptAdministratorInvitationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AcceptInvitationResponse {
   AcceptInvitationResponse();
   factory AcceptInvitationResponse.fromJson(Map<String, dynamic> _) {
     return AcceptInvitationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2470,6 +2478,7 @@ class AccountDetails {
     required this.accountId,
     this.email,
   });
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final email = this.email;
@@ -2746,6 +2755,17 @@ class ActionTarget {
       name: json['Name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionTargetArn = this.actionTargetArn;
+    final description = this.description;
+    final name = this.name;
+    return {
+      'ActionTargetArn': actionTargetArn,
+      'Description': description,
+      'Name': name,
+    };
+  }
 }
 
 /// An adjustment to the CVSS metric.
@@ -2797,6 +2817,15 @@ class AdminAccount {
       accountId: json['AccountId'] as String?,
       status: (json['Status'] as String?)?.toAdminStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final status = this.status;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -25877,6 +25906,14 @@ class BatchDisableStandardsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final standardsSubscriptions = this.standardsSubscriptions;
+    return {
+      if (standardsSubscriptions != null)
+        'StandardsSubscriptions': standardsSubscriptions,
+    };
+  }
 }
 
 class BatchEnableStandardsResponse {
@@ -25893,6 +25930,14 @@ class BatchEnableStandardsResponse {
           .map((e) => StandardsSubscription.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final standardsSubscriptions = this.standardsSubscriptions;
+    return {
+      if (standardsSubscriptions != null)
+        'StandardsSubscriptions': standardsSubscriptions,
+    };
   }
 }
 
@@ -25921,6 +25966,17 @@ class BatchImportFindingsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedCount = this.failedCount;
+    final successCount = this.successCount;
+    final failedFindings = this.failedFindings;
+    return {
+      'FailedCount': failedCount,
+      'SuccessCount': successCount,
+      if (failedFindings != null) 'FailedFindings': failedFindings,
+    };
+  }
 }
 
 class BatchUpdateFindingsResponse {
@@ -25947,6 +26003,15 @@ class BatchUpdateFindingsResponse {
               e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final processedFindings = this.processedFindings;
+    final unprocessedFindings = this.unprocessedFindings;
+    return {
+      'ProcessedFindings': processedFindings,
+      'UnprocessedFindings': unprocessedFindings,
+    };
   }
 }
 
@@ -26025,6 +26090,17 @@ class BatchUpdateFindingsUnprocessedFinding {
       findingIdentifier: AwsSecurityFindingIdentifier.fromJson(
           json['FindingIdentifier'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final findingIdentifier = this.findingIdentifier;
+    return {
+      'ErrorCode': errorCode,
+      'ErrorMessage': errorMessage,
+      'FindingIdentifier': findingIdentifier,
+    };
   }
 }
 
@@ -26514,6 +26590,13 @@ class CreateActionTargetResponse {
       actionTargetArn: json['ActionTargetArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionTargetArn = this.actionTargetArn;
+    return {
+      'ActionTargetArn': actionTargetArn,
+    };
+  }
 }
 
 class CreateFindingAggregatorResponse {
@@ -26548,6 +26631,21 @@ class CreateFindingAggregatorResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final findingAggregationRegion = this.findingAggregationRegion;
+    final findingAggregatorArn = this.findingAggregatorArn;
+    final regionLinkingMode = this.regionLinkingMode;
+    final regions = this.regions;
+    return {
+      if (findingAggregationRegion != null)
+        'FindingAggregationRegion': findingAggregationRegion,
+      if (findingAggregatorArn != null)
+        'FindingAggregatorArn': findingAggregatorArn,
+      if (regionLinkingMode != null) 'RegionLinkingMode': regionLinkingMode,
+      if (regions != null) 'Regions': regions,
+    };
+  }
 }
 
 class CreateInsightResponse {
@@ -26561,6 +26659,13 @@ class CreateInsightResponse {
     return CreateInsightResponse(
       insightArn: json['InsightArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final insightArn = this.insightArn;
+    return {
+      'InsightArn': insightArn,
+    };
   }
 }
 
@@ -26579,6 +26684,14 @@ class CreateMembersResponse {
           .map((e) => Result.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      if (unprocessedAccounts != null)
+        'UnprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -26853,6 +26966,14 @@ class DeclineInvitationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      if (unprocessedAccounts != null)
+        'UnprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class DeleteActionTargetResponse {
@@ -26867,12 +26988,23 @@ class DeleteActionTargetResponse {
       actionTargetArn: json['ActionTargetArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionTargetArn = this.actionTargetArn;
+    return {
+      'ActionTargetArn': actionTargetArn,
+    };
+  }
 }
 
 class DeleteFindingAggregatorResponse {
   DeleteFindingAggregatorResponse();
   factory DeleteFindingAggregatorResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFindingAggregatorResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -26887,6 +27019,13 @@ class DeleteInsightResponse {
     return DeleteInsightResponse(
       insightArn: json['InsightArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final insightArn = this.insightArn;
+    return {
+      'InsightArn': insightArn,
+    };
   }
 }
 
@@ -26907,6 +27046,14 @@ class DeleteInvitationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      if (unprocessedAccounts != null)
+        'UnprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class DeleteMembersResponse {
@@ -26924,6 +27071,14 @@ class DeleteMembersResponse {
           .map((e) => Result.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      if (unprocessedAccounts != null)
+        'UnprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -26948,6 +27103,15 @@ class DescribeActionTargetsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionTargets = this.actionTargets;
+    final nextToken = this.nextToken;
+    return {
+      'ActionTargets': actionTargets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -26977,6 +27141,17 @@ class DescribeHubResponse {
       hubArn: json['HubArn'] as String?,
       subscribedAt: json['SubscribedAt'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoEnableControls = this.autoEnableControls;
+    final hubArn = this.hubArn;
+    final subscribedAt = this.subscribedAt;
+    return {
+      if (autoEnableControls != null) 'AutoEnableControls': autoEnableControls,
+      if (hubArn != null) 'HubArn': hubArn,
+      if (subscribedAt != null) 'SubscribedAt': subscribedAt,
+    };
   }
 }
 
@@ -27018,6 +27193,19 @@ class DescribeOrganizationConfigurationResponse {
       memberAccountLimitReached: json['MemberAccountLimitReached'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoEnable = this.autoEnable;
+    final autoEnableStandards = this.autoEnableStandards;
+    final memberAccountLimitReached = this.memberAccountLimitReached;
+    return {
+      if (autoEnable != null) 'AutoEnable': autoEnable,
+      if (autoEnableStandards != null)
+        'AutoEnableStandards': autoEnableStandards.toValue(),
+      if (memberAccountLimitReached != null)
+        'MemberAccountLimitReached': memberAccountLimitReached,
+    };
+  }
 }
 
 class DescribeProductsResponse {
@@ -27039,6 +27227,15 @@ class DescribeProductsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final products = this.products;
+    final nextToken = this.nextToken;
+    return {
+      'Products': products,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -27063,6 +27260,15 @@ class DescribeStandardsControlsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final controls = this.controls;
+    final nextToken = this.nextToken;
+    return {
+      if (controls != null) 'Controls': controls,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeStandardsResponse {
@@ -27085,6 +27291,15 @@ class DescribeStandardsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final standards = this.standards;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (standards != null) 'Standards': standards,
+    };
+  }
 }
 
 class DisableImportFindingsForProductResponse {
@@ -27092,6 +27307,10 @@ class DisableImportFindingsForProductResponse {
   factory DisableImportFindingsForProductResponse.fromJson(
       Map<String, dynamic> _) {
     return DisableImportFindingsForProductResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -27101,12 +27320,20 @@ class DisableOrganizationAdminAccountResponse {
       Map<String, dynamic> _) {
     return DisableOrganizationAdminAccountResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisableSecurityHubResponse {
   DisableSecurityHubResponse();
   factory DisableSecurityHubResponse.fromJson(Map<String, dynamic> _) {
     return DisableSecurityHubResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -27116,6 +27343,10 @@ class DisassociateFromAdministratorAccountResponse {
       Map<String, dynamic> _) {
     return DisassociateFromAdministratorAccountResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateFromMasterAccountResponse {
@@ -27124,12 +27355,20 @@ class DisassociateFromMasterAccountResponse {
       Map<String, dynamic> _) {
     return DisassociateFromMasterAccountResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateMembersResponse {
   DisassociateMembersResponse();
   factory DisassociateMembersResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateMembersResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -27183,6 +27422,14 @@ class EnableImportFindingsForProductResponse {
       productSubscriptionArn: json['ProductSubscriptionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final productSubscriptionArn = this.productSubscriptionArn;
+    return {
+      if (productSubscriptionArn != null)
+        'ProductSubscriptionArn': productSubscriptionArn,
+    };
+  }
 }
 
 class EnableOrganizationAdminAccountResponse {
@@ -27191,12 +27438,20 @@ class EnableOrganizationAdminAccountResponse {
       Map<String, dynamic> _) {
     return EnableOrganizationAdminAccountResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class EnableSecurityHubResponse {
   EnableSecurityHubResponse();
   factory EnableSecurityHubResponse.fromJson(Map<String, dynamic> _) {
     return EnableSecurityHubResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -27258,6 +27513,14 @@ class FindingAggregator {
     return FindingAggregator(
       findingAggregatorArn: json['FindingAggregatorArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final findingAggregatorArn = this.findingAggregatorArn;
+    return {
+      if (findingAggregatorArn != null)
+        'FindingAggregatorArn': findingAggregatorArn,
+    };
   }
 }
 
@@ -27584,6 +27847,13 @@ class GetAdministratorAccountResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final administrator = this.administrator;
+    return {
+      if (administrator != null) 'Administrator': administrator,
+    };
+  }
 }
 
 class GetEnabledStandardsResponse {
@@ -27606,6 +27876,16 @@ class GetEnabledStandardsResponse {
           .map((e) => StandardsSubscription.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final standardsSubscriptions = this.standardsSubscriptions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (standardsSubscriptions != null)
+        'StandardsSubscriptions': standardsSubscriptions,
+    };
   }
 }
 
@@ -27640,6 +27920,21 @@ class GetFindingAggregatorResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final findingAggregationRegion = this.findingAggregationRegion;
+    final findingAggregatorArn = this.findingAggregatorArn;
+    final regionLinkingMode = this.regionLinkingMode;
+    final regions = this.regions;
+    return {
+      if (findingAggregationRegion != null)
+        'FindingAggregationRegion': findingAggregationRegion,
+      if (findingAggregatorArn != null)
+        'FindingAggregatorArn': findingAggregatorArn,
+      if (regionLinkingMode != null) 'RegionLinkingMode': regionLinkingMode,
+      if (regions != null) 'Regions': regions,
+    };
+  }
 }
 
 class GetFindingsResponse {
@@ -27662,6 +27957,15 @@ class GetFindingsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final findings = this.findings;
+    final nextToken = this.nextToken;
+    return {
+      'Findings': findings,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetInsightResultsResponse {
@@ -27676,6 +27980,13 @@ class GetInsightResultsResponse {
       insightResults: InsightResults.fromJson(
           json['InsightResults'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final insightResults = this.insightResults;
+    return {
+      'InsightResults': insightResults,
+    };
   }
 }
 
@@ -27699,6 +28010,15 @@ class GetInsightsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final insights = this.insights;
+    final nextToken = this.nextToken;
+    return {
+      'Insights': insights,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetInvitationsCountResponse {
@@ -27713,6 +28033,13 @@ class GetInvitationsCountResponse {
     return GetInvitationsCountResponse(
       invitationsCount: json['InvitationsCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final invitationsCount = this.invitationsCount;
+    return {
+      if (invitationsCount != null) 'InvitationsCount': invitationsCount,
+    };
   }
 }
 
@@ -27730,6 +28057,13 @@ class GetMasterAccountResponse {
           ? Invitation.fromJson(json['Master'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final master = this.master;
+    return {
+      if (master != null) 'Master': master,
+    };
   }
 }
 
@@ -27756,6 +28090,16 @@ class GetMembersResponse {
           .map((e) => Result.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final members = this.members;
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      if (members != null) 'Members': members,
+      if (unprocessedAccounts != null)
+        'UnprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -27816,6 +28160,17 @@ class ImportFindingsError {
       id: json['Id'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final id = this.id;
+    return {
+      'ErrorCode': errorCode,
+      'ErrorMessage': errorMessage,
+      'Id': id,
+    };
+  }
 }
 
 /// Contains information about a Security Hub insight.
@@ -27852,6 +28207,19 @@ class Insight {
       name: json['Name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final filters = this.filters;
+    final groupByAttribute = this.groupByAttribute;
+    final insightArn = this.insightArn;
+    final name = this.name;
+    return {
+      'Filters': filters,
+      'GroupByAttribute': groupByAttribute,
+      'InsightArn': insightArn,
+      'Name': name,
+    };
+  }
 }
 
 /// The insight result values returned by the <code>GetInsightResults</code>
@@ -27873,6 +28241,15 @@ class InsightResultValue {
       count: json['Count'] as int,
       groupByAttributeValue: json['GroupByAttributeValue'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final groupByAttributeValue = this.groupByAttributeValue;
+    return {
+      'Count': count,
+      'GroupByAttributeValue': groupByAttributeValue,
+    };
   }
 }
 
@@ -27905,6 +28282,17 @@ class InsightResults {
           .map((e) => InsightResultValue.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupByAttribute = this.groupByAttribute;
+    final insightArn = this.insightArn;
+    final resultValues = this.resultValues;
+    return {
+      'GroupByAttribute': groupByAttribute,
+      'InsightArn': insightArn,
+      'ResultValues': resultValues,
+    };
   }
 }
 
@@ -27971,6 +28359,19 @@ class Invitation {
       memberStatus: json['MemberStatus'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final invitationId = this.invitationId;
+    final invitedAt = this.invitedAt;
+    final memberStatus = this.memberStatus;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (invitationId != null) 'InvitationId': invitationId,
+      if (invitedAt != null) 'InvitedAt': iso8601ToJson(invitedAt),
+      if (memberStatus != null) 'MemberStatus': memberStatus,
+    };
+  }
 }
 
 class InviteMembersResponse {
@@ -27988,6 +28389,14 @@ class InviteMembersResponse {
           .map((e) => Result.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      if (unprocessedAccounts != null)
+        'UnprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -28136,6 +28545,16 @@ class ListEnabledProductsForImportResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final productSubscriptions = this.productSubscriptions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (productSubscriptions != null)
+        'ProductSubscriptions': productSubscriptions,
+    };
+  }
 }
 
 class ListFindingAggregatorsResponse {
@@ -28162,6 +28581,15 @@ class ListFindingAggregatorsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final findingAggregators = this.findingAggregators;
+    final nextToken = this.nextToken;
+    return {
+      if (findingAggregators != null) 'FindingAggregators': findingAggregators,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListInvitationsResponse {
@@ -28184,6 +28612,15 @@ class ListInvitationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final invitations = this.invitations;
+    final nextToken = this.nextToken;
+    return {
+      if (invitations != null) 'Invitations': invitations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListMembersResponse {
@@ -28205,6 +28642,15 @@ class ListMembersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final members = this.members;
+    final nextToken = this.nextToken;
+    return {
+      if (members != null) 'Members': members,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -28229,6 +28675,15 @@ class ListOrganizationAdminAccountsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adminAccounts = this.adminAccounts;
+    final nextToken = this.nextToken;
+    return {
+      if (adminAccounts != null) 'AdminAccounts': adminAccounts,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -28243,6 +28698,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -28623,6 +29085,25 @@ class Member {
       memberStatus: json['MemberStatus'] as String?,
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final administratorId = this.administratorId;
+    final email = this.email;
+    final invitedAt = this.invitedAt;
+    final masterId = this.masterId;
+    final memberStatus = this.memberStatus;
+    final updatedAt = this.updatedAt;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (administratorId != null) 'AdministratorId': administratorId,
+      if (email != null) 'Email': email,
+      if (invitedAt != null) 'InvitedAt': iso8601ToJson(invitedAt),
+      if (masterId != null) 'MasterId': masterId,
+      if (memberStatus != null) 'MemberStatus': memberStatus,
+      if (updatedAt != null) 'UpdatedAt': iso8601ToJson(updatedAt),
+    };
   }
 }
 
@@ -29006,6 +29487,7 @@ class NoteUpdate {
     required this.text,
     required this.updatedBy,
   });
+
   Map<String, dynamic> toJson() {
     final text = this.text;
     final updatedBy = this.updatedBy;
@@ -29600,6 +30082,32 @@ class Product {
       productSubscriptionResourcePolicy:
           json['ProductSubscriptionResourcePolicy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final productArn = this.productArn;
+    final activationUrl = this.activationUrl;
+    final categories = this.categories;
+    final companyName = this.companyName;
+    final description = this.description;
+    final integrationTypes = this.integrationTypes;
+    final marketplaceUrl = this.marketplaceUrl;
+    final productName = this.productName;
+    final productSubscriptionResourcePolicy =
+        this.productSubscriptionResourcePolicy;
+    return {
+      'ProductArn': productArn,
+      if (activationUrl != null) 'ActivationUrl': activationUrl,
+      if (categories != null) 'Categories': categories,
+      if (companyName != null) 'CompanyName': companyName,
+      if (description != null) 'Description': description,
+      if (integrationTypes != null)
+        'IntegrationTypes': integrationTypes.map((e) => e.toValue()).toList(),
+      if (marketplaceUrl != null) 'MarketplaceUrl': marketplaceUrl,
+      if (productName != null) 'ProductName': productName,
+      if (productSubscriptionResourcePolicy != null)
+        'ProductSubscriptionResourcePolicy': productSubscriptionResourcePolicy,
+    };
   }
 }
 
@@ -30750,6 +31258,15 @@ class Result {
       processingResult: json['ProcessingResult'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final processingResult = this.processingResult;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (processingResult != null) 'ProcessingResult': processingResult,
+    };
+  }
 }
 
 /// Details about the rule group.
@@ -31853,6 +32370,7 @@ class SeverityUpdate {
     this.normalized,
     this.product,
   });
+
   Map<String, dynamic> toJson() {
     final label = this.label;
     final normalized = this.normalized;
@@ -31941,6 +32459,7 @@ class SortCriterion {
     this.field,
     this.sortOrder,
   });
+
   Map<String, dynamic> toJson() {
     final field = this.field;
     final sortOrder = this.sortOrder;
@@ -32013,6 +32532,19 @@ class Standard {
       standardsArn: json['StandardsArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final enabledByDefault = this.enabledByDefault;
+    final name = this.name;
+    final standardsArn = this.standardsArn;
+    return {
+      if (description != null) 'Description': description,
+      if (enabledByDefault != null) 'EnabledByDefault': enabledByDefault,
+      if (name != null) 'Name': name,
+      if (standardsArn != null) 'StandardsArn': standardsArn,
+    };
+  }
 }
 
 /// Details for an individual security standard control.
@@ -32084,6 +32616,34 @@ class StandardsControl {
       title: json['Title'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final controlId = this.controlId;
+    final controlStatus = this.controlStatus;
+    final controlStatusUpdatedAt = this.controlStatusUpdatedAt;
+    final description = this.description;
+    final disabledReason = this.disabledReason;
+    final relatedRequirements = this.relatedRequirements;
+    final remediationUrl = this.remediationUrl;
+    final severityRating = this.severityRating;
+    final standardsControlArn = this.standardsControlArn;
+    final title = this.title;
+    return {
+      if (controlId != null) 'ControlId': controlId,
+      if (controlStatus != null) 'ControlStatus': controlStatus.toValue(),
+      if (controlStatusUpdatedAt != null)
+        'ControlStatusUpdatedAt': iso8601ToJson(controlStatusUpdatedAt),
+      if (description != null) 'Description': description,
+      if (disabledReason != null) 'DisabledReason': disabledReason,
+      if (relatedRequirements != null)
+        'RelatedRequirements': relatedRequirements,
+      if (remediationUrl != null) 'RemediationUrl': remediationUrl,
+      if (severityRating != null) 'SeverityRating': severityRating.toValue(),
+      if (standardsControlArn != null)
+        'StandardsControlArn': standardsControlArn,
+      if (title != null) 'Title': title,
+    };
+  }
 }
 
 enum StandardsStatus {
@@ -32143,6 +32703,13 @@ class StandardsStatusReason {
       statusReasonCode:
           (json['StatusReasonCode'] as String).toStatusReasonCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final statusReasonCode = this.statusReasonCode;
+    return {
+      'StatusReasonCode': statusReasonCode.toValue(),
+    };
   }
 }
 
@@ -32205,6 +32772,22 @@ class StandardsSubscription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final standardsArn = this.standardsArn;
+    final standardsInput = this.standardsInput;
+    final standardsStatus = this.standardsStatus;
+    final standardsSubscriptionArn = this.standardsSubscriptionArn;
+    final standardsStatusReason = this.standardsStatusReason;
+    return {
+      'StandardsArn': standardsArn,
+      'StandardsInput': standardsInput,
+      'StandardsStatus': standardsStatus.toValue(),
+      'StandardsSubscriptionArn': standardsSubscriptionArn,
+      if (standardsStatusReason != null)
+        'StandardsStatusReason': standardsStatusReason,
+    };
+  }
 }
 
 /// The standard that you want to enable.
@@ -32221,6 +32804,7 @@ class StandardsSubscriptionRequest {
     required this.standardsArn,
     this.standardsInput,
   });
+
   Map<String, dynamic> toJson() {
     final standardsArn = this.standardsArn;
     final standardsInput = this.standardsInput;
@@ -32527,6 +33111,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Provides information about the threat detected in a security finding and the
@@ -32767,12 +33355,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateActionTargetResponse {
   UpdateActionTargetResponse();
   factory UpdateActionTargetResponse.fromJson(Map<String, dynamic> _) {
     return UpdateActionTargetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -32807,6 +33403,21 @@ class UpdateFindingAggregatorResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final findingAggregationRegion = this.findingAggregationRegion;
+    final findingAggregatorArn = this.findingAggregatorArn;
+    final regionLinkingMode = this.regionLinkingMode;
+    final regions = this.regions;
+    return {
+      if (findingAggregationRegion != null)
+        'FindingAggregationRegion': findingAggregationRegion,
+      if (findingAggregatorArn != null)
+        'FindingAggregatorArn': findingAggregatorArn,
+      if (regionLinkingMode != null) 'RegionLinkingMode': regionLinkingMode,
+      if (regions != null) 'Regions': regions,
+    };
+  }
 }
 
 class UpdateFindingsResponse {
@@ -32814,12 +33425,20 @@ class UpdateFindingsResponse {
   factory UpdateFindingsResponse.fromJson(Map<String, dynamic> _) {
     return UpdateFindingsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateInsightResponse {
   UpdateInsightResponse();
   factory UpdateInsightResponse.fromJson(Map<String, dynamic> _) {
     return UpdateInsightResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -32829,6 +33448,10 @@ class UpdateOrganizationConfigurationResponse {
       Map<String, dynamic> _) {
     return UpdateOrganizationConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateSecurityHubConfigurationResponse {
@@ -32837,12 +33460,20 @@ class UpdateSecurityHubConfigurationResponse {
       Map<String, dynamic> _) {
     return UpdateSecurityHubConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateStandardsControlResponse {
   UpdateStandardsControlResponse();
   factory UpdateStandardsControlResponse.fromJson(Map<String, dynamic> _) {
     return UpdateStandardsControlResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -33416,6 +34047,7 @@ class WorkflowUpdate {
   WorkflowUpdate({
     this.status,
   });
+
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {

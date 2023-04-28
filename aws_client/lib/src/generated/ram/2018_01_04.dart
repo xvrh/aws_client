@@ -1900,6 +1900,16 @@ class AcceptResourceShareInvitationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final resourceShareInvitation = this.resourceShareInvitation;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (resourceShareInvitation != null)
+        'resourceShareInvitation': resourceShareInvitation,
+    };
+  }
 }
 
 class AssociateResourceSharePermissionResponse {
@@ -1924,6 +1934,15 @@ class AssociateResourceSharePermissionResponse {
       clientToken: json['clientToken'] as String?,
       returnValue: json['returnValue'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final returnValue = this.returnValue;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (returnValue != null) 'returnValue': returnValue,
+    };
   }
 }
 
@@ -1952,6 +1971,16 @@ class AssociateResourceShareResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final resourceShareAssociations = this.resourceShareAssociations;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (resourceShareAssociations != null)
+        'resourceShareAssociations': resourceShareAssociations,
+    };
+  }
 }
 
 class CreateResourceShareResponse {
@@ -1978,6 +2007,15 @@ class CreateResourceShareResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final resourceShare = this.resourceShare;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (resourceShare != null) 'resourceShare': resourceShare,
+    };
+  }
 }
 
 class DeleteResourceShareResponse {
@@ -2001,6 +2039,15 @@ class DeleteResourceShareResponse {
       clientToken: json['clientToken'] as String?,
       returnValue: json['returnValue'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final returnValue = this.returnValue;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (returnValue != null) 'returnValue': returnValue,
+    };
   }
 }
 
@@ -2026,6 +2073,15 @@ class DisassociateResourceSharePermissionResponse {
       clientToken: json['clientToken'] as String?,
       returnValue: json['returnValue'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final returnValue = this.returnValue;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (returnValue != null) 'returnValue': returnValue,
+    };
   }
 }
 
@@ -2056,6 +2112,16 @@ class DisassociateResourceShareResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final resourceShareAssociations = this.resourceShareAssociations;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (resourceShareAssociations != null)
+        'resourceShareAssociations': resourceShareAssociations,
+    };
+  }
 }
 
 class EnableSharingWithAwsOrganizationResponse {
@@ -2071,6 +2137,13 @@ class EnableSharingWithAwsOrganizationResponse {
     return EnableSharingWithAwsOrganizationResponse(
       returnValue: json['returnValue'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'returnValue': returnValue,
+    };
   }
 }
 
@@ -2088,6 +2161,13 @@ class GetPermissionResponse {
               json['permission'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final permission = this.permission;
+    return {
+      if (permission != null) 'permission': permission,
+    };
   }
 }
 
@@ -2115,6 +2195,15 @@ class GetResourcePoliciesResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final policies = this.policies;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (policies != null) 'policies': policies,
+    };
   }
 }
 
@@ -2145,6 +2234,16 @@ class GetResourceShareAssociationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceShareAssociations = this.resourceShareAssociations;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resourceShareAssociations != null)
+        'resourceShareAssociations': resourceShareAssociations,
+    };
+  }
 }
 
 class GetResourceShareInvitationsResponse {
@@ -2174,6 +2273,16 @@ class GetResourceShareInvitationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceShareInvitations = this.resourceShareInvitations;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resourceShareInvitations != null)
+        'resourceShareInvitations': resourceShareInvitations,
+    };
+  }
 }
 
 class GetResourceSharesResponse {
@@ -2200,6 +2309,15 @@ class GetResourceSharesResponse {
           .map((e) => ResourceShare.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceShares = this.resourceShares;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resourceShares != null) 'resourceShares': resourceShares,
+    };
   }
 }
 
@@ -2230,6 +2348,15 @@ class ListPendingInvitationResourcesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resources = this.resources;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resources != null) 'resources': resources,
+    };
+  }
 }
 
 class ListPermissionVersionsResponse {
@@ -2257,6 +2384,15 @@ class ListPermissionVersionsResponse {
               e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final permissions = this.permissions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (permissions != null) 'permissions': permissions,
+    };
   }
 }
 
@@ -2286,6 +2422,15 @@ class ListPermissionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final permissions = this.permissions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (permissions != null) 'permissions': permissions,
+    };
+  }
 }
 
 class ListPrincipalsResponse {
@@ -2312,6 +2457,15 @@ class ListPrincipalsResponse {
           .map((e) => Principal.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final principals = this.principals;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (principals != null) 'principals': principals,
+    };
   }
 }
 
@@ -2343,6 +2497,15 @@ class ListResourceSharePermissionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final permissions = this.permissions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (permissions != null) 'permissions': permissions,
+    };
+  }
 }
 
 class ListResourceTypesResponse {
@@ -2372,6 +2535,15 @@ class ListResourceTypesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceTypes = this.resourceTypes;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resourceTypes != null) 'resourceTypes': resourceTypes,
+    };
+  }
 }
 
 class ListResourcesResponse {
@@ -2398,6 +2570,15 @@ class ListResourcesResponse {
           .map((e) => Resource.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resources = this.resources;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resources != null) 'resources': resources,
+    };
   }
 }
 
@@ -2438,6 +2619,23 @@ class Principal {
       resourceShareArn: json['resourceShareArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final external = this.external;
+    final id = this.id;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final resourceShareArn = this.resourceShareArn;
+    return {
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (external != null) 'external': external,
+      if (id != null) 'id': id,
+      if (lastUpdatedTime != null)
+        'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (resourceShareArn != null) 'resourceShareArn': resourceShareArn,
+    };
+  }
 }
 
 class PromoteResourceShareCreatedFromPolicyResponse {
@@ -2453,6 +2651,13 @@ class PromoteResourceShareCreatedFromPolicyResponse {
     return PromoteResourceShareCreatedFromPolicyResponse(
       returnValue: json['returnValue'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'returnValue': returnValue,
+    };
   }
 }
 
@@ -2480,6 +2685,16 @@ class RejectResourceShareInvitationResponse {
               json['resourceShareInvitation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final resourceShareInvitation = this.resourceShareInvitation;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (resourceShareInvitation != null)
+        'resourceShareInvitation': resourceShareInvitation,
+    };
   }
 }
 
@@ -2556,6 +2771,32 @@ class Resource {
       statusMessage: json['statusMessage'] as String?,
       type: json['type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final resourceGroupArn = this.resourceGroupArn;
+    final resourceRegionScope = this.resourceRegionScope;
+    final resourceShareArn = this.resourceShareArn;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (lastUpdatedTime != null)
+        'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (resourceGroupArn != null) 'resourceGroupArn': resourceGroupArn,
+      if (resourceRegionScope != null)
+        'resourceRegionScope': resourceRegionScope.toValue(),
+      if (resourceShareArn != null) 'resourceShareArn': resourceShareArn,
+      if (status != null) 'status': status.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (type != null) 'type': type,
+    };
   }
 }
 
@@ -2734,6 +2975,34 @@ class ResourceShare {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowExternalPrincipals = this.allowExternalPrincipals;
+    final creationTime = this.creationTime;
+    final featureSet = this.featureSet;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final owningAccountId = this.owningAccountId;
+    final resourceShareArn = this.resourceShareArn;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final tags = this.tags;
+    return {
+      if (allowExternalPrincipals != null)
+        'allowExternalPrincipals': allowExternalPrincipals,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (featureSet != null) 'featureSet': featureSet.toValue(),
+      if (lastUpdatedTime != null)
+        'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'name': name,
+      if (owningAccountId != null) 'owningAccountId': owningAccountId,
+      if (resourceShareArn != null) 'resourceShareArn': resourceShareArn,
+      if (status != null) 'status': status.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Describes an association with a resource share and either a principal or a
@@ -2824,6 +3093,31 @@ class ResourceShareAssociation {
       status: (json['status'] as String?)?.toResourceShareAssociationStatus(),
       statusMessage: json['statusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associatedEntity = this.associatedEntity;
+    final associationType = this.associationType;
+    final creationTime = this.creationTime;
+    final external = this.external;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final resourceShareArn = this.resourceShareArn;
+    final resourceShareName = this.resourceShareName;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (associatedEntity != null) 'associatedEntity': associatedEntity,
+      if (associationType != null) 'associationType': associationType.toValue(),
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (external != null) 'external': external,
+      if (lastUpdatedTime != null)
+        'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (resourceShareArn != null) 'resourceShareArn': resourceShareArn,
+      if (resourceShareName != null) 'resourceShareName': resourceShareName,
+      if (status != null) 'status': status.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
   }
 }
 
@@ -2999,6 +3293,32 @@ class ResourceShareInvitation {
       status: (json['status'] as String?)?.toResourceShareInvitationStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final invitationTimestamp = this.invitationTimestamp;
+    final receiverAccountId = this.receiverAccountId;
+    final receiverArn = this.receiverArn;
+    final resourceShareArn = this.resourceShareArn;
+    final resourceShareAssociations = this.resourceShareAssociations;
+    final resourceShareInvitationArn = this.resourceShareInvitationArn;
+    final resourceShareName = this.resourceShareName;
+    final senderAccountId = this.senderAccountId;
+    final status = this.status;
+    return {
+      if (invitationTimestamp != null)
+        'invitationTimestamp': unixTimestampToJson(invitationTimestamp),
+      if (receiverAccountId != null) 'receiverAccountId': receiverAccountId,
+      if (receiverArn != null) 'receiverArn': receiverArn,
+      if (resourceShareArn != null) 'resourceShareArn': resourceShareArn,
+      if (resourceShareAssociations != null)
+        'resourceShareAssociations': resourceShareAssociations,
+      if (resourceShareInvitationArn != null)
+        'resourceShareInvitationArn': resourceShareInvitationArn,
+      if (resourceShareName != null) 'resourceShareName': resourceShareName,
+      if (senderAccountId != null) 'senderAccountId': senderAccountId,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 enum ResourceShareInvitationStatus {
@@ -3100,6 +3420,32 @@ class ResourceSharePermissionDetail {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final defaultVersion = this.defaultVersion;
+    final isResourceTypeDefault = this.isResourceTypeDefault;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final permission = this.permission;
+    final resourceType = this.resourceType;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (defaultVersion != null) 'defaultVersion': defaultVersion,
+      if (isResourceTypeDefault != null)
+        'isResourceTypeDefault': isResourceTypeDefault,
+      if (lastUpdatedTime != null)
+        'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'name': name,
+      if (permission != null) 'permission': permission,
+      if (resourceType != null) 'resourceType': resourceType,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// Information about an RAM permission that is associated with a resource share
@@ -3159,6 +3505,32 @@ class ResourceSharePermissionSummary {
       status: json['status'] as String?,
       version: json['version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final defaultVersion = this.defaultVersion;
+    final isResourceTypeDefault = this.isResourceTypeDefault;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final resourceType = this.resourceType;
+    final status = this.status;
+    final version = this.version;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (defaultVersion != null) 'defaultVersion': defaultVersion,
+      if (isResourceTypeDefault != null)
+        'isResourceTypeDefault': isResourceTypeDefault,
+      if (lastUpdatedTime != null)
+        'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'name': name,
+      if (resourceType != null) 'resourceType': resourceType,
+      if (status != null) 'status': status,
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -3285,6 +3657,18 @@ class ServiceNameAndResourceType {
       serviceName: json['serviceName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceRegionScope = this.resourceRegionScope;
+    final resourceType = this.resourceType;
+    final serviceName = this.serviceName;
+    return {
+      if (resourceRegionScope != null)
+        'resourceRegionScope': resourceRegionScope.toValue(),
+      if (resourceType != null) 'resourceType': resourceType,
+      if (serviceName != null) 'serviceName': serviceName,
+    };
+  }
 }
 
 /// A structure containing a tag. A tag is metadata that you can attach to your
@@ -3341,6 +3725,7 @@ class TagFilter {
     this.tagKey,
     this.tagValues,
   });
+
   Map<String, dynamic> toJson() {
     final tagKey = this.tagKey;
     final tagValues = this.tagValues;
@@ -3356,12 +3741,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3388,6 +3781,15 @@ class UpdateResourceShareResponse {
               json['resourceShare'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final resourceShare = this.resourceShare;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (resourceShare != null) 'resourceShare': resourceShare,
+    };
   }
 }
 

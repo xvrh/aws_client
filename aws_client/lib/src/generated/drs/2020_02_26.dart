@@ -1450,6 +1450,13 @@ class Account {
       accountID: json['accountID'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountID = this.accountID;
+    return {
+      if (accountID != null) 'accountID': accountID,
+    };
+  }
 }
 
 /// Information about a server's CPU.
@@ -1469,6 +1476,15 @@ class CPU {
       cores: json['cores'] as int?,
       modelName: json['modelName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cores = this.cores;
+    final modelName = this.modelName;
+    return {
+      if (cores != null) 'cores': cores,
+      if (modelName != null) 'modelName': modelName,
+    };
   }
 }
 
@@ -1511,6 +1527,22 @@ class ConversionProperties {
           ?.map((k, e) => MapEntry(k, e as int)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataTimestamp = this.dataTimestamp;
+    final forceUefi = this.forceUefi;
+    final rootVolumeName = this.rootVolumeName;
+    final volumeToConversionMap = this.volumeToConversionMap;
+    final volumeToVolumeSize = this.volumeToVolumeSize;
+    return {
+      if (dataTimestamp != null) 'dataTimestamp': dataTimestamp,
+      if (forceUefi != null) 'forceUefi': forceUefi,
+      if (rootVolumeName != null) 'rootVolumeName': rootVolumeName,
+      if (volumeToConversionMap != null)
+        'volumeToConversionMap': volumeToConversionMap,
+      if (volumeToVolumeSize != null) 'volumeToVolumeSize': volumeToVolumeSize,
+    };
+  }
 }
 
 class CreateExtendedSourceServerResponse {
@@ -1527,6 +1559,13 @@ class CreateExtendedSourceServerResponse {
           ? SourceServer.fromJson(json['sourceServer'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sourceServer = this.sourceServer;
+    return {
+      if (sourceServer != null) 'sourceServer': sourceServer,
+    };
   }
 }
 
@@ -1547,6 +1586,15 @@ class DataReplicationError {
       error: (json['error'] as String?)?.toDataReplicationErrorString(),
       rawError: json['rawError'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final rawError = this.rawError;
+    return {
+      if (error != null) 'error': error.toValue(),
+      if (rawError != null) 'rawError': rawError,
+    };
   }
 }
 
@@ -1690,6 +1738,26 @@ class DataReplicationInfo {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataReplicationError = this.dataReplicationError;
+    final dataReplicationInitiation = this.dataReplicationInitiation;
+    final dataReplicationState = this.dataReplicationState;
+    final etaDateTime = this.etaDateTime;
+    final lagDuration = this.lagDuration;
+    final replicatedDisks = this.replicatedDisks;
+    return {
+      if (dataReplicationError != null)
+        'dataReplicationError': dataReplicationError,
+      if (dataReplicationInitiation != null)
+        'dataReplicationInitiation': dataReplicationInitiation,
+      if (dataReplicationState != null)
+        'dataReplicationState': dataReplicationState.toValue(),
+      if (etaDateTime != null) 'etaDateTime': etaDateTime,
+      if (lagDuration != null) 'lagDuration': lagDuration,
+      if (replicatedDisks != null) 'replicatedDisks': replicatedDisks,
+    };
+  }
 }
 
 /// A disk that should be replicated.
@@ -1726,6 +1794,24 @@ class DataReplicationInfoReplicatedDisk {
       totalStorageBytes: json['totalStorageBytes'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backloggedStorageBytes = this.backloggedStorageBytes;
+    final deviceName = this.deviceName;
+    final replicatedStorageBytes = this.replicatedStorageBytes;
+    final rescannedStorageBytes = this.rescannedStorageBytes;
+    final totalStorageBytes = this.totalStorageBytes;
+    return {
+      if (backloggedStorageBytes != null)
+        'backloggedStorageBytes': backloggedStorageBytes,
+      if (deviceName != null) 'deviceName': deviceName,
+      if (replicatedStorageBytes != null)
+        'replicatedStorageBytes': replicatedStorageBytes,
+      if (rescannedStorageBytes != null)
+        'rescannedStorageBytes': rescannedStorageBytes,
+      if (totalStorageBytes != null) 'totalStorageBytes': totalStorageBytes,
+    };
+  }
 }
 
 /// Data replication initiation.
@@ -1755,6 +1841,18 @@ class DataReplicationInitiation {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextAttemptDateTime = this.nextAttemptDateTime;
+    final startDateTime = this.startDateTime;
+    final steps = this.steps;
+    return {
+      if (nextAttemptDateTime != null)
+        'nextAttemptDateTime': nextAttemptDateTime,
+      if (startDateTime != null) 'startDateTime': startDateTime,
+      if (steps != null) 'steps': steps,
+    };
+  }
 }
 
 /// Data replication initiation step.
@@ -1775,6 +1873,15 @@ class DataReplicationInitiationStep {
       status:
           (json['status'] as String?)?.toDataReplicationInitiationStepStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (name != null) 'name': name.toValue(),
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -1972,6 +2079,10 @@ class DeleteJobResponse {
   factory DeleteJobResponse.fromJson(Map<String, dynamic> _) {
     return DeleteJobResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteReplicationConfigurationTemplateResponse {
@@ -1980,12 +2091,20 @@ class DeleteReplicationConfigurationTemplateResponse {
       Map<String, dynamic> _) {
     return DeleteReplicationConfigurationTemplateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteSourceServerResponse {
   DeleteSourceServerResponse();
   factory DeleteSourceServerResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSourceServerResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2009,6 +2128,15 @@ class DescribeJobLogItemsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// A set of filters by which to return Jobs.
@@ -2027,6 +2155,7 @@ class DescribeJobsRequestFilters {
     this.jobIDs,
     this.toDate,
   });
+
   Map<String, dynamic> toJson() {
     final fromDate = this.fromDate;
     final jobIDs = this.jobIDs;
@@ -2059,6 +2188,15 @@ class DescribeJobsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// A set of filters by which to return Recovery Instances.
@@ -2075,6 +2213,7 @@ class DescribeRecoveryInstancesRequestFilters {
     this.recoveryInstanceIDs,
     this.sourceServerIDs,
   });
+
   Map<String, dynamic> toJson() {
     final recoveryInstanceIDs = this.recoveryInstanceIDs;
     final sourceServerIDs = this.sourceServerIDs;
@@ -2107,6 +2246,15 @@ class DescribeRecoveryInstancesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// A set of filters by which to return Recovery Snapshots.
@@ -2121,6 +2269,7 @@ class DescribeRecoverySnapshotsRequestFilters {
     this.fromDateTime,
     this.toDateTime,
   });
+
   Map<String, dynamic> toJson() {
     final fromDateTime = this.fromDateTime;
     final toDateTime = this.toDateTime;
@@ -2152,6 +2301,15 @@ class DescribeRecoverySnapshotsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeReplicationConfigurationTemplatesResponse {
@@ -2176,6 +2334,15 @@ class DescribeReplicationConfigurationTemplatesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// A set of filters by which to return Source Servers.
@@ -2197,6 +2364,7 @@ class DescribeSourceServersRequestFilters {
     this.sourceServerIDs,
     this.stagingAccountIDs,
   });
+
   Map<String, dynamic> toJson() {
     final hardwareId = this.hardwareId;
     final sourceServerIDs = this.sourceServerIDs;
@@ -2229,6 +2397,15 @@ class DescribeSourceServersResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// An object representing a data storage device on a server.
@@ -2248,6 +2425,15 @@ class Disk {
       bytes: json['bytes'] as int?,
       deviceName: json['deviceName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bytes = this.bytes;
+    final deviceName = this.deviceName;
+    return {
+      if (bytes != null) 'bytes': bytes,
+      if (deviceName != null) 'deviceName': deviceName,
+    };
   }
 }
 
@@ -2480,6 +2666,20 @@ class GetFailbackReplicationConfigurationResponse {
       usePrivateIP: json['usePrivateIP'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recoveryInstanceID = this.recoveryInstanceID;
+    final bandwidthThrottling = this.bandwidthThrottling;
+    final name = this.name;
+    final usePrivateIP = this.usePrivateIP;
+    return {
+      'recoveryInstanceID': recoveryInstanceID,
+      if (bandwidthThrottling != null)
+        'bandwidthThrottling': bandwidthThrottling,
+      if (name != null) 'name': name,
+      if (usePrivateIP != null) 'usePrivateIP': usePrivateIP,
+    };
+  }
 }
 
 /// Hints used to uniquely identify a machine.
@@ -2510,12 +2710,29 @@ class IdentificationHints {
       vmWareUuid: json['vmWareUuid'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsInstanceID = this.awsInstanceID;
+    final fqdn = this.fqdn;
+    final hostname = this.hostname;
+    final vmWareUuid = this.vmWareUuid;
+    return {
+      if (awsInstanceID != null) 'awsInstanceID': awsInstanceID,
+      if (fqdn != null) 'fqdn': fqdn,
+      if (hostname != null) 'hostname': hostname,
+      if (vmWareUuid != null) 'vmWareUuid': vmWareUuid,
+    };
+  }
 }
 
 class InitializeServiceResponse {
   InitializeServiceResponse();
   factory InitializeServiceResponse.fromJson(Map<String, dynamic> _) {
     return InitializeServiceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2624,6 +2841,30 @@ class Job {
       type: (json['type'] as String?)?.toJobType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobID = this.jobID;
+    final arn = this.arn;
+    final creationDateTime = this.creationDateTime;
+    final endDateTime = this.endDateTime;
+    final initiatedBy = this.initiatedBy;
+    final participatingServers = this.participatingServers;
+    final status = this.status;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      'jobID': jobID,
+      if (arn != null) 'arn': arn,
+      if (creationDateTime != null) 'creationDateTime': creationDateTime,
+      if (endDateTime != null) 'endDateTime': endDateTime,
+      if (initiatedBy != null) 'initiatedBy': initiatedBy.toValue(),
+      if (participatingServers != null)
+        'participatingServers': participatingServers,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// A log outputted by a Job.
@@ -2650,6 +2891,17 @@ class JobLog {
           : null,
       logDateTime: json['logDateTime'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final event = this.event;
+    final eventData = this.eventData;
+    final logDateTime = this.logDateTime;
+    return {
+      if (event != null) 'event': event.toValue(),
+      if (eventData != null) 'eventData': eventData,
+      if (logDateTime != null) 'logDateTime': logDateTime,
+    };
   }
 }
 
@@ -2791,6 +3043,22 @@ class JobLogEventData {
       sourceServerID: json['sourceServerID'] as String?,
       targetInstanceID: json['targetInstanceID'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final conversionProperties = this.conversionProperties;
+    final conversionServerID = this.conversionServerID;
+    final rawError = this.rawError;
+    final sourceServerID = this.sourceServerID;
+    final targetInstanceID = this.targetInstanceID;
+    return {
+      if (conversionProperties != null)
+        'conversionProperties': conversionProperties,
+      if (conversionServerID != null) 'conversionServerID': conversionServerID,
+      if (rawError != null) 'rawError': rawError,
+      if (sourceServerID != null) 'sourceServerID': sourceServerID,
+      if (targetInstanceID != null) 'targetInstanceID': targetInstanceID,
+    };
   }
 }
 
@@ -2982,6 +3250,32 @@ class LaunchConfiguration {
               ?.toTargetInstanceTypeRightSizingMethod(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final copyPrivateIp = this.copyPrivateIp;
+    final copyTags = this.copyTags;
+    final ec2LaunchTemplateID = this.ec2LaunchTemplateID;
+    final launchDisposition = this.launchDisposition;
+    final licensing = this.licensing;
+    final name = this.name;
+    final sourceServerID = this.sourceServerID;
+    final targetInstanceTypeRightSizingMethod =
+        this.targetInstanceTypeRightSizingMethod;
+    return {
+      if (copyPrivateIp != null) 'copyPrivateIp': copyPrivateIp,
+      if (copyTags != null) 'copyTags': copyTags,
+      if (ec2LaunchTemplateID != null)
+        'ec2LaunchTemplateID': ec2LaunchTemplateID,
+      if (launchDisposition != null)
+        'launchDisposition': launchDisposition.toValue(),
+      if (licensing != null) 'licensing': licensing,
+      if (name != null) 'name': name,
+      if (sourceServerID != null) 'sourceServerID': sourceServerID,
+      if (targetInstanceTypeRightSizingMethod != null)
+        'targetInstanceTypeRightSizingMethod':
+            targetInstanceTypeRightSizingMethod.toValue(),
+    };
+  }
 }
 
 enum LaunchDisposition {
@@ -3115,6 +3409,24 @@ class LifeCycle {
       lastSeenByServiceDateTime: json['lastSeenByServiceDateTime'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addedToServiceDateTime = this.addedToServiceDateTime;
+    final elapsedReplicationDuration = this.elapsedReplicationDuration;
+    final firstByteDateTime = this.firstByteDateTime;
+    final lastLaunch = this.lastLaunch;
+    final lastSeenByServiceDateTime = this.lastSeenByServiceDateTime;
+    return {
+      if (addedToServiceDateTime != null)
+        'addedToServiceDateTime': addedToServiceDateTime,
+      if (elapsedReplicationDuration != null)
+        'elapsedReplicationDuration': elapsedReplicationDuration,
+      if (firstByteDateTime != null) 'firstByteDateTime': firstByteDateTime,
+      if (lastLaunch != null) 'lastLaunch': lastLaunch,
+      if (lastSeenByServiceDateTime != null)
+        'lastSeenByServiceDateTime': lastSeenByServiceDateTime,
+    };
+  }
 }
 
 /// An object containing information regarding the last launch of a Source
@@ -3134,6 +3446,13 @@ class LifeCycleLastLaunch {
               json['initiated'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final initiated = this.initiated;
+    return {
+      if (initiated != null) 'initiated': initiated,
+    };
   }
 }
 
@@ -3161,6 +3480,17 @@ class LifeCycleLastLaunchInitiated {
       type: (json['type'] as String?)?.toLastLaunchType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiCallDateTime = this.apiCallDateTime;
+    final jobID = this.jobID;
+    final type = this.type;
+    return {
+      if (apiCallDateTime != null) 'apiCallDateTime': apiCallDateTime,
+      if (jobID != null) 'jobID': jobID,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 class ListExtensibleSourceServersResponse {
@@ -3184,6 +3514,15 @@ class ListExtensibleSourceServersResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListStagingAccountsResponse {
@@ -3206,6 +3545,15 @@ class ListStagingAccountsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accounts = this.accounts;
+    final nextToken = this.nextToken;
+    return {
+      if (accounts != null) 'accounts': accounts,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3220,6 +3568,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3249,6 +3604,17 @@ class NetworkInterface {
       macAddress: json['macAddress'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ips = this.ips;
+    final isPrimary = this.isPrimary;
+    final macAddress = this.macAddress;
+    return {
+      if (ips != null) 'ips': ips,
+      if (isPrimary != null) 'isPrimary': isPrimary,
+      if (macAddress != null) 'macAddress': macAddress,
+    };
+  }
 }
 
 /// Operating System.
@@ -3263,6 +3629,13 @@ class OS {
     return OS(
       fullString: json['fullString'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fullString = this.fullString;
+    return {
+      if (fullString != null) 'fullString': fullString,
+    };
   }
 }
 
@@ -3373,6 +3746,17 @@ class ParticipatingServer {
       sourceServerID: json['sourceServerID'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final launchStatus = this.launchStatus;
+    final recoveryInstanceID = this.recoveryInstanceID;
+    final sourceServerID = this.sourceServerID;
+    return {
+      if (launchStatus != null) 'launchStatus': launchStatus.toValue(),
+      if (recoveryInstanceID != null) 'recoveryInstanceID': recoveryInstanceID,
+      if (sourceServerID != null) 'sourceServerID': sourceServerID,
+    };
+  }
 }
 
 /// A Recovery Instance is a replica of a Source Server running on EC2.
@@ -3458,6 +3842,39 @@ class RecoveryInstance {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dataReplicationInfo = this.dataReplicationInfo;
+    final ec2InstanceID = this.ec2InstanceID;
+    final ec2InstanceState = this.ec2InstanceState;
+    final failback = this.failback;
+    final isDrill = this.isDrill;
+    final jobID = this.jobID;
+    final pointInTimeSnapshotDateTime = this.pointInTimeSnapshotDateTime;
+    final recoveryInstanceID = this.recoveryInstanceID;
+    final recoveryInstanceProperties = this.recoveryInstanceProperties;
+    final sourceServerID = this.sourceServerID;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (dataReplicationInfo != null)
+        'dataReplicationInfo': dataReplicationInfo,
+      if (ec2InstanceID != null) 'ec2InstanceID': ec2InstanceID,
+      if (ec2InstanceState != null)
+        'ec2InstanceState': ec2InstanceState.toValue(),
+      if (failback != null) 'failback': failback,
+      if (isDrill != null) 'isDrill': isDrill,
+      if (jobID != null) 'jobID': jobID,
+      if (pointInTimeSnapshotDateTime != null)
+        'pointInTimeSnapshotDateTime': pointInTimeSnapshotDateTime,
+      if (recoveryInstanceID != null) 'recoveryInstanceID': recoveryInstanceID,
+      if (recoveryInstanceProperties != null)
+        'recoveryInstanceProperties': recoveryInstanceProperties,
+      if (sourceServerID != null) 'sourceServerID': sourceServerID,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Error in data replication.
@@ -3478,6 +3895,15 @@ class RecoveryInstanceDataReplicationError {
       error: (json['error'] as String?)?.toFailbackReplicationError(),
       rawError: json['rawError'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final rawError = this.rawError;
+    return {
+      if (error != null) 'error': error.toValue(),
+      if (rawError != null) 'rawError': rawError,
+    };
   }
 }
 
@@ -3533,6 +3959,26 @@ class RecoveryInstanceDataReplicationInfo {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataReplicationError = this.dataReplicationError;
+    final dataReplicationInitiation = this.dataReplicationInitiation;
+    final dataReplicationState = this.dataReplicationState;
+    final etaDateTime = this.etaDateTime;
+    final lagDuration = this.lagDuration;
+    final replicatedDisks = this.replicatedDisks;
+    return {
+      if (dataReplicationError != null)
+        'dataReplicationError': dataReplicationError,
+      if (dataReplicationInitiation != null)
+        'dataReplicationInitiation': dataReplicationInitiation,
+      if (dataReplicationState != null)
+        'dataReplicationState': dataReplicationState.toValue(),
+      if (etaDateTime != null) 'etaDateTime': etaDateTime,
+      if (lagDuration != null) 'lagDuration': lagDuration,
+      if (replicatedDisks != null) 'replicatedDisks': replicatedDisks,
+    };
+  }
 }
 
 /// A disk that should be replicated.
@@ -3569,6 +4015,24 @@ class RecoveryInstanceDataReplicationInfoReplicatedDisk {
       totalStorageBytes: json['totalStorageBytes'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backloggedStorageBytes = this.backloggedStorageBytes;
+    final deviceName = this.deviceName;
+    final replicatedStorageBytes = this.replicatedStorageBytes;
+    final rescannedStorageBytes = this.rescannedStorageBytes;
+    final totalStorageBytes = this.totalStorageBytes;
+    return {
+      if (backloggedStorageBytes != null)
+        'backloggedStorageBytes': backloggedStorageBytes,
+      if (deviceName != null) 'deviceName': deviceName,
+      if (replicatedStorageBytes != null)
+        'replicatedStorageBytes': replicatedStorageBytes,
+      if (rescannedStorageBytes != null)
+        'rescannedStorageBytes': rescannedStorageBytes,
+      if (totalStorageBytes != null) 'totalStorageBytes': totalStorageBytes,
+    };
+  }
 }
 
 /// Data replication initiation.
@@ -3594,6 +4058,15 @@ class RecoveryInstanceDataReplicationInitiation {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final startDateTime = this.startDateTime;
+    final steps = this.steps;
+    return {
+      if (startDateTime != null) 'startDateTime': startDateTime,
+      if (steps != null) 'steps': steps,
+    };
+  }
 }
 
 /// Data replication initiation step.
@@ -3616,6 +4089,15 @@ class RecoveryInstanceDataReplicationInitiationStep {
       status: (json['status'] as String?)
           ?.toRecoveryInstanceDataReplicationInitiationStepStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (name != null) 'name': name.toValue(),
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -3832,6 +4314,17 @@ class RecoveryInstanceDisk {
       internalDeviceName: json['internalDeviceName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bytes = this.bytes;
+    final ebsVolumeID = this.ebsVolumeID;
+    final internalDeviceName = this.internalDeviceName;
+    return {
+      if (bytes != null) 'bytes': bytes,
+      if (ebsVolumeID != null) 'ebsVolumeID': ebsVolumeID,
+      if (internalDeviceName != null) 'internalDeviceName': internalDeviceName,
+    };
+  }
 }
 
 /// An object representing failback related information of the Recovery
@@ -3894,6 +4387,36 @@ class RecoveryInstanceFailback {
       state: (json['state'] as String?)?.toFailbackState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentLastSeenByServiceDateTime = this.agentLastSeenByServiceDateTime;
+    final elapsedReplicationDuration = this.elapsedReplicationDuration;
+    final failbackClientID = this.failbackClientID;
+    final failbackClientLastSeenByServiceDateTime =
+        this.failbackClientLastSeenByServiceDateTime;
+    final failbackInitiationTime = this.failbackInitiationTime;
+    final failbackJobID = this.failbackJobID;
+    final failbackToOriginalServer = this.failbackToOriginalServer;
+    final firstByteDateTime = this.firstByteDateTime;
+    final state = this.state;
+    return {
+      if (agentLastSeenByServiceDateTime != null)
+        'agentLastSeenByServiceDateTime': agentLastSeenByServiceDateTime,
+      if (elapsedReplicationDuration != null)
+        'elapsedReplicationDuration': elapsedReplicationDuration,
+      if (failbackClientID != null) 'failbackClientID': failbackClientID,
+      if (failbackClientLastSeenByServiceDateTime != null)
+        'failbackClientLastSeenByServiceDateTime':
+            failbackClientLastSeenByServiceDateTime,
+      if (failbackInitiationTime != null)
+        'failbackInitiationTime': failbackInitiationTime,
+      if (failbackJobID != null) 'failbackJobID': failbackJobID,
+      if (failbackToOriginalServer != null)
+        'failbackToOriginalServer': failbackToOriginalServer,
+      if (firstByteDateTime != null) 'firstByteDateTime': firstByteDateTime,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 /// Properties of the Recovery Instance machine.
@@ -3953,6 +4476,27 @@ class RecoveryInstanceProperties {
       ramBytes: json['ramBytes'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cpus = this.cpus;
+    final disks = this.disks;
+    final identificationHints = this.identificationHints;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final networkInterfaces = this.networkInterfaces;
+    final os = this.os;
+    final ramBytes = this.ramBytes;
+    return {
+      if (cpus != null) 'cpus': cpus,
+      if (disks != null) 'disks': disks,
+      if (identificationHints != null)
+        'identificationHints': identificationHints,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': lastUpdatedDateTime,
+      if (networkInterfaces != null) 'networkInterfaces': networkInterfaces,
+      if (os != null) 'os': os,
+      if (ramBytes != null) 'ramBytes': ramBytes,
+    };
+  }
 }
 
 /// A snapshot of a Source Server used during recovery.
@@ -3990,6 +4534,21 @@ class RecoverySnapshot {
           .toList(),
       timestamp: json['timestamp'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final expectedTimestamp = this.expectedTimestamp;
+    final snapshotID = this.snapshotID;
+    final sourceServerID = this.sourceServerID;
+    final ebsSnapshots = this.ebsSnapshots;
+    final timestamp = this.timestamp;
+    return {
+      'expectedTimestamp': expectedTimestamp,
+      'snapshotID': snapshotID,
+      'sourceServerID': sourceServerID,
+      if (ebsSnapshots != null) 'ebsSnapshots': ebsSnapshots,
+      if (timestamp != null) 'timestamp': timestamp,
+    };
   }
 }
 
@@ -4131,6 +4690,54 @@ class ReplicationConfiguration {
       useDedicatedReplicationServer:
           json['useDedicatedReplicationServer'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associateDefaultSecurityGroup = this.associateDefaultSecurityGroup;
+    final bandwidthThrottling = this.bandwidthThrottling;
+    final createPublicIP = this.createPublicIP;
+    final dataPlaneRouting = this.dataPlaneRouting;
+    final defaultLargeStagingDiskType = this.defaultLargeStagingDiskType;
+    final ebsEncryption = this.ebsEncryption;
+    final ebsEncryptionKeyArn = this.ebsEncryptionKeyArn;
+    final name = this.name;
+    final pitPolicy = this.pitPolicy;
+    final replicatedDisks = this.replicatedDisks;
+    final replicationServerInstanceType = this.replicationServerInstanceType;
+    final replicationServersSecurityGroupsIDs =
+        this.replicationServersSecurityGroupsIDs;
+    final sourceServerID = this.sourceServerID;
+    final stagingAreaSubnetId = this.stagingAreaSubnetId;
+    final stagingAreaTags = this.stagingAreaTags;
+    final useDedicatedReplicationServer = this.useDedicatedReplicationServer;
+    return {
+      if (associateDefaultSecurityGroup != null)
+        'associateDefaultSecurityGroup': associateDefaultSecurityGroup,
+      if (bandwidthThrottling != null)
+        'bandwidthThrottling': bandwidthThrottling,
+      if (createPublicIP != null) 'createPublicIP': createPublicIP,
+      if (dataPlaneRouting != null)
+        'dataPlaneRouting': dataPlaneRouting.toValue(),
+      if (defaultLargeStagingDiskType != null)
+        'defaultLargeStagingDiskType': defaultLargeStagingDiskType.toValue(),
+      if (ebsEncryption != null) 'ebsEncryption': ebsEncryption.toValue(),
+      if (ebsEncryptionKeyArn != null)
+        'ebsEncryptionKeyArn': ebsEncryptionKeyArn,
+      if (name != null) 'name': name,
+      if (pitPolicy != null) 'pitPolicy': pitPolicy,
+      if (replicatedDisks != null) 'replicatedDisks': replicatedDisks,
+      if (replicationServerInstanceType != null)
+        'replicationServerInstanceType': replicationServerInstanceType,
+      if (replicationServersSecurityGroupsIDs != null)
+        'replicationServersSecurityGroupsIDs':
+            replicationServersSecurityGroupsIDs,
+      if (sourceServerID != null) 'sourceServerID': sourceServerID,
+      if (stagingAreaSubnetId != null)
+        'stagingAreaSubnetId': stagingAreaSubnetId,
+      if (stagingAreaTags != null) 'stagingAreaTags': stagingAreaTags,
+      if (useDedicatedReplicationServer != null)
+        'useDedicatedReplicationServer': useDedicatedReplicationServer,
+    };
   }
 }
 
@@ -4469,6 +5076,55 @@ class ReplicationConfigurationTemplate {
           json['useDedicatedReplicationServer'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationConfigurationTemplateID =
+        this.replicationConfigurationTemplateID;
+    final arn = this.arn;
+    final associateDefaultSecurityGroup = this.associateDefaultSecurityGroup;
+    final bandwidthThrottling = this.bandwidthThrottling;
+    final createPublicIP = this.createPublicIP;
+    final dataPlaneRouting = this.dataPlaneRouting;
+    final defaultLargeStagingDiskType = this.defaultLargeStagingDiskType;
+    final ebsEncryption = this.ebsEncryption;
+    final ebsEncryptionKeyArn = this.ebsEncryptionKeyArn;
+    final pitPolicy = this.pitPolicy;
+    final replicationServerInstanceType = this.replicationServerInstanceType;
+    final replicationServersSecurityGroupsIDs =
+        this.replicationServersSecurityGroupsIDs;
+    final stagingAreaSubnetId = this.stagingAreaSubnetId;
+    final stagingAreaTags = this.stagingAreaTags;
+    final tags = this.tags;
+    final useDedicatedReplicationServer = this.useDedicatedReplicationServer;
+    return {
+      'replicationConfigurationTemplateID': replicationConfigurationTemplateID,
+      if (arn != null) 'arn': arn,
+      if (associateDefaultSecurityGroup != null)
+        'associateDefaultSecurityGroup': associateDefaultSecurityGroup,
+      if (bandwidthThrottling != null)
+        'bandwidthThrottling': bandwidthThrottling,
+      if (createPublicIP != null) 'createPublicIP': createPublicIP,
+      if (dataPlaneRouting != null)
+        'dataPlaneRouting': dataPlaneRouting.toValue(),
+      if (defaultLargeStagingDiskType != null)
+        'defaultLargeStagingDiskType': defaultLargeStagingDiskType.toValue(),
+      if (ebsEncryption != null) 'ebsEncryption': ebsEncryption.toValue(),
+      if (ebsEncryptionKeyArn != null)
+        'ebsEncryptionKeyArn': ebsEncryptionKeyArn,
+      if (pitPolicy != null) 'pitPolicy': pitPolicy,
+      if (replicationServerInstanceType != null)
+        'replicationServerInstanceType': replicationServerInstanceType,
+      if (replicationServersSecurityGroupsIDs != null)
+        'replicationServersSecurityGroupsIDs':
+            replicationServersSecurityGroupsIDs,
+      if (stagingAreaSubnetId != null)
+        'stagingAreaSubnetId': stagingAreaSubnetId,
+      if (stagingAreaTags != null) 'stagingAreaTags': stagingAreaTags,
+      if (tags != null) 'tags': tags,
+      if (useDedicatedReplicationServer != null)
+        'useDedicatedReplicationServer': useDedicatedReplicationServer,
+    };
+  }
 }
 
 /// Properties of the Source Server machine.
@@ -4533,6 +5189,30 @@ class SourceProperties {
       ramBytes: json['ramBytes'] as int?,
       recommendedInstanceType: json['recommendedInstanceType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cpus = this.cpus;
+    final disks = this.disks;
+    final identificationHints = this.identificationHints;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final networkInterfaces = this.networkInterfaces;
+    final os = this.os;
+    final ramBytes = this.ramBytes;
+    final recommendedInstanceType = this.recommendedInstanceType;
+    return {
+      if (cpus != null) 'cpus': cpus,
+      if (disks != null) 'disks': disks,
+      if (identificationHints != null)
+        'identificationHints': identificationHints,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': lastUpdatedDateTime,
+      if (networkInterfaces != null) 'networkInterfaces': networkInterfaces,
+      if (os != null) 'os': os,
+      if (ramBytes != null) 'ramBytes': ramBytes,
+      if (recommendedInstanceType != null)
+        'recommendedInstanceType': recommendedInstanceType,
+    };
   }
 }
 
@@ -4600,6 +5280,31 @@ class SourceServer {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final dataReplicationInfo = this.dataReplicationInfo;
+    final lastLaunchResult = this.lastLaunchResult;
+    final lifeCycle = this.lifeCycle;
+    final recoveryInstanceId = this.recoveryInstanceId;
+    final sourceProperties = this.sourceProperties;
+    final sourceServerID = this.sourceServerID;
+    final stagingArea = this.stagingArea;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (dataReplicationInfo != null)
+        'dataReplicationInfo': dataReplicationInfo,
+      if (lastLaunchResult != null)
+        'lastLaunchResult': lastLaunchResult.toValue(),
+      if (lifeCycle != null) 'lifeCycle': lifeCycle,
+      if (recoveryInstanceId != null) 'recoveryInstanceId': recoveryInstanceId,
+      if (sourceProperties != null) 'sourceProperties': sourceProperties,
+      if (sourceServerID != null) 'sourceServerID': sourceServerID,
+      if (stagingArea != null) 'stagingArea': stagingArea,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Staging information related to source server.
@@ -4639,6 +5344,20 @@ class StagingArea {
       status: (json['status'] as String?)?.toExtensionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorMessage = this.errorMessage;
+    final stagingAccountID = this.stagingAccountID;
+    final stagingSourceServerArn = this.stagingSourceServerArn;
+    final status = this.status;
+    return {
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (stagingAccountID != null) 'stagingAccountID': stagingAccountID,
+      if (stagingSourceServerArn != null)
+        'stagingSourceServerArn': stagingSourceServerArn,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Source server in staging account that extended source server connected to.
@@ -4665,6 +5384,17 @@ class StagingSourceServer {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final hostname = this.hostname;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (hostname != null) 'hostname': hostname,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class StartFailbackLaunchResponse {
@@ -4681,6 +5411,13 @@ class StartFailbackLaunchResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'job': job,
+    };
+  }
 }
 
 /// An object representing the Source Server to recover.
@@ -4696,6 +5433,7 @@ class StartRecoveryRequestSourceServer {
     required this.sourceServerID,
     this.recoverySnapshotID,
   });
+
   Map<String, dynamic> toJson() {
     final sourceServerID = this.sourceServerID;
     final recoverySnapshotID = this.recoverySnapshotID;
@@ -4719,6 +5457,13 @@ class StartRecoveryResponse {
           ? Job.fromJson(json['job'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'job': job,
+    };
   }
 }
 
@@ -4766,6 +5511,13 @@ class TerminateRecoveryInstancesResponse {
           ? Job.fromJson(json['job'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'job': job,
+    };
   }
 }
 

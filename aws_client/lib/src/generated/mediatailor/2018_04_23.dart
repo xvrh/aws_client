@@ -1640,6 +1640,21 @@ class Alert {
       resourceArn: json['ResourceArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alertCode = this.alertCode;
+    final alertMessage = this.alertMessage;
+    final lastModifiedTime = this.lastModifiedTime;
+    final relatedResourceArns = this.relatedResourceArns;
+    final resourceArn = this.resourceArn;
+    return {
+      'AlertCode': alertCode,
+      'AlertMessage': alertMessage,
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'RelatedResourceArns': relatedResourceArns,
+      'ResourceArn': resourceArn,
+    };
+  }
 }
 
 /// MediaTailor only places (consumes) prefetched ads if the ad break meets the
@@ -1883,6 +1898,33 @@ class Channel {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final channelName = this.channelName;
+    final channelState = this.channelState;
+    final outputs = this.outputs;
+    final playbackMode = this.playbackMode;
+    final tier = this.tier;
+    final creationTime = this.creationTime;
+    final fillerSlate = this.fillerSlate;
+    final lastModifiedTime = this.lastModifiedTime;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      'ChannelName': channelName,
+      'ChannelState': channelState,
+      'Outputs': outputs,
+      'PlaybackMode': playbackMode,
+      'Tier': tier,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (fillerSlate != null) 'FillerSlate': fillerSlate,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum ChannelState {
@@ -1931,6 +1973,16 @@ class ConfigureLogsForPlaybackConfigurationResponse {
       percentEnabled: json['PercentEnabled'] as int?,
       playbackConfigurationName: json['PlaybackConfigurationName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final percentEnabled = this.percentEnabled;
+    final playbackConfigurationName = this.playbackConfigurationName;
+    return {
+      if (percentEnabled != null) 'PercentEnabled': percentEnabled,
+      if (playbackConfigurationName != null)
+        'PlaybackConfigurationName': playbackConfigurationName,
+    };
   }
 }
 
@@ -1998,6 +2050,33 @@ class CreateChannelResponse {
       tier: json['Tier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final channelName = this.channelName;
+    final channelState = this.channelState;
+    final creationTime = this.creationTime;
+    final fillerSlate = this.fillerSlate;
+    final lastModifiedTime = this.lastModifiedTime;
+    final outputs = this.outputs;
+    final playbackMode = this.playbackMode;
+    final tags = this.tags;
+    final tier = this.tier;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (channelName != null) 'ChannelName': channelName,
+      if (channelState != null) 'ChannelState': channelState.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (fillerSlate != null) 'FillerSlate': fillerSlate,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (outputs != null) 'Outputs': outputs,
+      if (playbackMode != null) 'PlaybackMode': playbackMode,
+      if (tags != null) 'tags': tags,
+      if (tier != null) 'Tier': tier,
+    };
+  }
 }
 
 class CreateLiveSourceResponse {
@@ -2046,6 +2125,28 @@ class CreateLiveSourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final httpPackageConfigurations = this.httpPackageConfigurations;
+    final lastModifiedTime = this.lastModifiedTime;
+    final liveSourceName = this.liveSourceName;
+    final sourceLocationName = this.sourceLocationName;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (httpPackageConfigurations != null)
+        'HttpPackageConfigurations': httpPackageConfigurations,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (liveSourceName != null) 'LiveSourceName': liveSourceName,
+      if (sourceLocationName != null) 'SourceLocationName': sourceLocationName,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2099,6 +2200,24 @@ class CreatePrefetchScheduleResponse {
           : null,
       streamId: json['StreamId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final consumption = this.consumption;
+    final name = this.name;
+    final playbackConfigurationName = this.playbackConfigurationName;
+    final retrieval = this.retrieval;
+    final streamId = this.streamId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (consumption != null) 'Consumption': consumption,
+      if (name != null) 'Name': name,
+      if (playbackConfigurationName != null)
+        'PlaybackConfigurationName': playbackConfigurationName,
+      if (retrieval != null) 'Retrieval': retrieval,
+      if (streamId != null) 'StreamId': streamId,
+    };
   }
 }
 
@@ -2158,6 +2277,31 @@ class CreateProgramResponse {
       sourceLocationName: json['SourceLocationName'] as String?,
       vodSourceName: json['VodSourceName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final adBreaks = this.adBreaks;
+    final arn = this.arn;
+    final channelName = this.channelName;
+    final creationTime = this.creationTime;
+    final liveSourceName = this.liveSourceName;
+    final programName = this.programName;
+    final scheduledStartTime = this.scheduledStartTime;
+    final sourceLocationName = this.sourceLocationName;
+    final vodSourceName = this.vodSourceName;
+    return {
+      if (adBreaks != null) 'AdBreaks': adBreaks,
+      if (arn != null) 'Arn': arn,
+      if (channelName != null) 'ChannelName': channelName,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (liveSourceName != null) 'LiveSourceName': liveSourceName,
+      if (programName != null) 'ProgramName': programName,
+      if (scheduledStartTime != null)
+        'ScheduledStartTime': unixTimestampToJson(scheduledStartTime),
+      if (sourceLocationName != null) 'SourceLocationName': sourceLocationName,
+      if (vodSourceName != null) 'VodSourceName': vodSourceName,
+    };
   }
 }
 
@@ -2231,6 +2375,36 @@ class CreateSourceLocationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessConfiguration = this.accessConfiguration;
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final defaultSegmentDeliveryConfiguration =
+        this.defaultSegmentDeliveryConfiguration;
+    final httpConfiguration = this.httpConfiguration;
+    final lastModifiedTime = this.lastModifiedTime;
+    final segmentDeliveryConfigurations = this.segmentDeliveryConfigurations;
+    final sourceLocationName = this.sourceLocationName;
+    final tags = this.tags;
+    return {
+      if (accessConfiguration != null)
+        'AccessConfiguration': accessConfiguration,
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (defaultSegmentDeliveryConfiguration != null)
+        'DefaultSegmentDeliveryConfiguration':
+            defaultSegmentDeliveryConfiguration,
+      if (httpConfiguration != null) 'HttpConfiguration': httpConfiguration,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (segmentDeliveryConfigurations != null)
+        'SegmentDeliveryConfigurations': segmentDeliveryConfigurations,
+      if (sourceLocationName != null) 'SourceLocationName': sourceLocationName,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class CreateVodSourceResponse {
@@ -2280,6 +2454,28 @@ class CreateVodSourceResponse {
       vodSourceName: json['VodSourceName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final httpPackageConfigurations = this.httpPackageConfigurations;
+    final lastModifiedTime = this.lastModifiedTime;
+    final sourceLocationName = this.sourceLocationName;
+    final tags = this.tags;
+    final vodSourceName = this.vodSourceName;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (httpPackageConfigurations != null)
+        'HttpPackageConfigurations': httpPackageConfigurations,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (sourceLocationName != null) 'SourceLocationName': sourceLocationName,
+      if (tags != null) 'tags': tags,
+      if (vodSourceName != null) 'VodSourceName': vodSourceName,
+    };
+  }
 }
 
 /// The configuration for DASH content.
@@ -2318,6 +2514,19 @@ class DashConfiguration {
           (json['OriginManifestType'] as String?)?.toOriginManifestType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final manifestEndpointPrefix = this.manifestEndpointPrefix;
+    final mpdLocation = this.mpdLocation;
+    final originManifestType = this.originManifestType;
+    return {
+      if (manifestEndpointPrefix != null)
+        'ManifestEndpointPrefix': manifestEndpointPrefix,
+      if (mpdLocation != null) 'MpdLocation': mpdLocation,
+      if (originManifestType != null)
+        'OriginManifestType': originManifestType.toValue(),
+    };
+  }
 }
 
 /// The configuration for DASH PUT operations.
@@ -2343,6 +2552,7 @@ class DashConfigurationForPut {
     this.mpdLocation,
     this.originManifestType,
   });
+
   Map<String, dynamic> toJson() {
     final mpdLocation = this.mpdLocation;
     final originManifestType = this.originManifestType;
@@ -2445,12 +2655,20 @@ class DeleteChannelPolicyResponse {
   factory DeleteChannelPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteChannelPolicyResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteChannelResponse {
   DeleteChannelResponse();
   factory DeleteChannelResponse.fromJson(Map<String, dynamic> _) {
     return DeleteChannelResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2459,12 +2677,20 @@ class DeleteLiveSourceResponse {
   factory DeleteLiveSourceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLiveSourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeletePlaybackConfigurationResponse {
   DeletePlaybackConfigurationResponse();
   factory DeletePlaybackConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return DeletePlaybackConfigurationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2473,12 +2699,20 @@ class DeletePrefetchScheduleResponse {
   factory DeletePrefetchScheduleResponse.fromJson(Map<String, dynamic> _) {
     return DeletePrefetchScheduleResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteProgramResponse {
   DeleteProgramResponse();
   factory DeleteProgramResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProgramResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2487,12 +2721,20 @@ class DeleteSourceLocationResponse {
   factory DeleteSourceLocationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSourceLocationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteVodSourceResponse {
   DeleteVodSourceResponse();
   factory DeleteVodSourceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteVodSourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2560,6 +2802,33 @@ class DescribeChannelResponse {
       tier: json['Tier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final channelName = this.channelName;
+    final channelState = this.channelState;
+    final creationTime = this.creationTime;
+    final fillerSlate = this.fillerSlate;
+    final lastModifiedTime = this.lastModifiedTime;
+    final outputs = this.outputs;
+    final playbackMode = this.playbackMode;
+    final tags = this.tags;
+    final tier = this.tier;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (channelName != null) 'ChannelName': channelName,
+      if (channelState != null) 'ChannelState': channelState.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (fillerSlate != null) 'FillerSlate': fillerSlate,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (outputs != null) 'Outputs': outputs,
+      if (playbackMode != null) 'PlaybackMode': playbackMode,
+      if (tags != null) 'tags': tags,
+      if (tier != null) 'Tier': tier,
+    };
+  }
 }
 
 class DescribeLiveSourceResponse {
@@ -2608,6 +2877,28 @@ class DescribeLiveSourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final httpPackageConfigurations = this.httpPackageConfigurations;
+    final lastModifiedTime = this.lastModifiedTime;
+    final liveSourceName = this.liveSourceName;
+    final sourceLocationName = this.sourceLocationName;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (httpPackageConfigurations != null)
+        'HttpPackageConfigurations': httpPackageConfigurations,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (liveSourceName != null) 'LiveSourceName': liveSourceName,
+      if (sourceLocationName != null) 'SourceLocationName': sourceLocationName,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2667,6 +2958,31 @@ class DescribeProgramResponse {
       sourceLocationName: json['SourceLocationName'] as String?,
       vodSourceName: json['VodSourceName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final adBreaks = this.adBreaks;
+    final arn = this.arn;
+    final channelName = this.channelName;
+    final creationTime = this.creationTime;
+    final liveSourceName = this.liveSourceName;
+    final programName = this.programName;
+    final scheduledStartTime = this.scheduledStartTime;
+    final sourceLocationName = this.sourceLocationName;
+    final vodSourceName = this.vodSourceName;
+    return {
+      if (adBreaks != null) 'AdBreaks': adBreaks,
+      if (arn != null) 'Arn': arn,
+      if (channelName != null) 'ChannelName': channelName,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (liveSourceName != null) 'LiveSourceName': liveSourceName,
+      if (programName != null) 'ProgramName': programName,
+      if (scheduledStartTime != null)
+        'ScheduledStartTime': unixTimestampToJson(scheduledStartTime),
+      if (sourceLocationName != null) 'SourceLocationName': sourceLocationName,
+      if (vodSourceName != null) 'VodSourceName': vodSourceName,
+    };
   }
 }
 
@@ -2740,6 +3056,36 @@ class DescribeSourceLocationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessConfiguration = this.accessConfiguration;
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final defaultSegmentDeliveryConfiguration =
+        this.defaultSegmentDeliveryConfiguration;
+    final httpConfiguration = this.httpConfiguration;
+    final lastModifiedTime = this.lastModifiedTime;
+    final segmentDeliveryConfigurations = this.segmentDeliveryConfigurations;
+    final sourceLocationName = this.sourceLocationName;
+    final tags = this.tags;
+    return {
+      if (accessConfiguration != null)
+        'AccessConfiguration': accessConfiguration,
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (defaultSegmentDeliveryConfiguration != null)
+        'DefaultSegmentDeliveryConfiguration':
+            defaultSegmentDeliveryConfiguration,
+      if (httpConfiguration != null) 'HttpConfiguration': httpConfiguration,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (segmentDeliveryConfigurations != null)
+        'SegmentDeliveryConfigurations': segmentDeliveryConfigurations,
+      if (sourceLocationName != null) 'SourceLocationName': sourceLocationName,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class DescribeVodSourceResponse {
@@ -2789,6 +3135,28 @@ class DescribeVodSourceResponse {
       vodSourceName: json['VodSourceName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final httpPackageConfigurations = this.httpPackageConfigurations;
+    final lastModifiedTime = this.lastModifiedTime;
+    final sourceLocationName = this.sourceLocationName;
+    final tags = this.tags;
+    final vodSourceName = this.vodSourceName;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (httpPackageConfigurations != null)
+        'HttpPackageConfigurations': httpPackageConfigurations,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (sourceLocationName != null) 'SourceLocationName': sourceLocationName,
+      if (tags != null) 'tags': tags,
+      if (vodSourceName != null) 'VodSourceName': vodSourceName,
+    };
+  }
 }
 
 class GetChannelPolicyResponse {
@@ -2802,6 +3170,13 @@ class GetChannelPolicyResponse {
     return GetChannelPolicyResponse(
       policy: json['Policy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -2825,6 +3200,15 @@ class GetChannelScheduleResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2995,6 +3379,62 @@ class GetPlaybackConfigurationResponse {
       videoContentSourceUrl: json['VideoContentSourceUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adDecisionServerUrl = this.adDecisionServerUrl;
+    final availSuppression = this.availSuppression;
+    final bumper = this.bumper;
+    final cdnConfiguration = this.cdnConfiguration;
+    final configurationAliases = this.configurationAliases;
+    final dashConfiguration = this.dashConfiguration;
+    final hlsConfiguration = this.hlsConfiguration;
+    final livePreRollConfiguration = this.livePreRollConfiguration;
+    final logConfiguration = this.logConfiguration;
+    final manifestProcessingRules = this.manifestProcessingRules;
+    final name = this.name;
+    final personalizationThresholdSeconds =
+        this.personalizationThresholdSeconds;
+    final playbackConfigurationArn = this.playbackConfigurationArn;
+    final playbackEndpointPrefix = this.playbackEndpointPrefix;
+    final sessionInitializationEndpointPrefix =
+        this.sessionInitializationEndpointPrefix;
+    final slateAdUrl = this.slateAdUrl;
+    final tags = this.tags;
+    final transcodeProfileName = this.transcodeProfileName;
+    final videoContentSourceUrl = this.videoContentSourceUrl;
+    return {
+      if (adDecisionServerUrl != null)
+        'AdDecisionServerUrl': adDecisionServerUrl,
+      if (availSuppression != null) 'AvailSuppression': availSuppression,
+      if (bumper != null) 'Bumper': bumper,
+      if (cdnConfiguration != null) 'CdnConfiguration': cdnConfiguration,
+      if (configurationAliases != null)
+        'ConfigurationAliases': configurationAliases,
+      if (dashConfiguration != null) 'DashConfiguration': dashConfiguration,
+      if (hlsConfiguration != null) 'HlsConfiguration': hlsConfiguration,
+      if (livePreRollConfiguration != null)
+        'LivePreRollConfiguration': livePreRollConfiguration,
+      if (logConfiguration != null) 'LogConfiguration': logConfiguration,
+      if (manifestProcessingRules != null)
+        'ManifestProcessingRules': manifestProcessingRules,
+      if (name != null) 'Name': name,
+      if (personalizationThresholdSeconds != null)
+        'PersonalizationThresholdSeconds': personalizationThresholdSeconds,
+      if (playbackConfigurationArn != null)
+        'PlaybackConfigurationArn': playbackConfigurationArn,
+      if (playbackEndpointPrefix != null)
+        'PlaybackEndpointPrefix': playbackEndpointPrefix,
+      if (sessionInitializationEndpointPrefix != null)
+        'SessionInitializationEndpointPrefix':
+            sessionInitializationEndpointPrefix,
+      if (slateAdUrl != null) 'SlateAdUrl': slateAdUrl,
+      if (tags != null) 'tags': tags,
+      if (transcodeProfileName != null)
+        'TranscodeProfileName': transcodeProfileName,
+      if (videoContentSourceUrl != null)
+        'VideoContentSourceUrl': videoContentSourceUrl,
+    };
+  }
 }
 
 class GetPrefetchScheduleResponse {
@@ -3048,6 +3488,24 @@ class GetPrefetchScheduleResponse {
       streamId: json['StreamId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final consumption = this.consumption;
+    final name = this.name;
+    final playbackConfigurationName = this.playbackConfigurationName;
+    final retrieval = this.retrieval;
+    final streamId = this.streamId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (consumption != null) 'Consumption': consumption,
+      if (name != null) 'Name': name,
+      if (playbackConfigurationName != null)
+        'PlaybackConfigurationName': playbackConfigurationName,
+      if (retrieval != null) 'Retrieval': retrieval,
+      if (streamId != null) 'StreamId': streamId,
+    };
+  }
 }
 
 /// The configuration for HLS content.
@@ -3063,6 +3521,14 @@ class HlsConfiguration {
     return HlsConfiguration(
       manifestEndpointPrefix: json['ManifestEndpointPrefix'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final manifestEndpointPrefix = this.manifestEndpointPrefix;
+    return {
+      if (manifestEndpointPrefix != null)
+        'ManifestEndpointPrefix': manifestEndpointPrefix,
+    };
   }
 }
 
@@ -3173,6 +3639,15 @@ class ListAlertsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListChannelsResponse {
@@ -3196,6 +3671,15 @@ class ListChannelsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListLiveSourcesResponse {
@@ -3218,6 +3702,15 @@ class ListLiveSourcesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3245,6 +3738,15 @@ class ListPlaybackConfigurationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListPrefetchSchedulesResponse {
@@ -3269,6 +3771,15 @@ class ListPrefetchSchedulesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListSourceLocationsResponse {
@@ -3292,6 +3803,15 @@ class ListSourceLocationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3306,6 +3826,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3329,6 +3856,15 @@ class ListVodSourcesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3416,6 +3952,27 @@ class LiveSource {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final httpPackageConfigurations = this.httpPackageConfigurations;
+    final liveSourceName = this.liveSourceName;
+    final sourceLocationName = this.sourceLocationName;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      'HttpPackageConfigurations': httpPackageConfigurations,
+      'LiveSourceName': liveSourceName,
+      'SourceLocationName': sourceLocationName,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Returns Amazon CloudWatch log settings for a playback configuration.
@@ -3439,6 +3996,13 @@ class LogConfiguration {
     return LogConfiguration(
       percentEnabled: json['PercentEnabled'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final percentEnabled = this.percentEnabled;
+    return {
+      'PercentEnabled': percentEnabled,
+    };
   }
 }
 
@@ -3748,6 +4312,62 @@ class PlaybackConfiguration {
       videoContentSourceUrl: json['VideoContentSourceUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adDecisionServerUrl = this.adDecisionServerUrl;
+    final availSuppression = this.availSuppression;
+    final bumper = this.bumper;
+    final cdnConfiguration = this.cdnConfiguration;
+    final configurationAliases = this.configurationAliases;
+    final dashConfiguration = this.dashConfiguration;
+    final hlsConfiguration = this.hlsConfiguration;
+    final livePreRollConfiguration = this.livePreRollConfiguration;
+    final logConfiguration = this.logConfiguration;
+    final manifestProcessingRules = this.manifestProcessingRules;
+    final name = this.name;
+    final personalizationThresholdSeconds =
+        this.personalizationThresholdSeconds;
+    final playbackConfigurationArn = this.playbackConfigurationArn;
+    final playbackEndpointPrefix = this.playbackEndpointPrefix;
+    final sessionInitializationEndpointPrefix =
+        this.sessionInitializationEndpointPrefix;
+    final slateAdUrl = this.slateAdUrl;
+    final tags = this.tags;
+    final transcodeProfileName = this.transcodeProfileName;
+    final videoContentSourceUrl = this.videoContentSourceUrl;
+    return {
+      if (adDecisionServerUrl != null)
+        'AdDecisionServerUrl': adDecisionServerUrl,
+      if (availSuppression != null) 'AvailSuppression': availSuppression,
+      if (bumper != null) 'Bumper': bumper,
+      if (cdnConfiguration != null) 'CdnConfiguration': cdnConfiguration,
+      if (configurationAliases != null)
+        'ConfigurationAliases': configurationAliases,
+      if (dashConfiguration != null) 'DashConfiguration': dashConfiguration,
+      if (hlsConfiguration != null) 'HlsConfiguration': hlsConfiguration,
+      if (livePreRollConfiguration != null)
+        'LivePreRollConfiguration': livePreRollConfiguration,
+      if (logConfiguration != null) 'LogConfiguration': logConfiguration,
+      if (manifestProcessingRules != null)
+        'ManifestProcessingRules': manifestProcessingRules,
+      if (name != null) 'Name': name,
+      if (personalizationThresholdSeconds != null)
+        'PersonalizationThresholdSeconds': personalizationThresholdSeconds,
+      if (playbackConfigurationArn != null)
+        'PlaybackConfigurationArn': playbackConfigurationArn,
+      if (playbackEndpointPrefix != null)
+        'PlaybackEndpointPrefix': playbackEndpointPrefix,
+      if (sessionInitializationEndpointPrefix != null)
+        'SessionInitializationEndpointPrefix':
+            sessionInitializationEndpointPrefix,
+      if (slateAdUrl != null) 'SlateAdUrl': slateAdUrl,
+      if (tags != null) 'tags': tags,
+      if (transcodeProfileName != null)
+        'TranscodeProfileName': transcodeProfileName,
+      if (videoContentSourceUrl != null)
+        'VideoContentSourceUrl': videoContentSourceUrl,
+    };
+  }
 }
 
 enum PlaybackMode {
@@ -3924,12 +4544,33 @@ class PrefetchSchedule {
       streamId: json['StreamId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final consumption = this.consumption;
+    final name = this.name;
+    final playbackConfigurationName = this.playbackConfigurationName;
+    final retrieval = this.retrieval;
+    final streamId = this.streamId;
+    return {
+      'Arn': arn,
+      'Consumption': consumption,
+      'Name': name,
+      'PlaybackConfigurationName': playbackConfigurationName,
+      'Retrieval': retrieval,
+      if (streamId != null) 'StreamId': streamId,
+    };
+  }
 }
 
 class PutChannelPolicyResponse {
   PutChannelPolicyResponse();
   factory PutChannelPolicyResponse.fromJson(Map<String, dynamic> _) {
     return PutChannelPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4100,6 +4741,62 @@ class PutPlaybackConfigurationResponse {
       videoContentSourceUrl: json['VideoContentSourceUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adDecisionServerUrl = this.adDecisionServerUrl;
+    final availSuppression = this.availSuppression;
+    final bumper = this.bumper;
+    final cdnConfiguration = this.cdnConfiguration;
+    final configurationAliases = this.configurationAliases;
+    final dashConfiguration = this.dashConfiguration;
+    final hlsConfiguration = this.hlsConfiguration;
+    final livePreRollConfiguration = this.livePreRollConfiguration;
+    final logConfiguration = this.logConfiguration;
+    final manifestProcessingRules = this.manifestProcessingRules;
+    final name = this.name;
+    final personalizationThresholdSeconds =
+        this.personalizationThresholdSeconds;
+    final playbackConfigurationArn = this.playbackConfigurationArn;
+    final playbackEndpointPrefix = this.playbackEndpointPrefix;
+    final sessionInitializationEndpointPrefix =
+        this.sessionInitializationEndpointPrefix;
+    final slateAdUrl = this.slateAdUrl;
+    final tags = this.tags;
+    final transcodeProfileName = this.transcodeProfileName;
+    final videoContentSourceUrl = this.videoContentSourceUrl;
+    return {
+      if (adDecisionServerUrl != null)
+        'AdDecisionServerUrl': adDecisionServerUrl,
+      if (availSuppression != null) 'AvailSuppression': availSuppression,
+      if (bumper != null) 'Bumper': bumper,
+      if (cdnConfiguration != null) 'CdnConfiguration': cdnConfiguration,
+      if (configurationAliases != null)
+        'ConfigurationAliases': configurationAliases,
+      if (dashConfiguration != null) 'DashConfiguration': dashConfiguration,
+      if (hlsConfiguration != null) 'HlsConfiguration': hlsConfiguration,
+      if (livePreRollConfiguration != null)
+        'LivePreRollConfiguration': livePreRollConfiguration,
+      if (logConfiguration != null) 'LogConfiguration': logConfiguration,
+      if (manifestProcessingRules != null)
+        'ManifestProcessingRules': manifestProcessingRules,
+      if (name != null) 'Name': name,
+      if (personalizationThresholdSeconds != null)
+        'PersonalizationThresholdSeconds': personalizationThresholdSeconds,
+      if (playbackConfigurationArn != null)
+        'PlaybackConfigurationArn': playbackConfigurationArn,
+      if (playbackEndpointPrefix != null)
+        'PlaybackEndpointPrefix': playbackEndpointPrefix,
+      if (sessionInitializationEndpointPrefix != null)
+        'SessionInitializationEndpointPrefix':
+            sessionInitializationEndpointPrefix,
+      if (slateAdUrl != null) 'SlateAdUrl': slateAdUrl,
+      if (tags != null) 'tags': tags,
+      if (transcodeProfileName != null)
+        'TranscodeProfileName': transcodeProfileName,
+      if (videoContentSourceUrl != null)
+        'VideoContentSourceUrl': videoContentSourceUrl,
+    };
+  }
 }
 
 enum RelativePosition {
@@ -4152,6 +4849,7 @@ class RequestOutputItem {
     this.dashPlaylistSettings,
     this.hlsPlaylistSettings,
   });
+
   Map<String, dynamic> toJson() {
     final manifestName = this.manifestName;
     final sourceGroup = this.sourceGroup;
@@ -4209,6 +4907,23 @@ class ResponseOutputItem {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final manifestName = this.manifestName;
+    final playbackUrl = this.playbackUrl;
+    final sourceGroup = this.sourceGroup;
+    final dashPlaylistSettings = this.dashPlaylistSettings;
+    final hlsPlaylistSettings = this.hlsPlaylistSettings;
+    return {
+      'ManifestName': manifestName,
+      'PlaybackUrl': playbackUrl,
+      'SourceGroup': sourceGroup,
+      if (dashPlaylistSettings != null)
+        'DashPlaylistSettings': dashPlaylistSettings,
+      if (hlsPlaylistSettings != null)
+        'HlsPlaylistSettings': hlsPlaylistSettings,
+    };
+  }
 }
 
 /// The schedule's ad break properties.
@@ -4240,6 +4955,21 @@ class ScheduleAdBreak {
       vodSourceName: json['VodSourceName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approximateDurationSeconds = this.approximateDurationSeconds;
+    final approximateStartTime = this.approximateStartTime;
+    final sourceLocationName = this.sourceLocationName;
+    final vodSourceName = this.vodSourceName;
+    return {
+      if (approximateDurationSeconds != null)
+        'ApproximateDurationSeconds': approximateDurationSeconds,
+      if (approximateStartTime != null)
+        'ApproximateStartTime': unixTimestampToJson(approximateStartTime),
+      if (sourceLocationName != null) 'SourceLocationName': sourceLocationName,
+      if (vodSourceName != null) 'VodSourceName': vodSourceName,
+    };
+  }
 }
 
 /// Schedule configuration parameters. A channel must be stopped before changes
@@ -4251,6 +4981,7 @@ class ScheduleConfiguration {
   ScheduleConfiguration({
     required this.transition,
   });
+
   Map<String, dynamic> toJson() {
     final transition = this.transition;
     return {
@@ -4322,6 +5053,34 @@ class ScheduleEntry {
           (json['ScheduleEntryType'] as String?)?.toScheduleEntryType(),
       vodSourceName: json['VodSourceName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final channelName = this.channelName;
+    final programName = this.programName;
+    final sourceLocationName = this.sourceLocationName;
+    final approximateDurationSeconds = this.approximateDurationSeconds;
+    final approximateStartTime = this.approximateStartTime;
+    final liveSourceName = this.liveSourceName;
+    final scheduleAdBreaks = this.scheduleAdBreaks;
+    final scheduleEntryType = this.scheduleEntryType;
+    final vodSourceName = this.vodSourceName;
+    return {
+      'Arn': arn,
+      'ChannelName': channelName,
+      'ProgramName': programName,
+      'SourceLocationName': sourceLocationName,
+      if (approximateDurationSeconds != null)
+        'ApproximateDurationSeconds': approximateDurationSeconds,
+      if (approximateStartTime != null)
+        'ApproximateStartTime': unixTimestampToJson(approximateStartTime),
+      if (liveSourceName != null) 'LiveSourceName': liveSourceName,
+      if (scheduleAdBreaks != null) 'ScheduleAdBreaks': scheduleAdBreaks,
+      if (scheduleEntryType != null)
+        'ScheduleEntryType': scheduleEntryType.toValue(),
+      if (vodSourceName != null) 'VodSourceName': vodSourceName,
+    };
   }
 }
 
@@ -4535,6 +5294,36 @@ class SourceLocation {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final httpConfiguration = this.httpConfiguration;
+    final sourceLocationName = this.sourceLocationName;
+    final accessConfiguration = this.accessConfiguration;
+    final creationTime = this.creationTime;
+    final defaultSegmentDeliveryConfiguration =
+        this.defaultSegmentDeliveryConfiguration;
+    final lastModifiedTime = this.lastModifiedTime;
+    final segmentDeliveryConfigurations = this.segmentDeliveryConfigurations;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      'HttpConfiguration': httpConfiguration,
+      'SourceLocationName': sourceLocationName,
+      if (accessConfiguration != null)
+        'AccessConfiguration': accessConfiguration,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (defaultSegmentDeliveryConfiguration != null)
+        'DefaultSegmentDeliveryConfiguration':
+            defaultSegmentDeliveryConfiguration,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (segmentDeliveryConfigurations != null)
+        'SegmentDeliveryConfigurations': segmentDeliveryConfigurations,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Splice insert message configuration.
@@ -4592,12 +5381,20 @@ class StartChannelResponse {
   factory StartChannelResponse.fromJson(Map<String, dynamic> _) {
     return StartChannelResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class StopChannelResponse {
   StopChannelResponse();
   factory StopChannelResponse.fromJson(Map<String, dynamic> _) {
     return StopChannelResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4672,6 +5469,7 @@ class Transition {
     this.relativeProgram,
     this.scheduledStartTimeMillis,
   });
+
   Map<String, dynamic> toJson() {
     final relativePosition = this.relativePosition;
     final type = this.type;
@@ -4781,6 +5579,33 @@ class UpdateChannelResponse {
       tier: json['Tier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final channelName = this.channelName;
+    final channelState = this.channelState;
+    final creationTime = this.creationTime;
+    final fillerSlate = this.fillerSlate;
+    final lastModifiedTime = this.lastModifiedTime;
+    final outputs = this.outputs;
+    final playbackMode = this.playbackMode;
+    final tags = this.tags;
+    final tier = this.tier;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (channelName != null) 'ChannelName': channelName,
+      if (channelState != null) 'ChannelState': channelState.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (fillerSlate != null) 'FillerSlate': fillerSlate,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (outputs != null) 'Outputs': outputs,
+      if (playbackMode != null) 'PlaybackMode': playbackMode,
+      if (tags != null) 'tags': tags,
+      if (tier != null) 'Tier': tier,
+    };
+  }
 }
 
 class UpdateLiveSourceResponse {
@@ -4829,6 +5654,28 @@ class UpdateLiveSourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final httpPackageConfigurations = this.httpPackageConfigurations;
+    final lastModifiedTime = this.lastModifiedTime;
+    final liveSourceName = this.liveSourceName;
+    final sourceLocationName = this.sourceLocationName;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (httpPackageConfigurations != null)
+        'HttpPackageConfigurations': httpPackageConfigurations,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (liveSourceName != null) 'LiveSourceName': liveSourceName,
+      if (sourceLocationName != null) 'SourceLocationName': sourceLocationName,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4902,6 +5749,36 @@ class UpdateSourceLocationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessConfiguration = this.accessConfiguration;
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final defaultSegmentDeliveryConfiguration =
+        this.defaultSegmentDeliveryConfiguration;
+    final httpConfiguration = this.httpConfiguration;
+    final lastModifiedTime = this.lastModifiedTime;
+    final segmentDeliveryConfigurations = this.segmentDeliveryConfigurations;
+    final sourceLocationName = this.sourceLocationName;
+    final tags = this.tags;
+    return {
+      if (accessConfiguration != null)
+        'AccessConfiguration': accessConfiguration,
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (defaultSegmentDeliveryConfiguration != null)
+        'DefaultSegmentDeliveryConfiguration':
+            defaultSegmentDeliveryConfiguration,
+      if (httpConfiguration != null) 'HttpConfiguration': httpConfiguration,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (segmentDeliveryConfigurations != null)
+        'SegmentDeliveryConfigurations': segmentDeliveryConfigurations,
+      if (sourceLocationName != null) 'SourceLocationName': sourceLocationName,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class UpdateVodSourceResponse {
@@ -4950,6 +5827,28 @@ class UpdateVodSourceResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
       vodSourceName: json['VodSourceName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final httpPackageConfigurations = this.httpPackageConfigurations;
+    final lastModifiedTime = this.lastModifiedTime;
+    final sourceLocationName = this.sourceLocationName;
+    final tags = this.tags;
+    final vodSourceName = this.vodSourceName;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (httpPackageConfigurations != null)
+        'HttpPackageConfigurations': httpPackageConfigurations,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (sourceLocationName != null) 'SourceLocationName': sourceLocationName,
+      if (tags != null) 'tags': tags,
+      if (vodSourceName != null) 'VodSourceName': vodSourceName,
+    };
   }
 }
 
@@ -5000,6 +5899,27 @@ class VodSource {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final httpPackageConfigurations = this.httpPackageConfigurations;
+    final sourceLocationName = this.sourceLocationName;
+    final vodSourceName = this.vodSourceName;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      'HttpPackageConfigurations': httpPackageConfigurations,
+      'SourceLocationName': sourceLocationName,
+      'VodSourceName': vodSourceName,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 

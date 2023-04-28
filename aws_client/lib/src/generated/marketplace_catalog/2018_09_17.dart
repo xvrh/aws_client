@@ -370,6 +370,15 @@ class CancelChangeSetResponse {
       changeSetId: json['ChangeSetId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeSetArn = this.changeSetArn;
+    final changeSetId = this.changeSetId;
+    return {
+      if (changeSetArn != null) 'ChangeSetArn': changeSetArn,
+      if (changeSetId != null) 'ChangeSetId': changeSetId,
+    };
+  }
 }
 
 /// An object that contains the <code>ChangeType</code>, <code>Details</code>,
@@ -396,6 +405,7 @@ class Change {
     required this.entity,
     this.changeName,
   });
+
   Map<String, dynamic> toJson() {
     final changeType = this.changeType;
     final details = this.details;
@@ -470,6 +480,27 @@ class ChangeSetSummaryListItem {
       startTime: json['StartTime'] as String?,
       status: (json['Status'] as String?)?.toChangeStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeSetArn = this.changeSetArn;
+    final changeSetId = this.changeSetId;
+    final changeSetName = this.changeSetName;
+    final endTime = this.endTime;
+    final entityIdList = this.entityIdList;
+    final failureCode = this.failureCode;
+    final startTime = this.startTime;
+    final status = this.status;
+    return {
+      if (changeSetArn != null) 'ChangeSetArn': changeSetArn,
+      if (changeSetId != null) 'ChangeSetId': changeSetId,
+      if (changeSetName != null) 'ChangeSetName': changeSetName,
+      if (endTime != null) 'EndTime': endTime,
+      if (entityIdList != null) 'EntityIdList': entityIdList,
+      if (failureCode != null) 'FailureCode': failureCode.toValue(),
+      if (startTime != null) 'StartTime': startTime,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -556,6 +587,21 @@ class ChangeSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeName = this.changeName;
+    final changeType = this.changeType;
+    final details = this.details;
+    final entity = this.entity;
+    final errorDetailList = this.errorDetailList;
+    return {
+      if (changeName != null) 'ChangeName': changeName,
+      if (changeType != null) 'ChangeType': changeType,
+      if (details != null) 'Details': details,
+      if (entity != null) 'Entity': entity,
+      if (errorDetailList != null) 'ErrorDetailList': errorDetailList,
+    };
+  }
 }
 
 class DescribeChangeSetResponse {
@@ -624,6 +670,29 @@ class DescribeChangeSetResponse {
       status: (json['Status'] as String?)?.toChangeStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeSet = this.changeSet;
+    final changeSetArn = this.changeSetArn;
+    final changeSetId = this.changeSetId;
+    final changeSetName = this.changeSetName;
+    final endTime = this.endTime;
+    final failureCode = this.failureCode;
+    final failureDescription = this.failureDescription;
+    final startTime = this.startTime;
+    final status = this.status;
+    return {
+      if (changeSet != null) 'ChangeSet': changeSet,
+      if (changeSetArn != null) 'ChangeSetArn': changeSetArn,
+      if (changeSetId != null) 'ChangeSetId': changeSetId,
+      if (changeSetName != null) 'ChangeSetName': changeSetName,
+      if (endTime != null) 'EndTime': endTime,
+      if (failureCode != null) 'FailureCode': failureCode.toValue(),
+      if (failureDescription != null) 'FailureDescription': failureDescription,
+      if (startTime != null) 'StartTime': startTime,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class DescribeEntityResponse {
@@ -661,6 +730,21 @@ class DescribeEntityResponse {
       entityType: json['EntityType'] as String?,
       lastModifiedDate: json['LastModifiedDate'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    final entityArn = this.entityArn;
+    final entityIdentifier = this.entityIdentifier;
+    final entityType = this.entityType;
+    final lastModifiedDate = this.lastModifiedDate;
+    return {
+      if (details != null) 'Details': details,
+      if (entityArn != null) 'EntityArn': entityArn,
+      if (entityIdentifier != null) 'EntityIdentifier': entityIdentifier,
+      if (entityType != null) 'EntityType': entityType,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+    };
   }
 }
 
@@ -740,6 +824,23 @@ class EntitySummary {
       visibility: json['Visibility'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entityArn = this.entityArn;
+    final entityId = this.entityId;
+    final entityType = this.entityType;
+    final lastModifiedDate = this.lastModifiedDate;
+    final name = this.name;
+    final visibility = this.visibility;
+    return {
+      if (entityArn != null) 'EntityArn': entityArn,
+      if (entityId != null) 'EntityId': entityId,
+      if (entityType != null) 'EntityType': entityType,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (name != null) 'Name': name,
+      if (visibility != null) 'Visibility': visibility,
+    };
+  }
 }
 
 /// Details about the error.
@@ -759,6 +860,15 @@ class ErrorDetail {
       errorCode: json['ErrorCode'] as String?,
       errorMessage: json['ErrorMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+    };
   }
 }
 
@@ -841,6 +951,7 @@ class Filter {
     this.name,
     this.valueList,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final valueList = this.valueList;
@@ -873,6 +984,16 @@ class ListChangeSetsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeSetSummaryList = this.changeSetSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (changeSetSummaryList != null)
+        'ChangeSetSummaryList': changeSetSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListEntitiesResponse {
@@ -895,6 +1016,15 @@ class ListEntitiesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entitySummaryList = this.entitySummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (entitySummaryList != null) 'EntitySummaryList': entitySummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// An object that contains two attributes, <code>SortBy</code> and
@@ -916,6 +1046,7 @@ class Sort {
     this.sortBy,
     this.sortOrder,
   });
+
   Map<String, dynamic> toJson() {
     final sortBy = this.sortBy;
     final sortOrder = this.sortOrder;
@@ -970,6 +1101,15 @@ class StartChangeSetResponse {
       changeSetArn: json['ChangeSetArn'] as String?,
       changeSetId: json['ChangeSetId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeSetArn = this.changeSetArn;
+    final changeSetId = this.changeSetId;
+    return {
+      if (changeSetArn != null) 'ChangeSetArn': changeSetArn,
+      if (changeSetId != null) 'ChangeSetId': changeSetId,
+    };
   }
 }
 

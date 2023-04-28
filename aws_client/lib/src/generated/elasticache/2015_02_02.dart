@@ -5880,6 +5880,17 @@ class AllowedNodeTypeModificationsMessage {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final scaleDownModifications = this.scaleDownModifications;
+    final scaleUpModifications = this.scaleUpModifications;
+    return {
+      if (scaleDownModifications != null)
+        'ScaleDownModifications': scaleDownModifications,
+      if (scaleUpModifications != null)
+        'ScaleUpModifications': scaleUpModifications,
+    };
+  }
 }
 
 enum AuthTokenUpdateStatus {
@@ -5962,6 +5973,15 @@ class Authentication {
       type: _s.extractXmlStringValue(elem, 'Type')?.toAuthenticationType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final passwordCount = this.passwordCount;
+    final type = this.type;
+    return {
+      if (passwordCount != null) 'PasswordCount': passwordCount,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum AuthenticationType {
@@ -6004,6 +6024,13 @@ class AuthorizeCacheSecurityGroupIngressResult {
           .extractXmlChild(elem, 'CacheSecurityGroup')
           ?.let(CacheSecurityGroup.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSecurityGroup = this.cacheSecurityGroup;
+    return {
+      if (cacheSecurityGroup != null) 'CacheSecurityGroup': cacheSecurityGroup,
+    };
   }
 }
 
@@ -6057,6 +6084,13 @@ class AvailabilityZone {
     return AvailabilityZone(
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -6481,6 +6515,91 @@ class CacheCluster {
           _s.extractXmlBoolValue(elem, 'TransitEncryptionEnabled'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final atRestEncryptionEnabled = this.atRestEncryptionEnabled;
+    final authTokenEnabled = this.authTokenEnabled;
+    final authTokenLastModifiedDate = this.authTokenLastModifiedDate;
+    final autoMinorVersionUpgrade = this.autoMinorVersionUpgrade;
+    final cacheClusterCreateTime = this.cacheClusterCreateTime;
+    final cacheClusterId = this.cacheClusterId;
+    final cacheClusterStatus = this.cacheClusterStatus;
+    final cacheNodeType = this.cacheNodeType;
+    final cacheNodes = this.cacheNodes;
+    final cacheParameterGroup = this.cacheParameterGroup;
+    final cacheSecurityGroups = this.cacheSecurityGroups;
+    final cacheSubnetGroupName = this.cacheSubnetGroupName;
+    final clientDownloadLandingPage = this.clientDownloadLandingPage;
+    final configurationEndpoint = this.configurationEndpoint;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final logDeliveryConfigurations = this.logDeliveryConfigurations;
+    final notificationConfiguration = this.notificationConfiguration;
+    final numCacheNodes = this.numCacheNodes;
+    final pendingModifiedValues = this.pendingModifiedValues;
+    final preferredAvailabilityZone = this.preferredAvailabilityZone;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final preferredOutpostArn = this.preferredOutpostArn;
+    final replicationGroupId = this.replicationGroupId;
+    final replicationGroupLogDeliveryEnabled =
+        this.replicationGroupLogDeliveryEnabled;
+    final securityGroups = this.securityGroups;
+    final snapshotRetentionLimit = this.snapshotRetentionLimit;
+    final snapshotWindow = this.snapshotWindow;
+    final transitEncryptionEnabled = this.transitEncryptionEnabled;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (atRestEncryptionEnabled != null)
+        'AtRestEncryptionEnabled': atRestEncryptionEnabled,
+      if (authTokenEnabled != null) 'AuthTokenEnabled': authTokenEnabled,
+      if (authTokenLastModifiedDate != null)
+        'AuthTokenLastModifiedDate': iso8601ToJson(authTokenLastModifiedDate),
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade,
+      if (cacheClusterCreateTime != null)
+        'CacheClusterCreateTime': iso8601ToJson(cacheClusterCreateTime),
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (cacheClusterStatus != null) 'CacheClusterStatus': cacheClusterStatus,
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (cacheNodes != null) 'CacheNodes': cacheNodes,
+      if (cacheParameterGroup != null)
+        'CacheParameterGroup': cacheParameterGroup,
+      if (cacheSecurityGroups != null)
+        'CacheSecurityGroups': cacheSecurityGroups,
+      if (cacheSubnetGroupName != null)
+        'CacheSubnetGroupName': cacheSubnetGroupName,
+      if (clientDownloadLandingPage != null)
+        'ClientDownloadLandingPage': clientDownloadLandingPage,
+      if (configurationEndpoint != null)
+        'ConfigurationEndpoint': configurationEndpoint,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (logDeliveryConfigurations != null)
+        'LogDeliveryConfigurations': logDeliveryConfigurations,
+      if (notificationConfiguration != null)
+        'NotificationConfiguration': notificationConfiguration,
+      if (numCacheNodes != null) 'NumCacheNodes': numCacheNodes,
+      if (pendingModifiedValues != null)
+        'PendingModifiedValues': pendingModifiedValues,
+      if (preferredAvailabilityZone != null)
+        'PreferredAvailabilityZone': preferredAvailabilityZone,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (preferredOutpostArn != null)
+        'PreferredOutpostArn': preferredOutpostArn,
+      if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
+      if (replicationGroupLogDeliveryEnabled != null)
+        'ReplicationGroupLogDeliveryEnabled':
+            replicationGroupLogDeliveryEnabled,
+      if (securityGroups != null) 'SecurityGroups': securityGroups,
+      if (snapshotRetentionLimit != null)
+        'SnapshotRetentionLimit': snapshotRetentionLimit,
+      if (snapshotWindow != null) 'SnapshotWindow': snapshotWindow,
+      if (transitEncryptionEnabled != null)
+        'TransitEncryptionEnabled': transitEncryptionEnabled,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeCacheClusters</code> operation.
@@ -6502,6 +6621,15 @@ class CacheClusterMessage {
           elem.findElements('CacheCluster').map(CacheCluster.fromXml).toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheClusters = this.cacheClusters;
+    final marker = this.marker;
+    return {
+      if (cacheClusters != null) 'CacheClusters': cacheClusters,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -6547,6 +6675,24 @@ class CacheEngineVersion {
       engineVersion: _s.extractXmlStringValue(elem, 'EngineVersion'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheEngineDescription = this.cacheEngineDescription;
+    final cacheEngineVersionDescription = this.cacheEngineVersionDescription;
+    final cacheParameterGroupFamily = this.cacheParameterGroupFamily;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    return {
+      if (cacheEngineDescription != null)
+        'CacheEngineDescription': cacheEngineDescription,
+      if (cacheEngineVersionDescription != null)
+        'CacheEngineVersionDescription': cacheEngineVersionDescription,
+      if (cacheParameterGroupFamily != null)
+        'CacheParameterGroupFamily': cacheParameterGroupFamily,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+    };
+  }
 }
 
 /// Represents the output of a <a>DescribeCacheEngineVersions</a> operation.
@@ -6571,6 +6717,16 @@ class CacheEngineVersionMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheEngineVersions = this.cacheEngineVersions;
+    final marker = this.marker;
+    return {
+      if (cacheEngineVersions != null)
+        'CacheEngineVersions': cacheEngineVersions,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -6777,6 +6933,30 @@ class CacheNode {
       sourceCacheNodeId: _s.extractXmlStringValue(elem, 'SourceCacheNodeId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeCreateTime = this.cacheNodeCreateTime;
+    final cacheNodeId = this.cacheNodeId;
+    final cacheNodeStatus = this.cacheNodeStatus;
+    final customerAvailabilityZone = this.customerAvailabilityZone;
+    final customerOutpostArn = this.customerOutpostArn;
+    final endpoint = this.endpoint;
+    final parameterGroupStatus = this.parameterGroupStatus;
+    final sourceCacheNodeId = this.sourceCacheNodeId;
+    return {
+      if (cacheNodeCreateTime != null)
+        'CacheNodeCreateTime': iso8601ToJson(cacheNodeCreateTime),
+      if (cacheNodeId != null) 'CacheNodeId': cacheNodeId,
+      if (cacheNodeStatus != null) 'CacheNodeStatus': cacheNodeStatus,
+      if (customerAvailabilityZone != null)
+        'CustomerAvailabilityZone': customerAvailabilityZone,
+      if (customerOutpostArn != null) 'CustomerOutpostArn': customerOutpostArn,
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (parameterGroupStatus != null)
+        'ParameterGroupStatus': parameterGroupStatus,
+      if (sourceCacheNodeId != null) 'SourceCacheNodeId': sourceCacheNodeId,
+    };
+  }
 }
 
 /// A parameter that has a different value for each cache node type it is
@@ -6849,6 +7029,31 @@ class CacheNodeTypeSpecificParameter {
       source: _s.extractXmlStringValue(elem, 'Source'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowedValues = this.allowedValues;
+    final cacheNodeTypeSpecificValues = this.cacheNodeTypeSpecificValues;
+    final changeType = this.changeType;
+    final dataType = this.dataType;
+    final description = this.description;
+    final isModifiable = this.isModifiable;
+    final minimumEngineVersion = this.minimumEngineVersion;
+    final parameterName = this.parameterName;
+    final source = this.source;
+    return {
+      if (allowedValues != null) 'AllowedValues': allowedValues,
+      if (cacheNodeTypeSpecificValues != null)
+        'CacheNodeTypeSpecificValues': cacheNodeTypeSpecificValues,
+      if (changeType != null) 'ChangeType': changeType.toValue(),
+      if (dataType != null) 'DataType': dataType,
+      if (description != null) 'Description': description,
+      if (isModifiable != null) 'IsModifiable': isModifiable,
+      if (minimumEngineVersion != null)
+        'MinimumEngineVersion': minimumEngineVersion,
+      if (parameterName != null) 'ParameterName': parameterName,
+      if (source != null) 'Source': source,
+    };
+  }
 }
 
 /// A value that applies only to a certain cache node type.
@@ -6868,6 +7073,15 @@ class CacheNodeTypeSpecificValue {
       cacheNodeType: _s.extractXmlStringValue(elem, 'CacheNodeType'),
       value: _s.extractXmlStringValue(elem, 'Value'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeType = this.cacheNodeType;
+    final value = this.value;
+    return {
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -6927,6 +7141,35 @@ class CacheNodeUpdateStatus {
           _s.extractXmlDateTimeValue(elem, 'NodeUpdateStatusModifiedDate'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeId = this.cacheNodeId;
+    final nodeDeletionDate = this.nodeDeletionDate;
+    final nodeUpdateEndDate = this.nodeUpdateEndDate;
+    final nodeUpdateInitiatedBy = this.nodeUpdateInitiatedBy;
+    final nodeUpdateInitiatedDate = this.nodeUpdateInitiatedDate;
+    final nodeUpdateStartDate = this.nodeUpdateStartDate;
+    final nodeUpdateStatus = this.nodeUpdateStatus;
+    final nodeUpdateStatusModifiedDate = this.nodeUpdateStatusModifiedDate;
+    return {
+      if (cacheNodeId != null) 'CacheNodeId': cacheNodeId,
+      if (nodeDeletionDate != null)
+        'NodeDeletionDate': iso8601ToJson(nodeDeletionDate),
+      if (nodeUpdateEndDate != null)
+        'NodeUpdateEndDate': iso8601ToJson(nodeUpdateEndDate),
+      if (nodeUpdateInitiatedBy != null)
+        'NodeUpdateInitiatedBy': nodeUpdateInitiatedBy.toValue(),
+      if (nodeUpdateInitiatedDate != null)
+        'NodeUpdateInitiatedDate': iso8601ToJson(nodeUpdateInitiatedDate),
+      if (nodeUpdateStartDate != null)
+        'NodeUpdateStartDate': iso8601ToJson(nodeUpdateStartDate),
+      if (nodeUpdateStatus != null)
+        'NodeUpdateStatus': nodeUpdateStatus.toValue(),
+      if (nodeUpdateStatusModifiedDate != null)
+        'NodeUpdateStatusModifiedDate':
+            iso8601ToJson(nodeUpdateStatusModifiedDate),
+    };
+  }
 }
 
 /// Represents the output of a <code>CreateCacheParameterGroup</code> operation.
@@ -6970,6 +7213,23 @@ class CacheParameterGroup {
       isGlobal: _s.extractXmlBoolValue(elem, 'IsGlobal'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cacheParameterGroupFamily = this.cacheParameterGroupFamily;
+    final cacheParameterGroupName = this.cacheParameterGroupName;
+    final description = this.description;
+    final isGlobal = this.isGlobal;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (cacheParameterGroupFamily != null)
+        'CacheParameterGroupFamily': cacheParameterGroupFamily,
+      if (cacheParameterGroupName != null)
+        'CacheParameterGroupName': cacheParameterGroupName,
+      if (description != null) 'Description': description,
+      if (isGlobal != null) 'IsGlobal': isGlobal,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeCacheParameters</code> operation.
@@ -7002,6 +7262,19 @@ class CacheParameterGroupDetails {
           elem.findElements('Parameter').map(Parameter.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeTypeSpecificParameters =
+        this.cacheNodeTypeSpecificParameters;
+    final marker = this.marker;
+    final parameters = this.parameters;
+    return {
+      if (cacheNodeTypeSpecificParameters != null)
+        'CacheNodeTypeSpecificParameters': cacheNodeTypeSpecificParameters,
+      if (marker != null) 'Marker': marker,
+      if (parameters != null) 'Parameters': parameters,
+    };
+  }
 }
 
 /// Represents the output of one of the following operations:
@@ -7026,6 +7299,14 @@ class CacheParameterGroupNameMessage {
       cacheParameterGroupName:
           _s.extractXmlStringValue(elem, 'CacheParameterGroupName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheParameterGroupName = this.cacheParameterGroupName;
+    return {
+      if (cacheParameterGroupName != null)
+        'CacheParameterGroupName': cacheParameterGroupName,
+    };
   }
 }
 
@@ -7057,6 +7338,20 @@ class CacheParameterGroupStatus {
           _s.extractXmlStringValue(elem, 'ParameterApplyStatus'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeIdsToReboot = this.cacheNodeIdsToReboot;
+    final cacheParameterGroupName = this.cacheParameterGroupName;
+    final parameterApplyStatus = this.parameterApplyStatus;
+    return {
+      if (cacheNodeIdsToReboot != null)
+        'CacheNodeIdsToReboot': cacheNodeIdsToReboot,
+      if (cacheParameterGroupName != null)
+        'CacheParameterGroupName': cacheParameterGroupName,
+      if (parameterApplyStatus != null)
+        'ParameterApplyStatus': parameterApplyStatus,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeCacheParameterGroups</code>
@@ -7083,6 +7378,16 @@ class CacheParameterGroupsMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheParameterGroups = this.cacheParameterGroups;
+    final marker = this.marker;
+    return {
+      if (cacheParameterGroups != null)
+        'CacheParameterGroups': cacheParameterGroups,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7137,6 +7442,22 @@ class CacheSecurityGroup {
       ownerId: _s.extractXmlStringValue(elem, 'OwnerId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cacheSecurityGroupName = this.cacheSecurityGroupName;
+    final description = this.description;
+    final eC2SecurityGroups = this.eC2SecurityGroups;
+    final ownerId = this.ownerId;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (cacheSecurityGroupName != null)
+        'CacheSecurityGroupName': cacheSecurityGroupName,
+      if (description != null) 'Description': description,
+      if (eC2SecurityGroups != null) 'EC2SecurityGroups': eC2SecurityGroups,
+      if (ownerId != null) 'OwnerId': ownerId,
+    };
+  }
 }
 
 /// Represents a cluster's status within a particular cache security group.
@@ -7159,6 +7480,16 @@ class CacheSecurityGroupMembership {
           _s.extractXmlStringValue(elem, 'CacheSecurityGroupName'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSecurityGroupName = this.cacheSecurityGroupName;
+    final status = this.status;
+    return {
+      if (cacheSecurityGroupName != null)
+        'CacheSecurityGroupName': cacheSecurityGroupName,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -7185,6 +7516,16 @@ class CacheSecurityGroupMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSecurityGroups = this.cacheSecurityGroups;
+    final marker = this.marker;
+    return {
+      if (cacheSecurityGroups != null)
+        'CacheSecurityGroups': cacheSecurityGroups,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7234,6 +7575,23 @@ class CacheSubnetGroup {
       vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cacheSubnetGroupDescription = this.cacheSubnetGroupDescription;
+    final cacheSubnetGroupName = this.cacheSubnetGroupName;
+    final subnets = this.subnets;
+    final vpcId = this.vpcId;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (cacheSubnetGroupDescription != null)
+        'CacheSubnetGroupDescription': cacheSubnetGroupDescription,
+      if (cacheSubnetGroupName != null)
+        'CacheSubnetGroupName': cacheSubnetGroupName,
+      if (subnets != null) 'Subnets': subnets,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeCacheSubnetGroups</code> operation.
@@ -7258,6 +7616,15 @@ class CacheSubnetGroupMessage {
               .toList()),
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSubnetGroups = this.cacheSubnetGroups;
+    final marker = this.marker;
+    return {
+      if (cacheSubnetGroups != null) 'CacheSubnetGroups': cacheSubnetGroups,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7324,6 +7691,13 @@ class CompleteMigrationResponse {
           ?.let(ReplicationGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
+  }
 }
 
 /// Node group (shard) configuration options when adding or removing replicas.
@@ -7380,6 +7754,7 @@ class ConfigureShard {
     this.preferredAvailabilityZones,
     this.preferredOutpostArns,
   });
+
   Map<String, dynamic> toJson() {
     final newReplicaCount = this.newReplicaCount;
     final nodeGroupId = this.nodeGroupId;
@@ -7407,6 +7782,13 @@ class CopySnapshotResult {
       snapshot: _s.extractXmlChild(elem, 'Snapshot')?.let(Snapshot.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
+  }
 }
 
 class CreateCacheClusterResult {
@@ -7420,6 +7802,13 @@ class CreateCacheClusterResult {
       cacheCluster:
           _s.extractXmlChild(elem, 'CacheCluster')?.let(CacheCluster.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheCluster = this.cacheCluster;
+    return {
+      if (cacheCluster != null) 'CacheCluster': cacheCluster,
+    };
   }
 }
 
@@ -7436,6 +7825,14 @@ class CreateCacheParameterGroupResult {
           ?.let(CacheParameterGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheParameterGroup = this.cacheParameterGroup;
+    return {
+      if (cacheParameterGroup != null)
+        'CacheParameterGroup': cacheParameterGroup,
+    };
+  }
 }
 
 class CreateCacheSecurityGroupResult {
@@ -7450,6 +7847,13 @@ class CreateCacheSecurityGroupResult {
           .extractXmlChild(elem, 'CacheSecurityGroup')
           ?.let(CacheSecurityGroup.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSecurityGroup = this.cacheSecurityGroup;
+    return {
+      if (cacheSecurityGroup != null) 'CacheSecurityGroup': cacheSecurityGroup,
+    };
   }
 }
 
@@ -7466,6 +7870,13 @@ class CreateCacheSubnetGroupResult {
           ?.let(CacheSubnetGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheSubnetGroup = this.cacheSubnetGroup;
+    return {
+      if (cacheSubnetGroup != null) 'CacheSubnetGroup': cacheSubnetGroup,
+    };
+  }
 }
 
 class CreateGlobalReplicationGroupResult {
@@ -7480,6 +7891,14 @@ class CreateGlobalReplicationGroupResult {
           .extractXmlChild(elem, 'GlobalReplicationGroup')
           ?.let(GlobalReplicationGroup.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
   }
 }
 
@@ -7496,6 +7915,13 @@ class CreateReplicationGroupResult {
           ?.let(ReplicationGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
+  }
 }
 
 class CreateSnapshotResult {
@@ -7508,6 +7934,13 @@ class CreateSnapshotResult {
     return CreateSnapshotResult(
       snapshot: _s.extractXmlChild(elem, 'Snapshot')?.let(Snapshot.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
   }
 }
 
@@ -7523,6 +7956,7 @@ class CustomerNodeEndpoint {
     this.address,
     this.port,
   });
+
   Map<String, dynamic> toJson() {
     final address = this.address;
     final port = this.port;
@@ -7575,6 +8009,14 @@ class DecreaseNodeGroupsInGlobalReplicationGroupResult {
           ?.let(GlobalReplicationGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
+  }
 }
 
 class DecreaseReplicaCountResult {
@@ -7590,6 +8032,13 @@ class DecreaseReplicaCountResult {
           ?.let(ReplicationGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
+  }
 }
 
 class DeleteCacheClusterResult {
@@ -7603,6 +8052,13 @@ class DeleteCacheClusterResult {
       cacheCluster:
           _s.extractXmlChild(elem, 'CacheCluster')?.let(CacheCluster.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheCluster = this.cacheCluster;
+    return {
+      if (cacheCluster != null) 'CacheCluster': cacheCluster,
+    };
   }
 }
 
@@ -7619,6 +8075,14 @@ class DeleteGlobalReplicationGroupResult {
           ?.let(GlobalReplicationGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
+  }
 }
 
 class DeleteReplicationGroupResult {
@@ -7634,6 +8098,13 @@ class DeleteReplicationGroupResult {
           ?.let(ReplicationGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
+  }
 }
 
 class DeleteSnapshotResult {
@@ -7646,6 +8117,13 @@ class DeleteSnapshotResult {
     return DeleteSnapshotResult(
       snapshot: _s.extractXmlChild(elem, 'Snapshot')?.let(Snapshot.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
   }
 }
 
@@ -7661,6 +8139,13 @@ class DescribeEngineDefaultParametersResult {
           .extractXmlChild(elem, 'EngineDefaults')
           ?.let(EngineDefaults.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final engineDefaults = this.engineDefaults;
+    return {
+      if (engineDefaults != null) 'EngineDefaults': engineDefaults,
+    };
   }
 }
 
@@ -7689,6 +8174,16 @@ class DescribeGlobalReplicationGroupsResult {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroups = this.globalReplicationGroups;
+    final marker = this.marker;
+    return {
+      if (globalReplicationGroups != null)
+        'GlobalReplicationGroups': globalReplicationGroups,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeSnapshots</code> operation.
@@ -7714,6 +8209,15 @@ class DescribeSnapshotsListMessage {
           elem.findElements('Snapshot').map(Snapshot.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final snapshots = this.snapshots;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (snapshots != null) 'Snapshots': snapshots,
+    };
+  }
 }
 
 class DescribeUserGroupsResult {
@@ -7737,6 +8241,15 @@ class DescribeUserGroupsResult {
           elem.findElements('member').map(UserGroup.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final userGroups = this.userGroups;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (userGroups != null) 'UserGroups': userGroups,
+    };
+  }
 }
 
 class DescribeUsersResult {
@@ -7759,6 +8272,15 @@ class DescribeUsersResult {
       users: _s.extractXmlChild(elem, 'Users')?.let(
           (elem) => elem.findElements('member').map(User.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final users = this.users;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (users != null) 'Users': users,
+    };
   }
 }
 
@@ -7839,6 +8361,14 @@ class DisassociateGlobalReplicationGroupResult {
           ?.let(GlobalReplicationGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
+  }
 }
 
 /// Provides ownership and status information for an Amazon EC2 security group.
@@ -7866,6 +8396,19 @@ class EC2SecurityGroup {
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eC2SecurityGroupName = this.eC2SecurityGroupName;
+    final eC2SecurityGroupOwnerId = this.eC2SecurityGroupOwnerId;
+    final status = this.status;
+    return {
+      if (eC2SecurityGroupName != null)
+        'EC2SecurityGroupName': eC2SecurityGroupName,
+      if (eC2SecurityGroupOwnerId != null)
+        'EC2SecurityGroupOwnerId': eC2SecurityGroupOwnerId,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// Represents the information required for client programs to connect to a
@@ -7886,6 +8429,15 @@ class Endpoint {
       address: _s.extractXmlStringValue(elem, 'Address'),
       port: _s.extractXmlIntValue(elem, 'Port'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final port = this.port;
+    return {
+      if (address != null) 'Address': address,
+      if (port != null) 'Port': port,
+    };
   }
 }
 
@@ -7932,6 +8484,22 @@ class EngineDefaults {
           elem.findElements('Parameter').map(Parameter.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeTypeSpecificParameters =
+        this.cacheNodeTypeSpecificParameters;
+    final cacheParameterGroupFamily = this.cacheParameterGroupFamily;
+    final marker = this.marker;
+    final parameters = this.parameters;
+    return {
+      if (cacheNodeTypeSpecificParameters != null)
+        'CacheNodeTypeSpecificParameters': cacheNodeTypeSpecificParameters,
+      if (cacheParameterGroupFamily != null)
+        'CacheParameterGroupFamily': cacheParameterGroupFamily,
+      if (marker != null) 'Marker': marker,
+      if (parameters != null) 'Parameters': parameters,
+    };
+  }
 }
 
 /// Represents a single occurrence of something interesting within the system.
@@ -7967,6 +8535,19 @@ class Event {
       sourceType: _s.extractXmlStringValue(elem, 'SourceType')?.toSourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final message = this.message;
+    final sourceIdentifier = this.sourceIdentifier;
+    final sourceType = this.sourceType;
+    return {
+      if (date != null) 'Date': iso8601ToJson(date),
+      if (message != null) 'Message': message,
+      if (sourceIdentifier != null) 'SourceIdentifier': sourceIdentifier,
+      if (sourceType != null) 'SourceType': sourceType.toValue(),
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeEvents</code> operation.
@@ -7989,6 +8570,15 @@ class EventsMessage {
       marker: _s.extractXmlStringValue(elem, 'Marker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final marker = this.marker;
+    return {
+      if (events != null) 'Events': events,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 class FailoverGlobalReplicationGroupResult {
@@ -8004,6 +8594,14 @@ class FailoverGlobalReplicationGroupResult {
           ?.let(GlobalReplicationGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
+  }
 }
 
 /// Used to streamline results of a search based on the property being filtered.
@@ -8018,6 +8616,7 @@ class Filter {
     required this.name,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -8045,6 +8644,15 @@ class GlobalNodeGroup {
       globalNodeGroupId: _s.extractXmlStringValue(elem, 'GlobalNodeGroupId'),
       slots: _s.extractXmlStringValue(elem, 'Slots'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalNodeGroupId = this.globalNodeGroupId;
+    final slots = this.slots;
+    return {
+      if (globalNodeGroupId != null) 'GlobalNodeGroupId': globalNodeGroupId,
+      if (slots != null) 'Slots': slots,
+    };
   }
 }
 
@@ -8161,6 +8769,42 @@ class GlobalReplicationGroup {
           _s.extractXmlBoolValue(elem, 'TransitEncryptionEnabled'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final atRestEncryptionEnabled = this.atRestEncryptionEnabled;
+    final authTokenEnabled = this.authTokenEnabled;
+    final cacheNodeType = this.cacheNodeType;
+    final clusterEnabled = this.clusterEnabled;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final globalNodeGroups = this.globalNodeGroups;
+    final globalReplicationGroupDescription =
+        this.globalReplicationGroupDescription;
+    final globalReplicationGroupId = this.globalReplicationGroupId;
+    final members = this.members;
+    final status = this.status;
+    final transitEncryptionEnabled = this.transitEncryptionEnabled;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (atRestEncryptionEnabled != null)
+        'AtRestEncryptionEnabled': atRestEncryptionEnabled,
+      if (authTokenEnabled != null) 'AuthTokenEnabled': authTokenEnabled,
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (clusterEnabled != null) 'ClusterEnabled': clusterEnabled,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (globalNodeGroups != null) 'GlobalNodeGroups': globalNodeGroups,
+      if (globalReplicationGroupDescription != null)
+        'GlobalReplicationGroupDescription': globalReplicationGroupDescription,
+      if (globalReplicationGroupId != null)
+        'GlobalReplicationGroupId': globalReplicationGroupId,
+      if (members != null) 'Members': members,
+      if (status != null) 'Status': status,
+      if (transitEncryptionEnabled != null)
+        'TransitEncryptionEnabled': transitEncryptionEnabled,
+    };
+  }
 }
 
 /// The name of the Global datastore and role of this replication group in the
@@ -8184,6 +8828,18 @@ class GlobalReplicationGroupInfo {
       globalReplicationGroupMemberRole:
           _s.extractXmlStringValue(elem, 'GlobalReplicationGroupMemberRole'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroupId = this.globalReplicationGroupId;
+    final globalReplicationGroupMemberRole =
+        this.globalReplicationGroupMemberRole;
+    return {
+      if (globalReplicationGroupId != null)
+        'GlobalReplicationGroupId': globalReplicationGroupId,
+      if (globalReplicationGroupMemberRole != null)
+        'GlobalReplicationGroupMemberRole': globalReplicationGroupMemberRole,
+    };
   }
 }
 
@@ -8224,6 +8880,23 @@ class GlobalReplicationGroupMember {
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final automaticFailover = this.automaticFailover;
+    final replicationGroupId = this.replicationGroupId;
+    final replicationGroupRegion = this.replicationGroupRegion;
+    final role = this.role;
+    final status = this.status;
+    return {
+      if (automaticFailover != null)
+        'AutomaticFailover': automaticFailover.toValue(),
+      if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
+      if (replicationGroupRegion != null)
+        'ReplicationGroupRegion': replicationGroupRegion,
+      if (role != null) 'Role': role,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 class IncreaseNodeGroupsInGlobalReplicationGroupResult {
@@ -8240,6 +8913,14 @@ class IncreaseNodeGroupsInGlobalReplicationGroupResult {
           ?.let(GlobalReplicationGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
+  }
 }
 
 class IncreaseReplicaCountResult {
@@ -8254,6 +8935,13 @@ class IncreaseReplicaCountResult {
           .extractXmlChild(elem, 'ReplicationGroup')
           ?.let(ReplicationGroup.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
   }
 }
 
@@ -8328,6 +9016,23 @@ class LogDeliveryConfiguration {
           ?.toLogDeliveryConfigurationStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationDetails = this.destinationDetails;
+    final destinationType = this.destinationType;
+    final logFormat = this.logFormat;
+    final logType = this.logType;
+    final message = this.message;
+    final status = this.status;
+    return {
+      if (destinationDetails != null) 'DestinationDetails': destinationDetails,
+      if (destinationType != null) 'DestinationType': destinationType.toValue(),
+      if (logFormat != null) 'LogFormat': logFormat.toValue(),
+      if (logType != null) 'LogType': logType.toValue(),
+      if (message != null) 'Message': message,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Specifies the destination, format and type of the logs.
@@ -8357,6 +9062,7 @@ class LogDeliveryConfigurationRequest {
     this.logFormat,
     this.logType,
   });
+
   Map<String, dynamic> toJson() {
     final destinationDetails = this.destinationDetails;
     final destinationType = this.destinationType;
@@ -8486,6 +9192,13 @@ class ModifyCacheClusterResult {
           _s.extractXmlChild(elem, 'CacheCluster')?.let(CacheCluster.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheCluster = this.cacheCluster;
+    return {
+      if (cacheCluster != null) 'CacheCluster': cacheCluster,
+    };
+  }
 }
 
 class ModifyCacheSubnetGroupResult {
@@ -8500,6 +9213,13 @@ class ModifyCacheSubnetGroupResult {
           .extractXmlChild(elem, 'CacheSubnetGroup')
           ?.let(CacheSubnetGroup.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSubnetGroup = this.cacheSubnetGroup;
+    return {
+      if (cacheSubnetGroup != null) 'CacheSubnetGroup': cacheSubnetGroup,
+    };
   }
 }
 
@@ -8516,6 +9236,14 @@ class ModifyGlobalReplicationGroupResult {
           ?.let(GlobalReplicationGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
+  }
 }
 
 class ModifyReplicationGroupResult {
@@ -8530,6 +9258,13 @@ class ModifyReplicationGroupResult {
           .extractXmlChild(elem, 'ReplicationGroup')
           ?.let(ReplicationGroup.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
   }
 }
 
@@ -8546,6 +9281,13 @@ class ModifyReplicationGroupShardConfigurationResult {
           .extractXmlChild(elem, 'ReplicationGroup')
           ?.let(ReplicationGroup.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
   }
 }
 
@@ -8628,6 +9370,23 @@ class NodeGroup {
       slots: _s.extractXmlStringValue(elem, 'Slots'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nodeGroupId = this.nodeGroupId;
+    final nodeGroupMembers = this.nodeGroupMembers;
+    final primaryEndpoint = this.primaryEndpoint;
+    final readerEndpoint = this.readerEndpoint;
+    final slots = this.slots;
+    final status = this.status;
+    return {
+      if (nodeGroupId != null) 'NodeGroupId': nodeGroupId,
+      if (nodeGroupMembers != null) 'NodeGroupMembers': nodeGroupMembers,
+      if (primaryEndpoint != null) 'PrimaryEndpoint': primaryEndpoint,
+      if (readerEndpoint != null) 'ReaderEndpoint': readerEndpoint,
+      if (slots != null) 'Slots': slots,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -8761,6 +9520,25 @@ class NodeGroupMember {
           _s.extractXmlChild(elem, 'ReadEndpoint')?.let(Endpoint.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheClusterId = this.cacheClusterId;
+    final cacheNodeId = this.cacheNodeId;
+    final currentRole = this.currentRole;
+    final preferredAvailabilityZone = this.preferredAvailabilityZone;
+    final preferredOutpostArn = this.preferredOutpostArn;
+    final readEndpoint = this.readEndpoint;
+    return {
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (cacheNodeId != null) 'CacheNodeId': cacheNodeId,
+      if (currentRole != null) 'CurrentRole': currentRole,
+      if (preferredAvailabilityZone != null)
+        'PreferredAvailabilityZone': preferredAvailabilityZone,
+      if (preferredOutpostArn != null)
+        'PreferredOutpostArn': preferredOutpostArn,
+      if (readEndpoint != null) 'ReadEndpoint': readEndpoint,
+    };
+  }
 }
 
 /// The status of the service update on the node group member
@@ -8824,6 +9602,37 @@ class NodeGroupMemberUpdateStatus {
           _s.extractXmlDateTimeValue(elem, 'NodeUpdateStatusModifiedDate'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheClusterId = this.cacheClusterId;
+    final cacheNodeId = this.cacheNodeId;
+    final nodeDeletionDate = this.nodeDeletionDate;
+    final nodeUpdateEndDate = this.nodeUpdateEndDate;
+    final nodeUpdateInitiatedBy = this.nodeUpdateInitiatedBy;
+    final nodeUpdateInitiatedDate = this.nodeUpdateInitiatedDate;
+    final nodeUpdateStartDate = this.nodeUpdateStartDate;
+    final nodeUpdateStatus = this.nodeUpdateStatus;
+    final nodeUpdateStatusModifiedDate = this.nodeUpdateStatusModifiedDate;
+    return {
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (cacheNodeId != null) 'CacheNodeId': cacheNodeId,
+      if (nodeDeletionDate != null)
+        'NodeDeletionDate': iso8601ToJson(nodeDeletionDate),
+      if (nodeUpdateEndDate != null)
+        'NodeUpdateEndDate': iso8601ToJson(nodeUpdateEndDate),
+      if (nodeUpdateInitiatedBy != null)
+        'NodeUpdateInitiatedBy': nodeUpdateInitiatedBy.toValue(),
+      if (nodeUpdateInitiatedDate != null)
+        'NodeUpdateInitiatedDate': iso8601ToJson(nodeUpdateInitiatedDate),
+      if (nodeUpdateStartDate != null)
+        'NodeUpdateStartDate': iso8601ToJson(nodeUpdateStartDate),
+      if (nodeUpdateStatus != null)
+        'NodeUpdateStatus': nodeUpdateStatus.toValue(),
+      if (nodeUpdateStatusModifiedDate != null)
+        'NodeUpdateStatusModifiedDate':
+            iso8601ToJson(nodeUpdateStatusModifiedDate),
+    };
+  }
 }
 
 /// The status of the service update on the node group
@@ -8848,6 +9657,16 @@ class NodeGroupUpdateStatus {
               .map(NodeGroupMemberUpdateStatus.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nodeGroupId = this.nodeGroupId;
+    final nodeGroupMemberUpdateStatus = this.nodeGroupMemberUpdateStatus;
+    return {
+      if (nodeGroupId != null) 'NodeGroupId': nodeGroupId,
+      if (nodeGroupMemberUpdateStatus != null)
+        'NodeGroupMemberUpdateStatus': nodeGroupMemberUpdateStatus,
+    };
   }
 }
 
@@ -8898,6 +9717,28 @@ class NodeSnapshot {
       snapshotCreateTime:
           _s.extractXmlDateTimeValue(elem, 'SnapshotCreateTime'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheClusterId = this.cacheClusterId;
+    final cacheNodeCreateTime = this.cacheNodeCreateTime;
+    final cacheNodeId = this.cacheNodeId;
+    final cacheSize = this.cacheSize;
+    final nodeGroupConfiguration = this.nodeGroupConfiguration;
+    final nodeGroupId = this.nodeGroupId;
+    final snapshotCreateTime = this.snapshotCreateTime;
+    return {
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (cacheNodeCreateTime != null)
+        'CacheNodeCreateTime': iso8601ToJson(cacheNodeCreateTime),
+      if (cacheNodeId != null) 'CacheNodeId': cacheNodeId,
+      if (cacheSize != null) 'CacheSize': cacheSize,
+      if (nodeGroupConfiguration != null)
+        'NodeGroupConfiguration': nodeGroupConfiguration,
+      if (nodeGroupId != null) 'NodeGroupId': nodeGroupId,
+      if (snapshotCreateTime != null)
+        'SnapshotCreateTime': iso8601ToJson(snapshotCreateTime),
+    };
   }
 }
 
@@ -8997,6 +9838,15 @@ class NotificationConfiguration {
       topicStatus: _s.extractXmlStringValue(elem, 'TopicStatus'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final topicArn = this.topicArn;
+    final topicStatus = this.topicStatus;
+    return {
+      if (topicArn != null) 'TopicArn': topicArn,
+      if (topicStatus != null) 'TopicStatus': topicStatus,
+    };
+  }
 }
 
 enum OutpostMode {
@@ -9089,6 +9939,30 @@ class Parameter {
       source: _s.extractXmlStringValue(elem, 'Source'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowedValues = this.allowedValues;
+    final changeType = this.changeType;
+    final dataType = this.dataType;
+    final description = this.description;
+    final isModifiable = this.isModifiable;
+    final minimumEngineVersion = this.minimumEngineVersion;
+    final parameterName = this.parameterName;
+    final parameterValue = this.parameterValue;
+    final source = this.source;
+    return {
+      if (allowedValues != null) 'AllowedValues': allowedValues,
+      if (changeType != null) 'ChangeType': changeType.toValue(),
+      if (dataType != null) 'DataType': dataType,
+      if (description != null) 'Description': description,
+      if (isModifiable != null) 'IsModifiable': isModifiable,
+      if (minimumEngineVersion != null)
+        'MinimumEngineVersion': minimumEngineVersion,
+      if (parameterName != null) 'ParameterName': parameterName,
+      if (parameterValue != null) 'ParameterValue': parameterValue,
+      if (source != null) 'Source': source,
+    };
+  }
 }
 
 /// Describes a name-value pair that is used to update the value of a parameter.
@@ -9103,6 +9977,7 @@ class ParameterNameValue {
     this.parameterName,
     this.parameterValue,
   });
+
   Map<String, dynamic> toJson() {
     final parameterName = this.parameterName;
     final parameterValue = this.parameterValue;
@@ -9178,6 +10053,19 @@ class PendingLogDeliveryConfiguration {
       logType: _s.extractXmlStringValue(elem, 'LogType')?.toLogType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationDetails = this.destinationDetails;
+    final destinationType = this.destinationType;
+    final logFormat = this.logFormat;
+    final logType = this.logType;
+    return {
+      if (destinationDetails != null) 'DestinationDetails': destinationDetails,
+      if (destinationType != null) 'DestinationType': destinationType.toValue(),
+      if (logFormat != null) 'LogFormat': logFormat.toValue(),
+      if (logType != null) 'LogType': logType.toValue(),
+    };
+  }
 }
 
 /// A group of settings that are applied to the cluster in the future, or that
@@ -9232,6 +10120,25 @@ class PendingModifiedValues {
       numCacheNodes: _s.extractXmlIntValue(elem, 'NumCacheNodes'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authTokenStatus = this.authTokenStatus;
+    final cacheNodeIdsToRemove = this.cacheNodeIdsToRemove;
+    final cacheNodeType = this.cacheNodeType;
+    final engineVersion = this.engineVersion;
+    final logDeliveryConfigurations = this.logDeliveryConfigurations;
+    final numCacheNodes = this.numCacheNodes;
+    return {
+      if (authTokenStatus != null) 'AuthTokenStatus': authTokenStatus.toValue(),
+      if (cacheNodeIdsToRemove != null)
+        'CacheNodeIdsToRemove': cacheNodeIdsToRemove,
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (logDeliveryConfigurations != null)
+        'PendingLogDeliveryConfiguration': logDeliveryConfigurations,
+      if (numCacheNodes != null) 'NumCacheNodes': numCacheNodes,
+    };
+  }
 }
 
 /// Update action that has been processed for the corresponding apply/stop
@@ -9265,6 +10172,20 @@ class ProcessedUpdateAction {
           ?.toUpdateActionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheClusterId = this.cacheClusterId;
+    final replicationGroupId = this.replicationGroupId;
+    final serviceUpdateName = this.serviceUpdateName;
+    final updateActionStatus = this.updateActionStatus;
+    return {
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
+      if (serviceUpdateName != null) 'ServiceUpdateName': serviceUpdateName,
+      if (updateActionStatus != null)
+        'UpdateActionStatus': updateActionStatus.toValue(),
+    };
+  }
 }
 
 class PurchaseReservedCacheNodesOfferingResult {
@@ -9279,6 +10200,13 @@ class PurchaseReservedCacheNodesOfferingResult {
           .extractXmlChild(elem, 'ReservedCacheNode')
           ?.let(ReservedCacheNode.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reservedCacheNode = this.reservedCacheNode;
+    return {
+      if (reservedCacheNode != null) 'ReservedCacheNode': reservedCacheNode,
+    };
   }
 }
 
@@ -9296,6 +10224,14 @@ class RebalanceSlotsInGlobalReplicationGroupResult {
           ?.let(GlobalReplicationGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalReplicationGroup = this.globalReplicationGroup;
+    return {
+      if (globalReplicationGroup != null)
+        'GlobalReplicationGroup': globalReplicationGroup,
+    };
+  }
 }
 
 class RebootCacheClusterResult {
@@ -9309,6 +10245,13 @@ class RebootCacheClusterResult {
       cacheCluster:
           _s.extractXmlChild(elem, 'CacheCluster')?.let(CacheCluster.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheCluster = this.cacheCluster;
+    return {
+      if (cacheCluster != null) 'CacheCluster': cacheCluster,
+    };
   }
 }
 
@@ -9333,6 +10276,17 @@ class RecurringCharge {
           _s.extractXmlStringValue(elem, 'RecurringChargeFrequency'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recurringChargeAmount = this.recurringChargeAmount;
+    final recurringChargeFrequency = this.recurringChargeFrequency;
+    return {
+      if (recurringChargeAmount != null)
+        'RecurringChargeAmount': recurringChargeAmount,
+      if (recurringChargeFrequency != null)
+        'RecurringChargeFrequency': recurringChargeFrequency,
+    };
+  }
 }
 
 /// A list of the replication groups
@@ -9352,6 +10306,7 @@ class RegionalConfiguration {
     required this.replicationGroupRegion,
     required this.reshardingConfiguration,
   });
+
   Map<String, dynamic> toJson() {
     final replicationGroupId = this.replicationGroupId;
     final replicationGroupRegion = this.replicationGroupRegion;
@@ -9601,6 +10556,78 @@ class ReplicationGroup {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final atRestEncryptionEnabled = this.atRestEncryptionEnabled;
+    final authTokenEnabled = this.authTokenEnabled;
+    final authTokenLastModifiedDate = this.authTokenLastModifiedDate;
+    final autoMinorVersionUpgrade = this.autoMinorVersionUpgrade;
+    final automaticFailover = this.automaticFailover;
+    final cacheNodeType = this.cacheNodeType;
+    final clusterEnabled = this.clusterEnabled;
+    final configurationEndpoint = this.configurationEndpoint;
+    final dataTiering = this.dataTiering;
+    final description = this.description;
+    final globalReplicationGroupInfo = this.globalReplicationGroupInfo;
+    final kmsKeyId = this.kmsKeyId;
+    final logDeliveryConfigurations = this.logDeliveryConfigurations;
+    final memberClusters = this.memberClusters;
+    final memberClustersOutpostArns = this.memberClustersOutpostArns;
+    final multiAZ = this.multiAZ;
+    final nodeGroups = this.nodeGroups;
+    final pendingModifiedValues = this.pendingModifiedValues;
+    final replicationGroupCreateTime = this.replicationGroupCreateTime;
+    final replicationGroupId = this.replicationGroupId;
+    final snapshotRetentionLimit = this.snapshotRetentionLimit;
+    final snapshotWindow = this.snapshotWindow;
+    final snapshottingClusterId = this.snapshottingClusterId;
+    final status = this.status;
+    final transitEncryptionEnabled = this.transitEncryptionEnabled;
+    final userGroupIds = this.userGroupIds;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (atRestEncryptionEnabled != null)
+        'AtRestEncryptionEnabled': atRestEncryptionEnabled,
+      if (authTokenEnabled != null) 'AuthTokenEnabled': authTokenEnabled,
+      if (authTokenLastModifiedDate != null)
+        'AuthTokenLastModifiedDate': iso8601ToJson(authTokenLastModifiedDate),
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade,
+      if (automaticFailover != null)
+        'AutomaticFailover': automaticFailover.toValue(),
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (clusterEnabled != null) 'ClusterEnabled': clusterEnabled,
+      if (configurationEndpoint != null)
+        'ConfigurationEndpoint': configurationEndpoint,
+      if (dataTiering != null) 'DataTiering': dataTiering.toValue(),
+      if (description != null) 'Description': description,
+      if (globalReplicationGroupInfo != null)
+        'GlobalReplicationGroupInfo': globalReplicationGroupInfo,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (logDeliveryConfigurations != null)
+        'LogDeliveryConfigurations': logDeliveryConfigurations,
+      if (memberClusters != null) 'MemberClusters': memberClusters,
+      if (memberClustersOutpostArns != null)
+        'MemberClustersOutpostArns': memberClustersOutpostArns,
+      if (multiAZ != null) 'MultiAZ': multiAZ.toValue(),
+      if (nodeGroups != null) 'NodeGroups': nodeGroups,
+      if (pendingModifiedValues != null)
+        'PendingModifiedValues': pendingModifiedValues,
+      if (replicationGroupCreateTime != null)
+        'ReplicationGroupCreateTime': iso8601ToJson(replicationGroupCreateTime),
+      if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
+      if (snapshotRetentionLimit != null)
+        'SnapshotRetentionLimit': snapshotRetentionLimit,
+      if (snapshotWindow != null) 'SnapshotWindow': snapshotWindow,
+      if (snapshottingClusterId != null)
+        'SnapshottingClusterId': snapshottingClusterId,
+      if (status != null) 'Status': status,
+      if (transitEncryptionEnabled != null)
+        'TransitEncryptionEnabled': transitEncryptionEnabled,
+      if (userGroupIds != null) 'UserGroupIds': userGroupIds,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeReplicationGroups</code> operation.
@@ -9625,6 +10652,15 @@ class ReplicationGroupMessage {
               .map(ReplicationGroup.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final replicationGroups = this.replicationGroups;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (replicationGroups != null) 'ReplicationGroups': replicationGroups,
+    };
   }
 }
 
@@ -9680,6 +10716,25 @@ class ReplicationGroupPendingModifiedValues {
           .extractXmlChild(elem, 'UserGroups')
           ?.let(UserGroupsUpdateStatus.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authTokenStatus = this.authTokenStatus;
+    final automaticFailoverStatus = this.automaticFailoverStatus;
+    final logDeliveryConfigurations = this.logDeliveryConfigurations;
+    final primaryClusterId = this.primaryClusterId;
+    final resharding = this.resharding;
+    final userGroups = this.userGroups;
+    return {
+      if (authTokenStatus != null) 'AuthTokenStatus': authTokenStatus.toValue(),
+      if (automaticFailoverStatus != null)
+        'AutomaticFailoverStatus': automaticFailoverStatus.toValue(),
+      if (logDeliveryConfigurations != null)
+        'PendingLogDeliveryConfiguration': logDeliveryConfigurations,
+      if (primaryClusterId != null) 'PrimaryClusterId': primaryClusterId,
+      if (resharding != null) 'Resharding': resharding,
+      if (userGroups != null) 'UserGroups': userGroups,
+    };
   }
 }
 
@@ -9910,6 +10965,39 @@ class ReservedCacheNode {
       usagePrice: _s.extractXmlDoubleValue(elem, 'UsagePrice'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeCount = this.cacheNodeCount;
+    final cacheNodeType = this.cacheNodeType;
+    final duration = this.duration;
+    final fixedPrice = this.fixedPrice;
+    final offeringType = this.offeringType;
+    final productDescription = this.productDescription;
+    final recurringCharges = this.recurringCharges;
+    final reservationARN = this.reservationARN;
+    final reservedCacheNodeId = this.reservedCacheNodeId;
+    final reservedCacheNodesOfferingId = this.reservedCacheNodesOfferingId;
+    final startTime = this.startTime;
+    final state = this.state;
+    final usagePrice = this.usagePrice;
+    return {
+      if (cacheNodeCount != null) 'CacheNodeCount': cacheNodeCount,
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (duration != null) 'Duration': duration,
+      if (fixedPrice != null) 'FixedPrice': fixedPrice,
+      if (offeringType != null) 'OfferingType': offeringType,
+      if (productDescription != null) 'ProductDescription': productDescription,
+      if (recurringCharges != null) 'RecurringCharges': recurringCharges,
+      if (reservationARN != null) 'ReservationARN': reservationARN,
+      if (reservedCacheNodeId != null)
+        'ReservedCacheNodeId': reservedCacheNodeId,
+      if (reservedCacheNodesOfferingId != null)
+        'ReservedCacheNodesOfferingId': reservedCacheNodesOfferingId,
+      if (startTime != null) 'StartTime': iso8601ToJson(startTime),
+      if (state != null) 'State': state,
+      if (usagePrice != null) 'UsagePrice': usagePrice,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeReservedCacheNodes</code>
@@ -9935,6 +11023,15 @@ class ReservedCacheNodeMessage {
               .map(ReservedCacheNode.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final reservedCacheNodes = this.reservedCacheNodes;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (reservedCacheNodes != null) 'ReservedCacheNodes': reservedCacheNodes,
+    };
   }
 }
 
@@ -10135,6 +11232,28 @@ class ReservedCacheNodesOffering {
       usagePrice: _s.extractXmlDoubleValue(elem, 'UsagePrice'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheNodeType = this.cacheNodeType;
+    final duration = this.duration;
+    final fixedPrice = this.fixedPrice;
+    final offeringType = this.offeringType;
+    final productDescription = this.productDescription;
+    final recurringCharges = this.recurringCharges;
+    final reservedCacheNodesOfferingId = this.reservedCacheNodesOfferingId;
+    final usagePrice = this.usagePrice;
+    return {
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (duration != null) 'Duration': duration,
+      if (fixedPrice != null) 'FixedPrice': fixedPrice,
+      if (offeringType != null) 'OfferingType': offeringType,
+      if (productDescription != null) 'ProductDescription': productDescription,
+      if (recurringCharges != null) 'RecurringCharges': recurringCharges,
+      if (reservedCacheNodesOfferingId != null)
+        'ReservedCacheNodesOfferingId': reservedCacheNodesOfferingId,
+      if (usagePrice != null) 'UsagePrice': usagePrice,
+    };
+  }
 }
 
 /// Represents the output of a <code>DescribeReservedCacheNodesOfferings</code>
@@ -10162,6 +11281,16 @@ class ReservedCacheNodesOfferingMessage {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final reservedCacheNodesOfferings = this.reservedCacheNodesOfferings;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (reservedCacheNodesOfferings != null)
+        'ReservedCacheNodesOfferings': reservedCacheNodesOfferings,
+    };
+  }
 }
 
 /// A list of <code>PreferredAvailabilityZones</code> objects that specifies the
@@ -10178,6 +11307,7 @@ class ReshardingConfiguration {
     this.nodeGroupId,
     this.preferredAvailabilityZones,
   });
+
   Map<String, dynamic> toJson() {
     final nodeGroupId = this.nodeGroupId;
     final preferredAvailabilityZones = this.preferredAvailabilityZones;
@@ -10203,6 +11333,13 @@ class ReshardingStatus {
           _s.extractXmlChild(elem, 'SlotMigration')?.let(SlotMigration.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final slotMigration = this.slotMigration;
+    return {
+      if (slotMigration != null) 'SlotMigration': slotMigration,
+    };
+  }
 }
 
 class RevokeCacheSecurityGroupIngressResult {
@@ -10217,6 +11354,13 @@ class RevokeCacheSecurityGroupIngressResult {
           .extractXmlChild(elem, 'CacheSecurityGroup')
           ?.let(CacheSecurityGroup.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheSecurityGroup = this.cacheSecurityGroup;
+    return {
+      if (cacheSecurityGroup != null) 'CacheSecurityGroup': cacheSecurityGroup,
+    };
   }
 }
 
@@ -10239,6 +11383,15 @@ class SecurityGroupMembership {
       securityGroupId: _s.extractXmlStringValue(elem, 'SecurityGroupId'),
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityGroupId = this.securityGroupId;
+    final status = this.status;
+    return {
+      if (securityGroupId != null) 'SecurityGroupId': securityGroupId,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -10327,6 +11480,48 @@ class ServiceUpdate {
           .extractXmlStringValue(elem, 'ServiceUpdateType')
           ?.toServiceUpdateType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoUpdateAfterRecommendedApplyByDate =
+        this.autoUpdateAfterRecommendedApplyByDate;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final estimatedUpdateTime = this.estimatedUpdateTime;
+    final serviceUpdateDescription = this.serviceUpdateDescription;
+    final serviceUpdateEndDate = this.serviceUpdateEndDate;
+    final serviceUpdateName = this.serviceUpdateName;
+    final serviceUpdateRecommendedApplyByDate =
+        this.serviceUpdateRecommendedApplyByDate;
+    final serviceUpdateReleaseDate = this.serviceUpdateReleaseDate;
+    final serviceUpdateSeverity = this.serviceUpdateSeverity;
+    final serviceUpdateStatus = this.serviceUpdateStatus;
+    final serviceUpdateType = this.serviceUpdateType;
+    return {
+      if (autoUpdateAfterRecommendedApplyByDate != null)
+        'AutoUpdateAfterRecommendedApplyByDate':
+            autoUpdateAfterRecommendedApplyByDate,
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (estimatedUpdateTime != null)
+        'EstimatedUpdateTime': estimatedUpdateTime,
+      if (serviceUpdateDescription != null)
+        'ServiceUpdateDescription': serviceUpdateDescription,
+      if (serviceUpdateEndDate != null)
+        'ServiceUpdateEndDate': iso8601ToJson(serviceUpdateEndDate),
+      if (serviceUpdateName != null) 'ServiceUpdateName': serviceUpdateName,
+      if (serviceUpdateRecommendedApplyByDate != null)
+        'ServiceUpdateRecommendedApplyByDate':
+            iso8601ToJson(serviceUpdateRecommendedApplyByDate),
+      if (serviceUpdateReleaseDate != null)
+        'ServiceUpdateReleaseDate': iso8601ToJson(serviceUpdateReleaseDate),
+      if (serviceUpdateSeverity != null)
+        'ServiceUpdateSeverity': serviceUpdateSeverity.toValue(),
+      if (serviceUpdateStatus != null)
+        'ServiceUpdateStatus': serviceUpdateStatus.toValue(),
+      if (serviceUpdateType != null)
+        'ServiceUpdateType': serviceUpdateType.toValue(),
+    };
   }
 }
 
@@ -10448,6 +11643,15 @@ class ServiceUpdatesMessage {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final serviceUpdates = this.serviceUpdates;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (serviceUpdates != null) 'ServiceUpdates': serviceUpdates,
+    };
+  }
 }
 
 enum SlaMet {
@@ -10495,6 +11699,13 @@ class SlotMigration {
     return SlotMigration(
       progressPercentage: _s.extractXmlDoubleValue(elem, 'ProgressPercentage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final progressPercentage = this.progressPercentage;
+    return {
+      if (progressPercentage != null) 'ProgressPercentage': progressPercentage,
+    };
   }
 }
 
@@ -10871,6 +12082,77 @@ class Snapshot {
       vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final autoMinorVersionUpgrade = this.autoMinorVersionUpgrade;
+    final automaticFailover = this.automaticFailover;
+    final cacheClusterCreateTime = this.cacheClusterCreateTime;
+    final cacheClusterId = this.cacheClusterId;
+    final cacheNodeType = this.cacheNodeType;
+    final cacheParameterGroupName = this.cacheParameterGroupName;
+    final cacheSubnetGroupName = this.cacheSubnetGroupName;
+    final dataTiering = this.dataTiering;
+    final engine = this.engine;
+    final engineVersion = this.engineVersion;
+    final kmsKeyId = this.kmsKeyId;
+    final nodeSnapshots = this.nodeSnapshots;
+    final numCacheNodes = this.numCacheNodes;
+    final numNodeGroups = this.numNodeGroups;
+    final port = this.port;
+    final preferredAvailabilityZone = this.preferredAvailabilityZone;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final preferredOutpostArn = this.preferredOutpostArn;
+    final replicationGroupDescription = this.replicationGroupDescription;
+    final replicationGroupId = this.replicationGroupId;
+    final snapshotName = this.snapshotName;
+    final snapshotRetentionLimit = this.snapshotRetentionLimit;
+    final snapshotSource = this.snapshotSource;
+    final snapshotStatus = this.snapshotStatus;
+    final snapshotWindow = this.snapshotWindow;
+    final topicArn = this.topicArn;
+    final vpcId = this.vpcId;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade,
+      if (automaticFailover != null)
+        'AutomaticFailover': automaticFailover.toValue(),
+      if (cacheClusterCreateTime != null)
+        'CacheClusterCreateTime': iso8601ToJson(cacheClusterCreateTime),
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (cacheNodeType != null) 'CacheNodeType': cacheNodeType,
+      if (cacheParameterGroupName != null)
+        'CacheParameterGroupName': cacheParameterGroupName,
+      if (cacheSubnetGroupName != null)
+        'CacheSubnetGroupName': cacheSubnetGroupName,
+      if (dataTiering != null) 'DataTiering': dataTiering.toValue(),
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (nodeSnapshots != null) 'NodeSnapshots': nodeSnapshots,
+      if (numCacheNodes != null) 'NumCacheNodes': numCacheNodes,
+      if (numNodeGroups != null) 'NumNodeGroups': numNodeGroups,
+      if (port != null) 'Port': port,
+      if (preferredAvailabilityZone != null)
+        'PreferredAvailabilityZone': preferredAvailabilityZone,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (preferredOutpostArn != null)
+        'PreferredOutpostArn': preferredOutpostArn,
+      if (replicationGroupDescription != null)
+        'ReplicationGroupDescription': replicationGroupDescription,
+      if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
+      if (snapshotName != null) 'SnapshotName': snapshotName,
+      if (snapshotRetentionLimit != null)
+        'SnapshotRetentionLimit': snapshotRetentionLimit,
+      if (snapshotSource != null) 'SnapshotSource': snapshotSource,
+      if (snapshotStatus != null) 'SnapshotStatus': snapshotStatus,
+      if (snapshotWindow != null) 'SnapshotWindow': snapshotWindow,
+      if (topicArn != null) 'TopicArn': topicArn,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 enum SourceType {
@@ -10939,6 +12221,13 @@ class StartMigrationResponse {
           ?.let(ReplicationGroup.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
+  }
 }
 
 /// Represents the subnet associated with a cluster. This parameter refers to
@@ -10969,6 +12258,18 @@ class Subnet {
           _s.extractXmlChild(elem, 'SubnetOutpost')?.let(SubnetOutpost.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final subnetAvailabilityZone = this.subnetAvailabilityZone;
+    final subnetIdentifier = this.subnetIdentifier;
+    final subnetOutpost = this.subnetOutpost;
+    return {
+      if (subnetAvailabilityZone != null)
+        'SubnetAvailabilityZone': subnetAvailabilityZone,
+      if (subnetIdentifier != null) 'SubnetIdentifier': subnetIdentifier,
+      if (subnetOutpost != null) 'SubnetOutpost': subnetOutpost,
+    };
+  }
 }
 
 /// The ID of the outpost subnet.
@@ -10983,6 +12284,13 @@ class SubnetOutpost {
     return SubnetOutpost(
       subnetOutpostArn: _s.extractXmlStringValue(elem, 'SubnetOutpostArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subnetOutpostArn = this.subnetOutpostArn;
+    return {
+      if (subnetOutpostArn != null) 'SubnetOutpostArn': subnetOutpostArn,
+    };
   }
 }
 
@@ -11037,6 +12345,13 @@ class TagListMessage {
           ?.let((elem) => elem.findElements('Tag').map(Tag.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      if (tagList != null) 'TagList': tagList,
+    };
+  }
 }
 
 class TestFailoverResult {
@@ -11051,6 +12366,13 @@ class TestFailoverResult {
           .extractXmlChild(elem, 'ReplicationGroup')
           ?.let(ReplicationGroup.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationGroup = this.replicationGroup;
+    return {
+      if (replicationGroup != null) 'ReplicationGroup': replicationGroup,
+    };
   }
 }
 
@@ -11067,6 +12389,7 @@ class TimeRangeFilter {
     this.endTime,
     this.startTime,
   });
+
   Map<String, dynamic> toJson() {
     final endTime = this.endTime;
     final startTime = this.startTime;
@@ -11110,6 +12433,21 @@ class UnprocessedUpdateAction {
       replicationGroupId: _s.extractXmlStringValue(elem, 'ReplicationGroupId'),
       serviceUpdateName: _s.extractXmlStringValue(elem, 'ServiceUpdateName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheClusterId = this.cacheClusterId;
+    final errorMessage = this.errorMessage;
+    final errorType = this.errorType;
+    final replicationGroupId = this.replicationGroupId;
+    final serviceUpdateName = this.serviceUpdateName;
+    return {
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (errorType != null) 'ErrorType': errorType,
+      if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
+      if (serviceUpdateName != null) 'ServiceUpdateName': serviceUpdateName,
+    };
   }
 }
 
@@ -11236,6 +12574,59 @@ class UpdateAction {
           _s.extractXmlDateTimeValue(elem, 'UpdateActionStatusModifiedDate'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheClusterId = this.cacheClusterId;
+    final cacheNodeUpdateStatus = this.cacheNodeUpdateStatus;
+    final engine = this.engine;
+    final estimatedUpdateTime = this.estimatedUpdateTime;
+    final nodeGroupUpdateStatus = this.nodeGroupUpdateStatus;
+    final nodesUpdated = this.nodesUpdated;
+    final replicationGroupId = this.replicationGroupId;
+    final serviceUpdateName = this.serviceUpdateName;
+    final serviceUpdateRecommendedApplyByDate =
+        this.serviceUpdateRecommendedApplyByDate;
+    final serviceUpdateReleaseDate = this.serviceUpdateReleaseDate;
+    final serviceUpdateSeverity = this.serviceUpdateSeverity;
+    final serviceUpdateStatus = this.serviceUpdateStatus;
+    final serviceUpdateType = this.serviceUpdateType;
+    final slaMet = this.slaMet;
+    final updateActionAvailableDate = this.updateActionAvailableDate;
+    final updateActionStatus = this.updateActionStatus;
+    final updateActionStatusModifiedDate = this.updateActionStatusModifiedDate;
+    return {
+      if (cacheClusterId != null) 'CacheClusterId': cacheClusterId,
+      if (cacheNodeUpdateStatus != null)
+        'CacheNodeUpdateStatus': cacheNodeUpdateStatus,
+      if (engine != null) 'Engine': engine,
+      if (estimatedUpdateTime != null)
+        'EstimatedUpdateTime': estimatedUpdateTime,
+      if (nodeGroupUpdateStatus != null)
+        'NodeGroupUpdateStatus': nodeGroupUpdateStatus,
+      if (nodesUpdated != null) 'NodesUpdated': nodesUpdated,
+      if (replicationGroupId != null) 'ReplicationGroupId': replicationGroupId,
+      if (serviceUpdateName != null) 'ServiceUpdateName': serviceUpdateName,
+      if (serviceUpdateRecommendedApplyByDate != null)
+        'ServiceUpdateRecommendedApplyByDate':
+            iso8601ToJson(serviceUpdateRecommendedApplyByDate),
+      if (serviceUpdateReleaseDate != null)
+        'ServiceUpdateReleaseDate': iso8601ToJson(serviceUpdateReleaseDate),
+      if (serviceUpdateSeverity != null)
+        'ServiceUpdateSeverity': serviceUpdateSeverity.toValue(),
+      if (serviceUpdateStatus != null)
+        'ServiceUpdateStatus': serviceUpdateStatus.toValue(),
+      if (serviceUpdateType != null)
+        'ServiceUpdateType': serviceUpdateType.toValue(),
+      if (slaMet != null) 'SlaMet': slaMet.toValue(),
+      if (updateActionAvailableDate != null)
+        'UpdateActionAvailableDate': iso8601ToJson(updateActionAvailableDate),
+      if (updateActionStatus != null)
+        'UpdateActionStatus': updateActionStatus.toValue(),
+      if (updateActionStatusModifiedDate != null)
+        'UpdateActionStatusModifiedDate':
+            iso8601ToJson(updateActionStatusModifiedDate),
+    };
+  }
 }
 
 class UpdateActionResultsMessage {
@@ -11264,6 +12655,17 @@ class UpdateActionResultsMessage {
               .map(UnprocessedUpdateAction.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final processedUpdateActions = this.processedUpdateActions;
+    final unprocessedUpdateActions = this.unprocessedUpdateActions;
+    return {
+      if (processedUpdateActions != null)
+        'ProcessedUpdateActions': processedUpdateActions,
+      if (unprocessedUpdateActions != null)
+        'UnprocessedUpdateActions': unprocessedUpdateActions,
+    };
   }
 }
 
@@ -11351,6 +12753,15 @@ class UpdateActionsMessage {
           elem.findElements('UpdateAction').map(UpdateAction.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final updateActions = this.updateActions;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (updateActions != null) 'UpdateActions': updateActions,
+    };
+  }
 }
 
 class User {
@@ -11410,6 +12821,30 @@ class User {
       userName: _s.extractXmlStringValue(elem, 'UserName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final accessString = this.accessString;
+    final authentication = this.authentication;
+    final engine = this.engine;
+    final minimumEngineVersion = this.minimumEngineVersion;
+    final status = this.status;
+    final userGroupIds = this.userGroupIds;
+    final userId = this.userId;
+    final userName = this.userName;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (accessString != null) 'AccessString': accessString,
+      if (authentication != null) 'Authentication': authentication,
+      if (engine != null) 'Engine': engine,
+      if (minimumEngineVersion != null)
+        'MinimumEngineVersion': minimumEngineVersion,
+      if (status != null) 'Status': status,
+      if (userGroupIds != null) 'UserGroupIds': userGroupIds,
+      if (userId != null) 'UserId': userId,
+      if (userName != null) 'UserName': userName,
+    };
+  }
 }
 
 class UserGroup {
@@ -11467,6 +12902,28 @@ class UserGroup {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final engine = this.engine;
+    final minimumEngineVersion = this.minimumEngineVersion;
+    final pendingChanges = this.pendingChanges;
+    final replicationGroups = this.replicationGroups;
+    final status = this.status;
+    final userGroupId = this.userGroupId;
+    final userIds = this.userIds;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (engine != null) 'Engine': engine,
+      if (minimumEngineVersion != null)
+        'MinimumEngineVersion': minimumEngineVersion,
+      if (pendingChanges != null) 'PendingChanges': pendingChanges,
+      if (replicationGroups != null) 'ReplicationGroups': replicationGroups,
+      if (status != null) 'Status': status,
+      if (userGroupId != null) 'UserGroupId': userGroupId,
+      if (userIds != null) 'UserIds': userIds,
+    };
+  }
 }
 
 /// Returns the updates being applied to the user group.
@@ -11491,6 +12948,15 @@ class UserGroupPendingChanges {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userIdsToAdd = this.userIdsToAdd;
+    final userIdsToRemove = this.userIdsToRemove;
+    return {
+      if (userIdsToAdd != null) 'UserIdsToAdd': userIdsToAdd,
+      if (userIdsToRemove != null) 'UserIdsToRemove': userIdsToRemove,
+    };
+  }
 }
 
 /// The status of the user group update.
@@ -11514,6 +12980,16 @@ class UserGroupsUpdateStatus {
           .extractXmlChild(elem, 'UserGroupIdsToRemove')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userGroupIdsToAdd = this.userGroupIdsToAdd;
+    final userGroupIdsToRemove = this.userGroupIdsToRemove;
+    return {
+      if (userGroupIdsToAdd != null) 'UserGroupIdsToAdd': userGroupIdsToAdd,
+      if (userGroupIdsToRemove != null)
+        'UserGroupIdsToRemove': userGroupIdsToRemove,
+    };
   }
 }
 

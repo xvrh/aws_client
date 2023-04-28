@@ -307,6 +307,10 @@ class DeleteHumanLoopResponse {
   factory DeleteHumanLoopResponse.fromJson(Map<String, dynamic> _) {
     return DeleteHumanLoopResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DescribeHumanLoopResponse {
@@ -366,6 +370,27 @@ class DescribeHumanLoopResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final flowDefinitionArn = this.flowDefinitionArn;
+    final humanLoopArn = this.humanLoopArn;
+    final humanLoopName = this.humanLoopName;
+    final humanLoopStatus = this.humanLoopStatus;
+    final failureCode = this.failureCode;
+    final failureReason = this.failureReason;
+    final humanLoopOutput = this.humanLoopOutput;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'FlowDefinitionArn': flowDefinitionArn,
+      'HumanLoopArn': humanLoopArn,
+      'HumanLoopName': humanLoopName,
+      'HumanLoopStatus': humanLoopStatus.toValue(),
+      if (failureCode != null) 'FailureCode': failureCode,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (humanLoopOutput != null) 'HumanLoopOutput': humanLoopOutput,
+    };
+  }
 }
 
 /// Attributes of the data specified by the customer. Use these to describe the
@@ -381,6 +406,7 @@ class HumanLoopDataAttributes {
   HumanLoopDataAttributes({
     required this.contentClassifiers,
   });
+
   Map<String, dynamic> toJson() {
     final contentClassifiers = this.contentClassifiers;
     return {
@@ -398,6 +424,7 @@ class HumanLoopInput {
   HumanLoopInput({
     required this.inputContent,
   });
+
   Map<String, dynamic> toJson() {
     final inputContent = this.inputContent;
     return {
@@ -419,6 +446,13 @@ class HumanLoopOutput {
     return HumanLoopOutput(
       outputS3Uri: json['OutputS3Uri'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final outputS3Uri = this.outputS3Uri;
+    return {
+      'OutputS3Uri': outputS3Uri,
+    };
   }
 }
 
@@ -501,6 +535,22 @@ class HumanLoopSummary {
           (json['HumanLoopStatus'] as String?)?.toHumanLoopStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final failureReason = this.failureReason;
+    final flowDefinitionArn = this.flowDefinitionArn;
+    final humanLoopName = this.humanLoopName;
+    final humanLoopStatus = this.humanLoopStatus;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (flowDefinitionArn != null) 'FlowDefinitionArn': flowDefinitionArn,
+      if (humanLoopName != null) 'HumanLoopName': humanLoopName,
+      if (humanLoopStatus != null) 'HumanLoopStatus': humanLoopStatus.toValue(),
+    };
+  }
 }
 
 class ListHumanLoopsResponse {
@@ -522,6 +572,15 @@ class ListHumanLoopsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final humanLoopSummaries = this.humanLoopSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'HumanLoopSummaries': humanLoopSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -565,12 +624,23 @@ class StartHumanLoopResponse {
       humanLoopArn: json['HumanLoopArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final humanLoopArn = this.humanLoopArn;
+    return {
+      if (humanLoopArn != null) 'HumanLoopArn': humanLoopArn,
+    };
+  }
 }
 
 class StopHumanLoopResponse {
   StopHumanLoopResponse();
   factory StopHumanLoopResponse.fromJson(Map<String, dynamic> _) {
     return StopHumanLoopResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

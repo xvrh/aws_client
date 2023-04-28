@@ -3642,6 +3642,46 @@ class Api {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final protocolType = this.protocolType;
+    final routeSelectionExpression = this.routeSelectionExpression;
+    final apiEndpoint = this.apiEndpoint;
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final apiId = this.apiId;
+    final apiKeySelectionExpression = this.apiKeySelectionExpression;
+    final corsConfiguration = this.corsConfiguration;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final disableExecuteApiEndpoint = this.disableExecuteApiEndpoint;
+    final disableSchemaValidation = this.disableSchemaValidation;
+    final importInfo = this.importInfo;
+    final tags = this.tags;
+    final version = this.version;
+    final warnings = this.warnings;
+    return {
+      'name': name,
+      'protocolType': protocolType.toValue(),
+      'routeSelectionExpression': routeSelectionExpression,
+      if (apiEndpoint != null) 'apiEndpoint': apiEndpoint,
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (apiId != null) 'apiId': apiId,
+      if (apiKeySelectionExpression != null)
+        'apiKeySelectionExpression': apiKeySelectionExpression,
+      if (corsConfiguration != null) 'corsConfiguration': corsConfiguration,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (description != null) 'description': description,
+      if (disableExecuteApiEndpoint != null)
+        'disableExecuteApiEndpoint': disableExecuteApiEndpoint,
+      if (disableSchemaValidation != null)
+        'disableSchemaValidation': disableSchemaValidation,
+      if (importInfo != null) 'importInfo': importInfo,
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+      if (warnings != null) 'warnings': warnings,
+    };
+  }
 }
 
 /// Represents an API mapping.
@@ -3671,6 +3711,19 @@ class ApiMapping {
       apiMappingId: json['apiMappingId'] as String?,
       apiMappingKey: json['apiMappingKey'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiId = this.apiId;
+    final stage = this.stage;
+    final apiMappingId = this.apiMappingId;
+    final apiMappingKey = this.apiMappingKey;
+    return {
+      'apiId': apiId,
+      'stage': stage,
+      if (apiMappingId != null) 'apiMappingId': apiMappingId,
+      if (apiMappingKey != null) 'apiMappingKey': apiMappingKey,
+    };
   }
 }
 
@@ -3839,6 +3892,38 @@ class Authorizer {
               json['jwtConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final authorizerCredentialsArn = this.authorizerCredentialsArn;
+    final authorizerId = this.authorizerId;
+    final authorizerPayloadFormatVersion = this.authorizerPayloadFormatVersion;
+    final authorizerResultTtlInSeconds = this.authorizerResultTtlInSeconds;
+    final authorizerType = this.authorizerType;
+    final authorizerUri = this.authorizerUri;
+    final enableSimpleResponses = this.enableSimpleResponses;
+    final identitySource = this.identitySource;
+    final identityValidationExpression = this.identityValidationExpression;
+    final jwtConfiguration = this.jwtConfiguration;
+    return {
+      'name': name,
+      if (authorizerCredentialsArn != null)
+        'authorizerCredentialsArn': authorizerCredentialsArn,
+      if (authorizerId != null) 'authorizerId': authorizerId,
+      if (authorizerPayloadFormatVersion != null)
+        'authorizerPayloadFormatVersion': authorizerPayloadFormatVersion,
+      if (authorizerResultTtlInSeconds != null)
+        'authorizerResultTtlInSeconds': authorizerResultTtlInSeconds,
+      if (authorizerType != null) 'authorizerType': authorizerType.toValue(),
+      if (authorizerUri != null) 'authorizerUri': authorizerUri,
+      if (enableSimpleResponses != null)
+        'enableSimpleResponses': enableSimpleResponses,
+      if (identitySource != null) 'identitySource': identitySource,
+      if (identityValidationExpression != null)
+        'identityValidationExpression': identityValidationExpression,
+      if (jwtConfiguration != null) 'jwtConfiguration': jwtConfiguration,
+    };
   }
 }
 
@@ -4033,6 +4118,19 @@ class CreateApiMappingResponse {
       stage: json['stage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiId = this.apiId;
+    final apiMappingId = this.apiMappingId;
+    final apiMappingKey = this.apiMappingKey;
+    final stage = this.stage;
+    return {
+      if (apiId != null) 'apiId': apiId,
+      if (apiMappingId != null) 'apiMappingId': apiMappingId,
+      if (apiMappingKey != null) 'apiMappingKey': apiMappingKey,
+      if (stage != null) 'stage': stage,
+    };
+  }
 }
 
 class CreateApiResponse {
@@ -4147,6 +4245,47 @@ class CreateApiResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiEndpoint = this.apiEndpoint;
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final apiId = this.apiId;
+    final apiKeySelectionExpression = this.apiKeySelectionExpression;
+    final corsConfiguration = this.corsConfiguration;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final disableExecuteApiEndpoint = this.disableExecuteApiEndpoint;
+    final disableSchemaValidation = this.disableSchemaValidation;
+    final importInfo = this.importInfo;
+    final name = this.name;
+    final protocolType = this.protocolType;
+    final routeSelectionExpression = this.routeSelectionExpression;
+    final tags = this.tags;
+    final version = this.version;
+    final warnings = this.warnings;
+    return {
+      if (apiEndpoint != null) 'apiEndpoint': apiEndpoint,
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (apiId != null) 'apiId': apiId,
+      if (apiKeySelectionExpression != null)
+        'apiKeySelectionExpression': apiKeySelectionExpression,
+      if (corsConfiguration != null) 'corsConfiguration': corsConfiguration,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (description != null) 'description': description,
+      if (disableExecuteApiEndpoint != null)
+        'disableExecuteApiEndpoint': disableExecuteApiEndpoint,
+      if (disableSchemaValidation != null)
+        'disableSchemaValidation': disableSchemaValidation,
+      if (importInfo != null) 'importInfo': importInfo,
+      if (name != null) 'name': name,
+      if (protocolType != null) 'protocolType': protocolType.toValue(),
+      if (routeSelectionExpression != null)
+        'routeSelectionExpression': routeSelectionExpression,
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+      if (warnings != null) 'warnings': warnings,
+    };
   }
 }
 
@@ -4272,6 +4411,38 @@ class CreateAuthorizerResponse {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorizerCredentialsArn = this.authorizerCredentialsArn;
+    final authorizerId = this.authorizerId;
+    final authorizerPayloadFormatVersion = this.authorizerPayloadFormatVersion;
+    final authorizerResultTtlInSeconds = this.authorizerResultTtlInSeconds;
+    final authorizerType = this.authorizerType;
+    final authorizerUri = this.authorizerUri;
+    final enableSimpleResponses = this.enableSimpleResponses;
+    final identitySource = this.identitySource;
+    final identityValidationExpression = this.identityValidationExpression;
+    final jwtConfiguration = this.jwtConfiguration;
+    final name = this.name;
+    return {
+      if (authorizerCredentialsArn != null)
+        'authorizerCredentialsArn': authorizerCredentialsArn,
+      if (authorizerId != null) 'authorizerId': authorizerId,
+      if (authorizerPayloadFormatVersion != null)
+        'authorizerPayloadFormatVersion': authorizerPayloadFormatVersion,
+      if (authorizerResultTtlInSeconds != null)
+        'authorizerResultTtlInSeconds': authorizerResultTtlInSeconds,
+      if (authorizerType != null) 'authorizerType': authorizerType.toValue(),
+      if (authorizerUri != null) 'authorizerUri': authorizerUri,
+      if (enableSimpleResponses != null)
+        'enableSimpleResponses': enableSimpleResponses,
+      if (identitySource != null) 'identitySource': identitySource,
+      if (identityValidationExpression != null)
+        'identityValidationExpression': identityValidationExpression,
+      if (jwtConfiguration != null) 'jwtConfiguration': jwtConfiguration,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 class CreateDeploymentResponse {
@@ -4311,6 +4482,25 @@ class CreateDeploymentResponse {
       deploymentStatusMessage: json['deploymentStatusMessage'] as String?,
       description: json['description'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoDeployed = this.autoDeployed;
+    final createdDate = this.createdDate;
+    final deploymentId = this.deploymentId;
+    final deploymentStatus = this.deploymentStatus;
+    final deploymentStatusMessage = this.deploymentStatusMessage;
+    final description = this.description;
+    return {
+      if (autoDeployed != null) 'autoDeployed': autoDeployed,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (deploymentStatus != null)
+        'deploymentStatus': deploymentStatus.toValue(),
+      if (deploymentStatusMessage != null)
+        'deploymentStatusMessage': deploymentStatusMessage,
+      if (description != null) 'description': description,
+    };
   }
 }
 
@@ -4354,6 +4544,24 @@ class CreateDomainNameResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiMappingSelectionExpression = this.apiMappingSelectionExpression;
+    final domainName = this.domainName;
+    final domainNameConfigurations = this.domainNameConfigurations;
+    final mutualTlsAuthentication = this.mutualTlsAuthentication;
+    final tags = this.tags;
+    return {
+      if (apiMappingSelectionExpression != null)
+        'apiMappingSelectionExpression': apiMappingSelectionExpression,
+      if (domainName != null) 'domainName': domainName,
+      if (domainNameConfigurations != null)
+        'domainNameConfigurations': domainNameConfigurations,
+      if (mutualTlsAuthentication != null)
+        'mutualTlsAuthentication': mutualTlsAuthentication,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4602,6 +4810,58 @@ class CreateIntegrationResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final connectionId = this.connectionId;
+    final connectionType = this.connectionType;
+    final contentHandlingStrategy = this.contentHandlingStrategy;
+    final credentialsArn = this.credentialsArn;
+    final description = this.description;
+    final integrationId = this.integrationId;
+    final integrationMethod = this.integrationMethod;
+    final integrationResponseSelectionExpression =
+        this.integrationResponseSelectionExpression;
+    final integrationSubtype = this.integrationSubtype;
+    final integrationType = this.integrationType;
+    final integrationUri = this.integrationUri;
+    final passthroughBehavior = this.passthroughBehavior;
+    final payloadFormatVersion = this.payloadFormatVersion;
+    final requestParameters = this.requestParameters;
+    final requestTemplates = this.requestTemplates;
+    final responseParameters = this.responseParameters;
+    final templateSelectionExpression = this.templateSelectionExpression;
+    final timeoutInMillis = this.timeoutInMillis;
+    final tlsConfig = this.tlsConfig;
+    return {
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (connectionId != null) 'connectionId': connectionId,
+      if (connectionType != null) 'connectionType': connectionType.toValue(),
+      if (contentHandlingStrategy != null)
+        'contentHandlingStrategy': contentHandlingStrategy.toValue(),
+      if (credentialsArn != null) 'credentialsArn': credentialsArn,
+      if (description != null) 'description': description,
+      if (integrationId != null) 'integrationId': integrationId,
+      if (integrationMethod != null) 'integrationMethod': integrationMethod,
+      if (integrationResponseSelectionExpression != null)
+        'integrationResponseSelectionExpression':
+            integrationResponseSelectionExpression,
+      if (integrationSubtype != null) 'integrationSubtype': integrationSubtype,
+      if (integrationType != null) 'integrationType': integrationType.toValue(),
+      if (integrationUri != null) 'integrationUri': integrationUri,
+      if (passthroughBehavior != null)
+        'passthroughBehavior': passthroughBehavior.toValue(),
+      if (payloadFormatVersion != null)
+        'payloadFormatVersion': payloadFormatVersion,
+      if (requestParameters != null) 'requestParameters': requestParameters,
+      if (requestTemplates != null) 'requestTemplates': requestTemplates,
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (templateSelectionExpression != null)
+        'templateSelectionExpression': templateSelectionExpression,
+      if (timeoutInMillis != null) 'timeoutInMillis': timeoutInMillis,
+      if (tlsConfig != null) 'tlsConfig': tlsConfig,
+    };
+  }
 }
 
 class CreateIntegrationResponseResponse {
@@ -4671,6 +4931,27 @@ class CreateIntegrationResponseResponse {
           json['templateSelectionExpression'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentHandlingStrategy = this.contentHandlingStrategy;
+    final integrationResponseId = this.integrationResponseId;
+    final integrationResponseKey = this.integrationResponseKey;
+    final responseParameters = this.responseParameters;
+    final responseTemplates = this.responseTemplates;
+    final templateSelectionExpression = this.templateSelectionExpression;
+    return {
+      if (contentHandlingStrategy != null)
+        'contentHandlingStrategy': contentHandlingStrategy.toValue(),
+      if (integrationResponseId != null)
+        'integrationResponseId': integrationResponseId,
+      if (integrationResponseKey != null)
+        'integrationResponseKey': integrationResponseKey,
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (responseTemplates != null) 'responseTemplates': responseTemplates,
+      if (templateSelectionExpression != null)
+        'templateSelectionExpression': templateSelectionExpression,
+    };
+  }
 }
 
 class CreateModelResponse {
@@ -4705,6 +4986,21 @@ class CreateModelResponse {
       name: json['name'] as String?,
       schema: json['schema'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
+    final description = this.description;
+    final modelId = this.modelId;
+    final name = this.name;
+    final schema = this.schema;
+    return {
+      if (contentType != null) 'contentType': contentType,
+      if (description != null) 'description': description,
+      if (modelId != null) 'modelId': modelId,
+      if (name != null) 'name': name,
+      if (schema != null) 'schema': schema,
+    };
   }
 }
 
@@ -4806,6 +5102,42 @@ class CreateRouteResult {
       target: json['target'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final apiKeyRequired = this.apiKeyRequired;
+    final authorizationScopes = this.authorizationScopes;
+    final authorizationType = this.authorizationType;
+    final authorizerId = this.authorizerId;
+    final modelSelectionExpression = this.modelSelectionExpression;
+    final operationName = this.operationName;
+    final requestModels = this.requestModels;
+    final requestParameters = this.requestParameters;
+    final routeId = this.routeId;
+    final routeKey = this.routeKey;
+    final routeResponseSelectionExpression =
+        this.routeResponseSelectionExpression;
+    final target = this.target;
+    return {
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (apiKeyRequired != null) 'apiKeyRequired': apiKeyRequired,
+      if (authorizationScopes != null)
+        'authorizationScopes': authorizationScopes,
+      if (authorizationType != null)
+        'authorizationType': authorizationType.toValue(),
+      if (authorizerId != null) 'authorizerId': authorizerId,
+      if (modelSelectionExpression != null)
+        'modelSelectionExpression': modelSelectionExpression,
+      if (operationName != null) 'operationName': operationName,
+      if (requestModels != null) 'requestModels': requestModels,
+      if (requestParameters != null) 'requestParameters': requestParameters,
+      if (routeId != null) 'routeId': routeId,
+      if (routeKey != null) 'routeKey': routeKey,
+      if (routeResponseSelectionExpression != null)
+        'routeResponseSelectionExpression': routeResponseSelectionExpression,
+      if (target != null) 'target': target,
+    };
+  }
 }
 
 class CreateRouteResponseResponse {
@@ -4843,6 +5175,22 @@ class CreateRouteResponseResponse {
       routeResponseId: json['routeResponseId'] as String?,
       routeResponseKey: json['routeResponseKey'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelSelectionExpression = this.modelSelectionExpression;
+    final responseModels = this.responseModels;
+    final responseParameters = this.responseParameters;
+    final routeResponseId = this.routeResponseId;
+    final routeResponseKey = this.routeResponseKey;
+    return {
+      if (modelSelectionExpression != null)
+        'modelSelectionExpression': modelSelectionExpression,
+      if (responseModels != null) 'responseModels': responseModels,
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (routeResponseId != null) 'routeResponseId': routeResponseId,
+      if (routeResponseKey != null) 'routeResponseKey': routeResponseKey,
+    };
   }
 }
 
@@ -4943,6 +5291,43 @@ class CreateStageResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessLogSettings = this.accessLogSettings;
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final autoDeploy = this.autoDeploy;
+    final clientCertificateId = this.clientCertificateId;
+    final createdDate = this.createdDate;
+    final defaultRouteSettings = this.defaultRouteSettings;
+    final deploymentId = this.deploymentId;
+    final description = this.description;
+    final lastDeploymentStatusMessage = this.lastDeploymentStatusMessage;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final routeSettings = this.routeSettings;
+    final stageName = this.stageName;
+    final stageVariables = this.stageVariables;
+    final tags = this.tags;
+    return {
+      if (accessLogSettings != null) 'accessLogSettings': accessLogSettings,
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (autoDeploy != null) 'autoDeploy': autoDeploy,
+      if (clientCertificateId != null)
+        'clientCertificateId': clientCertificateId,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (defaultRouteSettings != null)
+        'defaultRouteSettings': defaultRouteSettings,
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (description != null) 'description': description,
+      if (lastDeploymentStatusMessage != null)
+        'lastDeploymentStatusMessage': lastDeploymentStatusMessage,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': iso8601ToJson(lastUpdatedDate),
+      if (routeSettings != null) 'routeSettings': routeSettings,
+      if (stageName != null) 'stageName': stageName,
+      if (stageVariables != null) 'stageVariables': stageVariables,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class CreateVpcLinkResponse {
@@ -5004,12 +5389,40 @@ class CreateVpcLinkResponse {
       vpcLinkVersion: (json['vpcLinkVersion'] as String?)?.toVpcLinkVersion(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final name = this.name;
+    final securityGroupIds = this.securityGroupIds;
+    final subnetIds = this.subnetIds;
+    final tags = this.tags;
+    final vpcLinkId = this.vpcLinkId;
+    final vpcLinkStatus = this.vpcLinkStatus;
+    final vpcLinkStatusMessage = this.vpcLinkStatusMessage;
+    final vpcLinkVersion = this.vpcLinkVersion;
+    return {
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (name != null) 'name': name,
+      if (securityGroupIds != null) 'securityGroupIds': securityGroupIds,
+      if (subnetIds != null) 'subnetIds': subnetIds,
+      if (tags != null) 'tags': tags,
+      if (vpcLinkId != null) 'vpcLinkId': vpcLinkId,
+      if (vpcLinkStatus != null) 'vpcLinkStatus': vpcLinkStatus.toValue(),
+      if (vpcLinkStatusMessage != null)
+        'vpcLinkStatusMessage': vpcLinkStatusMessage,
+      if (vpcLinkVersion != null) 'vpcLinkVersion': vpcLinkVersion.toValue(),
+    };
+  }
 }
 
 class DeleteVpcLinkResponse {
   DeleteVpcLinkResponse();
   factory DeleteVpcLinkResponse.fromJson(Map<String, dynamic> _) {
     return DeleteVpcLinkResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5053,6 +5466,25 @@ class Deployment {
       deploymentStatusMessage: json['deploymentStatusMessage'] as String?,
       description: json['description'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoDeployed = this.autoDeployed;
+    final createdDate = this.createdDate;
+    final deploymentId = this.deploymentId;
+    final deploymentStatus = this.deploymentStatus;
+    final deploymentStatusMessage = this.deploymentStatusMessage;
+    final description = this.description;
+    return {
+      if (autoDeployed != null) 'autoDeployed': autoDeployed,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (deploymentStatus != null)
+        'deploymentStatus': deploymentStatus.toValue(),
+      if (deploymentStatusMessage != null)
+        'deploymentStatusMessage': deploymentStatusMessage,
+      if (description != null) 'description': description,
+    };
   }
 }
 
@@ -5131,6 +5563,24 @@ class DomainName {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final apiMappingSelectionExpression = this.apiMappingSelectionExpression;
+    final domainNameConfigurations = this.domainNameConfigurations;
+    final mutualTlsAuthentication = this.mutualTlsAuthentication;
+    final tags = this.tags;
+    return {
+      'domainName': domainName,
+      if (apiMappingSelectionExpression != null)
+        'apiMappingSelectionExpression': apiMappingSelectionExpression,
+      if (domainNameConfigurations != null)
+        'domainNameConfigurations': domainNameConfigurations,
+      if (mutualTlsAuthentication != null)
+        'mutualTlsAuthentication': mutualTlsAuthentication,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -5317,6 +5767,13 @@ class ExportApiResponse {
   ExportApiResponse({
     this.body,
   });
+
+  Map<String, dynamic> toJson() {
+    final body = this.body;
+    return {
+      if (body != null) 'body': base64Encode(body),
+    };
+  }
 }
 
 class GetApiMappingResponse {
@@ -5346,6 +5803,19 @@ class GetApiMappingResponse {
       stage: json['stage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiId = this.apiId;
+    final apiMappingId = this.apiMappingId;
+    final apiMappingKey = this.apiMappingKey;
+    final stage = this.stage;
+    return {
+      if (apiId != null) 'apiId': apiId,
+      if (apiMappingId != null) 'apiMappingId': apiMappingId,
+      if (apiMappingKey != null) 'apiMappingKey': apiMappingKey,
+      if (stage != null) 'stage': stage,
+    };
+  }
 }
 
 class GetApiMappingsResponse {
@@ -5368,6 +5838,15 @@ class GetApiMappingsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5484,6 +5963,47 @@ class GetApiResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiEndpoint = this.apiEndpoint;
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final apiId = this.apiId;
+    final apiKeySelectionExpression = this.apiKeySelectionExpression;
+    final corsConfiguration = this.corsConfiguration;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final disableExecuteApiEndpoint = this.disableExecuteApiEndpoint;
+    final disableSchemaValidation = this.disableSchemaValidation;
+    final importInfo = this.importInfo;
+    final name = this.name;
+    final protocolType = this.protocolType;
+    final routeSelectionExpression = this.routeSelectionExpression;
+    final tags = this.tags;
+    final version = this.version;
+    final warnings = this.warnings;
+    return {
+      if (apiEndpoint != null) 'apiEndpoint': apiEndpoint,
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (apiId != null) 'apiId': apiId,
+      if (apiKeySelectionExpression != null)
+        'apiKeySelectionExpression': apiKeySelectionExpression,
+      if (corsConfiguration != null) 'corsConfiguration': corsConfiguration,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (description != null) 'description': description,
+      if (disableExecuteApiEndpoint != null)
+        'disableExecuteApiEndpoint': disableExecuteApiEndpoint,
+      if (disableSchemaValidation != null)
+        'disableSchemaValidation': disableSchemaValidation,
+      if (importInfo != null) 'importInfo': importInfo,
+      if (name != null) 'name': name,
+      if (protocolType != null) 'protocolType': protocolType.toValue(),
+      if (routeSelectionExpression != null)
+        'routeSelectionExpression': routeSelectionExpression,
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+      if (warnings != null) 'warnings': warnings,
+    };
+  }
 }
 
 class GetApisResponse {
@@ -5506,6 +6026,15 @@ class GetApisResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5631,6 +6160,38 @@ class GetAuthorizerResponse {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorizerCredentialsArn = this.authorizerCredentialsArn;
+    final authorizerId = this.authorizerId;
+    final authorizerPayloadFormatVersion = this.authorizerPayloadFormatVersion;
+    final authorizerResultTtlInSeconds = this.authorizerResultTtlInSeconds;
+    final authorizerType = this.authorizerType;
+    final authorizerUri = this.authorizerUri;
+    final enableSimpleResponses = this.enableSimpleResponses;
+    final identitySource = this.identitySource;
+    final identityValidationExpression = this.identityValidationExpression;
+    final jwtConfiguration = this.jwtConfiguration;
+    final name = this.name;
+    return {
+      if (authorizerCredentialsArn != null)
+        'authorizerCredentialsArn': authorizerCredentialsArn,
+      if (authorizerId != null) 'authorizerId': authorizerId,
+      if (authorizerPayloadFormatVersion != null)
+        'authorizerPayloadFormatVersion': authorizerPayloadFormatVersion,
+      if (authorizerResultTtlInSeconds != null)
+        'authorizerResultTtlInSeconds': authorizerResultTtlInSeconds,
+      if (authorizerType != null) 'authorizerType': authorizerType.toValue(),
+      if (authorizerUri != null) 'authorizerUri': authorizerUri,
+      if (enableSimpleResponses != null)
+        'enableSimpleResponses': enableSimpleResponses,
+      if (identitySource != null) 'identitySource': identitySource,
+      if (identityValidationExpression != null)
+        'identityValidationExpression': identityValidationExpression,
+      if (jwtConfiguration != null) 'jwtConfiguration': jwtConfiguration,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 class GetAuthorizersResponse {
@@ -5653,6 +6214,15 @@ class GetAuthorizersResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5694,6 +6264,25 @@ class GetDeploymentResponse {
       description: json['description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoDeployed = this.autoDeployed;
+    final createdDate = this.createdDate;
+    final deploymentId = this.deploymentId;
+    final deploymentStatus = this.deploymentStatus;
+    final deploymentStatusMessage = this.deploymentStatusMessage;
+    final description = this.description;
+    return {
+      if (autoDeployed != null) 'autoDeployed': autoDeployed,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (deploymentStatus != null)
+        'deploymentStatus': deploymentStatus.toValue(),
+      if (deploymentStatusMessage != null)
+        'deploymentStatusMessage': deploymentStatusMessage,
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 class GetDeploymentsResponse {
@@ -5716,6 +6305,15 @@ class GetDeploymentsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5760,6 +6358,24 @@ class GetDomainNameResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiMappingSelectionExpression = this.apiMappingSelectionExpression;
+    final domainName = this.domainName;
+    final domainNameConfigurations = this.domainNameConfigurations;
+    final mutualTlsAuthentication = this.mutualTlsAuthentication;
+    final tags = this.tags;
+    return {
+      if (apiMappingSelectionExpression != null)
+        'apiMappingSelectionExpression': apiMappingSelectionExpression,
+      if (domainName != null) 'domainName': domainName,
+      if (domainNameConfigurations != null)
+        'domainNameConfigurations': domainNameConfigurations,
+      if (mutualTlsAuthentication != null)
+        'mutualTlsAuthentication': mutualTlsAuthentication,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetDomainNamesResponse {
@@ -5782,6 +6398,15 @@ class GetDomainNamesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6030,6 +6655,58 @@ class GetIntegrationResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final connectionId = this.connectionId;
+    final connectionType = this.connectionType;
+    final contentHandlingStrategy = this.contentHandlingStrategy;
+    final credentialsArn = this.credentialsArn;
+    final description = this.description;
+    final integrationId = this.integrationId;
+    final integrationMethod = this.integrationMethod;
+    final integrationResponseSelectionExpression =
+        this.integrationResponseSelectionExpression;
+    final integrationSubtype = this.integrationSubtype;
+    final integrationType = this.integrationType;
+    final integrationUri = this.integrationUri;
+    final passthroughBehavior = this.passthroughBehavior;
+    final payloadFormatVersion = this.payloadFormatVersion;
+    final requestParameters = this.requestParameters;
+    final requestTemplates = this.requestTemplates;
+    final responseParameters = this.responseParameters;
+    final templateSelectionExpression = this.templateSelectionExpression;
+    final timeoutInMillis = this.timeoutInMillis;
+    final tlsConfig = this.tlsConfig;
+    return {
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (connectionId != null) 'connectionId': connectionId,
+      if (connectionType != null) 'connectionType': connectionType.toValue(),
+      if (contentHandlingStrategy != null)
+        'contentHandlingStrategy': contentHandlingStrategy.toValue(),
+      if (credentialsArn != null) 'credentialsArn': credentialsArn,
+      if (description != null) 'description': description,
+      if (integrationId != null) 'integrationId': integrationId,
+      if (integrationMethod != null) 'integrationMethod': integrationMethod,
+      if (integrationResponseSelectionExpression != null)
+        'integrationResponseSelectionExpression':
+            integrationResponseSelectionExpression,
+      if (integrationSubtype != null) 'integrationSubtype': integrationSubtype,
+      if (integrationType != null) 'integrationType': integrationType.toValue(),
+      if (integrationUri != null) 'integrationUri': integrationUri,
+      if (passthroughBehavior != null)
+        'passthroughBehavior': passthroughBehavior.toValue(),
+      if (payloadFormatVersion != null)
+        'payloadFormatVersion': payloadFormatVersion,
+      if (requestParameters != null) 'requestParameters': requestParameters,
+      if (requestTemplates != null) 'requestTemplates': requestTemplates,
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (templateSelectionExpression != null)
+        'templateSelectionExpression': templateSelectionExpression,
+      if (timeoutInMillis != null) 'timeoutInMillis': timeoutInMillis,
+      if (tlsConfig != null) 'tlsConfig': tlsConfig,
+    };
+  }
 }
 
 class GetIntegrationResponseResponse {
@@ -6098,6 +6775,27 @@ class GetIntegrationResponseResponse {
           json['templateSelectionExpression'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentHandlingStrategy = this.contentHandlingStrategy;
+    final integrationResponseId = this.integrationResponseId;
+    final integrationResponseKey = this.integrationResponseKey;
+    final responseParameters = this.responseParameters;
+    final responseTemplates = this.responseTemplates;
+    final templateSelectionExpression = this.templateSelectionExpression;
+    return {
+      if (contentHandlingStrategy != null)
+        'contentHandlingStrategy': contentHandlingStrategy.toValue(),
+      if (integrationResponseId != null)
+        'integrationResponseId': integrationResponseId,
+      if (integrationResponseKey != null)
+        'integrationResponseKey': integrationResponseKey,
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (responseTemplates != null) 'responseTemplates': responseTemplates,
+      if (templateSelectionExpression != null)
+        'templateSelectionExpression': templateSelectionExpression,
+    };
+  }
 }
 
 class GetIntegrationResponsesResponse {
@@ -6121,6 +6819,15 @@ class GetIntegrationResponsesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetIntegrationsResponse {
@@ -6143,6 +6850,15 @@ class GetIntegrationsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6179,6 +6895,21 @@ class GetModelResponse {
       schema: json['schema'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
+    final description = this.description;
+    final modelId = this.modelId;
+    final name = this.name;
+    final schema = this.schema;
+    return {
+      if (contentType != null) 'contentType': contentType,
+      if (description != null) 'description': description,
+      if (modelId != null) 'modelId': modelId,
+      if (name != null) 'name': name,
+      if (schema != null) 'schema': schema,
+    };
+  }
 }
 
 class GetModelTemplateResponse {
@@ -6192,6 +6923,13 @@ class GetModelTemplateResponse {
     return GetModelTemplateResponse(
       value: json['value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -6215,6 +6953,15 @@ class GetModelsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6316,6 +7063,42 @@ class GetRouteResult {
       target: json['target'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final apiKeyRequired = this.apiKeyRequired;
+    final authorizationScopes = this.authorizationScopes;
+    final authorizationType = this.authorizationType;
+    final authorizerId = this.authorizerId;
+    final modelSelectionExpression = this.modelSelectionExpression;
+    final operationName = this.operationName;
+    final requestModels = this.requestModels;
+    final requestParameters = this.requestParameters;
+    final routeId = this.routeId;
+    final routeKey = this.routeKey;
+    final routeResponseSelectionExpression =
+        this.routeResponseSelectionExpression;
+    final target = this.target;
+    return {
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (apiKeyRequired != null) 'apiKeyRequired': apiKeyRequired,
+      if (authorizationScopes != null)
+        'authorizationScopes': authorizationScopes,
+      if (authorizationType != null)
+        'authorizationType': authorizationType.toValue(),
+      if (authorizerId != null) 'authorizerId': authorizerId,
+      if (modelSelectionExpression != null)
+        'modelSelectionExpression': modelSelectionExpression,
+      if (operationName != null) 'operationName': operationName,
+      if (requestModels != null) 'requestModels': requestModels,
+      if (requestParameters != null) 'requestParameters': requestParameters,
+      if (routeId != null) 'routeId': routeId,
+      if (routeKey != null) 'routeKey': routeKey,
+      if (routeResponseSelectionExpression != null)
+        'routeResponseSelectionExpression': routeResponseSelectionExpression,
+      if (target != null) 'target': target,
+    };
+  }
 }
 
 class GetRouteResponseResponse {
@@ -6354,6 +7137,22 @@ class GetRouteResponseResponse {
       routeResponseKey: json['routeResponseKey'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelSelectionExpression = this.modelSelectionExpression;
+    final responseModels = this.responseModels;
+    final responseParameters = this.responseParameters;
+    final routeResponseId = this.routeResponseId;
+    final routeResponseKey = this.routeResponseKey;
+    return {
+      if (modelSelectionExpression != null)
+        'modelSelectionExpression': modelSelectionExpression,
+      if (responseModels != null) 'responseModels': responseModels,
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (routeResponseId != null) 'routeResponseId': routeResponseId,
+      if (routeResponseKey != null) 'routeResponseKey': routeResponseKey,
+    };
+  }
 }
 
 class GetRouteResponsesResponse {
@@ -6377,6 +7176,15 @@ class GetRouteResponsesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetRoutesResponse {
@@ -6399,6 +7207,15 @@ class GetRoutesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6499,6 +7316,43 @@ class GetStageResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessLogSettings = this.accessLogSettings;
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final autoDeploy = this.autoDeploy;
+    final clientCertificateId = this.clientCertificateId;
+    final createdDate = this.createdDate;
+    final defaultRouteSettings = this.defaultRouteSettings;
+    final deploymentId = this.deploymentId;
+    final description = this.description;
+    final lastDeploymentStatusMessage = this.lastDeploymentStatusMessage;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final routeSettings = this.routeSettings;
+    final stageName = this.stageName;
+    final stageVariables = this.stageVariables;
+    final tags = this.tags;
+    return {
+      if (accessLogSettings != null) 'accessLogSettings': accessLogSettings,
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (autoDeploy != null) 'autoDeploy': autoDeploy,
+      if (clientCertificateId != null)
+        'clientCertificateId': clientCertificateId,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (defaultRouteSettings != null)
+        'defaultRouteSettings': defaultRouteSettings,
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (description != null) 'description': description,
+      if (lastDeploymentStatusMessage != null)
+        'lastDeploymentStatusMessage': lastDeploymentStatusMessage,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': iso8601ToJson(lastUpdatedDate),
+      if (routeSettings != null) 'routeSettings': routeSettings,
+      if (stageName != null) 'stageName': stageName,
+      if (stageVariables != null) 'stageVariables': stageVariables,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetStagesResponse {
@@ -6522,6 +7376,15 @@ class GetStagesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetTagsResponse {
@@ -6535,6 +7398,13 @@ class GetTagsResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -6597,6 +7467,30 @@ class GetVpcLinkResponse {
       vpcLinkVersion: (json['vpcLinkVersion'] as String?)?.toVpcLinkVersion(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final name = this.name;
+    final securityGroupIds = this.securityGroupIds;
+    final subnetIds = this.subnetIds;
+    final tags = this.tags;
+    final vpcLinkId = this.vpcLinkId;
+    final vpcLinkStatus = this.vpcLinkStatus;
+    final vpcLinkStatusMessage = this.vpcLinkStatusMessage;
+    final vpcLinkVersion = this.vpcLinkVersion;
+    return {
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (name != null) 'name': name,
+      if (securityGroupIds != null) 'securityGroupIds': securityGroupIds,
+      if (subnetIds != null) 'subnetIds': subnetIds,
+      if (tags != null) 'tags': tags,
+      if (vpcLinkId != null) 'vpcLinkId': vpcLinkId,
+      if (vpcLinkStatus != null) 'vpcLinkStatus': vpcLinkStatus.toValue(),
+      if (vpcLinkStatusMessage != null)
+        'vpcLinkStatusMessage': vpcLinkStatusMessage,
+      if (vpcLinkVersion != null) 'vpcLinkVersion': vpcLinkVersion.toValue(),
+    };
+  }
 }
 
 class GetVpcLinksResponse {
@@ -6619,6 +7513,15 @@ class GetVpcLinksResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'items': items,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6734,6 +7637,47 @@ class ImportApiResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiEndpoint = this.apiEndpoint;
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final apiId = this.apiId;
+    final apiKeySelectionExpression = this.apiKeySelectionExpression;
+    final corsConfiguration = this.corsConfiguration;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final disableExecuteApiEndpoint = this.disableExecuteApiEndpoint;
+    final disableSchemaValidation = this.disableSchemaValidation;
+    final importInfo = this.importInfo;
+    final name = this.name;
+    final protocolType = this.protocolType;
+    final routeSelectionExpression = this.routeSelectionExpression;
+    final tags = this.tags;
+    final version = this.version;
+    final warnings = this.warnings;
+    return {
+      if (apiEndpoint != null) 'apiEndpoint': apiEndpoint,
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (apiId != null) 'apiId': apiId,
+      if (apiKeySelectionExpression != null)
+        'apiKeySelectionExpression': apiKeySelectionExpression,
+      if (corsConfiguration != null) 'corsConfiguration': corsConfiguration,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (description != null) 'description': description,
+      if (disableExecuteApiEndpoint != null)
+        'disableExecuteApiEndpoint': disableExecuteApiEndpoint,
+      if (disableSchemaValidation != null)
+        'disableSchemaValidation': disableSchemaValidation,
+      if (importInfo != null) 'importInfo': importInfo,
+      if (name != null) 'name': name,
+      if (protocolType != null) 'protocolType': protocolType.toValue(),
+      if (routeSelectionExpression != null)
+        'routeSelectionExpression': routeSelectionExpression,
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+      if (warnings != null) 'warnings': warnings,
+    };
   }
 }
 
@@ -6983,6 +7927,58 @@ class Integration {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final connectionId = this.connectionId;
+    final connectionType = this.connectionType;
+    final contentHandlingStrategy = this.contentHandlingStrategy;
+    final credentialsArn = this.credentialsArn;
+    final description = this.description;
+    final integrationId = this.integrationId;
+    final integrationMethod = this.integrationMethod;
+    final integrationResponseSelectionExpression =
+        this.integrationResponseSelectionExpression;
+    final integrationSubtype = this.integrationSubtype;
+    final integrationType = this.integrationType;
+    final integrationUri = this.integrationUri;
+    final passthroughBehavior = this.passthroughBehavior;
+    final payloadFormatVersion = this.payloadFormatVersion;
+    final requestParameters = this.requestParameters;
+    final requestTemplates = this.requestTemplates;
+    final responseParameters = this.responseParameters;
+    final templateSelectionExpression = this.templateSelectionExpression;
+    final timeoutInMillis = this.timeoutInMillis;
+    final tlsConfig = this.tlsConfig;
+    return {
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (connectionId != null) 'connectionId': connectionId,
+      if (connectionType != null) 'connectionType': connectionType.toValue(),
+      if (contentHandlingStrategy != null)
+        'contentHandlingStrategy': contentHandlingStrategy.toValue(),
+      if (credentialsArn != null) 'credentialsArn': credentialsArn,
+      if (description != null) 'description': description,
+      if (integrationId != null) 'integrationId': integrationId,
+      if (integrationMethod != null) 'integrationMethod': integrationMethod,
+      if (integrationResponseSelectionExpression != null)
+        'integrationResponseSelectionExpression':
+            integrationResponseSelectionExpression,
+      if (integrationSubtype != null) 'integrationSubtype': integrationSubtype,
+      if (integrationType != null) 'integrationType': integrationType.toValue(),
+      if (integrationUri != null) 'integrationUri': integrationUri,
+      if (passthroughBehavior != null)
+        'passthroughBehavior': passthroughBehavior.toValue(),
+      if (payloadFormatVersion != null)
+        'payloadFormatVersion': payloadFormatVersion,
+      if (requestParameters != null) 'requestParameters': requestParameters,
+      if (requestTemplates != null) 'requestTemplates': requestTemplates,
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (templateSelectionExpression != null)
+        'templateSelectionExpression': templateSelectionExpression,
+      if (timeoutInMillis != null) 'timeoutInMillis': timeoutInMillis,
+      if (tlsConfig != null) 'tlsConfig': tlsConfig,
+    };
+  }
 }
 
 /// Represents an integration response.
@@ -7051,6 +8047,26 @@ class IntegrationResponse {
       templateSelectionExpression:
           json['templateSelectionExpression'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final integrationResponseKey = this.integrationResponseKey;
+    final contentHandlingStrategy = this.contentHandlingStrategy;
+    final integrationResponseId = this.integrationResponseId;
+    final responseParameters = this.responseParameters;
+    final responseTemplates = this.responseTemplates;
+    final templateSelectionExpression = this.templateSelectionExpression;
+    return {
+      'integrationResponseKey': integrationResponseKey,
+      if (contentHandlingStrategy != null)
+        'contentHandlingStrategy': contentHandlingStrategy.toValue(),
+      if (integrationResponseId != null)
+        'integrationResponseId': integrationResponseId,
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (responseTemplates != null) 'responseTemplates': responseTemplates,
+      if (templateSelectionExpression != null)
+        'templateSelectionExpression': templateSelectionExpression,
+    };
   }
 }
 
@@ -7208,6 +8224,21 @@ class Model {
       schema: json['schema'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final contentType = this.contentType;
+    final description = this.description;
+    final modelId = this.modelId;
+    final schema = this.schema;
+    return {
+      'name': name,
+      if (contentType != null) 'contentType': contentType,
+      if (description != null) 'description': description,
+      if (modelId != null) 'modelId': modelId,
+      if (schema != null) 'schema': schema,
+    };
+  }
 }
 
 class MutualTlsAuthentication {
@@ -7246,6 +8277,17 @@ class MutualTlsAuthentication {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final truststoreUri = this.truststoreUri;
+    final truststoreVersion = this.truststoreVersion;
+    final truststoreWarnings = this.truststoreWarnings;
+    return {
+      if (truststoreUri != null) 'truststoreUri': truststoreUri,
+      if (truststoreVersion != null) 'truststoreVersion': truststoreVersion,
+      if (truststoreWarnings != null) 'truststoreWarnings': truststoreWarnings,
+    };
+  }
 }
 
 class MutualTlsAuthenticationInput {
@@ -7266,6 +8308,7 @@ class MutualTlsAuthenticationInput {
     this.truststoreUri,
     this.truststoreVersion,
   });
+
   Map<String, dynamic> toJson() {
     final truststoreUri = this.truststoreUri;
     final truststoreVersion = this.truststoreVersion;
@@ -7476,6 +8519,47 @@ class ReimportApiResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiEndpoint = this.apiEndpoint;
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final apiId = this.apiId;
+    final apiKeySelectionExpression = this.apiKeySelectionExpression;
+    final corsConfiguration = this.corsConfiguration;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final disableExecuteApiEndpoint = this.disableExecuteApiEndpoint;
+    final disableSchemaValidation = this.disableSchemaValidation;
+    final importInfo = this.importInfo;
+    final name = this.name;
+    final protocolType = this.protocolType;
+    final routeSelectionExpression = this.routeSelectionExpression;
+    final tags = this.tags;
+    final version = this.version;
+    final warnings = this.warnings;
+    return {
+      if (apiEndpoint != null) 'apiEndpoint': apiEndpoint,
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (apiId != null) 'apiId': apiId,
+      if (apiKeySelectionExpression != null)
+        'apiKeySelectionExpression': apiKeySelectionExpression,
+      if (corsConfiguration != null) 'corsConfiguration': corsConfiguration,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (description != null) 'description': description,
+      if (disableExecuteApiEndpoint != null)
+        'disableExecuteApiEndpoint': disableExecuteApiEndpoint,
+      if (disableSchemaValidation != null)
+        'disableSchemaValidation': disableSchemaValidation,
+      if (importInfo != null) 'importInfo': importInfo,
+      if (name != null) 'name': name,
+      if (protocolType != null) 'protocolType': protocolType.toValue(),
+      if (routeSelectionExpression != null)
+        'routeSelectionExpression': routeSelectionExpression,
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+      if (warnings != null) 'warnings': warnings,
+    };
+  }
 }
 
 /// Represents a route.
@@ -7577,6 +8661,42 @@ class Route {
       target: json['target'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final routeKey = this.routeKey;
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final apiKeyRequired = this.apiKeyRequired;
+    final authorizationScopes = this.authorizationScopes;
+    final authorizationType = this.authorizationType;
+    final authorizerId = this.authorizerId;
+    final modelSelectionExpression = this.modelSelectionExpression;
+    final operationName = this.operationName;
+    final requestModels = this.requestModels;
+    final requestParameters = this.requestParameters;
+    final routeId = this.routeId;
+    final routeResponseSelectionExpression =
+        this.routeResponseSelectionExpression;
+    final target = this.target;
+    return {
+      'routeKey': routeKey,
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (apiKeyRequired != null) 'apiKeyRequired': apiKeyRequired,
+      if (authorizationScopes != null)
+        'authorizationScopes': authorizationScopes,
+      if (authorizationType != null)
+        'authorizationType': authorizationType.toValue(),
+      if (authorizerId != null) 'authorizerId': authorizerId,
+      if (modelSelectionExpression != null)
+        'modelSelectionExpression': modelSelectionExpression,
+      if (operationName != null) 'operationName': operationName,
+      if (requestModels != null) 'requestModels': requestModels,
+      if (requestParameters != null) 'requestParameters': requestParameters,
+      if (routeId != null) 'routeId': routeId,
+      if (routeResponseSelectionExpression != null)
+        'routeResponseSelectionExpression': routeResponseSelectionExpression,
+      if (target != null) 'target': target,
+    };
+  }
 }
 
 /// Represents a route response.
@@ -7615,6 +8735,22 @@ class RouteResponse {
               k, ParameterConstraints.fromJson(e as Map<String, dynamic>))),
       routeResponseId: json['routeResponseId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final routeResponseKey = this.routeResponseKey;
+    final modelSelectionExpression = this.modelSelectionExpression;
+    final responseModels = this.responseModels;
+    final responseParameters = this.responseParameters;
+    final routeResponseId = this.routeResponseId;
+    return {
+      'routeResponseKey': routeResponseKey,
+      if (modelSelectionExpression != null)
+        'modelSelectionExpression': modelSelectionExpression,
+      if (responseModels != null) 'responseModels': responseModels,
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (routeResponseId != null) 'routeResponseId': routeResponseId,
+    };
   }
 }
 
@@ -7803,12 +8939,53 @@ class Stage {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stageName = this.stageName;
+    final accessLogSettings = this.accessLogSettings;
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final autoDeploy = this.autoDeploy;
+    final clientCertificateId = this.clientCertificateId;
+    final createdDate = this.createdDate;
+    final defaultRouteSettings = this.defaultRouteSettings;
+    final deploymentId = this.deploymentId;
+    final description = this.description;
+    final lastDeploymentStatusMessage = this.lastDeploymentStatusMessage;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final routeSettings = this.routeSettings;
+    final stageVariables = this.stageVariables;
+    final tags = this.tags;
+    return {
+      'stageName': stageName,
+      if (accessLogSettings != null) 'accessLogSettings': accessLogSettings,
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (autoDeploy != null) 'autoDeploy': autoDeploy,
+      if (clientCertificateId != null)
+        'clientCertificateId': clientCertificateId,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (defaultRouteSettings != null)
+        'defaultRouteSettings': defaultRouteSettings,
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (description != null) 'description': description,
+      if (lastDeploymentStatusMessage != null)
+        'lastDeploymentStatusMessage': lastDeploymentStatusMessage,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': iso8601ToJson(lastUpdatedDate),
+      if (routeSettings != null) 'routeSettings': routeSettings,
+      if (stageVariables != null) 'stageVariables': stageVariables,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7829,6 +9006,13 @@ class TlsConfig {
       serverNameToVerify: json['serverNameToVerify'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serverNameToVerify = this.serverNameToVerify;
+    return {
+      if (serverNameToVerify != null) 'serverNameToVerify': serverNameToVerify,
+    };
+  }
 }
 
 /// The TLS configuration for a private integration. If you specify a TLS
@@ -7843,6 +9027,7 @@ class TlsConfigInput {
   TlsConfigInput({
     this.serverNameToVerify,
   });
+
   Map<String, dynamic> toJson() {
     final serverNameToVerify = this.serverNameToVerify;
     return {
@@ -7877,6 +9062,19 @@ class UpdateApiMappingResponse {
       apiMappingKey: json['apiMappingKey'] as String?,
       stage: json['stage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiId = this.apiId;
+    final apiMappingId = this.apiMappingId;
+    final apiMappingKey = this.apiMappingKey;
+    final stage = this.stage;
+    return {
+      if (apiId != null) 'apiId': apiId,
+      if (apiMappingId != null) 'apiMappingId': apiMappingId,
+      if (apiMappingKey != null) 'apiMappingKey': apiMappingKey,
+      if (stage != null) 'stage': stage,
+    };
   }
 }
 
@@ -7992,6 +9190,47 @@ class UpdateApiResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiEndpoint = this.apiEndpoint;
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final apiId = this.apiId;
+    final apiKeySelectionExpression = this.apiKeySelectionExpression;
+    final corsConfiguration = this.corsConfiguration;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final disableExecuteApiEndpoint = this.disableExecuteApiEndpoint;
+    final disableSchemaValidation = this.disableSchemaValidation;
+    final importInfo = this.importInfo;
+    final name = this.name;
+    final protocolType = this.protocolType;
+    final routeSelectionExpression = this.routeSelectionExpression;
+    final tags = this.tags;
+    final version = this.version;
+    final warnings = this.warnings;
+    return {
+      if (apiEndpoint != null) 'apiEndpoint': apiEndpoint,
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (apiId != null) 'apiId': apiId,
+      if (apiKeySelectionExpression != null)
+        'apiKeySelectionExpression': apiKeySelectionExpression,
+      if (corsConfiguration != null) 'corsConfiguration': corsConfiguration,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (description != null) 'description': description,
+      if (disableExecuteApiEndpoint != null)
+        'disableExecuteApiEndpoint': disableExecuteApiEndpoint,
+      if (disableSchemaValidation != null)
+        'disableSchemaValidation': disableSchemaValidation,
+      if (importInfo != null) 'importInfo': importInfo,
+      if (name != null) 'name': name,
+      if (protocolType != null) 'protocolType': protocolType.toValue(),
+      if (routeSelectionExpression != null)
+        'routeSelectionExpression': routeSelectionExpression,
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+      if (warnings != null) 'warnings': warnings,
+    };
   }
 }
 
@@ -8117,6 +9356,38 @@ class UpdateAuthorizerResponse {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorizerCredentialsArn = this.authorizerCredentialsArn;
+    final authorizerId = this.authorizerId;
+    final authorizerPayloadFormatVersion = this.authorizerPayloadFormatVersion;
+    final authorizerResultTtlInSeconds = this.authorizerResultTtlInSeconds;
+    final authorizerType = this.authorizerType;
+    final authorizerUri = this.authorizerUri;
+    final enableSimpleResponses = this.enableSimpleResponses;
+    final identitySource = this.identitySource;
+    final identityValidationExpression = this.identityValidationExpression;
+    final jwtConfiguration = this.jwtConfiguration;
+    final name = this.name;
+    return {
+      if (authorizerCredentialsArn != null)
+        'authorizerCredentialsArn': authorizerCredentialsArn,
+      if (authorizerId != null) 'authorizerId': authorizerId,
+      if (authorizerPayloadFormatVersion != null)
+        'authorizerPayloadFormatVersion': authorizerPayloadFormatVersion,
+      if (authorizerResultTtlInSeconds != null)
+        'authorizerResultTtlInSeconds': authorizerResultTtlInSeconds,
+      if (authorizerType != null) 'authorizerType': authorizerType.toValue(),
+      if (authorizerUri != null) 'authorizerUri': authorizerUri,
+      if (enableSimpleResponses != null)
+        'enableSimpleResponses': enableSimpleResponses,
+      if (identitySource != null) 'identitySource': identitySource,
+      if (identityValidationExpression != null)
+        'identityValidationExpression': identityValidationExpression,
+      if (jwtConfiguration != null) 'jwtConfiguration': jwtConfiguration,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 class UpdateDeploymentResponse {
@@ -8156,6 +9427,25 @@ class UpdateDeploymentResponse {
       deploymentStatusMessage: json['deploymentStatusMessage'] as String?,
       description: json['description'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoDeployed = this.autoDeployed;
+    final createdDate = this.createdDate;
+    final deploymentId = this.deploymentId;
+    final deploymentStatus = this.deploymentStatus;
+    final deploymentStatusMessage = this.deploymentStatusMessage;
+    final description = this.description;
+    return {
+      if (autoDeployed != null) 'autoDeployed': autoDeployed,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (deploymentStatus != null)
+        'deploymentStatus': deploymentStatus.toValue(),
+      if (deploymentStatusMessage != null)
+        'deploymentStatusMessage': deploymentStatusMessage,
+      if (description != null) 'description': description,
+    };
   }
 }
 
@@ -8199,6 +9489,24 @@ class UpdateDomainNameResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiMappingSelectionExpression = this.apiMappingSelectionExpression;
+    final domainName = this.domainName;
+    final domainNameConfigurations = this.domainNameConfigurations;
+    final mutualTlsAuthentication = this.mutualTlsAuthentication;
+    final tags = this.tags;
+    return {
+      if (apiMappingSelectionExpression != null)
+        'apiMappingSelectionExpression': apiMappingSelectionExpression,
+      if (domainName != null) 'domainName': domainName,
+      if (domainNameConfigurations != null)
+        'domainNameConfigurations': domainNameConfigurations,
+      if (mutualTlsAuthentication != null)
+        'mutualTlsAuthentication': mutualTlsAuthentication,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -8447,6 +9755,58 @@ class UpdateIntegrationResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final connectionId = this.connectionId;
+    final connectionType = this.connectionType;
+    final contentHandlingStrategy = this.contentHandlingStrategy;
+    final credentialsArn = this.credentialsArn;
+    final description = this.description;
+    final integrationId = this.integrationId;
+    final integrationMethod = this.integrationMethod;
+    final integrationResponseSelectionExpression =
+        this.integrationResponseSelectionExpression;
+    final integrationSubtype = this.integrationSubtype;
+    final integrationType = this.integrationType;
+    final integrationUri = this.integrationUri;
+    final passthroughBehavior = this.passthroughBehavior;
+    final payloadFormatVersion = this.payloadFormatVersion;
+    final requestParameters = this.requestParameters;
+    final requestTemplates = this.requestTemplates;
+    final responseParameters = this.responseParameters;
+    final templateSelectionExpression = this.templateSelectionExpression;
+    final timeoutInMillis = this.timeoutInMillis;
+    final tlsConfig = this.tlsConfig;
+    return {
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (connectionId != null) 'connectionId': connectionId,
+      if (connectionType != null) 'connectionType': connectionType.toValue(),
+      if (contentHandlingStrategy != null)
+        'contentHandlingStrategy': contentHandlingStrategy.toValue(),
+      if (credentialsArn != null) 'credentialsArn': credentialsArn,
+      if (description != null) 'description': description,
+      if (integrationId != null) 'integrationId': integrationId,
+      if (integrationMethod != null) 'integrationMethod': integrationMethod,
+      if (integrationResponseSelectionExpression != null)
+        'integrationResponseSelectionExpression':
+            integrationResponseSelectionExpression,
+      if (integrationSubtype != null) 'integrationSubtype': integrationSubtype,
+      if (integrationType != null) 'integrationType': integrationType.toValue(),
+      if (integrationUri != null) 'integrationUri': integrationUri,
+      if (passthroughBehavior != null)
+        'passthroughBehavior': passthroughBehavior.toValue(),
+      if (payloadFormatVersion != null)
+        'payloadFormatVersion': payloadFormatVersion,
+      if (requestParameters != null) 'requestParameters': requestParameters,
+      if (requestTemplates != null) 'requestTemplates': requestTemplates,
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (templateSelectionExpression != null)
+        'templateSelectionExpression': templateSelectionExpression,
+      if (timeoutInMillis != null) 'timeoutInMillis': timeoutInMillis,
+      if (tlsConfig != null) 'tlsConfig': tlsConfig,
+    };
+  }
 }
 
 class UpdateIntegrationResponseResponse {
@@ -8516,6 +9876,27 @@ class UpdateIntegrationResponseResponse {
           json['templateSelectionExpression'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentHandlingStrategy = this.contentHandlingStrategy;
+    final integrationResponseId = this.integrationResponseId;
+    final integrationResponseKey = this.integrationResponseKey;
+    final responseParameters = this.responseParameters;
+    final responseTemplates = this.responseTemplates;
+    final templateSelectionExpression = this.templateSelectionExpression;
+    return {
+      if (contentHandlingStrategy != null)
+        'contentHandlingStrategy': contentHandlingStrategy.toValue(),
+      if (integrationResponseId != null)
+        'integrationResponseId': integrationResponseId,
+      if (integrationResponseKey != null)
+        'integrationResponseKey': integrationResponseKey,
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (responseTemplates != null) 'responseTemplates': responseTemplates,
+      if (templateSelectionExpression != null)
+        'templateSelectionExpression': templateSelectionExpression,
+    };
+  }
 }
 
 class UpdateModelResponse {
@@ -8550,6 +9931,21 @@ class UpdateModelResponse {
       name: json['name'] as String?,
       schema: json['schema'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
+    final description = this.description;
+    final modelId = this.modelId;
+    final name = this.name;
+    final schema = this.schema;
+    return {
+      if (contentType != null) 'contentType': contentType,
+      if (description != null) 'description': description,
+      if (modelId != null) 'modelId': modelId,
+      if (name != null) 'name': name,
+      if (schema != null) 'schema': schema,
+    };
   }
 }
 
@@ -8651,6 +10047,42 @@ class UpdateRouteResult {
       target: json['target'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final apiKeyRequired = this.apiKeyRequired;
+    final authorizationScopes = this.authorizationScopes;
+    final authorizationType = this.authorizationType;
+    final authorizerId = this.authorizerId;
+    final modelSelectionExpression = this.modelSelectionExpression;
+    final operationName = this.operationName;
+    final requestModels = this.requestModels;
+    final requestParameters = this.requestParameters;
+    final routeId = this.routeId;
+    final routeKey = this.routeKey;
+    final routeResponseSelectionExpression =
+        this.routeResponseSelectionExpression;
+    final target = this.target;
+    return {
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (apiKeyRequired != null) 'apiKeyRequired': apiKeyRequired,
+      if (authorizationScopes != null)
+        'authorizationScopes': authorizationScopes,
+      if (authorizationType != null)
+        'authorizationType': authorizationType.toValue(),
+      if (authorizerId != null) 'authorizerId': authorizerId,
+      if (modelSelectionExpression != null)
+        'modelSelectionExpression': modelSelectionExpression,
+      if (operationName != null) 'operationName': operationName,
+      if (requestModels != null) 'requestModels': requestModels,
+      if (requestParameters != null) 'requestParameters': requestParameters,
+      if (routeId != null) 'routeId': routeId,
+      if (routeKey != null) 'routeKey': routeKey,
+      if (routeResponseSelectionExpression != null)
+        'routeResponseSelectionExpression': routeResponseSelectionExpression,
+      if (target != null) 'target': target,
+    };
+  }
 }
 
 class UpdateRouteResponseResponse {
@@ -8688,6 +10120,22 @@ class UpdateRouteResponseResponse {
       routeResponseId: json['routeResponseId'] as String?,
       routeResponseKey: json['routeResponseKey'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelSelectionExpression = this.modelSelectionExpression;
+    final responseModels = this.responseModels;
+    final responseParameters = this.responseParameters;
+    final routeResponseId = this.routeResponseId;
+    final routeResponseKey = this.routeResponseKey;
+    return {
+      if (modelSelectionExpression != null)
+        'modelSelectionExpression': modelSelectionExpression,
+      if (responseModels != null) 'responseModels': responseModels,
+      if (responseParameters != null) 'responseParameters': responseParameters,
+      if (routeResponseId != null) 'routeResponseId': routeResponseId,
+      if (routeResponseKey != null) 'routeResponseKey': routeResponseKey,
+    };
   }
 }
 
@@ -8788,6 +10236,43 @@ class UpdateStageResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessLogSettings = this.accessLogSettings;
+    final apiGatewayManaged = this.apiGatewayManaged;
+    final autoDeploy = this.autoDeploy;
+    final clientCertificateId = this.clientCertificateId;
+    final createdDate = this.createdDate;
+    final defaultRouteSettings = this.defaultRouteSettings;
+    final deploymentId = this.deploymentId;
+    final description = this.description;
+    final lastDeploymentStatusMessage = this.lastDeploymentStatusMessage;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final routeSettings = this.routeSettings;
+    final stageName = this.stageName;
+    final stageVariables = this.stageVariables;
+    final tags = this.tags;
+    return {
+      if (accessLogSettings != null) 'accessLogSettings': accessLogSettings,
+      if (apiGatewayManaged != null) 'apiGatewayManaged': apiGatewayManaged,
+      if (autoDeploy != null) 'autoDeploy': autoDeploy,
+      if (clientCertificateId != null)
+        'clientCertificateId': clientCertificateId,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (defaultRouteSettings != null)
+        'defaultRouteSettings': defaultRouteSettings,
+      if (deploymentId != null) 'deploymentId': deploymentId,
+      if (description != null) 'description': description,
+      if (lastDeploymentStatusMessage != null)
+        'lastDeploymentStatusMessage': lastDeploymentStatusMessage,
+      if (lastUpdatedDate != null)
+        'lastUpdatedDate': iso8601ToJson(lastUpdatedDate),
+      if (routeSettings != null) 'routeSettings': routeSettings,
+      if (stageName != null) 'stageName': stageName,
+      if (stageVariables != null) 'stageVariables': stageVariables,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class UpdateVpcLinkResponse {
@@ -8848,6 +10333,30 @@ class UpdateVpcLinkResponse {
       vpcLinkStatusMessage: json['vpcLinkStatusMessage'] as String?,
       vpcLinkVersion: (json['vpcLinkVersion'] as String?)?.toVpcLinkVersion(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final name = this.name;
+    final securityGroupIds = this.securityGroupIds;
+    final subnetIds = this.subnetIds;
+    final tags = this.tags;
+    final vpcLinkId = this.vpcLinkId;
+    final vpcLinkStatus = this.vpcLinkStatus;
+    final vpcLinkStatusMessage = this.vpcLinkStatusMessage;
+    final vpcLinkVersion = this.vpcLinkVersion;
+    return {
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (name != null) 'name': name,
+      if (securityGroupIds != null) 'securityGroupIds': securityGroupIds,
+      if (subnetIds != null) 'subnetIds': subnetIds,
+      if (tags != null) 'tags': tags,
+      if (vpcLinkId != null) 'vpcLinkId': vpcLinkId,
+      if (vpcLinkStatus != null) 'vpcLinkStatus': vpcLinkStatus.toValue(),
+      if (vpcLinkStatusMessage != null)
+        'vpcLinkStatusMessage': vpcLinkStatusMessage,
+      if (vpcLinkVersion != null) 'vpcLinkVersion': vpcLinkVersion.toValue(),
+    };
   }
 }
 
@@ -8910,6 +10419,30 @@ class VpcLink {
       vpcLinkStatusMessage: json['vpcLinkStatusMessage'] as String?,
       vpcLinkVersion: (json['vpcLinkVersion'] as String?)?.toVpcLinkVersion(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final securityGroupIds = this.securityGroupIds;
+    final subnetIds = this.subnetIds;
+    final vpcLinkId = this.vpcLinkId;
+    final createdDate = this.createdDate;
+    final tags = this.tags;
+    final vpcLinkStatus = this.vpcLinkStatus;
+    final vpcLinkStatusMessage = this.vpcLinkStatusMessage;
+    final vpcLinkVersion = this.vpcLinkVersion;
+    return {
+      'name': name,
+      'securityGroupIds': securityGroupIds,
+      'subnetIds': subnetIds,
+      'vpcLinkId': vpcLinkId,
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (tags != null) 'tags': tags,
+      if (vpcLinkStatus != null) 'vpcLinkStatus': vpcLinkStatus.toValue(),
+      if (vpcLinkStatusMessage != null)
+        'vpcLinkStatusMessage': vpcLinkStatusMessage,
+      if (vpcLinkVersion != null) 'vpcLinkVersion': vpcLinkVersion.toValue(),
+    };
   }
 }
 

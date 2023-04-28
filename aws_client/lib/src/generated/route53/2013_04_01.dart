@@ -4578,6 +4578,15 @@ class AccountLimit {
       value: _s.extractXmlIntValue(elem, 'Value')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final value = this.value;
+    return {
+      'Type': type.toValue(),
+      'Value': value,
+    };
+  }
 }
 
 enum AccountLimitType {
@@ -4634,6 +4643,13 @@ class ActivateKeySigningKeyResponse {
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
+  }
 }
 
 /// A complex type that identifies the CloudWatch alarm that you want Amazon
@@ -4678,6 +4694,15 @@ class AlarmIdentifier {
       name: _s.extractXmlStringValue(elem, 'Name')!,
       region: _s.extractXmlStringValue(elem, 'Region')!.toCloudWatchRegion(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final region = this.region;
+    return {
+      'Name': name,
+      'Region': region.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5080,6 +5105,17 @@ class AliasTarget {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final dNSName = this.dNSName;
+    final evaluateTargetHealth = this.evaluateTargetHealth;
+    final hostedZoneId = this.hostedZoneId;
+    return {
+      'DNSName': dNSName,
+      'EvaluateTargetHealth': evaluateTargetHealth,
+      'HostedZoneId': hostedZoneId,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final dNSName = this.dNSName;
     final evaluateTargetHealth = this.evaluateTargetHealth;
@@ -5122,6 +5158,17 @@ class AssociateVPCWithHostedZoneRequest {
     required this.vpc,
     this.comment,
   });
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final vpc = this.vpc;
+    final comment = this.comment;
+    return {
+      'VPC': vpc,
+      if (comment != null) 'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final hostedZoneId = this.hostedZoneId;
     final vpc = this.vpc;
@@ -5154,6 +5201,13 @@ class AssociateVPCWithHostedZoneResponse {
     return AssociateVPCWithHostedZoneResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -5193,6 +5247,16 @@ class Change {
     required this.action,
     required this.resourceRecordSet,
   });
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final resourceRecordSet = this.resourceRecordSet;
+    return {
+      'Action': action.toValue(),
+      'ResourceRecordSet': resourceRecordSet,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final action = this.action;
     final resourceRecordSet = this.resourceRecordSet;
@@ -5257,6 +5321,16 @@ class ChangeBatch {
     required this.changes,
     this.comment,
   });
+
+  Map<String, dynamic> toJson() {
+    final changes = this.changes;
+    final comment = this.comment;
+    return {
+      'Changes': changes,
+      if (comment != null) 'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final changes = this.changes;
     final comment = this.comment;
@@ -5311,6 +5385,17 @@ class ChangeCidrCollectionRequest {
     required this.id,
     this.collectionVersion,
   });
+
+  Map<String, dynamic> toJson() {
+    final changes = this.changes;
+    final id = this.id;
+    final collectionVersion = this.collectionVersion;
+    return {
+      'Changes': changes,
+      if (collectionVersion != null) 'CollectionVersion': collectionVersion,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final changes = this.changes;
     final id = this.id;
@@ -5345,6 +5430,13 @@ class ChangeCidrCollectionResponse {
     return ChangeCidrCollectionResponse(
       id: _s.extractXmlStringValue(elem, 'Id')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      'Id': id,
+    };
   }
 }
 
@@ -5384,6 +5476,19 @@ class ChangeInfo {
       comment: _s.extractXmlStringValue(elem, 'Comment'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final status = this.status;
+    final submittedAt = this.submittedAt;
+    final comment = this.comment;
+    return {
+      'Id': id,
+      'Status': status.toValue(),
+      'SubmittedAt': iso8601ToJson(submittedAt),
+      if (comment != null) 'Comment': comment,
+    };
+  }
 }
 
 /// A complex type that contains change information for the resource record set.
@@ -5400,6 +5505,15 @@ class ChangeResourceRecordSetsRequest {
     required this.changeBatch,
     required this.hostedZoneId,
   });
+
+  Map<String, dynamic> toJson() {
+    final changeBatch = this.changeBatch;
+    final hostedZoneId = this.hostedZoneId;
+    return {
+      'ChangeBatch': changeBatch,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final changeBatch = this.changeBatch;
     final hostedZoneId = this.hostedZoneId;
@@ -5434,6 +5548,13 @@ class ChangeResourceRecordSetsResponse {
     return ChangeResourceRecordSetsResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -5500,6 +5621,18 @@ class ChangeTagsForResourceRequest {
     this.addTags,
     this.removeTagKeys,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final addTags = this.addTags;
+    final removeTagKeys = this.removeTagKeys;
+    return {
+      if (addTags != null) 'AddTags': addTags,
+      if (removeTagKeys != null) 'RemoveTagKeys': removeTagKeys,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final resourceId = this.resourceId;
     final resourceType = this.resourceType;
@@ -5532,6 +5665,10 @@ class ChangeTagsForResourceResponse {
       _s.XmlElement elem) {
     return ChangeTagsForResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A complex type that lists the CIDR blocks.
@@ -5551,6 +5688,15 @@ class CidrBlockSummary {
       cidrBlock: _s.extractXmlStringValue(elem, 'CidrBlock'),
       locationName: _s.extractXmlStringValue(elem, 'LocationName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cidrBlock = this.cidrBlock;
+    final locationName = this.locationName;
+    return {
+      if (cidrBlock != null) 'CidrBlock': cidrBlock,
+      if (locationName != null) 'LocationName': locationName,
+    };
   }
 }
 
@@ -5585,6 +5731,19 @@ class CidrCollection {
       version: _s.extractXmlIntValue(elem, 'Version'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// A complex type that contains information about the CIDR collection change.
@@ -5603,6 +5762,18 @@ class CidrCollectionChange {
     required this.cidrList,
     required this.locationName,
   });
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final cidrList = this.cidrList;
+    final locationName = this.locationName;
+    return {
+      'Action': action.toValue(),
+      'CidrList': cidrList,
+      'LocationName': locationName,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final action = this.action;
     final cidrList = this.cidrList;
@@ -5675,6 +5846,15 @@ class CidrRoutingConfig {
       collectionId: _s.extractXmlStringValue(elem, 'CollectionId')!,
       locationName: _s.extractXmlStringValue(elem, 'LocationName')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final collectionId = this.collectionId;
+    final locationName = this.locationName;
+    return {
+      'CollectionId': collectionId,
+      'LocationName': locationName,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5760,6 +5940,27 @@ class CloudWatchAlarmConfiguration {
       dimensions: _s.extractXmlChild(elem, 'Dimensions')?.let((elem) =>
           elem.findElements('Dimension').map(Dimension.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comparisonOperator = this.comparisonOperator;
+    final evaluationPeriods = this.evaluationPeriods;
+    final metricName = this.metricName;
+    final namespace = this.namespace;
+    final period = this.period;
+    final statistic = this.statistic;
+    final threshold = this.threshold;
+    final dimensions = this.dimensions;
+    return {
+      'ComparisonOperator': comparisonOperator.toValue(),
+      'EvaluationPeriods': evaluationPeriods,
+      'MetricName': metricName,
+      'Namespace': namespace,
+      'Period': period,
+      'Statistic': statistic.toValue(),
+      'Threshold': threshold,
+      if (dimensions != null) 'Dimensions': dimensions,
+    };
   }
 }
 
@@ -5959,6 +6160,19 @@ class CollectionSummary {
       version: _s.extractXmlIntValue(elem, 'Version'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    final version = this.version;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 enum ComparisonOperator {
@@ -6013,6 +6227,16 @@ class CreateCidrCollectionRequest {
     required this.callerReference,
     required this.name,
   });
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final name = this.name;
+    return {
+      'CallerReference': callerReference,
+      'Name': name,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final callerReference = this.callerReference;
     final name = this.name;
@@ -6042,6 +6266,14 @@ class CreateCidrCollectionResponse {
     this.collection,
     this.location,
   });
+
+  Map<String, dynamic> toJson() {
+    final collection = this.collection;
+    final location = this.location;
+    return {
+      if (collection != null) 'Collection': collection,
+    };
+  }
 }
 
 /// A complex type that contains the health check request information.
@@ -6083,6 +6315,16 @@ class CreateHealthCheckRequest {
     required this.callerReference,
     required this.healthCheckConfig,
   });
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final healthCheckConfig = this.healthCheckConfig;
+    return {
+      'CallerReference': callerReference,
+      'HealthCheckConfig': healthCheckConfig,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final callerReference = this.callerReference;
     final healthCheckConfig = this.healthCheckConfig;
@@ -6113,6 +6355,14 @@ class CreateHealthCheckResponse {
     required this.healthCheck,
     required this.location,
   });
+
+  Map<String, dynamic> toJson() {
+    final healthCheck = this.healthCheck;
+    final location = this.location;
+    return {
+      'HealthCheck': healthCheck,
+    };
+  }
 }
 
 /// A complex type that contains information about the request to create a
@@ -6178,6 +6428,22 @@ class CreateHostedZoneRequest {
     this.hostedZoneConfig,
     this.vpc,
   });
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final name = this.name;
+    final delegationSetId = this.delegationSetId;
+    final hostedZoneConfig = this.hostedZoneConfig;
+    final vpc = this.vpc;
+    return {
+      'CallerReference': callerReference,
+      'Name': name,
+      if (delegationSetId != null) 'DelegationSetId': delegationSetId,
+      if (hostedZoneConfig != null) 'HostedZoneConfig': hostedZoneConfig,
+      if (vpc != null) 'VPC': vpc,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final callerReference = this.callerReference;
     final name = this.name;
@@ -6229,6 +6495,20 @@ class CreateHostedZoneResponse {
     required this.location,
     this.vpc,
   });
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    final delegationSet = this.delegationSet;
+    final hostedZone = this.hostedZone;
+    final location = this.location;
+    final vpc = this.vpc;
+    return {
+      'ChangeInfo': changeInfo,
+      'DelegationSet': delegationSet,
+      'HostedZone': hostedZone,
+      if (vpc != null) 'VPC': vpc,
+    };
+  }
 }
 
 class CreateKeySigningKeyRequest {
@@ -6295,6 +6575,22 @@ class CreateKeySigningKeyRequest {
     required this.name,
     required this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final hostedZoneId = this.hostedZoneId;
+    final keyManagementServiceArn = this.keyManagementServiceArn;
+    final name = this.name;
+    final status = this.status;
+    return {
+      'CallerReference': callerReference,
+      'HostedZoneId': hostedZoneId,
+      'KeyManagementServiceArn': keyManagementServiceArn,
+      'Name': name,
+      'Status': status,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final callerReference = this.callerReference;
     final hostedZoneId = this.hostedZoneId;
@@ -6334,6 +6630,16 @@ class CreateKeySigningKeyResponse {
     required this.keySigningKey,
     required this.location,
   });
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    final keySigningKey = this.keySigningKey;
+    final location = this.location;
+    return {
+      'ChangeInfo': changeInfo,
+      'KeySigningKey': keySigningKey,
+    };
+  }
 }
 
 class CreateQueryLoggingConfigRequest {
@@ -6357,6 +6663,16 @@ class CreateQueryLoggingConfigRequest {
     required this.cloudWatchLogsLogGroupArn,
     required this.hostedZoneId,
   });
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsLogGroupArn = this.cloudWatchLogsLogGroupArn;
+    final hostedZoneId = this.hostedZoneId;
+    return {
+      'CloudWatchLogsLogGroupArn': cloudWatchLogsLogGroupArn,
+      'HostedZoneId': hostedZoneId,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final cloudWatchLogsLogGroupArn = this.cloudWatchLogsLogGroupArn;
     final hostedZoneId = this.hostedZoneId;
@@ -6389,6 +6705,14 @@ class CreateQueryLoggingConfigResponse {
     required this.location,
     required this.queryLoggingConfig,
   });
+
+  Map<String, dynamic> toJson() {
+    final location = this.location;
+    final queryLoggingConfig = this.queryLoggingConfig;
+    return {
+      'QueryLoggingConfig': queryLoggingConfig,
+    };
+  }
 }
 
 class CreateReusableDelegationSetRequest {
@@ -6409,6 +6733,16 @@ class CreateReusableDelegationSetRequest {
     required this.callerReference,
     this.hostedZoneId,
   });
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final hostedZoneId = this.hostedZoneId;
+    return {
+      'CallerReference': callerReference,
+      if (hostedZoneId != null) 'HostedZoneId': hostedZoneId,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final callerReference = this.callerReference;
     final hostedZoneId = this.hostedZoneId;
@@ -6439,6 +6773,14 @@ class CreateReusableDelegationSetResponse {
     required this.delegationSet,
     required this.location,
   });
+
+  Map<String, dynamic> toJson() {
+    final delegationSet = this.delegationSet;
+    final location = this.location;
+    return {
+      'DelegationSet': delegationSet,
+    };
+  }
 }
 
 /// A complex type that contains information about the resource record sets that
@@ -6473,6 +6815,22 @@ class CreateTrafficPolicyInstanceRequest {
     required this.trafficPolicyId,
     required this.trafficPolicyVersion,
   });
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final name = this.name;
+    final ttl = this.ttl;
+    final trafficPolicyId = this.trafficPolicyId;
+    final trafficPolicyVersion = this.trafficPolicyVersion;
+    return {
+      'HostedZoneId': hostedZoneId,
+      'Name': name,
+      'TTL': ttl,
+      'TrafficPolicyId': trafficPolicyId,
+      'TrafficPolicyVersion': trafficPolicyVersion,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final hostedZoneId = this.hostedZoneId;
     final name = this.name;
@@ -6510,6 +6868,14 @@ class CreateTrafficPolicyInstanceResponse {
     required this.location,
     required this.trafficPolicyInstance,
   });
+
+  Map<String, dynamic> toJson() {
+    final location = this.location;
+    final trafficPolicyInstance = this.trafficPolicyInstance;
+    return {
+      'TrafficPolicyInstance': trafficPolicyInstance,
+    };
+  }
 }
 
 /// A complex type that contains information about the traffic policy that you
@@ -6532,6 +6898,18 @@ class CreateTrafficPolicyRequest {
     required this.name,
     this.comment,
   });
+
+  Map<String, dynamic> toJson() {
+    final document = this.document;
+    final name = this.name;
+    final comment = this.comment;
+    return {
+      'Document': document,
+      'Name': name,
+      if (comment != null) 'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final document = this.document;
     final name = this.name;
@@ -6565,6 +6943,14 @@ class CreateTrafficPolicyResponse {
     required this.location,
     required this.trafficPolicy,
   });
+
+  Map<String, dynamic> toJson() {
+    final location = this.location;
+    final trafficPolicy = this.trafficPolicy;
+    return {
+      'TrafficPolicy': trafficPolicy,
+    };
+  }
 }
 
 /// A complex type that contains information about the traffic policy that you
@@ -6588,6 +6974,17 @@ class CreateTrafficPolicyVersionRequest {
     required this.id,
     this.comment,
   });
+
+  Map<String, dynamic> toJson() {
+    final document = this.document;
+    final id = this.id;
+    final comment = this.comment;
+    return {
+      'Document': document,
+      if (comment != null) 'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final document = this.document;
     final id = this.id;
@@ -6621,6 +7018,14 @@ class CreateTrafficPolicyVersionResponse {
     required this.location,
     required this.trafficPolicy,
   });
+
+  Map<String, dynamic> toJson() {
+    final location = this.location;
+    final trafficPolicy = this.trafficPolicy;
+    return {
+      'TrafficPolicy': trafficPolicy,
+    };
+  }
 }
 
 /// A complex type that contains information about the request to authorize
@@ -6640,6 +7045,15 @@ class CreateVPCAssociationAuthorizationRequest {
     required this.hostedZoneId,
     required this.vpc,
   });
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final vpc = this.vpc;
+    return {
+      'VPC': vpc,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final hostedZoneId = this.hostedZoneId;
     final vpc = this.vpc;
@@ -6676,6 +7090,15 @@ class CreateVPCAssociationAuthorizationResponse {
       hostedZoneId: _s.extractXmlStringValue(elem, 'HostedZoneId')!,
       vpc: VPC.fromXml(_s.extractXmlChild(elem, 'VPC')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final vpc = this.vpc;
+    return {
+      'HostedZoneId': hostedZoneId,
+      'VPC': vpc,
+    };
   }
 }
 
@@ -6717,6 +7140,15 @@ class DNSSECStatus {
       statusMessage: _s.extractXmlStringValue(elem, 'StatusMessage'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serveSignature = this.serveSignature;
+    final statusMessage = this.statusMessage;
+    return {
+      if (serveSignature != null) 'ServeSignature': serveSignature,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 class DeactivateKeySigningKeyResponse {
@@ -6729,6 +7161,13 @@ class DeactivateKeySigningKeyResponse {
     return DeactivateKeySigningKeyResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -6760,6 +7199,17 @@ class DelegationSet {
       id: _s.extractXmlStringValue(elem, 'Id'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nameServers = this.nameServers;
+    final callerReference = this.callerReference;
+    final id = this.id;
+    return {
+      'NameServers': nameServers,
+      if (callerReference != null) 'CallerReference': callerReference,
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 class DeleteCidrCollectionResponse {
@@ -6768,6 +7218,10 @@ class DeleteCidrCollectionResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteCidrCollectionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6778,6 +7232,10 @@ class DeleteHealthCheckResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteHealthCheckResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6796,6 +7254,13 @@ class DeleteHostedZoneResponse {
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
+  }
 }
 
 class DeleteKeySigningKeyResponse {
@@ -6809,6 +7274,13 @@ class DeleteKeySigningKeyResponse {
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
+  }
 }
 
 class DeleteQueryLoggingConfigResponse {
@@ -6817,6 +7289,10 @@ class DeleteQueryLoggingConfigResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteQueryLoggingConfigResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6828,6 +7304,10 @@ class DeleteReusableDelegationSetResponse {
       _s.XmlElement elem) {
     return DeleteReusableDelegationSetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty element.
@@ -6838,6 +7318,10 @@ class DeleteTrafficPolicyInstanceResponse {
       _s.XmlElement elem) {
     return DeleteTrafficPolicyInstanceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty element.
@@ -6847,6 +7331,10 @@ class DeleteTrafficPolicyResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteTrafficPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6870,6 +7358,15 @@ class DeleteVPCAssociationAuthorizationRequest {
     required this.hostedZoneId,
     required this.vpc,
   });
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final vpc = this.vpc;
+    return {
+      'VPC': vpc,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final hostedZoneId = this.hostedZoneId;
     final vpc = this.vpc;
@@ -6895,6 +7392,10 @@ class DeleteVPCAssociationAuthorizationResponse {
       _s.XmlElement elem) {
     return DeleteVPCAssociationAuthorizationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// For the metric that the CloudWatch alarm is associated with, a complex type
@@ -6918,6 +7419,15 @@ class Dimension {
       value: _s.extractXmlStringValue(elem, 'Value')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      'Name': name,
+      'Value': value,
+    };
+  }
 }
 
 class DisableHostedZoneDNSSECResponse {
@@ -6930,6 +7440,13 @@ class DisableHostedZoneDNSSECResponse {
     return DisableHostedZoneDNSSECResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -6951,6 +7468,17 @@ class DisassociateVPCFromHostedZoneRequest {
     required this.vpc,
     this.comment,
   });
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final vpc = this.vpc;
+    final comment = this.comment;
+    return {
+      'VPC': vpc,
+      if (comment != null) 'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final hostedZoneId = this.hostedZoneId;
     final vpc = this.vpc;
@@ -6985,6 +7513,13 @@ class DisassociateVPCFromHostedZoneResponse {
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
+  }
 }
 
 class EnableHostedZoneDNSSECResponse {
@@ -6997,6 +7532,13 @@ class EnableHostedZoneDNSSECResponse {
     return EnableHostedZoneDNSSECResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -7063,6 +7605,17 @@ class GeoLocation {
       countryCode: _s.extractXmlStringValue(elem, 'CountryCode'),
       subdivisionCode: _s.extractXmlStringValue(elem, 'SubdivisionCode'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final continentCode = this.continentCode;
+    final countryCode = this.countryCode;
+    final subdivisionCode = this.subdivisionCode;
+    return {
+      if (continentCode != null) 'ContinentCode': continentCode,
+      if (countryCode != null) 'CountryCode': countryCode,
+      if (subdivisionCode != null) 'SubdivisionCode': subdivisionCode,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -7134,6 +7687,23 @@ class GeoLocationDetails {
       subdivisionName: _s.extractXmlStringValue(elem, 'SubdivisionName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final continentCode = this.continentCode;
+    final continentName = this.continentName;
+    final countryCode = this.countryCode;
+    final countryName = this.countryName;
+    final subdivisionCode = this.subdivisionCode;
+    final subdivisionName = this.subdivisionName;
+    return {
+      if (continentCode != null) 'ContinentCode': continentCode,
+      if (continentName != null) 'ContinentName': continentName,
+      if (countryCode != null) 'CountryCode': countryCode,
+      if (countryName != null) 'CountryName': countryName,
+      if (subdivisionCode != null) 'SubdivisionCode': subdivisionCode,
+      if (subdivisionName != null) 'SubdivisionName': subdivisionName,
+    };
+  }
 }
 
 /// A complex type that contains the requested limit.
@@ -7161,6 +7731,15 @@ class GetAccountLimitResponse {
       limit: AccountLimit.fromXml(_s.extractXmlChild(elem, 'Limit')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final limit = this.limit;
+    return {
+      'Count': count,
+      'Limit': limit,
+    };
+  }
 }
 
 /// A complex type that contains the <code>ChangeInfo</code> element.
@@ -7175,6 +7754,13 @@ class GetChangeResponse {
     return GetChangeResponse(
       changeInfo: ChangeInfo.fromXml(_s.extractXmlChild(elem, 'ChangeInfo')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeInfo = this.changeInfo;
+    return {
+      'ChangeInfo': changeInfo,
+    };
   }
 }
 
@@ -7192,6 +7778,13 @@ class GetCheckerIpRangesResponse {
       checkerIpRanges: _s.extractXmlStringListValues(
           _s.extractXmlChild(elem, 'CheckerIpRanges')!, 'member'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final checkerIpRanges = this.checkerIpRanges;
+    return {
+      'CheckerIpRanges': checkerIpRanges,
+    };
   }
 }
 
@@ -7216,6 +7809,15 @@ class GetDNSSECResponse {
       status: DNSSECStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keySigningKeys = this.keySigningKeys;
+    final status = this.status;
+    return {
+      'KeySigningKeys': keySigningKeys,
+      'Status': status,
+    };
+  }
 }
 
 /// A complex type that contains the response information for the specified
@@ -7234,6 +7836,13 @@ class GetGeoLocationResponse {
           _s.extractXmlChild(elem, 'GeoLocationDetails')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final geoLocationDetails = this.geoLocationDetails;
+    return {
+      'GeoLocationDetails': geoLocationDetails,
+    };
+  }
 }
 
 /// A complex type that contains the response to a
@@ -7250,6 +7859,13 @@ class GetHealthCheckCountResponse {
     return GetHealthCheckCountResponse(
       healthCheckCount: _s.extractXmlIntValue(elem, 'HealthCheckCount')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthCheckCount = this.healthCheckCount;
+    return {
+      'HealthCheckCount': healthCheckCount,
+    };
   }
 }
 
@@ -7272,6 +7888,13 @@ class GetHealthCheckLastFailureReasonResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final healthCheckObservations = this.healthCheckObservations;
+    return {
+      'HealthCheckObservations': healthCheckObservations,
+    };
+  }
 }
 
 /// A complex type that contains the response to a <code>GetHealthCheck</code>
@@ -7289,6 +7912,13 @@ class GetHealthCheckResponse {
       healthCheck:
           HealthCheck.fromXml(_s.extractXmlChild(elem, 'HealthCheck')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthCheck = this.healthCheck;
+    return {
+      'HealthCheck': healthCheck,
+    };
   }
 }
 
@@ -7312,6 +7942,13 @@ class GetHealthCheckStatusResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final healthCheckObservations = this.healthCheckObservations;
+    return {
+      'HealthCheckObservations': healthCheckObservations,
+    };
+  }
 }
 
 /// A complex type that contains the response to a
@@ -7328,6 +7965,13 @@ class GetHostedZoneCountResponse {
     return GetHostedZoneCountResponse(
       hostedZoneCount: _s.extractXmlIntValue(elem, 'HostedZoneCount')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneCount = this.hostedZoneCount;
+    return {
+      'HostedZoneCount': hostedZoneCount,
+    };
   }
 }
 
@@ -7355,6 +7999,15 @@ class GetHostedZoneLimitResponse {
       count: _s.extractXmlIntValue(elem, 'Count')!,
       limit: HostedZoneLimit.fromXml(_s.extractXmlChild(elem, 'Limit')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final limit = this.limit;
+    return {
+      'Count': count,
+      'Limit': limit,
+    };
   }
 }
 
@@ -7388,6 +8041,17 @@ class GetHostedZoneResponse {
           ?.let((elem) => elem.findElements('VPC').map(VPC.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hostedZone = this.hostedZone;
+    final delegationSet = this.delegationSet;
+    final vPCs = this.vPCs;
+    return {
+      'HostedZone': hostedZone,
+      if (delegationSet != null) 'DelegationSet': delegationSet,
+      if (vPCs != null) 'VPCs': vPCs,
+    };
+  }
 }
 
 class GetQueryLoggingConfigResponse {
@@ -7405,6 +8069,13 @@ class GetQueryLoggingConfigResponse {
       queryLoggingConfig: QueryLoggingConfig.fromXml(
           _s.extractXmlChild(elem, 'QueryLoggingConfig')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queryLoggingConfig = this.queryLoggingConfig;
+    return {
+      'QueryLoggingConfig': queryLoggingConfig,
+    };
   }
 }
 
@@ -7429,6 +8100,15 @@ class GetReusableDelegationSetLimitResponse {
           _s.extractXmlChild(elem, 'Limit')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final limit = this.limit;
+    return {
+      'Count': count,
+      'Limit': limit,
+    };
+  }
 }
 
 /// A complex type that contains the response to the
@@ -7445,6 +8125,13 @@ class GetReusableDelegationSetResponse {
       delegationSet:
           DelegationSet.fromXml(_s.extractXmlChild(elem, 'DelegationSet')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final delegationSet = this.delegationSet;
+    return {
+      'DelegationSet': delegationSet,
+    };
   }
 }
 
@@ -7464,6 +8151,13 @@ class GetTrafficPolicyInstanceCountResponse {
           _s.extractXmlIntValue(elem, 'TrafficPolicyInstanceCount')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trafficPolicyInstanceCount = this.trafficPolicyInstanceCount;
+    return {
+      'TrafficPolicyInstanceCount': trafficPolicyInstanceCount,
+    };
+  }
 }
 
 /// A complex type that contains information about the resource record sets that
@@ -7481,6 +8175,13 @@ class GetTrafficPolicyInstanceResponse {
           _s.extractXmlChild(elem, 'TrafficPolicyInstance')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trafficPolicyInstance = this.trafficPolicyInstance;
+    return {
+      'TrafficPolicyInstance': trafficPolicyInstance,
+    };
+  }
 }
 
 /// A complex type that contains the response information for the request.
@@ -7496,6 +8197,13 @@ class GetTrafficPolicyResponse {
       trafficPolicy:
           TrafficPolicy.fromXml(_s.extractXmlChild(elem, 'TrafficPolicy')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trafficPolicy = this.trafficPolicy;
+    return {
+      'TrafficPolicy': trafficPolicy,
+    };
   }
 }
 
@@ -7549,6 +8257,24 @@ class HealthCheck {
       linkedService:
           _s.extractXmlChild(elem, 'LinkedService')?.let(LinkedService.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final healthCheckConfig = this.healthCheckConfig;
+    final healthCheckVersion = this.healthCheckVersion;
+    final id = this.id;
+    final cloudWatchAlarmConfiguration = this.cloudWatchAlarmConfiguration;
+    final linkedService = this.linkedService;
+    return {
+      'CallerReference': callerReference,
+      'HealthCheckConfig': healthCheckConfig,
+      'HealthCheckVersion': healthCheckVersion,
+      'Id': id,
+      if (cloudWatchAlarmConfiguration != null)
+        'CloudWatchAlarmConfiguration': cloudWatchAlarmConfiguration,
+      if (linkedService != null) 'LinkedService': linkedService,
+    };
   }
 }
 
@@ -7988,6 +8714,49 @@ class HealthCheckConfig {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final alarmIdentifier = this.alarmIdentifier;
+    final childHealthChecks = this.childHealthChecks;
+    final disabled = this.disabled;
+    final enableSNI = this.enableSNI;
+    final failureThreshold = this.failureThreshold;
+    final fullyQualifiedDomainName = this.fullyQualifiedDomainName;
+    final healthThreshold = this.healthThreshold;
+    final iPAddress = this.iPAddress;
+    final insufficientDataHealthStatus = this.insufficientDataHealthStatus;
+    final inverted = this.inverted;
+    final measureLatency = this.measureLatency;
+    final port = this.port;
+    final regions = this.regions;
+    final requestInterval = this.requestInterval;
+    final resourcePath = this.resourcePath;
+    final routingControlArn = this.routingControlArn;
+    final searchString = this.searchString;
+    return {
+      'Type': type.toValue(),
+      if (alarmIdentifier != null) 'AlarmIdentifier': alarmIdentifier,
+      if (childHealthChecks != null) 'ChildHealthChecks': childHealthChecks,
+      if (disabled != null) 'Disabled': disabled,
+      if (enableSNI != null) 'EnableSNI': enableSNI,
+      if (failureThreshold != null) 'FailureThreshold': failureThreshold,
+      if (fullyQualifiedDomainName != null)
+        'FullyQualifiedDomainName': fullyQualifiedDomainName,
+      if (healthThreshold != null) 'HealthThreshold': healthThreshold,
+      if (iPAddress != null) 'IPAddress': iPAddress,
+      if (insufficientDataHealthStatus != null)
+        'InsufficientDataHealthStatus': insufficientDataHealthStatus.toValue(),
+      if (inverted != null) 'Inverted': inverted,
+      if (measureLatency != null) 'MeasureLatency': measureLatency,
+      if (port != null) 'Port': port,
+      if (regions != null) 'Regions': regions.map((e) => e.toValue()).toList(),
+      if (requestInterval != null) 'RequestInterval': requestInterval,
+      if (resourcePath != null) 'ResourcePath': resourcePath,
+      if (routingControlArn != null) 'RoutingControlArn': routingControlArn,
+      if (searchString != null) 'SearchString': searchString,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final type = this.type;
     final alarmIdentifier = this.alarmIdentifier;
@@ -8083,6 +8852,17 @@ class HealthCheckObservation {
       statusReport:
           _s.extractXmlChild(elem, 'StatusReport')?.let(StatusReport.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final iPAddress = this.iPAddress;
+    final region = this.region;
+    final statusReport = this.statusReport;
+    return {
+      if (iPAddress != null) 'IPAddress': iPAddress,
+      if (region != null) 'Region': region.toValue(),
+      if (statusReport != null) 'StatusReport': statusReport,
+    };
   }
 }
 
@@ -8255,6 +9035,24 @@ class HostedZone {
           _s.extractXmlIntValue(elem, 'ResourceRecordSetCount'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final id = this.id;
+    final name = this.name;
+    final config = this.config;
+    final linkedService = this.linkedService;
+    final resourceRecordSetCount = this.resourceRecordSetCount;
+    return {
+      'CallerReference': callerReference,
+      'Id': id,
+      'Name': name,
+      if (config != null) 'Config': config,
+      if (linkedService != null) 'LinkedService': linkedService,
+      if (resourceRecordSetCount != null)
+        'ResourceRecordSetCount': resourceRecordSetCount,
+    };
+  }
 }
 
 /// A complex type that contains an optional comment about your hosted zone. If
@@ -8276,6 +9074,15 @@ class HostedZoneConfig {
       comment: _s.extractXmlStringValue(elem, 'Comment'),
       privateZone: _s.extractXmlBoolValue(elem, 'PrivateZone'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comment = this.comment;
+    final privateZone = this.privateZone;
+    return {
+      if (comment != null) 'Comment': comment,
+      if (privateZone != null) 'PrivateZone': privateZone,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -8326,6 +9133,15 @@ class HostedZoneLimit {
       type: _s.extractXmlStringValue(elem, 'Type')!.toHostedZoneLimitType(),
       value: _s.extractXmlIntValue(elem, 'Value')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final value = this.value;
+    return {
+      'Type': type.toValue(),
+      'Value': value,
+    };
   }
 }
 
@@ -8388,6 +9204,15 @@ class HostedZoneOwner {
       owningService: _s.extractXmlStringValue(elem, 'OwningService'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final owningAccount = this.owningAccount;
+    final owningService = this.owningService;
+    return {
+      if (owningAccount != null) 'OwningAccount': owningAccount,
+      if (owningService != null) 'OwningService': owningService,
+    };
+  }
 }
 
 /// In the response to a <code>ListHostedZonesByVPC</code> request, the
@@ -8420,6 +9245,17 @@ class HostedZoneSummary {
       name: _s.extractXmlStringValue(elem, 'Name')!,
       owner: HostedZoneOwner.fromXml(_s.extractXmlChild(elem, 'Owner')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final name = this.name;
+    final owner = this.owner;
+    return {
+      'HostedZoneId': hostedZoneId,
+      'Name': name,
+      'Owner': owner,
+    };
   }
 }
 
@@ -8628,6 +9464,48 @@ class KeySigningKey {
       statusMessage: _s.extractXmlStringValue(elem, 'StatusMessage'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final dNSKEYRecord = this.dNSKEYRecord;
+    final dSRecord = this.dSRecord;
+    final digestAlgorithmMnemonic = this.digestAlgorithmMnemonic;
+    final digestAlgorithmType = this.digestAlgorithmType;
+    final digestValue = this.digestValue;
+    final flag = this.flag;
+    final keyTag = this.keyTag;
+    final kmsArn = this.kmsArn;
+    final lastModifiedDate = this.lastModifiedDate;
+    final name = this.name;
+    final publicKey = this.publicKey;
+    final signingAlgorithmMnemonic = this.signingAlgorithmMnemonic;
+    final signingAlgorithmType = this.signingAlgorithmType;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (createdDate != null) 'CreatedDate': iso8601ToJson(createdDate),
+      if (dNSKEYRecord != null) 'DNSKEYRecord': dNSKEYRecord,
+      if (dSRecord != null) 'DSRecord': dSRecord,
+      if (digestAlgorithmMnemonic != null)
+        'DigestAlgorithmMnemonic': digestAlgorithmMnemonic,
+      if (digestAlgorithmType != null)
+        'DigestAlgorithmType': digestAlgorithmType,
+      if (digestValue != null) 'DigestValue': digestValue,
+      if (flag != null) 'Flag': flag,
+      if (keyTag != null) 'KeyTag': keyTag,
+      if (kmsArn != null) 'KmsArn': kmsArn,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': iso8601ToJson(lastModifiedDate),
+      if (name != null) 'Name': name,
+      if (publicKey != null) 'PublicKey': publicKey,
+      if (signingAlgorithmMnemonic != null)
+        'SigningAlgorithmMnemonic': signingAlgorithmMnemonic,
+      if (signingAlgorithmType != null)
+        'SigningAlgorithmType': signingAlgorithmType,
+      if (status != null) 'Status': status,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 /// If a health check or hosted zone was created by another service,
@@ -8656,6 +9534,15 @@ class LinkedService {
       servicePrincipal: _s.extractXmlStringValue(elem, 'ServicePrincipal'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final servicePrincipal = this.servicePrincipal;
+    return {
+      if (description != null) 'Description': description,
+      if (servicePrincipal != null) 'ServicePrincipal': servicePrincipal,
+    };
+  }
 }
 
 class ListCidrBlocksResponse {
@@ -8678,6 +9565,15 @@ class ListCidrBlocksResponse {
           elem.findElements('member').map(CidrBlockSummary.fromXml).toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cidrBlocks = this.cidrBlocks;
+    final nextToken = this.nextToken;
+    return {
+      if (cidrBlocks != null) 'CidrBlocks': cidrBlocks,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -8705,6 +9601,15 @@ class ListCidrCollectionsResponse {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cidrCollections = this.cidrCollections;
+    final nextToken = this.nextToken;
+    return {
+      if (cidrCollections != null) 'CidrCollections': cidrCollections,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListCidrLocationsResponse {
@@ -8727,6 +9632,15 @@ class ListCidrLocationsResponse {
           elem.findElements('member').map(LocationSummary.fromXml).toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cidrLocations = this.cidrLocations;
+    final nextToken = this.nextToken;
+    return {
+      if (cidrLocations != null) 'CidrLocations': cidrLocations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -8789,6 +9703,24 @@ class ListGeoLocationsResponse {
           _s.extractXmlStringValue(elem, 'NextSubdivisionCode'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final geoLocationDetailsList = this.geoLocationDetailsList;
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final nextContinentCode = this.nextContinentCode;
+    final nextCountryCode = this.nextCountryCode;
+    final nextSubdivisionCode = this.nextSubdivisionCode;
+    return {
+      'GeoLocationDetailsList': geoLocationDetailsList,
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      if (nextContinentCode != null) 'NextContinentCode': nextContinentCode,
+      if (nextCountryCode != null) 'NextCountryCode': nextCountryCode,
+      if (nextSubdivisionCode != null)
+        'NextSubdivisionCode': nextSubdivisionCode,
+    };
+  }
 }
 
 /// A complex type that contains the response to a <code>ListHealthChecks</code>
@@ -8840,6 +9772,21 @@ class ListHealthChecksResponse {
       maxItems: _s.extractXmlStringValue(elem, 'MaxItems')!,
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthChecks = this.healthChecks;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxItems = this.maxItems;
+    final nextMarker = this.nextMarker;
+    return {
+      'HealthChecks': healthChecks,
+      'IsTruncated': isTruncated,
+      'Marker': marker,
+      'MaxItems': maxItems,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -8916,6 +9863,25 @@ class ListHostedZonesByNameResponse {
       nextHostedZoneId: _s.extractXmlStringValue(elem, 'NextHostedZoneId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hostedZones = this.hostedZones;
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final dNSName = this.dNSName;
+    final hostedZoneId = this.hostedZoneId;
+    final nextDNSName = this.nextDNSName;
+    final nextHostedZoneId = this.nextHostedZoneId;
+    return {
+      'HostedZones': hostedZones,
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      if (dNSName != null) 'DNSName': dNSName,
+      if (hostedZoneId != null) 'HostedZoneId': hostedZoneId,
+      if (nextDNSName != null) 'NextDNSName': nextDNSName,
+      if (nextHostedZoneId != null) 'NextHostedZoneId': nextHostedZoneId,
+    };
+  }
 }
 
 class ListHostedZonesByVPCResponse {
@@ -8948,6 +9914,17 @@ class ListHostedZonesByVPCResponse {
       maxItems: _s.extractXmlStringValue(elem, 'MaxItems')!,
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneSummaries = this.hostedZoneSummaries;
+    final maxItems = this.maxItems;
+    final nextToken = this.nextToken;
+    return {
+      'HostedZoneSummaries': hostedZoneSummaries,
+      'MaxItems': maxItems,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -9001,6 +9978,21 @@ class ListHostedZonesResponse {
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hostedZones = this.hostedZones;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxItems = this.maxItems;
+    final nextMarker = this.nextMarker;
+    return {
+      'HostedZones': hostedZones,
+      'IsTruncated': isTruncated,
+      'Marker': marker,
+      'MaxItems': maxItems,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class ListQueryLoggingConfigsResponse {
@@ -9035,6 +10027,15 @@ class ListQueryLoggingConfigsResponse {
           .toList(),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queryLoggingConfigs = this.queryLoggingConfigs;
+    final nextToken = this.nextToken;
+    return {
+      'QueryLoggingConfigs': queryLoggingConfigs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -9095,6 +10096,24 @@ class ListResourceRecordSetsResponse {
           _s.extractXmlStringValue(elem, 'NextRecordType')?.toRRType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final resourceRecordSets = this.resourceRecordSets;
+    final nextRecordIdentifier = this.nextRecordIdentifier;
+    final nextRecordName = this.nextRecordName;
+    final nextRecordType = this.nextRecordType;
+    return {
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      'ResourceRecordSets': resourceRecordSets,
+      if (nextRecordIdentifier != null)
+        'NextRecordIdentifier': nextRecordIdentifier,
+      if (nextRecordName != null) 'NextRecordName': nextRecordName,
+      if (nextRecordType != null) 'NextRecordType': nextRecordType.toValue(),
+    };
+  }
 }
 
 /// A complex type that contains information about the reusable delegation sets
@@ -9147,6 +10166,21 @@ class ListReusableDelegationSetsResponse {
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final delegationSets = this.delegationSets;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxItems = this.maxItems;
+    final nextMarker = this.nextMarker;
+    return {
+      'DelegationSets': delegationSets,
+      'IsTruncated': isTruncated,
+      'Marker': marker,
+      'MaxItems': maxItems,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 /// A complex type that contains information about the health checks or hosted
@@ -9164,6 +10198,13 @@ class ListTagsForResourceResponse {
       resourceTagSet:
           ResourceTagSet.fromXml(_s.extractXmlChild(elem, 'ResourceTagSet')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceTagSet = this.resourceTagSet;
+    return {
+      'ResourceTagSet': resourceTagSet,
+    };
   }
 }
 
@@ -9190,6 +10231,15 @@ class ListTagsForResourcesRequest {
     required this.resourceIds,
     required this.resourceType,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceIds = this.resourceIds;
+    final resourceType = this.resourceType;
+    return {
+      'ResourceIds': resourceIds,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final resourceIds = this.resourceIds;
     final resourceType = this.resourceType;
@@ -9225,6 +10275,13 @@ class ListTagsForResourcesResponse {
           .map(ResourceTagSet.fromXml)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceTagSets = this.resourceTagSets;
+    return {
+      'ResourceTagSets': resourceTagSets,
+    };
   }
 }
 
@@ -9268,6 +10325,19 @@ class ListTrafficPoliciesResponse {
           .map(TrafficPolicySummary.fromXml)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final trafficPolicyIdMarker = this.trafficPolicyIdMarker;
+    final trafficPolicySummaries = this.trafficPolicySummaries;
+    return {
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      'TrafficPolicyIdMarker': trafficPolicyIdMarker,
+      'TrafficPolicySummaries': trafficPolicySummaries,
+    };
   }
 }
 
@@ -9326,6 +10396,26 @@ class ListTrafficPolicyInstancesByHostedZoneResponse {
           .extractXmlStringValue(elem, 'TrafficPolicyInstanceTypeMarker')
           ?.toRRType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final trafficPolicyInstances = this.trafficPolicyInstances;
+    final trafficPolicyInstanceNameMarker =
+        this.trafficPolicyInstanceNameMarker;
+    final trafficPolicyInstanceTypeMarker =
+        this.trafficPolicyInstanceTypeMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      'TrafficPolicyInstances': trafficPolicyInstances,
+      if (trafficPolicyInstanceNameMarker != null)
+        'TrafficPolicyInstanceNameMarker': trafficPolicyInstanceNameMarker,
+      if (trafficPolicyInstanceTypeMarker != null)
+        'TrafficPolicyInstanceTypeMarker':
+            trafficPolicyInstanceTypeMarker.toValue(),
+    };
   }
 }
 
@@ -9391,6 +10481,28 @@ class ListTrafficPolicyInstancesByPolicyResponse {
           .extractXmlStringValue(elem, 'TrafficPolicyInstanceTypeMarker')
           ?.toRRType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final trafficPolicyInstances = this.trafficPolicyInstances;
+    final hostedZoneIdMarker = this.hostedZoneIdMarker;
+    final trafficPolicyInstanceNameMarker =
+        this.trafficPolicyInstanceNameMarker;
+    final trafficPolicyInstanceTypeMarker =
+        this.trafficPolicyInstanceTypeMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      'TrafficPolicyInstances': trafficPolicyInstances,
+      if (hostedZoneIdMarker != null) 'HostedZoneIdMarker': hostedZoneIdMarker,
+      if (trafficPolicyInstanceNameMarker != null)
+        'TrafficPolicyInstanceNameMarker': trafficPolicyInstanceNameMarker,
+      if (trafficPolicyInstanceTypeMarker != null)
+        'TrafficPolicyInstanceTypeMarker':
+            trafficPolicyInstanceTypeMarker.toValue(),
+    };
   }
 }
 
@@ -9458,6 +10570,28 @@ class ListTrafficPolicyInstancesResponse {
           ?.toRRType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final trafficPolicyInstances = this.trafficPolicyInstances;
+    final hostedZoneIdMarker = this.hostedZoneIdMarker;
+    final trafficPolicyInstanceNameMarker =
+        this.trafficPolicyInstanceNameMarker;
+    final trafficPolicyInstanceTypeMarker =
+        this.trafficPolicyInstanceTypeMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      'TrafficPolicyInstances': trafficPolicyInstances,
+      if (hostedZoneIdMarker != null) 'HostedZoneIdMarker': hostedZoneIdMarker,
+      if (trafficPolicyInstanceNameMarker != null)
+        'TrafficPolicyInstanceNameMarker': trafficPolicyInstanceNameMarker,
+      if (trafficPolicyInstanceTypeMarker != null)
+        'TrafficPolicyInstanceTypeMarker':
+            trafficPolicyInstanceTypeMarker.toValue(),
+    };
+  }
 }
 
 /// A complex type that contains the response information for the request.
@@ -9508,6 +10642,19 @@ class ListTrafficPolicyVersionsResponse {
           _s.extractXmlStringValue(elem, 'TrafficPolicyVersionMarker')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final maxItems = this.maxItems;
+    final trafficPolicies = this.trafficPolicies;
+    final trafficPolicyVersionMarker = this.trafficPolicyVersionMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'MaxItems': maxItems,
+      'TrafficPolicies': trafficPolicies,
+      'TrafficPolicyVersionMarker': trafficPolicyVersionMarker,
+    };
+  }
 }
 
 /// A complex type that contains the response information for the request.
@@ -9542,6 +10689,17 @@ class ListVPCAssociationAuthorizationsResponse {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final vPCs = this.vPCs;
+    final nextToken = this.nextToken;
+    return {
+      'HostedZoneId': hostedZoneId,
+      'VPCs': vPCs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// A complex type that contains information about the CIDR location.
@@ -9556,6 +10714,13 @@ class LocationSummary {
     return LocationSummary(
       locationName: _s.extractXmlStringValue(elem, 'LocationName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final locationName = this.locationName;
+    return {
+      if (locationName != null) 'LocationName': locationName,
+    };
   }
 }
 
@@ -9584,6 +10749,17 @@ class QueryLoggingConfig {
       hostedZoneId: _s.extractXmlStringValue(elem, 'HostedZoneId')!,
       id: _s.extractXmlStringValue(elem, 'Id')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsLogGroupArn = this.cloudWatchLogsLogGroupArn;
+    final hostedZoneId = this.hostedZoneId;
+    final id = this.id;
+    return {
+      'CloudWatchLogsLogGroupArn': cloudWatchLogsLogGroupArn,
+      'HostedZoneId': hostedZoneId,
+      'Id': id,
+    };
   }
 }
 
@@ -9735,6 +10911,13 @@ class ResourceRecord {
     return ResourceRecord(
       value: _s.extractXmlStringValue(elem, 'Value')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      'Value': value,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -10386,6 +11569,40 @@ class ResourceRecordSet {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    final aliasTarget = this.aliasTarget;
+    final cidrRoutingConfig = this.cidrRoutingConfig;
+    final failover = this.failover;
+    final geoLocation = this.geoLocation;
+    final healthCheckId = this.healthCheckId;
+    final multiValueAnswer = this.multiValueAnswer;
+    final region = this.region;
+    final resourceRecords = this.resourceRecords;
+    final setIdentifier = this.setIdentifier;
+    final ttl = this.ttl;
+    final trafficPolicyInstanceId = this.trafficPolicyInstanceId;
+    final weight = this.weight;
+    return {
+      'Name': name,
+      'Type': type.toValue(),
+      if (aliasTarget != null) 'AliasTarget': aliasTarget,
+      if (cidrRoutingConfig != null) 'CidrRoutingConfig': cidrRoutingConfig,
+      if (failover != null) 'Failover': failover.toValue(),
+      if (geoLocation != null) 'GeoLocation': geoLocation,
+      if (healthCheckId != null) 'HealthCheckId': healthCheckId,
+      if (multiValueAnswer != null) 'MultiValueAnswer': multiValueAnswer,
+      if (region != null) 'Region': region.toValue(),
+      if (resourceRecords != null) 'ResourceRecords': resourceRecords,
+      if (setIdentifier != null) 'SetIdentifier': setIdentifier,
+      if (ttl != null) 'TTL': ttl,
+      if (trafficPolicyInstanceId != null)
+        'TrafficPolicyInstanceId': trafficPolicyInstanceId,
+      if (weight != null) 'Weight': weight,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final name = this.name;
     final type = this.type;
@@ -10638,6 +11855,17 @@ class ResourceTagSet {
           ?.let((elem) => elem.findElements('Tag').map(Tag.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final tags = this.tags;
+    return {
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// A complex type that contains the type of limit that you specified in the
@@ -10664,6 +11892,15 @@ class ReusableDelegationSetLimit {
           .toReusableDelegationSetLimitType(),
       value: _s.extractXmlIntValue(elem, 'Value')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final value = this.value;
+    return {
+      'Type': type.toValue(),
+      'Value': value,
+    };
   }
 }
 
@@ -10759,6 +11996,15 @@ class StatusReport {
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checkedTime = this.checkedTime;
+    final status = this.status;
+    return {
+      if (checkedTime != null) 'CheckedTime': iso8601ToJson(checkedTime),
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// A complex type that contains information about a tag that you want to add or
@@ -10813,6 +12059,15 @@ class Tag {
       key: _s.extractXmlStringValue(elem, 'Key'),
       value: _s.extractXmlStringValue(elem, 'Value'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -10908,6 +12163,23 @@ class TestDNSAnswerResponse {
       responseCode: _s.extractXmlStringValue(elem, 'ResponseCode')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nameserver = this.nameserver;
+    final protocol = this.protocol;
+    final recordData = this.recordData;
+    final recordName = this.recordName;
+    final recordType = this.recordType;
+    final responseCode = this.responseCode;
+    return {
+      'Nameserver': nameserver,
+      'Protocol': protocol,
+      'RecordData': recordData,
+      'RecordName': recordName,
+      'RecordType': recordType.toValue(),
+      'ResponseCode': responseCode,
+    };
+  }
 }
 
 /// A complex type that contains settings for a traffic policy.
@@ -10956,6 +12228,23 @@ class TrafficPolicy {
       version: _s.extractXmlIntValue(elem, 'Version')!,
       comment: _s.extractXmlStringValue(elem, 'Comment'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final document = this.document;
+    final id = this.id;
+    final name = this.name;
+    final type = this.type;
+    final version = this.version;
+    final comment = this.comment;
+    return {
+      'Document': document,
+      'Id': id,
+      'Name': name,
+      'Type': type.toValue(),
+      'Version': version,
+      if (comment != null) 'Comment': comment,
+    };
   }
 }
 
@@ -11035,6 +12324,29 @@ class TrafficPolicyInstance {
           _s.extractXmlIntValue(elem, 'TrafficPolicyVersion')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final id = this.id;
+    final message = this.message;
+    final name = this.name;
+    final state = this.state;
+    final ttl = this.ttl;
+    final trafficPolicyId = this.trafficPolicyId;
+    final trafficPolicyType = this.trafficPolicyType;
+    final trafficPolicyVersion = this.trafficPolicyVersion;
+    return {
+      'HostedZoneId': hostedZoneId,
+      'Id': id,
+      'Message': message,
+      'Name': name,
+      'State': state,
+      'TTL': ttl,
+      'TrafficPolicyId': trafficPolicyId,
+      'TrafficPolicyType': trafficPolicyType.toValue(),
+      'TrafficPolicyVersion': trafficPolicyVersion,
+    };
+  }
 }
 
 /// A complex type that contains information about the latest version of one
@@ -11074,6 +12386,21 @@ class TrafficPolicySummary {
       trafficPolicyCount: _s.extractXmlIntValue(elem, 'TrafficPolicyCount')!,
       type: _s.extractXmlStringValue(elem, 'Type')!.toRRType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final latestVersion = this.latestVersion;
+    final name = this.name;
+    final trafficPolicyCount = this.trafficPolicyCount;
+    final type = this.type;
+    return {
+      'Id': id,
+      'LatestVersion': latestVersion,
+      'Name': name,
+      'TrafficPolicyCount': trafficPolicyCount,
+      'Type': type.toValue(),
+    };
   }
 }
 
@@ -11458,6 +12785,48 @@ class UpdateHealthCheckRequest {
     this.resourcePath,
     this.searchString,
   });
+
+  Map<String, dynamic> toJson() {
+    final healthCheckId = this.healthCheckId;
+    final alarmIdentifier = this.alarmIdentifier;
+    final childHealthChecks = this.childHealthChecks;
+    final disabled = this.disabled;
+    final enableSNI = this.enableSNI;
+    final failureThreshold = this.failureThreshold;
+    final fullyQualifiedDomainName = this.fullyQualifiedDomainName;
+    final healthCheckVersion = this.healthCheckVersion;
+    final healthThreshold = this.healthThreshold;
+    final iPAddress = this.iPAddress;
+    final insufficientDataHealthStatus = this.insufficientDataHealthStatus;
+    final inverted = this.inverted;
+    final port = this.port;
+    final regions = this.regions;
+    final resetElements = this.resetElements;
+    final resourcePath = this.resourcePath;
+    final searchString = this.searchString;
+    return {
+      if (alarmIdentifier != null) 'AlarmIdentifier': alarmIdentifier,
+      if (childHealthChecks != null) 'ChildHealthChecks': childHealthChecks,
+      if (disabled != null) 'Disabled': disabled,
+      if (enableSNI != null) 'EnableSNI': enableSNI,
+      if (failureThreshold != null) 'FailureThreshold': failureThreshold,
+      if (fullyQualifiedDomainName != null)
+        'FullyQualifiedDomainName': fullyQualifiedDomainName,
+      if (healthCheckVersion != null) 'HealthCheckVersion': healthCheckVersion,
+      if (healthThreshold != null) 'HealthThreshold': healthThreshold,
+      if (iPAddress != null) 'IPAddress': iPAddress,
+      if (insufficientDataHealthStatus != null)
+        'InsufficientDataHealthStatus': insufficientDataHealthStatus.toValue(),
+      if (inverted != null) 'Inverted': inverted,
+      if (port != null) 'Port': port,
+      if (regions != null) 'Regions': regions.map((e) => e.toValue()).toList(),
+      if (resetElements != null)
+        'ResetElements': resetElements.map((e) => e.toValue()).toList(),
+      if (resourcePath != null) 'ResourcePath': resourcePath,
+      if (searchString != null) 'SearchString': searchString,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final healthCheckId = this.healthCheckId;
     final alarmIdentifier = this.alarmIdentifier;
@@ -11542,6 +12911,13 @@ class UpdateHealthCheckResponse {
           HealthCheck.fromXml(_s.extractXmlChild(elem, 'HealthCheck')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final healthCheck = this.healthCheck;
+    return {
+      'HealthCheck': healthCheck,
+    };
+  }
 }
 
 /// A request to update the comment for a hosted zone.
@@ -11558,6 +12934,15 @@ class UpdateHostedZoneCommentRequest {
     required this.id,
     this.comment,
   });
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final comment = this.comment;
+    return {
+      if (comment != null) 'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final id = this.id;
     final comment = this.comment;
@@ -11590,6 +12975,13 @@ class UpdateHostedZoneCommentResponse {
       hostedZone: HostedZone.fromXml(_s.extractXmlChild(elem, 'HostedZone')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hostedZone = this.hostedZone;
+    return {
+      'HostedZone': hostedZone,
+    };
+  }
 }
 
 /// A complex type that contains information about the traffic policy that you
@@ -11611,6 +13003,16 @@ class UpdateTrafficPolicyCommentRequest {
     required this.id,
     required this.version,
   });
+
+  Map<String, dynamic> toJson() {
+    final comment = this.comment;
+    final id = this.id;
+    final version = this.version;
+    return {
+      'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final comment = this.comment;
     final id = this.id;
@@ -11644,6 +13046,13 @@ class UpdateTrafficPolicyCommentResponse {
           TrafficPolicy.fromXml(_s.extractXmlChild(elem, 'TrafficPolicy')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trafficPolicy = this.trafficPolicy;
+    return {
+      'TrafficPolicy': trafficPolicy,
+    };
+  }
 }
 
 /// A complex type that contains information about the resource record sets that
@@ -11670,6 +13079,19 @@ class UpdateTrafficPolicyInstanceRequest {
     required this.trafficPolicyId,
     required this.trafficPolicyVersion,
   });
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final ttl = this.ttl;
+    final trafficPolicyId = this.trafficPolicyId;
+    final trafficPolicyVersion = this.trafficPolicyVersion;
+    return {
+      'TTL': ttl,
+      'TrafficPolicyId': trafficPolicyId,
+      'TrafficPolicyVersion': trafficPolicyVersion,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final id = this.id;
     final ttl = this.ttl;
@@ -11707,6 +13129,13 @@ class UpdateTrafficPolicyInstanceResponse {
           _s.extractXmlChild(elem, 'TrafficPolicyInstance')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trafficPolicyInstance = this.trafficPolicyInstance;
+    return {
+      'TrafficPolicyInstance': trafficPolicyInstance,
+    };
+  }
 }
 
 /// (Private hosted zones only) A complex type that contains information about
@@ -11730,6 +13159,15 @@ class VPC {
       vPCId: _s.extractXmlStringValue(elem, 'VPCId'),
       vPCRegion: _s.extractXmlStringValue(elem, 'VPCRegion')?.toVPCRegion(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vPCId = this.vPCId;
+    final vPCRegion = this.vPCRegion;
+    return {
+      if (vPCId != null) 'VPCId': vPCId,
+      if (vPCRegion != null) 'VPCRegion': vPCRegion.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {

@@ -1712,6 +1712,16 @@ class BatchAssociateScramSecretResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final unprocessedScramSecrets = this.unprocessedScramSecrets;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (unprocessedScramSecrets != null)
+        'unprocessedScramSecrets': unprocessedScramSecrets,
+    };
+  }
 }
 
 ///
@@ -1991,6 +2001,24 @@ class BrokerNodeInfo {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachedENIId = this.attachedENIId;
+    final brokerId = this.brokerId;
+    final clientSubnet = this.clientSubnet;
+    final clientVpcIpAddress = this.clientVpcIpAddress;
+    final currentBrokerSoftwareInfo = this.currentBrokerSoftwareInfo;
+    final endpoints = this.endpoints;
+    return {
+      if (attachedENIId != null) 'attachedENIId': attachedENIId,
+      if (brokerId != null) 'brokerId': brokerId,
+      if (clientSubnet != null) 'clientSubnet': clientSubnet,
+      if (clientVpcIpAddress != null) 'clientVpcIpAddress': clientVpcIpAddress,
+      if (currentBrokerSoftwareInfo != null)
+        'currentBrokerSoftwareInfo': currentBrokerSoftwareInfo,
+      if (endpoints != null) 'endpoints': endpoints,
+    };
+  }
 }
 
 ///
@@ -2025,6 +2053,18 @@ class BrokerSoftwareInfo {
       configurationRevision: json['configurationRevision'] as int?,
       kafkaVersion: json['kafkaVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationArn = this.configurationArn;
+    final configurationRevision = this.configurationRevision;
+    final kafkaVersion = this.kafkaVersion;
+    return {
+      if (configurationArn != null) 'configurationArn': configurationArn,
+      if (configurationRevision != null)
+        'configurationRevision': configurationRevision,
+      if (kafkaVersion != null) 'kafkaVersion': kafkaVersion,
+    };
   }
 }
 
@@ -2323,6 +2363,54 @@ class ClusterInfo {
       zookeeperConnectStringTls: json['zookeeperConnectStringTls'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeOperationArn = this.activeOperationArn;
+    final brokerNodeGroupInfo = this.brokerNodeGroupInfo;
+    final clientAuthentication = this.clientAuthentication;
+    final clusterArn = this.clusterArn;
+    final clusterName = this.clusterName;
+    final creationTime = this.creationTime;
+    final currentBrokerSoftwareInfo = this.currentBrokerSoftwareInfo;
+    final currentVersion = this.currentVersion;
+    final encryptionInfo = this.encryptionInfo;
+    final enhancedMonitoring = this.enhancedMonitoring;
+    final loggingInfo = this.loggingInfo;
+    final numberOfBrokerNodes = this.numberOfBrokerNodes;
+    final openMonitoring = this.openMonitoring;
+    final state = this.state;
+    final stateInfo = this.stateInfo;
+    final tags = this.tags;
+    final zookeeperConnectString = this.zookeeperConnectString;
+    final zookeeperConnectStringTls = this.zookeeperConnectStringTls;
+    return {
+      if (activeOperationArn != null) 'activeOperationArn': activeOperationArn,
+      if (brokerNodeGroupInfo != null)
+        'brokerNodeGroupInfo': brokerNodeGroupInfo,
+      if (clientAuthentication != null)
+        'clientAuthentication': clientAuthentication,
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (clusterName != null) 'clusterName': clusterName,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (currentBrokerSoftwareInfo != null)
+        'currentBrokerSoftwareInfo': currentBrokerSoftwareInfo,
+      if (currentVersion != null) 'currentVersion': currentVersion,
+      if (encryptionInfo != null) 'encryptionInfo': encryptionInfo,
+      if (enhancedMonitoring != null)
+        'enhancedMonitoring': enhancedMonitoring.toValue(),
+      if (loggingInfo != null) 'loggingInfo': loggingInfo,
+      if (numberOfBrokerNodes != null)
+        'numberOfBrokerNodes': numberOfBrokerNodes,
+      if (openMonitoring != null) 'openMonitoring': openMonitoring,
+      if (state != null) 'state': state.toValue(),
+      if (stateInfo != null) 'stateInfo': stateInfo,
+      if (tags != null) 'tags': tags,
+      if (zookeeperConnectString != null)
+        'zookeeperConnectString': zookeeperConnectString,
+      if (zookeeperConnectStringTls != null)
+        'zookeeperConnectStringTls': zookeeperConnectStringTls,
+    };
+  }
 }
 
 ///
@@ -2419,6 +2507,33 @@ class Cluster {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activeOperationArn = this.activeOperationArn;
+    final clusterArn = this.clusterArn;
+    final clusterName = this.clusterName;
+    final clusterType = this.clusterType;
+    final creationTime = this.creationTime;
+    final currentVersion = this.currentVersion;
+    final provisioned = this.provisioned;
+    final serverless = this.serverless;
+    final state = this.state;
+    final stateInfo = this.stateInfo;
+    final tags = this.tags;
+    return {
+      if (activeOperationArn != null) 'activeOperationArn': activeOperationArn,
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (clusterName != null) 'clusterName': clusterName,
+      if (clusterType != null) 'clusterType': clusterType.toValue(),
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (currentVersion != null) 'currentVersion': currentVersion,
+      if (provisioned != null) 'provisioned': provisioned,
+      if (serverless != null) 'serverless': serverless,
+      if (state != null) 'state': state.toValue(),
+      if (stateInfo != null) 'stateInfo': stateInfo,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2520,6 +2635,33 @@ class ClusterOperationInfo {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientRequestId = this.clientRequestId;
+    final clusterArn = this.clusterArn;
+    final creationTime = this.creationTime;
+    final endTime = this.endTime;
+    final errorInfo = this.errorInfo;
+    final operationArn = this.operationArn;
+    final operationState = this.operationState;
+    final operationSteps = this.operationSteps;
+    final operationType = this.operationType;
+    final sourceClusterInfo = this.sourceClusterInfo;
+    final targetClusterInfo = this.targetClusterInfo;
+    return {
+      if (clientRequestId != null) 'clientRequestId': clientRequestId,
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (endTime != null) 'endTime': iso8601ToJson(endTime),
+      if (errorInfo != null) 'errorInfo': errorInfo,
+      if (operationArn != null) 'operationArn': operationArn,
+      if (operationState != null) 'operationState': operationState,
+      if (operationSteps != null) 'operationSteps': operationSteps,
+      if (operationType != null) 'operationType': operationType,
+      if (sourceClusterInfo != null) 'sourceClusterInfo': sourceClusterInfo,
+      if (targetClusterInfo != null) 'targetClusterInfo': targetClusterInfo,
+    };
+  }
 }
 
 ///
@@ -2549,6 +2691,15 @@ class ClusterOperationStep {
       stepName: json['stepName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stepInfo = this.stepInfo;
+    final stepName = this.stepName;
+    return {
+      if (stepInfo != null) 'stepInfo': stepInfo,
+      if (stepName != null) 'stepName': stepName,
+    };
+  }
 }
 
 ///
@@ -2567,6 +2718,13 @@ class ClusterOperationStepInfo {
     return ClusterOperationStepInfo(
       stepStatus: json['stepStatus'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stepStatus = this.stepStatus;
+    return {
+      if (stepStatus != null) 'stepStatus': stepStatus,
+    };
   }
 }
 
@@ -2724,6 +2882,7 @@ class ProvisionedRequest {
     this.loggingInfo,
     this.openMonitoring,
   });
+
   Map<String, dynamic> toJson() {
     final brokerNodeGroupInfo = this.brokerNodeGroupInfo;
     final kafkaVersion = this.kafkaVersion;
@@ -2848,6 +3007,36 @@ class Provisioned {
       zookeeperConnectStringTls: json['zookeeperConnectStringTls'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final brokerNodeGroupInfo = this.brokerNodeGroupInfo;
+    final numberOfBrokerNodes = this.numberOfBrokerNodes;
+    final clientAuthentication = this.clientAuthentication;
+    final currentBrokerSoftwareInfo = this.currentBrokerSoftwareInfo;
+    final encryptionInfo = this.encryptionInfo;
+    final enhancedMonitoring = this.enhancedMonitoring;
+    final loggingInfo = this.loggingInfo;
+    final openMonitoring = this.openMonitoring;
+    final zookeeperConnectString = this.zookeeperConnectString;
+    final zookeeperConnectStringTls = this.zookeeperConnectStringTls;
+    return {
+      'brokerNodeGroupInfo': brokerNodeGroupInfo,
+      'numberOfBrokerNodes': numberOfBrokerNodes,
+      if (clientAuthentication != null)
+        'clientAuthentication': clientAuthentication,
+      if (currentBrokerSoftwareInfo != null)
+        'currentBrokerSoftwareInfo': currentBrokerSoftwareInfo,
+      if (encryptionInfo != null) 'encryptionInfo': encryptionInfo,
+      if (enhancedMonitoring != null)
+        'enhancedMonitoring': enhancedMonitoring.toValue(),
+      if (loggingInfo != null) 'loggingInfo': loggingInfo,
+      if (openMonitoring != null) 'openMonitoring': openMonitoring,
+      if (zookeeperConnectString != null)
+        'zookeeperConnectString': zookeeperConnectString,
+      if (zookeeperConnectStringTls != null)
+        'zookeeperConnectStringTls': zookeeperConnectStringTls,
+    };
+  }
 }
 
 ///
@@ -2909,6 +3098,7 @@ class ServerlessRequest {
     required this.vpcConfigs,
     this.clientAuthentication,
   });
+
   Map<String, dynamic> toJson() {
     final vpcConfigs = this.vpcConfigs;
     final clientAuthentication = this.clientAuthentication;
@@ -2950,6 +3140,16 @@ class Serverless {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final vpcConfigs = this.vpcConfigs;
+    final clientAuthentication = this.clientAuthentication;
+    return {
+      'vpcConfigs': vpcConfigs,
+      if (clientAuthentication != null)
+        'clientAuthentication': clientAuthentication,
+    };
+  }
 }
 
 ///
@@ -2979,6 +3179,15 @@ class CompatibleKafkaVersion {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sourceVersion = this.sourceVersion;
+    final targetVersions = this.targetVersions;
+    return {
+      if (sourceVersion != null) 'sourceVersion': sourceVersion,
+      if (targetVersions != null) 'targetVersions': targetVersions,
+    };
   }
 }
 
@@ -3049,6 +3258,25 @@ class Configuration {
       state: (json['state'] as String).toConfigurationState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final kafkaVersions = this.kafkaVersions;
+    final latestRevision = this.latestRevision;
+    final name = this.name;
+    final state = this.state;
+    return {
+      'arn': arn,
+      'creationTime': iso8601ToJson(creationTime),
+      'description': description,
+      'kafkaVersions': kafkaVersions,
+      'latestRevision': latestRevision,
+      'name': name,
+      'state': state.toValue(),
+    };
+  }
 }
 
 ///
@@ -3117,6 +3345,17 @@ class ConfigurationRevision {
       revision: json['revision'] as int,
       description: json['description'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final revision = this.revision;
+    final description = this.description;
+    return {
+      'creationTime': iso8601ToJson(creationTime),
+      'revision': revision,
+      if (description != null) 'description': description,
+    };
   }
 }
 
@@ -3213,6 +3452,17 @@ class CreateClusterResponse {
       state: (json['state'] as String?)?.toClusterState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final clusterName = this.clusterName;
+    final state = this.state;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (clusterName != null) 'clusterName': clusterName,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 class CreateClusterV2Response {
@@ -3250,6 +3500,19 @@ class CreateClusterV2Response {
       clusterType: (json['clusterType'] as String?)?.toClusterType(),
       state: (json['state'] as String?)?.toClusterState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final clusterName = this.clusterName;
+    final clusterType = this.clusterType;
+    final state = this.state;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (clusterName != null) 'clusterName': clusterName,
+      if (clusterType != null) 'clusterType': clusterType.toValue(),
+      if (state != null) 'state': state.toValue(),
+    };
   }
 }
 
@@ -3299,6 +3562,21 @@ class CreateConfigurationResponse {
       state: (json['state'] as String?)?.toConfigurationState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final latestRevision = this.latestRevision;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (latestRevision != null) 'latestRevision': latestRevision,
+      if (name != null) 'name': name,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 class DeleteClusterResponse {
@@ -3322,6 +3600,15 @@ class DeleteClusterResponse {
       clusterArn: json['clusterArn'] as String?,
       state: (json['state'] as String?)?.toClusterState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final state = this.state;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (state != null) 'state': state.toValue(),
+    };
   }
 }
 
@@ -3348,6 +3635,15 @@ class DeleteConfigurationResponse {
       state: (json['state'] as String?)?.toConfigurationState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final state = this.state;
+    return {
+      if (arn != null) 'arn': arn,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 class DescribeClusterOperationResponse {
@@ -3367,6 +3663,14 @@ class DescribeClusterOperationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterOperationInfo = this.clusterOperationInfo;
+    return {
+      if (clusterOperationInfo != null)
+        'clusterOperationInfo': clusterOperationInfo,
+    };
+  }
 }
 
 class DescribeClusterResponse {
@@ -3385,6 +3689,13 @@ class DescribeClusterResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterInfo = this.clusterInfo;
+    return {
+      if (clusterInfo != null) 'clusterInfo': clusterInfo,
+    };
+  }
 }
 
 class DescribeClusterV2Response {
@@ -3402,6 +3713,13 @@ class DescribeClusterV2Response {
           ? Cluster.fromJson(json['clusterInfo'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterInfo = this.clusterInfo;
+    return {
+      if (clusterInfo != null) 'clusterInfo': clusterInfo,
+    };
   }
 }
 
@@ -3468,6 +3786,25 @@ class DescribeConfigurationResponse {
       state: (json['state'] as String?)?.toConfigurationState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final kafkaVersions = this.kafkaVersions;
+    final latestRevision = this.latestRevision;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (description != null) 'description': description,
+      if (kafkaVersions != null) 'kafkaVersions': kafkaVersions,
+      if (latestRevision != null) 'latestRevision': latestRevision,
+      if (name != null) 'name': name,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 class DescribeConfigurationRevisionResponse {
@@ -3517,6 +3854,22 @@ class DescribeConfigurationRevisionResponse {
           _s.decodeNullableUint8List(json['serverProperties'] as String?),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final revision = this.revision;
+    final serverProperties = this.serverProperties;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (description != null) 'description': description,
+      if (revision != null) 'revision': revision,
+      if (serverProperties != null)
+        'serverProperties': base64Encode(serverProperties),
+    };
+  }
 }
 
 class BatchDisassociateScramSecretResponse {
@@ -3544,6 +3897,16 @@ class BatchDisassociateScramSecretResponse {
               (e) => UnprocessedScramSecret.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final unprocessedScramSecrets = this.unprocessedScramSecrets;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (unprocessedScramSecrets != null)
+        'unprocessedScramSecrets': unprocessedScramSecrets,
+    };
   }
 }
 
@@ -3783,6 +4146,15 @@ class ErrorInfo {
       errorString: json['errorString'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorString = this.errorString;
+    return {
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorString != null) 'errorString': errorString,
+    };
+  }
 }
 
 class Firehose {
@@ -3873,6 +4245,36 @@ class GetBootstrapBrokersResponse {
       bootstrapBrokerStringTls: json['bootstrapBrokerStringTls'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bootstrapBrokerString = this.bootstrapBrokerString;
+    final bootstrapBrokerStringPublicSaslIam =
+        this.bootstrapBrokerStringPublicSaslIam;
+    final bootstrapBrokerStringPublicSaslScram =
+        this.bootstrapBrokerStringPublicSaslScram;
+    final bootstrapBrokerStringPublicTls = this.bootstrapBrokerStringPublicTls;
+    final bootstrapBrokerStringSaslIam = this.bootstrapBrokerStringSaslIam;
+    final bootstrapBrokerStringSaslScram = this.bootstrapBrokerStringSaslScram;
+    final bootstrapBrokerStringTls = this.bootstrapBrokerStringTls;
+    return {
+      if (bootstrapBrokerString != null)
+        'bootstrapBrokerString': bootstrapBrokerString,
+      if (bootstrapBrokerStringPublicSaslIam != null)
+        'bootstrapBrokerStringPublicSaslIam':
+            bootstrapBrokerStringPublicSaslIam,
+      if (bootstrapBrokerStringPublicSaslScram != null)
+        'bootstrapBrokerStringPublicSaslScram':
+            bootstrapBrokerStringPublicSaslScram,
+      if (bootstrapBrokerStringPublicTls != null)
+        'bootstrapBrokerStringPublicTls': bootstrapBrokerStringPublicTls,
+      if (bootstrapBrokerStringSaslIam != null)
+        'bootstrapBrokerStringSaslIam': bootstrapBrokerStringSaslIam,
+      if (bootstrapBrokerStringSaslScram != null)
+        'bootstrapBrokerStringSaslScram': bootstrapBrokerStringSaslScram,
+      if (bootstrapBrokerStringTls != null)
+        'bootstrapBrokerStringTls': bootstrapBrokerStringTls,
+    };
+  }
 }
 
 class GetCompatibleKafkaVersionsResponse {
@@ -3894,6 +4296,14 @@ class GetCompatibleKafkaVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final compatibleKafkaVersions = this.compatibleKafkaVersions;
+    return {
+      if (compatibleKafkaVersions != null)
+        'compatibleKafkaVersions': compatibleKafkaVersions,
+    };
+  }
 }
 
 class KafkaVersion {
@@ -3909,6 +4319,15 @@ class KafkaVersion {
       status: (json['status'] as String?)?.toKafkaVersionStatus(),
       version: json['version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final version = this.version;
+    return {
+      if (status != null) 'status': status.toValue(),
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -3966,6 +4385,16 @@ class ListClusterOperationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterOperationInfoList = this.clusterOperationInfoList;
+    final nextToken = this.nextToken;
+    return {
+      if (clusterOperationInfoList != null)
+        'clusterOperationInfoList': clusterOperationInfoList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListClustersResponse {
@@ -3993,6 +4422,15 @@ class ListClustersResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterInfoList = this.clusterInfoList;
+    final nextToken = this.nextToken;
+    return {
+      if (clusterInfoList != null) 'clusterInfoList': clusterInfoList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4022,6 +4460,15 @@ class ListClustersV2Response {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterInfoList = this.clusterInfoList;
+    final nextToken = this.nextToken;
+    return {
+      if (clusterInfoList != null) 'clusterInfoList': clusterInfoList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListConfigurationRevisionsResponse {
@@ -4048,6 +4495,15 @@ class ListConfigurationRevisionsResponse {
           .map((e) => ConfigurationRevision.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final revisions = this.revisions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (revisions != null) 'revisions': revisions,
+    };
   }
 }
 
@@ -4078,6 +4534,15 @@ class ListConfigurationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurations = this.configurations;
+    final nextToken = this.nextToken;
+    return {
+      if (configurations != null) 'configurations': configurations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListKafkaVersionsResponse {
@@ -4096,6 +4561,15 @@ class ListKafkaVersionsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final kafkaVersions = this.kafkaVersions;
+    final nextToken = this.nextToken;
+    return {
+      if (kafkaVersions != null) 'kafkaVersions': kafkaVersions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4125,6 +4599,15 @@ class ListNodesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final nodeInfoList = this.nodeInfoList;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (nodeInfoList != null) 'nodeInfoList': nodeInfoList,
+    };
+  }
 }
 
 class ListScramSecretsResponse {
@@ -4151,6 +4634,15 @@ class ListScramSecretsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final secretArnList = this.secretArnList;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (secretArnList != null) 'secretArnList': secretArnList,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -4167,6 +4659,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4302,6 +4801,37 @@ class MutableClusterInfo {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final brokerEBSVolumeInfo = this.brokerEBSVolumeInfo;
+    final clientAuthentication = this.clientAuthentication;
+    final configurationInfo = this.configurationInfo;
+    final connectivityInfo = this.connectivityInfo;
+    final encryptionInfo = this.encryptionInfo;
+    final enhancedMonitoring = this.enhancedMonitoring;
+    final instanceType = this.instanceType;
+    final kafkaVersion = this.kafkaVersion;
+    final loggingInfo = this.loggingInfo;
+    final numberOfBrokerNodes = this.numberOfBrokerNodes;
+    final openMonitoring = this.openMonitoring;
+    return {
+      if (brokerEBSVolumeInfo != null)
+        'brokerEBSVolumeInfo': brokerEBSVolumeInfo,
+      if (clientAuthentication != null)
+        'clientAuthentication': clientAuthentication,
+      if (configurationInfo != null) 'configurationInfo': configurationInfo,
+      if (connectivityInfo != null) 'connectivityInfo': connectivityInfo,
+      if (encryptionInfo != null) 'encryptionInfo': encryptionInfo,
+      if (enhancedMonitoring != null)
+        'enhancedMonitoring': enhancedMonitoring.toValue(),
+      if (instanceType != null) 'instanceType': instanceType,
+      if (kafkaVersion != null) 'kafkaVersion': kafkaVersion,
+      if (loggingInfo != null) 'loggingInfo': loggingInfo,
+      if (numberOfBrokerNodes != null)
+        'numberOfBrokerNodes': numberOfBrokerNodes,
+      if (openMonitoring != null) 'openMonitoring': openMonitoring,
+    };
+  }
 }
 
 ///
@@ -4320,6 +4850,13 @@ class NodeExporter {
     return NodeExporter(
       enabledInBroker: json['enabledInBroker'] as bool,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enabledInBroker = this.enabledInBroker;
+    return {
+      'enabledInBroker': enabledInBroker,
+    };
   }
 }
 
@@ -4366,6 +4903,13 @@ class JmxExporter {
       enabledInBroker: json['enabledInBroker'] as bool,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final enabledInBroker = this.enabledInBroker;
+    return {
+      'enabledInBroker': enabledInBroker,
+    };
+  }
 }
 
 ///
@@ -4411,6 +4955,13 @@ class OpenMonitoring {
       prometheus:
           Prometheus.fromJson(json['prometheus'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final prometheus = this.prometheus;
+    return {
+      'prometheus': prometheus,
+    };
   }
 }
 
@@ -4468,6 +5019,15 @@ class Prometheus {
           ? NodeExporter.fromJson(json['nodeExporter'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jmxExporter = this.jmxExporter;
+    final nodeExporter = this.nodeExporter;
+    return {
+      if (jmxExporter != null) 'jmxExporter': jmxExporter,
+      if (nodeExporter != null) 'nodeExporter': nodeExporter,
+    };
   }
 }
 
@@ -4588,6 +5148,16 @@ class RebootBrokerResponse {
       clusterArn: json['clusterArn'] as String?,
       clusterOperationArn: json['clusterOperationArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final clusterOperationArn = this.clusterOperationArn;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (clusterOperationArn != null)
+        'clusterOperationArn': clusterOperationArn,
+    };
   }
 }
 
@@ -4798,6 +5368,23 @@ class NodeInfo {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addedToClusterTime = this.addedToClusterTime;
+    final brokerNodeInfo = this.brokerNodeInfo;
+    final instanceType = this.instanceType;
+    final nodeARN = this.nodeARN;
+    final nodeType = this.nodeType;
+    final zookeeperNodeInfo = this.zookeeperNodeInfo;
+    return {
+      if (addedToClusterTime != null) 'addedToClusterTime': addedToClusterTime,
+      if (brokerNodeInfo != null) 'brokerNodeInfo': brokerNodeInfo,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (nodeARN != null) 'nodeARN': nodeARN,
+      if (nodeType != null) 'nodeType': nodeType.toValue(),
+      if (zookeeperNodeInfo != null) 'zookeeperNodeInfo': zookeeperNodeInfo,
+    };
+  }
 }
 
 ///
@@ -4839,6 +5426,15 @@ class StateInfo {
       code: json['code'] as String?,
       message: json['message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -4966,6 +5562,17 @@ class UnprocessedScramSecret {
       secretArn: json['secretArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final secretArn = this.secretArn;
+    return {
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (secretArn != null) 'secretArn': secretArn,
+    };
+  }
 }
 
 class UpdateBrokerCountResponse {
@@ -4988,6 +5595,16 @@ class UpdateBrokerCountResponse {
       clusterArn: json['clusterArn'] as String?,
       clusterOperationArn: json['clusterOperationArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final clusterOperationArn = this.clusterOperationArn;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (clusterOperationArn != null)
+        'clusterOperationArn': clusterOperationArn,
+    };
   }
 }
 
@@ -5012,6 +5629,16 @@ class UpdateBrokerTypeResponse {
       clusterOperationArn: json['clusterOperationArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final clusterOperationArn = this.clusterOperationArn;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (clusterOperationArn != null)
+        'clusterOperationArn': clusterOperationArn,
+    };
+  }
 }
 
 class UpdateBrokerStorageResponse {
@@ -5034,6 +5661,16 @@ class UpdateBrokerStorageResponse {
       clusterArn: json['clusterArn'] as String?,
       clusterOperationArn: json['clusterOperationArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final clusterOperationArn = this.clusterOperationArn;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (clusterOperationArn != null)
+        'clusterOperationArn': clusterOperationArn,
+    };
   }
 }
 
@@ -5059,6 +5696,16 @@ class UpdateClusterConfigurationResponse {
       clusterOperationArn: json['clusterOperationArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final clusterOperationArn = this.clusterOperationArn;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (clusterOperationArn != null)
+        'clusterOperationArn': clusterOperationArn,
+    };
+  }
 }
 
 class UpdateClusterKafkaVersionResponse {
@@ -5083,6 +5730,16 @@ class UpdateClusterKafkaVersionResponse {
       clusterOperationArn: json['clusterOperationArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final clusterOperationArn = this.clusterOperationArn;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (clusterOperationArn != null)
+        'clusterOperationArn': clusterOperationArn,
+    };
+  }
 }
 
 class UpdateMonitoringResponse {
@@ -5106,6 +5763,16 @@ class UpdateMonitoringResponse {
       clusterOperationArn: json['clusterOperationArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final clusterOperationArn = this.clusterOperationArn;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (clusterOperationArn != null)
+        'clusterOperationArn': clusterOperationArn,
+    };
+  }
 }
 
 class UpdateSecurityResponse {
@@ -5128,6 +5795,16 @@ class UpdateSecurityResponse {
       clusterArn: json['clusterArn'] as String?,
       clusterOperationArn: json['clusterOperationArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final clusterOperationArn = this.clusterOperationArn;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (clusterOperationArn != null)
+        'clusterOperationArn': clusterOperationArn,
+    };
   }
 }
 
@@ -5155,6 +5832,15 @@ class UpdateConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final latestRevision = this.latestRevision;
+    return {
+      if (arn != null) 'arn': arn,
+      if (latestRevision != null) 'latestRevision': latestRevision,
+    };
+  }
 }
 
 class UpdateConnectivityResponse {
@@ -5177,6 +5863,16 @@ class UpdateConnectivityResponse {
       clusterArn: json['clusterArn'] as String?,
       clusterOperationArn: json['clusterOperationArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final clusterOperationArn = this.clusterOperationArn;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (clusterOperationArn != null)
+        'clusterOperationArn': clusterOperationArn,
+    };
   }
 }
 
@@ -5227,6 +5923,21 @@ class ZookeeperNodeInfo {
       zookeeperId: json['zookeeperId'] as double?,
       zookeeperVersion: json['zookeeperVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachedENIId = this.attachedENIId;
+    final clientVpcIpAddress = this.clientVpcIpAddress;
+    final endpoints = this.endpoints;
+    final zookeeperId = this.zookeeperId;
+    final zookeeperVersion = this.zookeeperVersion;
+    return {
+      if (attachedENIId != null) 'attachedENIId': attachedENIId,
+      if (clientVpcIpAddress != null) 'clientVpcIpAddress': clientVpcIpAddress,
+      if (endpoints != null) 'endpoints': endpoints,
+      if (zookeeperId != null) 'zookeeperId': zookeeperId,
+      if (zookeeperVersion != null) 'zookeeperVersion': zookeeperVersion,
+    };
   }
 }
 

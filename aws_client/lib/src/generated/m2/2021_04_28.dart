@@ -1612,6 +1612,37 @@ class ApplicationSummary {
           (json['versionStatus'] as String?)?.toApplicationVersionLifecycle(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationArn = this.applicationArn;
+    final applicationId = this.applicationId;
+    final applicationVersion = this.applicationVersion;
+    final creationTime = this.creationTime;
+    final engineType = this.engineType;
+    final name = this.name;
+    final status = this.status;
+    final deploymentStatus = this.deploymentStatus;
+    final description = this.description;
+    final environmentId = this.environmentId;
+    final lastStartTime = this.lastStartTime;
+    final versionStatus = this.versionStatus;
+    return {
+      'applicationArn': applicationArn,
+      'applicationId': applicationId,
+      'applicationVersion': applicationVersion,
+      'creationTime': unixTimestampToJson(creationTime),
+      'engineType': engineType.toValue(),
+      'name': name,
+      'status': status.toValue(),
+      if (deploymentStatus != null)
+        'deploymentStatus': deploymentStatus.toValue(),
+      if (description != null) 'description': description,
+      if (environmentId != null) 'environmentId': environmentId,
+      if (lastStartTime != null)
+        'lastStartTime': unixTimestampToJson(lastStartTime),
+      if (versionStatus != null) 'versionStatus': versionStatus.toValue(),
+    };
+  }
 }
 
 enum ApplicationVersionLifecycle {
@@ -1677,6 +1708,19 @@ class ApplicationVersionSummary {
       statusReason: json['statusReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationVersion = this.applicationVersion;
+    final creationTime = this.creationTime;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      'applicationVersion': applicationVersion,
+      'creationTime': unixTimestampToJson(creationTime),
+      'status': status.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+    };
+  }
 }
 
 /// Defines the details of a batch job.
@@ -1702,6 +1746,17 @@ class BatchJobDefinition {
               json['scriptBatchJobDefinition'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileBatchJobDefinition = this.fileBatchJobDefinition;
+    final scriptBatchJobDefinition = this.scriptBatchJobDefinition;
+    return {
+      if (fileBatchJobDefinition != null)
+        'fileBatchJobDefinition': fileBatchJobDefinition,
+      if (scriptBatchJobDefinition != null)
+        'scriptBatchJobDefinition': scriptBatchJobDefinition,
+    };
   }
 }
 
@@ -1816,6 +1871,27 @@ class BatchJobExecutionSummary {
       jobType: (json['jobType'] as String?)?.toBatchJobType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final executionId = this.executionId;
+    final startTime = this.startTime;
+    final status = this.status;
+    final endTime = this.endTime;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobType = this.jobType;
+    return {
+      'applicationId': applicationId,
+      'executionId': executionId,
+      'startTime': unixTimestampToJson(startTime),
+      'status': status.toValue(),
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (jobId != null) 'jobId': jobId,
+      if (jobName != null) 'jobName': jobName,
+      if (jobType != null) 'jobType': jobType.toValue(),
+    };
+  }
 }
 
 /// Identifies a specific batch job.
@@ -1831,6 +1907,7 @@ class BatchJobIdentifier {
     this.fileBatchJobIdentifier,
     this.scriptBatchJobIdentifier,
   });
+
   Map<String, dynamic> toJson() {
     final fileBatchJobIdentifier = this.fileBatchJobIdentifier;
     final scriptBatchJobIdentifier = this.scriptBatchJobIdentifier;
@@ -1881,6 +1958,10 @@ class CancelBatchJobExecutionResponse {
   factory CancelBatchJobExecutionResponse.fromJson(Map<String, dynamic> _) {
     return CancelBatchJobExecutionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateApplicationResponse {
@@ -1905,6 +1986,17 @@ class CreateApplicationResponse {
       applicationVersion: json['applicationVersion'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationArn = this.applicationArn;
+    final applicationId = this.applicationId;
+    final applicationVersion = this.applicationVersion;
+    return {
+      'applicationArn': applicationArn,
+      'applicationId': applicationId,
+      'applicationVersion': applicationVersion,
+    };
+  }
 }
 
 class CreateDataSetImportTaskResponse {
@@ -1921,6 +2013,13 @@ class CreateDataSetImportTaskResponse {
       taskId: json['taskId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final taskId = this.taskId;
+    return {
+      'taskId': taskId,
+    };
+  }
 }
 
 class CreateDeploymentResponse {
@@ -1935,6 +2034,13 @@ class CreateDeploymentResponse {
       deploymentId: json['deploymentId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentId = this.deploymentId;
+    return {
+      'deploymentId': deploymentId,
+    };
+  }
 }
 
 class CreateEnvironmentResponse {
@@ -1948,6 +2054,13 @@ class CreateEnvironmentResponse {
     return CreateEnvironmentResponse(
       environmentId: json['environmentId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentId = this.environmentId;
+    return {
+      'environmentId': environmentId,
+    };
   }
 }
 
@@ -1979,6 +2092,7 @@ class DataSet {
     this.relativePath,
     this.storageType,
   });
+
   Map<String, dynamic> toJson() {
     final datasetName = this.datasetName;
     final datasetOrg = this.datasetOrg;
@@ -2008,6 +2122,7 @@ class DataSetImportConfig {
     this.dataSets,
     this.s3Location,
   });
+
   Map<String, dynamic> toJson() {
     final dataSets = this.dataSets;
     final s3Location = this.s3Location;
@@ -2030,6 +2145,7 @@ class DataSetImportItem {
     required this.dataSet,
     required this.externalLocation,
   });
+
   Map<String, dynamic> toJson() {
     final dataSet = this.dataSet;
     final externalLocation = this.externalLocation;
@@ -2073,6 +2189,21 @@ class DataSetImportSummary {
       total: json['total'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final inProgress = this.inProgress;
+    final pending = this.pending;
+    final succeeded = this.succeeded;
+    final total = this.total;
+    return {
+      'failed': failed,
+      'inProgress': inProgress,
+      'pending': pending,
+      'succeeded': succeeded,
+      'total': total,
+    };
+  }
 }
 
 /// Contains information about a data set import task.
@@ -2098,6 +2229,17 @@ class DataSetImportTask {
           json['summary'] as Map<String, dynamic>),
       taskId: json['taskId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final summary = this.summary;
+    final taskId = this.taskId;
+    return {
+      'status': status.toValue(),
+      'summary': summary,
+      'taskId': taskId,
+    };
   }
 }
 
@@ -2139,6 +2281,26 @@ class DataSetSummary {
       lastReferencedTime: timeStampFromJson(json['lastReferencedTime']),
       lastUpdatedTime: timeStampFromJson(json['lastUpdatedTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSetName = this.dataSetName;
+    final creationTime = this.creationTime;
+    final dataSetOrg = this.dataSetOrg;
+    final format = this.format;
+    final lastReferencedTime = this.lastReferencedTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    return {
+      'dataSetName': dataSetName,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (dataSetOrg != null) 'dataSetOrg': dataSetOrg,
+      if (format != null) 'format': format,
+      if (lastReferencedTime != null)
+        'lastReferencedTime': unixTimestampToJson(lastReferencedTime),
+      if (lastUpdatedTime != null)
+        'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+    };
   }
 }
 
@@ -2199,6 +2361,15 @@ class DatasetDetailOrgAttributes {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gdg = this.gdg;
+    final vsam = this.vsam;
+    return {
+      if (gdg != null) 'gdg': gdg,
+      if (vsam != null) 'vsam': vsam,
+    };
+  }
 }
 
 /// Additional details about the data set. Different attributes correspond to
@@ -2215,6 +2386,7 @@ class DatasetOrgAttributes {
     this.gdg,
     this.vsam,
   });
+
   Map<String, dynamic> toJson() {
     final gdg = this.gdg;
     final vsam = this.vsam;
@@ -2239,6 +2411,7 @@ class Definition {
     this.content,
     this.s3Location,
   });
+
   Map<String, dynamic> toJson() {
     final content = this.content;
     final s3Location = this.s3Location;
@@ -2255,6 +2428,10 @@ class DeleteApplicationFromEnvironmentResponse {
       Map<String, dynamic> _) {
     return DeleteApplicationFromEnvironmentResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteApplicationResponse {
@@ -2262,12 +2439,20 @@ class DeleteApplicationResponse {
   factory DeleteApplicationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApplicationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteEnvironmentResponse {
   DeleteEnvironmentResponse();
   factory DeleteEnvironmentResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEnvironmentResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2293,6 +2478,17 @@ class DeployedVersionSummary {
       status: (json['status'] as String).toDeploymentLifecycle(),
       statusReason: json['statusReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationVersion = this.applicationVersion;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      'applicationVersion': applicationVersion,
+      'status': status.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+    };
   }
 }
 
@@ -2373,6 +2569,25 @@ class DeploymentSummary {
       statusReason: json['statusReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final applicationVersion = this.applicationVersion;
+    final creationTime = this.creationTime;
+    final deploymentId = this.deploymentId;
+    final environmentId = this.environmentId;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      'applicationId': applicationId,
+      'applicationVersion': applicationVersion,
+      'creationTime': unixTimestampToJson(creationTime),
+      'deploymentId': deploymentId,
+      'environmentId': environmentId,
+      'status': status.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+    };
+  }
 }
 
 /// Defines the storage configuration for an Amazon EFS file system.
@@ -2449,6 +2664,15 @@ class EngineVersionsSummary {
       engineType: json['engineType'] as String,
       engineVersion: json['engineVersion'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final engineType = this.engineType;
+    final engineVersion = this.engineVersion;
+    return {
+      'engineType': engineType,
+      'engineVersion': engineVersion,
+    };
   }
 }
 
@@ -2540,6 +2764,27 @@ class EnvironmentSummary {
       status: (json['status'] as String).toEnvironmentLifecycle(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final engineType = this.engineType;
+    final engineVersion = this.engineVersion;
+    final environmentArn = this.environmentArn;
+    final environmentId = this.environmentId;
+    final instanceType = this.instanceType;
+    final name = this.name;
+    final status = this.status;
+    return {
+      'creationTime': unixTimestampToJson(creationTime),
+      'engineType': engineType.toValue(),
+      'engineVersion': engineVersion,
+      'environmentArn': environmentArn,
+      'environmentId': environmentId,
+      'instanceType': instanceType,
+      'name': name,
+      'status': status.toValue(),
+    };
+  }
 }
 
 /// Defines an external storage location.
@@ -2550,6 +2795,7 @@ class ExternalLocation {
   ExternalLocation({
     this.s3Location,
   });
+
   Map<String, dynamic> toJson() {
     final s3Location = this.s3Location;
     return {
@@ -2576,6 +2822,15 @@ class FileBatchJobDefinition {
       folderPath: json['folderPath'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fileName = this.fileName;
+    final folderPath = this.folderPath;
+    return {
+      'fileName': fileName,
+      if (folderPath != null) 'folderPath': folderPath,
+    };
+  }
 }
 
 /// A batch job identifier in which the batch job to run is identified by the
@@ -2591,6 +2846,7 @@ class FileBatchJobIdentifier {
     required this.fileName,
     this.folderPath,
   });
+
   Map<String, dynamic> toJson() {
     final fileName = this.fileName;
     final folderPath = this.folderPath;
@@ -2648,6 +2904,7 @@ class GdgAttributes {
     this.limit,
     this.rollDisposition,
   });
+
   Map<String, dynamic> toJson() {
     final limit = this.limit;
     final rollDisposition = this.rollDisposition;
@@ -2681,6 +2938,15 @@ class GdgDetailAttributes {
       limit: json['limit'] as int?,
       rollDisposition: json['rollDisposition'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final limit = this.limit;
+    final rollDisposition = this.rollDisposition;
+    return {
+      if (limit != null) 'limit': limit,
+      if (rollDisposition != null) 'rollDisposition': rollDisposition,
+    };
   }
 }
 
@@ -2809,6 +3075,49 @@ class GetApplicationResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationArn = this.applicationArn;
+    final applicationId = this.applicationId;
+    final creationTime = this.creationTime;
+    final engineType = this.engineType;
+    final latestVersion = this.latestVersion;
+    final name = this.name;
+    final status = this.status;
+    final deployedVersion = this.deployedVersion;
+    final description = this.description;
+    final environmentId = this.environmentId;
+    final lastStartTime = this.lastStartTime;
+    final listenerArns = this.listenerArns;
+    final listenerPorts = this.listenerPorts;
+    final loadBalancerDnsName = this.loadBalancerDnsName;
+    final logGroups = this.logGroups;
+    final statusReason = this.statusReason;
+    final tags = this.tags;
+    final targetGroupArns = this.targetGroupArns;
+    return {
+      'applicationArn': applicationArn,
+      'applicationId': applicationId,
+      'creationTime': unixTimestampToJson(creationTime),
+      'engineType': engineType.toValue(),
+      'latestVersion': latestVersion,
+      'name': name,
+      'status': status.toValue(),
+      if (deployedVersion != null) 'deployedVersion': deployedVersion,
+      if (description != null) 'description': description,
+      if (environmentId != null) 'environmentId': environmentId,
+      if (lastStartTime != null)
+        'lastStartTime': unixTimestampToJson(lastStartTime),
+      if (listenerArns != null) 'listenerArns': listenerArns,
+      if (listenerPorts != null) 'listenerPorts': listenerPorts,
+      if (loadBalancerDnsName != null)
+        'loadBalancerDnsName': loadBalancerDnsName,
+      if (logGroups != null) 'logGroups': logGroups,
+      if (statusReason != null) 'statusReason': statusReason,
+      if (tags != null) 'tags': tags,
+      if (targetGroupArns != null) 'targetGroupArns': targetGroupArns,
+    };
+  }
 }
 
 class GetApplicationVersionResponse {
@@ -2855,6 +3164,25 @@ class GetApplicationVersionResponse {
       description: json['description'] as String?,
       statusReason: json['statusReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationVersion = this.applicationVersion;
+    final creationTime = this.creationTime;
+    final definitionContent = this.definitionContent;
+    final name = this.name;
+    final status = this.status;
+    final description = this.description;
+    final statusReason = this.statusReason;
+    return {
+      'applicationVersion': applicationVersion,
+      'creationTime': unixTimestampToJson(creationTime),
+      'definitionContent': definitionContent,
+      'name': name,
+      'status': status.toValue(),
+      if (description != null) 'description': description,
+      if (statusReason != null) 'statusReason': statusReason,
+    };
   }
 }
 
@@ -2915,6 +3243,31 @@ class GetBatchJobExecutionResponse {
       statusReason: json['statusReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final executionId = this.executionId;
+    final startTime = this.startTime;
+    final status = this.status;
+    final endTime = this.endTime;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final jobType = this.jobType;
+    final jobUser = this.jobUser;
+    final statusReason = this.statusReason;
+    return {
+      'applicationId': applicationId,
+      'executionId': executionId,
+      'startTime': unixTimestampToJson(startTime),
+      'status': status.toValue(),
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (jobId != null) 'jobId': jobId,
+      if (jobName != null) 'jobName': jobName,
+      if (jobType != null) 'jobType': jobType.toValue(),
+      if (jobUser != null) 'jobUser': jobUser,
+      if (statusReason != null) 'statusReason': statusReason,
+    };
+  }
 }
 
 class GetDataSetDetailsResponse {
@@ -2968,6 +3321,30 @@ class GetDataSetDetailsResponse {
       recordLength: json['recordLength'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSetName = this.dataSetName;
+    final blocksize = this.blocksize;
+    final creationTime = this.creationTime;
+    final dataSetOrg = this.dataSetOrg;
+    final lastReferencedTime = this.lastReferencedTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final location = this.location;
+    final recordLength = this.recordLength;
+    return {
+      'dataSetName': dataSetName,
+      if (blocksize != null) 'blocksize': blocksize,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (dataSetOrg != null) 'dataSetOrg': dataSetOrg,
+      if (lastReferencedTime != null)
+        'lastReferencedTime': unixTimestampToJson(lastReferencedTime),
+      if (lastUpdatedTime != null)
+        'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (location != null) 'location': location,
+      if (recordLength != null) 'recordLength': recordLength,
+    };
+  }
 }
 
 class GetDataSetImportTaskResponse {
@@ -2994,6 +3371,17 @@ class GetDataSetImportTaskResponse {
               json['summary'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final taskId = this.taskId;
+    final summary = this.summary;
+    return {
+      'status': status.toValue(),
+      'taskId': taskId,
+      if (summary != null) 'summary': summary,
+    };
   }
 }
 
@@ -3039,6 +3427,25 @@ class GetDeploymentResponse {
       status: (json['status'] as String).toDeploymentLifecycle(),
       statusReason: json['statusReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final applicationVersion = this.applicationVersion;
+    final creationTime = this.creationTime;
+    final deploymentId = this.deploymentId;
+    final environmentId = this.environmentId;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      'applicationId': applicationId,
+      'applicationVersion': applicationVersion,
+      'creationTime': unixTimestampToJson(creationTime),
+      'deploymentId': deploymentId,
+      'environmentId': environmentId,
+      'status': status.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+    };
   }
 }
 
@@ -3178,6 +3585,56 @@ class GetEnvironmentResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final engineType = this.engineType;
+    final engineVersion = this.engineVersion;
+    final environmentArn = this.environmentArn;
+    final environmentId = this.environmentId;
+    final instanceType = this.instanceType;
+    final name = this.name;
+    final securityGroupIds = this.securityGroupIds;
+    final status = this.status;
+    final subnetIds = this.subnetIds;
+    final vpcId = this.vpcId;
+    final actualCapacity = this.actualCapacity;
+    final description = this.description;
+    final highAvailabilityConfig = this.highAvailabilityConfig;
+    final loadBalancerArn = this.loadBalancerArn;
+    final pendingMaintenance = this.pendingMaintenance;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final publiclyAccessible = this.publiclyAccessible;
+    final statusReason = this.statusReason;
+    final storageConfigurations = this.storageConfigurations;
+    final tags = this.tags;
+    return {
+      'creationTime': unixTimestampToJson(creationTime),
+      'engineType': engineType.toValue(),
+      'engineVersion': engineVersion,
+      'environmentArn': environmentArn,
+      'environmentId': environmentId,
+      'instanceType': instanceType,
+      'name': name,
+      'securityGroupIds': securityGroupIds,
+      'status': status.toValue(),
+      'subnetIds': subnetIds,
+      'vpcId': vpcId,
+      if (actualCapacity != null) 'actualCapacity': actualCapacity,
+      if (description != null) 'description': description,
+      if (highAvailabilityConfig != null)
+        'highAvailabilityConfig': highAvailabilityConfig,
+      if (loadBalancerArn != null) 'loadBalancerArn': loadBalancerArn,
+      if (pendingMaintenance != null) 'pendingMaintenance': pendingMaintenance,
+      if (preferredMaintenanceWindow != null)
+        'preferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (publiclyAccessible != null) 'publiclyAccessible': publiclyAccessible,
+      if (statusReason != null) 'statusReason': statusReason,
+      if (storageConfigurations != null)
+        'storageConfigurations': storageConfigurations,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Defines the details of a high availability configuration.
@@ -3224,6 +3681,15 @@ class ListApplicationVersionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationVersions = this.applicationVersions;
+    final nextToken = this.nextToken;
+    return {
+      'applicationVersions': applicationVersions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListApplicationsResponse {
@@ -3248,6 +3714,15 @@ class ListApplicationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applications = this.applications;
+    final nextToken = this.nextToken;
+    return {
+      'applications': applications,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListBatchJobDefinitionsResponse {
@@ -3270,6 +3745,15 @@ class ListBatchJobDefinitionsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final batchJobDefinitions = this.batchJobDefinitions;
+    final nextToken = this.nextToken;
+    return {
+      'batchJobDefinitions': batchJobDefinitions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3295,6 +3779,15 @@ class ListBatchJobExecutionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchJobExecutions = this.batchJobExecutions;
+    final nextToken = this.nextToken;
+    return {
+      'batchJobExecutions': batchJobExecutions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDataSetImportHistoryResponse {
@@ -3317,6 +3810,15 @@ class ListDataSetImportHistoryResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSetImportTasks = this.dataSetImportTasks;
+    final nextToken = this.nextToken;
+    return {
+      'dataSetImportTasks': dataSetImportTasks,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3343,6 +3845,15 @@ class ListDataSetsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSets = this.dataSets;
+    final nextToken = this.nextToken;
+    return {
+      'dataSets': dataSets,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDeploymentsResponse {
@@ -3365,6 +3876,15 @@ class ListDeploymentsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deployments = this.deployments;
+    final nextToken = this.nextToken;
+    return {
+      'deployments': deployments,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3389,6 +3909,15 @@ class ListEngineVersionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final engineVersions = this.engineVersions;
+    final nextToken = this.nextToken;
+    return {
+      'engineVersions': engineVersions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListEnvironmentsResponse {
@@ -3412,6 +3941,15 @@ class ListEnvironmentsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environments = this.environments;
+    final nextToken = this.nextToken;
+    return {
+      'environments': environments,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3426,6 +3964,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>)
           .map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      'tags': tags,
+    };
   }
 }
 
@@ -3449,6 +3994,15 @@ class LogGroupSummary {
       logType: json['logType'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logGroupName = this.logGroupName;
+    final logType = this.logType;
+    return {
+      'logGroupName': logGroupName,
+      'logType': logType,
+    };
+  }
 }
 
 /// The information about the maintenance schedule.
@@ -3468,6 +4022,15 @@ class MaintenanceSchedule {
       endTime: timeStampFromJson(json['endTime']),
       startTime: timeStampFromJson(json['startTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endTime = this.endTime;
+    final startTime = this.startTime;
+    return {
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+    };
   }
 }
 
@@ -3491,6 +4054,15 @@ class PendingMaintenance {
               json['schedule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final engineVersion = this.engineVersion;
+    final schedule = this.schedule;
+    return {
+      if (engineVersion != null) 'engineVersion': engineVersion,
+      if (schedule != null) 'schedule': schedule,
+    };
   }
 }
 
@@ -3545,6 +4117,7 @@ class RecordLength {
     required this.max,
     required this.min,
   });
+
   Map<String, dynamic> toJson() {
     final max = this.max;
     final min = this.min;
@@ -3568,6 +4141,13 @@ class ScriptBatchJobDefinition {
       scriptName: json['scriptName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final scriptName = this.scriptName;
+    return {
+      'scriptName': scriptName,
+    };
+  }
 }
 
 /// A batch job identifier in which the batch job to run is identified by the
@@ -3579,6 +4159,7 @@ class ScriptBatchJobIdentifier {
   ScriptBatchJobIdentifier({
     required this.scriptName,
   });
+
   Map<String, dynamic> toJson() {
     final scriptName = this.scriptName;
     return {
@@ -3591,6 +4172,10 @@ class StartApplicationResponse {
   StartApplicationResponse();
   factory StartApplicationResponse.fromJson(Map<String, dynamic> _) {
     return StartApplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3606,12 +4191,23 @@ class StartBatchJobResponse {
       executionId: json['executionId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionId = this.executionId;
+    return {
+      'executionId': executionId,
+    };
+  }
 }
 
 class StopApplicationResponse {
   StopApplicationResponse();
   factory StopApplicationResponse.fromJson(Map<String, dynamic> _) {
     return StopApplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3655,12 +4251,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3676,6 +4280,13 @@ class UpdateApplicationResponse {
       applicationVersion: json['applicationVersion'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationVersion = this.applicationVersion;
+    return {
+      'applicationVersion': applicationVersion,
+    };
+  }
 }
 
 class UpdateEnvironmentResponse {
@@ -3689,6 +4300,13 @@ class UpdateEnvironmentResponse {
     return UpdateEnvironmentResponse(
       environmentId: json['environmentId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentId = this.environmentId;
+    return {
+      'environmentId': environmentId,
+    };
   }
 }
 
@@ -3720,6 +4338,7 @@ class VsamAttributes {
     this.encoding,
     this.primaryKey,
   });
+
   Map<String, dynamic> toJson() {
     final format = this.format;
     final alternateKeys = this.alternateKeys;
@@ -3783,6 +4402,23 @@ class VsamDetailAttributes {
           : null,
       recordFormat: json['recordFormat'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alternateKeys = this.alternateKeys;
+    final cacheAtStartup = this.cacheAtStartup;
+    final compressed = this.compressed;
+    final encoding = this.encoding;
+    final primaryKey = this.primaryKey;
+    final recordFormat = this.recordFormat;
+    return {
+      if (alternateKeys != null) 'alternateKeys': alternateKeys,
+      if (cacheAtStartup != null) 'cacheAtStartup': cacheAtStartup,
+      if (compressed != null) 'compressed': compressed,
+      if (encoding != null) 'encoding': encoding,
+      if (primaryKey != null) 'primaryKey': primaryKey,
+      if (recordFormat != null) 'recordFormat': recordFormat,
+    };
   }
 }
 

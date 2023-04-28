@@ -950,6 +950,24 @@ class CredentialSummary {
       x509CertificateData: json['x509CertificateData'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final failed = this.failed;
+    final issuer = this.issuer;
+    final seenAt = this.seenAt;
+    final serialNumber = this.serialNumber;
+    final x509CertificateData = this.x509CertificateData;
+    return {
+      if (enabled != null) 'enabled': enabled,
+      if (failed != null) 'failed': failed,
+      if (issuer != null) 'issuer': issuer,
+      if (seenAt != null) 'seenAt': iso8601ToJson(seenAt),
+      if (serialNumber != null) 'serialNumber': serialNumber,
+      if (x509CertificateData != null)
+        'x509CertificateData': x509CertificateData,
+    };
+  }
 }
 
 /// The state of the certificate revocation list (CRL) after a read or write
@@ -1005,6 +1023,27 @@ class CrlDetail {
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final crlArn = this.crlArn;
+    final crlData = this.crlData;
+    final crlId = this.crlId;
+    final enabled = this.enabled;
+    final name = this.name;
+    final trustAnchorArn = this.trustAnchorArn;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (crlArn != null) 'crlArn': crlArn,
+      if (crlData != null) 'crlData': base64Encode(crlData),
+      if (crlId != null) 'crlId': crlId,
+      if (enabled != null) 'enabled': enabled,
+      if (name != null) 'name': name,
+      if (trustAnchorArn != null) 'trustAnchorArn': trustAnchorArn,
+      if (updatedAt != null) 'updatedAt': iso8601ToJson(updatedAt),
+    };
+  }
 }
 
 class CrlDetailResponse {
@@ -1019,6 +1058,13 @@ class CrlDetailResponse {
     return CrlDetailResponse(
       crl: CrlDetail.fromJson(json['crl'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final crl = this.crl;
+    return {
+      'crl': crl,
+    };
   }
 }
 
@@ -1051,6 +1097,17 @@ class InstanceProperty {
       seenAt: timeStampFromJson(json['seenAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final properties = this.properties;
+    final seenAt = this.seenAt;
+    return {
+      if (failed != null) 'failed': failed,
+      if (properties != null) 'properties': properties,
+      if (seenAt != null) 'seenAt': iso8601ToJson(seenAt),
+    };
+  }
 }
 
 class ListCrlsResponse {
@@ -1074,6 +1131,15 @@ class ListCrlsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final crls = this.crls;
+    final nextToken = this.nextToken;
+    return {
+      if (crls != null) 'crls': crls,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1099,6 +1165,15 @@ class ListProfilesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final profiles = this.profiles;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (profiles != null) 'profiles': profiles,
+    };
+  }
 }
 
 class ListSubjectsResponse {
@@ -1123,6 +1198,15 @@ class ListSubjectsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final subjects = this.subjects;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (subjects != null) 'subjects': subjects,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1139,6 +1223,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1163,6 +1254,15 @@ class ListTrustAnchorsResponse {
           .map((e) => TrustAnchorDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final trustAnchors = this.trustAnchors;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (trustAnchors != null) 'trustAnchors': trustAnchors,
+    };
   }
 }
 
@@ -1245,6 +1345,36 @@ class ProfileDetail {
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final durationSeconds = this.durationSeconds;
+    final enabled = this.enabled;
+    final managedPolicyArns = this.managedPolicyArns;
+    final name = this.name;
+    final profileArn = this.profileArn;
+    final profileId = this.profileId;
+    final requireInstanceProperties = this.requireInstanceProperties;
+    final roleArns = this.roleArns;
+    final sessionPolicy = this.sessionPolicy;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (durationSeconds != null) 'durationSeconds': durationSeconds,
+      if (enabled != null) 'enabled': enabled,
+      if (managedPolicyArns != null) 'managedPolicyArns': managedPolicyArns,
+      if (name != null) 'name': name,
+      if (profileArn != null) 'profileArn': profileArn,
+      if (profileId != null) 'profileId': profileId,
+      if (requireInstanceProperties != null)
+        'requireInstanceProperties': requireInstanceProperties,
+      if (roleArns != null) 'roleArns': roleArns,
+      if (sessionPolicy != null) 'sessionPolicy': sessionPolicy,
+      if (updatedAt != null) 'updatedAt': iso8601ToJson(updatedAt),
+    };
+  }
 }
 
 class ProfileDetailResponse {
@@ -1260,6 +1390,13 @@ class ProfileDetailResponse {
           ? ProfileDetail.fromJson(json['profile'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final profile = this.profile;
+    return {
+      if (profile != null) 'profile': profile,
+    };
   }
 }
 
@@ -1389,6 +1526,29 @@ class SubjectDetail {
       x509Subject: json['x509Subject'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final credentials = this.credentials;
+    final enabled = this.enabled;
+    final instanceProperties = this.instanceProperties;
+    final lastSeenAt = this.lastSeenAt;
+    final subjectArn = this.subjectArn;
+    final subjectId = this.subjectId;
+    final updatedAt = this.updatedAt;
+    final x509Subject = this.x509Subject;
+    return {
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (credentials != null) 'credentials': credentials,
+      if (enabled != null) 'enabled': enabled,
+      if (instanceProperties != null) 'instanceProperties': instanceProperties,
+      if (lastSeenAt != null) 'lastSeenAt': iso8601ToJson(lastSeenAt),
+      if (subjectArn != null) 'subjectArn': subjectArn,
+      if (subjectId != null) 'subjectId': subjectId,
+      if (updatedAt != null) 'updatedAt': iso8601ToJson(updatedAt),
+      if (x509Subject != null) 'x509Subject': x509Subject,
+    };
+  }
 }
 
 class SubjectDetailResponse {
@@ -1404,6 +1564,13 @@ class SubjectDetailResponse {
           ? SubjectDetail.fromJson(json['subject'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subject = this.subject;
+    return {
+      if (subject != null) 'subject': subject,
+    };
   }
 }
 
@@ -1455,6 +1622,25 @@ class SubjectSummary {
       x509Subject: json['x509Subject'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final enabled = this.enabled;
+    final lastSeenAt = this.lastSeenAt;
+    final subjectArn = this.subjectArn;
+    final subjectId = this.subjectId;
+    final updatedAt = this.updatedAt;
+    final x509Subject = this.x509Subject;
+    return {
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (enabled != null) 'enabled': enabled,
+      if (lastSeenAt != null) 'lastSeenAt': iso8601ToJson(lastSeenAt),
+      if (subjectArn != null) 'subjectArn': subjectArn,
+      if (subjectId != null) 'subjectId': subjectId,
+      if (updatedAt != null) 'updatedAt': iso8601ToJson(updatedAt),
+      if (x509Subject != null) 'x509Subject': x509Subject,
+    };
+  }
 }
 
 /// A label that consists of a key and value you define.
@@ -1490,6 +1676,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1538,6 +1728,25 @@ class TrustAnchorDetail {
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final enabled = this.enabled;
+    final name = this.name;
+    final source = this.source;
+    final trustAnchorArn = this.trustAnchorArn;
+    final trustAnchorId = this.trustAnchorId;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (enabled != null) 'enabled': enabled,
+      if (name != null) 'name': name,
+      if (source != null) 'source': source,
+      if (trustAnchorArn != null) 'trustAnchorArn': trustAnchorArn,
+      if (trustAnchorId != null) 'trustAnchorId': trustAnchorId,
+      if (updatedAt != null) 'updatedAt': iso8601ToJson(updatedAt),
+    };
+  }
 }
 
 class TrustAnchorDetailResponse {
@@ -1552,6 +1761,13 @@ class TrustAnchorDetailResponse {
       trustAnchor: TrustAnchorDetail.fromJson(
           json['trustAnchor'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trustAnchor = this.trustAnchor;
+    return {
+      'trustAnchor': trustAnchor,
+    };
   }
 }
 
@@ -1592,6 +1808,10 @@ class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

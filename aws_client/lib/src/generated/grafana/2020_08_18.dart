@@ -967,6 +967,13 @@ class AssociateLicenseResponse {
           json['workspace'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final workspace = this.workspace;
+    return {
+      'workspace': workspace,
+    };
+  }
 }
 
 /// A structure containing information about the user authentication methods
@@ -1005,6 +1012,17 @@ class AuthenticationDescription {
           ? SamlAuthentication.fromJson(json['saml'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final providers = this.providers;
+    final awsSso = this.awsSso;
+    final saml = this.saml;
+    return {
+      'providers': providers.map((e) => e.toValue()).toList(),
+      if (awsSso != null) 'awsSso': awsSso,
+      if (saml != null) 'saml': saml,
+    };
   }
 }
 
@@ -1063,6 +1081,16 @@ class AuthenticationSummary {
           ?.toSamlConfigurationStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final providers = this.providers;
+    final samlConfigurationStatus = this.samlConfigurationStatus;
+    return {
+      'providers': providers.map((e) => e.toValue()).toList(),
+      if (samlConfigurationStatus != null)
+        'samlConfigurationStatus': samlConfigurationStatus.toValue(),
+    };
+  }
 }
 
 /// A structure containing information about how this workspace works with
@@ -1079,6 +1107,13 @@ class AwsSsoAuthentication {
     return AwsSsoAuthentication(
       ssoClientId: json['ssoClientId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ssoClientId = this.ssoClientId;
+    return {
+      if (ssoClientId != null) 'ssoClientId': ssoClientId,
+    };
   }
 }
 
@@ -1105,6 +1140,17 @@ class CreateWorkspaceApiKeyResponse {
       workspaceId: json['workspaceId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final keyName = this.keyName;
+    final workspaceId = this.workspaceId;
+    return {
+      'key': key,
+      'keyName': keyName,
+      'workspaceId': workspaceId,
+    };
+  }
 }
 
 class CreateWorkspaceResponse {
@@ -1119,6 +1165,13 @@ class CreateWorkspaceResponse {
       workspace: WorkspaceDescription.fromJson(
           json['workspace'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workspace = this.workspace;
+    return {
+      'workspace': workspace,
+    };
   }
 }
 
@@ -1197,6 +1250,15 @@ class DeleteWorkspaceApiKeyResponse {
       workspaceId: json['workspaceId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyName = this.keyName;
+    final workspaceId = this.workspaceId;
+    return {
+      'keyName': keyName,
+      'workspaceId': workspaceId,
+    };
+  }
 }
 
 class DeleteWorkspaceResponse {
@@ -1211,6 +1273,13 @@ class DeleteWorkspaceResponse {
       workspace: WorkspaceDescription.fromJson(
           json['workspace'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workspace = this.workspace;
+    return {
+      'workspace': workspace,
+    };
   }
 }
 
@@ -1229,6 +1298,13 @@ class DescribeWorkspaceAuthenticationResponse {
           json['authentication'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authentication = this.authentication;
+    return {
+      'authentication': authentication,
+    };
+  }
 }
 
 class DescribeWorkspaceResponse {
@@ -1244,6 +1320,13 @@ class DescribeWorkspaceResponse {
           json['workspace'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final workspace = this.workspace;
+    return {
+      'workspace': workspace,
+    };
+  }
 }
 
 class DisassociateLicenseResponse {
@@ -1258,6 +1341,13 @@ class DisassociateLicenseResponse {
       workspace: WorkspaceDescription.fromJson(
           json['workspace'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workspace = this.workspace;
+    return {
+      'workspace': workspace,
+    };
   }
 }
 
@@ -1343,6 +1433,15 @@ class ListPermissionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final permissions = this.permissions;
+    final nextToken = this.nextToken;
+    return {
+      'permissions': permissions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1357,6 +1456,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1380,6 +1486,15 @@ class ListWorkspacesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workspaces = this.workspaces;
+    final nextToken = this.nextToken;
+    return {
+      'workspaces': workspaces,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1426,6 +1541,15 @@ class PermissionEntry {
       role: (json['role'] as String).toRole(),
       user: User.fromJson(json['user'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final role = this.role;
+    final user = this.user;
+    return {
+      'role': role.toValue(),
+      'user': user,
+    };
   }
 }
 
@@ -1550,6 +1674,15 @@ class SamlAuthentication {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final configuration = this.configuration;
+    return {
+      'status': status.toValue(),
+      if (configuration != null) 'configuration': configuration,
+    };
+  }
 }
 
 /// A structure containing information about how this workspace works with SAML.
@@ -1655,12 +1788,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1718,6 +1859,17 @@ class UpdateError {
       code: json['code'] as int,
       message: json['message'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final causedBy = this.causedBy;
+    final code = this.code;
+    final message = this.message;
+    return {
+      'causedBy': causedBy,
+      'code': code,
+      'message': message,
+    };
   }
 }
 
@@ -1778,6 +1930,13 @@ class UpdatePermissionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      'errors': errors,
+    };
+  }
 }
 
 class UpdateWorkspaceAuthenticationResponse {
@@ -1795,6 +1954,13 @@ class UpdateWorkspaceAuthenticationResponse {
           json['authentication'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authentication = this.authentication;
+    return {
+      'authentication': authentication,
+    };
+  }
 }
 
 class UpdateWorkspaceResponse {
@@ -1809,6 +1975,13 @@ class UpdateWorkspaceResponse {
       workspace: WorkspaceDescription.fromJson(
           json['workspace'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workspace = this.workspace;
+    return {
+      'workspace': workspace,
+    };
   }
 }
 
@@ -2036,6 +2209,62 @@ class WorkspaceDescription {
       workspaceRoleArn: json['workspaceRoleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authentication = this.authentication;
+    final created = this.created;
+    final dataSources = this.dataSources;
+    final endpoint = this.endpoint;
+    final grafanaVersion = this.grafanaVersion;
+    final id = this.id;
+    final modified = this.modified;
+    final status = this.status;
+    final accountAccessType = this.accountAccessType;
+    final description = this.description;
+    final freeTrialConsumed = this.freeTrialConsumed;
+    final freeTrialExpiration = this.freeTrialExpiration;
+    final licenseExpiration = this.licenseExpiration;
+    final licenseType = this.licenseType;
+    final name = this.name;
+    final notificationDestinations = this.notificationDestinations;
+    final organizationRoleName = this.organizationRoleName;
+    final organizationalUnits = this.organizationalUnits;
+    final permissionType = this.permissionType;
+    final stackSetName = this.stackSetName;
+    final tags = this.tags;
+    final workspaceRoleArn = this.workspaceRoleArn;
+    return {
+      'authentication': authentication,
+      'created': unixTimestampToJson(created),
+      'dataSources': dataSources.map((e) => e.toValue()).toList(),
+      'endpoint': endpoint,
+      'grafanaVersion': grafanaVersion,
+      'id': id,
+      'modified': unixTimestampToJson(modified),
+      'status': status.toValue(),
+      if (accountAccessType != null)
+        'accountAccessType': accountAccessType.toValue(),
+      if (description != null) 'description': description,
+      if (freeTrialConsumed != null) 'freeTrialConsumed': freeTrialConsumed,
+      if (freeTrialExpiration != null)
+        'freeTrialExpiration': unixTimestampToJson(freeTrialExpiration),
+      if (licenseExpiration != null)
+        'licenseExpiration': unixTimestampToJson(licenseExpiration),
+      if (licenseType != null) 'licenseType': licenseType.toValue(),
+      if (name != null) 'name': name,
+      if (notificationDestinations != null)
+        'notificationDestinations':
+            notificationDestinations.map((e) => e.toValue()).toList(),
+      if (organizationRoleName != null)
+        'organizationRoleName': organizationRoleName,
+      if (organizationalUnits != null)
+        'organizationalUnits': organizationalUnits,
+      if (permissionType != null) 'permissionType': permissionType.toValue(),
+      if (stackSetName != null) 'stackSetName': stackSetName,
+      if (tags != null) 'tags': tags,
+      if (workspaceRoleArn != null) 'workspaceRoleArn': workspaceRoleArn,
+    };
+  }
 }
 
 enum WorkspaceStatus {
@@ -2182,6 +2411,35 @@ class WorkspaceSummary {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authentication = this.authentication;
+    final created = this.created;
+    final endpoint = this.endpoint;
+    final grafanaVersion = this.grafanaVersion;
+    final id = this.id;
+    final modified = this.modified;
+    final status = this.status;
+    final description = this.description;
+    final name = this.name;
+    final notificationDestinations = this.notificationDestinations;
+    final tags = this.tags;
+    return {
+      'authentication': authentication,
+      'created': unixTimestampToJson(created),
+      'endpoint': endpoint,
+      'grafanaVersion': grafanaVersion,
+      'id': id,
+      'modified': unixTimestampToJson(modified),
+      'status': status.toValue(),
+      if (description != null) 'description': description,
+      if (name != null) 'name': name,
+      if (notificationDestinations != null)
+        'notificationDestinations':
+            notificationDestinations.map((e) => e.toValue()).toList(),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 

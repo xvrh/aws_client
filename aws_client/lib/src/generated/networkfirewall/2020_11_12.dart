@@ -2389,6 +2389,19 @@ class AssociateFirewallPolicyResponse {
       updateToken: json['UpdateToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallArn = this.firewallArn;
+    final firewallName = this.firewallName;
+    final firewallPolicyArn = this.firewallPolicyArn;
+    final updateToken = this.updateToken;
+    return {
+      if (firewallArn != null) 'FirewallArn': firewallArn,
+      if (firewallName != null) 'FirewallName': firewallName,
+      if (firewallPolicyArn != null) 'FirewallPolicyArn': firewallPolicyArn,
+      if (updateToken != null) 'UpdateToken': updateToken,
+    };
+  }
 }
 
 class AssociateSubnetsResponse {
@@ -2435,6 +2448,19 @@ class AssociateSubnetsResponse {
       updateToken: json['UpdateToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallArn = this.firewallArn;
+    final firewallName = this.firewallName;
+    final subnetMappings = this.subnetMappings;
+    final updateToken = this.updateToken;
+    return {
+      if (firewallArn != null) 'FirewallArn': firewallArn,
+      if (firewallName != null) 'FirewallName': firewallName,
+      if (subnetMappings != null) 'SubnetMappings': subnetMappings,
+      if (updateToken != null) 'UpdateToken': updateToken,
+    };
+  }
 }
 
 /// The configuration and status for a single subnet that you've specified for
@@ -2471,6 +2497,17 @@ class Attachment {
       status: (json['Status'] as String?)?.toAttachmentStatus(),
       subnetId: json['SubnetId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointId = this.endpointId;
+    final status = this.status;
+    final subnetId = this.subnetId;
+    return {
+      if (endpointId != null) 'EndpointId': endpointId,
+      if (status != null) 'Status': status.toValue(),
+      if (subnetId != null) 'SubnetId': subnetId,
+    };
   }
 }
 
@@ -2540,6 +2577,17 @@ class CIDRSummary {
       utilizedCIDRCount: json['UtilizedCIDRCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availableCIDRCount = this.availableCIDRCount;
+    final iPSetReferences = this.iPSetReferences;
+    final utilizedCIDRCount = this.utilizedCIDRCount;
+    return {
+      if (availableCIDRCount != null) 'AvailableCIDRCount': availableCIDRCount,
+      if (iPSetReferences != null) 'IPSetReferences': iPSetReferences,
+      if (utilizedCIDRCount != null) 'UtilizedCIDRCount': utilizedCIDRCount,
+    };
+  }
 }
 
 /// The capacity usage summary of the resources used by the <a>ReferenceSets</a>
@@ -2558,6 +2606,13 @@ class CapacityUsageSummary {
           ? CIDRSummary.fromJson(json['CIDRs'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cIDRs = this.cIDRs;
+    return {
+      if (cIDRs != null) 'CIDRs': cIDRs,
+    };
   }
 }
 
@@ -2623,6 +2678,15 @@ class CreateFirewallPolicyResponse {
       updateToken: json['UpdateToken'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallPolicyResponse = this.firewallPolicyResponse;
+    final updateToken = this.updateToken;
+    return {
+      'FirewallPolicyResponse': firewallPolicyResponse,
+      'UpdateToken': updateToken,
+    };
+  }
 }
 
 class CreateFirewallResponse {
@@ -2650,6 +2714,15 @@ class CreateFirewallResponse {
               json['FirewallStatus'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewall = this.firewall;
+    final firewallStatus = this.firewallStatus;
+    return {
+      if (firewall != null) 'Firewall': firewall,
+      if (firewallStatus != null) 'FirewallStatus': firewallStatus,
+    };
   }
 }
 
@@ -2681,6 +2754,15 @@ class CreateRuleGroupResponse {
           json['RuleGroupResponse'] as Map<String, dynamic>),
       updateToken: json['UpdateToken'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ruleGroupResponse = this.ruleGroupResponse;
+    final updateToken = this.updateToken;
+    return {
+      'RuleGroupResponse': ruleGroupResponse,
+      'UpdateToken': updateToken,
+    };
   }
 }
 
@@ -2752,6 +2834,13 @@ class DeleteFirewallPolicyResponse {
           json['FirewallPolicyResponse'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallPolicyResponse = this.firewallPolicyResponse;
+    return {
+      'FirewallPolicyResponse': firewallPolicyResponse,
+    };
+  }
 }
 
 class DeleteFirewallResponse {
@@ -2773,12 +2862,25 @@ class DeleteFirewallResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewall = this.firewall;
+    final firewallStatus = this.firewallStatus;
+    return {
+      if (firewall != null) 'Firewall': firewall,
+      if (firewallStatus != null) 'FirewallStatus': firewallStatus,
+    };
+  }
 }
 
 class DeleteResourcePolicyResponse {
   DeleteResourcePolicyResponse();
   factory DeleteResourcePolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteResourcePolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2796,6 +2898,13 @@ class DeleteRuleGroupResponse {
       ruleGroupResponse: RuleGroupResponse.fromJson(
           json['RuleGroupResponse'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ruleGroupResponse = this.ruleGroupResponse;
+    return {
+      'RuleGroupResponse': ruleGroupResponse,
+    };
   }
 }
 
@@ -2835,6 +2944,17 @@ class DescribeFirewallPolicyResponse {
               json['FirewallPolicy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewallPolicyResponse = this.firewallPolicyResponse;
+    final updateToken = this.updateToken;
+    final firewallPolicy = this.firewallPolicy;
+    return {
+      'FirewallPolicyResponse': firewallPolicyResponse,
+      'UpdateToken': updateToken,
+      if (firewallPolicy != null) 'FirewallPolicy': firewallPolicy,
+    };
   }
 }
 
@@ -2882,6 +3002,17 @@ class DescribeFirewallResponse {
       updateToken: json['UpdateToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewall = this.firewall;
+    final firewallStatus = this.firewallStatus;
+    final updateToken = this.updateToken;
+    return {
+      if (firewall != null) 'Firewall': firewall,
+      if (firewallStatus != null) 'FirewallStatus': firewallStatus,
+      if (updateToken != null) 'UpdateToken': updateToken,
+    };
+  }
 }
 
 class DescribeLoggingConfigurationResponse {
@@ -2903,6 +3034,16 @@ class DescribeLoggingConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallArn = this.firewallArn;
+    final loggingConfiguration = this.loggingConfiguration;
+    return {
+      if (firewallArn != null) 'FirewallArn': firewallArn,
+      if (loggingConfiguration != null)
+        'LoggingConfiguration': loggingConfiguration,
+    };
+  }
 }
 
 class DescribeResourcePolicyResponse {
@@ -2916,6 +3057,13 @@ class DescribeResourcePolicyResponse {
     return DescribeResourcePolicyResponse(
       policy: json['Policy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -2982,6 +3130,27 @@ class DescribeRuleGroupMetadataResponse {
       type: (json['Type'] as String?)?.toRuleGroupType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ruleGroupArn = this.ruleGroupArn;
+    final ruleGroupName = this.ruleGroupName;
+    final capacity = this.capacity;
+    final description = this.description;
+    final lastModifiedTime = this.lastModifiedTime;
+    final statefulRuleOptions = this.statefulRuleOptions;
+    final type = this.type;
+    return {
+      'RuleGroupArn': ruleGroupArn,
+      'RuleGroupName': ruleGroupName,
+      if (capacity != null) 'Capacity': capacity,
+      if (description != null) 'Description': description,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (statefulRuleOptions != null)
+        'StatefulRuleOptions': statefulRuleOptions,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 class DescribeRuleGroupResponse {
@@ -3031,6 +3200,17 @@ class DescribeRuleGroupResponse {
           ? RuleGroup.fromJson(json['RuleGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ruleGroupResponse = this.ruleGroupResponse;
+    final updateToken = this.updateToken;
+    final ruleGroup = this.ruleGroup;
+    return {
+      'RuleGroupResponse': ruleGroupResponse,
+      'UpdateToken': updateToken,
+      if (ruleGroup != null) 'RuleGroup': ruleGroup,
+    };
   }
 }
 
@@ -3111,6 +3291,19 @@ class DisassociateSubnetsResponse {
           .toList(),
       updateToken: json['UpdateToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewallArn = this.firewallArn;
+    final firewallName = this.firewallName;
+    final subnetMappings = this.subnetMappings;
+    final updateToken = this.updateToken;
+    return {
+      if (firewallArn != null) 'FirewallArn': firewallArn,
+      if (firewallName != null) 'FirewallName': firewallName,
+      if (subnetMappings != null) 'SubnetMappings': subnetMappings,
+      if (updateToken != null) 'UpdateToken': updateToken,
+    };
   }
 }
 
@@ -3290,6 +3483,38 @@ class Firewall {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallId = this.firewallId;
+    final firewallPolicyArn = this.firewallPolicyArn;
+    final subnetMappings = this.subnetMappings;
+    final vpcId = this.vpcId;
+    final deleteProtection = this.deleteProtection;
+    final description = this.description;
+    final encryptionConfiguration = this.encryptionConfiguration;
+    final firewallArn = this.firewallArn;
+    final firewallName = this.firewallName;
+    final firewallPolicyChangeProtection = this.firewallPolicyChangeProtection;
+    final subnetChangeProtection = this.subnetChangeProtection;
+    final tags = this.tags;
+    return {
+      'FirewallId': firewallId,
+      'FirewallPolicyArn': firewallPolicyArn,
+      'SubnetMappings': subnetMappings,
+      'VpcId': vpcId,
+      if (deleteProtection != null) 'DeleteProtection': deleteProtection,
+      if (description != null) 'Description': description,
+      if (encryptionConfiguration != null)
+        'EncryptionConfiguration': encryptionConfiguration,
+      if (firewallArn != null) 'FirewallArn': firewallArn,
+      if (firewallName != null) 'FirewallName': firewallName,
+      if (firewallPolicyChangeProtection != null)
+        'FirewallPolicyChangeProtection': firewallPolicyChangeProtection,
+      if (subnetChangeProtection != null)
+        'SubnetChangeProtection': subnetChangeProtection,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// High-level information about a firewall, returned by operations like create
@@ -3312,6 +3537,15 @@ class FirewallMetadata {
       firewallArn: json['FirewallArn'] as String?,
       firewallName: json['FirewallName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewallArn = this.firewallArn;
+    final firewallName = this.firewallName;
+    return {
+      if (firewallArn != null) 'FirewallArn': firewallArn,
+      if (firewallName != null) 'FirewallName': firewallName,
+    };
   }
 }
 
@@ -3492,6 +3726,15 @@ class FirewallPolicyMetadata {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// The high-level properties of a firewall policy. This, along with the
@@ -3579,6 +3822,39 @@ class FirewallPolicyResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallPolicyArn = this.firewallPolicyArn;
+    final firewallPolicyId = this.firewallPolicyId;
+    final firewallPolicyName = this.firewallPolicyName;
+    final consumedStatefulRuleCapacity = this.consumedStatefulRuleCapacity;
+    final consumedStatelessRuleCapacity = this.consumedStatelessRuleCapacity;
+    final description = this.description;
+    final encryptionConfiguration = this.encryptionConfiguration;
+    final firewallPolicyStatus = this.firewallPolicyStatus;
+    final lastModifiedTime = this.lastModifiedTime;
+    final numberOfAssociations = this.numberOfAssociations;
+    final tags = this.tags;
+    return {
+      'FirewallPolicyArn': firewallPolicyArn,
+      'FirewallPolicyId': firewallPolicyId,
+      'FirewallPolicyName': firewallPolicyName,
+      if (consumedStatefulRuleCapacity != null)
+        'ConsumedStatefulRuleCapacity': consumedStatefulRuleCapacity,
+      if (consumedStatelessRuleCapacity != null)
+        'ConsumedStatelessRuleCapacity': consumedStatelessRuleCapacity,
+      if (description != null) 'Description': description,
+      if (encryptionConfiguration != null)
+        'EncryptionConfiguration': encryptionConfiguration,
+      if (firewallPolicyStatus != null)
+        'FirewallPolicyStatus': firewallPolicyStatus.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (numberOfAssociations != null)
+        'NumberOfAssociations': numberOfAssociations,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Detailed information about the current status of a <a>Firewall</a>. You can
@@ -3640,6 +3916,20 @@ class FirewallStatus {
       syncStates: (json['SyncStates'] as Map<String, dynamic>?)?.map(
           (k, e) => MapEntry(k, SyncState.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationSyncStateSummary = this.configurationSyncStateSummary;
+    final status = this.status;
+    final capacityUsageSummary = this.capacityUsageSummary;
+    final syncStates = this.syncStates;
+    return {
+      'ConfigurationSyncStateSummary': configurationSyncStateSummary.toValue(),
+      'Status': status.toValue(),
+      if (capacityUsageSummary != null)
+        'CapacityUsageSummary': capacityUsageSummary,
+      if (syncStates != null) 'SyncStates': syncStates,
+    };
   }
 }
 
@@ -3855,6 +4145,13 @@ class IPSetMetadata {
       resolvedCIDRCount: json['ResolvedCIDRCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resolvedCIDRCount = this.resolvedCIDRCount;
+    return {
+      if (resolvedCIDRCount != null) 'ResolvedCIDRCount': resolvedCIDRCount,
+    };
+  }
 }
 
 /// Configures one or more IP set references for a Suricata-compatible rule
@@ -3921,6 +4218,15 @@ class ListFirewallPoliciesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallPolicies = this.firewallPolicies;
+    final nextToken = this.nextToken;
+    return {
+      if (firewallPolicies != null) 'FirewallPolicies': firewallPolicies,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListFirewallsResponse {
@@ -3948,6 +4254,15 @@ class ListFirewallsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewalls = this.firewalls;
+    final nextToken = this.nextToken;
+    return {
+      if (firewalls != null) 'Firewalls': firewalls,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3977,6 +4292,15 @@ class ListRuleGroupsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final ruleGroups = this.ruleGroups;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (ruleGroups != null) 'RuleGroups': ruleGroups,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -4002,6 +4326,15 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -4309,6 +4642,15 @@ class PerObjectStatus {
       updateToken: json['UpdateToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final syncStatus = this.syncStatus;
+    final updateToken = this.updateToken;
+    return {
+      if (syncStatus != null) 'SyncStatus': syncStatus.toValue(),
+      if (updateToken != null) 'UpdateToken': updateToken,
+    };
+  }
 }
 
 enum PerObjectSyncStatus {
@@ -4433,6 +4775,10 @@ class PutResourcePolicyResponse {
   PutResourcePolicyResponse();
   factory PutResourcePolicyResponse.fromJson(Map<String, dynamic> _) {
     return PutResourcePolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4708,6 +5054,15 @@ class RuleGroupMetadata {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// The high-level properties of a rule group. This, along with the
@@ -4822,6 +5177,42 @@ class RuleGroupResponse {
           .toList(),
       type: (json['Type'] as String?)?.toRuleGroupType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ruleGroupArn = this.ruleGroupArn;
+    final ruleGroupId = this.ruleGroupId;
+    final ruleGroupName = this.ruleGroupName;
+    final capacity = this.capacity;
+    final consumedCapacity = this.consumedCapacity;
+    final description = this.description;
+    final encryptionConfiguration = this.encryptionConfiguration;
+    final lastModifiedTime = this.lastModifiedTime;
+    final numberOfAssociations = this.numberOfAssociations;
+    final ruleGroupStatus = this.ruleGroupStatus;
+    final snsTopic = this.snsTopic;
+    final sourceMetadata = this.sourceMetadata;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      'RuleGroupArn': ruleGroupArn,
+      'RuleGroupId': ruleGroupId,
+      'RuleGroupName': ruleGroupName,
+      if (capacity != null) 'Capacity': capacity,
+      if (consumedCapacity != null) 'ConsumedCapacity': consumedCapacity,
+      if (description != null) 'Description': description,
+      if (encryptionConfiguration != null)
+        'EncryptionConfiguration': encryptionConfiguration,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (numberOfAssociations != null)
+        'NumberOfAssociations': numberOfAssociations,
+      if (ruleGroupStatus != null) 'RuleGroupStatus': ruleGroupStatus.toValue(),
+      if (snsTopic != null) 'SnsTopic': snsTopic,
+      if (sourceMetadata != null) 'SourceMetadata': sourceMetadata,
+      if (tags != null) 'Tags': tags,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -5695,6 +6086,15 @@ class SyncState {
           MapEntry(k, PerObjectStatus.fromJson(e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachment = this.attachment;
+    final config = this.config;
+    return {
+      if (attachment != null) 'Attachment': attachment,
+      if (config != null) 'Config': config,
+    };
+  }
 }
 
 enum TCPFlag {
@@ -5850,6 +6250,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 enum TargetType {
@@ -5884,6 +6288,10 @@ class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5933,6 +6341,19 @@ class UpdateFirewallDeleteProtectionResponse {
       updateToken: json['UpdateToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deleteProtection = this.deleteProtection;
+    final firewallArn = this.firewallArn;
+    final firewallName = this.firewallName;
+    final updateToken = this.updateToken;
+    return {
+      if (deleteProtection != null) 'DeleteProtection': deleteProtection,
+      if (firewallArn != null) 'FirewallArn': firewallArn,
+      if (firewallName != null) 'FirewallName': firewallName,
+      if (updateToken != null) 'UpdateToken': updateToken,
+    };
+  }
 }
 
 class UpdateFirewallDescriptionResponse {
@@ -5976,6 +6397,19 @@ class UpdateFirewallDescriptionResponse {
       firewallName: json['FirewallName'] as String?,
       updateToken: json['UpdateToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final firewallArn = this.firewallArn;
+    final firewallName = this.firewallName;
+    final updateToken = this.updateToken;
+    return {
+      if (description != null) 'Description': description,
+      if (firewallArn != null) 'FirewallArn': firewallArn,
+      if (firewallName != null) 'FirewallName': firewallName,
+      if (updateToken != null) 'UpdateToken': updateToken,
+    };
   }
 }
 
@@ -6022,6 +6456,20 @@ class UpdateFirewallEncryptionConfigurationResponse {
       firewallName: json['FirewallName'] as String?,
       updateToken: json['UpdateToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final encryptionConfiguration = this.encryptionConfiguration;
+    final firewallArn = this.firewallArn;
+    final firewallName = this.firewallName;
+    final updateToken = this.updateToken;
+    return {
+      if (encryptionConfiguration != null)
+        'EncryptionConfiguration': encryptionConfiguration,
+      if (firewallArn != null) 'FirewallArn': firewallArn,
+      if (firewallName != null) 'FirewallName': firewallName,
+      if (updateToken != null) 'UpdateToken': updateToken,
+    };
   }
 }
 
@@ -6072,6 +6520,20 @@ class UpdateFirewallPolicyChangeProtectionResponse {
       updateToken: json['UpdateToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallArn = this.firewallArn;
+    final firewallName = this.firewallName;
+    final firewallPolicyChangeProtection = this.firewallPolicyChangeProtection;
+    final updateToken = this.updateToken;
+    return {
+      if (firewallArn != null) 'FirewallArn': firewallArn,
+      if (firewallName != null) 'FirewallName': firewallName,
+      if (firewallPolicyChangeProtection != null)
+        'FirewallPolicyChangeProtection': firewallPolicyChangeProtection,
+      if (updateToken != null) 'UpdateToken': updateToken,
+    };
+  }
 }
 
 class UpdateFirewallPolicyResponse {
@@ -6103,6 +6565,15 @@ class UpdateFirewallPolicyResponse {
       updateToken: json['UpdateToken'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallPolicyResponse = this.firewallPolicyResponse;
+    final updateToken = this.updateToken;
+    return {
+      'FirewallPolicyResponse': firewallPolicyResponse,
+      'UpdateToken': updateToken,
+    };
+  }
 }
 
 class UpdateLoggingConfigurationResponse {
@@ -6129,6 +6600,18 @@ class UpdateLoggingConfigurationResponse {
               json['LoggingConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewallArn = this.firewallArn;
+    final firewallName = this.firewallName;
+    final loggingConfiguration = this.loggingConfiguration;
+    return {
+      if (firewallArn != null) 'FirewallArn': firewallArn,
+      if (firewallName != null) 'FirewallName': firewallName,
+      if (loggingConfiguration != null)
+        'LoggingConfiguration': loggingConfiguration,
+    };
   }
 }
 
@@ -6160,6 +6643,15 @@ class UpdateRuleGroupResponse {
           json['RuleGroupResponse'] as Map<String, dynamic>),
       updateToken: json['UpdateToken'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ruleGroupResponse = this.ruleGroupResponse;
+    final updateToken = this.updateToken;
+    return {
+      'RuleGroupResponse': ruleGroupResponse,
+      'UpdateToken': updateToken,
+    };
   }
 }
 
@@ -6208,6 +6700,20 @@ class UpdateSubnetChangeProtectionResponse {
       subnetChangeProtection: json['SubnetChangeProtection'] as bool?,
       updateToken: json['UpdateToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firewallArn = this.firewallArn;
+    final firewallName = this.firewallName;
+    final subnetChangeProtection = this.subnetChangeProtection;
+    final updateToken = this.updateToken;
+    return {
+      if (firewallArn != null) 'FirewallArn': firewallArn,
+      if (firewallName != null) 'FirewallName': firewallName,
+      if (subnetChangeProtection != null)
+        'SubnetChangeProtection': subnetChangeProtection,
+      if (updateToken != null) 'UpdateToken': updateToken,
+    };
   }
 }
 

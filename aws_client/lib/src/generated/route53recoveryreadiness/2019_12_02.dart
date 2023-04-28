@@ -1172,6 +1172,21 @@ class CellOutput {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cellArn = this.cellArn;
+    final cellName = this.cellName;
+    final cells = this.cells;
+    final parentReadinessScopes = this.parentReadinessScopes;
+    final tags = this.tags;
+    return {
+      'cellArn': cellArn,
+      'cellName': cellName,
+      'cells': cells,
+      'parentReadinessScopes': parentReadinessScopes,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class CreateCellResponse {
@@ -1215,6 +1230,22 @@ class CreateCellResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cellArn = this.cellArn;
+    final cellName = this.cellName;
+    final cells = this.cells;
+    final parentReadinessScopes = this.parentReadinessScopes;
+    final tags = this.tags;
+    return {
+      if (cellArn != null) 'cellArn': cellArn,
+      if (cellName != null) 'cellName': cellName,
+      if (cells != null) 'cells': cells,
+      if (parentReadinessScopes != null)
+        'parentReadinessScopes': parentReadinessScopes,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class CreateCrossAccountAuthorizationResponse {
@@ -1229,6 +1260,14 @@ class CreateCrossAccountAuthorizationResponse {
     return CreateCrossAccountAuthorizationResponse(
       crossAccountAuthorization: json['crossAccountAuthorization'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final crossAccountAuthorization = this.crossAccountAuthorization;
+    return {
+      if (crossAccountAuthorization != null)
+        'crossAccountAuthorization': crossAccountAuthorization,
+    };
   }
 }
 
@@ -1257,6 +1296,19 @@ class CreateReadinessCheckResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final readinessCheckArn = this.readinessCheckArn;
+    final readinessCheckName = this.readinessCheckName;
+    final resourceSet = this.resourceSet;
+    final tags = this.tags;
+    return {
+      if (readinessCheckArn != null) 'readinessCheckArn': readinessCheckArn,
+      if (readinessCheckName != null) 'readinessCheckName': readinessCheckName,
+      if (resourceSet != null) 'resourceSet': resourceSet,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1290,6 +1342,19 @@ class CreateRecoveryGroupResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cells = this.cells;
+    final recoveryGroupArn = this.recoveryGroupArn;
+    final recoveryGroupName = this.recoveryGroupName;
+    final tags = this.tags;
+    return {
+      if (cells != null) 'cells': cells,
+      if (recoveryGroupArn != null) 'recoveryGroupArn': recoveryGroupArn,
+      if (recoveryGroupName != null) 'recoveryGroupName': recoveryGroupName,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1337,6 +1402,21 @@ class CreateResourceSetResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceSetArn = this.resourceSetArn;
+    final resourceSetName = this.resourceSetName;
+    final resourceSetType = this.resourceSetType;
+    final resources = this.resources;
+    final tags = this.tags;
+    return {
+      if (resourceSetArn != null) 'resourceSetArn': resourceSetArn,
+      if (resourceSetName != null) 'resourceSetName': resourceSetName,
+      if (resourceSetType != null) 'resourceSetType': resourceSetType,
+      if (resources != null) 'resources': resources,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1403,6 +1483,10 @@ class DeleteCrossAccountAuthorizationResponse {
       Map<String, dynamic> _) {
     return DeleteCrossAccountAuthorizationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class GetArchitectureRecommendationsResponse {
@@ -1432,6 +1516,18 @@ class GetArchitectureRecommendationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastAuditTimestamp = this.lastAuditTimestamp;
+    final nextToken = this.nextToken;
+    final recommendations = this.recommendations;
+    return {
+      if (lastAuditTimestamp != null)
+        'lastAuditTimestamp': iso8601ToJson(lastAuditTimestamp),
+      if (nextToken != null) 'nextToken': nextToken,
+      if (recommendations != null) 'recommendations': recommendations,
+    };
+  }
 }
 
 class GetCellReadinessSummaryResponse {
@@ -1458,6 +1554,17 @@ class GetCellReadinessSummaryResponse {
           .map((e) => ReadinessCheckSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final readiness = this.readiness;
+    final readinessChecks = this.readinessChecks;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (readiness != null) 'readiness': readiness.toValue(),
+      if (readinessChecks != null) 'readinessChecks': readinessChecks,
+    };
   }
 }
 
@@ -1502,6 +1609,22 @@ class GetCellResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cellArn = this.cellArn;
+    final cellName = this.cellName;
+    final cells = this.cells;
+    final parentReadinessScopes = this.parentReadinessScopes;
+    final tags = this.tags;
+    return {
+      if (cellArn != null) 'cellArn': cellArn,
+      if (cellName != null) 'cellName': cellName,
+      if (cells != null) 'cells': cells,
+      if (parentReadinessScopes != null)
+        'parentReadinessScopes': parentReadinessScopes,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetReadinessCheckResourceStatusResponse {
@@ -1530,6 +1653,17 @@ class GetReadinessCheckResourceStatusResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final readiness = this.readiness;
+    final rules = this.rules;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (readiness != null) 'readiness': readiness.toValue(),
+      if (rules != null) 'rules': rules,
+    };
+  }
 }
 
 class GetReadinessCheckResponse {
@@ -1557,6 +1691,19 @@ class GetReadinessCheckResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final readinessCheckArn = this.readinessCheckArn;
+    final readinessCheckName = this.readinessCheckName;
+    final resourceSet = this.resourceSet;
+    final tags = this.tags;
+    return {
+      if (readinessCheckArn != null) 'readinessCheckArn': readinessCheckArn,
+      if (readinessCheckName != null) 'readinessCheckName': readinessCheckName,
+      if (resourceSet != null) 'resourceSet': resourceSet,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1593,6 +1740,19 @@ class GetReadinessCheckStatusResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final messages = this.messages;
+    final nextToken = this.nextToken;
+    final readiness = this.readiness;
+    final resources = this.resources;
+    return {
+      if (messages != null) 'messages': messages,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (readiness != null) 'readiness': readiness.toValue(),
+      if (resources != null) 'resources': resources,
+    };
+  }
 }
 
 class GetRecoveryGroupReadinessSummaryResponse {
@@ -1620,6 +1780,17 @@ class GetRecoveryGroupReadinessSummaryResponse {
           .map((e) => ReadinessCheckSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final readiness = this.readiness;
+    final readinessChecks = this.readinessChecks;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (readiness != null) 'readiness': readiness.toValue(),
+      if (readinessChecks != null) 'readinessChecks': readinessChecks,
+    };
   }
 }
 
@@ -1653,6 +1824,19 @@ class GetRecoveryGroupResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cells = this.cells;
+    final recoveryGroupArn = this.recoveryGroupArn;
+    final recoveryGroupName = this.recoveryGroupName;
+    final tags = this.tags;
+    return {
+      if (cells != null) 'cells': cells,
+      if (recoveryGroupArn != null) 'recoveryGroupArn': recoveryGroupArn,
+      if (recoveryGroupName != null) 'recoveryGroupName': recoveryGroupName,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1701,6 +1885,21 @@ class GetResourceSetResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceSetArn = this.resourceSetArn;
+    final resourceSetName = this.resourceSetName;
+    final resourceSetType = this.resourceSetType;
+    final resources = this.resources;
+    final tags = this.tags;
+    return {
+      if (resourceSetArn != null) 'resourceSetArn': resourceSetArn,
+      if (resourceSetName != null) 'resourceSetName': resourceSetName,
+      if (resourceSetType != null) 'resourceSetType': resourceSetType,
+      if (resources != null) 'resources': resources,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class ListCellsResponse {
@@ -1722,6 +1921,15 @@ class ListCellsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cells = this.cells;
+    final nextToken = this.nextToken;
+    return {
+      if (cells != null) 'cells': cells,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1746,6 +1954,16 @@ class ListCrossAccountAuthorizationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final crossAccountAuthorizations = this.crossAccountAuthorizations;
+    final nextToken = this.nextToken;
+    return {
+      if (crossAccountAuthorizations != null)
+        'crossAccountAuthorizations': crossAccountAuthorizations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListReadinessChecksResponse {
@@ -1767,6 +1985,15 @@ class ListReadinessChecksResponse {
           .map((e) => ReadinessCheckOutput.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final readinessChecks = this.readinessChecks;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (readinessChecks != null) 'readinessChecks': readinessChecks,
+    };
   }
 }
 
@@ -1790,6 +2017,15 @@ class ListRecoveryGroupsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final recoveryGroups = this.recoveryGroups;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (recoveryGroups != null) 'recoveryGroups': recoveryGroups,
+    };
+  }
 }
 
 class ListResourceSetsResponse {
@@ -1811,6 +2047,15 @@ class ListResourceSetsResponse {
           .map((e) => ResourceSetOutput.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceSets = this.resourceSets;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resourceSets != null) 'resourceSets': resourceSets,
+    };
   }
 }
 
@@ -1838,6 +2083,17 @@ class ListRulesOutput {
       ruleId: json['ruleId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceType = this.resourceType;
+    final ruleDescription = this.ruleDescription;
+    final ruleId = this.ruleId;
+    return {
+      'resourceType': resourceType,
+      'ruleDescription': ruleDescription,
+      'ruleId': ruleId,
+    };
+  }
 }
 
 class ListRulesResponse {
@@ -1860,6 +2116,15 @@ class ListRulesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final rules = this.rules;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (rules != null) 'rules': rules,
+    };
+  }
 }
 
 class ListTagsForResourcesResponse {
@@ -1875,6 +2140,13 @@ class ListTagsForResourcesResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Information relating to readiness check status.
@@ -1889,6 +2161,13 @@ class Message {
     return Message(
       messageText: json['messageText'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageText = this.messageText;
+    return {
+      if (messageText != null) 'messageText': messageText,
+    };
   }
 }
 
@@ -2009,6 +2288,19 @@ class ReadinessCheckOutput {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final readinessCheckArn = this.readinessCheckArn;
+    final resourceSet = this.resourceSet;
+    final readinessCheckName = this.readinessCheckName;
+    final tags = this.tags;
+    return {
+      'readinessCheckArn': readinessCheckArn,
+      'resourceSet': resourceSet,
+      if (readinessCheckName != null) 'readinessCheckName': readinessCheckName,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Summary of all readiness check statuses in a recovery group, paginated in
@@ -2030,6 +2322,15 @@ class ReadinessCheckSummary {
       readinessCheckName: json['readinessCheckName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final readiness = this.readiness;
+    final readinessCheckName = this.readinessCheckName;
+    return {
+      if (readiness != null) 'readiness': readiness.toValue(),
+      if (readinessCheckName != null) 'readinessCheckName': readinessCheckName,
+    };
+  }
 }
 
 /// Recommendations that are provided to make an application more recovery
@@ -2046,6 +2347,13 @@ class Recommendation {
     return Recommendation(
       recommendationText: json['recommendationText'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recommendationText = this.recommendationText;
+    return {
+      'recommendationText': recommendationText,
+    };
   }
 }
 
@@ -2080,6 +2388,19 @@ class RecoveryGroupOutput {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cells = this.cells;
+    final recoveryGroupArn = this.recoveryGroupArn;
+    final recoveryGroupName = this.recoveryGroupName;
+    final tags = this.tags;
+    return {
+      'cells': cells,
+      'recoveryGroupArn': recoveryGroupArn,
+      'recoveryGroupName': recoveryGroupName,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2165,6 +2486,19 @@ class ResourceResult {
       resourceArn: json['resourceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastCheckedTimestamp = this.lastCheckedTimestamp;
+    final readiness = this.readiness;
+    final componentId = this.componentId;
+    final resourceArn = this.resourceArn;
+    return {
+      'lastCheckedTimestamp': iso8601ToJson(lastCheckedTimestamp),
+      'readiness': readiness.toValue(),
+      if (componentId != null) 'componentId': componentId,
+      if (resourceArn != null) 'resourceArn': resourceArn,
+    };
+  }
 }
 
 /// A collection of resources of the same type.
@@ -2213,6 +2547,21 @@ class ResourceSetOutput {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceSetArn = this.resourceSetArn;
+    final resourceSetName = this.resourceSetName;
+    final resourceSetType = this.resourceSetType;
+    final resources = this.resources;
+    final tags = this.tags;
+    return {
+      'resourceSetArn': resourceSetArn,
+      'resourceSetName': resourceSetName,
+      'resourceSetType': resourceSetType,
+      'resources': resources,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// The result of a successful Rule request, with status for an individual rule.
@@ -2248,12 +2597,29 @@ class RuleResult {
       ruleId: json['ruleId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastCheckedTimestamp = this.lastCheckedTimestamp;
+    final messages = this.messages;
+    final readiness = this.readiness;
+    final ruleId = this.ruleId;
+    return {
+      'lastCheckedTimestamp': iso8601ToJson(lastCheckedTimestamp),
+      'messages': messages,
+      'readiness': readiness.toValue(),
+      'ruleId': ruleId,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2332,6 +2698,22 @@ class UpdateCellResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cellArn = this.cellArn;
+    final cellName = this.cellName;
+    final cells = this.cells;
+    final parentReadinessScopes = this.parentReadinessScopes;
+    final tags = this.tags;
+    return {
+      if (cellArn != null) 'cellArn': cellArn,
+      if (cellName != null) 'cellName': cellName,
+      if (cells != null) 'cells': cells,
+      if (parentReadinessScopes != null)
+        'parentReadinessScopes': parentReadinessScopes,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class UpdateReadinessCheckResponse {
@@ -2359,6 +2741,19 @@ class UpdateReadinessCheckResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final readinessCheckArn = this.readinessCheckArn;
+    final readinessCheckName = this.readinessCheckName;
+    final resourceSet = this.resourceSet;
+    final tags = this.tags;
+    return {
+      if (readinessCheckArn != null) 'readinessCheckArn': readinessCheckArn,
+      if (readinessCheckName != null) 'readinessCheckName': readinessCheckName,
+      if (resourceSet != null) 'resourceSet': resourceSet,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2392,6 +2787,19 @@ class UpdateRecoveryGroupResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cells = this.cells;
+    final recoveryGroupArn = this.recoveryGroupArn;
+    final recoveryGroupName = this.recoveryGroupName;
+    final tags = this.tags;
+    return {
+      if (cells != null) 'cells': cells,
+      if (recoveryGroupArn != null) 'recoveryGroupArn': recoveryGroupArn,
+      if (recoveryGroupName != null) 'recoveryGroupName': recoveryGroupName,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2439,6 +2847,21 @@ class UpdateResourceSetResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceSetArn = this.resourceSetArn;
+    final resourceSetName = this.resourceSetName;
+    final resourceSetType = this.resourceSetType;
+    final resources = this.resources;
+    final tags = this.tags;
+    return {
+      if (resourceSetArn != null) 'resourceSetArn': resourceSetArn,
+      if (resourceSetName != null) 'resourceSetName': resourceSetName,
+      if (resourceSetType != null) 'resourceSetType': resourceSetType,
+      if (resources != null) 'resources': resources,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 

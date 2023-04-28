@@ -4990,6 +4990,7 @@ class ADMChannelRequest {
     required this.clientSecret,
     this.enabled,
   });
+
   Map<String, dynamic> toJson() {
     final clientId = this.clientId;
     final clientSecret = this.clientSecret;
@@ -5062,6 +5063,31 @@ class ADMChannelResponse {
       lastModifiedDate: json['LastModifiedDate'] as String?,
       version: json['Version'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final platform = this.platform;
+    final applicationId = this.applicationId;
+    final creationDate = this.creationDate;
+    final enabled = this.enabled;
+    final hasCredential = this.hasCredential;
+    final id = this.id;
+    final isArchived = this.isArchived;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final version = this.version;
+    return {
+      'Platform': platform,
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (enabled != null) 'Enabled': enabled,
+      if (hasCredential != null) 'HasCredential': hasCredential,
+      if (id != null) 'Id': id,
+      if (isArchived != null) 'IsArchived': isArchived,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -5170,6 +5196,7 @@ class ADMMessage {
     this.title,
     this.url,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final body = this.body;
@@ -5251,6 +5278,7 @@ class APNSChannelRequest {
     this.tokenKey,
     this.tokenKeyId,
   });
+
   Map<String, dynamic> toJson() {
     final bundleId = this.bundleId;
     final certificate = this.certificate;
@@ -5348,6 +5376,36 @@ class APNSChannelResponse {
       lastModifiedDate: json['LastModifiedDate'] as String?,
       version: json['Version'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final platform = this.platform;
+    final applicationId = this.applicationId;
+    final creationDate = this.creationDate;
+    final defaultAuthenticationMethod = this.defaultAuthenticationMethod;
+    final enabled = this.enabled;
+    final hasCredential = this.hasCredential;
+    final hasTokenKey = this.hasTokenKey;
+    final id = this.id;
+    final isArchived = this.isArchived;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final version = this.version;
+    return {
+      'Platform': platform,
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (defaultAuthenticationMethod != null)
+        'DefaultAuthenticationMethod': defaultAuthenticationMethod,
+      if (enabled != null) 'Enabled': enabled,
+      if (hasCredential != null) 'HasCredential': hasCredential,
+      if (hasTokenKey != null) 'HasTokenKey': hasTokenKey,
+      if (id != null) 'Id': id,
+      if (isArchived != null) 'IsArchived': isArchived,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -5561,6 +5619,7 @@ class APNSMessage {
     this.title,
     this.url,
   });
+
   Map<String, dynamic> toJson() {
     final aPNSPushType = this.aPNSPushType;
     final action = this.action;
@@ -5743,6 +5802,7 @@ class APNSSandboxChannelRequest {
     this.tokenKey,
     this.tokenKeyId,
   });
+
   Map<String, dynamic> toJson() {
     final bundleId = this.bundleId;
     final certificate = this.certificate;
@@ -5842,6 +5902,36 @@ class APNSSandboxChannelResponse {
       version: json['Version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final platform = this.platform;
+    final applicationId = this.applicationId;
+    final creationDate = this.creationDate;
+    final defaultAuthenticationMethod = this.defaultAuthenticationMethod;
+    final enabled = this.enabled;
+    final hasCredential = this.hasCredential;
+    final hasTokenKey = this.hasTokenKey;
+    final id = this.id;
+    final isArchived = this.isArchived;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final version = this.version;
+    return {
+      'Platform': platform,
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (defaultAuthenticationMethod != null)
+        'DefaultAuthenticationMethod': defaultAuthenticationMethod,
+      if (enabled != null) 'Enabled': enabled,
+      if (hasCredential != null) 'HasCredential': hasCredential,
+      if (hasTokenKey != null) 'HasTokenKey': hasTokenKey,
+      if (id != null) 'Id': id,
+      if (isArchived != null) 'IsArchived': isArchived,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// Specifies the status and settings of the APNs (Apple Push Notification
@@ -5887,6 +5977,7 @@ class APNSVoipChannelRequest {
     this.tokenKey,
     this.tokenKeyId,
   });
+
   Map<String, dynamic> toJson() {
     final bundleId = this.bundleId;
     final certificate = this.certificate;
@@ -5986,6 +6077,36 @@ class APNSVoipChannelResponse {
       version: json['Version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final platform = this.platform;
+    final applicationId = this.applicationId;
+    final creationDate = this.creationDate;
+    final defaultAuthenticationMethod = this.defaultAuthenticationMethod;
+    final enabled = this.enabled;
+    final hasCredential = this.hasCredential;
+    final hasTokenKey = this.hasTokenKey;
+    final id = this.id;
+    final isArchived = this.isArchived;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final version = this.version;
+    return {
+      'Platform': platform,
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (defaultAuthenticationMethod != null)
+        'DefaultAuthenticationMethod': defaultAuthenticationMethod,
+      if (enabled != null) 'Enabled': enabled,
+      if (hasCredential != null) 'HasCredential': hasCredential,
+      if (hasTokenKey != null) 'HasTokenKey': hasTokenKey,
+      if (id != null) 'Id': id,
+      if (isArchived != null) 'IsArchived': isArchived,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// Specifies the status and settings of the APNs (Apple Push Notification
@@ -6035,6 +6156,7 @@ class APNSVoipSandboxChannelRequest {
     this.tokenKey,
     this.tokenKeyId,
   });
+
   Map<String, dynamic> toJson() {
     final bundleId = this.bundleId;
     final certificate = this.certificate;
@@ -6135,6 +6257,36 @@ class APNSVoipSandboxChannelResponse {
       version: json['Version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final platform = this.platform;
+    final applicationId = this.applicationId;
+    final creationDate = this.creationDate;
+    final defaultAuthenticationMethod = this.defaultAuthenticationMethod;
+    final enabled = this.enabled;
+    final hasCredential = this.hasCredential;
+    final hasTokenKey = this.hasTokenKey;
+    final id = this.id;
+    final isArchived = this.isArchived;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final version = this.version;
+    return {
+      'Platform': platform,
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (defaultAuthenticationMethod != null)
+        'DefaultAuthenticationMethod': defaultAuthenticationMethod,
+      if (enabled != null) 'Enabled': enabled,
+      if (hasCredential != null) 'HasCredential': hasCredential,
+      if (hasTokenKey != null) 'HasTokenKey': hasTokenKey,
+      if (id != null) 'Id': id,
+      if (isArchived != null) 'IsArchived': isArchived,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 enum Action {
@@ -6192,6 +6344,15 @@ class ActivitiesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final item = this.item;
+    final nextToken = this.nextToken;
+    return {
+      'Item': item,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6407,6 +6568,40 @@ class ActivityResponse {
       treatmentId: json['TreatmentId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final campaignId = this.campaignId;
+    final id = this.id;
+    final end = this.end;
+    final result = this.result;
+    final scheduledStart = this.scheduledStart;
+    final start = this.start;
+    final state = this.state;
+    final successfulEndpointCount = this.successfulEndpointCount;
+    final timezonesCompletedCount = this.timezonesCompletedCount;
+    final timezonesTotalCount = this.timezonesTotalCount;
+    final totalEndpointCount = this.totalEndpointCount;
+    final treatmentId = this.treatmentId;
+    return {
+      'ApplicationId': applicationId,
+      'CampaignId': campaignId,
+      'Id': id,
+      if (end != null) 'End': end,
+      if (result != null) 'Result': result,
+      if (scheduledStart != null) 'ScheduledStart': scheduledStart,
+      if (start != null) 'Start': start,
+      if (state != null) 'State': state,
+      if (successfulEndpointCount != null)
+        'SuccessfulEndpointCount': successfulEndpointCount,
+      if (timezonesCompletedCount != null)
+        'TimezonesCompletedCount': timezonesCompletedCount,
+      if (timezonesTotalCount != null)
+        'TimezonesTotalCount': timezonesTotalCount,
+      if (totalEndpointCount != null) 'TotalEndpointCount': totalEndpointCount,
+      if (treatmentId != null) 'TreatmentId': treatmentId,
+    };
+  }
 }
 
 /// Specifies address-based configuration settings for a message that's sent
@@ -6448,6 +6643,7 @@ class AddressConfiguration {
     this.substitutions,
     this.titleOverride,
   });
+
   Map<String, dynamic> toJson() {
     final bodyOverride = this.bodyOverride;
     final channelType = this.channelType;
@@ -6661,6 +6857,23 @@ class ApplicationDateRangeKpiResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final endTime = this.endTime;
+    final kpiName = this.kpiName;
+    final kpiResult = this.kpiResult;
+    final startTime = this.startTime;
+    final nextToken = this.nextToken;
+    return {
+      'ApplicationId': applicationId,
+      'EndTime': iso8601ToJson(endTime),
+      'KpiName': kpiName,
+      'KpiResult': kpiResult,
+      'StartTime': iso8601ToJson(startTime),
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Provides information about an application.
@@ -6700,6 +6913,21 @@ class ApplicationResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    final creationDate = this.creationDate;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      'Id': id,
+      'Name': name,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -6768,6 +6996,21 @@ class ApplicationSettingsResource {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final campaignHook = this.campaignHook;
+    final lastModifiedDate = this.lastModifiedDate;
+    final limits = this.limits;
+    final quietTime = this.quietTime;
+    return {
+      'ApplicationId': applicationId,
+      if (campaignHook != null) 'CampaignHook': campaignHook,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (limits != null) 'Limits': limits,
+      if (quietTime != null) 'QuietTime': quietTime,
+    };
+  }
 }
 
 /// Provides information about all of your applications.
@@ -6791,6 +7034,15 @@ class ApplicationsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final item = this.item;
+    final nextToken = this.nextToken;
+    return {
+      if (item != null) 'Item': item,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6939,6 +7191,17 @@ class AttributesResource {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final attributeType = this.attributeType;
+    final attributes = this.attributes;
+    return {
+      'ApplicationId': applicationId,
+      'AttributeType': attributeType,
+      if (attributes != null) 'Attributes': attributes,
+    };
+  }
 }
 
 /// Specifies the status and settings of the Baidu (Baidu Cloud Push) channel
@@ -6960,6 +7223,7 @@ class BaiduChannelRequest {
     required this.secretKey,
     this.enabled,
   });
+
   Map<String, dynamic> toJson() {
     final apiKey = this.apiKey;
     final secretKey = this.secretKey;
@@ -7038,6 +7302,33 @@ class BaiduChannelResponse {
       lastModifiedDate: json['LastModifiedDate'] as String?,
       version: json['Version'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final credential = this.credential;
+    final platform = this.platform;
+    final applicationId = this.applicationId;
+    final creationDate = this.creationDate;
+    final enabled = this.enabled;
+    final hasCredential = this.hasCredential;
+    final id = this.id;
+    final isArchived = this.isArchived;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final version = this.version;
+    return {
+      'Credential': credential,
+      'Platform': platform,
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (enabled != null) 'Enabled': enabled,
+      if (hasCredential != null) 'HasCredential': hasCredential,
+      if (id != null) 'Id': id,
+      if (isArchived != null) 'IsArchived': isArchived,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -7135,6 +7426,7 @@ class BaiduMessage {
     this.title,
     this.url,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final body = this.body;
@@ -7187,6 +7479,13 @@ class BaseKpiResult {
           .map((e) => ResultRow.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rows = this.rows;
+    return {
+      'Rows': rows,
+    };
   }
 }
 
@@ -7303,6 +7602,25 @@ class CampaignDateRangeKpiResponse {
       startTime: nonNullableTimeStampFromJson(json['StartTime'] as Object),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final campaignId = this.campaignId;
+    final endTime = this.endTime;
+    final kpiName = this.kpiName;
+    final kpiResult = this.kpiResult;
+    final startTime = this.startTime;
+    final nextToken = this.nextToken;
+    return {
+      'ApplicationId': applicationId,
+      'CampaignId': campaignId,
+      'EndTime': iso8601ToJson(endTime),
+      'KpiName': kpiName,
+      'KpiResult': kpiResult,
+      'StartTime': iso8601ToJson(startTime),
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -7720,6 +8038,66 @@ class CampaignResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final id = this.id;
+    final lastModifiedDate = this.lastModifiedDate;
+    final segmentId = this.segmentId;
+    final segmentVersion = this.segmentVersion;
+    final additionalTreatments = this.additionalTreatments;
+    final customDeliveryConfiguration = this.customDeliveryConfiguration;
+    final defaultState = this.defaultState;
+    final description = this.description;
+    final holdoutPercent = this.holdoutPercent;
+    final hook = this.hook;
+    final isPaused = this.isPaused;
+    final limits = this.limits;
+    final messageConfiguration = this.messageConfiguration;
+    final name = this.name;
+    final priority = this.priority;
+    final schedule = this.schedule;
+    final state = this.state;
+    final templateConfiguration = this.templateConfiguration;
+    final treatmentDescription = this.treatmentDescription;
+    final treatmentName = this.treatmentName;
+    final version = this.version;
+    final tags = this.tags;
+    return {
+      'ApplicationId': applicationId,
+      'Arn': arn,
+      'CreationDate': creationDate,
+      'Id': id,
+      'LastModifiedDate': lastModifiedDate,
+      'SegmentId': segmentId,
+      'SegmentVersion': segmentVersion,
+      if (additionalTreatments != null)
+        'AdditionalTreatments': additionalTreatments,
+      if (customDeliveryConfiguration != null)
+        'CustomDeliveryConfiguration': customDeliveryConfiguration,
+      if (defaultState != null) 'DefaultState': defaultState,
+      if (description != null) 'Description': description,
+      if (holdoutPercent != null) 'HoldoutPercent': holdoutPercent,
+      if (hook != null) 'Hook': hook,
+      if (isPaused != null) 'IsPaused': isPaused,
+      if (limits != null) 'Limits': limits,
+      if (messageConfiguration != null)
+        'MessageConfiguration': messageConfiguration,
+      if (name != null) 'Name': name,
+      if (priority != null) 'Priority': priority,
+      if (schedule != null) 'Schedule': schedule,
+      if (state != null) 'State': state,
+      if (templateConfiguration != null)
+        'TemplateConfiguration': templateConfiguration,
+      if (treatmentDescription != null)
+        'TreatmentDescription': treatmentDescription,
+      if (treatmentName != null) 'TreatmentName': treatmentName,
+      if (version != null) 'Version': version,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Specifies the content and settings for an SMS message that's sent to
@@ -7809,6 +8187,13 @@ class CampaignState {
       campaignStatus: (json['CampaignStatus'] as String?)?.toCampaignStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final campaignStatus = this.campaignStatus;
+    return {
+      if (campaignStatus != null) 'CampaignStatus': campaignStatus.toValue(),
+    };
+  }
 }
 
 enum CampaignStatus {
@@ -7888,6 +8273,15 @@ class CampaignsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final item = this.item;
+    final nextToken = this.nextToken;
+    return {
+      'Item': item,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Provides information about the general settings and status of a channel for
@@ -7944,6 +8338,29 @@ class ChannelResponse {
       lastModifiedDate: json['LastModifiedDate'] as String?,
       version: json['Version'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final creationDate = this.creationDate;
+    final enabled = this.enabled;
+    final hasCredential = this.hasCredential;
+    final id = this.id;
+    final isArchived = this.isArchived;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final version = this.version;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (enabled != null) 'Enabled': enabled,
+      if (hasCredential != null) 'HasCredential': hasCredential,
+      if (id != null) 'Id': id,
+      if (isArchived != null) 'IsArchived': isArchived,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -8046,6 +8463,13 @@ class ChannelsResponse {
       channels: (json['Channels'] as Map<String, dynamic>).map((k, e) =>
           MapEntry(k, ChannelResponse.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channels = this.channels;
+    return {
+      'Channels': channels,
+    };
   }
 }
 
@@ -8175,6 +8599,13 @@ class CreateAppResponse {
   CreateAppResponse({
     required this.applicationResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final applicationResponse = this.applicationResponse;
+    return {
+      'ApplicationResponse': applicationResponse,
+    };
+  }
 }
 
 /// Specifies the display name of an application and the tags to associate with
@@ -8193,6 +8624,7 @@ class CreateApplicationRequest {
     required this.name,
     this.tags,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final tags = this.tags;
@@ -8209,6 +8641,13 @@ class CreateCampaignResponse {
   CreateCampaignResponse({
     required this.campaignResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final campaignResponse = this.campaignResponse;
+    return {
+      'CampaignResponse': campaignResponse,
+    };
+  }
 }
 
 class CreateEmailTemplateResponse {
@@ -8217,6 +8656,13 @@ class CreateEmailTemplateResponse {
   CreateEmailTemplateResponse({
     required this.createTemplateMessageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final createTemplateMessageBody = this.createTemplateMessageBody;
+    return {
+      'CreateTemplateMessageBody': createTemplateMessageBody,
+    };
+  }
 }
 
 class CreateExportJobResponse {
@@ -8225,6 +8671,13 @@ class CreateExportJobResponse {
   CreateExportJobResponse({
     required this.exportJobResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final exportJobResponse = this.exportJobResponse;
+    return {
+      'ExportJobResponse': exportJobResponse,
+    };
+  }
 }
 
 class CreateImportJobResponse {
@@ -8233,6 +8686,13 @@ class CreateImportJobResponse {
   CreateImportJobResponse({
     required this.importJobResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final importJobResponse = this.importJobResponse;
+    return {
+      'ImportJobResponse': importJobResponse,
+    };
+  }
 }
 
 class CreateInAppTemplateResponse {
@@ -8241,6 +8701,13 @@ class CreateInAppTemplateResponse {
   CreateInAppTemplateResponse({
     required this.templateCreateMessageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final templateCreateMessageBody = this.templateCreateMessageBody;
+    return {
+      'TemplateCreateMessageBody': templateCreateMessageBody,
+    };
+  }
 }
 
 class CreateJourneyResponse {
@@ -8249,6 +8716,13 @@ class CreateJourneyResponse {
   CreateJourneyResponse({
     required this.journeyResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final journeyResponse = this.journeyResponse;
+    return {
+      'JourneyResponse': journeyResponse,
+    };
+  }
 }
 
 class CreatePushTemplateResponse {
@@ -8257,6 +8731,13 @@ class CreatePushTemplateResponse {
   CreatePushTemplateResponse({
     required this.createTemplateMessageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final createTemplateMessageBody = this.createTemplateMessageBody;
+    return {
+      'CreateTemplateMessageBody': createTemplateMessageBody,
+    };
+  }
 }
 
 /// Specifies Amazon Pinpoint configuration settings for retrieving and
@@ -8374,6 +8855,7 @@ class CreateRecommenderConfiguration {
     this.recommendationsDisplayName,
     this.recommendationsPerMessage,
   });
+
   Map<String, dynamic> toJson() {
     final recommendationProviderRoleArn = this.recommendationProviderRoleArn;
     final recommendationProviderUri = this.recommendationProviderUri;
@@ -8408,6 +8890,14 @@ class CreateRecommenderConfigurationResponse {
   CreateRecommenderConfigurationResponse({
     required this.recommenderConfigurationResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final recommenderConfigurationResponse =
+        this.recommenderConfigurationResponse;
+    return {
+      'RecommenderConfigurationResponse': recommenderConfigurationResponse,
+    };
+  }
 }
 
 class CreateSegmentResponse {
@@ -8416,6 +8906,13 @@ class CreateSegmentResponse {
   CreateSegmentResponse({
     required this.segmentResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final segmentResponse = this.segmentResponse;
+    return {
+      'SegmentResponse': segmentResponse,
+    };
+  }
 }
 
 class CreateSmsTemplateResponse {
@@ -8424,6 +8921,13 @@ class CreateSmsTemplateResponse {
   CreateSmsTemplateResponse({
     required this.createTemplateMessageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final createTemplateMessageBody = this.createTemplateMessageBody;
+    return {
+      'CreateTemplateMessageBody': createTemplateMessageBody,
+    };
+  }
 }
 
 /// Provides information about a request to create a message template.
@@ -8450,6 +8954,17 @@ class CreateTemplateMessageBody {
       requestID: json['RequestID'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final message = this.message;
+    final requestID = this.requestID;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (message != null) 'Message': message,
+      if (requestID != null) 'RequestID': requestID,
+    };
+  }
 }
 
 class CreateVoiceTemplateResponse {
@@ -8458,6 +8973,13 @@ class CreateVoiceTemplateResponse {
   CreateVoiceTemplateResponse({
     required this.createTemplateMessageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final createTemplateMessageBody = this.createTemplateMessageBody;
+    return {
+      'CreateTemplateMessageBody': createTemplateMessageBody,
+    };
+  }
 }
 
 /// Specifies the delivery configuration settings for sending a campaign or
@@ -8673,6 +9195,7 @@ class DefaultMessage {
     this.body,
     this.substitutions,
   });
+
   Map<String, dynamic> toJson() {
     final body = this.body;
     final substitutions = this.substitutions;
@@ -8742,6 +9265,7 @@ class DefaultPushNotificationMessage {
     this.title,
     this.url,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final body = this.body;
@@ -8849,6 +9373,13 @@ class DeleteAdmChannelResponse {
   DeleteAdmChannelResponse({
     required this.aDMChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aDMChannelResponse = this.aDMChannelResponse;
+    return {
+      'ADMChannelResponse': aDMChannelResponse,
+    };
+  }
 }
 
 class DeleteApnsChannelResponse {
@@ -8857,6 +9388,13 @@ class DeleteApnsChannelResponse {
   DeleteApnsChannelResponse({
     required this.aPNSChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aPNSChannelResponse = this.aPNSChannelResponse;
+    return {
+      'APNSChannelResponse': aPNSChannelResponse,
+    };
+  }
 }
 
 class DeleteApnsSandboxChannelResponse {
@@ -8865,6 +9403,13 @@ class DeleteApnsSandboxChannelResponse {
   DeleteApnsSandboxChannelResponse({
     required this.aPNSSandboxChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aPNSSandboxChannelResponse = this.aPNSSandboxChannelResponse;
+    return {
+      'APNSSandboxChannelResponse': aPNSSandboxChannelResponse,
+    };
+  }
 }
 
 class DeleteApnsVoipChannelResponse {
@@ -8873,6 +9418,13 @@ class DeleteApnsVoipChannelResponse {
   DeleteApnsVoipChannelResponse({
     required this.aPNSVoipChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aPNSVoipChannelResponse = this.aPNSVoipChannelResponse;
+    return {
+      'APNSVoipChannelResponse': aPNSVoipChannelResponse,
+    };
+  }
 }
 
 class DeleteApnsVoipSandboxChannelResponse {
@@ -8881,6 +9433,13 @@ class DeleteApnsVoipSandboxChannelResponse {
   DeleteApnsVoipSandboxChannelResponse({
     required this.aPNSVoipSandboxChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aPNSVoipSandboxChannelResponse = this.aPNSVoipSandboxChannelResponse;
+    return {
+      'APNSVoipSandboxChannelResponse': aPNSVoipSandboxChannelResponse,
+    };
+  }
 }
 
 class DeleteAppResponse {
@@ -8889,6 +9448,13 @@ class DeleteAppResponse {
   DeleteAppResponse({
     required this.applicationResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final applicationResponse = this.applicationResponse;
+    return {
+      'ApplicationResponse': applicationResponse,
+    };
+  }
 }
 
 class DeleteBaiduChannelResponse {
@@ -8897,6 +9463,13 @@ class DeleteBaiduChannelResponse {
   DeleteBaiduChannelResponse({
     required this.baiduChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final baiduChannelResponse = this.baiduChannelResponse;
+    return {
+      'BaiduChannelResponse': baiduChannelResponse,
+    };
+  }
 }
 
 class DeleteCampaignResponse {
@@ -8905,6 +9478,13 @@ class DeleteCampaignResponse {
   DeleteCampaignResponse({
     required this.campaignResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final campaignResponse = this.campaignResponse;
+    return {
+      'CampaignResponse': campaignResponse,
+    };
+  }
 }
 
 class DeleteEmailChannelResponse {
@@ -8913,6 +9493,13 @@ class DeleteEmailChannelResponse {
   DeleteEmailChannelResponse({
     required this.emailChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final emailChannelResponse = this.emailChannelResponse;
+    return {
+      'EmailChannelResponse': emailChannelResponse,
+    };
+  }
 }
 
 class DeleteEmailTemplateResponse {
@@ -8921,6 +9508,13 @@ class DeleteEmailTemplateResponse {
   DeleteEmailTemplateResponse({
     required this.messageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageBody = this.messageBody;
+    return {
+      'MessageBody': messageBody,
+    };
+  }
 }
 
 class DeleteEndpointResponse {
@@ -8929,6 +9523,13 @@ class DeleteEndpointResponse {
   DeleteEndpointResponse({
     required this.endpointResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final endpointResponse = this.endpointResponse;
+    return {
+      'EndpointResponse': endpointResponse,
+    };
+  }
 }
 
 class DeleteEventStreamResponse {
@@ -8937,6 +9538,13 @@ class DeleteEventStreamResponse {
   DeleteEventStreamResponse({
     required this.eventStream,
   });
+
+  Map<String, dynamic> toJson() {
+    final eventStream = this.eventStream;
+    return {
+      'EventStream': eventStream,
+    };
+  }
 }
 
 class DeleteGcmChannelResponse {
@@ -8945,6 +9553,13 @@ class DeleteGcmChannelResponse {
   DeleteGcmChannelResponse({
     required this.gCMChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final gCMChannelResponse = this.gCMChannelResponse;
+    return {
+      'GCMChannelResponse': gCMChannelResponse,
+    };
+  }
 }
 
 class DeleteInAppTemplateResponse {
@@ -8953,6 +9568,13 @@ class DeleteInAppTemplateResponse {
   DeleteInAppTemplateResponse({
     required this.messageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageBody = this.messageBody;
+    return {
+      'MessageBody': messageBody,
+    };
+  }
 }
 
 class DeleteJourneyResponse {
@@ -8961,6 +9583,13 @@ class DeleteJourneyResponse {
   DeleteJourneyResponse({
     required this.journeyResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final journeyResponse = this.journeyResponse;
+    return {
+      'JourneyResponse': journeyResponse,
+    };
+  }
 }
 
 class DeletePushTemplateResponse {
@@ -8969,6 +9598,13 @@ class DeletePushTemplateResponse {
   DeletePushTemplateResponse({
     required this.messageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageBody = this.messageBody;
+    return {
+      'MessageBody': messageBody,
+    };
+  }
 }
 
 class DeleteRecommenderConfigurationResponse {
@@ -8977,6 +9613,14 @@ class DeleteRecommenderConfigurationResponse {
   DeleteRecommenderConfigurationResponse({
     required this.recommenderConfigurationResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final recommenderConfigurationResponse =
+        this.recommenderConfigurationResponse;
+    return {
+      'RecommenderConfigurationResponse': recommenderConfigurationResponse,
+    };
+  }
 }
 
 class DeleteSegmentResponse {
@@ -8985,6 +9629,13 @@ class DeleteSegmentResponse {
   DeleteSegmentResponse({
     required this.segmentResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final segmentResponse = this.segmentResponse;
+    return {
+      'SegmentResponse': segmentResponse,
+    };
+  }
 }
 
 class DeleteSmsChannelResponse {
@@ -8993,6 +9644,13 @@ class DeleteSmsChannelResponse {
   DeleteSmsChannelResponse({
     required this.sMSChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final sMSChannelResponse = this.sMSChannelResponse;
+    return {
+      'SMSChannelResponse': sMSChannelResponse,
+    };
+  }
 }
 
 class DeleteSmsTemplateResponse {
@@ -9001,6 +9659,13 @@ class DeleteSmsTemplateResponse {
   DeleteSmsTemplateResponse({
     required this.messageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageBody = this.messageBody;
+    return {
+      'MessageBody': messageBody,
+    };
+  }
 }
 
 class DeleteUserEndpointsResponse {
@@ -9009,6 +9674,13 @@ class DeleteUserEndpointsResponse {
   DeleteUserEndpointsResponse({
     required this.endpointsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final endpointsResponse = this.endpointsResponse;
+    return {
+      'EndpointsResponse': endpointsResponse,
+    };
+  }
 }
 
 class DeleteVoiceChannelResponse {
@@ -9017,6 +9689,13 @@ class DeleteVoiceChannelResponse {
   DeleteVoiceChannelResponse({
     required this.voiceChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final voiceChannelResponse = this.voiceChannelResponse;
+    return {
+      'VoiceChannelResponse': voiceChannelResponse,
+    };
+  }
 }
 
 class DeleteVoiceTemplateResponse {
@@ -9025,6 +9704,13 @@ class DeleteVoiceTemplateResponse {
   DeleteVoiceTemplateResponse({
     required this.messageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageBody = this.messageBody;
+    return {
+      'MessageBody': messageBody,
+    };
+  }
 }
 
 enum DeliveryStatus {
@@ -9161,6 +9847,7 @@ class DirectMessageConfiguration {
     this.sMSMessage,
     this.voiceMessage,
   });
+
   Map<String, dynamic> toJson() {
     final aDMMessage = this.aDMMessage;
     final aPNSMessage = this.aPNSMessage;
@@ -9256,6 +9943,7 @@ class EmailChannelRequest {
     this.enabled,
     this.roleArn,
   });
+
   Map<String, dynamic> toJson() {
     final fromAddress = this.fromAddress;
     final identity = this.identity;
@@ -9367,6 +10055,41 @@ class EmailChannelResponse {
       version: json['Version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final platform = this.platform;
+    final applicationId = this.applicationId;
+    final configurationSet = this.configurationSet;
+    final creationDate = this.creationDate;
+    final enabled = this.enabled;
+    final fromAddress = this.fromAddress;
+    final hasCredential = this.hasCredential;
+    final id = this.id;
+    final identity = this.identity;
+    final isArchived = this.isArchived;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final messagesPerSecond = this.messagesPerSecond;
+    final roleArn = this.roleArn;
+    final version = this.version;
+    return {
+      'Platform': platform,
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (configurationSet != null) 'ConfigurationSet': configurationSet,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (enabled != null) 'Enabled': enabled,
+      if (fromAddress != null) 'FromAddress': fromAddress,
+      if (hasCredential != null) 'HasCredential': hasCredential,
+      if (id != null) 'Id': id,
+      if (identity != null) 'Identity': identity,
+      if (isArchived != null) 'IsArchived': isArchived,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (messagesPerSecond != null) 'MessagesPerSecond': messagesPerSecond,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// Specifies the default settings and content for a one-time email message
@@ -9406,6 +10129,7 @@ class EmailMessage {
     this.simpleEmail,
     this.substitutions,
   });
+
   Map<String, dynamic> toJson() {
     final body = this.body;
     final feedbackForwardingAddress = this.feedbackForwardingAddress;
@@ -9539,6 +10263,7 @@ class EmailTemplateRequest {
     this.textPart,
     this.tags,
   });
+
   Map<String, dynamic> toJson() {
     final defaultSubstitutions = this.defaultSubstitutions;
     final htmlPart = this.htmlPart;
@@ -9648,6 +10373,39 @@ class EmailTemplateResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final templateName = this.templateName;
+    final templateType = this.templateType;
+    final arn = this.arn;
+    final defaultSubstitutions = this.defaultSubstitutions;
+    final htmlPart = this.htmlPart;
+    final recommenderId = this.recommenderId;
+    final subject = this.subject;
+    final templateDescription = this.templateDescription;
+    final textPart = this.textPart;
+    final version = this.version;
+    final tags = this.tags;
+    return {
+      'CreationDate': creationDate,
+      'LastModifiedDate': lastModifiedDate,
+      'TemplateName': templateName,
+      'TemplateType': templateType.toValue(),
+      if (arn != null) 'Arn': arn,
+      if (defaultSubstitutions != null)
+        'DefaultSubstitutions': defaultSubstitutions,
+      if (htmlPart != null) 'HtmlPart': htmlPart,
+      if (recommenderId != null) 'RecommenderId': recommenderId,
+      if (subject != null) 'Subject': subject,
+      if (templateDescription != null)
+        'TemplateDescription': templateDescription,
+      if (textPart != null) 'TextPart': textPart,
+      if (version != null) 'Version': version,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Specifies an endpoint to create or update and the settings and attributes to
@@ -9736,6 +10494,7 @@ class EndpointBatchItem {
     this.requestId,
     this.user,
   });
+
   Map<String, dynamic> toJson() {
     final address = this.address;
     final attributes = this.attributes;
@@ -9777,6 +10536,7 @@ class EndpointBatchRequest {
   EndpointBatchRequest({
     required this.item,
   });
+
   Map<String, dynamic> toJson() {
     final item = this.item;
     return {
@@ -9880,6 +10640,15 @@ class EndpointItemResponse {
       message: json['Message'] as String?,
       statusCode: json['StatusCode'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final statusCode = this.statusCode;
+    return {
+      if (message != null) 'Message': message,
+      if (statusCode != null) 'StatusCode': statusCode,
+    };
   }
 }
 
@@ -10018,6 +10787,23 @@ class EndpointMessageResult {
       updatedToken: json['UpdatedToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deliveryStatus = this.deliveryStatus;
+    final statusCode = this.statusCode;
+    final address = this.address;
+    final messageId = this.messageId;
+    final statusMessage = this.statusMessage;
+    final updatedToken = this.updatedToken;
+    return {
+      'DeliveryStatus': deliveryStatus.toValue(),
+      'StatusCode': statusCode,
+      if (address != null) 'Address': address,
+      if (messageId != null) 'MessageId': messageId,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (updatedToken != null) 'UpdatedToken': updatedToken,
+    };
+  }
 }
 
 /// Specifies the channel type and other settings for an endpoint.
@@ -10100,6 +10886,7 @@ class EndpointRequest {
     this.requestId,
     this.user,
   });
+
   Map<String, dynamic> toJson() {
     final address = this.address;
     final attributes = this.attributes;
@@ -10253,6 +11040,41 @@ class EndpointResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final applicationId = this.applicationId;
+    final attributes = this.attributes;
+    final channelType = this.channelType;
+    final cohortId = this.cohortId;
+    final creationDate = this.creationDate;
+    final demographic = this.demographic;
+    final effectiveDate = this.effectiveDate;
+    final endpointStatus = this.endpointStatus;
+    final id = this.id;
+    final location = this.location;
+    final metrics = this.metrics;
+    final optOut = this.optOut;
+    final requestId = this.requestId;
+    final user = this.user;
+    return {
+      if (address != null) 'Address': address,
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (attributes != null) 'Attributes': attributes,
+      if (channelType != null) 'ChannelType': channelType.toValue(),
+      if (cohortId != null) 'CohortId': cohortId,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (demographic != null) 'Demographic': demographic,
+      if (effectiveDate != null) 'EffectiveDate': effectiveDate,
+      if (endpointStatus != null) 'EndpointStatus': endpointStatus,
+      if (id != null) 'Id': id,
+      if (location != null) 'Location': location,
+      if (metrics != null) 'Metrics': metrics,
+      if (optOut != null) 'OptOut': optOut,
+      if (requestId != null) 'RequestId': requestId,
+      if (user != null) 'User': user,
+    };
+  }
 }
 
 /// Specifies the content, including message variables and attributes, to use in
@@ -10290,6 +11112,7 @@ class EndpointSendConfiguration {
     this.substitutions,
     this.titleOverride,
   });
+
   Map<String, dynamic> toJson() {
     final bodyOverride = this.bodyOverride;
     final context = this.context;
@@ -10367,6 +11190,13 @@ class EndpointsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final item = this.item;
+    return {
+      'Item': item,
+    };
+  }
 }
 
 /// Specifies information about an event that reports data to Amazon Pinpoint.
@@ -10413,6 +11243,7 @@ class Event {
     this.sdkName,
     this.session,
   });
+
   Map<String, dynamic> toJson() {
     final eventType = this.eventType;
     final timestamp = this.timestamp;
@@ -10580,6 +11411,15 @@ class EventItemResponse {
       statusCode: json['StatusCode'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final statusCode = this.statusCode;
+    return {
+      if (message != null) 'Message': message,
+      if (statusCode != null) 'StatusCode': statusCode,
+    };
+  }
 }
 
 /// Specifies the settings for an event that causes a journey activity to start.
@@ -10663,6 +11503,23 @@ class EventStream {
       lastUpdatedBy: json['LastUpdatedBy'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final destinationStreamArn = this.destinationStreamArn;
+    final roleArn = this.roleArn;
+    final externalId = this.externalId;
+    final lastModifiedDate = this.lastModifiedDate;
+    final lastUpdatedBy = this.lastUpdatedBy;
+    return {
+      'ApplicationId': applicationId,
+      'DestinationStreamArn': destinationStreamArn,
+      'RoleArn': roleArn,
+      if (externalId != null) 'ExternalId': externalId,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (lastUpdatedBy != null) 'LastUpdatedBy': lastUpdatedBy,
+    };
+  }
 }
 
 /// Specifies a batch of endpoints and events to process.
@@ -10677,6 +11534,7 @@ class EventsBatch {
     required this.endpoint,
     required this.events,
   });
+
   Map<String, dynamic> toJson() {
     final endpoint = this.endpoint;
     final events = this.events;
@@ -10696,6 +11554,7 @@ class EventsRequest {
   EventsRequest({
     required this.batchItem,
   });
+
   Map<String, dynamic> toJson() {
     final batchItem = this.batchItem;
     return {
@@ -10722,6 +11581,13 @@ class EventsResponse {
       results: (json['Results'] as Map<String, dynamic>?)?.map((k, e) =>
           MapEntry(k, ItemResponse.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final results = this.results;
+    return {
+      if (results != null) 'Results': results,
+    };
   }
 }
 
@@ -10755,6 +11621,7 @@ class ExportJobRequest {
     this.segmentId,
     this.segmentVersion,
   });
+
   Map<String, dynamic> toJson() {
     final roleArn = this.roleArn;
     final s3UrlPrefix = this.s3UrlPrefix;
@@ -10807,6 +11674,19 @@ class ExportJobResource {
       segmentId: json['SegmentId'] as String?,
       segmentVersion: json['SegmentVersion'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final roleArn = this.roleArn;
+    final s3UrlPrefix = this.s3UrlPrefix;
+    final segmentId = this.segmentId;
+    final segmentVersion = this.segmentVersion;
+    return {
+      'RoleArn': roleArn,
+      'S3UrlPrefix': s3UrlPrefix,
+      if (segmentId != null) 'SegmentId': segmentId,
+      if (segmentVersion != null) 'SegmentVersion': segmentVersion,
+    };
   }
 }
 
@@ -10900,6 +11780,37 @@ class ExportJobResponse {
       totalProcessed: json['TotalProcessed'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final creationDate = this.creationDate;
+    final definition = this.definition;
+    final id = this.id;
+    final jobStatus = this.jobStatus;
+    final type = this.type;
+    final completedPieces = this.completedPieces;
+    final completionDate = this.completionDate;
+    final failedPieces = this.failedPieces;
+    final failures = this.failures;
+    final totalFailures = this.totalFailures;
+    final totalPieces = this.totalPieces;
+    final totalProcessed = this.totalProcessed;
+    return {
+      'ApplicationId': applicationId,
+      'CreationDate': creationDate,
+      'Definition': definition,
+      'Id': id,
+      'JobStatus': jobStatus.toValue(),
+      'Type': type,
+      if (completedPieces != null) 'CompletedPieces': completedPieces,
+      if (completionDate != null) 'CompletionDate': completionDate,
+      if (failedPieces != null) 'FailedPieces': failedPieces,
+      if (failures != null) 'Failures': failures,
+      if (totalFailures != null) 'TotalFailures': totalFailures,
+      if (totalPieces != null) 'TotalPieces': totalPieces,
+      if (totalProcessed != null) 'TotalProcessed': totalProcessed,
+    };
+  }
 }
 
 /// Provides information about all the export jobs that are associated with an
@@ -10927,6 +11838,15 @@ class ExportJobsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final item = this.item;
+    final nextToken = this.nextToken;
+    return {
+      'Item': item,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -11055,6 +11975,7 @@ class GCMChannelRequest {
     required this.apiKey,
     this.enabled,
   });
+
   Map<String, dynamic> toJson() {
     final apiKey = this.apiKey;
     final enabled = this.enabled;
@@ -11133,6 +12054,33 @@ class GCMChannelResponse {
       lastModifiedDate: json['LastModifiedDate'] as String?,
       version: json['Version'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final credential = this.credential;
+    final platform = this.platform;
+    final applicationId = this.applicationId;
+    final creationDate = this.creationDate;
+    final enabled = this.enabled;
+    final hasCredential = this.hasCredential;
+    final id = this.id;
+    final isArchived = this.isArchived;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final version = this.version;
+    return {
+      'Credential': credential,
+      'Platform': platform,
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (enabled != null) 'Enabled': enabled,
+      if (hasCredential != null) 'HasCredential': hasCredential,
+      if (id != null) 'Id': id,
+      if (isArchived != null) 'IsArchived': isArchived,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -11269,6 +12217,7 @@ class GCMMessage {
     this.title,
     this.url,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final body = this.body;
@@ -11376,6 +12325,13 @@ class GetAdmChannelResponse {
   GetAdmChannelResponse({
     required this.aDMChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aDMChannelResponse = this.aDMChannelResponse;
+    return {
+      'ADMChannelResponse': aDMChannelResponse,
+    };
+  }
 }
 
 class GetApnsChannelResponse {
@@ -11384,6 +12340,13 @@ class GetApnsChannelResponse {
   GetApnsChannelResponse({
     required this.aPNSChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aPNSChannelResponse = this.aPNSChannelResponse;
+    return {
+      'APNSChannelResponse': aPNSChannelResponse,
+    };
+  }
 }
 
 class GetApnsSandboxChannelResponse {
@@ -11392,6 +12355,13 @@ class GetApnsSandboxChannelResponse {
   GetApnsSandboxChannelResponse({
     required this.aPNSSandboxChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aPNSSandboxChannelResponse = this.aPNSSandboxChannelResponse;
+    return {
+      'APNSSandboxChannelResponse': aPNSSandboxChannelResponse,
+    };
+  }
 }
 
 class GetApnsVoipChannelResponse {
@@ -11400,6 +12370,13 @@ class GetApnsVoipChannelResponse {
   GetApnsVoipChannelResponse({
     required this.aPNSVoipChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aPNSVoipChannelResponse = this.aPNSVoipChannelResponse;
+    return {
+      'APNSVoipChannelResponse': aPNSVoipChannelResponse,
+    };
+  }
 }
 
 class GetApnsVoipSandboxChannelResponse {
@@ -11408,6 +12385,13 @@ class GetApnsVoipSandboxChannelResponse {
   GetApnsVoipSandboxChannelResponse({
     required this.aPNSVoipSandboxChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aPNSVoipSandboxChannelResponse = this.aPNSVoipSandboxChannelResponse;
+    return {
+      'APNSVoipSandboxChannelResponse': aPNSVoipSandboxChannelResponse,
+    };
+  }
 }
 
 class GetAppResponse {
@@ -11416,6 +12400,13 @@ class GetAppResponse {
   GetAppResponse({
     required this.applicationResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final applicationResponse = this.applicationResponse;
+    return {
+      'ApplicationResponse': applicationResponse,
+    };
+  }
 }
 
 class GetApplicationDateRangeKpiResponse {
@@ -11424,6 +12415,14 @@ class GetApplicationDateRangeKpiResponse {
   GetApplicationDateRangeKpiResponse({
     required this.applicationDateRangeKpiResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final applicationDateRangeKpiResponse =
+        this.applicationDateRangeKpiResponse;
+    return {
+      'ApplicationDateRangeKpiResponse': applicationDateRangeKpiResponse,
+    };
+  }
 }
 
 class GetApplicationSettingsResponse {
@@ -11432,6 +12431,13 @@ class GetApplicationSettingsResponse {
   GetApplicationSettingsResponse({
     required this.applicationSettingsResource,
   });
+
+  Map<String, dynamic> toJson() {
+    final applicationSettingsResource = this.applicationSettingsResource;
+    return {
+      'ApplicationSettingsResource': applicationSettingsResource,
+    };
+  }
 }
 
 class GetAppsResponse {
@@ -11440,6 +12446,13 @@ class GetAppsResponse {
   GetAppsResponse({
     required this.applicationsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final applicationsResponse = this.applicationsResponse;
+    return {
+      'ApplicationsResponse': applicationsResponse,
+    };
+  }
 }
 
 class GetBaiduChannelResponse {
@@ -11448,6 +12461,13 @@ class GetBaiduChannelResponse {
   GetBaiduChannelResponse({
     required this.baiduChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final baiduChannelResponse = this.baiduChannelResponse;
+    return {
+      'BaiduChannelResponse': baiduChannelResponse,
+    };
+  }
 }
 
 class GetCampaignActivitiesResponse {
@@ -11456,6 +12476,13 @@ class GetCampaignActivitiesResponse {
   GetCampaignActivitiesResponse({
     required this.activitiesResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final activitiesResponse = this.activitiesResponse;
+    return {
+      'ActivitiesResponse': activitiesResponse,
+    };
+  }
 }
 
 class GetCampaignDateRangeKpiResponse {
@@ -11464,6 +12491,13 @@ class GetCampaignDateRangeKpiResponse {
   GetCampaignDateRangeKpiResponse({
     required this.campaignDateRangeKpiResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final campaignDateRangeKpiResponse = this.campaignDateRangeKpiResponse;
+    return {
+      'CampaignDateRangeKpiResponse': campaignDateRangeKpiResponse,
+    };
+  }
 }
 
 class GetCampaignResponse {
@@ -11472,6 +12506,13 @@ class GetCampaignResponse {
   GetCampaignResponse({
     required this.campaignResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final campaignResponse = this.campaignResponse;
+    return {
+      'CampaignResponse': campaignResponse,
+    };
+  }
 }
 
 class GetCampaignVersionResponse {
@@ -11480,6 +12521,13 @@ class GetCampaignVersionResponse {
   GetCampaignVersionResponse({
     required this.campaignResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final campaignResponse = this.campaignResponse;
+    return {
+      'CampaignResponse': campaignResponse,
+    };
+  }
 }
 
 class GetCampaignVersionsResponse {
@@ -11488,6 +12536,13 @@ class GetCampaignVersionsResponse {
   GetCampaignVersionsResponse({
     required this.campaignsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final campaignsResponse = this.campaignsResponse;
+    return {
+      'CampaignsResponse': campaignsResponse,
+    };
+  }
 }
 
 class GetCampaignsResponse {
@@ -11496,6 +12551,13 @@ class GetCampaignsResponse {
   GetCampaignsResponse({
     required this.campaignsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final campaignsResponse = this.campaignsResponse;
+    return {
+      'CampaignsResponse': campaignsResponse,
+    };
+  }
 }
 
 class GetChannelsResponse {
@@ -11504,6 +12566,13 @@ class GetChannelsResponse {
   GetChannelsResponse({
     required this.channelsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final channelsResponse = this.channelsResponse;
+    return {
+      'ChannelsResponse': channelsResponse,
+    };
+  }
 }
 
 class GetEmailChannelResponse {
@@ -11512,6 +12581,13 @@ class GetEmailChannelResponse {
   GetEmailChannelResponse({
     required this.emailChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final emailChannelResponse = this.emailChannelResponse;
+    return {
+      'EmailChannelResponse': emailChannelResponse,
+    };
+  }
 }
 
 class GetEmailTemplateResponse {
@@ -11520,6 +12596,13 @@ class GetEmailTemplateResponse {
   GetEmailTemplateResponse({
     required this.emailTemplateResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final emailTemplateResponse = this.emailTemplateResponse;
+    return {
+      'EmailTemplateResponse': emailTemplateResponse,
+    };
+  }
 }
 
 class GetEndpointResponse {
@@ -11528,6 +12611,13 @@ class GetEndpointResponse {
   GetEndpointResponse({
     required this.endpointResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final endpointResponse = this.endpointResponse;
+    return {
+      'EndpointResponse': endpointResponse,
+    };
+  }
 }
 
 class GetEventStreamResponse {
@@ -11536,6 +12626,13 @@ class GetEventStreamResponse {
   GetEventStreamResponse({
     required this.eventStream,
   });
+
+  Map<String, dynamic> toJson() {
+    final eventStream = this.eventStream;
+    return {
+      'EventStream': eventStream,
+    };
+  }
 }
 
 class GetExportJobResponse {
@@ -11544,6 +12641,13 @@ class GetExportJobResponse {
   GetExportJobResponse({
     required this.exportJobResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final exportJobResponse = this.exportJobResponse;
+    return {
+      'ExportJobResponse': exportJobResponse,
+    };
+  }
 }
 
 class GetExportJobsResponse {
@@ -11552,6 +12656,13 @@ class GetExportJobsResponse {
   GetExportJobsResponse({
     required this.exportJobsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final exportJobsResponse = this.exportJobsResponse;
+    return {
+      'ExportJobsResponse': exportJobsResponse,
+    };
+  }
 }
 
 class GetGcmChannelResponse {
@@ -11560,6 +12671,13 @@ class GetGcmChannelResponse {
   GetGcmChannelResponse({
     required this.gCMChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final gCMChannelResponse = this.gCMChannelResponse;
+    return {
+      'GCMChannelResponse': gCMChannelResponse,
+    };
+  }
 }
 
 class GetImportJobResponse {
@@ -11568,6 +12686,13 @@ class GetImportJobResponse {
   GetImportJobResponse({
     required this.importJobResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final importJobResponse = this.importJobResponse;
+    return {
+      'ImportJobResponse': importJobResponse,
+    };
+  }
 }
 
 class GetImportJobsResponse {
@@ -11576,6 +12701,13 @@ class GetImportJobsResponse {
   GetImportJobsResponse({
     required this.importJobsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final importJobsResponse = this.importJobsResponse;
+    return {
+      'ImportJobsResponse': importJobsResponse,
+    };
+  }
 }
 
 class GetInAppMessagesResponse {
@@ -11584,6 +12716,13 @@ class GetInAppMessagesResponse {
   GetInAppMessagesResponse({
     required this.inAppMessagesResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final inAppMessagesResponse = this.inAppMessagesResponse;
+    return {
+      'InAppMessagesResponse': inAppMessagesResponse,
+    };
+  }
 }
 
 class GetInAppTemplateResponse {
@@ -11592,6 +12731,13 @@ class GetInAppTemplateResponse {
   GetInAppTemplateResponse({
     required this.inAppTemplateResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final inAppTemplateResponse = this.inAppTemplateResponse;
+    return {
+      'InAppTemplateResponse': inAppTemplateResponse,
+    };
+  }
 }
 
 class GetJourneyDateRangeKpiResponse {
@@ -11600,6 +12746,13 @@ class GetJourneyDateRangeKpiResponse {
   GetJourneyDateRangeKpiResponse({
     required this.journeyDateRangeKpiResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final journeyDateRangeKpiResponse = this.journeyDateRangeKpiResponse;
+    return {
+      'JourneyDateRangeKpiResponse': journeyDateRangeKpiResponse,
+    };
+  }
 }
 
 class GetJourneyExecutionActivityMetricsResponse {
@@ -11609,6 +12762,15 @@ class GetJourneyExecutionActivityMetricsResponse {
   GetJourneyExecutionActivityMetricsResponse({
     required this.journeyExecutionActivityMetricsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final journeyExecutionActivityMetricsResponse =
+        this.journeyExecutionActivityMetricsResponse;
+    return {
+      'JourneyExecutionActivityMetricsResponse':
+          journeyExecutionActivityMetricsResponse,
+    };
+  }
 }
 
 class GetJourneyExecutionMetricsResponse {
@@ -11617,6 +12779,14 @@ class GetJourneyExecutionMetricsResponse {
   GetJourneyExecutionMetricsResponse({
     required this.journeyExecutionMetricsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final journeyExecutionMetricsResponse =
+        this.journeyExecutionMetricsResponse;
+    return {
+      'JourneyExecutionMetricsResponse': journeyExecutionMetricsResponse,
+    };
+  }
 }
 
 class GetJourneyResponse {
@@ -11625,6 +12795,13 @@ class GetJourneyResponse {
   GetJourneyResponse({
     required this.journeyResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final journeyResponse = this.journeyResponse;
+    return {
+      'JourneyResponse': journeyResponse,
+    };
+  }
 }
 
 class GetPushTemplateResponse {
@@ -11633,6 +12810,14 @@ class GetPushTemplateResponse {
   GetPushTemplateResponse({
     required this.pushNotificationTemplateResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final pushNotificationTemplateResponse =
+        this.pushNotificationTemplateResponse;
+    return {
+      'PushNotificationTemplateResponse': pushNotificationTemplateResponse,
+    };
+  }
 }
 
 class GetRecommenderConfigurationResponse {
@@ -11641,6 +12826,14 @@ class GetRecommenderConfigurationResponse {
   GetRecommenderConfigurationResponse({
     required this.recommenderConfigurationResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final recommenderConfigurationResponse =
+        this.recommenderConfigurationResponse;
+    return {
+      'RecommenderConfigurationResponse': recommenderConfigurationResponse,
+    };
+  }
 }
 
 class GetRecommenderConfigurationsResponse {
@@ -11650,6 +12843,15 @@ class GetRecommenderConfigurationsResponse {
   GetRecommenderConfigurationsResponse({
     required this.listRecommenderConfigurationsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final listRecommenderConfigurationsResponse =
+        this.listRecommenderConfigurationsResponse;
+    return {
+      'ListRecommenderConfigurationsResponse':
+          listRecommenderConfigurationsResponse,
+    };
+  }
 }
 
 class GetSegmentExportJobsResponse {
@@ -11658,6 +12860,13 @@ class GetSegmentExportJobsResponse {
   GetSegmentExportJobsResponse({
     required this.exportJobsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final exportJobsResponse = this.exportJobsResponse;
+    return {
+      'ExportJobsResponse': exportJobsResponse,
+    };
+  }
 }
 
 class GetSegmentImportJobsResponse {
@@ -11666,6 +12875,13 @@ class GetSegmentImportJobsResponse {
   GetSegmentImportJobsResponse({
     required this.importJobsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final importJobsResponse = this.importJobsResponse;
+    return {
+      'ImportJobsResponse': importJobsResponse,
+    };
+  }
 }
 
 class GetSegmentResponse {
@@ -11674,6 +12890,13 @@ class GetSegmentResponse {
   GetSegmentResponse({
     required this.segmentResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final segmentResponse = this.segmentResponse;
+    return {
+      'SegmentResponse': segmentResponse,
+    };
+  }
 }
 
 class GetSegmentVersionResponse {
@@ -11682,6 +12905,13 @@ class GetSegmentVersionResponse {
   GetSegmentVersionResponse({
     required this.segmentResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final segmentResponse = this.segmentResponse;
+    return {
+      'SegmentResponse': segmentResponse,
+    };
+  }
 }
 
 class GetSegmentVersionsResponse {
@@ -11690,6 +12920,13 @@ class GetSegmentVersionsResponse {
   GetSegmentVersionsResponse({
     required this.segmentsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final segmentsResponse = this.segmentsResponse;
+    return {
+      'SegmentsResponse': segmentsResponse,
+    };
+  }
 }
 
 class GetSegmentsResponse {
@@ -11698,6 +12935,13 @@ class GetSegmentsResponse {
   GetSegmentsResponse({
     required this.segmentsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final segmentsResponse = this.segmentsResponse;
+    return {
+      'SegmentsResponse': segmentsResponse,
+    };
+  }
 }
 
 class GetSmsChannelResponse {
@@ -11706,6 +12950,13 @@ class GetSmsChannelResponse {
   GetSmsChannelResponse({
     required this.sMSChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final sMSChannelResponse = this.sMSChannelResponse;
+    return {
+      'SMSChannelResponse': sMSChannelResponse,
+    };
+  }
 }
 
 class GetSmsTemplateResponse {
@@ -11714,6 +12965,13 @@ class GetSmsTemplateResponse {
   GetSmsTemplateResponse({
     required this.sMSTemplateResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final sMSTemplateResponse = this.sMSTemplateResponse;
+    return {
+      'SMSTemplateResponse': sMSTemplateResponse,
+    };
+  }
 }
 
 class GetUserEndpointsResponse {
@@ -11722,6 +12980,13 @@ class GetUserEndpointsResponse {
   GetUserEndpointsResponse({
     required this.endpointsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final endpointsResponse = this.endpointsResponse;
+    return {
+      'EndpointsResponse': endpointsResponse,
+    };
+  }
 }
 
 class GetVoiceChannelResponse {
@@ -11730,6 +12995,13 @@ class GetVoiceChannelResponse {
   GetVoiceChannelResponse({
     required this.voiceChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final voiceChannelResponse = this.voiceChannelResponse;
+    return {
+      'VoiceChannelResponse': voiceChannelResponse,
+    };
+  }
 }
 
 class GetVoiceTemplateResponse {
@@ -11738,6 +13010,13 @@ class GetVoiceTemplateResponse {
   GetVoiceTemplateResponse({
     required this.voiceTemplateResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final voiceTemplateResponse = this.voiceTemplateResponse;
+    return {
+      'VoiceTemplateResponse': voiceTemplateResponse,
+    };
+  }
 }
 
 /// Specifies the settings for a holdout activity in a journey. This type of
@@ -11836,6 +13115,7 @@ class ImportJobRequest {
     this.segmentId,
     this.segmentName,
   });
+
   Map<String, dynamic> toJson() {
     final format = this.format;
     final roleArn = this.roleArn;
@@ -11934,6 +13214,27 @@ class ImportJobResource {
       segmentName: json['SegmentName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final format = this.format;
+    final roleArn = this.roleArn;
+    final s3Url = this.s3Url;
+    final defineSegment = this.defineSegment;
+    final externalId = this.externalId;
+    final registerEndpoints = this.registerEndpoints;
+    final segmentId = this.segmentId;
+    final segmentName = this.segmentName;
+    return {
+      'Format': format.toValue(),
+      'RoleArn': roleArn,
+      'S3Url': s3Url,
+      if (defineSegment != null) 'DefineSegment': defineSegment,
+      if (externalId != null) 'ExternalId': externalId,
+      if (registerEndpoints != null) 'RegisterEndpoints': registerEndpoints,
+      if (segmentId != null) 'SegmentId': segmentId,
+      if (segmentName != null) 'SegmentName': segmentName,
+    };
+  }
 }
 
 /// Provides information about the status and settings of a job that imports
@@ -12026,6 +13327,37 @@ class ImportJobResponse {
       totalProcessed: json['TotalProcessed'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final creationDate = this.creationDate;
+    final definition = this.definition;
+    final id = this.id;
+    final jobStatus = this.jobStatus;
+    final type = this.type;
+    final completedPieces = this.completedPieces;
+    final completionDate = this.completionDate;
+    final failedPieces = this.failedPieces;
+    final failures = this.failures;
+    final totalFailures = this.totalFailures;
+    final totalPieces = this.totalPieces;
+    final totalProcessed = this.totalProcessed;
+    return {
+      'ApplicationId': applicationId,
+      'CreationDate': creationDate,
+      'Definition': definition,
+      'Id': id,
+      'JobStatus': jobStatus.toValue(),
+      'Type': type,
+      if (completedPieces != null) 'CompletedPieces': completedPieces,
+      if (completionDate != null) 'CompletionDate': completionDate,
+      if (failedPieces != null) 'FailedPieces': failedPieces,
+      if (failures != null) 'Failures': failures,
+      if (totalFailures != null) 'TotalFailures': totalFailures,
+      if (totalPieces != null) 'TotalPieces': totalPieces,
+      if (totalProcessed != null) 'TotalProcessed': totalProcessed,
+    };
+  }
 }
 
 /// Provides information about the status and settings of all the import jobs
@@ -12053,6 +13385,15 @@ class ImportJobsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final item = this.item;
+    final nextToken = this.nextToken;
+    return {
+      'Item': item,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -12086,6 +13427,17 @@ class InAppCampaignSchedule {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endDate = this.endDate;
+    final eventFilter = this.eventFilter;
+    final quietTime = this.quietTime;
+    return {
+      if (endDate != null) 'EndDate': endDate,
+      if (eventFilter != null) 'EventFilter': eventFilter,
+      if (quietTime != null) 'QuietTime': quietTime,
+    };
+  }
 }
 
 /// Provides all fields required for building an in-app message.
@@ -12114,6 +13466,17 @@ class InAppMessage {
           ?.map((k, e) => MapEntry(k, e as String)),
       layout: (json['Layout'] as String?)?.toLayout(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    final customConfig = this.customConfig;
+    final layout = this.layout;
+    return {
+      if (content != null) 'Content': content,
+      if (customConfig != null) 'CustomConfig': customConfig,
+      if (layout != null) 'Layout': layout.toValue(),
+    };
   }
 }
 
@@ -12265,6 +13628,27 @@ class InAppMessageCampaign {
       treatmentId: json['TreatmentId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final campaignId = this.campaignId;
+    final dailyCap = this.dailyCap;
+    final inAppMessage = this.inAppMessage;
+    final priority = this.priority;
+    final schedule = this.schedule;
+    final sessionCap = this.sessionCap;
+    final totalCap = this.totalCap;
+    final treatmentId = this.treatmentId;
+    return {
+      if (campaignId != null) 'CampaignId': campaignId,
+      if (dailyCap != null) 'DailyCap': dailyCap,
+      if (inAppMessage != null) 'InAppMessage': inAppMessage,
+      if (priority != null) 'Priority': priority,
+      if (schedule != null) 'Schedule': schedule,
+      if (sessionCap != null) 'SessionCap': sessionCap,
+      if (totalCap != null) 'TotalCap': totalCap,
+      if (treatmentId != null) 'TreatmentId': treatmentId,
+    };
+  }
 }
 
 /// The configuration for the message content.
@@ -12388,6 +13772,14 @@ class InAppMessagesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inAppMessageCampaigns = this.inAppMessageCampaigns;
+    return {
+      if (inAppMessageCampaigns != null)
+        'InAppMessageCampaigns': inAppMessageCampaigns,
+    };
+  }
 }
 
 /// InApp Template Request.
@@ -12418,6 +13810,7 @@ class InAppTemplateRequest {
     this.templateDescription,
     this.tags,
   });
+
   Map<String, dynamic> toJson() {
     final content = this.content;
     final customConfig = this.customConfig;
@@ -12507,6 +13900,34 @@ class InAppTemplateResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final templateName = this.templateName;
+    final templateType = this.templateType;
+    final arn = this.arn;
+    final content = this.content;
+    final customConfig = this.customConfig;
+    final layout = this.layout;
+    final templateDescription = this.templateDescription;
+    final version = this.version;
+    final tags = this.tags;
+    return {
+      'CreationDate': creationDate,
+      'LastModifiedDate': lastModifiedDate,
+      'TemplateName': templateName,
+      'TemplateType': templateType.toValue(),
+      if (arn != null) 'Arn': arn,
+      if (content != null) 'Content': content,
+      if (customConfig != null) 'CustomConfig': customConfig,
+      if (layout != null) 'Layout': layout.toValue(),
+      if (templateDescription != null)
+        'TemplateDescription': templateDescription,
+      if (version != null) 'Version': version,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum Include {
@@ -12567,6 +13988,16 @@ class ItemResponse {
           ?.map((k, e) => MapEntry(
               k, EventItemResponse.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointItemResponse = this.endpointItemResponse;
+    final eventsItemResponse = this.eventsItemResponse;
+    return {
+      if (endpointItemResponse != null)
+        'EndpointItemResponse': endpointItemResponse,
+      if (eventsItemResponse != null) 'EventsItemResponse': eventsItemResponse,
+    };
   }
 }
 
@@ -12714,6 +14145,25 @@ class JourneyDateRangeKpiResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final endTime = this.endTime;
+    final journeyId = this.journeyId;
+    final kpiName = this.kpiName;
+    final kpiResult = this.kpiResult;
+    final startTime = this.startTime;
+    final nextToken = this.nextToken;
+    return {
+      'ApplicationId': applicationId,
+      'EndTime': iso8601ToJson(endTime),
+      'JourneyId': journeyId,
+      'KpiName': kpiName,
+      'KpiResult': kpiResult,
+      'StartTime': iso8601ToJson(startTime),
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Specifies the "From" address for an email message that's sent to
@@ -12818,6 +14268,23 @@ class JourneyExecutionActivityMetricsResponse {
           .map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activityType = this.activityType;
+    final applicationId = this.applicationId;
+    final journeyActivityId = this.journeyActivityId;
+    final journeyId = this.journeyId;
+    final lastEvaluatedTime = this.lastEvaluatedTime;
+    final metrics = this.metrics;
+    return {
+      'ActivityType': activityType,
+      'ApplicationId': applicationId,
+      'JourneyActivityId': journeyActivityId,
+      'JourneyId': journeyId,
+      'LastEvaluatedTime': lastEvaluatedTime,
+      'Metrics': metrics,
+    };
+  }
 }
 
 /// Provides the results of a query that retrieved the data for a standard
@@ -12854,6 +14321,19 @@ class JourneyExecutionMetricsResponse {
       metrics: (json['Metrics'] as Map<String, dynamic>)
           .map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final journeyId = this.journeyId;
+    final lastEvaluatedTime = this.lastEvaluatedTime;
+    final metrics = this.metrics;
+    return {
+      'ApplicationId': applicationId,
+      'JourneyId': journeyId,
+      'LastEvaluatedTime': lastEvaluatedTime,
+      'Metrics': metrics,
+    };
   }
 }
 
@@ -13138,6 +14618,49 @@ class JourneyResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final id = this.id;
+    final name = this.name;
+    final activities = this.activities;
+    final creationDate = this.creationDate;
+    final journeyChannelSettings = this.journeyChannelSettings;
+    final lastModifiedDate = this.lastModifiedDate;
+    final limits = this.limits;
+    final localTime = this.localTime;
+    final quietTime = this.quietTime;
+    final refreshFrequency = this.refreshFrequency;
+    final refreshOnSegmentUpdate = this.refreshOnSegmentUpdate;
+    final schedule = this.schedule;
+    final startActivity = this.startActivity;
+    final startCondition = this.startCondition;
+    final state = this.state;
+    final waitForQuietTime = this.waitForQuietTime;
+    final tags = this.tags;
+    return {
+      'ApplicationId': applicationId,
+      'Id': id,
+      'Name': name,
+      if (activities != null) 'Activities': activities,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (journeyChannelSettings != null)
+        'JourneyChannelSettings': journeyChannelSettings,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (limits != null) 'Limits': limits,
+      if (localTime != null) 'LocalTime': localTime,
+      if (quietTime != null) 'QuietTime': quietTime,
+      if (refreshFrequency != null) 'RefreshFrequency': refreshFrequency,
+      if (refreshOnSegmentUpdate != null)
+        'RefreshOnSegmentUpdate': refreshOnSegmentUpdate,
+      if (schedule != null) 'Schedule': schedule,
+      if (startActivity != null) 'StartActivity': startActivity,
+      if (startCondition != null) 'StartCondition': startCondition,
+      if (state != null) 'State': state.toValue(),
+      if (waitForQuietTime != null) 'WaitForQuietTime': waitForQuietTime,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Specifies the sender ID and message type for an SMS message that's sent to
@@ -13274,6 +14797,7 @@ class JourneyStateRequest {
   JourneyStateRequest({
     this.state,
   });
+
   Map<String, dynamic> toJson() {
     final state = this.state;
     return {
@@ -13305,6 +14829,15 @@ class JourneysResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final item = this.item;
+    final nextToken = this.nextToken;
+    return {
+      'Item': item,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -13362,6 +14895,13 @@ class ListJourneysResponse {
   ListJourneysResponse({
     required this.journeysResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final journeysResponse = this.journeysResponse;
+    return {
+      'JourneysResponse': journeysResponse,
+    };
+  }
 }
 
 /// Provides information about all the recommender model configurations that are
@@ -13390,6 +14930,15 @@ class ListRecommenderConfigurationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final item = this.item;
+    final nextToken = this.nextToken;
+    return {
+      'Item': item,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -13398,6 +14947,13 @@ class ListTagsForResourceResponse {
   ListTagsForResourceResponse({
     required this.tagsModel,
   });
+
+  Map<String, dynamic> toJson() {
+    final tagsModel = this.tagsModel;
+    return {
+      'TagsModel': tagsModel,
+    };
+  }
 }
 
 class ListTemplateVersionsResponse {
@@ -13406,6 +14962,13 @@ class ListTemplateVersionsResponse {
   ListTemplateVersionsResponse({
     required this.templateVersionsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final templateVersionsResponse = this.templateVersionsResponse;
+    return {
+      'TemplateVersionsResponse': templateVersionsResponse,
+    };
+  }
 }
 
 class ListTemplatesResponse {
@@ -13414,6 +14977,13 @@ class ListTemplatesResponse {
   ListTemplatesResponse({
     required this.templatesResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final templatesResponse = this.templatesResponse;
+    return {
+      'TemplatesResponse': templatesResponse,
+    };
+  }
 }
 
 /// Specifies the content and settings for a push notification that's sent to
@@ -13567,6 +15137,15 @@ class MessageBody {
       message: json['Message'] as String?,
       requestID: json['RequestID'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final requestID = this.requestID;
+    return {
+      if (message != null) 'Message': message,
+      if (requestID != null) 'RequestID': requestID,
+    };
   }
 }
 
@@ -13729,6 +15308,7 @@ class MessageRequest {
     this.templateConfiguration,
     this.traceId,
   });
+
   Map<String, dynamic> toJson() {
     final messageConfiguration = this.messageConfiguration;
     final addresses = this.addresses;
@@ -13783,6 +15363,19 @@ class MessageResponse {
       result: (json['Result'] as Map<String, dynamic>?)?.map((k, e) =>
           MapEntry(k, MessageResult.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final endpointResult = this.endpointResult;
+    final requestId = this.requestId;
+    final result = this.result;
+    return {
+      'ApplicationId': applicationId,
+      if (endpointResult != null) 'EndpointResult': endpointResult,
+      if (requestId != null) 'RequestId': requestId,
+      if (result != null) 'Result': result,
+    };
   }
 }
 
@@ -13854,6 +15447,21 @@ class MessageResult {
       statusMessage: json['StatusMessage'] as String?,
       updatedToken: json['UpdatedToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deliveryStatus = this.deliveryStatus;
+    final statusCode = this.statusCode;
+    final messageId = this.messageId;
+    final statusMessage = this.statusMessage;
+    final updatedToken = this.updatedToken;
+    return {
+      'DeliveryStatus': deliveryStatus.toValue(),
+      'StatusCode': statusCode,
+      if (messageId != null) 'MessageId': messageId,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (updatedToken != null) 'UpdatedToken': updatedToken,
+    };
   }
 }
 
@@ -14051,6 +15659,7 @@ class NumberValidateRequest {
     this.isoCountryCode,
     this.phoneNumber,
   });
+
   Map<String, dynamic> toJson() {
     final isoCountryCode = this.isoCountryCode;
     final phoneNumber = this.phoneNumber;
@@ -14153,6 +15762,43 @@ class NumberValidateResponse {
       zipCode: json['ZipCode'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final carrier = this.carrier;
+    final city = this.city;
+    final cleansedPhoneNumberE164 = this.cleansedPhoneNumberE164;
+    final cleansedPhoneNumberNational = this.cleansedPhoneNumberNational;
+    final country = this.country;
+    final countryCodeIso2 = this.countryCodeIso2;
+    final countryCodeNumeric = this.countryCodeNumeric;
+    final county = this.county;
+    final originalCountryCodeIso2 = this.originalCountryCodeIso2;
+    final originalPhoneNumber = this.originalPhoneNumber;
+    final phoneType = this.phoneType;
+    final phoneTypeCode = this.phoneTypeCode;
+    final timezone = this.timezone;
+    final zipCode = this.zipCode;
+    return {
+      if (carrier != null) 'Carrier': carrier,
+      if (city != null) 'City': city,
+      if (cleansedPhoneNumberE164 != null)
+        'CleansedPhoneNumberE164': cleansedPhoneNumberE164,
+      if (cleansedPhoneNumberNational != null)
+        'CleansedPhoneNumberNational': cleansedPhoneNumberNational,
+      if (country != null) 'Country': country,
+      if (countryCodeIso2 != null) 'CountryCodeIso2': countryCodeIso2,
+      if (countryCodeNumeric != null) 'CountryCodeNumeric': countryCodeNumeric,
+      if (county != null) 'County': county,
+      if (originalCountryCodeIso2 != null)
+        'OriginalCountryCodeIso2': originalCountryCodeIso2,
+      if (originalPhoneNumber != null)
+        'OriginalPhoneNumber': originalPhoneNumber,
+      if (phoneType != null) 'PhoneType': phoneType,
+      if (phoneTypeCode != null) 'PhoneTypeCode': phoneTypeCode,
+      if (timezone != null) 'Timezone': timezone,
+      if (zipCode != null) 'ZipCode': zipCode,
+    };
+  }
 }
 
 enum Operator {
@@ -14218,6 +15864,13 @@ class PhoneNumberValidateResponse {
   PhoneNumberValidateResponse({
     required this.numberValidateResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final numberValidateResponse = this.numberValidateResponse;
+    return {
+      'NumberValidateResponse': numberValidateResponse,
+    };
+  }
 }
 
 /// Specifies the properties and attributes of an endpoint that's associated
@@ -14287,6 +15940,7 @@ class PublicEndpoint {
     this.requestId,
     this.user,
   });
+
   Map<String, dynamic> toJson() {
     final address = this.address;
     final attributes = this.attributes;
@@ -14437,6 +16091,7 @@ class PushNotificationTemplateRequest {
     this.templateDescription,
     this.tags,
   });
+
   Map<String, dynamic> toJson() {
     final adm = this.adm;
     final apns = this.apns;
@@ -14582,6 +16237,43 @@ class PushNotificationTemplateResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final templateName = this.templateName;
+    final templateType = this.templateType;
+    final adm = this.adm;
+    final apns = this.apns;
+    final arn = this.arn;
+    final baidu = this.baidu;
+    final defaultValue = this.defaultValue;
+    final defaultSubstitutions = this.defaultSubstitutions;
+    final gcm = this.gcm;
+    final recommenderId = this.recommenderId;
+    final templateDescription = this.templateDescription;
+    final version = this.version;
+    final tags = this.tags;
+    return {
+      'CreationDate': creationDate,
+      'LastModifiedDate': lastModifiedDate,
+      'TemplateName': templateName,
+      'TemplateType': templateType.toValue(),
+      if (adm != null) 'ADM': adm,
+      if (apns != null) 'APNS': apns,
+      if (arn != null) 'Arn': arn,
+      if (baidu != null) 'Baidu': baidu,
+      if (defaultValue != null) 'Default': defaultValue,
+      if (defaultSubstitutions != null)
+        'DefaultSubstitutions': defaultSubstitutions,
+      if (gcm != null) 'GCM': gcm,
+      if (recommenderId != null) 'RecommenderId': recommenderId,
+      if (templateDescription != null)
+        'TemplateDescription': templateDescription,
+      if (version != null) 'Version': version,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class PutEventStreamResponse {
@@ -14590,6 +16282,13 @@ class PutEventStreamResponse {
   PutEventStreamResponse({
     required this.eventStream,
   });
+
+  Map<String, dynamic> toJson() {
+    final eventStream = this.eventStream;
+    return {
+      'EventStream': eventStream,
+    };
+  }
 }
 
 class PutEventsResponse {
@@ -14598,6 +16297,13 @@ class PutEventsResponse {
   PutEventsResponse({
     required this.eventsResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final eventsResponse = this.eventsResponse;
+    return {
+      'EventsResponse': eventsResponse,
+    };
+  }
 }
 
 /// Specifies the start and end times that define a time range when messages
@@ -14709,6 +16415,7 @@ class RawEmail {
   RawEmail({
     this.data,
   });
+
   Map<String, dynamic> toJson() {
     final data = this.data;
     return {
@@ -14898,6 +16605,39 @@ class RecommenderConfigurationResponse {
       recommendationsPerMessage: json['RecommendationsPerMessage'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final id = this.id;
+    final lastModifiedDate = this.lastModifiedDate;
+    final recommendationProviderRoleArn = this.recommendationProviderRoleArn;
+    final recommendationProviderUri = this.recommendationProviderUri;
+    final attributes = this.attributes;
+    final description = this.description;
+    final name = this.name;
+    final recommendationProviderIdType = this.recommendationProviderIdType;
+    final recommendationTransformerUri = this.recommendationTransformerUri;
+    final recommendationsDisplayName = this.recommendationsDisplayName;
+    final recommendationsPerMessage = this.recommendationsPerMessage;
+    return {
+      'CreationDate': creationDate,
+      'Id': id,
+      'LastModifiedDate': lastModifiedDate,
+      'RecommendationProviderRoleArn': recommendationProviderRoleArn,
+      'RecommendationProviderUri': recommendationProviderUri,
+      if (attributes != null) 'Attributes': attributes,
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+      if (recommendationProviderIdType != null)
+        'RecommendationProviderIdType': recommendationProviderIdType,
+      if (recommendationTransformerUri != null)
+        'RecommendationTransformerUri': recommendationTransformerUri,
+      if (recommendationsDisplayName != null)
+        'RecommendationsDisplayName': recommendationsDisplayName,
+      if (recommendationsPerMessage != null)
+        'RecommendationsPerMessage': recommendationsPerMessage,
+    };
+  }
 }
 
 class RemoveAttributesResponse {
@@ -14906,6 +16646,13 @@ class RemoveAttributesResponse {
   RemoveAttributesResponse({
     required this.attributesResource,
   });
+
+  Map<String, dynamic> toJson() {
+    final attributesResource = this.attributesResource;
+    return {
+      'AttributesResource': attributesResource,
+    };
+  }
 }
 
 /// Provides the results of a query that retrieved the data for a standard
@@ -14935,6 +16682,15 @@ class ResultRow {
           .map((e) => ResultRowValue.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupedBys = this.groupedBys;
+    final values = this.values;
+    return {
+      'GroupedBys': groupedBys,
+      'Values': values,
+    };
   }
 }
 
@@ -14966,6 +16722,17 @@ class ResultRowValue {
       value: json['Value'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final type = this.type;
+    final value = this.value;
+    return {
+      'Key': key,
+      'Type': type,
+      'Value': value,
+    };
+  }
 }
 
 /// Specifies the status and settings of the SMS channel for an application.
@@ -14986,6 +16753,7 @@ class SMSChannelRequest {
     this.senderId,
     this.shortCode,
   });
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     final senderId = this.senderId;
@@ -15086,6 +16854,41 @@ class SMSChannelResponse {
       version: json['Version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final platform = this.platform;
+    final applicationId = this.applicationId;
+    final creationDate = this.creationDate;
+    final enabled = this.enabled;
+    final hasCredential = this.hasCredential;
+    final id = this.id;
+    final isArchived = this.isArchived;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final promotionalMessagesPerSecond = this.promotionalMessagesPerSecond;
+    final senderId = this.senderId;
+    final shortCode = this.shortCode;
+    final transactionalMessagesPerSecond = this.transactionalMessagesPerSecond;
+    final version = this.version;
+    return {
+      'Platform': platform,
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (enabled != null) 'Enabled': enabled,
+      if (hasCredential != null) 'HasCredential': hasCredential,
+      if (id != null) 'Id': id,
+      if (isArchived != null) 'IsArchived': isArchived,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (promotionalMessagesPerSecond != null)
+        'PromotionalMessagesPerSecond': promotionalMessagesPerSecond,
+      if (senderId != null) 'SenderId': senderId,
+      if (shortCode != null) 'ShortCode': shortCode,
+      if (transactionalMessagesPerSecond != null)
+        'TransactionalMessagesPerSecond': transactionalMessagesPerSecond,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// Specifies the default settings for a one-time SMS message that's sent
@@ -15140,6 +16943,7 @@ class SMSMessage {
     this.substitutions,
     this.templateId,
   });
+
   Map<String, dynamic> toJson() {
     final body = this.body;
     final entityId = this.entityId;
@@ -15262,6 +17066,7 @@ class SMSTemplateRequest {
     this.templateDescription,
     this.tags,
   });
+
   Map<String, dynamic> toJson() {
     final body = this.body;
     final defaultSubstitutions = this.defaultSubstitutions;
@@ -15354,6 +17159,35 @@ class SMSTemplateResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final templateName = this.templateName;
+    final templateType = this.templateType;
+    final arn = this.arn;
+    final body = this.body;
+    final defaultSubstitutions = this.defaultSubstitutions;
+    final recommenderId = this.recommenderId;
+    final templateDescription = this.templateDescription;
+    final version = this.version;
+    final tags = this.tags;
+    return {
+      'CreationDate': creationDate,
+      'LastModifiedDate': lastModifiedDate,
+      'TemplateName': templateName,
+      'TemplateType': templateType.toValue(),
+      if (arn != null) 'Arn': arn,
+      if (body != null) 'Body': body,
+      if (defaultSubstitutions != null)
+        'DefaultSubstitutions': defaultSubstitutions,
+      if (recommenderId != null) 'RecommenderId': recommenderId,
+      if (templateDescription != null)
+        'TemplateDescription': templateDescription,
+      if (version != null) 'Version': version,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -15796,6 +17630,23 @@ class SegmentImportResource {
           ?.map((k, e) => MapEntry(k, e as int)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final externalId = this.externalId;
+    final format = this.format;
+    final roleArn = this.roleArn;
+    final s3Url = this.s3Url;
+    final size = this.size;
+    final channelCounts = this.channelCounts;
+    return {
+      'ExternalId': externalId,
+      'Format': format.toValue(),
+      'RoleArn': roleArn,
+      'S3Url': s3Url,
+      'Size': size,
+      if (channelCounts != null) 'ChannelCounts': channelCounts,
+    };
+  }
 }
 
 /// Specifies geographical dimension settings for a segment.
@@ -15957,6 +17808,35 @@ class SegmentResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final id = this.id;
+    final segmentType = this.segmentType;
+    final dimensions = this.dimensions;
+    final importDefinition = this.importDefinition;
+    final lastModifiedDate = this.lastModifiedDate;
+    final name = this.name;
+    final segmentGroups = this.segmentGroups;
+    final version = this.version;
+    final tags = this.tags;
+    return {
+      'ApplicationId': applicationId,
+      'Arn': arn,
+      'CreationDate': creationDate,
+      'Id': id,
+      'SegmentType': segmentType.toValue(),
+      if (dimensions != null) 'Dimensions': dimensions,
+      if (importDefinition != null) 'ImportDefinition': importDefinition,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (name != null) 'Name': name,
+      if (segmentGroups != null) 'SegmentGroups': segmentGroups,
+      if (version != null) 'Version': version,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum SegmentType {
@@ -16012,6 +17892,15 @@ class SegmentsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final item = this.item;
+    final nextToken = this.nextToken;
+    return {
+      'Item': item,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class SendMessagesResponse {
@@ -16020,6 +17909,13 @@ class SendMessagesResponse {
   SendMessagesResponse({
     required this.messageResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageResponse = this.messageResponse;
+    return {
+      'MessageResponse': messageResponse,
+    };
+  }
 }
 
 /// Send OTP message request parameters.
@@ -16073,6 +17969,7 @@ class SendOTPMessageRequestParameters {
     this.templateId,
     this.validityPeriod,
   });
+
   Map<String, dynamic> toJson() {
     final brandName = this.brandName;
     final channel = this.channel;
@@ -16107,6 +18004,13 @@ class SendOTPMessageResponse {
   SendOTPMessageResponse({
     required this.messageResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageResponse = this.messageResponse;
+    return {
+      'MessageResponse': messageResponse,
+    };
+  }
 }
 
 /// Specifies the configuration and other settings for a message to send to all
@@ -16144,6 +18048,7 @@ class SendUsersMessageRequest {
     this.templateConfiguration,
     this.traceId,
   });
+
   Map<String, dynamic> toJson() {
     final messageConfiguration = this.messageConfiguration;
     final users = this.users;
@@ -16190,6 +18095,17 @@ class SendUsersMessageResponse {
               k, EndpointMessageResult.fromJson(e as Map<String, dynamic>))))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final requestId = this.requestId;
+    final result = this.result;
+    return {
+      'ApplicationId': applicationId,
+      if (requestId != null) 'RequestId': requestId,
+      if (result != null) 'Result': result,
+    };
+  }
 }
 
 class SendUsersMessagesResponse {
@@ -16198,6 +18114,13 @@ class SendUsersMessagesResponse {
   SendUsersMessagesResponse({
     required this.sendUsersMessageResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final sendUsersMessageResponse = this.sendUsersMessageResponse;
+    return {
+      'SendUsersMessageResponse': sendUsersMessageResponse,
+    };
+  }
 }
 
 /// Provides information about a session.
@@ -16220,6 +18143,7 @@ class Session {
     this.duration,
     this.stopTimestamp,
   });
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final startTimestamp = this.startTimestamp;
@@ -16336,6 +18260,7 @@ class SimpleEmail {
     this.subject,
     this.textPart,
   });
+
   Map<String, dynamic> toJson() {
     final htmlPart = this.htmlPart;
     final subject = this.subject;
@@ -16361,6 +18286,7 @@ class SimpleEmailPart {
     this.charset,
     this.data,
   });
+
   Map<String, dynamic> toJson() {
     final charset = this.charset;
     final data = this.data;
@@ -16584,6 +18510,7 @@ class TemplateActiveVersionRequest {
   TemplateActiveVersionRequest({
     this.version,
   });
+
   Map<String, dynamic> toJson() {
     final version = this.version;
     return {
@@ -16669,6 +18596,17 @@ class TemplateCreateMessageBody {
       requestID: json['RequestID'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final message = this.message;
+    final requestID = this.requestID;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (message != null) 'Message': message,
+      if (requestID != null) 'RequestID': requestID,
+    };
+  }
 }
 
 /// Provides information about a message template that's associated with your
@@ -16744,6 +18682,31 @@ class TemplateResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final templateName = this.templateName;
+    final templateType = this.templateType;
+    final arn = this.arn;
+    final defaultSubstitutions = this.defaultSubstitutions;
+    final templateDescription = this.templateDescription;
+    final version = this.version;
+    final tags = this.tags;
+    return {
+      'CreationDate': creationDate,
+      'LastModifiedDate': lastModifiedDate,
+      'TemplateName': templateName,
+      'TemplateType': templateType.toValue(),
+      if (arn != null) 'Arn': arn,
+      if (defaultSubstitutions != null)
+        'DefaultSubstitutions': defaultSubstitutions,
+      if (templateDescription != null)
+        'TemplateDescription': templateDescription,
+      if (version != null) 'Version': version,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -16841,6 +18804,27 @@ class TemplateVersionResponse {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final templateName = this.templateName;
+    final templateType = this.templateType;
+    final defaultSubstitutions = this.defaultSubstitutions;
+    final templateDescription = this.templateDescription;
+    final version = this.version;
+    return {
+      'CreationDate': creationDate,
+      'LastModifiedDate': lastModifiedDate,
+      'TemplateName': templateName,
+      'TemplateType': templateType,
+      if (defaultSubstitutions != null)
+        'DefaultSubstitutions': defaultSubstitutions,
+      if (templateDescription != null)
+        'TemplateDescription': templateDescription,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// Provides information about all the versions of a specific message template.
@@ -16878,6 +18862,19 @@ class TemplateVersionsResponse {
       requestID: json['RequestID'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final item = this.item;
+    final message = this.message;
+    final nextToken = this.nextToken;
+    final requestID = this.requestID;
+    return {
+      'Item': item,
+      if (message != null) 'Message': message,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (requestID != null) 'RequestID': requestID,
+    };
+  }
 }
 
 /// Provides information about all the message templates that are associated
@@ -16904,6 +18901,15 @@ class TemplatesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final item = this.item;
+    final nextToken = this.nextToken;
+    return {
+      'Item': item,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -16977,6 +18983,33 @@ class TreatmentResource {
       treatmentName: json['TreatmentName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final sizePercent = this.sizePercent;
+    final customDeliveryConfiguration = this.customDeliveryConfiguration;
+    final messageConfiguration = this.messageConfiguration;
+    final schedule = this.schedule;
+    final state = this.state;
+    final templateConfiguration = this.templateConfiguration;
+    final treatmentDescription = this.treatmentDescription;
+    final treatmentName = this.treatmentName;
+    return {
+      'Id': id,
+      'SizePercent': sizePercent,
+      if (customDeliveryConfiguration != null)
+        'CustomDeliveryConfiguration': customDeliveryConfiguration,
+      if (messageConfiguration != null)
+        'MessageConfiguration': messageConfiguration,
+      if (schedule != null) 'Schedule': schedule,
+      if (state != null) 'State': state,
+      if (templateConfiguration != null)
+        'TemplateConfiguration': templateConfiguration,
+      if (treatmentDescription != null)
+        'TreatmentDescription': treatmentDescription,
+      if (treatmentName != null) 'TreatmentName': treatmentName,
+    };
+  }
 }
 
 enum Type {
@@ -17018,6 +19051,13 @@ class UpdateAdmChannelResponse {
   UpdateAdmChannelResponse({
     required this.aDMChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aDMChannelResponse = this.aDMChannelResponse;
+    return {
+      'ADMChannelResponse': aDMChannelResponse,
+    };
+  }
 }
 
 class UpdateApnsChannelResponse {
@@ -17026,6 +19066,13 @@ class UpdateApnsChannelResponse {
   UpdateApnsChannelResponse({
     required this.aPNSChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aPNSChannelResponse = this.aPNSChannelResponse;
+    return {
+      'APNSChannelResponse': aPNSChannelResponse,
+    };
+  }
 }
 
 class UpdateApnsSandboxChannelResponse {
@@ -17034,6 +19081,13 @@ class UpdateApnsSandboxChannelResponse {
   UpdateApnsSandboxChannelResponse({
     required this.aPNSSandboxChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aPNSSandboxChannelResponse = this.aPNSSandboxChannelResponse;
+    return {
+      'APNSSandboxChannelResponse': aPNSSandboxChannelResponse,
+    };
+  }
 }
 
 class UpdateApnsVoipChannelResponse {
@@ -17042,6 +19096,13 @@ class UpdateApnsVoipChannelResponse {
   UpdateApnsVoipChannelResponse({
     required this.aPNSVoipChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aPNSVoipChannelResponse = this.aPNSVoipChannelResponse;
+    return {
+      'APNSVoipChannelResponse': aPNSVoipChannelResponse,
+    };
+  }
 }
 
 class UpdateApnsVoipSandboxChannelResponse {
@@ -17050,6 +19111,13 @@ class UpdateApnsVoipSandboxChannelResponse {
   UpdateApnsVoipSandboxChannelResponse({
     required this.aPNSVoipSandboxChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final aPNSVoipSandboxChannelResponse = this.aPNSVoipSandboxChannelResponse;
+    return {
+      'APNSVoipSandboxChannelResponse': aPNSVoipSandboxChannelResponse,
+    };
+  }
 }
 
 class UpdateApplicationSettingsResponse {
@@ -17058,6 +19126,13 @@ class UpdateApplicationSettingsResponse {
   UpdateApplicationSettingsResponse({
     required this.applicationSettingsResource,
   });
+
+  Map<String, dynamic> toJson() {
+    final applicationSettingsResource = this.applicationSettingsResource;
+    return {
+      'ApplicationSettingsResource': applicationSettingsResource,
+    };
+  }
 }
 
 /// Specifies one or more attributes to remove from all the endpoints that are
@@ -17072,6 +19147,7 @@ class UpdateAttributesRequest {
   UpdateAttributesRequest({
     this.blacklist,
   });
+
   Map<String, dynamic> toJson() {
     final blacklist = this.blacklist;
     return {
@@ -17086,6 +19162,13 @@ class UpdateBaiduChannelResponse {
   UpdateBaiduChannelResponse({
     required this.baiduChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final baiduChannelResponse = this.baiduChannelResponse;
+    return {
+      'BaiduChannelResponse': baiduChannelResponse,
+    };
+  }
 }
 
 class UpdateCampaignResponse {
@@ -17094,6 +19177,13 @@ class UpdateCampaignResponse {
   UpdateCampaignResponse({
     required this.campaignResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final campaignResponse = this.campaignResponse;
+    return {
+      'CampaignResponse': campaignResponse,
+    };
+  }
 }
 
 class UpdateEmailChannelResponse {
@@ -17102,6 +19192,13 @@ class UpdateEmailChannelResponse {
   UpdateEmailChannelResponse({
     required this.emailChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final emailChannelResponse = this.emailChannelResponse;
+    return {
+      'EmailChannelResponse': emailChannelResponse,
+    };
+  }
 }
 
 class UpdateEmailTemplateResponse {
@@ -17110,6 +19207,13 @@ class UpdateEmailTemplateResponse {
   UpdateEmailTemplateResponse({
     required this.messageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageBody = this.messageBody;
+    return {
+      'MessageBody': messageBody,
+    };
+  }
 }
 
 class UpdateEndpointResponse {
@@ -17118,6 +19222,13 @@ class UpdateEndpointResponse {
   UpdateEndpointResponse({
     required this.messageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageBody = this.messageBody;
+    return {
+      'MessageBody': messageBody,
+    };
+  }
 }
 
 class UpdateEndpointsBatchResponse {
@@ -17126,6 +19237,13 @@ class UpdateEndpointsBatchResponse {
   UpdateEndpointsBatchResponse({
     required this.messageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageBody = this.messageBody;
+    return {
+      'MessageBody': messageBody,
+    };
+  }
 }
 
 class UpdateGcmChannelResponse {
@@ -17134,6 +19252,13 @@ class UpdateGcmChannelResponse {
   UpdateGcmChannelResponse({
     required this.gCMChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final gCMChannelResponse = this.gCMChannelResponse;
+    return {
+      'GCMChannelResponse': gCMChannelResponse,
+    };
+  }
 }
 
 class UpdateInAppTemplateResponse {
@@ -17142,6 +19267,13 @@ class UpdateInAppTemplateResponse {
   UpdateInAppTemplateResponse({
     required this.messageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageBody = this.messageBody;
+    return {
+      'MessageBody': messageBody,
+    };
+  }
 }
 
 class UpdateJourneyResponse {
@@ -17150,6 +19282,13 @@ class UpdateJourneyResponse {
   UpdateJourneyResponse({
     required this.journeyResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final journeyResponse = this.journeyResponse;
+    return {
+      'JourneyResponse': journeyResponse,
+    };
+  }
 }
 
 class UpdateJourneyStateResponse {
@@ -17158,6 +19297,13 @@ class UpdateJourneyStateResponse {
   UpdateJourneyStateResponse({
     required this.journeyResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final journeyResponse = this.journeyResponse;
+    return {
+      'JourneyResponse': journeyResponse,
+    };
+  }
 }
 
 class UpdatePushTemplateResponse {
@@ -17166,6 +19312,13 @@ class UpdatePushTemplateResponse {
   UpdatePushTemplateResponse({
     required this.messageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageBody = this.messageBody;
+    return {
+      'MessageBody': messageBody,
+    };
+  }
 }
 
 /// Specifies Amazon Pinpoint configuration settings for retrieving and
@@ -17283,6 +19436,7 @@ class UpdateRecommenderConfiguration {
     this.recommendationsDisplayName,
     this.recommendationsPerMessage,
   });
+
   Map<String, dynamic> toJson() {
     final recommendationProviderRoleArn = this.recommendationProviderRoleArn;
     final recommendationProviderUri = this.recommendationProviderUri;
@@ -17317,6 +19471,14 @@ class UpdateRecommenderConfigurationResponse {
   UpdateRecommenderConfigurationResponse({
     required this.recommenderConfigurationResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final recommenderConfigurationResponse =
+        this.recommenderConfigurationResponse;
+    return {
+      'RecommenderConfigurationResponse': recommenderConfigurationResponse,
+    };
+  }
 }
 
 class UpdateSegmentResponse {
@@ -17325,6 +19487,13 @@ class UpdateSegmentResponse {
   UpdateSegmentResponse({
     required this.segmentResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final segmentResponse = this.segmentResponse;
+    return {
+      'SegmentResponse': segmentResponse,
+    };
+  }
 }
 
 class UpdateSmsChannelResponse {
@@ -17333,6 +19502,13 @@ class UpdateSmsChannelResponse {
   UpdateSmsChannelResponse({
     required this.sMSChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final sMSChannelResponse = this.sMSChannelResponse;
+    return {
+      'SMSChannelResponse': sMSChannelResponse,
+    };
+  }
 }
 
 class UpdateSmsTemplateResponse {
@@ -17341,6 +19517,13 @@ class UpdateSmsTemplateResponse {
   UpdateSmsTemplateResponse({
     required this.messageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageBody = this.messageBody;
+    return {
+      'MessageBody': messageBody,
+    };
+  }
 }
 
 class UpdateTemplateActiveVersionResponse {
@@ -17349,6 +19532,13 @@ class UpdateTemplateActiveVersionResponse {
   UpdateTemplateActiveVersionResponse({
     required this.messageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageBody = this.messageBody;
+    return {
+      'MessageBody': messageBody,
+    };
+  }
 }
 
 class UpdateVoiceChannelResponse {
@@ -17357,6 +19547,13 @@ class UpdateVoiceChannelResponse {
   UpdateVoiceChannelResponse({
     required this.voiceChannelResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final voiceChannelResponse = this.voiceChannelResponse;
+    return {
+      'VoiceChannelResponse': voiceChannelResponse,
+    };
+  }
 }
 
 class UpdateVoiceTemplateResponse {
@@ -17365,6 +19562,13 @@ class UpdateVoiceTemplateResponse {
   UpdateVoiceTemplateResponse({
     required this.messageBody,
   });
+
+  Map<String, dynamic> toJson() {
+    final messageBody = this.messageBody;
+    return {
+      'MessageBody': messageBody,
+    };
+  }
 }
 
 /// Verify OTP Message Response.
@@ -17379,6 +19583,13 @@ class VerificationResponse {
     return VerificationResponse(
       valid: json['Valid'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final valid = this.valid;
+    return {
+      if (valid != null) 'Valid': valid,
+    };
   }
 }
 
@@ -17398,6 +19609,7 @@ class VerifyOTPMessageRequestParameters {
     required this.otp,
     required this.referenceId,
   });
+
   Map<String, dynamic> toJson() {
     final destinationIdentity = this.destinationIdentity;
     final otp = this.otp;
@@ -17416,6 +19628,13 @@ class VerifyOTPMessageResponse {
   VerifyOTPMessageResponse({
     required this.verificationResponse,
   });
+
+  Map<String, dynamic> toJson() {
+    final verificationResponse = this.verificationResponse;
+    return {
+      'VerificationResponse': verificationResponse,
+    };
+  }
 }
 
 /// Specifies the status and settings of the voice channel for an application.
@@ -17426,6 +19645,7 @@ class VoiceChannelRequest {
   VoiceChannelRequest({
     this.enabled,
   });
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     return {
@@ -17496,6 +19716,31 @@ class VoiceChannelResponse {
       version: json['Version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final platform = this.platform;
+    final applicationId = this.applicationId;
+    final creationDate = this.creationDate;
+    final enabled = this.enabled;
+    final hasCredential = this.hasCredential;
+    final id = this.id;
+    final isArchived = this.isArchived;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedDate = this.lastModifiedDate;
+    final version = this.version;
+    return {
+      'Platform': platform,
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (creationDate != null) 'CreationDate': creationDate,
+      if (enabled != null) 'Enabled': enabled,
+      if (hasCredential != null) 'HasCredential': hasCredential,
+      if (id != null) 'Id': id,
+      if (isArchived != null) 'IsArchived': isArchived,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedDate != null) 'LastModifiedDate': lastModifiedDate,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// Specifies the settings for a one-time voice message that's sent directly to
@@ -17534,6 +19779,7 @@ class VoiceMessage {
     this.substitutions,
     this.voiceId,
   });
+
   Map<String, dynamic> toJson() {
     final body = this.body;
     final languageCode = this.languageCode;
@@ -17594,6 +19840,7 @@ class VoiceTemplateRequest {
     this.voiceId,
     this.tags,
   });
+
   Map<String, dynamic> toJson() {
     final body = this.body;
     final defaultSubstitutions = this.defaultSubstitutions;
@@ -17699,6 +19946,37 @@ class VoiceTemplateResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final templateName = this.templateName;
+    final templateType = this.templateType;
+    final arn = this.arn;
+    final body = this.body;
+    final defaultSubstitutions = this.defaultSubstitutions;
+    final languageCode = this.languageCode;
+    final templateDescription = this.templateDescription;
+    final version = this.version;
+    final voiceId = this.voiceId;
+    final tags = this.tags;
+    return {
+      'CreationDate': creationDate,
+      'LastModifiedDate': lastModifiedDate,
+      'TemplateName': templateName,
+      'TemplateType': templateType.toValue(),
+      if (arn != null) 'Arn': arn,
+      if (body != null) 'Body': body,
+      if (defaultSubstitutions != null)
+        'DefaultSubstitutions': defaultSubstitutions,
+      if (languageCode != null) 'LanguageCode': languageCode,
+      if (templateDescription != null)
+        'TemplateDescription': templateDescription,
+      if (version != null) 'Version': version,
+      if (voiceId != null) 'VoiceId': voiceId,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -17835,6 +20113,7 @@ class WriteApplicationSettingsRequest {
     this.limits,
     this.quietTime,
   });
+
   Map<String, dynamic> toJson() {
     final campaignHook = this.campaignHook;
     final cloudWatchMetricsEnabled = this.cloudWatchMetricsEnabled;
@@ -17938,6 +20217,7 @@ class WriteCampaignRequest {
     this.treatmentName,
     this.tags,
   });
+
   Map<String, dynamic> toJson() {
     final additionalTreatments = this.additionalTreatments;
     final customDeliveryConfiguration = this.customDeliveryConfiguration;
@@ -18008,6 +20288,7 @@ class WriteEventStream {
     required this.destinationStreamArn,
     required this.roleArn,
   });
+
   Map<String, dynamic> toJson() {
     final destinationStreamArn = this.destinationStreamArn;
     final roleArn = this.roleArn;
@@ -18130,6 +20411,7 @@ class WriteJourneyRequest {
     this.state,
     this.waitForQuietTime,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final activities = this.activities;
@@ -18194,6 +20476,7 @@ class WriteSegmentRequest {
     this.segmentGroups,
     this.tags,
   });
+
   Map<String, dynamic> toJson() {
     final dimensions = this.dimensions;
     final name = this.name;
@@ -18244,6 +20527,7 @@ class WriteTreatmentResource {
     this.treatmentDescription,
     this.treatmentName,
   });
+
   Map<String, dynamic> toJson() {
     final sizePercent = this.sizePercent;
     final customDeliveryConfiguration = this.customDeliveryConfiguration;

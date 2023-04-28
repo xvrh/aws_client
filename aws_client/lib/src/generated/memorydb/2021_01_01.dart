@@ -1960,6 +1960,26 @@ class ACL {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final clusters = this.clusters;
+    final minimumEngineVersion = this.minimumEngineVersion;
+    final name = this.name;
+    final pendingChanges = this.pendingChanges;
+    final status = this.status;
+    final userNames = this.userNames;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (clusters != null) 'Clusters': clusters,
+      if (minimumEngineVersion != null)
+        'MinimumEngineVersion': minimumEngineVersion,
+      if (name != null) 'Name': name,
+      if (pendingChanges != null) 'PendingChanges': pendingChanges,
+      if (status != null) 'Status': status,
+      if (userNames != null) 'UserNames': userNames,
+    };
+  }
 }
 
 /// Returns the updates being applied to the ACL.
@@ -1986,6 +2006,15 @@ class ACLPendingChanges {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userNamesToAdd = this.userNamesToAdd;
+    final userNamesToRemove = this.userNamesToRemove;
+    return {
+      if (userNamesToAdd != null) 'UserNamesToAdd': userNamesToAdd,
+      if (userNamesToRemove != null) 'UserNamesToRemove': userNamesToRemove,
+    };
+  }
 }
 
 /// The status of the ACL update
@@ -2000,6 +2029,13 @@ class ACLsUpdateStatus {
     return ACLsUpdateStatus(
       aCLToApply: json['ACLToApply'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aCLToApply = this.aCLToApply;
+    return {
+      if (aCLToApply != null) 'ACLToApply': aCLToApply,
+    };
   }
 }
 
@@ -2050,6 +2086,15 @@ class Authentication {
       type: (json['Type'] as String?)?.toAuthenticationType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final passwordCount = this.passwordCount;
+    final type = this.type;
+    return {
+      if (passwordCount != null) 'PasswordCount': passwordCount,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Denotes the user's authentication properties, such as whether it requires a
@@ -2066,6 +2111,7 @@ class AuthenticationMode {
     this.passwords,
     this.type,
   });
+
   Map<String, dynamic> toJson() {
     final passwords = this.passwords;
     final type = this.type;
@@ -2118,6 +2164,13 @@ class AvailabilityZone {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class BatchUpdateClusterResponse {
@@ -2142,6 +2195,16 @@ class BatchUpdateClusterResponse {
           .map((e) => UnprocessedCluster.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final processedClusters = this.processedClusters;
+    final unprocessedClusters = this.unprocessedClusters;
+    return {
+      if (processedClusters != null) 'ProcessedClusters': processedClusters,
+      if (unprocessedClusters != null)
+        'UnprocessedClusters': unprocessedClusters,
+    };
   }
 }
 
@@ -2300,6 +2363,65 @@ class Cluster {
       tLSEnabled: json['TLSEnabled'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aCLName = this.aCLName;
+    final arn = this.arn;
+    final autoMinorVersionUpgrade = this.autoMinorVersionUpgrade;
+    final availabilityMode = this.availabilityMode;
+    final clusterEndpoint = this.clusterEndpoint;
+    final description = this.description;
+    final enginePatchVersion = this.enginePatchVersion;
+    final engineVersion = this.engineVersion;
+    final kmsKeyId = this.kmsKeyId;
+    final maintenanceWindow = this.maintenanceWindow;
+    final name = this.name;
+    final nodeType = this.nodeType;
+    final numberOfShards = this.numberOfShards;
+    final parameterGroupName = this.parameterGroupName;
+    final parameterGroupStatus = this.parameterGroupStatus;
+    final pendingUpdates = this.pendingUpdates;
+    final securityGroups = this.securityGroups;
+    final shards = this.shards;
+    final snapshotRetentionLimit = this.snapshotRetentionLimit;
+    final snapshotWindow = this.snapshotWindow;
+    final snsTopicArn = this.snsTopicArn;
+    final snsTopicStatus = this.snsTopicStatus;
+    final status = this.status;
+    final subnetGroupName = this.subnetGroupName;
+    final tLSEnabled = this.tLSEnabled;
+    return {
+      if (aCLName != null) 'ACLName': aCLName,
+      if (arn != null) 'ARN': arn,
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade,
+      if (availabilityMode != null)
+        'AvailabilityMode': availabilityMode.toValue(),
+      if (clusterEndpoint != null) 'ClusterEndpoint': clusterEndpoint,
+      if (description != null) 'Description': description,
+      if (enginePatchVersion != null) 'EnginePatchVersion': enginePatchVersion,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (maintenanceWindow != null) 'MaintenanceWindow': maintenanceWindow,
+      if (name != null) 'Name': name,
+      if (nodeType != null) 'NodeType': nodeType,
+      if (numberOfShards != null) 'NumberOfShards': numberOfShards,
+      if (parameterGroupName != null) 'ParameterGroupName': parameterGroupName,
+      if (parameterGroupStatus != null)
+        'ParameterGroupStatus': parameterGroupStatus,
+      if (pendingUpdates != null) 'PendingUpdates': pendingUpdates,
+      if (securityGroups != null) 'SecurityGroups': securityGroups,
+      if (shards != null) 'Shards': shards,
+      if (snapshotRetentionLimit != null)
+        'SnapshotRetentionLimit': snapshotRetentionLimit,
+      if (snapshotWindow != null) 'SnapshotWindow': snapshotWindow,
+      if (snsTopicArn != null) 'SnsTopicArn': snsTopicArn,
+      if (snsTopicStatus != null) 'SnsTopicStatus': snsTopicStatus,
+      if (status != null) 'Status': status,
+      if (subnetGroupName != null) 'SubnetGroupName': subnetGroupName,
+      if (tLSEnabled != null) 'TLSEnabled': tLSEnabled,
+    };
+  }
 }
 
 /// A list of cluster configuration options.
@@ -2383,6 +2505,40 @@ class ClusterConfiguration {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final engineVersion = this.engineVersion;
+    final maintenanceWindow = this.maintenanceWindow;
+    final name = this.name;
+    final nodeType = this.nodeType;
+    final numShards = this.numShards;
+    final parameterGroupName = this.parameterGroupName;
+    final port = this.port;
+    final shards = this.shards;
+    final snapshotRetentionLimit = this.snapshotRetentionLimit;
+    final snapshotWindow = this.snapshotWindow;
+    final subnetGroupName = this.subnetGroupName;
+    final topicArn = this.topicArn;
+    final vpcId = this.vpcId;
+    return {
+      if (description != null) 'Description': description,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (maintenanceWindow != null) 'MaintenanceWindow': maintenanceWindow,
+      if (name != null) 'Name': name,
+      if (nodeType != null) 'NodeType': nodeType,
+      if (numShards != null) 'NumShards': numShards,
+      if (parameterGroupName != null) 'ParameterGroupName': parameterGroupName,
+      if (port != null) 'Port': port,
+      if (shards != null) 'Shards': shards,
+      if (snapshotRetentionLimit != null)
+        'SnapshotRetentionLimit': snapshotRetentionLimit,
+      if (snapshotWindow != null) 'SnapshotWindow': snapshotWindow,
+      if (subnetGroupName != null) 'SubnetGroupName': subnetGroupName,
+      if (topicArn != null) 'TopicArn': topicArn,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 /// A list of updates being applied to the cluster
@@ -2417,6 +2573,17 @@ class ClusterPendingUpdates {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aCLs = this.aCLs;
+    final resharding = this.resharding;
+    final serviceUpdates = this.serviceUpdates;
+    return {
+      if (aCLs != null) 'ACLs': aCLs,
+      if (resharding != null) 'Resharding': resharding,
+      if (serviceUpdates != null) 'ServiceUpdates': serviceUpdates,
+    };
+  }
 }
 
 class CopySnapshotResponse {
@@ -2434,6 +2601,13 @@ class CopySnapshotResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
+  }
 }
 
 class CreateACLResponse {
@@ -2450,6 +2624,13 @@ class CreateACLResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acl = this.acl;
+    return {
+      if (acl != null) 'ACL': acl,
+    };
+  }
 }
 
 class CreateClusterResponse {
@@ -2465,6 +2646,13 @@ class CreateClusterResponse {
           ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -2483,6 +2671,13 @@ class CreateParameterGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final parameterGroup = this.parameterGroup;
+    return {
+      if (parameterGroup != null) 'ParameterGroup': parameterGroup,
+    };
+  }
 }
 
 class CreateSnapshotResponse {
@@ -2498,6 +2693,13 @@ class CreateSnapshotResponse {
           ? Snapshot.fromJson(json['Snapshot'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
   }
 }
 
@@ -2515,6 +2717,13 @@ class CreateSubnetGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final subnetGroup = this.subnetGroup;
+    return {
+      if (subnetGroup != null) 'SubnetGroup': subnetGroup,
+    };
+  }
 }
 
 class CreateUserResponse {
@@ -2530,6 +2739,13 @@ class CreateUserResponse {
           ? User.fromJson(json['User'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
   }
 }
 
@@ -2547,6 +2763,13 @@ class DeleteACLResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acl = this.acl;
+    return {
+      if (acl != null) 'ACL': acl,
+    };
+  }
 }
 
 class DeleteClusterResponse {
@@ -2562,6 +2785,13 @@ class DeleteClusterResponse {
           ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -2580,6 +2810,13 @@ class DeleteParameterGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final parameterGroup = this.parameterGroup;
+    return {
+      if (parameterGroup != null) 'ParameterGroup': parameterGroup,
+    };
+  }
 }
 
 class DeleteSnapshotResponse {
@@ -2595,6 +2832,13 @@ class DeleteSnapshotResponse {
           ? Snapshot.fromJson(json['Snapshot'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
   }
 }
 
@@ -2612,6 +2856,13 @@ class DeleteSubnetGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final subnetGroup = this.subnetGroup;
+    return {
+      if (subnetGroup != null) 'SubnetGroup': subnetGroup,
+    };
+  }
 }
 
 class DeleteUserResponse {
@@ -2627,6 +2878,13 @@ class DeleteUserResponse {
           ? User.fromJson(json['User'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
   }
 }
 
@@ -2653,6 +2911,15 @@ class DescribeACLsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aCLs = this.aCLs;
+    final nextToken = this.nextToken;
+    return {
+      if (aCLs != null) 'ACLs': aCLs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeClustersResponse {
@@ -2678,6 +2945,15 @@ class DescribeClustersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusters = this.clusters;
+    final nextToken = this.nextToken;
+    return {
+      if (clusters != null) 'Clusters': clusters,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2706,6 +2982,15 @@ class DescribeEngineVersionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final engineVersions = this.engineVersions;
+    final nextToken = this.nextToken;
+    return {
+      if (engineVersions != null) 'EngineVersions': engineVersions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeEventsResponse {
@@ -2732,6 +3017,15 @@ class DescribeEventsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextToken = this.nextToken;
+    return {
+      if (events != null) 'Events': events,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2760,6 +3054,15 @@ class DescribeParameterGroupsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final parameterGroups = this.parameterGroups;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (parameterGroups != null) 'ParameterGroups': parameterGroups,
+    };
+  }
 }
 
 class DescribeParametersResponse {
@@ -2787,6 +3090,15 @@ class DescribeParametersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final parameters = this.parameters;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (parameters != null) 'Parameters': parameters,
+    };
+  }
 }
 
 class DescribeServiceUpdatesResponse {
@@ -2812,6 +3124,15 @@ class DescribeServiceUpdatesResponse {
           .map((e) => ServiceUpdate.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final serviceUpdates = this.serviceUpdates;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (serviceUpdates != null) 'ServiceUpdates': serviceUpdates,
+    };
   }
 }
 
@@ -2840,6 +3161,15 @@ class DescribeSnapshotsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final snapshots = this.snapshots;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (snapshots != null) 'Snapshots': snapshots,
+    };
+  }
 }
 
 class DescribeSubnetGroupsResponse {
@@ -2867,6 +3197,15 @@ class DescribeSubnetGroupsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final subnetGroups = this.subnetGroups;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (subnetGroups != null) 'SubnetGroups': subnetGroups,
+    };
+  }
 }
 
 class DescribeUsersResponse {
@@ -2893,6 +3232,15 @@ class DescribeUsersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final users = this.users;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (users != null) 'Users': users,
+    };
+  }
 }
 
 /// Represents the information required for client programs to connect to the
@@ -2913,6 +3261,15 @@ class Endpoint {
       address: json['Address'] as String?,
       port: json['Port'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final port = this.port;
+    return {
+      if (address != null) 'Address': address,
+      if (port != null) 'Port': port,
+    };
   }
 }
 
@@ -2939,6 +3296,18 @@ class EngineVersionInfo {
       engineVersion: json['EngineVersion'] as String?,
       parameterGroupFamily: json['ParameterGroupFamily'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enginePatchVersion = this.enginePatchVersion;
+    final engineVersion = this.engineVersion;
+    final parameterGroupFamily = this.parameterGroupFamily;
+    return {
+      if (enginePatchVersion != null) 'EnginePatchVersion': enginePatchVersion,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (parameterGroupFamily != null)
+        'ParameterGroupFamily': parameterGroupFamily,
+    };
   }
 }
 
@@ -2973,6 +3342,19 @@ class Event {
       sourceType: (json['SourceType'] as String?)?.toSourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final message = this.message;
+    final sourceName = this.sourceName;
+    final sourceType = this.sourceType;
+    return {
+      if (date != null) 'Date': unixTimestampToJson(date),
+      if (message != null) 'Message': message,
+      if (sourceName != null) 'SourceName': sourceName,
+      if (sourceType != null) 'SourceType': sourceType.toValue(),
+    };
+  }
 }
 
 class FailoverShardResponse {
@@ -2989,6 +3371,13 @@ class FailoverShardResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
+  }
 }
 
 /// Used to streamline results of a search based on the property being filtered.
@@ -3003,6 +3392,7 @@ class Filter {
     required this.name,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -3060,6 +3450,15 @@ class ListAllowedNodeTypeUpdatesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final scaleDownNodeTypes = this.scaleDownNodeTypes;
+    final scaleUpNodeTypes = this.scaleUpNodeTypes;
+    return {
+      if (scaleDownNodeTypes != null) 'ScaleDownNodeTypes': scaleDownNodeTypes,
+      if (scaleUpNodeTypes != null) 'ScaleUpNodeTypes': scaleUpNodeTypes,
+    };
+  }
 }
 
 class ListTagsResponse {
@@ -3076,6 +3475,13 @@ class ListTagsResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      if (tagList != null) 'TagList': tagList,
+    };
   }
 }
 
@@ -3116,6 +3522,21 @@ class Node {
       name: json['Name'] as String?,
       status: json['Status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final createTime = this.createTime;
+    final endpoint = this.endpoint;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (createTime != null) 'CreateTime': unixTimestampToJson(createTime),
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -3158,6 +3579,24 @@ class Parameter {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowedValues = this.allowedValues;
+    final dataType = this.dataType;
+    final description = this.description;
+    final minimumEngineVersion = this.minimumEngineVersion;
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (allowedValues != null) 'AllowedValues': allowedValues,
+      if (dataType != null) 'DataType': dataType,
+      if (description != null) 'Description': description,
+      if (minimumEngineVersion != null)
+        'MinimumEngineVersion': minimumEngineVersion,
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// Represents the output of a CreateParameterGroup operation. A parameter group
@@ -3191,6 +3630,19 @@ class ParameterGroup {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final family = this.family;
+    final name = this.name;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (description != null) 'Description': description,
+      if (family != null) 'Family': family,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Describes a name-value pair that is used to update the value of a parameter.
@@ -3205,6 +3657,7 @@ class ParameterNameValue {
     this.parameterName,
     this.parameterValue,
   });
+
   Map<String, dynamic> toJson() {
     final parameterName = this.parameterName;
     final parameterValue = this.parameterValue;
@@ -3234,6 +3687,15 @@ class PendingModifiedServiceUpdate {
       status: (json['Status'] as String?)?.toServiceUpdateStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceUpdateName = this.serviceUpdateName;
+    final status = this.status;
+    return {
+      if (serviceUpdateName != null) 'ServiceUpdateName': serviceUpdateName,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// A request to configure the number of replicas in a shard
@@ -3244,6 +3706,7 @@ class ReplicaConfigurationRequest {
   ReplicaConfigurationRequest({
     this.replicaCount,
   });
+
   Map<String, dynamic> toJson() {
     final replicaCount = this.replicaCount;
     return {
@@ -3267,6 +3730,13 @@ class ResetParameterGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final parameterGroup = this.parameterGroup;
+    return {
+      if (parameterGroup != null) 'ParameterGroup': parameterGroup,
+    };
+  }
 }
 
 /// The status of the online resharding
@@ -3284,6 +3754,13 @@ class ReshardingStatus {
               json['SlotMigration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final slotMigration = this.slotMigration;
+    return {
+      if (slotMigration != null) 'SlotMigration': slotMigration,
+    };
   }
 }
 
@@ -3306,6 +3783,15 @@ class SecurityGroupMembership {
       securityGroupId: json['SecurityGroupId'] as String?,
       status: json['Status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityGroupId = this.securityGroupId;
+    final status = this.status;
+    return {
+      if (securityGroupId != null) 'SecurityGroupId': securityGroupId,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -3357,6 +3843,28 @@ class ServiceUpdate {
       type: (json['Type'] as String?)?.toServiceUpdateType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoUpdateStartDate = this.autoUpdateStartDate;
+    final clusterName = this.clusterName;
+    final description = this.description;
+    final nodesUpdated = this.nodesUpdated;
+    final releaseDate = this.releaseDate;
+    final serviceUpdateName = this.serviceUpdateName;
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (autoUpdateStartDate != null)
+        'AutoUpdateStartDate': unixTimestampToJson(autoUpdateStartDate),
+      if (clusterName != null) 'ClusterName': clusterName,
+      if (description != null) 'Description': description,
+      if (nodesUpdated != null) 'NodesUpdated': nodesUpdated,
+      if (releaseDate != null) 'ReleaseDate': unixTimestampToJson(releaseDate),
+      if (serviceUpdateName != null) 'ServiceUpdateName': serviceUpdateName,
+      if (status != null) 'Status': status.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// A request to apply a service update
@@ -3367,6 +3875,7 @@ class ServiceUpdateRequest {
   ServiceUpdateRequest({
     this.serviceUpdateNameToApply,
   });
+
   Map<String, dynamic> toJson() {
     final serviceUpdateNameToApply = this.serviceUpdateNameToApply;
     return {
@@ -3476,6 +3985,21 @@ class Shard {
       status: json['Status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final nodes = this.nodes;
+    final numberOfNodes = this.numberOfNodes;
+    final slots = this.slots;
+    final status = this.status;
+    return {
+      if (name != null) 'Name': name,
+      if (nodes != null) 'Nodes': nodes,
+      if (numberOfNodes != null) 'NumberOfNodes': numberOfNodes,
+      if (slots != null) 'Slots': slots,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// Shard configuration options. Each shard configuration has the following:
@@ -3498,6 +4022,15 @@ class ShardConfiguration {
       slots: json['Slots'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicaCount = this.replicaCount;
+    final slots = this.slots;
+    return {
+      if (replicaCount != null) 'ReplicaCount': replicaCount,
+      if (slots != null) 'Slots': slots,
+    };
+  }
 }
 
 /// A request to configure the sharding properties of a cluster
@@ -3508,6 +4041,7 @@ class ShardConfigurationRequest {
   ShardConfigurationRequest({
     this.shardCount,
   });
+
   Map<String, dynamic> toJson() {
     final shardCount = this.shardCount;
     return {
@@ -3547,6 +4081,20 @@ class ShardDetail {
       snapshotCreationTime: timeStampFromJson(json['SnapshotCreationTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    final name = this.name;
+    final size = this.size;
+    final snapshotCreationTime = this.snapshotCreationTime;
+    return {
+      if (configuration != null) 'Configuration': configuration,
+      if (name != null) 'Name': name,
+      if (size != null) 'Size': size,
+      if (snapshotCreationTime != null)
+        'SnapshotCreationTime': unixTimestampToJson(snapshotCreationTime),
+    };
+  }
 }
 
 /// Represents the progress of an online resharding operation.
@@ -3561,6 +4109,13 @@ class SlotMigration {
     return SlotMigration(
       progressPercentage: json['ProgressPercentage'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final progressPercentage = this.progressPercentage;
+    return {
+      if (progressPercentage != null) 'ProgressPercentage': progressPercentage,
+    };
   }
 }
 
@@ -3607,6 +4162,24 @@ class Snapshot {
       source: json['Source'] as String?,
       status: json['Status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final clusterConfiguration = this.clusterConfiguration;
+    final kmsKeyId = this.kmsKeyId;
+    final name = this.name;
+    final source = this.source;
+    final status = this.status;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (clusterConfiguration != null)
+        'ClusterConfiguration': clusterConfiguration,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (name != null) 'Name': name,
+      if (source != null) 'Source': source,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -3681,6 +4254,15 @@ class Subnet {
       identifier: json['Identifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final identifier = this.identifier;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (identifier != null) 'Identifier': identifier,
+    };
+  }
 }
 
 /// Represents the output of one of the following operations:
@@ -3730,6 +4312,21 @@ class SubnetGroup {
           .toList(),
       vpcId: json['VpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final name = this.name;
+    final subnets = this.subnets;
+    final vpcId = this.vpcId;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+      if (subnets != null) 'Subnets': subnets,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -3783,6 +4380,13 @@ class TagResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      if (tagList != null) 'TagList': tagList,
+    };
+  }
 }
 
 /// A cluster whose updates have failed
@@ -3808,6 +4412,17 @@ class UnprocessedCluster {
       errorType: json['ErrorType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterName = this.clusterName;
+    final errorMessage = this.errorMessage;
+    final errorType = this.errorType;
+    return {
+      if (clusterName != null) 'ClusterName': clusterName,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (errorType != null) 'ErrorType': errorType,
+    };
+  }
 }
 
 class UntagResourceResponse {
@@ -3825,6 +4440,13 @@ class UntagResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      if (tagList != null) 'TagList': tagList,
+    };
+  }
 }
 
 class UpdateACLResponse {
@@ -3841,6 +4463,13 @@ class UpdateACLResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acl = this.acl;
+    return {
+      if (acl != null) 'ACL': acl,
+    };
+  }
 }
 
 class UpdateClusterResponse {
@@ -3856,6 +4485,13 @@ class UpdateClusterResponse {
           ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -3874,6 +4510,13 @@ class UpdateParameterGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final parameterGroup = this.parameterGroup;
+    return {
+      if (parameterGroup != null) 'ParameterGroup': parameterGroup,
+    };
+  }
 }
 
 class UpdateSubnetGroupResponse {
@@ -3890,6 +4533,13 @@ class UpdateSubnetGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final subnetGroup = this.subnetGroup;
+    return {
+      if (subnetGroup != null) 'SubnetGroup': subnetGroup,
+    };
+  }
 }
 
 class UpdateUserResponse {
@@ -3905,6 +4555,13 @@ class UpdateUserResponse {
           ? User.fromJson(json['User'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
   }
 }
 
@@ -3959,6 +4616,26 @@ class User {
       name: json['Name'] as String?,
       status: json['Status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aCLNames = this.aCLNames;
+    final arn = this.arn;
+    final accessString = this.accessString;
+    final authentication = this.authentication;
+    final minimumEngineVersion = this.minimumEngineVersion;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (aCLNames != null) 'ACLNames': aCLNames,
+      if (arn != null) 'ARN': arn,
+      if (accessString != null) 'AccessString': accessString,
+      if (authentication != null) 'Authentication': authentication,
+      if (minimumEngineVersion != null)
+        'MinimumEngineVersion': minimumEngineVersion,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status,
+    };
   }
 }
 

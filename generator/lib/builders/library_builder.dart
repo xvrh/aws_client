@@ -299,27 +299,25 @@ ${builder.constructor()}
         writeln('  }');
       }
 
-      if (shape.generateToJson) {
-        writeln('\n  Map<String, dynamic> toJson() {');
-        for (var member in shape.members) {
-          writeln('final ${member.fieldName} = this.${member.fieldName};');
-        }
-        writeln('return {');
-        for (var member in shape.members.where((m) => m.isBody)) {
-          if (!member.isRequired) {
-            writeln('if (${member.fieldName} != null)');
-          }
-          final encodeCode = encodeJsonCode(
-              member.shapeClass!, member.fieldName,
-              member: member, nullability: Nullability.none);
-          final location = member.locationName ??
-              member.shapeClass?.locationName ??
-              member.name;
-          writeln("'$location': $encodeCode,");
-        }
-        writeln('};');
-        writeln('}');
+      writeln('');
+      writeln('\n  Map<String, dynamic> toJson() {');
+      for (var member in shape.members) {
+        writeln('final ${member.fieldName} = this.${member.fieldName};');
       }
+      writeln('return {');
+      for (var member in shape.members.where((m) => m.isBody)) {
+        if (!member.isRequired) {
+          writeln('if (${member.fieldName} != null)');
+        }
+        final encodeCode = encodeJsonCode(member.shapeClass!, member.fieldName,
+            member: member, nullability: Nullability.none);
+        final location = member.locationName ??
+            member.shapeClass?.locationName ??
+            member.name;
+        writeln("'$location': $encodeCode,");
+      }
+      writeln('};');
+      writeln('}');
 
       if (shape.generateToXml) {
         writeln(

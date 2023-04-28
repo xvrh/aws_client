@@ -5464,6 +5464,13 @@ class ActivateGatewayOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 enum ActiveDirectoryStatus {
@@ -5530,6 +5537,13 @@ class AddCacheOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 /// AddTagsToResourceOutput
@@ -5545,6 +5559,13 @@ class AddTagsToResourceOutput {
       resourceARN: json['ResourceARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    return {
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+    };
+  }
 }
 
 class AddUploadBufferOutput {
@@ -5557,6 +5578,13 @@ class AddUploadBufferOutput {
     return AddUploadBufferOutput(
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -5573,6 +5601,13 @@ class AddWorkingStorageOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 class AssignTapePoolOutput {
@@ -5588,6 +5623,13 @@ class AssignTapePoolOutput {
       tapeARN: json['TapeARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tapeARN = this.tapeARN;
+    return {
+      if (tapeARN != null) 'TapeARN': tapeARN,
+    };
+  }
 }
 
 class AssociateFileSystemOutput {
@@ -5601,6 +5643,14 @@ class AssociateFileSystemOutput {
     return AssociateFileSystemOutput(
       fileSystemAssociationARN: json['FileSystemAssociationARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileSystemAssociationARN = this.fileSystemAssociationARN;
+    return {
+      if (fileSystemAssociationARN != null)
+        'FileSystemAssociationARN': fileSystemAssociationARN,
+    };
   }
 }
 
@@ -5623,6 +5673,15 @@ class AttachVolumeOutput {
       targetARN: json['TargetARN'] as String?,
       volumeARN: json['VolumeARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final targetARN = this.targetARN;
+    final volumeARN = this.volumeARN;
+    return {
+      if (targetARN != null) 'TargetARN': targetARN,
+      if (volumeARN != null) 'VolumeARN': volumeARN,
+    };
   }
 }
 
@@ -5649,6 +5708,16 @@ class AutomaticTapeCreationPolicyInfo {
           .toList(),
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final automaticTapeCreationRules = this.automaticTapeCreationRules;
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (automaticTapeCreationRules != null)
+        'AutomaticTapeCreationRules': automaticTapeCreationRules,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -5985,6 +6054,39 @@ class CachediSCSIVolume {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final kMSKey = this.kMSKey;
+    final sourceSnapshotId = this.sourceSnapshotId;
+    final targetName = this.targetName;
+    final volumeARN = this.volumeARN;
+    final volumeAttachmentStatus = this.volumeAttachmentStatus;
+    final volumeId = this.volumeId;
+    final volumeProgress = this.volumeProgress;
+    final volumeSizeInBytes = this.volumeSizeInBytes;
+    final volumeStatus = this.volumeStatus;
+    final volumeType = this.volumeType;
+    final volumeUsedInBytes = this.volumeUsedInBytes;
+    final volumeiSCSIAttributes = this.volumeiSCSIAttributes;
+    return {
+      if (createdDate != null) 'CreatedDate': unixTimestampToJson(createdDate),
+      if (kMSKey != null) 'KMSKey': kMSKey,
+      if (sourceSnapshotId != null) 'SourceSnapshotId': sourceSnapshotId,
+      if (targetName != null) 'TargetName': targetName,
+      if (volumeARN != null) 'VolumeARN': volumeARN,
+      if (volumeAttachmentStatus != null)
+        'VolumeAttachmentStatus': volumeAttachmentStatus,
+      if (volumeId != null) 'VolumeId': volumeId,
+      if (volumeProgress != null) 'VolumeProgress': volumeProgress,
+      if (volumeSizeInBytes != null) 'VolumeSizeInBytes': volumeSizeInBytes,
+      if (volumeStatus != null) 'VolumeStatus': volumeStatus,
+      if (volumeType != null) 'VolumeType': volumeType,
+      if (volumeUsedInBytes != null) 'VolumeUsedInBytes': volumeUsedInBytes,
+      if (volumeiSCSIAttributes != null)
+        'VolumeiSCSIAttributes': volumeiSCSIAttributes,
+    };
+  }
 }
 
 /// CancelArchivalOutput
@@ -6001,6 +6103,13 @@ class CancelArchivalOutput {
       tapeARN: json['TapeARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tapeARN = this.tapeARN;
+    return {
+      if (tapeARN != null) 'TapeARN': tapeARN,
+    };
+  }
 }
 
 /// CancelRetrievalOutput
@@ -6016,6 +6125,13 @@ class CancelRetrievalOutput {
     return CancelRetrievalOutput(
       tapeARN: json['TapeARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tapeARN = this.tapeARN;
+    return {
+      if (tapeARN != null) 'TapeARN': tapeARN,
+    };
   }
 }
 
@@ -6082,6 +6198,21 @@ class ChapInfo {
       targetARN: json['TargetARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final initiatorName = this.initiatorName;
+    final secretToAuthenticateInitiator = this.secretToAuthenticateInitiator;
+    final secretToAuthenticateTarget = this.secretToAuthenticateTarget;
+    final targetARN = this.targetARN;
+    return {
+      if (initiatorName != null) 'InitiatorName': initiatorName,
+      if (secretToAuthenticateInitiator != null)
+        'SecretToAuthenticateInitiator': secretToAuthenticateInitiator,
+      if (secretToAuthenticateTarget != null)
+        'SecretToAuthenticateTarget': secretToAuthenticateTarget,
+      if (targetARN != null) 'TargetARN': targetARN,
+    };
+  }
 }
 
 class CreateCachediSCSIVolumeOutput {
@@ -6102,6 +6233,15 @@ class CreateCachediSCSIVolumeOutput {
       volumeARN: json['VolumeARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final targetARN = this.targetARN;
+    final volumeARN = this.volumeARN;
+    return {
+      if (targetARN != null) 'TargetARN': targetARN,
+      if (volumeARN != null) 'VolumeARN': volumeARN,
+    };
+  }
 }
 
 /// CreateNFSFileShareOutput
@@ -6117,6 +6257,13 @@ class CreateNFSFileShareOutput {
       fileShareARN: json['FileShareARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fileShareARN = this.fileShareARN;
+    return {
+      if (fileShareARN != null) 'FileShareARN': fileShareARN,
+    };
+  }
 }
 
 /// CreateSMBFileShareOutput
@@ -6131,6 +6278,13 @@ class CreateSMBFileShareOutput {
     return CreateSMBFileShareOutput(
       fileShareARN: json['FileShareARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileShareARN = this.fileShareARN;
+    return {
+      if (fileShareARN != null) 'FileShareARN': fileShareARN,
+    };
   }
 }
 
@@ -6159,6 +6313,18 @@ class CreateSnapshotFromVolumeRecoveryPointOutput {
       volumeRecoveryPointTime: json['VolumeRecoveryPointTime'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snapshotId = this.snapshotId;
+    final volumeARN = this.volumeARN;
+    final volumeRecoveryPointTime = this.volumeRecoveryPointTime;
+    return {
+      if (snapshotId != null) 'SnapshotId': snapshotId,
+      if (volumeARN != null) 'VolumeARN': volumeARN,
+      if (volumeRecoveryPointTime != null)
+        'VolumeRecoveryPointTime': volumeRecoveryPointTime,
+    };
+  }
 }
 
 /// A JSON object containing the following fields:
@@ -6182,6 +6348,15 @@ class CreateSnapshotOutput {
       snapshotId: json['SnapshotId'] as String?,
       volumeARN: json['VolumeARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshotId = this.snapshotId;
+    final volumeARN = this.volumeARN;
+    return {
+      if (snapshotId != null) 'SnapshotId': snapshotId,
+      if (volumeARN != null) 'VolumeARN': volumeARN,
+    };
   }
 }
 
@@ -6209,6 +6384,17 @@ class CreateStorediSCSIVolumeOutput {
       volumeSizeInBytes: json['VolumeSizeInBytes'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final targetARN = this.targetARN;
+    final volumeARN = this.volumeARN;
+    final volumeSizeInBytes = this.volumeSizeInBytes;
+    return {
+      if (targetARN != null) 'TargetARN': targetARN,
+      if (volumeARN != null) 'VolumeARN': volumeARN,
+      if (volumeSizeInBytes != null) 'VolumeSizeInBytes': volumeSizeInBytes,
+    };
+  }
 }
 
 class CreateTapePoolOutput {
@@ -6225,6 +6411,13 @@ class CreateTapePoolOutput {
       poolARN: json['PoolARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final poolARN = this.poolARN;
+    return {
+      if (poolARN != null) 'PoolARN': poolARN,
+    };
+  }
 }
 
 /// CreateTapeOutput
@@ -6240,6 +6433,13 @@ class CreateTapeWithBarcodeOutput {
     return CreateTapeWithBarcodeOutput(
       tapeARN: json['TapeARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tapeARN = this.tapeARN;
+    return {
+      if (tapeARN != null) 'TapeARN': tapeARN,
+    };
   }
 }
 
@@ -6260,6 +6460,13 @@ class CreateTapesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tapeARNs = this.tapeARNs;
+    return {
+      if (tapeARNs != null) 'TapeARNs': tapeARNs,
+    };
+  }
 }
 
 class DeleteAutomaticTapeCreationPolicyOutput {
@@ -6273,6 +6480,13 @@ class DeleteAutomaticTapeCreationPolicyOutput {
     return DeleteAutomaticTapeCreationPolicyOutput(
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -6288,6 +6502,13 @@ class DeleteBandwidthRateLimitOutput {
     return DeleteBandwidthRateLimitOutput(
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -6309,6 +6530,15 @@ class DeleteChapCredentialsOutput {
       targetARN: json['TargetARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final initiatorName = this.initiatorName;
+    final targetARN = this.targetARN;
+    return {
+      if (initiatorName != null) 'InitiatorName': initiatorName,
+      if (targetARN != null) 'TargetARN': targetARN,
+    };
+  }
 }
 
 /// DeleteFileShareOutput
@@ -6324,6 +6554,13 @@ class DeleteFileShareOutput {
       fileShareARN: json['FileShareARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fileShareARN = this.fileShareARN;
+    return {
+      if (fileShareARN != null) 'FileShareARN': fileShareARN,
+    };
+  }
 }
 
 /// A JSON object containing the ID of the deleted gateway.
@@ -6338,6 +6575,13 @@ class DeleteGatewayOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 class DeleteSnapshotScheduleOutput {
@@ -6351,6 +6595,13 @@ class DeleteSnapshotScheduleOutput {
     return DeleteSnapshotScheduleOutput(
       volumeARN: json['VolumeARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final volumeARN = this.volumeARN;
+    return {
+      if (volumeARN != null) 'VolumeARN': volumeARN,
+    };
   }
 }
 
@@ -6368,6 +6619,13 @@ class DeleteTapeArchiveOutput {
       tapeARN: json['TapeARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tapeARN = this.tapeARN;
+    return {
+      if (tapeARN != null) 'TapeARN': tapeARN,
+    };
+  }
 }
 
 /// DeleteTapeOutput
@@ -6383,6 +6641,13 @@ class DeleteTapeOutput {
       tapeARN: json['TapeARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tapeARN = this.tapeARN;
+    return {
+      if (tapeARN != null) 'TapeARN': tapeARN,
+    };
+  }
 }
 
 class DeleteTapePoolOutput {
@@ -6396,6 +6661,13 @@ class DeleteTapePoolOutput {
     return DeleteTapePoolOutput(
       poolARN: json['PoolARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final poolARN = this.poolARN;
+    return {
+      if (poolARN != null) 'PoolARN': poolARN,
+    };
   }
 }
 
@@ -6413,6 +6685,13 @@ class DeleteVolumeOutput {
     return DeleteVolumeOutput(
       volumeARN: json['VolumeARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final volumeARN = this.volumeARN;
+    return {
+      if (volumeARN != null) 'VolumeARN': volumeARN,
+    };
   }
 }
 
@@ -6439,6 +6718,17 @@ class DescribeAvailabilityMonitorTestOutput {
       startTime: timeStampFromJson(json['StartTime']),
       status: (json['Status'] as String?)?.toAvailabilityMonitorTestStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    final startTime = this.startTime;
+    final status = this.status;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -6467,6 +6757,23 @@ class DescribeBandwidthRateLimitOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final averageDownloadRateLimitInBitsPerSec =
+        this.averageDownloadRateLimitInBitsPerSec;
+    final averageUploadRateLimitInBitsPerSec =
+        this.averageUploadRateLimitInBitsPerSec;
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (averageDownloadRateLimitInBitsPerSec != null)
+        'AverageDownloadRateLimitInBitsPerSec':
+            averageDownloadRateLimitInBitsPerSec,
+      if (averageUploadRateLimitInBitsPerSec != null)
+        'AverageUploadRateLimitInBitsPerSec':
+            averageUploadRateLimitInBitsPerSec,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 class DescribeBandwidthRateLimitScheduleOutput {
@@ -6490,6 +6797,16 @@ class DescribeBandwidthRateLimitScheduleOutput {
           .toList(),
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bandwidthRateLimitIntervals = this.bandwidthRateLimitIntervals;
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (bandwidthRateLimitIntervals != null)
+        'BandwidthRateLimitIntervals': bandwidthRateLimitIntervals,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -6544,6 +6861,29 @@ class DescribeCacheOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cacheAllocatedInBytes = this.cacheAllocatedInBytes;
+    final cacheDirtyPercentage = this.cacheDirtyPercentage;
+    final cacheHitPercentage = this.cacheHitPercentage;
+    final cacheMissPercentage = this.cacheMissPercentage;
+    final cacheUsedPercentage = this.cacheUsedPercentage;
+    final diskIds = this.diskIds;
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (cacheAllocatedInBytes != null)
+        'CacheAllocatedInBytes': cacheAllocatedInBytes,
+      if (cacheDirtyPercentage != null)
+        'CacheDirtyPercentage': cacheDirtyPercentage,
+      if (cacheHitPercentage != null) 'CacheHitPercentage': cacheHitPercentage,
+      if (cacheMissPercentage != null)
+        'CacheMissPercentage': cacheMissPercentage,
+      if (cacheUsedPercentage != null)
+        'CacheUsedPercentage': cacheUsedPercentage,
+      if (diskIds != null) 'DiskIds': diskIds,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 /// A JSON object containing the following fields:
@@ -6562,6 +6902,13 @@ class DescribeCachediSCSIVolumesOutput {
           .map((e) => CachediSCSIVolume.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cachediSCSIVolumes = this.cachediSCSIVolumes;
+    return {
+      if (cachediSCSIVolumes != null) 'CachediSCSIVolumes': cachediSCSIVolumes,
+    };
   }
 }
 
@@ -6604,6 +6951,13 @@ class DescribeChapCredentialsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final chapCredentials = this.chapCredentials;
+    return {
+      if (chapCredentials != null) 'ChapCredentials': chapCredentials,
+    };
+  }
 }
 
 class DescribeFileSystemAssociationsOutput {
@@ -6624,6 +6978,14 @@ class DescribeFileSystemAssociationsOutput {
                   FileSystemAssociationInfo.fromJson(e as Map<String, dynamic>))
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileSystemAssociationInfoList = this.fileSystemAssociationInfoList;
+    return {
+      if (fileSystemAssociationInfoList != null)
+        'FileSystemAssociationInfoList': fileSystemAssociationInfoList,
+    };
   }
 }
 
@@ -6771,6 +7133,59 @@ class DescribeGatewayInformationOutput {
       vPCEndpoint: json['VPCEndpoint'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogGroupARN = this.cloudWatchLogGroupARN;
+    final deprecationDate = this.deprecationDate;
+    final ec2InstanceId = this.ec2InstanceId;
+    final ec2InstanceRegion = this.ec2InstanceRegion;
+    final endpointType = this.endpointType;
+    final gatewayARN = this.gatewayARN;
+    final gatewayCapacity = this.gatewayCapacity;
+    final gatewayId = this.gatewayId;
+    final gatewayName = this.gatewayName;
+    final gatewayNetworkInterfaces = this.gatewayNetworkInterfaces;
+    final gatewayState = this.gatewayState;
+    final gatewayTimezone = this.gatewayTimezone;
+    final gatewayType = this.gatewayType;
+    final hostEnvironment = this.hostEnvironment;
+    final hostEnvironmentId = this.hostEnvironmentId;
+    final lastSoftwareUpdate = this.lastSoftwareUpdate;
+    final nextUpdateAvailabilityDate = this.nextUpdateAvailabilityDate;
+    final softwareUpdatesEndDate = this.softwareUpdatesEndDate;
+    final supportedGatewayCapacities = this.supportedGatewayCapacities;
+    final tags = this.tags;
+    final vPCEndpoint = this.vPCEndpoint;
+    return {
+      if (cloudWatchLogGroupARN != null)
+        'CloudWatchLogGroupARN': cloudWatchLogGroupARN,
+      if (deprecationDate != null) 'DeprecationDate': deprecationDate,
+      if (ec2InstanceId != null) 'Ec2InstanceId': ec2InstanceId,
+      if (ec2InstanceRegion != null) 'Ec2InstanceRegion': ec2InstanceRegion,
+      if (endpointType != null) 'EndpointType': endpointType,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (gatewayCapacity != null) 'GatewayCapacity': gatewayCapacity.toValue(),
+      if (gatewayId != null) 'GatewayId': gatewayId,
+      if (gatewayName != null) 'GatewayName': gatewayName,
+      if (gatewayNetworkInterfaces != null)
+        'GatewayNetworkInterfaces': gatewayNetworkInterfaces,
+      if (gatewayState != null) 'GatewayState': gatewayState,
+      if (gatewayTimezone != null) 'GatewayTimezone': gatewayTimezone,
+      if (gatewayType != null) 'GatewayType': gatewayType,
+      if (hostEnvironment != null) 'HostEnvironment': hostEnvironment.toValue(),
+      if (hostEnvironmentId != null) 'HostEnvironmentId': hostEnvironmentId,
+      if (lastSoftwareUpdate != null) 'LastSoftwareUpdate': lastSoftwareUpdate,
+      if (nextUpdateAvailabilityDate != null)
+        'NextUpdateAvailabilityDate': nextUpdateAvailabilityDate,
+      if (softwareUpdatesEndDate != null)
+        'SoftwareUpdatesEndDate': softwareUpdatesEndDate,
+      if (supportedGatewayCapacities != null)
+        'SupportedGatewayCapacities':
+            supportedGatewayCapacities.map((e) => e.toValue()).toList(),
+      if (tags != null) 'Tags': tags,
+      if (vPCEndpoint != null) 'VPCEndpoint': vPCEndpoint,
+    };
+  }
 }
 
 /// A JSON object containing the following fields:
@@ -6837,6 +7252,23 @@ class DescribeMaintenanceStartTimeOutput {
       timezone: json['Timezone'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dayOfMonth = this.dayOfMonth;
+    final dayOfWeek = this.dayOfWeek;
+    final gatewayARN = this.gatewayARN;
+    final hourOfDay = this.hourOfDay;
+    final minuteOfHour = this.minuteOfHour;
+    final timezone = this.timezone;
+    return {
+      if (dayOfMonth != null) 'DayOfMonth': dayOfMonth,
+      if (dayOfWeek != null) 'DayOfWeek': dayOfWeek,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (hourOfDay != null) 'HourOfDay': hourOfDay,
+      if (minuteOfHour != null) 'MinuteOfHour': minuteOfHour,
+      if (timezone != null) 'Timezone': timezone,
+    };
+  }
 }
 
 /// DescribeNFSFileSharesOutput
@@ -6855,6 +7287,14 @@ class DescribeNFSFileSharesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nFSFileShareInfoList = this.nFSFileShareInfoList;
+    return {
+      if (nFSFileShareInfoList != null)
+        'NFSFileShareInfoList': nFSFileShareInfoList,
+    };
+  }
 }
 
 /// DescribeSMBFileSharesOutput
@@ -6872,6 +7312,14 @@ class DescribeSMBFileSharesOutput {
           .map((e) => SMBFileShareInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sMBFileShareInfoList = this.sMBFileShareInfoList;
+    return {
+      if (sMBFileShareInfoList != null)
+        'SMBFileShareInfoList': sMBFileShareInfoList,
+    };
   }
 }
 
@@ -6979,6 +7427,28 @@ class DescribeSMBSettingsOutput {
           (json['SMBSecurityStrategy'] as String?)?.toSMBSecurityStrategy(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeDirectoryStatus = this.activeDirectoryStatus;
+    final domainName = this.domainName;
+    final fileSharesVisible = this.fileSharesVisible;
+    final gatewayARN = this.gatewayARN;
+    final sMBGuestPasswordSet = this.sMBGuestPasswordSet;
+    final sMBLocalGroups = this.sMBLocalGroups;
+    final sMBSecurityStrategy = this.sMBSecurityStrategy;
+    return {
+      if (activeDirectoryStatus != null)
+        'ActiveDirectoryStatus': activeDirectoryStatus.toValue(),
+      if (domainName != null) 'DomainName': domainName,
+      if (fileSharesVisible != null) 'FileSharesVisible': fileSharesVisible,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (sMBGuestPasswordSet != null)
+        'SMBGuestPasswordSet': sMBGuestPasswordSet,
+      if (sMBLocalGroups != null) 'SMBLocalGroups': sMBLocalGroups,
+      if (sMBSecurityStrategy != null)
+        'SMBSecurityStrategy': sMBSecurityStrategy.toValue(),
+    };
+  }
 }
 
 class DescribeSnapshotScheduleOutput {
@@ -7026,6 +7496,23 @@ class DescribeSnapshotScheduleOutput {
       timezone: json['Timezone'] as String?,
       volumeARN: json['VolumeARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final recurrenceInHours = this.recurrenceInHours;
+    final startAt = this.startAt;
+    final tags = this.tags;
+    final timezone = this.timezone;
+    final volumeARN = this.volumeARN;
+    return {
+      if (description != null) 'Description': description,
+      if (recurrenceInHours != null) 'RecurrenceInHours': recurrenceInHours,
+      if (startAt != null) 'StartAt': startAt,
+      if (tags != null) 'Tags': tags,
+      if (timezone != null) 'Timezone': timezone,
+      if (volumeARN != null) 'VolumeARN': volumeARN,
+    };
   }
 }
 
@@ -7111,6 +7598,13 @@ class DescribeStorediSCSIVolumesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final storediSCSIVolumes = this.storediSCSIVolumes;
+    return {
+      if (storediSCSIVolumes != null) 'StorediSCSIVolumes': storediSCSIVolumes,
+    };
+  }
 }
 
 /// DescribeTapeArchivesOutput
@@ -7141,6 +7635,15 @@ class DescribeTapeArchivesOutput {
           .map((e) => TapeArchive.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final tapeArchives = this.tapeArchives;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (tapeArchives != null) 'TapeArchives': tapeArchives,
+    };
   }
 }
 
@@ -7175,6 +7678,18 @@ class DescribeTapeRecoveryPointsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    final marker = this.marker;
+    final tapeRecoveryPointInfos = this.tapeRecoveryPointInfos;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (marker != null) 'Marker': marker,
+      if (tapeRecoveryPointInfos != null)
+        'TapeRecoveryPointInfos': tapeRecoveryPointInfos,
+    };
+  }
 }
 
 /// DescribeTapesOutput
@@ -7201,6 +7716,15 @@ class DescribeTapesOutput {
           .map((e) => Tape.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final tapes = this.tapes;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (tapes != null) 'Tapes': tapes,
+    };
   }
 }
 
@@ -7236,6 +7760,21 @@ class DescribeUploadBufferOutput {
       uploadBufferUsedInBytes: json['UploadBufferUsedInBytes'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final diskIds = this.diskIds;
+    final gatewayARN = this.gatewayARN;
+    final uploadBufferAllocatedInBytes = this.uploadBufferAllocatedInBytes;
+    final uploadBufferUsedInBytes = this.uploadBufferUsedInBytes;
+    return {
+      if (diskIds != null) 'DiskIds': diskIds,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (uploadBufferAllocatedInBytes != null)
+        'UploadBufferAllocatedInBytes': uploadBufferAllocatedInBytes,
+      if (uploadBufferUsedInBytes != null)
+        'UploadBufferUsedInBytes': uploadBufferUsedInBytes,
+    };
+  }
 }
 
 /// DescribeVTLDevicesOutput
@@ -7266,6 +7805,17 @@ class DescribeVTLDevicesOutput {
           .map((e) => VTLDevice.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    final marker = this.marker;
+    final vTLDevices = this.vTLDevices;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (marker != null) 'Marker': marker,
+      if (vTLDevices != null) 'VTLDevices': vTLDevices,
+    };
   }
 }
 
@@ -7304,6 +7854,21 @@ class DescribeWorkingStorageOutput {
       workingStorageUsedInBytes: json['WorkingStorageUsedInBytes'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final diskIds = this.diskIds;
+    final gatewayARN = this.gatewayARN;
+    final workingStorageAllocatedInBytes = this.workingStorageAllocatedInBytes;
+    final workingStorageUsedInBytes = this.workingStorageUsedInBytes;
+    return {
+      if (diskIds != null) 'DiskIds': diskIds,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (workingStorageAllocatedInBytes != null)
+        'WorkingStorageAllocatedInBytes': workingStorageAllocatedInBytes,
+      if (workingStorageUsedInBytes != null)
+        'WorkingStorageUsedInBytes': workingStorageUsedInBytes,
+    };
+  }
 }
 
 /// AttachVolumeOutput
@@ -7318,6 +7883,13 @@ class DetachVolumeOutput {
     return DetachVolumeOutput(
       volumeARN: json['VolumeARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final volumeARN = this.volumeARN;
+    return {
+      if (volumeARN != null) 'VolumeARN': volumeARN,
+    };
   }
 }
 
@@ -7350,6 +7922,20 @@ class DeviceiSCSIAttributes {
       targetARN: json['TargetARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final chapEnabled = this.chapEnabled;
+    final networkInterfaceId = this.networkInterfaceId;
+    final networkInterfacePort = this.networkInterfacePort;
+    final targetARN = this.targetARN;
+    return {
+      if (chapEnabled != null) 'ChapEnabled': chapEnabled,
+      if (networkInterfaceId != null) 'NetworkInterfaceId': networkInterfaceId,
+      if (networkInterfacePort != null)
+        'NetworkInterfacePort': networkInterfacePort,
+      if (targetARN != null) 'TargetARN': targetARN,
+    };
+  }
 }
 
 /// DisableGatewayOutput
@@ -7365,6 +7951,13 @@ class DisableGatewayOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 class DisassociateFileSystemOutput {
@@ -7378,6 +7971,14 @@ class DisassociateFileSystemOutput {
     return DisassociateFileSystemOutput(
       fileSystemAssociationARN: json['FileSystemAssociationARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileSystemAssociationARN = this.fileSystemAssociationARN;
+    return {
+      if (fileSystemAssociationARN != null)
+        'FileSystemAssociationARN': fileSystemAssociationARN,
+    };
   }
 }
 
@@ -7432,6 +8033,28 @@ class Disk {
       diskSizeInBytes: json['DiskSizeInBytes'] as int?,
       diskStatus: json['DiskStatus'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final diskAllocationResource = this.diskAllocationResource;
+    final diskAllocationType = this.diskAllocationType;
+    final diskAttributeList = this.diskAttributeList;
+    final diskId = this.diskId;
+    final diskNode = this.diskNode;
+    final diskPath = this.diskPath;
+    final diskSizeInBytes = this.diskSizeInBytes;
+    final diskStatus = this.diskStatus;
+    return {
+      if (diskAllocationResource != null)
+        'DiskAllocationResource': diskAllocationResource,
+      if (diskAllocationType != null) 'DiskAllocationType': diskAllocationType,
+      if (diskAttributeList != null) 'DiskAttributeList': diskAttributeList,
+      if (diskId != null) 'DiskId': diskId,
+      if (diskNode != null) 'DiskNode': diskNode,
+      if (diskPath != null) 'DiskPath': diskPath,
+      if (diskSizeInBytes != null) 'DiskSizeInBytes': diskSizeInBytes,
+      if (diskStatus != null) 'DiskStatus': diskStatus,
+    };
   }
 }
 
@@ -7489,6 +8112,21 @@ class FileShareInfo {
       fileShareType: (json['FileShareType'] as String?)?.toFileShareType(),
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileShareARN = this.fileShareARN;
+    final fileShareId = this.fileShareId;
+    final fileShareStatus = this.fileShareStatus;
+    final fileShareType = this.fileShareType;
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (fileShareARN != null) 'FileShareARN': fileShareARN,
+      if (fileShareId != null) 'FileShareId': fileShareId,
+      if (fileShareStatus != null) 'FileShareStatus': fileShareStatus,
+      if (fileShareType != null) 'FileShareType': fileShareType.toValue(),
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -7599,6 +8237,36 @@ class FileSystemAssociationInfo {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final auditDestinationARN = this.auditDestinationARN;
+    final cacheAttributes = this.cacheAttributes;
+    final endpointNetworkConfiguration = this.endpointNetworkConfiguration;
+    final fileSystemAssociationARN = this.fileSystemAssociationARN;
+    final fileSystemAssociationStatus = this.fileSystemAssociationStatus;
+    final fileSystemAssociationStatusDetails =
+        this.fileSystemAssociationStatusDetails;
+    final gatewayARN = this.gatewayARN;
+    final locationARN = this.locationARN;
+    final tags = this.tags;
+    return {
+      if (auditDestinationARN != null)
+        'AuditDestinationARN': auditDestinationARN,
+      if (cacheAttributes != null) 'CacheAttributes': cacheAttributes,
+      if (endpointNetworkConfiguration != null)
+        'EndpointNetworkConfiguration': endpointNetworkConfiguration,
+      if (fileSystemAssociationARN != null)
+        'FileSystemAssociationARN': fileSystemAssociationARN,
+      if (fileSystemAssociationStatus != null)
+        'FileSystemAssociationStatus': fileSystemAssociationStatus,
+      if (fileSystemAssociationStatusDetails != null)
+        'FileSystemAssociationStatusDetails':
+            fileSystemAssociationStatusDetails,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (locationARN != null) 'LocationARN': locationARN,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Detailed information on file system association status.
@@ -7614,6 +8282,13 @@ class FileSystemAssociationStatusDetail {
     return FileSystemAssociationStatusDetail(
       errorCode: json['ErrorCode'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+    };
   }
 }
 
@@ -7646,6 +8321,22 @@ class FileSystemAssociationSummary {
           json['FileSystemAssociationStatus'] as String?,
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileSystemAssociationARN = this.fileSystemAssociationARN;
+    final fileSystemAssociationId = this.fileSystemAssociationId;
+    final fileSystemAssociationStatus = this.fileSystemAssociationStatus;
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (fileSystemAssociationARN != null)
+        'FileSystemAssociationARN': fileSystemAssociationARN,
+      if (fileSystemAssociationId != null)
+        'FileSystemAssociationId': fileSystemAssociationId,
+      if (fileSystemAssociationStatus != null)
+        'FileSystemAssociationStatus': fileSystemAssociationStatus,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -7743,6 +8434,30 @@ class GatewayInfo {
           (json['HostEnvironment'] as String?)?.toHostEnvironment(),
       hostEnvironmentId: json['HostEnvironmentId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ec2InstanceId = this.ec2InstanceId;
+    final ec2InstanceRegion = this.ec2InstanceRegion;
+    final gatewayARN = this.gatewayARN;
+    final gatewayId = this.gatewayId;
+    final gatewayName = this.gatewayName;
+    final gatewayOperationalState = this.gatewayOperationalState;
+    final gatewayType = this.gatewayType;
+    final hostEnvironment = this.hostEnvironment;
+    final hostEnvironmentId = this.hostEnvironmentId;
+    return {
+      if (ec2InstanceId != null) 'Ec2InstanceId': ec2InstanceId,
+      if (ec2InstanceRegion != null) 'Ec2InstanceRegion': ec2InstanceRegion,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (gatewayId != null) 'GatewayId': gatewayId,
+      if (gatewayName != null) 'GatewayName': gatewayName,
+      if (gatewayOperationalState != null)
+        'GatewayOperationalState': gatewayOperationalState,
+      if (gatewayType != null) 'GatewayType': gatewayType,
+      if (hostEnvironment != null) 'HostEnvironment': hostEnvironment.toValue(),
+      if (hostEnvironmentId != null) 'HostEnvironmentId': hostEnvironmentId,
+    };
   }
 }
 
@@ -7844,6 +8559,16 @@ class JoinDomainOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeDirectoryStatus = this.activeDirectoryStatus;
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (activeDirectoryStatus != null)
+        'ActiveDirectoryStatus': activeDirectoryStatus.toValue(),
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 class ListAutomaticTapeCreationPoliciesOutput {
@@ -7865,6 +8590,15 @@ class ListAutomaticTapeCreationPoliciesOutput {
                   e as Map<String, dynamic>))
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final automaticTapeCreationPolicyInfos =
+        this.automaticTapeCreationPolicyInfos;
+    return {
+      if (automaticTapeCreationPolicyInfos != null)
+        'AutomaticTapeCreationPolicyInfos': automaticTapeCreationPolicyInfos,
+    };
   }
 }
 
@@ -7896,6 +8630,17 @@ class ListFileSharesOutput {
       marker: json['Marker'] as String?,
       nextMarker: json['NextMarker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileShareInfoList = this.fileShareInfoList;
+    final marker = this.marker;
+    final nextMarker = this.nextMarker;
+    return {
+      if (fileShareInfoList != null) 'FileShareInfoList': fileShareInfoList,
+      if (marker != null) 'Marker': marker,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -7930,6 +8675,19 @@ class ListFileSystemAssociationsOutput {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fileSystemAssociationSummaryList =
+        this.fileSystemAssociationSummaryList;
+    final marker = this.marker;
+    final nextMarker = this.nextMarker;
+    return {
+      if (fileSystemAssociationSummaryList != null)
+        'FileSystemAssociationSummaryList': fileSystemAssociationSummaryList,
+      if (marker != null) 'Marker': marker,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class ListGatewaysOutput {
@@ -7953,6 +8711,15 @@ class ListGatewaysOutput {
           .toList(),
       marker: json['Marker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gateways = this.gateways;
+    final marker = this.marker;
+    return {
+      if (gateways != null) 'Gateways': gateways,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7979,6 +8746,15 @@ class ListLocalDisksOutput {
           .toList(),
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final disks = this.disks;
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (disks != null) 'Disks': disks,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -8010,6 +8786,17 @@ class ListTagsForResourceOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final resourceARN = this.resourceARN;
+    final tags = this.tags;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class ListTapePoolsOutput {
@@ -8036,6 +8823,15 @@ class ListTapePoolsOutput {
           .map((e) => PoolInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final poolInfos = this.poolInfos;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (poolInfos != null) 'PoolInfos': poolInfos,
+    };
   }
 }
 
@@ -8070,6 +8866,15 @@ class ListTapesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final tapeInfos = this.tapeInfos;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (tapeInfos != null) 'TapeInfos': tapeInfos,
+    };
+  }
 }
 
 /// ListVolumeInitiatorsOutput
@@ -8088,6 +8893,13 @@ class ListVolumeInitiatorsOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final initiators = this.initiators;
+    return {
+      if (initiators != null) 'Initiators': initiators,
+    };
   }
 }
 
@@ -8110,6 +8922,16 @@ class ListVolumeRecoveryPointsOutput {
               VolumeRecoveryPointInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    final volumeRecoveryPointInfos = this.volumeRecoveryPointInfos;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (volumeRecoveryPointInfos != null)
+        'VolumeRecoveryPointInfos': volumeRecoveryPointInfos,
+    };
   }
 }
 
@@ -8150,6 +8972,17 @@ class ListVolumesOutput {
           .map((e) => VolumeInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    final marker = this.marker;
+    final volumeInfos = this.volumeInfos;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (marker != null) 'Marker': marker,
+      if (volumeInfos != null) 'VolumeInfos': volumeInfos,
+    };
   }
 }
 
@@ -8389,6 +9222,63 @@ class NFSFileShareInfo {
       vPCEndpointDNSName: json['VPCEndpointDNSName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final auditDestinationARN = this.auditDestinationARN;
+    final bucketRegion = this.bucketRegion;
+    final cacheAttributes = this.cacheAttributes;
+    final clientList = this.clientList;
+    final defaultStorageClass = this.defaultStorageClass;
+    final fileShareARN = this.fileShareARN;
+    final fileShareId = this.fileShareId;
+    final fileShareName = this.fileShareName;
+    final fileShareStatus = this.fileShareStatus;
+    final gatewayARN = this.gatewayARN;
+    final guessMIMETypeEnabled = this.guessMIMETypeEnabled;
+    final kMSEncrypted = this.kMSEncrypted;
+    final kMSKey = this.kMSKey;
+    final locationARN = this.locationARN;
+    final nFSFileShareDefaults = this.nFSFileShareDefaults;
+    final notificationPolicy = this.notificationPolicy;
+    final objectACL = this.objectACL;
+    final path = this.path;
+    final readOnly = this.readOnly;
+    final requesterPays = this.requesterPays;
+    final role = this.role;
+    final squash = this.squash;
+    final tags = this.tags;
+    final vPCEndpointDNSName = this.vPCEndpointDNSName;
+    return {
+      if (auditDestinationARN != null)
+        'AuditDestinationARN': auditDestinationARN,
+      if (bucketRegion != null) 'BucketRegion': bucketRegion,
+      if (cacheAttributes != null) 'CacheAttributes': cacheAttributes,
+      if (clientList != null) 'ClientList': clientList,
+      if (defaultStorageClass != null)
+        'DefaultStorageClass': defaultStorageClass,
+      if (fileShareARN != null) 'FileShareARN': fileShareARN,
+      if (fileShareId != null) 'FileShareId': fileShareId,
+      if (fileShareName != null) 'FileShareName': fileShareName,
+      if (fileShareStatus != null) 'FileShareStatus': fileShareStatus,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (guessMIMETypeEnabled != null)
+        'GuessMIMETypeEnabled': guessMIMETypeEnabled,
+      if (kMSEncrypted != null) 'KMSEncrypted': kMSEncrypted,
+      if (kMSKey != null) 'KMSKey': kMSKey,
+      if (locationARN != null) 'LocationARN': locationARN,
+      if (nFSFileShareDefaults != null)
+        'NFSFileShareDefaults': nFSFileShareDefaults,
+      if (notificationPolicy != null) 'NotificationPolicy': notificationPolicy,
+      if (objectACL != null) 'ObjectACL': objectACL.toValue(),
+      if (path != null) 'Path': path,
+      if (readOnly != null) 'ReadOnly': readOnly,
+      if (requesterPays != null) 'RequesterPays': requesterPays,
+      if (role != null) 'Role': role,
+      if (squash != null) 'Squash': squash,
+      if (tags != null) 'Tags': tags,
+      if (vPCEndpointDNSName != null) 'VPCEndpointDNSName': vPCEndpointDNSName,
+    };
+  }
 }
 
 /// Describes a gateway's network interface.
@@ -8418,6 +9308,17 @@ class NetworkInterface {
       macAddress: json['MacAddress'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ipv4Address = this.ipv4Address;
+    final ipv6Address = this.ipv6Address;
+    final macAddress = this.macAddress;
+    return {
+      if (ipv4Address != null) 'Ipv4Address': ipv4Address,
+      if (ipv6Address != null) 'Ipv6Address': ipv6Address,
+      if (macAddress != null) 'MacAddress': macAddress,
+    };
+  }
 }
 
 class NotifyWhenUploadedOutput {
@@ -8433,6 +9334,15 @@ class NotifyWhenUploadedOutput {
       fileShareARN: json['FileShareARN'] as String?,
       notificationId: json['NotificationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileShareARN = this.fileShareARN;
+    final notificationId = this.notificationId;
+    return {
+      if (fileShareARN != null) 'FileShareARN': fileShareARN,
+      if (notificationId != null) 'NotificationId': notificationId,
+    };
   }
 }
 
@@ -8544,6 +9454,25 @@ class PoolInfo {
       storageClass: (json['StorageClass'] as String?)?.toTapeStorageClass(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final poolARN = this.poolARN;
+    final poolName = this.poolName;
+    final poolStatus = this.poolStatus;
+    final retentionLockTimeInDays = this.retentionLockTimeInDays;
+    final retentionLockType = this.retentionLockType;
+    final storageClass = this.storageClass;
+    return {
+      if (poolARN != null) 'PoolARN': poolARN,
+      if (poolName != null) 'PoolName': poolName,
+      if (poolStatus != null) 'PoolStatus': poolStatus.toValue(),
+      if (retentionLockTimeInDays != null)
+        'RetentionLockTimeInDays': retentionLockTimeInDays,
+      if (retentionLockType != null)
+        'RetentionLockType': retentionLockType.toValue(),
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+    };
+  }
 }
 
 enum PoolStatus {
@@ -8589,6 +9518,15 @@ class RefreshCacheOutput {
       notificationId: json['NotificationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fileShareARN = this.fileShareARN;
+    final notificationId = this.notificationId;
+    return {
+      if (fileShareARN != null) 'FileShareARN': fileShareARN,
+      if (notificationId != null) 'NotificationId': notificationId,
+    };
+  }
 }
 
 /// RemoveTagsFromResourceOutput
@@ -8605,6 +9543,13 @@ class RemoveTagsFromResourceOutput {
       resourceARN: json['ResourceARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    return {
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+    };
+  }
 }
 
 class ResetCacheOutput {
@@ -8617,6 +9562,13 @@ class ResetCacheOutput {
     return ResetCacheOutput(
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -8666,6 +9618,13 @@ class RetrieveTapeArchiveOutput {
       tapeARN: json['TapeARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tapeARN = this.tapeARN;
+    return {
+      if (tapeARN != null) 'TapeARN': tapeARN,
+    };
+  }
 }
 
 /// RetrieveTapeRecoveryPointOutput
@@ -8681,6 +9640,13 @@ class RetrieveTapeRecoveryPointOutput {
     return RetrieveTapeRecoveryPointOutput(
       tapeARN: json['TapeARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tapeARN = this.tapeARN;
+    return {
+      if (tapeARN != null) 'TapeARN': tapeARN,
+    };
   }
 }
 
@@ -8930,6 +9896,73 @@ class SMBFileShareInfo {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessBasedEnumeration = this.accessBasedEnumeration;
+    final adminUserList = this.adminUserList;
+    final auditDestinationARN = this.auditDestinationARN;
+    final authentication = this.authentication;
+    final bucketRegion = this.bucketRegion;
+    final cacheAttributes = this.cacheAttributes;
+    final caseSensitivity = this.caseSensitivity;
+    final defaultStorageClass = this.defaultStorageClass;
+    final fileShareARN = this.fileShareARN;
+    final fileShareId = this.fileShareId;
+    final fileShareName = this.fileShareName;
+    final fileShareStatus = this.fileShareStatus;
+    final gatewayARN = this.gatewayARN;
+    final guessMIMETypeEnabled = this.guessMIMETypeEnabled;
+    final invalidUserList = this.invalidUserList;
+    final kMSEncrypted = this.kMSEncrypted;
+    final kMSKey = this.kMSKey;
+    final locationARN = this.locationARN;
+    final notificationPolicy = this.notificationPolicy;
+    final objectACL = this.objectACL;
+    final oplocksEnabled = this.oplocksEnabled;
+    final path = this.path;
+    final readOnly = this.readOnly;
+    final requesterPays = this.requesterPays;
+    final role = this.role;
+    final sMBACLEnabled = this.sMBACLEnabled;
+    final tags = this.tags;
+    final vPCEndpointDNSName = this.vPCEndpointDNSName;
+    final validUserList = this.validUserList;
+    return {
+      if (accessBasedEnumeration != null)
+        'AccessBasedEnumeration': accessBasedEnumeration,
+      if (adminUserList != null) 'AdminUserList': adminUserList,
+      if (auditDestinationARN != null)
+        'AuditDestinationARN': auditDestinationARN,
+      if (authentication != null) 'Authentication': authentication,
+      if (bucketRegion != null) 'BucketRegion': bucketRegion,
+      if (cacheAttributes != null) 'CacheAttributes': cacheAttributes,
+      if (caseSensitivity != null) 'CaseSensitivity': caseSensitivity.toValue(),
+      if (defaultStorageClass != null)
+        'DefaultStorageClass': defaultStorageClass,
+      if (fileShareARN != null) 'FileShareARN': fileShareARN,
+      if (fileShareId != null) 'FileShareId': fileShareId,
+      if (fileShareName != null) 'FileShareName': fileShareName,
+      if (fileShareStatus != null) 'FileShareStatus': fileShareStatus,
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (guessMIMETypeEnabled != null)
+        'GuessMIMETypeEnabled': guessMIMETypeEnabled,
+      if (invalidUserList != null) 'InvalidUserList': invalidUserList,
+      if (kMSEncrypted != null) 'KMSEncrypted': kMSEncrypted,
+      if (kMSKey != null) 'KMSKey': kMSKey,
+      if (locationARN != null) 'LocationARN': locationARN,
+      if (notificationPolicy != null) 'NotificationPolicy': notificationPolicy,
+      if (objectACL != null) 'ObjectACL': objectACL.toValue(),
+      if (oplocksEnabled != null) 'OplocksEnabled': oplocksEnabled,
+      if (path != null) 'Path': path,
+      if (readOnly != null) 'ReadOnly': readOnly,
+      if (requesterPays != null) 'RequesterPays': requesterPays,
+      if (role != null) 'Role': role,
+      if (sMBACLEnabled != null) 'SMBACLEnabled': sMBACLEnabled,
+      if (tags != null) 'Tags': tags,
+      if (vPCEndpointDNSName != null) 'VPCEndpointDNSName': vPCEndpointDNSName,
+      if (validUserList != null) 'ValidUserList': validUserList,
+    };
+  }
 }
 
 /// A list of Active Directory users and groups that have special permissions
@@ -9007,6 +10040,13 @@ class SetLocalConsolePasswordOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 class SetSMBGuestPasswordOutput {
@@ -9019,6 +10059,13 @@ class SetSMBGuestPasswordOutput {
     return SetSMBGuestPasswordOutput(
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -9035,6 +10082,13 @@ class ShutdownGatewayOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 class StartAvailabilityMonitorTestOutput {
@@ -9048,6 +10102,13 @@ class StartAvailabilityMonitorTestOutput {
     return StartAvailabilityMonitorTestOutput(
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -9063,6 +10124,13 @@ class StartGatewayOutput {
     return StartGatewayOutput(
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -9181,6 +10249,44 @@ class StorediSCSIVolume {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final kMSKey = this.kMSKey;
+    final preservedExistingData = this.preservedExistingData;
+    final sourceSnapshotId = this.sourceSnapshotId;
+    final targetName = this.targetName;
+    final volumeARN = this.volumeARN;
+    final volumeAttachmentStatus = this.volumeAttachmentStatus;
+    final volumeDiskId = this.volumeDiskId;
+    final volumeId = this.volumeId;
+    final volumeProgress = this.volumeProgress;
+    final volumeSizeInBytes = this.volumeSizeInBytes;
+    final volumeStatus = this.volumeStatus;
+    final volumeType = this.volumeType;
+    final volumeUsedInBytes = this.volumeUsedInBytes;
+    final volumeiSCSIAttributes = this.volumeiSCSIAttributes;
+    return {
+      if (createdDate != null) 'CreatedDate': unixTimestampToJson(createdDate),
+      if (kMSKey != null) 'KMSKey': kMSKey,
+      if (preservedExistingData != null)
+        'PreservedExistingData': preservedExistingData,
+      if (sourceSnapshotId != null) 'SourceSnapshotId': sourceSnapshotId,
+      if (targetName != null) 'TargetName': targetName,
+      if (volumeARN != null) 'VolumeARN': volumeARN,
+      if (volumeAttachmentStatus != null)
+        'VolumeAttachmentStatus': volumeAttachmentStatus,
+      if (volumeDiskId != null) 'VolumeDiskId': volumeDiskId,
+      if (volumeId != null) 'VolumeId': volumeId,
+      if (volumeProgress != null) 'VolumeProgress': volumeProgress,
+      if (volumeSizeInBytes != null) 'VolumeSizeInBytes': volumeSizeInBytes,
+      if (volumeStatus != null) 'VolumeStatus': volumeStatus,
+      if (volumeType != null) 'VolumeType': volumeType,
+      if (volumeUsedInBytes != null) 'VolumeUsedInBytes': volumeUsedInBytes,
+      if (volumeiSCSIAttributes != null)
+        'VolumeiSCSIAttributes': volumeiSCSIAttributes,
+    };
+  }
 }
 
 /// A key-value pair that helps you manage, filter, and search for your
@@ -9298,6 +10404,40 @@ class Tape {
       worm: json['Worm'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final kMSKey = this.kMSKey;
+    final poolEntryDate = this.poolEntryDate;
+    final poolId = this.poolId;
+    final progress = this.progress;
+    final retentionStartDate = this.retentionStartDate;
+    final tapeARN = this.tapeARN;
+    final tapeBarcode = this.tapeBarcode;
+    final tapeCreatedDate = this.tapeCreatedDate;
+    final tapeSizeInBytes = this.tapeSizeInBytes;
+    final tapeStatus = this.tapeStatus;
+    final tapeUsedInBytes = this.tapeUsedInBytes;
+    final vTLDevice = this.vTLDevice;
+    final worm = this.worm;
+    return {
+      if (kMSKey != null) 'KMSKey': kMSKey,
+      if (poolEntryDate != null)
+        'PoolEntryDate': unixTimestampToJson(poolEntryDate),
+      if (poolId != null) 'PoolId': poolId,
+      if (progress != null) 'Progress': progress,
+      if (retentionStartDate != null)
+        'RetentionStartDate': unixTimestampToJson(retentionStartDate),
+      if (tapeARN != null) 'TapeARN': tapeARN,
+      if (tapeBarcode != null) 'TapeBarcode': tapeBarcode,
+      if (tapeCreatedDate != null)
+        'TapeCreatedDate': unixTimestampToJson(tapeCreatedDate),
+      if (tapeSizeInBytes != null) 'TapeSizeInBytes': tapeSizeInBytes,
+      if (tapeStatus != null) 'TapeStatus': tapeStatus,
+      if (tapeUsedInBytes != null) 'TapeUsedInBytes': tapeUsedInBytes,
+      if (vTLDevice != null) 'VTLDevice': vTLDevice,
+      if (worm != null) 'Worm': worm,
+    };
+  }
 }
 
 /// Represents a virtual tape that is archived in the virtual tape shelf (VTS).
@@ -9386,6 +10526,41 @@ class TapeArchive {
       worm: json['Worm'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completionTime = this.completionTime;
+    final kMSKey = this.kMSKey;
+    final poolEntryDate = this.poolEntryDate;
+    final poolId = this.poolId;
+    final retentionStartDate = this.retentionStartDate;
+    final retrievedTo = this.retrievedTo;
+    final tapeARN = this.tapeARN;
+    final tapeBarcode = this.tapeBarcode;
+    final tapeCreatedDate = this.tapeCreatedDate;
+    final tapeSizeInBytes = this.tapeSizeInBytes;
+    final tapeStatus = this.tapeStatus;
+    final tapeUsedInBytes = this.tapeUsedInBytes;
+    final worm = this.worm;
+    return {
+      if (completionTime != null)
+        'CompletionTime': unixTimestampToJson(completionTime),
+      if (kMSKey != null) 'KMSKey': kMSKey,
+      if (poolEntryDate != null)
+        'PoolEntryDate': unixTimestampToJson(poolEntryDate),
+      if (poolId != null) 'PoolId': poolId,
+      if (retentionStartDate != null)
+        'RetentionStartDate': unixTimestampToJson(retentionStartDate),
+      if (retrievedTo != null) 'RetrievedTo': retrievedTo,
+      if (tapeARN != null) 'TapeARN': tapeARN,
+      if (tapeBarcode != null) 'TapeBarcode': tapeBarcode,
+      if (tapeCreatedDate != null)
+        'TapeCreatedDate': unixTimestampToJson(tapeCreatedDate),
+      if (tapeSizeInBytes != null) 'TapeSizeInBytes': tapeSizeInBytes,
+      if (tapeStatus != null) 'TapeStatus': tapeStatus,
+      if (tapeUsedInBytes != null) 'TapeUsedInBytes': tapeUsedInBytes,
+      if (worm != null) 'Worm': worm,
+    };
+  }
 }
 
 /// Describes a virtual tape.
@@ -9443,6 +10618,29 @@ class TapeInfo {
       tapeStatus: json['TapeStatus'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    final poolEntryDate = this.poolEntryDate;
+    final poolId = this.poolId;
+    final retentionStartDate = this.retentionStartDate;
+    final tapeARN = this.tapeARN;
+    final tapeBarcode = this.tapeBarcode;
+    final tapeSizeInBytes = this.tapeSizeInBytes;
+    final tapeStatus = this.tapeStatus;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (poolEntryDate != null)
+        'PoolEntryDate': unixTimestampToJson(poolEntryDate),
+      if (poolId != null) 'PoolId': poolId,
+      if (retentionStartDate != null)
+        'RetentionStartDate': unixTimestampToJson(retentionStartDate),
+      if (tapeARN != null) 'TapeARN': tapeARN,
+      if (tapeBarcode != null) 'TapeBarcode': tapeBarcode,
+      if (tapeSizeInBytes != null) 'TapeSizeInBytes': tapeSizeInBytes,
+      if (tapeStatus != null) 'TapeStatus': tapeStatus,
+    };
+  }
 }
 
 /// Describes a recovery point.
@@ -9476,6 +10674,20 @@ class TapeRecoveryPointInfo {
       tapeSizeInBytes: json['TapeSizeInBytes'] as int?,
       tapeStatus: json['TapeStatus'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tapeARN = this.tapeARN;
+    final tapeRecoveryPointTime = this.tapeRecoveryPointTime;
+    final tapeSizeInBytes = this.tapeSizeInBytes;
+    final tapeStatus = this.tapeStatus;
+    return {
+      if (tapeARN != null) 'TapeARN': tapeARN,
+      if (tapeRecoveryPointTime != null)
+        'TapeRecoveryPointTime': unixTimestampToJson(tapeRecoveryPointTime),
+      if (tapeSizeInBytes != null) 'TapeSizeInBytes': tapeSizeInBytes,
+      if (tapeStatus != null) 'TapeStatus': tapeStatus,
+    };
   }
 }
 
@@ -9519,6 +10731,13 @@ class UpdateAutomaticTapeCreationPolicyOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 /// A JSON object containing the Amazon Resource Name (ARN) of the gateway whose
@@ -9534,6 +10753,13 @@ class UpdateBandwidthRateLimitOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 class UpdateBandwidthRateLimitScheduleOutput {
@@ -9547,6 +10773,13 @@ class UpdateBandwidthRateLimitScheduleOutput {
     return UpdateBandwidthRateLimitScheduleOutput(
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -9570,6 +10803,15 @@ class UpdateChapCredentialsOutput {
       targetARN: json['TargetARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final initiatorName = this.initiatorName;
+    final targetARN = this.targetARN;
+    return {
+      if (initiatorName != null) 'InitiatorName': initiatorName,
+      if (targetARN != null) 'TargetARN': targetARN,
+    };
+  }
 }
 
 class UpdateFileSystemAssociationOutput {
@@ -9584,6 +10826,14 @@ class UpdateFileSystemAssociationOutput {
     return UpdateFileSystemAssociationOutput(
       fileSystemAssociationARN: json['FileSystemAssociationARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileSystemAssociationARN = this.fileSystemAssociationARN;
+    return {
+      if (fileSystemAssociationARN != null)
+        'FileSystemAssociationARN': fileSystemAssociationARN,
+    };
   }
 }
 
@@ -9605,6 +10855,15 @@ class UpdateGatewayInformationOutput {
       gatewayName: json['GatewayName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    final gatewayName = this.gatewayName;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (gatewayName != null) 'GatewayName': gatewayName,
+    };
+  }
 }
 
 /// A JSON object containing the Amazon Resource Name (ARN) of the gateway that
@@ -9619,6 +10878,13 @@ class UpdateGatewaySoftwareNowOutput {
     return UpdateGatewaySoftwareNowOutput(
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -9635,6 +10901,13 @@ class UpdateMaintenanceStartTimeOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 /// UpdateNFSFileShareOutput
@@ -9649,6 +10922,13 @@ class UpdateNFSFileShareOutput {
     return UpdateNFSFileShareOutput(
       fileShareARN: json['FileShareARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileShareARN = this.fileShareARN;
+    return {
+      if (fileShareARN != null) 'FileShareARN': fileShareARN,
+    };
   }
 }
 
@@ -9665,6 +10945,13 @@ class UpdateSMBFileShareOutput {
       fileShareARN: json['FileShareARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fileShareARN = this.fileShareARN;
+    return {
+      if (fileShareARN != null) 'FileShareARN': fileShareARN,
+    };
+  }
 }
 
 class UpdateSMBFileShareVisibilityOutput {
@@ -9679,6 +10966,13 @@ class UpdateSMBFileShareVisibilityOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 class UpdateSMBLocalGroupsOutput {
@@ -9692,6 +10986,13 @@ class UpdateSMBLocalGroupsOutput {
       gatewayARN: json['GatewayARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
+  }
 }
 
 class UpdateSMBSecurityStrategyOutput {
@@ -9704,6 +11005,13 @@ class UpdateSMBSecurityStrategyOutput {
     return UpdateSMBSecurityStrategyOutput(
       gatewayARN: json['GatewayARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+    };
   }
 }
 
@@ -9722,6 +11030,13 @@ class UpdateSnapshotScheduleOutput {
       volumeARN: json['VolumeARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final volumeARN = this.volumeARN;
+    return {
+      if (volumeARN != null) 'VolumeARN': volumeARN,
+    };
+  }
 }
 
 /// UpdateVTLDeviceTypeOutput
@@ -9736,6 +11051,13 @@ class UpdateVTLDeviceTypeOutput {
     return UpdateVTLDeviceTypeOutput(
       vTLDeviceARN: json['VTLDeviceARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vTLDeviceARN = this.vTLDeviceARN;
+    return {
+      if (vTLDeviceARN != null) 'VTLDeviceARN': vTLDeviceARN,
+    };
   }
 }
 
@@ -9775,6 +11097,23 @@ class VTLDevice {
       vTLDeviceType: json['VTLDeviceType'] as String?,
       vTLDeviceVendor: json['VTLDeviceVendor'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceiSCSIAttributes = this.deviceiSCSIAttributes;
+    final vTLDeviceARN = this.vTLDeviceARN;
+    final vTLDeviceProductIdentifier = this.vTLDeviceProductIdentifier;
+    final vTLDeviceType = this.vTLDeviceType;
+    final vTLDeviceVendor = this.vTLDeviceVendor;
+    return {
+      if (deviceiSCSIAttributes != null)
+        'DeviceiSCSIAttributes': deviceiSCSIAttributes,
+      if (vTLDeviceARN != null) 'VTLDeviceARN': vTLDeviceARN,
+      if (vTLDeviceProductIdentifier != null)
+        'VTLDeviceProductIdentifier': vTLDeviceProductIdentifier,
+      if (vTLDeviceType != null) 'VTLDeviceType': vTLDeviceType,
+      if (vTLDeviceVendor != null) 'VTLDeviceVendor': vTLDeviceVendor,
+    };
   }
 }
 
@@ -9840,6 +11179,26 @@ class VolumeInfo {
       volumeType: json['VolumeType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayARN = this.gatewayARN;
+    final gatewayId = this.gatewayId;
+    final volumeARN = this.volumeARN;
+    final volumeAttachmentStatus = this.volumeAttachmentStatus;
+    final volumeId = this.volumeId;
+    final volumeSizeInBytes = this.volumeSizeInBytes;
+    final volumeType = this.volumeType;
+    return {
+      if (gatewayARN != null) 'GatewayARN': gatewayARN,
+      if (gatewayId != null) 'GatewayId': gatewayId,
+      if (volumeARN != null) 'VolumeARN': volumeARN,
+      if (volumeAttachmentStatus != null)
+        'VolumeAttachmentStatus': volumeAttachmentStatus,
+      if (volumeId != null) 'VolumeId': volumeId,
+      if (volumeSizeInBytes != null) 'VolumeSizeInBytes': volumeSizeInBytes,
+      if (volumeType != null) 'VolumeType': volumeType,
+    };
+  }
 }
 
 /// Describes a storage volume recovery point object.
@@ -9873,6 +11232,20 @@ class VolumeRecoveryPointInfo {
       volumeSizeInBytes: json['VolumeSizeInBytes'] as int?,
       volumeUsageInBytes: json['VolumeUsageInBytes'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final volumeARN = this.volumeARN;
+    final volumeRecoveryPointTime = this.volumeRecoveryPointTime;
+    final volumeSizeInBytes = this.volumeSizeInBytes;
+    final volumeUsageInBytes = this.volumeUsageInBytes;
+    return {
+      if (volumeARN != null) 'VolumeARN': volumeARN,
+      if (volumeRecoveryPointTime != null)
+        'VolumeRecoveryPointTime': volumeRecoveryPointTime,
+      if (volumeSizeInBytes != null) 'VolumeSizeInBytes': volumeSizeInBytes,
+      if (volumeUsageInBytes != null) 'VolumeUsageInBytes': volumeUsageInBytes,
+    };
   }
 }
 
@@ -9908,6 +11281,22 @@ class VolumeiSCSIAttributes {
       networkInterfacePort: json['NetworkInterfacePort'] as int?,
       targetARN: json['TargetARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final chapEnabled = this.chapEnabled;
+    final lunNumber = this.lunNumber;
+    final networkInterfaceId = this.networkInterfaceId;
+    final networkInterfacePort = this.networkInterfacePort;
+    final targetARN = this.targetARN;
+    return {
+      if (chapEnabled != null) 'ChapEnabled': chapEnabled,
+      if (lunNumber != null) 'LunNumber': lunNumber,
+      if (networkInterfaceId != null) 'NetworkInterfaceId': networkInterfaceId,
+      if (networkInterfacePort != null)
+        'NetworkInterfacePort': networkInterfacePort,
+      if (targetARN != null) 'TargetARN': targetARN,
+    };
   }
 }
 

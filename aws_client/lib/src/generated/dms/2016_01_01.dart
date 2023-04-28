@@ -4375,6 +4375,17 @@ class AccountQuota {
       used: json['Used'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountQuotaName = this.accountQuotaName;
+    final max = this.max;
+    final used = this.used;
+    return {
+      if (accountQuotaName != null) 'AccountQuotaName': accountQuotaName,
+      if (max != null) 'Max': max,
+      if (used != null) 'Used': used,
+    };
+  }
 }
 
 /// <p/>
@@ -4382,6 +4393,10 @@ class AddTagsToResourceResponse {
   AddTagsToResourceResponse();
   factory AddTagsToResourceResponse.fromJson(Map<String, dynamic> _) {
     return AddTagsToResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4403,6 +4418,15 @@ class ApplyPendingMaintenanceActionResponse {
                       as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourcePendingMaintenanceActions =
+        this.resourcePendingMaintenanceActions;
+    return {
+      if (resourcePendingMaintenanceActions != null)
+        'ResourcePendingMaintenanceActions': resourcePendingMaintenanceActions,
+    };
   }
 }
 
@@ -4486,6 +4510,13 @@ class AvailabilityZone {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// <p/>
@@ -4505,6 +4536,14 @@ class CancelReplicationTaskAssessmentRunResponse {
               json['ReplicationTaskAssessmentRun'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationTaskAssessmentRun = this.replicationTaskAssessmentRun;
+    return {
+      if (replicationTaskAssessmentRun != null)
+        'ReplicationTaskAssessmentRun': replicationTaskAssessmentRun,
+    };
   }
 }
 
@@ -4631,6 +4670,35 @@ class Certificate {
       validToDate: timeStampFromJson(json['ValidToDate']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final certificateCreationDate = this.certificateCreationDate;
+    final certificateIdentifier = this.certificateIdentifier;
+    final certificateOwner = this.certificateOwner;
+    final certificatePem = this.certificatePem;
+    final certificateWallet = this.certificateWallet;
+    final keyLength = this.keyLength;
+    final signingAlgorithm = this.signingAlgorithm;
+    final validFromDate = this.validFromDate;
+    final validToDate = this.validToDate;
+    return {
+      if (certificateArn != null) 'CertificateArn': certificateArn,
+      if (certificateCreationDate != null)
+        'CertificateCreationDate': unixTimestampToJson(certificateCreationDate),
+      if (certificateIdentifier != null)
+        'CertificateIdentifier': certificateIdentifier,
+      if (certificateOwner != null) 'CertificateOwner': certificateOwner,
+      if (certificatePem != null) 'CertificatePem': certificatePem,
+      if (certificateWallet != null)
+        'CertificateWallet': base64Encode(certificateWallet),
+      if (keyLength != null) 'KeyLength': keyLength,
+      if (signingAlgorithm != null) 'SigningAlgorithm': signingAlgorithm,
+      if (validFromDate != null)
+        'ValidFromDate': unixTimestampToJson(validFromDate),
+      if (validToDate != null) 'ValidToDate': unixTimestampToJson(validToDate),
+    };
+  }
 }
 
 enum CharLengthSemantics {
@@ -4696,6 +4764,24 @@ class CollectorHealthCheck {
           json['WebCollectorGrantedRoleBasedAccess'] as bool?,
       webCollectorS3Access: json['WebCollectorS3Access'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final collectorStatus = this.collectorStatus;
+    final localCollectorS3Access = this.localCollectorS3Access;
+    final webCollectorGrantedRoleBasedAccess =
+        this.webCollectorGrantedRoleBasedAccess;
+    final webCollectorS3Access = this.webCollectorS3Access;
+    return {
+      if (collectorStatus != null) 'CollectorStatus': collectorStatus.toValue(),
+      if (localCollectorS3Access != null)
+        'LocalCollectorS3Access': localCollectorS3Access,
+      if (webCollectorGrantedRoleBasedAccess != null)
+        'WebCollectorGrantedRoleBasedAccess':
+            webCollectorGrantedRoleBasedAccess,
+      if (webCollectorS3Access != null)
+        'WebCollectorS3Access': webCollectorS3Access,
+    };
   }
 }
 
@@ -4782,6 +4868,40 @@ class CollectorResponse {
       versionStatus: (json['VersionStatus'] as String?)?.toVersionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final collectorHealthCheck = this.collectorHealthCheck;
+    final collectorName = this.collectorName;
+    final collectorReferencedId = this.collectorReferencedId;
+    final collectorVersion = this.collectorVersion;
+    final createdDate = this.createdDate;
+    final description = this.description;
+    final inventoryData = this.inventoryData;
+    final lastDataReceived = this.lastDataReceived;
+    final modifiedDate = this.modifiedDate;
+    final registeredDate = this.registeredDate;
+    final s3BucketName = this.s3BucketName;
+    final serviceAccessRoleArn = this.serviceAccessRoleArn;
+    final versionStatus = this.versionStatus;
+    return {
+      if (collectorHealthCheck != null)
+        'CollectorHealthCheck': collectorHealthCheck,
+      if (collectorName != null) 'CollectorName': collectorName,
+      if (collectorReferencedId != null)
+        'CollectorReferencedId': collectorReferencedId,
+      if (collectorVersion != null) 'CollectorVersion': collectorVersion,
+      if (createdDate != null) 'CreatedDate': createdDate,
+      if (description != null) 'Description': description,
+      if (inventoryData != null) 'InventoryData': inventoryData,
+      if (lastDataReceived != null) 'LastDataReceived': lastDataReceived,
+      if (modifiedDate != null) 'ModifiedDate': modifiedDate,
+      if (registeredDate != null) 'RegisteredDate': registeredDate,
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (serviceAccessRoleArn != null)
+        'ServiceAccessRoleArn': serviceAccessRoleArn,
+      if (versionStatus != null) 'VersionStatus': versionStatus.toValue(),
+    };
+  }
 }
 
 /// Briefly describes a Fleet Advisor collector.
@@ -4801,6 +4921,16 @@ class CollectorShortInfoResponse {
       collectorName: json['CollectorName'] as String?,
       collectorReferencedId: json['CollectorReferencedId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final collectorName = this.collectorName;
+    final collectorReferencedId = this.collectorReferencedId;
+    return {
+      if (collectorName != null) 'CollectorName': collectorName,
+      if (collectorReferencedId != null)
+        'CollectorReferencedId': collectorReferencedId,
+    };
   }
 }
 
@@ -4919,6 +5049,25 @@ class Connection {
       status: json['Status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointArn = this.endpointArn;
+    final endpointIdentifier = this.endpointIdentifier;
+    final lastFailureMessage = this.lastFailureMessage;
+    final replicationInstanceArn = this.replicationInstanceArn;
+    final replicationInstanceIdentifier = this.replicationInstanceIdentifier;
+    final status = this.status;
+    return {
+      if (endpointArn != null) 'EndpointArn': endpointArn,
+      if (endpointIdentifier != null) 'EndpointIdentifier': endpointIdentifier,
+      if (lastFailureMessage != null) 'LastFailureMessage': lastFailureMessage,
+      if (replicationInstanceArn != null)
+        'ReplicationInstanceArn': replicationInstanceArn,
+      if (replicationInstanceIdentifier != null)
+        'ReplicationInstanceIdentifier': replicationInstanceIdentifier,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// <p/>
@@ -4935,6 +5084,13 @@ class CreateEndpointResponse {
           ? Endpoint.fromJson(json['Endpoint'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    return {
+      if (endpoint != null) 'Endpoint': endpoint,
+    };
   }
 }
 
@@ -4953,6 +5109,13 @@ class CreateEventSubscriptionResponse {
               json['EventSubscription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
   }
 }
 
@@ -4991,6 +5154,23 @@ class CreateFleetAdvisorCollectorResponse {
       serviceAccessRoleArn: json['ServiceAccessRoleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final collectorName = this.collectorName;
+    final collectorReferencedId = this.collectorReferencedId;
+    final description = this.description;
+    final s3BucketName = this.s3BucketName;
+    final serviceAccessRoleArn = this.serviceAccessRoleArn;
+    return {
+      if (collectorName != null) 'CollectorName': collectorName,
+      if (collectorReferencedId != null)
+        'CollectorReferencedId': collectorReferencedId,
+      if (description != null) 'Description': description,
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (serviceAccessRoleArn != null)
+        'ServiceAccessRoleArn': serviceAccessRoleArn,
+    };
+  }
 }
 
 /// <p/>
@@ -5009,6 +5189,14 @@ class CreateReplicationInstanceResponse {
               json['ReplicationInstance'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationInstance = this.replicationInstance;
+    return {
+      if (replicationInstance != null)
+        'ReplicationInstance': replicationInstance,
+    };
   }
 }
 
@@ -5029,6 +5217,14 @@ class CreateReplicationSubnetGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationSubnetGroup = this.replicationSubnetGroup;
+    return {
+      if (replicationSubnetGroup != null)
+        'ReplicationSubnetGroup': replicationSubnetGroup,
+    };
+  }
 }
 
 /// <p/>
@@ -5046,6 +5242,13 @@ class CreateReplicationTaskResponse {
               json['ReplicationTask'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationTask = this.replicationTask;
+    return {
+      if (replicationTask != null) 'ReplicationTask': replicationTask,
+    };
   }
 }
 
@@ -5126,6 +5329,25 @@ class DatabaseInstanceSoftwareDetailsResponse {
       tooltip: json['Tooltip'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final engine = this.engine;
+    final engineEdition = this.engineEdition;
+    final engineVersion = this.engineVersion;
+    final osArchitecture = this.osArchitecture;
+    final servicePack = this.servicePack;
+    final supportLevel = this.supportLevel;
+    final tooltip = this.tooltip;
+    return {
+      if (engine != null) 'Engine': engine,
+      if (engineEdition != null) 'EngineEdition': engineEdition,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (osArchitecture != null) 'OsArchitecture': osArchitecture,
+      if (servicePack != null) 'ServicePack': servicePack,
+      if (supportLevel != null) 'SupportLevel': supportLevel,
+      if (tooltip != null) 'Tooltip': tooltip,
+    };
+  }
 }
 
 /// Describes a database in a Fleet Advisor collector inventory.
@@ -5182,6 +5404,25 @@ class DatabaseResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final collectors = this.collectors;
+    final databaseId = this.databaseId;
+    final databaseName = this.databaseName;
+    final ipAddress = this.ipAddress;
+    final numberOfSchemas = this.numberOfSchemas;
+    final server = this.server;
+    final softwareDetails = this.softwareDetails;
+    return {
+      if (collectors != null) 'Collectors': collectors,
+      if (databaseId != null) 'DatabaseId': databaseId,
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (ipAddress != null) 'IpAddress': ipAddress,
+      if (numberOfSchemas != null) 'NumberOfSchemas': numberOfSchemas,
+      if (server != null) 'Server': server,
+      if (softwareDetails != null) 'SoftwareDetails': softwareDetails,
+    };
+  }
 }
 
 /// Describes a database in a Fleet Advisor collector inventory.
@@ -5212,6 +5453,19 @@ class DatabaseShortInfoResponse {
       databaseIpAddress: json['DatabaseIpAddress'] as String?,
       databaseName: json['DatabaseName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final databaseEngine = this.databaseEngine;
+    final databaseId = this.databaseId;
+    final databaseIpAddress = this.databaseIpAddress;
+    final databaseName = this.databaseName;
+    return {
+      if (databaseEngine != null) 'DatabaseEngine': databaseEngine,
+      if (databaseId != null) 'DatabaseId': databaseId,
+      if (databaseIpAddress != null) 'DatabaseIpAddress': databaseIpAddress,
+      if (databaseName != null) 'DatabaseName': databaseName,
+    };
   }
 }
 
@@ -5312,6 +5566,13 @@ class DeleteCertificateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    return {
+      if (certificate != null) 'Certificate': certificate,
+    };
+  }
 }
 
 /// <p/>
@@ -5329,6 +5590,13 @@ class DeleteConnectionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connection = this.connection;
+    return {
+      if (connection != null) 'Connection': connection,
+    };
+  }
 }
 
 /// <p/>
@@ -5345,6 +5613,13 @@ class DeleteEndpointResponse {
           ? Endpoint.fromJson(json['Endpoint'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    return {
+      if (endpoint != null) 'Endpoint': endpoint,
+    };
   }
 }
 
@@ -5364,6 +5639,13 @@ class DeleteEventSubscriptionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
+  }
 }
 
 class DeleteFleetAdvisorDatabasesResponse {
@@ -5381,6 +5663,13 @@ class DeleteFleetAdvisorDatabasesResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final databaseIds = this.databaseIds;
+    return {
+      if (databaseIds != null) 'DatabaseIds': databaseIds,
+    };
   }
 }
 
@@ -5401,6 +5690,14 @@ class DeleteReplicationInstanceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationInstance = this.replicationInstance;
+    return {
+      if (replicationInstance != null)
+        'ReplicationInstance': replicationInstance,
+    };
+  }
 }
 
 /// <p/>
@@ -5409,6 +5706,10 @@ class DeleteReplicationSubnetGroupResponse {
   factory DeleteReplicationSubnetGroupResponse.fromJson(
       Map<String, dynamic> _) {
     return DeleteReplicationSubnetGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5430,6 +5731,14 @@ class DeleteReplicationTaskAssessmentRunResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationTaskAssessmentRun = this.replicationTaskAssessmentRun;
+    return {
+      if (replicationTaskAssessmentRun != null)
+        'ReplicationTaskAssessmentRun': replicationTaskAssessmentRun,
+    };
+  }
 }
 
 /// <p/>
@@ -5447,6 +5756,13 @@ class DeleteReplicationTaskResponse {
               json['ReplicationTask'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationTask = this.replicationTask;
+    return {
+      if (replicationTask != null) 'ReplicationTask': replicationTask,
+    };
   }
 }
 
@@ -5484,6 +5800,16 @@ class DescribeAccountAttributesResponse {
       uniqueAccountIdentifier: json['UniqueAccountIdentifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountQuotas = this.accountQuotas;
+    final uniqueAccountIdentifier = this.uniqueAccountIdentifier;
+    return {
+      if (accountQuotas != null) 'AccountQuotas': accountQuotas,
+      if (uniqueAccountIdentifier != null)
+        'UniqueAccountIdentifier': uniqueAccountIdentifier,
+    };
+  }
 }
 
 /// <p/>
@@ -5517,6 +5843,16 @@ class DescribeApplicableIndividualAssessmentsResponse {
       marker: json['Marker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final individualAssessmentNames = this.individualAssessmentNames;
+    final marker = this.marker;
+    return {
+      if (individualAssessmentNames != null)
+        'IndividualAssessmentNames': individualAssessmentNames,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 class DescribeCertificatesResponse {
@@ -5539,6 +5875,15 @@ class DescribeCertificatesResponse {
           .toList(),
       marker: json['Marker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificates = this.certificates;
+    final marker = this.marker;
+    return {
+      if (certificates != null) 'Certificates': certificates,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -5565,6 +5910,15 @@ class DescribeConnectionsResponse {
       marker: json['Marker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connections = this.connections;
+    final marker = this.marker;
+    return {
+      if (connections != null) 'Connections': connections,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 class DescribeEndpointSettingsResponse {
@@ -5589,6 +5943,15 @@ class DescribeEndpointSettingsResponse {
           .toList(),
       marker: json['Marker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointSettings = this.endpointSettings;
+    final marker = this.marker;
+    return {
+      if (endpointSettings != null) 'EndpointSettings': endpointSettings,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -5615,6 +5978,16 @@ class DescribeEndpointTypesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final supportedEndpointTypes = this.supportedEndpointTypes;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (supportedEndpointTypes != null)
+        'SupportedEndpointTypes': supportedEndpointTypes,
+    };
+  }
 }
 
 /// <p/>
@@ -5640,6 +6013,15 @@ class DescribeEndpointsResponse {
       marker: json['Marker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoints = this.endpoints;
+    final marker = this.marker;
+    return {
+      if (endpoints != null) 'Endpoints': endpoints,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// <p/>
@@ -5657,6 +6039,14 @@ class DescribeEventCategoriesResponse {
           .map((e) => EventCategoryGroup.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventCategoryGroupList = this.eventCategoryGroupList;
+    return {
+      if (eventCategoryGroupList != null)
+        'EventCategoryGroupList': eventCategoryGroupList,
+    };
   }
 }
 
@@ -5684,6 +6074,16 @@ class DescribeEventSubscriptionsResponse {
       marker: json['Marker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscriptionsList = this.eventSubscriptionsList;
+    final marker = this.marker;
+    return {
+      if (eventSubscriptionsList != null)
+        'EventSubscriptionsList': eventSubscriptionsList,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// <p/>
@@ -5708,6 +6108,15 @@ class DescribeEventsResponse {
           .toList(),
       marker: json['Marker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final marker = this.marker;
+    return {
+      if (events != null) 'Events': events,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -5736,6 +6145,15 @@ class DescribeFleetAdvisorCollectorsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final collectors = this.collectors;
+    final nextToken = this.nextToken;
+    return {
+      if (collectors != null) 'Collectors': collectors,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeFleetAdvisorDatabasesResponse {
@@ -5762,6 +6180,15 @@ class DescribeFleetAdvisorDatabasesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final databases = this.databases;
+    final nextToken = this.nextToken;
+    return {
+      if (databases != null) 'Databases': databases,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5790,6 +6217,15 @@ class DescribeFleetAdvisorLsaAnalysisResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysis = this.analysis;
+    final nextToken = this.nextToken;
+    return {
+      if (analysis != null) 'Analysis': analysis,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeFleetAdvisorSchemaObjectSummaryResponse {
@@ -5817,6 +6253,16 @@ class DescribeFleetAdvisorSchemaObjectSummaryResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fleetAdvisorSchemaObjects = this.fleetAdvisorSchemaObjects;
+    final nextToken = this.nextToken;
+    return {
+      if (fleetAdvisorSchemaObjects != null)
+        'FleetAdvisorSchemaObjects': fleetAdvisorSchemaObjects,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeFleetAdvisorSchemasResponse {
@@ -5842,6 +6288,16 @@ class DescribeFleetAdvisorSchemasResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fleetAdvisorSchemas = this.fleetAdvisorSchemas;
+    final nextToken = this.nextToken;
+    return {
+      if (fleetAdvisorSchemas != null)
+        'FleetAdvisorSchemas': fleetAdvisorSchemas,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5871,6 +6327,16 @@ class DescribeOrderableReplicationInstancesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final orderableReplicationInstances = this.orderableReplicationInstances;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (orderableReplicationInstances != null)
+        'OrderableReplicationInstances': orderableReplicationInstances,
+    };
+  }
 }
 
 /// <p/>
@@ -5898,6 +6364,16 @@ class DescribePendingMaintenanceActionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final pendingMaintenanceActions = this.pendingMaintenanceActions;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (pendingMaintenanceActions != null)
+        'PendingMaintenanceActions': pendingMaintenanceActions,
+    };
+  }
 }
 
 /// <p/>
@@ -5916,6 +6392,14 @@ class DescribeRefreshSchemasStatusResponse {
               json['RefreshSchemasStatus'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final refreshSchemasStatus = this.refreshSchemasStatus;
+    return {
+      if (refreshSchemasStatus != null)
+        'RefreshSchemasStatus': refreshSchemasStatus,
+    };
   }
 }
 
@@ -5950,6 +6434,19 @@ class DescribeReplicationInstanceTaskLogsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final replicationInstanceArn = this.replicationInstanceArn;
+    final replicationInstanceTaskLogs = this.replicationInstanceTaskLogs;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (replicationInstanceArn != null)
+        'ReplicationInstanceArn': replicationInstanceArn,
+      if (replicationInstanceTaskLogs != null)
+        'ReplicationInstanceTaskLogs': replicationInstanceTaskLogs,
+    };
+  }
 }
 
 /// <p/>
@@ -5975,6 +6472,16 @@ class DescribeReplicationInstancesResponse {
           .map((e) => ReplicationInstance.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final replicationInstances = this.replicationInstances;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (replicationInstances != null)
+        'ReplicationInstances': replicationInstances,
+    };
   }
 }
 
@@ -6002,6 +6509,16 @@ class DescribeReplicationSubnetGroupsResponse {
               (e) => ReplicationSubnetGroup.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final replicationSubnetGroups = this.replicationSubnetGroups;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (replicationSubnetGroups != null)
+        'ReplicationSubnetGroups': replicationSubnetGroups,
+    };
   }
 }
 
@@ -6036,6 +6553,19 @@ class DescribeReplicationTaskAssessmentResultsResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucketName = this.bucketName;
+    final marker = this.marker;
+    final replicationTaskAssessmentResults =
+        this.replicationTaskAssessmentResults;
+    return {
+      if (bucketName != null) 'BucketName': bucketName,
+      if (marker != null) 'Marker': marker,
+      if (replicationTaskAssessmentResults != null)
+        'ReplicationTaskAssessmentResults': replicationTaskAssessmentResults,
+    };
+  }
 }
 
 /// <p/>
@@ -6065,6 +6595,16 @@ class DescribeReplicationTaskAssessmentRunsResponse {
               ReplicationTaskAssessmentRun.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final replicationTaskAssessmentRuns = this.replicationTaskAssessmentRuns;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (replicationTaskAssessmentRuns != null)
+        'ReplicationTaskAssessmentRuns': replicationTaskAssessmentRuns,
+    };
   }
 }
 
@@ -6096,6 +6636,18 @@ class DescribeReplicationTaskIndividualAssessmentsResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final replicationTaskIndividualAssessments =
+        this.replicationTaskIndividualAssessments;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (replicationTaskIndividualAssessments != null)
+        'ReplicationTaskIndividualAssessments':
+            replicationTaskIndividualAssessments,
+    };
+  }
 }
 
 /// <p/>
@@ -6121,6 +6673,15 @@ class DescribeReplicationTasksResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final replicationTasks = this.replicationTasks;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (replicationTasks != null) 'ReplicationTasks': replicationTasks,
+    };
+  }
 }
 
 /// <p/>
@@ -6145,6 +6706,15 @@ class DescribeSchemasResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final schemas = this.schemas;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (schemas != null) 'Schemas': schemas,
+    };
   }
 }
 
@@ -6175,6 +6745,17 @@ class DescribeTableStatisticsResponse {
           .map((e) => TableStatistics.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final replicationTaskArn = this.replicationTaskArn;
+    final tableStatistics = this.tableStatistics;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (replicationTaskArn != null) 'ReplicationTaskArn': replicationTaskArn,
+      if (tableStatistics != null) 'TableStatistics': tableStatistics,
+    };
   }
 }
 
@@ -6815,6 +7396,87 @@ class Endpoint {
       username: json['Username'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    final databaseName = this.databaseName;
+    final dmsTransferSettings = this.dmsTransferSettings;
+    final docDbSettings = this.docDbSettings;
+    final dynamoDbSettings = this.dynamoDbSettings;
+    final elasticsearchSettings = this.elasticsearchSettings;
+    final endpointArn = this.endpointArn;
+    final endpointIdentifier = this.endpointIdentifier;
+    final endpointType = this.endpointType;
+    final engineDisplayName = this.engineDisplayName;
+    final engineName = this.engineName;
+    final externalId = this.externalId;
+    final externalTableDefinition = this.externalTableDefinition;
+    final extraConnectionAttributes = this.extraConnectionAttributes;
+    final gcpMySQLSettings = this.gcpMySQLSettings;
+    final iBMDb2Settings = this.iBMDb2Settings;
+    final kafkaSettings = this.kafkaSettings;
+    final kinesisSettings = this.kinesisSettings;
+    final kmsKeyId = this.kmsKeyId;
+    final microsoftSQLServerSettings = this.microsoftSQLServerSettings;
+    final mongoDbSettings = this.mongoDbSettings;
+    final mySQLSettings = this.mySQLSettings;
+    final neptuneSettings = this.neptuneSettings;
+    final oracleSettings = this.oracleSettings;
+    final port = this.port;
+    final postgreSQLSettings = this.postgreSQLSettings;
+    final redisSettings = this.redisSettings;
+    final redshiftSettings = this.redshiftSettings;
+    final s3Settings = this.s3Settings;
+    final serverName = this.serverName;
+    final serviceAccessRoleArn = this.serviceAccessRoleArn;
+    final sslMode = this.sslMode;
+    final status = this.status;
+    final sybaseSettings = this.sybaseSettings;
+    final username = this.username;
+    return {
+      if (certificateArn != null) 'CertificateArn': certificateArn,
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (dmsTransferSettings != null)
+        'DmsTransferSettings': dmsTransferSettings,
+      if (docDbSettings != null) 'DocDbSettings': docDbSettings,
+      if (dynamoDbSettings != null) 'DynamoDbSettings': dynamoDbSettings,
+      if (elasticsearchSettings != null)
+        'ElasticsearchSettings': elasticsearchSettings,
+      if (endpointArn != null) 'EndpointArn': endpointArn,
+      if (endpointIdentifier != null) 'EndpointIdentifier': endpointIdentifier,
+      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (engineDisplayName != null) 'EngineDisplayName': engineDisplayName,
+      if (engineName != null) 'EngineName': engineName,
+      if (externalId != null) 'ExternalId': externalId,
+      if (externalTableDefinition != null)
+        'ExternalTableDefinition': externalTableDefinition,
+      if (extraConnectionAttributes != null)
+        'ExtraConnectionAttributes': extraConnectionAttributes,
+      if (gcpMySQLSettings != null) 'GcpMySQLSettings': gcpMySQLSettings,
+      if (iBMDb2Settings != null) 'IBMDb2Settings': iBMDb2Settings,
+      if (kafkaSettings != null) 'KafkaSettings': kafkaSettings,
+      if (kinesisSettings != null) 'KinesisSettings': kinesisSettings,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (microsoftSQLServerSettings != null)
+        'MicrosoftSQLServerSettings': microsoftSQLServerSettings,
+      if (mongoDbSettings != null) 'MongoDbSettings': mongoDbSettings,
+      if (mySQLSettings != null) 'MySQLSettings': mySQLSettings,
+      if (neptuneSettings != null) 'NeptuneSettings': neptuneSettings,
+      if (oracleSettings != null) 'OracleSettings': oracleSettings,
+      if (port != null) 'Port': port,
+      if (postgreSQLSettings != null) 'PostgreSQLSettings': postgreSQLSettings,
+      if (redisSettings != null) 'RedisSettings': redisSettings,
+      if (redshiftSettings != null) 'RedshiftSettings': redshiftSettings,
+      if (s3Settings != null) 'S3Settings': s3Settings,
+      if (serverName != null) 'ServerName': serverName,
+      if (serviceAccessRoleArn != null)
+        'ServiceAccessRoleArn': serviceAccessRoleArn,
+      if (sslMode != null) 'SslMode': sslMode.toValue(),
+      if (status != null) 'Status': status,
+      if (sybaseSettings != null) 'SybaseSettings': sybaseSettings,
+      if (username != null) 'Username': username,
+    };
+  }
 }
 
 /// Endpoint settings.
@@ -6875,6 +7537,29 @@ class EndpointSetting {
       type: (json['Type'] as String?)?.toEndpointSettingTypeValue(),
       units: json['Units'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicability = this.applicability;
+    final defaultValue = this.defaultValue;
+    final enumValues = this.enumValues;
+    final intValueMax = this.intValueMax;
+    final intValueMin = this.intValueMin;
+    final name = this.name;
+    final sensitive = this.sensitive;
+    final type = this.type;
+    final units = this.units;
+    return {
+      if (applicability != null) 'Applicability': applicability,
+      if (defaultValue != null) 'DefaultValue': defaultValue,
+      if (enumValues != null) 'EnumValues': enumValues,
+      if (intValueMax != null) 'IntValueMax': intValueMax,
+      if (intValueMin != null) 'IntValueMin': intValueMin,
+      if (name != null) 'Name': name,
+      if (sensitive != null) 'Sensitive': sensitive,
+      if (type != null) 'Type': type.toValue(),
+      if (units != null) 'Units': units,
+    };
   }
 }
 
@@ -6956,6 +7641,21 @@ class Event {
       sourceType: (json['SourceType'] as String?)?.toSourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final eventCategories = this.eventCategories;
+    final message = this.message;
+    final sourceIdentifier = this.sourceIdentifier;
+    final sourceType = this.sourceType;
+    return {
+      if (date != null) 'Date': unixTimestampToJson(date),
+      if (eventCategories != null) 'EventCategories': eventCategories,
+      if (message != null) 'Message': message,
+      if (sourceIdentifier != null) 'SourceIdentifier': sourceIdentifier,
+      if (sourceType != null) 'SourceType': sourceType.toValue(),
+    };
+  }
 }
 
 /// Lists categories of events subscribed to, and generated by, the applicable
@@ -6984,6 +7684,15 @@ class EventCategoryGroup {
           .toList(),
       sourceType: json['SourceType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventCategories = this.eventCategories;
+    final sourceType = this.sourceType;
+    return {
+      if (eventCategories != null) 'EventCategories': eventCategories,
+      if (sourceType != null) 'SourceType': sourceType,
+    };
   }
 }
 
@@ -7060,6 +7769,31 @@ class EventSubscription {
       subscriptionCreationTime: json['SubscriptionCreationTime'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final custSubscriptionId = this.custSubscriptionId;
+    final customerAwsId = this.customerAwsId;
+    final enabled = this.enabled;
+    final eventCategoriesList = this.eventCategoriesList;
+    final snsTopicArn = this.snsTopicArn;
+    final sourceIdsList = this.sourceIdsList;
+    final sourceType = this.sourceType;
+    final status = this.status;
+    final subscriptionCreationTime = this.subscriptionCreationTime;
+    return {
+      if (custSubscriptionId != null) 'CustSubscriptionId': custSubscriptionId,
+      if (customerAwsId != null) 'CustomerAwsId': customerAwsId,
+      if (enabled != null) 'Enabled': enabled,
+      if (eventCategoriesList != null)
+        'EventCategoriesList': eventCategoriesList,
+      if (snsTopicArn != null) 'SnsTopicArn': snsTopicArn,
+      if (sourceIdsList != null) 'SourceIdsList': sourceIdsList,
+      if (sourceType != null) 'SourceType': sourceType,
+      if (status != null) 'Status': status,
+      if (subscriptionCreationTime != null)
+        'SubscriptionCreationTime': subscriptionCreationTime,
+    };
+  }
 }
 
 /// Identifies the name and value of a filter object. This filter is used to
@@ -7079,6 +7813,7 @@ class Filter {
     required this.name,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -7107,6 +7842,15 @@ class FleetAdvisorLsaAnalysisResponse {
       lsaAnalysisId: json['LsaAnalysisId'] as String?,
       status: json['Status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lsaAnalysisId = this.lsaAnalysisId;
+    final status = this.status;
+    return {
+      if (lsaAnalysisId != null) 'LsaAnalysisId': lsaAnalysisId,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -7161,6 +7905,21 @@ class FleetAdvisorSchemaObjectResponse {
       objectType: json['ObjectType'] as String?,
       schemaId: json['SchemaId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final codeLineCount = this.codeLineCount;
+    final codeSize = this.codeSize;
+    final numberOfObjects = this.numberOfObjects;
+    final objectType = this.objectType;
+    final schemaId = this.schemaId;
+    return {
+      if (codeLineCount != null) 'CodeLineCount': codeLineCount,
+      if (codeSize != null) 'CodeSize': codeSize,
+      if (numberOfObjects != null) 'NumberOfObjects': numberOfObjects,
+      if (objectType != null) 'ObjectType': objectType,
+      if (schemaId != null) 'SchemaId': schemaId,
+    };
   }
 }
 
@@ -7463,6 +8222,13 @@ class ImportCertificateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    return {
+      if (certificate != null) 'Certificate': certificate,
+    };
+  }
 }
 
 /// Describes a Fleet Advisor collector inventory.
@@ -7482,6 +8248,15 @@ class InventoryData {
       numberOfDatabases: json['NumberOfDatabases'] as int?,
       numberOfSchemas: json['NumberOfSchemas'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final numberOfDatabases = this.numberOfDatabases;
+    final numberOfSchemas = this.numberOfSchemas;
+    return {
+      if (numberOfDatabases != null) 'NumberOfDatabases': numberOfDatabases,
+      if (numberOfSchemas != null) 'NumberOfSchemas': numberOfSchemas,
+    };
   }
 }
 
@@ -7858,6 +8633,13 @@ class ListTagsForResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      if (tagList != null) 'TagList': tagList,
+    };
+  }
 }
 
 enum MessageFormatValue {
@@ -8114,6 +8896,13 @@ class ModifyEndpointResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    return {
+      if (endpoint != null) 'Endpoint': endpoint,
+    };
+  }
 }
 
 /// <p/>
@@ -8131,6 +8920,13 @@ class ModifyEventSubscriptionResponse {
               json['EventSubscription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSubscription = this.eventSubscription;
+    return {
+      if (eventSubscription != null) 'EventSubscription': eventSubscription,
+    };
   }
 }
 
@@ -8151,6 +8947,14 @@ class ModifyReplicationInstanceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationInstance = this.replicationInstance;
+    return {
+      if (replicationInstance != null)
+        'ReplicationInstance': replicationInstance,
+    };
+  }
 }
 
 /// <p/>
@@ -8170,6 +8974,14 @@ class ModifyReplicationSubnetGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationSubnetGroup = this.replicationSubnetGroup;
+    return {
+      if (replicationSubnetGroup != null)
+        'ReplicationSubnetGroup': replicationSubnetGroup,
+    };
+  }
 }
 
 /// <p/>
@@ -8187,6 +8999,13 @@ class ModifyReplicationTaskResponse {
               json['ReplicationTask'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationTask = this.replicationTask;
+    return {
+      if (replicationTask != null) 'ReplicationTask': replicationTask,
+    };
   }
 }
 
@@ -8369,6 +9188,13 @@ class MoveReplicationTaskResponse {
               json['ReplicationTask'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationTask = this.replicationTask;
+    return {
+      if (replicationTask != null) 'ReplicationTask': replicationTask,
+    };
   }
 }
 
@@ -9275,6 +10101,34 @@ class OrderableReplicationInstance {
       storageType: json['StorageType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final defaultAllocatedStorage = this.defaultAllocatedStorage;
+    final engineVersion = this.engineVersion;
+    final includedAllocatedStorage = this.includedAllocatedStorage;
+    final maxAllocatedStorage = this.maxAllocatedStorage;
+    final minAllocatedStorage = this.minAllocatedStorage;
+    final releaseStatus = this.releaseStatus;
+    final replicationInstanceClass = this.replicationInstanceClass;
+    final storageType = this.storageType;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (defaultAllocatedStorage != null)
+        'DefaultAllocatedStorage': defaultAllocatedStorage,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (includedAllocatedStorage != null)
+        'IncludedAllocatedStorage': includedAllocatedStorage,
+      if (maxAllocatedStorage != null)
+        'MaxAllocatedStorage': maxAllocatedStorage,
+      if (minAllocatedStorage != null)
+        'MinAllocatedStorage': minAllocatedStorage,
+      if (releaseStatus != null) 'ReleaseStatus': releaseStatus.toValue(),
+      if (replicationInstanceClass != null)
+        'ReplicationInstanceClass': replicationInstanceClass,
+      if (storageType != null) 'StorageType': storageType,
+    };
+  }
 }
 
 enum ParquetVersionValue {
@@ -9356,6 +10210,26 @@ class PendingMaintenanceAction {
       forcedApplyDate: timeStampFromJson(json['ForcedApplyDate']),
       optInStatus: json['OptInStatus'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final autoAppliedAfterDate = this.autoAppliedAfterDate;
+    final currentApplyDate = this.currentApplyDate;
+    final description = this.description;
+    final forcedApplyDate = this.forcedApplyDate;
+    final optInStatus = this.optInStatus;
+    return {
+      if (action != null) 'Action': action,
+      if (autoAppliedAfterDate != null)
+        'AutoAppliedAfterDate': unixTimestampToJson(autoAppliedAfterDate),
+      if (currentApplyDate != null)
+        'CurrentApplyDate': unixTimestampToJson(currentApplyDate),
+      if (description != null) 'Description': description,
+      if (forcedApplyDate != null)
+        'ForcedApplyDate': unixTimestampToJson(forcedApplyDate),
+      if (optInStatus != null) 'OptInStatus': optInStatus,
+    };
   }
 }
 
@@ -9628,6 +10502,14 @@ class RebootReplicationInstanceResponse {
               json['ReplicationInstance'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationInstance = this.replicationInstance;
+    return {
+      if (replicationInstance != null)
+        'ReplicationInstance': replicationInstance,
+    };
   }
 }
 
@@ -10112,6 +10994,14 @@ class RefreshSchemasResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final refreshSchemasStatus = this.refreshSchemasStatus;
+    return {
+      if (refreshSchemasStatus != null)
+        'RefreshSchemasStatus': refreshSchemasStatus,
+    };
+  }
 }
 
 /// Provides information that describes status of a schema at an endpoint
@@ -10147,6 +11037,23 @@ class RefreshSchemasStatus {
       replicationInstanceArn: json['ReplicationInstanceArn'] as String?,
       status: (json['Status'] as String?)?.toRefreshSchemasStatusTypeValue(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointArn = this.endpointArn;
+    final lastFailureMessage = this.lastFailureMessage;
+    final lastRefreshDate = this.lastRefreshDate;
+    final replicationInstanceArn = this.replicationInstanceArn;
+    final status = this.status;
+    return {
+      if (endpointArn != null) 'EndpointArn': endpointArn,
+      if (lastFailureMessage != null) 'LastFailureMessage': lastFailureMessage,
+      if (lastRefreshDate != null)
+        'LastRefreshDate': unixTimestampToJson(lastRefreshDate),
+      if (replicationInstanceArn != null)
+        'ReplicationInstanceArn': replicationInstanceArn,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -10247,6 +11154,13 @@ class ReloadTablesResponse {
       replicationTaskArn: json['ReplicationTaskArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationTaskArn = this.replicationTaskArn;
+    return {
+      if (replicationTaskArn != null) 'ReplicationTaskArn': replicationTaskArn,
+    };
+  }
 }
 
 /// <p/>
@@ -10254,6 +11168,10 @@ class RemoveTagsFromResourceResponse {
   RemoveTagsFromResourceResponse();
   factory RemoveTagsFromResourceResponse.fromJson(Map<String, dynamic> _) {
     return RemoveTagsFromResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -10520,6 +11438,79 @@ class ReplicationInstance {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allocatedStorage = this.allocatedStorage;
+    final autoMinorVersionUpgrade = this.autoMinorVersionUpgrade;
+    final availabilityZone = this.availabilityZone;
+    final dnsNameServers = this.dnsNameServers;
+    final engineVersion = this.engineVersion;
+    final freeUntil = this.freeUntil;
+    final instanceCreateTime = this.instanceCreateTime;
+    final kmsKeyId = this.kmsKeyId;
+    final multiAZ = this.multiAZ;
+    final pendingModifiedValues = this.pendingModifiedValues;
+    final preferredMaintenanceWindow = this.preferredMaintenanceWindow;
+    final publiclyAccessible = this.publiclyAccessible;
+    final replicationInstanceArn = this.replicationInstanceArn;
+    final replicationInstanceClass = this.replicationInstanceClass;
+    final replicationInstanceIdentifier = this.replicationInstanceIdentifier;
+    final replicationInstancePrivateIpAddress =
+        this.replicationInstancePrivateIpAddress;
+    final replicationInstancePrivateIpAddresses =
+        this.replicationInstancePrivateIpAddresses;
+    final replicationInstancePublicIpAddress =
+        this.replicationInstancePublicIpAddress;
+    final replicationInstancePublicIpAddresses =
+        this.replicationInstancePublicIpAddresses;
+    final replicationInstanceStatus = this.replicationInstanceStatus;
+    final replicationSubnetGroup = this.replicationSubnetGroup;
+    final secondaryAvailabilityZone = this.secondaryAvailabilityZone;
+    final vpcSecurityGroups = this.vpcSecurityGroups;
+    return {
+      if (allocatedStorage != null) 'AllocatedStorage': allocatedStorage,
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade,
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (dnsNameServers != null) 'DnsNameServers': dnsNameServers,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (freeUntil != null) 'FreeUntil': unixTimestampToJson(freeUntil),
+      if (instanceCreateTime != null)
+        'InstanceCreateTime': unixTimestampToJson(instanceCreateTime),
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (multiAZ != null) 'MultiAZ': multiAZ,
+      if (pendingModifiedValues != null)
+        'PendingModifiedValues': pendingModifiedValues,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (publiclyAccessible != null) 'PubliclyAccessible': publiclyAccessible,
+      if (replicationInstanceArn != null)
+        'ReplicationInstanceArn': replicationInstanceArn,
+      if (replicationInstanceClass != null)
+        'ReplicationInstanceClass': replicationInstanceClass,
+      if (replicationInstanceIdentifier != null)
+        'ReplicationInstanceIdentifier': replicationInstanceIdentifier,
+      if (replicationInstancePrivateIpAddress != null)
+        'ReplicationInstancePrivateIpAddress':
+            replicationInstancePrivateIpAddress,
+      if (replicationInstancePrivateIpAddresses != null)
+        'ReplicationInstancePrivateIpAddresses':
+            replicationInstancePrivateIpAddresses,
+      if (replicationInstancePublicIpAddress != null)
+        'ReplicationInstancePublicIpAddress':
+            replicationInstancePublicIpAddress,
+      if (replicationInstancePublicIpAddresses != null)
+        'ReplicationInstancePublicIpAddresses':
+            replicationInstancePublicIpAddresses,
+      if (replicationInstanceStatus != null)
+        'ReplicationInstanceStatus': replicationInstanceStatus,
+      if (replicationSubnetGroup != null)
+        'ReplicationSubnetGroup': replicationSubnetGroup,
+      if (secondaryAvailabilityZone != null)
+        'SecondaryAvailabilityZone': secondaryAvailabilityZone,
+      if (vpcSecurityGroups != null) 'VpcSecurityGroups': vpcSecurityGroups,
+    };
+  }
 }
 
 /// Contains metadata for a replication instance task log.
@@ -10545,6 +11536,19 @@ class ReplicationInstanceTaskLog {
       replicationTaskArn: json['ReplicationTaskArn'] as String?,
       replicationTaskName: json['ReplicationTaskName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationInstanceTaskLogSize = this.replicationInstanceTaskLogSize;
+    final replicationTaskArn = this.replicationTaskArn;
+    final replicationTaskName = this.replicationTaskName;
+    return {
+      if (replicationInstanceTaskLogSize != null)
+        'ReplicationInstanceTaskLogSize': replicationInstanceTaskLogSize,
+      if (replicationTaskArn != null) 'ReplicationTaskArn': replicationTaskArn,
+      if (replicationTaskName != null)
+        'ReplicationTaskName': replicationTaskName,
+    };
   }
 }
 
@@ -10588,6 +11592,20 @@ class ReplicationPendingModifiedValues {
       replicationInstanceClass: json['ReplicationInstanceClass'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allocatedStorage = this.allocatedStorage;
+    final engineVersion = this.engineVersion;
+    final multiAZ = this.multiAZ;
+    final replicationInstanceClass = this.replicationInstanceClass;
+    return {
+      if (allocatedStorage != null) 'AllocatedStorage': allocatedStorage,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (multiAZ != null) 'MultiAZ': multiAZ,
+      if (replicationInstanceClass != null)
+        'ReplicationInstanceClass': replicationInstanceClass,
+    };
+  }
 }
 
 /// Describes a subnet group in response to a request by the
@@ -10628,6 +11646,25 @@ class ReplicationSubnetGroup {
           .toList(),
       vpcId: json['VpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationSubnetGroupDescription =
+        this.replicationSubnetGroupDescription;
+    final replicationSubnetGroupIdentifier =
+        this.replicationSubnetGroupIdentifier;
+    final subnetGroupStatus = this.subnetGroupStatus;
+    final subnets = this.subnets;
+    final vpcId = this.vpcId;
+    return {
+      if (replicationSubnetGroupDescription != null)
+        'ReplicationSubnetGroupDescription': replicationSubnetGroupDescription,
+      if (replicationSubnetGroupIdentifier != null)
+        'ReplicationSubnetGroupIdentifier': replicationSubnetGroupIdentifier,
+      if (subnetGroupStatus != null) 'SubnetGroupStatus': subnetGroupStatus,
+      if (subnets != null) 'Subnets': subnets,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -10929,6 +11966,58 @@ class ReplicationTask {
       taskData: json['TaskData'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cdcStartPosition = this.cdcStartPosition;
+    final cdcStopPosition = this.cdcStopPosition;
+    final lastFailureMessage = this.lastFailureMessage;
+    final migrationType = this.migrationType;
+    final recoveryCheckpoint = this.recoveryCheckpoint;
+    final replicationInstanceArn = this.replicationInstanceArn;
+    final replicationTaskArn = this.replicationTaskArn;
+    final replicationTaskCreationDate = this.replicationTaskCreationDate;
+    final replicationTaskIdentifier = this.replicationTaskIdentifier;
+    final replicationTaskSettings = this.replicationTaskSettings;
+    final replicationTaskStartDate = this.replicationTaskStartDate;
+    final replicationTaskStats = this.replicationTaskStats;
+    final sourceEndpointArn = this.sourceEndpointArn;
+    final status = this.status;
+    final stopReason = this.stopReason;
+    final tableMappings = this.tableMappings;
+    final targetEndpointArn = this.targetEndpointArn;
+    final targetReplicationInstanceArn = this.targetReplicationInstanceArn;
+    final taskData = this.taskData;
+    return {
+      if (cdcStartPosition != null) 'CdcStartPosition': cdcStartPosition,
+      if (cdcStopPosition != null) 'CdcStopPosition': cdcStopPosition,
+      if (lastFailureMessage != null) 'LastFailureMessage': lastFailureMessage,
+      if (migrationType != null) 'MigrationType': migrationType.toValue(),
+      if (recoveryCheckpoint != null) 'RecoveryCheckpoint': recoveryCheckpoint,
+      if (replicationInstanceArn != null)
+        'ReplicationInstanceArn': replicationInstanceArn,
+      if (replicationTaskArn != null) 'ReplicationTaskArn': replicationTaskArn,
+      if (replicationTaskCreationDate != null)
+        'ReplicationTaskCreationDate':
+            unixTimestampToJson(replicationTaskCreationDate),
+      if (replicationTaskIdentifier != null)
+        'ReplicationTaskIdentifier': replicationTaskIdentifier,
+      if (replicationTaskSettings != null)
+        'ReplicationTaskSettings': replicationTaskSettings,
+      if (replicationTaskStartDate != null)
+        'ReplicationTaskStartDate':
+            unixTimestampToJson(replicationTaskStartDate),
+      if (replicationTaskStats != null)
+        'ReplicationTaskStats': replicationTaskStats,
+      if (sourceEndpointArn != null) 'SourceEndpointArn': sourceEndpointArn,
+      if (status != null) 'Status': status,
+      if (stopReason != null) 'StopReason': stopReason,
+      if (tableMappings != null) 'TableMappings': tableMappings,
+      if (targetEndpointArn != null) 'TargetEndpointArn': targetEndpointArn,
+      if (targetReplicationInstanceArn != null)
+        'TargetReplicationInstanceArn': targetReplicationInstanceArn,
+      if (taskData != null) 'TaskData': taskData,
+    };
+  }
 }
 
 /// The task assessment report in JSON format.
@@ -10983,6 +12072,30 @@ class ReplicationTaskAssessmentResult {
           timeStampFromJson(json['ReplicationTaskLastAssessmentDate']),
       s3ObjectUrl: json['S3ObjectUrl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assessmentResults = this.assessmentResults;
+    final assessmentResultsFile = this.assessmentResultsFile;
+    final assessmentStatus = this.assessmentStatus;
+    final replicationTaskArn = this.replicationTaskArn;
+    final replicationTaskIdentifier = this.replicationTaskIdentifier;
+    final replicationTaskLastAssessmentDate =
+        this.replicationTaskLastAssessmentDate;
+    final s3ObjectUrl = this.s3ObjectUrl;
+    return {
+      if (assessmentResults != null) 'AssessmentResults': assessmentResults,
+      if (assessmentResultsFile != null)
+        'AssessmentResultsFile': assessmentResultsFile,
+      if (assessmentStatus != null) 'AssessmentStatus': assessmentStatus,
+      if (replicationTaskArn != null) 'ReplicationTaskArn': replicationTaskArn,
+      if (replicationTaskIdentifier != null)
+        'ReplicationTaskIdentifier': replicationTaskIdentifier,
+      if (replicationTaskLastAssessmentDate != null)
+        'ReplicationTaskLastAssessmentDate':
+            unixTimestampToJson(replicationTaskLastAssessmentDate),
+      if (s3ObjectUrl != null) 'S3ObjectUrl': s3ObjectUrl,
+    };
   }
 }
 
@@ -11112,6 +12225,44 @@ class ReplicationTaskAssessmentRun {
       status: json['Status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentProgress = this.assessmentProgress;
+    final assessmentRunName = this.assessmentRunName;
+    final lastFailureMessage = this.lastFailureMessage;
+    final replicationTaskArn = this.replicationTaskArn;
+    final replicationTaskAssessmentRunArn =
+        this.replicationTaskAssessmentRunArn;
+    final replicationTaskAssessmentRunCreationDate =
+        this.replicationTaskAssessmentRunCreationDate;
+    final resultEncryptionMode = this.resultEncryptionMode;
+    final resultKmsKeyArn = this.resultKmsKeyArn;
+    final resultLocationBucket = this.resultLocationBucket;
+    final resultLocationFolder = this.resultLocationFolder;
+    final serviceAccessRoleArn = this.serviceAccessRoleArn;
+    final status = this.status;
+    return {
+      if (assessmentProgress != null) 'AssessmentProgress': assessmentProgress,
+      if (assessmentRunName != null) 'AssessmentRunName': assessmentRunName,
+      if (lastFailureMessage != null) 'LastFailureMessage': lastFailureMessage,
+      if (replicationTaskArn != null) 'ReplicationTaskArn': replicationTaskArn,
+      if (replicationTaskAssessmentRunArn != null)
+        'ReplicationTaskAssessmentRunArn': replicationTaskAssessmentRunArn,
+      if (replicationTaskAssessmentRunCreationDate != null)
+        'ReplicationTaskAssessmentRunCreationDate':
+            unixTimestampToJson(replicationTaskAssessmentRunCreationDate),
+      if (resultEncryptionMode != null)
+        'ResultEncryptionMode': resultEncryptionMode,
+      if (resultKmsKeyArn != null) 'ResultKmsKeyArn': resultKmsKeyArn,
+      if (resultLocationBucket != null)
+        'ResultLocationBucket': resultLocationBucket,
+      if (resultLocationFolder != null)
+        'ResultLocationFolder': resultLocationFolder,
+      if (serviceAccessRoleArn != null)
+        'ServiceAccessRoleArn': serviceAccessRoleArn,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// The progress values reported by the <code>AssessmentProgress</code> response
@@ -11135,6 +12286,19 @@ class ReplicationTaskAssessmentRunProgress {
           json['IndividualAssessmentCompletedCount'] as int?,
       individualAssessmentCount: json['IndividualAssessmentCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final individualAssessmentCompletedCount =
+        this.individualAssessmentCompletedCount;
+    final individualAssessmentCount = this.individualAssessmentCount;
+    return {
+      if (individualAssessmentCompletedCount != null)
+        'IndividualAssessmentCompletedCount':
+            individualAssessmentCompletedCount,
+      if (individualAssessmentCount != null)
+        'IndividualAssessmentCount': individualAssessmentCount,
+    };
   }
 }
 
@@ -11200,6 +12364,30 @@ class ReplicationTaskIndividualAssessment {
           json['ReplicationTaskIndividualAssessmentStartDate']),
       status: json['Status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final individualAssessmentName = this.individualAssessmentName;
+    final replicationTaskAssessmentRunArn =
+        this.replicationTaskAssessmentRunArn;
+    final replicationTaskIndividualAssessmentArn =
+        this.replicationTaskIndividualAssessmentArn;
+    final replicationTaskIndividualAssessmentStartDate =
+        this.replicationTaskIndividualAssessmentStartDate;
+    final status = this.status;
+    return {
+      if (individualAssessmentName != null)
+        'IndividualAssessmentName': individualAssessmentName,
+      if (replicationTaskAssessmentRunArn != null)
+        'ReplicationTaskAssessmentRunArn': replicationTaskAssessmentRunArn,
+      if (replicationTaskIndividualAssessmentArn != null)
+        'ReplicationTaskIndividualAssessmentArn':
+            replicationTaskIndividualAssessmentArn,
+      if (replicationTaskIndividualAssessmentStartDate != null)
+        'ReplicationTaskIndividualAssessmentStartDate':
+            unixTimestampToJson(replicationTaskIndividualAssessmentStartDate),
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -11271,6 +12459,37 @@ class ReplicationTaskStats {
       tablesQueued: json['TablesQueued'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final elapsedTimeMillis = this.elapsedTimeMillis;
+    final freshStartDate = this.freshStartDate;
+    final fullLoadFinishDate = this.fullLoadFinishDate;
+    final fullLoadProgressPercent = this.fullLoadProgressPercent;
+    final fullLoadStartDate = this.fullLoadStartDate;
+    final startDate = this.startDate;
+    final stopDate = this.stopDate;
+    final tablesErrored = this.tablesErrored;
+    final tablesLoaded = this.tablesLoaded;
+    final tablesLoading = this.tablesLoading;
+    final tablesQueued = this.tablesQueued;
+    return {
+      if (elapsedTimeMillis != null) 'ElapsedTimeMillis': elapsedTimeMillis,
+      if (freshStartDate != null)
+        'FreshStartDate': unixTimestampToJson(freshStartDate),
+      if (fullLoadFinishDate != null)
+        'FullLoadFinishDate': unixTimestampToJson(fullLoadFinishDate),
+      if (fullLoadProgressPercent != null)
+        'FullLoadProgressPercent': fullLoadProgressPercent,
+      if (fullLoadStartDate != null)
+        'FullLoadStartDate': unixTimestampToJson(fullLoadStartDate),
+      if (startDate != null) 'StartDate': unixTimestampToJson(startDate),
+      if (stopDate != null) 'StopDate': unixTimestampToJson(stopDate),
+      if (tablesErrored != null) 'TablesErrored': tablesErrored,
+      if (tablesLoaded != null) 'TablesLoaded': tablesLoaded,
+      if (tablesLoading != null) 'TablesLoading': tablesLoading,
+      if (tablesQueued != null) 'TablesQueued': tablesQueued,
+    };
+  }
 }
 
 /// Identifies an DMS resource and any pending actions for it.
@@ -11301,6 +12520,17 @@ class ResourcePendingMaintenanceActions {
       resourceIdentifier: json['ResourceIdentifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pendingMaintenanceActionDetails =
+        this.pendingMaintenanceActionDetails;
+    final resourceIdentifier = this.resourceIdentifier;
+    return {
+      if (pendingMaintenanceActionDetails != null)
+        'PendingMaintenanceActionDetails': pendingMaintenanceActionDetails,
+      if (resourceIdentifier != null) 'ResourceIdentifier': resourceIdentifier,
+    };
+  }
 }
 
 class RunFleetAdvisorLsaAnalysisResponse {
@@ -11320,6 +12550,15 @@ class RunFleetAdvisorLsaAnalysisResponse {
       lsaAnalysisId: json['LsaAnalysisId'] as String?,
       status: json['Status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lsaAnalysisId = this.lsaAnalysisId;
+    final status = this.status;
+    return {
+      if (lsaAnalysisId != null) 'LsaAnalysisId': lsaAnalysisId,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -12130,6 +13369,29 @@ class SchemaResponse {
       similarity: json['Similarity'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeLineCount = this.codeLineCount;
+    final codeSize = this.codeSize;
+    final complexity = this.complexity;
+    final databaseInstance = this.databaseInstance;
+    final originalSchema = this.originalSchema;
+    final schemaId = this.schemaId;
+    final schemaName = this.schemaName;
+    final server = this.server;
+    final similarity = this.similarity;
+    return {
+      if (codeLineCount != null) 'CodeLineCount': codeLineCount,
+      if (codeSize != null) 'CodeSize': codeSize,
+      if (complexity != null) 'Complexity': complexity,
+      if (databaseInstance != null) 'DatabaseInstance': databaseInstance,
+      if (originalSchema != null) 'OriginalSchema': originalSchema,
+      if (schemaId != null) 'SchemaId': schemaId,
+      if (schemaName != null) 'SchemaName': schemaName,
+      if (server != null) 'Server': server,
+      if (similarity != null) 'Similarity': similarity,
+    };
+  }
 }
 
 /// Describes a schema in a Fleet Advisor collector inventory.
@@ -12165,6 +13427,21 @@ class SchemaShortInfoResponse {
       schemaName: json['SchemaName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final databaseId = this.databaseId;
+    final databaseIpAddress = this.databaseIpAddress;
+    final databaseName = this.databaseName;
+    final schemaId = this.schemaId;
+    final schemaName = this.schemaName;
+    return {
+      if (databaseId != null) 'DatabaseId': databaseId,
+      if (databaseIpAddress != null) 'DatabaseIpAddress': databaseIpAddress,
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (schemaId != null) 'SchemaId': schemaId,
+      if (schemaName != null) 'SchemaName': schemaName,
+    };
+  }
 }
 
 /// Describes a server in a Fleet Advisor collector inventory.
@@ -12189,6 +13466,17 @@ class ServerShortInfoResponse {
       serverId: json['ServerId'] as String?,
       serverName: json['ServerName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ipAddress = this.ipAddress;
+    final serverId = this.serverId;
+    final serverName = this.serverName;
+    return {
+      if (ipAddress != null) 'IpAddress': ipAddress,
+      if (serverId != null) 'ServerId': serverId,
+      if (serverName != null) 'ServerName': serverName,
+    };
   }
 }
 
@@ -12260,6 +13548,13 @@ class StartReplicationTaskAssessmentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationTask = this.replicationTask;
+    return {
+      if (replicationTask != null) 'ReplicationTask': replicationTask,
+    };
+  }
 }
 
 /// <p/>
@@ -12279,6 +13574,14 @@ class StartReplicationTaskAssessmentRunResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationTaskAssessmentRun = this.replicationTaskAssessmentRun;
+    return {
+      if (replicationTaskAssessmentRun != null)
+        'ReplicationTaskAssessmentRun': replicationTaskAssessmentRun,
+    };
+  }
 }
 
 /// <p/>
@@ -12296,6 +13599,13 @@ class StartReplicationTaskResponse {
               json['ReplicationTask'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationTask = this.replicationTask;
+    return {
+      if (replicationTask != null) 'ReplicationTask': replicationTask,
+    };
   }
 }
 
@@ -12349,6 +13659,13 @@ class StopReplicationTaskResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationTask = this.replicationTask;
+    return {
+      if (replicationTask != null) 'ReplicationTask': replicationTask,
+    };
+  }
 }
 
 /// In response to a request by the <code>DescribeReplicationSubnetGroups</code>
@@ -12378,6 +13695,18 @@ class Subnet {
       subnetIdentifier: json['SubnetIdentifier'] as String?,
       subnetStatus: json['SubnetStatus'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subnetAvailabilityZone = this.subnetAvailabilityZone;
+    final subnetIdentifier = this.subnetIdentifier;
+    final subnetStatus = this.subnetStatus;
+    return {
+      if (subnetAvailabilityZone != null)
+        'SubnetAvailabilityZone': subnetAvailabilityZone,
+      if (subnetIdentifier != null) 'SubnetIdentifier': subnetIdentifier,
+      if (subnetStatus != null) 'SubnetStatus': subnetStatus,
+    };
   }
 }
 
@@ -12431,6 +13760,24 @@ class SupportedEndpointType {
           json['ReplicationInstanceEngineMinimumVersion'] as String?,
       supportsCDC: json['SupportsCDC'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointType = this.endpointType;
+    final engineDisplayName = this.engineDisplayName;
+    final engineName = this.engineName;
+    final replicationInstanceEngineMinimumVersion =
+        this.replicationInstanceEngineMinimumVersion;
+    final supportsCDC = this.supportsCDC;
+    return {
+      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (engineDisplayName != null) 'EngineDisplayName': engineDisplayName,
+      if (engineName != null) 'EngineName': engineName,
+      if (replicationInstanceEngineMinimumVersion != null)
+        'ReplicationInstanceEngineMinimumVersion':
+            replicationInstanceEngineMinimumVersion,
+      if (supportsCDC != null) 'SupportsCDC': supportsCDC,
+    };
   }
 }
 
@@ -12677,6 +14024,57 @@ class TableStatistics {
       validationSuspendedRecords: json['ValidationSuspendedRecords'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ddls = this.ddls;
+    final deletes = this.deletes;
+    final fullLoadCondtnlChkFailedRows = this.fullLoadCondtnlChkFailedRows;
+    final fullLoadEndTime = this.fullLoadEndTime;
+    final fullLoadErrorRows = this.fullLoadErrorRows;
+    final fullLoadReloaded = this.fullLoadReloaded;
+    final fullLoadRows = this.fullLoadRows;
+    final fullLoadStartTime = this.fullLoadStartTime;
+    final inserts = this.inserts;
+    final lastUpdateTime = this.lastUpdateTime;
+    final schemaName = this.schemaName;
+    final tableName = this.tableName;
+    final tableState = this.tableState;
+    final updates = this.updates;
+    final validationFailedRecords = this.validationFailedRecords;
+    final validationPendingRecords = this.validationPendingRecords;
+    final validationState = this.validationState;
+    final validationStateDetails = this.validationStateDetails;
+    final validationSuspendedRecords = this.validationSuspendedRecords;
+    return {
+      if (ddls != null) 'Ddls': ddls,
+      if (deletes != null) 'Deletes': deletes,
+      if (fullLoadCondtnlChkFailedRows != null)
+        'FullLoadCondtnlChkFailedRows': fullLoadCondtnlChkFailedRows,
+      if (fullLoadEndTime != null)
+        'FullLoadEndTime': unixTimestampToJson(fullLoadEndTime),
+      if (fullLoadErrorRows != null) 'FullLoadErrorRows': fullLoadErrorRows,
+      if (fullLoadReloaded != null) 'FullLoadReloaded': fullLoadReloaded,
+      if (fullLoadRows != null) 'FullLoadRows': fullLoadRows,
+      if (fullLoadStartTime != null)
+        'FullLoadStartTime': unixTimestampToJson(fullLoadStartTime),
+      if (inserts != null) 'Inserts': inserts,
+      if (lastUpdateTime != null)
+        'LastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (schemaName != null) 'SchemaName': schemaName,
+      if (tableName != null) 'TableName': tableName,
+      if (tableState != null) 'TableState': tableState,
+      if (updates != null) 'Updates': updates,
+      if (validationFailedRecords != null)
+        'ValidationFailedRecords': validationFailedRecords,
+      if (validationPendingRecords != null)
+        'ValidationPendingRecords': validationPendingRecords,
+      if (validationState != null) 'ValidationState': validationState,
+      if (validationStateDetails != null)
+        'ValidationStateDetails': validationStateDetails,
+      if (validationSuspendedRecords != null)
+        'ValidationSuspendedRecords': validationSuspendedRecords,
+    };
+  }
 }
 
 /// Provides the name of the schema and table to be reloaded.
@@ -12691,6 +14089,7 @@ class TableToReload {
     required this.schemaName,
     required this.tableName,
   });
+
   Map<String, dynamic> toJson() {
     final schemaName = this.schemaName;
     final tableName = this.tableName;
@@ -12802,6 +14201,13 @@ class TestConnectionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connection = this.connection;
+    return {
+      if (connection != null) 'Connection': connection,
+    };
+  }
 }
 
 /// <p/>
@@ -12818,6 +14224,13 @@ class UpdateSubscriptionsToEventBridgeResponse {
     return UpdateSubscriptionsToEventBridgeResponse(
       result: json['Result'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final result = this.result;
+    return {
+      if (result != null) 'Result': result,
+    };
   }
 }
 
@@ -12872,6 +14285,15 @@ class VpcSecurityGroupMembership {
       status: json['Status'] as String?,
       vpcSecurityGroupId: json['VpcSecurityGroupId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final vpcSecurityGroupId = this.vpcSecurityGroupId;
+    return {
+      if (status != null) 'Status': status,
+      if (vpcSecurityGroupId != null) 'VpcSecurityGroupId': vpcSecurityGroupId,
+    };
   }
 }
 

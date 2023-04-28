@@ -1134,6 +1134,13 @@ class CancelJournalKinesisStreamResponse {
       streamId: json['StreamId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final streamId = this.streamId;
+    return {
+      if (streamId != null) 'StreamId': streamId,
+    };
+  }
 }
 
 class CreateLedgerResponse {
@@ -1189,6 +1196,26 @@ class CreateLedgerResponse {
       state: (json['State'] as String?)?.toLedgerState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDateTime = this.creationDateTime;
+    final deletionProtection = this.deletionProtection;
+    final kmsKeyArn = this.kmsKeyArn;
+    final name = this.name;
+    final permissionsMode = this.permissionsMode;
+    final state = this.state;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (deletionProtection != null) 'DeletionProtection': deletionProtection,
+      if (kmsKeyArn != null) 'KmsKeyArn': kmsKeyArn,
+      if (name != null) 'Name': name,
+      if (permissionsMode != null) 'PermissionsMode': permissionsMode.toValue(),
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class DescribeJournalKinesisStreamResponse {
@@ -1208,6 +1235,13 @@ class DescribeJournalKinesisStreamResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stream = this.stream;
+    return {
+      if (stream != null) 'Stream': stream,
+    };
+  }
 }
 
 class DescribeJournalS3ExportResponse {
@@ -1223,6 +1257,13 @@ class DescribeJournalS3ExportResponse {
       exportDescription: JournalS3ExportDescription.fromJson(
           json['ExportDescription'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exportDescription = this.exportDescription;
+    return {
+      'ExportDescription': exportDescription,
+    };
   }
 }
 
@@ -1281,6 +1322,27 @@ class DescribeLedgerResponse {
           (json['PermissionsMode'] as String?)?.toPermissionsMode(),
       state: (json['State'] as String?)?.toLedgerState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDateTime = this.creationDateTime;
+    final deletionProtection = this.deletionProtection;
+    final encryptionDescription = this.encryptionDescription;
+    final name = this.name;
+    final permissionsMode = this.permissionsMode;
+    final state = this.state;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (deletionProtection != null) 'DeletionProtection': deletionProtection,
+      if (encryptionDescription != null)
+        'EncryptionDescription': encryptionDescription,
+      if (name != null) 'Name': name,
+      if (permissionsMode != null) 'PermissionsMode': permissionsMode.toValue(),
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -1361,6 +1423,13 @@ class ExportJournalToS3Response {
       exportId: json['ExportId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exportId = this.exportId;
+    return {
+      'ExportId': exportId,
+    };
+  }
 }
 
 enum ExportStatus {
@@ -1417,6 +1486,15 @@ class GetBlockResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final block = this.block;
+    final proof = this.proof;
+    return {
+      'Block': block,
+      if (proof != null) 'Proof': proof,
+    };
+  }
 }
 
 class GetDigestResponse {
@@ -1439,6 +1517,15 @@ class GetDigestResponse {
       digestTipAddress: ValueHolder.fromJson(
           json['DigestTipAddress'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final digest = this.digest;
+    final digestTipAddress = this.digestTipAddress;
+    return {
+      'Digest': base64Encode(digest),
+      'DigestTipAddress': digestTipAddress,
+    };
   }
 }
 
@@ -1463,6 +1550,15 @@ class GetRevisionResponse {
           ? ValueHolder.fromJson(json['Proof'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final revision = this.revision;
+    final proof = this.proof;
+    return {
+      'Revision': revision,
+      if (proof != null) 'Proof': proof,
+    };
   }
 }
 
@@ -1541,6 +1637,36 @@ class JournalKinesisStreamDescription {
       inclusiveStartTime: timeStampFromJson(json['InclusiveStartTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final kinesisConfiguration = this.kinesisConfiguration;
+    final ledgerName = this.ledgerName;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    final streamId = this.streamId;
+    final streamName = this.streamName;
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final errorCause = this.errorCause;
+    final exclusiveEndTime = this.exclusiveEndTime;
+    final inclusiveStartTime = this.inclusiveStartTime;
+    return {
+      'KinesisConfiguration': kinesisConfiguration,
+      'LedgerName': ledgerName,
+      'RoleArn': roleArn,
+      'Status': status.toValue(),
+      'StreamId': streamId,
+      'StreamName': streamName,
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (errorCause != null) 'ErrorCause': errorCause.toValue(),
+      if (exclusiveEndTime != null)
+        'ExclusiveEndTime': unixTimestampToJson(exclusiveEndTime),
+      if (inclusiveStartTime != null)
+        'InclusiveStartTime': unixTimestampToJson(inclusiveStartTime),
+    };
+  }
 }
 
 /// Information about a journal export job, including the ledger name, export
@@ -1614,6 +1740,29 @@ class JournalS3ExportDescription {
       status: (json['Status'] as String).toExportStatus(),
       outputFormat: (json['OutputFormat'] as String?)?.toOutputFormat(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exclusiveEndTime = this.exclusiveEndTime;
+    final exportCreationTime = this.exportCreationTime;
+    final exportId = this.exportId;
+    final inclusiveStartTime = this.inclusiveStartTime;
+    final ledgerName = this.ledgerName;
+    final roleArn = this.roleArn;
+    final s3ExportConfiguration = this.s3ExportConfiguration;
+    final status = this.status;
+    final outputFormat = this.outputFormat;
+    return {
+      'ExclusiveEndTime': unixTimestampToJson(exclusiveEndTime),
+      'ExportCreationTime': unixTimestampToJson(exportCreationTime),
+      'ExportId': exportId,
+      'InclusiveStartTime': unixTimestampToJson(inclusiveStartTime),
+      'LedgerName': ledgerName,
+      'RoleArn': roleArn,
+      'S3ExportConfiguration': s3ExportConfiguration,
+      'Status': status.toValue(),
+      if (outputFormat != null) 'OutputFormat': outputFormat.toValue(),
+    };
   }
 }
 
@@ -1721,6 +1870,19 @@ class LedgerEncryptionDescription {
           timeStampFromJson(json['InaccessibleKmsKeyDateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final encryptionStatus = this.encryptionStatus;
+    final kmsKeyArn = this.kmsKeyArn;
+    final inaccessibleKmsKeyDateTime = this.inaccessibleKmsKeyDateTime;
+    return {
+      'EncryptionStatus': encryptionStatus.toValue(),
+      'KmsKeyArn': kmsKeyArn,
+      if (inaccessibleKmsKeyDateTime != null)
+        'InaccessibleKmsKeyDateTime':
+            unixTimestampToJson(inaccessibleKmsKeyDateTime),
+    };
+  }
 }
 
 enum LedgerState {
@@ -1787,6 +1949,18 @@ class LedgerSummary {
       state: (json['State'] as String?)?.toLedgerState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class ListJournalKinesisStreamsForLedgerResponse {
@@ -1822,6 +1996,15 @@ class ListJournalKinesisStreamsForLedgerResponse {
               e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final streams = this.streams;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (streams != null) 'Streams': streams,
+    };
   }
 }
 
@@ -1859,6 +2042,15 @@ class ListJournalS3ExportsForLedgerResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final journalS3Exports = this.journalS3Exports;
+    final nextToken = this.nextToken;
+    return {
+      if (journalS3Exports != null) 'JournalS3Exports': journalS3Exports,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListJournalS3ExportsResponse {
@@ -1893,6 +2085,15 @@ class ListJournalS3ExportsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final journalS3Exports = this.journalS3Exports;
+    final nextToken = this.nextToken;
+    return {
+      if (journalS3Exports != null) 'JournalS3Exports': journalS3Exports,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1929,6 +2130,15 @@ class ListLedgersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ledgers = this.ledgers;
+    final nextToken = this.nextToken;
+    return {
+      if (ledgers != null) 'Ledgers': ledgers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1944,6 +2154,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2162,6 +2379,13 @@ class StreamJournalToKinesisResponse {
       streamId: json['StreamId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final streamId = this.streamId;
+    return {
+      if (streamId != null) 'StreamId': streamId,
+    };
+  }
 }
 
 enum StreamStatus {
@@ -2212,12 +2436,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2244,6 +2476,17 @@ class UpdateLedgerPermissionsModeResponse {
       permissionsMode:
           (json['PermissionsMode'] as String?)?.toPermissionsMode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final permissionsMode = this.permissionsMode;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+      if (permissionsMode != null) 'PermissionsMode': permissionsMode.toValue(),
+    };
   }
 }
 
@@ -2296,6 +2539,25 @@ class UpdateLedgerResponse {
       name: json['Name'] as String?,
       state: (json['State'] as String?)?.toLedgerState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDateTime = this.creationDateTime;
+    final deletionProtection = this.deletionProtection;
+    final encryptionDescription = this.encryptionDescription;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (deletionProtection != null) 'DeletionProtection': deletionProtection,
+      if (encryptionDescription != null)
+        'EncryptionDescription': encryptionDescription,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 

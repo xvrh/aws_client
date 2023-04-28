@@ -576,6 +576,19 @@ class AttachmentItem {
       status: (json['Status'] as String?)?.toArtifactStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachmentId = this.attachmentId;
+    final attachmentName = this.attachmentName;
+    final contentType = this.contentType;
+    final status = this.status;
+    return {
+      if (attachmentId != null) 'AttachmentId': attachmentId,
+      if (attachmentName != null) 'AttachmentName': attachmentName,
+      if (contentType != null) 'ContentType': contentType,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 enum ChatItemType {
@@ -651,6 +664,10 @@ class CompleteAttachmentUploadResponse {
   factory CompleteAttachmentUploadResponse.fromJson(Map<String, dynamic> _) {
     return CompleteAttachmentUploadResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Connection credentials.
@@ -673,6 +690,15 @@ class ConnectionCredentials {
       connectionToken: json['ConnectionToken'] as String?,
       expiry: json['Expiry'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectionToken = this.connectionToken;
+    final expiry = this.expiry;
+    return {
+      if (connectionToken != null) 'ConnectionToken': connectionToken,
+      if (expiry != null) 'Expiry': expiry,
+    };
   }
 }
 
@@ -728,12 +754,26 @@ class CreateParticipantConnectionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionCredentials = this.connectionCredentials;
+    final websocket = this.websocket;
+    return {
+      if (connectionCredentials != null)
+        'ConnectionCredentials': connectionCredentials,
+      if (websocket != null) 'Websocket': websocket,
+    };
+  }
 }
 
 class DisconnectParticipantResponse {
   DisconnectParticipantResponse();
   factory DisconnectParticipantResponse.fromJson(Map<String, dynamic> _) {
     return DisconnectParticipantResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -756,6 +796,15 @@ class GetAttachmentResponse {
       url: json['Url'] as String?,
       urlExpiry: json['UrlExpiry'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final url = this.url;
+    final urlExpiry = this.urlExpiry;
+    return {
+      if (url != null) 'Url': url,
+      if (urlExpiry != null) 'UrlExpiry': urlExpiry,
+    };
   }
 }
 
@@ -784,6 +833,17 @@ class GetTranscriptResponse {
           .map((e) => Item.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final initialContactId = this.initialContactId;
+    final nextToken = this.nextToken;
+    final transcript = this.transcript;
+    return {
+      if (initialContactId != null) 'InitialContactId': initialContactId,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (transcript != null) 'Transcript': transcript,
+    };
   }
 }
 
@@ -846,6 +906,29 @@ class Item {
           (json['ParticipantRole'] as String?)?.toParticipantRole(),
       type: (json['Type'] as String?)?.toChatItemType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final absoluteTime = this.absoluteTime;
+    final attachments = this.attachments;
+    final content = this.content;
+    final contentType = this.contentType;
+    final displayName = this.displayName;
+    final id = this.id;
+    final participantId = this.participantId;
+    final participantRole = this.participantRole;
+    final type = this.type;
+    return {
+      if (absoluteTime != null) 'AbsoluteTime': absoluteTime,
+      if (attachments != null) 'Attachments': attachments,
+      if (content != null) 'Content': content,
+      if (contentType != null) 'ContentType': contentType,
+      if (displayName != null) 'DisplayName': displayName,
+      if (id != null) 'Id': id,
+      if (participantId != null) 'ParticipantId': participantId,
+      if (participantRole != null) 'ParticipantRole': participantRole.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -930,6 +1013,15 @@ class SendEventResponse {
       id: json['Id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final absoluteTime = this.absoluteTime;
+    final id = this.id;
+    return {
+      if (absoluteTime != null) 'AbsoluteTime': absoluteTime,
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 class SendMessageResponse {
@@ -951,6 +1043,15 @@ class SendMessageResponse {
       absoluteTime: json['AbsoluteTime'] as String?,
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final absoluteTime = this.absoluteTime;
+    final id = this.id;
+    return {
+      if (absoluteTime != null) 'AbsoluteTime': absoluteTime,
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -1002,6 +1103,15 @@ class StartAttachmentUploadResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachmentId = this.attachmentId;
+    final uploadMetadata = this.uploadMetadata;
+    return {
+      if (attachmentId != null) 'AttachmentId': attachmentId,
+      if (uploadMetadata != null) 'UploadMetadata': uploadMetadata,
+    };
+  }
 }
 
 /// A filtering option for where to start. For example, if you sent 100
@@ -1024,6 +1134,7 @@ class StartPosition {
     this.id,
     this.mostRecent,
   });
+
   Map<String, dynamic> toJson() {
     final absoluteTime = this.absoluteTime;
     final id = this.id;
@@ -1063,6 +1174,17 @@ class UploadMetadata {
       urlExpiry: json['UrlExpiry'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final headersToInclude = this.headersToInclude;
+    final url = this.url;
+    final urlExpiry = this.urlExpiry;
+    return {
+      if (headersToInclude != null) 'HeadersToInclude': headersToInclude,
+      if (url != null) 'Url': url,
+      if (urlExpiry != null) 'UrlExpiry': urlExpiry,
+    };
+  }
 }
 
 /// The websocket for the participant's connection.
@@ -1085,6 +1207,15 @@ class Websocket {
       connectionExpiry: json['ConnectionExpiry'] as String?,
       url: json['Url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectionExpiry = this.connectionExpiry;
+    final url = this.url;
+    return {
+      if (connectionExpiry != null) 'ConnectionExpiry': connectionExpiry,
+      if (url != null) 'Url': url,
+    };
   }
 }
 

@@ -1340,6 +1340,31 @@ class Action {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionId = this.actionId;
+    final actionThreshold = this.actionThreshold;
+    final actionType = this.actionType;
+    final approvalModel = this.approvalModel;
+    final budgetName = this.budgetName;
+    final definition = this.definition;
+    final executionRoleArn = this.executionRoleArn;
+    final notificationType = this.notificationType;
+    final status = this.status;
+    final subscribers = this.subscribers;
+    return {
+      'ActionId': actionId,
+      'ActionThreshold': actionThreshold,
+      'ActionType': actionType.toValue(),
+      'ApprovalModel': approvalModel.toValue(),
+      'BudgetName': budgetName,
+      'Definition': definition,
+      'ExecutionRoleArn': executionRoleArn,
+      'NotificationType': notificationType.toValue(),
+      'Status': status.toValue(),
+      'Subscribers': subscribers,
+    };
+  }
 }
 
 /// The historical records for a budget action.
@@ -1370,6 +1395,19 @@ class ActionHistory {
       timestamp: nonNullableTimeStampFromJson(json['Timestamp'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionHistoryDetails = this.actionHistoryDetails;
+    final eventType = this.eventType;
+    final status = this.status;
+    final timestamp = this.timestamp;
+    return {
+      'ActionHistoryDetails': actionHistoryDetails,
+      'EventType': eventType.toValue(),
+      'Status': status.toValue(),
+      'Timestamp': unixTimestampToJson(timestamp),
+    };
+  }
 }
 
 /// The description of the details for the event.
@@ -1387,6 +1425,15 @@ class ActionHistoryDetails {
       action: Action.fromJson(json['Action'] as Map<String, dynamic>),
       message: json['Message'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final message = this.message;
+    return {
+      'Action': action,
+      'Message': message,
+    };
   }
 }
 
@@ -1875,6 +1922,15 @@ class BudgetNotificationsForAccount {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final budgetName = this.budgetName;
+    final notifications = this.notifications;
+    return {
+      if (budgetName != null) 'BudgetName': budgetName,
+      if (notifications != null) 'Notifications': notifications,
+    };
+  }
 }
 
 /// A history of the state of a budget at the end of the budget's specified time
@@ -1921,6 +1977,24 @@ class BudgetPerformanceHistory {
           : null,
       timeUnit: (json['TimeUnit'] as String?)?.toTimeUnit(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final budgetName = this.budgetName;
+    final budgetType = this.budgetType;
+    final budgetedAndActualAmountsList = this.budgetedAndActualAmountsList;
+    final costFilters = this.costFilters;
+    final costTypes = this.costTypes;
+    final timeUnit = this.timeUnit;
+    return {
+      if (budgetName != null) 'BudgetName': budgetName,
+      if (budgetType != null) 'BudgetType': budgetType.toValue(),
+      if (budgetedAndActualAmountsList != null)
+        'BudgetedAndActualAmountsList': budgetedAndActualAmountsList,
+      if (costFilters != null) 'CostFilters': costFilters,
+      if (costTypes != null) 'CostTypes': costTypes,
+      if (timeUnit != null) 'TimeUnit': timeUnit.toValue(),
+    };
   }
 }
 
@@ -2006,6 +2080,17 @@ class BudgetedAndActualAmounts {
           ? TimePeriod.fromJson(json['TimePeriod'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actualAmount = this.actualAmount;
+    final budgetedAmount = this.budgetedAmount;
+    final timePeriod = this.timePeriod;
+    return {
+      if (actualAmount != null) 'ActualAmount': actualAmount,
+      if (budgetedAmount != null) 'BudgetedAmount': budgetedAmount,
+      if (timePeriod != null) 'TimePeriod': timePeriod,
+    };
   }
 }
 
@@ -2227,6 +2312,17 @@ class CreateBudgetActionResponse {
       budgetName: json['BudgetName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final actionId = this.actionId;
+    final budgetName = this.budgetName;
+    return {
+      'AccountId': accountId,
+      'ActionId': actionId,
+      'BudgetName': budgetName,
+    };
+  }
 }
 
 /// Response of CreateBudget
@@ -2234,6 +2330,10 @@ class CreateBudgetResponse {
   CreateBudgetResponse();
   factory CreateBudgetResponse.fromJson(Map<String, dynamic> _) {
     return CreateBudgetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2243,6 +2343,10 @@ class CreateNotificationResponse {
   factory CreateNotificationResponse.fromJson(Map<String, dynamic> _) {
     return CreateNotificationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Response of CreateSubscriber
@@ -2250,6 +2354,10 @@ class CreateSubscriberResponse {
   CreateSubscriberResponse();
   factory CreateSubscriberResponse.fromJson(Map<String, dynamic> _) {
     return CreateSubscriberResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2318,6 +2426,17 @@ class DeleteBudgetActionResponse {
       budgetName: json['BudgetName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final action = this.action;
+    final budgetName = this.budgetName;
+    return {
+      'AccountId': accountId,
+      'Action': action,
+      'BudgetName': budgetName,
+    };
+  }
 }
 
 /// Response of DeleteBudget
@@ -2325,6 +2444,10 @@ class DeleteBudgetResponse {
   DeleteBudgetResponse();
   factory DeleteBudgetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteBudgetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2334,6 +2457,10 @@ class DeleteNotificationResponse {
   factory DeleteNotificationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteNotificationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Response of DeleteSubscriber
@@ -2341,6 +2468,10 @@ class DeleteSubscriberResponse {
   DeleteSubscriberResponse();
   factory DeleteSubscriberResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSubscriberResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2363,6 +2494,15 @@ class DescribeBudgetActionHistoriesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionHistories = this.actionHistories;
+    final nextToken = this.nextToken;
+    return {
+      'ActionHistories': actionHistories,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeBudgetActionResponse {
@@ -2383,6 +2523,17 @@ class DescribeBudgetActionResponse {
       action: Action.fromJson(json['Action'] as Map<String, dynamic>),
       budgetName: json['BudgetName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final action = this.action;
+    final budgetName = this.budgetName;
+    return {
+      'AccountId': accountId,
+      'Action': action,
+      'BudgetName': budgetName,
+    };
   }
 }
 
@@ -2405,6 +2556,15 @@ class DescribeBudgetActionsForAccountResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final nextToken = this.nextToken;
+    return {
+      'Actions': actions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeBudgetActionsForBudgetResponse {
@@ -2425,6 +2585,15 @@ class DescribeBudgetActionsForBudgetResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final nextToken = this.nextToken;
+    return {
+      'Actions': actions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2448,6 +2617,16 @@ class DescribeBudgetNotificationsForAccountResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final budgetNotificationsForAccount = this.budgetNotificationsForAccount;
+    final nextToken = this.nextToken;
+    return {
+      if (budgetNotificationsForAccount != null)
+        'BudgetNotificationsForAccount': budgetNotificationsForAccount,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2477,6 +2656,16 @@ class DescribeBudgetPerformanceHistoryResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final budgetPerformanceHistory = this.budgetPerformanceHistory;
+    final nextToken = this.nextToken;
+    return {
+      if (budgetPerformanceHistory != null)
+        'BudgetPerformanceHistory': budgetPerformanceHistory,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Response of DescribeBudget
@@ -2493,6 +2682,13 @@ class DescribeBudgetResponse {
           ? Budget.fromJson(json['Budget'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final budget = this.budget;
+    return {
+      if (budget != null) 'Budget': budget,
+    };
   }
 }
 
@@ -2517,6 +2713,15 @@ class DescribeBudgetsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final budgets = this.budgets;
+    final nextToken = this.nextToken;
+    return {
+      if (budgets != null) 'Budgets': budgets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2543,6 +2748,15 @@ class DescribeNotificationsForBudgetResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final notifications = this.notifications;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (notifications != null) 'Notifications': notifications,
+    };
+  }
 }
 
 /// Response of DescribeSubscribersForNotification
@@ -2567,6 +2781,15 @@ class DescribeSubscribersForNotificationResponse {
           .map((e) => Subscriber.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final subscribers = this.subscribers;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (subscribers != null) 'Subscribers': subscribers,
+    };
   }
 }
 
@@ -2636,6 +2859,19 @@ class ExecuteBudgetActionResponse {
       budgetName: json['BudgetName'] as String,
       executionType: (json['ExecutionType'] as String).toExecutionType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final actionId = this.actionId;
+    final budgetName = this.budgetName;
+    final executionType = this.executionType;
+    return {
+      'AccountId': accountId,
+      'ActionId': actionId,
+      'BudgetName': budgetName,
+      'ExecutionType': executionType.toValue(),
+    };
   }
 }
 
@@ -2957,6 +3193,7 @@ class NotificationWithSubscribers {
     required this.notification,
     required this.subscribers,
   });
+
   Map<String, dynamic> toJson() {
     final notification = this.notification;
     final subscribers = this.subscribers;
@@ -3294,6 +3531,19 @@ class UpdateBudgetActionResponse {
       oldAction: Action.fromJson(json['OldAction'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final budgetName = this.budgetName;
+    final newAction = this.newAction;
+    final oldAction = this.oldAction;
+    return {
+      'AccountId': accountId,
+      'BudgetName': budgetName,
+      'NewAction': newAction,
+      'OldAction': oldAction,
+    };
+  }
 }
 
 /// Response of UpdateBudget
@@ -3301,6 +3551,10 @@ class UpdateBudgetResponse {
   UpdateBudgetResponse();
   factory UpdateBudgetResponse.fromJson(Map<String, dynamic> _) {
     return UpdateBudgetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3310,6 +3564,10 @@ class UpdateNotificationResponse {
   factory UpdateNotificationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateNotificationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Response of UpdateSubscriber
@@ -3317,6 +3575,10 @@ class UpdateSubscriberResponse {
   UpdateSubscriberResponse();
   factory UpdateSubscriberResponse.fromJson(Map<String, dynamic> _) {
     return UpdateSubscriberResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

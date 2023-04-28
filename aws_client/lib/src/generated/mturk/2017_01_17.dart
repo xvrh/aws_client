@@ -2329,12 +2329,20 @@ class AcceptQualificationRequestResponse {
   factory AcceptQualificationRequestResponse.fromJson(Map<String, dynamic> _) {
     return AcceptQualificationRequestResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class ApproveAssignmentResponse {
   ApproveAssignmentResponse();
   factory ApproveAssignmentResponse.fromJson(Map<String, dynamic> _) {
     return ApproveAssignmentResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2428,6 +2436,39 @@ class Assignment {
       workerId: json['WorkerId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceptTime = this.acceptTime;
+    final answer = this.answer;
+    final approvalTime = this.approvalTime;
+    final assignmentId = this.assignmentId;
+    final assignmentStatus = this.assignmentStatus;
+    final autoApprovalTime = this.autoApprovalTime;
+    final deadline = this.deadline;
+    final hITId = this.hITId;
+    final rejectionTime = this.rejectionTime;
+    final requesterFeedback = this.requesterFeedback;
+    final submitTime = this.submitTime;
+    final workerId = this.workerId;
+    return {
+      if (acceptTime != null) 'AcceptTime': unixTimestampToJson(acceptTime),
+      if (answer != null) 'Answer': answer,
+      if (approvalTime != null)
+        'ApprovalTime': unixTimestampToJson(approvalTime),
+      if (assignmentId != null) 'AssignmentId': assignmentId,
+      if (assignmentStatus != null)
+        'AssignmentStatus': assignmentStatus.toValue(),
+      if (autoApprovalTime != null)
+        'AutoApprovalTime': unixTimestampToJson(autoApprovalTime),
+      if (deadline != null) 'Deadline': unixTimestampToJson(deadline),
+      if (hITId != null) 'HITId': hITId,
+      if (rejectionTime != null)
+        'RejectionTime': unixTimestampToJson(rejectionTime),
+      if (requesterFeedback != null) 'RequesterFeedback': requesterFeedback,
+      if (submitTime != null) 'SubmitTime': unixTimestampToJson(submitTime),
+      if (workerId != null) 'WorkerId': workerId,
+    };
+  }
 }
 
 enum AssignmentStatus {
@@ -2469,6 +2510,10 @@ class AssociateQualificationWithWorkerResponse {
       Map<String, dynamic> _) {
     return AssociateQualificationWithWorkerResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An object representing a Bonus payment paid to a Worker.
@@ -2501,6 +2546,21 @@ class BonusPayment {
       reason: json['Reason'] as String?,
       workerId: json['WorkerId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assignmentId = this.assignmentId;
+    final bonusAmount = this.bonusAmount;
+    final grantTime = this.grantTime;
+    final reason = this.reason;
+    final workerId = this.workerId;
+    return {
+      if (assignmentId != null) 'AssignmentId': assignmentId,
+      if (bonusAmount != null) 'BonusAmount': bonusAmount,
+      if (grantTime != null) 'GrantTime': unixTimestampToJson(grantTime),
+      if (reason != null) 'Reason': reason,
+      if (workerId != null) 'WorkerId': workerId,
+    };
   }
 }
 
@@ -2578,6 +2638,10 @@ class CreateAdditionalAssignmentsForHITResponse {
       Map<String, dynamic> _) {
     return CreateAdditionalAssignmentsForHITResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateHITResponse {
@@ -2596,6 +2660,13 @@ class CreateHITResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hit = this.hit;
+    return {
+      if (hit != null) 'HIT': hit,
+    };
+  }
 }
 
 class CreateHITTypeResponse {
@@ -2609,6 +2680,13 @@ class CreateHITTypeResponse {
     return CreateHITTypeResponse(
       hITTypeId: json['HITTypeId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hITTypeId = this.hITTypeId;
+    return {
+      if (hITTypeId != null) 'HITTypeId': hITTypeId,
+    };
   }
 }
 
@@ -2628,6 +2706,13 @@ class CreateHITWithHITTypeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hit = this.hit;
+    return {
+      if (hit != null) 'HIT': hit,
+    };
+  }
 }
 
 class CreateQualificationTypeResponse {
@@ -2646,12 +2731,23 @@ class CreateQualificationTypeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final qualificationType = this.qualificationType;
+    return {
+      if (qualificationType != null) 'QualificationType': qualificationType,
+    };
+  }
 }
 
 class CreateWorkerBlockResponse {
   CreateWorkerBlockResponse();
   factory CreateWorkerBlockResponse.fromJson(Map<String, dynamic> _) {
     return CreateWorkerBlockResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2660,12 +2756,20 @@ class DeleteHITResponse {
   factory DeleteHITResponse.fromJson(Map<String, dynamic> _) {
     return DeleteHITResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteQualificationTypeResponse {
   DeleteQualificationTypeResponse();
   factory DeleteQualificationTypeResponse.fromJson(Map<String, dynamic> _) {
     return DeleteQualificationTypeResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2674,6 +2778,10 @@ class DeleteWorkerBlockResponse {
   factory DeleteWorkerBlockResponse.fromJson(Map<String, dynamic> _) {
     return DeleteWorkerBlockResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateQualificationFromWorkerResponse {
@@ -2681,6 +2789,10 @@ class DisassociateQualificationFromWorkerResponse {
   factory DisassociateQualificationFromWorkerResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateQualificationFromWorkerResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2776,6 +2888,15 @@ class GetAccountBalanceResponse {
       onHoldBalance: json['OnHoldBalance'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availableBalance = this.availableBalance;
+    final onHoldBalance = this.onHoldBalance;
+    return {
+      if (availableBalance != null) 'AvailableBalance': availableBalance,
+      if (onHoldBalance != null) 'OnHoldBalance': onHoldBalance,
+    };
+  }
 }
 
 class GetAssignmentResponse {
@@ -2800,6 +2921,15 @@ class GetAssignmentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assignment = this.assignment;
+    final hit = this.hit;
+    return {
+      if (assignment != null) 'Assignment': assignment,
+      if (hit != null) 'HIT': hit,
+    };
+  }
 }
 
 class GetFileUploadURLResponse {
@@ -2813,6 +2943,13 @@ class GetFileUploadURLResponse {
     return GetFileUploadURLResponse(
       fileUploadURL: json['FileUploadURL'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileUploadURL = this.fileUploadURL;
+    return {
+      if (fileUploadURL != null) 'FileUploadURL': fileUploadURL,
+    };
   }
 }
 
@@ -2829,6 +2966,13 @@ class GetHITResponse {
           ? HIT.fromJson(json['HIT'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hit = this.hit;
+    return {
+      if (hit != null) 'HIT': hit,
+    };
   }
 }
 
@@ -2848,6 +2992,13 @@ class GetQualificationScoreResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final qualification = this.qualification;
+    return {
+      if (qualification != null) 'Qualification': qualification,
+    };
+  }
 }
 
 class GetQualificationTypeResponse {
@@ -2864,6 +3015,13 @@ class GetQualificationTypeResponse {
               json['QualificationType'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final qualificationType = this.qualificationType;
+    return {
+      if (qualificationType != null) 'QualificationType': qualificationType,
+    };
   }
 }
 
@@ -3007,6 +3165,61 @@ class HIT {
       title: json['Title'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assignmentDurationInSeconds = this.assignmentDurationInSeconds;
+    final autoApprovalDelayInSeconds = this.autoApprovalDelayInSeconds;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final expiration = this.expiration;
+    final hITGroupId = this.hITGroupId;
+    final hITId = this.hITId;
+    final hITLayoutId = this.hITLayoutId;
+    final hITReviewStatus = this.hITReviewStatus;
+    final hITStatus = this.hITStatus;
+    final hITTypeId = this.hITTypeId;
+    final keywords = this.keywords;
+    final maxAssignments = this.maxAssignments;
+    final numberOfAssignmentsAvailable = this.numberOfAssignmentsAvailable;
+    final numberOfAssignmentsCompleted = this.numberOfAssignmentsCompleted;
+    final numberOfAssignmentsPending = this.numberOfAssignmentsPending;
+    final qualificationRequirements = this.qualificationRequirements;
+    final question = this.question;
+    final requesterAnnotation = this.requesterAnnotation;
+    final reward = this.reward;
+    final title = this.title;
+    return {
+      if (assignmentDurationInSeconds != null)
+        'AssignmentDurationInSeconds': assignmentDurationInSeconds,
+      if (autoApprovalDelayInSeconds != null)
+        'AutoApprovalDelayInSeconds': autoApprovalDelayInSeconds,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (expiration != null) 'Expiration': unixTimestampToJson(expiration),
+      if (hITGroupId != null) 'HITGroupId': hITGroupId,
+      if (hITId != null) 'HITId': hITId,
+      if (hITLayoutId != null) 'HITLayoutId': hITLayoutId,
+      if (hITReviewStatus != null) 'HITReviewStatus': hITReviewStatus.toValue(),
+      if (hITStatus != null) 'HITStatus': hITStatus.toValue(),
+      if (hITTypeId != null) 'HITTypeId': hITTypeId,
+      if (keywords != null) 'Keywords': keywords,
+      if (maxAssignments != null) 'MaxAssignments': maxAssignments,
+      if (numberOfAssignmentsAvailable != null)
+        'NumberOfAssignmentsAvailable': numberOfAssignmentsAvailable,
+      if (numberOfAssignmentsCompleted != null)
+        'NumberOfAssignmentsCompleted': numberOfAssignmentsCompleted,
+      if (numberOfAssignmentsPending != null)
+        'NumberOfAssignmentsPending': numberOfAssignmentsPending,
+      if (qualificationRequirements != null)
+        'QualificationRequirements': qualificationRequirements,
+      if (question != null) 'Question': question,
+      if (requesterAnnotation != null)
+        'RequesterAnnotation': requesterAnnotation,
+      if (reward != null) 'Reward': reward,
+      if (title != null) 'Title': title,
+    };
+  }
 }
 
 enum HITAccessActions {
@@ -3056,6 +3269,7 @@ class HITLayoutParameter {
     required this.name,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -3171,6 +3385,17 @@ class ListAssignmentsForHITResponse {
       numResults: json['NumResults'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assignments = this.assignments;
+    final nextToken = this.nextToken;
+    final numResults = this.numResults;
+    return {
+      if (assignments != null) 'Assignments': assignments,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (numResults != null) 'NumResults': numResults,
+    };
+  }
 }
 
 class ListBonusPaymentsResponse {
@@ -3197,6 +3422,17 @@ class ListBonusPaymentsResponse {
       nextToken: json['NextToken'] as String?,
       numResults: json['NumResults'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bonusPayments = this.bonusPayments;
+    final nextToken = this.nextToken;
+    final numResults = this.numResults;
+    return {
+      if (bonusPayments != null) 'BonusPayments': bonusPayments,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (numResults != null) 'NumResults': numResults,
+    };
   }
 }
 
@@ -3225,6 +3461,17 @@ class ListHITsForQualificationTypeResponse {
       numResults: json['NumResults'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hITs = this.hITs;
+    final nextToken = this.nextToken;
+    final numResults = this.numResults;
+    return {
+      if (hITs != null) 'HITs': hITs,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (numResults != null) 'NumResults': numResults,
+    };
+  }
 }
 
 class ListHITsResponse {
@@ -3250,6 +3497,17 @@ class ListHITsResponse {
       nextToken: json['NextToken'] as String?,
       numResults: json['NumResults'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hITs = this.hITs;
+    final nextToken = this.nextToken;
+    final numResults = this.numResults;
+    return {
+      if (hITs != null) 'HITs': hITs,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (numResults != null) 'NumResults': numResults,
+    };
   }
 }
 
@@ -3281,6 +3539,18 @@ class ListQualificationRequestsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final numResults = this.numResults;
+    final qualificationRequests = this.qualificationRequests;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (numResults != null) 'NumResults': numResults,
+      if (qualificationRequests != null)
+        'QualificationRequests': qualificationRequests,
+    };
+  }
 }
 
 class ListQualificationTypesResponse {
@@ -3307,6 +3577,17 @@ class ListQualificationTypesResponse {
           .map((e) => QualificationType.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final numResults = this.numResults;
+    final qualificationTypes = this.qualificationTypes;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (numResults != null) 'NumResults': numResults,
+      if (qualificationTypes != null) 'QualificationTypes': qualificationTypes,
+    };
   }
 }
 
@@ -3360,6 +3641,25 @@ class ListReviewPolicyResultsForHITResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assignmentReviewPolicy = this.assignmentReviewPolicy;
+    final assignmentReviewReport = this.assignmentReviewReport;
+    final hITId = this.hITId;
+    final hITReviewPolicy = this.hITReviewPolicy;
+    final hITReviewReport = this.hITReviewReport;
+    final nextToken = this.nextToken;
+    return {
+      if (assignmentReviewPolicy != null)
+        'AssignmentReviewPolicy': assignmentReviewPolicy,
+      if (assignmentReviewReport != null)
+        'AssignmentReviewReport': assignmentReviewReport,
+      if (hITId != null) 'HITId': hITId,
+      if (hITReviewPolicy != null) 'HITReviewPolicy': hITReviewPolicy,
+      if (hITReviewReport != null) 'HITReviewReport': hITReviewReport,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListReviewableHITsResponse {
@@ -3385,6 +3685,17 @@ class ListReviewableHITsResponse {
       nextToken: json['NextToken'] as String?,
       numResults: json['NumResults'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hITs = this.hITs;
+    final nextToken = this.nextToken;
+    final numResults = this.numResults;
+    return {
+      if (hITs != null) 'HITs': hITs,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (numResults != null) 'NumResults': numResults,
+    };
   }
 }
 
@@ -3414,6 +3725,17 @@ class ListWorkerBlocksResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final numResults = this.numResults;
+    final workerBlocks = this.workerBlocks;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (numResults != null) 'NumResults': numResults,
+      if (workerBlocks != null) 'WorkerBlocks': workerBlocks,
+    };
+  }
 }
 
 class ListWorkersWithQualificationTypeResponse {
@@ -3441,6 +3763,17 @@ class ListWorkersWithQualificationTypeResponse {
           .map((e) => Qualification.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final numResults = this.numResults;
+    final qualifications = this.qualifications;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (numResults != null) 'NumResults': numResults,
+      if (qualifications != null) 'Qualifications': qualifications,
+    };
   }
 }
 
@@ -3514,6 +3847,7 @@ class NotificationSpecification {
     required this.transport,
     required this.version,
   });
+
   Map<String, dynamic> toJson() {
     final destination = this.destination;
     final eventTypes = this.eventTypes;
@@ -3615,6 +3949,19 @@ class NotifyWorkersFailureStatus {
       workerId: json['WorkerId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final notifyWorkersFailureCode = this.notifyWorkersFailureCode;
+    final notifyWorkersFailureMessage = this.notifyWorkersFailureMessage;
+    final workerId = this.workerId;
+    return {
+      if (notifyWorkersFailureCode != null)
+        'NotifyWorkersFailureCode': notifyWorkersFailureCode.toValue(),
+      if (notifyWorkersFailureMessage != null)
+        'NotifyWorkersFailureMessage': notifyWorkersFailureMessage,
+      if (workerId != null) 'WorkerId': workerId,
+    };
+  }
 }
 
 class NotifyWorkersResponse {
@@ -3634,6 +3981,14 @@ class NotifyWorkersResponse {
               NotifyWorkersFailureStatus.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final notifyWorkersFailureStatuses = this.notifyWorkersFailureStatuses;
+    return {
+      if (notifyWorkersFailureStatuses != null)
+        'NotifyWorkersFailureStatuses': notifyWorkersFailureStatuses,
+    };
   }
 }
 
@@ -3759,6 +4114,24 @@ class Qualification {
       workerId: json['WorkerId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final grantTime = this.grantTime;
+    final integerValue = this.integerValue;
+    final localeValue = this.localeValue;
+    final qualificationTypeId = this.qualificationTypeId;
+    final status = this.status;
+    final workerId = this.workerId;
+    return {
+      if (grantTime != null) 'GrantTime': unixTimestampToJson(grantTime),
+      if (integerValue != null) 'IntegerValue': integerValue,
+      if (localeValue != null) 'LocaleValue': localeValue,
+      if (qualificationTypeId != null)
+        'QualificationTypeId': qualificationTypeId,
+      if (status != null) 'Status': status.toValue(),
+      if (workerId != null) 'WorkerId': workerId,
+    };
+  }
 }
 
 /// The QualificationRequest data structure represents a request a Worker has
@@ -3810,6 +4183,25 @@ class QualificationRequest {
       test: json['Test'] as String?,
       workerId: json['WorkerId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final answer = this.answer;
+    final qualificationRequestId = this.qualificationRequestId;
+    final qualificationTypeId = this.qualificationTypeId;
+    final submitTime = this.submitTime;
+    final test = this.test;
+    final workerId = this.workerId;
+    return {
+      if (answer != null) 'Answer': answer,
+      if (qualificationRequestId != null)
+        'QualificationRequestId': qualificationRequestId,
+      if (qualificationTypeId != null)
+        'QualificationTypeId': qualificationTypeId,
+      if (submitTime != null) 'SubmitTime': unixTimestampToJson(submitTime),
+      if (test != null) 'Test': test,
+      if (workerId != null) 'WorkerId': workerId,
+    };
   }
 }
 
@@ -4055,6 +4447,42 @@ class QualificationType {
       testDurationInSeconds: json['TestDurationInSeconds'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final answerKey = this.answerKey;
+    final autoGranted = this.autoGranted;
+    final autoGrantedValue = this.autoGrantedValue;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final isRequestable = this.isRequestable;
+    final keywords = this.keywords;
+    final name = this.name;
+    final qualificationTypeId = this.qualificationTypeId;
+    final qualificationTypeStatus = this.qualificationTypeStatus;
+    final retryDelayInSeconds = this.retryDelayInSeconds;
+    final test = this.test;
+    final testDurationInSeconds = this.testDurationInSeconds;
+    return {
+      if (answerKey != null) 'AnswerKey': answerKey,
+      if (autoGranted != null) 'AutoGranted': autoGranted,
+      if (autoGrantedValue != null) 'AutoGrantedValue': autoGrantedValue,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (isRequestable != null) 'IsRequestable': isRequestable,
+      if (keywords != null) 'Keywords': keywords,
+      if (name != null) 'Name': name,
+      if (qualificationTypeId != null)
+        'QualificationTypeId': qualificationTypeId,
+      if (qualificationTypeStatus != null)
+        'QualificationTypeStatus': qualificationTypeStatus.toValue(),
+      if (retryDelayInSeconds != null)
+        'RetryDelayInSeconds': retryDelayInSeconds,
+      if (test != null) 'Test': test,
+      if (testDurationInSeconds != null)
+        'TestDurationInSeconds': testDurationInSeconds,
+    };
+  }
 }
 
 enum QualificationTypeStatus {
@@ -4090,12 +4518,20 @@ class RejectAssignmentResponse {
   factory RejectAssignmentResponse.fromJson(Map<String, dynamic> _) {
     return RejectAssignmentResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class RejectQualificationRequestResponse {
   RejectQualificationRequestResponse();
   factory RejectQualificationRequestResponse.fromJson(Map<String, dynamic> _) {
     return RejectQualificationRequestResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4151,6 +4587,28 @@ class ReviewActionDetail {
       targetId: json['TargetId'] as String?,
       targetType: json['TargetType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionId = this.actionId;
+    final actionName = this.actionName;
+    final completeTime = this.completeTime;
+    final errorCode = this.errorCode;
+    final result = this.result;
+    final status = this.status;
+    final targetId = this.targetId;
+    final targetType = this.targetType;
+    return {
+      if (actionId != null) 'ActionId': actionId,
+      if (actionName != null) 'ActionName': actionName,
+      if (completeTime != null)
+        'CompleteTime': unixTimestampToJson(completeTime),
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (result != null) 'Result': result,
+      if (status != null) 'Status': status.toValue(),
+      if (targetId != null) 'TargetId': targetId,
+      if (targetType != null) 'TargetType': targetType,
+    };
   }
 }
 
@@ -4280,6 +4738,15 @@ class ReviewReport {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final reviewActions = this.reviewActions;
+    final reviewResults = this.reviewResults;
+    return {
+      if (reviewActions != null) 'ReviewActions': reviewActions,
+      if (reviewResults != null) 'ReviewResults': reviewResults,
+    };
+  }
 }
 
 /// This data structure is returned multiple times for each result specified in
@@ -4329,6 +4796,23 @@ class ReviewResultDetail {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionId = this.actionId;
+    final key = this.key;
+    final questionId = this.questionId;
+    final subjectId = this.subjectId;
+    final subjectType = this.subjectType;
+    final value = this.value;
+    return {
+      if (actionId != null) 'ActionId': actionId,
+      if (key != null) 'Key': key,
+      if (questionId != null) 'QuestionId': questionId,
+      if (subjectId != null) 'SubjectId': subjectId,
+      if (subjectType != null) 'SubjectType': subjectType,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 enum ReviewableHITStatus {
@@ -4364,12 +4848,20 @@ class SendBonusResponse {
   factory SendBonusResponse.fromJson(Map<String, dynamic> _) {
     return SendBonusResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class SendTestEventNotificationResponse {
   SendTestEventNotificationResponse();
   factory SendTestEventNotificationResponse.fromJson(Map<String, dynamic> _) {
     return SendTestEventNotificationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4378,12 +4870,20 @@ class UpdateExpirationForHITResponse {
   factory UpdateExpirationForHITResponse.fromJson(Map<String, dynamic> _) {
     return UpdateExpirationForHITResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateHITReviewStatusResponse {
   UpdateHITReviewStatusResponse();
   factory UpdateHITReviewStatusResponse.fromJson(Map<String, dynamic> _) {
     return UpdateHITReviewStatusResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4392,12 +4892,20 @@ class UpdateHITTypeOfHITResponse {
   factory UpdateHITTypeOfHITResponse.fromJson(Map<String, dynamic> _) {
     return UpdateHITTypeOfHITResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateNotificationSettingsResponse {
   UpdateNotificationSettingsResponse();
   factory UpdateNotificationSettingsResponse.fromJson(Map<String, dynamic> _) {
     return UpdateNotificationSettingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4415,6 +4923,13 @@ class UpdateQualificationTypeResponse {
               json['QualificationType'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final qualificationType = this.qualificationType;
+    return {
+      if (qualificationType != null) 'QualificationType': qualificationType,
+    };
   }
 }
 
@@ -4436,6 +4951,15 @@ class WorkerBlock {
       reason: json['Reason'] as String?,
       workerId: json['WorkerId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reason = this.reason;
+    final workerId = this.workerId;
+    return {
+      if (reason != null) 'Reason': reason,
+      if (workerId != null) 'WorkerId': workerId,
+    };
   }
 }
 

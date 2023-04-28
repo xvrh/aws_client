@@ -2284,6 +2284,13 @@ class ActivateUserResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
+  }
 }
 
 /// Describes the activity information.
@@ -2358,6 +2365,29 @@ class Activity {
       timeStamp: timeStampFromJson(json['TimeStamp']),
       type: (json['Type'] as String?)?.toActivityType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final commentMetadata = this.commentMetadata;
+    final initiator = this.initiator;
+    final isIndirectActivity = this.isIndirectActivity;
+    final organizationId = this.organizationId;
+    final originalParent = this.originalParent;
+    final participants = this.participants;
+    final resourceMetadata = this.resourceMetadata;
+    final timeStamp = this.timeStamp;
+    final type = this.type;
+    return {
+      if (commentMetadata != null) 'CommentMetadata': commentMetadata,
+      if (initiator != null) 'Initiator': initiator,
+      if (isIndirectActivity != null) 'IsIndirectActivity': isIndirectActivity,
+      if (organizationId != null) 'OrganizationId': organizationId,
+      if (originalParent != null) 'OriginalParent': originalParent,
+      if (participants != null) 'Participants': participants,
+      if (resourceMetadata != null) 'ResourceMetadata': resourceMetadata,
+      if (timeStamp != null) 'TimeStamp': unixTimestampToJson(timeStamp),
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -2559,6 +2589,13 @@ class AddResourcePermissionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final shareResults = this.shareResults;
+    return {
+      if (shareResults != null) 'ShareResults': shareResults,
+    };
+  }
 }
 
 enum BooleanEnumType {
@@ -2648,6 +2685,30 @@ class Comment {
       visibility: (json['Visibility'] as String?)?.toCommentVisibilityType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commentId = this.commentId;
+    final contributor = this.contributor;
+    final createdTimestamp = this.createdTimestamp;
+    final parentId = this.parentId;
+    final recipientId = this.recipientId;
+    final status = this.status;
+    final text = this.text;
+    final threadId = this.threadId;
+    final visibility = this.visibility;
+    return {
+      'CommentId': commentId,
+      if (contributor != null) 'Contributor': contributor,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (parentId != null) 'ParentId': parentId,
+      if (recipientId != null) 'RecipientId': recipientId,
+      if (status != null) 'Status': status.toValue(),
+      if (text != null) 'Text': text,
+      if (threadId != null) 'ThreadId': threadId,
+      if (visibility != null) 'Visibility': visibility.toValue(),
+    };
+  }
 }
 
 /// Describes the metadata of a comment.
@@ -2684,6 +2745,22 @@ class CommentMetadata {
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
       recipientId: json['RecipientId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final commentId = this.commentId;
+    final commentStatus = this.commentStatus;
+    final contributor = this.contributor;
+    final createdTimestamp = this.createdTimestamp;
+    final recipientId = this.recipientId;
+    return {
+      if (commentId != null) 'CommentId': commentId,
+      if (commentStatus != null) 'CommentStatus': commentStatus.toValue(),
+      if (contributor != null) 'Contributor': contributor,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (recipientId != null) 'RecipientId': recipientId,
+    };
   }
 }
 
@@ -2762,12 +2839,23 @@ class CreateCommentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final comment = this.comment;
+    return {
+      if (comment != null) 'Comment': comment,
+    };
+  }
 }
 
 class CreateCustomMetadataResponse {
   CreateCustomMetadataResponse();
   factory CreateCustomMetadataResponse.fromJson(Map<String, dynamic> _) {
     return CreateCustomMetadataResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2785,12 +2873,23 @@ class CreateFolderResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metadata = this.metadata;
+    return {
+      if (metadata != null) 'Metadata': metadata,
+    };
+  }
 }
 
 class CreateLabelsResponse {
   CreateLabelsResponse();
   factory CreateLabelsResponse.fromJson(Map<String, dynamic> _) {
     return CreateLabelsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2809,6 +2908,13 @@ class CreateNotificationSubscriptionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final subscription = this.subscription;
+    return {
+      if (subscription != null) 'Subscription': subscription,
+    };
+  }
 }
 
 class CreateUserResponse {
@@ -2825,6 +2931,13 @@ class CreateUserResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
+  }
 }
 
 class DeleteCustomMetadataResponse {
@@ -2832,12 +2945,20 @@ class DeleteCustomMetadataResponse {
   factory DeleteCustomMetadataResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCustomMetadataResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteLabelsResponse {
   DeleteLabelsResponse();
   factory DeleteLabelsResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLabelsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2860,6 +2981,15 @@ class DescribeActivitiesResponse {
           .map((e) => Activity.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final userActivities = this.userActivities;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (userActivities != null) 'UserActivities': userActivities,
+    };
   }
 }
 
@@ -2884,6 +3014,15 @@ class DescribeCommentsResponse {
       marker: json['Marker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final comments = this.comments;
+    final marker = this.marker;
+    return {
+      if (comments != null) 'Comments': comments,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 class DescribeDocumentVersionsResponse {
@@ -2907,6 +3046,15 @@ class DescribeDocumentVersionsResponse {
           .toList(),
       marker: json['Marker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final documentVersions = this.documentVersions;
+    final marker = this.marker;
+    return {
+      if (documentVersions != null) 'DocumentVersions': documentVersions,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -2939,6 +3087,17 @@ class DescribeFolderContentsResponse {
       marker: json['Marker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final documents = this.documents;
+    final folders = this.folders;
+    final marker = this.marker;
+    return {
+      if (documents != null) 'Documents': documents,
+      if (folders != null) 'Folders': folders,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 class DescribeGroupsResponse {
@@ -2961,6 +3120,15 @@ class DescribeGroupsResponse {
           .toList(),
       marker: json['Marker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final marker = this.marker;
+    return {
+      if (groups != null) 'Groups': groups,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -2986,6 +3154,15 @@ class DescribeNotificationSubscriptionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final subscriptions = this.subscriptions;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (subscriptions != null) 'Subscriptions': subscriptions,
+    };
+  }
 }
 
 class DescribeResourcePermissionsResponse {
@@ -3010,6 +3187,15 @@ class DescribeResourcePermissionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final principals = this.principals;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (principals != null) 'Principals': principals,
+    };
+  }
 }
 
 class DescribeRootFoldersResponse {
@@ -3031,6 +3217,15 @@ class DescribeRootFoldersResponse {
           .toList(),
       marker: json['Marker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final folders = this.folders;
+    final marker = this.marker;
+    return {
+      if (folders != null) 'Folders': folders,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -3059,6 +3254,17 @@ class DescribeUsersResponse {
           .map((e) => User.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final totalNumberOfUsers = this.totalNumberOfUsers;
+    final users = this.users;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (totalNumberOfUsers != null) 'TotalNumberOfUsers': totalNumberOfUsers,
+      if (users != null) 'Users': users,
+    };
   }
 }
 
@@ -3115,6 +3321,30 @@ class DocumentMetadata {
       parentFolderId: json['ParentFolderId'] as String?,
       resourceState: (json['ResourceState'] as String?)?.toResourceStateType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final creatorId = this.creatorId;
+    final id = this.id;
+    final labels = this.labels;
+    final latestVersionMetadata = this.latestVersionMetadata;
+    final modifiedTimestamp = this.modifiedTimestamp;
+    final parentFolderId = this.parentFolderId;
+    final resourceState = this.resourceState;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (creatorId != null) 'CreatorId': creatorId,
+      if (id != null) 'Id': id,
+      if (labels != null) 'Labels': labels,
+      if (latestVersionMetadata != null)
+        'LatestVersionMetadata': latestVersionMetadata,
+      if (modifiedTimestamp != null)
+        'ModifiedTimestamp': unixTimestampToJson(modifiedTimestamp),
+      if (parentFolderId != null) 'ParentFolderId': parentFolderId,
+      if (resourceState != null) 'ResourceState': resourceState.toValue(),
+    };
   }
 }
 
@@ -3284,6 +3514,44 @@ class DocumentVersionMetadata {
           ?.map((k, e) => MapEntry(k.toDocumentThumbnailType(), e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentCreatedTimestamp = this.contentCreatedTimestamp;
+    final contentModifiedTimestamp = this.contentModifiedTimestamp;
+    final contentType = this.contentType;
+    final createdTimestamp = this.createdTimestamp;
+    final creatorId = this.creatorId;
+    final id = this.id;
+    final modifiedTimestamp = this.modifiedTimestamp;
+    final name = this.name;
+    final signature = this.signature;
+    final size = this.size;
+    final source = this.source;
+    final status = this.status;
+    final thumbnail = this.thumbnail;
+    return {
+      if (contentCreatedTimestamp != null)
+        'ContentCreatedTimestamp': unixTimestampToJson(contentCreatedTimestamp),
+      if (contentModifiedTimestamp != null)
+        'ContentModifiedTimestamp':
+            unixTimestampToJson(contentModifiedTimestamp),
+      if (contentType != null) 'ContentType': contentType,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (creatorId != null) 'CreatorId': creatorId,
+      if (id != null) 'Id': id,
+      if (modifiedTimestamp != null)
+        'ModifiedTimestamp': unixTimestampToJson(modifiedTimestamp),
+      if (name != null) 'Name': name,
+      if (signature != null) 'Signature': signature,
+      if (size != null) 'Size': size,
+      if (source != null)
+        'Source': source.map((k, e) => MapEntry(k.toValue(), e)),
+      if (status != null) 'Status': status.toValue(),
+      if (thumbnail != null)
+        'Thumbnail': thumbnail.map((k, e) => MapEntry(k.toValue(), e)),
+    };
+  }
 }
 
 enum DocumentVersionStatus {
@@ -3409,6 +3677,35 @@ class FolderMetadata {
       size: json['Size'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final creatorId = this.creatorId;
+    final id = this.id;
+    final labels = this.labels;
+    final latestVersionSize = this.latestVersionSize;
+    final modifiedTimestamp = this.modifiedTimestamp;
+    final name = this.name;
+    final parentFolderId = this.parentFolderId;
+    final resourceState = this.resourceState;
+    final signature = this.signature;
+    final size = this.size;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (creatorId != null) 'CreatorId': creatorId,
+      if (id != null) 'Id': id,
+      if (labels != null) 'Labels': labels,
+      if (latestVersionSize != null) 'LatestVersionSize': latestVersionSize,
+      if (modifiedTimestamp != null)
+        'ModifiedTimestamp': unixTimestampToJson(modifiedTimestamp),
+      if (name != null) 'Name': name,
+      if (parentFolderId != null) 'ParentFolderId': parentFolderId,
+      if (resourceState != null) 'ResourceState': resourceState.toValue(),
+      if (signature != null) 'Signature': signature,
+      if (size != null) 'Size': size,
+    };
+  }
 }
 
 class GetCurrentUserResponse {
@@ -3425,6 +3722,13 @@ class GetCurrentUserResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
+  }
 }
 
 class GetDocumentPathResponse {
@@ -3440,6 +3744,13 @@ class GetDocumentPathResponse {
           ? ResourcePath.fromJson(json['Path'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final path = this.path;
+    return {
+      if (path != null) 'Path': path,
+    };
   }
 }
 
@@ -3462,6 +3773,15 @@ class GetDocumentResponse {
           ? DocumentMetadata.fromJson(json['Metadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customMetadata = this.customMetadata;
+    final metadata = this.metadata;
+    return {
+      if (customMetadata != null) 'CustomMetadata': customMetadata,
+      if (metadata != null) 'Metadata': metadata,
+    };
   }
 }
 
@@ -3486,6 +3806,15 @@ class GetDocumentVersionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customMetadata = this.customMetadata;
+    final metadata = this.metadata;
+    return {
+      if (customMetadata != null) 'CustomMetadata': customMetadata,
+      if (metadata != null) 'Metadata': metadata,
+    };
+  }
 }
 
 class GetFolderPathResponse {
@@ -3501,6 +3830,13 @@ class GetFolderPathResponse {
           ? ResourcePath.fromJson(json['Path'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final path = this.path;
+    return {
+      if (path != null) 'Path': path,
+    };
   }
 }
 
@@ -3523,6 +3859,15 @@ class GetFolderResponse {
           ? FolderMetadata.fromJson(json['Metadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customMetadata = this.customMetadata;
+    final metadata = this.metadata;
+    return {
+      if (customMetadata != null) 'CustomMetadata': customMetadata,
+      if (metadata != null) 'Metadata': metadata,
+    };
   }
 }
 
@@ -3555,6 +3900,17 @@ class GetResourcesResponse {
       marker: json['Marker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final documents = this.documents;
+    final folders = this.folders;
+    final marker = this.marker;
+    return {
+      if (documents != null) 'Documents': documents,
+      if (folders != null) 'Folders': folders,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// Describes the metadata of a user group.
@@ -3574,6 +3930,15 @@ class GroupMetadata {
       id: json['Id'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -3599,6 +3964,15 @@ class InitiateDocumentVersionUploadResponse {
               json['UploadMetadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metadata = this.metadata;
+    final uploadMetadata = this.uploadMetadata;
+    return {
+      if (metadata != null) 'Metadata': metadata,
+      if (uploadMetadata != null) 'UploadMetadata': uploadMetadata,
+    };
   }
 }
 
@@ -3688,6 +4062,7 @@ class NotificationOptions {
     this.emailMessage,
     this.sendEmail,
   });
+
   Map<String, dynamic> toJson() {
     final emailMessage = this.emailMessage;
     final sendEmail = this.sendEmail;
@@ -3750,6 +4125,15 @@ class Participants {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final users = this.users;
+    return {
+      if (groups != null) 'Groups': groups,
+      if (users != null) 'Users': users,
+    };
+  }
 }
 
 /// Describes the permissions.
@@ -3769,6 +4153,15 @@ class PermissionInfo {
       role: (json['Role'] as String?)?.toRoleType(),
       type: (json['Type'] as String?)?.toRolePermissionType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final role = this.role;
+    final type = this.type;
+    return {
+      if (role != null) 'Role': role.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -3797,6 +4190,17 @@ class Principal {
           .toList(),
       type: (json['Type'] as String?)?.toPrincipalType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final roles = this.roles;
+    final type = this.type;
+    return {
+      if (id != null) 'Id': id,
+      if (roles != null) 'Roles': roles,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -3912,6 +4316,25 @@ class ResourceMetadata {
       versionId: json['VersionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final name = this.name;
+    final originalName = this.originalName;
+    final owner = this.owner;
+    final parentId = this.parentId;
+    final type = this.type;
+    final versionId = this.versionId;
+    return {
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (originalName != null) 'OriginalName': originalName,
+      if (owner != null) 'Owner': owner,
+      if (parentId != null) 'ParentId': parentId,
+      if (type != null) 'Type': type.toValue(),
+      if (versionId != null) 'VersionId': versionId,
+    };
+  }
 }
 
 /// Describes the path information of a resource.
@@ -3929,6 +4352,13 @@ class ResourcePath {
           .map((e) => ResourcePathComponent.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final components = this.components;
+    return {
+      if (components != null) 'Components': components,
+    };
   }
 }
 
@@ -3949,6 +4379,15 @@ class ResourcePathComponent {
       id: json['Id'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -4128,6 +4567,7 @@ class SharePrincipal {
     required this.role,
     required this.type,
   });
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final role = this.role;
@@ -4177,6 +4617,23 @@ class ShareResult {
       status: (json['Status'] as String?)?.toShareStatusType(),
       statusMessage: json['StatusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final inviteePrincipalId = this.inviteePrincipalId;
+    final principalId = this.principalId;
+    final role = this.role;
+    final shareId = this.shareId;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (inviteePrincipalId != null) 'InviteePrincipalId': inviteePrincipalId,
+      if (principalId != null) 'PrincipalId': principalId,
+      if (role != null) 'Role': role.toValue(),
+      if (shareId != null) 'ShareId': shareId,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
   }
 }
 
@@ -4289,6 +4746,17 @@ class Subscription {
       subscriptionId: json['SubscriptionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endPoint = this.endPoint;
+    final protocol = this.protocol;
+    final subscriptionId = this.subscriptionId;
+    return {
+      if (endPoint != null) 'EndPoint': endPoint,
+      if (protocol != null) 'Protocol': protocol.toValue(),
+      if (subscriptionId != null) 'SubscriptionId': subscriptionId,
+    };
+  }
 }
 
 enum SubscriptionProtocolType {
@@ -4351,6 +4819,13 @@ class UpdateUserResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
+  }
 }
 
 /// Describes the upload.
@@ -4371,6 +4846,15 @@ class UploadMetadata {
           ?.map((k, e) => MapEntry(k, e as String)),
       uploadUrl: json['UploadUrl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final signedHeaders = this.signedHeaders;
+    final uploadUrl = this.uploadUrl;
+    return {
+      if (signedHeaders != null) 'SignedHeaders': signedHeaders,
+      if (uploadUrl != null) 'UploadUrl': uploadUrl,
+    };
   }
 }
 
@@ -4460,6 +4944,43 @@ class User {
       username: json['Username'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final emailAddress = this.emailAddress;
+    final givenName = this.givenName;
+    final id = this.id;
+    final locale = this.locale;
+    final modifiedTimestamp = this.modifiedTimestamp;
+    final organizationId = this.organizationId;
+    final recycleBinFolderId = this.recycleBinFolderId;
+    final rootFolderId = this.rootFolderId;
+    final status = this.status;
+    final storage = this.storage;
+    final surname = this.surname;
+    final timeZoneId = this.timeZoneId;
+    final type = this.type;
+    final username = this.username;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (emailAddress != null) 'EmailAddress': emailAddress,
+      if (givenName != null) 'GivenName': givenName,
+      if (id != null) 'Id': id,
+      if (locale != null) 'Locale': locale.toValue(),
+      if (modifiedTimestamp != null)
+        'ModifiedTimestamp': unixTimestampToJson(modifiedTimestamp),
+      if (organizationId != null) 'OrganizationId': organizationId,
+      if (recycleBinFolderId != null) 'RecycleBinFolderId': recycleBinFolderId,
+      if (rootFolderId != null) 'RootFolderId': rootFolderId,
+      if (status != null) 'Status': status.toValue(),
+      if (storage != null) 'Storage': storage,
+      if (surname != null) 'Surname': surname,
+      if (timeZoneId != null) 'TimeZoneId': timeZoneId,
+      if (type != null) 'Type': type.toValue(),
+      if (username != null) 'Username': username,
+    };
+  }
 }
 
 enum UserFilterType {
@@ -4522,6 +5043,21 @@ class UserMetadata {
       surname: json['Surname'] as String?,
       username: json['Username'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final emailAddress = this.emailAddress;
+    final givenName = this.givenName;
+    final id = this.id;
+    final surname = this.surname;
+    final username = this.username;
+    return {
+      if (emailAddress != null) 'EmailAddress': emailAddress,
+      if (givenName != null) 'GivenName': givenName,
+      if (id != null) 'Id': id,
+      if (surname != null) 'Surname': surname,
+      if (username != null) 'Username': username,
+    };
   }
 }
 
@@ -4621,6 +5157,16 @@ class UserStorageMetadata {
           : null,
       storageUtilizedInBytes: json['StorageUtilizedInBytes'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final storageRule = this.storageRule;
+    final storageUtilizedInBytes = this.storageUtilizedInBytes;
+    return {
+      if (storageRule != null) 'StorageRule': storageRule,
+      if (storageUtilizedInBytes != null)
+        'StorageUtilizedInBytes': storageUtilizedInBytes,
+    };
   }
 }
 

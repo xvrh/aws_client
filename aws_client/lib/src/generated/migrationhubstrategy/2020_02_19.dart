@@ -779,6 +779,15 @@ class AntipatternSeveritySummary {
       severity: (json['severity'] as String?)?.toSeverity(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final severity = this.severity;
+    return {
+      if (count != null) 'count': count,
+      if (severity != null) 'severity': severity.toValue(),
+    };
+  }
 }
 
 enum AppType {
@@ -1007,6 +1016,57 @@ class ApplicationComponentDetail {
       statusMessage: json['statusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analysisStatus = this.analysisStatus;
+    final antipatternReportS3Object = this.antipatternReportS3Object;
+    final antipatternReportStatus = this.antipatternReportStatus;
+    final antipatternReportStatusMessage = this.antipatternReportStatusMessage;
+    final appType = this.appType;
+    final associatedServerId = this.associatedServerId;
+    final databaseConfigDetail = this.databaseConfigDetail;
+    final id = this.id;
+    final inclusionStatus = this.inclusionStatus;
+    final lastAnalyzedTimestamp = this.lastAnalyzedTimestamp;
+    final listAntipatternSeveritySummary = this.listAntipatternSeveritySummary;
+    final moreServerAssociationExists = this.moreServerAssociationExists;
+    final name = this.name;
+    final osDriver = this.osDriver;
+    final osVersion = this.osVersion;
+    final recommendationSet = this.recommendationSet;
+    final resourceSubType = this.resourceSubType;
+    final sourceCodeRepositories = this.sourceCodeRepositories;
+    final statusMessage = this.statusMessage;
+    return {
+      if (analysisStatus != null) 'analysisStatus': analysisStatus.toValue(),
+      if (antipatternReportS3Object != null)
+        'antipatternReportS3Object': antipatternReportS3Object,
+      if (antipatternReportStatus != null)
+        'antipatternReportStatus': antipatternReportStatus.toValue(),
+      if (antipatternReportStatusMessage != null)
+        'antipatternReportStatusMessage': antipatternReportStatusMessage,
+      if (appType != null) 'appType': appType.toValue(),
+      if (associatedServerId != null) 'associatedServerId': associatedServerId,
+      if (databaseConfigDetail != null)
+        'databaseConfigDetail': databaseConfigDetail,
+      if (id != null) 'id': id,
+      if (inclusionStatus != null) 'inclusionStatus': inclusionStatus.toValue(),
+      if (lastAnalyzedTimestamp != null)
+        'lastAnalyzedTimestamp': unixTimestampToJson(lastAnalyzedTimestamp),
+      if (listAntipatternSeveritySummary != null)
+        'listAntipatternSeveritySummary': listAntipatternSeveritySummary,
+      if (moreServerAssociationExists != null)
+        'moreServerAssociationExists': moreServerAssociationExists,
+      if (name != null) 'name': name,
+      if (osDriver != null) 'osDriver': osDriver,
+      if (osVersion != null) 'osVersion': osVersion,
+      if (recommendationSet != null) 'recommendationSet': recommendationSet,
+      if (resourceSubType != null) 'resourceSubType': resourceSubType.toValue(),
+      if (sourceCodeRepositories != null)
+        'sourceCodeRepositories': sourceCodeRepositories,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
+  }
 }
 
 /// Contains information about a strategy recommendation for an application
@@ -1036,6 +1096,17 @@ class ApplicationComponentStrategy {
       status: (json['status'] as String?)?.toStrategyRecommendation(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isPreferred = this.isPreferred;
+    final recommendation = this.recommendation;
+    final status = this.status;
+    return {
+      if (isPreferred != null) 'isPreferred': isPreferred,
+      if (recommendation != null) 'recommendation': recommendation,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Contains the summary of application components.
@@ -1055,6 +1126,15 @@ class ApplicationComponentSummary {
       appType: (json['appType'] as String?)?.toAppType(),
       count: json['count'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appType = this.appType;
+    final count = this.count;
+    return {
+      if (appType != null) 'appType': appType.toValue(),
+      if (count != null) 'count': count,
+    };
   }
 }
 
@@ -1200,6 +1280,40 @@ class AssessmentSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final antipatternReportS3Object = this.antipatternReportS3Object;
+    final antipatternReportStatus = this.antipatternReportStatus;
+    final antipatternReportStatusMessage = this.antipatternReportStatusMessage;
+    final lastAnalyzedTimestamp = this.lastAnalyzedTimestamp;
+    final listAntipatternSeveritySummary = this.listAntipatternSeveritySummary;
+    final listApplicationComponentStrategySummary =
+        this.listApplicationComponentStrategySummary;
+    final listApplicationComponentSummary =
+        this.listApplicationComponentSummary;
+    final listServerStrategySummary = this.listServerStrategySummary;
+    final listServerSummary = this.listServerSummary;
+    return {
+      if (antipatternReportS3Object != null)
+        'antipatternReportS3Object': antipatternReportS3Object,
+      if (antipatternReportStatus != null)
+        'antipatternReportStatus': antipatternReportStatus.toValue(),
+      if (antipatternReportStatusMessage != null)
+        'antipatternReportStatusMessage': antipatternReportStatusMessage,
+      if (lastAnalyzedTimestamp != null)
+        'lastAnalyzedTimestamp': unixTimestampToJson(lastAnalyzedTimestamp),
+      if (listAntipatternSeveritySummary != null)
+        'listAntipatternSeveritySummary': listAntipatternSeveritySummary,
+      if (listApplicationComponentStrategySummary != null)
+        'listApplicationComponentStrategySummary':
+            listApplicationComponentStrategySummary,
+      if (listApplicationComponentSummary != null)
+        'listApplicationComponentSummary': listApplicationComponentSummary,
+      if (listServerStrategySummary != null)
+        'listServerStrategySummary': listServerStrategySummary,
+      if (listServerSummary != null) 'listServerSummary': listServerSummary,
+    };
+  }
 }
 
 /// Object containing details about applications as defined in Application
@@ -1220,6 +1334,15 @@ class AssociatedApplication {
       id: json['id'] as String?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -1381,6 +1504,27 @@ class Collector {
       registeredTimeStamp: json['registeredTimeStamp'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final collectorHealth = this.collectorHealth;
+    final collectorId = this.collectorId;
+    final collectorVersion = this.collectorVersion;
+    final hostName = this.hostName;
+    final ipAddress = this.ipAddress;
+    final lastActivityTimeStamp = this.lastActivityTimeStamp;
+    final registeredTimeStamp = this.registeredTimeStamp;
+    return {
+      if (collectorHealth != null) 'collectorHealth': collectorHealth.toValue(),
+      if (collectorId != null) 'collectorId': collectorId,
+      if (collectorVersion != null) 'collectorVersion': collectorVersion,
+      if (hostName != null) 'hostName': hostName,
+      if (ipAddress != null) 'ipAddress': ipAddress,
+      if (lastActivityTimeStamp != null)
+        'lastActivityTimeStamp': lastActivityTimeStamp,
+      if (registeredTimeStamp != null)
+        'registeredTimeStamp': registeredTimeStamp,
+    };
+  }
 }
 
 enum CollectorHealth {
@@ -1454,6 +1598,26 @@ class DataCollectionDetails {
       success: json['success'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completionTime = this.completionTime;
+    final failed = this.failed;
+    final inProgress = this.inProgress;
+    final servers = this.servers;
+    final startTime = this.startTime;
+    final status = this.status;
+    final success = this.success;
+    return {
+      if (completionTime != null)
+        'completionTime': unixTimestampToJson(completionTime),
+      if (failed != null) 'failed': failed,
+      if (inProgress != null) 'inProgress': inProgress,
+      if (servers != null) 'servers': servers,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (status != null) 'status': status.toValue(),
+      if (success != null) 'success': success,
+    };
+  }
 }
 
 enum DataSourceType {
@@ -1497,6 +1661,13 @@ class DatabaseConfigDetail {
     return DatabaseConfigDetail(
       secretName: json['secretName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final secretName = this.secretName;
+    return {
+      if (secretName != null) 'secretName': secretName,
+    };
   }
 }
 
@@ -1659,6 +1830,23 @@ class GetApplicationComponentDetailsResponse {
       moreApplicationResource: json['moreApplicationResource'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationComponentDetail = this.applicationComponentDetail;
+    final associatedApplications = this.associatedApplications;
+    final associatedServerIds = this.associatedServerIds;
+    final moreApplicationResource = this.moreApplicationResource;
+    return {
+      if (applicationComponentDetail != null)
+        'applicationComponentDetail': applicationComponentDetail,
+      if (associatedApplications != null)
+        'associatedApplications': associatedApplications,
+      if (associatedServerIds != null)
+        'associatedServerIds': associatedServerIds,
+      if (moreApplicationResource != null)
+        'moreApplicationResource': moreApplicationResource,
+    };
+  }
 }
 
 class GetApplicationComponentStrategiesResponse {
@@ -1678,6 +1866,14 @@ class GetApplicationComponentStrategiesResponse {
               ApplicationComponentStrategy.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationComponentStrategies = this.applicationComponentStrategies;
+    return {
+      if (applicationComponentStrategies != null)
+        'applicationComponentStrategies': applicationComponentStrategies,
+    };
   }
 }
 
@@ -1700,6 +1896,16 @@ class GetAssessmentResponse {
           : null,
       id: json['id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataCollectionDetails = this.dataCollectionDetails;
+    final id = this.id;
+    return {
+      if (dataCollectionDetails != null)
+        'dataCollectionDetails': dataCollectionDetails,
+      if (id != null) 'id': id,
+    };
   }
 }
 
@@ -1767,6 +1973,37 @@ class GetImportFileTaskResponse {
       statusReportS3Key: json['statusReportS3Key'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completionTime = this.completionTime;
+    final id = this.id;
+    final importName = this.importName;
+    final inputS3Bucket = this.inputS3Bucket;
+    final inputS3Key = this.inputS3Key;
+    final numberOfRecordsFailed = this.numberOfRecordsFailed;
+    final numberOfRecordsSuccess = this.numberOfRecordsSuccess;
+    final startTime = this.startTime;
+    final status = this.status;
+    final statusReportS3Bucket = this.statusReportS3Bucket;
+    final statusReportS3Key = this.statusReportS3Key;
+    return {
+      if (completionTime != null)
+        'completionTime': unixTimestampToJson(completionTime),
+      if (id != null) 'id': id,
+      if (importName != null) 'importName': importName,
+      if (inputS3Bucket != null) 'inputS3Bucket': inputS3Bucket,
+      if (inputS3Key != null) 'inputS3Key': inputS3Key,
+      if (numberOfRecordsFailed != null)
+        'numberOfRecordsFailed': numberOfRecordsFailed,
+      if (numberOfRecordsSuccess != null)
+        'numberOfRecordsSuccess': numberOfRecordsSuccess,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (status != null) 'status': status.toValue(),
+      if (statusReportS3Bucket != null)
+        'statusReportS3Bucket': statusReportS3Bucket,
+      if (statusReportS3Key != null) 'statusReportS3Key': statusReportS3Key,
+    };
+  }
 }
 
 class GetPortfolioPreferencesResponse {
@@ -1800,6 +2037,20 @@ class GetPortfolioPreferencesResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationPreferences = this.applicationPreferences;
+    final databasePreferences = this.databasePreferences;
+    final prioritizeBusinessGoals = this.prioritizeBusinessGoals;
+    return {
+      if (applicationPreferences != null)
+        'applicationPreferences': applicationPreferences,
+      if (databasePreferences != null)
+        'databasePreferences': databasePreferences,
+      if (prioritizeBusinessGoals != null)
+        'prioritizeBusinessGoals': prioritizeBusinessGoals,
+    };
+  }
 }
 
 class GetPortfolioSummaryResponse {
@@ -1817,6 +2068,13 @@ class GetPortfolioSummaryResponse {
               json['assessmentSummary'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assessmentSummary = this.assessmentSummary;
+    return {
+      if (assessmentSummary != null) 'assessmentSummary': assessmentSummary,
+    };
   }
 }
 
@@ -1841,6 +2099,16 @@ class GetRecommendationReportDetailsResponse {
               json['recommendationReportDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final recommendationReportDetails = this.recommendationReportDetails;
+    return {
+      if (id != null) 'id': id,
+      if (recommendationReportDetails != null)
+        'recommendationReportDetails': recommendationReportDetails,
+    };
   }
 }
 
@@ -1873,6 +2141,18 @@ class GetServerDetailsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associatedApplications = this.associatedApplications;
+    final nextToken = this.nextToken;
+    final serverDetail = this.serverDetail;
+    return {
+      if (associatedApplications != null)
+        'associatedApplications': associatedApplications,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (serverDetail != null) 'serverDetail': serverDetail,
+    };
+  }
 }
 
 class GetServerStrategiesResponse {
@@ -1890,6 +2170,13 @@ class GetServerStrategiesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serverStrategies = this.serverStrategies;
+    return {
+      if (serverStrategies != null) 'serverStrategies': serverStrategies,
+    };
+  }
 }
 
 /// The object containing information about distinct imports or groups for
@@ -1905,6 +2192,7 @@ class Group {
     this.name,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -2150,6 +2438,37 @@ class ImportFileTaskInformation {
       statusReportS3Key: json['statusReportS3Key'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completionTime = this.completionTime;
+    final id = this.id;
+    final importName = this.importName;
+    final inputS3Bucket = this.inputS3Bucket;
+    final inputS3Key = this.inputS3Key;
+    final numberOfRecordsFailed = this.numberOfRecordsFailed;
+    final numberOfRecordsSuccess = this.numberOfRecordsSuccess;
+    final startTime = this.startTime;
+    final status = this.status;
+    final statusReportS3Bucket = this.statusReportS3Bucket;
+    final statusReportS3Key = this.statusReportS3Key;
+    return {
+      if (completionTime != null)
+        'completionTime': unixTimestampToJson(completionTime),
+      if (id != null) 'id': id,
+      if (importName != null) 'importName': importName,
+      if (inputS3Bucket != null) 'inputS3Bucket': inputS3Bucket,
+      if (inputS3Key != null) 'inputS3Key': inputS3Key,
+      if (numberOfRecordsFailed != null)
+        'numberOfRecordsFailed': numberOfRecordsFailed,
+      if (numberOfRecordsSuccess != null)
+        'numberOfRecordsSuccess': numberOfRecordsSuccess,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (status != null) 'status': status.toValue(),
+      if (statusReportS3Bucket != null)
+        'statusReportS3Bucket': statusReportS3Bucket,
+      if (statusReportS3Key != null) 'statusReportS3Key': statusReportS3Key,
+    };
+  }
 }
 
 enum ImportFileTaskStatus {
@@ -2262,6 +2581,16 @@ class ListApplicationComponentsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationComponentInfos = this.applicationComponentInfos;
+    final nextToken = this.nextToken;
+    return {
+      if (applicationComponentInfos != null)
+        'applicationComponentInfos': applicationComponentInfos,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListCollectorsResponse {
@@ -2284,6 +2613,15 @@ class ListCollectorsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final collectors = this.collectors;
+    final nextToken = this.nextToken;
+    return {
+      if (collectors != null) 'Collectors': collectors,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2309,6 +2647,15 @@ class ListImportFileTaskResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final taskInfos = this.taskInfos;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (taskInfos != null) 'taskInfos': taskInfos,
+    };
+  }
 }
 
 class ListServersResponse {
@@ -2331,6 +2678,15 @@ class ListServersResponse {
           .map((e) => ServerDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final serverInfos = this.serverInfos;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (serverInfos != null) 'serverInfos': serverInfos,
+    };
   }
 }
 
@@ -2412,6 +2768,19 @@ class NetworkInfo {
       macAddress: json['macAddress'] as String,
       netMask: json['netMask'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final interfaceName = this.interfaceName;
+    final ipAddress = this.ipAddress;
+    final macAddress = this.macAddress;
+    final netMask = this.netMask;
+    return {
+      'interfaceName': interfaceName,
+      'ipAddress': ipAddress,
+      'macAddress': macAddress,
+      'netMask': netMask,
+    };
   }
 }
 
@@ -2535,6 +2904,15 @@ class OSInfo {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final version = this.version;
+    return {
+      if (type != null) 'type': type.toValue(),
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 enum OSType {
@@ -2623,6 +3001,10 @@ class PutPortfolioPreferencesResponse {
   factory PutPortfolioPreferencesResponse.fromJson(Map<String, dynamic> _) {
     return PutPortfolioPreferencesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains detailed information about a recommendation report.
@@ -2665,6 +3047,24 @@ class RecommendationReportDetails {
       status: (json['status'] as String?)?.toRecommendationReportStatus(),
       statusMessage: json['statusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final completionTime = this.completionTime;
+    final s3Bucket = this.s3Bucket;
+    final s3Keys = this.s3Keys;
+    final startTime = this.startTime;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (completionTime != null)
+        'completionTime': unixTimestampToJson(completionTime),
+      if (s3Bucket != null) 's3Bucket': s3Bucket,
+      if (s3Keys != null) 's3Keys': s3Keys,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (status != null) 'status': status.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
   }
 }
 
@@ -2728,6 +3128,18 @@ class RecommendationSet {
               json['transformationTool'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final strategy = this.strategy;
+    final targetDestination = this.targetDestination;
+    final transformationTool = this.transformationTool;
+    return {
+      if (strategy != null) 'strategy': strategy.toValue(),
+      if (targetDestination != null)
+        'targetDestination': targetDestination.toValue(),
+      if (transformationTool != null) 'transformationTool': transformationTool,
+    };
   }
 }
 
@@ -2834,6 +3246,15 @@ class S3Object {
       s3Bucket: json['s3Bucket'] as String?,
       s3key: json['s3key'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final s3Bucket = this.s3Bucket;
+    final s3key = this.s3key;
+    return {
+      if (s3Bucket != null) 's3Bucket': s3Bucket,
+      if (s3key != null) 's3key': s3key,
+    };
   }
 }
 
@@ -3038,6 +3459,46 @@ class ServerDetail {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final antipatternReportS3Object = this.antipatternReportS3Object;
+    final antipatternReportStatus = this.antipatternReportStatus;
+    final antipatternReportStatusMessage = this.antipatternReportStatusMessage;
+    final applicationComponentStrategySummary =
+        this.applicationComponentStrategySummary;
+    final dataCollectionStatus = this.dataCollectionStatus;
+    final id = this.id;
+    final lastAnalyzedTimestamp = this.lastAnalyzedTimestamp;
+    final listAntipatternSeveritySummary = this.listAntipatternSeveritySummary;
+    final name = this.name;
+    final recommendationSet = this.recommendationSet;
+    final serverType = this.serverType;
+    final statusMessage = this.statusMessage;
+    final systemInfo = this.systemInfo;
+    return {
+      if (antipatternReportS3Object != null)
+        'antipatternReportS3Object': antipatternReportS3Object,
+      if (antipatternReportStatus != null)
+        'antipatternReportStatus': antipatternReportStatus.toValue(),
+      if (antipatternReportStatusMessage != null)
+        'antipatternReportStatusMessage': antipatternReportStatusMessage,
+      if (applicationComponentStrategySummary != null)
+        'applicationComponentStrategySummary':
+            applicationComponentStrategySummary,
+      if (dataCollectionStatus != null)
+        'dataCollectionStatus': dataCollectionStatus.toValue(),
+      if (id != null) 'id': id,
+      if (lastAnalyzedTimestamp != null)
+        'lastAnalyzedTimestamp': unixTimestampToJson(lastAnalyzedTimestamp),
+      if (listAntipatternSeveritySummary != null)
+        'listAntipatternSeveritySummary': listAntipatternSeveritySummary,
+      if (name != null) 'name': name,
+      if (recommendationSet != null) 'recommendationSet': recommendationSet,
+      if (serverType != null) 'serverType': serverType,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (systemInfo != null) 'systemInfo': systemInfo,
+    };
+  }
 }
 
 enum ServerOsType {
@@ -3116,6 +3577,20 @@ class ServerStrategy {
       status: (json['status'] as String?)?.toStrategyRecommendation(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isPreferred = this.isPreferred;
+    final numberOfApplicationComponents = this.numberOfApplicationComponents;
+    final recommendation = this.recommendation;
+    final status = this.status;
+    return {
+      if (isPreferred != null) 'isPreferred': isPreferred,
+      if (numberOfApplicationComponents != null)
+        'numberOfApplicationComponents': numberOfApplicationComponents,
+      if (recommendation != null) 'recommendation': recommendation,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Object containing details about the servers imported by Application
@@ -3136,6 +3611,15 @@ class ServerSummary {
       serverOsType: (json['ServerOsType'] as String?)?.toServerOsType(),
       count: json['count'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverOsType = this.serverOsType;
+    final count = this.count;
+    return {
+      if (serverOsType != null) 'ServerOsType': serverOsType.toValue(),
+      if (count != null) 'count': count,
+    };
   }
 }
 
@@ -3217,6 +3701,7 @@ class SourceCode {
     this.sourceVersion,
     this.versionControl,
   });
+
   Map<String, dynamic> toJson() {
     final location = this.location;
     final sourceVersion = this.sourceVersion;
@@ -3252,6 +3737,17 @@ class SourceCodeRepository {
       repository: json['repository'] as String?,
       versionControlType: json['versionControlType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final branch = this.branch;
+    final repository = this.repository;
+    final versionControlType = this.versionControlType;
+    return {
+      if (branch != null) 'branch': branch,
+      if (repository != null) 'repository': repository,
+      if (versionControlType != null) 'versionControlType': versionControlType,
+    };
   }
 }
 
@@ -3305,6 +3801,13 @@ class StartAssessmentResponse {
       assessmentId: json['assessmentId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentId = this.assessmentId;
+    return {
+      if (assessmentId != null) 'assessmentId': assessmentId,
+    };
+  }
 }
 
 class StartImportFileTaskResponse {
@@ -3318,6 +3821,13 @@ class StartImportFileTaskResponse {
     return StartImportFileTaskResponse(
       id: json['id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'id': id,
+    };
   }
 }
 
@@ -3334,12 +3844,23 @@ class StartRecommendationReportGenerationResponse {
       id: json['id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'id': id,
+    };
+  }
 }
 
 class StopAssessmentResponse {
   StopAssessmentResponse();
   factory StopAssessmentResponse.fromJson(Map<String, dynamic> _) {
     return StopAssessmentResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3419,6 +3940,7 @@ class StrategyOption {
     this.targetDestination,
     this.toolName,
   });
+
   Map<String, dynamic> toJson() {
     final isPreferred = this.isPreferred;
     final strategy = this.strategy;
@@ -3485,6 +4007,15 @@ class StrategySummary {
       strategy: (json['strategy'] as String?)?.toStrategy(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final strategy = this.strategy;
+    return {
+      if (count != null) 'count': count,
+      if (strategy != null) 'strategy': strategy.toValue(),
+    };
+  }
 }
 
 /// Information about the server that hosts application components.
@@ -3519,6 +4050,19 @@ class SystemInfo {
           ? OSInfo.fromJson(json['osInfo'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cpuArchitecture = this.cpuArchitecture;
+    final fileSystemType = this.fileSystemType;
+    final networkInfoList = this.networkInfoList;
+    final osInfo = this.osInfo;
+    return {
+      if (cpuArchitecture != null) 'cpuArchitecture': cpuArchitecture,
+      if (fileSystemType != null) 'fileSystemType': fileSystemType,
+      if (networkInfoList != null) 'networkInfoList': networkInfoList,
+      if (osInfo != null) 'osInfo': osInfo,
+    };
   }
 }
 
@@ -3698,6 +4242,19 @@ class TransformationTool {
           json['tranformationToolInstallationLink'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final name = this.name;
+    final tranformationToolInstallationLink =
+        this.tranformationToolInstallationLink;
+    return {
+      if (description != null) 'description': description,
+      if (name != null) 'name': name.toValue(),
+      if (tranformationToolInstallationLink != null)
+        'tranformationToolInstallationLink': tranformationToolInstallationLink,
+    };
+  }
 }
 
 enum TransformationToolName {
@@ -3774,12 +4331,20 @@ class UpdateApplicationComponentConfigResponse {
       Map<String, dynamic> _) {
     return UpdateApplicationComponentConfigResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateServerConfigResponse {
   UpdateServerConfigResponse();
   factory UpdateServerConfigResponse.fromJson(Map<String, dynamic> _) {
     return UpdateServerConfigResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

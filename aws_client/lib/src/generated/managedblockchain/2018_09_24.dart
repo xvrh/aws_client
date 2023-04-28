@@ -1267,6 +1267,13 @@ class CreateMemberOutput {
       memberId: json['MemberId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final memberId = this.memberId;
+    return {
+      if (memberId != null) 'MemberId': memberId,
+    };
+  }
 }
 
 class CreateNetworkOutput {
@@ -1286,6 +1293,15 @@ class CreateNetworkOutput {
       networkId: json['NetworkId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final memberId = this.memberId;
+    final networkId = this.networkId;
+    return {
+      if (memberId != null) 'MemberId': memberId,
+      if (networkId != null) 'NetworkId': networkId,
+    };
+  }
 }
 
 class CreateNodeOutput {
@@ -1299,6 +1315,13 @@ class CreateNodeOutput {
     return CreateNodeOutput(
       nodeId: json['NodeId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nodeId = this.nodeId;
+    return {
+      if (nodeId != null) 'NodeId': nodeId,
+    };
   }
 }
 
@@ -1314,6 +1337,13 @@ class CreateProposalOutput {
       proposalId: json['ProposalId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final proposalId = this.proposalId;
+    return {
+      if (proposalId != null) 'ProposalId': proposalId,
+    };
+  }
 }
 
 class DeleteMemberOutput {
@@ -1321,12 +1351,20 @@ class DeleteMemberOutput {
   factory DeleteMemberOutput.fromJson(Map<String, dynamic> _) {
     return DeleteMemberOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteNodeOutput {
   DeleteNodeOutput();
   factory DeleteNodeOutput.fromJson(Map<String, dynamic> _) {
     return DeleteNodeOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1400,6 +1438,13 @@ class GetMemberOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final member = this.member;
+    return {
+      if (member != null) 'Member': member,
+    };
+  }
 }
 
 class GetNetworkOutput {
@@ -1415,6 +1460,13 @@ class GetNetworkOutput {
           ? Network.fromJson(json['Network'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final network = this.network;
+    return {
+      if (network != null) 'Network': network,
+    };
   }
 }
 
@@ -1432,6 +1484,13 @@ class GetNodeOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final node = this.node;
+    return {
+      if (node != null) 'Node': node,
+    };
+  }
 }
 
 class GetProposalOutput {
@@ -1447,6 +1506,13 @@ class GetProposalOutput {
           ? Proposal.fromJson(json['Proposal'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final proposal = this.proposal;
+    return {
+      if (proposal != null) 'Proposal': proposal,
+    };
   }
 }
 
@@ -1519,6 +1585,24 @@ class Invitation {
           : null,
       status: (json['Status'] as String?)?.toInvitationStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final expirationDate = this.expirationDate;
+    final invitationId = this.invitationId;
+    final networkSummary = this.networkSummary;
+    final status = this.status;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (expirationDate != null)
+        'ExpirationDate': iso8601ToJson(expirationDate),
+      if (invitationId != null) 'InvitationId': invitationId,
+      if (networkSummary != null) 'NetworkSummary': networkSummary,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -1611,6 +1695,15 @@ class ListInvitationsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final invitations = this.invitations;
+    final nextToken = this.nextToken;
+    return {
+      if (invitations != null) 'Invitations': invitations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListMembersOutput {
@@ -1633,6 +1726,15 @@ class ListMembersOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final members = this.members;
+    final nextToken = this.nextToken;
+    return {
+      if (members != null) 'Members': members,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1657,6 +1759,15 @@ class ListNetworksOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final networks = this.networks;
+    final nextToken = this.nextToken;
+    return {
+      if (networks != null) 'Networks': networks,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListNodesOutput {
@@ -1680,6 +1791,15 @@ class ListNodesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final nodes = this.nodes;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (nodes != null) 'Nodes': nodes,
+    };
+  }
 }
 
 class ListProposalVotesOutput {
@@ -1701,6 +1821,15 @@ class ListProposalVotesOutput {
           .map((e) => VoteSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final proposalVotes = this.proposalVotes;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (proposalVotes != null) 'ProposalVotes': proposalVotes,
+    };
   }
 }
 
@@ -1724,6 +1853,15 @@ class ListProposalsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final proposals = this.proposals;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (proposals != null) 'Proposals': proposals,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1738,6 +1876,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1913,6 +2058,35 @@ class Member {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final frameworkAttributes = this.frameworkAttributes;
+    final id = this.id;
+    final kmsKeyArn = this.kmsKeyArn;
+    final logPublishingConfiguration = this.logPublishingConfiguration;
+    final name = this.name;
+    final networkId = this.networkId;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (description != null) 'Description': description,
+      if (frameworkAttributes != null)
+        'FrameworkAttributes': frameworkAttributes,
+      if (id != null) 'Id': id,
+      if (kmsKeyArn != null) 'KmsKeyArn': kmsKeyArn,
+      if (logPublishingConfiguration != null)
+        'LogPublishingConfiguration': logPublishingConfiguration,
+      if (name != null) 'Name': name,
+      if (networkId != null) 'NetworkId': networkId,
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Configuration properties of the member.
@@ -1978,6 +2152,7 @@ class MemberConfiguration {
     this.logPublishingConfiguration,
     this.tags,
   });
+
   Map<String, dynamic> toJson() {
     final frameworkConfiguration = this.frameworkConfiguration;
     final name = this.name;
@@ -2016,6 +2191,15 @@ class MemberFabricAttributes {
       caEndpoint: json['CaEndpoint'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adminUsername = this.adminUsername;
+    final caEndpoint = this.caEndpoint;
+    return {
+      if (adminUsername != null) 'AdminUsername': adminUsername,
+      if (caEndpoint != null) 'CaEndpoint': caEndpoint,
+    };
+  }
 }
 
 /// Configuration properties for Hyperledger Fabric for a member in a Managed
@@ -2036,6 +2220,7 @@ class MemberFabricConfiguration {
     required this.adminPassword,
     required this.adminUsername,
   });
+
   Map<String, dynamic> toJson() {
     final adminPassword = this.adminPassword;
     final adminUsername = this.adminUsername;
@@ -2092,6 +2277,13 @@ class MemberFrameworkAttributes {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fabric = this.fabric;
+    return {
+      if (fabric != null) 'Fabric': fabric,
+    };
+  }
 }
 
 /// Configuration properties relevant to a member for the blockchain framework
@@ -2104,6 +2296,7 @@ class MemberFrameworkConfiguration {
   MemberFrameworkConfiguration({
     this.fabric,
   });
+
   Map<String, dynamic> toJson() {
     final fabric = this.fabric;
     return {
@@ -2283,6 +2476,25 @@ class MemberSummary {
       status: (json['Status'] as String?)?.toMemberStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final id = this.id;
+    final isOwned = this.isOwned;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (isOwned != null) 'IsOwned': isOwned,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Network configuration properties.
@@ -2372,6 +2584,37 @@ class Network {
       vpcEndpointServiceName: json['VpcEndpointServiceName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final framework = this.framework;
+    final frameworkAttributes = this.frameworkAttributes;
+    final frameworkVersion = this.frameworkVersion;
+    final id = this.id;
+    final name = this.name;
+    final status = this.status;
+    final tags = this.tags;
+    final votingPolicy = this.votingPolicy;
+    final vpcEndpointServiceName = this.vpcEndpointServiceName;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (description != null) 'Description': description,
+      if (framework != null) 'Framework': framework.toValue(),
+      if (frameworkAttributes != null)
+        'FrameworkAttributes': frameworkAttributes,
+      if (frameworkVersion != null) 'FrameworkVersion': frameworkVersion,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (votingPolicy != null) 'VotingPolicy': votingPolicy,
+      if (vpcEndpointServiceName != null)
+        'VpcEndpointServiceName': vpcEndpointServiceName,
+    };
+  }
 }
 
 /// Attributes of Ethereum for a network.
@@ -2400,6 +2643,13 @@ class NetworkEthereumAttributes {
       chainId: json['ChainId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final chainId = this.chainId;
+    return {
+      if (chainId != null) 'ChainId': chainId,
+    };
+  }
 }
 
 /// Attributes of Hyperledger Fabric for a network.
@@ -2423,6 +2673,16 @@ class NetworkFabricAttributes {
       orderingServiceEndpoint: json['OrderingServiceEndpoint'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final edition = this.edition;
+    final orderingServiceEndpoint = this.orderingServiceEndpoint;
+    return {
+      if (edition != null) 'Edition': edition.toValue(),
+      if (orderingServiceEndpoint != null)
+        'OrderingServiceEndpoint': orderingServiceEndpoint,
+    };
+  }
 }
 
 /// Hyperledger Fabric configuration properties for the network.
@@ -2436,6 +2696,7 @@ class NetworkFabricConfiguration {
   NetworkFabricConfiguration({
     required this.edition,
   });
+
   Map<String, dynamic> toJson() {
     final edition = this.edition;
     return {
@@ -2471,6 +2732,15 @@ class NetworkFrameworkAttributes {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ethereum = this.ethereum;
+    final fabric = this.fabric;
+    return {
+      if (ethereum != null) 'Ethereum': ethereum,
+      if (fabric != null) 'Fabric': fabric,
+    };
+  }
 }
 
 /// Configuration properties relevant to the network for the blockchain
@@ -2483,6 +2753,7 @@ class NetworkFrameworkConfiguration {
   NetworkFrameworkConfiguration({
     this.fabric,
   });
+
   Map<String, dynamic> toJson() {
     final fabric = this.fabric;
     return {
@@ -2584,6 +2855,27 @@ class NetworkSummary {
       name: json['Name'] as String?,
       status: (json['Status'] as String?)?.toNetworkStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final framework = this.framework;
+    final frameworkVersion = this.frameworkVersion;
+    final id = this.id;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (description != null) 'Description': description,
+      if (framework != null) 'Framework': framework.toValue(),
+      if (frameworkVersion != null) 'FrameworkVersion': frameworkVersion,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -2735,6 +3027,39 @@ class Node {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final availabilityZone = this.availabilityZone;
+    final creationDate = this.creationDate;
+    final frameworkAttributes = this.frameworkAttributes;
+    final id = this.id;
+    final instanceType = this.instanceType;
+    final kmsKeyArn = this.kmsKeyArn;
+    final logPublishingConfiguration = this.logPublishingConfiguration;
+    final memberId = this.memberId;
+    final networkId = this.networkId;
+    final stateDB = this.stateDB;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (frameworkAttributes != null)
+        'FrameworkAttributes': frameworkAttributes,
+      if (id != null) 'Id': id,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (kmsKeyArn != null) 'KmsKeyArn': kmsKeyArn,
+      if (logPublishingConfiguration != null)
+        'LogPublishingConfiguration': logPublishingConfiguration,
+      if (memberId != null) 'MemberId': memberId,
+      if (networkId != null) 'NetworkId': networkId,
+      if (stateDB != null) 'StateDB': stateDB.toValue(),
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Configuration properties of a node.
@@ -2763,6 +3088,7 @@ class NodeConfiguration {
     this.logPublishingConfiguration,
     this.stateDB,
   });
+
   Map<String, dynamic> toJson() {
     final instanceType = this.instanceType;
     final availabilityZone = this.availabilityZone;
@@ -2806,6 +3132,15 @@ class NodeEthereumAttributes {
       webSocketEndpoint: json['WebSocketEndpoint'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final httpEndpoint = this.httpEndpoint;
+    final webSocketEndpoint = this.webSocketEndpoint;
+    return {
+      if (httpEndpoint != null) 'HttpEndpoint': httpEndpoint,
+      if (webSocketEndpoint != null) 'WebSocketEndpoint': webSocketEndpoint,
+    };
+  }
 }
 
 /// Attributes of Hyperledger Fabric for a peer node on a Hyperledger Fabric
@@ -2828,6 +3163,15 @@ class NodeFabricAttributes {
       peerEndpoint: json['PeerEndpoint'] as String?,
       peerEventEndpoint: json['PeerEventEndpoint'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final peerEndpoint = this.peerEndpoint;
+    final peerEventEndpoint = this.peerEventEndpoint;
+    return {
+      if (peerEndpoint != null) 'PeerEndpoint': peerEndpoint,
+      if (peerEventEndpoint != null) 'PeerEventEndpoint': peerEventEndpoint,
+    };
   }
 }
 
@@ -2900,6 +3244,15 @@ class NodeFrameworkAttributes {
               json['Fabric'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ethereum = this.ethereum;
+    final fabric = this.fabric;
+    return {
+      if (ethereum != null) 'Ethereum': ethereum,
+      if (fabric != null) 'Fabric': fabric,
+    };
   }
 }
 
@@ -3035,6 +3388,23 @@ class NodeSummary {
       status: (json['Status'] as String?)?.toNodeStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final availabilityZone = this.availabilityZone;
+    final creationDate = this.creationDate;
+    final id = this.id;
+    final instanceType = this.instanceType;
+    final status = this.status;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (id != null) 'Id': id,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Properties of a proposal on a Managed Blockchain network.
@@ -3169,6 +3539,42 @@ class Proposal {
           ?.map((k, e) => MapEntry(k, e as String)),
       yesVoteCount: json['YesVoteCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final expirationDate = this.expirationDate;
+    final networkId = this.networkId;
+    final noVoteCount = this.noVoteCount;
+    final outstandingVoteCount = this.outstandingVoteCount;
+    final proposalId = this.proposalId;
+    final proposedByMemberId = this.proposedByMemberId;
+    final proposedByMemberName = this.proposedByMemberName;
+    final status = this.status;
+    final tags = this.tags;
+    final yesVoteCount = this.yesVoteCount;
+    return {
+      if (actions != null) 'Actions': actions,
+      if (arn != null) 'Arn': arn,
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (description != null) 'Description': description,
+      if (expirationDate != null)
+        'ExpirationDate': iso8601ToJson(expirationDate),
+      if (networkId != null) 'NetworkId': networkId,
+      if (noVoteCount != null) 'NoVoteCount': noVoteCount,
+      if (outstandingVoteCount != null)
+        'OutstandingVoteCount': outstandingVoteCount,
+      if (proposalId != null) 'ProposalId': proposalId,
+      if (proposedByMemberId != null) 'ProposedByMemberId': proposedByMemberId,
+      if (proposedByMemberName != null)
+        'ProposedByMemberName': proposedByMemberName,
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (yesVoteCount != null) 'YesVoteCount': yesVoteCount,
+    };
   }
 }
 
@@ -3342,12 +3748,39 @@ class ProposalSummary {
       status: (json['Status'] as String?)?.toProposalStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final expirationDate = this.expirationDate;
+    final proposalId = this.proposalId;
+    final proposedByMemberId = this.proposedByMemberId;
+    final proposedByMemberName = this.proposedByMemberName;
+    final status = this.status;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (description != null) 'Description': description,
+      if (expirationDate != null)
+        'ExpirationDate': iso8601ToJson(expirationDate),
+      if (proposalId != null) 'ProposalId': proposalId,
+      if (proposedByMemberId != null) 'ProposedByMemberId': proposedByMemberId,
+      if (proposedByMemberName != null)
+        'ProposedByMemberName': proposedByMemberName,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class RejectInvitationOutput {
   RejectInvitationOutput();
   factory RejectInvitationOutput.fromJson(Map<String, dynamic> _) {
     return RejectInvitationOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3410,6 +3843,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 enum ThresholdComparator {
@@ -3445,12 +3882,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateMemberOutput {
   UpdateMemberOutput();
   factory UpdateMemberOutput.fromJson(Map<String, dynamic> _) {
     return UpdateMemberOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3459,12 +3904,20 @@ class UpdateNodeOutput {
   factory UpdateNodeOutput.fromJson(Map<String, dynamic> _) {
     return UpdateNodeOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class VoteOnProposalOutput {
   VoteOnProposalOutput();
   factory VoteOnProposalOutput.fromJson(Map<String, dynamic> _) {
     return VoteOnProposalOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3492,6 +3945,17 @@ class VoteSummary {
       memberName: json['MemberName'] as String?,
       vote: (json['Vote'] as String?)?.toVoteValue(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final memberId = this.memberId;
+    final memberName = this.memberName;
+    final vote = this.vote;
+    return {
+      if (memberId != null) 'MemberId': memberId,
+      if (memberName != null) 'MemberName': memberName,
+      if (vote != null) 'Vote': vote.toValue(),
+    };
   }
 }
 

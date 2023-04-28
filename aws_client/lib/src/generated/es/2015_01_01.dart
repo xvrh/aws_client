@@ -1690,6 +1690,14 @@ class AcceptInboundCrossClusterSearchConnectionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final crossClusterSearchConnection = this.crossClusterSearchConnection;
+    return {
+      if (crossClusterSearchConnection != null)
+        'CrossClusterSearchConnection': crossClusterSearchConnection,
+    };
+  }
 }
 
 /// The configured access rules for the domain's document and search endpoints,
@@ -1714,6 +1722,15 @@ class AccessPoliciesStatus {
       options: json['Options'] as String,
       status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -1749,6 +1766,15 @@ class AdditionalLimit {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final limitName = this.limitName;
+    final limitValues = this.limitValues;
+    return {
+      if (limitName != null) 'LimitName': limitName,
+      if (limitValues != null) 'LimitValues': limitValues,
+    };
   }
 }
 
@@ -1787,6 +1813,15 @@ class AdvancedOptionsStatus {
           .map((k, e) => MapEntry(k, e as String)),
       status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -1829,6 +1864,25 @@ class AdvancedSecurityOptions {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anonymousAuthDisableDate = this.anonymousAuthDisableDate;
+    final anonymousAuthEnabled = this.anonymousAuthEnabled;
+    final enabled = this.enabled;
+    final internalUserDatabaseEnabled = this.internalUserDatabaseEnabled;
+    final sAMLOptions = this.sAMLOptions;
+    return {
+      if (anonymousAuthDisableDate != null)
+        'AnonymousAuthDisableDate':
+            unixTimestampToJson(anonymousAuthDisableDate),
+      if (anonymousAuthEnabled != null)
+        'AnonymousAuthEnabled': anonymousAuthEnabled,
+      if (enabled != null) 'Enabled': enabled,
+      if (internalUserDatabaseEnabled != null)
+        'InternalUserDatabaseEnabled': internalUserDatabaseEnabled,
+      if (sAMLOptions != null) 'SAMLOptions': sAMLOptions,
+    };
+  }
 }
 
 /// Specifies the advanced security configuration: whether advanced security is
@@ -1859,6 +1913,7 @@ class AdvancedSecurityOptionsInput {
     this.masterUserOptions,
     this.sAMLOptions,
   });
+
   Map<String, dynamic> toJson() {
     final anonymousAuthEnabled = this.anonymousAuthEnabled;
     final enabled = this.enabled;
@@ -1898,6 +1953,15 @@ class AdvancedSecurityOptionsStatus {
       status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// Container for response returned by <code> <a>AssociatePackage</a> </code>
@@ -1916,6 +1980,14 @@ class AssociatePackageResponse {
               json['DomainPackageDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainPackageDetails = this.domainPackageDetails;
+    return {
+      if (domainPackageDetails != null)
+        'DomainPackageDetails': domainPackageDetails,
+    };
   }
 }
 
@@ -1941,6 +2013,15 @@ class AutoTune {
           : null,
       autoTuneType: (json['AutoTuneType'] as String?)?.toAutoTuneType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoTuneDetails = this.autoTuneDetails;
+    final autoTuneType = this.autoTuneType;
+    return {
+      if (autoTuneDetails != null) 'AutoTuneDetails': autoTuneDetails,
+      if (autoTuneType != null) 'AutoTuneType': autoTuneType.toValue(),
+    };
   }
 }
 
@@ -1989,6 +2070,14 @@ class AutoTuneDetails {
               json['ScheduledAutoTuneDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final scheduledAutoTuneDetails = this.scheduledAutoTuneDetails;
+    return {
+      if (scheduledAutoTuneDetails != null)
+        'ScheduledAutoTuneDetails': scheduledAutoTuneDetails,
+    };
   }
 }
 
@@ -2102,6 +2191,7 @@ class AutoTuneOptionsInput {
     this.desiredState,
     this.maintenanceSchedules,
   });
+
   Map<String, dynamic> toJson() {
     final desiredState = this.desiredState;
     final maintenanceSchedules = this.maintenanceSchedules;
@@ -2132,6 +2222,15 @@ class AutoTuneOptionsOutput {
       state: (json['State'] as String?)?.toAutoTuneState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorMessage = this.errorMessage;
+    final state = this.state;
+    return {
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 /// Specifies the status of Auto-Tune options for the specified Elasticsearch
@@ -2157,6 +2256,15 @@ class AutoTuneOptionsStatus {
           ? AutoTuneStatus.fromJson(json['Status'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      if (options != null) 'Options': options,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -2267,6 +2375,23 @@ class AutoTuneStatus {
       updateVersion: json['UpdateVersion'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final state = this.state;
+    final updateDate = this.updateDate;
+    final errorMessage = this.errorMessage;
+    final pendingDeletion = this.pendingDeletion;
+    final updateVersion = this.updateVersion;
+    return {
+      'CreationDate': unixTimestampToJson(creationDate),
+      'State': state.toValue(),
+      'UpdateDate': unixTimestampToJson(updateDate),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (pendingDeletion != null) 'PendingDeletion': pendingDeletion,
+      if (updateVersion != null) 'UpdateVersion': updateVersion,
+    };
+  }
 }
 
 /// Specifies Auto-Tune type. Valid value is SCHEDULED_ACTION.
@@ -2311,6 +2436,14 @@ class CancelElasticsearchServiceSoftwareUpdateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceSoftwareOptions = this.serviceSoftwareOptions;
+    return {
+      if (serviceSoftwareOptions != null)
+        'ServiceSoftwareOptions': serviceSoftwareOptions,
+    };
+  }
 }
 
 /// Specifies change details of the domain configuration change.
@@ -2332,6 +2465,15 @@ class ChangeProgressDetails {
       changeId: json['ChangeId'] as String?,
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeId = this.changeId;
+    final message = this.message;
+    return {
+      if (changeId != null) 'ChangeId': changeId,
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -2362,6 +2504,19 @@ class ChangeProgressStage {
       name: json['Name'] as String?,
       status: json['Status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final lastUpdated = this.lastUpdated;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (description != null) 'Description': description,
+      if (lastUpdated != null) 'LastUpdated': unixTimestampToJson(lastUpdated),
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -2422,6 +2577,28 @@ class ChangeProgressStatusDetails {
       status: (json['Status'] as String?)?.toOverallChangeStatus(),
       totalNumberOfStages: json['TotalNumberOfStages'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeId = this.changeId;
+    final changeProgressStages = this.changeProgressStages;
+    final completedProperties = this.completedProperties;
+    final pendingProperties = this.pendingProperties;
+    final startTime = this.startTime;
+    final status = this.status;
+    final totalNumberOfStages = this.totalNumberOfStages;
+    return {
+      if (changeId != null) 'ChangeId': changeId,
+      if (changeProgressStages != null)
+        'ChangeProgressStages': changeProgressStages,
+      if (completedProperties != null)
+        'CompletedProperties': completedProperties,
+      if (pendingProperties != null) 'PendingProperties': pendingProperties,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status.toValue(),
+      if (totalNumberOfStages != null)
+        'TotalNumberOfStages': totalNumberOfStages,
+    };
   }
 }
 
@@ -2491,6 +2668,15 @@ class CognitoOptionsStatus {
       status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// Specifies the configuration for cold storage options such as enabled
@@ -2536,6 +2722,15 @@ class CompatibleVersionsMap {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sourceVersion = this.sourceVersion;
+    final targetVersions = this.targetVersions;
+    return {
+      if (sourceVersion != null) 'SourceVersion': sourceVersion,
+      if (targetVersions != null) 'TargetVersions': targetVersions,
+    };
+  }
 }
 
 /// The result of a <code>CreateElasticsearchDomain</code> operation. Contains
@@ -2555,6 +2750,13 @@ class CreateElasticsearchDomainResponse {
               json['DomainStatus'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainStatus = this.domainStatus;
+    return {
+      if (domainStatus != null) 'DomainStatus': domainStatus,
+    };
   }
 }
 
@@ -2609,6 +2811,23 @@ class CreateOutboundCrossClusterSearchConnectionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionAlias = this.connectionAlias;
+    final connectionStatus = this.connectionStatus;
+    final crossClusterSearchConnectionId = this.crossClusterSearchConnectionId;
+    final destinationDomainInfo = this.destinationDomainInfo;
+    final sourceDomainInfo = this.sourceDomainInfo;
+    return {
+      if (connectionAlias != null) 'ConnectionAlias': connectionAlias,
+      if (connectionStatus != null) 'ConnectionStatus': connectionStatus,
+      if (crossClusterSearchConnectionId != null)
+        'CrossClusterSearchConnectionId': crossClusterSearchConnectionId,
+      if (destinationDomainInfo != null)
+        'DestinationDomainInfo': destinationDomainInfo,
+      if (sourceDomainInfo != null) 'SourceDomainInfo': sourceDomainInfo,
+    };
+  }
 }
 
 /// Container for response returned by <code> <a>CreatePackage</a> </code>
@@ -2627,6 +2846,13 @@ class CreatePackageResponse {
               json['PackageDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final packageDetails = this.packageDetails;
+    return {
+      if (packageDetails != null) 'PackageDetails': packageDetails,
+    };
   }
 }
 
@@ -2648,6 +2874,13 @@ class DeleteElasticsearchDomainResponse {
               json['DomainStatus'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainStatus = this.domainStatus;
+    return {
+      if (domainStatus != null) 'DomainStatus': domainStatus,
+    };
   }
 }
 
@@ -2671,6 +2904,14 @@ class DeleteInboundCrossClusterSearchConnectionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final crossClusterSearchConnection = this.crossClusterSearchConnection;
+    return {
+      if (crossClusterSearchConnection != null)
+        'CrossClusterSearchConnection': crossClusterSearchConnection,
+    };
+  }
 }
 
 /// The result of a
@@ -2693,6 +2934,14 @@ class DeleteOutboundCrossClusterSearchConnectionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final crossClusterSearchConnection = this.crossClusterSearchConnection;
+    return {
+      if (crossClusterSearchConnection != null)
+        'CrossClusterSearchConnection': crossClusterSearchConnection,
+    };
+  }
 }
 
 /// Container for response parameters to <code> <a>DeletePackage</a> </code>
@@ -2711,6 +2960,13 @@ class DeletePackageResponse {
               json['PackageDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final packageDetails = this.packageDetails;
+    return {
+      if (packageDetails != null) 'PackageDetails': packageDetails,
+    };
   }
 }
 
@@ -2783,6 +3039,15 @@ class DescribeDomainAutoTunesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoTunes = this.autoTunes;
+    final nextToken = this.nextToken;
+    return {
+      if (autoTunes != null) 'AutoTunes': autoTunes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The result of a <code>DescribeDomainChangeProgress</code> request. Contains
@@ -2804,6 +3069,14 @@ class DescribeDomainChangeProgressResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeProgressStatus = this.changeProgressStatus;
+    return {
+      if (changeProgressStatus != null)
+        'ChangeProgressStatus': changeProgressStatus,
+    };
+  }
 }
 
 /// The result of a <code>DescribeElasticsearchDomainConfig</code> request.
@@ -2823,6 +3096,13 @@ class DescribeElasticsearchDomainConfigResponse {
           json['DomainConfig'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainConfig = this.domainConfig;
+    return {
+      'DomainConfig': domainConfig,
+    };
+  }
 }
 
 /// The result of a <code>DescribeElasticsearchDomain</code> request. Contains
@@ -2840,6 +3120,13 @@ class DescribeElasticsearchDomainResponse {
       domainStatus: ElasticsearchDomainStatus.fromJson(
           json['DomainStatus'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainStatus = this.domainStatus;
+    return {
+      'DomainStatus': domainStatus,
+    };
   }
 }
 
@@ -2863,6 +3150,13 @@ class DescribeElasticsearchDomainsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainStatusList = this.domainStatusList;
+    return {
+      'DomainStatusList': domainStatusList,
+    };
+  }
 }
 
 /// Container for the parameters received from <code>
@@ -2879,6 +3173,13 @@ class DescribeElasticsearchInstanceTypeLimitsResponse {
       limitsByRole: (json['LimitsByRole'] as Map<String, dynamic>?)?.map(
           (k, e) => MapEntry(k, Limits.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final limitsByRole = this.limitsByRole;
+    return {
+      if (limitsByRole != null) 'LimitsByRole': limitsByRole,
+    };
   }
 }
 
@@ -2912,6 +3213,16 @@ class DescribeInboundCrossClusterSearchConnectionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final crossClusterSearchConnections = this.crossClusterSearchConnections;
+    final nextToken = this.nextToken;
+    return {
+      if (crossClusterSearchConnections != null)
+        'CrossClusterSearchConnections': crossClusterSearchConnections,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The result of a
@@ -2944,6 +3255,16 @@ class DescribeOutboundCrossClusterSearchConnectionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final crossClusterSearchConnections = this.crossClusterSearchConnections;
+    final nextToken = this.nextToken;
+    return {
+      if (crossClusterSearchConnections != null)
+        'CrossClusterSearchConnections': crossClusterSearchConnections,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Filter to apply in <code>DescribePackage</code> response.
@@ -2958,6 +3279,7 @@ class DescribePackagesFilter {
     this.name,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -3023,6 +3345,15 @@ class DescribePackagesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final packageDetailsList = this.packageDetailsList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (packageDetailsList != null) 'PackageDetailsList': packageDetailsList,
+    };
+  }
 }
 
 /// Container for results from
@@ -3051,6 +3382,18 @@ class DescribeReservedElasticsearchInstanceOfferingsResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reservedElasticsearchInstanceOfferings =
+        this.reservedElasticsearchInstanceOfferings;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (reservedElasticsearchInstanceOfferings != null)
+        'ReservedElasticsearchInstanceOfferings':
+            reservedElasticsearchInstanceOfferings,
+    };
+  }
 }
 
 /// Container for results from
@@ -3078,6 +3421,16 @@ class DescribeReservedElasticsearchInstancesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reservedElasticsearchInstances = this.reservedElasticsearchInstances;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (reservedElasticsearchInstances != null)
+        'ReservedElasticsearchInstances': reservedElasticsearchInstances,
+    };
+  }
 }
 
 /// Container for response returned by <code> <a>DissociatePackage</a> </code>
@@ -3096,6 +3449,14 @@ class DissociatePackageResponse {
               json['DomainPackageDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainPackageDetails = this.domainPackageDetails;
+    return {
+      if (domainPackageDetails != null)
+        'DomainPackageDetails': domainPackageDetails,
+    };
   }
 }
 
@@ -3183,6 +3544,15 @@ class DomainEndpointOptionsStatus {
       status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 class DomainInfo {
@@ -3201,6 +3571,15 @@ class DomainInfo {
       domainName: json['DomainName'] as String?,
       engineType: (json['EngineType'] as String?)?.toEngineType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final engineType = this.engineType;
+    return {
+      if (domainName != null) 'DomainName': domainName,
+      if (engineType != null) 'EngineType': engineType.toValue(),
+    };
   }
 }
 
@@ -3290,6 +3669,30 @@ class DomainPackageDetails {
       referencePath: json['ReferencePath'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final domainPackageStatus = this.domainPackageStatus;
+    final errorDetails = this.errorDetails;
+    final lastUpdated = this.lastUpdated;
+    final packageID = this.packageID;
+    final packageName = this.packageName;
+    final packageType = this.packageType;
+    final packageVersion = this.packageVersion;
+    final referencePath = this.referencePath;
+    return {
+      if (domainName != null) 'DomainName': domainName,
+      if (domainPackageStatus != null)
+        'DomainPackageStatus': domainPackageStatus.toValue(),
+      if (errorDetails != null) 'ErrorDetails': errorDetails,
+      if (lastUpdated != null) 'LastUpdated': unixTimestampToJson(lastUpdated),
+      if (packageID != null) 'PackageID': packageID,
+      if (packageName != null) 'PackageName': packageName,
+      if (packageType != null) 'PackageType': packageType.toValue(),
+      if (packageVersion != null) 'PackageVersion': packageVersion,
+      if (referencePath != null) 'ReferencePath': referencePath,
+    };
+  }
 }
 
 enum DomainPackageStatus {
@@ -3358,6 +3761,15 @@ class DryRunResults {
       deploymentType: json['DeploymentType'] as String?,
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentType = this.deploymentType;
+    final message = this.message;
+    return {
+      if (deploymentType != null) 'DeploymentType': deploymentType,
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3469,6 +3881,15 @@ class EBSOptionsStatus {
       options: EBSOptions.fromJson(json['Options'] as Map<String, dynamic>),
       status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -3944,6 +4365,15 @@ class ElasticsearchClusterConfigStatus {
       status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// The configuration of an Elasticsearch domain.
@@ -4085,6 +4515,49 @@ class ElasticsearchDomainConfig {
               json['VPCOptions'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessPolicies = this.accessPolicies;
+    final advancedOptions = this.advancedOptions;
+    final advancedSecurityOptions = this.advancedSecurityOptions;
+    final autoTuneOptions = this.autoTuneOptions;
+    final changeProgressDetails = this.changeProgressDetails;
+    final cognitoOptions = this.cognitoOptions;
+    final domainEndpointOptions = this.domainEndpointOptions;
+    final eBSOptions = this.eBSOptions;
+    final elasticsearchClusterConfig = this.elasticsearchClusterConfig;
+    final elasticsearchVersion = this.elasticsearchVersion;
+    final encryptionAtRestOptions = this.encryptionAtRestOptions;
+    final logPublishingOptions = this.logPublishingOptions;
+    final nodeToNodeEncryptionOptions = this.nodeToNodeEncryptionOptions;
+    final snapshotOptions = this.snapshotOptions;
+    final vPCOptions = this.vPCOptions;
+    return {
+      if (accessPolicies != null) 'AccessPolicies': accessPolicies,
+      if (advancedOptions != null) 'AdvancedOptions': advancedOptions,
+      if (advancedSecurityOptions != null)
+        'AdvancedSecurityOptions': advancedSecurityOptions,
+      if (autoTuneOptions != null) 'AutoTuneOptions': autoTuneOptions,
+      if (changeProgressDetails != null)
+        'ChangeProgressDetails': changeProgressDetails,
+      if (cognitoOptions != null) 'CognitoOptions': cognitoOptions,
+      if (domainEndpointOptions != null)
+        'DomainEndpointOptions': domainEndpointOptions,
+      if (eBSOptions != null) 'EBSOptions': eBSOptions,
+      if (elasticsearchClusterConfig != null)
+        'ElasticsearchClusterConfig': elasticsearchClusterConfig,
+      if (elasticsearchVersion != null)
+        'ElasticsearchVersion': elasticsearchVersion,
+      if (encryptionAtRestOptions != null)
+        'EncryptionAtRestOptions': encryptionAtRestOptions,
+      if (logPublishingOptions != null)
+        'LogPublishingOptions': logPublishingOptions,
+      if (nodeToNodeEncryptionOptions != null)
+        'NodeToNodeEncryptionOptions': nodeToNodeEncryptionOptions,
+      if (snapshotOptions != null) 'SnapshotOptions': snapshotOptions,
+      if (vPCOptions != null) 'VPCOptions': vPCOptions,
+    };
   }
 }
 
@@ -4282,6 +4755,70 @@ class ElasticsearchDomainStatus {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final domainId = this.domainId;
+    final domainName = this.domainName;
+    final elasticsearchClusterConfig = this.elasticsearchClusterConfig;
+    final accessPolicies = this.accessPolicies;
+    final advancedOptions = this.advancedOptions;
+    final advancedSecurityOptions = this.advancedSecurityOptions;
+    final autoTuneOptions = this.autoTuneOptions;
+    final changeProgressDetails = this.changeProgressDetails;
+    final cognitoOptions = this.cognitoOptions;
+    final created = this.created;
+    final deleted = this.deleted;
+    final domainEndpointOptions = this.domainEndpointOptions;
+    final eBSOptions = this.eBSOptions;
+    final elasticsearchVersion = this.elasticsearchVersion;
+    final encryptionAtRestOptions = this.encryptionAtRestOptions;
+    final endpoint = this.endpoint;
+    final endpoints = this.endpoints;
+    final logPublishingOptions = this.logPublishingOptions;
+    final nodeToNodeEncryptionOptions = this.nodeToNodeEncryptionOptions;
+    final processing = this.processing;
+    final serviceSoftwareOptions = this.serviceSoftwareOptions;
+    final snapshotOptions = this.snapshotOptions;
+    final upgradeProcessing = this.upgradeProcessing;
+    final vPCOptions = this.vPCOptions;
+    return {
+      'ARN': arn,
+      'DomainId': domainId,
+      'DomainName': domainName,
+      'ElasticsearchClusterConfig': elasticsearchClusterConfig,
+      if (accessPolicies != null) 'AccessPolicies': accessPolicies,
+      if (advancedOptions != null) 'AdvancedOptions': advancedOptions,
+      if (advancedSecurityOptions != null)
+        'AdvancedSecurityOptions': advancedSecurityOptions,
+      if (autoTuneOptions != null) 'AutoTuneOptions': autoTuneOptions,
+      if (changeProgressDetails != null)
+        'ChangeProgressDetails': changeProgressDetails,
+      if (cognitoOptions != null) 'CognitoOptions': cognitoOptions,
+      if (created != null) 'Created': created,
+      if (deleted != null) 'Deleted': deleted,
+      if (domainEndpointOptions != null)
+        'DomainEndpointOptions': domainEndpointOptions,
+      if (eBSOptions != null) 'EBSOptions': eBSOptions,
+      if (elasticsearchVersion != null)
+        'ElasticsearchVersion': elasticsearchVersion,
+      if (encryptionAtRestOptions != null)
+        'EncryptionAtRestOptions': encryptionAtRestOptions,
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (endpoints != null) 'Endpoints': endpoints,
+      if (logPublishingOptions != null)
+        'LogPublishingOptions':
+            logPublishingOptions.map((k, e) => MapEntry(k.toValue(), e)),
+      if (nodeToNodeEncryptionOptions != null)
+        'NodeToNodeEncryptionOptions': nodeToNodeEncryptionOptions,
+      if (processing != null) 'Processing': processing,
+      if (serviceSoftwareOptions != null)
+        'ServiceSoftwareOptions': serviceSoftwareOptions,
+      if (snapshotOptions != null) 'SnapshotOptions': snapshotOptions,
+      if (upgradeProcessing != null) 'UpgradeProcessing': upgradeProcessing,
+      if (vPCOptions != null) 'VPCOptions': vPCOptions,
+    };
+  }
 }
 
 /// Status of the Elasticsearch version options for the specified Elasticsearch
@@ -4303,6 +4840,15 @@ class ElasticsearchVersionStatus {
       options: json['Options'] as String,
       status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -4357,6 +4903,15 @@ class EncryptionAtRestOptionsStatus {
       status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 enum EngineType {
@@ -4401,6 +4956,15 @@ class ErrorDetails {
       errorType: json['ErrorType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorMessage = this.errorMessage;
+    final errorType = this.errorType;
+    return {
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (errorType != null) 'ErrorType': errorType,
+    };
+  }
 }
 
 /// A filter used to limit results when describing inbound or outbound
@@ -4418,6 +4982,7 @@ class Filter {
     this.name,
     this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -4448,6 +5013,15 @@ class GetCompatibleElasticsearchVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final compatibleElasticsearchVersions =
+        this.compatibleElasticsearchVersions;
+    return {
+      if (compatibleElasticsearchVersions != null)
+        'CompatibleElasticsearchVersions': compatibleElasticsearchVersions,
+    };
+  }
 }
 
 /// Container for response returned by <code> <a>GetPackageVersionHistory</a>
@@ -4473,6 +5047,18 @@ class GetPackageVersionHistoryResponse {
           .map((e) => PackageVersionHistory.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final packageID = this.packageID;
+    final packageVersionHistoryList = this.packageVersionHistoryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (packageID != null) 'PackageID': packageID,
+      if (packageVersionHistoryList != null)
+        'PackageVersionHistoryList': packageVersionHistoryList,
+    };
   }
 }
 
@@ -4500,6 +5086,15 @@ class GetUpgradeHistoryResponse {
           .map((e) => UpgradeHistory.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final upgradeHistories = this.upgradeHistories;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (upgradeHistories != null) 'UpgradeHistories': upgradeHistories,
+    };
   }
 }
 
@@ -4540,6 +5135,17 @@ class GetUpgradeStatusResponse {
       upgradeName: json['UpgradeName'] as String?,
       upgradeStep: (json['UpgradeStep'] as String?)?.toUpgradeStep(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stepStatus = this.stepStatus;
+    final upgradeName = this.upgradeName;
+    final upgradeStep = this.upgradeStep;
+    return {
+      if (stepStatus != null) 'StepStatus': stepStatus.toValue(),
+      if (upgradeName != null) 'UpgradeName': upgradeName,
+      if (upgradeStep != null) 'UpgradeStep': upgradeStep.toValue(),
+    };
   }
 }
 
@@ -4585,6 +5191,21 @@ class InboundCrossClusterSearchConnection {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionStatus = this.connectionStatus;
+    final crossClusterSearchConnectionId = this.crossClusterSearchConnectionId;
+    final destinationDomainInfo = this.destinationDomainInfo;
+    final sourceDomainInfo = this.sourceDomainInfo;
+    return {
+      if (connectionStatus != null) 'ConnectionStatus': connectionStatus,
+      if (crossClusterSearchConnectionId != null)
+        'CrossClusterSearchConnectionId': crossClusterSearchConnectionId,
+      if (destinationDomainInfo != null)
+        'DestinationDomainInfo': destinationDomainInfo,
+      if (sourceDomainInfo != null) 'SourceDomainInfo': sourceDomainInfo,
+    };
+  }
 }
 
 /// Specifies the coonection status of an inbound cross-cluster search
@@ -4618,6 +5239,15 @@ class InboundCrossClusterSearchConnectionStatus {
       statusCode: (json['StatusCode'] as String?)
           ?.toInboundCrossClusterSearchConnectionStatusCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final statusCode = this.statusCode;
+    return {
+      if (message != null) 'Message': message,
+      if (statusCode != null) 'StatusCode': statusCode.toValue(),
+    };
   }
 }
 
@@ -4688,6 +5318,17 @@ class InstanceCountLimits {
       minimumInstanceCount: json['MinimumInstanceCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final maximumInstanceCount = this.maximumInstanceCount;
+    final minimumInstanceCount = this.minimumInstanceCount;
+    return {
+      if (maximumInstanceCount != null)
+        'MaximumInstanceCount': maximumInstanceCount,
+      if (minimumInstanceCount != null)
+        'MinimumInstanceCount': minimumInstanceCount,
+    };
+  }
 }
 
 /// InstanceLimits represents the list of instance related attributes that are
@@ -4705,6 +5346,14 @@ class InstanceLimits {
               json['InstanceCountLimits'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceCountLimits = this.instanceCountLimits;
+    return {
+      if (instanceCountLimits != null)
+        'InstanceCountLimits': instanceCountLimits,
+    };
   }
 }
 
@@ -4742,6 +5391,17 @@ class Limits {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalLimits = this.additionalLimits;
+    final instanceLimits = this.instanceLimits;
+    final storageTypes = this.storageTypes;
+    return {
+      if (additionalLimits != null) 'AdditionalLimits': additionalLimits,
+      if (instanceLimits != null) 'InstanceLimits': instanceLimits,
+      if (storageTypes != null) 'StorageTypes': storageTypes,
+    };
+  }
 }
 
 /// The result of a <code>ListDomainNames</code> operation. Contains the names
@@ -4760,6 +5420,13 @@ class ListDomainNamesResponse {
           .map((e) => DomainInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainNames = this.domainNames;
+    return {
+      if (domainNames != null) 'DomainNames': domainNames,
+    };
   }
 }
 
@@ -4782,6 +5449,16 @@ class ListDomainsForPackageResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainPackageDetailsList = this.domainPackageDetailsList;
+    final nextToken = this.nextToken;
+    return {
+      if (domainPackageDetailsList != null)
+        'DomainPackageDetailsList': domainPackageDetailsList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4811,6 +5488,17 @@ class ListElasticsearchInstanceTypesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final elasticsearchInstanceTypes = this.elasticsearchInstanceTypes;
+    final nextToken = this.nextToken;
+    return {
+      if (elasticsearchInstanceTypes != null)
+        'ElasticsearchInstanceTypes':
+            elasticsearchInstanceTypes.map((e) => e.toValue()).toList(),
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Container for the parameters for response received from <code>
@@ -4832,6 +5520,16 @@ class ListElasticsearchVersionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final elasticsearchVersions = this.elasticsearchVersions;
+    final nextToken = this.nextToken;
+    return {
+      if (elasticsearchVersions != null)
+        'ElasticsearchVersions': elasticsearchVersions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4858,6 +5556,16 @@ class ListPackagesForDomainResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainPackageDetailsList = this.domainPackageDetailsList;
+    final nextToken = this.nextToken;
+    return {
+      if (domainPackageDetailsList != null)
+        'DomainPackageDetailsList': domainPackageDetailsList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The result of a <code>ListTags</code> operation. Contains tags for all
@@ -4876,6 +5584,13 @@ class ListTagsResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      if (tagList != null) 'TagList': tagList,
+    };
   }
 }
 
@@ -4938,6 +5653,16 @@ class LogPublishingOptionsStatus {
           ? OptionStatus.fromJson(json['Status'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      if (options != null)
+        'Options': options.map((k, e) => MapEntry(k.toValue(), e)),
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -5009,6 +5734,7 @@ class MasterUserOptions {
     this.masterUserName,
     this.masterUserPassword,
   });
+
   Map<String, dynamic> toJson() {
     final masterUserARN = this.masterUserARN;
     final masterUserName = this.masterUserName;
@@ -5065,6 +5791,15 @@ class NodeToNodeEncryptionOptionsStatus {
           json['Options'] as Map<String, dynamic>),
       status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -5142,6 +5877,21 @@ class OptionStatus {
       updateVersion: json['UpdateVersion'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final state = this.state;
+    final updateDate = this.updateDate;
+    final pendingDeletion = this.pendingDeletion;
+    final updateVersion = this.updateVersion;
+    return {
+      'CreationDate': unixTimestampToJson(creationDate),
+      'State': state.toValue(),
+      'UpdateDate': unixTimestampToJson(updateDate),
+      if (pendingDeletion != null) 'PendingDeletion': pendingDeletion,
+      if (updateVersion != null) 'UpdateVersion': updateVersion,
+    };
+  }
 }
 
 /// Specifies details of an outbound connection.
@@ -5193,6 +5943,23 @@ class OutboundCrossClusterSearchConnection {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionAlias = this.connectionAlias;
+    final connectionStatus = this.connectionStatus;
+    final crossClusterSearchConnectionId = this.crossClusterSearchConnectionId;
+    final destinationDomainInfo = this.destinationDomainInfo;
+    final sourceDomainInfo = this.sourceDomainInfo;
+    return {
+      if (connectionAlias != null) 'ConnectionAlias': connectionAlias,
+      if (connectionStatus != null) 'ConnectionStatus': connectionStatus,
+      if (crossClusterSearchConnectionId != null)
+        'CrossClusterSearchConnectionId': crossClusterSearchConnectionId,
+      if (destinationDomainInfo != null)
+        'DestinationDomainInfo': destinationDomainInfo,
+      if (sourceDomainInfo != null) 'SourceDomainInfo': sourceDomainInfo,
+    };
+  }
 }
 
 /// Specifies the connection status of an outbound cross-cluster search
@@ -5228,6 +5995,15 @@ class OutboundCrossClusterSearchConnectionStatus {
       statusCode: (json['StatusCode'] as String?)
           ?.toOutboundCrossClusterSearchConnectionStatusCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final statusCode = this.statusCode;
+    return {
+      if (message != null) 'Message': message,
+      if (statusCode != null) 'StatusCode': statusCode.toValue(),
+    };
   }
 }
 
@@ -5384,6 +6160,31 @@ class PackageDetails {
       packageType: (json['PackageType'] as String?)?.toPackageType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availablePackageVersion = this.availablePackageVersion;
+    final createdAt = this.createdAt;
+    final errorDetails = this.errorDetails;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final packageDescription = this.packageDescription;
+    final packageID = this.packageID;
+    final packageName = this.packageName;
+    final packageStatus = this.packageStatus;
+    final packageType = this.packageType;
+    return {
+      if (availablePackageVersion != null)
+        'AvailablePackageVersion': availablePackageVersion,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (errorDetails != null) 'ErrorDetails': errorDetails,
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (packageDescription != null) 'PackageDescription': packageDescription,
+      if (packageID != null) 'PackageID': packageID,
+      if (packageName != null) 'PackageName': packageName,
+      if (packageStatus != null) 'PackageStatus': packageStatus.toValue(),
+      if (packageType != null) 'PackageType': packageType.toValue(),
+    };
+  }
 }
 
 /// The S3 location for importing the package specified as
@@ -5399,6 +6200,7 @@ class PackageSource {
     this.s3BucketName,
     this.s3Key,
   });
+
   Map<String, dynamic> toJson() {
     final s3BucketName = this.s3BucketName;
     final s3Key = this.s3Key;
@@ -5513,6 +6315,17 @@ class PackageVersionHistory {
       packageVersion: json['PackageVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commitMessage = this.commitMessage;
+    final createdAt = this.createdAt;
+    final packageVersion = this.packageVersion;
+    return {
+      if (commitMessage != null) 'CommitMessage': commitMessage,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (packageVersion != null) 'PackageVersion': packageVersion,
+    };
+  }
 }
 
 /// Represents the output of a
@@ -5536,6 +6349,17 @@ class PurchaseReservedElasticsearchInstanceOfferingResponse {
           json['ReservedElasticsearchInstanceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final reservationName = this.reservationName;
+    final reservedElasticsearchInstanceId =
+        this.reservedElasticsearchInstanceId;
+    return {
+      if (reservationName != null) 'ReservationName': reservationName,
+      if (reservedElasticsearchInstanceId != null)
+        'ReservedElasticsearchInstanceId': reservedElasticsearchInstanceId,
+    };
+  }
 }
 
 /// Contains the specific price and frequency of a recurring charges for a
@@ -5558,6 +6382,17 @@ class RecurringCharge {
       recurringChargeFrequency: json['RecurringChargeFrequency'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recurringChargeAmount = this.recurringChargeAmount;
+    final recurringChargeFrequency = this.recurringChargeFrequency;
+    return {
+      if (recurringChargeAmount != null)
+        'RecurringChargeAmount': recurringChargeAmount,
+      if (recurringChargeFrequency != null)
+        'RecurringChargeFrequency': recurringChargeFrequency,
+    };
+  }
 }
 
 /// The result of a
@@ -5579,6 +6414,14 @@ class RejectInboundCrossClusterSearchConnectionResponse {
               json['CrossClusterSearchConnection'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final crossClusterSearchConnection = this.crossClusterSearchConnection;
+    return {
+      if (crossClusterSearchConnection != null)
+        'CrossClusterSearchConnection': crossClusterSearchConnection,
+    };
   }
 }
 
@@ -5666,6 +6509,44 @@ class ReservedElasticsearchInstance {
       usagePrice: json['UsagePrice'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final elasticsearchInstanceCount = this.elasticsearchInstanceCount;
+    final elasticsearchInstanceType = this.elasticsearchInstanceType;
+    final fixedPrice = this.fixedPrice;
+    final paymentOption = this.paymentOption;
+    final recurringCharges = this.recurringCharges;
+    final reservationName = this.reservationName;
+    final reservedElasticsearchInstanceId =
+        this.reservedElasticsearchInstanceId;
+    final reservedElasticsearchInstanceOfferingId =
+        this.reservedElasticsearchInstanceOfferingId;
+    final startTime = this.startTime;
+    final state = this.state;
+    final usagePrice = this.usagePrice;
+    return {
+      if (currencyCode != null) 'CurrencyCode': currencyCode,
+      if (duration != null) 'Duration': duration,
+      if (elasticsearchInstanceCount != null)
+        'ElasticsearchInstanceCount': elasticsearchInstanceCount,
+      if (elasticsearchInstanceType != null)
+        'ElasticsearchInstanceType': elasticsearchInstanceType.toValue(),
+      if (fixedPrice != null) 'FixedPrice': fixedPrice,
+      if (paymentOption != null) 'PaymentOption': paymentOption.toValue(),
+      if (recurringCharges != null) 'RecurringCharges': recurringCharges,
+      if (reservationName != null) 'ReservationName': reservationName,
+      if (reservedElasticsearchInstanceId != null)
+        'ReservedElasticsearchInstanceId': reservedElasticsearchInstanceId,
+      if (reservedElasticsearchInstanceOfferingId != null)
+        'ReservedElasticsearchInstanceOfferingId':
+            reservedElasticsearchInstanceOfferingId,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (state != null) 'State': state,
+      if (usagePrice != null) 'UsagePrice': usagePrice,
+    };
+  }
 }
 
 /// Details of a reserved Elasticsearch instance offering.
@@ -5726,6 +6607,31 @@ class ReservedElasticsearchInstanceOffering {
           json['ReservedElasticsearchInstanceOfferingId'] as String?,
       usagePrice: json['UsagePrice'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final elasticsearchInstanceType = this.elasticsearchInstanceType;
+    final fixedPrice = this.fixedPrice;
+    final paymentOption = this.paymentOption;
+    final recurringCharges = this.recurringCharges;
+    final reservedElasticsearchInstanceOfferingId =
+        this.reservedElasticsearchInstanceOfferingId;
+    final usagePrice = this.usagePrice;
+    return {
+      if (currencyCode != null) 'CurrencyCode': currencyCode,
+      if (duration != null) 'Duration': duration,
+      if (elasticsearchInstanceType != null)
+        'ElasticsearchInstanceType': elasticsearchInstanceType.toValue(),
+      if (fixedPrice != null) 'FixedPrice': fixedPrice,
+      if (paymentOption != null) 'PaymentOption': paymentOption.toValue(),
+      if (recurringCharges != null) 'RecurringCharges': recurringCharges,
+      if (reservedElasticsearchInstanceOfferingId != null)
+        'ReservedElasticsearchInstanceOfferingId':
+            reservedElasticsearchInstanceOfferingId,
+      if (usagePrice != null) 'UsagePrice': usagePrice,
+    };
   }
 }
 
@@ -5858,6 +6764,7 @@ class SAMLOptionsInput {
     this.sessionTimeoutMinutes,
     this.subjectKey,
   });
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     final idp = this.idp;
@@ -5913,6 +6820,22 @@ class SAMLOptionsOutput {
       sessionTimeoutMinutes: json['SessionTimeoutMinutes'] as int?,
       subjectKey: json['SubjectKey'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final idp = this.idp;
+    final rolesKey = this.rolesKey;
+    final sessionTimeoutMinutes = this.sessionTimeoutMinutes;
+    final subjectKey = this.subjectKey;
+    return {
+      if (enabled != null) 'Enabled': enabled,
+      if (idp != null) 'Idp': idp,
+      if (rolesKey != null) 'RolesKey': rolesKey,
+      if (sessionTimeoutMinutes != null)
+        'SessionTimeoutMinutes': sessionTimeoutMinutes,
+      if (subjectKey != null) 'SubjectKey': subjectKey,
+    };
   }
 }
 
@@ -5979,6 +6902,19 @@ class ScheduledAutoTuneDetails {
       severity:
           (json['Severity'] as String?)?.toScheduledAutoTuneSeverityType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final actionType = this.actionType;
+    final date = this.date;
+    final severity = this.severity;
+    return {
+      if (action != null) 'Action': action,
+      if (actionType != null) 'ActionType': actionType.toValue(),
+      if (date != null) 'Date': unixTimestampToJson(date),
+      if (severity != null) 'Severity': severity.toValue(),
+    };
   }
 }
 
@@ -6076,6 +7012,28 @@ class ServiceSoftwareOptions {
       updateStatus: (json['UpdateStatus'] as String?)?.toDeploymentStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final automatedUpdateDate = this.automatedUpdateDate;
+    final cancellable = this.cancellable;
+    final currentVersion = this.currentVersion;
+    final description = this.description;
+    final newVersion = this.newVersion;
+    final optionalDeployment = this.optionalDeployment;
+    final updateAvailable = this.updateAvailable;
+    final updateStatus = this.updateStatus;
+    return {
+      if (automatedUpdateDate != null)
+        'AutomatedUpdateDate': unixTimestampToJson(automatedUpdateDate),
+      if (cancellable != null) 'Cancellable': cancellable,
+      if (currentVersion != null) 'CurrentVersion': currentVersion,
+      if (description != null) 'Description': description,
+      if (newVersion != null) 'NewVersion': newVersion,
+      if (optionalDeployment != null) 'OptionalDeployment': optionalDeployment,
+      if (updateAvailable != null) 'UpdateAvailable': updateAvailable,
+      if (updateStatus != null) 'UpdateStatus': updateStatus.toValue(),
+    };
+  }
 }
 
 /// Specifies the time, in UTC format, when the service takes a daily automated
@@ -6124,6 +7082,15 @@ class SnapshotOptionsStatus {
       status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// The result of a <code>StartElasticsearchServiceSoftwareUpdate</code>
@@ -6143,6 +7110,14 @@ class StartElasticsearchServiceSoftwareUpdateResponse {
               json['ServiceSoftwareOptions'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceSoftwareOptions = this.serviceSoftwareOptions;
+    return {
+      if (serviceSoftwareOptions != null)
+        'ServiceSoftwareOptions': serviceSoftwareOptions,
+    };
   }
 }
 
@@ -6169,6 +7144,17 @@ class StorageType {
           .toList(),
       storageTypeName: json['StorageTypeName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final storageSubTypeName = this.storageSubTypeName;
+    final storageTypeLimits = this.storageTypeLimits;
+    final storageTypeName = this.storageTypeName;
+    return {
+      if (storageSubTypeName != null) 'StorageSubTypeName': storageSubTypeName,
+      if (storageTypeLimits != null) 'StorageTypeLimits': storageTypeLimits,
+      if (storageTypeName != null) 'StorageTypeName': storageTypeName,
+    };
   }
 }
 
@@ -6206,6 +7192,15 @@ class StorageTypeLimit {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final limitName = this.limitName;
+    final limitValues = this.limitValues;
+    return {
+      if (limitName != null) 'LimitName': limitName,
+      if (limitValues != null) 'LimitValues': limitValues,
+    };
   }
 }
 
@@ -6321,6 +7316,15 @@ class UpdateElasticsearchDomainConfigResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainConfig = this.domainConfig;
+    final dryRunResults = this.dryRunResults;
+    return {
+      'DomainConfig': domainConfig,
+      if (dryRunResults != null) 'DryRunResults': dryRunResults,
+    };
+  }
 }
 
 /// Container for response returned by <code> <a>UpdatePackage</a> </code>
@@ -6339,6 +7343,13 @@ class UpdatePackageResponse {
               json['PackageDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final packageDetails = this.packageDetails;
+    return {
+      if (packageDetails != null) 'PackageDetails': packageDetails,
+    };
   }
 }
 
@@ -6372,6 +7383,20 @@ class UpgradeElasticsearchDomainResponse {
       performCheckOnly: json['PerformCheckOnly'] as bool?,
       targetVersion: json['TargetVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final changeProgressDetails = this.changeProgressDetails;
+    final domainName = this.domainName;
+    final performCheckOnly = this.performCheckOnly;
+    final targetVersion = this.targetVersion;
+    return {
+      if (changeProgressDetails != null)
+        'ChangeProgressDetails': changeProgressDetails,
+      if (domainName != null) 'DomainName': domainName,
+      if (performCheckOnly != null) 'PerformCheckOnly': performCheckOnly,
+      if (targetVersion != null) 'TargetVersion': targetVersion,
+    };
   }
 }
 
@@ -6415,6 +7440,20 @@ class UpgradeHistory {
       upgradeName: json['UpgradeName'] as String?,
       upgradeStatus: (json['UpgradeStatus'] as String?)?.toUpgradeStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final startTimestamp = this.startTimestamp;
+    final stepsList = this.stepsList;
+    final upgradeName = this.upgradeName;
+    final upgradeStatus = this.upgradeStatus;
+    return {
+      if (startTimestamp != null)
+        'StartTimestamp': unixTimestampToJson(startTimestamp),
+      if (stepsList != null) 'StepsList': stepsList,
+      if (upgradeName != null) 'UpgradeName': upgradeName,
+      if (upgradeStatus != null) 'UpgradeStatus': upgradeStatus.toValue(),
+    };
   }
 }
 
@@ -6537,6 +7576,20 @@ class UpgradeStepItem {
           (json['UpgradeStepStatus'] as String?)?.toUpgradeStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final issues = this.issues;
+    final progressPercent = this.progressPercent;
+    final upgradeStep = this.upgradeStep;
+    final upgradeStepStatus = this.upgradeStepStatus;
+    return {
+      if (issues != null) 'Issues': issues,
+      if (progressPercent != null) 'ProgressPercent': progressPercent,
+      if (upgradeStep != null) 'UpgradeStep': upgradeStep.toValue(),
+      if (upgradeStepStatus != null)
+        'UpgradeStepStatus': upgradeStepStatus.toValue(),
+    };
+  }
 }
 
 /// Options to specify the subnets and security groups for VPC endpoint. For
@@ -6581,6 +7634,19 @@ class VPCDerivedInfo {
       vPCId: json['VPCId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final securityGroupIds = this.securityGroupIds;
+    final subnetIds = this.subnetIds;
+    final vPCId = this.vPCId;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (securityGroupIds != null) 'SecurityGroupIds': securityGroupIds,
+      if (subnetIds != null) 'SubnetIds': subnetIds,
+      if (vPCId != null) 'VPCId': vPCId,
+    };
+  }
 }
 
 /// Status of the VPC options for the specified Elasticsearch domain.
@@ -6602,6 +7668,15 @@ class VPCDerivedInfoStatus {
       status: OptionStatus.fromJson(json['Status'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// Options to specify the subnets and security groups for VPC endpoint. For
@@ -6619,6 +7694,7 @@ class VPCOptions {
     this.securityGroupIds,
     this.subnetIds,
   });
+
   Map<String, dynamic> toJson() {
     final securityGroupIds = this.securityGroupIds;
     final subnetIds = this.subnetIds;

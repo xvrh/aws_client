@@ -854,6 +854,13 @@ class AddProfilePermissionResponse {
       revisionId: json['revisionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final revisionId = this.revisionId;
+    return {
+      if (revisionId != null) 'revisionId': revisionId,
+    };
+  }
 }
 
 enum Category {
@@ -1000,6 +1007,51 @@ class DescribeSigningJobResponse {
       statusReason: json['statusReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completedAt = this.completedAt;
+    final createdAt = this.createdAt;
+    final jobId = this.jobId;
+    final jobInvoker = this.jobInvoker;
+    final jobOwner = this.jobOwner;
+    final overrides = this.overrides;
+    final platformDisplayName = this.platformDisplayName;
+    final platformId = this.platformId;
+    final profileName = this.profileName;
+    final profileVersion = this.profileVersion;
+    final requestedBy = this.requestedBy;
+    final revocationRecord = this.revocationRecord;
+    final signatureExpiresAt = this.signatureExpiresAt;
+    final signedObject = this.signedObject;
+    final signingMaterial = this.signingMaterial;
+    final signingParameters = this.signingParameters;
+    final source = this.source;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (completedAt != null) 'completedAt': unixTimestampToJson(completedAt),
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (jobId != null) 'jobId': jobId,
+      if (jobInvoker != null) 'jobInvoker': jobInvoker,
+      if (jobOwner != null) 'jobOwner': jobOwner,
+      if (overrides != null) 'overrides': overrides,
+      if (platformDisplayName != null)
+        'platformDisplayName': platformDisplayName,
+      if (platformId != null) 'platformId': platformId,
+      if (profileName != null) 'profileName': profileName,
+      if (profileVersion != null) 'profileVersion': profileVersion,
+      if (requestedBy != null) 'requestedBy': requestedBy,
+      if (revocationRecord != null) 'revocationRecord': revocationRecord,
+      if (signatureExpiresAt != null)
+        'signatureExpiresAt': unixTimestampToJson(signatureExpiresAt),
+      if (signedObject != null) 'signedObject': signedObject,
+      if (signingMaterial != null) 'signingMaterial': signingMaterial,
+      if (signingParameters != null) 'signingParameters': signingParameters,
+      if (source != null) 'source': source,
+      if (status != null) 'status': status.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+    };
+  }
 }
 
 /// Points to an <code>S3Destination</code> object that contains information
@@ -1011,6 +1063,7 @@ class Destination {
   Destination({
     this.s3,
   });
+
   Map<String, dynamic> toJson() {
     final s3 = this.s3;
     return {
@@ -1068,6 +1121,15 @@ class EncryptionAlgorithmOptions {
           .toList(),
       defaultValue: (json['defaultValue'] as String).toEncryptionAlgorithm(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowedValues = this.allowedValues;
+    final defaultValue = this.defaultValue;
+    return {
+      'allowedValues': allowedValues.map((e) => e.toValue()).toList(),
+      'defaultValue': defaultValue.toValue(),
+    };
   }
 }
 
@@ -1130,6 +1192,31 @@ class GetSigningPlatformResponse {
           : null,
       target: json['target'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final category = this.category;
+    final displayName = this.displayName;
+    final maxSizeInMB = this.maxSizeInMB;
+    final partner = this.partner;
+    final platformId = this.platformId;
+    final revocationSupported = this.revocationSupported;
+    final signingConfiguration = this.signingConfiguration;
+    final signingImageFormat = this.signingImageFormat;
+    final target = this.target;
+    return {
+      if (category != null) 'category': category.toValue(),
+      if (displayName != null) 'displayName': displayName,
+      if (maxSizeInMB != null) 'maxSizeInMB': maxSizeInMB,
+      if (partner != null) 'partner': partner,
+      if (platformId != null) 'platformId': platformId,
+      if (revocationSupported != null)
+        'revocationSupported': revocationSupported,
+      if (signingConfiguration != null)
+        'signingConfiguration': signingConfiguration,
+      if (signingImageFormat != null) 'signingImageFormat': signingImageFormat,
+      if (target != null) 'target': target,
+    };
   }
 }
 
@@ -1224,6 +1311,41 @@ class GetSigningProfileResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final overrides = this.overrides;
+    final platformDisplayName = this.platformDisplayName;
+    final platformId = this.platformId;
+    final profileName = this.profileName;
+    final profileVersion = this.profileVersion;
+    final profileVersionArn = this.profileVersionArn;
+    final revocationRecord = this.revocationRecord;
+    final signatureValidityPeriod = this.signatureValidityPeriod;
+    final signingMaterial = this.signingMaterial;
+    final signingParameters = this.signingParameters;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (overrides != null) 'overrides': overrides,
+      if (platformDisplayName != null)
+        'platformDisplayName': platformDisplayName,
+      if (platformId != null) 'platformId': platformId,
+      if (profileName != null) 'profileName': profileName,
+      if (profileVersion != null) 'profileVersion': profileVersion,
+      if (profileVersionArn != null) 'profileVersionArn': profileVersionArn,
+      if (revocationRecord != null) 'revocationRecord': revocationRecord,
+      if (signatureValidityPeriod != null)
+        'signatureValidityPeriod': signatureValidityPeriod,
+      if (signingMaterial != null) 'signingMaterial': signingMaterial,
+      if (signingParameters != null) 'signingParameters': signingParameters,
+      if (status != null) 'status': status.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum HashAlgorithm {
@@ -1274,6 +1396,15 @@ class HashAlgorithmOptions {
           .toList(),
       defaultValue: (json['defaultValue'] as String).toHashAlgorithm(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowedValues = this.allowedValues;
+    final defaultValue = this.defaultValue;
+    return {
+      'allowedValues': allowedValues.map((e) => e.toValue()).toList(),
+      'defaultValue': defaultValue.toValue(),
+    };
   }
 }
 
@@ -1340,6 +1471,19 @@ class ListProfilePermissionsResponse {
       revisionId: json['revisionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final permissions = this.permissions;
+    final policySizeBytes = this.policySizeBytes;
+    final revisionId = this.revisionId;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (permissions != null) 'permissions': permissions,
+      if (policySizeBytes != null) 'policySizeBytes': policySizeBytes,
+      if (revisionId != null) 'revisionId': revisionId,
+    };
+  }
 }
 
 class ListSigningJobsResponse {
@@ -1362,6 +1506,15 @@ class ListSigningJobsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    final nextToken = this.nextToken;
+    return {
+      if (jobs != null) 'jobs': jobs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListSigningPlatformsResponse {
@@ -1383,6 +1536,15 @@ class ListSigningPlatformsResponse {
           .map((e) => SigningPlatform.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final platforms = this.platforms;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (platforms != null) 'platforms': platforms,
+    };
   }
 }
 
@@ -1408,6 +1570,15 @@ class ListSigningProfilesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final profiles = this.profiles;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (profiles != null) 'profiles': profiles,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1422,6 +1593,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1453,6 +1631,19 @@ class Permission {
       statementId: json['statementId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final principal = this.principal;
+    final profileVersion = this.profileVersion;
+    final statementId = this.statementId;
+    return {
+      if (action != null) 'action': action,
+      if (principal != null) 'principal': principal,
+      if (profileVersion != null) 'profileVersion': profileVersion,
+      if (statementId != null) 'statementId': statementId,
+    };
+  }
 }
 
 class PutSigningProfileResponse {
@@ -1477,6 +1668,17 @@ class PutSigningProfileResponse {
       profileVersionArn: json['profileVersionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final profileVersion = this.profileVersion;
+    final profileVersionArn = this.profileVersionArn;
+    return {
+      if (arn != null) 'arn': arn,
+      if (profileVersion != null) 'profileVersion': profileVersion,
+      if (profileVersionArn != null) 'profileVersionArn': profileVersionArn,
+    };
+  }
 }
 
 class RemoveProfilePermissionResponse {
@@ -1490,6 +1692,13 @@ class RemoveProfilePermissionResponse {
     return RemoveProfilePermissionResponse(
       revisionId: json['revisionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final revisionId = this.revisionId;
+    return {
+      if (revisionId != null) 'revisionId': revisionId,
+    };
   }
 }
 
@@ -1507,6 +1716,7 @@ class S3Destination {
     this.bucketName,
     this.prefix,
   });
+
   Map<String, dynamic> toJson() {
     final bucketName = this.bucketName;
     final prefix = this.prefix;
@@ -1534,6 +1744,15 @@ class S3SignedObject {
       bucketName: json['bucketName'] as String?,
       key: json['key'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucketName = this.bucketName;
+    final key = this.key;
+    return {
+      if (bucketName != null) 'bucketName': bucketName,
+      if (key != null) 'key': key,
+    };
   }
 }
 
@@ -1618,6 +1837,13 @@ class SignedObject {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final s3 = this.s3;
+    return {
+      if (s3 != null) 's3': s3,
+    };
+  }
 }
 
 /// The configuration of a code signing operation.
@@ -1639,6 +1865,15 @@ class SigningConfiguration {
       hashAlgorithmOptions: HashAlgorithmOptions.fromJson(
           json['hashAlgorithmOptions'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final encryptionAlgorithmOptions = this.encryptionAlgorithmOptions;
+    final hashAlgorithmOptions = this.hashAlgorithmOptions;
+    return {
+      'encryptionAlgorithmOptions': encryptionAlgorithmOptions,
+      'hashAlgorithmOptions': hashAlgorithmOptions,
+    };
   }
 }
 
@@ -1696,6 +1931,15 @@ class SigningImageFormat {
           .map((e) => (e as String).toImageFormat())
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final defaultFormat = this.defaultFormat;
+    final supportedFormats = this.supportedFormats;
+    return {
+      'defaultFormat': defaultFormat.toValue(),
+      'supportedFormats': supportedFormats.map((e) => e.toValue()).toList(),
+    };
   }
 }
 
@@ -1787,6 +2031,41 @@ class SigningJob {
       status: (json['status'] as String?)?.toSigningStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final isRevoked = this.isRevoked;
+    final jobId = this.jobId;
+    final jobInvoker = this.jobInvoker;
+    final jobOwner = this.jobOwner;
+    final platformDisplayName = this.platformDisplayName;
+    final platformId = this.platformId;
+    final profileName = this.profileName;
+    final profileVersion = this.profileVersion;
+    final signatureExpiresAt = this.signatureExpiresAt;
+    final signedObject = this.signedObject;
+    final signingMaterial = this.signingMaterial;
+    final source = this.source;
+    final status = this.status;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (isRevoked != null) 'isRevoked': isRevoked,
+      if (jobId != null) 'jobId': jobId,
+      if (jobInvoker != null) 'jobInvoker': jobInvoker,
+      if (jobOwner != null) 'jobOwner': jobOwner,
+      if (platformDisplayName != null)
+        'platformDisplayName': platformDisplayName,
+      if (platformId != null) 'platformId': platformId,
+      if (profileName != null) 'profileName': profileName,
+      if (profileVersion != null) 'profileVersion': profileVersion,
+      if (signatureExpiresAt != null)
+        'signatureExpiresAt': unixTimestampToJson(signatureExpiresAt),
+      if (signedObject != null) 'signedObject': signedObject,
+      if (signingMaterial != null) 'signingMaterial': signingMaterial,
+      if (source != null) 'source': source,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Revocation information for a signing job.
@@ -1811,6 +2090,17 @@ class SigningJobRevocationRecord {
       revokedAt: timeStampFromJson(json['revokedAt']),
       revokedBy: json['revokedBy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reason = this.reason;
+    final revokedAt = this.revokedAt;
+    final revokedBy = this.revokedBy;
+    return {
+      if (reason != null) 'reason': reason,
+      if (revokedAt != null) 'revokedAt': unixTimestampToJson(revokedAt),
+      if (revokedBy != null) 'revokedBy': revokedBy,
+    };
   }
 }
 
@@ -1896,6 +2186,31 @@ class SigningPlatform {
           : null,
       target: json['target'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final category = this.category;
+    final displayName = this.displayName;
+    final maxSizeInMB = this.maxSizeInMB;
+    final partner = this.partner;
+    final platformId = this.platformId;
+    final revocationSupported = this.revocationSupported;
+    final signingConfiguration = this.signingConfiguration;
+    final signingImageFormat = this.signingImageFormat;
+    final target = this.target;
+    return {
+      if (category != null) 'category': category.toValue(),
+      if (displayName != null) 'displayName': displayName,
+      if (maxSizeInMB != null) 'maxSizeInMB': maxSizeInMB,
+      if (partner != null) 'partner': partner,
+      if (platformId != null) 'platformId': platformId,
+      if (revocationSupported != null)
+        'revocationSupported': revocationSupported,
+      if (signingConfiguration != null)
+        'signingConfiguration': signingConfiguration,
+      if (signingImageFormat != null) 'signingImageFormat': signingImageFormat,
+      if (target != null) 'target': target,
+    };
   }
 }
 
@@ -2014,6 +2329,35 @@ class SigningProfile {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final platformDisplayName = this.platformDisplayName;
+    final platformId = this.platformId;
+    final profileName = this.profileName;
+    final profileVersion = this.profileVersion;
+    final profileVersionArn = this.profileVersionArn;
+    final signatureValidityPeriod = this.signatureValidityPeriod;
+    final signingMaterial = this.signingMaterial;
+    final signingParameters = this.signingParameters;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (platformDisplayName != null)
+        'platformDisplayName': platformDisplayName,
+      if (platformId != null) 'platformId': platformId,
+      if (profileName != null) 'profileName': profileName,
+      if (profileVersion != null) 'profileVersion': profileVersion,
+      if (profileVersionArn != null) 'profileVersionArn': profileVersionArn,
+      if (signatureValidityPeriod != null)
+        'signatureValidityPeriod': signatureValidityPeriod,
+      if (signingMaterial != null) 'signingMaterial': signingMaterial,
+      if (signingParameters != null) 'signingParameters': signingParameters,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Revocation information for a signing profile.
@@ -2039,6 +2383,18 @@ class SigningProfileRevocationRecord {
       revokedAt: timeStampFromJson(json['revokedAt']),
       revokedBy: json['revokedBy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final revocationEffectiveFrom = this.revocationEffectiveFrom;
+    final revokedAt = this.revokedAt;
+    final revokedBy = this.revokedBy;
+    return {
+      if (revocationEffectiveFrom != null)
+        'revocationEffectiveFrom': unixTimestampToJson(revocationEffectiveFrom),
+      if (revokedAt != null) 'revokedAt': unixTimestampToJson(revokedAt),
+      if (revokedBy != null) 'revokedBy': revokedBy,
+    };
   }
 }
 
@@ -2150,6 +2506,15 @@ class StartSigningJobResponse {
       jobOwner: json['jobOwner'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobOwner = this.jobOwner;
+    return {
+      if (jobId != null) 'jobId': jobId,
+      if (jobOwner != null) 'jobOwner': jobOwner,
+    };
+  }
 }
 
 class TagResourceResponse {
@@ -2157,12 +2522,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

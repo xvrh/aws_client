@@ -674,6 +674,15 @@ class Block {
       blockToken: json['BlockToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blockIndex = this.blockIndex;
+    final blockToken = this.blockToken;
+    return {
+      if (blockIndex != null) 'BlockIndex': blockIndex,
+      if (blockToken != null) 'BlockToken': blockToken,
+    };
+  }
 }
 
 /// A block of data in an Amazon Elastic Block Store snapshot that is different
@@ -703,6 +712,17 @@ class ChangedBlock {
       firstBlockToken: json['FirstBlockToken'] as String?,
       secondBlockToken: json['SecondBlockToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blockIndex = this.blockIndex;
+    final firstBlockToken = this.firstBlockToken;
+    final secondBlockToken = this.secondBlockToken;
+    return {
+      if (blockIndex != null) 'BlockIndex': blockIndex,
+      if (firstBlockToken != null) 'FirstBlockToken': firstBlockToken,
+      if (secondBlockToken != null) 'SecondBlockToken': secondBlockToken,
+    };
   }
 }
 
@@ -764,6 +784,13 @@ class CompleteSnapshotResponse {
       status: (json['Status'] as String?)?.toStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class GetSnapshotBlockResponse {
@@ -785,6 +812,16 @@ class GetSnapshotBlockResponse {
     this.checksumAlgorithm,
     this.dataLength,
   });
+
+  Map<String, dynamic> toJson() {
+    final blockData = this.blockData;
+    final checksum = this.checksum;
+    final checksumAlgorithm = this.checksumAlgorithm;
+    final dataLength = this.dataLength;
+    return {
+      if (blockData != null) 'BlockData': base64Encode(blockData),
+    };
+  }
 }
 
 class ListChangedBlocksResponse {
@@ -822,6 +859,21 @@ class ListChangedBlocksResponse {
       nextToken: json['NextToken'] as String?,
       volumeSize: json['VolumeSize'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blockSize = this.blockSize;
+    final changedBlocks = this.changedBlocks;
+    final expiryTime = this.expiryTime;
+    final nextToken = this.nextToken;
+    final volumeSize = this.volumeSize;
+    return {
+      if (blockSize != null) 'BlockSize': blockSize,
+      if (changedBlocks != null) 'ChangedBlocks': changedBlocks,
+      if (expiryTime != null) 'ExpiryTime': unixTimestampToJson(expiryTime),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (volumeSize != null) 'VolumeSize': volumeSize,
+    };
   }
 }
 
@@ -861,6 +913,21 @@ class ListSnapshotBlocksResponse {
       volumeSize: json['VolumeSize'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blockSize = this.blockSize;
+    final blocks = this.blocks;
+    final expiryTime = this.expiryTime;
+    final nextToken = this.nextToken;
+    final volumeSize = this.volumeSize;
+    return {
+      if (blockSize != null) 'BlockSize': blockSize,
+      if (blocks != null) 'Blocks': blocks,
+      if (expiryTime != null) 'ExpiryTime': unixTimestampToJson(expiryTime),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (volumeSize != null) 'VolumeSize': volumeSize,
+    };
+  }
 }
 
 class PutSnapshotBlockResponse {
@@ -874,6 +941,12 @@ class PutSnapshotBlockResponse {
     this.checksum,
     this.checksumAlgorithm,
   });
+
+  Map<String, dynamic> toJson() {
+    final checksum = this.checksum;
+    final checksumAlgorithm = this.checksumAlgorithm;
+    return {};
+  }
 }
 
 class StartSnapshotResponse {
@@ -940,6 +1013,31 @@ class StartSnapshotResponse {
           .toList(),
       volumeSize: json['VolumeSize'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blockSize = this.blockSize;
+    final description = this.description;
+    final kmsKeyArn = this.kmsKeyArn;
+    final ownerId = this.ownerId;
+    final parentSnapshotId = this.parentSnapshotId;
+    final snapshotId = this.snapshotId;
+    final startTime = this.startTime;
+    final status = this.status;
+    final tags = this.tags;
+    final volumeSize = this.volumeSize;
+    return {
+      if (blockSize != null) 'BlockSize': blockSize,
+      if (description != null) 'Description': description,
+      if (kmsKeyArn != null) 'KmsKeyArn': kmsKeyArn,
+      if (ownerId != null) 'OwnerId': ownerId,
+      if (parentSnapshotId != null) 'ParentSnapshotId': parentSnapshotId,
+      if (snapshotId != null) 'SnapshotId': snapshotId,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (volumeSize != null) 'VolumeSize': volumeSize,
+    };
   }
 }
 

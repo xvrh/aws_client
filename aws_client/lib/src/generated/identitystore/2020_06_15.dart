@@ -299,6 +299,15 @@ class DescribeGroupResponse {
       groupId: json['GroupId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final displayName = this.displayName;
+    final groupId = this.groupId;
+    return {
+      'DisplayName': displayName,
+      'GroupId': groupId,
+    };
+  }
 }
 
 class DescribeUserResponse {
@@ -322,6 +331,15 @@ class DescribeUserResponse {
       userName: json['UserName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userId = this.userId;
+    final userName = this.userName;
+    return {
+      'UserId': userId,
+      'UserName': userName,
+    };
+  }
 }
 
 /// A query filter used by <code>ListUsers</code> and <code>ListGroup</code>.
@@ -343,6 +361,7 @@ class Filter {
     required this.attributePath,
     required this.attributeValue,
   });
+
   Map<String, dynamic> toJson() {
     final attributePath = this.attributePath;
     final attributeValue = this.attributeValue;
@@ -376,6 +395,15 @@ class Group {
       groupId: json['GroupId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final displayName = this.displayName;
+    final groupId = this.groupId;
+    return {
+      'DisplayName': displayName,
+      'GroupId': groupId,
+    };
+  }
 }
 
 class ListGroupsResponse {
@@ -401,6 +429,15 @@ class ListGroupsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final nextToken = this.nextToken;
+    return {
+      'Groups': groups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -428,6 +465,15 @@ class ListUsersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final users = this.users;
+    final nextToken = this.nextToken;
+    return {
+      'Users': users,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// A user object, which contains a specified user’s metadata and attributes.
@@ -451,6 +497,15 @@ class User {
       userId: json['UserId'] as String,
       userName: json['UserName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userId = this.userId;
+    final userName = this.userName;
+    return {
+      'UserId': userId,
+      'UserName': userName,
+    };
   }
 }
 

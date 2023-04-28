@@ -1661,6 +1661,13 @@ class CreateHttpNamespaceResponse {
       operationId: json['OperationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
+  }
 }
 
 class CreatePrivateDnsNamespaceResponse {
@@ -1678,6 +1685,13 @@ class CreatePrivateDnsNamespaceResponse {
       operationId: json['OperationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
+  }
 }
 
 class CreatePublicDnsNamespaceResponse {
@@ -1694,6 +1708,13 @@ class CreatePublicDnsNamespaceResponse {
       operationId: json['OperationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
+  }
 }
 
 class CreateServiceResponse {
@@ -1709,6 +1730,13 @@ class CreateServiceResponse {
           ? Service.fromJson(json['Service'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final service = this.service;
+    return {
+      if (service != null) 'Service': service,
+    };
   }
 }
 
@@ -1754,12 +1782,23 @@ class DeleteNamespaceResponse {
       operationId: json['OperationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
+  }
 }
 
 class DeleteServiceResponse {
   DeleteServiceResponse();
   factory DeleteServiceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteServiceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1776,6 +1815,13 @@ class DeregisterInstanceResponse {
     return DeregisterInstanceResponse(
       operationId: json['OperationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
   }
 }
 
@@ -1794,6 +1840,13 @@ class DiscoverInstancesResponse {
           .map((e) => HttpInstanceSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    return {
+      if (instances != null) 'Instances': instances,
+    };
   }
 }
 
@@ -1892,6 +1945,7 @@ class DnsConfigChange {
   DnsConfigChange({
     required this.dnsRecords,
   });
+
   Map<String, dynamic> toJson() {
     final dnsRecords = this.dnsRecords;
     return {
@@ -1921,6 +1975,15 @@ class DnsProperties {
           ? SOA.fromJson(json['SOA'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostedZoneId = this.hostedZoneId;
+    final soa = this.soa;
+    return {
+      if (hostedZoneId != null) 'HostedZoneId': hostedZoneId,
+      if (soa != null) 'SOA': soa,
+    };
   }
 }
 
@@ -2129,6 +2192,13 @@ class GetInstanceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instance = this.instance;
+    return {
+      if (instance != null) 'Instance': instance,
+    };
+  }
 }
 
 class GetInstancesHealthStatusResponse {
@@ -2153,6 +2223,16 @@ class GetInstancesHealthStatusResponse {
           ?.map((k, e) => MapEntry(k, (e as String).toHealthStatus())),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final status = this.status;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (status != null)
+        'Status': status.map((k, e) => MapEntry(k, e.toValue())),
+    };
+  }
 }
 
 class GetNamespaceResponse {
@@ -2168,6 +2248,13 @@ class GetNamespaceResponse {
           ? Namespace.fromJson(json['Namespace'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final namespace = this.namespace;
+    return {
+      if (namespace != null) 'Namespace': namespace,
+    };
   }
 }
 
@@ -2185,6 +2272,13 @@ class GetOperationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    return {
+      if (operation != null) 'Operation': operation,
+    };
+  }
 }
 
 class GetServiceResponse {
@@ -2200,6 +2294,13 @@ class GetServiceResponse {
           ? Service.fromJson(json['Service'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final service = this.service;
+    return {
+      if (service != null) 'Service': service,
+    };
   }
 }
 
@@ -2582,6 +2683,21 @@ class HttpInstanceSummary {
       serviceName: json['ServiceName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final healthStatus = this.healthStatus;
+    final instanceId = this.instanceId;
+    final namespaceName = this.namespaceName;
+    final serviceName = this.serviceName;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (healthStatus != null) 'HealthStatus': healthStatus.toValue(),
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (namespaceName != null) 'NamespaceName': namespaceName,
+      if (serviceName != null) 'ServiceName': serviceName,
+    };
+  }
 }
 
 /// Updated properties for the HTTP namespace.
@@ -2592,6 +2708,7 @@ class HttpNamespaceChange {
   HttpNamespaceChange({
     required this.description,
   });
+
   Map<String, dynamic> toJson() {
     final description = this.description;
     return {
@@ -2612,6 +2729,13 @@ class HttpProperties {
     return HttpProperties(
       httpName: json['HttpName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final httpName = this.httpName;
+    return {
+      if (httpName != null) 'HttpName': httpName,
+    };
   }
 }
 
@@ -2764,6 +2888,17 @@ class Instance {
       creatorRequestId: json['CreatorRequestId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final attributes = this.attributes;
+    final creatorRequestId = this.creatorRequestId;
+    return {
+      'Id': id,
+      if (attributes != null) 'Attributes': attributes,
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+    };
+  }
 }
 
 /// A complex type that contains information about the instances that you
@@ -2826,6 +2961,15 @@ class InstanceSummary {
       id: json['Id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final id = this.id;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 class ListInstancesResponse {
@@ -2851,6 +2995,15 @@ class ListInstancesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    final nextToken = this.nextToken;
+    return {
+      if (instances != null) 'Instances': instances,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2885,6 +3038,15 @@ class ListNamespacesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final namespaces = this.namespaces;
+    final nextToken = this.nextToken;
+    return {
+      if (namespaces != null) 'Namespaces': namespaces,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListOperationsResponse {
@@ -2916,6 +3078,15 @@ class ListOperationsResponse {
           .map((e) => OperationSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final operations = this.operations;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (operations != null) 'Operations': operations,
+    };
   }
 }
 
@@ -2950,6 +3121,15 @@ class ListServicesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final services = this.services;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (services != null) 'Services': services,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2966,6 +3146,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3042,6 +3229,29 @@ class Namespace {
       type: (json['Type'] as String?)?.toNamespaceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createDate = this.createDate;
+    final creatorRequestId = this.creatorRequestId;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final properties = this.properties;
+    final serviceCount = this.serviceCount;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (properties != null) 'Properties': properties,
+      if (serviceCount != null) 'ServiceCount': serviceCount,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// A complex type that identifies the namespaces that you want to list. You can
@@ -3077,6 +3287,7 @@ class NamespaceFilter {
     required this.values,
     this.condition,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -3138,6 +3349,15 @@ class NamespaceProperties {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dnsProperties = this.dnsProperties;
+    final httpProperties = this.httpProperties;
+    return {
+      if (dnsProperties != null) 'DnsProperties': dnsProperties,
+      if (httpProperties != null) 'HttpProperties': httpProperties,
+    };
+  }
 }
 
 /// A complex type that contains information about a namespace.
@@ -3193,6 +3413,27 @@ class NamespaceSummary {
       serviceCount: json['ServiceCount'] as int?,
       type: (json['Type'] as String?)?.toNamespaceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createDate = this.createDate;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final properties = this.properties;
+    final serviceCount = this.serviceCount;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (properties != null) 'Properties': properties,
+      if (serviceCount != null) 'ServiceCount': serviceCount,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -3329,6 +3570,28 @@ class Operation {
       updateDate: timeStampFromJson(json['UpdateDate']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createDate = this.createDate;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final id = this.id;
+    final status = this.status;
+    final targets = this.targets;
+    final type = this.type;
+    final updateDate = this.updateDate;
+    return {
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (id != null) 'Id': id,
+      if (status != null) 'Status': status.toValue(),
+      if (targets != null)
+        'Targets': targets.map((k, e) => MapEntry(k.toValue(), e)),
+      if (type != null) 'Type': type.toValue(),
+      if (updateDate != null) 'UpdateDate': unixTimestampToJson(updateDate),
+    };
+  }
 }
 
 /// A complex type that lets you select the operations that you want to list.
@@ -3415,6 +3678,7 @@ class OperationFilter {
     required this.values,
     this.condition,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -3546,6 +3810,15 @@ class OperationSummary {
       status: (json['Status'] as String?)?.toOperationStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final status = this.status;
+    return {
+      if (id != null) 'Id': id,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 enum OperationTargetType {
@@ -3641,6 +3914,7 @@ class PrivateDnsNamespaceChange {
     this.description,
     this.properties,
   });
+
   Map<String, dynamic> toJson() {
     final description = this.description;
     final properties = this.properties;
@@ -3659,6 +3933,7 @@ class PrivateDnsNamespaceProperties {
   PrivateDnsNamespaceProperties({
     required this.dnsProperties,
   });
+
   Map<String, dynamic> toJson() {
     final dnsProperties = this.dnsProperties;
     return {
@@ -3675,6 +3950,7 @@ class PrivateDnsNamespacePropertiesChange {
   PrivateDnsNamespacePropertiesChange({
     required this.dnsProperties,
   });
+
   Map<String, dynamic> toJson() {
     final dnsProperties = this.dnsProperties;
     return {
@@ -3692,6 +3968,7 @@ class PrivateDnsPropertiesMutable {
   PrivateDnsPropertiesMutable({
     required this.soa,
   });
+
   Map<String, dynamic> toJson() {
     final soa = this.soa;
     return {
@@ -3709,6 +3986,7 @@ class PrivateDnsPropertiesMutableChange {
   PrivateDnsPropertiesMutableChange({
     required this.soa,
   });
+
   Map<String, dynamic> toJson() {
     final soa = this.soa;
     return {
@@ -3729,6 +4007,7 @@ class PublicDnsNamespaceChange {
     this.description,
     this.properties,
   });
+
   Map<String, dynamic> toJson() {
     final description = this.description;
     final properties = this.properties;
@@ -3747,6 +4026,7 @@ class PublicDnsNamespaceProperties {
   PublicDnsNamespaceProperties({
     required this.dnsProperties,
   });
+
   Map<String, dynamic> toJson() {
     final dnsProperties = this.dnsProperties;
     return {
@@ -3763,6 +4043,7 @@ class PublicDnsNamespacePropertiesChange {
   PublicDnsNamespacePropertiesChange({
     required this.dnsProperties,
   });
+
   Map<String, dynamic> toJson() {
     final dnsProperties = this.dnsProperties;
     return {
@@ -3780,6 +4061,7 @@ class PublicDnsPropertiesMutable {
   PublicDnsPropertiesMutable({
     required this.soa,
   });
+
   Map<String, dynamic> toJson() {
     final soa = this.soa;
     return {
@@ -3797,6 +4079,7 @@ class PublicDnsPropertiesMutableChange {
   PublicDnsPropertiesMutableChange({
     required this.soa,
   });
+
   Map<String, dynamic> toJson() {
     final soa = this.soa;
     return {
@@ -3856,6 +4139,13 @@ class RegisterInstanceResponse {
     return RegisterInstanceResponse(
       operationId: json['OperationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
   }
 }
 
@@ -3918,6 +4208,7 @@ class SOAChange {
   SOAChange({
     required this.ttl,
   });
+
   Map<String, dynamic> toJson() {
     final ttl = this.ttl;
     return {
@@ -4034,6 +4325,36 @@ class Service {
       type: (json['Type'] as String?)?.toServiceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createDate = this.createDate;
+    final creatorRequestId = this.creatorRequestId;
+    final description = this.description;
+    final dnsConfig = this.dnsConfig;
+    final healthCheckConfig = this.healthCheckConfig;
+    final healthCheckCustomConfig = this.healthCheckCustomConfig;
+    final id = this.id;
+    final instanceCount = this.instanceCount;
+    final name = this.name;
+    final namespaceId = this.namespaceId;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (description != null) 'Description': description,
+      if (dnsConfig != null) 'DnsConfig': dnsConfig,
+      if (healthCheckConfig != null) 'HealthCheckConfig': healthCheckConfig,
+      if (healthCheckCustomConfig != null)
+        'HealthCheckCustomConfig': healthCheckCustomConfig,
+      if (id != null) 'Id': id,
+      if (instanceCount != null) 'InstanceCount': instanceCount,
+      if (name != null) 'Name': name,
+      if (namespaceId != null) 'NamespaceId': namespaceId,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// A complex type that contains changes to an existing service.
@@ -4055,6 +4376,7 @@ class ServiceChange {
     this.dnsConfig,
     this.healthCheckConfig,
   });
+
   Map<String, dynamic> toJson() {
     final description = this.description;
     final dnsConfig = this.dnsConfig;
@@ -4103,6 +4425,7 @@ class ServiceFilter {
     required this.values,
     this.condition,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -4240,6 +4563,32 @@ class ServiceSummary {
       type: (json['Type'] as String?)?.toServiceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createDate = this.createDate;
+    final description = this.description;
+    final dnsConfig = this.dnsConfig;
+    final healthCheckConfig = this.healthCheckConfig;
+    final healthCheckCustomConfig = this.healthCheckCustomConfig;
+    final id = this.id;
+    final instanceCount = this.instanceCount;
+    final name = this.name;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (description != null) 'Description': description,
+      if (dnsConfig != null) 'DnsConfig': dnsConfig,
+      if (healthCheckConfig != null) 'HealthCheckConfig': healthCheckConfig,
+      if (healthCheckCustomConfig != null)
+        'HealthCheckCustomConfig': healthCheckCustomConfig,
+      if (id != null) 'Id': id,
+      if (instanceCount != null) 'InstanceCount': instanceCount,
+      if (name != null) 'Name': name,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum ServiceType {
@@ -4334,12 +4683,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4356,6 +4713,13 @@ class UpdateHttpNamespaceResponse {
     return UpdateHttpNamespaceResponse(
       operationId: json['OperationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
   }
 }
 
@@ -4374,6 +4738,13 @@ class UpdatePrivateDnsNamespaceResponse {
       operationId: json['OperationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
+  }
 }
 
 class UpdatePublicDnsNamespaceResponse {
@@ -4390,6 +4761,13 @@ class UpdatePublicDnsNamespaceResponse {
       operationId: json['OperationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
+  }
 }
 
 class UpdateServiceResponse {
@@ -4405,6 +4783,13 @@ class UpdateServiceResponse {
     return UpdateServiceResponse(
       operationId: json['OperationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      if (operationId != null) 'OperationId': operationId,
+    };
   }
 }
 

@@ -355,6 +355,13 @@ class AssociateS3ResourcesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedS3Resources = this.failedS3Resources;
+    return {
+      if (failedS3Resources != null) 'failedS3Resources': failedS3Resources,
+    };
+  }
 }
 
 /// (Discontinued) The classification type that Amazon Macie Classic applies to
@@ -408,6 +415,7 @@ class ClassificationTypeUpdate {
     this.continuous,
     this.oneTime,
   });
+
   Map<String, dynamic> toJson() {
     final continuous = this.continuous;
     final oneTime = this.oneTime;
@@ -435,6 +443,13 @@ class DisassociateS3ResourcesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedS3Resources = this.failedS3Resources;
+    return {
+      if (failedS3Resources != null) 'failedS3Resources': failedS3Resources,
+    };
+  }
 }
 
 /// (Discontinued) Includes details about the failed S3 resources.
@@ -461,6 +476,17 @@ class FailedS3Resource {
           ? S3Resource.fromJson(json['failedItem'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final failedItem = this.failedItem;
+    return {
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (failedItem != null) 'failedItem': failedItem,
+    };
   }
 }
 
@@ -490,6 +516,15 @@ class ListMemberAccountsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final memberAccounts = this.memberAccounts;
+    final nextToken = this.nextToken;
+    return {
+      if (memberAccounts != null) 'memberAccounts': memberAccounts,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListS3ResourcesResult {
@@ -517,6 +552,15 @@ class ListS3ResourcesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final s3Resources = this.s3Resources;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (s3Resources != null) 's3Resources': s3Resources,
+    };
+  }
 }
 
 /// (Discontinued) Contains information about the Amazon Macie Classic member
@@ -533,6 +577,13 @@ class MemberAccount {
     return MemberAccount(
       accountId: json['accountId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    return {
+      if (accountId != null) 'accountId': accountId,
+    };
   }
 }
 
@@ -687,6 +738,7 @@ class S3ResourceClassificationUpdate {
     required this.classificationTypeUpdate,
     this.prefix,
   });
+
   Map<String, dynamic> toJson() {
     final bucketName = this.bucketName;
     final classificationTypeUpdate = this.classificationTypeUpdate;
@@ -714,6 +766,13 @@ class UpdateS3ResourcesResult {
           .map((e) => FailedS3Resource.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedS3Resources = this.failedS3Resources;
+    return {
+      if (failedS3Resources != null) 'failedS3Resources': failedS3Resources,
+    };
   }
 }
 

@@ -1660,6 +1660,17 @@ class AssociateCustomDomainResponse {
       serviceArn: json['ServiceArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customDomain = this.customDomain;
+    final dNSTarget = this.dNSTarget;
+    final serviceArn = this.serviceArn;
+    return {
+      'CustomDomain': customDomain,
+      'DNSTarget': dNSTarget,
+      'ServiceArn': serviceArn,
+    };
+  }
 }
 
 /// Describes resources needed to authenticate access to some source
@@ -1790,6 +1801,35 @@ class AutoScalingConfiguration {
       status: (json['Status'] as String?)?.toAutoScalingConfigurationStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingConfigurationArn = this.autoScalingConfigurationArn;
+    final autoScalingConfigurationName = this.autoScalingConfigurationName;
+    final autoScalingConfigurationRevision =
+        this.autoScalingConfigurationRevision;
+    final createdAt = this.createdAt;
+    final deletedAt = this.deletedAt;
+    final latest = this.latest;
+    final maxConcurrency = this.maxConcurrency;
+    final maxSize = this.maxSize;
+    final minSize = this.minSize;
+    final status = this.status;
+    return {
+      if (autoScalingConfigurationArn != null)
+        'AutoScalingConfigurationArn': autoScalingConfigurationArn,
+      if (autoScalingConfigurationName != null)
+        'AutoScalingConfigurationName': autoScalingConfigurationName,
+      if (autoScalingConfigurationRevision != null)
+        'AutoScalingConfigurationRevision': autoScalingConfigurationRevision,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (deletedAt != null) 'DeletedAt': unixTimestampToJson(deletedAt),
+      if (latest != null) 'Latest': latest,
+      if (maxConcurrency != null) 'MaxConcurrency': maxConcurrency,
+      if (maxSize != null) 'MaxSize': maxSize,
+      if (minSize != null) 'MinSize': minSize,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 enum AutoScalingConfigurationStatus {
@@ -1861,6 +1901,21 @@ class AutoScalingConfigurationSummary {
           json['AutoScalingConfigurationRevision'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingConfigurationArn = this.autoScalingConfigurationArn;
+    final autoScalingConfigurationName = this.autoScalingConfigurationName;
+    final autoScalingConfigurationRevision =
+        this.autoScalingConfigurationRevision;
+    return {
+      if (autoScalingConfigurationArn != null)
+        'AutoScalingConfigurationArn': autoScalingConfigurationArn,
+      if (autoScalingConfigurationName != null)
+        'AutoScalingConfigurationName': autoScalingConfigurationName,
+      if (autoScalingConfigurationRevision != null)
+        'AutoScalingConfigurationRevision': autoScalingConfigurationRevision,
+    };
+  }
 }
 
 /// Describes a certificate CNAME record to add to your DNS. For more
@@ -1895,6 +1950,19 @@ class CertificateValidationRecord {
       type: json['Type'] as String?,
       value: json['Value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final status = this.status;
+    final type = this.type;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+      if (type != null) 'Type': type,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -2154,6 +2222,21 @@ class Connection {
       status: (json['Status'] as String?)?.toConnectionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionArn = this.connectionArn;
+    final connectionName = this.connectionName;
+    final createdAt = this.createdAt;
+    final providerType = this.providerType;
+    final status = this.status;
+    return {
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (connectionName != null) 'ConnectionName': connectionName,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (providerType != null) 'ProviderType': providerType.toValue(),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 enum ConnectionStatus {
@@ -2229,6 +2312,21 @@ class ConnectionSummary {
       status: (json['Status'] as String?)?.toConnectionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectionArn = this.connectionArn;
+    final connectionName = this.connectionName;
+    final createdAt = this.createdAt;
+    final providerType = this.providerType;
+    final status = this.status;
+    return {
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (connectionName != null) 'ConnectionName': connectionName,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (providerType != null) 'ProviderType': providerType.toValue(),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class CreateAutoScalingConfigurationResponse {
@@ -2246,6 +2344,13 @@ class CreateAutoScalingConfigurationResponse {
           json['AutoScalingConfiguration'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingConfiguration = this.autoScalingConfiguration;
+    return {
+      'AutoScalingConfiguration': autoScalingConfiguration,
+    };
+  }
 }
 
 class CreateConnectionResponse {
@@ -2260,6 +2365,13 @@ class CreateConnectionResponse {
       connection:
           Connection.fromJson(json['Connection'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connection = this.connection;
+    return {
+      'Connection': connection,
+    };
   }
 }
 
@@ -2277,6 +2389,13 @@ class CreateObservabilityConfigurationResponse {
       observabilityConfiguration: ObservabilityConfiguration.fromJson(
           json['ObservabilityConfiguration'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final observabilityConfiguration = this.observabilityConfiguration;
+    return {
+      'ObservabilityConfiguration': observabilityConfiguration,
+    };
   }
 }
 
@@ -2300,6 +2419,15 @@ class CreateServiceResponse {
       service: Service.fromJson(json['Service'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    final service = this.service;
+    return {
+      'OperationId': operationId,
+      'Service': service,
+    };
+  }
 }
 
 class CreateVpcConnectorResponse {
@@ -2315,6 +2443,13 @@ class CreateVpcConnectorResponse {
       vpcConnector:
           VpcConnector.fromJson(json['VpcConnector'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpcConnector = this.vpcConnector;
+    return {
+      'VpcConnector': vpcConnector,
+    };
   }
 }
 
@@ -2354,6 +2489,20 @@ class CustomDomain {
               CertificateValidationRecord.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final enableWWWSubdomain = this.enableWWWSubdomain;
+    final status = this.status;
+    final certificateValidationRecords = this.certificateValidationRecords;
+    return {
+      'DomainName': domainName,
+      'EnableWWWSubdomain': enableWWWSubdomain,
+      'Status': status.toValue(),
+      if (certificateValidationRecords != null)
+        'CertificateValidationRecords': certificateValidationRecords,
+    };
   }
 }
 
@@ -2426,6 +2575,13 @@ class DeleteAutoScalingConfigurationResponse {
           json['AutoScalingConfiguration'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingConfiguration = this.autoScalingConfiguration;
+    return {
+      'AutoScalingConfiguration': autoScalingConfiguration,
+    };
+  }
 }
 
 class DeleteConnectionResponse {
@@ -2441,6 +2597,13 @@ class DeleteConnectionResponse {
           ? Connection.fromJson(json['Connection'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connection = this.connection;
+    return {
+      if (connection != null) 'Connection': connection,
+    };
   }
 }
 
@@ -2458,6 +2621,13 @@ class DeleteObservabilityConfigurationResponse {
       observabilityConfiguration: ObservabilityConfiguration.fromJson(
           json['ObservabilityConfiguration'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final observabilityConfiguration = this.observabilityConfiguration;
+    return {
+      'ObservabilityConfiguration': observabilityConfiguration,
+    };
   }
 }
 
@@ -2480,6 +2650,15 @@ class DeleteServiceResponse {
       service: Service.fromJson(json['Service'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    final service = this.service;
+    return {
+      'OperationId': operationId,
+      'Service': service,
+    };
+  }
 }
 
 class DeleteVpcConnectorResponse {
@@ -2495,6 +2674,13 @@ class DeleteVpcConnectorResponse {
       vpcConnector:
           VpcConnector.fromJson(json['VpcConnector'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpcConnector = this.vpcConnector;
+    return {
+      'VpcConnector': vpcConnector,
+    };
   }
 }
 
@@ -2512,6 +2698,13 @@ class DescribeAutoScalingConfigurationResponse {
       autoScalingConfiguration: AutoScalingConfiguration.fromJson(
           json['AutoScalingConfiguration'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingConfiguration = this.autoScalingConfiguration;
+    return {
+      'AutoScalingConfiguration': autoScalingConfiguration,
+    };
   }
 }
 
@@ -2550,6 +2743,19 @@ class DescribeCustomDomainsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customDomains = this.customDomains;
+    final dNSTarget = this.dNSTarget;
+    final serviceArn = this.serviceArn;
+    final nextToken = this.nextToken;
+    return {
+      'CustomDomains': customDomains,
+      'DNSTarget': dNSTarget,
+      'ServiceArn': serviceArn,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeObservabilityConfigurationResponse {
@@ -2567,6 +2773,13 @@ class DescribeObservabilityConfigurationResponse {
           json['ObservabilityConfiguration'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final observabilityConfiguration = this.observabilityConfiguration;
+    return {
+      'ObservabilityConfiguration': observabilityConfiguration,
+    };
+  }
 }
 
 class DescribeServiceResponse {
@@ -2581,6 +2794,13 @@ class DescribeServiceResponse {
     return DescribeServiceResponse(
       service: Service.fromJson(json['Service'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final service = this.service;
+    return {
+      'Service': service,
+    };
   }
 }
 
@@ -2597,6 +2817,13 @@ class DescribeVpcConnectorResponse {
       vpcConnector:
           VpcConnector.fromJson(json['VpcConnector'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpcConnector = this.vpcConnector;
+    return {
+      'VpcConnector': vpcConnector,
+    };
   }
 }
 
@@ -2624,6 +2851,17 @@ class DisassociateCustomDomainResponse {
       dNSTarget: json['DNSTarget'] as String,
       serviceArn: json['ServiceArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customDomain = this.customDomain;
+    final dNSTarget = this.dNSTarget;
+    final serviceArn = this.serviceArn;
+    return {
+      'CustomDomain': customDomain,
+      'DNSTarget': dNSTarget,
+      'ServiceArn': serviceArn,
+    };
   }
 }
 
@@ -3016,6 +3254,17 @@ class ListAutoScalingConfigurationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingConfigurationSummaryList =
+        this.autoScalingConfigurationSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      'AutoScalingConfigurationSummaryList':
+          autoScalingConfigurationSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListConnectionsResponse {
@@ -3040,6 +3289,15 @@ class ListConnectionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectionSummaryList = this.connectionSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      'ConnectionSummaryList': connectionSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3070,6 +3328,17 @@ class ListObservabilityConfigurationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final observabilityConfigurationSummaryList =
+        this.observabilityConfigurationSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      'ObservabilityConfigurationSummaryList':
+          observabilityConfigurationSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListOperationsResponse {
@@ -3093,6 +3362,16 @@ class ListOperationsResponse {
           .map((e) => OperationSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final operationSummaryList = this.operationSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (operationSummaryList != null)
+        'OperationSummaryList': operationSummaryList,
+    };
   }
 }
 
@@ -3118,6 +3397,15 @@ class ListServicesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceSummaryList = this.serviceSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      'ServiceSummaryList': serviceSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3134,6 +3422,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3158,6 +3453,15 @@ class ListVpcConnectorsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpcConnectors = this.vpcConnectors;
+    final nextToken = this.nextToken;
+    return {
+      'VpcConnectors': vpcConnectors,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3263,6 +3567,32 @@ class ObservabilityConfiguration {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final deletedAt = this.deletedAt;
+    final latest = this.latest;
+    final observabilityConfigurationArn = this.observabilityConfigurationArn;
+    final observabilityConfigurationName = this.observabilityConfigurationName;
+    final observabilityConfigurationRevision =
+        this.observabilityConfigurationRevision;
+    final status = this.status;
+    final traceConfiguration = this.traceConfiguration;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (deletedAt != null) 'DeletedAt': unixTimestampToJson(deletedAt),
+      if (latest != null) 'Latest': latest,
+      if (observabilityConfigurationArn != null)
+        'ObservabilityConfigurationArn': observabilityConfigurationArn,
+      if (observabilityConfigurationName != null)
+        'ObservabilityConfigurationName': observabilityConfigurationName,
+      if (observabilityConfigurationRevision != null)
+        'ObservabilityConfigurationRevision':
+            observabilityConfigurationRevision,
+      if (status != null) 'Status': status.toValue(),
+      if (traceConfiguration != null) 'TraceConfiguration': traceConfiguration,
+    };
+  }
 }
 
 enum ObservabilityConfigurationStatus {
@@ -3334,6 +3664,22 @@ class ObservabilityConfigurationSummary {
       observabilityConfigurationRevision:
           json['ObservabilityConfigurationRevision'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final observabilityConfigurationArn = this.observabilityConfigurationArn;
+    final observabilityConfigurationName = this.observabilityConfigurationName;
+    final observabilityConfigurationRevision =
+        this.observabilityConfigurationRevision;
+    return {
+      if (observabilityConfigurationArn != null)
+        'ObservabilityConfigurationArn': observabilityConfigurationArn,
+      if (observabilityConfigurationName != null)
+        'ObservabilityConfigurationName': observabilityConfigurationName,
+      if (observabilityConfigurationRevision != null)
+        'ObservabilityConfigurationRevision':
+            observabilityConfigurationRevision,
+    };
   }
 }
 
@@ -3437,6 +3783,25 @@ class OperationSummary {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endedAt = this.endedAt;
+    final id = this.id;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    final targetArn = this.targetArn;
+    final type = this.type;
+    final updatedAt = this.updatedAt;
+    return {
+      if (endedAt != null) 'EndedAt': unixTimestampToJson(endedAt),
+      if (id != null) 'Id': id,
+      if (startedAt != null) 'StartedAt': unixTimestampToJson(startedAt),
+      if (status != null) 'Status': status.toValue(),
+      if (targetArn != null) 'TargetArn': targetArn,
+      if (type != null) 'Type': type.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 enum OperationType {
@@ -3501,6 +3866,15 @@ class PauseServiceResponse {
       operationId: json['OperationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final service = this.service;
+    final operationId = this.operationId;
+    return {
+      'Service': service,
+      if (operationId != null) 'OperationId': operationId,
+    };
+  }
 }
 
 enum ProviderType {
@@ -3544,6 +3918,15 @@ class ResumeServiceResponse {
       service: Service.fromJson(json['Service'] as Map<String, dynamic>),
       operationId: json['OperationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final service = this.service;
+    final operationId = this.operationId;
+    return {
+      'Service': service,
+      if (operationId != null) 'OperationId': operationId,
+    };
   }
 }
 
@@ -3729,6 +4112,45 @@ class Service {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingConfigurationSummary =
+        this.autoScalingConfigurationSummary;
+    final createdAt = this.createdAt;
+    final instanceConfiguration = this.instanceConfiguration;
+    final networkConfiguration = this.networkConfiguration;
+    final serviceArn = this.serviceArn;
+    final serviceId = this.serviceId;
+    final serviceName = this.serviceName;
+    final serviceUrl = this.serviceUrl;
+    final sourceConfiguration = this.sourceConfiguration;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    final deletedAt = this.deletedAt;
+    final encryptionConfiguration = this.encryptionConfiguration;
+    final healthCheckConfiguration = this.healthCheckConfiguration;
+    final observabilityConfiguration = this.observabilityConfiguration;
+    return {
+      'AutoScalingConfigurationSummary': autoScalingConfigurationSummary,
+      'CreatedAt': unixTimestampToJson(createdAt),
+      'InstanceConfiguration': instanceConfiguration,
+      'NetworkConfiguration': networkConfiguration,
+      'ServiceArn': serviceArn,
+      'ServiceId': serviceId,
+      'ServiceName': serviceName,
+      'ServiceUrl': serviceUrl,
+      'SourceConfiguration': sourceConfiguration,
+      'Status': status.toValue(),
+      'UpdatedAt': unixTimestampToJson(updatedAt),
+      if (deletedAt != null) 'DeletedAt': unixTimestampToJson(deletedAt),
+      if (encryptionConfiguration != null)
+        'EncryptionConfiguration': encryptionConfiguration,
+      if (healthCheckConfiguration != null)
+        'HealthCheckConfiguration': healthCheckConfiguration,
+      if (observabilityConfiguration != null)
+        'ObservabilityConfiguration': observabilityConfiguration,
+    };
+  }
 }
 
 /// Describes the observability configuration of an App Runner service. These
@@ -3902,6 +4324,25 @@ class ServiceSummary {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final serviceArn = this.serviceArn;
+    final serviceId = this.serviceId;
+    final serviceName = this.serviceName;
+    final serviceUrl = this.serviceUrl;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (serviceArn != null) 'ServiceArn': serviceArn,
+      if (serviceId != null) 'ServiceId': serviceId,
+      if (serviceName != null) 'ServiceName': serviceName,
+      if (serviceUrl != null) 'ServiceUrl': serviceUrl,
+      if (status != null) 'Status': status.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 /// Identifies a version of code that App Runner refers to within a source code
@@ -4046,6 +4487,13 @@ class StartDeploymentResponse {
       operationId: json['OperationId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    return {
+      'OperationId': operationId,
+    };
+  }
 }
 
 /// Describes a tag that is applied to an App Runner resource. A tag is a
@@ -4082,6 +4530,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4136,6 +4588,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateServiceResponse {
@@ -4158,6 +4614,15 @@ class UpdateServiceResponse {
       operationId: json['OperationId'] as String,
       service: Service.fromJson(json['Service'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final operationId = this.operationId;
+    final service = this.service;
+    return {
+      'OperationId': operationId,
+      'Service': service,
+    };
   }
 }
 
@@ -4234,6 +4699,28 @@ class VpcConnector {
       vpcConnectorName: json['VpcConnectorName'] as String?,
       vpcConnectorRevision: json['VpcConnectorRevision'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final deletedAt = this.deletedAt;
+    final securityGroups = this.securityGroups;
+    final status = this.status;
+    final subnets = this.subnets;
+    final vpcConnectorArn = this.vpcConnectorArn;
+    final vpcConnectorName = this.vpcConnectorName;
+    final vpcConnectorRevision = this.vpcConnectorRevision;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (deletedAt != null) 'DeletedAt': unixTimestampToJson(deletedAt),
+      if (securityGroups != null) 'SecurityGroups': securityGroups,
+      if (status != null) 'Status': status.toValue(),
+      if (subnets != null) 'Subnets': subnets,
+      if (vpcConnectorArn != null) 'VpcConnectorArn': vpcConnectorArn,
+      if (vpcConnectorName != null) 'VpcConnectorName': vpcConnectorName,
+      if (vpcConnectorRevision != null)
+        'VpcConnectorRevision': vpcConnectorRevision,
+    };
   }
 }
 

@@ -7441,6 +7441,30 @@ class AgentContactReference {
       stateStartTimestamp: timeStampFromJson(json['StateStartTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentContactState = this.agentContactState;
+    final channel = this.channel;
+    final connectedToAgentTimestamp = this.connectedToAgentTimestamp;
+    final contactId = this.contactId;
+    final initiationMethod = this.initiationMethod;
+    final queue = this.queue;
+    final stateStartTimestamp = this.stateStartTimestamp;
+    return {
+      if (agentContactState != null)
+        'AgentContactState': agentContactState.toValue(),
+      if (channel != null) 'Channel': channel.toValue(),
+      if (connectedToAgentTimestamp != null)
+        'ConnectedToAgentTimestamp':
+            unixTimestampToJson(connectedToAgentTimestamp),
+      if (contactId != null) 'ContactId': contactId,
+      if (initiationMethod != null)
+        'InitiationMethod': initiationMethod.toValue(),
+      if (queue != null) 'Queue': queue,
+      if (stateStartTimestamp != null)
+        'StateStartTimestamp': unixTimestampToJson(stateStartTimestamp),
+    };
+  }
 }
 
 /// Information about the agent who accepted the contact.
@@ -7461,6 +7485,17 @@ class AgentInfo {
           timeStampFromJson(json['ConnectedToAgentTimestamp']),
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectedToAgentTimestamp = this.connectedToAgentTimestamp;
+    final id = this.id;
+    return {
+      if (connectedToAgentTimestamp != null)
+        'ConnectedToAgentTimestamp':
+            unixTimestampToJson(connectedToAgentTimestamp),
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -7513,6 +7548,27 @@ class AgentStatus {
       type: (json['Type'] as String?)?.toAgentStatusType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentStatusARN = this.agentStatusARN;
+    final agentStatusId = this.agentStatusId;
+    final description = this.description;
+    final displayOrder = this.displayOrder;
+    final name = this.name;
+    final state = this.state;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      if (agentStatusARN != null) 'AgentStatusARN': agentStatusARN,
+      if (agentStatusId != null) 'AgentStatusId': agentStatusId,
+      if (description != null) 'Description': description,
+      if (displayOrder != null) 'DisplayOrder': displayOrder,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Information about the agent's status.
@@ -7532,6 +7588,16 @@ class AgentStatusReference {
       statusArn: json['StatusArn'] as String?,
       statusStartTimestamp: timeStampFromJson(json['StatusStartTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final statusArn = this.statusArn;
+    final statusStartTimestamp = this.statusStartTimestamp;
+    return {
+      if (statusArn != null) 'StatusArn': statusArn,
+      if (statusStartTimestamp != null)
+        'StatusStartTimestamp': unixTimestampToJson(statusStartTimestamp),
+    };
   }
 }
 
@@ -7591,6 +7657,19 @@ class AgentStatusSummary {
       type: (json['Type'] as String?)?.toAgentStatusType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum AgentStatusType {
@@ -7640,6 +7719,7 @@ class AnswerMachineDetectionConfig {
     this.awaitAnswerMachinePrompt,
     this.enableAnswerMachineDetection,
   });
+
   Map<String, dynamic> toJson() {
     final awaitAnswerMachinePrompt = this.awaitAnswerMachinePrompt;
     final enableAnswerMachineDetection = this.enableAnswerMachineDetection;
@@ -7657,6 +7737,10 @@ class AssociateDefaultVocabularyResponse {
   factory AssociateDefaultVocabularyResponse.fromJson(Map<String, dynamic> _) {
     return AssociateDefaultVocabularyResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AssociateInstanceStorageConfigResponse {
@@ -7673,6 +7757,13 @@ class AssociateInstanceStorageConfigResponse {
       associationId: json['AssociationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    return {
+      if (associationId != null) 'AssociationId': associationId,
+    };
+  }
 }
 
 class AssociateSecurityKeyResponse {
@@ -7687,6 +7778,13 @@ class AssociateSecurityKeyResponse {
     return AssociateSecurityKeyResponse(
       associationId: json['AssociationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    return {
+      if (associationId != null) 'AssociationId': associationId,
+    };
   }
 }
 
@@ -7714,6 +7812,17 @@ class AttachmentReference {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final status = this.status;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// A toggle for an individual feature at the instance level.
@@ -7734,6 +7843,15 @@ class Attribute {
           (json['AttributeType'] as String?)?.toInstanceAttributeType(),
       value: json['Value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributeType = this.attributeType;
+    final value = this.value;
+    return {
+      if (attributeType != null) 'AttributeType': attributeType.toValue(),
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -7762,6 +7880,18 @@ class AvailableNumberSummary {
       phoneNumberType:
           (json['PhoneNumberType'] as String?)?.toPhoneNumberType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumber = this.phoneNumber;
+    final phoneNumberCountryCode = this.phoneNumberCountryCode;
+    final phoneNumberType = this.phoneNumberType;
+    return {
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (phoneNumberCountryCode != null)
+        'PhoneNumberCountryCode': phoneNumberCountryCode.toValue(),
+      if (phoneNumberType != null) 'PhoneNumberType': phoneNumberType.toValue(),
+    };
   }
 }
 
@@ -7810,6 +7940,7 @@ class ChatMessage {
     required this.content,
     required this.contentType,
   });
+
   Map<String, dynamic> toJson() {
     final content = this.content;
     final contentType = this.contentType;
@@ -7830,6 +7961,7 @@ class ChatStreamingConfiguration {
   ChatStreamingConfiguration({
     required this.streamingEndpointArn,
   });
+
   Map<String, dynamic> toJson() {
     final streamingEndpointArn = this.streamingEndpointArn;
     return {
@@ -7854,6 +7986,15 @@ class ClaimPhoneNumberResponse {
       phoneNumberArn: json['PhoneNumberArn'] as String?,
       phoneNumberId: json['PhoneNumberId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumberArn = this.phoneNumberArn;
+    final phoneNumberId = this.phoneNumberId;
+    return {
+      if (phoneNumberArn != null) 'PhoneNumberArn': phoneNumberArn,
+      if (phoneNumberId != null) 'PhoneNumberId': phoneNumberId,
+    };
   }
 }
 
@@ -7918,6 +8059,31 @@ class ClaimedPhoneNumberSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
       targetArn: json['TargetArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumber = this.phoneNumber;
+    final phoneNumberArn = this.phoneNumberArn;
+    final phoneNumberCountryCode = this.phoneNumberCountryCode;
+    final phoneNumberDescription = this.phoneNumberDescription;
+    final phoneNumberId = this.phoneNumberId;
+    final phoneNumberStatus = this.phoneNumberStatus;
+    final phoneNumberType = this.phoneNumberType;
+    final tags = this.tags;
+    final targetArn = this.targetArn;
+    return {
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (phoneNumberArn != null) 'PhoneNumberArn': phoneNumberArn,
+      if (phoneNumberCountryCode != null)
+        'PhoneNumberCountryCode': phoneNumberCountryCode.toValue(),
+      if (phoneNumberDescription != null)
+        'PhoneNumberDescription': phoneNumberDescription,
+      if (phoneNumberId != null) 'PhoneNumberId': phoneNumberId,
+      if (phoneNumberStatus != null) 'PhoneNumberStatus': phoneNumberStatus,
+      if (phoneNumberType != null) 'PhoneNumberType': phoneNumberType.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (targetArn != null) 'TargetArn': targetArn,
+    };
   }
 }
 
@@ -8036,6 +8202,44 @@ class Contact {
       scheduledTimestamp: timeStampFromJson(json['ScheduledTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentInfo = this.agentInfo;
+    final arn = this.arn;
+    final channel = this.channel;
+    final description = this.description;
+    final disconnectTimestamp = this.disconnectTimestamp;
+    final id = this.id;
+    final initialContactId = this.initialContactId;
+    final initiationMethod = this.initiationMethod;
+    final initiationTimestamp = this.initiationTimestamp;
+    final lastUpdateTimestamp = this.lastUpdateTimestamp;
+    final name = this.name;
+    final previousContactId = this.previousContactId;
+    final queueInfo = this.queueInfo;
+    final scheduledTimestamp = this.scheduledTimestamp;
+    return {
+      if (agentInfo != null) 'AgentInfo': agentInfo,
+      if (arn != null) 'Arn': arn,
+      if (channel != null) 'Channel': channel.toValue(),
+      if (description != null) 'Description': description,
+      if (disconnectTimestamp != null)
+        'DisconnectTimestamp': unixTimestampToJson(disconnectTimestamp),
+      if (id != null) 'Id': id,
+      if (initialContactId != null) 'InitialContactId': initialContactId,
+      if (initiationMethod != null)
+        'InitiationMethod': initiationMethod.toValue(),
+      if (initiationTimestamp != null)
+        'InitiationTimestamp': unixTimestampToJson(initiationTimestamp),
+      if (lastUpdateTimestamp != null)
+        'LastUpdateTimestamp': unixTimestampToJson(lastUpdateTimestamp),
+      if (name != null) 'Name': name,
+      if (previousContactId != null) 'PreviousContactId': previousContactId,
+      if (queueInfo != null) 'QueueInfo': queueInfo,
+      if (scheduledTimestamp != null)
+        'ScheduledTimestamp': unixTimestampToJson(scheduledTimestamp),
+    };
+  }
 }
 
 /// Filters user data based on the contact information that is associated to the
@@ -8051,6 +8255,7 @@ class ContactFilter {
   ContactFilter({
     this.contactStates,
   });
+
   Map<String, dynamic> toJson() {
     final contactStates = this.contactStates;
     return {
@@ -8112,6 +8317,27 @@ class ContactFlow {
       type: (json['Type'] as String?)?.toContactFlowType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final content = this.content;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final state = this.state;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (content != null) 'Content': content,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Contains information about a contact flow module.
@@ -8162,6 +8388,27 @@ class ContactFlowModule {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final content = this.content;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final state = this.state;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (content != null) 'Content': content,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -8249,6 +8496,19 @@ class ContactFlowModuleSummary {
       state: (json['State'] as String?)?.toContactFlowModuleState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 enum ContactFlowState {
@@ -8317,6 +8577,22 @@ class ContactFlowSummary {
       id: json['Id'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final contactFlowState = this.contactFlowState;
+    final contactFlowType = this.contactFlowType;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (contactFlowState != null)
+        'ContactFlowState': contactFlowState.toValue(),
+      if (contactFlowType != null) 'ContactFlowType': contactFlowType.toValue(),
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -8525,6 +8801,7 @@ class ControlPlaneTagFilter {
     this.orConditions,
     this.tagCondition,
   });
+
   Map<String, dynamic> toJson() {
     final andConditions = this.andConditions;
     final orConditions = this.orConditions;
@@ -8554,6 +8831,15 @@ class CreateAgentStatusResponse {
       agentStatusId: json['AgentStatusId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentStatusARN = this.agentStatusARN;
+    final agentStatusId = this.agentStatusId;
+    return {
+      if (agentStatusARN != null) 'AgentStatusARN': agentStatusARN,
+      if (agentStatusId != null) 'AgentStatusId': agentStatusId,
+    };
+  }
 }
 
 class CreateContactFlowModuleResponse {
@@ -8572,6 +8858,15 @@ class CreateContactFlowModuleResponse {
       arn: json['Arn'] as String?,
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -8592,6 +8887,15 @@ class CreateContactFlowResponse {
       contactFlowId: json['ContactFlowId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactFlowArn = this.contactFlowArn;
+    final contactFlowId = this.contactFlowId;
+    return {
+      if (contactFlowArn != null) 'ContactFlowArn': contactFlowArn,
+      if (contactFlowId != null) 'ContactFlowId': contactFlowId,
+    };
+  }
 }
 
 class CreateHoursOfOperationResponse {
@@ -8611,6 +8915,16 @@ class CreateHoursOfOperationResponse {
       hoursOfOperationId: json['HoursOfOperationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hoursOfOperationArn = this.hoursOfOperationArn;
+    final hoursOfOperationId = this.hoursOfOperationId;
+    return {
+      if (hoursOfOperationArn != null)
+        'HoursOfOperationArn': hoursOfOperationArn,
+      if (hoursOfOperationId != null) 'HoursOfOperationId': hoursOfOperationId,
+    };
+  }
 }
 
 class CreateInstanceResponse {
@@ -8629,6 +8943,15 @@ class CreateInstanceResponse {
       arn: json['Arn'] as String?,
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -8650,6 +8973,17 @@ class CreateIntegrationAssociationResponse {
       integrationAssociationId: json['IntegrationAssociationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final integrationAssociationArn = this.integrationAssociationArn;
+    final integrationAssociationId = this.integrationAssociationId;
+    return {
+      if (integrationAssociationArn != null)
+        'IntegrationAssociationArn': integrationAssociationArn,
+      if (integrationAssociationId != null)
+        'IntegrationAssociationId': integrationAssociationId,
+    };
+  }
 }
 
 class CreateQueueResponse {
@@ -8668,6 +9002,15 @@ class CreateQueueResponse {
       queueArn: json['QueueArn'] as String?,
       queueId: json['QueueId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queueArn = this.queueArn;
+    final queueId = this.queueId;
+    return {
+      if (queueArn != null) 'QueueArn': queueArn,
+      if (queueId != null) 'QueueId': queueId,
+    };
   }
 }
 
@@ -8688,6 +9031,15 @@ class CreateQuickConnectResponse {
       quickConnectId: json['QuickConnectId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final quickConnectARN = this.quickConnectARN;
+    final quickConnectId = this.quickConnectId;
+    return {
+      if (quickConnectARN != null) 'QuickConnectARN': quickConnectARN,
+      if (quickConnectId != null) 'QuickConnectId': quickConnectId,
+    };
+  }
 }
 
 class CreateRoutingProfileResponse {
@@ -8706,6 +9058,15 @@ class CreateRoutingProfileResponse {
       routingProfileArn: json['RoutingProfileArn'] as String?,
       routingProfileId: json['RoutingProfileId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final routingProfileArn = this.routingProfileArn;
+    final routingProfileId = this.routingProfileId;
+    return {
+      if (routingProfileArn != null) 'RoutingProfileArn': routingProfileArn,
+      if (routingProfileId != null) 'RoutingProfileId': routingProfileId,
+    };
   }
 }
 
@@ -8726,6 +9087,15 @@ class CreateSecurityProfileResponse {
       securityProfileId: json['SecurityProfileId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final securityProfileArn = this.securityProfileArn;
+    final securityProfileId = this.securityProfileId;
+    return {
+      if (securityProfileArn != null) 'SecurityProfileArn': securityProfileArn,
+      if (securityProfileId != null) 'SecurityProfileId': securityProfileId,
+    };
+  }
 }
 
 class CreateTaskTemplateResponse {
@@ -8744,6 +9114,15 @@ class CreateTaskTemplateResponse {
       arn: json['Arn'] as String,
       id: json['Id'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      'Arn': arn,
+      'Id': id,
+    };
   }
 }
 
@@ -8764,6 +9143,15 @@ class CreateUseCaseResponse {
       useCaseId: json['UseCaseId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final useCaseArn = this.useCaseArn;
+    final useCaseId = this.useCaseId;
+    return {
+      if (useCaseArn != null) 'UseCaseArn': useCaseArn,
+      if (useCaseId != null) 'UseCaseId': useCaseId,
+    };
+  }
 }
 
 class CreateUserHierarchyGroupResponse {
@@ -8783,6 +9171,15 @@ class CreateUserHierarchyGroupResponse {
       hierarchyGroupId: json['HierarchyGroupId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hierarchyGroupArn = this.hierarchyGroupArn;
+    final hierarchyGroupId = this.hierarchyGroupId;
+    return {
+      if (hierarchyGroupArn != null) 'HierarchyGroupArn': hierarchyGroupArn,
+      if (hierarchyGroupId != null) 'HierarchyGroupId': hierarchyGroupId,
+    };
+  }
 }
 
 class CreateUserResponse {
@@ -8801,6 +9198,15 @@ class CreateUserResponse {
       userArn: json['UserArn'] as String?,
       userId: json['UserId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userArn = this.userArn;
+    final userId = this.userId;
+    return {
+      if (userArn != null) 'UserArn': userArn,
+      if (userId != null) 'UserId': userId,
+    };
   }
 }
 
@@ -8825,6 +9231,17 @@ class CreateVocabularyResponse {
       vocabularyArn: json['VocabularyArn'] as String,
       vocabularyId: json['VocabularyId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final vocabularyArn = this.vocabularyArn;
+    final vocabularyId = this.vocabularyId;
+    return {
+      'State': state.toValue(),
+      'VocabularyArn': vocabularyArn,
+      'VocabularyId': vocabularyId,
+    };
   }
 }
 
@@ -8856,6 +9273,21 @@ class Credentials {
       refreshToken: json['RefreshToken'] as String?,
       refreshTokenExpiration: timeStampFromJson(json['RefreshTokenExpiration']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessToken = this.accessToken;
+    final accessTokenExpiration = this.accessTokenExpiration;
+    final refreshToken = this.refreshToken;
+    final refreshTokenExpiration = this.refreshTokenExpiration;
+    return {
+      if (accessToken != null) 'AccessToken': accessToken,
+      if (accessTokenExpiration != null)
+        'AccessTokenExpiration': unixTimestampToJson(accessTokenExpiration),
+      if (refreshToken != null) 'RefreshToken': refreshToken,
+      if (refreshTokenExpiration != null)
+        'RefreshTokenExpiration': unixTimestampToJson(refreshTokenExpiration),
+    };
   }
 }
 
@@ -8910,6 +9342,15 @@ class CurrentMetricData {
           : null,
       value: json['Value'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metric = this.metric;
+    final value = this.value;
+    return {
+      if (metric != null) 'Metric': metric,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -9020,6 +9461,15 @@ class CurrentMetricResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final collections = this.collections;
+    final dimensions = this.dimensions;
+    return {
+      if (collections != null) 'Collections': collections,
+      if (dimensions != null) 'Dimensions': dimensions,
+    };
+  }
 }
 
 /// Information about a reference when the <code>referenceType</code> is
@@ -9040,6 +9490,15 @@ class DateReference {
       name: json['Name'] as String?,
       value: json['Value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -9075,6 +9534,19 @@ class DefaultVocabulary {
       vocabularyName: json['VocabularyName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    final languageCode = this.languageCode;
+    final vocabularyId = this.vocabularyId;
+    final vocabularyName = this.vocabularyName;
+    return {
+      'InstanceId': instanceId,
+      'LanguageCode': languageCode.toValue(),
+      'VocabularyId': vocabularyId,
+      'VocabularyName': vocabularyName,
+    };
+  }
 }
 
 class DeleteContactFlowModuleResponse {
@@ -9082,12 +9554,20 @@ class DeleteContactFlowModuleResponse {
   factory DeleteContactFlowModuleResponse.fromJson(Map<String, dynamic> _) {
     return DeleteContactFlowModuleResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteTaskTemplateResponse {
   DeleteTaskTemplateResponse();
   factory DeleteTaskTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTaskTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -9113,6 +9593,17 @@ class DeleteVocabularyResponse {
       vocabularyId: json['VocabularyId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final vocabularyArn = this.vocabularyArn;
+    final vocabularyId = this.vocabularyId;
+    return {
+      'State': state.toValue(),
+      'VocabularyArn': vocabularyArn,
+      'VocabularyId': vocabularyId,
+    };
+  }
 }
 
 class DescribeAgentStatusResponse {
@@ -9128,6 +9619,13 @@ class DescribeAgentStatusResponse {
           ? AgentStatus.fromJson(json['AgentStatus'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final agentStatus = this.agentStatus;
+    return {
+      if (agentStatus != null) 'AgentStatus': agentStatus,
+    };
   }
 }
 
@@ -9147,6 +9645,13 @@ class DescribeContactFlowModuleResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactFlowModule = this.contactFlowModule;
+    return {
+      if (contactFlowModule != null) 'ContactFlowModule': contactFlowModule,
+    };
+  }
 }
 
 class DescribeContactFlowResponse {
@@ -9163,6 +9668,13 @@ class DescribeContactFlowResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactFlow = this.contactFlow;
+    return {
+      if (contactFlow != null) 'ContactFlow': contactFlow,
+    };
+  }
 }
 
 class DescribeContactResponse {
@@ -9178,6 +9690,13 @@ class DescribeContactResponse {
           ? Contact.fromJson(json['Contact'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contact = this.contact;
+    return {
+      if (contact != null) 'Contact': contact,
+    };
   }
 }
 
@@ -9196,6 +9715,13 @@ class DescribeHoursOfOperationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hoursOfOperation = this.hoursOfOperation;
+    return {
+      if (hoursOfOperation != null) 'HoursOfOperation': hoursOfOperation,
+    };
+  }
 }
 
 class DescribeInstanceAttributeResponse {
@@ -9213,6 +9739,13 @@ class DescribeInstanceAttributeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attribute = this.attribute;
+    return {
+      if (attribute != null) 'Attribute': attribute,
+    };
+  }
 }
 
 class DescribeInstanceResponse {
@@ -9228,6 +9761,13 @@ class DescribeInstanceResponse {
           ? Instance.fromJson(json['Instance'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instance = this.instance;
+    return {
+      if (instance != null) 'Instance': instance,
+    };
   }
 }
 
@@ -9247,6 +9787,13 @@ class DescribeInstanceStorageConfigResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final storageConfig = this.storageConfig;
+    return {
+      if (storageConfig != null) 'StorageConfig': storageConfig,
+    };
+  }
 }
 
 class DescribePhoneNumberResponse {
@@ -9265,6 +9812,14 @@ class DescribePhoneNumberResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final claimedPhoneNumberSummary = this.claimedPhoneNumberSummary;
+    return {
+      if (claimedPhoneNumberSummary != null)
+        'ClaimedPhoneNumberSummary': claimedPhoneNumberSummary,
+    };
+  }
 }
 
 class DescribeQueueResponse {
@@ -9281,6 +9836,13 @@ class DescribeQueueResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final queue = this.queue;
+    return {
+      if (queue != null) 'Queue': queue,
+    };
+  }
 }
 
 class DescribeQuickConnectResponse {
@@ -9296,6 +9858,13 @@ class DescribeQuickConnectResponse {
           ? QuickConnect.fromJson(json['QuickConnect'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quickConnect = this.quickConnect;
+    return {
+      if (quickConnect != null) 'QuickConnect': quickConnect,
+    };
   }
 }
 
@@ -9314,6 +9883,13 @@ class DescribeRoutingProfileResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final routingProfile = this.routingProfile;
+    return {
+      if (routingProfile != null) 'RoutingProfile': routingProfile,
+    };
+  }
 }
 
 class DescribeSecurityProfileResponse {
@@ -9330,6 +9906,13 @@ class DescribeSecurityProfileResponse {
               json['SecurityProfile'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityProfile = this.securityProfile;
+    return {
+      if (securityProfile != null) 'SecurityProfile': securityProfile,
+    };
   }
 }
 
@@ -9349,6 +9932,13 @@ class DescribeUserHierarchyGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hierarchyGroup = this.hierarchyGroup;
+    return {
+      if (hierarchyGroup != null) 'HierarchyGroup': hierarchyGroup,
+    };
+  }
 }
 
 class DescribeUserHierarchyStructureResponse {
@@ -9367,6 +9957,13 @@ class DescribeUserHierarchyStructureResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hierarchyStructure = this.hierarchyStructure;
+    return {
+      if (hierarchyStructure != null) 'HierarchyStructure': hierarchyStructure,
+    };
+  }
 }
 
 class DescribeUserResponse {
@@ -9382,6 +9979,13 @@ class DescribeUserResponse {
           ? User.fromJson(json['User'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
   }
 }
 
@@ -9399,6 +10003,13 @@ class DescribeVocabularyResponse {
       vocabulary:
           Vocabulary.fromJson(json['Vocabulary'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vocabulary = this.vocabulary;
+    return {
+      'Vocabulary': vocabulary,
+    };
   }
 }
 
@@ -9421,6 +10032,15 @@ class Dimensions {
           ? QueueReference.fromJson(json['Queue'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channel = this.channel;
+    final queue = this.queue;
+    return {
+      if (channel != null) 'Channel': channel.toValue(),
+      if (queue != null) 'Queue': queue,
+    };
   }
 }
 
@@ -9475,6 +10095,15 @@ class EmailReference {
       name: json['Name'] as String?,
       value: json['Value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -9548,6 +10177,7 @@ class Filters {
     this.channels,
     this.queues,
   });
+
   Map<String, dynamic> toJson() {
     final channels = this.channels;
     final queues = this.queues;
@@ -9571,6 +10201,13 @@ class GetContactAttributesResponse {
       attributes: (json['Attributes'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
   }
 }
 
@@ -9604,6 +10241,18 @@ class GetCurrentMetricDataResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSnapshotTime = this.dataSnapshotTime;
+    final metricResults = this.metricResults;
+    final nextToken = this.nextToken;
+    return {
+      if (dataSnapshotTime != null)
+        'DataSnapshotTime': unixTimestampToJson(dataSnapshotTime),
+      if (metricResults != null) 'MetricResults': metricResults,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetCurrentUserDataResponse {
@@ -9627,6 +10276,15 @@ class GetCurrentUserDataResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final userDataList = this.userDataList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (userDataList != null) 'UserDataList': userDataList,
+    };
+  }
 }
 
 class GetFederationTokenResponse {
@@ -9642,6 +10300,13 @@ class GetFederationTokenResponse {
           ? Credentials.fromJson(json['Credentials'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final credentials = this.credentials;
+    return {
+      if (credentials != null) 'Credentials': credentials,
+    };
   }
 }
 
@@ -9672,6 +10337,15 @@ class GetMetricDataResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricResults = this.metricResults;
+    final nextToken = this.nextToken;
+    return {
+      if (metricResults != null) 'MetricResults': metricResults,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -9763,6 +10437,38 @@ class GetTaskTemplateResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    final constraints = this.constraints;
+    final contactFlowId = this.contactFlowId;
+    final createdTime = this.createdTime;
+    final defaults = this.defaults;
+    final description = this.description;
+    final fields = this.fields;
+    final instanceId = this.instanceId;
+    final lastModifiedTime = this.lastModifiedTime;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      'Id': id,
+      'Name': name,
+      if (constraints != null) 'Constraints': constraints,
+      if (contactFlowId != null) 'ContactFlowId': contactFlowId,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (defaults != null) 'Defaults': defaults,
+      if (description != null) 'Description': description,
+      if (fields != null) 'Fields': fields,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 enum Grouping {
@@ -9835,6 +10541,23 @@ class HierarchyGroup {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final hierarchyPath = this.hierarchyPath;
+    final id = this.id;
+    final levelId = this.levelId;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (hierarchyPath != null) 'HierarchyPath': hierarchyPath,
+      if (id != null) 'Id': id,
+      if (levelId != null) 'LevelId': levelId,
+      if (name != null) 'Name': name,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// A leaf node condition which can be used to specify a hierarchy group
@@ -9850,6 +10573,7 @@ class HierarchyGroupCondition {
     this.hierarchyGroupMatchType,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final hierarchyGroupMatchType = this.hierarchyGroupMatchType;
     final value = this.value;
@@ -9912,6 +10636,17 @@ class HierarchyGroupSummary {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Information about the hierarchy group.
@@ -9931,6 +10666,15 @@ class HierarchyGroupSummaryReference {
       arn: json['Arn'] as String?,
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -9957,6 +10701,17 @@ class HierarchyLevel {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Contains information about the hierarchy level to update.
@@ -9967,6 +10722,7 @@ class HierarchyLevelUpdate {
   HierarchyLevelUpdate({
     required this.name,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     return {
@@ -10023,6 +10779,21 @@ class HierarchyPath {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final levelFive = this.levelFive;
+    final levelFour = this.levelFour;
+    final levelOne = this.levelOne;
+    final levelThree = this.levelThree;
+    final levelTwo = this.levelTwo;
+    return {
+      if (levelFive != null) 'LevelFive': levelFive,
+      if (levelFour != null) 'LevelFour': levelFour,
+      if (levelOne != null) 'LevelOne': levelOne,
+      if (levelThree != null) 'LevelThree': levelThree,
+      if (levelTwo != null) 'LevelTwo': levelTwo,
+    };
+  }
 }
 
 /// Information about the levels in the hierarchy group.
@@ -10073,6 +10844,21 @@ class HierarchyPathReference {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final levelFive = this.levelFive;
+    final levelFour = this.levelFour;
+    final levelOne = this.levelOne;
+    final levelThree = this.levelThree;
+    final levelTwo = this.levelTwo;
+    return {
+      if (levelFive != null) 'LevelFive': levelFive,
+      if (levelFour != null) 'LevelFour': levelFour,
+      if (levelOne != null) 'LevelOne': levelOne,
+      if (levelThree != null) 'LevelThree': levelThree,
+      if (levelTwo != null) 'LevelTwo': levelTwo,
+    };
+  }
 }
 
 /// Contains information about a hierarchy structure.
@@ -10118,6 +10904,21 @@ class HierarchyStructure {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final levelFive = this.levelFive;
+    final levelFour = this.levelFour;
+    final levelOne = this.levelOne;
+    final levelThree = this.levelThree;
+    final levelTwo = this.levelTwo;
+    return {
+      if (levelFive != null) 'LevelFive': levelFive,
+      if (levelFour != null) 'LevelFour': levelFour,
+      if (levelOne != null) 'LevelOne': levelOne,
+      if (levelThree != null) 'LevelThree': levelThree,
+      if (levelTwo != null) 'LevelTwo': levelTwo,
+    };
+  }
 }
 
 /// Contains information about the level hierarchy to update.
@@ -10144,6 +10945,7 @@ class HierarchyStructureUpdate {
     this.levelThree,
     this.levelTwo,
   });
+
   Map<String, dynamic> toJson() {
     final levelFive = this.levelFive;
     final levelFour = this.levelFour;
@@ -10227,6 +11029,15 @@ class HistoricalMetricData {
           : null,
       value: json['Value'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metric = this.metric;
+    final value = this.value;
+    return {
+      if (metric != null) 'Metric': metric,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -10397,6 +11208,15 @@ class HistoricalMetricResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final collections = this.collections;
+    final dimensions = this.dimensions;
+    return {
+      if (collections != null) 'Collections': collections,
+      if (dimensions != null) 'Dimensions': dimensions,
+    };
+  }
 }
 
 /// Information about of the hours of operation.
@@ -10446,6 +11266,26 @@ class HoursOfOperation {
           ?.map((k, e) => MapEntry(k, e as String)),
       timeZone: json['TimeZone'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final config = this.config;
+    final description = this.description;
+    final hoursOfOperationArn = this.hoursOfOperationArn;
+    final hoursOfOperationId = this.hoursOfOperationId;
+    final name = this.name;
+    final tags = this.tags;
+    final timeZone = this.timeZone;
+    return {
+      if (config != null) 'Config': config,
+      if (description != null) 'Description': description,
+      if (hoursOfOperationArn != null)
+        'HoursOfOperationArn': hoursOfOperationArn,
+      if (hoursOfOperationId != null) 'HoursOfOperationId': hoursOfOperationId,
+      if (name != null) 'Name': name,
+      if (tags != null) 'Tags': tags,
+      if (timeZone != null) 'TimeZone': timeZone,
+    };
   }
 }
 
@@ -10563,6 +11403,17 @@ class HoursOfOperationSummary {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// The start time or end time for an hours of operation.
@@ -10656,6 +11507,34 @@ class Instance {
               json['StatusReason'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final id = this.id;
+    final identityManagementType = this.identityManagementType;
+    final inboundCallsEnabled = this.inboundCallsEnabled;
+    final instanceAlias = this.instanceAlias;
+    final instanceStatus = this.instanceStatus;
+    final outboundCallsEnabled = this.outboundCallsEnabled;
+    final serviceRole = this.serviceRole;
+    final statusReason = this.statusReason;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (id != null) 'Id': id,
+      if (identityManagementType != null)
+        'IdentityManagementType': identityManagementType.toValue(),
+      if (inboundCallsEnabled != null)
+        'InboundCallsEnabled': inboundCallsEnabled,
+      if (instanceAlias != null) 'InstanceAlias': instanceAlias,
+      if (instanceStatus != null) 'InstanceStatus': instanceStatus.toValue(),
+      if (outboundCallsEnabled != null)
+        'OutboundCallsEnabled': outboundCallsEnabled,
+      if (serviceRole != null) 'ServiceRole': serviceRole,
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
   }
 }
 
@@ -10767,6 +11646,13 @@ class InstanceStatusReason {
     return InstanceStatusReason(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -10950,6 +11836,32 @@ class InstanceSummary {
       serviceRole: json['ServiceRole'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final id = this.id;
+    final identityManagementType = this.identityManagementType;
+    final inboundCallsEnabled = this.inboundCallsEnabled;
+    final instanceAlias = this.instanceAlias;
+    final instanceStatus = this.instanceStatus;
+    final outboundCallsEnabled = this.outboundCallsEnabled;
+    final serviceRole = this.serviceRole;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (id != null) 'Id': id,
+      if (identityManagementType != null)
+        'IdentityManagementType': identityManagementType.toValue(),
+      if (inboundCallsEnabled != null)
+        'InboundCallsEnabled': inboundCallsEnabled,
+      if (instanceAlias != null) 'InstanceAlias': instanceAlias,
+      if (instanceStatus != null) 'InstanceStatus': instanceStatus.toValue(),
+      if (outboundCallsEnabled != null)
+        'OutboundCallsEnabled': outboundCallsEnabled,
+      if (serviceRole != null) 'ServiceRole': serviceRole,
+    };
+  }
 }
 
 /// Contains summary information about the associated AppIntegrations.
@@ -11001,6 +11913,31 @@ class IntegrationAssociationSummary {
       sourceApplicationUrl: json['SourceApplicationUrl'] as String?,
       sourceType: (json['SourceType'] as String?)?.toSourceType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    final integrationArn = this.integrationArn;
+    final integrationAssociationArn = this.integrationAssociationArn;
+    final integrationAssociationId = this.integrationAssociationId;
+    final integrationType = this.integrationType;
+    final sourceApplicationName = this.sourceApplicationName;
+    final sourceApplicationUrl = this.sourceApplicationUrl;
+    final sourceType = this.sourceType;
+    return {
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (integrationArn != null) 'IntegrationArn': integrationArn,
+      if (integrationAssociationArn != null)
+        'IntegrationAssociationArn': integrationAssociationArn,
+      if (integrationAssociationId != null)
+        'IntegrationAssociationId': integrationAssociationId,
+      if (integrationType != null) 'IntegrationType': integrationType.toValue(),
+      if (sourceApplicationName != null)
+        'SourceApplicationName': sourceApplicationName,
+      if (sourceApplicationUrl != null)
+        'SourceApplicationUrl': sourceApplicationUrl,
+      if (sourceType != null) 'SourceType': sourceType.toValue(),
+    };
   }
 }
 
@@ -11206,6 +12143,15 @@ class LexBotConfig {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lexBot = this.lexBot;
+    final lexV2Bot = this.lexV2Bot;
+    return {
+      if (lexBot != null) 'LexBot': lexBot,
+      if (lexV2Bot != null) 'LexV2Bot': lexV2Bot,
+    };
+  }
 }
 
 /// Configuration information of an Amazon Lex V2 bot.
@@ -11279,6 +12225,16 @@ class ListAgentStatusResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentStatusSummaryList = this.agentStatusSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (agentStatusSummaryList != null)
+        'AgentStatusSummaryList': agentStatusSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListApprovedOriginsResponse {
@@ -11301,6 +12257,15 @@ class ListApprovedOriginsResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final origins = this.origins;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (origins != null) 'Origins': origins,
+    };
   }
 }
 
@@ -11325,6 +12290,15 @@ class ListBotsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lexBots = this.lexBots;
+    final nextToken = this.nextToken;
+    return {
+      if (lexBots != null) 'LexBots': lexBots,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -11351,6 +12325,16 @@ class ListContactFlowModulesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactFlowModulesSummaryList = this.contactFlowModulesSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (contactFlowModulesSummaryList != null)
+        'ContactFlowModulesSummaryList': contactFlowModulesSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListContactFlowsResponse {
@@ -11373,6 +12357,16 @@ class ListContactFlowsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contactFlowSummaryList = this.contactFlowSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (contactFlowSummaryList != null)
+        'ContactFlowSummaryList': contactFlowSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -11400,6 +12394,16 @@ class ListContactReferencesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final referenceSummaryList = this.referenceSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (referenceSummaryList != null)
+        'ReferenceSummaryList': referenceSummaryList,
+    };
+  }
 }
 
 class ListDefaultVocabulariesResponse {
@@ -11422,6 +12426,15 @@ class ListDefaultVocabulariesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final defaultVocabularyList = this.defaultVocabularyList;
+    final nextToken = this.nextToken;
+    return {
+      'DefaultVocabularyList': defaultVocabularyList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -11448,6 +12461,16 @@ class ListHoursOfOperationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hoursOfOperationSummaryList = this.hoursOfOperationSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (hoursOfOperationSummaryList != null)
+        'HoursOfOperationSummaryList': hoursOfOperationSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListInstanceAttributesResponse {
@@ -11470,6 +12493,15 @@ class ListInstanceAttributesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final nextToken = this.nextToken;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -11495,6 +12527,15 @@ class ListInstanceStorageConfigsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final storageConfigs = this.storageConfigs;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (storageConfigs != null) 'StorageConfigs': storageConfigs,
+    };
+  }
 }
 
 class ListInstancesResponse {
@@ -11517,6 +12558,16 @@ class ListInstancesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceSummaryList = this.instanceSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (instanceSummaryList != null)
+        'InstanceSummaryList': instanceSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -11544,6 +12595,17 @@ class ListIntegrationAssociationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final integrationAssociationSummaryList =
+        this.integrationAssociationSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (integrationAssociationSummaryList != null)
+        'IntegrationAssociationSummaryList': integrationAssociationSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListLambdaFunctionsResponse {
@@ -11566,6 +12628,15 @@ class ListLambdaFunctionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lambdaFunctions = this.lambdaFunctions;
+    final nextToken = this.nextToken;
+    return {
+      if (lambdaFunctions != null) 'LambdaFunctions': lambdaFunctions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -11591,6 +12662,15 @@ class ListLexBotsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lexBots = this.lexBots;
+    final nextToken = this.nextToken;
+    return {
+      if (lexBots != null) 'LexBots': lexBots,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListPhoneNumbersResponse {
@@ -11613,6 +12693,16 @@ class ListPhoneNumbersResponse {
           .map((e) => PhoneNumberSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final phoneNumberSummaryList = this.phoneNumberSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (phoneNumberSummaryList != null)
+        'PhoneNumberSummaryList': phoneNumberSummaryList,
+    };
   }
 }
 
@@ -11659,6 +12749,24 @@ class ListPhoneNumbersSummary {
       targetArn: json['TargetArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumber = this.phoneNumber;
+    final phoneNumberArn = this.phoneNumberArn;
+    final phoneNumberCountryCode = this.phoneNumberCountryCode;
+    final phoneNumberId = this.phoneNumberId;
+    final phoneNumberType = this.phoneNumberType;
+    final targetArn = this.targetArn;
+    return {
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (phoneNumberArn != null) 'PhoneNumberArn': phoneNumberArn,
+      if (phoneNumberCountryCode != null)
+        'PhoneNumberCountryCode': phoneNumberCountryCode.toValue(),
+      if (phoneNumberId != null) 'PhoneNumberId': phoneNumberId,
+      if (phoneNumberType != null) 'PhoneNumberType': phoneNumberType.toValue(),
+      if (targetArn != null) 'TargetArn': targetArn,
+    };
+  }
 }
 
 class ListPhoneNumbersV2Response {
@@ -11685,6 +12793,16 @@ class ListPhoneNumbersV2Response {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final listPhoneNumbersSummaryList = this.listPhoneNumbersSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (listPhoneNumbersSummaryList != null)
+        'ListPhoneNumbersSummaryList': listPhoneNumbersSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListPromptsResponse {
@@ -11707,6 +12825,15 @@ class ListPromptsResponse {
           .map((e) => PromptSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final promptSummaryList = this.promptSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (promptSummaryList != null) 'PromptSummaryList': promptSummaryList,
+    };
   }
 }
 
@@ -11731,6 +12858,16 @@ class ListQueueQuickConnectsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final quickConnectSummaryList = this.quickConnectSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (quickConnectSummaryList != null)
+        'QuickConnectSummaryList': quickConnectSummaryList,
+    };
+  }
 }
 
 class ListQueuesResponse {
@@ -11754,6 +12891,15 @@ class ListQueuesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final queueSummaryList = this.queueSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (queueSummaryList != null) 'QueueSummaryList': queueSummaryList,
+    };
+  }
 }
 
 class ListQuickConnectsResponse {
@@ -11776,6 +12922,16 @@ class ListQuickConnectsResponse {
           .map((e) => QuickConnectSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final quickConnectSummaryList = this.quickConnectSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (quickConnectSummaryList != null)
+        'QuickConnectSummaryList': quickConnectSummaryList,
+    };
   }
 }
 
@@ -11803,6 +12959,18 @@ class ListRoutingProfileQueuesResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final routingProfileQueueConfigSummaryList =
+        this.routingProfileQueueConfigSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (routingProfileQueueConfigSummaryList != null)
+        'RoutingProfileQueueConfigSummaryList':
+            routingProfileQueueConfigSummaryList,
+    };
+  }
 }
 
 class ListRoutingProfilesResponse {
@@ -11826,6 +12994,16 @@ class ListRoutingProfilesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final routingProfileSummaryList = this.routingProfileSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (routingProfileSummaryList != null)
+        'RoutingProfileSummaryList': routingProfileSummaryList,
+    };
+  }
 }
 
 class ListSecurityKeysResponse {
@@ -11848,6 +13026,15 @@ class ListSecurityKeysResponse {
           .map((e) => SecurityKey.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final securityKeys = this.securityKeys;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (securityKeys != null) 'SecurityKeys': securityKeys,
+    };
   }
 }
 
@@ -11873,6 +13060,15 @@ class ListSecurityProfilePermissionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final permissions = this.permissions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (permissions != null) 'Permissions': permissions,
+    };
+  }
 }
 
 class ListSecurityProfilesResponse {
@@ -11897,6 +13093,16 @@ class ListSecurityProfilesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final securityProfileSummaryList = this.securityProfileSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (securityProfileSummaryList != null)
+        'SecurityProfileSummaryList': securityProfileSummaryList,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -11911,6 +13117,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -11938,6 +13151,15 @@ class ListTaskTemplatesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final taskTemplates = this.taskTemplates;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (taskTemplates != null) 'TaskTemplates': taskTemplates,
+    };
+  }
 }
 
 class ListUseCasesResponse {
@@ -11960,6 +13182,15 @@ class ListUseCasesResponse {
           .map((e) => UseCase.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final useCaseSummaryList = this.useCaseSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (useCaseSummaryList != null) 'UseCaseSummaryList': useCaseSummaryList,
+    };
   }
 }
 
@@ -11985,6 +13216,16 @@ class ListUserHierarchyGroupsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final userHierarchyGroupSummaryList = this.userHierarchyGroupSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (userHierarchyGroupSummaryList != null)
+        'UserHierarchyGroupSummaryList': userHierarchyGroupSummaryList,
+    };
+  }
 }
 
 class ListUsersResponse {
@@ -12007,6 +13248,15 @@ class ListUsersResponse {
           .map((e) => UserSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final userSummaryList = this.userSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (userSummaryList != null) 'UserSummaryList': userSummaryList,
+    };
   }
 }
 
@@ -12065,6 +13315,15 @@ class NumberReference {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// The outbound caller ID name, number, and outbound whisper flow.
@@ -12113,6 +13372,7 @@ class ParticipantDetails {
   ParticipantDetails({
     required this.displayName,
   });
+
   Map<String, dynamic> toJson() {
     final displayName = this.displayName;
     return {
@@ -13364,6 +14624,15 @@ class PhoneNumberStatus {
       status: (json['Status'] as String?)?.toPhoneNumberWorkflowStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final status = this.status;
+    return {
+      if (message != null) 'Message': message,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Contains summary information about a phone number for a contact center.
@@ -13400,6 +14669,22 @@ class PhoneNumberSummary {
       phoneNumberType:
           (json['PhoneNumberType'] as String?)?.toPhoneNumberType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final phoneNumber = this.phoneNumber;
+    final phoneNumberCountryCode = this.phoneNumberCountryCode;
+    final phoneNumberType = this.phoneNumberType;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (phoneNumberCountryCode != null)
+        'PhoneNumberCountryCode': phoneNumberCountryCode.toValue(),
+      if (phoneNumberType != null) 'PhoneNumberType': phoneNumberType.toValue(),
+    };
   }
 }
 
@@ -13515,12 +14800,27 @@ class PromptSummary {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class PutUserStatusResponse {
   PutUserStatusResponse();
   factory PutUserStatusResponse.fromJson(Map<String, dynamic> _) {
     return PutUserStatusResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -13582,6 +14882,30 @@ class Queue {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final hoursOfOperationId = this.hoursOfOperationId;
+    final maxContacts = this.maxContacts;
+    final name = this.name;
+    final outboundCallerConfig = this.outboundCallerConfig;
+    final queueArn = this.queueArn;
+    final queueId = this.queueId;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (hoursOfOperationId != null) 'HoursOfOperationId': hoursOfOperationId,
+      if (maxContacts != null) 'MaxContacts': maxContacts,
+      if (name != null) 'Name': name,
+      if (outboundCallerConfig != null)
+        'OutboundCallerConfig': outboundCallerConfig,
+      if (queueArn != null) 'QueueArn': queueArn,
+      if (queueId != null) 'QueueId': queueId,
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// If this contact was queued, this contains information about the queue.
@@ -13601,6 +14925,16 @@ class QueueInfo {
       enqueueTimestamp: timeStampFromJson(json['EnqueueTimestamp']),
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enqueueTimestamp = this.enqueueTimestamp;
+    final id = this.id;
+    return {
+      if (enqueueTimestamp != null)
+        'EnqueueTimestamp': unixTimestampToJson(enqueueTimestamp),
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -13651,6 +14985,15 @@ class QueueReference {
       arn: json['Arn'] as String?,
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -13709,6 +15052,19 @@ class QueueSummary {
       name: json['Name'] as String?,
       queueType: (json['QueueType'] as String?)?.toQueueType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    final queueType = this.queueType;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (queueType != null) 'QueueType': queueType.toValue(),
+    };
   }
 }
 
@@ -13781,6 +15137,23 @@ class QuickConnect {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final name = this.name;
+    final quickConnectARN = this.quickConnectARN;
+    final quickConnectConfig = this.quickConnectConfig;
+    final quickConnectId = this.quickConnectId;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+      if (quickConnectARN != null) 'QuickConnectARN': quickConnectARN,
+      if (quickConnectConfig != null) 'QuickConnectConfig': quickConnectConfig,
+      if (quickConnectId != null) 'QuickConnectId': quickConnectId,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -13871,6 +15244,20 @@ class QuickConnectSummary {
           (json['QuickConnectType'] as String?)?.toQuickConnectType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    final quickConnectType = this.quickConnectType;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (quickConnectType != null)
+        'QuickConnectType': quickConnectType.toValue(),
+    };
+  }
 }
 
 enum QuickConnectType {
@@ -13946,6 +15333,7 @@ class Reference {
     required this.type,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final type = this.type;
     final value = this.value;
@@ -14043,6 +15431,23 @@ class ReferenceSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachment = this.attachment;
+    final date = this.date;
+    final email = this.email;
+    final number = this.number;
+    final string = this.string;
+    final url = this.url;
+    return {
+      if (attachment != null) 'Attachment': attachment,
+      if (date != null) 'Date': date,
+      if (email != null) 'Email': email,
+      if (number != null) 'Number': number,
+      if (string != null) 'String': string,
+      if (url != null) 'Url': url,
+    };
+  }
 }
 
 enum ReferenceType {
@@ -14123,6 +15528,10 @@ class ResumeContactRecordingResponse {
   factory ResumeContactRecordingResponse.fromJson(Map<String, dynamic> _) {
     return ResumeContactRecordingResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains information about a routing profile.
@@ -14179,6 +15588,28 @@ class RoutingProfile {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final defaultOutboundQueueId = this.defaultOutboundQueueId;
+    final description = this.description;
+    final instanceId = this.instanceId;
+    final mediaConcurrencies = this.mediaConcurrencies;
+    final name = this.name;
+    final routingProfileArn = this.routingProfileArn;
+    final routingProfileId = this.routingProfileId;
+    final tags = this.tags;
+    return {
+      if (defaultOutboundQueueId != null)
+        'DefaultOutboundQueueId': defaultOutboundQueueId,
+      if (description != null) 'Description': description,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (mediaConcurrencies != null) 'MediaConcurrencies': mediaConcurrencies,
+      if (name != null) 'Name': name,
+      if (routingProfileArn != null) 'RoutingProfileArn': routingProfileArn,
+      if (routingProfileId != null) 'RoutingProfileId': routingProfileId,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Contains information about the queue and channel for which priority and
@@ -14204,6 +15635,7 @@ class RoutingProfileQueueConfig {
     required this.priority,
     required this.queueReference,
   });
+
   Map<String, dynamic> toJson() {
     final delay = this.delay;
     final priority = this.priority;
@@ -14260,6 +15692,23 @@ class RoutingProfileQueueConfigSummary {
       queueName: json['QueueName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channel = this.channel;
+    final delay = this.delay;
+    final priority = this.priority;
+    final queueArn = this.queueArn;
+    final queueId = this.queueId;
+    final queueName = this.queueName;
+    return {
+      'Channel': channel.toValue(),
+      'Delay': delay,
+      'Priority': priority,
+      'QueueArn': queueArn,
+      'QueueId': queueId,
+      'QueueName': queueName,
+    };
+  }
 }
 
 /// Contains the channel and queue identifier for a routing profile.
@@ -14275,6 +15724,7 @@ class RoutingProfileQueueReference {
     required this.channel,
     required this.queueId,
   });
+
   Map<String, dynamic> toJson() {
     final channel = this.channel;
     final queueId = this.queueId;
@@ -14303,6 +15753,15 @@ class RoutingProfileReference {
       id: json['Id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 /// Contains summary information about a routing profile.
@@ -14327,6 +15786,17 @@ class RoutingProfileSummary {
       id: json['Id'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -14394,6 +15864,16 @@ class SearchAvailablePhoneNumbersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availableNumbersList = this.availableNumbersList;
+    final nextToken = this.nextToken;
+    return {
+      if (availableNumbersList != null)
+        'AvailableNumbersList': availableNumbersList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class SearchUsersResponse {
@@ -14422,6 +15902,18 @@ class SearchUsersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approximateTotalCount = this.approximateTotalCount;
+    final nextToken = this.nextToken;
+    final users = this.users;
+    return {
+      if (approximateTotalCount != null)
+        'ApproximateTotalCount': approximateTotalCount,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (users != null) 'Users': users,
+    };
+  }
 }
 
 class SearchVocabulariesResponse {
@@ -14444,6 +15936,16 @@ class SearchVocabulariesResponse {
           .map((e) => VocabularySummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final vocabularySummaryList = this.vocabularySummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (vocabularySummaryList != null)
+        'VocabularySummaryList': vocabularySummaryList,
+    };
   }
 }
 
@@ -14470,6 +15972,18 @@ class SecurityKey {
       creationTime: timeStampFromJson(json['CreationTime']),
       key: json['Key'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    final creationTime = this.creationTime;
+    final key = this.key;
+    return {
+      if (associationId != null) 'AssociationId': associationId,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (key != null) 'Key': key,
+    };
   }
 }
 
@@ -14512,6 +16026,25 @@ class SecurityProfile {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final id = this.id;
+    final organizationResourceId = this.organizationResourceId;
+    final securityProfileName = this.securityProfileName;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (organizationResourceId != null)
+        'OrganizationResourceId': organizationResourceId,
+      if (securityProfileName != null)
+        'SecurityProfileName': securityProfileName,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Contains information about a security profile.
@@ -14536,6 +16069,17 @@ class SecurityProfileSummary {
       id: json['Id'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -14592,12 +16136,27 @@ class StartChatContactResponse {
       participantToken: json['ParticipantToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactId = this.contactId;
+    final participantId = this.participantId;
+    final participantToken = this.participantToken;
+    return {
+      if (contactId != null) 'ContactId': contactId,
+      if (participantId != null) 'ParticipantId': participantId,
+      if (participantToken != null) 'ParticipantToken': participantToken,
+    };
+  }
 }
 
 class StartContactRecordingResponse {
   StartContactRecordingResponse();
   factory StartContactRecordingResponse.fromJson(Map<String, dynamic> _) {
     return StartContactRecordingResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -14612,6 +16171,13 @@ class StartContactStreamingResponse {
     return StartContactStreamingResponse(
       streamingId: json['StreamingId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamingId = this.streamingId;
+    return {
+      'StreamingId': streamingId,
+    };
   }
 }
 
@@ -14628,6 +16194,13 @@ class StartOutboundVoiceContactResponse {
       contactId: json['ContactId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactId = this.contactId;
+    return {
+      if (contactId != null) 'ContactId': contactId,
+    };
+  }
 }
 
 class StartTaskContactResponse {
@@ -14641,6 +16214,13 @@ class StartTaskContactResponse {
     return StartTaskContactResponse(
       contactId: json['ContactId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contactId = this.contactId;
+    return {
+      if (contactId != null) 'ContactId': contactId,
+    };
   }
 }
 
@@ -14682,6 +16262,10 @@ class StopContactRecordingResponse {
   factory StopContactRecordingResponse.fromJson(Map<String, dynamic> _) {
     return StopContactRecordingResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class StopContactResponse {
@@ -14689,12 +16273,20 @@ class StopContactResponse {
   factory StopContactResponse.fromJson(Map<String, dynamic> _) {
     return StopContactResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class StopContactStreamingResponse {
   StopContactStreamingResponse();
   factory StopContactStreamingResponse.fromJson(Map<String, dynamic> _) {
     return StopContactStreamingResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -14786,6 +16378,7 @@ class StringCondition {
     this.fieldName,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final comparisonType = this.comparisonType;
     final fieldName = this.fieldName;
@@ -14817,12 +16410,25 @@ class StringReference {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 class SuspendContactRecordingResponse {
   SuspendContactRecordingResponse();
   factory SuspendContactRecordingResponse.fromJson(Map<String, dynamic> _) {
     return SuspendContactRecordingResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -14839,6 +16445,7 @@ class TagCondition {
     this.tagKey,
     this.tagValue,
   });
+
   Map<String, dynamic> toJson() {
     final tagKey = this.tagKey;
     final tagValue = this.tagValue;
@@ -15146,6 +16753,26 @@ class TaskTemplateMetadata {
       status: (json['Status'] as String?)?.toTaskTemplateStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final id = this.id;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 enum TaskTemplateStatus {
@@ -15250,6 +16877,15 @@ class TransferContactResponse {
       contactId: json['ContactId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactArn = this.contactArn;
+    final contactId = this.contactId;
+    return {
+      if (contactArn != null) 'ContactArn': contactArn,
+      if (contactId != null) 'ContactId': contactId,
+    };
+  }
 }
 
 enum Unit {
@@ -15290,6 +16926,10 @@ class UpdateContactAttributesResponse {
   factory UpdateContactAttributesResponse.fromJson(Map<String, dynamic> _) {
     return UpdateContactAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateContactFlowModuleContentResponse {
@@ -15297,6 +16937,10 @@ class UpdateContactFlowModuleContentResponse {
   factory UpdateContactFlowModuleContentResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateContactFlowModuleContentResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15306,6 +16950,10 @@ class UpdateContactFlowModuleMetadataResponse {
       Map<String, dynamic> _) {
     return UpdateContactFlowModuleMetadataResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateContactResponse {
@@ -15313,12 +16961,20 @@ class UpdateContactResponse {
   factory UpdateContactResponse.fromJson(Map<String, dynamic> _) {
     return UpdateContactResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateContactScheduleResponse {
   UpdateContactScheduleResponse();
   factory UpdateContactScheduleResponse.fromJson(Map<String, dynamic> _) {
     return UpdateContactScheduleResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15338,6 +16994,15 @@ class UpdatePhoneNumberResponse {
       phoneNumberArn: json['PhoneNumberArn'] as String?,
       phoneNumberId: json['PhoneNumberId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumberArn = this.phoneNumberArn;
+    final phoneNumberId = this.phoneNumberId;
+    return {
+      if (phoneNumberArn != null) 'PhoneNumberArn': phoneNumberArn,
+      if (phoneNumberId != null) 'PhoneNumberId': phoneNumberId,
+    };
   }
 }
 
@@ -15423,6 +17088,36 @@ class UpdateTaskTemplateResponse {
       status: (json['Status'] as String?)?.toTaskTemplateStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final constraints = this.constraints;
+    final contactFlowId = this.contactFlowId;
+    final createdTime = this.createdTime;
+    final defaults = this.defaults;
+    final description = this.description;
+    final fields = this.fields;
+    final id = this.id;
+    final instanceId = this.instanceId;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (constraints != null) 'Constraints': constraints,
+      if (contactFlowId != null) 'ContactFlowId': contactFlowId,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (defaults != null) 'Defaults': defaults,
+      if (description != null) 'Description': description,
+      if (fields != null) 'Fields': fields,
+      if (id != null) 'Id': id,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// The URL reference.
@@ -15442,6 +17137,15 @@ class UrlReference {
       name: json['Name'] as String?,
       value: json['Value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -15468,6 +17172,17 @@ class UseCase {
       useCaseId: json['UseCaseId'] as String?,
       useCaseType: (json['UseCaseType'] as String?)?.toUseCaseType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final useCaseArn = this.useCaseArn;
+    final useCaseId = this.useCaseId;
+    final useCaseType = this.useCaseType;
+    return {
+      if (useCaseArn != null) 'UseCaseArn': useCaseArn,
+      if (useCaseId != null) 'UseCaseId': useCaseId,
+      if (useCaseType != null) 'UseCaseType': useCaseType.toValue(),
+    };
   }
 }
 
@@ -15568,6 +17283,31 @@ class User {
       username: json['Username'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final directoryUserId = this.directoryUserId;
+    final hierarchyGroupId = this.hierarchyGroupId;
+    final id = this.id;
+    final identityInfo = this.identityInfo;
+    final phoneConfig = this.phoneConfig;
+    final routingProfileId = this.routingProfileId;
+    final securityProfileIds = this.securityProfileIds;
+    final tags = this.tags;
+    final username = this.username;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (directoryUserId != null) 'DirectoryUserId': directoryUserId,
+      if (hierarchyGroupId != null) 'HierarchyGroupId': hierarchyGroupId,
+      if (id != null) 'Id': id,
+      if (identityInfo != null) 'IdentityInfo': identityInfo,
+      if (phoneConfig != null) 'PhoneConfig': phoneConfig,
+      if (routingProfileId != null) 'RoutingProfileId': routingProfileId,
+      if (securityProfileIds != null) 'SecurityProfileIds': securityProfileIds,
+      if (tags != null) 'Tags': tags,
+      if (username != null) 'Username': username,
+    };
+  }
 }
 
 /// Data for a user.
@@ -15646,6 +17386,33 @@ class UserData {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeSlotsByChannel = this.activeSlotsByChannel;
+    final availableSlotsByChannel = this.availableSlotsByChannel;
+    final contacts = this.contacts;
+    final hierarchyPath = this.hierarchyPath;
+    final maxSlotsByChannel = this.maxSlotsByChannel;
+    final routingProfile = this.routingProfile;
+    final status = this.status;
+    final user = this.user;
+    return {
+      if (activeSlotsByChannel != null)
+        'ActiveSlotsByChannel':
+            activeSlotsByChannel.map((k, e) => MapEntry(k.toValue(), e)),
+      if (availableSlotsByChannel != null)
+        'AvailableSlotsByChannel':
+            availableSlotsByChannel.map((k, e) => MapEntry(k.toValue(), e)),
+      if (contacts != null) 'Contacts': contacts,
+      if (hierarchyPath != null) 'HierarchyPath': hierarchyPath,
+      if (maxSlotsByChannel != null)
+        'MaxSlotsByChannel':
+            maxSlotsByChannel.map((k, e) => MapEntry(k.toValue(), e)),
+      if (routingProfile != null) 'RoutingProfile': routingProfile,
+      if (status != null) 'Status': status,
+      if (user != null) 'User': user,
+    };
+  }
 }
 
 /// A filter for the user data.
@@ -15661,6 +17428,7 @@ class UserDataFilters {
     this.contactFilter,
     this.queues,
   });
+
   Map<String, dynamic> toJson() {
     final contactFilter = this.contactFilter;
     final queues = this.queues;
@@ -15727,6 +17495,15 @@ class UserIdentityInfoLite {
       firstName: json['FirstName'] as String?,
       lastName: json['LastName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final firstName = this.firstName;
+    final lastName = this.lastName;
+    return {
+      if (firstName != null) 'FirstName': firstName,
+      if (lastName != null) 'LastName': lastName,
+    };
   }
 }
 
@@ -15822,6 +17599,15 @@ class UserReference {
       id: json['Id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 /// The search criteria to be used to return users.
@@ -15847,6 +17633,7 @@ class UserSearchCriteria {
     this.orConditions,
     this.stringCondition,
   });
+
   Map<String, dynamic> toJson() {
     final andConditions = this.andConditions;
     final hierarchyGroupCondition = this.hierarchyGroupCondition;
@@ -15869,6 +17656,7 @@ class UserSearchFilter {
   UserSearchFilter({
     this.tagFilter,
   });
+
   Map<String, dynamic> toJson() {
     final tagFilter = this.tagFilter;
     return {
@@ -15943,6 +17731,31 @@ class UserSearchSummary {
       username: json['Username'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final directoryUserId = this.directoryUserId;
+    final hierarchyGroupId = this.hierarchyGroupId;
+    final id = this.id;
+    final identityInfo = this.identityInfo;
+    final phoneConfig = this.phoneConfig;
+    final routingProfileId = this.routingProfileId;
+    final securityProfileIds = this.securityProfileIds;
+    final tags = this.tags;
+    final username = this.username;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (directoryUserId != null) 'DirectoryUserId': directoryUserId,
+      if (hierarchyGroupId != null) 'HierarchyGroupId': hierarchyGroupId,
+      if (id != null) 'Id': id,
+      if (identityInfo != null) 'IdentityInfo': identityInfo,
+      if (phoneConfig != null) 'PhoneConfig': phoneConfig,
+      if (routingProfileId != null) 'RoutingProfileId': routingProfileId,
+      if (securityProfileIds != null) 'SecurityProfileIds': securityProfileIds,
+      if (tags != null) 'Tags': tags,
+      if (username != null) 'Username': username,
+    };
+  }
 }
 
 /// Contains summary information about a user.
@@ -15967,6 +17780,17 @@ class UserSummary {
       id: json['Id'] as String?,
       username: json['Username'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final username = this.username;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (username != null) 'Username': username,
+    };
   }
 }
 
@@ -16033,6 +17857,29 @@ class Vocabulary {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final languageCode = this.languageCode;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final state = this.state;
+    final content = this.content;
+    final failureReason = this.failureReason;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      'Id': id,
+      'LanguageCode': languageCode.toValue(),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'Name': name,
+      'State': state.toValue(),
+      if (content != null) 'Content': content,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -16244,6 +18091,25 @@ class VocabularySummary {
       failureReason: json['FailureReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final languageCode = this.languageCode;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final state = this.state;
+    final failureReason = this.failureReason;
+    return {
+      'Arn': arn,
+      'Id': id,
+      'LanguageCode': languageCode.toValue(),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'Name': name,
+      'State': state.toValue(),
+      if (failureReason != null) 'FailureReason': failureReason,
+    };
+  }
 }
 
 /// Contains information about the recording configuration settings.
@@ -16254,6 +18120,7 @@ class VoiceRecordingConfiguration {
   VoiceRecordingConfiguration({
     this.voiceRecordingTrack,
   });
+
   Map<String, dynamic> toJson() {
     final voiceRecordingTrack = this.voiceRecordingTrack;
     return {

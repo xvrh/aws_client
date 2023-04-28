@@ -4580,6 +4580,13 @@ class AcceptEnvironmentAccountConnectionOutput {
           json['environmentAccountConnection'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentAccountConnection = this.environmentAccountConnection;
+    return {
+      'environmentAccountConnection': environmentAccountConnection,
+    };
+  }
 }
 
 /// The Proton pipeline service role and repository data shared across the
@@ -4610,6 +4617,17 @@ class AccountSettings {
       pipelineServiceRoleArn: json['pipelineServiceRoleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipelineProvisioningRepository = this.pipelineProvisioningRepository;
+    final pipelineServiceRoleArn = this.pipelineServiceRoleArn;
+    return {
+      if (pipelineProvisioningRepository != null)
+        'pipelineProvisioningRepository': pipelineProvisioningRepository,
+      if (pipelineServiceRoleArn != null)
+        'pipelineServiceRoleArn': pipelineServiceRoleArn,
+    };
+  }
 }
 
 class CancelComponentDeploymentOutput {
@@ -4624,6 +4642,13 @@ class CancelComponentDeploymentOutput {
     return CancelComponentDeploymentOutput(
       component: Component.fromJson(json['component'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final component = this.component;
+    return {
+      'component': component,
+    };
   }
 }
 
@@ -4641,6 +4666,13 @@ class CancelEnvironmentDeploymentOutput {
           Environment.fromJson(json['environment'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environment = this.environment;
+    return {
+      'environment': environment,
+    };
+  }
 }
 
 class CancelServiceInstanceDeploymentOutput {
@@ -4657,6 +4689,13 @@ class CancelServiceInstanceDeploymentOutput {
           json['serviceInstance'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceInstance = this.serviceInstance;
+    return {
+      'serviceInstance': serviceInstance,
+    };
+  }
 }
 
 class CancelServicePipelineDeploymentOutput {
@@ -4672,6 +4711,13 @@ class CancelServicePipelineDeploymentOutput {
       pipeline:
           ServicePipeline.fromJson(json['pipeline'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipeline = this.pipeline;
+    return {
+      'pipeline': pipeline,
+    };
   }
 }
 
@@ -4693,6 +4739,15 @@ class CompatibleEnvironmentTemplate {
       templateName: json['templateName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final majorVersion = this.majorVersion;
+    final templateName = this.templateName;
+    return {
+      'majorVersion': majorVersion,
+      'templateName': templateName,
+    };
+  }
 }
 
 /// Compatible environment template data.
@@ -4707,6 +4762,7 @@ class CompatibleEnvironmentTemplateInput {
     required this.majorVersion,
     required this.templateName,
   });
+
   Map<String, dynamic> toJson() {
     final majorVersion = this.majorVersion;
     final templateName = this.templateName;
@@ -4800,6 +4856,43 @@ class Component {
       serviceName: json['serviceName'] as String?,
       serviceSpec: json['serviceSpec'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final deploymentStatus = this.deploymentStatus;
+    final environmentName = this.environmentName;
+    final lastModifiedAt = this.lastModifiedAt;
+    final name = this.name;
+    final deploymentStatusMessage = this.deploymentStatusMessage;
+    final description = this.description;
+    final lastDeploymentAttemptedAt = this.lastDeploymentAttemptedAt;
+    final lastDeploymentSucceededAt = this.lastDeploymentSucceededAt;
+    final serviceInstanceName = this.serviceInstanceName;
+    final serviceName = this.serviceName;
+    final serviceSpec = this.serviceSpec;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'deploymentStatus': deploymentStatus.toValue(),
+      'environmentName': environmentName,
+      'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      'name': name,
+      if (deploymentStatusMessage != null)
+        'deploymentStatusMessage': deploymentStatusMessage,
+      if (description != null) 'description': description,
+      if (lastDeploymentAttemptedAt != null)
+        'lastDeploymentAttemptedAt':
+            unixTimestampToJson(lastDeploymentAttemptedAt),
+      if (lastDeploymentSucceededAt != null)
+        'lastDeploymentSucceededAt':
+            unixTimestampToJson(lastDeploymentSucceededAt),
+      if (serviceInstanceName != null)
+        'serviceInstanceName': serviceInstanceName,
+      if (serviceName != null) 'serviceName': serviceName,
+      if (serviceSpec != null) 'serviceSpec': serviceSpec,
+    };
   }
 }
 
@@ -4905,6 +4998,39 @@ class ComponentSummary {
       serviceName: json['serviceName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final deploymentStatus = this.deploymentStatus;
+    final environmentName = this.environmentName;
+    final lastModifiedAt = this.lastModifiedAt;
+    final name = this.name;
+    final deploymentStatusMessage = this.deploymentStatusMessage;
+    final lastDeploymentAttemptedAt = this.lastDeploymentAttemptedAt;
+    final lastDeploymentSucceededAt = this.lastDeploymentSucceededAt;
+    final serviceInstanceName = this.serviceInstanceName;
+    final serviceName = this.serviceName;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'deploymentStatus': deploymentStatus.toValue(),
+      'environmentName': environmentName,
+      'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      'name': name,
+      if (deploymentStatusMessage != null)
+        'deploymentStatusMessage': deploymentStatusMessage,
+      if (lastDeploymentAttemptedAt != null)
+        'lastDeploymentAttemptedAt':
+            unixTimestampToJson(lastDeploymentAttemptedAt),
+      if (lastDeploymentSucceededAt != null)
+        'lastDeploymentSucceededAt':
+            unixTimestampToJson(lastDeploymentSucceededAt),
+      if (serviceInstanceName != null)
+        'serviceInstanceName': serviceInstanceName,
+      if (serviceName != null) 'serviceName': serviceName,
+    };
+  }
 }
 
 class CreateComponentOutput {
@@ -4918,6 +5044,13 @@ class CreateComponentOutput {
     return CreateComponentOutput(
       component: Component.fromJson(json['component'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final component = this.component;
+    return {
+      'component': component,
+    };
   }
 }
 
@@ -4935,6 +5068,13 @@ class CreateEnvironmentAccountConnectionOutput {
           json['environmentAccountConnection'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentAccountConnection = this.environmentAccountConnection;
+    return {
+      'environmentAccountConnection': environmentAccountConnection,
+    };
+  }
 }
 
 class CreateEnvironmentOutput {
@@ -4950,6 +5090,13 @@ class CreateEnvironmentOutput {
           Environment.fromJson(json['environment'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environment = this.environment;
+    return {
+      'environment': environment,
+    };
+  }
 }
 
 class CreateEnvironmentTemplateOutput {
@@ -4964,6 +5111,13 @@ class CreateEnvironmentTemplateOutput {
       environmentTemplate: EnvironmentTemplate.fromJson(
           json['environmentTemplate'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentTemplate = this.environmentTemplate;
+    return {
+      'environmentTemplate': environmentTemplate,
+    };
   }
 }
 
@@ -4981,6 +5135,13 @@ class CreateEnvironmentTemplateVersionOutput {
           json['environmentTemplateVersion'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentTemplateVersion = this.environmentTemplateVersion;
+    return {
+      'environmentTemplateVersion': environmentTemplateVersion,
+    };
+  }
 }
 
 class CreateRepositoryOutput {
@@ -4996,6 +5157,13 @@ class CreateRepositoryOutput {
           Repository.fromJson(json['repository'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final repository = this.repository;
+    return {
+      'repository': repository,
+    };
+  }
 }
 
 class CreateServiceOutput {
@@ -5009,6 +5177,13 @@ class CreateServiceOutput {
     return CreateServiceOutput(
       service: Service.fromJson(json['service'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final service = this.service;
+    return {
+      'service': service,
+    };
   }
 }
 
@@ -5024,6 +5199,13 @@ class CreateServiceTemplateOutput {
       serviceTemplate: ServiceTemplate.fromJson(
           json['serviceTemplate'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceTemplate = this.serviceTemplate;
+    return {
+      'serviceTemplate': serviceTemplate,
+    };
   }
 }
 
@@ -5042,6 +5224,13 @@ class CreateServiceTemplateVersionOutput {
           json['serviceTemplateVersion'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceTemplateVersion = this.serviceTemplateVersion;
+    return {
+      'serviceTemplateVersion': serviceTemplateVersion,
+    };
+  }
 }
 
 class CreateTemplateSyncConfigOutput {
@@ -5059,6 +5248,13 @@ class CreateTemplateSyncConfigOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final templateSyncConfig = this.templateSyncConfig;
+    return {
+      if (templateSyncConfig != null) 'templateSyncConfig': templateSyncConfig,
+    };
+  }
 }
 
 class DeleteComponentOutput {
@@ -5074,6 +5270,13 @@ class DeleteComponentOutput {
           ? Component.fromJson(json['component'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final component = this.component;
+    return {
+      if (component != null) 'component': component,
+    };
   }
 }
 
@@ -5093,6 +5296,14 @@ class DeleteEnvironmentAccountConnectionOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentAccountConnection = this.environmentAccountConnection;
+    return {
+      if (environmentAccountConnection != null)
+        'environmentAccountConnection': environmentAccountConnection,
+    };
+  }
 }
 
 class DeleteEnvironmentOutput {
@@ -5108,6 +5319,13 @@ class DeleteEnvironmentOutput {
           ? Environment.fromJson(json['environment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environment = this.environment;
+    return {
+      if (environment != null) 'environment': environment,
+    };
   }
 }
 
@@ -5125,6 +5343,14 @@ class DeleteEnvironmentTemplateOutput {
               json['environmentTemplate'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentTemplate = this.environmentTemplate;
+    return {
+      if (environmentTemplate != null)
+        'environmentTemplate': environmentTemplate,
+    };
   }
 }
 
@@ -5144,6 +5370,14 @@ class DeleteEnvironmentTemplateVersionOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentTemplateVersion = this.environmentTemplateVersion;
+    return {
+      if (environmentTemplateVersion != null)
+        'environmentTemplateVersion': environmentTemplateVersion,
+    };
+  }
 }
 
 class DeleteRepositoryOutput {
@@ -5159,6 +5393,13 @@ class DeleteRepositoryOutput {
           ? Repository.fromJson(json['repository'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repository = this.repository;
+    return {
+      if (repository != null) 'repository': repository,
+    };
   }
 }
 
@@ -5176,6 +5417,13 @@ class DeleteServiceOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final service = this.service;
+    return {
+      if (service != null) 'service': service,
+    };
+  }
 }
 
 class DeleteServiceTemplateOutput {
@@ -5192,6 +5440,13 @@ class DeleteServiceTemplateOutput {
               json['serviceTemplate'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceTemplate = this.serviceTemplate;
+    return {
+      if (serviceTemplate != null) 'serviceTemplate': serviceTemplate,
+    };
   }
 }
 
@@ -5211,6 +5466,14 @@ class DeleteServiceTemplateVersionOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceTemplateVersion = this.serviceTemplateVersion;
+    return {
+      if (serviceTemplateVersion != null)
+        'serviceTemplateVersion': serviceTemplateVersion,
+    };
+  }
 }
 
 class DeleteTemplateSyncConfigOutput {
@@ -5227,6 +5490,13 @@ class DeleteTemplateSyncConfigOutput {
               json['templateSyncConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final templateSyncConfig = this.templateSyncConfig;
+    return {
+      if (templateSyncConfig != null) 'templateSyncConfig': templateSyncConfig,
+    };
   }
 }
 
@@ -5446,6 +5716,54 @@ class Environment {
       spec: json['spec'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final deploymentStatus = this.deploymentStatus;
+    final lastDeploymentAttemptedAt = this.lastDeploymentAttemptedAt;
+    final lastDeploymentSucceededAt = this.lastDeploymentSucceededAt;
+    final name = this.name;
+    final templateMajorVersion = this.templateMajorVersion;
+    final templateMinorVersion = this.templateMinorVersion;
+    final templateName = this.templateName;
+    final componentRoleArn = this.componentRoleArn;
+    final deploymentStatusMessage = this.deploymentStatusMessage;
+    final description = this.description;
+    final environmentAccountConnectionId = this.environmentAccountConnectionId;
+    final environmentAccountId = this.environmentAccountId;
+    final protonServiceRoleArn = this.protonServiceRoleArn;
+    final provisioning = this.provisioning;
+    final provisioningRepository = this.provisioningRepository;
+    final spec = this.spec;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'deploymentStatus': deploymentStatus.toValue(),
+      'lastDeploymentAttemptedAt':
+          unixTimestampToJson(lastDeploymentAttemptedAt),
+      'lastDeploymentSucceededAt':
+          unixTimestampToJson(lastDeploymentSucceededAt),
+      'name': name,
+      'templateMajorVersion': templateMajorVersion,
+      'templateMinorVersion': templateMinorVersion,
+      'templateName': templateName,
+      if (componentRoleArn != null) 'componentRoleArn': componentRoleArn,
+      if (deploymentStatusMessage != null)
+        'deploymentStatusMessage': deploymentStatusMessage,
+      if (description != null) 'description': description,
+      if (environmentAccountConnectionId != null)
+        'environmentAccountConnectionId': environmentAccountConnectionId,
+      if (environmentAccountId != null)
+        'environmentAccountId': environmentAccountId,
+      if (protonServiceRoleArn != null)
+        'protonServiceRoleArn': protonServiceRoleArn,
+      if (provisioning != null) 'provisioning': provisioning.toValue(),
+      if (provisioningRepository != null)
+        'provisioningRepository': provisioningRepository,
+      if (spec != null) 'spec': spec,
+    };
+  }
 }
 
 /// Detailed data of an Proton environment account connection resource.
@@ -5521,6 +5839,31 @@ class EnvironmentAccountConnection {
       status: (json['status'] as String).toEnvironmentAccountConnectionStatus(),
       componentRoleArn: json['componentRoleArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final environmentAccountId = this.environmentAccountId;
+    final environmentName = this.environmentName;
+    final id = this.id;
+    final lastModifiedAt = this.lastModifiedAt;
+    final managementAccountId = this.managementAccountId;
+    final requestedAt = this.requestedAt;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    final componentRoleArn = this.componentRoleArn;
+    return {
+      'arn': arn,
+      'environmentAccountId': environmentAccountId,
+      'environmentName': environmentName,
+      'id': id,
+      'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      'managementAccountId': managementAccountId,
+      'requestedAt': unixTimestampToJson(requestedAt),
+      'roleArn': roleArn,
+      'status': status.toValue(),
+      if (componentRoleArn != null) 'componentRoleArn': componentRoleArn,
+    };
   }
 }
 
@@ -5667,6 +6010,31 @@ class EnvironmentAccountConnectionSummary {
       componentRoleArn: json['componentRoleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final environmentAccountId = this.environmentAccountId;
+    final environmentName = this.environmentName;
+    final id = this.id;
+    final lastModifiedAt = this.lastModifiedAt;
+    final managementAccountId = this.managementAccountId;
+    final requestedAt = this.requestedAt;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    final componentRoleArn = this.componentRoleArn;
+    return {
+      'arn': arn,
+      'environmentAccountId': environmentAccountId,
+      'environmentName': environmentName,
+      'id': id,
+      'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      'managementAccountId': managementAccountId,
+      'requestedAt': unixTimestampToJson(requestedAt),
+      'roleArn': roleArn,
+      'status': status.toValue(),
+      if (componentRoleArn != null) 'componentRoleArn': componentRoleArn,
+    };
+  }
 }
 
 /// Summary data of an Proton environment resource. An Proton environment is a
@@ -5775,6 +6143,49 @@ class EnvironmentSummary {
       provisioning: (json['provisioning'] as String?)?.toProvisioning(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final deploymentStatus = this.deploymentStatus;
+    final lastDeploymentAttemptedAt = this.lastDeploymentAttemptedAt;
+    final lastDeploymentSucceededAt = this.lastDeploymentSucceededAt;
+    final name = this.name;
+    final templateMajorVersion = this.templateMajorVersion;
+    final templateMinorVersion = this.templateMinorVersion;
+    final templateName = this.templateName;
+    final componentRoleArn = this.componentRoleArn;
+    final deploymentStatusMessage = this.deploymentStatusMessage;
+    final description = this.description;
+    final environmentAccountConnectionId = this.environmentAccountConnectionId;
+    final environmentAccountId = this.environmentAccountId;
+    final protonServiceRoleArn = this.protonServiceRoleArn;
+    final provisioning = this.provisioning;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'deploymentStatus': deploymentStatus.toValue(),
+      'lastDeploymentAttemptedAt':
+          unixTimestampToJson(lastDeploymentAttemptedAt),
+      'lastDeploymentSucceededAt':
+          unixTimestampToJson(lastDeploymentSucceededAt),
+      'name': name,
+      'templateMajorVersion': templateMajorVersion,
+      'templateMinorVersion': templateMinorVersion,
+      'templateName': templateName,
+      if (componentRoleArn != null) 'componentRoleArn': componentRoleArn,
+      if (deploymentStatusMessage != null)
+        'deploymentStatusMessage': deploymentStatusMessage,
+      if (description != null) 'description': description,
+      if (environmentAccountConnectionId != null)
+        'environmentAccountConnectionId': environmentAccountConnectionId,
+      if (environmentAccountId != null)
+        'environmentAccountId': environmentAccountId,
+      if (protonServiceRoleArn != null)
+        'protonServiceRoleArn': protonServiceRoleArn,
+      if (provisioning != null) 'provisioning': provisioning.toValue(),
+    };
+  }
 }
 
 /// The environment template data.
@@ -5833,6 +6244,29 @@ class EnvironmentTemplate {
       recommendedVersion: json['recommendedVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastModifiedAt = this.lastModifiedAt;
+    final name = this.name;
+    final description = this.description;
+    final displayName = this.displayName;
+    final encryptionKey = this.encryptionKey;
+    final provisioning = this.provisioning;
+    final recommendedVersion = this.recommendedVersion;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      'name': name,
+      if (description != null) 'description': description,
+      if (displayName != null) 'displayName': displayName,
+      if (encryptionKey != null) 'encryptionKey': encryptionKey,
+      if (provisioning != null) 'provisioning': provisioning.toValue(),
+      if (recommendedVersion != null) 'recommendedVersion': recommendedVersion,
+    };
+  }
 }
 
 /// A search filter for environment templates.
@@ -5847,6 +6281,7 @@ class EnvironmentTemplateFilter {
     required this.majorVersion,
     required this.templateName,
   });
+
   Map<String, dynamic> toJson() {
     final majorVersion = this.majorVersion;
     final templateName = this.templateName;
@@ -5907,6 +6342,27 @@ class EnvironmentTemplateSummary {
       provisioning: (json['provisioning'] as String?)?.toProvisioning(),
       recommendedVersion: json['recommendedVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastModifiedAt = this.lastModifiedAt;
+    final name = this.name;
+    final description = this.description;
+    final displayName = this.displayName;
+    final provisioning = this.provisioning;
+    final recommendedVersion = this.recommendedVersion;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      'name': name,
+      if (description != null) 'description': description,
+      if (displayName != null) 'displayName': displayName,
+      if (provisioning != null) 'provisioning': provisioning.toValue(),
+      if (recommendedVersion != null) 'recommendedVersion': recommendedVersion,
+    };
   }
 }
 
@@ -5975,6 +6431,34 @@ class EnvironmentTemplateVersion {
       statusMessage: json['statusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastModifiedAt = this.lastModifiedAt;
+    final majorVersion = this.majorVersion;
+    final minorVersion = this.minorVersion;
+    final status = this.status;
+    final templateName = this.templateName;
+    final description = this.description;
+    final recommendedMinorVersion = this.recommendedMinorVersion;
+    final schema = this.schema;
+    final statusMessage = this.statusMessage;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      'majorVersion': majorVersion,
+      'minorVersion': minorVersion,
+      'status': status.toValue(),
+      'templateName': templateName,
+      if (description != null) 'description': description,
+      if (recommendedMinorVersion != null)
+        'recommendedMinorVersion': recommendedMinorVersion,
+      if (schema != null) 'schema': schema,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
+  }
 }
 
 /// A summary of the version of an environment template detail data.
@@ -6038,6 +6522,32 @@ class EnvironmentTemplateVersionSummary {
       statusMessage: json['statusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastModifiedAt = this.lastModifiedAt;
+    final majorVersion = this.majorVersion;
+    final minorVersion = this.minorVersion;
+    final status = this.status;
+    final templateName = this.templateName;
+    final description = this.description;
+    final recommendedMinorVersion = this.recommendedMinorVersion;
+    final statusMessage = this.statusMessage;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      'majorVersion': majorVersion,
+      'minorVersion': minorVersion,
+      'status': status.toValue(),
+      'templateName': templateName,
+      if (description != null) 'description': description,
+      if (recommendedMinorVersion != null)
+        'recommendedMinorVersion': recommendedMinorVersion,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
+  }
 }
 
 class GetAccountSettingsOutput {
@@ -6055,6 +6565,13 @@ class GetAccountSettingsOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountSettings = this.accountSettings;
+    return {
+      if (accountSettings != null) 'accountSettings': accountSettings,
+    };
+  }
 }
 
 class GetComponentOutput {
@@ -6070,6 +6587,13 @@ class GetComponentOutput {
           ? Component.fromJson(json['component'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final component = this.component;
+    return {
+      if (component != null) 'component': component,
+    };
   }
 }
 
@@ -6087,6 +6611,13 @@ class GetEnvironmentAccountConnectionOutput {
           json['environmentAccountConnection'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentAccountConnection = this.environmentAccountConnection;
+    return {
+      'environmentAccountConnection': environmentAccountConnection,
+    };
+  }
 }
 
 class GetEnvironmentOutput {
@@ -6102,6 +6633,13 @@ class GetEnvironmentOutput {
           Environment.fromJson(json['environment'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environment = this.environment;
+    return {
+      'environment': environment,
+    };
+  }
 }
 
 class GetEnvironmentTemplateOutput {
@@ -6116,6 +6654,13 @@ class GetEnvironmentTemplateOutput {
       environmentTemplate: EnvironmentTemplate.fromJson(
           json['environmentTemplate'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentTemplate = this.environmentTemplate;
+    return {
+      'environmentTemplate': environmentTemplate,
+    };
   }
 }
 
@@ -6133,6 +6678,13 @@ class GetEnvironmentTemplateVersionOutput {
           json['environmentTemplateVersion'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentTemplateVersion = this.environmentTemplateVersion;
+    return {
+      'environmentTemplateVersion': environmentTemplateVersion,
+    };
+  }
 }
 
 class GetRepositoryOutput {
@@ -6147,6 +6699,13 @@ class GetRepositoryOutput {
       repository:
           Repository.fromJson(json['repository'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repository = this.repository;
+    return {
+      'repository': repository,
+    };
   }
 }
 
@@ -6165,6 +6724,13 @@ class GetRepositorySyncStatusOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final latestSync = this.latestSync;
+    return {
+      if (latestSync != null) 'latestSync': latestSync,
+    };
+  }
 }
 
 class GetServiceInstanceOutput {
@@ -6179,6 +6745,13 @@ class GetServiceInstanceOutput {
       serviceInstance: ServiceInstance.fromJson(
           json['serviceInstance'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceInstance = this.serviceInstance;
+    return {
+      'serviceInstance': serviceInstance,
+    };
   }
 }
 
@@ -6196,6 +6769,13 @@ class GetServiceOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final service = this.service;
+    return {
+      if (service != null) 'service': service,
+    };
+  }
 }
 
 class GetServiceTemplateOutput {
@@ -6211,6 +6791,13 @@ class GetServiceTemplateOutput {
           json['serviceTemplate'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceTemplate = this.serviceTemplate;
+    return {
+      'serviceTemplate': serviceTemplate,
+    };
+  }
 }
 
 class GetServiceTemplateVersionOutput {
@@ -6225,6 +6812,13 @@ class GetServiceTemplateVersionOutput {
       serviceTemplateVersion: ServiceTemplateVersion.fromJson(
           json['serviceTemplateVersion'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceTemplateVersion = this.serviceTemplateVersion;
+    return {
+      'serviceTemplateVersion': serviceTemplateVersion,
+    };
   }
 }
 
@@ -6242,6 +6836,13 @@ class GetTemplateSyncConfigOutput {
               json['templateSyncConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final templateSyncConfig = this.templateSyncConfig;
+    return {
+      if (templateSyncConfig != null) 'templateSyncConfig': templateSyncConfig,
+    };
   }
 }
 
@@ -6275,6 +6876,18 @@ class GetTemplateSyncStatusOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final desiredState = this.desiredState;
+    final latestSuccessfulSync = this.latestSuccessfulSync;
+    final latestSync = this.latestSync;
+    return {
+      if (desiredState != null) 'desiredState': desiredState,
+      if (latestSuccessfulSync != null)
+        'latestSuccessfulSync': latestSuccessfulSync,
+      if (latestSync != null) 'latestSync': latestSync,
+    };
+  }
 }
 
 class ListComponentOutputsOutput {
@@ -6297,6 +6910,15 @@ class ListComponentOutputsOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final outputs = this.outputs;
+    final nextToken = this.nextToken;
+    return {
+      'outputs': outputs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6323,6 +6945,15 @@ class ListComponentProvisionedResourcesOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final provisionedResources = this.provisionedResources;
+    final nextToken = this.nextToken;
+    return {
+      'provisionedResources': provisionedResources,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListComponentsOutput {
@@ -6345,6 +6976,15 @@ class ListComponentsOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final components = this.components;
+    final nextToken = this.nextToken;
+    return {
+      'components': components,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6374,6 +7014,15 @@ class ListEnvironmentAccountConnectionsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentAccountConnections = this.environmentAccountConnections;
+    final nextToken = this.nextToken;
+    return {
+      'environmentAccountConnections': environmentAccountConnections,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListEnvironmentOutputsOutput {
@@ -6397,6 +7046,15 @@ class ListEnvironmentOutputsOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final outputs = this.outputs;
+    final nextToken = this.nextToken;
+    return {
+      'outputs': outputs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6422,6 +7080,15 @@ class ListEnvironmentProvisionedResourcesOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final provisionedResources = this.provisionedResources;
+    final nextToken = this.nextToken;
+    return {
+      'provisionedResources': provisionedResources,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6449,6 +7116,15 @@ class ListEnvironmentTemplateVersionsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final templateVersions = this.templateVersions;
+    final nextToken = this.nextToken;
+    return {
+      'templateVersions': templateVersions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListEnvironmentTemplatesOutput {
@@ -6474,6 +7150,15 @@ class ListEnvironmentTemplatesOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final templates = this.templates;
+    final nextToken = this.nextToken;
+    return {
+      'templates': templates,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListEnvironmentsOutput {
@@ -6497,6 +7182,15 @@ class ListEnvironmentsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environments = this.environments;
+    final nextToken = this.nextToken;
+    return {
+      'environments': environments,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListRepositoriesOutput {
@@ -6519,6 +7213,15 @@ class ListRepositoriesOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repositories = this.repositories;
+    final nextToken = this.nextToken;
+    return {
+      'repositories': repositories,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6546,6 +7249,15 @@ class ListRepositorySyncDefinitionsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final syncDefinitions = this.syncDefinitions;
+    final nextToken = this.nextToken;
+    return {
+      'syncDefinitions': syncDefinitions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListServiceInstanceOutputsOutput {
@@ -6568,6 +7280,15 @@ class ListServiceInstanceOutputsOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final outputs = this.outputs;
+    final nextToken = this.nextToken;
+    return {
+      'outputs': outputs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6594,6 +7315,15 @@ class ListServiceInstanceProvisionedResourcesOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final provisionedResources = this.provisionedResources;
+    final nextToken = this.nextToken;
+    return {
+      'provisionedResources': provisionedResources,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListServiceInstancesOutput {
@@ -6619,6 +7349,15 @@ class ListServiceInstancesOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceInstances = this.serviceInstances;
+    final nextToken = this.nextToken;
+    return {
+      'serviceInstances': serviceInstances,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListServicePipelineOutputsOutput {
@@ -6641,6 +7380,15 @@ class ListServicePipelineOutputsOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final outputs = this.outputs;
+    final nextToken = this.nextToken;
+    return {
+      'outputs': outputs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6666,6 +7414,15 @@ class ListServicePipelineProvisionedResourcesOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final provisionedResources = this.provisionedResources;
+    final nextToken = this.nextToken;
+    return {
+      'provisionedResources': provisionedResources,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6693,6 +7450,15 @@ class ListServiceTemplateVersionsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final templateVersions = this.templateVersions;
+    final nextToken = this.nextToken;
+    return {
+      'templateVersions': templateVersions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListServiceTemplatesOutput {
@@ -6718,6 +7484,15 @@ class ListServiceTemplatesOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final templates = this.templates;
+    final nextToken = this.nextToken;
+    return {
+      'templates': templates,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListServicesOutput {
@@ -6740,6 +7515,15 @@ class ListServicesOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final services = this.services;
+    final nextToken = this.nextToken;
+    return {
+      'services': services,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6764,6 +7548,15 @@ class ListTagsForResourceOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final nextToken = this.nextToken;
+    return {
+      'tags': tags,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class NotifyResourceDeploymentStatusChangeOutput {
@@ -6771,6 +7564,10 @@ class NotifyResourceDeploymentStatusChangeOutput {
   factory NotifyResourceDeploymentStatusChangeOutput.fromJson(
       Map<String, dynamic> _) {
     return NotifyResourceDeploymentStatusChangeOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6832,6 +7629,18 @@ class ProvisionedResource {
       provisioningEngine: (json['provisioningEngine'] as String?)
           ?.toProvisionedResourceEngine(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identifier = this.identifier;
+    final name = this.name;
+    final provisioningEngine = this.provisioningEngine;
+    return {
+      if (identifier != null) 'identifier': identifier,
+      if (name != null) 'name': name,
+      if (provisioningEngine != null)
+        'provisioningEngine': provisioningEngine.toValue(),
+    };
   }
 }
 
@@ -6901,6 +7710,13 @@ class RejectEnvironmentAccountConnectionOutput {
           json['environmentAccountConnection'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentAccountConnection = this.environmentAccountConnection;
+    return {
+      'environmentAccountConnection': environmentAccountConnection,
+    };
+  }
 }
 
 /// Detailed data of a repository that has been registered with Proton.
@@ -6937,6 +7753,21 @@ class Repository {
       encryptionKey: json['encryptionKey'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final connectionArn = this.connectionArn;
+    final name = this.name;
+    final provider = this.provider;
+    final encryptionKey = this.encryptionKey;
+    return {
+      'arn': arn,
+      'connectionArn': connectionArn,
+      'name': name,
+      'provider': provider.toValue(),
+      if (encryptionKey != null) 'encryptionKey': encryptionKey,
+    };
+  }
 }
 
 /// Detail data for a repository branch.
@@ -6967,6 +7798,19 @@ class RepositoryBranch {
       provider: (json['provider'] as String).toRepositoryProvider(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final branch = this.branch;
+    final name = this.name;
+    final provider = this.provider;
+    return {
+      'arn': arn,
+      'branch': branch,
+      'name': name,
+      'provider': provider.toValue(),
+    };
+  }
 }
 
 /// Detail input data for a repository branch.
@@ -6985,6 +7829,7 @@ class RepositoryBranchInput {
     required this.name,
     required this.provider,
   });
+
   Map<String, dynamic> toJson() {
     final branch = this.branch;
     final name = this.name;
@@ -7053,6 +7898,17 @@ class RepositorySummary {
       provider: (json['provider'] as String).toRepositoryProvider(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final provider = this.provider;
+    return {
+      'arn': arn,
+      'name': name,
+      'provider': provider.toValue(),
+    };
+  }
 }
 
 /// Detail data for a repository sync attempt activated by a push to a
@@ -7081,6 +7937,17 @@ class RepositorySyncAttempt {
       startedAt: nonNullableTimeStampFromJson(json['startedAt'] as Object),
       status: (json['status'] as String).toRepositorySyncStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    return {
+      'events': events,
+      'startedAt': unixTimestampToJson(startedAt),
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -7112,6 +7979,19 @@ class RepositorySyncDefinition {
       target: json['target'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final branch = this.branch;
+    final directory = this.directory;
+    final parent = this.parent;
+    final target = this.target;
+    return {
+      'branch': branch,
+      'directory': directory,
+      'parent': parent,
+      'target': target,
+    };
+  }
 }
 
 /// Repository sync event detail data for a sync attempt.
@@ -7141,6 +8021,19 @@ class RepositorySyncEvent {
       type: json['type'] as String,
       externalId: json['externalId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final event = this.event;
+    final time = this.time;
+    final type = this.type;
+    final externalId = this.externalId;
+    return {
+      'event': event,
+      'time': unixTimestampToJson(time),
+      'type': type,
+      if (externalId != null) 'externalId': externalId,
+    };
   }
 }
 
@@ -7264,6 +8157,23 @@ class ResourceSyncAttempt {
           Revision.fromJson(json['targetRevision'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final initialRevision = this.initialRevision;
+    final startedAt = this.startedAt;
+    final status = this.status;
+    final target = this.target;
+    final targetRevision = this.targetRevision;
+    return {
+      'events': events,
+      'initialRevision': initialRevision,
+      'startedAt': unixTimestampToJson(startedAt),
+      'status': status.toValue(),
+      'target': target,
+      'targetRevision': targetRevision,
+    };
+  }
 }
 
 /// Detail data for a resource sync event.
@@ -7293,6 +8203,19 @@ class ResourceSyncEvent {
       type: json['type'] as String,
       externalId: json['externalId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final event = this.event;
+    final time = this.time;
+    final type = this.type;
+    final externalId = this.externalId;
+    return {
+      'event': event,
+      'time': unixTimestampToJson(time),
+      'type': type,
+      if (externalId != null) 'externalId': externalId,
+    };
   }
 }
 
@@ -7369,6 +8292,21 @@ class Revision {
       sha: json['sha'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final branch = this.branch;
+    final directory = this.directory;
+    final repositoryName = this.repositoryName;
+    final repositoryProvider = this.repositoryProvider;
+    final sha = this.sha;
+    return {
+      'branch': branch,
+      'directory': directory,
+      'repositoryName': repositoryName,
+      'repositoryProvider': repositoryProvider.toValue(),
+      'sha': sha,
+    };
+  }
 }
 
 /// Template bundle S3 bucket data.
@@ -7383,6 +8321,7 @@ class S3ObjectSource {
     required this.bucket,
     required this.key,
   });
+
   Map<String, dynamic> toJson() {
     final bucket = this.bucket;
     final key = this.key;
@@ -7476,6 +8415,38 @@ class Service {
       statusMessage: json['statusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastModifiedAt = this.lastModifiedAt;
+    final name = this.name;
+    final spec = this.spec;
+    final status = this.status;
+    final templateName = this.templateName;
+    final branchName = this.branchName;
+    final description = this.description;
+    final pipeline = this.pipeline;
+    final repositoryConnectionArn = this.repositoryConnectionArn;
+    final repositoryId = this.repositoryId;
+    final statusMessage = this.statusMessage;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      'name': name,
+      'spec': spec,
+      'status': status.toValue(),
+      'templateName': templateName,
+      if (branchName != null) 'branchName': branchName,
+      if (description != null) 'description': description,
+      if (pipeline != null) 'pipeline': pipeline,
+      if (repositoryConnectionArn != null)
+        'repositoryConnectionArn': repositoryConnectionArn,
+      if (repositoryId != null) 'repositoryId': repositoryId,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
+  }
 }
 
 /// Detailed data of an Proton service instance resource.
@@ -7557,6 +8528,40 @@ class ServiceInstance {
       spec: json['spec'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final deploymentStatus = this.deploymentStatus;
+    final environmentName = this.environmentName;
+    final lastDeploymentAttemptedAt = this.lastDeploymentAttemptedAt;
+    final lastDeploymentSucceededAt = this.lastDeploymentSucceededAt;
+    final name = this.name;
+    final serviceName = this.serviceName;
+    final templateMajorVersion = this.templateMajorVersion;
+    final templateMinorVersion = this.templateMinorVersion;
+    final templateName = this.templateName;
+    final deploymentStatusMessage = this.deploymentStatusMessage;
+    final spec = this.spec;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'deploymentStatus': deploymentStatus.toValue(),
+      'environmentName': environmentName,
+      'lastDeploymentAttemptedAt':
+          unixTimestampToJson(lastDeploymentAttemptedAt),
+      'lastDeploymentSucceededAt':
+          unixTimestampToJson(lastDeploymentSucceededAt),
+      'name': name,
+      'serviceName': serviceName,
+      'templateMajorVersion': templateMajorVersion,
+      'templateMinorVersion': templateMinorVersion,
+      'templateName': templateName,
+      if (deploymentStatusMessage != null)
+        'deploymentStatusMessage': deploymentStatusMessage,
+      if (spec != null) 'spec': spec,
+    };
+  }
 }
 
 /// Summary data of an Proton service instance resource.
@@ -7630,6 +8635,38 @@ class ServiceInstanceSummary {
       deploymentStatusMessage: json['deploymentStatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final deploymentStatus = this.deploymentStatus;
+    final environmentName = this.environmentName;
+    final lastDeploymentAttemptedAt = this.lastDeploymentAttemptedAt;
+    final lastDeploymentSucceededAt = this.lastDeploymentSucceededAt;
+    final name = this.name;
+    final serviceName = this.serviceName;
+    final templateMajorVersion = this.templateMajorVersion;
+    final templateMinorVersion = this.templateMinorVersion;
+    final templateName = this.templateName;
+    final deploymentStatusMessage = this.deploymentStatusMessage;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'deploymentStatus': deploymentStatus.toValue(),
+      'environmentName': environmentName,
+      'lastDeploymentAttemptedAt':
+          unixTimestampToJson(lastDeploymentAttemptedAt),
+      'lastDeploymentSucceededAt':
+          unixTimestampToJson(lastDeploymentSucceededAt),
+      'name': name,
+      'serviceName': serviceName,
+      'templateMajorVersion': templateMajorVersion,
+      'templateMinorVersion': templateMinorVersion,
+      'templateName': templateName,
+      if (deploymentStatusMessage != null)
+        'deploymentStatusMessage': deploymentStatusMessage,
+    };
+  }
 }
 
 /// Detailed data of an Proton service instance pipeline resource.
@@ -7695,6 +8732,34 @@ class ServicePipeline {
       deploymentStatusMessage: json['deploymentStatusMessage'] as String?,
       spec: json['spec'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final deploymentStatus = this.deploymentStatus;
+    final lastDeploymentAttemptedAt = this.lastDeploymentAttemptedAt;
+    final lastDeploymentSucceededAt = this.lastDeploymentSucceededAt;
+    final templateMajorVersion = this.templateMajorVersion;
+    final templateMinorVersion = this.templateMinorVersion;
+    final templateName = this.templateName;
+    final deploymentStatusMessage = this.deploymentStatusMessage;
+    final spec = this.spec;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'deploymentStatus': deploymentStatus.toValue(),
+      'lastDeploymentAttemptedAt':
+          unixTimestampToJson(lastDeploymentAttemptedAt),
+      'lastDeploymentSucceededAt':
+          unixTimestampToJson(lastDeploymentSucceededAt),
+      'templateMajorVersion': templateMajorVersion,
+      'templateMinorVersion': templateMinorVersion,
+      'templateName': templateName,
+      if (deploymentStatusMessage != null)
+        'deploymentStatusMessage': deploymentStatusMessage,
+      if (spec != null) 'spec': spec,
+    };
   }
 }
 
@@ -7835,6 +8900,27 @@ class ServiceSummary {
       statusMessage: json['statusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastModifiedAt = this.lastModifiedAt;
+    final name = this.name;
+    final status = this.status;
+    final templateName = this.templateName;
+    final description = this.description;
+    final statusMessage = this.statusMessage;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      'name': name,
+      'status': status.toValue(),
+      'templateName': templateName,
+      if (description != null) 'description': description,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
+  }
 }
 
 /// Detailed data of an Proton service template resource.
@@ -7895,6 +8981,30 @@ class ServiceTemplate {
       recommendedVersion: json['recommendedVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastModifiedAt = this.lastModifiedAt;
+    final name = this.name;
+    final description = this.description;
+    final displayName = this.displayName;
+    final encryptionKey = this.encryptionKey;
+    final pipelineProvisioning = this.pipelineProvisioning;
+    final recommendedVersion = this.recommendedVersion;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      'name': name,
+      if (description != null) 'description': description,
+      if (displayName != null) 'displayName': displayName,
+      if (encryptionKey != null) 'encryptionKey': encryptionKey,
+      if (pipelineProvisioning != null)
+        'pipelineProvisioning': pipelineProvisioning.toValue(),
+      if (recommendedVersion != null) 'recommendedVersion': recommendedVersion,
+    };
+  }
 }
 
 /// Summary data of an Proton service template resource.
@@ -7948,6 +9058,28 @@ class ServiceTemplateSummary {
           (json['pipelineProvisioning'] as String?)?.toProvisioning(),
       recommendedVersion: json['recommendedVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastModifiedAt = this.lastModifiedAt;
+    final name = this.name;
+    final description = this.description;
+    final displayName = this.displayName;
+    final pipelineProvisioning = this.pipelineProvisioning;
+    final recommendedVersion = this.recommendedVersion;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      'name': name,
+      if (description != null) 'description': description,
+      if (displayName != null) 'displayName': displayName,
+      if (pipelineProvisioning != null)
+        'pipelineProvisioning': pipelineProvisioning.toValue(),
+      if (recommendedVersion != null) 'recommendedVersion': recommendedVersion,
+    };
   }
 }
 
@@ -8068,6 +9200,40 @@ class ServiceTemplateVersion {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final compatibleEnvironmentTemplates = this.compatibleEnvironmentTemplates;
+    final createdAt = this.createdAt;
+    final lastModifiedAt = this.lastModifiedAt;
+    final majorVersion = this.majorVersion;
+    final minorVersion = this.minorVersion;
+    final status = this.status;
+    final templateName = this.templateName;
+    final description = this.description;
+    final recommendedMinorVersion = this.recommendedMinorVersion;
+    final schema = this.schema;
+    final statusMessage = this.statusMessage;
+    final supportedComponentSources = this.supportedComponentSources;
+    return {
+      'arn': arn,
+      'compatibleEnvironmentTemplates': compatibleEnvironmentTemplates,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      'majorVersion': majorVersion,
+      'minorVersion': minorVersion,
+      'status': status.toValue(),
+      'templateName': templateName,
+      if (description != null) 'description': description,
+      if (recommendedMinorVersion != null)
+        'recommendedMinorVersion': recommendedMinorVersion,
+      if (schema != null) 'schema': schema,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (supportedComponentSources != null)
+        'supportedComponentSources':
+            supportedComponentSources.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 /// Summary data of an Proton service template version resource.
@@ -8130,6 +9296,32 @@ class ServiceTemplateVersionSummary {
       statusMessage: json['statusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final lastModifiedAt = this.lastModifiedAt;
+    final majorVersion = this.majorVersion;
+    final minorVersion = this.minorVersion;
+    final status = this.status;
+    final templateName = this.templateName;
+    final description = this.description;
+    final recommendedMinorVersion = this.recommendedMinorVersion;
+    final statusMessage = this.statusMessage;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'lastModifiedAt': unixTimestampToJson(lastModifiedAt),
+      'majorVersion': majorVersion,
+      'minorVersion': minorVersion,
+      'status': status.toValue(),
+      'templateName': templateName,
+      if (description != null) 'description': description,
+      if (recommendedMinorVersion != null)
+        'recommendedMinorVersion': recommendedMinorVersion,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
+  }
 }
 
 enum SyncType {
@@ -8189,6 +9381,10 @@ class TagResourceOutput {
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The detail data for a template sync configuration.
@@ -8230,6 +9426,23 @@ class TemplateSyncConfig {
       subdirectory: json['subdirectory'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final branch = this.branch;
+    final repositoryName = this.repositoryName;
+    final repositoryProvider = this.repositoryProvider;
+    final templateName = this.templateName;
+    final templateType = this.templateType;
+    final subdirectory = this.subdirectory;
+    return {
+      'branch': branch,
+      'repositoryName': repositoryName,
+      'repositoryProvider': repositoryProvider.toValue(),
+      'templateName': templateName,
+      'templateType': templateType.toValue(),
+      if (subdirectory != null) 'subdirectory': subdirectory,
+    };
+  }
 }
 
 enum TemplateType {
@@ -8269,6 +9482,7 @@ class TemplateVersionSourceInput {
   TemplateVersionSourceInput({
     this.s3,
   });
+
   Map<String, dynamic> toJson() {
     final s3 = this.s3;
     return {
@@ -8320,6 +9534,10 @@ class UntagResourceOutput {
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateAccountSettingsOutput {
@@ -8336,6 +9554,13 @@ class UpdateAccountSettingsOutput {
           json['accountSettings'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountSettings = this.accountSettings;
+    return {
+      'accountSettings': accountSettings,
+    };
+  }
 }
 
 class UpdateComponentOutput {
@@ -8349,6 +9574,13 @@ class UpdateComponentOutput {
     return UpdateComponentOutput(
       component: Component.fromJson(json['component'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final component = this.component;
+    return {
+      'component': component,
+    };
   }
 }
 
@@ -8366,6 +9598,13 @@ class UpdateEnvironmentAccountConnectionOutput {
           json['environmentAccountConnection'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentAccountConnection = this.environmentAccountConnection;
+    return {
+      'environmentAccountConnection': environmentAccountConnection,
+    };
+  }
 }
 
 class UpdateEnvironmentOutput {
@@ -8381,6 +9620,13 @@ class UpdateEnvironmentOutput {
           Environment.fromJson(json['environment'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environment = this.environment;
+    return {
+      'environment': environment,
+    };
+  }
 }
 
 class UpdateEnvironmentTemplateOutput {
@@ -8395,6 +9641,13 @@ class UpdateEnvironmentTemplateOutput {
       environmentTemplate: EnvironmentTemplate.fromJson(
           json['environmentTemplate'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentTemplate = this.environmentTemplate;
+    return {
+      'environmentTemplate': environmentTemplate,
+    };
   }
 }
 
@@ -8412,6 +9665,13 @@ class UpdateEnvironmentTemplateVersionOutput {
           json['environmentTemplateVersion'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentTemplateVersion = this.environmentTemplateVersion;
+    return {
+      'environmentTemplateVersion': environmentTemplateVersion,
+    };
+  }
 }
 
 class UpdateServiceInstanceOutput {
@@ -8427,6 +9687,13 @@ class UpdateServiceInstanceOutput {
           json['serviceInstance'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceInstance = this.serviceInstance;
+    return {
+      'serviceInstance': serviceInstance,
+    };
+  }
 }
 
 class UpdateServiceOutput {
@@ -8440,6 +9707,13 @@ class UpdateServiceOutput {
     return UpdateServiceOutput(
       service: Service.fromJson(json['service'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final service = this.service;
+    return {
+      'service': service,
+    };
   }
 }
 
@@ -8456,6 +9730,13 @@ class UpdateServicePipelineOutput {
           ServicePipeline.fromJson(json['pipeline'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipeline = this.pipeline;
+    return {
+      'pipeline': pipeline,
+    };
+  }
 }
 
 class UpdateServiceTemplateOutput {
@@ -8470,6 +9751,13 @@ class UpdateServiceTemplateOutput {
       serviceTemplate: ServiceTemplate.fromJson(
           json['serviceTemplate'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceTemplate = this.serviceTemplate;
+    return {
+      'serviceTemplate': serviceTemplate,
+    };
   }
 }
 
@@ -8487,6 +9775,13 @@ class UpdateServiceTemplateVersionOutput {
           json['serviceTemplateVersion'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceTemplateVersion = this.serviceTemplateVersion;
+    return {
+      'serviceTemplateVersion': serviceTemplateVersion,
+    };
+  }
 }
 
 class UpdateTemplateSyncConfigOutput {
@@ -8503,6 +9798,13 @@ class UpdateTemplateSyncConfigOutput {
               json['templateSyncConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final templateSyncConfig = this.templateSyncConfig;
+    return {
+      if (templateSyncConfig != null) 'templateSyncConfig': templateSyncConfig,
+    };
   }
 }
 

@@ -1432,6 +1432,15 @@ class Anomaly {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final pixelAnomaly = this.pixelAnomaly;
+    return {
+      if (name != null) 'Name': name,
+      if (pixelAnomaly != null) 'PixelAnomaly': pixelAnomaly,
+    };
+  }
 }
 
 class CreateDatasetResponse {
@@ -1448,6 +1457,13 @@ class CreateDatasetResponse {
               json['DatasetMetadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasetMetadata = this.datasetMetadata;
+    return {
+      if (datasetMetadata != null) 'DatasetMetadata': datasetMetadata,
+    };
   }
 }
 
@@ -1466,6 +1482,13 @@ class CreateModelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelMetadata = this.modelMetadata;
+    return {
+      if (modelMetadata != null) 'ModelMetadata': modelMetadata,
+    };
+  }
 }
 
 class CreateProjectResponse {
@@ -1482,6 +1505,13 @@ class CreateProjectResponse {
               json['ProjectMetadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final projectMetadata = this.projectMetadata;
+    return {
+      if (projectMetadata != null) 'ProjectMetadata': projectMetadata,
+    };
   }
 }
 
@@ -1534,6 +1564,27 @@ class DatasetDescription {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final datasetType = this.datasetType;
+    final imageStats = this.imageStats;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final projectName = this.projectName;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (datasetType != null) 'DatasetType': datasetType,
+      if (imageStats != null) 'ImageStats': imageStats,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (projectName != null) 'ProjectName': projectName,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 /// Location information about a manifest file. You can use a manifest file to
@@ -1545,6 +1596,7 @@ class DatasetGroundTruthManifest {
   DatasetGroundTruthManifest({
     this.s3Object,
   });
+
   Map<String, dynamic> toJson() {
     final s3Object = this.s3Object;
     return {
@@ -1581,6 +1633,19 @@ class DatasetImageStats {
       total: json['Total'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomaly = this.anomaly;
+    final labeled = this.labeled;
+    final normal = this.normal;
+    final total = this.total;
+    return {
+      if (anomaly != null) 'Anomaly': anomaly,
+      if (labeled != null) 'Labeled': labeled,
+      if (normal != null) 'Normal': normal,
+      if (total != null) 'Total': total,
+    };
+  }
 }
 
 /// Summary information for an Amazon Lookout for Vision dataset. For more
@@ -1612,6 +1677,20 @@ class DatasetMetadata {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final datasetType = this.datasetType;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (datasetType != null) 'DatasetType': datasetType,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 /// Information about the location of a manifest file that Amazon Lookout for
@@ -1623,6 +1702,7 @@ class DatasetSource {
   DatasetSource({
     this.groundTruthManifest,
   });
+
   Map<String, dynamic> toJson() {
     final groundTruthManifest = this.groundTruthManifest;
     return {
@@ -1705,6 +1785,10 @@ class DeleteDatasetResponse {
   factory DeleteDatasetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDatasetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteModelResponse {
@@ -1719,6 +1803,13 @@ class DeleteModelResponse {
       modelArn: json['ModelArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelArn = this.modelArn;
+    return {
+      if (modelArn != null) 'ModelArn': modelArn,
+    };
+  }
 }
 
 class DeleteProjectResponse {
@@ -1732,6 +1823,13 @@ class DeleteProjectResponse {
     return DeleteProjectResponse(
       projectArn: json['ProjectArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final projectArn = this.projectArn;
+    return {
+      if (projectArn != null) 'ProjectArn': projectArn,
+    };
   }
 }
 
@@ -1749,6 +1847,13 @@ class DescribeDatasetResponse {
               json['DatasetDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasetDescription = this.datasetDescription;
+    return {
+      if (datasetDescription != null) 'DatasetDescription': datasetDescription,
+    };
   }
 }
 
@@ -1768,6 +1873,14 @@ class DescribeModelPackagingJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelPackagingDescription = this.modelPackagingDescription;
+    return {
+      if (modelPackagingDescription != null)
+        'ModelPackagingDescription': modelPackagingDescription,
+    };
+  }
 }
 
 class DescribeModelResponse {
@@ -1784,6 +1897,13 @@ class DescribeModelResponse {
               json['ModelDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelDescription = this.modelDescription;
+    return {
+      if (modelDescription != null) 'ModelDescription': modelDescription,
+    };
   }
 }
 
@@ -1802,6 +1922,13 @@ class DescribeProjectResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final projectDescription = this.projectDescription;
+    return {
+      if (projectDescription != null) 'ProjectDescription': projectDescription,
+    };
+  }
 }
 
 class DetectAnomaliesResponse {
@@ -1818,6 +1945,14 @@ class DetectAnomaliesResponse {
               json['DetectAnomalyResult'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detectAnomalyResult = this.detectAnomalyResult;
+    return {
+      if (detectAnomalyResult != null)
+        'DetectAnomalyResult': detectAnomalyResult,
+    };
   }
 }
 
@@ -1886,6 +2021,21 @@ class DetectAnomalyResult {
           ? ImageSource.fromJson(json['Source'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final anomalies = this.anomalies;
+    final anomalyMask = this.anomalyMask;
+    final confidence = this.confidence;
+    final isAnomalous = this.isAnomalous;
+    final source = this.source;
+    return {
+      if (anomalies != null) 'Anomalies': anomalies,
+      if (anomalyMask != null) 'AnomalyMask': base64Encode(anomalyMask),
+      if (confidence != null) 'Confidence': confidence,
+      if (isAnomalous != null) 'IsAnomalous': isAnomalous,
+      if (source != null) 'Source': source,
+    };
   }
 }
 
@@ -2010,6 +2160,18 @@ class GreengrassOutputDetails {
       componentVersionArn: json['ComponentVersionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final componentName = this.componentName;
+    final componentVersion = this.componentVersion;
+    final componentVersionArn = this.componentVersionArn;
+    return {
+      if (componentName != null) 'ComponentName': componentName,
+      if (componentVersion != null) 'ComponentVersion': componentVersion,
+      if (componentVersionArn != null)
+        'ComponentVersionArn': componentVersionArn,
+    };
+  }
 }
 
 /// The source for an image.
@@ -2024,6 +2186,13 @@ class ImageSource {
     return ImageSource(
       type: json['Type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    return {
+      if (type != null) 'Type': type,
+    };
   }
 }
 
@@ -2043,6 +2212,7 @@ class InputS3Object {
     required this.key,
     this.versionId,
   });
+
   Map<String, dynamic> toJson() {
     final bucket = this.bucket;
     final key = this.key;
@@ -2077,6 +2247,15 @@ class ListDatasetEntriesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetEntries = this.datasetEntries;
+    final nextToken = this.nextToken;
+    return {
+      if (datasetEntries != null) 'DatasetEntries': datasetEntries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListModelPackagingJobsResponse {
@@ -2104,6 +2283,15 @@ class ListModelPackagingJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelPackagingJobs = this.modelPackagingJobs;
+    final nextToken = this.nextToken;
+    return {
+      if (modelPackagingJobs != null) 'ModelPackagingJobs': modelPackagingJobs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListModelsResponse {
@@ -2127,6 +2315,15 @@ class ListModelsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final models = this.models;
+    final nextToken = this.nextToken;
+    return {
+      if (models != null) 'Models': models,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2152,6 +2349,15 @@ class ListProjectsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final projects = this.projects;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (projects != null) 'Projects': projects,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2168,6 +2374,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2265,6 +2478,41 @@ class ModelDescription {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final description = this.description;
+    final evaluationEndTimestamp = this.evaluationEndTimestamp;
+    final evaluationManifest = this.evaluationManifest;
+    final evaluationResult = this.evaluationResult;
+    final kmsKeyId = this.kmsKeyId;
+    final maxInferenceUnits = this.maxInferenceUnits;
+    final minInferenceUnits = this.minInferenceUnits;
+    final modelArn = this.modelArn;
+    final modelVersion = this.modelVersion;
+    final outputConfig = this.outputConfig;
+    final performance = this.performance;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (description != null) 'Description': description,
+      if (evaluationEndTimestamp != null)
+        'EvaluationEndTimestamp': unixTimestampToJson(evaluationEndTimestamp),
+      if (evaluationManifest != null) 'EvaluationManifest': evaluationManifest,
+      if (evaluationResult != null) 'EvaluationResult': evaluationResult,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (maxInferenceUnits != null) 'MaxInferenceUnits': maxInferenceUnits,
+      if (minInferenceUnits != null) 'MinInferenceUnits': minInferenceUnits,
+      if (modelArn != null) 'ModelArn': modelArn,
+      if (modelVersion != null) 'ModelVersion': modelVersion,
+      if (outputConfig != null) 'OutputConfig': outputConfig,
+      if (performance != null) 'Performance': performance,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 enum ModelHostingStatus {
@@ -2356,6 +2604,26 @@ class ModelMetadata {
       status: (json['Status'] as String?)?.toModelStatus(),
       statusMessage: json['StatusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final description = this.description;
+    final modelArn = this.modelArn;
+    final modelVersion = this.modelVersion;
+    final performance = this.performance;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (description != null) 'Description': description,
+      if (modelArn != null) 'ModelArn': modelArn,
+      if (modelVersion != null) 'ModelVersion': modelVersion,
+      if (performance != null) 'Performance': performance,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
   }
 }
 
@@ -2460,6 +2728,39 @@ class ModelPackagingDescription {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final jobName = this.jobName;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final modelPackagingConfiguration = this.modelPackagingConfiguration;
+    final modelPackagingJobDescription = this.modelPackagingJobDescription;
+    final modelPackagingMethod = this.modelPackagingMethod;
+    final modelPackagingOutputDetails = this.modelPackagingOutputDetails;
+    final modelVersion = this.modelVersion;
+    final projectName = this.projectName;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (jobName != null) 'JobName': jobName,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (modelPackagingConfiguration != null)
+        'ModelPackagingConfiguration': modelPackagingConfiguration,
+      if (modelPackagingJobDescription != null)
+        'ModelPackagingJobDescription': modelPackagingJobDescription,
+      if (modelPackagingMethod != null)
+        'ModelPackagingMethod': modelPackagingMethod,
+      if (modelPackagingOutputDetails != null)
+        'ModelPackagingOutputDetails': modelPackagingOutputDetails,
+      if (modelVersion != null) 'ModelVersion': modelVersion,
+      if (projectName != null) 'ProjectName': projectName,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 /// Metadata for a model packaging job. For more information, see
@@ -2520,6 +2821,33 @@ class ModelPackagingJobMetadata {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final jobName = this.jobName;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final modelPackagingJobDescription = this.modelPackagingJobDescription;
+    final modelPackagingMethod = this.modelPackagingMethod;
+    final modelVersion = this.modelVersion;
+    final projectName = this.projectName;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (jobName != null) 'JobName': jobName,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (modelPackagingJobDescription != null)
+        'ModelPackagingJobDescription': modelPackagingJobDescription,
+      if (modelPackagingMethod != null)
+        'ModelPackagingMethod': modelPackagingMethod,
+      if (modelVersion != null) 'ModelVersion': modelVersion,
+      if (projectName != null) 'ProjectName': projectName,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 enum ModelPackagingJobStatus {
@@ -2576,6 +2904,13 @@ class ModelPackagingOutputDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final greengrass = this.greengrass;
+    return {
+      if (greengrass != null) 'Greengrass': greengrass,
+    };
+  }
 }
 
 /// Information about the evaluation performance of a trained model.
@@ -2600,6 +2935,17 @@ class ModelPerformance {
       precision: json['Precision'] as double?,
       recall: json['Recall'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final f1Score = this.f1Score;
+    final precision = this.precision;
+    final recall = this.recall;
+    return {
+      if (f1Score != null) 'F1Score': f1Score,
+      if (precision != null) 'Precision': precision,
+      if (recall != null) 'Recall': recall,
+    };
   }
 }
 
@@ -2707,6 +3053,15 @@ class OutputS3Object {
       key: json['Key'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final key = this.key;
+    return {
+      'Bucket': bucket,
+      'Key': key,
+    };
+  }
 }
 
 /// Information about the pixels in an anomaly mask. For more information, see
@@ -2730,6 +3085,16 @@ class PixelAnomaly {
       color: json['Color'] as String?,
       totalPercentageArea: json['TotalPercentageArea'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final color = this.color;
+    final totalPercentageArea = this.totalPercentageArea;
+    return {
+      if (color != null) 'Color': color,
+      if (totalPercentageArea != null)
+        'TotalPercentageArea': totalPercentageArea,
+    };
   }
 }
 
@@ -2765,6 +3130,20 @@ class ProjectDescription {
       projectName: json['ProjectName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final datasets = this.datasets;
+    final projectArn = this.projectArn;
+    final projectName = this.projectName;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (datasets != null) 'Datasets': datasets,
+      if (projectArn != null) 'ProjectArn': projectArn,
+      if (projectName != null) 'ProjectName': projectName,
+    };
+  }
 }
 
 /// Metadata about an Amazon Lookout for Vision project.
@@ -2789,6 +3168,18 @@ class ProjectMetadata {
       projectArn: json['ProjectArn'] as String?,
       projectName: json['ProjectName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final projectArn = this.projectArn;
+    final projectName = this.projectName;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (projectArn != null) 'ProjectArn': projectArn,
+      if (projectName != null) 'ProjectName': projectName,
+    };
   }
 }
 
@@ -2839,6 +3230,13 @@ class StartModelPackagingJobResponse {
       jobName: json['JobName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobName = this.jobName;
+    return {
+      if (jobName != null) 'JobName': jobName,
+    };
+  }
 }
 
 class StartModelResponse {
@@ -2853,6 +3251,13 @@ class StartModelResponse {
       status: (json['Status'] as String?)?.toModelHostingStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class StopModelResponse {
@@ -2866,6 +3271,13 @@ class StopModelResponse {
     return StopModelResponse(
       status: (json['Status'] as String?)?.toModelHostingStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -2903,6 +3315,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3066,6 +3482,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateDatasetEntriesResponse {
@@ -3079,6 +3499,13 @@ class UpdateDatasetEntriesResponse {
     return UpdateDatasetEntriesResponse(
       status: (json['Status'] as String?)?.toDatasetStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 

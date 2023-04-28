@@ -2354,6 +2354,13 @@ class AcceptEulasResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eulaAcceptances = this.eulaAcceptances;
+    return {
+      if (eulaAcceptances != null) 'eulaAcceptances': eulaAcceptances,
+    };
+  }
 }
 
 /// An LDAP attribute of an Active Directory computer account, in the form of a
@@ -2481,6 +2488,13 @@ class CreateLaunchProfileResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final launchProfile = this.launchProfile;
+    return {
+      if (launchProfile != null) 'launchProfile': launchProfile,
+    };
+  }
 }
 
 class CreateStreamingImageResponse {
@@ -2498,6 +2512,13 @@ class CreateStreamingImageResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final streamingImage = this.streamingImage;
+    return {
+      if (streamingImage != null) 'streamingImage': streamingImage,
+    };
+  }
 }
 
 class CreateStreamingSessionResponse {
@@ -2513,6 +2534,13 @@ class CreateStreamingSessionResponse {
           ? StreamingSession.fromJson(json['session'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final session = this.session;
+    return {
+      if (session != null) 'session': session,
+    };
   }
 }
 
@@ -2532,6 +2560,13 @@ class CreateStreamingSessionStreamResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stream = this.stream;
+    return {
+      if (stream != null) 'stream': stream,
+    };
+  }
 }
 
 class CreateStudioComponentResponse {
@@ -2549,6 +2584,13 @@ class CreateStudioComponentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final studioComponent = this.studioComponent;
+    return {
+      if (studioComponent != null) 'studioComponent': studioComponent,
+    };
+  }
 }
 
 class CreateStudioResponse {
@@ -2565,12 +2607,23 @@ class CreateStudioResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final studio = this.studio;
+    return {
+      if (studio != null) 'studio': studio,
+    };
+  }
 }
 
 class DeleteLaunchProfileMemberResponse {
   DeleteLaunchProfileMemberResponse();
   factory DeleteLaunchProfileMemberResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLaunchProfileMemberResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2589,6 +2642,13 @@ class DeleteLaunchProfileResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final launchProfile = this.launchProfile;
+    return {
+      if (launchProfile != null) 'launchProfile': launchProfile,
+    };
+  }
 }
 
 class DeleteStreamingImageResponse {
@@ -2606,6 +2666,13 @@ class DeleteStreamingImageResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final streamingImage = this.streamingImage;
+    return {
+      if (streamingImage != null) 'streamingImage': streamingImage,
+    };
+  }
 }
 
 class DeleteStreamingSessionResponse {
@@ -2621,6 +2688,13 @@ class DeleteStreamingSessionResponse {
           ? StreamingSession.fromJson(json['session'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final session = this.session;
+    return {
+      if (session != null) 'session': session,
+    };
   }
 }
 
@@ -2639,12 +2713,23 @@ class DeleteStudioComponentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final studioComponent = this.studioComponent;
+    return {
+      if (studioComponent != null) 'studioComponent': studioComponent,
+    };
+  }
 }
 
 class DeleteStudioMemberResponse {
   DeleteStudioMemberResponse();
   factory DeleteStudioMemberResponse.fromJson(Map<String, dynamic> _) {
     return DeleteStudioMemberResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2659,6 +2744,13 @@ class DeleteStudioResponse {
     return DeleteStudioResponse(
       studio: Studio.fromJson(json['studio'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final studio = this.studio;
+    return {
+      'studio': studio,
+    };
   }
 }
 
@@ -2695,6 +2787,21 @@ class Eula {
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    final createdAt = this.createdAt;
+    final eulaId = this.eulaId;
+    final name = this.name;
+    final updatedAt = this.updatedAt;
+    return {
+      if (content != null) 'content': content,
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (eulaId != null) 'eulaId': eulaId,
+      if (name != null) 'name': name,
+      if (updatedAt != null) 'updatedAt': iso8601ToJson(updatedAt),
+    };
+  }
 }
 
 /// The acceptance of a EULA, required to use Amazon-provided streaming images.
@@ -2730,6 +2837,21 @@ class EulaAcceptance {
       eulaId: json['eulaId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceptedAt = this.acceptedAt;
+    final acceptedBy = this.acceptedBy;
+    final accepteeId = this.accepteeId;
+    final eulaAcceptanceId = this.eulaAcceptanceId;
+    final eulaId = this.eulaId;
+    return {
+      if (acceptedAt != null) 'acceptedAt': iso8601ToJson(acceptedAt),
+      if (acceptedBy != null) 'acceptedBy': acceptedBy,
+      if (accepteeId != null) 'accepteeId': accepteeId,
+      if (eulaAcceptanceId != null) 'eulaAcceptanceId': eulaAcceptanceId,
+      if (eulaId != null) 'eulaId': eulaId,
+    };
+  }
 }
 
 class GetEulaResponse {
@@ -2745,6 +2867,13 @@ class GetEulaResponse {
           ? Eula.fromJson(json['eula'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eula = this.eula;
+    return {
+      if (eula != null) 'eula': eula,
+    };
   }
 }
 
@@ -2780,6 +2909,18 @@ class GetLaunchProfileDetailsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final launchProfile = this.launchProfile;
+    final streamingImages = this.streamingImages;
+    final studioComponentSummaries = this.studioComponentSummaries;
+    return {
+      if (launchProfile != null) 'launchProfile': launchProfile,
+      if (streamingImages != null) 'streamingImages': streamingImages,
+      if (studioComponentSummaries != null)
+        'studioComponentSummaries': studioComponentSummaries,
+    };
+  }
 }
 
 class GetLaunchProfileInitializationResponse {
@@ -2798,6 +2939,14 @@ class GetLaunchProfileInitializationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final launchProfileInitialization = this.launchProfileInitialization;
+    return {
+      if (launchProfileInitialization != null)
+        'launchProfileInitialization': launchProfileInitialization,
+    };
+  }
 }
 
 class GetLaunchProfileMemberResponse {
@@ -2814,6 +2963,13 @@ class GetLaunchProfileMemberResponse {
               json['member'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final member = this.member;
+    return {
+      if (member != null) 'member': member,
+    };
   }
 }
 
@@ -2832,6 +2988,13 @@ class GetLaunchProfileResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final launchProfile = this.launchProfile;
+    return {
+      if (launchProfile != null) 'launchProfile': launchProfile,
+    };
+  }
 }
 
 class GetStreamingImageResponse {
@@ -2849,6 +3012,13 @@ class GetStreamingImageResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final streamingImage = this.streamingImage;
+    return {
+      if (streamingImage != null) 'streamingImage': streamingImage,
+    };
+  }
 }
 
 class GetStreamingSessionResponse {
@@ -2864,6 +3034,13 @@ class GetStreamingSessionResponse {
           ? StreamingSession.fromJson(json['session'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final session = this.session;
+    return {
+      if (session != null) 'session': session,
+    };
   }
 }
 
@@ -2883,6 +3060,13 @@ class GetStreamingSessionStreamResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stream = this.stream;
+    return {
+      if (stream != null) 'stream': stream,
+    };
+  }
 }
 
 class GetStudioComponentResponse {
@@ -2900,6 +3084,13 @@ class GetStudioComponentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final studioComponent = this.studioComponent;
+    return {
+      if (studioComponent != null) 'studioComponent': studioComponent,
+    };
+  }
 }
 
 class GetStudioMemberResponse {
@@ -2916,6 +3107,13 @@ class GetStudioMemberResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final member = this.member;
+    return {
+      if (member != null) 'member': member,
+    };
+  }
 }
 
 class GetStudioResponse {
@@ -2929,6 +3127,13 @@ class GetStudioResponse {
     return GetStudioResponse(
       studio: Studio.fromJson(json['studio'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final studio = this.studio;
+    return {
+      'studio': studio,
+    };
   }
 }
 
@@ -3053,6 +3258,47 @@ class LaunchProfile {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final description = this.description;
+    final ec2SubnetIds = this.ec2SubnetIds;
+    final launchProfileId = this.launchProfileId;
+    final launchProfileProtocolVersions = this.launchProfileProtocolVersions;
+    final name = this.name;
+    final state = this.state;
+    final statusCode = this.statusCode;
+    final statusMessage = this.statusMessage;
+    final streamConfiguration = this.streamConfiguration;
+    final studioComponentIds = this.studioComponentIds;
+    final tags = this.tags;
+    final updatedAt = this.updatedAt;
+    final updatedBy = this.updatedBy;
+    final validationResults = this.validationResults;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (description != null) 'description': description,
+      if (ec2SubnetIds != null) 'ec2SubnetIds': ec2SubnetIds,
+      if (launchProfileId != null) 'launchProfileId': launchProfileId,
+      if (launchProfileProtocolVersions != null)
+        'launchProfileProtocolVersions': launchProfileProtocolVersions,
+      if (name != null) 'name': name,
+      if (state != null) 'state': state.toValue(),
+      if (statusCode != null) 'statusCode': statusCode.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (streamConfiguration != null)
+        'streamConfiguration': streamConfiguration,
+      if (studioComponentIds != null) 'studioComponentIds': studioComponentIds,
+      if (tags != null) 'tags': tags,
+      if (updatedAt != null) 'updatedAt': iso8601ToJson(updatedAt),
+      if (updatedBy != null) 'updatedBy': updatedBy,
+      if (validationResults != null) 'validationResults': validationResults,
+    };
+  }
 }
 
 /// A Launch Profile Initialization contains information required for a
@@ -3129,6 +3375,33 @@ class LaunchProfileInitialization {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeDirectory = this.activeDirectory;
+    final ec2SecurityGroupIds = this.ec2SecurityGroupIds;
+    final launchProfileId = this.launchProfileId;
+    final launchProfileProtocolVersion = this.launchProfileProtocolVersion;
+    final launchPurpose = this.launchPurpose;
+    final name = this.name;
+    final platform = this.platform;
+    final systemInitializationScripts = this.systemInitializationScripts;
+    final userInitializationScripts = this.userInitializationScripts;
+    return {
+      if (activeDirectory != null) 'activeDirectory': activeDirectory,
+      if (ec2SecurityGroupIds != null)
+        'ec2SecurityGroupIds': ec2SecurityGroupIds,
+      if (launchProfileId != null) 'launchProfileId': launchProfileId,
+      if (launchProfileProtocolVersion != null)
+        'launchProfileProtocolVersion': launchProfileProtocolVersion,
+      if (launchPurpose != null) 'launchPurpose': launchPurpose,
+      if (name != null) 'name': name,
+      if (platform != null) 'platform': platform.toValue(),
+      if (systemInitializationScripts != null)
+        'systemInitializationScripts': systemInitializationScripts,
+      if (userInitializationScripts != null)
+        'userInitializationScripts': userInitializationScripts,
+    };
+  }
 }
 
 /// The Launch Profile Initialization Active Directory contains information
@@ -3185,6 +3458,29 @@ class LaunchProfileInitializationActiveDirectory {
       studioComponentName: json['studioComponentName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final computerAttributes = this.computerAttributes;
+    final directoryId = this.directoryId;
+    final directoryName = this.directoryName;
+    final dnsIpAddresses = this.dnsIpAddresses;
+    final organizationalUnitDistinguishedName =
+        this.organizationalUnitDistinguishedName;
+    final studioComponentId = this.studioComponentId;
+    final studioComponentName = this.studioComponentName;
+    return {
+      if (computerAttributes != null) 'computerAttributes': computerAttributes,
+      if (directoryId != null) 'directoryId': directoryId,
+      if (directoryName != null) 'directoryName': directoryName,
+      if (dnsIpAddresses != null) 'dnsIpAddresses': dnsIpAddresses,
+      if (organizationalUnitDistinguishedName != null)
+        'organizationalUnitDistinguishedName':
+            organizationalUnitDistinguishedName,
+      if (studioComponentId != null) 'studioComponentId': studioComponentId,
+      if (studioComponentName != null)
+        'studioComponentName': studioComponentName,
+    };
+  }
 }
 
 /// The Launch Profile Initialization Script is used when start streaming
@@ -3225,6 +3521,23 @@ class LaunchProfileInitializationScript {
       studioComponentId: json['studioComponentId'] as String?,
       studioComponentName: json['studioComponentName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final runtimeRoleArn = this.runtimeRoleArn;
+    final script = this.script;
+    final secureInitializationRoleArn = this.secureInitializationRoleArn;
+    final studioComponentId = this.studioComponentId;
+    final studioComponentName = this.studioComponentName;
+    return {
+      if (runtimeRoleArn != null) 'runtimeRoleArn': runtimeRoleArn,
+      if (script != null) 'script': script,
+      if (secureInitializationRoleArn != null)
+        'secureInitializationRoleArn': secureInitializationRoleArn,
+      if (studioComponentId != null) 'studioComponentId': studioComponentId,
+      if (studioComponentName != null)
+        'studioComponentName': studioComponentName,
+    };
   }
 }
 
@@ -3283,6 +3596,19 @@ class LaunchProfileMembership {
       principalId: json['principalId'] as String?,
       sid: json['sid'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identityStoreId = this.identityStoreId;
+    final persona = this.persona;
+    final principalId = this.principalId;
+    final sid = this.sid;
+    return {
+      if (identityStoreId != null) 'identityStoreId': identityStoreId,
+      if (persona != null) 'persona': persona.toValue(),
+      if (principalId != null) 'principalId': principalId,
+      if (sid != null) 'sid': sid,
+    };
   }
 }
 
@@ -3680,6 +4006,15 @@ class ListEulaAcceptancesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eulaAcceptances = this.eulaAcceptances;
+    final nextToken = this.nextToken;
+    return {
+      if (eulaAcceptances != null) 'eulaAcceptances': eulaAcceptances,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListEulasResponse {
@@ -3701,6 +4036,15 @@ class ListEulasResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eulas = this.eulas;
+    final nextToken = this.nextToken;
+    return {
+      if (eulas != null) 'eulas': eulas,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3725,6 +4069,15 @@ class ListLaunchProfileMembersResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final members = this.members;
+    final nextToken = this.nextToken;
+    return {
+      if (members != null) 'members': members,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListLaunchProfilesResponse {
@@ -3746,6 +4099,15 @@ class ListLaunchProfilesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final launchProfiles = this.launchProfiles;
+    final nextToken = this.nextToken;
+    return {
+      if (launchProfiles != null) 'launchProfiles': launchProfiles,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3769,6 +4131,15 @@ class ListStreamingImagesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final streamingImages = this.streamingImages;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (streamingImages != null) 'streamingImages': streamingImages,
+    };
+  }
 }
 
 class ListStreamingSessionsResponse {
@@ -3790,6 +4161,15 @@ class ListStreamingSessionsResponse {
           .map((e) => StreamingSession.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final sessions = this.sessions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (sessions != null) 'sessions': sessions,
+    };
   }
 }
 
@@ -3813,6 +4193,15 @@ class ListStudioComponentsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final studioComponents = this.studioComponents;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (studioComponents != null) 'studioComponents': studioComponents,
+    };
+  }
 }
 
 class ListStudioMembersResponse {
@@ -3834,6 +4223,15 @@ class ListStudioMembersResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final members = this.members;
+    final nextToken = this.nextToken;
+    return {
+      if (members != null) 'members': members,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3857,6 +4255,15 @@ class ListStudiosResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final studios = this.studios;
+    final nextToken = this.nextToken;
+    return {
+      'studios': studios,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3873,6 +4280,13 @@ class ListTagsForResourceResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// A new member that is added to a launch profile.
@@ -3887,6 +4301,7 @@ class NewLaunchProfileMember {
     required this.persona,
     required this.principalId,
   });
+
   Map<String, dynamic> toJson() {
     final persona = this.persona;
     final principalId = this.principalId;
@@ -3909,6 +4324,7 @@ class NewStudioMember {
     required this.persona,
     required this.principalId,
   });
+
   Map<String, dynamic> toJson() {
     final persona = this.persona;
     final principalId = this.principalId;
@@ -3924,12 +4340,20 @@ class PutLaunchProfileMembersResponse {
   factory PutLaunchProfileMembersResponse.fromJson(Map<String, dynamic> _) {
     return PutLaunchProfileMembersResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class PutStudioMembersResponse {
   PutStudioMembersResponse();
   factory PutStudioMembersResponse.fromJson(Map<String, dynamic> _) {
     return PutStudioMembersResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4028,6 +4452,13 @@ class StartStreamingSessionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final session = this.session;
+    return {
+      if (session != null) 'session': session,
+    };
+  }
 }
 
 class StartStudioSSOConfigurationRepairResponse {
@@ -4043,6 +4474,13 @@ class StartStudioSSOConfigurationRepairResponse {
       studio: Studio.fromJson(json['studio'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final studio = this.studio;
+    return {
+      'studio': studio,
+    };
+  }
 }
 
 class StopStreamingSessionResponse {
@@ -4057,6 +4495,13 @@ class StopStreamingSessionResponse {
           ? StreamingSession.fromJson(json['session'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final session = this.session;
+    return {
+      if (session != null) 'session': session,
+    };
   }
 }
 
@@ -4129,6 +4574,26 @@ class StreamConfiguration {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clipboardMode = this.clipboardMode;
+    final ec2InstanceTypes = this.ec2InstanceTypes;
+    final streamingImageIds = this.streamingImageIds;
+    final maxSessionLengthInMinutes = this.maxSessionLengthInMinutes;
+    final maxStoppedSessionLengthInMinutes =
+        this.maxStoppedSessionLengthInMinutes;
+    final sessionStorage = this.sessionStorage;
+    return {
+      'clipboardMode': clipboardMode.toValue(),
+      'ec2InstanceTypes': ec2InstanceTypes.map((e) => e.toValue()).toList(),
+      'streamingImageIds': streamingImageIds,
+      if (maxSessionLengthInMinutes != null)
+        'maxSessionLengthInMinutes': maxSessionLengthInMinutes,
+      if (maxStoppedSessionLengthInMinutes != null)
+        'maxStoppedSessionLengthInMinutes': maxStoppedSessionLengthInMinutes,
+      if (sessionStorage != null) 'sessionStorage': sessionStorage,
+    };
+  }
 }
 
 /// Configuration for streaming workstations created using this launch profile.
@@ -4180,6 +4645,7 @@ class StreamConfigurationCreate {
     this.maxStoppedSessionLengthInMinutes,
     this.sessionStorage,
   });
+
   Map<String, dynamic> toJson() {
     final clipboardMode = this.clipboardMode;
     final ec2InstanceTypes = this.ec2InstanceTypes;
@@ -4360,6 +4826,38 @@ class StreamingImage {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final ec2ImageId = this.ec2ImageId;
+    final encryptionConfiguration = this.encryptionConfiguration;
+    final eulaIds = this.eulaIds;
+    final name = this.name;
+    final owner = this.owner;
+    final platform = this.platform;
+    final state = this.state;
+    final statusCode = this.statusCode;
+    final statusMessage = this.statusMessage;
+    final streamingImageId = this.streamingImageId;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (description != null) 'description': description,
+      if (ec2ImageId != null) 'ec2ImageId': ec2ImageId,
+      if (encryptionConfiguration != null)
+        'encryptionConfiguration': encryptionConfiguration,
+      if (eulaIds != null) 'eulaIds': eulaIds,
+      if (name != null) 'name': name,
+      if (owner != null) 'owner': owner,
+      if (platform != null) 'platform': platform,
+      if (state != null) 'state': state.toValue(),
+      if (statusCode != null) 'statusCode': statusCode.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (streamingImageId != null) 'streamingImageId': streamingImageId,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Specifies how a streaming image is encrypted.
@@ -4381,6 +4879,15 @@ class StreamingImageEncryptionConfiguration {
           .toStreamingImageEncryptionConfigurationKeyType(),
       keyArn: json['keyArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyType = this.keyType;
+    final keyArn = this.keyArn;
+    return {
+      'keyType': keyType.toValue(),
+      if (keyArn != null) 'keyArn': keyArn,
+    };
   }
 }
 
@@ -4687,6 +5194,51 @@ class StreamingSession {
       updatedBy: json['updatedBy'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final ec2InstanceType = this.ec2InstanceType;
+    final launchProfileId = this.launchProfileId;
+    final ownedBy = this.ownedBy;
+    final sessionId = this.sessionId;
+    final startedAt = this.startedAt;
+    final startedBy = this.startedBy;
+    final state = this.state;
+    final statusCode = this.statusCode;
+    final statusMessage = this.statusMessage;
+    final stopAt = this.stopAt;
+    final stoppedAt = this.stoppedAt;
+    final stoppedBy = this.stoppedBy;
+    final streamingImageId = this.streamingImageId;
+    final tags = this.tags;
+    final terminateAt = this.terminateAt;
+    final updatedAt = this.updatedAt;
+    final updatedBy = this.updatedBy;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (ec2InstanceType != null) 'ec2InstanceType': ec2InstanceType,
+      if (launchProfileId != null) 'launchProfileId': launchProfileId,
+      if (ownedBy != null) 'ownedBy': ownedBy,
+      if (sessionId != null) 'sessionId': sessionId,
+      if (startedAt != null) 'startedAt': iso8601ToJson(startedAt),
+      if (startedBy != null) 'startedBy': startedBy,
+      if (state != null) 'state': state.toValue(),
+      if (statusCode != null) 'statusCode': statusCode.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (stopAt != null) 'stopAt': iso8601ToJson(stopAt),
+      if (stoppedAt != null) 'stoppedAt': iso8601ToJson(stoppedAt),
+      if (stoppedBy != null) 'stoppedBy': stoppedBy,
+      if (streamingImageId != null) 'streamingImageId': streamingImageId,
+      if (tags != null) 'tags': tags,
+      if (terminateAt != null) 'terminateAt': iso8601ToJson(terminateAt),
+      if (updatedAt != null) 'updatedAt': iso8601ToJson(updatedAt),
+      if (updatedBy != null) 'updatedBy': updatedBy,
+    };
+  }
 }
 
 /// The streaming session state.
@@ -4970,6 +5522,27 @@ class StreamingSessionStream {
       url: json['url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final expiresAt = this.expiresAt;
+    final ownedBy = this.ownedBy;
+    final state = this.state;
+    final statusCode = this.statusCode;
+    final streamId = this.streamId;
+    final url = this.url;
+    return {
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (expiresAt != null) 'expiresAt': iso8601ToJson(expiresAt),
+      if (ownedBy != null) 'ownedBy': ownedBy,
+      if (state != null) 'state': state.toValue(),
+      if (statusCode != null) 'statusCode': statusCode.toValue(),
+      if (streamId != null) 'streamId': streamId,
+      if (url != null) 'url': url,
+    };
+  }
 }
 
 enum StreamingSessionStreamState {
@@ -5191,6 +5764,44 @@ class Studio {
       userRoleArn: json['userRoleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adminRoleArn = this.adminRoleArn;
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final displayName = this.displayName;
+    final homeRegion = this.homeRegion;
+    final ssoClientId = this.ssoClientId;
+    final state = this.state;
+    final statusCode = this.statusCode;
+    final statusMessage = this.statusMessage;
+    final studioEncryptionConfiguration = this.studioEncryptionConfiguration;
+    final studioId = this.studioId;
+    final studioName = this.studioName;
+    final studioUrl = this.studioUrl;
+    final tags = this.tags;
+    final updatedAt = this.updatedAt;
+    final userRoleArn = this.userRoleArn;
+    return {
+      if (adminRoleArn != null) 'adminRoleArn': adminRoleArn,
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (displayName != null) 'displayName': displayName,
+      if (homeRegion != null) 'homeRegion': homeRegion,
+      if (ssoClientId != null) 'ssoClientId': ssoClientId,
+      if (state != null) 'state': state.toValue(),
+      if (statusCode != null) 'statusCode': statusCode.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (studioEncryptionConfiguration != null)
+        'studioEncryptionConfiguration': studioEncryptionConfiguration,
+      if (studioId != null) 'studioId': studioId,
+      if (studioName != null) 'studioName': studioName,
+      if (studioUrl != null) 'studioUrl': studioUrl,
+      if (tags != null) 'tags': tags,
+      if (updatedAt != null) 'updatedAt': iso8601ToJson(updatedAt),
+      if (userRoleArn != null) 'userRoleArn': userRoleArn,
+    };
+  }
 }
 
 /// A studio component represents a network resource to be used by a studio's
@@ -5332,6 +5943,54 @@ class StudioComponent {
       updatedAt: timeStampFromJson(json['updatedAt']),
       updatedBy: json['updatedBy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final configuration = this.configuration;
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final description = this.description;
+    final ec2SecurityGroupIds = this.ec2SecurityGroupIds;
+    final initializationScripts = this.initializationScripts;
+    final name = this.name;
+    final runtimeRoleArn = this.runtimeRoleArn;
+    final scriptParameters = this.scriptParameters;
+    final secureInitializationRoleArn = this.secureInitializationRoleArn;
+    final state = this.state;
+    final statusCode = this.statusCode;
+    final statusMessage = this.statusMessage;
+    final studioComponentId = this.studioComponentId;
+    final subtype = this.subtype;
+    final tags = this.tags;
+    final type = this.type;
+    final updatedAt = this.updatedAt;
+    final updatedBy = this.updatedBy;
+    return {
+      if (arn != null) 'arn': arn,
+      if (configuration != null) 'configuration': configuration,
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (description != null) 'description': description,
+      if (ec2SecurityGroupIds != null)
+        'ec2SecurityGroupIds': ec2SecurityGroupIds,
+      if (initializationScripts != null)
+        'initializationScripts': initializationScripts,
+      if (name != null) 'name': name,
+      if (runtimeRoleArn != null) 'runtimeRoleArn': runtimeRoleArn,
+      if (scriptParameters != null) 'scriptParameters': scriptParameters,
+      if (secureInitializationRoleArn != null)
+        'secureInitializationRoleArn': secureInitializationRoleArn,
+      if (state != null) 'state': state.toValue(),
+      if (statusCode != null) 'statusCode': statusCode.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (studioComponentId != null) 'studioComponentId': studioComponentId,
+      if (subtype != null) 'subtype': subtype.toValue(),
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type.toValue(),
+      if (updatedAt != null) 'updatedAt': iso8601ToJson(updatedAt),
+      if (updatedBy != null) 'updatedBy': updatedBy,
+    };
   }
 }
 
@@ -5731,6 +6390,29 @@ class StudioComponentSummary {
       updatedBy: json['updatedBy'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final description = this.description;
+    final name = this.name;
+    final studioComponentId = this.studioComponentId;
+    final subtype = this.subtype;
+    final type = this.type;
+    final updatedAt = this.updatedAt;
+    final updatedBy = this.updatedBy;
+    return {
+      if (createdAt != null) 'createdAt': iso8601ToJson(createdAt),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (description != null) 'description': description,
+      if (name != null) 'name': name,
+      if (studioComponentId != null) 'studioComponentId': studioComponentId,
+      if (subtype != null) 'subtype': subtype.toValue(),
+      if (type != null) 'type': type.toValue(),
+      if (updatedAt != null) 'updatedAt': iso8601ToJson(updatedAt),
+      if (updatedBy != null) 'updatedBy': updatedBy,
+    };
+  }
 }
 
 enum StudioComponentType {
@@ -5876,6 +6558,19 @@ class StudioMembership {
       principalId: json['principalId'] as String?,
       sid: json['sid'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identityStoreId = this.identityStoreId;
+    final persona = this.persona;
+    final principalId = this.principalId;
+    final sid = this.sid;
+    return {
+      if (identityStoreId != null) 'identityStoreId': identityStoreId,
+      if (persona != null) 'persona': persona.toValue(),
+      if (principalId != null) 'principalId': principalId,
+      if (sid != null) 'sid': sid,
+    };
   }
 }
 
@@ -6074,12 +6769,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6099,6 +6802,13 @@ class UpdateLaunchProfileMemberResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final member = this.member;
+    return {
+      if (member != null) 'member': member,
+    };
+  }
 }
 
 class UpdateLaunchProfileResponse {
@@ -6116,6 +6826,13 @@ class UpdateLaunchProfileResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final launchProfile = this.launchProfile;
+    return {
+      if (launchProfile != null) 'launchProfile': launchProfile,
+    };
+  }
 }
 
 class UpdateStreamingImageResponse {
@@ -6131,6 +6848,13 @@ class UpdateStreamingImageResponse {
               json['streamingImage'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamingImage = this.streamingImage;
+    return {
+      if (streamingImage != null) 'streamingImage': streamingImage,
+    };
   }
 }
 
@@ -6149,6 +6873,13 @@ class UpdateStudioComponentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final studioComponent = this.studioComponent;
+    return {
+      if (studioComponent != null) 'studioComponent': studioComponent,
+    };
+  }
 }
 
 class UpdateStudioResponse {
@@ -6162,6 +6893,13 @@ class UpdateStudioResponse {
     return UpdateStudioResponse(
       studio: Studio.fromJson(json['studio'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final studio = this.studio;
+    return {
+      'studio': studio,
+    };
   }
 }
 
@@ -6194,6 +6932,19 @@ class ValidationResult {
       statusMessage: json['statusMessage'] as String,
       type: (json['type'] as String).toLaunchProfileValidationType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final statusCode = this.statusCode;
+    final statusMessage = this.statusMessage;
+    final type = this.type;
+    return {
+      'state': state.toValue(),
+      'statusCode': statusCode.toValue(),
+      'statusMessage': statusMessage,
+      'type': type.toValue(),
+    };
   }
 }
 

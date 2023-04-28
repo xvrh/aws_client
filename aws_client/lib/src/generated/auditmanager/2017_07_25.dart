@@ -2642,6 +2642,21 @@ class Assessment {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final awsAccount = this.awsAccount;
+    final framework = this.framework;
+    final metadata = this.metadata;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (awsAccount != null) 'awsAccount': awsAccount,
+      if (framework != null) 'framework': framework,
+      if (metadata != null) 'metadata': metadata,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// The control entity that represents a standard control or a custom control in
@@ -2705,6 +2720,30 @@ class AssessmentControl {
       status: (json['status'] as String?)?.toControlStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentReportEvidenceCount = this.assessmentReportEvidenceCount;
+    final comments = this.comments;
+    final description = this.description;
+    final evidenceCount = this.evidenceCount;
+    final evidenceSources = this.evidenceSources;
+    final id = this.id;
+    final name = this.name;
+    final response = this.response;
+    final status = this.status;
+    return {
+      if (assessmentReportEvidenceCount != null)
+        'assessmentReportEvidenceCount': assessmentReportEvidenceCount,
+      if (comments != null) 'comments': comments,
+      if (description != null) 'description': description,
+      if (evidenceCount != null) 'evidenceCount': evidenceCount,
+      if (evidenceSources != null) 'evidenceSources': evidenceSources,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (response != null) 'response': response.toValue(),
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Represents a set of controls in an Audit Manager assessment.
@@ -2766,6 +2805,29 @@ class AssessmentControlSet {
       status: (json['status'] as String?)?.toControlSetStatus(),
       systemEvidenceCount: json['systemEvidenceCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final controls = this.controls;
+    final delegations = this.delegations;
+    final description = this.description;
+    final id = this.id;
+    final manualEvidenceCount = this.manualEvidenceCount;
+    final roles = this.roles;
+    final status = this.status;
+    final systemEvidenceCount = this.systemEvidenceCount;
+    return {
+      if (controls != null) 'controls': controls,
+      if (delegations != null) 'delegations': delegations,
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (manualEvidenceCount != null)
+        'manualEvidenceCount': manualEvidenceCount,
+      if (roles != null) 'roles': roles,
+      if (status != null) 'status': status.toValue(),
+      if (systemEvidenceCount != null)
+        'systemEvidenceCount': systemEvidenceCount,
+    };
   }
 }
 
@@ -2881,6 +2943,62 @@ class AssessmentEvidenceFolder {
       totalEvidence: json['totalEvidence'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentId = this.assessmentId;
+    final assessmentReportSelectionCount = this.assessmentReportSelectionCount;
+    final author = this.author;
+    final controlId = this.controlId;
+    final controlName = this.controlName;
+    final controlSetId = this.controlSetId;
+    final dataSource = this.dataSource;
+    final date = this.date;
+    final evidenceAwsServiceSourceCount = this.evidenceAwsServiceSourceCount;
+    final evidenceByTypeComplianceCheckCount =
+        this.evidenceByTypeComplianceCheckCount;
+    final evidenceByTypeComplianceCheckIssuesCount =
+        this.evidenceByTypeComplianceCheckIssuesCount;
+    final evidenceByTypeConfigurationDataCount =
+        this.evidenceByTypeConfigurationDataCount;
+    final evidenceByTypeManualCount = this.evidenceByTypeManualCount;
+    final evidenceByTypeUserActivityCount =
+        this.evidenceByTypeUserActivityCount;
+    final evidenceResourcesIncludedCount = this.evidenceResourcesIncludedCount;
+    final id = this.id;
+    final name = this.name;
+    final totalEvidence = this.totalEvidence;
+    return {
+      if (assessmentId != null) 'assessmentId': assessmentId,
+      if (assessmentReportSelectionCount != null)
+        'assessmentReportSelectionCount': assessmentReportSelectionCount,
+      if (author != null) 'author': author,
+      if (controlId != null) 'controlId': controlId,
+      if (controlName != null) 'controlName': controlName,
+      if (controlSetId != null) 'controlSetId': controlSetId,
+      if (dataSource != null) 'dataSource': dataSource,
+      if (date != null) 'date': unixTimestampToJson(date),
+      if (evidenceAwsServiceSourceCount != null)
+        'evidenceAwsServiceSourceCount': evidenceAwsServiceSourceCount,
+      if (evidenceByTypeComplianceCheckCount != null)
+        'evidenceByTypeComplianceCheckCount':
+            evidenceByTypeComplianceCheckCount,
+      if (evidenceByTypeComplianceCheckIssuesCount != null)
+        'evidenceByTypeComplianceCheckIssuesCount':
+            evidenceByTypeComplianceCheckIssuesCount,
+      if (evidenceByTypeConfigurationDataCount != null)
+        'evidenceByTypeConfigurationDataCount':
+            evidenceByTypeConfigurationDataCount,
+      if (evidenceByTypeManualCount != null)
+        'evidenceByTypeManualCount': evidenceByTypeManualCount,
+      if (evidenceByTypeUserActivityCount != null)
+        'evidenceByTypeUserActivityCount': evidenceByTypeUserActivityCount,
+      if (evidenceResourcesIncludedCount != null)
+        'evidenceResourcesIncludedCount': evidenceResourcesIncludedCount,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (totalEvidence != null) 'totalEvidence': totalEvidence,
+    };
+  }
 }
 
 /// The file used to structure and automate Audit Manager assessments for a
@@ -2914,6 +3032,19 @@ class AssessmentFramework {
           ? FrameworkMetadata.fromJson(json['metadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final controlSets = this.controlSets;
+    final id = this.id;
+    final metadata = this.metadata;
+    return {
+      if (arn != null) 'arn': arn,
+      if (controlSets != null) 'controlSets': controlSets,
+      if (id != null) 'id': id,
+      if (metadata != null) 'metadata': metadata,
+    };
   }
 }
 
@@ -2981,6 +3112,34 @@ class AssessmentFrameworkMetadata {
       name: json['name'] as String?,
       type: (json['type'] as String?)?.toFrameworkType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final complianceType = this.complianceType;
+    final controlSetsCount = this.controlSetsCount;
+    final controlsCount = this.controlsCount;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final logo = this.logo;
+    final name = this.name;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (complianceType != null) 'complianceType': complianceType,
+      if (controlSetsCount != null) 'controlSetsCount': controlSetsCount,
+      if (controlsCount != null) 'controlsCount': controlsCount,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (logo != null) 'logo': logo,
+      if (name != null) 'name': name,
+      if (type != null) 'type': type.toValue(),
+    };
   }
 }
 
@@ -3069,6 +3228,46 @@ class AssessmentFrameworkShareRequest {
       status: (json['status'] as String?)?.toShareRequestStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final comment = this.comment;
+    final complianceType = this.complianceType;
+    final creationTime = this.creationTime;
+    final customControlsCount = this.customControlsCount;
+    final destinationAccount = this.destinationAccount;
+    final destinationRegion = this.destinationRegion;
+    final expirationTime = this.expirationTime;
+    final frameworkDescription = this.frameworkDescription;
+    final frameworkId = this.frameworkId;
+    final frameworkName = this.frameworkName;
+    final id = this.id;
+    final lastUpdated = this.lastUpdated;
+    final sourceAccount = this.sourceAccount;
+    final standardControlsCount = this.standardControlsCount;
+    final status = this.status;
+    return {
+      if (comment != null) 'comment': comment,
+      if (complianceType != null) 'complianceType': complianceType,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (customControlsCount != null)
+        'customControlsCount': customControlsCount,
+      if (destinationAccount != null) 'destinationAccount': destinationAccount,
+      if (destinationRegion != null) 'destinationRegion': destinationRegion,
+      if (expirationTime != null)
+        'expirationTime': unixTimestampToJson(expirationTime),
+      if (frameworkDescription != null)
+        'frameworkDescription': frameworkDescription,
+      if (frameworkId != null) 'frameworkId': frameworkId,
+      if (frameworkName != null) 'frameworkName': frameworkName,
+      if (id != null) 'id': id,
+      if (lastUpdated != null) 'lastUpdated': unixTimestampToJson(lastUpdated),
+      if (sourceAccount != null) 'sourceAccount': sourceAccount,
+      if (standardControlsCount != null)
+        'standardControlsCount': standardControlsCount,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// The metadata that's associated with the specified assessment.
@@ -3147,6 +3346,35 @@ class AssessmentMetadata {
       status: (json['status'] as String?)?.toAssessmentStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentReportsDestination = this.assessmentReportsDestination;
+    final complianceType = this.complianceType;
+    final creationTime = this.creationTime;
+    final delegations = this.delegations;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdated = this.lastUpdated;
+    final name = this.name;
+    final roles = this.roles;
+    final scope = this.scope;
+    final status = this.status;
+    return {
+      if (assessmentReportsDestination != null)
+        'assessmentReportsDestination': assessmentReportsDestination,
+      if (complianceType != null) 'complianceType': complianceType,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (delegations != null) 'delegations': delegations,
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (lastUpdated != null) 'lastUpdated': unixTimestampToJson(lastUpdated),
+      if (name != null) 'name': name,
+      if (roles != null) 'roles': roles,
+      if (scope != null) 'scope': scope,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// A metadata object that's associated with an assessment in Audit Manager.
@@ -3203,6 +3431,28 @@ class AssessmentMetadataItem {
           .toList(),
       status: (json['status'] as String?)?.toAssessmentStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final complianceType = this.complianceType;
+    final creationTime = this.creationTime;
+    final delegations = this.delegations;
+    final id = this.id;
+    final lastUpdated = this.lastUpdated;
+    final name = this.name;
+    final roles = this.roles;
+    final status = this.status;
+    return {
+      if (complianceType != null) 'complianceType': complianceType,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (delegations != null) 'delegations': delegations,
+      if (id != null) 'id': id,
+      if (lastUpdated != null) 'lastUpdated': unixTimestampToJson(lastUpdated),
+      if (name != null) 'name': name,
+      if (roles != null) 'roles': roles,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -3263,6 +3513,30 @@ class AssessmentReport {
       status: (json['status'] as String?)?.toAssessmentReportStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentId = this.assessmentId;
+    final assessmentName = this.assessmentName;
+    final author = this.author;
+    final awsAccountId = this.awsAccountId;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (assessmentId != null) 'assessmentId': assessmentId,
+      if (assessmentName != null) 'assessmentName': assessmentName,
+      if (author != null) 'author': author,
+      if (awsAccountId != null) 'awsAccountId': awsAccountId,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 enum AssessmentReportDestinationType {
@@ -3315,6 +3589,17 @@ class AssessmentReportEvidenceError {
       evidenceId: json['evidenceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final evidenceId = this.evidenceId;
+    return {
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (evidenceId != null) 'evidenceId': evidenceId,
+    };
+  }
 }
 
 /// The metadata objects that are associated with the specified assessment
@@ -3365,6 +3650,28 @@ class AssessmentReportMetadata {
       name: json['name'] as String?,
       status: (json['status'] as String?)?.toAssessmentReportStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assessmentId = this.assessmentId;
+    final assessmentName = this.assessmentName;
+    final author = this.author;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (assessmentId != null) 'assessmentId': assessmentId,
+      if (assessmentName != null) 'assessmentName': assessmentName,
+      if (author != null) 'author': author,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -3466,6 +3773,10 @@ class AssociateAssessmentReportEvidenceFolderResponse {
       Map<String, dynamic> _) {
     return AssociateAssessmentReportEvidenceFolderResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class BatchAssociateAssessmentReportEvidenceResponse {
@@ -3493,6 +3804,15 @@ class BatchAssociateAssessmentReportEvidenceResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final evidenceIds = this.evidenceIds;
+    return {
+      if (errors != null) 'errors': errors,
+      if (evidenceIds != null) 'evidenceIds': evidenceIds,
+    };
   }
 }
 
@@ -3526,6 +3846,18 @@ class BatchCreateDelegationByAssessmentError {
       errorMessage: json['errorMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createDelegationRequest = this.createDelegationRequest;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    return {
+      if (createDelegationRequest != null)
+        'createDelegationRequest': createDelegationRequest,
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+    };
+  }
 }
 
 class BatchCreateDelegationByAssessmentResponse {
@@ -3553,6 +3885,15 @@ class BatchCreateDelegationByAssessmentResponse {
               e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final delegations = this.delegations;
+    final errors = this.errors;
+    return {
+      if (delegations != null) 'delegations': delegations,
+      if (errors != null) 'errors': errors,
+    };
   }
 }
 
@@ -3583,6 +3924,17 @@ class BatchDeleteDelegationByAssessmentError {
       errorMessage: json['errorMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final delegationId = this.delegationId;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    return {
+      if (delegationId != null) 'delegationId': delegationId,
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+    };
+  }
 }
 
 class BatchDeleteDelegationByAssessmentResponse {
@@ -3602,6 +3954,13 @@ class BatchDeleteDelegationByAssessmentResponse {
               e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      if (errors != null) 'errors': errors,
+    };
   }
 }
 
@@ -3630,6 +3989,15 @@ class BatchDisassociateAssessmentReportEvidenceResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final evidenceIds = this.evidenceIds;
+    return {
+      if (errors != null) 'errors': errors,
+      if (evidenceIds != null) 'evidenceIds': evidenceIds,
+    };
   }
 }
 
@@ -3664,6 +4032,17 @@ class BatchImportEvidenceToAssessmentControlError {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final manualEvidence = this.manualEvidence;
+    return {
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (manualEvidence != null) 'manualEvidence': manualEvidence,
+    };
+  }
 }
 
 class BatchImportEvidenceToAssessmentControlResponse {
@@ -3683,6 +4062,13 @@ class BatchImportEvidenceToAssessmentControlResponse {
               e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      if (errors != null) 'errors': errors,
+    };
   }
 }
 
@@ -3720,6 +4106,21 @@ class ChangeLog {
       objectName: json['objectName'] as String?,
       objectType: (json['objectType'] as String?)?.toObjectTypeEnum(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final objectName = this.objectName;
+    final objectType = this.objectType;
+    return {
+      if (action != null) 'action': action.toValue(),
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (objectName != null) 'objectName': objectName,
+      if (objectType != null) 'objectType': objectType.toValue(),
+    };
   }
 }
 
@@ -3812,6 +4213,44 @@ class Control {
       type: (json['type'] as String?)?.toControlType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionPlanInstructions = this.actionPlanInstructions;
+    final actionPlanTitle = this.actionPlanTitle;
+    final arn = this.arn;
+    final controlMappingSources = this.controlMappingSources;
+    final controlSources = this.controlSources;
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final lastUpdatedBy = this.lastUpdatedBy;
+    final name = this.name;
+    final tags = this.tags;
+    final testingInformation = this.testingInformation;
+    final type = this.type;
+    return {
+      if (actionPlanInstructions != null)
+        'actionPlanInstructions': actionPlanInstructions,
+      if (actionPlanTitle != null) 'actionPlanTitle': actionPlanTitle,
+      if (arn != null) 'arn': arn,
+      if (controlMappingSources != null)
+        'controlMappingSources': controlMappingSources,
+      if (controlSources != null) 'controlSources': controlSources,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (lastUpdatedBy != null) 'lastUpdatedBy': lastUpdatedBy,
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+      if (testingInformation != null) 'testingInformation': testingInformation,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// A comment that's posted by a user on a control. This includes the author's
@@ -3837,6 +4276,17 @@ class ControlComment {
       commentBody: json['commentBody'] as String?,
       postedDate: timeStampFromJson(json['postedDate']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authorName = this.authorName;
+    final commentBody = this.commentBody;
+    final postedDate = this.postedDate;
+    return {
+      if (authorName != null) 'authorName': authorName,
+      if (commentBody != null) 'commentBody': commentBody,
+      if (postedDate != null) 'postedDate': unixTimestampToJson(postedDate),
+    };
   }
 }
 
@@ -3887,6 +4337,26 @@ class ControlDomainInsights {
       totalControlsCount: json['totalControlsCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final controlsCountByNoncompliantEvidence =
+        this.controlsCountByNoncompliantEvidence;
+    final evidenceInsights = this.evidenceInsights;
+    final id = this.id;
+    final lastUpdated = this.lastUpdated;
+    final name = this.name;
+    final totalControlsCount = this.totalControlsCount;
+    return {
+      if (controlsCountByNoncompliantEvidence != null)
+        'controlsCountByNoncompliantEvidence':
+            controlsCountByNoncompliantEvidence,
+      if (evidenceInsights != null) 'evidenceInsights': evidenceInsights,
+      if (id != null) 'id': id,
+      if (lastUpdated != null) 'lastUpdated': unixTimestampToJson(lastUpdated),
+      if (name != null) 'name': name,
+      if (totalControlsCount != null) 'totalControlsCount': totalControlsCount,
+    };
+  }
 }
 
 /// A summary of the latest analytics data for a specific control in a specific
@@ -3931,6 +4401,21 @@ class ControlInsightsMetadataByAssessmentItem {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final controlSetName = this.controlSetName;
+    final evidenceInsights = this.evidenceInsights;
+    final id = this.id;
+    final lastUpdated = this.lastUpdated;
+    final name = this.name;
+    return {
+      if (controlSetName != null) 'controlSetName': controlSetName,
+      if (evidenceInsights != null) 'evidenceInsights': evidenceInsights,
+      if (id != null) 'id': id,
+      if (lastUpdated != null) 'lastUpdated': unixTimestampToJson(lastUpdated),
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// A summary of the latest analytics data for a specific control.
@@ -3968,6 +4453,19 @@ class ControlInsightsMetadataItem {
       lastUpdated: timeStampFromJson(json['lastUpdated']),
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evidenceInsights = this.evidenceInsights;
+    final id = this.id;
+    final lastUpdated = this.lastUpdated;
+    final name = this.name;
+    return {
+      if (evidenceInsights != null) 'evidenceInsights': evidenceInsights,
+      if (id != null) 'id': id,
+      if (lastUpdated != null) 'lastUpdated': unixTimestampToJson(lastUpdated),
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -4088,6 +4586,24 @@ class ControlMetadata {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final controlSources = this.controlSources;
+    final createdAt = this.createdAt;
+    final id = this.id;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (controlSources != null) 'controlSources': controlSources,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (id != null) 'id': id,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 enum ControlResponse {
@@ -4154,6 +4670,17 @@ class ControlSet {
       id: json['id'] as String?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final controls = this.controls;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (controls != null) 'controls': controls,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -4260,6 +4787,7 @@ class CreateAssessmentFrameworkControl {
   CreateAssessmentFrameworkControl({
     required this.id,
   });
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     return {
@@ -4282,6 +4810,7 @@ class CreateAssessmentFrameworkControlSet {
     required this.name,
     this.controls,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final controls = this.controls;
@@ -4308,6 +4837,13 @@ class CreateAssessmentFrameworkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final framework = this.framework;
+    return {
+      if (framework != null) 'framework': framework,
+    };
+  }
 }
 
 class CreateAssessmentReportResponse {
@@ -4326,6 +4862,13 @@ class CreateAssessmentReportResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentReport = this.assessmentReport;
+    return {
+      if (assessmentReport != null) 'assessmentReport': assessmentReport,
+    };
+  }
 }
 
 class CreateAssessmentResponse {
@@ -4340,6 +4883,13 @@ class CreateAssessmentResponse {
           ? Assessment.fromJson(json['assessment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assessment = this.assessment;
+    return {
+      if (assessment != null) 'assessment': assessment,
+    };
   }
 }
 
@@ -4377,6 +4927,7 @@ class CreateControlMappingSource {
     this.sourceType,
     this.troubleshootingText,
   });
+
   Map<String, dynamic> toJson() {
     final sourceDescription = this.sourceDescription;
     final sourceFrequency = this.sourceFrequency;
@@ -4412,6 +4963,13 @@ class CreateControlResponse {
           ? Control.fromJson(json['control'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final control = this.control;
+    return {
+      if (control != null) 'control': control,
+    };
   }
 }
 
@@ -4542,6 +5100,34 @@ class Delegation {
       status: (json['status'] as String?)?.toDelegationStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentId = this.assessmentId;
+    final assessmentName = this.assessmentName;
+    final comment = this.comment;
+    final controlSetId = this.controlSetId;
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final id = this.id;
+    final lastUpdated = this.lastUpdated;
+    final roleArn = this.roleArn;
+    final roleType = this.roleType;
+    final status = this.status;
+    return {
+      if (assessmentId != null) 'assessmentId': assessmentId,
+      if (assessmentName != null) 'assessmentName': assessmentName,
+      if (comment != null) 'comment': comment,
+      if (controlSetId != null) 'controlSetId': controlSetId,
+      if (createdBy != null) 'createdBy': createdBy,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (id != null) 'id': id,
+      if (lastUpdated != null) 'lastUpdated': unixTimestampToJson(lastUpdated),
+      if (roleArn != null) 'roleArn': roleArn,
+      if (roleType != null) 'roleType': roleType.toValue(),
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// The metadata that's associated with the delegation.
@@ -4587,6 +5173,26 @@ class DelegationMetadata {
       status: (json['status'] as String?)?.toDelegationStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentId = this.assessmentId;
+    final assessmentName = this.assessmentName;
+    final controlSetName = this.controlSetName;
+    final creationTime = this.creationTime;
+    final id = this.id;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    return {
+      if (assessmentId != null) 'assessmentId': assessmentId,
+      if (assessmentName != null) 'assessmentName': assessmentName,
+      if (controlSetName != null) 'controlSetName': controlSetName,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (id != null) 'id': id,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 enum DelegationStatus {
@@ -4627,6 +5233,10 @@ class DeleteAssessmentFrameworkResponse {
   factory DeleteAssessmentFrameworkResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAssessmentFrameworkResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteAssessmentFrameworkShareResponse {
@@ -4635,12 +5245,20 @@ class DeleteAssessmentFrameworkShareResponse {
       Map<String, dynamic> _) {
     return DeleteAssessmentFrameworkShareResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteAssessmentReportResponse {
   DeleteAssessmentReportResponse();
   factory DeleteAssessmentReportResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAssessmentReportResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4649,12 +5267,20 @@ class DeleteAssessmentResponse {
   factory DeleteAssessmentResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAssessmentResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteControlResponse {
   DeleteControlResponse();
   factory DeleteControlResponse.fromJson(Map<String, dynamic> _) {
     return DeleteControlResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4670,6 +5296,13 @@ class DeregisterAccountResponse {
       status: (json['status'] as String?)?.toAccountStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class DeregisterOrganizationAdminAccountResponse {
@@ -4678,6 +5311,10 @@ class DeregisterOrganizationAdminAccountResponse {
       Map<String, dynamic> _) {
     return DeregisterOrganizationAdminAccountResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateAssessmentReportEvidenceFolderResponse {
@@ -4685,6 +5322,10 @@ class DisassociateAssessmentReportEvidenceFolderResponse {
   factory DisassociateAssessmentReportEvidenceFolderResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateAssessmentReportEvidenceFolderResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4784,6 +5425,43 @@ class Evidence {
       time: timeStampFromJson(json['time']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentReportSelection = this.assessmentReportSelection;
+    final attributes = this.attributes;
+    final awsAccountId = this.awsAccountId;
+    final awsOrganization = this.awsOrganization;
+    final complianceCheck = this.complianceCheck;
+    final dataSource = this.dataSource;
+    final eventName = this.eventName;
+    final eventSource = this.eventSource;
+    final evidenceAwsAccountId = this.evidenceAwsAccountId;
+    final evidenceByType = this.evidenceByType;
+    final evidenceFolderId = this.evidenceFolderId;
+    final iamId = this.iamId;
+    final id = this.id;
+    final resourcesIncluded = this.resourcesIncluded;
+    final time = this.time;
+    return {
+      if (assessmentReportSelection != null)
+        'assessmentReportSelection': assessmentReportSelection,
+      if (attributes != null) 'attributes': attributes,
+      if (awsAccountId != null) 'awsAccountId': awsAccountId,
+      if (awsOrganization != null) 'awsOrganization': awsOrganization,
+      if (complianceCheck != null) 'complianceCheck': complianceCheck,
+      if (dataSource != null) 'dataSource': dataSource,
+      if (eventName != null) 'eventName': eventName,
+      if (eventSource != null) 'eventSource': eventSource,
+      if (evidenceAwsAccountId != null)
+        'evidenceAwsAccountId': evidenceAwsAccountId,
+      if (evidenceByType != null) 'evidenceByType': evidenceByType,
+      if (evidenceFolderId != null) 'evidenceFolderId': evidenceFolderId,
+      if (iamId != null) 'iamId': iamId,
+      if (id != null) 'id': id,
+      if (resourcesIncluded != null) 'resourcesIncluded': resourcesIncluded,
+      if (time != null) 'time': unixTimestampToJson(time),
+    };
+  }
 }
 
 /// A breakdown of the latest compliance check status for the evidence in your
@@ -4824,6 +5502,20 @@ class EvidenceInsights {
       inconclusiveEvidenceCount: json['inconclusiveEvidenceCount'] as int?,
       noncompliantEvidenceCount: json['noncompliantEvidenceCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final compliantEvidenceCount = this.compliantEvidenceCount;
+    final inconclusiveEvidenceCount = this.inconclusiveEvidenceCount;
+    final noncompliantEvidenceCount = this.noncompliantEvidenceCount;
+    return {
+      if (compliantEvidenceCount != null)
+        'compliantEvidenceCount': compliantEvidenceCount,
+      if (inconclusiveEvidenceCount != null)
+        'inconclusiveEvidenceCount': inconclusiveEvidenceCount,
+      if (noncompliantEvidenceCount != null)
+        'noncompliantEvidenceCount': noncompliantEvidenceCount,
+    };
   }
 }
 
@@ -4911,6 +5603,40 @@ class Framework {
       type: (json['type'] as String?)?.toFrameworkType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final complianceType = this.complianceType;
+    final controlSets = this.controlSets;
+    final controlSources = this.controlSources;
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final lastUpdatedBy = this.lastUpdatedBy;
+    final logo = this.logo;
+    final name = this.name;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (complianceType != null) 'complianceType': complianceType,
+      if (controlSets != null) 'controlSets': controlSets,
+      if (controlSources != null) 'controlSources': controlSources,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (lastUpdatedBy != null) 'lastUpdatedBy': lastUpdatedBy,
+      if (logo != null) 'logo': logo,
+      if (name != null) 'name': name,
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// The metadata of a framework, such as the name, ID, or description.
@@ -4941,6 +5667,19 @@ class FrameworkMetadata {
       logo: json['logo'] as String?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final complianceType = this.complianceType;
+    final description = this.description;
+    final logo = this.logo;
+    final name = this.name;
+    return {
+      if (complianceType != null) 'complianceType': complianceType,
+      if (description != null) 'description': description,
+      if (logo != null) 'logo': logo,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -4984,6 +5723,13 @@ class GetAccountStatusResponse {
       status: (json['status'] as String?)?.toAccountStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class GetAssessmentFrameworkResponse {
@@ -5000,6 +5746,13 @@ class GetAssessmentFrameworkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final framework = this.framework;
+    return {
+      if (framework != null) 'framework': framework,
+    };
+  }
 }
 
 class GetAssessmentReportUrlResponse {
@@ -5014,6 +5767,13 @@ class GetAssessmentReportUrlResponse {
           ? URL.fromJson(json['preSignedUrl'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final preSignedUrl = this.preSignedUrl;
+    return {
+      if (preSignedUrl != null) 'preSignedUrl': preSignedUrl,
+    };
   }
 }
 
@@ -5034,6 +5794,15 @@ class GetAssessmentResponse {
           ? Role.fromJson(json['userRole'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assessment = this.assessment;
+    final userRole = this.userRole;
+    return {
+      if (assessment != null) 'assessment': assessment,
+      if (userRole != null) 'userRole': userRole,
+    };
   }
 }
 
@@ -5057,6 +5826,15 @@ class GetChangeLogsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeLogs = this.changeLogs;
+    final nextToken = this.nextToken;
+    return {
+      if (changeLogs != null) 'changeLogs': changeLogs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetControlResponse {
@@ -5072,6 +5850,13 @@ class GetControlResponse {
           ? Control.fromJson(json['control'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final control = this.control;
+    return {
+      if (control != null) 'control': control,
+    };
   }
 }
 
@@ -5094,6 +5879,15 @@ class GetDelegationsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final delegations = this.delegations;
+    final nextToken = this.nextToken;
+    return {
+      if (delegations != null) 'delegations': delegations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5119,6 +5913,15 @@ class GetEvidenceByEvidenceFolderResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final evidence = this.evidence;
+    final nextToken = this.nextToken;
+    return {
+      if (evidence != null) 'evidence': evidence,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetEvidenceFolderResponse {
@@ -5135,6 +5938,13 @@ class GetEvidenceFolderResponse {
               json['evidenceFolder'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evidenceFolder = this.evidenceFolder;
+    return {
+      if (evidenceFolder != null) 'evidenceFolder': evidenceFolder,
+    };
   }
 }
 
@@ -5161,6 +5971,15 @@ class GetEvidenceFoldersByAssessmentControlResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final evidenceFolders = this.evidenceFolders;
+    final nextToken = this.nextToken;
+    return {
+      if (evidenceFolders != null) 'evidenceFolders': evidenceFolders,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetEvidenceFoldersByAssessmentResponse {
@@ -5186,6 +6005,15 @@ class GetEvidenceFoldersByAssessmentResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final evidenceFolders = this.evidenceFolders;
+    final nextToken = this.nextToken;
+    return {
+      if (evidenceFolders != null) 'evidenceFolders': evidenceFolders,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetEvidenceResponse {
@@ -5201,6 +6029,13 @@ class GetEvidenceResponse {
           ? Evidence.fromJson(json['evidence'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evidence = this.evidence;
+    return {
+      if (evidence != null) 'evidence': evidence,
+    };
   }
 }
 
@@ -5220,6 +6055,13 @@ class GetInsightsByAssessmentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final insights = this.insights;
+    return {
+      if (insights != null) 'insights': insights,
+    };
+  }
 }
 
 class GetInsightsResponse {
@@ -5235,6 +6077,13 @@ class GetInsightsResponse {
           ? Insights.fromJson(json['insights'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final insights = this.insights;
+    return {
+      if (insights != null) 'insights': insights,
+    };
   }
 }
 
@@ -5256,6 +6105,15 @@ class GetOrganizationAdminAccountResponse {
       organizationId: json['organizationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adminAccountId = this.adminAccountId;
+    final organizationId = this.organizationId;
+    return {
+      if (adminAccountId != null) 'adminAccountId': adminAccountId,
+      if (organizationId != null) 'organizationId': organizationId,
+    };
+  }
 }
 
 class GetServicesInScopeResponse {
@@ -5273,6 +6131,13 @@ class GetServicesInScopeResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceMetadata = this.serviceMetadata;
+    return {
+      if (serviceMetadata != null) 'serviceMetadata': serviceMetadata,
+    };
+  }
 }
 
 class GetSettingsResponse {
@@ -5288,6 +6153,13 @@ class GetSettingsResponse {
           ? Settings.fromJson(json['settings'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final settings = this.settings;
+    return {
+      if (settings != null) 'settings': settings,
+    };
   }
 }
 
@@ -5379,6 +6251,33 @@ class Insights {
           json['totalAssessmentControlsCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeAssessmentsCount = this.activeAssessmentsCount;
+    final assessmentControlsCountByNoncompliantEvidence =
+        this.assessmentControlsCountByNoncompliantEvidence;
+    final compliantEvidenceCount = this.compliantEvidenceCount;
+    final inconclusiveEvidenceCount = this.inconclusiveEvidenceCount;
+    final lastUpdated = this.lastUpdated;
+    final noncompliantEvidenceCount = this.noncompliantEvidenceCount;
+    final totalAssessmentControlsCount = this.totalAssessmentControlsCount;
+    return {
+      if (activeAssessmentsCount != null)
+        'activeAssessmentsCount': activeAssessmentsCount,
+      if (assessmentControlsCountByNoncompliantEvidence != null)
+        'assessmentControlsCountByNoncompliantEvidence':
+            assessmentControlsCountByNoncompliantEvidence,
+      if (compliantEvidenceCount != null)
+        'compliantEvidenceCount': compliantEvidenceCount,
+      if (inconclusiveEvidenceCount != null)
+        'inconclusiveEvidenceCount': inconclusiveEvidenceCount,
+      if (lastUpdated != null) 'lastUpdated': unixTimestampToJson(lastUpdated),
+      if (noncompliantEvidenceCount != null)
+        'noncompliantEvidenceCount': noncompliantEvidenceCount,
+      if (totalAssessmentControlsCount != null)
+        'totalAssessmentControlsCount': totalAssessmentControlsCount,
+    };
+  }
 }
 
 /// A summary of the latest analytics data for a specific active assessment.
@@ -5464,6 +6363,30 @@ class InsightsByAssessment {
           json['totalAssessmentControlsCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentControlsCountByNoncompliantEvidence =
+        this.assessmentControlsCountByNoncompliantEvidence;
+    final compliantEvidenceCount = this.compliantEvidenceCount;
+    final inconclusiveEvidenceCount = this.inconclusiveEvidenceCount;
+    final lastUpdated = this.lastUpdated;
+    final noncompliantEvidenceCount = this.noncompliantEvidenceCount;
+    final totalAssessmentControlsCount = this.totalAssessmentControlsCount;
+    return {
+      if (assessmentControlsCountByNoncompliantEvidence != null)
+        'assessmentControlsCountByNoncompliantEvidence':
+            assessmentControlsCountByNoncompliantEvidence,
+      if (compliantEvidenceCount != null)
+        'compliantEvidenceCount': compliantEvidenceCount,
+      if (inconclusiveEvidenceCount != null)
+        'inconclusiveEvidenceCount': inconclusiveEvidenceCount,
+      if (lastUpdated != null) 'lastUpdated': unixTimestampToJson(lastUpdated),
+      if (noncompliantEvidenceCount != null)
+        'noncompliantEvidenceCount': noncompliantEvidenceCount,
+      if (totalAssessmentControlsCount != null)
+        'totalAssessmentControlsCount': totalAssessmentControlsCount,
+    };
+  }
 }
 
 enum KeywordInputType {
@@ -5514,6 +6437,16 @@ class ListAssessmentControlInsightsByControlDomainResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final controlInsightsByAssessment = this.controlInsightsByAssessment;
+    final nextToken = this.nextToken;
+    return {
+      if (controlInsightsByAssessment != null)
+        'controlInsightsByAssessment': controlInsightsByAssessment,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAssessmentFrameworkShareRequestsResponse {
@@ -5540,6 +6473,17 @@ class ListAssessmentFrameworkShareRequestsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentFrameworkShareRequests =
+        this.assessmentFrameworkShareRequests;
+    final nextToken = this.nextToken;
+    return {
+      if (assessmentFrameworkShareRequests != null)
+        'assessmentFrameworkShareRequests': assessmentFrameworkShareRequests,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAssessmentFrameworksResponse {
@@ -5562,6 +6506,16 @@ class ListAssessmentFrameworksResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final frameworkMetadataList = this.frameworkMetadataList;
+    final nextToken = this.nextToken;
+    return {
+      if (frameworkMetadataList != null)
+        'frameworkMetadataList': frameworkMetadataList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5587,6 +6541,15 @@ class ListAssessmentReportsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentReports = this.assessmentReports;
+    final nextToken = this.nextToken;
+    return {
+      if (assessmentReports != null) 'assessmentReports': assessmentReports,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAssessmentsResponse {
@@ -5609,6 +6572,15 @@ class ListAssessmentsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assessmentMetadata = this.assessmentMetadata;
+    final nextToken = this.nextToken;
+    return {
+      if (assessmentMetadata != null) 'assessmentMetadata': assessmentMetadata,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5634,6 +6606,16 @@ class ListControlDomainInsightsByAssessmentResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final controlDomainInsights = this.controlDomainInsights;
+    final nextToken = this.nextToken;
+    return {
+      if (controlDomainInsights != null)
+        'controlDomainInsights': controlDomainInsights,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListControlDomainInsightsResponse {
@@ -5657,6 +6639,16 @@ class ListControlDomainInsightsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final controlDomainInsights = this.controlDomainInsights;
+    final nextToken = this.nextToken;
+    return {
+      if (controlDomainInsights != null)
+        'controlDomainInsights': controlDomainInsights,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5683,6 +6675,16 @@ class ListControlInsightsByControlDomainResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final controlInsightsMetadata = this.controlInsightsMetadata;
+    final nextToken = this.nextToken;
+    return {
+      if (controlInsightsMetadata != null)
+        'controlInsightsMetadata': controlInsightsMetadata,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListControlsResponse {
@@ -5705,6 +6707,16 @@ class ListControlsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final controlMetadataList = this.controlMetadataList;
+    final nextToken = this.nextToken;
+    return {
+      if (controlMetadataList != null)
+        'controlMetadataList': controlMetadataList,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5729,6 +6741,15 @@ class ListKeywordsForDataSourceResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keywords = this.keywords;
+    final nextToken = this.nextToken;
+    return {
+      if (keywords != null) 'keywords': keywords,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListNotificationsResponse {
@@ -5751,6 +6772,15 @@ class ListNotificationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final notifications = this.notifications;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (notifications != null) 'notifications': notifications,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -5765,6 +6795,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -5840,6 +6877,27 @@ class Notification {
       source: json['source'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentId = this.assessmentId;
+    final assessmentName = this.assessmentName;
+    final controlSetId = this.controlSetId;
+    final controlSetName = this.controlSetName;
+    final description = this.description;
+    final eventTime = this.eventTime;
+    final id = this.id;
+    final source = this.source;
+    return {
+      if (assessmentId != null) 'assessmentId': assessmentId,
+      if (assessmentName != null) 'assessmentName': assessmentName,
+      if (controlSetId != null) 'controlSetId': controlSetId,
+      if (controlSetName != null) 'controlSetName': controlSetName,
+      if (description != null) 'description': description,
+      if (eventTime != null) 'eventTime': unixTimestampToJson(eventTime),
+      if (id != null) 'id': id,
+      if (source != null) 'source': source,
+    };
+  }
 }
 
 enum ObjectTypeEnum {
@@ -5897,6 +6955,13 @@ class RegisterAccountResponse {
       status: (json['status'] as String?)?.toAccountStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class RegisterOrganizationAdminAccountResponse {
@@ -5917,6 +6982,15 @@ class RegisterOrganizationAdminAccountResponse {
       organizationId: json['organizationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adminAccountId = this.adminAccountId;
+    final organizationId = this.organizationId;
+    return {
+      if (adminAccountId != null) 'adminAccountId': adminAccountId,
+      if (organizationId != null) 'organizationId': organizationId,
+    };
+  }
 }
 
 /// A system asset that's evaluated in an Audit Manager assessment.
@@ -5936,6 +7010,15 @@ class Resource {
       arn: json['arn'] as String?,
       value: json['value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final value = this.value;
+    return {
+      if (arn != null) 'arn': arn,
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -6074,6 +7157,19 @@ class ServiceMetadata {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final category = this.category;
+    final description = this.description;
+    final displayName = this.displayName;
+    final name = this.name;
+    return {
+      if (category != null) 'category': category,
+      if (description != null) 'description': description,
+      if (displayName != null) 'displayName': displayName,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 enum SettingAttribute {
@@ -6159,6 +7255,25 @@ class Settings {
       kmsKey: json['kmsKey'] as String?,
       snsTopic: json['snsTopic'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final defaultAssessmentReportsDestination =
+        this.defaultAssessmentReportsDestination;
+    final defaultProcessOwners = this.defaultProcessOwners;
+    final isAwsOrgEnabled = this.isAwsOrgEnabled;
+    final kmsKey = this.kmsKey;
+    final snsTopic = this.snsTopic;
+    return {
+      if (defaultAssessmentReportsDestination != null)
+        'defaultAssessmentReportsDestination':
+            defaultAssessmentReportsDestination,
+      if (defaultProcessOwners != null)
+        'defaultProcessOwners': defaultProcessOwners,
+      if (isAwsOrgEnabled != null) 'isAwsOrgEnabled': isAwsOrgEnabled,
+      if (kmsKey != null) 'kmsKey': kmsKey,
+      if (snsTopic != null) 'snsTopic': snsTopic,
+    };
   }
 }
 
@@ -6529,12 +7644,25 @@ class StartAssessmentFrameworkShareResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentFrameworkShareRequest =
+        this.assessmentFrameworkShareRequest;
+    return {
+      if (assessmentFrameworkShareRequest != null)
+        'assessmentFrameworkShareRequest': assessmentFrameworkShareRequest,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6557,12 +7685,25 @@ class URL {
       link: json['link'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hyperlinkName = this.hyperlinkName;
+    final link = this.link;
+    return {
+      if (hyperlinkName != null) 'hyperlinkName': hyperlinkName,
+      if (link != null) 'link': link,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6580,6 +7721,13 @@ class UpdateAssessmentControlResponse {
           ? AssessmentControl.fromJson(json['control'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final control = this.control;
+    return {
+      if (control != null) 'control': control,
+    };
   }
 }
 
@@ -6600,6 +7748,13 @@ class UpdateAssessmentControlSetStatusResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final controlSet = this.controlSet;
+    return {
+      if (controlSet != null) 'controlSet': controlSet,
+    };
+  }
 }
 
 /// A <code>controlSet</code> entity that represents a collection of controls in
@@ -6619,6 +7774,7 @@ class UpdateAssessmentFrameworkControlSet {
     required this.name,
     this.id,
   });
+
   Map<String, dynamic> toJson() {
     final controls = this.controls;
     final name = this.name;
@@ -6646,6 +7802,13 @@ class UpdateAssessmentFrameworkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final framework = this.framework;
+    return {
+      if (framework != null) 'framework': framework,
+    };
+  }
 }
 
 class UpdateAssessmentFrameworkShareResponse {
@@ -6667,6 +7830,15 @@ class UpdateAssessmentFrameworkShareResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentFrameworkShareRequest =
+        this.assessmentFrameworkShareRequest;
+    return {
+      if (assessmentFrameworkShareRequest != null)
+        'assessmentFrameworkShareRequest': assessmentFrameworkShareRequest,
+    };
+  }
 }
 
 class UpdateAssessmentResponse {
@@ -6683,6 +7855,13 @@ class UpdateAssessmentResponse {
           ? Assessment.fromJson(json['assessment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assessment = this.assessment;
+    return {
+      if (assessment != null) 'assessment': assessment,
+    };
   }
 }
 
@@ -6701,6 +7880,13 @@ class UpdateAssessmentStatusResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessment = this.assessment;
+    return {
+      if (assessment != null) 'assessment': assessment,
+    };
+  }
 }
 
 class UpdateControlResponse {
@@ -6718,6 +7904,13 @@ class UpdateControlResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final control = this.control;
+    return {
+      if (control != null) 'control': control,
+    };
+  }
 }
 
 class UpdateSettingsResponse {
@@ -6733,6 +7926,13 @@ class UpdateSettingsResponse {
           ? Settings.fromJson(json['settings'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final settings = this.settings;
+    return {
+      if (settings != null) 'settings': settings,
+    };
   }
 }
 
@@ -6772,6 +7972,21 @@ class ValidateAssessmentReportIntegrityResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final signatureAlgorithm = this.signatureAlgorithm;
+    final signatureDateTime = this.signatureDateTime;
+    final signatureKeyId = this.signatureKeyId;
+    final signatureValid = this.signatureValid;
+    final validationErrors = this.validationErrors;
+    return {
+      if (signatureAlgorithm != null) 'signatureAlgorithm': signatureAlgorithm,
+      if (signatureDateTime != null) 'signatureDateTime': signatureDateTime,
+      if (signatureKeyId != null) 'signatureKeyId': signatureKeyId,
+      if (signatureValid != null) 'signatureValid': signatureValid,
+      if (validationErrors != null) 'validationErrors': validationErrors,
+    };
   }
 }
 

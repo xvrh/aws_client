@@ -3336,6 +3336,47 @@ class CallAnalyticsJob {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final callAnalyticsJobName = this.callAnalyticsJobName;
+    final callAnalyticsJobStatus = this.callAnalyticsJobStatus;
+    final channelDefinitions = this.channelDefinitions;
+    final completionTime = this.completionTime;
+    final creationTime = this.creationTime;
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final failureReason = this.failureReason;
+    final identifiedLanguageScore = this.identifiedLanguageScore;
+    final languageCode = this.languageCode;
+    final media = this.media;
+    final mediaFormat = this.mediaFormat;
+    final mediaSampleRateHertz = this.mediaSampleRateHertz;
+    final settings = this.settings;
+    final startTime = this.startTime;
+    final transcript = this.transcript;
+    return {
+      if (callAnalyticsJobName != null)
+        'CallAnalyticsJobName': callAnalyticsJobName,
+      if (callAnalyticsJobStatus != null)
+        'CallAnalyticsJobStatus': callAnalyticsJobStatus.toValue(),
+      if (channelDefinitions != null) 'ChannelDefinitions': channelDefinitions,
+      if (completionTime != null)
+        'CompletionTime': unixTimestampToJson(completionTime),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (identifiedLanguageScore != null)
+        'IdentifiedLanguageScore': identifiedLanguageScore,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (media != null) 'Media': media,
+      if (mediaFormat != null) 'MediaFormat': mediaFormat.toValue(),
+      if (mediaSampleRateHertz != null)
+        'MediaSampleRateHertz': mediaSampleRateHertz,
+      if (settings != null) 'Settings': settings,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (transcript != null) 'Transcript': transcript,
+    };
+  }
 }
 
 /// Provides additional optional settings for your request, including content
@@ -3577,6 +3618,29 @@ class CallAnalyticsJobSummary {
       startTime: timeStampFromJson(json['StartTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final callAnalyticsJobName = this.callAnalyticsJobName;
+    final callAnalyticsJobStatus = this.callAnalyticsJobStatus;
+    final completionTime = this.completionTime;
+    final creationTime = this.creationTime;
+    final failureReason = this.failureReason;
+    final languageCode = this.languageCode;
+    final startTime = this.startTime;
+    return {
+      if (callAnalyticsJobName != null)
+        'CallAnalyticsJobName': callAnalyticsJobName,
+      if (callAnalyticsJobStatus != null)
+        'CallAnalyticsJobStatus': callAnalyticsJobStatus.toValue(),
+      if (completionTime != null)
+        'CompletionTime': unixTimestampToJson(completionTime),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+    };
+  }
 }
 
 /// Provides you with the properties of the Call Analytics category you
@@ -3621,6 +3685,20 @@ class CategoryProperties {
           .map((e) => Rule.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final categoryName = this.categoryName;
+    final createTime = this.createTime;
+    final lastUpdateTime = this.lastUpdateTime;
+    final rules = this.rules;
+    return {
+      if (categoryName != null) 'CategoryName': categoryName,
+      if (createTime != null) 'CreateTime': unixTimestampToJson(createTime),
+      if (lastUpdateTime != null)
+        'LastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (rules != null) 'Rules': rules,
+    };
   }
 }
 
@@ -3730,6 +3808,13 @@ class CreateCallAnalyticsCategoryResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final categoryProperties = this.categoryProperties;
+    return {
+      if (categoryProperties != null) 'CategoryProperties': categoryProperties,
+    };
+  }
 }
 
 class CreateLanguageModelResponse {
@@ -3770,6 +3855,21 @@ class CreateLanguageModelResponse {
       modelName: json['ModelName'] as String?,
       modelStatus: (json['ModelStatus'] as String?)?.toModelStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final baseModelName = this.baseModelName;
+    final inputDataConfig = this.inputDataConfig;
+    final languageCode = this.languageCode;
+    final modelName = this.modelName;
+    final modelStatus = this.modelStatus;
+    return {
+      if (baseModelName != null) 'BaseModelName': baseModelName.toValue(),
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (modelName != null) 'ModelName': modelName,
+      if (modelStatus != null) 'ModelStatus': modelStatus.toValue(),
+    };
   }
 }
 
@@ -3818,6 +3918,22 @@ class CreateMedicalVocabularyResponse {
           (json['VocabularyState'] as String?)?.toVocabularyState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failureReason = this.failureReason;
+    final languageCode = this.languageCode;
+    final lastModifiedTime = this.lastModifiedTime;
+    final vocabularyName = this.vocabularyName;
+    final vocabularyState = this.vocabularyState;
+    return {
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (vocabularyName != null) 'VocabularyName': vocabularyName,
+      if (vocabularyState != null) 'VocabularyState': vocabularyState.toValue(),
+    };
+  }
 }
 
 class CreateVocabularyFilterResponse {
@@ -3845,6 +3961,19 @@ class CreateVocabularyFilterResponse {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
       vocabularyFilterName: json['VocabularyFilterName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final languageCode = this.languageCode;
+    final lastModifiedTime = this.lastModifiedTime;
+    final vocabularyFilterName = this.vocabularyFilterName;
+    return {
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (vocabularyFilterName != null)
+        'VocabularyFilterName': vocabularyFilterName,
+    };
   }
 }
 
@@ -3891,6 +4020,22 @@ class CreateVocabularyResponse {
           (json['VocabularyState'] as String?)?.toVocabularyState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failureReason = this.failureReason;
+    final languageCode = this.languageCode;
+    final lastModifiedTime = this.lastModifiedTime;
+    final vocabularyName = this.vocabularyName;
+    final vocabularyState = this.vocabularyState;
+    return {
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (vocabularyName != null) 'VocabularyName': vocabularyName,
+      if (vocabularyState != null) 'VocabularyState': vocabularyState.toValue(),
+    };
+  }
 }
 
 class DeleteCallAnalyticsCategoryResponse {
@@ -3898,12 +4043,20 @@ class DeleteCallAnalyticsCategoryResponse {
   factory DeleteCallAnalyticsCategoryResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCallAnalyticsCategoryResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteCallAnalyticsJobResponse {
   DeleteCallAnalyticsJobResponse();
   factory DeleteCallAnalyticsJobResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCallAnalyticsJobResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3931,6 +4084,13 @@ class DescribeLanguageModelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final languageModel = this.languageModel;
+    return {
+      if (languageModel != null) 'LanguageModel': languageModel,
+    };
+  }
 }
 
 class GetCallAnalyticsCategoryResponse {
@@ -3948,6 +4108,13 @@ class GetCallAnalyticsCategoryResponse {
               json['CategoryProperties'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final categoryProperties = this.categoryProperties;
+    return {
+      if (categoryProperties != null) 'CategoryProperties': categoryProperties,
+    };
   }
 }
 
@@ -3967,6 +4134,13 @@ class GetCallAnalyticsJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final callAnalyticsJob = this.callAnalyticsJob;
+    return {
+      if (callAnalyticsJob != null) 'CallAnalyticsJob': callAnalyticsJob,
+    };
+  }
 }
 
 class GetMedicalTranscriptionJobResponse {
@@ -3985,6 +4159,14 @@ class GetMedicalTranscriptionJobResponse {
               json['MedicalTranscriptionJob'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final medicalTranscriptionJob = this.medicalTranscriptionJob;
+    return {
+      if (medicalTranscriptionJob != null)
+        'MedicalTranscriptionJob': medicalTranscriptionJob,
+    };
   }
 }
 
@@ -4039,6 +4221,24 @@ class GetMedicalVocabularyResponse {
           (json['VocabularyState'] as String?)?.toVocabularyState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final downloadUri = this.downloadUri;
+    final failureReason = this.failureReason;
+    final languageCode = this.languageCode;
+    final lastModifiedTime = this.lastModifiedTime;
+    final vocabularyName = this.vocabularyName;
+    final vocabularyState = this.vocabularyState;
+    return {
+      if (downloadUri != null) 'DownloadUri': downloadUri,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (vocabularyName != null) 'VocabularyName': vocabularyName,
+      if (vocabularyState != null) 'VocabularyState': vocabularyState.toValue(),
+    };
+  }
 }
 
 class GetTranscriptionJobResponse {
@@ -4056,6 +4256,13 @@ class GetTranscriptionJobResponse {
               json['TranscriptionJob'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transcriptionJob = this.transcriptionJob;
+    return {
+      if (transcriptionJob != null) 'TranscriptionJob': transcriptionJob,
+    };
   }
 }
 
@@ -4090,6 +4297,21 @@ class GetVocabularyFilterResponse {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
       vocabularyFilterName: json['VocabularyFilterName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final downloadUri = this.downloadUri;
+    final languageCode = this.languageCode;
+    final lastModifiedTime = this.lastModifiedTime;
+    final vocabularyFilterName = this.vocabularyFilterName;
+    return {
+      if (downloadUri != null) 'DownloadUri': downloadUri,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (vocabularyFilterName != null)
+        'VocabularyFilterName': vocabularyFilterName,
+    };
   }
 }
 
@@ -4141,6 +4363,24 @@ class GetVocabularyResponse {
       vocabularyState:
           (json['VocabularyState'] as String?)?.toVocabularyState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final downloadUri = this.downloadUri;
+    final failureReason = this.failureReason;
+    final languageCode = this.languageCode;
+    final lastModifiedTime = this.lastModifiedTime;
+    final vocabularyName = this.vocabularyName;
+    final vocabularyState = this.vocabularyState;
+    return {
+      if (downloadUri != null) 'DownloadUri': downloadUri,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (vocabularyName != null) 'VocabularyName': vocabularyName,
+      if (vocabularyState != null) 'VocabularyState': vocabularyState.toValue(),
+    };
   }
 }
 
@@ -4573,6 +4813,15 @@ class LanguageCodeItem {
       languageCode: (json['LanguageCode'] as String?)?.toLanguageCode(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final durationInSeconds = this.durationInSeconds;
+    final languageCode = this.languageCode;
+    return {
+      if (durationInSeconds != null) 'DurationInSeconds': durationInSeconds,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+    };
+  }
 }
 
 /// If using automatic language identification (<code>IdentifyLanguage</code>)
@@ -4759,6 +5008,31 @@ class LanguageModel {
       upgradeAvailability: json['UpgradeAvailability'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final baseModelName = this.baseModelName;
+    final createTime = this.createTime;
+    final failureReason = this.failureReason;
+    final inputDataConfig = this.inputDataConfig;
+    final languageCode = this.languageCode;
+    final lastModifiedTime = this.lastModifiedTime;
+    final modelName = this.modelName;
+    final modelStatus = this.modelStatus;
+    final upgradeAvailability = this.upgradeAvailability;
+    return {
+      if (baseModelName != null) 'BaseModelName': baseModelName.toValue(),
+      if (createTime != null) 'CreateTime': unixTimestampToJson(createTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (modelName != null) 'ModelName': modelName,
+      if (modelStatus != null) 'ModelStatus': modelStatus.toValue(),
+      if (upgradeAvailability != null)
+        'UpgradeAvailability': upgradeAvailability,
+    };
+  }
 }
 
 class ListCallAnalyticsCategoriesResponse {
@@ -4786,6 +5060,15 @@ class ListCallAnalyticsCategoriesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final categories = this.categories;
+    final nextToken = this.nextToken;
+    return {
+      if (categories != null) 'Categories': categories,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4820,6 +5103,18 @@ class ListCallAnalyticsJobsResponse {
       status: (json['Status'] as String?)?.toCallAnalyticsJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final callAnalyticsJobSummaries = this.callAnalyticsJobSummaries;
+    final nextToken = this.nextToken;
+    final status = this.status;
+    return {
+      if (callAnalyticsJobSummaries != null)
+        'CallAnalyticsJobSummaries': callAnalyticsJobSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class ListLanguageModelsResponse {
@@ -4846,6 +5141,15 @@ class ListLanguageModelsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final models = this.models;
+    final nextToken = this.nextToken;
+    return {
+      if (models != null) 'Models': models,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4882,6 +5186,19 @@ class ListMedicalTranscriptionJobsResponse {
       status: (json['Status'] as String?)?.toTranscriptionJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final medicalTranscriptionJobSummaries =
+        this.medicalTranscriptionJobSummaries;
+    final nextToken = this.nextToken;
+    final status = this.status;
+    return {
+      if (medicalTranscriptionJobSummaries != null)
+        'MedicalTranscriptionJobSummaries': medicalTranscriptionJobSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class ListMedicalVocabulariesResponse {
@@ -4916,6 +5233,17 @@ class ListMedicalVocabulariesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final status = this.status;
+    final vocabularies = this.vocabularies;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (status != null) 'Status': status.toValue(),
+      if (vocabularies != null) 'Vocabularies': vocabularies,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -4938,6 +5266,15 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final tags = this.tags;
+    return {
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -4971,6 +5308,18 @@ class ListTranscriptionJobsResponse {
               TranscriptionJobSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final status = this.status;
+    final transcriptionJobSummaries = this.transcriptionJobSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (status != null) 'Status': status.toValue(),
+      if (transcriptionJobSummaries != null)
+        'TranscriptionJobSummaries': transcriptionJobSummaries,
+    };
   }
 }
 
@@ -5006,6 +5355,17 @@ class ListVocabulariesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final status = this.status;
+    final vocabularies = this.vocabularies;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (status != null) 'Status': status.toValue(),
+      if (vocabularies != null) 'Vocabularies': vocabularies,
+    };
+  }
 }
 
 class ListVocabularyFiltersResponse {
@@ -5032,6 +5392,15 @@ class ListVocabularyFiltersResponse {
           .map((e) => VocabularyFilterInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final vocabularyFilters = this.vocabularyFilters;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (vocabularyFilters != null) 'VocabularyFilters': vocabularyFilters,
+    };
   }
 }
 
@@ -5202,6 +5571,13 @@ class MedicalTranscript {
     return MedicalTranscript(
       transcriptFileUri: json['TranscriptFileUri'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transcriptFileUri = this.transcriptFileUri;
+    return {
+      if (transcriptFileUri != null) 'TranscriptFileUri': transcriptFileUri,
+    };
   }
 }
 
@@ -5392,6 +5768,49 @@ class MedicalTranscriptionJob {
       type: (json['Type'] as String?)?.toType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completionTime = this.completionTime;
+    final contentIdentificationType = this.contentIdentificationType;
+    final creationTime = this.creationTime;
+    final failureReason = this.failureReason;
+    final languageCode = this.languageCode;
+    final media = this.media;
+    final mediaFormat = this.mediaFormat;
+    final mediaSampleRateHertz = this.mediaSampleRateHertz;
+    final medicalTranscriptionJobName = this.medicalTranscriptionJobName;
+    final settings = this.settings;
+    final specialty = this.specialty;
+    final startTime = this.startTime;
+    final tags = this.tags;
+    final transcript = this.transcript;
+    final transcriptionJobStatus = this.transcriptionJobStatus;
+    final type = this.type;
+    return {
+      if (completionTime != null)
+        'CompletionTime': unixTimestampToJson(completionTime),
+      if (contentIdentificationType != null)
+        'ContentIdentificationType': contentIdentificationType.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (media != null) 'Media': media,
+      if (mediaFormat != null) 'MediaFormat': mediaFormat.toValue(),
+      if (mediaSampleRateHertz != null)
+        'MediaSampleRateHertz': mediaSampleRateHertz,
+      if (medicalTranscriptionJobName != null)
+        'MedicalTranscriptionJobName': medicalTranscriptionJobName,
+      if (settings != null) 'Settings': settings,
+      if (specialty != null) 'Specialty': specialty.toValue(),
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (tags != null) 'Tags': tags,
+      if (transcript != null) 'Transcript': transcript,
+      if (transcriptionJobStatus != null)
+        'TranscriptionJobStatus': transcriptionJobStatus.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Provides detailed information about a specific medical transcription job.
@@ -5500,6 +5919,39 @@ class MedicalTranscriptionJobSummary {
           ?.toTranscriptionJobStatus(),
       type: (json['Type'] as String?)?.toType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final completionTime = this.completionTime;
+    final contentIdentificationType = this.contentIdentificationType;
+    final creationTime = this.creationTime;
+    final failureReason = this.failureReason;
+    final languageCode = this.languageCode;
+    final medicalTranscriptionJobName = this.medicalTranscriptionJobName;
+    final outputLocationType = this.outputLocationType;
+    final specialty = this.specialty;
+    final startTime = this.startTime;
+    final transcriptionJobStatus = this.transcriptionJobStatus;
+    final type = this.type;
+    return {
+      if (completionTime != null)
+        'CompletionTime': unixTimestampToJson(completionTime),
+      if (contentIdentificationType != null)
+        'ContentIdentificationType': contentIdentificationType.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (medicalTranscriptionJobName != null)
+        'MedicalTranscriptionJobName': medicalTranscriptionJobName,
+      if (outputLocationType != null)
+        'OutputLocationType': outputLocationType.toValue(),
+      if (specialty != null) 'Specialty': specialty.toValue(),
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (transcriptionJobStatus != null)
+        'TranscriptionJobStatus': transcriptionJobStatus.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -6398,6 +6850,13 @@ class StartCallAnalyticsJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final callAnalyticsJob = this.callAnalyticsJob;
+    return {
+      if (callAnalyticsJob != null) 'CallAnalyticsJob': callAnalyticsJob,
+    };
+  }
 }
 
 class StartMedicalTranscriptionJobResponse {
@@ -6417,6 +6876,14 @@ class StartMedicalTranscriptionJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final medicalTranscriptionJob = this.medicalTranscriptionJob;
+    return {
+      if (medicalTranscriptionJob != null)
+        'MedicalTranscriptionJob': medicalTranscriptionJob,
+    };
+  }
 }
 
 class StartTranscriptionJobResponse {
@@ -6434,6 +6901,13 @@ class StartTranscriptionJobResponse {
               json['TranscriptionJob'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transcriptionJob = this.transcriptionJob;
+    return {
+      if (transcriptionJob != null) 'TranscriptionJob': transcriptionJob,
+    };
   }
 }
 
@@ -6490,6 +6964,7 @@ class Subtitles {
     this.formats,
     this.outputStartIndex,
   });
+
   Map<String, dynamic> toJson() {
     final formats = this.formats;
     final outputStartIndex = this.outputStartIndex;
@@ -6553,6 +7028,17 @@ class SubtitlesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final formats = this.formats;
+    final outputStartIndex = this.outputStartIndex;
+    final subtitleFileUris = this.subtitleFileUris;
+    return {
+      if (formats != null) 'Formats': formats.map((e) => e.toValue()).toList(),
+      if (outputStartIndex != null) 'OutputStartIndex': outputStartIndex,
+      if (subtitleFileUris != null) 'SubtitleFileUris': subtitleFileUris,
+    };
+  }
 }
 
 /// Adds metadata, in the form of a key:value pair, to the specified resource.
@@ -6604,6 +7090,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6658,6 +7148,16 @@ class Transcript {
       redactedTranscriptFileUri: json['RedactedTranscriptFileUri'] as String?,
       transcriptFileUri: json['TranscriptFileUri'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final redactedTranscriptFileUri = this.redactedTranscriptFileUri;
+    final transcriptFileUri = this.transcriptFileUri;
+    return {
+      if (redactedTranscriptFileUri != null)
+        'RedactedTranscriptFileUri': redactedTranscriptFileUri,
+      if (transcriptFileUri != null) 'TranscriptFileUri': transcriptFileUri,
+    };
   }
 }
 
@@ -7106,6 +7606,68 @@ class TranscriptionJob {
           ?.toTranscriptionJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completionTime = this.completionTime;
+    final contentRedaction = this.contentRedaction;
+    final creationTime = this.creationTime;
+    final failureReason = this.failureReason;
+    final identifiedLanguageScore = this.identifiedLanguageScore;
+    final identifyLanguage = this.identifyLanguage;
+    final identifyMultipleLanguages = this.identifyMultipleLanguages;
+    final jobExecutionSettings = this.jobExecutionSettings;
+    final languageCode = this.languageCode;
+    final languageCodes = this.languageCodes;
+    final languageIdSettings = this.languageIdSettings;
+    final languageOptions = this.languageOptions;
+    final media = this.media;
+    final mediaFormat = this.mediaFormat;
+    final mediaSampleRateHertz = this.mediaSampleRateHertz;
+    final modelSettings = this.modelSettings;
+    final settings = this.settings;
+    final startTime = this.startTime;
+    final subtitles = this.subtitles;
+    final tags = this.tags;
+    final transcript = this.transcript;
+    final transcriptionJobName = this.transcriptionJobName;
+    final transcriptionJobStatus = this.transcriptionJobStatus;
+    return {
+      if (completionTime != null)
+        'CompletionTime': unixTimestampToJson(completionTime),
+      if (contentRedaction != null) 'ContentRedaction': contentRedaction,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (identifiedLanguageScore != null)
+        'IdentifiedLanguageScore': identifiedLanguageScore,
+      if (identifyLanguage != null) 'IdentifyLanguage': identifyLanguage,
+      if (identifyMultipleLanguages != null)
+        'IdentifyMultipleLanguages': identifyMultipleLanguages,
+      if (jobExecutionSettings != null)
+        'JobExecutionSettings': jobExecutionSettings,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (languageCodes != null) 'LanguageCodes': languageCodes,
+      if (languageIdSettings != null)
+        'LanguageIdSettings':
+            languageIdSettings.map((k, e) => MapEntry(k.toValue(), e)),
+      if (languageOptions != null)
+        'LanguageOptions': languageOptions.map((e) => e.toValue()).toList(),
+      if (media != null) 'Media': media,
+      if (mediaFormat != null) 'MediaFormat': mediaFormat.toValue(),
+      if (mediaSampleRateHertz != null)
+        'MediaSampleRateHertz': mediaSampleRateHertz,
+      if (modelSettings != null) 'ModelSettings': modelSettings,
+      if (settings != null) 'Settings': settings,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (subtitles != null) 'Subtitles': subtitles,
+      if (tags != null) 'Tags': tags,
+      if (transcript != null) 'Transcript': transcript,
+      if (transcriptionJobName != null)
+        'TranscriptionJobName': transcriptionJobName,
+      if (transcriptionJobStatus != null)
+        'TranscriptionJobStatus': transcriptionJobStatus.toValue(),
+    };
+  }
 }
 
 enum TranscriptionJobStatus {
@@ -7277,6 +7839,46 @@ class TranscriptionJobSummary {
           ?.toTranscriptionJobStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completionTime = this.completionTime;
+    final contentRedaction = this.contentRedaction;
+    final creationTime = this.creationTime;
+    final failureReason = this.failureReason;
+    final identifiedLanguageScore = this.identifiedLanguageScore;
+    final identifyLanguage = this.identifyLanguage;
+    final identifyMultipleLanguages = this.identifyMultipleLanguages;
+    final languageCode = this.languageCode;
+    final languageCodes = this.languageCodes;
+    final modelSettings = this.modelSettings;
+    final outputLocationType = this.outputLocationType;
+    final startTime = this.startTime;
+    final transcriptionJobName = this.transcriptionJobName;
+    final transcriptionJobStatus = this.transcriptionJobStatus;
+    return {
+      if (completionTime != null)
+        'CompletionTime': unixTimestampToJson(completionTime),
+      if (contentRedaction != null) 'ContentRedaction': contentRedaction,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (identifiedLanguageScore != null)
+        'IdentifiedLanguageScore': identifiedLanguageScore,
+      if (identifyLanguage != null) 'IdentifyLanguage': identifyLanguage,
+      if (identifyMultipleLanguages != null)
+        'IdentifyMultipleLanguages': identifyMultipleLanguages,
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (languageCodes != null) 'LanguageCodes': languageCodes,
+      if (modelSettings != null) 'ModelSettings': modelSettings,
+      if (outputLocationType != null)
+        'OutputLocationType': outputLocationType.toValue(),
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (transcriptionJobName != null)
+        'TranscriptionJobName': transcriptionJobName,
+      if (transcriptionJobStatus != null)
+        'TranscriptionJobStatus': transcriptionJobStatus.toValue(),
+    };
+  }
 }
 
 enum Type {
@@ -7312,6 +7914,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateCallAnalyticsCategoryResponse {
@@ -7330,6 +7936,13 @@ class UpdateCallAnalyticsCategoryResponse {
               json['CategoryProperties'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final categoryProperties = this.categoryProperties;
+    return {
+      if (categoryProperties != null) 'CategoryProperties': categoryProperties,
+    };
   }
 }
 
@@ -7369,6 +7982,20 @@ class UpdateMedicalVocabularyResponse {
           (json['VocabularyState'] as String?)?.toVocabularyState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final languageCode = this.languageCode;
+    final lastModifiedTime = this.lastModifiedTime;
+    final vocabularyName = this.vocabularyName;
+    final vocabularyState = this.vocabularyState;
+    return {
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (vocabularyName != null) 'VocabularyName': vocabularyName,
+      if (vocabularyState != null) 'VocabularyState': vocabularyState.toValue(),
+    };
+  }
 }
 
 class UpdateVocabularyFilterResponse {
@@ -7396,6 +8023,19 @@ class UpdateVocabularyFilterResponse {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
       vocabularyFilterName: json['VocabularyFilterName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final languageCode = this.languageCode;
+    final lastModifiedTime = this.lastModifiedTime;
+    final vocabularyFilterName = this.vocabularyFilterName;
+    return {
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (vocabularyFilterName != null)
+        'VocabularyFilterName': vocabularyFilterName,
+    };
   }
 }
 
@@ -7432,6 +8072,20 @@ class UpdateVocabularyResponse {
       vocabularyState:
           (json['VocabularyState'] as String?)?.toVocabularyState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final languageCode = this.languageCode;
+    final lastModifiedTime = this.lastModifiedTime;
+    final vocabularyName = this.vocabularyName;
+    final vocabularyState = this.vocabularyState;
+    return {
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (vocabularyName != null) 'VocabularyName': vocabularyName,
+      if (vocabularyState != null) 'VocabularyState': vocabularyState.toValue(),
+    };
   }
 }
 
@@ -7476,6 +8130,19 @@ class VocabularyFilterInfo {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
       vocabularyFilterName: json['VocabularyFilterName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final languageCode = this.languageCode;
+    final lastModifiedTime = this.lastModifiedTime;
+    final vocabularyFilterName = this.vocabularyFilterName;
+    return {
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (vocabularyFilterName != null)
+        'VocabularyFilterName': vocabularyFilterName,
+    };
   }
 }
 
@@ -7556,6 +8223,20 @@ class VocabularyInfo {
       vocabularyState:
           (json['VocabularyState'] as String?)?.toVocabularyState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final languageCode = this.languageCode;
+    final lastModifiedTime = this.lastModifiedTime;
+    final vocabularyName = this.vocabularyName;
+    final vocabularyState = this.vocabularyState;
+    return {
+      if (languageCode != null) 'LanguageCode': languageCode.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (vocabularyName != null) 'VocabularyName': vocabularyName,
+      if (vocabularyState != null) 'VocabularyState': vocabularyState.toValue(),
+    };
   }
 }
 

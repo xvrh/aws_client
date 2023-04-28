@@ -1762,6 +1762,19 @@ class AssumeRoleResponse {
       sourceIdentity: _s.extractXmlStringValue(elem, 'SourceIdentity'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assumedRoleUser = this.assumedRoleUser;
+    final credentials = this.credentials;
+    final packedPolicySize = this.packedPolicySize;
+    final sourceIdentity = this.sourceIdentity;
+    return {
+      if (assumedRoleUser != null) 'AssumedRoleUser': assumedRoleUser,
+      if (credentials != null) 'Credentials': credentials,
+      if (packedPolicySize != null) 'PackedPolicySize': packedPolicySize,
+      if (sourceIdentity != null) 'SourceIdentity': sourceIdentity,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>AssumeRoleWithSAML</a> request,
@@ -1882,6 +1895,29 @@ class AssumeRoleWithSAMLResponse {
       subjectType: _s.extractXmlStringValue(elem, 'SubjectType'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assumedRoleUser = this.assumedRoleUser;
+    final audience = this.audience;
+    final credentials = this.credentials;
+    final issuer = this.issuer;
+    final nameQualifier = this.nameQualifier;
+    final packedPolicySize = this.packedPolicySize;
+    final sourceIdentity = this.sourceIdentity;
+    final subject = this.subject;
+    final subjectType = this.subjectType;
+    return {
+      if (assumedRoleUser != null) 'AssumedRoleUser': assumedRoleUser,
+      if (audience != null) 'Audience': audience,
+      if (credentials != null) 'Credentials': credentials,
+      if (issuer != null) 'Issuer': issuer,
+      if (nameQualifier != null) 'NameQualifier': nameQualifier,
+      if (packedPolicySize != null) 'PackedPolicySize': packedPolicySize,
+      if (sourceIdentity != null) 'SourceIdentity': sourceIdentity,
+      if (subject != null) 'Subject': subject,
+      if (subjectType != null) 'SubjectType': subjectType,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>AssumeRoleWithWebIdentity</a>
@@ -1982,6 +2018,26 @@ class AssumeRoleWithWebIdentityResponse {
           _s.extractXmlStringValue(elem, 'SubjectFromWebIdentityToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assumedRoleUser = this.assumedRoleUser;
+    final audience = this.audience;
+    final credentials = this.credentials;
+    final packedPolicySize = this.packedPolicySize;
+    final provider = this.provider;
+    final sourceIdentity = this.sourceIdentity;
+    final subjectFromWebIdentityToken = this.subjectFromWebIdentityToken;
+    return {
+      if (assumedRoleUser != null) 'AssumedRoleUser': assumedRoleUser,
+      if (audience != null) 'Audience': audience,
+      if (credentials != null) 'Credentials': credentials,
+      if (packedPolicySize != null) 'PackedPolicySize': packedPolicySize,
+      if (provider != null) 'Provider': provider,
+      if (sourceIdentity != null) 'SourceIdentity': sourceIdentity,
+      if (subjectFromWebIdentityToken != null)
+        'SubjectFromWebIdentityToken': subjectFromWebIdentityToken,
+    };
+  }
 }
 
 /// The identifiers for the temporary security credentials that the operation
@@ -2008,6 +2064,15 @@ class AssumedRoleUser {
       arn: _s.extractXmlStringValue(elem, 'Arn')!,
       assumedRoleId: _s.extractXmlStringValue(elem, 'AssumedRoleId')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final assumedRoleId = this.assumedRoleId;
+    return {
+      'Arn': arn,
+      'AssumedRoleId': assumedRoleId,
+    };
   }
 }
 
@@ -2040,6 +2105,19 @@ class Credentials {
       sessionToken: _s.extractXmlStringValue(elem, 'SessionToken')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final expiration = this.expiration;
+    final secretAccessKey = this.secretAccessKey;
+    final sessionToken = this.sessionToken;
+    return {
+      'AccessKeyId': accessKeyId,
+      'Expiration': iso8601ToJson(expiration),
+      'SecretAccessKey': secretAccessKey,
+      'SessionToken': sessionToken,
+    };
+  }
 }
 
 /// A document that contains additional information about the authorization
@@ -2056,6 +2134,13 @@ class DecodeAuthorizationMessageResponse {
     return DecodeAuthorizationMessageResponse(
       decodedMessage: _s.extractXmlStringValue(elem, 'DecodedMessage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final decodedMessage = this.decodedMessage;
+    return {
+      if (decodedMessage != null) 'DecodedMessage': decodedMessage,
+    };
   }
 }
 
@@ -2082,6 +2167,15 @@ class FederatedUser {
       federatedUserId: _s.extractXmlStringValue(elem, 'FederatedUserId')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final federatedUserId = this.federatedUserId;
+    return {
+      'Arn': arn,
+      'FederatedUserId': federatedUserId,
+    };
+  }
 }
 
 class GetAccessKeyInfoResponse {
@@ -2095,6 +2189,13 @@ class GetAccessKeyInfoResponse {
     return GetAccessKeyInfoResponse(
       account: _s.extractXmlStringValue(elem, 'Account'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final account = this.account;
+    return {
+      if (account != null) 'Account': account,
+    };
   }
 }
 
@@ -2127,6 +2228,17 @@ class GetCallerIdentityResponse {
       arn: _s.extractXmlStringValue(elem, 'Arn'),
       userId: _s.extractXmlStringValue(elem, 'UserId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final account = this.account;
+    final arn = this.arn;
+    final userId = this.userId;
+    return {
+      if (account != null) 'Account': account,
+      if (arn != null) 'Arn': arn,
+      if (userId != null) 'UserId': userId,
+    };
   }
 }
 
@@ -2168,6 +2280,17 @@ class GetFederationTokenResponse {
       packedPolicySize: _s.extractXmlIntValue(elem, 'PackedPolicySize'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final credentials = this.credentials;
+    final federatedUser = this.federatedUser;
+    final packedPolicySize = this.packedPolicySize;
+    return {
+      if (credentials != null) 'Credentials': credentials,
+      if (federatedUser != null) 'FederatedUser': federatedUser,
+      if (packedPolicySize != null) 'PackedPolicySize': packedPolicySize,
+    };
+  }
 }
 
 /// Contains the response to a successful <a>GetSessionToken</a> request,
@@ -2191,6 +2314,13 @@ class GetSessionTokenResponse {
           _s.extractXmlChild(elem, 'Credentials')?.let(Credentials.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final credentials = this.credentials;
+    return {
+      if (credentials != null) 'Credentials': credentials,
+    };
+  }
 }
 
 /// A reference to the IAM managed policy that is passed as a session policy for
@@ -2206,6 +2336,7 @@ class PolicyDescriptorType {
   PolicyDescriptorType({
     this.arn,
   });
+
   Map<String, dynamic> toJson() {
     final arn = this.arn;
     return {
@@ -2240,6 +2371,7 @@ class Tag {
     required this.key,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final value = this.value;

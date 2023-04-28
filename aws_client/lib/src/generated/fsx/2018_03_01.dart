@@ -2941,6 +2941,17 @@ class ActiveDirectoryBackupAttributes {
       resourceARN: json['ResourceARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeDirectoryId = this.activeDirectoryId;
+    final domainName = this.domainName;
+    final resourceARN = this.resourceARN;
+    return {
+      if (activeDirectoryId != null) 'ActiveDirectoryId': activeDirectoryId,
+      if (domainName != null) 'DomainName': domainName,
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+    };
+  }
 }
 
 /// Describes a specific Amazon FSx administrative action for the current
@@ -3025,6 +3036,30 @@ class AdministrativeAction {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final administrativeActionType = this.administrativeActionType;
+    final failureDetails = this.failureDetails;
+    final progressPercent = this.progressPercent;
+    final requestTime = this.requestTime;
+    final status = this.status;
+    final targetFileSystemValues = this.targetFileSystemValues;
+    final targetSnapshotValues = this.targetSnapshotValues;
+    final targetVolumeValues = this.targetVolumeValues;
+    return {
+      if (administrativeActionType != null)
+        'AdministrativeActionType': administrativeActionType.toValue(),
+      if (failureDetails != null) 'FailureDetails': failureDetails,
+      if (progressPercent != null) 'ProgressPercent': progressPercent,
+      if (requestTime != null) 'RequestTime': unixTimestampToJson(requestTime),
+      if (status != null) 'Status': status.toValue(),
+      if (targetFileSystemValues != null)
+        'TargetFileSystemValues': targetFileSystemValues,
+      if (targetSnapshotValues != null)
+        'TargetSnapshotValues': targetSnapshotValues,
+      if (targetVolumeValues != null) 'TargetVolumeValues': targetVolumeValues,
+    };
+  }
 }
 
 /// Provides information about a failed administrative action.
@@ -3040,6 +3075,13 @@ class AdministrativeActionFailureDetails {
     return AdministrativeActionFailureDetails(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3229,6 +3271,15 @@ class Alias {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lifecycle = this.lifecycle;
+    final name = this.name;
+    return {
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 enum AliasLifecycle {
@@ -3295,6 +3346,13 @@ class AssociateFileSystemAliasesResponse {
           .map((e) => Alias.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aliases = this.aliases;
+    return {
+      if (aliases != null) 'Aliases': aliases,
+    };
   }
 }
 
@@ -3561,6 +3619,44 @@ class Backup {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupId = this.backupId;
+    final creationTime = this.creationTime;
+    final fileSystem = this.fileSystem;
+    final lifecycle = this.lifecycle;
+    final type = this.type;
+    final directoryInformation = this.directoryInformation;
+    final failureDetails = this.failureDetails;
+    final kmsKeyId = this.kmsKeyId;
+    final ownerId = this.ownerId;
+    final progressPercent = this.progressPercent;
+    final resourceARN = this.resourceARN;
+    final resourceType = this.resourceType;
+    final sourceBackupId = this.sourceBackupId;
+    final sourceBackupRegion = this.sourceBackupRegion;
+    final tags = this.tags;
+    final volume = this.volume;
+    return {
+      'BackupId': backupId,
+      'CreationTime': unixTimestampToJson(creationTime),
+      'FileSystem': fileSystem,
+      'Lifecycle': lifecycle.toValue(),
+      'Type': type.toValue(),
+      if (directoryInformation != null)
+        'DirectoryInformation': directoryInformation,
+      if (failureDetails != null) 'FailureDetails': failureDetails,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (ownerId != null) 'OwnerId': ownerId,
+      if (progressPercent != null) 'ProgressPercent': progressPercent,
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+      if (sourceBackupId != null) 'SourceBackupId': sourceBackupId,
+      if (sourceBackupRegion != null) 'SourceBackupRegion': sourceBackupRegion,
+      if (tags != null) 'Tags': tags,
+      if (volume != null) 'Volume': volume,
+    };
+  }
 }
 
 /// If backup creation fails, this structure contains the details of that
@@ -3576,6 +3672,13 @@ class BackupFailureDetails {
     return BackupFailureDetails(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3738,6 +3841,15 @@ class CancelDataRepositoryTaskResponse {
       taskId: json['TaskId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lifecycle = this.lifecycle;
+    final taskId = this.taskId;
+    return {
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+      if (taskId != null) 'TaskId': taskId,
+    };
+  }
 }
 
 /// Provides a report detailing the data repository task results of the files
@@ -3824,6 +3936,13 @@ class CopyBackupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backup = this.backup;
+    return {
+      if (backup != null) 'Backup': backup,
+    };
+  }
 }
 
 /// The response object for the <code>CreateBackup</code> operation.
@@ -3840,6 +3959,13 @@ class CreateBackupResponse {
           ? Backup.fromJson(json['Backup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backup = this.backup;
+    return {
+      if (backup != null) 'Backup': backup,
+    };
   }
 }
 
@@ -3860,6 +3986,13 @@ class CreateDataRepositoryAssociationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final association = this.association;
+    return {
+      if (association != null) 'Association': association,
+    };
+  }
 }
 
 class CreateDataRepositoryTaskResponse {
@@ -3876,6 +4009,13 @@ class CreateDataRepositoryTaskResponse {
               json['DataRepositoryTask'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataRepositoryTask = this.dataRepositoryTask;
+    return {
+      if (dataRepositoryTask != null) 'DataRepositoryTask': dataRepositoryTask,
+    };
   }
 }
 
@@ -3895,6 +4035,13 @@ class CreateFileSystemFromBackupResponse {
           ? FileSystem.fromJson(json['FileSystem'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileSystem = this.fileSystem;
+    return {
+      if (fileSystem != null) 'FileSystem': fileSystem,
+    };
   }
 }
 
@@ -4163,6 +4310,7 @@ class CreateFileSystemLustreConfiguration {
     this.rootSquashConfiguration,
     this.weeklyMaintenanceStartTime,
   });
+
   Map<String, dynamic> toJson() {
     final autoImportPolicy = this.autoImportPolicy;
     final automaticBackupRetentionDays = this.automaticBackupRetentionDays;
@@ -4275,6 +4423,7 @@ class CreateFileSystemOntapConfiguration {
     this.routeTableIds,
     this.weeklyMaintenanceStartTime,
   });
+
   Map<String, dynamic> toJson() {
     final deploymentType = this.deploymentType;
     final throughputCapacity = this.throughputCapacity;
@@ -4358,6 +4507,7 @@ class CreateFileSystemOpenZFSConfiguration {
     this.rootVolumeConfiguration,
     this.weeklyMaintenanceStartTime,
   });
+
   Map<String, dynamic> toJson() {
     final deploymentType = this.deploymentType;
     final throughputCapacity = this.throughputCapacity;
@@ -4401,6 +4551,13 @@ class CreateFileSystemResponse {
           ? FileSystem.fromJson(json['FileSystem'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileSystem = this.fileSystem;
+    return {
+      if (fileSystem != null) 'FileSystem': fileSystem,
+    };
   }
 }
 
@@ -4531,6 +4688,7 @@ class CreateFileSystemWindowsConfiguration {
     this.selfManagedActiveDirectoryConfiguration,
     this.weeklyMaintenanceStartTime,
   });
+
   Map<String, dynamic> toJson() {
     final throughputCapacity = this.throughputCapacity;
     final activeDirectoryId = this.activeDirectoryId;
@@ -4612,6 +4770,7 @@ class CreateOntapVolumeConfiguration {
     this.securityStyle,
     this.tieringPolicy,
   });
+
   Map<String, dynamic> toJson() {
     final junctionPath = this.junctionPath;
     final sizeInMegabytes = this.sizeInMegabytes;
@@ -4654,6 +4813,7 @@ class CreateOpenZFSOriginSnapshotConfiguration {
     required this.copyStrategy,
     required this.snapshotARN,
   });
+
   Map<String, dynamic> toJson() {
     final copyStrategy = this.copyStrategy;
     final snapshotARN = this.snapshotARN;
@@ -4768,6 +4928,7 @@ class CreateOpenZFSVolumeConfiguration {
     this.storageCapacityReservationGiB,
     this.userAndGroupQuotas,
   });
+
   Map<String, dynamic> toJson() {
     final parentVolumeId = this.parentVolumeId;
     final copyTagsToSnapshots = this.copyTagsToSnapshots;
@@ -4812,6 +4973,13 @@ class CreateSnapshotResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
+  }
 }
 
 class CreateStorageVirtualMachineResponse {
@@ -4831,6 +4999,14 @@ class CreateStorageVirtualMachineResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final storageVirtualMachine = this.storageVirtualMachine;
+    return {
+      if (storageVirtualMachine != null)
+        'StorageVirtualMachine': storageVirtualMachine,
+    };
+  }
 }
 
 /// The configuration that Amazon FSx uses to join the ONTAP storage virtual
@@ -4847,6 +5023,7 @@ class CreateSvmActiveDirectoryConfiguration {
     required this.netBiosName,
     this.selfManagedActiveDirectoryConfiguration,
   });
+
   Map<String, dynamic> toJson() {
     final netBiosName = this.netBiosName;
     final selfManagedActiveDirectoryConfiguration =
@@ -4875,6 +5052,13 @@ class CreateVolumeFromBackupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final volume = this.volume;
+    return {
+      if (volume != null) 'Volume': volume,
+    };
+  }
 }
 
 class CreateVolumeResponse {
@@ -4891,6 +5075,13 @@ class CreateVolumeResponse {
           ? Volume.fromJson(json['Volume'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final volume = this.volume;
+    return {
+      if (volume != null) 'Volume': volume,
+    };
   }
 }
 
@@ -5068,6 +5259,38 @@ class DataRepositoryAssociation {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    final batchImportMetaDataOnCreate = this.batchImportMetaDataOnCreate;
+    final creationTime = this.creationTime;
+    final dataRepositoryPath = this.dataRepositoryPath;
+    final failureDetails = this.failureDetails;
+    final fileSystemId = this.fileSystemId;
+    final fileSystemPath = this.fileSystemPath;
+    final importedFileChunkSize = this.importedFileChunkSize;
+    final lifecycle = this.lifecycle;
+    final resourceARN = this.resourceARN;
+    final s3 = this.s3;
+    final tags = this.tags;
+    return {
+      if (associationId != null) 'AssociationId': associationId,
+      if (batchImportMetaDataOnCreate != null)
+        'BatchImportMetaDataOnCreate': batchImportMetaDataOnCreate,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (dataRepositoryPath != null) 'DataRepositoryPath': dataRepositoryPath,
+      if (failureDetails != null) 'FailureDetails': failureDetails,
+      if (fileSystemId != null) 'FileSystemId': fileSystemId,
+      if (fileSystemPath != null) 'FileSystemPath': fileSystemPath,
+      if (importedFileChunkSize != null)
+        'ImportedFileChunkSize': importedFileChunkSize,
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (s3 != null) 'S3': s3,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// The data repository configuration object for Lustre file systems returned in
@@ -5183,6 +5406,25 @@ class DataRepositoryConfiguration {
       lifecycle: (json['Lifecycle'] as String?)?.toDataRepositoryLifecycle(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoImportPolicy = this.autoImportPolicy;
+    final exportPath = this.exportPath;
+    final failureDetails = this.failureDetails;
+    final importPath = this.importPath;
+    final importedFileChunkSize = this.importedFileChunkSize;
+    final lifecycle = this.lifecycle;
+    return {
+      if (autoImportPolicy != null)
+        'AutoImportPolicy': autoImportPolicy.toValue(),
+      if (exportPath != null) 'ExportPath': exportPath,
+      if (failureDetails != null) 'FailureDetails': failureDetails,
+      if (importPath != null) 'ImportPath': importPath,
+      if (importedFileChunkSize != null)
+        'ImportedFileChunkSize': importedFileChunkSize,
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+    };
+  }
 }
 
 /// Provides detailed information about the data respository if its
@@ -5198,6 +5440,13 @@ class DataRepositoryFailureDetails {
     return DataRepositoryFailureDetails(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -5383,6 +5632,37 @@ class DataRepositoryTask {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final fileSystemId = this.fileSystemId;
+    final lifecycle = this.lifecycle;
+    final taskId = this.taskId;
+    final type = this.type;
+    final endTime = this.endTime;
+    final failureDetails = this.failureDetails;
+    final paths = this.paths;
+    final report = this.report;
+    final resourceARN = this.resourceARN;
+    final startTime = this.startTime;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'FileSystemId': fileSystemId,
+      'Lifecycle': lifecycle.toValue(),
+      'TaskId': taskId,
+      'Type': type.toValue(),
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (failureDetails != null) 'FailureDetails': failureDetails,
+      if (paths != null) 'Paths': paths,
+      if (report != null) 'Report': report,
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Provides information about why a data repository task failed. Only populated
@@ -5397,6 +5677,13 @@ class DataRepositoryTaskFailureDetails {
     return DataRepositoryTaskFailureDetails(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -5430,6 +5717,7 @@ class DataRepositoryTaskFilter {
     this.name,
     this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -5558,6 +5846,20 @@ class DataRepositoryTaskStatus {
       totalCount: json['TotalCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedCount = this.failedCount;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final succeededCount = this.succeededCount;
+    final totalCount = this.totalCount;
+    return {
+      if (failedCount != null) 'FailedCount': failedCount,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (succeededCount != null) 'SucceededCount': succeededCount,
+      if (totalCount != null) 'TotalCount': totalCount,
+    };
+  }
 }
 
 enum DataRepositoryTaskType {
@@ -5607,6 +5909,15 @@ class DeleteBackupResponse {
       lifecycle: (json['Lifecycle'] as String?)?.toBackupLifecycle(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupId = this.backupId;
+    final lifecycle = this.lifecycle;
+    return {
+      if (backupId != null) 'BackupId': backupId,
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+    };
+  }
 }
 
 class DeleteDataRepositoryAssociationResponse {
@@ -5633,6 +5944,18 @@ class DeleteDataRepositoryAssociationResponse {
       deleteDataInFileSystem: json['DeleteDataInFileSystem'] as bool?,
       lifecycle: (json['Lifecycle'] as String?)?.toDataRepositoryLifecycle(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    final deleteDataInFileSystem = this.deleteDataInFileSystem;
+    final lifecycle = this.lifecycle;
+    return {
+      if (associationId != null) 'AssociationId': associationId,
+      if (deleteDataInFileSystem != null)
+        'DeleteDataInFileSystem': deleteDataInFileSystem,
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+    };
   }
 }
 
@@ -5661,6 +5984,7 @@ class DeleteFileSystemLustreConfiguration {
     this.finalBackupTags,
     this.skipFinalBackup,
   });
+
   Map<String, dynamic> toJson() {
     final finalBackupTags = this.finalBackupTags;
     final skipFinalBackup = this.skipFinalBackup;
@@ -5693,6 +6017,15 @@ class DeleteFileSystemLustreResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final finalBackupId = this.finalBackupId;
+    final finalBackupTags = this.finalBackupTags;
+    return {
+      if (finalBackupId != null) 'FinalBackupId': finalBackupId,
+      if (finalBackupTags != null) 'FinalBackupTags': finalBackupTags,
+    };
+  }
 }
 
 /// The configuration object for the Amazon FSx for OpenZFS file system used in
@@ -5719,6 +6052,7 @@ class DeleteFileSystemOpenZFSConfiguration {
     this.options,
     this.skipFinalBackup,
   });
+
   Map<String, dynamic> toJson() {
     final finalBackupTags = this.finalBackupTags;
     final options = this.options;
@@ -5774,6 +6108,15 @@ class DeleteFileSystemOpenZFSResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final finalBackupId = this.finalBackupId;
+    final finalBackupTags = this.finalBackupTags;
+    return {
+      if (finalBackupId != null) 'FinalBackupId': finalBackupId,
+      if (finalBackupTags != null) 'FinalBackupTags': finalBackupTags,
+    };
+  }
 }
 
 /// The response object for the <code>DeleteFileSystem</code> operation.
@@ -5817,6 +6160,21 @@ class DeleteFileSystemResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fileSystemId = this.fileSystemId;
+    final lifecycle = this.lifecycle;
+    final lustreResponse = this.lustreResponse;
+    final openZFSResponse = this.openZFSResponse;
+    final windowsResponse = this.windowsResponse;
+    return {
+      if (fileSystemId != null) 'FileSystemId': fileSystemId,
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+      if (lustreResponse != null) 'LustreResponse': lustreResponse,
+      if (openZFSResponse != null) 'OpenZFSResponse': openZFSResponse,
+      if (windowsResponse != null) 'WindowsResponse': windowsResponse,
+    };
+  }
 }
 
 /// The configuration object for the Microsoft Windows file system used in the
@@ -5835,6 +6193,7 @@ class DeleteFileSystemWindowsConfiguration {
     this.finalBackupTags,
     this.skipFinalBackup,
   });
+
   Map<String, dynamic> toJson() {
     final finalBackupTags = this.finalBackupTags;
     final skipFinalBackup = this.skipFinalBackup;
@@ -5866,6 +6225,15 @@ class DeleteFileSystemWindowsResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final finalBackupId = this.finalBackupId;
+    final finalBackupTags = this.finalBackupTags;
+    return {
+      if (finalBackupId != null) 'FinalBackupId': finalBackupId,
+      if (finalBackupTags != null) 'FinalBackupTags': finalBackupTags,
+    };
   }
 }
 
@@ -5910,6 +6278,15 @@ class DeleteSnapshotResponse {
       snapshotId: json['SnapshotId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lifecycle = this.lifecycle;
+    final snapshotId = this.snapshotId;
+    return {
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+      if (snapshotId != null) 'SnapshotId': snapshotId,
+    };
+  }
 }
 
 class DeleteStorageVirtualMachineResponse {
@@ -5931,6 +6308,16 @@ class DeleteStorageVirtualMachineResponse {
       storageVirtualMachineId: json['StorageVirtualMachineId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lifecycle = this.lifecycle;
+    final storageVirtualMachineId = this.storageVirtualMachineId;
+    return {
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+      if (storageVirtualMachineId != null)
+        'StorageVirtualMachineId': storageVirtualMachineId,
+    };
+  }
 }
 
 /// Use to specify skipping a final backup, or to add tags to a final backup.
@@ -5945,6 +6332,7 @@ class DeleteVolumeOntapConfiguration {
     this.finalBackupTags,
     this.skipFinalBackup,
   });
+
   Map<String, dynamic> toJson() {
     final finalBackupTags = this.finalBackupTags;
     final skipFinalBackup = this.skipFinalBackup;
@@ -5974,6 +6362,15 @@ class DeleteVolumeOntapResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final finalBackupId = this.finalBackupId;
+    final finalBackupTags = this.finalBackupTags;
+    return {
+      if (finalBackupId != null) 'FinalBackupId': finalBackupId,
+      if (finalBackupTags != null) 'FinalBackupTags': finalBackupTags,
+    };
+  }
 }
 
 /// A value that specifies whether to delete all child volumes and snapshots.
@@ -5985,6 +6382,7 @@ class DeleteVolumeOpenZFSConfiguration {
   DeleteVolumeOpenZFSConfiguration({
     this.options,
   });
+
   Map<String, dynamic> toJson() {
     final options = this.options;
     return {
@@ -6021,6 +6419,17 @@ class DeleteVolumeResponse {
       volumeId: json['VolumeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lifecycle = this.lifecycle;
+    final ontapResponse = this.ontapResponse;
+    final volumeId = this.volumeId;
+    return {
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+      if (ontapResponse != null) 'OntapResponse': ontapResponse,
+      if (volumeId != null) 'VolumeId': volumeId,
+    };
+  }
 }
 
 /// Response object for the <code>DescribeBackups</code> operation.
@@ -6046,6 +6455,15 @@ class DescribeBackupsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backups = this.backups;
+    final nextToken = this.nextToken;
+    return {
+      if (backups != null) 'Backups': backups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeDataRepositoryAssociationsResponse {
@@ -6068,6 +6486,15 @@ class DescribeDataRepositoryAssociationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associations = this.associations;
+    final nextToken = this.nextToken;
+    return {
+      if (associations != null) 'Associations': associations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeDataRepositoryTasksResponse {
@@ -6088,6 +6515,16 @@ class DescribeDataRepositoryTasksResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataRepositoryTasks = this.dataRepositoryTasks;
+    final nextToken = this.nextToken;
+    return {
+      if (dataRepositoryTasks != null)
+        'DataRepositoryTasks': dataRepositoryTasks,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6116,6 +6553,15 @@ class DescribeFileSystemAliasesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliases = this.aliases;
+    final nextToken = this.nextToken;
+    return {
+      if (aliases != null) 'Aliases': aliases,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The response object for <code>DescribeFileSystems</code> operation.
@@ -6141,6 +6587,15 @@ class DescribeFileSystemsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fileSystems = this.fileSystems;
+    final nextToken = this.nextToken;
+    return {
+      if (fileSystems != null) 'FileSystems': fileSystems,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeSnapshotsResponse {
@@ -6161,6 +6616,15 @@ class DescribeSnapshotsResponse {
           .map((e) => Snapshot.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final snapshots = this.snapshots;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (snapshots != null) 'Snapshots': snapshots,
+    };
   }
 }
 
@@ -6185,6 +6649,16 @@ class DescribeStorageVirtualMachinesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final storageVirtualMachines = this.storageVirtualMachines;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (storageVirtualMachines != null)
+        'StorageVirtualMachines': storageVirtualMachines,
+    };
+  }
 }
 
 class DescribeVolumesResponse {
@@ -6206,6 +6680,15 @@ class DescribeVolumesResponse {
           .map((e) => Volume.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final volumes = this.volumes;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (volumes != null) 'Volumes': volumes,
+    };
   }
 }
 
@@ -6229,6 +6712,13 @@ class DisassociateFileSystemAliasesResponse {
           .map((e) => Alias.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aliases = this.aliases;
+    return {
+      if (aliases != null) 'Aliases': aliases,
+    };
   }
 }
 
@@ -6576,6 +7066,60 @@ class FileSystem {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final administrativeActions = this.administrativeActions;
+    final creationTime = this.creationTime;
+    final dNSName = this.dNSName;
+    final failureDetails = this.failureDetails;
+    final fileSystemId = this.fileSystemId;
+    final fileSystemType = this.fileSystemType;
+    final fileSystemTypeVersion = this.fileSystemTypeVersion;
+    final kmsKeyId = this.kmsKeyId;
+    final lifecycle = this.lifecycle;
+    final lustreConfiguration = this.lustreConfiguration;
+    final networkInterfaceIds = this.networkInterfaceIds;
+    final ontapConfiguration = this.ontapConfiguration;
+    final openZFSConfiguration = this.openZFSConfiguration;
+    final ownerId = this.ownerId;
+    final resourceARN = this.resourceARN;
+    final storageCapacity = this.storageCapacity;
+    final storageType = this.storageType;
+    final subnetIds = this.subnetIds;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    final windowsConfiguration = this.windowsConfiguration;
+    return {
+      if (administrativeActions != null)
+        'AdministrativeActions': administrativeActions,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (dNSName != null) 'DNSName': dNSName,
+      if (failureDetails != null) 'FailureDetails': failureDetails,
+      if (fileSystemId != null) 'FileSystemId': fileSystemId,
+      if (fileSystemType != null) 'FileSystemType': fileSystemType.toValue(),
+      if (fileSystemTypeVersion != null)
+        'FileSystemTypeVersion': fileSystemTypeVersion,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+      if (lustreConfiguration != null)
+        'LustreConfiguration': lustreConfiguration,
+      if (networkInterfaceIds != null)
+        'NetworkInterfaceIds': networkInterfaceIds,
+      if (ontapConfiguration != null) 'OntapConfiguration': ontapConfiguration,
+      if (openZFSConfiguration != null)
+        'OpenZFSConfiguration': openZFSConfiguration,
+      if (ownerId != null) 'OwnerId': ownerId,
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (storageCapacity != null) 'StorageCapacity': storageCapacity,
+      if (storageType != null) 'StorageType': storageType.toValue(),
+      if (subnetIds != null) 'SubnetIds': subnetIds,
+      if (tags != null) 'Tags': tags,
+      if (vpcId != null) 'VpcId': vpcId,
+      if (windowsConfiguration != null)
+        'WindowsConfiguration': windowsConfiguration,
+    };
+  }
 }
 
 /// An Amazon FSx for NetApp ONTAP file system has two endpoints that are used
@@ -6600,6 +7144,15 @@ class FileSystemEndpoint {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dNSName = this.dNSName;
+    final ipAddresses = this.ipAddresses;
+    return {
+      if (dNSName != null) 'DNSName': dNSName,
+      if (ipAddresses != null) 'IpAddresses': ipAddresses,
+    };
   }
 }
 
@@ -6631,6 +7184,15 @@ class FileSystemEndpoints {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final intercluster = this.intercluster;
+    final management = this.management;
+    return {
+      if (intercluster != null) 'Intercluster': intercluster,
+      if (management != null) 'Management': management,
+    };
+  }
 }
 
 /// A structure providing details of any failures that occurred when creating a
@@ -6646,6 +7208,13 @@ class FileSystemFailureDetails {
     return FileSystemFailureDetails(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6788,6 +7357,7 @@ class Filter {
     this.name,
     this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -6887,6 +7457,13 @@ class LifecycleTransitionReason {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// The response object for <code>ListTagsForResource</code> operation.
@@ -6911,6 +7488,15 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -7139,6 +7725,42 @@ class LustreFileSystemConfiguration {
       weeklyMaintenanceStartTime: json['WeeklyMaintenanceStartTime'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final automaticBackupRetentionDays = this.automaticBackupRetentionDays;
+    final copyTagsToBackups = this.copyTagsToBackups;
+    final dailyAutomaticBackupStartTime = this.dailyAutomaticBackupStartTime;
+    final dataCompressionType = this.dataCompressionType;
+    final dataRepositoryConfiguration = this.dataRepositoryConfiguration;
+    final deploymentType = this.deploymentType;
+    final driveCacheType = this.driveCacheType;
+    final logConfiguration = this.logConfiguration;
+    final mountName = this.mountName;
+    final perUnitStorageThroughput = this.perUnitStorageThroughput;
+    final rootSquashConfiguration = this.rootSquashConfiguration;
+    final weeklyMaintenanceStartTime = this.weeklyMaintenanceStartTime;
+    return {
+      if (automaticBackupRetentionDays != null)
+        'AutomaticBackupRetentionDays': automaticBackupRetentionDays,
+      if (copyTagsToBackups != null) 'CopyTagsToBackups': copyTagsToBackups,
+      if (dailyAutomaticBackupStartTime != null)
+        'DailyAutomaticBackupStartTime': dailyAutomaticBackupStartTime,
+      if (dataCompressionType != null)
+        'DataCompressionType': dataCompressionType.toValue(),
+      if (dataRepositoryConfiguration != null)
+        'DataRepositoryConfiguration': dataRepositoryConfiguration,
+      if (deploymentType != null) 'DeploymentType': deploymentType.toValue(),
+      if (driveCacheType != null) 'DriveCacheType': driveCacheType.toValue(),
+      if (logConfiguration != null) 'LogConfiguration': logConfiguration,
+      if (mountName != null) 'MountName': mountName,
+      if (perUnitStorageThroughput != null)
+        'PerUnitStorageThroughput': perUnitStorageThroughput,
+      if (rootSquashConfiguration != null)
+        'RootSquashConfiguration': rootSquashConfiguration,
+      if (weeklyMaintenanceStartTime != null)
+        'WeeklyMaintenanceStartTime': weeklyMaintenanceStartTime,
+    };
+  }
 }
 
 /// The configuration for Lustre logging used to write the enabled logging
@@ -7184,6 +7806,15 @@ class LustreLogConfiguration {
       level: (json['Level'] as String).toLustreAccessAuditLogLevel(),
       destination: json['Destination'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final level = this.level;
+    final destination = this.destination;
+    return {
+      'Level': level.toValue(),
+      if (destination != null) 'Destination': destination,
+    };
   }
 }
 
@@ -7258,6 +7889,7 @@ class LustreLogCreateConfiguration {
     required this.level,
     this.destination,
   });
+
   Map<String, dynamic> toJson() {
     final level = this.level;
     final destination = this.destination;
@@ -7457,6 +8089,36 @@ class OntapFileSystemConfiguration {
       weeklyMaintenanceStartTime: json['WeeklyMaintenanceStartTime'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final automaticBackupRetentionDays = this.automaticBackupRetentionDays;
+    final dailyAutomaticBackupStartTime = this.dailyAutomaticBackupStartTime;
+    final deploymentType = this.deploymentType;
+    final diskIopsConfiguration = this.diskIopsConfiguration;
+    final endpointIpAddressRange = this.endpointIpAddressRange;
+    final endpoints = this.endpoints;
+    final preferredSubnetId = this.preferredSubnetId;
+    final routeTableIds = this.routeTableIds;
+    final throughputCapacity = this.throughputCapacity;
+    final weeklyMaintenanceStartTime = this.weeklyMaintenanceStartTime;
+    return {
+      if (automaticBackupRetentionDays != null)
+        'AutomaticBackupRetentionDays': automaticBackupRetentionDays,
+      if (dailyAutomaticBackupStartTime != null)
+        'DailyAutomaticBackupStartTime': dailyAutomaticBackupStartTime,
+      if (deploymentType != null) 'DeploymentType': deploymentType.toValue(),
+      if (diskIopsConfiguration != null)
+        'DiskIopsConfiguration': diskIopsConfiguration,
+      if (endpointIpAddressRange != null)
+        'EndpointIpAddressRange': endpointIpAddressRange,
+      if (endpoints != null) 'Endpoints': endpoints,
+      if (preferredSubnetId != null) 'PreferredSubnetId': preferredSubnetId,
+      if (routeTableIds != null) 'RouteTableIds': routeTableIds,
+      if (throughputCapacity != null) 'ThroughputCapacity': throughputCapacity,
+      if (weeklyMaintenanceStartTime != null)
+        'WeeklyMaintenanceStartTime': weeklyMaintenanceStartTime,
+    };
+  }
 }
 
 /// The configuration of an Amazon FSx for NetApp ONTAP volume.
@@ -7567,6 +8229,35 @@ class OntapVolumeConfiguration {
           : null,
       uuid: json['UUID'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flexCacheEndpointType = this.flexCacheEndpointType;
+    final junctionPath = this.junctionPath;
+    final ontapVolumeType = this.ontapVolumeType;
+    final securityStyle = this.securityStyle;
+    final sizeInMegabytes = this.sizeInMegabytes;
+    final storageEfficiencyEnabled = this.storageEfficiencyEnabled;
+    final storageVirtualMachineId = this.storageVirtualMachineId;
+    final storageVirtualMachineRoot = this.storageVirtualMachineRoot;
+    final tieringPolicy = this.tieringPolicy;
+    final uuid = this.uuid;
+    return {
+      if (flexCacheEndpointType != null)
+        'FlexCacheEndpointType': flexCacheEndpointType.toValue(),
+      if (junctionPath != null) 'JunctionPath': junctionPath,
+      if (ontapVolumeType != null) 'OntapVolumeType': ontapVolumeType.toValue(),
+      if (securityStyle != null) 'SecurityStyle': securityStyle.toValue(),
+      if (sizeInMegabytes != null) 'SizeInMegabytes': sizeInMegabytes,
+      if (storageEfficiencyEnabled != null)
+        'StorageEfficiencyEnabled': storageEfficiencyEnabled,
+      if (storageVirtualMachineId != null)
+        'StorageVirtualMachineId': storageVirtualMachineId,
+      if (storageVirtualMachineRoot != null)
+        'StorageVirtualMachineRoot': storageVirtualMachineRoot,
+      if (tieringPolicy != null) 'TieringPolicy': tieringPolicy,
+      if (uuid != null) 'UUID': uuid,
+    };
   }
 }
 
@@ -7746,6 +8437,7 @@ class OpenZFSCreateRootVolumeConfiguration {
     this.recordSizeKiB,
     this.userAndGroupQuotas,
   });
+
   Map<String, dynamic> toJson() {
     final copyTagsToSnapshots = this.copyTagsToSnapshots;
     final dataCompressionType = this.dataCompressionType;
@@ -7891,6 +8583,33 @@ class OpenZFSFileSystemConfiguration {
       weeklyMaintenanceStartTime: json['WeeklyMaintenanceStartTime'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final automaticBackupRetentionDays = this.automaticBackupRetentionDays;
+    final copyTagsToBackups = this.copyTagsToBackups;
+    final copyTagsToVolumes = this.copyTagsToVolumes;
+    final dailyAutomaticBackupStartTime = this.dailyAutomaticBackupStartTime;
+    final deploymentType = this.deploymentType;
+    final diskIopsConfiguration = this.diskIopsConfiguration;
+    final rootVolumeId = this.rootVolumeId;
+    final throughputCapacity = this.throughputCapacity;
+    final weeklyMaintenanceStartTime = this.weeklyMaintenanceStartTime;
+    return {
+      if (automaticBackupRetentionDays != null)
+        'AutomaticBackupRetentionDays': automaticBackupRetentionDays,
+      if (copyTagsToBackups != null) 'CopyTagsToBackups': copyTagsToBackups,
+      if (copyTagsToVolumes != null) 'CopyTagsToVolumes': copyTagsToVolumes,
+      if (dailyAutomaticBackupStartTime != null)
+        'DailyAutomaticBackupStartTime': dailyAutomaticBackupStartTime,
+      if (deploymentType != null) 'DeploymentType': deploymentType.toValue(),
+      if (diskIopsConfiguration != null)
+        'DiskIopsConfiguration': diskIopsConfiguration,
+      if (rootVolumeId != null) 'RootVolumeId': rootVolumeId,
+      if (throughputCapacity != null) 'ThroughputCapacity': throughputCapacity,
+      if (weeklyMaintenanceStartTime != null)
+        'WeeklyMaintenanceStartTime': weeklyMaintenanceStartTime,
+    };
+  }
 }
 
 /// The Network File System (NFS) configurations for mounting an Amazon FSx for
@@ -7951,6 +8670,15 @@ class OpenZFSOriginSnapshotConfiguration {
       copyStrategy: (json['CopyStrategy'] as String?)?.toOpenZFSCopyStrategy(),
       snapshotARN: json['SnapshotARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final copyStrategy = this.copyStrategy;
+    final snapshotARN = this.snapshotARN;
+    return {
+      if (copyStrategy != null) 'CopyStrategy': copyStrategy.toValue(),
+      if (snapshotARN != null) 'SnapshotARN': snapshotARN,
+    };
   }
 }
 
@@ -8127,6 +8855,37 @@ class OpenZFSVolumeConfiguration {
       volumePath: json['VolumePath'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final copyTagsToSnapshots = this.copyTagsToSnapshots;
+    final dataCompressionType = this.dataCompressionType;
+    final nfsExports = this.nfsExports;
+    final originSnapshot = this.originSnapshot;
+    final parentVolumeId = this.parentVolumeId;
+    final readOnly = this.readOnly;
+    final recordSizeKiB = this.recordSizeKiB;
+    final storageCapacityQuotaGiB = this.storageCapacityQuotaGiB;
+    final storageCapacityReservationGiB = this.storageCapacityReservationGiB;
+    final userAndGroupQuotas = this.userAndGroupQuotas;
+    final volumePath = this.volumePath;
+    return {
+      if (copyTagsToSnapshots != null)
+        'CopyTagsToSnapshots': copyTagsToSnapshots,
+      if (dataCompressionType != null)
+        'DataCompressionType': dataCompressionType.toValue(),
+      if (nfsExports != null) 'NfsExports': nfsExports,
+      if (originSnapshot != null) 'OriginSnapshot': originSnapshot,
+      if (parentVolumeId != null) 'ParentVolumeId': parentVolumeId,
+      if (readOnly != null) 'ReadOnly': readOnly,
+      if (recordSizeKiB != null) 'RecordSizeKiB': recordSizeKiB,
+      if (storageCapacityQuotaGiB != null)
+        'StorageCapacityQuotaGiB': storageCapacityQuotaGiB,
+      if (storageCapacityReservationGiB != null)
+        'StorageCapacityReservationGiB': storageCapacityReservationGiB,
+      if (userAndGroupQuotas != null) 'UserAndGroupQuotas': userAndGroupQuotas,
+      if (volumePath != null) 'VolumePath': volumePath,
+    };
+  }
 }
 
 class ReleaseFileSystemNfsV3LocksResponse {
@@ -8142,6 +8901,13 @@ class ReleaseFileSystemNfsV3LocksResponse {
           ? FileSystem.fromJson(json['FileSystem'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileSystem = this.fileSystem;
+    return {
+      if (fileSystem != null) 'FileSystem': fileSystem,
+    };
   }
 }
 
@@ -8265,6 +9031,15 @@ class RestoreVolumeFromSnapshotResponse {
       lifecycle: (json['Lifecycle'] as String?)?.toVolumeLifecycle(),
       volumeId: json['VolumeId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lifecycle = this.lifecycle;
+    final volumeId = this.volumeId;
+    return {
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+      if (volumeId != null) 'VolumeId': volumeId,
+    };
   }
 }
 
@@ -8391,6 +9166,25 @@ class SelfManagedActiveDirectoryAttributes {
       userName: json['UserName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dnsIps = this.dnsIps;
+    final domainName = this.domainName;
+    final fileSystemAdministratorsGroup = this.fileSystemAdministratorsGroup;
+    final organizationalUnitDistinguishedName =
+        this.organizationalUnitDistinguishedName;
+    final userName = this.userName;
+    return {
+      if (dnsIps != null) 'DnsIps': dnsIps,
+      if (domainName != null) 'DomainName': domainName,
+      if (fileSystemAdministratorsGroup != null)
+        'FileSystemAdministratorsGroup': fileSystemAdministratorsGroup,
+      if (organizationalUnitDistinguishedName != null)
+        'OrganizationalUnitDistinguishedName':
+            organizationalUnitDistinguishedName,
+      if (userName != null) 'UserName': userName,
+    };
+  }
 }
 
 /// The configuration that Amazon FSx uses to join a FSx for Windows File Server
@@ -8451,6 +9245,7 @@ class SelfManagedActiveDirectoryConfiguration {
     this.fileSystemAdministratorsGroup,
     this.organizationalUnitDistinguishedName,
   });
+
   Map<String, dynamic> toJson() {
     final dnsIps = this.dnsIps;
     final domainName = this.domainName;
@@ -8495,6 +9290,7 @@ class SelfManagedActiveDirectoryConfigurationUpdates {
     this.password,
     this.userName,
   });
+
   Map<String, dynamic> toJson() {
     final dnsIps = this.dnsIps;
     final password = this.password;
@@ -8578,6 +9374,32 @@ class Snapshot {
       volumeId: json['VolumeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final administrativeActions = this.administrativeActions;
+    final creationTime = this.creationTime;
+    final lifecycle = this.lifecycle;
+    final lifecycleTransitionReason = this.lifecycleTransitionReason;
+    final name = this.name;
+    final resourceARN = this.resourceARN;
+    final snapshotId = this.snapshotId;
+    final tags = this.tags;
+    final volumeId = this.volumeId;
+    return {
+      if (administrativeActions != null)
+        'AdministrativeActions': administrativeActions,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+      if (lifecycleTransitionReason != null)
+        'LifecycleTransitionReason': lifecycleTransitionReason,
+      if (name != null) 'Name': name,
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (snapshotId != null) 'SnapshotId': snapshotId,
+      if (tags != null) 'Tags': tags,
+      if (volumeId != null) 'VolumeId': volumeId,
+    };
+  }
 }
 
 /// A filter used to restrict the results of <code>DescribeSnapshots</code>
@@ -8596,6 +9418,7 @@ class SnapshotFilter {
     this.name,
     this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -8848,6 +9671,42 @@ class StorageVirtualMachine {
       uuid: json['UUID'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeDirectoryConfiguration = this.activeDirectoryConfiguration;
+    final creationTime = this.creationTime;
+    final endpoints = this.endpoints;
+    final fileSystemId = this.fileSystemId;
+    final lifecycle = this.lifecycle;
+    final lifecycleTransitionReason = this.lifecycleTransitionReason;
+    final name = this.name;
+    final resourceARN = this.resourceARN;
+    final rootVolumeSecurityStyle = this.rootVolumeSecurityStyle;
+    final storageVirtualMachineId = this.storageVirtualMachineId;
+    final subtype = this.subtype;
+    final tags = this.tags;
+    final uuid = this.uuid;
+    return {
+      if (activeDirectoryConfiguration != null)
+        'ActiveDirectoryConfiguration': activeDirectoryConfiguration,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (endpoints != null) 'Endpoints': endpoints,
+      if (fileSystemId != null) 'FileSystemId': fileSystemId,
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+      if (lifecycleTransitionReason != null)
+        'LifecycleTransitionReason': lifecycleTransitionReason,
+      if (name != null) 'Name': name,
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (rootVolumeSecurityStyle != null)
+        'RootVolumeSecurityStyle': rootVolumeSecurityStyle.toValue(),
+      if (storageVirtualMachineId != null)
+        'StorageVirtualMachineId': storageVirtualMachineId,
+      if (subtype != null) 'Subtype': subtype.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (uuid != null) 'UUID': uuid,
+    };
+  }
 }
 
 /// A filter used to restrict the results of describe calls for Amazon FSx for
@@ -8865,6 +9724,7 @@ class StorageVirtualMachineFilter {
     this.name,
     this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -9050,6 +9910,18 @@ class SvmActiveDirectoryConfiguration {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final netBiosName = this.netBiosName;
+    final selfManagedActiveDirectoryConfiguration =
+        this.selfManagedActiveDirectoryConfiguration;
+    return {
+      if (netBiosName != null) 'NetBiosName': netBiosName,
+      if (selfManagedActiveDirectoryConfiguration != null)
+        'SelfManagedActiveDirectoryConfiguration':
+            selfManagedActiveDirectoryConfiguration,
+    };
+  }
 }
 
 /// An Amazon FSx for NetApp ONTAP storage virtual machine (SVM) has four
@@ -9075,6 +9947,15 @@ class SvmEndpoint {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dNSName = this.dNSName;
+    final ipAddresses = this.ipAddresses;
+    return {
+      if (dNSName != null) 'DNSName': dNSName,
+      if (ipAddresses != null) 'IpAddresses': ipAddresses,
+    };
   }
 }
 
@@ -9118,6 +9999,19 @@ class SvmEndpoints {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final iscsi = this.iscsi;
+    final management = this.management;
+    final nfs = this.nfs;
+    final smb = this.smb;
+    return {
+      if (iscsi != null) 'Iscsi': iscsi,
+      if (management != null) 'Management': management,
+      if (nfs != null) 'Nfs': nfs,
+      if (smb != null) 'Smb': smb,
+    };
+  }
 }
 
 /// Specifies a key-value pair for a resource tag.
@@ -9158,6 +10052,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -9288,6 +10186,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateDataRepositoryAssociationResponse {
@@ -9306,6 +10208,13 @@ class UpdateDataRepositoryAssociationResponse {
               json['Association'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final association = this.association;
+    return {
+      if (association != null) 'Association': association,
+    };
   }
 }
 
@@ -9395,6 +10304,7 @@ class UpdateFileSystemLustreConfiguration {
     this.rootSquashConfiguration,
     this.weeklyMaintenanceStartTime,
   });
+
   Map<String, dynamic> toJson() {
     final autoImportPolicy = this.autoImportPolicy;
     final automaticBackupRetentionDays = this.automaticBackupRetentionDays;
@@ -9452,6 +10362,7 @@ class UpdateFileSystemOntapConfiguration {
     this.throughputCapacity,
     this.weeklyMaintenanceStartTime,
   });
+
   Map<String, dynamic> toJson() {
     final automaticBackupRetentionDays = this.automaticBackupRetentionDays;
     final dailyAutomaticBackupStartTime = this.dailyAutomaticBackupStartTime;
@@ -9514,6 +10425,7 @@ class UpdateFileSystemOpenZFSConfiguration {
     this.throughputCapacity,
     this.weeklyMaintenanceStartTime,
   });
+
   Map<String, dynamic> toJson() {
     final automaticBackupRetentionDays = this.automaticBackupRetentionDays;
     final copyTagsToBackups = this.copyTagsToBackups;
@@ -9552,6 +10464,13 @@ class UpdateFileSystemResponse {
           ? FileSystem.fromJson(json['FileSystem'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileSystem = this.fileSystem;
+    return {
+      if (fileSystem != null) 'FileSystem': fileSystem,
+    };
   }
 }
 
@@ -9604,6 +10523,7 @@ class UpdateFileSystemWindowsConfiguration {
     this.throughputCapacity,
     this.weeklyMaintenanceStartTime,
   });
+
   Map<String, dynamic> toJson() {
     final auditLogConfiguration = this.auditLogConfiguration;
     final automaticBackupRetentionDays = this.automaticBackupRetentionDays;
@@ -9658,6 +10578,7 @@ class UpdateOntapVolumeConfiguration {
     this.storageEfficiencyEnabled,
     this.tieringPolicy,
   });
+
   Map<String, dynamic> toJson() {
     final junctionPath = this.junctionPath;
     final securityStyle = this.securityStyle;
@@ -9741,6 +10662,7 @@ class UpdateOpenZFSVolumeConfiguration {
     this.storageCapacityReservationGiB,
     this.userAndGroupQuotas,
   });
+
   Map<String, dynamic> toJson() {
     final dataCompressionType = this.dataCompressionType;
     final nfsExports = this.nfsExports;
@@ -9779,6 +10701,13 @@ class UpdateSnapshotResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
+  }
 }
 
 class UpdateStorageVirtualMachineResponse {
@@ -9796,6 +10725,14 @@ class UpdateStorageVirtualMachineResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final storageVirtualMachine = this.storageVirtualMachine;
+    return {
+      if (storageVirtualMachine != null)
+        'StorageVirtualMachine': storageVirtualMachine,
+    };
+  }
 }
 
 /// Updates the Microsoft Active Directory (AD) configuration of an SVM joined
@@ -9808,6 +10745,7 @@ class UpdateSvmActiveDirectoryConfiguration {
   UpdateSvmActiveDirectoryConfiguration({
     this.selfManagedActiveDirectoryConfiguration,
   });
+
   Map<String, dynamic> toJson() {
     final selfManagedActiveDirectoryConfiguration =
         this.selfManagedActiveDirectoryConfiguration;
@@ -9833,6 +10771,13 @@ class UpdateVolumeResponse {
           ? Volume.fromJson(json['Volume'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final volume = this.volume;
+    return {
+      if (volume != null) 'Volume': volume,
+    };
   }
 }
 
@@ -9936,6 +10881,39 @@ class Volume {
       volumeType: (json['VolumeType'] as String?)?.toVolumeType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final administrativeActions = this.administrativeActions;
+    final creationTime = this.creationTime;
+    final fileSystemId = this.fileSystemId;
+    final lifecycle = this.lifecycle;
+    final lifecycleTransitionReason = this.lifecycleTransitionReason;
+    final name = this.name;
+    final ontapConfiguration = this.ontapConfiguration;
+    final openZFSConfiguration = this.openZFSConfiguration;
+    final resourceARN = this.resourceARN;
+    final tags = this.tags;
+    final volumeId = this.volumeId;
+    final volumeType = this.volumeType;
+    return {
+      if (administrativeActions != null)
+        'AdministrativeActions': administrativeActions,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (fileSystemId != null) 'FileSystemId': fileSystemId,
+      if (lifecycle != null) 'Lifecycle': lifecycle.toValue(),
+      if (lifecycleTransitionReason != null)
+        'LifecycleTransitionReason': lifecycleTransitionReason,
+      if (name != null) 'Name': name,
+      if (ontapConfiguration != null) 'OntapConfiguration': ontapConfiguration,
+      if (openZFSConfiguration != null)
+        'OpenZFSConfiguration': openZFSConfiguration,
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (tags != null) 'Tags': tags,
+      if (volumeId != null) 'VolumeId': volumeId,
+      if (volumeType != null) 'VolumeType': volumeType.toValue(),
+    };
+  }
 }
 
 /// A filter used to restrict the results of describe calls for Amazon FSx for
@@ -9953,6 +10931,7 @@ class VolumeFilter {
     this.name,
     this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -10189,6 +11168,18 @@ class WindowsAuditLogConfiguration {
       auditLogDestination: json['AuditLogDestination'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fileAccessAuditLogLevel = this.fileAccessAuditLogLevel;
+    final fileShareAccessAuditLogLevel = this.fileShareAccessAuditLogLevel;
+    final auditLogDestination = this.auditLogDestination;
+    return {
+      'FileAccessAuditLogLevel': fileAccessAuditLogLevel.toValue(),
+      'FileShareAccessAuditLogLevel': fileShareAccessAuditLogLevel.toValue(),
+      if (auditLogDestination != null)
+        'AuditLogDestination': auditLogDestination,
+    };
+  }
 }
 
 /// The Windows file access auditing configuration used when creating or
@@ -10278,6 +11269,7 @@ class WindowsAuditLogCreateConfiguration {
     required this.fileShareAccessAuditLogLevel,
     this.auditLogDestination,
   });
+
   Map<String, dynamic> toJson() {
     final fileAccessAuditLogLevel = this.fileAccessAuditLogLevel;
     final fileShareAccessAuditLogLevel = this.fileShareAccessAuditLogLevel;
@@ -10480,6 +11472,51 @@ class WindowsFileSystemConfiguration {
       throughputCapacity: json['ThroughputCapacity'] as int?,
       weeklyMaintenanceStartTime: json['WeeklyMaintenanceStartTime'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activeDirectoryId = this.activeDirectoryId;
+    final aliases = this.aliases;
+    final auditLogConfiguration = this.auditLogConfiguration;
+    final automaticBackupRetentionDays = this.automaticBackupRetentionDays;
+    final copyTagsToBackups = this.copyTagsToBackups;
+    final dailyAutomaticBackupStartTime = this.dailyAutomaticBackupStartTime;
+    final deploymentType = this.deploymentType;
+    final maintenanceOperationsInProgress =
+        this.maintenanceOperationsInProgress;
+    final preferredFileServerIp = this.preferredFileServerIp;
+    final preferredSubnetId = this.preferredSubnetId;
+    final remoteAdministrationEndpoint = this.remoteAdministrationEndpoint;
+    final selfManagedActiveDirectoryConfiguration =
+        this.selfManagedActiveDirectoryConfiguration;
+    final throughputCapacity = this.throughputCapacity;
+    final weeklyMaintenanceStartTime = this.weeklyMaintenanceStartTime;
+    return {
+      if (activeDirectoryId != null) 'ActiveDirectoryId': activeDirectoryId,
+      if (aliases != null) 'Aliases': aliases,
+      if (auditLogConfiguration != null)
+        'AuditLogConfiguration': auditLogConfiguration,
+      if (automaticBackupRetentionDays != null)
+        'AutomaticBackupRetentionDays': automaticBackupRetentionDays,
+      if (copyTagsToBackups != null) 'CopyTagsToBackups': copyTagsToBackups,
+      if (dailyAutomaticBackupStartTime != null)
+        'DailyAutomaticBackupStartTime': dailyAutomaticBackupStartTime,
+      if (deploymentType != null) 'DeploymentType': deploymentType.toValue(),
+      if (maintenanceOperationsInProgress != null)
+        'MaintenanceOperationsInProgress':
+            maintenanceOperationsInProgress.map((e) => e.toValue()).toList(),
+      if (preferredFileServerIp != null)
+        'PreferredFileServerIp': preferredFileServerIp,
+      if (preferredSubnetId != null) 'PreferredSubnetId': preferredSubnetId,
+      if (remoteAdministrationEndpoint != null)
+        'RemoteAdministrationEndpoint': remoteAdministrationEndpoint,
+      if (selfManagedActiveDirectoryConfiguration != null)
+        'SelfManagedActiveDirectoryConfiguration':
+            selfManagedActiveDirectoryConfiguration,
+      if (throughputCapacity != null) 'ThroughputCapacity': throughputCapacity,
+      if (weeklyMaintenanceStartTime != null)
+        'WeeklyMaintenanceStartTime': weeklyMaintenanceStartTime,
+    };
   }
 }
 

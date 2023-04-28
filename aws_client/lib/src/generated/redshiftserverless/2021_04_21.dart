@@ -1810,6 +1810,13 @@ class ConvertRecoveryPointToSnapshotResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'snapshot': snapshot,
+    };
+  }
 }
 
 class CreateEndpointAccessResponse {
@@ -1825,6 +1832,13 @@ class CreateEndpointAccessResponse {
           ? EndpointAccess.fromJson(json['endpoint'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    return {
+      if (endpoint != null) 'endpoint': endpoint,
+    };
   }
 }
 
@@ -1842,6 +1856,13 @@ class CreateNamespaceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final namespace = this.namespace;
+    return {
+      if (namespace != null) 'namespace': namespace,
+    };
+  }
 }
 
 class CreateSnapshotResponse {
@@ -1857,6 +1878,13 @@ class CreateSnapshotResponse {
           ? Snapshot.fromJson(json['snapshot'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'snapshot': snapshot,
+    };
   }
 }
 
@@ -1874,6 +1902,13 @@ class CreateUsageLimitResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final usageLimit = this.usageLimit;
+    return {
+      if (usageLimit != null) 'usageLimit': usageLimit,
+    };
+  }
 }
 
 class CreateWorkgroupResponse {
@@ -1889,6 +1924,13 @@ class CreateWorkgroupResponse {
           ? Workgroup.fromJson(json['workgroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workgroup = this.workgroup;
+    return {
+      if (workgroup != null) 'workgroup': workgroup,
+    };
   }
 }
 
@@ -1906,6 +1948,13 @@ class DeleteEndpointAccessResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    return {
+      if (endpoint != null) 'endpoint': endpoint,
+    };
+  }
 }
 
 class DeleteNamespaceResponse {
@@ -1920,12 +1969,23 @@ class DeleteNamespaceResponse {
       namespace: Namespace.fromJson(json['namespace'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final namespace = this.namespace;
+    return {
+      'namespace': namespace,
+    };
+  }
 }
 
 class DeleteResourcePolicyResponse {
   DeleteResourcePolicyResponse();
   factory DeleteResourcePolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteResourcePolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1943,6 +2003,13 @@ class DeleteSnapshotResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'snapshot': snapshot,
+    };
+  }
 }
 
 class DeleteUsageLimitResponse {
@@ -1959,6 +2026,13 @@ class DeleteUsageLimitResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final usageLimit = this.usageLimit;
+    return {
+      if (usageLimit != null) 'usageLimit': usageLimit,
+    };
+  }
 }
 
 class DeleteWorkgroupResponse {
@@ -1972,6 +2046,13 @@ class DeleteWorkgroupResponse {
     return DeleteWorkgroupResponse(
       workgroup: Workgroup.fromJson(json['workgroup'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workgroup = this.workgroup;
+    return {
+      'workgroup': workgroup,
+    };
   }
 }
 
@@ -2000,6 +2081,17 @@ class Endpoint {
           .map((e) => VpcEndpoint.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final port = this.port;
+    final vpcEndpoints = this.vpcEndpoints;
+    return {
+      if (address != null) 'address': address,
+      if (port != null) 'port': port,
+      if (vpcEndpoints != null) 'vpcEndpoints': vpcEndpoints,
+    };
   }
 }
 
@@ -2072,6 +2164,32 @@ class EndpointAccess {
       workgroupName: json['workgroupName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final endpointArn = this.endpointArn;
+    final endpointCreateTime = this.endpointCreateTime;
+    final endpointName = this.endpointName;
+    final endpointStatus = this.endpointStatus;
+    final port = this.port;
+    final subnetIds = this.subnetIds;
+    final vpcEndpoint = this.vpcEndpoint;
+    final vpcSecurityGroups = this.vpcSecurityGroups;
+    final workgroupName = this.workgroupName;
+    return {
+      if (address != null) 'address': address,
+      if (endpointArn != null) 'endpointArn': endpointArn,
+      if (endpointCreateTime != null)
+        'endpointCreateTime': iso8601ToJson(endpointCreateTime),
+      if (endpointName != null) 'endpointName': endpointName,
+      if (endpointStatus != null) 'endpointStatus': endpointStatus,
+      if (port != null) 'port': port,
+      if (subnetIds != null) 'subnetIds': subnetIds,
+      if (vpcEndpoint != null) 'vpcEndpoint': vpcEndpoint,
+      if (vpcSecurityGroups != null) 'vpcSecurityGroups': vpcSecurityGroups,
+      if (workgroupName != null) 'workgroupName': workgroupName,
+    };
+  }
 }
 
 class GetCredentialsResponse {
@@ -2107,6 +2225,20 @@ class GetCredentialsResponse {
       nextRefreshTime: timeStampFromJson(json['nextRefreshTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dbPassword = this.dbPassword;
+    final dbUser = this.dbUser;
+    final expiration = this.expiration;
+    final nextRefreshTime = this.nextRefreshTime;
+    return {
+      if (dbPassword != null) 'dbPassword': dbPassword,
+      if (dbUser != null) 'dbUser': dbUser,
+      if (expiration != null) 'expiration': unixTimestampToJson(expiration),
+      if (nextRefreshTime != null)
+        'nextRefreshTime': unixTimestampToJson(nextRefreshTime),
+    };
+  }
 }
 
 class GetEndpointAccessResponse {
@@ -2123,6 +2255,13 @@ class GetEndpointAccessResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    return {
+      if (endpoint != null) 'endpoint': endpoint,
+    };
+  }
 }
 
 class GetNamespaceResponse {
@@ -2136,6 +2275,13 @@ class GetNamespaceResponse {
     return GetNamespaceResponse(
       namespace: Namespace.fromJson(json['namespace'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final namespace = this.namespace;
+    return {
+      'namespace': namespace,
+    };
   }
 }
 
@@ -2154,6 +2300,13 @@ class GetRecoveryPointResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recoveryPoint = this.recoveryPoint;
+    return {
+      if (recoveryPoint != null) 'recoveryPoint': recoveryPoint,
+    };
+  }
 }
 
 class GetResourcePolicyResponse {
@@ -2171,6 +2324,13 @@ class GetResourcePolicyResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourcePolicy = this.resourcePolicy;
+    return {
+      if (resourcePolicy != null) 'resourcePolicy': resourcePolicy,
+    };
+  }
 }
 
 class GetSnapshotResponse {
@@ -2186,6 +2346,13 @@ class GetSnapshotResponse {
           ? Snapshot.fromJson(json['snapshot'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'snapshot': snapshot,
+    };
   }
 }
 
@@ -2203,6 +2370,13 @@ class GetUsageLimitResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final usageLimit = this.usageLimit;
+    return {
+      if (usageLimit != null) 'usageLimit': usageLimit,
+    };
+  }
 }
 
 class GetWorkgroupResponse {
@@ -2216,6 +2390,13 @@ class GetWorkgroupResponse {
     return GetWorkgroupResponse(
       workgroup: Workgroup.fromJson(json['workgroup'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workgroup = this.workgroup;
+    return {
+      'workgroup': workgroup,
+    };
   }
 }
 
@@ -2242,6 +2423,15 @@ class ListEndpointAccessResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoints = this.endpoints;
+    final nextToken = this.nextToken;
+    return {
+      'endpoints': endpoints,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListNamespacesResponse {
@@ -2267,6 +2457,15 @@ class ListNamespacesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final namespaces = this.namespaces;
+    final nextToken = this.nextToken;
+    return {
+      'namespaces': namespaces,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListRecoveryPointsResponse {
@@ -2290,6 +2489,15 @@ class ListRecoveryPointsResponse {
           .map((e) => RecoveryPoint.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final recoveryPoints = this.recoveryPoints;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (recoveryPoints != null) 'recoveryPoints': recoveryPoints,
+    };
   }
 }
 
@@ -2315,6 +2523,15 @@ class ListSnapshotsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final snapshots = this.snapshots;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (snapshots != null) 'snapshots': snapshots,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2331,6 +2548,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2357,6 +2581,15 @@ class ListUsageLimitsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final usageLimits = this.usageLimits;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (usageLimits != null) 'usageLimits': usageLimits,
+    };
+  }
 }
 
 class ListWorkgroupsResponse {
@@ -2380,6 +2613,15 @@ class ListWorkgroupsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workgroups = this.workgroups;
+    final nextToken = this.nextToken;
+    return {
+      'workgroups': workgroups,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2493,6 +2735,34 @@ class Namespace {
       status: (json['status'] as String?)?.toNamespaceStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adminUsername = this.adminUsername;
+    final creationDate = this.creationDate;
+    final dbName = this.dbName;
+    final defaultIamRoleArn = this.defaultIamRoleArn;
+    final iamRoles = this.iamRoles;
+    final kmsKeyId = this.kmsKeyId;
+    final logExports = this.logExports;
+    final namespaceArn = this.namespaceArn;
+    final namespaceId = this.namespaceId;
+    final namespaceName = this.namespaceName;
+    final status = this.status;
+    return {
+      if (adminUsername != null) 'adminUsername': adminUsername,
+      if (creationDate != null) 'creationDate': iso8601ToJson(creationDate),
+      if (dbName != null) 'dbName': dbName,
+      if (defaultIamRoleArn != null) 'defaultIamRoleArn': defaultIamRoleArn,
+      if (iamRoles != null) 'iamRoles': iamRoles,
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (logExports != null)
+        'logExports': logExports.map((e) => e.toValue()).toList(),
+      if (namespaceArn != null) 'namespaceArn': namespaceArn,
+      if (namespaceId != null) 'namespaceId': namespaceId,
+      if (namespaceName != null) 'namespaceName': namespaceName,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 enum NamespaceStatus {
@@ -2557,6 +2827,19 @@ class NetworkInterface {
       subnetId: json['subnetId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final networkInterfaceId = this.networkInterfaceId;
+    final privateIpAddress = this.privateIpAddress;
+    final subnetId = this.subnetId;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+      if (subnetId != null) 'subnetId': subnetId,
+    };
+  }
 }
 
 class PutResourcePolicyResponse {
@@ -2573,6 +2856,13 @@ class PutResourcePolicyResponse {
               json['resourcePolicy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourcePolicy = this.resourcePolicy;
+    return {
+      if (resourcePolicy != null) 'resourcePolicy': resourcePolicy,
+    };
   }
 }
 
@@ -2611,6 +2901,23 @@ class RecoveryPoint {
       workgroupName: json['workgroupName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final namespaceName = this.namespaceName;
+    final recoveryPointCreateTime = this.recoveryPointCreateTime;
+    final recoveryPointId = this.recoveryPointId;
+    final totalSizeInMegaBytes = this.totalSizeInMegaBytes;
+    final workgroupName = this.workgroupName;
+    return {
+      if (namespaceName != null) 'namespaceName': namespaceName,
+      if (recoveryPointCreateTime != null)
+        'recoveryPointCreateTime': iso8601ToJson(recoveryPointCreateTime),
+      if (recoveryPointId != null) 'recoveryPointId': recoveryPointId,
+      if (totalSizeInMegaBytes != null)
+        'totalSizeInMegaBytes': totalSizeInMegaBytes,
+      if (workgroupName != null) 'workgroupName': workgroupName,
+    };
+  }
 }
 
 /// The resource policy object. Currently, you can use policies to share
@@ -2632,6 +2939,15 @@ class ResourcePolicy {
       resourceArn: json['resourceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final resourceArn = this.resourceArn;
+    return {
+      if (policy != null) 'policy': policy,
+      if (resourceArn != null) 'resourceArn': resourceArn,
+    };
+  }
 }
 
 class RestoreFromRecoveryPointResponse {
@@ -2652,6 +2968,15 @@ class RestoreFromRecoveryPointResponse {
           : null,
       recoveryPointId: json['recoveryPointId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final namespace = this.namespace;
+    final recoveryPointId = this.recoveryPointId;
+    return {
+      if (namespace != null) 'namespace': namespace,
+      if (recoveryPointId != null) 'recoveryPointId': recoveryPointId,
+    };
   }
 }
 
@@ -2677,6 +3002,17 @@ class RestoreFromSnapshotResponse {
       ownerAccount: json['ownerAccount'] as String?,
       snapshotName: json['snapshotName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final namespace = this.namespace;
+    final ownerAccount = this.ownerAccount;
+    final snapshotName = this.snapshotName;
+    return {
+      if (namespace != null) 'namespace': namespace,
+      if (ownerAccount != null) 'ownerAccount': ownerAccount,
+      if (snapshotName != null) 'snapshotName': snapshotName,
+    };
   }
 }
 
@@ -2802,6 +3138,69 @@ class Snapshot {
       totalBackupSizeInMegaBytes: json['totalBackupSizeInMegaBytes'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountsWithProvisionedRestoreAccess =
+        this.accountsWithProvisionedRestoreAccess;
+    final accountsWithRestoreAccess = this.accountsWithRestoreAccess;
+    final actualIncrementalBackupSizeInMegaBytes =
+        this.actualIncrementalBackupSizeInMegaBytes;
+    final adminUsername = this.adminUsername;
+    final backupProgressInMegaBytes = this.backupProgressInMegaBytes;
+    final currentBackupRateInMegaBytesPerSecond =
+        this.currentBackupRateInMegaBytesPerSecond;
+    final elapsedTimeInSeconds = this.elapsedTimeInSeconds;
+    final estimatedSecondsToCompletion = this.estimatedSecondsToCompletion;
+    final kmsKeyId = this.kmsKeyId;
+    final namespaceArn = this.namespaceArn;
+    final namespaceName = this.namespaceName;
+    final ownerAccount = this.ownerAccount;
+    final snapshotArn = this.snapshotArn;
+    final snapshotCreateTime = this.snapshotCreateTime;
+    final snapshotName = this.snapshotName;
+    final snapshotRemainingDays = this.snapshotRemainingDays;
+    final snapshotRetentionPeriod = this.snapshotRetentionPeriod;
+    final snapshotRetentionStartTime = this.snapshotRetentionStartTime;
+    final status = this.status;
+    final totalBackupSizeInMegaBytes = this.totalBackupSizeInMegaBytes;
+    return {
+      if (accountsWithProvisionedRestoreAccess != null)
+        'accountsWithProvisionedRestoreAccess':
+            accountsWithProvisionedRestoreAccess,
+      if (accountsWithRestoreAccess != null)
+        'accountsWithRestoreAccess': accountsWithRestoreAccess,
+      if (actualIncrementalBackupSizeInMegaBytes != null)
+        'actualIncrementalBackupSizeInMegaBytes':
+            actualIncrementalBackupSizeInMegaBytes,
+      if (adminUsername != null) 'adminUsername': adminUsername,
+      if (backupProgressInMegaBytes != null)
+        'backupProgressInMegaBytes': backupProgressInMegaBytes,
+      if (currentBackupRateInMegaBytesPerSecond != null)
+        'currentBackupRateInMegaBytesPerSecond':
+            currentBackupRateInMegaBytesPerSecond,
+      if (elapsedTimeInSeconds != null)
+        'elapsedTimeInSeconds': elapsedTimeInSeconds,
+      if (estimatedSecondsToCompletion != null)
+        'estimatedSecondsToCompletion': estimatedSecondsToCompletion,
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (namespaceArn != null) 'namespaceArn': namespaceArn,
+      if (namespaceName != null) 'namespaceName': namespaceName,
+      if (ownerAccount != null) 'ownerAccount': ownerAccount,
+      if (snapshotArn != null) 'snapshotArn': snapshotArn,
+      if (snapshotCreateTime != null)
+        'snapshotCreateTime': iso8601ToJson(snapshotCreateTime),
+      if (snapshotName != null) 'snapshotName': snapshotName,
+      if (snapshotRemainingDays != null)
+        'snapshotRemainingDays': snapshotRemainingDays,
+      if (snapshotRetentionPeriod != null)
+        'snapshotRetentionPeriod': snapshotRetentionPeriod,
+      if (snapshotRetentionStartTime != null)
+        'snapshotRetentionStartTime': iso8601ToJson(snapshotRetentionStartTime),
+      if (status != null) 'status': status.toValue(),
+      if (totalBackupSizeInMegaBytes != null)
+        'totalBackupSizeInMegaBytes': totalBackupSizeInMegaBytes,
+    };
+  }
 }
 
 enum SnapshotStatus {
@@ -2886,12 +3285,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2909,6 +3316,13 @@ class UpdateEndpointAccessResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    return {
+      if (endpoint != null) 'endpoint': endpoint,
+    };
+  }
 }
 
 class UpdateNamespaceResponse {
@@ -2922,6 +3336,13 @@ class UpdateNamespaceResponse {
     return UpdateNamespaceResponse(
       namespace: Namespace.fromJson(json['namespace'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final namespace = this.namespace;
+    return {
+      'namespace': namespace,
+    };
   }
 }
 
@@ -2939,6 +3360,13 @@ class UpdateSnapshotResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'snapshot': snapshot,
+    };
+  }
 }
 
 class UpdateUsageLimitResponse {
@@ -2955,6 +3383,13 @@ class UpdateUsageLimitResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final usageLimit = this.usageLimit;
+    return {
+      if (usageLimit != null) 'usageLimit': usageLimit,
+    };
+  }
 }
 
 class UpdateWorkgroupResponse {
@@ -2968,6 +3403,13 @@ class UpdateWorkgroupResponse {
     return UpdateWorkgroupResponse(
       workgroup: Workgroup.fromJson(json['workgroup'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workgroup = this.workgroup;
+    return {
+      'workgroup': workgroup,
+    };
   }
 }
 
@@ -3019,6 +3461,25 @@ class UsageLimit {
       usageLimitId: json['usageLimitId'] as String?,
       usageType: (json['usageType'] as String?)?.toUsageLimitUsageType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final amount = this.amount;
+    final breachAction = this.breachAction;
+    final period = this.period;
+    final resourceArn = this.resourceArn;
+    final usageLimitArn = this.usageLimitArn;
+    final usageLimitId = this.usageLimitId;
+    final usageType = this.usageType;
+    return {
+      if (amount != null) 'amount': amount,
+      if (breachAction != null) 'breachAction': breachAction.toValue(),
+      if (period != null) 'period': period.toValue(),
+      if (resourceArn != null) 'resourceArn': resourceArn,
+      if (usageLimitArn != null) 'usageLimitArn': usageLimitArn,
+      if (usageLimitId != null) 'usageLimitId': usageLimitId,
+      if (usageType != null) 'usageType': usageType.toValue(),
+    };
   }
 }
 
@@ -3144,6 +3605,17 @@ class VpcEndpoint {
       vpcId: json['vpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final networkInterfaces = this.networkInterfaces;
+    final vpcEndpointId = this.vpcEndpointId;
+    final vpcId = this.vpcId;
+    return {
+      if (networkInterfaces != null) 'networkInterfaces': networkInterfaces,
+      if (vpcEndpointId != null) 'vpcEndpointId': vpcEndpointId,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// Describes the members of a VPC security group.
@@ -3163,6 +3635,15 @@ class VpcSecurityGroupMembership {
       status: json['status'] as String?,
       vpcSecurityGroupId: json['vpcSecurityGroupId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final vpcSecurityGroupId = this.vpcSecurityGroupId;
+    return {
+      if (status != null) 'status': status,
+      if (vpcSecurityGroupId != null) 'vpcSecurityGroupId': vpcSecurityGroupId,
+    };
   }
 }
 
@@ -3256,6 +3737,37 @@ class Workgroup {
       workgroupId: json['workgroupId'] as String?,
       workgroupName: json['workgroupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final baseCapacity = this.baseCapacity;
+    final configParameters = this.configParameters;
+    final creationDate = this.creationDate;
+    final endpoint = this.endpoint;
+    final enhancedVpcRouting = this.enhancedVpcRouting;
+    final namespaceName = this.namespaceName;
+    final publiclyAccessible = this.publiclyAccessible;
+    final securityGroupIds = this.securityGroupIds;
+    final status = this.status;
+    final subnetIds = this.subnetIds;
+    final workgroupArn = this.workgroupArn;
+    final workgroupId = this.workgroupId;
+    final workgroupName = this.workgroupName;
+    return {
+      if (baseCapacity != null) 'baseCapacity': baseCapacity,
+      if (configParameters != null) 'configParameters': configParameters,
+      if (creationDate != null) 'creationDate': iso8601ToJson(creationDate),
+      if (endpoint != null) 'endpoint': endpoint,
+      if (enhancedVpcRouting != null) 'enhancedVpcRouting': enhancedVpcRouting,
+      if (namespaceName != null) 'namespaceName': namespaceName,
+      if (publiclyAccessible != null) 'publiclyAccessible': publiclyAccessible,
+      if (securityGroupIds != null) 'securityGroupIds': securityGroupIds,
+      if (status != null) 'status': status.toValue(),
+      if (subnetIds != null) 'subnetIds': subnetIds,
+      if (workgroupArn != null) 'workgroupArn': workgroupArn,
+      if (workgroupId != null) 'workgroupId': workgroupId,
+      if (workgroupName != null) 'workgroupName': workgroupName,
+    };
   }
 }
 

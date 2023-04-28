@@ -2529,6 +2529,13 @@ class CreateExportTaskResponse {
       taskId: json['taskId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final taskId = this.taskId;
+    return {
+      if (taskId != null) 'taskId': taskId,
+    };
+  }
 }
 
 class DeleteQueryDefinitionResponse {
@@ -2543,6 +2550,13 @@ class DeleteQueryDefinitionResponse {
     return DeleteQueryDefinitionResponse(
       success: json['success'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final success = this.success;
+    return {
+      if (success != null) 'success': success,
+    };
   }
 }
 
@@ -2564,6 +2578,15 @@ class DescribeDestinationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinations = this.destinations;
+    final nextToken = this.nextToken;
+    return {
+      if (destinations != null) 'destinations': destinations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeExportTasksResponse {
@@ -2583,6 +2606,15 @@ class DescribeExportTasksResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exportTasks = this.exportTasks;
+    final nextToken = this.nextToken;
+    return {
+      if (exportTasks != null) 'exportTasks': exportTasks,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2607,6 +2639,15 @@ class DescribeLogGroupsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logGroups = this.logGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (logGroups != null) 'logGroups': logGroups,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeLogStreamsResponse {
@@ -2627,6 +2668,15 @@ class DescribeLogStreamsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logStreams = this.logStreams;
+    final nextToken = this.nextToken;
+    return {
+      if (logStreams != null) 'logStreams': logStreams,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeMetricFiltersResponse {
@@ -2646,6 +2696,15 @@ class DescribeMetricFiltersResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricFilters = this.metricFilters;
+    final nextToken = this.nextToken;
+    return {
+      if (metricFilters != null) 'metricFilters': metricFilters,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2668,6 +2727,15 @@ class DescribeQueriesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final queries = this.queries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (queries != null) 'queries': queries,
+    };
+  }
 }
 
 class DescribeQueryDefinitionsResponse {
@@ -2688,6 +2756,15 @@ class DescribeQueryDefinitionsResponse {
           .map((e) => QueryDefinition.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final queryDefinitions = this.queryDefinitions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (queryDefinitions != null) 'queryDefinitions': queryDefinitions,
+    };
   }
 }
 
@@ -2710,6 +2787,15 @@ class DescribeResourcePoliciesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourcePolicies = this.resourcePolicies;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resourcePolicies != null) 'resourcePolicies': resourcePolicies,
+    };
+  }
 }
 
 class DescribeSubscriptionFiltersResponse {
@@ -2731,6 +2817,16 @@ class DescribeSubscriptionFiltersResponse {
           .map((e) => SubscriptionFilter.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final subscriptionFilters = this.subscriptionFilters;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (subscriptionFilters != null)
+        'subscriptionFilters': subscriptionFilters,
+    };
   }
 }
 
@@ -2775,6 +2871,23 @@ class Destination {
       roleArn: json['roleArn'] as String?,
       targetArn: json['targetArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessPolicy = this.accessPolicy;
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final destinationName = this.destinationName;
+    final roleArn = this.roleArn;
+    final targetArn = this.targetArn;
+    return {
+      if (accessPolicy != null) 'accessPolicy': accessPolicy,
+      if (arn != null) 'arn': arn,
+      if (creationTime != null) 'creationTime': creationTime,
+      if (destinationName != null) 'destinationName': destinationName,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (targetArn != null) 'targetArn': targetArn,
+    };
   }
 }
 
@@ -2869,6 +2982,29 @@ class ExportTask {
       to: json['to'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destination = this.destination;
+    final destinationPrefix = this.destinationPrefix;
+    final executionInfo = this.executionInfo;
+    final from = this.from;
+    final logGroupName = this.logGroupName;
+    final status = this.status;
+    final taskId = this.taskId;
+    final taskName = this.taskName;
+    final to = this.to;
+    return {
+      if (destination != null) 'destination': destination,
+      if (destinationPrefix != null) 'destinationPrefix': destinationPrefix,
+      if (executionInfo != null) 'executionInfo': executionInfo,
+      if (from != null) 'from': from,
+      if (logGroupName != null) 'logGroupName': logGroupName,
+      if (status != null) 'status': status,
+      if (taskId != null) 'taskId': taskId,
+      if (taskName != null) 'taskName': taskName,
+      if (to != null) 'to': to,
+    };
+  }
 }
 
 /// Represents the status of an export task.
@@ -2891,6 +3027,15 @@ class ExportTaskExecutionInfo {
       creationTime: json['creationTime'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completionTime = this.completionTime;
+    final creationTime = this.creationTime;
+    return {
+      if (completionTime != null) 'completionTime': completionTime,
+      if (creationTime != null) 'creationTime': creationTime,
+    };
+  }
 }
 
 /// Represents the status of an export task.
@@ -2910,6 +3055,15 @@ class ExportTaskStatus {
       code: (json['code'] as String?)?.toExportTaskStatusCode(),
       message: json['message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -2995,6 +3149,17 @@ class FilterLogEventsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextToken = this.nextToken;
+    final searchedLogStreams = this.searchedLogStreams;
+    return {
+      if (events != null) 'events': events,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (searchedLogStreams != null) 'searchedLogStreams': searchedLogStreams,
+    };
+  }
 }
 
 /// Represents a matched event.
@@ -3032,6 +3197,21 @@ class FilteredLogEvent {
       timestamp: json['timestamp'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventId = this.eventId;
+    final ingestionTime = this.ingestionTime;
+    final logStreamName = this.logStreamName;
+    final message = this.message;
+    final timestamp = this.timestamp;
+    return {
+      if (eventId != null) 'eventId': eventId,
+      if (ingestionTime != null) 'ingestionTime': ingestionTime,
+      if (logStreamName != null) 'logStreamName': logStreamName,
+      if (message != null) 'message': message,
+      if (timestamp != null) 'timestamp': timestamp,
+    };
+  }
 }
 
 class GetLogEventsResponse {
@@ -3063,6 +3243,17 @@ class GetLogEventsResponse {
       nextForwardToken: json['nextForwardToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextBackwardToken = this.nextBackwardToken;
+    final nextForwardToken = this.nextForwardToken;
+    return {
+      if (events != null) 'events': events,
+      if (nextBackwardToken != null) 'nextBackwardToken': nextBackwardToken,
+      if (nextForwardToken != null) 'nextForwardToken': nextForwardToken,
+    };
+  }
 }
 
 class GetLogGroupFieldsResponse {
@@ -3082,6 +3273,13 @@ class GetLogGroupFieldsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logGroupFields = this.logGroupFields;
+    return {
+      if (logGroupFields != null) 'logGroupFields': logGroupFields,
+    };
+  }
 }
 
 class GetLogRecordResponse {
@@ -3096,6 +3294,13 @@ class GetLogRecordResponse {
       logRecord: (json['logRecord'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logRecord = this.logRecord;
+    return {
+      if (logRecord != null) 'logRecord': logRecord,
+    };
   }
 }
 
@@ -3144,6 +3349,17 @@ class GetQueryResultsResponse {
       status: (json['status'] as String?)?.toQueryStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final results = this.results;
+    final statistics = this.statistics;
+    final status = this.status;
+    return {
+      if (results != null) 'results': results,
+      if (statistics != null) 'statistics': statistics,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Represents a log event, which is a record of activity that was recorded by
@@ -3160,6 +3376,7 @@ class InputLogEvent {
     required this.message,
     required this.timestamp,
   });
+
   Map<String, dynamic> toJson() {
     final message = this.message;
     final timestamp = this.timestamp;
@@ -3182,6 +3399,13 @@ class ListTagsLogGroupResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3227,6 +3451,25 @@ class LogGroup {
       storedBytes: json['storedBytes'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final kmsKeyId = this.kmsKeyId;
+    final logGroupName = this.logGroupName;
+    final metricFilterCount = this.metricFilterCount;
+    final retentionInDays = this.retentionInDays;
+    final storedBytes = this.storedBytes;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationTime != null) 'creationTime': creationTime,
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (logGroupName != null) 'logGroupName': logGroupName,
+      if (metricFilterCount != null) 'metricFilterCount': metricFilterCount,
+      if (retentionInDays != null) 'retentionInDays': retentionInDays,
+      if (storedBytes != null) 'storedBytes': storedBytes,
+    };
+  }
 }
 
 /// The fields contained in log events found by a <code>GetLogGroupFields</code>
@@ -3248,6 +3491,15 @@ class LogGroupField {
       name: json['name'] as String?,
       percent: json['percent'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final percent = this.percent;
+    return {
+      if (name != null) 'name': name,
+      if (percent != null) 'percent': percent,
+    };
   }
 }
 
@@ -3312,6 +3564,29 @@ class LogStream {
       uploadSequenceToken: json['uploadSequenceToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final firstEventTimestamp = this.firstEventTimestamp;
+    final lastEventTimestamp = this.lastEventTimestamp;
+    final lastIngestionTime = this.lastIngestionTime;
+    final logStreamName = this.logStreamName;
+    final storedBytes = this.storedBytes;
+    final uploadSequenceToken = this.uploadSequenceToken;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationTime != null) 'creationTime': creationTime,
+      if (firstEventTimestamp != null)
+        'firstEventTimestamp': firstEventTimestamp,
+      if (lastEventTimestamp != null) 'lastEventTimestamp': lastEventTimestamp,
+      if (lastIngestionTime != null) 'lastIngestionTime': lastIngestionTime,
+      if (logStreamName != null) 'logStreamName': logStreamName,
+      if (storedBytes != null) 'storedBytes': storedBytes,
+      if (uploadSequenceToken != null)
+        'uploadSequenceToken': uploadSequenceToken,
+    };
+  }
 }
 
 /// Metric filters express how CloudWatch Logs would extract metric observations
@@ -3351,6 +3626,22 @@ class MetricFilter {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final filterName = this.filterName;
+    final filterPattern = this.filterPattern;
+    final logGroupName = this.logGroupName;
+    final metricTransformations = this.metricTransformations;
+    return {
+      if (creationTime != null) 'creationTime': creationTime,
+      if (filterName != null) 'filterName': filterName,
+      if (filterPattern != null) 'filterPattern': filterPattern,
+      if (logGroupName != null) 'logGroupName': logGroupName,
+      if (metricTransformations != null)
+        'metricTransformations': metricTransformations,
+    };
+  }
 }
 
 /// Represents a matched event.
@@ -3376,6 +3667,17 @@ class MetricFilterMatchRecord {
       extractedValues: (json['extractedValues'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventMessage = this.eventMessage;
+    final eventNumber = this.eventNumber;
+    final extractedValues = this.extractedValues;
+    return {
+      if (eventMessage != null) 'eventMessage': eventMessage,
+      if (eventNumber != null) 'eventNumber': eventNumber,
+      if (extractedValues != null) 'extractedValues': extractedValues,
+    };
   }
 }
 
@@ -3514,6 +3816,17 @@ class OutputLogEvent {
       timestamp: json['timestamp'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ingestionTime = this.ingestionTime;
+    final message = this.message;
+    final timestamp = this.timestamp;
+    return {
+      if (ingestionTime != null) 'ingestionTime': ingestionTime,
+      if (message != null) 'message': message,
+      if (timestamp != null) 'timestamp': timestamp,
+    };
+  }
 }
 
 class PutDestinationResponse {
@@ -3529,6 +3842,13 @@ class PutDestinationResponse {
           ? Destination.fromJson(json['destination'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destination = this.destination;
+    return {
+      if (destination != null) 'destination': destination,
+    };
   }
 }
 
@@ -3552,6 +3872,16 @@ class PutLogEventsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextSequenceToken = this.nextSequenceToken;
+    final rejectedLogEventsInfo = this.rejectedLogEventsInfo;
+    return {
+      if (nextSequenceToken != null) 'nextSequenceToken': nextSequenceToken,
+      if (rejectedLogEventsInfo != null)
+        'rejectedLogEventsInfo': rejectedLogEventsInfo,
+    };
+  }
 }
 
 class PutQueryDefinitionResponse {
@@ -3565,6 +3895,13 @@ class PutQueryDefinitionResponse {
     return PutQueryDefinitionResponse(
       queryDefinitionId: json['queryDefinitionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queryDefinitionId = this.queryDefinitionId;
+    return {
+      if (queryDefinitionId != null) 'queryDefinitionId': queryDefinitionId,
+    };
   }
 }
 
@@ -3582,6 +3919,13 @@ class PutResourcePolicyResponse {
               json['resourcePolicy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourcePolicy = this.resourcePolicy;
+    return {
+      if (resourcePolicy != null) 'resourcePolicy': resourcePolicy,
+    };
   }
 }
 
@@ -3625,6 +3969,21 @@ class QueryDefinition {
       queryString: json['queryString'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastModified = this.lastModified;
+    final logGroupNames = this.logGroupNames;
+    final name = this.name;
+    final queryDefinitionId = this.queryDefinitionId;
+    final queryString = this.queryString;
+    return {
+      if (lastModified != null) 'lastModified': lastModified,
+      if (logGroupNames != null) 'logGroupNames': logGroupNames,
+      if (name != null) 'name': name,
+      if (queryDefinitionId != null) 'queryDefinitionId': queryDefinitionId,
+      if (queryString != null) 'queryString': queryString,
+    };
+  }
 }
 
 /// Information about one CloudWatch Logs Insights query that matches the
@@ -3663,6 +4022,21 @@ class QueryInfo {
       status: (json['status'] as String?)?.toQueryStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final logGroupName = this.logGroupName;
+    final queryId = this.queryId;
+    final queryString = this.queryString;
+    final status = this.status;
+    return {
+      if (createTime != null) 'createTime': createTime,
+      if (logGroupName != null) 'logGroupName': logGroupName,
+      if (queryId != null) 'queryId': queryId,
+      if (queryString != null) 'queryString': queryString,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Contains the number of log events scanned by the query, the number of log
@@ -3689,6 +4063,17 @@ class QueryStatistics {
       recordsMatched: json['recordsMatched'] as double?,
       recordsScanned: json['recordsScanned'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bytesScanned = this.bytesScanned;
+    final recordsMatched = this.recordsMatched;
+    final recordsScanned = this.recordsScanned;
+    return {
+      if (bytesScanned != null) 'bytesScanned': bytesScanned,
+      if (recordsMatched != null) 'recordsMatched': recordsMatched,
+      if (recordsScanned != null) 'recordsScanned': recordsScanned,
+    };
   }
 }
 
@@ -3768,6 +4153,20 @@ class RejectedLogEventsInfo {
       tooOldLogEventEndIndex: json['tooOldLogEventEndIndex'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final expiredLogEventEndIndex = this.expiredLogEventEndIndex;
+    final tooNewLogEventStartIndex = this.tooNewLogEventStartIndex;
+    final tooOldLogEventEndIndex = this.tooOldLogEventEndIndex;
+    return {
+      if (expiredLogEventEndIndex != null)
+        'expiredLogEventEndIndex': expiredLogEventEndIndex,
+      if (tooNewLogEventStartIndex != null)
+        'tooNewLogEventStartIndex': tooNewLogEventStartIndex,
+      if (tooOldLogEventEndIndex != null)
+        'tooOldLogEventEndIndex': tooOldLogEventEndIndex,
+    };
+  }
 }
 
 /// A policy enabling one or more entities to put logs to a log group in this
@@ -3795,6 +4194,17 @@ class ResourcePolicy {
       policyName: json['policyName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final policyDocument = this.policyDocument;
+    final policyName = this.policyName;
+    return {
+      if (lastUpdatedTime != null) 'lastUpdatedTime': lastUpdatedTime,
+      if (policyDocument != null) 'policyDocument': policyDocument,
+      if (policyName != null) 'policyName': policyName,
+    };
+  }
 }
 
 /// Contains one field from one log event returned by a CloudWatch Logs Insights
@@ -3821,6 +4231,15 @@ class ResultField {
       value: json['value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final field = this.field;
+    final value = this.value;
+    return {
+      if (field != null) 'field': field,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Represents the search status of a log stream.
@@ -3840,6 +4259,15 @@ class SearchedLogStream {
       logStreamName: json['logStreamName'] as String?,
       searchedCompletely: json['searchedCompletely'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logStreamName = this.logStreamName;
+    final searchedCompletely = this.searchedCompletely;
+    return {
+      if (logStreamName != null) 'logStreamName': logStreamName,
+      if (searchedCompletely != null) 'searchedCompletely': searchedCompletely,
+    };
   }
 }
 
@@ -4008,6 +4436,13 @@ class StartQueryResponse {
       queryId: json['queryId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final queryId = this.queryId;
+    return {
+      if (queryId != null) 'queryId': queryId,
+    };
+  }
 }
 
 class StopQueryResponse {
@@ -4022,6 +4457,13 @@ class StopQueryResponse {
     return StopQueryResponse(
       success: json['success'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final success = this.success;
+    return {
+      if (success != null) 'success': success,
+    };
   }
 }
 
@@ -4065,6 +4507,25 @@ class SubscriptionFilter {
       roleArn: json['roleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final destinationArn = this.destinationArn;
+    final distribution = this.distribution;
+    final filterName = this.filterName;
+    final filterPattern = this.filterPattern;
+    final logGroupName = this.logGroupName;
+    final roleArn = this.roleArn;
+    return {
+      if (creationTime != null) 'creationTime': creationTime,
+      if (destinationArn != null) 'destinationArn': destinationArn,
+      if (distribution != null) 'distribution': distribution.toValue(),
+      if (filterName != null) 'filterName': filterName,
+      if (filterPattern != null) 'filterPattern': filterPattern,
+      if (logGroupName != null) 'logGroupName': logGroupName,
+      if (roleArn != null) 'roleArn': roleArn,
+    };
+  }
 }
 
 class TestMetricFilterResponse {
@@ -4082,6 +4543,13 @@ class TestMetricFilterResponse {
               MetricFilterMatchRecord.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final matches = this.matches;
+    return {
+      if (matches != null) 'matches': matches,
+    };
   }
 }
 

@@ -800,6 +800,13 @@ class CancelResourceRequestOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final progressEvent = this.progressEvent;
+    return {
+      if (progressEvent != null) 'ProgressEvent': progressEvent,
+    };
+  }
 }
 
 class CreateResourceOutput {
@@ -822,6 +829,13 @@ class CreateResourceOutput {
               json['ProgressEvent'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final progressEvent = this.progressEvent;
+    return {
+      if (progressEvent != null) 'ProgressEvent': progressEvent,
+    };
   }
 }
 
@@ -846,6 +860,13 @@ class DeleteResourceOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final progressEvent = this.progressEvent;
+    return {
+      if (progressEvent != null) 'ProgressEvent': progressEvent,
+    };
+  }
 }
 
 class GetResourceOutput {
@@ -867,6 +888,16 @@ class GetResourceOutput {
       typeName: json['TypeName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceDescription = this.resourceDescription;
+    final typeName = this.typeName;
+    return {
+      if (resourceDescription != null)
+        'ResourceDescription': resourceDescription,
+      if (typeName != null) 'TypeName': typeName,
+    };
+  }
 }
 
 class GetResourceRequestStatusOutput {
@@ -883,6 +914,13 @@ class GetResourceRequestStatusOutput {
               json['ProgressEvent'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final progressEvent = this.progressEvent;
+    return {
+      if (progressEvent != null) 'ProgressEvent': progressEvent,
+    };
   }
 }
 
@@ -1004,6 +1042,16 @@ class ListResourceRequestsOutput {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceRequestStatusSummaries = this.resourceRequestStatusSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resourceRequestStatusSummaries != null)
+        'ResourceRequestStatusSummaries': resourceRequestStatusSummaries,
+    };
+  }
 }
 
 class ListResourcesOutput {
@@ -1035,6 +1083,18 @@ class ListResourcesOutput {
           .toList(),
       typeName: json['TypeName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceDescriptions = this.resourceDescriptions;
+    final typeName = this.typeName;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resourceDescriptions != null)
+        'ResourceDescriptions': resourceDescriptions,
+      if (typeName != null) 'TypeName': typeName,
+    };
   }
 }
 
@@ -1220,6 +1280,31 @@ class ProgressEvent {
       typeName: json['TypeName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final eventTime = this.eventTime;
+    final identifier = this.identifier;
+    final operation = this.operation;
+    final operationStatus = this.operationStatus;
+    final requestToken = this.requestToken;
+    final resourceModel = this.resourceModel;
+    final retryAfter = this.retryAfter;
+    final statusMessage = this.statusMessage;
+    final typeName = this.typeName;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (eventTime != null) 'EventTime': unixTimestampToJson(eventTime),
+      if (identifier != null) 'Identifier': identifier,
+      if (operation != null) 'Operation': operation.toValue(),
+      if (operationStatus != null) 'OperationStatus': operationStatus.toValue(),
+      if (requestToken != null) 'RequestToken': requestToken,
+      if (resourceModel != null) 'ResourceModel': resourceModel,
+      if (retryAfter != null) 'RetryAfter': unixTimestampToJson(retryAfter),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (typeName != null) 'TypeName': typeName,
+    };
+  }
 }
 
 /// Represents information about a provisioned resource.
@@ -1244,6 +1329,15 @@ class ResourceDescription {
       identifier: json['Identifier'] as String?,
       properties: json['Properties'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identifier = this.identifier;
+    final properties = this.properties;
+    return {
+      if (identifier != null) 'Identifier': identifier,
+      if (properties != null) 'Properties': properties,
+    };
   }
 }
 
@@ -1282,6 +1376,7 @@ class ResourceRequestStatusFilter {
     this.operationStatuses,
     this.operations,
   });
+
   Map<String, dynamic> toJson() {
     final operationStatuses = this.operationStatuses;
     final operations = this.operations;
@@ -1312,6 +1407,13 @@ class UpdateResourceOutput {
               json['ProgressEvent'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final progressEvent = this.progressEvent;
+    return {
+      if (progressEvent != null) 'ProgressEvent': progressEvent,
+    };
   }
 }
 

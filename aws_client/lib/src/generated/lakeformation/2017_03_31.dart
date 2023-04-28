@@ -2028,6 +2028,13 @@ class AddLFTagsToResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    return {
+      if (failures != null) 'Failures': failures,
+    };
+  }
 }
 
 /// A new object to add to the governed table.
@@ -2056,6 +2063,7 @@ class AddObjectInput {
     required this.uri,
     this.partitionValues,
   });
+
   Map<String, dynamic> toJson() {
     final eTag = this.eTag;
     final size = this.size;
@@ -2092,6 +2100,7 @@ class AuditContext {
   AuditContext({
     this.additionalAuditContext,
   });
+
   Map<String, dynamic> toJson() {
     final additionalAuditContext = this.additionalAuditContext;
     return {
@@ -2117,6 +2126,13 @@ class BatchGrantPermissionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    return {
+      if (failures != null) 'Failures': failures,
+    };
+  }
 }
 
 /// A list of failures when performing a batch grant or batch revoke operation.
@@ -2141,6 +2157,15 @@ class BatchPermissionsFailureEntry {
               json['RequestEntry'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final requestEntry = this.requestEntry;
+    return {
+      if (error != null) 'Error': error,
+      if (requestEntry != null) 'RequestEntry': requestEntry,
+    };
   }
 }
 
@@ -2224,12 +2249,23 @@ class BatchRevokePermissionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    return {
+      if (failures != null) 'Failures': failures,
+    };
+  }
 }
 
 class CancelTransactionResponse {
   CancelTransactionResponse();
   factory CancelTransactionResponse.fromJson(Map<String, dynamic> _) {
     return CancelTransactionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2266,6 +2302,15 @@ class ColumnLFTag {
           .toList(),
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lFTags = this.lFTags;
+    final name = this.name;
+    return {
+      if (lFTags != null) 'LFTags': lFTags,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -2308,6 +2353,14 @@ class CommitTransactionResponse {
       transactionStatus:
           (json['TransactionStatus'] as String?)?.toTransactionStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transactionStatus = this.transactionStatus;
+    return {
+      if (transactionStatus != null)
+        'TransactionStatus': transactionStatus.toValue(),
+    };
   }
 }
 
@@ -2389,12 +2442,20 @@ class CreateDataCellsFilterResponse {
   factory CreateDataCellsFilterResponse.fromJson(Map<String, dynamic> _) {
     return CreateDataCellsFilterResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateLFTagResponse {
   CreateLFTagResponse();
   factory CreateLFTagResponse.fromJson(Map<String, dynamic> _) {
     return CreateLFTagResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2813,12 +2874,20 @@ class DeleteDataCellsFilterResponse {
   factory DeleteDataCellsFilterResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDataCellsFilterResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteLFTagResponse {
   DeleteLFTagResponse();
   factory DeleteLFTagResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLFTagResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2840,6 +2909,7 @@ class DeleteObjectInput {
     this.eTag,
     this.partitionValues,
   });
+
   Map<String, dynamic> toJson() {
     final uri = this.uri;
     final eTag = this.eTag;
@@ -2857,12 +2927,20 @@ class DeleteObjectsOnCancelResponse {
   factory DeleteObjectsOnCancelResponse.fromJson(Map<String, dynamic> _) {
     return DeleteObjectsOnCancelResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeregisterResourceResponse {
   DeregisterResourceResponse();
   factory DeregisterResourceResponse.fromJson(Map<String, dynamic> _) {
     return DeregisterResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2879,6 +2957,13 @@ class DescribeResourceResponse {
           ? ResourceInfo.fromJson(json['ResourceInfo'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceInfo = this.resourceInfo;
+    return {
+      if (resourceInfo != null) 'ResourceInfo': resourceInfo,
+    };
   }
 }
 
@@ -2897,6 +2982,14 @@ class DescribeTransactionResponse {
               json['TransactionDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transactionDescription = this.transactionDescription;
+    return {
+      if (transactionDescription != null)
+        'TransactionDescription': transactionDescription,
+    };
   }
 }
 
@@ -2921,6 +3014,13 @@ class DetailsMap {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceShare = this.resourceShare;
+    return {
+      if (resourceShare != null) 'ResourceShare': resourceShare,
+    };
+  }
 }
 
 /// Contains details about an error.
@@ -2940,6 +3040,15 @@ class ErrorDetail {
       errorCode: json['ErrorCode'] as String?,
       errorMessage: json['ErrorMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+    };
   }
 }
 
@@ -2966,12 +3075,29 @@ class ExecutionStatistics {
       workUnitsExecutedCount: json['WorkUnitsExecutedCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final averageExecutionTimeMillis = this.averageExecutionTimeMillis;
+    final dataScannedBytes = this.dataScannedBytes;
+    final workUnitsExecutedCount = this.workUnitsExecutedCount;
+    return {
+      if (averageExecutionTimeMillis != null)
+        'AverageExecutionTimeMillis': averageExecutionTimeMillis,
+      if (dataScannedBytes != null) 'DataScannedBytes': dataScannedBytes,
+      if (workUnitsExecutedCount != null)
+        'WorkUnitsExecutedCount': workUnitsExecutedCount,
+    };
+  }
 }
 
 class ExtendTransactionResponse {
   ExtendTransactionResponse();
   factory ExtendTransactionResponse.fromJson(Map<String, dynamic> _) {
     return ExtendTransactionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3025,6 +3151,7 @@ class FilterCondition {
     this.field,
     this.stringValueList,
   });
+
   Map<String, dynamic> toJson() {
     final comparisonOperator = this.comparisonOperator;
     final field = this.field;
@@ -3054,6 +3181,13 @@ class GetDataLakeSettingsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataLakeSettings = this.dataLakeSettings;
+    return {
+      if (dataLakeSettings != null) 'DataLakeSettings': dataLakeSettings,
+    };
+  }
 }
 
 class GetEffectivePermissionsForPathResponse {
@@ -3078,6 +3212,15 @@ class GetEffectivePermissionsForPathResponse {
               PrincipalResourcePermissions.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final permissions = this.permissions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (permissions != null) 'Permissions': permissions,
+    };
   }
 }
 
@@ -3108,6 +3251,17 @@ class GetLFTagResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final catalogId = this.catalogId;
+    final tagKey = this.tagKey;
+    final tagValues = this.tagValues;
+    return {
+      if (catalogId != null) 'CatalogId': catalogId,
+      if (tagKey != null) 'TagKey': tagKey,
+      if (tagValues != null) 'TagValues': tagValues,
+    };
   }
 }
 
@@ -3146,6 +3300,15 @@ class GetQueryStateResponse {
       error: json['Error'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final error = this.error;
+    return {
+      'State': state.toValue(),
+      if (error != null) 'Error': error,
+    };
+  }
 }
 
 class GetQueryStatisticsResponse {
@@ -3177,6 +3340,19 @@ class GetQueryStatisticsResponse {
           : null,
       querySubmissionTime: timeStampFromJson(json['QuerySubmissionTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final executionStatistics = this.executionStatistics;
+    final planningStatistics = this.planningStatistics;
+    final querySubmissionTime = this.querySubmissionTime;
+    return {
+      if (executionStatistics != null)
+        'ExecutionStatistics': executionStatistics,
+      if (planningStatistics != null) 'PlanningStatistics': planningStatistics,
+      if (querySubmissionTime != null)
+        'QuerySubmissionTime': iso8601ToJson(querySubmissionTime),
+    };
   }
 }
 
@@ -3211,6 +3387,17 @@ class GetResourceLFTagsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lFTagOnDatabase = this.lFTagOnDatabase;
+    final lFTagsOnColumns = this.lFTagsOnColumns;
+    final lFTagsOnTable = this.lFTagsOnTable;
+    return {
+      if (lFTagOnDatabase != null) 'LFTagOnDatabase': lFTagOnDatabase,
+      if (lFTagsOnColumns != null) 'LFTagsOnColumns': lFTagsOnColumns,
+      if (lFTagsOnTable != null) 'LFTagsOnTable': lFTagsOnTable,
+    };
+  }
 }
 
 class GetTableObjectsResponse {
@@ -3232,6 +3419,15 @@ class GetTableObjectsResponse {
           .map((e) => PartitionObjects.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final objects = this.objects;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (objects != null) 'Objects': objects,
+    };
   }
 }
 
@@ -3263,6 +3459,19 @@ class GetTemporaryGluePartitionCredentialsResponse {
       sessionToken: json['SessionToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final expiration = this.expiration;
+    final secretAccessKey = this.secretAccessKey;
+    final sessionToken = this.sessionToken;
+    return {
+      if (accessKeyId != null) 'AccessKeyId': accessKeyId,
+      if (expiration != null) 'Expiration': unixTimestampToJson(expiration),
+      if (secretAccessKey != null) 'SecretAccessKey': secretAccessKey,
+      if (sessionToken != null) 'SessionToken': sessionToken,
+    };
+  }
 }
 
 class GetTemporaryGlueTableCredentialsResponse {
@@ -3293,6 +3502,19 @@ class GetTemporaryGlueTableCredentialsResponse {
       sessionToken: json['SessionToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final expiration = this.expiration;
+    final secretAccessKey = this.secretAccessKey;
+    final sessionToken = this.sessionToken;
+    return {
+      if (accessKeyId != null) 'AccessKeyId': accessKeyId,
+      if (expiration != null) 'Expiration': unixTimestampToJson(expiration),
+      if (secretAccessKey != null) 'SecretAccessKey': secretAccessKey,
+      if (sessionToken != null) 'SessionToken': sessionToken,
+    };
+  }
 }
 
 /// A structure for the output.
@@ -3304,6 +3526,13 @@ class GetWorkUnitResultsResponse {
   GetWorkUnitResultsResponse({
     this.resultStream,
   });
+
+  Map<String, dynamic> toJson() {
+    final resultStream = this.resultStream;
+    return {
+      if (resultStream != null) 'ResultStream': base64Encode(resultStream),
+    };
+  }
 }
 
 /// A structure for the output.
@@ -3334,12 +3563,27 @@ class GetWorkUnitsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final queryId = this.queryId;
+    final workUnitRanges = this.workUnitRanges;
+    final nextToken = this.nextToken;
+    return {
+      'QueryId': queryId,
+      'WorkUnitRanges': workUnitRanges,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GrantPermissionsResponse {
   GrantPermissionsResponse();
   factory GrantPermissionsResponse.fromJson(Map<String, dynamic> _) {
     return GrantPermissionsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3399,6 +3643,15 @@ class LFTagError {
           ? LFTagPair.fromJson(json['LFTag'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final lFTag = this.lFTag;
+    return {
+      if (error != null) 'Error': error,
+      if (lFTag != null) 'LFTag': lFTag,
+    };
   }
 }
 
@@ -3550,6 +3803,15 @@ class ListDataCellsFilterResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataCellsFilters = this.dataCellsFilters;
+    final nextToken = this.nextToken;
+    return {
+      if (dataCellsFilters != null) 'DataCellsFilters': dataCellsFilters,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListLFTagsResponse {
@@ -3571,6 +3833,15 @@ class ListLFTagsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lFTags = this.lFTags;
+    final nextToken = this.nextToken;
+    return {
+      if (lFTags != null) 'LFTags': lFTags,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3597,6 +3868,16 @@ class ListPermissionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final principalResourcePermissions = this.principalResourcePermissions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (principalResourcePermissions != null)
+        'PrincipalResourcePermissions': principalResourcePermissions,
+    };
+  }
 }
 
 class ListResourcesResponse {
@@ -3619,6 +3900,15 @@ class ListResourcesResponse {
           .map((e) => ResourceInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceInfoList = this.resourceInfoList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resourceInfoList != null) 'ResourceInfoList': resourceInfoList,
+    };
   }
 }
 
@@ -3644,6 +3934,16 @@ class ListTableStorageOptimizersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final storageOptimizerList = this.storageOptimizerList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (storageOptimizerList != null)
+        'StorageOptimizerList': storageOptimizerList,
+    };
+  }
 }
 
 class ListTransactionsResponse {
@@ -3667,6 +3967,15 @@ class ListTransactionsResponse {
               (e) => TransactionDescription.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transactions = this.transactions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (transactions != null) 'Transactions': transactions,
+    };
   }
 }
 
@@ -3727,6 +4036,15 @@ class PartitionObjects {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final objects = this.objects;
+    final partitionValues = this.partitionValues;
+    return {
+      if (objects != null) 'Objects': objects,
+      if (partitionValues != null) 'PartitionValues': partitionValues,
+    };
+  }
 }
 
 /// Contains a list of values defining partitions.
@@ -3737,6 +4055,7 @@ class PartitionValueList {
   PartitionValueList({
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final values = this.values;
     return {
@@ -3879,6 +4198,21 @@ class PlanningStatistics {
       workUnitsGeneratedCount: json['WorkUnitsGeneratedCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final estimatedDataToScanBytes = this.estimatedDataToScanBytes;
+    final planningTimeMillis = this.planningTimeMillis;
+    final queueTimeMillis = this.queueTimeMillis;
+    final workUnitsGeneratedCount = this.workUnitsGeneratedCount;
+    return {
+      if (estimatedDataToScanBytes != null)
+        'EstimatedDataToScanBytes': estimatedDataToScanBytes,
+      if (planningTimeMillis != null) 'PlanningTimeMillis': planningTimeMillis,
+      if (queueTimeMillis != null) 'QueueTimeMillis': queueTimeMillis,
+      if (workUnitsGeneratedCount != null)
+        'WorkUnitsGeneratedCount': workUnitsGeneratedCount,
+    };
+  }
 }
 
 /// Permissions granted to a principal.
@@ -3967,12 +4301,34 @@ class PrincipalResourcePermissions {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalDetails = this.additionalDetails;
+    final permissions = this.permissions;
+    final permissionsWithGrantOption = this.permissionsWithGrantOption;
+    final principal = this.principal;
+    final resource = this.resource;
+    return {
+      if (additionalDetails != null) 'AdditionalDetails': additionalDetails,
+      if (permissions != null)
+        'Permissions': permissions.map((e) => e.toValue()).toList(),
+      if (permissionsWithGrantOption != null)
+        'PermissionsWithGrantOption':
+            permissionsWithGrantOption.map((e) => e.toValue()).toList(),
+      if (principal != null) 'Principal': principal,
+      if (resource != null) 'Resource': resource,
+    };
+  }
 }
 
 class PutDataLakeSettingsResponse {
   PutDataLakeSettingsResponse();
   factory PutDataLakeSettingsResponse.fromJson(Map<String, dynamic> _) {
     return PutDataLakeSettingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4007,6 +4363,7 @@ class QueryPlanningContext {
     this.queryParameters,
     this.transactionId,
   });
+
   Map<String, dynamic> toJson() {
     final databaseName = this.databaseName;
     final catalogId = this.catalogId;
@@ -4072,6 +4429,10 @@ class RegisterResourceResponse {
   factory RegisterResourceResponse.fromJson(Map<String, dynamic> _) {
     return RegisterResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class RemoveLFTagsFromResourceResponse {
@@ -4088,6 +4449,13 @@ class RemoveLFTagsFromResourceResponse {
           .map((e) => LFTagError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    return {
+      if (failures != null) 'Failures': failures,
+    };
   }
 }
 
@@ -4213,6 +4581,18 @@ class ResourceInfo {
       roleArn: json['RoleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastModified = this.lastModified;
+    final resourceArn = this.resourceArn;
+    final roleArn = this.roleArn;
+    return {
+      if (lastModified != null)
+        'LastModified': unixTimestampToJson(lastModified),
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (roleArn != null) 'RoleArn': roleArn,
+    };
+  }
 }
 
 enum ResourceShareType {
@@ -4276,6 +4656,10 @@ class RevokePermissionsResponse {
   factory RevokePermissionsResponse.fromJson(Map<String, dynamic> _) {
     return RevokePermissionsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A PartiQL predicate.
@@ -4330,6 +4714,15 @@ class SearchDatabasesByLFTagsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final databaseList = this.databaseList;
+    final nextToken = this.nextToken;
+    return {
+      if (databaseList != null) 'DatabaseList': databaseList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class SearchTablesByLFTagsResponse {
@@ -4352,6 +4745,15 @@ class SearchTablesByLFTagsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tableList = this.tableList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tableList != null) 'TableList': tableList,
+    };
+  }
 }
 
 /// A structure for the output.
@@ -4370,6 +4772,13 @@ class StartQueryPlanningResponse {
       queryId: json['QueryId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final queryId = this.queryId;
+    return {
+      'QueryId': queryId,
+    };
+  }
 }
 
 class StartTransactionResponse {
@@ -4383,6 +4792,13 @@ class StartTransactionResponse {
     return StartTransactionResponse(
       transactionId: json['TransactionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transactionId = this.transactionId;
+    return {
+      if (transactionId != null) 'TransactionId': transactionId,
+    };
   }
 }
 
@@ -4431,6 +4847,22 @@ class StorageOptimizer {
       warnings: json['Warnings'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final config = this.config;
+    final errorMessage = this.errorMessage;
+    final lastRunDetails = this.lastRunDetails;
+    final storageOptimizerType = this.storageOptimizerType;
+    final warnings = this.warnings;
+    return {
+      if (config != null) 'Config': config,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (lastRunDetails != null) 'LastRunDetails': lastRunDetails,
+      if (storageOptimizerType != null)
+        'StorageOptimizerType': storageOptimizerType.toValue(),
+      if (warnings != null) 'Warnings': warnings,
+    };
+  }
 }
 
 /// Specifies the details of a governed table.
@@ -4456,6 +4888,17 @@ class TableObject {
       size: json['Size'] as int?,
       uri: json['Uri'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
+    final size = this.size;
+    final uri = this.uri;
+    return {
+      if (eTag != null) 'ETag': eTag,
+      if (size != null) 'Size': size,
+      if (uri != null) 'Uri': uri,
+    };
   }
 }
 
@@ -4616,6 +5059,15 @@ class TaggedDatabase {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final database = this.database;
+    final lFTags = this.lFTags;
+    return {
+      if (database != null) 'Database': database,
+      if (lFTags != null) 'LFTags': lFTags,
+    };
+  }
 }
 
 /// A structure describing a table resource with LF-tags.
@@ -4657,6 +5109,19 @@ class TaggedTable {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lFTagOnDatabase = this.lFTagOnDatabase;
+    final lFTagsOnColumns = this.lFTagsOnColumns;
+    final lFTagsOnTable = this.lFTagsOnTable;
+    final table = this.table;
+    return {
+      if (lFTagOnDatabase != null) 'LFTagOnDatabase': lFTagOnDatabase,
+      if (lFTagsOnColumns != null) 'LFTagsOnColumns': lFTagsOnColumns,
+      if (lFTagsOnTable != null) 'LFTagsOnTable': lFTagsOnTable,
+      if (table != null) 'Table': table,
+    };
+  }
 }
 
 /// A structure that contains information about a transaction.
@@ -4688,6 +5153,22 @@ class TransactionDescription {
       transactionStatus:
           (json['TransactionStatus'] as String?)?.toTransactionStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transactionEndTime = this.transactionEndTime;
+    final transactionId = this.transactionId;
+    final transactionStartTime = this.transactionStartTime;
+    final transactionStatus = this.transactionStatus;
+    return {
+      if (transactionEndTime != null)
+        'TransactionEndTime': unixTimestampToJson(transactionEndTime),
+      if (transactionId != null) 'TransactionId': transactionId,
+      if (transactionStartTime != null)
+        'TransactionStartTime': unixTimestampToJson(transactionStartTime),
+      if (transactionStatus != null)
+        'TransactionStatus': transactionStatus.toValue(),
+    };
   }
 }
 
@@ -4805,6 +5286,10 @@ class UpdateLFTagResponse {
   factory UpdateLFTagResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLFTagResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateResourceResponse {
@@ -4812,12 +5297,20 @@ class UpdateResourceResponse {
   factory UpdateResourceResponse.fromJson(Map<String, dynamic> _) {
     return UpdateResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateTableObjectsResponse {
   UpdateTableObjectsResponse();
   factory UpdateTableObjectsResponse.fromJson(Map<String, dynamic> _) {
     return UpdateTableObjectsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4833,6 +5326,13 @@ class UpdateTableStorageOptimizerResponse {
     return UpdateTableStorageOptimizerResponse(
       result: json['Result'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final result = this.result;
+    return {
+      if (result != null) 'Result': result,
+    };
   }
 }
 
@@ -4850,6 +5350,7 @@ class VirtualObject {
     required this.uri,
     this.eTag,
   });
+
   Map<String, dynamic> toJson() {
     final uri = this.uri;
     final eTag = this.eTag;
@@ -4884,6 +5385,17 @@ class WorkUnitRange {
       workUnitToken: json['WorkUnitToken'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final workUnitIdMax = this.workUnitIdMax;
+    final workUnitIdMin = this.workUnitIdMin;
+    final workUnitToken = this.workUnitToken;
+    return {
+      'WorkUnitIdMax': workUnitIdMax,
+      'WorkUnitIdMin': workUnitIdMin,
+      'WorkUnitToken': workUnitToken,
+    };
+  }
 }
 
 /// Defines an object to add to or delete from a governed table.
@@ -4898,6 +5410,7 @@ class WriteOperation {
     this.addObject,
     this.deleteObject,
   });
+
   Map<String, dynamic> toJson() {
     final addObject = this.addObject;
     final deleteObject = this.deleteObject;

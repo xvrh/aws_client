@@ -329,6 +329,15 @@ class Artifact {
       url: _s.extractXmlStringValue(elem, 'URL'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final url = this.url;
+    return {
+      if (description != null) 'Description': description,
+      if (url != null) 'URL': url,
+    };
+  }
 }
 
 /// The account specified does not have the appropriate bucket permissions.
@@ -342,6 +351,13 @@ class BucketPermissionException implements _s.AwsException {
     return BucketPermissionException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -357,6 +373,13 @@ class CancelJobOutput {
       success: _s.extractXmlBoolValue(elem, 'Success'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final success = this.success;
+    return {
+      if (success != null) 'Success': success,
+    };
+  }
 }
 
 /// The specified job ID has been canceled and is no longer valid.
@@ -370,6 +393,13 @@ class CanceledJobIdException implements _s.AwsException {
     return CanceledJobIdException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -402,6 +432,24 @@ class CreateJobOutput {
       warningMessage: _s.extractXmlStringValue(elem, 'WarningMessage'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final artifactList = this.artifactList;
+    final jobId = this.jobId;
+    final jobType = this.jobType;
+    final signature = this.signature;
+    final signatureFileContents = this.signatureFileContents;
+    final warningMessage = this.warningMessage;
+    return {
+      if (artifactList != null) 'ArtifactList': artifactList,
+      if (jobId != null) 'JobId': jobId,
+      if (jobType != null) 'JobType': jobType.toValue(),
+      if (signature != null) 'Signature': signature,
+      if (signatureFileContents != null)
+        'SignatureFileContents': signatureFileContents,
+      if (warningMessage != null) 'WarningMessage': warningMessage,
+    };
+  }
 }
 
 /// Each account can create only a certain number of jobs per day. If you need
@@ -418,6 +466,13 @@ class CreateJobQuotaExceededException implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// Indicates that the specified job has expired out of the system.
@@ -431,6 +486,13 @@ class ExpiredJobIdException implements _s.AwsException {
     return ExpiredJobIdException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -447,6 +509,15 @@ class GetShippingLabelOutput {
       shippingLabelURL: _s.extractXmlStringValue(elem, 'ShippingLabelURL'),
       warning: _s.extractXmlStringValue(elem, 'Warning'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final shippingLabelURL = this.shippingLabelURL;
+    final warning = this.warning;
+    return {
+      if (shippingLabelURL != null) 'ShippingLabelURL': shippingLabelURL,
+      if (warning != null) 'Warning': warning,
+    };
   }
 }
 
@@ -509,6 +580,44 @@ class GetStatusOutput {
       trackingNumber: _s.extractXmlStringValue(elem, 'TrackingNumber'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final artifactList = this.artifactList;
+    final carrier = this.carrier;
+    final creationDate = this.creationDate;
+    final currentManifest = this.currentManifest;
+    final errorCount = this.errorCount;
+    final jobId = this.jobId;
+    final jobType = this.jobType;
+    final locationCode = this.locationCode;
+    final locationMessage = this.locationMessage;
+    final logBucket = this.logBucket;
+    final logKey = this.logKey;
+    final progressCode = this.progressCode;
+    final progressMessage = this.progressMessage;
+    final signature = this.signature;
+    final signatureFileContents = this.signatureFileContents;
+    final trackingNumber = this.trackingNumber;
+    return {
+      if (artifactList != null) 'ArtifactList': artifactList,
+      if (carrier != null) 'Carrier': carrier,
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (currentManifest != null) 'CurrentManifest': currentManifest,
+      if (errorCount != null) 'ErrorCount': errorCount,
+      if (jobId != null) 'JobId': jobId,
+      if (jobType != null) 'JobType': jobType.toValue(),
+      if (locationCode != null) 'LocationCode': locationCode,
+      if (locationMessage != null) 'LocationMessage': locationMessage,
+      if (logBucket != null) 'LogBucket': logBucket,
+      if (logKey != null) 'LogKey': logKey,
+      if (progressCode != null) 'ProgressCode': progressCode,
+      if (progressMessage != null) 'ProgressMessage': progressMessage,
+      if (signature != null) 'Signature': signature,
+      if (signatureFileContents != null)
+        'SignatureFileContents': signatureFileContents,
+      if (trackingNumber != null) 'TrackingNumber': trackingNumber,
+    };
+  }
 }
 
 /// The AWS Access Key ID specified in the request did not match the manifest's
@@ -525,6 +634,13 @@ class InvalidAccessKeyIdException implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// The address specified in the manifest is invalid.
@@ -538,6 +654,13 @@ class InvalidAddressException implements _s.AwsException {
     return InvalidAddressException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -553,6 +676,13 @@ class InvalidCustomsException implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// File system specified in export manifest is invalid.
@@ -566,6 +696,13 @@ class InvalidFileSystemException implements _s.AwsException {
     return InvalidFileSystemException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -581,6 +718,13 @@ class InvalidJobIdException implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// One or more manifest fields was invalid. Please correct and resubmit.
@@ -594,6 +738,13 @@ class InvalidManifestFieldException implements _s.AwsException {
     return InvalidManifestFieldException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -609,6 +760,13 @@ class InvalidParameterException implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// The client tool version is invalid.
@@ -622,6 +780,13 @@ class InvalidVersionException implements _s.AwsException {
     return InvalidVersionException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -645,6 +810,19 @@ class Job {
       jobId: _s.extractXmlStringValue(elem, 'JobId'),
       jobType: _s.extractXmlStringValue(elem, 'JobType')?.toJobType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final isCanceled = this.isCanceled;
+    final jobId = this.jobId;
+    final jobType = this.jobType;
+    return {
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (isCanceled != null) 'IsCanceled': isCanceled,
+      if (jobId != null) 'JobId': jobId,
+      if (jobType != null) 'JobType': jobType.toValue(),
+    };
   }
 }
 
@@ -693,6 +871,15 @@ class ListJobsOutput {
           (elem) => elem.findElements('member').map(Job.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final jobs = this.jobs;
+    return {
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (jobs != null) 'Jobs': jobs,
+    };
+  }
 }
 
 /// Your manifest is not well-formed.
@@ -707,6 +894,13 @@ class MalformedManifestException implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// One or more required customs parameters was missing from the manifest.
@@ -720,6 +914,13 @@ class MissingCustomsException implements _s.AwsException {
     return MissingCustomsException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -736,6 +937,13 @@ class MissingManifestFieldException implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// One or more required parameters was missing from the request.
@@ -749,6 +957,13 @@ class MissingParameterException implements _s.AwsException {
     return MissingParameterException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -764,6 +979,13 @@ class MultipleRegionsException implements _s.AwsException {
     return MultipleRegionsException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -782,6 +1004,13 @@ class NoSuchBucketException implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// AWS Import/Export cannot cancel the job
@@ -796,6 +1025,13 @@ class UnableToCancelJobIdException implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// AWS Import/Export cannot update the job
@@ -809,6 +1045,13 @@ class UnableToUpdateJobIdException implements _s.AwsException {
     return UnableToUpdateJobIdException(
       message: _s.extractXmlStringValue(elem, 'message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -830,6 +1073,17 @@ class UpdateJobOutput {
       success: _s.extractXmlBoolValue(elem, 'Success'),
       warningMessage: _s.extractXmlStringValue(elem, 'WarningMessage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final artifactList = this.artifactList;
+    final success = this.success;
+    final warningMessage = this.warningMessage;
+    return {
+      if (artifactList != null) 'ArtifactList': artifactList,
+      if (success != null) 'Success': success,
+      if (warningMessage != null) 'WarningMessage': warningMessage,
+    };
   }
 }
 

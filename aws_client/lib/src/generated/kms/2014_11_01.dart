@@ -7396,6 +7396,23 @@ class AliasListEntry {
       targetKeyId: json['TargetKeyId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliasArn = this.aliasArn;
+    final aliasName = this.aliasName;
+    final creationDate = this.creationDate;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final targetKeyId = this.targetKeyId;
+    return {
+      if (aliasArn != null) 'AliasArn': aliasArn,
+      if (aliasName != null) 'AliasName': aliasName,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (lastUpdatedDate != null)
+        'LastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (targetKeyId != null) 'TargetKeyId': targetKeyId,
+    };
+  }
 }
 
 class CancelKeyDeletionResponse {
@@ -7412,12 +7429,23 @@ class CancelKeyDeletionResponse {
       keyId: json['KeyId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyId = this.keyId;
+    return {
+      if (keyId != null) 'KeyId': keyId,
+    };
+  }
 }
 
 class ConnectCustomKeyStoreResponse {
   ConnectCustomKeyStoreResponse();
   factory ConnectCustomKeyStoreResponse.fromJson(Map<String, dynamic> _) {
     return ConnectCustomKeyStoreResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7544,6 +7572,13 @@ class CreateCustomKeyStoreResponse {
       customKeyStoreId: json['CustomKeyStoreId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customKeyStoreId = this.customKeyStoreId;
+    return {
+      if (customKeyStoreId != null) 'CustomKeyStoreId': customKeyStoreId,
+    };
+  }
 }
 
 class CreateGrantResponse {
@@ -7574,6 +7609,15 @@ class CreateGrantResponse {
       grantToken: json['GrantToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final grantId = this.grantId;
+    final grantToken = this.grantToken;
+    return {
+      if (grantId != null) 'GrantId': grantId,
+      if (grantToken != null) 'GrantToken': grantToken,
+    };
+  }
 }
 
 class CreateKeyResponse {
@@ -7589,6 +7633,13 @@ class CreateKeyResponse {
           ? KeyMetadata.fromJson(json['KeyMetadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyMetadata = this.keyMetadata;
+    return {
+      if (keyMetadata != null) 'KeyMetadata': keyMetadata,
+    };
   }
 }
 
@@ -7731,6 +7782,28 @@ class CustomKeyStoresListEntry {
       customKeyStoreName: json['CustomKeyStoreName'] as String?,
       trustAnchorCertificate: json['TrustAnchorCertificate'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudHsmClusterId = this.cloudHsmClusterId;
+    final connectionErrorCode = this.connectionErrorCode;
+    final connectionState = this.connectionState;
+    final creationDate = this.creationDate;
+    final customKeyStoreId = this.customKeyStoreId;
+    final customKeyStoreName = this.customKeyStoreName;
+    final trustAnchorCertificate = this.trustAnchorCertificate;
+    return {
+      if (cloudHsmClusterId != null) 'CloudHsmClusterId': cloudHsmClusterId,
+      if (connectionErrorCode != null)
+        'ConnectionErrorCode': connectionErrorCode.toValue(),
+      if (connectionState != null) 'ConnectionState': connectionState.toValue(),
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (customKeyStoreId != null) 'CustomKeyStoreId': customKeyStoreId,
+      if (customKeyStoreName != null) 'CustomKeyStoreName': customKeyStoreName,
+      if (trustAnchorCertificate != null)
+        'TrustAnchorCertificate': trustAnchorCertificate,
+    };
   }
 }
 
@@ -7931,12 +8004,28 @@ class DecryptResponse {
       plaintext: _s.decodeNullableUint8List(json['Plaintext'] as String?),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final encryptionAlgorithm = this.encryptionAlgorithm;
+    final keyId = this.keyId;
+    final plaintext = this.plaintext;
+    return {
+      if (encryptionAlgorithm != null)
+        'EncryptionAlgorithm': encryptionAlgorithm.toValue(),
+      if (keyId != null) 'KeyId': keyId,
+      if (plaintext != null) 'Plaintext': base64Encode(plaintext),
+    };
+  }
 }
 
 class DeleteCustomKeyStoreResponse {
   DeleteCustomKeyStoreResponse();
   factory DeleteCustomKeyStoreResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCustomKeyStoreResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7971,6 +8060,17 @@ class DescribeCustomKeyStoresResponse {
       truncated: json['Truncated'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customKeyStores = this.customKeyStores;
+    final nextMarker = this.nextMarker;
+    final truncated = this.truncated;
+    return {
+      if (customKeyStores != null) 'CustomKeyStores': customKeyStores,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (truncated != null) 'Truncated': truncated,
+    };
+  }
 }
 
 class DescribeKeyResponse {
@@ -7987,12 +8087,23 @@ class DescribeKeyResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyMetadata = this.keyMetadata;
+    return {
+      if (keyMetadata != null) 'KeyMetadata': keyMetadata,
+    };
+  }
 }
 
 class DisconnectCustomKeyStoreResponse {
   DisconnectCustomKeyStoreResponse();
   factory DisconnectCustomKeyStoreResponse.fromJson(Map<String, dynamic> _) {
     return DisconnectCustomKeyStoreResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8023,6 +8134,19 @@ class EncryptResponse {
           (json['EncryptionAlgorithm'] as String?)?.toEncryptionAlgorithmSpec(),
       keyId: json['KeyId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ciphertextBlob = this.ciphertextBlob;
+    final encryptionAlgorithm = this.encryptionAlgorithm;
+    final keyId = this.keyId;
+    return {
+      if (ciphertextBlob != null)
+        'CiphertextBlob': base64Encode(ciphertextBlob),
+      if (encryptionAlgorithm != null)
+        'EncryptionAlgorithm': encryptionAlgorithm.toValue(),
+      if (keyId != null) 'KeyId': keyId,
+    };
   }
 }
 
@@ -8134,6 +8258,23 @@ class GenerateDataKeyPairResponse {
       publicKey: _s.decodeNullableUint8List(json['PublicKey'] as String?),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyId = this.keyId;
+    final keyPairSpec = this.keyPairSpec;
+    final privateKeyCiphertextBlob = this.privateKeyCiphertextBlob;
+    final privateKeyPlaintext = this.privateKeyPlaintext;
+    final publicKey = this.publicKey;
+    return {
+      if (keyId != null) 'KeyId': keyId,
+      if (keyPairSpec != null) 'KeyPairSpec': keyPairSpec.toValue(),
+      if (privateKeyCiphertextBlob != null)
+        'PrivateKeyCiphertextBlob': base64Encode(privateKeyCiphertextBlob),
+      if (privateKeyPlaintext != null)
+        'PrivateKeyPlaintext': base64Encode(privateKeyPlaintext),
+      if (publicKey != null) 'PublicKey': base64Encode(publicKey),
+    };
+  }
 }
 
 class GenerateDataKeyPairWithoutPlaintextResponse {
@@ -8171,6 +8312,20 @@ class GenerateDataKeyPairWithoutPlaintextResponse {
       publicKey: _s.decodeNullableUint8List(json['PublicKey'] as String?),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyId = this.keyId;
+    final keyPairSpec = this.keyPairSpec;
+    final privateKeyCiphertextBlob = this.privateKeyCiphertextBlob;
+    final publicKey = this.publicKey;
+    return {
+      if (keyId != null) 'KeyId': keyId,
+      if (keyPairSpec != null) 'KeyPairSpec': keyPairSpec.toValue(),
+      if (privateKeyCiphertextBlob != null)
+        'PrivateKeyCiphertextBlob': base64Encode(privateKeyCiphertextBlob),
+      if (publicKey != null) 'PublicKey': base64Encode(publicKey),
+    };
+  }
 }
 
 class GenerateDataKeyResponse {
@@ -8203,6 +8358,18 @@ class GenerateDataKeyResponse {
       plaintext: _s.decodeNullableUint8List(json['Plaintext'] as String?),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ciphertextBlob = this.ciphertextBlob;
+    final keyId = this.keyId;
+    final plaintext = this.plaintext;
+    return {
+      if (ciphertextBlob != null)
+        'CiphertextBlob': base64Encode(ciphertextBlob),
+      if (keyId != null) 'KeyId': keyId,
+      if (plaintext != null) 'Plaintext': base64Encode(plaintext),
+    };
+  }
 }
 
 class GenerateDataKeyWithoutPlaintextResponse {
@@ -8226,6 +8393,16 @@ class GenerateDataKeyWithoutPlaintextResponse {
           _s.decodeNullableUint8List(json['CiphertextBlob'] as String?),
       keyId: json['KeyId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ciphertextBlob = this.ciphertextBlob;
+    final keyId = this.keyId;
+    return {
+      if (ciphertextBlob != null)
+        'CiphertextBlob': base64Encode(ciphertextBlob),
+      if (keyId != null) 'KeyId': keyId,
+    };
   }
 }
 
@@ -8252,6 +8429,17 @@ class GenerateMacResponse {
       macAlgorithm: (json['MacAlgorithm'] as String?)?.toMacAlgorithmSpec(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyId = this.keyId;
+    final mac = this.mac;
+    final macAlgorithm = this.macAlgorithm;
+    return {
+      if (keyId != null) 'KeyId': keyId,
+      if (mac != null) 'Mac': base64Encode(mac),
+      if (macAlgorithm != null) 'MacAlgorithm': macAlgorithm.toValue(),
+    };
+  }
 }
 
 class GenerateRandomResponse {
@@ -8267,6 +8455,13 @@ class GenerateRandomResponse {
       plaintext: _s.decodeNullableUint8List(json['Plaintext'] as String?),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final plaintext = this.plaintext;
+    return {
+      if (plaintext != null) 'Plaintext': base64Encode(plaintext),
+    };
+  }
 }
 
 class GetKeyPolicyResponse {
@@ -8281,6 +8476,13 @@ class GetKeyPolicyResponse {
       policy: json['Policy'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
+  }
 }
 
 class GetKeyRotationStatusResponse {
@@ -8294,6 +8496,13 @@ class GetKeyRotationStatusResponse {
     return GetKeyRotationStatusResponse(
       keyRotationEnabled: json['KeyRotationEnabled'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyRotationEnabled = this.keyRotationEnabled;
+    return {
+      if (keyRotationEnabled != null) 'KeyRotationEnabled': keyRotationEnabled,
+    };
   }
 }
 
@@ -8331,6 +8540,20 @@ class GetParametersForImportResponse {
       parametersValidTo: timeStampFromJson(json['ParametersValidTo']),
       publicKey: _s.decodeNullableUint8List(json['PublicKey'] as String?),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final importToken = this.importToken;
+    final keyId = this.keyId;
+    final parametersValidTo = this.parametersValidTo;
+    final publicKey = this.publicKey;
+    return {
+      if (importToken != null) 'ImportToken': base64Encode(importToken),
+      if (keyId != null) 'KeyId': keyId,
+      if (parametersValidTo != null)
+        'ParametersValidTo': unixTimestampToJson(parametersValidTo),
+      if (publicKey != null) 'PublicKey': base64Encode(publicKey),
+    };
   }
 }
 
@@ -8410,6 +8633,29 @@ class GetPublicKeyResponse {
           .map((e) => (e as String).toSigningAlgorithmSpec())
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customerMasterKeySpec = this.customerMasterKeySpec;
+    final encryptionAlgorithms = this.encryptionAlgorithms;
+    final keyId = this.keyId;
+    final keySpec = this.keySpec;
+    final keyUsage = this.keyUsage;
+    final publicKey = this.publicKey;
+    final signingAlgorithms = this.signingAlgorithms;
+    return {
+      if (customerMasterKeySpec != null)
+        'CustomerMasterKeySpec': customerMasterKeySpec.toValue(),
+      if (encryptionAlgorithms != null)
+        'EncryptionAlgorithms':
+            encryptionAlgorithms.map((e) => e.toValue()).toList(),
+      if (keyId != null) 'KeyId': keyId,
+      if (keySpec != null) 'KeySpec': keySpec.toValue(),
+      if (keyUsage != null) 'KeyUsage': keyUsage.toValue(),
+      if (publicKey != null) 'PublicKey': base64Encode(publicKey),
+      if (signingAlgorithms != null)
+        'SigningAlgorithms': signingAlgorithms.map((e) => e.toValue()).toList(),
+    };
   }
 }
 
@@ -8559,6 +8805,31 @@ class GrantListEntry {
       retiringPrincipal: json['RetiringPrincipal'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final constraints = this.constraints;
+    final creationDate = this.creationDate;
+    final grantId = this.grantId;
+    final granteePrincipal = this.granteePrincipal;
+    final issuingAccount = this.issuingAccount;
+    final keyId = this.keyId;
+    final name = this.name;
+    final operations = this.operations;
+    final retiringPrincipal = this.retiringPrincipal;
+    return {
+      if (constraints != null) 'Constraints': constraints,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (grantId != null) 'GrantId': grantId,
+      if (granteePrincipal != null) 'GranteePrincipal': granteePrincipal,
+      if (issuingAccount != null) 'IssuingAccount': issuingAccount,
+      if (keyId != null) 'KeyId': keyId,
+      if (name != null) 'Name': name,
+      if (operations != null)
+        'Operations': operations.map((e) => e.toValue()).toList(),
+      if (retiringPrincipal != null) 'RetiringPrincipal': retiringPrincipal,
+    };
+  }
 }
 
 enum GrantOperation {
@@ -8664,6 +8935,10 @@ class ImportKeyMaterialResponse {
   factory ImportKeyMaterialResponse.fromJson(Map<String, dynamic> _) {
     return ImportKeyMaterialResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains information about each entry in the key list.
@@ -8683,6 +8958,15 @@ class KeyListEntry {
       keyArn: json['KeyArn'] as String?,
       keyId: json['KeyId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyArn = this.keyArn;
+    final keyId = this.keyId;
+    return {
+      if (keyArn != null) 'KeyArn': keyArn,
+      if (keyId != null) 'KeyId': keyId,
+    };
   }
 }
 
@@ -8954,6 +9238,66 @@ class KeyMetadata {
       validTo: timeStampFromJson(json['ValidTo']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyId = this.keyId;
+    final awsAccountId = this.awsAccountId;
+    final arn = this.arn;
+    final cloudHsmClusterId = this.cloudHsmClusterId;
+    final creationDate = this.creationDate;
+    final customKeyStoreId = this.customKeyStoreId;
+    final customerMasterKeySpec = this.customerMasterKeySpec;
+    final deletionDate = this.deletionDate;
+    final description = this.description;
+    final enabled = this.enabled;
+    final encryptionAlgorithms = this.encryptionAlgorithms;
+    final expirationModel = this.expirationModel;
+    final keyManager = this.keyManager;
+    final keySpec = this.keySpec;
+    final keyState = this.keyState;
+    final keyUsage = this.keyUsage;
+    final macAlgorithms = this.macAlgorithms;
+    final multiRegion = this.multiRegion;
+    final multiRegionConfiguration = this.multiRegionConfiguration;
+    final origin = this.origin;
+    final pendingDeletionWindowInDays = this.pendingDeletionWindowInDays;
+    final signingAlgorithms = this.signingAlgorithms;
+    final validTo = this.validTo;
+    return {
+      'KeyId': keyId,
+      if (awsAccountId != null) 'AWSAccountId': awsAccountId,
+      if (arn != null) 'Arn': arn,
+      if (cloudHsmClusterId != null) 'CloudHsmClusterId': cloudHsmClusterId,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (customKeyStoreId != null) 'CustomKeyStoreId': customKeyStoreId,
+      if (customerMasterKeySpec != null)
+        'CustomerMasterKeySpec': customerMasterKeySpec.toValue(),
+      if (deletionDate != null)
+        'DeletionDate': unixTimestampToJson(deletionDate),
+      if (description != null) 'Description': description,
+      if (enabled != null) 'Enabled': enabled,
+      if (encryptionAlgorithms != null)
+        'EncryptionAlgorithms':
+            encryptionAlgorithms.map((e) => e.toValue()).toList(),
+      if (expirationModel != null) 'ExpirationModel': expirationModel.toValue(),
+      if (keyManager != null) 'KeyManager': keyManager.toValue(),
+      if (keySpec != null) 'KeySpec': keySpec.toValue(),
+      if (keyState != null) 'KeyState': keyState.toValue(),
+      if (keyUsage != null) 'KeyUsage': keyUsage.toValue(),
+      if (macAlgorithms != null)
+        'MacAlgorithms': macAlgorithms.map((e) => e.toValue()).toList(),
+      if (multiRegion != null) 'MultiRegion': multiRegion,
+      if (multiRegionConfiguration != null)
+        'MultiRegionConfiguration': multiRegionConfiguration,
+      if (origin != null) 'Origin': origin.toValue(),
+      if (pendingDeletionWindowInDays != null)
+        'PendingDeletionWindowInDays': pendingDeletionWindowInDays,
+      if (signingAlgorithms != null)
+        'SigningAlgorithms': signingAlgorithms.map((e) => e.toValue()).toList(),
+      if (validTo != null) 'ValidTo': unixTimestampToJson(validTo),
+    };
+  }
 }
 
 enum KeySpec {
@@ -9160,6 +9504,17 @@ class ListAliasesResponse {
       truncated: json['Truncated'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliases = this.aliases;
+    final nextMarker = this.nextMarker;
+    final truncated = this.truncated;
+    return {
+      if (aliases != null) 'Aliases': aliases,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (truncated != null) 'Truncated': truncated,
+    };
+  }
 }
 
 class ListGrantsResponse {
@@ -9191,6 +9546,17 @@ class ListGrantsResponse {
       nextMarker: json['NextMarker'] as String?,
       truncated: json['Truncated'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final grants = this.grants;
+    final nextMarker = this.nextMarker;
+    final truncated = this.truncated;
+    return {
+      if (grants != null) 'Grants': grants,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (truncated != null) 'Truncated': truncated,
+    };
   }
 }
 
@@ -9224,6 +9590,17 @@ class ListKeyPoliciesResponse {
       truncated: json['Truncated'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final policyNames = this.policyNames;
+    final truncated = this.truncated;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (policyNames != null) 'PolicyNames': policyNames,
+      if (truncated != null) 'Truncated': truncated,
+    };
+  }
 }
 
 class ListKeysResponse {
@@ -9255,6 +9632,17 @@ class ListKeysResponse {
       nextMarker: json['NextMarker'] as String?,
       truncated: json['Truncated'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keys = this.keys;
+    final nextMarker = this.nextMarker;
+    final truncated = this.truncated;
+    return {
+      if (keys != null) 'Keys': keys,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (truncated != null) 'Truncated': truncated,
+    };
   }
 }
 
@@ -9295,6 +9683,17 @@ class ListResourceTagsResponse {
           .toList(),
       truncated: json['Truncated'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final tags = this.tags;
+    final truncated = this.truncated;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (tags != null) 'Tags': tags,
+      if (truncated != null) 'Truncated': truncated,
+    };
   }
 }
 
@@ -9400,6 +9799,18 @@ class MultiRegionConfiguration {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final multiRegionKeyType = this.multiRegionKeyType;
+    final primaryKey = this.primaryKey;
+    final replicaKeys = this.replicaKeys;
+    return {
+      if (multiRegionKeyType != null)
+        'MultiRegionKeyType': multiRegionKeyType.toValue(),
+      if (primaryKey != null) 'PrimaryKey': primaryKey,
+      if (replicaKeys != null) 'ReplicaKeys': replicaKeys,
+    };
+  }
 }
 
 /// Describes the primary or replica key in a multi-Region key.
@@ -9420,6 +9831,15 @@ class MultiRegionKey {
       arn: json['Arn'] as String?,
       region: json['Region'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final region = this.region;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (region != null) 'Region': region,
+    };
   }
 }
 
@@ -9524,6 +9944,25 @@ class ReEncryptResponse {
       sourceKeyId: json['SourceKeyId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ciphertextBlob = this.ciphertextBlob;
+    final destinationEncryptionAlgorithm = this.destinationEncryptionAlgorithm;
+    final keyId = this.keyId;
+    final sourceEncryptionAlgorithm = this.sourceEncryptionAlgorithm;
+    final sourceKeyId = this.sourceKeyId;
+    return {
+      if (ciphertextBlob != null)
+        'CiphertextBlob': base64Encode(ciphertextBlob),
+      if (destinationEncryptionAlgorithm != null)
+        'DestinationEncryptionAlgorithm':
+            destinationEncryptionAlgorithm.toValue(),
+      if (keyId != null) 'KeyId': keyId,
+      if (sourceEncryptionAlgorithm != null)
+        'SourceEncryptionAlgorithm': sourceEncryptionAlgorithm.toValue(),
+      if (sourceKeyId != null) 'SourceKeyId': sourceKeyId,
+    };
+  }
 }
 
 class ReplicateKeyResponse {
@@ -9561,6 +10000,17 @@ class ReplicateKeyResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicaKeyMetadata = this.replicaKeyMetadata;
+    final replicaPolicy = this.replicaPolicy;
+    final replicaTags = this.replicaTags;
+    return {
+      if (replicaKeyMetadata != null) 'ReplicaKeyMetadata': replicaKeyMetadata,
+      if (replicaPolicy != null) 'ReplicaPolicy': replicaPolicy,
+      if (replicaTags != null) 'ReplicaTags': replicaTags,
+    };
   }
 }
 
@@ -9606,6 +10056,21 @@ class ScheduleKeyDeletionResponse {
       pendingWindowInDays: json['PendingWindowInDays'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deletionDate = this.deletionDate;
+    final keyId = this.keyId;
+    final keyState = this.keyState;
+    final pendingWindowInDays = this.pendingWindowInDays;
+    return {
+      if (deletionDate != null)
+        'DeletionDate': unixTimestampToJson(deletionDate),
+      if (keyId != null) 'KeyId': keyId,
+      if (keyState != null) 'KeyState': keyState.toValue(),
+      if (pendingWindowInDays != null)
+        'PendingWindowInDays': pendingWindowInDays,
+    };
+  }
 }
 
 class SignResponse {
@@ -9650,6 +10115,18 @@ class SignResponse {
       signingAlgorithm:
           (json['SigningAlgorithm'] as String?)?.toSigningAlgorithmSpec(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyId = this.keyId;
+    final signature = this.signature;
+    final signingAlgorithm = this.signingAlgorithm;
+    return {
+      if (keyId != null) 'KeyId': keyId,
+      if (signature != null) 'Signature': base64Encode(signature),
+      if (signingAlgorithm != null)
+        'SigningAlgorithm': signingAlgorithm.toValue(),
+    };
   }
 }
 
@@ -9762,6 +10239,10 @@ class UpdateCustomKeyStoreResponse {
   factory UpdateCustomKeyStoreResponse.fromJson(Map<String, dynamic> _) {
     return UpdateCustomKeyStoreResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class VerifyMacResponse {
@@ -9792,6 +10273,17 @@ class VerifyMacResponse {
       macAlgorithm: (json['MacAlgorithm'] as String?)?.toMacAlgorithmSpec(),
       macValid: json['MacValid'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyId = this.keyId;
+    final macAlgorithm = this.macAlgorithm;
+    final macValid = this.macValid;
+    return {
+      if (keyId != null) 'KeyId': keyId,
+      if (macAlgorithm != null) 'MacAlgorithm': macAlgorithm.toValue(),
+      if (macValid != null) 'MacValid': macValid,
+    };
   }
 }
 
@@ -9824,6 +10316,18 @@ class VerifyResponse {
       signingAlgorithm:
           (json['SigningAlgorithm'] as String?)?.toSigningAlgorithmSpec(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyId = this.keyId;
+    final signatureValid = this.signatureValid;
+    final signingAlgorithm = this.signingAlgorithm;
+    return {
+      if (keyId != null) 'KeyId': keyId,
+      if (signatureValid != null) 'SignatureValid': signatureValid,
+      if (signingAlgorithm != null)
+        'SigningAlgorithm': signingAlgorithm.toValue(),
+    };
   }
 }
 

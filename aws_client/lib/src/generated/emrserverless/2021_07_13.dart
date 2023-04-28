@@ -714,6 +714,44 @@ class Application {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final releaseLabel = this.releaseLabel;
+    final state = this.state;
+    final type = this.type;
+    final updatedAt = this.updatedAt;
+    final autoStartConfiguration = this.autoStartConfiguration;
+    final autoStopConfiguration = this.autoStopConfiguration;
+    final initialCapacity = this.initialCapacity;
+    final maximumCapacity = this.maximumCapacity;
+    final name = this.name;
+    final networkConfiguration = this.networkConfiguration;
+    final stateDetails = this.stateDetails;
+    final tags = this.tags;
+    return {
+      'applicationId': applicationId,
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'releaseLabel': releaseLabel,
+      'state': state.toValue(),
+      'type': type,
+      'updatedAt': unixTimestampToJson(updatedAt),
+      if (autoStartConfiguration != null)
+        'autoStartConfiguration': autoStartConfiguration,
+      if (autoStopConfiguration != null)
+        'autoStopConfiguration': autoStopConfiguration,
+      if (initialCapacity != null) 'initialCapacity': initialCapacity,
+      if (maximumCapacity != null) 'maximumCapacity': maximumCapacity,
+      if (name != null) 'name': name,
+      if (networkConfiguration != null)
+        'networkConfiguration': networkConfiguration,
+      if (stateDetails != null) 'stateDetails': stateDetails,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum ApplicationState {
@@ -822,6 +860,29 @@ class ApplicationSummary {
       stateDetails: json['stateDetails'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final id = this.id;
+    final releaseLabel = this.releaseLabel;
+    final state = this.state;
+    final type = this.type;
+    final updatedAt = this.updatedAt;
+    final name = this.name;
+    final stateDetails = this.stateDetails;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'id': id,
+      'releaseLabel': releaseLabel,
+      'state': state.toValue(),
+      'type': type,
+      'updatedAt': unixTimestampToJson(updatedAt),
+      if (name != null) 'name': name,
+      if (stateDetails != null) 'stateDetails': stateDetails,
+    };
+  }
 }
 
 /// The configuration for an application to automatically start on job
@@ -896,6 +957,15 @@ class CancelJobRunResponse {
       applicationId: json['applicationId'] as String,
       jobRunId: json['jobRunId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final jobRunId = this.jobRunId;
+    return {
+      'applicationId': applicationId,
+      'jobRunId': jobRunId,
+    };
   }
 }
 
@@ -1003,12 +1073,27 @@ class CreateApplicationResponse {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      'applicationId': applicationId,
+      'arn': arn,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 class DeleteApplicationResponse {
   DeleteApplicationResponse();
   factory DeleteApplicationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1025,6 +1110,13 @@ class GetApplicationResponse {
           Application.fromJson(json['application'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final application = this.application;
+    return {
+      'application': application,
+    };
+  }
 }
 
 class GetJobRunResponse {
@@ -1038,6 +1130,13 @@ class GetJobRunResponse {
     return GetJobRunResponse(
       jobRun: JobRun.fromJson(json['jobRun'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobRun = this.jobRun;
+    return {
+      'jobRun': jobRun,
+    };
   }
 }
 
@@ -1252,6 +1351,49 @@ class JobRun {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final executionRole = this.executionRole;
+    final jobDriver = this.jobDriver;
+    final jobRunId = this.jobRunId;
+    final releaseLabel = this.releaseLabel;
+    final state = this.state;
+    final stateDetails = this.stateDetails;
+    final updatedAt = this.updatedAt;
+    final configurationOverrides = this.configurationOverrides;
+    final name = this.name;
+    final networkConfiguration = this.networkConfiguration;
+    final tags = this.tags;
+    final totalExecutionDurationSeconds = this.totalExecutionDurationSeconds;
+    final totalResourceUtilization = this.totalResourceUtilization;
+    return {
+      'applicationId': applicationId,
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'createdBy': createdBy,
+      'executionRole': executionRole,
+      'jobDriver': jobDriver,
+      'jobRunId': jobRunId,
+      'releaseLabel': releaseLabel,
+      'state': state.toValue(),
+      'stateDetails': stateDetails,
+      'updatedAt': unixTimestampToJson(updatedAt),
+      if (configurationOverrides != null)
+        'configurationOverrides': configurationOverrides,
+      if (name != null) 'name': name,
+      if (networkConfiguration != null)
+        'networkConfiguration': networkConfiguration,
+      if (tags != null) 'tags': tags,
+      if (totalExecutionDurationSeconds != null)
+        'totalExecutionDurationSeconds': totalExecutionDurationSeconds,
+      if (totalResourceUtilization != null)
+        'totalResourceUtilization': totalResourceUtilization,
+    };
+  }
 }
 
 enum JobRunState {
@@ -1381,6 +1523,35 @@ class JobRunSummary {
       type: json['type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final executionRole = this.executionRole;
+    final id = this.id;
+    final releaseLabel = this.releaseLabel;
+    final state = this.state;
+    final stateDetails = this.stateDetails;
+    final updatedAt = this.updatedAt;
+    final name = this.name;
+    final type = this.type;
+    return {
+      'applicationId': applicationId,
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'createdBy': createdBy,
+      'executionRole': executionRole,
+      'id': id,
+      'releaseLabel': releaseLabel,
+      'state': state.toValue(),
+      'stateDetails': stateDetails,
+      'updatedAt': unixTimestampToJson(updatedAt),
+      if (name != null) 'name': name,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 class ListApplicationsResponse {
@@ -1404,6 +1575,15 @@ class ListApplicationsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applications = this.applications;
+    final nextToken = this.nextToken;
+    return {
+      'applications': applications,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1429,6 +1609,15 @@ class ListJobRunsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobRuns = this.jobRuns;
+    final nextToken = this.nextToken;
+    return {
+      'jobRuns': jobRuns,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1443,6 +1632,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1668,6 +1864,10 @@ class StartApplicationResponse {
   factory StartApplicationResponse.fromJson(Map<String, dynamic> _) {
     return StartApplicationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class StartJobRunResponse {
@@ -1692,6 +1892,17 @@ class StartJobRunResponse {
       jobRunId: json['jobRunId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final jobRunId = this.jobRunId;
+    return {
+      'applicationId': applicationId,
+      'arn': arn,
+      'jobRunId': jobRunId,
+    };
+  }
 }
 
 class StopApplicationResponse {
@@ -1699,12 +1910,20 @@ class StopApplicationResponse {
   factory StopApplicationResponse.fromJson(Map<String, dynamic> _) {
     return StopApplicationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1736,12 +1955,27 @@ class TotalResourceUtilization {
       vCPUHour: json['vCPUHour'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final memoryGBHour = this.memoryGBHour;
+    final storageGBHour = this.storageGBHour;
+    final vCPUHour = this.vCPUHour;
+    return {
+      if (memoryGBHour != null) 'memoryGBHour': memoryGBHour,
+      if (storageGBHour != null) 'storageGBHour': storageGBHour,
+      if (vCPUHour != null) 'vCPUHour': vCPUHour,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1757,6 +1991,13 @@ class UpdateApplicationResponse {
       application:
           Application.fromJson(json['application'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final application = this.application;
+    return {
+      'application': application,
+    };
   }
 }
 

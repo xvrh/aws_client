@@ -1212,6 +1212,17 @@ class Alias {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final names = this.names;
+    final type = this.type;
+    return {
+      if (name != null) 'Name': name,
+      if (names != null) 'Names': names,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 /// Value of a segment annotation. Has one of three value types: Number,
@@ -1238,6 +1249,17 @@ class AnnotationValue {
       stringValue: json['StringValue'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final booleanValue = this.booleanValue;
+    final numberValue = this.numberValue;
+    final stringValue = this.stringValue;
+    return {
+      if (booleanValue != null) 'BooleanValue': booleanValue,
+      if (numberValue != null) 'NumberValue': numberValue,
+      if (stringValue != null) 'StringValue': stringValue,
+    };
+  }
 }
 
 /// The service within the service graph that has anomalously high fault rates.
@@ -1254,6 +1276,13 @@ class AnomalousService {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceId = this.serviceId;
+    return {
+      if (serviceId != null) 'ServiceId': serviceId,
+    };
+  }
 }
 
 /// A list of Availability Zones corresponding to the segments in a trace.
@@ -1268,6 +1297,13 @@ class AvailabilityZoneDetail {
     return AvailabilityZoneDetail(
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -1299,6 +1335,7 @@ class BackendConnectionErrors {
     this.timeoutCount,
     this.unknownHostCount,
   });
+
   Map<String, dynamic> toJson() {
     final connectionRefusedCount = this.connectionRefusedCount;
     final hTTPCode4XXCount = this.hTTPCode4XXCount;
@@ -1346,6 +1383,18 @@ class BatchGetTracesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final traces = this.traces;
+    final unprocessedTraceIds = this.unprocessedTraceIds;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (traces != null) 'Traces': traces,
+      if (unprocessedTraceIds != null)
+        'UnprocessedTraceIds': unprocessedTraceIds,
+    };
+  }
 }
 
 class CreateGroupResult {
@@ -1365,6 +1414,13 @@ class CreateGroupResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    return {
+      if (group != null) 'Group': group,
+    };
+  }
 }
 
 class CreateSamplingRuleResult {
@@ -1382,12 +1438,23 @@ class CreateSamplingRuleResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final samplingRuleRecord = this.samplingRuleRecord;
+    return {
+      if (samplingRuleRecord != null) 'SamplingRuleRecord': samplingRuleRecord,
+    };
+  }
 }
 
 class DeleteGroupResult {
   DeleteGroupResult();
   factory DeleteGroupResult.fromJson(Map<String, dynamic> _) {
     return DeleteGroupResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1405,6 +1472,13 @@ class DeleteSamplingRuleResult {
               json['SamplingRuleRecord'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final samplingRuleRecord = this.samplingRuleRecord;
+    return {
+      if (samplingRuleRecord != null) 'SamplingRuleRecord': samplingRuleRecord,
+    };
   }
 }
 
@@ -1455,6 +1529,24 @@ class Edge {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliases = this.aliases;
+    final endTime = this.endTime;
+    final referenceId = this.referenceId;
+    final responseTimeHistogram = this.responseTimeHistogram;
+    final startTime = this.startTime;
+    final summaryStatistics = this.summaryStatistics;
+    return {
+      if (aliases != null) 'Aliases': aliases,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (referenceId != null) 'ReferenceId': referenceId,
+      if (responseTimeHistogram != null)
+        'ResponseTimeHistogram': responseTimeHistogram,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (summaryStatistics != null) 'SummaryStatistics': summaryStatistics,
+    };
+  }
 }
 
 /// Response statistics for an edge.
@@ -1496,6 +1588,21 @@ class EdgeStatistics {
       totalResponseTime: json['TotalResponseTime'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorStatistics = this.errorStatistics;
+    final faultStatistics = this.faultStatistics;
+    final okCount = this.okCount;
+    final totalCount = this.totalCount;
+    final totalResponseTime = this.totalResponseTime;
+    return {
+      if (errorStatistics != null) 'ErrorStatistics': errorStatistics,
+      if (faultStatistics != null) 'FaultStatistics': faultStatistics,
+      if (okCount != null) 'OkCount': okCount,
+      if (totalCount != null) 'TotalCount': totalCount,
+      if (totalResponseTime != null) 'TotalResponseTime': totalResponseTime,
+    };
+  }
 }
 
 /// A configuration document that specifies encryption configuration settings.
@@ -1522,6 +1629,17 @@ class EncryptionConfig {
       status: (json['Status'] as String?)?.toEncryptionStatus(),
       type: (json['Type'] as String?)?.toEncryptionType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyId = this.keyId;
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (keyId != null) 'KeyId': keyId,
+      if (status != null) 'Status': status.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -1603,6 +1721,15 @@ class ErrorRootCause {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientImpacting = this.clientImpacting;
+    final services = this.services;
+    return {
+      if (clientImpacting != null) 'ClientImpacting': clientImpacting,
+      if (services != null) 'Services': services,
+    };
+  }
 }
 
 /// A collection of segments and corresponding subsegments associated to a trace
@@ -1631,6 +1758,17 @@ class ErrorRootCauseEntity {
       name: json['Name'] as String?,
       remote: json['Remote'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exceptions = this.exceptions;
+    final name = this.name;
+    final remote = this.remote;
+    return {
+      if (exceptions != null) 'Exceptions': exceptions,
+      if (name != null) 'Name': name,
+      if (remote != null) 'Remote': remote,
+    };
   }
 }
 
@@ -1678,6 +1816,23 @@ class ErrorRootCauseService {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final entityPath = this.entityPath;
+    final inferred = this.inferred;
+    final name = this.name;
+    final names = this.names;
+    final type = this.type;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (entityPath != null) 'EntityPath': entityPath,
+      if (inferred != null) 'Inferred': inferred,
+      if (name != null) 'Name': name,
+      if (names != null) 'Names': names,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 /// Information about requests that failed with a 4xx Client Error status code.
@@ -1705,6 +1860,17 @@ class ErrorStatistics {
       totalCount: json['TotalCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final otherCount = this.otherCount;
+    final throttleCount = this.throttleCount;
+    final totalCount = this.totalCount;
+    return {
+      if (otherCount != null) 'OtherCount': otherCount,
+      if (throttleCount != null) 'ThrottleCount': throttleCount,
+      if (totalCount != null) 'TotalCount': totalCount,
+    };
+  }
 }
 
 /// The root cause information for a trace summary fault.
@@ -1728,6 +1894,15 @@ class FaultRootCause {
           .map((e) => FaultRootCauseService.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientImpacting = this.clientImpacting;
+    final services = this.services;
+    return {
+      if (clientImpacting != null) 'ClientImpacting': clientImpacting,
+      if (services != null) 'Services': services,
+    };
   }
 }
 
@@ -1757,6 +1932,17 @@ class FaultRootCauseEntity {
       name: json['Name'] as String?,
       remote: json['Remote'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exceptions = this.exceptions;
+    final name = this.name;
+    final remote = this.remote;
+    return {
+      if (exceptions != null) 'Exceptions': exceptions,
+      if (name != null) 'Name': name,
+      if (remote != null) 'Remote': remote,
+    };
   }
 }
 
@@ -1804,6 +1990,23 @@ class FaultRootCauseService {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final entityPath = this.entityPath;
+    final inferred = this.inferred;
+    final name = this.name;
+    final names = this.names;
+    final type = this.type;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (entityPath != null) 'EntityPath': entityPath,
+      if (inferred != null) 'Inferred': inferred,
+      if (name != null) 'Name': name,
+      if (names != null) 'Names': names,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 /// Information about requests that failed with a 5xx Server Error status code.
@@ -1826,6 +2029,15 @@ class FaultStatistics {
       totalCount: json['TotalCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final otherCount = this.otherCount;
+    final totalCount = this.totalCount;
+    return {
+      if (otherCount != null) 'OtherCount': otherCount,
+      if (totalCount != null) 'TotalCount': totalCount,
+    };
+  }
 }
 
 /// The predicted high and low fault count. This is used to determine if a
@@ -1847,6 +2059,15 @@ class ForecastStatistics {
       faultCountLow: json['FaultCountLow'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final faultCountHigh = this.faultCountHigh;
+    final faultCountLow = this.faultCountLow;
+    return {
+      if (faultCountHigh != null) 'FaultCountHigh': faultCountHigh,
+      if (faultCountLow != null) 'FaultCountLow': faultCountLow,
+    };
+  }
 }
 
 class GetEncryptionConfigResult {
@@ -1863,6 +2084,13 @@ class GetEncryptionConfigResult {
               json['EncryptionConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final encryptionConfig = this.encryptionConfig;
+    return {
+      if (encryptionConfig != null) 'EncryptionConfig': encryptionConfig,
+    };
   }
 }
 
@@ -1881,6 +2109,13 @@ class GetGroupResult {
           ? Group.fromJson(json['Group'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    return {
+      if (group != null) 'Group': group,
+    };
   }
 }
 
@@ -1903,6 +2138,15 @@ class GetGroupsResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final nextToken = this.nextToken;
+    return {
+      if (groups != null) 'Groups': groups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1927,6 +2171,15 @@ class GetInsightEventsResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final insightEvents = this.insightEvents;
+    final nextToken = this.nextToken;
+    return {
+      if (insightEvents != null) 'InsightEvents': insightEvents,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1976,6 +2229,27 @@ class GetInsightImpactGraphResult {
       startTime: timeStampFromJson(json['StartTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endTime = this.endTime;
+    final insightId = this.insightId;
+    final nextToken = this.nextToken;
+    final serviceGraphEndTime = this.serviceGraphEndTime;
+    final serviceGraphStartTime = this.serviceGraphStartTime;
+    final services = this.services;
+    final startTime = this.startTime;
+    return {
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (insightId != null) 'InsightId': insightId,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (serviceGraphEndTime != null)
+        'ServiceGraphEndTime': unixTimestampToJson(serviceGraphEndTime),
+      if (serviceGraphStartTime != null)
+        'ServiceGraphStartTime': unixTimestampToJson(serviceGraphStartTime),
+      if (services != null) 'Services': services,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+    };
+  }
 }
 
 class GetInsightResult {
@@ -1991,6 +2265,13 @@ class GetInsightResult {
           ? Insight.fromJson(json['Insight'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final insight = this.insight;
+    return {
+      if (insight != null) 'Insight': insight,
+    };
   }
 }
 
@@ -2017,6 +2298,15 @@ class GetInsightSummariesResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final insightSummaries = this.insightSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (insightSummaries != null) 'InsightSummaries': insightSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetSamplingRulesResult {
@@ -2038,6 +2328,16 @@ class GetSamplingRulesResult {
           .map((e) => SamplingRuleRecord.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final samplingRuleRecords = this.samplingRuleRecords;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (samplingRuleRecords != null)
+        'SamplingRuleRecords': samplingRuleRecords,
+    };
   }
 }
 
@@ -2063,6 +2363,16 @@ class GetSamplingStatisticSummariesResult {
               SamplingStatisticSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final samplingStatisticSummaries = this.samplingStatisticSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (samplingStatisticSummaries != null)
+        'SamplingStatisticSummaries': samplingStatisticSummaries,
+    };
   }
 }
 
@@ -2100,6 +2410,20 @@ class GetSamplingTargetsResult {
           .map((e) => UnprocessedStatistics.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastRuleModification = this.lastRuleModification;
+    final samplingTargetDocuments = this.samplingTargetDocuments;
+    final unprocessedStatistics = this.unprocessedStatistics;
+    return {
+      if (lastRuleModification != null)
+        'LastRuleModification': unixTimestampToJson(lastRuleModification),
+      if (samplingTargetDocuments != null)
+        'SamplingTargetDocuments': samplingTargetDocuments,
+      if (unprocessedStatistics != null)
+        'UnprocessedStatistics': unprocessedStatistics,
+    };
   }
 }
 
@@ -2141,6 +2465,22 @@ class GetServiceGraphResult {
       startTime: timeStampFromJson(json['StartTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final containsOldGroupVersions = this.containsOldGroupVersions;
+    final endTime = this.endTime;
+    final nextToken = this.nextToken;
+    final services = this.services;
+    final startTime = this.startTime;
+    return {
+      if (containsOldGroupVersions != null)
+        'ContainsOldGroupVersions': containsOldGroupVersions,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (services != null) 'Services': services,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+    };
+  }
 }
 
 class GetTimeSeriesServiceStatisticsResult {
@@ -2173,6 +2513,19 @@ class GetTimeSeriesServiceStatisticsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final containsOldGroupVersions = this.containsOldGroupVersions;
+    final nextToken = this.nextToken;
+    final timeSeriesServiceStatistics = this.timeSeriesServiceStatistics;
+    return {
+      if (containsOldGroupVersions != null)
+        'ContainsOldGroupVersions': containsOldGroupVersions,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (timeSeriesServiceStatistics != null)
+        'TimeSeriesServiceStatistics': timeSeriesServiceStatistics,
+    };
+  }
 }
 
 class GetTraceGraphResult {
@@ -2194,6 +2547,15 @@ class GetTraceGraphResult {
           .map((e) => Service.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final services = this.services;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (services != null) 'Services': services,
+    };
   }
 }
 
@@ -2230,6 +2592,21 @@ class GetTraceSummariesResult {
           .toList(),
       tracesProcessedCount: json['TracesProcessedCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final approximateTime = this.approximateTime;
+    final nextToken = this.nextToken;
+    final traceSummaries = this.traceSummaries;
+    final tracesProcessedCount = this.tracesProcessedCount;
+    return {
+      if (approximateTime != null)
+        'ApproximateTime': unixTimestampToJson(approximateTime),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (traceSummaries != null) 'TraceSummaries': traceSummaries,
+      if (tracesProcessedCount != null)
+        'TracesProcessedCount': tracesProcessedCount,
+    };
   }
 }
 
@@ -2276,6 +2653,20 @@ class Group {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final filterExpression = this.filterExpression;
+    final groupARN = this.groupARN;
+    final groupName = this.groupName;
+    final insightsConfiguration = this.insightsConfiguration;
+    return {
+      if (filterExpression != null) 'FilterExpression': filterExpression,
+      if (groupARN != null) 'GroupARN': groupARN,
+      if (groupName != null) 'GroupName': groupName,
+      if (insightsConfiguration != null)
+        'InsightsConfiguration': insightsConfiguration,
+    };
+  }
 }
 
 /// Details for a group without metadata.
@@ -2321,6 +2712,20 @@ class GroupSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final filterExpression = this.filterExpression;
+    final groupARN = this.groupARN;
+    final groupName = this.groupName;
+    final insightsConfiguration = this.insightsConfiguration;
+    return {
+      if (filterExpression != null) 'FilterExpression': filterExpression,
+      if (groupARN != null) 'GroupARN': groupARN,
+      if (groupName != null) 'GroupName': groupName,
+      if (insightsConfiguration != null)
+        'InsightsConfiguration': insightsConfiguration,
+    };
+  }
 }
 
 /// An entry in a histogram for a statistic. A histogram maps the range of
@@ -2342,6 +2747,15 @@ class HistogramEntry {
       count: json['Count'] as int?,
       value: json['Value'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final value = this.value;
+    return {
+      if (count != null) 'Count': count,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -2377,6 +2791,21 @@ class Http {
       httpURL: json['HttpURL'] as String?,
       userAgent: json['UserAgent'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientIp = this.clientIp;
+    final httpMethod = this.httpMethod;
+    final httpStatus = this.httpStatus;
+    final httpURL = this.httpURL;
+    final userAgent = this.userAgent;
+    return {
+      if (clientIp != null) 'ClientIp': clientIp,
+      if (httpMethod != null) 'HttpMethod': httpMethod,
+      if (httpStatus != null) 'HttpStatus': httpStatus,
+      if (httpURL != null) 'HttpURL': httpURL,
+      if (userAgent != null) 'UserAgent': userAgent,
+    };
   }
 }
 
@@ -2468,6 +2897,41 @@ class Insight {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final categories = this.categories;
+    final clientRequestImpactStatistics = this.clientRequestImpactStatistics;
+    final endTime = this.endTime;
+    final groupARN = this.groupARN;
+    final groupName = this.groupName;
+    final insightId = this.insightId;
+    final rootCauseServiceId = this.rootCauseServiceId;
+    final rootCauseServiceRequestImpactStatistics =
+        this.rootCauseServiceRequestImpactStatistics;
+    final startTime = this.startTime;
+    final state = this.state;
+    final summary = this.summary;
+    final topAnomalousServices = this.topAnomalousServices;
+    return {
+      if (categories != null)
+        'Categories': categories.map((e) => e.toValue()).toList(),
+      if (clientRequestImpactStatistics != null)
+        'ClientRequestImpactStatistics': clientRequestImpactStatistics,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (groupARN != null) 'GroupARN': groupARN,
+      if (groupName != null) 'GroupName': groupName,
+      if (insightId != null) 'InsightId': insightId,
+      if (rootCauseServiceId != null) 'RootCauseServiceId': rootCauseServiceId,
+      if (rootCauseServiceRequestImpactStatistics != null)
+        'RootCauseServiceRequestImpactStatistics':
+            rootCauseServiceRequestImpactStatistics,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (state != null) 'State': state.toValue(),
+      if (summary != null) 'Summary': summary,
+      if (topAnomalousServices != null)
+        'TopAnomalousServices': topAnomalousServices,
+    };
+  }
 }
 
 enum InsightCategory {
@@ -2543,6 +3007,26 @@ class InsightEvent {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientRequestImpactStatistics = this.clientRequestImpactStatistics;
+    final eventTime = this.eventTime;
+    final rootCauseServiceRequestImpactStatistics =
+        this.rootCauseServiceRequestImpactStatistics;
+    final summary = this.summary;
+    final topAnomalousServices = this.topAnomalousServices;
+    return {
+      if (clientRequestImpactStatistics != null)
+        'ClientRequestImpactStatistics': clientRequestImpactStatistics,
+      if (eventTime != null) 'EventTime': unixTimestampToJson(eventTime),
+      if (rootCauseServiceRequestImpactStatistics != null)
+        'RootCauseServiceRequestImpactStatistics':
+            rootCauseServiceRequestImpactStatistics,
+      if (summary != null) 'Summary': summary,
+      if (topAnomalousServices != null)
+        'TopAnomalousServices': topAnomalousServices,
+    };
+  }
 }
 
 /// The connection between two service in an insight impact graph.
@@ -2557,6 +3041,13 @@ class InsightImpactGraphEdge {
     return InsightImpactGraphEdge(
       referenceId: json['ReferenceId'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final referenceId = this.referenceId;
+    return {
+      if (referenceId != null) 'ReferenceId': referenceId,
+    };
   }
 }
 
@@ -2627,6 +3118,23 @@ class InsightImpactGraphService {
       referenceId: json['ReferenceId'] as int?,
       type: json['Type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final edges = this.edges;
+    final name = this.name;
+    final names = this.names;
+    final referenceId = this.referenceId;
+    final type = this.type;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (edges != null) 'Edges': edges,
+      if (name != null) 'Name': name,
+      if (names != null) 'Names': names,
+      if (referenceId != null) 'ReferenceId': referenceId,
+      if (type != null) 'Type': type,
+    };
   }
 }
 
@@ -2750,6 +3258,44 @@ class InsightSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final categories = this.categories;
+    final clientRequestImpactStatistics = this.clientRequestImpactStatistics;
+    final endTime = this.endTime;
+    final groupARN = this.groupARN;
+    final groupName = this.groupName;
+    final insightId = this.insightId;
+    final lastUpdateTime = this.lastUpdateTime;
+    final rootCauseServiceId = this.rootCauseServiceId;
+    final rootCauseServiceRequestImpactStatistics =
+        this.rootCauseServiceRequestImpactStatistics;
+    final startTime = this.startTime;
+    final state = this.state;
+    final summary = this.summary;
+    final topAnomalousServices = this.topAnomalousServices;
+    return {
+      if (categories != null)
+        'Categories': categories.map((e) => e.toValue()).toList(),
+      if (clientRequestImpactStatistics != null)
+        'ClientRequestImpactStatistics': clientRequestImpactStatistics,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (groupARN != null) 'GroupARN': groupARN,
+      if (groupName != null) 'GroupName': groupName,
+      if (insightId != null) 'InsightId': insightId,
+      if (lastUpdateTime != null)
+        'LastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (rootCauseServiceId != null) 'RootCauseServiceId': rootCauseServiceId,
+      if (rootCauseServiceRequestImpactStatistics != null)
+        'RootCauseServiceRequestImpactStatistics':
+            rootCauseServiceRequestImpactStatistics,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (state != null) 'State': state.toValue(),
+      if (summary != null) 'Summary': summary,
+      if (topAnomalousServices != null)
+        'TopAnomalousServices': topAnomalousServices,
+    };
+  }
 }
 
 /// The structure containing configurations related to insights.
@@ -2798,6 +3344,13 @@ class InstanceIdDetail {
       id: json['Id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2823,6 +3376,15 @@ class ListTagsForResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class PutEncryptionConfigResult {
@@ -2840,12 +3402,23 @@ class PutEncryptionConfigResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final encryptionConfig = this.encryptionConfig;
+    return {
+      if (encryptionConfig != null) 'EncryptionConfig': encryptionConfig,
+    };
+  }
 }
 
 class PutTelemetryRecordsResult {
   PutTelemetryRecordsResult();
   factory PutTelemetryRecordsResult.fromJson(Map<String, dynamic> _) {
     return PutTelemetryRecordsResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2864,6 +3437,14 @@ class PutTraceSegmentsResult {
               UnprocessedTraceSegment.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedTraceSegments = this.unprocessedTraceSegments;
+    return {
+      if (unprocessedTraceSegments != null)
+        'UnprocessedTraceSegments': unprocessedTraceSegments,
+    };
   }
 }
 
@@ -2890,6 +3471,17 @@ class RequestImpactStatistics {
       totalCount: json['TotalCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final faultCount = this.faultCount;
+    final okCount = this.okCount;
+    final totalCount = this.totalCount;
+    return {
+      if (faultCount != null) 'FaultCount': faultCount,
+      if (okCount != null) 'OkCount': okCount,
+      if (totalCount != null) 'TotalCount': totalCount,
+    };
+  }
 }
 
 /// A list of resources ARNs corresponding to the segments in a trace.
@@ -2904,6 +3496,13 @@ class ResourceARNDetail {
     return ResourceARNDetail(
       arn: json['ARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'ARN': arn,
+    };
   }
 }
 
@@ -2930,6 +3529,15 @@ class ResponseTimeRootCause {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientImpacting = this.clientImpacting;
+    final services = this.services;
+    return {
+      if (clientImpacting != null) 'ClientImpacting': clientImpacting,
+      if (services != null) 'Services': services,
+    };
+  }
 }
 
 /// A collection of segments and corresponding subsegments associated to a
@@ -2955,6 +3563,17 @@ class ResponseTimeRootCauseEntity {
       name: json['Name'] as String?,
       remote: json['Remote'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final coverage = this.coverage;
+    final name = this.name;
+    final remote = this.remote;
+    return {
+      if (coverage != null) 'Coverage': coverage,
+      if (name != null) 'Name': name,
+      if (remote != null) 'Remote': remote,
+    };
   }
 }
 
@@ -3003,6 +3622,23 @@ class ResponseTimeRootCauseService {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final entityPath = this.entityPath;
+    final inferred = this.inferred;
+    final name = this.name;
+    final names = this.names;
+    final type = this.type;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (entityPath != null) 'EntityPath': entityPath,
+      if (inferred != null) 'Inferred': inferred,
+      if (name != null) 'Name': name,
+      if (names != null) 'Names': names,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 /// The exception associated with a root cause.
@@ -3022,6 +3658,15 @@ class RootCauseException {
       message: json['Message'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final name = this.name;
+    return {
+      if (message != null) 'Message': message,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -3169,6 +3814,17 @@ class SamplingRuleRecord {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final modifiedAt = this.modifiedAt;
+    final samplingRule = this.samplingRule;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (modifiedAt != null) 'ModifiedAt': unixTimestampToJson(modifiedAt),
+      if (samplingRule != null) 'SamplingRule': samplingRule,
+    };
+  }
 }
 
 /// A document specifying changes to a sampling rule's configuration.
@@ -3231,6 +3887,7 @@ class SamplingRuleUpdate {
     this.serviceType,
     this.uRLPath,
   });
+
   Map<String, dynamic> toJson() {
     final attributes = this.attributes;
     final fixedRate = this.fixedRate;
@@ -3295,6 +3952,21 @@ class SamplingStatisticSummary {
       timestamp: timeStampFromJson(json['Timestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final borrowCount = this.borrowCount;
+    final requestCount = this.requestCount;
+    final ruleName = this.ruleName;
+    final sampledCount = this.sampledCount;
+    final timestamp = this.timestamp;
+    return {
+      if (borrowCount != null) 'BorrowCount': borrowCount,
+      if (requestCount != null) 'RequestCount': requestCount,
+      if (ruleName != null) 'RuleName': ruleName,
+      if (sampledCount != null) 'SampledCount': sampledCount,
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+    };
+  }
 }
 
 /// Request sampling results for a single rule from a service. Results are for
@@ -3328,6 +4000,7 @@ class SamplingStatisticsDocument {
     required this.timestamp,
     this.borrowCount,
   });
+
   Map<String, dynamic> toJson() {
     final clientID = this.clientID;
     final requestCount = this.requestCount;
@@ -3358,6 +4031,7 @@ class SamplingStrategy {
     this.name,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -3434,6 +4108,22 @@ class SamplingTargetDocument {
       ruleName: json['RuleName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fixedRate = this.fixedRate;
+    final interval = this.interval;
+    final reservoirQuota = this.reservoirQuota;
+    final reservoirQuotaTTL = this.reservoirQuotaTTL;
+    final ruleName = this.ruleName;
+    return {
+      if (fixedRate != null) 'FixedRate': fixedRate,
+      if (interval != null) 'Interval': interval,
+      if (reservoirQuota != null) 'ReservoirQuota': reservoirQuota,
+      if (reservoirQuotaTTL != null)
+        'ReservoirQuotaTTL': unixTimestampToJson(reservoirQuotaTTL),
+      if (ruleName != null) 'RuleName': ruleName,
+    };
+  }
 }
 
 /// A segment from a trace that has been ingested by the X-Ray service. The
@@ -3462,6 +4152,15 @@ class Segment {
       document: json['Document'] as String?,
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final document = this.document;
+    final id = this.id;
+    return {
+      if (document != null) 'Document': document,
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -3576,6 +4275,38 @@ class Service {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final durationHistogram = this.durationHistogram;
+    final edges = this.edges;
+    final endTime = this.endTime;
+    final name = this.name;
+    final names = this.names;
+    final referenceId = this.referenceId;
+    final responseTimeHistogram = this.responseTimeHistogram;
+    final root = this.root;
+    final startTime = this.startTime;
+    final state = this.state;
+    final summaryStatistics = this.summaryStatistics;
+    final type = this.type;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (durationHistogram != null) 'DurationHistogram': durationHistogram,
+      if (edges != null) 'Edges': edges,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (name != null) 'Name': name,
+      if (names != null) 'Names': names,
+      if (referenceId != null) 'ReferenceId': referenceId,
+      if (responseTimeHistogram != null)
+        'ResponseTimeHistogram': responseTimeHistogram,
+      if (root != null) 'Root': root,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (state != null) 'State': state,
+      if (summaryStatistics != null) 'SummaryStatistics': summaryStatistics,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 /// <p/>
@@ -3608,6 +4339,19 @@ class ServiceId {
           .toList(),
       type: json['Type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final name = this.name;
+    final names = this.names;
+    final type = this.type;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (name != null) 'Name': name,
+      if (names != null) 'Names': names,
+      if (type != null) 'Type': type,
+    };
   }
 }
 
@@ -3649,6 +4393,21 @@ class ServiceStatistics {
       totalCount: json['TotalCount'] as int?,
       totalResponseTime: json['TotalResponseTime'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorStatistics = this.errorStatistics;
+    final faultStatistics = this.faultStatistics;
+    final okCount = this.okCount;
+    final totalCount = this.totalCount;
+    final totalResponseTime = this.totalResponseTime;
+    return {
+      if (errorStatistics != null) 'ErrorStatistics': errorStatistics,
+      if (faultStatistics != null) 'FaultStatistics': faultStatistics,
+      if (okCount != null) 'OkCount': okCount,
+      if (totalCount != null) 'TotalCount': totalCount,
+      if (totalResponseTime != null) 'TotalResponseTime': totalResponseTime,
+    };
   }
 }
 
@@ -3712,6 +4471,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// <p/>
@@ -3742,6 +4505,7 @@ class TelemetryRecord {
     this.segmentsSentCount,
     this.segmentsSpilloverCount,
   });
+
   Map<String, dynamic> toJson() {
     final timestamp = this.timestamp;
     final backendConnectionErrors = this.backendConnectionErrors;
@@ -3834,6 +4598,25 @@ class TimeSeriesServiceStatistics {
       timestamp: timeStampFromJson(json['Timestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final edgeSummaryStatistics = this.edgeSummaryStatistics;
+    final responseTimeHistogram = this.responseTimeHistogram;
+    final serviceForecastStatistics = this.serviceForecastStatistics;
+    final serviceSummaryStatistics = this.serviceSummaryStatistics;
+    final timestamp = this.timestamp;
+    return {
+      if (edgeSummaryStatistics != null)
+        'EdgeSummaryStatistics': edgeSummaryStatistics,
+      if (responseTimeHistogram != null)
+        'ResponseTimeHistogram': responseTimeHistogram,
+      if (serviceForecastStatistics != null)
+        'ServiceForecastStatistics': serviceForecastStatistics,
+      if (serviceSummaryStatistics != null)
+        'ServiceSummaryStatistics': serviceSummaryStatistics,
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+    };
+  }
 }
 
 /// A collection of segment documents with matching trace IDs.
@@ -3871,6 +4654,19 @@ class Trace {
           .map((e) => Segment.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final duration = this.duration;
+    final id = this.id;
+    final limitExceeded = this.limitExceeded;
+    final segments = this.segments;
+    return {
+      if (duration != null) 'Duration': duration,
+      if (id != null) 'Id': id,
+      if (limitExceeded != null) 'LimitExceeded': limitExceeded,
+      if (segments != null) 'Segments': segments,
+    };
   }
 }
 
@@ -4030,6 +4826,53 @@ class TraceSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final annotations = this.annotations;
+    final availabilityZones = this.availabilityZones;
+    final duration = this.duration;
+    final entryPoint = this.entryPoint;
+    final errorRootCauses = this.errorRootCauses;
+    final faultRootCauses = this.faultRootCauses;
+    final hasError = this.hasError;
+    final hasFault = this.hasFault;
+    final hasThrottle = this.hasThrottle;
+    final http = this.http;
+    final id = this.id;
+    final instanceIds = this.instanceIds;
+    final isPartial = this.isPartial;
+    final matchedEventTime = this.matchedEventTime;
+    final resourceARNs = this.resourceARNs;
+    final responseTime = this.responseTime;
+    final responseTimeRootCauses = this.responseTimeRootCauses;
+    final revision = this.revision;
+    final serviceIds = this.serviceIds;
+    final users = this.users;
+    return {
+      if (annotations != null) 'Annotations': annotations,
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (duration != null) 'Duration': duration,
+      if (entryPoint != null) 'EntryPoint': entryPoint,
+      if (errorRootCauses != null) 'ErrorRootCauses': errorRootCauses,
+      if (faultRootCauses != null) 'FaultRootCauses': faultRootCauses,
+      if (hasError != null) 'HasError': hasError,
+      if (hasFault != null) 'HasFault': hasFault,
+      if (hasThrottle != null) 'HasThrottle': hasThrottle,
+      if (http != null) 'Http': http,
+      if (id != null) 'Id': id,
+      if (instanceIds != null) 'InstanceIds': instanceIds,
+      if (isPartial != null) 'IsPartial': isPartial,
+      if (matchedEventTime != null)
+        'MatchedEventTime': unixTimestampToJson(matchedEventTime),
+      if (resourceARNs != null) 'ResourceARNs': resourceARNs,
+      if (responseTime != null) 'ResponseTime': responseTime,
+      if (responseTimeRootCauses != null)
+        'ResponseTimeRootCauses': responseTimeRootCauses,
+      if (revision != null) 'Revision': revision,
+      if (serviceIds != null) 'ServiceIds': serviceIds,
+      if (users != null) 'Users': users,
+    };
+  }
 }
 
 /// Information about a user recorded in segment documents.
@@ -4052,6 +4895,15 @@ class TraceUser {
           .toList(),
       userName: json['UserName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceIds = this.serviceIds;
+    final userName = this.userName;
+    return {
+      if (serviceIds != null) 'ServiceIds': serviceIds,
+      if (userName != null) 'UserName': userName,
+    };
   }
 }
 
@@ -4080,6 +4932,17 @@ class UnprocessedStatistics {
       ruleName: json['RuleName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final message = this.message;
+    final ruleName = this.ruleName;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (message != null) 'Message': message,
+      if (ruleName != null) 'RuleName': ruleName,
+    };
+  }
 }
 
 /// Information about a segment that failed processing.
@@ -4105,12 +4968,27 @@ class UnprocessedTraceSegment {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final id = this.id;
+    final message = this.message;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (id != null) 'Id': id,
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4130,6 +5008,13 @@ class UpdateGroupResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    return {
+      if (group != null) 'Group': group,
+    };
+  }
 }
 
 class UpdateSamplingRuleResult {
@@ -4146,6 +5031,13 @@ class UpdateSamplingRuleResult {
               json['SamplingRuleRecord'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final samplingRuleRecord = this.samplingRuleRecord;
+    return {
+      if (samplingRuleRecord != null) 'SamplingRuleRecord': samplingRuleRecord,
+    };
   }
 }
 
@@ -4172,6 +5064,15 @@ class ValueWithServiceIds {
           .map((e) => ServiceId.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final annotationValue = this.annotationValue;
+    final serviceIds = this.serviceIds;
+    return {
+      if (annotationValue != null) 'AnnotationValue': annotationValue,
+      if (serviceIds != null) 'ServiceIds': serviceIds,
+    };
   }
 }
 

@@ -677,6 +677,30 @@ class CreateDataIntegrationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final clientToken = this.clientToken;
+    final description = this.description;
+    final id = this.id;
+    final kmsKey = this.kmsKey;
+    final name = this.name;
+    final scheduleConfiguration = this.scheduleConfiguration;
+    final sourceURI = this.sourceURI;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (clientToken != null) 'ClientToken': clientToken,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (kmsKey != null) 'KmsKey': kmsKey,
+      if (name != null) 'Name': name,
+      if (scheduleConfiguration != null)
+        'ScheduleConfiguration': scheduleConfiguration,
+      if (sourceURI != null) 'SourceURI': sourceURI,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class CreateEventIntegrationResponse {
@@ -690,6 +714,14 @@ class CreateEventIntegrationResponse {
     return CreateEventIntegrationResponse(
       eventIntegrationArn: json['EventIntegrationArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventIntegrationArn = this.eventIntegrationArn;
+    return {
+      if (eventIntegrationArn != null)
+        'EventIntegrationArn': eventIntegrationArn,
+    };
   }
 }
 
@@ -719,6 +751,18 @@ class DataIntegrationAssociationSummary {
           json['DataIntegrationAssociationArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clientId = this.clientId;
+    final dataIntegrationArn = this.dataIntegrationArn;
+    final dataIntegrationAssociationArn = this.dataIntegrationAssociationArn;
+    return {
+      if (clientId != null) 'ClientId': clientId,
+      if (dataIntegrationArn != null) 'DataIntegrationArn': dataIntegrationArn,
+      if (dataIntegrationAssociationArn != null)
+        'DataIntegrationAssociationArn': dataIntegrationAssociationArn,
+    };
+  }
 }
 
 /// Summary information about the DataIntegration.
@@ -744,6 +788,17 @@ class DataIntegrationSummary {
       sourceURI: json['SourceURI'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final sourceURI = this.sourceURI;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+      if (sourceURI != null) 'SourceURI': sourceURI,
+    };
+  }
 }
 
 class DeleteDataIntegrationResponse {
@@ -751,12 +806,20 @@ class DeleteDataIntegrationResponse {
   factory DeleteDataIntegrationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDataIntegrationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteEventIntegrationResponse {
   DeleteEventIntegrationResponse();
   factory DeleteEventIntegrationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEventIntegrationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -823,6 +886,24 @@ class EventIntegration {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final eventBridgeBus = this.eventBridgeBus;
+    final eventFilter = this.eventFilter;
+    final eventIntegrationArn = this.eventIntegrationArn;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (eventBridgeBus != null) 'EventBridgeBus': eventBridgeBus,
+      if (eventFilter != null) 'EventFilter': eventFilter,
+      if (eventIntegrationArn != null)
+        'EventIntegrationArn': eventIntegrationArn,
+      if (name != null) 'Name': name,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// The event integration association.
@@ -866,6 +947,28 @@ class EventIntegrationAssociation {
           json['EventIntegrationAssociationId'] as String?,
       eventIntegrationName: json['EventIntegrationName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientAssociationMetadata = this.clientAssociationMetadata;
+    final clientId = this.clientId;
+    final eventBridgeRuleName = this.eventBridgeRuleName;
+    final eventIntegrationAssociationArn = this.eventIntegrationAssociationArn;
+    final eventIntegrationAssociationId = this.eventIntegrationAssociationId;
+    final eventIntegrationName = this.eventIntegrationName;
+    return {
+      if (clientAssociationMetadata != null)
+        'ClientAssociationMetadata': clientAssociationMetadata,
+      if (clientId != null) 'ClientId': clientId,
+      if (eventBridgeRuleName != null)
+        'EventBridgeRuleName': eventBridgeRuleName,
+      if (eventIntegrationAssociationArn != null)
+        'EventIntegrationAssociationArn': eventIntegrationAssociationArn,
+      if (eventIntegrationAssociationId != null)
+        'EventIntegrationAssociationId': eventIntegrationAssociationId,
+      if (eventIntegrationName != null)
+        'EventIntegrationName': eventIntegrationName,
+    };
   }
 }
 
@@ -920,6 +1023,28 @@ class GetDataIntegrationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final id = this.id;
+    final kmsKey = this.kmsKey;
+    final name = this.name;
+    final scheduleConfiguration = this.scheduleConfiguration;
+    final sourceURI = this.sourceURI;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (kmsKey != null) 'KmsKey': kmsKey,
+      if (name != null) 'Name': name,
+      if (scheduleConfiguration != null)
+        'ScheduleConfiguration': scheduleConfiguration,
+      if (sourceURI != null) 'SourceURI': sourceURI,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class GetEventIntegrationResponse {
@@ -962,6 +1087,24 @@ class GetEventIntegrationResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final eventBridgeBus = this.eventBridgeBus;
+    final eventFilter = this.eventFilter;
+    final eventIntegrationArn = this.eventIntegrationArn;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (eventBridgeBus != null) 'EventBridgeBus': eventBridgeBus,
+      if (eventFilter != null) 'EventFilter': eventFilter,
+      if (eventIntegrationArn != null)
+        'EventIntegrationArn': eventIntegrationArn,
+      if (name != null) 'Name': name,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class ListDataIntegrationAssociationsResponse {
@@ -989,6 +1132,16 @@ class ListDataIntegrationAssociationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataIntegrationAssociations = this.dataIntegrationAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (dataIntegrationAssociations != null)
+        'DataIntegrationAssociations': dataIntegrationAssociations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDataIntegrationsResponse {
@@ -1012,6 +1165,15 @@ class ListDataIntegrationsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataIntegrations = this.dataIntegrations;
+    final nextToken = this.nextToken;
+    return {
+      if (dataIntegrations != null) 'DataIntegrations': dataIntegrations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1039,6 +1201,16 @@ class ListEventIntegrationAssociationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventIntegrationAssociations = this.eventIntegrationAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (eventIntegrationAssociations != null)
+        'EventIntegrationAssociations': eventIntegrationAssociations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListEventIntegrationsResponse {
@@ -1062,6 +1234,15 @@ class ListEventIntegrationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventIntegrations = this.eventIntegrations;
+    final nextToken = this.nextToken;
+    return {
+      if (eventIntegrations != null) 'EventIntegrations': eventIntegrations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1076,6 +1257,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1120,12 +1308,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1134,12 +1330,20 @@ class UpdateDataIntegrationResponse {
   factory UpdateDataIntegrationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDataIntegrationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateEventIntegrationResponse {
   UpdateEventIntegrationResponse();
   factory UpdateEventIntegrationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateEventIntegrationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

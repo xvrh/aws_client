@@ -1341,6 +1341,15 @@ class ActivityFailedEventDetails {
       error: json['error'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cause = this.cause;
+    final error = this.error;
+    return {
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+    };
+  }
 }
 
 /// Contains details about an activity.
@@ -1389,6 +1398,17 @@ class ActivityListItem {
       name: json['name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activityArn = this.activityArn;
+    final creationDate = this.creationDate;
+    final name = this.name;
+    return {
+      'activityArn': activityArn,
+      'creationDate': unixTimestampToJson(creationDate),
+      'name': name,
+    };
+  }
 }
 
 /// Contains details about an activity schedule failure that occurred during an
@@ -1410,6 +1430,15 @@ class ActivityScheduleFailedEventDetails {
       cause: json['cause'] as String?,
       error: json['error'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cause = this.cause;
+    final error = this.error;
+    return {
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+    };
   }
 }
 
@@ -1450,6 +1479,21 @@ class ActivityScheduledEventDetails {
       timeoutInSeconds: json['timeoutInSeconds'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resource = this.resource;
+    final heartbeatInSeconds = this.heartbeatInSeconds;
+    final input = this.input;
+    final inputDetails = this.inputDetails;
+    final timeoutInSeconds = this.timeoutInSeconds;
+    return {
+      'resource': resource,
+      if (heartbeatInSeconds != null) 'heartbeatInSeconds': heartbeatInSeconds,
+      if (input != null) 'input': input,
+      if (inputDetails != null) 'inputDetails': inputDetails,
+      if (timeoutInSeconds != null) 'timeoutInSeconds': timeoutInSeconds,
+    };
+  }
 }
 
 /// Contains details about the start of an activity during an execution.
@@ -1465,6 +1509,13 @@ class ActivityStartedEventDetails {
     return ActivityStartedEventDetails(
       workerName: json['workerName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workerName = this.workerName;
+    return {
+      if (workerName != null) 'workerName': workerName,
+    };
   }
 }
 
@@ -1491,6 +1542,15 @@ class ActivitySucceededEventDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final output = this.output;
+    final outputDetails = this.outputDetails;
+    return {
+      if (output != null) 'output': output,
+      if (outputDetails != null) 'outputDetails': outputDetails,
+    };
+  }
 }
 
 /// Contains details about an activity timeout that occurred during an
@@ -1511,6 +1571,15 @@ class ActivityTimedOutEventDetails {
       cause: json['cause'] as String?,
       error: json['error'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cause = this.cause;
+    final error = this.error;
+    return {
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+    };
   }
 }
 
@@ -1533,6 +1602,17 @@ class BillingDetails {
       billedMemoryUsedInMB: json['billedMemoryUsedInMB'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final billedDurationInMilliseconds = this.billedDurationInMilliseconds;
+    final billedMemoryUsedInMB = this.billedMemoryUsedInMB;
+    return {
+      if (billedDurationInMilliseconds != null)
+        'billedDurationInMilliseconds': billedDurationInMilliseconds,
+      if (billedMemoryUsedInMB != null)
+        'billedMemoryUsedInMB': billedMemoryUsedInMB,
+    };
+  }
 }
 
 /// Provides details about execution input or output.
@@ -1549,6 +1629,13 @@ class CloudWatchEventsExecutionDataDetails {
     return CloudWatchEventsExecutionDataDetails(
       included: json['included'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final included = this.included;
+    return {
+      if (included != null) 'included': included,
+    };
   }
 }
 
@@ -1593,6 +1680,15 @@ class CreateActivityOutput {
           nonNullableTimeStampFromJson(json['creationDate'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activityArn = this.activityArn;
+    final creationDate = this.creationDate;
+    return {
+      'activityArn': activityArn,
+      'creationDate': unixTimestampToJson(creationDate),
+    };
+  }
 }
 
 class CreateStateMachineOutput {
@@ -1613,6 +1709,15 @@ class CreateStateMachineOutput {
       stateMachineArn: json['stateMachineArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final stateMachineArn = this.stateMachineArn;
+    return {
+      'creationDate': unixTimestampToJson(creationDate),
+      'stateMachineArn': stateMachineArn,
+    };
+  }
 }
 
 class DeleteActivityOutput {
@@ -1620,12 +1725,20 @@ class DeleteActivityOutput {
   factory DeleteActivityOutput.fromJson(Map<String, dynamic> _) {
     return DeleteActivityOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteStateMachineOutput {
   DeleteStateMachineOutput();
   factory DeleteStateMachineOutput.fromJson(Map<String, dynamic> _) {
     return DeleteStateMachineOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1673,6 +1786,17 @@ class DescribeActivityOutput {
           nonNullableTimeStampFromJson(json['creationDate'] as Object),
       name: json['name'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activityArn = this.activityArn;
+    final creationDate = this.creationDate;
+    final name = this.name;
+    return {
+      'activityArn': activityArn,
+      'creationDate': unixTimestampToJson(creationDate),
+      'name': name,
+    };
   }
 }
 
@@ -1769,6 +1893,33 @@ class DescribeExecutionOutput {
       traceHeader: json['traceHeader'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionArn = this.executionArn;
+    final startDate = this.startDate;
+    final stateMachineArn = this.stateMachineArn;
+    final status = this.status;
+    final input = this.input;
+    final inputDetails = this.inputDetails;
+    final name = this.name;
+    final output = this.output;
+    final outputDetails = this.outputDetails;
+    final stopDate = this.stopDate;
+    final traceHeader = this.traceHeader;
+    return {
+      'executionArn': executionArn,
+      'startDate': unixTimestampToJson(startDate),
+      'stateMachineArn': stateMachineArn,
+      'status': status.toValue(),
+      if (input != null) 'input': input,
+      if (inputDetails != null) 'inputDetails': inputDetails,
+      if (name != null) 'name': name,
+      if (output != null) 'output': output,
+      if (outputDetails != null) 'outputDetails': outputDetails,
+      if (stopDate != null) 'stopDate': unixTimestampToJson(stopDate),
+      if (traceHeader != null) 'traceHeader': traceHeader,
+    };
+  }
 }
 
 class DescribeStateMachineForExecutionOutput {
@@ -1822,6 +1973,27 @@ class DescribeStateMachineForExecutionOutput {
               json['tracingConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final definition = this.definition;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    final stateMachineArn = this.stateMachineArn;
+    final updateDate = this.updateDate;
+    final loggingConfiguration = this.loggingConfiguration;
+    final tracingConfiguration = this.tracingConfiguration;
+    return {
+      'definition': definition,
+      'name': name,
+      'roleArn': roleArn,
+      'stateMachineArn': stateMachineArn,
+      'updateDate': unixTimestampToJson(updateDate),
+      if (loggingConfiguration != null)
+        'loggingConfiguration': loggingConfiguration,
+      if (tracingConfiguration != null)
+        'tracingConfiguration': tracingConfiguration,
+    };
   }
 }
 
@@ -1909,6 +2081,31 @@ class DescribeStateMachineOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final definition = this.definition;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    final stateMachineArn = this.stateMachineArn;
+    final type = this.type;
+    final loggingConfiguration = this.loggingConfiguration;
+    final status = this.status;
+    final tracingConfiguration = this.tracingConfiguration;
+    return {
+      'creationDate': unixTimestampToJson(creationDate),
+      'definition': definition,
+      'name': name,
+      'roleArn': roleArn,
+      'stateMachineArn': stateMachineArn,
+      'type': type.toValue(),
+      if (loggingConfiguration != null)
+        'loggingConfiguration': loggingConfiguration,
+      if (status != null) 'status': status.toValue(),
+      if (tracingConfiguration != null)
+        'tracingConfiguration': tracingConfiguration,
+    };
+  }
 }
 
 /// Contains details about an abort of an execution.
@@ -1929,6 +2126,15 @@ class ExecutionAbortedEventDetails {
       error: json['error'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cause = this.cause;
+    final error = this.error;
+    return {
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+    };
+  }
 }
 
 /// Contains details about an execution failure event.
@@ -1948,6 +2154,15 @@ class ExecutionFailedEventDetails {
       cause: json['cause'] as String?,
       error: json['error'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cause = this.cause;
+    final error = this.error;
+    return {
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+    };
   }
 }
 
@@ -2011,6 +2226,23 @@ class ExecutionListItem {
       stopDate: timeStampFromJson(json['stopDate']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionArn = this.executionArn;
+    final name = this.name;
+    final startDate = this.startDate;
+    final stateMachineArn = this.stateMachineArn;
+    final status = this.status;
+    final stopDate = this.stopDate;
+    return {
+      'executionArn': executionArn,
+      'name': name,
+      'startDate': unixTimestampToJson(startDate),
+      'stateMachineArn': stateMachineArn,
+      'status': status.toValue(),
+      if (stopDate != null) 'stopDate': unixTimestampToJson(stopDate),
+    };
+  }
 }
 
 /// Contains details about the start of the execution.
@@ -2040,6 +2272,17 @@ class ExecutionStartedEventDetails {
           : null,
       roleArn: json['roleArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final input = this.input;
+    final inputDetails = this.inputDetails;
+    final roleArn = this.roleArn;
+    return {
+      if (input != null) 'input': input,
+      if (inputDetails != null) 'inputDetails': inputDetails,
+      if (roleArn != null) 'roleArn': roleArn,
+    };
   }
 }
 
@@ -2108,6 +2351,15 @@ class ExecutionSucceededEventDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final output = this.output;
+    final outputDetails = this.outputDetails;
+    return {
+      if (output != null) 'output': output,
+      if (outputDetails != null) 'outputDetails': outputDetails,
+    };
+  }
 }
 
 /// Contains details about the execution timeout that occurred during the
@@ -2128,6 +2380,15 @@ class ExecutionTimedOutEventDetails {
       cause: json['cause'] as String?,
       error: json['error'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cause = this.cause;
+    final error = this.error;
+    return {
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+    };
   }
 }
 
@@ -2152,6 +2413,15 @@ class GetActivityTaskOutput {
       input: json['input'] as String?,
       taskToken: json['taskToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final input = this.input;
+    final taskToken = this.taskToken;
+    return {
+      if (input != null) 'input': input,
+      if (taskToken != null) 'taskToken': taskToken,
+    };
   }
 }
 
@@ -2179,6 +2449,15 @@ class GetExecutionHistoryOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextToken = this.nextToken;
+    return {
+      'events': events,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2466,6 +2745,131 @@ class HistoryEvent {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final timestamp = this.timestamp;
+    final type = this.type;
+    final activityFailedEventDetails = this.activityFailedEventDetails;
+    final activityScheduleFailedEventDetails =
+        this.activityScheduleFailedEventDetails;
+    final activityScheduledEventDetails = this.activityScheduledEventDetails;
+    final activityStartedEventDetails = this.activityStartedEventDetails;
+    final activitySucceededEventDetails = this.activitySucceededEventDetails;
+    final activityTimedOutEventDetails = this.activityTimedOutEventDetails;
+    final executionAbortedEventDetails = this.executionAbortedEventDetails;
+    final executionFailedEventDetails = this.executionFailedEventDetails;
+    final executionStartedEventDetails = this.executionStartedEventDetails;
+    final executionSucceededEventDetails = this.executionSucceededEventDetails;
+    final executionTimedOutEventDetails = this.executionTimedOutEventDetails;
+    final lambdaFunctionFailedEventDetails =
+        this.lambdaFunctionFailedEventDetails;
+    final lambdaFunctionScheduleFailedEventDetails =
+        this.lambdaFunctionScheduleFailedEventDetails;
+    final lambdaFunctionScheduledEventDetails =
+        this.lambdaFunctionScheduledEventDetails;
+    final lambdaFunctionStartFailedEventDetails =
+        this.lambdaFunctionStartFailedEventDetails;
+    final lambdaFunctionSucceededEventDetails =
+        this.lambdaFunctionSucceededEventDetails;
+    final lambdaFunctionTimedOutEventDetails =
+        this.lambdaFunctionTimedOutEventDetails;
+    final mapIterationAbortedEventDetails =
+        this.mapIterationAbortedEventDetails;
+    final mapIterationFailedEventDetails = this.mapIterationFailedEventDetails;
+    final mapIterationStartedEventDetails =
+        this.mapIterationStartedEventDetails;
+    final mapIterationSucceededEventDetails =
+        this.mapIterationSucceededEventDetails;
+    final mapStateStartedEventDetails = this.mapStateStartedEventDetails;
+    final previousEventId = this.previousEventId;
+    final stateEnteredEventDetails = this.stateEnteredEventDetails;
+    final stateExitedEventDetails = this.stateExitedEventDetails;
+    final taskFailedEventDetails = this.taskFailedEventDetails;
+    final taskScheduledEventDetails = this.taskScheduledEventDetails;
+    final taskStartFailedEventDetails = this.taskStartFailedEventDetails;
+    final taskStartedEventDetails = this.taskStartedEventDetails;
+    final taskSubmitFailedEventDetails = this.taskSubmitFailedEventDetails;
+    final taskSubmittedEventDetails = this.taskSubmittedEventDetails;
+    final taskSucceededEventDetails = this.taskSucceededEventDetails;
+    final taskTimedOutEventDetails = this.taskTimedOutEventDetails;
+    return {
+      'id': id,
+      'timestamp': unixTimestampToJson(timestamp),
+      'type': type.toValue(),
+      if (activityFailedEventDetails != null)
+        'activityFailedEventDetails': activityFailedEventDetails,
+      if (activityScheduleFailedEventDetails != null)
+        'activityScheduleFailedEventDetails':
+            activityScheduleFailedEventDetails,
+      if (activityScheduledEventDetails != null)
+        'activityScheduledEventDetails': activityScheduledEventDetails,
+      if (activityStartedEventDetails != null)
+        'activityStartedEventDetails': activityStartedEventDetails,
+      if (activitySucceededEventDetails != null)
+        'activitySucceededEventDetails': activitySucceededEventDetails,
+      if (activityTimedOutEventDetails != null)
+        'activityTimedOutEventDetails': activityTimedOutEventDetails,
+      if (executionAbortedEventDetails != null)
+        'executionAbortedEventDetails': executionAbortedEventDetails,
+      if (executionFailedEventDetails != null)
+        'executionFailedEventDetails': executionFailedEventDetails,
+      if (executionStartedEventDetails != null)
+        'executionStartedEventDetails': executionStartedEventDetails,
+      if (executionSucceededEventDetails != null)
+        'executionSucceededEventDetails': executionSucceededEventDetails,
+      if (executionTimedOutEventDetails != null)
+        'executionTimedOutEventDetails': executionTimedOutEventDetails,
+      if (lambdaFunctionFailedEventDetails != null)
+        'lambdaFunctionFailedEventDetails': lambdaFunctionFailedEventDetails,
+      if (lambdaFunctionScheduleFailedEventDetails != null)
+        'lambdaFunctionScheduleFailedEventDetails':
+            lambdaFunctionScheduleFailedEventDetails,
+      if (lambdaFunctionScheduledEventDetails != null)
+        'lambdaFunctionScheduledEventDetails':
+            lambdaFunctionScheduledEventDetails,
+      if (lambdaFunctionStartFailedEventDetails != null)
+        'lambdaFunctionStartFailedEventDetails':
+            lambdaFunctionStartFailedEventDetails,
+      if (lambdaFunctionSucceededEventDetails != null)
+        'lambdaFunctionSucceededEventDetails':
+            lambdaFunctionSucceededEventDetails,
+      if (lambdaFunctionTimedOutEventDetails != null)
+        'lambdaFunctionTimedOutEventDetails':
+            lambdaFunctionTimedOutEventDetails,
+      if (mapIterationAbortedEventDetails != null)
+        'mapIterationAbortedEventDetails': mapIterationAbortedEventDetails,
+      if (mapIterationFailedEventDetails != null)
+        'mapIterationFailedEventDetails': mapIterationFailedEventDetails,
+      if (mapIterationStartedEventDetails != null)
+        'mapIterationStartedEventDetails': mapIterationStartedEventDetails,
+      if (mapIterationSucceededEventDetails != null)
+        'mapIterationSucceededEventDetails': mapIterationSucceededEventDetails,
+      if (mapStateStartedEventDetails != null)
+        'mapStateStartedEventDetails': mapStateStartedEventDetails,
+      if (previousEventId != null) 'previousEventId': previousEventId,
+      if (stateEnteredEventDetails != null)
+        'stateEnteredEventDetails': stateEnteredEventDetails,
+      if (stateExitedEventDetails != null)
+        'stateExitedEventDetails': stateExitedEventDetails,
+      if (taskFailedEventDetails != null)
+        'taskFailedEventDetails': taskFailedEventDetails,
+      if (taskScheduledEventDetails != null)
+        'taskScheduledEventDetails': taskScheduledEventDetails,
+      if (taskStartFailedEventDetails != null)
+        'taskStartFailedEventDetails': taskStartFailedEventDetails,
+      if (taskStartedEventDetails != null)
+        'taskStartedEventDetails': taskStartedEventDetails,
+      if (taskSubmitFailedEventDetails != null)
+        'taskSubmitFailedEventDetails': taskSubmitFailedEventDetails,
+      if (taskSubmittedEventDetails != null)
+        'taskSubmittedEventDetails': taskSubmittedEventDetails,
+      if (taskSucceededEventDetails != null)
+        'taskSucceededEventDetails': taskSucceededEventDetails,
+      if (taskTimedOutEventDetails != null)
+        'taskTimedOutEventDetails': taskTimedOutEventDetails,
+    };
+  }
 }
 
 /// Provides details about input or output in an execution history event.
@@ -2481,6 +2885,13 @@ class HistoryEventExecutionDataDetails {
     return HistoryEventExecutionDataDetails(
       truncated: json['truncated'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final truncated = this.truncated;
+    return {
+      if (truncated != null) 'truncated': truncated,
+    };
   }
 }
 
@@ -2795,6 +3206,15 @@ class LambdaFunctionFailedEventDetails {
       error: json['error'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cause = this.cause;
+    final error = this.error;
+    return {
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+    };
+  }
 }
 
 /// Contains details about a failed lambda function schedule event that occurred
@@ -2816,6 +3236,15 @@ class LambdaFunctionScheduleFailedEventDetails {
       cause: json['cause'] as String?,
       error: json['error'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cause = this.cause;
+    final error = this.error;
+    return {
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+    };
   }
 }
 
@@ -2852,6 +3281,19 @@ class LambdaFunctionScheduledEventDetails {
       timeoutInSeconds: json['timeoutInSeconds'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resource = this.resource;
+    final input = this.input;
+    final inputDetails = this.inputDetails;
+    final timeoutInSeconds = this.timeoutInSeconds;
+    return {
+      'resource': resource,
+      if (input != null) 'input': input,
+      if (inputDetails != null) 'inputDetails': inputDetails,
+      if (timeoutInSeconds != null) 'timeoutInSeconds': timeoutInSeconds,
+    };
+  }
 }
 
 /// Contains details about a lambda function that failed to start during an
@@ -2873,6 +3315,15 @@ class LambdaFunctionStartFailedEventDetails {
       cause: json['cause'] as String?,
       error: json['error'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cause = this.cause;
+    final error = this.error;
+    return {
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+    };
   }
 }
 
@@ -2900,6 +3351,15 @@ class LambdaFunctionSucceededEventDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final output = this.output;
+    final outputDetails = this.outputDetails;
+    return {
+      if (output != null) 'output': output,
+      if (outputDetails != null) 'outputDetails': outputDetails,
+    };
+  }
 }
 
 /// Contains details about a lambda function timeout that occurred during an
@@ -2921,6 +3381,15 @@ class LambdaFunctionTimedOutEventDetails {
       cause: json['cause'] as String?,
       error: json['error'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cause = this.cause;
+    final error = this.error;
+    return {
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+    };
   }
 }
 
@@ -2949,6 +3418,15 @@ class ListActivitiesOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activities = this.activities;
+    final nextToken = this.nextToken;
+    return {
+      'activities': activities,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListExecutionsOutput {
@@ -2976,6 +3454,15 @@ class ListExecutionsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executions = this.executions;
+    final nextToken = this.nextToken;
+    return {
+      'executions': executions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListStateMachinesOutput {
@@ -3002,6 +3489,15 @@ class ListStateMachinesOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stateMachines = this.stateMachines;
+    final nextToken = this.nextToken;
+    return {
+      'stateMachines': stateMachines,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceOutput {
@@ -3018,6 +3514,13 @@ class ListTagsForResourceOutput {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3149,6 +3652,15 @@ class MapIterationEventDetails {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final index = this.index;
+    final name = this.name;
+    return {
+      if (index != null) 'index': index,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// Details about a Map state that was started.
@@ -3164,12 +3676,23 @@ class MapStateStartedEventDetails {
       length: json['length'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final length = this.length;
+    return {
+      if (length != null) 'length': length,
+    };
+  }
 }
 
 class SendTaskFailureOutput {
   SendTaskFailureOutput();
   factory SendTaskFailureOutput.fromJson(Map<String, dynamic> _) {
     return SendTaskFailureOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3178,12 +3701,20 @@ class SendTaskHeartbeatOutput {
   factory SendTaskHeartbeatOutput.fromJson(Map<String, dynamic> _) {
     return SendTaskHeartbeatOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class SendTaskSuccessOutput {
   SendTaskSuccessOutput();
   factory SendTaskSuccessOutput.fromJson(Map<String, dynamic> _) {
     return SendTaskSuccessOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3203,6 +3734,15 @@ class StartExecutionOutput {
       executionArn: json['executionArn'] as String,
       startDate: nonNullableTimeStampFromJson(json['startDate'] as Object),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final executionArn = this.executionArn;
+    final startDate = this.startDate;
+    return {
+      'executionArn': executionArn,
+      'startDate': unixTimestampToJson(startDate),
+    };
   }
 }
 
@@ -3296,6 +3836,39 @@ class StartSyncExecutionOutput {
       traceHeader: json['traceHeader'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionArn = this.executionArn;
+    final startDate = this.startDate;
+    final status = this.status;
+    final stopDate = this.stopDate;
+    final billingDetails = this.billingDetails;
+    final cause = this.cause;
+    final error = this.error;
+    final input = this.input;
+    final inputDetails = this.inputDetails;
+    final name = this.name;
+    final output = this.output;
+    final outputDetails = this.outputDetails;
+    final stateMachineArn = this.stateMachineArn;
+    final traceHeader = this.traceHeader;
+    return {
+      'executionArn': executionArn,
+      'startDate': unixTimestampToJson(startDate),
+      'status': status.toValue(),
+      'stopDate': unixTimestampToJson(stopDate),
+      if (billingDetails != null) 'billingDetails': billingDetails,
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+      if (input != null) 'input': input,
+      if (inputDetails != null) 'inputDetails': inputDetails,
+      if (name != null) 'name': name,
+      if (output != null) 'output': output,
+      if (outputDetails != null) 'outputDetails': outputDetails,
+      if (stateMachineArn != null) 'stateMachineArn': stateMachineArn,
+      if (traceHeader != null) 'traceHeader': traceHeader,
+    };
+  }
 }
 
 /// Contains details about a state entered during an execution.
@@ -3325,6 +3898,17 @@ class StateEnteredEventDetails {
               json['inputDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final input = this.input;
+    final inputDetails = this.inputDetails;
+    return {
+      'name': name,
+      if (input != null) 'input': input,
+      if (inputDetails != null) 'inputDetails': inputDetails,
+    };
   }
 }
 
@@ -3376,6 +3960,17 @@ class StateExitedEventDetails {
               json['outputDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final output = this.output;
+    final outputDetails = this.outputDetails;
+    return {
+      'name': name,
+      if (output != null) 'output': output,
+      if (outputDetails != null) 'outputDetails': outputDetails,
+    };
   }
 }
 
@@ -3429,6 +4024,19 @@ class StateMachineListItem {
       stateMachineArn: json['stateMachineArn'] as String,
       type: (json['type'] as String).toStateMachineType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final name = this.name;
+    final stateMachineArn = this.stateMachineArn;
+    final type = this.type;
+    return {
+      'creationDate': unixTimestampToJson(creationDate),
+      'name': name,
+      'stateMachineArn': stateMachineArn,
+      'type': type.toValue(),
+    };
   }
 }
 
@@ -3499,6 +4107,13 @@ class StopExecutionOutput {
     return StopExecutionOutput(
       stopDate: nonNullableTimeStampFromJson(json['stopDate'] as Object),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stopDate = this.stopDate;
+    return {
+      'stopDate': unixTimestampToJson(stopDate),
+    };
   }
 }
 
@@ -3580,6 +4195,10 @@ class TagResourceOutput {
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains details about a task failure event.
@@ -3609,6 +4228,19 @@ class TaskFailedEventDetails {
       cause: json['cause'] as String?,
       error: json['error'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resource = this.resource;
+    final resourceType = this.resourceType;
+    final cause = this.cause;
+    final error = this.error;
+    return {
+      'resource': resource,
+      'resourceType': resourceType,
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+    };
   }
 }
 
@@ -3652,6 +4284,23 @@ class TaskScheduledEventDetails {
       timeoutInSeconds: json['timeoutInSeconds'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final parameters = this.parameters;
+    final region = this.region;
+    final resource = this.resource;
+    final resourceType = this.resourceType;
+    final heartbeatInSeconds = this.heartbeatInSeconds;
+    final timeoutInSeconds = this.timeoutInSeconds;
+    return {
+      'parameters': parameters,
+      'region': region,
+      'resource': resource,
+      'resourceType': resourceType,
+      if (heartbeatInSeconds != null) 'heartbeatInSeconds': heartbeatInSeconds,
+      if (timeoutInSeconds != null) 'timeoutInSeconds': timeoutInSeconds,
+    };
+  }
 }
 
 /// Contains details about a task that failed to start during an execution.
@@ -3682,6 +4331,19 @@ class TaskStartFailedEventDetails {
       error: json['error'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resource = this.resource;
+    final resourceType = this.resourceType;
+    final cause = this.cause;
+    final error = this.error;
+    return {
+      'resource': resource,
+      'resourceType': resourceType,
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+    };
+  }
 }
 
 /// Contains details about the start of a task during an execution.
@@ -3701,6 +4363,15 @@ class TaskStartedEventDetails {
       resource: json['resource'] as String,
       resourceType: json['resourceType'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resource = this.resource;
+    final resourceType = this.resourceType;
+    return {
+      'resource': resource,
+      'resourceType': resourceType,
+    };
   }
 }
 
@@ -3731,6 +4402,19 @@ class TaskSubmitFailedEventDetails {
       cause: json['cause'] as String?,
       error: json['error'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resource = this.resource;
+    final resourceType = this.resourceType;
+    final cause = this.cause;
+    final error = this.error;
+    return {
+      'resource': resource,
+      'resourceType': resourceType,
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+    };
   }
 }
 
@@ -3765,6 +4449,19 @@ class TaskSubmittedEventDetails {
               json['outputDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resource = this.resource;
+    final resourceType = this.resourceType;
+    final output = this.output;
+    final outputDetails = this.outputDetails;
+    return {
+      'resource': resource,
+      'resourceType': resourceType,
+      if (output != null) 'output': output,
+      if (outputDetails != null) 'outputDetails': outputDetails,
+    };
   }
 }
 
@@ -3801,6 +4498,19 @@ class TaskSucceededEventDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resource = this.resource;
+    final resourceType = this.resourceType;
+    final output = this.output;
+    final outputDetails = this.outputDetails;
+    return {
+      'resource': resource,
+      'resourceType': resourceType,
+      if (output != null) 'output': output,
+      if (outputDetails != null) 'outputDetails': outputDetails,
+    };
+  }
 }
 
 /// Contains details about a resource timeout that occurred during an execution.
@@ -3830,6 +4540,19 @@ class TaskTimedOutEventDetails {
       cause: json['cause'] as String?,
       error: json['error'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resource = this.resource;
+    final resourceType = this.resourceType;
+    final cause = this.cause;
+    final error = this.error;
+    return {
+      'resource': resource,
+      'resourceType': resourceType,
+      if (cause != null) 'cause': cause,
+      if (error != null) 'error': error,
+    };
   }
 }
 
@@ -3861,6 +4584,10 @@ class UntagResourceOutput {
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateStateMachineOutput {
@@ -3874,6 +4601,13 @@ class UpdateStateMachineOutput {
     return UpdateStateMachineOutput(
       updateDate: nonNullableTimeStampFromJson(json['updateDate'] as Object),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final updateDate = this.updateDate;
+    return {
+      'updateDate': unixTimestampToJson(updateDate),
+    };
   }
 }
 

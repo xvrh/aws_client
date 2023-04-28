@@ -3944,6 +3944,13 @@ class AcceptAttachmentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachment = this.attachment;
+    return {
+      if (attachment != null) 'Attachment': attachment,
+    };
+  }
 }
 
 /// Describes the current status of an account within an Amazon Web Services
@@ -3965,6 +3972,16 @@ class AccountStatus {
       sLRDeploymentStatus: json['SLRDeploymentStatus'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final sLRDeploymentStatus = this.sLRDeploymentStatus;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (sLRDeploymentStatus != null)
+        'SLRDeploymentStatus': sLRDeploymentStatus,
+    };
+  }
 }
 
 class AssociateConnectPeerResponse {
@@ -3981,6 +3998,14 @@ class AssociateConnectPeerResponse {
               json['ConnectPeerAssociation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectPeerAssociation = this.connectPeerAssociation;
+    return {
+      if (connectPeerAssociation != null)
+        'ConnectPeerAssociation': connectPeerAssociation,
+    };
   }
 }
 
@@ -3999,6 +4024,14 @@ class AssociateCustomerGatewayResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customerGatewayAssociation = this.customerGatewayAssociation;
+    return {
+      if (customerGatewayAssociation != null)
+        'CustomerGatewayAssociation': customerGatewayAssociation,
+    };
+  }
 }
 
 class AssociateLinkResponse {
@@ -4015,6 +4048,13 @@ class AssociateLinkResponse {
               json['LinkAssociation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final linkAssociation = this.linkAssociation;
+    return {
+      if (linkAssociation != null) 'LinkAssociation': linkAssociation,
+    };
   }
 }
 
@@ -4036,6 +4076,16 @@ class AssociateTransitGatewayConnectPeerResponse {
                       as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayConnectPeerAssociation =
+        this.transitGatewayConnectPeerAssociation;
+    return {
+      if (transitGatewayConnectPeerAssociation != null)
+        'TransitGatewayConnectPeerAssociation':
+            transitGatewayConnectPeerAssociation,
+    };
   }
 }
 
@@ -4122,6 +4172,41 @@ class Attachment {
           .toList(),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachmentId = this.attachmentId;
+    final attachmentPolicyRuleNumber = this.attachmentPolicyRuleNumber;
+    final attachmentType = this.attachmentType;
+    final coreNetworkArn = this.coreNetworkArn;
+    final coreNetworkId = this.coreNetworkId;
+    final createdAt = this.createdAt;
+    final edgeLocation = this.edgeLocation;
+    final ownerAccountId = this.ownerAccountId;
+    final proposedSegmentChange = this.proposedSegmentChange;
+    final resourceArn = this.resourceArn;
+    final segmentName = this.segmentName;
+    final state = this.state;
+    final tags = this.tags;
+    final updatedAt = this.updatedAt;
+    return {
+      if (attachmentId != null) 'AttachmentId': attachmentId,
+      if (attachmentPolicyRuleNumber != null)
+        'AttachmentPolicyRuleNumber': attachmentPolicyRuleNumber,
+      if (attachmentType != null) 'AttachmentType': attachmentType.toValue(),
+      if (coreNetworkArn != null) 'CoreNetworkArn': coreNetworkArn,
+      if (coreNetworkId != null) 'CoreNetworkId': coreNetworkId,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (edgeLocation != null) 'EdgeLocation': edgeLocation,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (proposedSegmentChange != null)
+        'ProposedSegmentChange': proposedSegmentChange,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (segmentName != null) 'SegmentName': segmentName,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
   }
 }
 
@@ -4263,6 +4348,7 @@ class BgpOptions {
   BgpOptions({
     this.peerAsn,
   });
+
   Map<String, dynamic> toJson() {
     final peerAsn = this.peerAsn;
     return {
@@ -4481,6 +4567,18 @@ class ConnectAttachment {
       transportAttachmentId: json['TransportAttachmentId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachment = this.attachment;
+    final options = this.options;
+    final transportAttachmentId = this.transportAttachmentId;
+    return {
+      if (attachment != null) 'Attachment': attachment,
+      if (options != null) 'Options': options,
+      if (transportAttachmentId != null)
+        'TransportAttachmentId': transportAttachmentId,
+    };
+  }
 }
 
 /// Describes a core network Connect attachment options.
@@ -4559,6 +4657,28 @@ class ConnectPeer {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    final connectAttachmentId = this.connectAttachmentId;
+    final connectPeerId = this.connectPeerId;
+    final coreNetworkId = this.coreNetworkId;
+    final createdAt = this.createdAt;
+    final edgeLocation = this.edgeLocation;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (configuration != null) 'Configuration': configuration,
+      if (connectAttachmentId != null)
+        'ConnectAttachmentId': connectAttachmentId,
+      if (connectPeerId != null) 'ConnectPeerId': connectPeerId,
+      if (coreNetworkId != null) 'CoreNetworkId': coreNetworkId,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (edgeLocation != null) 'EdgeLocation': edgeLocation,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Describes a core network Connect peer association.
@@ -4593,6 +4713,21 @@ class ConnectPeerAssociation {
       linkId: json['LinkId'] as String?,
       state: (json['State'] as String?)?.toConnectPeerAssociationState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectPeerId = this.connectPeerId;
+    final deviceId = this.deviceId;
+    final globalNetworkId = this.globalNetworkId;
+    final linkId = this.linkId;
+    final state = this.state;
+    return {
+      if (connectPeerId != null) 'ConnectPeerId': connectPeerId,
+      if (deviceId != null) 'DeviceId': deviceId,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (linkId != null) 'LinkId': linkId,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -4663,6 +4798,19 @@ class ConnectPeerBgpConfiguration {
       peerAsn: json['PeerAsn'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreNetworkAddress = this.coreNetworkAddress;
+    final coreNetworkAsn = this.coreNetworkAsn;
+    final peerAddress = this.peerAddress;
+    final peerAsn = this.peerAsn;
+    return {
+      if (coreNetworkAddress != null) 'CoreNetworkAddress': coreNetworkAddress,
+      if (coreNetworkAsn != null) 'CoreNetworkAsn': coreNetworkAsn,
+      if (peerAddress != null) 'PeerAddress': peerAddress,
+      if (peerAsn != null) 'PeerAsn': peerAsn,
+    };
+  }
 }
 
 /// Describes a core network Connect peer configuration.
@@ -4704,6 +4852,21 @@ class ConnectPeerConfiguration {
       peerAddress: json['PeerAddress'] as String?,
       protocol: (json['Protocol'] as String?)?.toTunnelProtocol(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bgpConfigurations = this.bgpConfigurations;
+    final coreNetworkAddress = this.coreNetworkAddress;
+    final insideCidrBlocks = this.insideCidrBlocks;
+    final peerAddress = this.peerAddress;
+    final protocol = this.protocol;
+    return {
+      if (bgpConfigurations != null) 'BgpConfigurations': bgpConfigurations,
+      if (coreNetworkAddress != null) 'CoreNetworkAddress': coreNetworkAddress,
+      if (insideCidrBlocks != null) 'InsideCidrBlocks': insideCidrBlocks,
+      if (peerAddress != null) 'PeerAddress': peerAddress,
+      if (protocol != null) 'Protocol': protocol.toValue(),
+    };
   }
 }
 
@@ -4792,6 +4955,27 @@ class ConnectPeerSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectAttachmentId = this.connectAttachmentId;
+    final connectPeerId = this.connectPeerId;
+    final connectPeerState = this.connectPeerState;
+    final coreNetworkId = this.coreNetworkId;
+    final createdAt = this.createdAt;
+    final edgeLocation = this.edgeLocation;
+    final tags = this.tags;
+    return {
+      if (connectAttachmentId != null)
+        'ConnectAttachmentId': connectAttachmentId,
+      if (connectPeerId != null) 'ConnectPeerId': connectPeerId,
+      if (connectPeerState != null)
+        'ConnectPeerState': connectPeerState.toValue(),
+      if (coreNetworkId != null) 'CoreNetworkId': coreNetworkId,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (edgeLocation != null) 'EdgeLocation': edgeLocation,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Describes a connection.
@@ -4860,6 +5044,33 @@ class Connection {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectedDeviceId = this.connectedDeviceId;
+    final connectedLinkId = this.connectedLinkId;
+    final connectionArn = this.connectionArn;
+    final connectionId = this.connectionId;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final deviceId = this.deviceId;
+    final globalNetworkId = this.globalNetworkId;
+    final linkId = this.linkId;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (connectedDeviceId != null) 'ConnectedDeviceId': connectedDeviceId,
+      if (connectedLinkId != null) 'ConnectedLinkId': connectedLinkId,
+      if (connectionArn != null) 'ConnectionArn': connectionArn,
+      if (connectionId != null) 'ConnectionId': connectionId,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (deviceId != null) 'DeviceId': deviceId,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (linkId != null) 'LinkId': linkId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Describes connection health.
@@ -4884,6 +5095,17 @@ class ConnectionHealth {
       timestamp: timeStampFromJson(json['Timestamp']),
       type: (json['Type'] as String?)?.toConnectionType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final timestamp = this.timestamp;
+    final type = this.type;
+    return {
+      if (status != null) 'Status': status.toValue(),
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -5043,6 +5265,29 @@ class CoreNetwork {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreNetworkArn = this.coreNetworkArn;
+    final coreNetworkId = this.coreNetworkId;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final edges = this.edges;
+    final globalNetworkId = this.globalNetworkId;
+    final segments = this.segments;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (coreNetworkArn != null) 'CoreNetworkArn': coreNetworkArn,
+      if (coreNetworkId != null) 'CoreNetworkId': coreNetworkId,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (edges != null) 'Edges': edges,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (segments != null) 'Segments': segments,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Details describing a core network change.
@@ -5091,6 +5336,23 @@ class CoreNetworkChange {
       type: (json['Type'] as String?)?.toChangeType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final identifier = this.identifier;
+    final identifierPath = this.identifierPath;
+    final newValues = this.newValues;
+    final previousValues = this.previousValues;
+    final type = this.type;
+    return {
+      if (action != null) 'Action': action.toValue(),
+      if (identifier != null) 'Identifier': identifier,
+      if (identifierPath != null) 'IdentifierPath': identifierPath,
+      if (newValues != null) 'NewValues': newValues,
+      if (previousValues != null) 'PreviousValues': previousValues,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Describes a core network change event. This can be a change to a segment,
@@ -5137,6 +5399,23 @@ class CoreNetworkChangeEvent {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final eventTime = this.eventTime;
+    final identifierPath = this.identifierPath;
+    final status = this.status;
+    final type = this.type;
+    final values = this.values;
+    return {
+      if (action != null) 'Action': action.toValue(),
+      if (eventTime != null) 'EventTime': unixTimestampToJson(eventTime),
+      if (identifierPath != null) 'IdentifierPath': identifierPath,
+      if (status != null) 'Status': status.toValue(),
+      if (type != null) 'Type': type.toValue(),
+      if (values != null) 'Values': values,
+    };
+  }
 }
 
 /// Describes a core network change event.
@@ -5167,6 +5446,19 @@ class CoreNetworkChangeEventValues {
       edgeLocation: json['EdgeLocation'] as String?,
       segmentName: json['SegmentName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachmentId = this.attachmentId;
+    final cidr = this.cidr;
+    final edgeLocation = this.edgeLocation;
+    final segmentName = this.segmentName;
+    return {
+      if (attachmentId != null) 'AttachmentId': attachmentId,
+      if (cidr != null) 'Cidr': cidr,
+      if (edgeLocation != null) 'EdgeLocation': edgeLocation,
+      if (segmentName != null) 'SegmentName': segmentName,
+    };
   }
 }
 
@@ -5222,6 +5514,26 @@ class CoreNetworkChangeValues {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final asn = this.asn;
+    final cidr = this.cidr;
+    final destinationIdentifier = this.destinationIdentifier;
+    final edgeLocations = this.edgeLocations;
+    final insideCidrBlocks = this.insideCidrBlocks;
+    final segmentName = this.segmentName;
+    final sharedSegments = this.sharedSegments;
+    return {
+      if (asn != null) 'Asn': asn,
+      if (cidr != null) 'Cidr': cidr,
+      if (destinationIdentifier != null)
+        'DestinationIdentifier': destinationIdentifier,
+      if (edgeLocations != null) 'EdgeLocations': edgeLocations,
+      if (insideCidrBlocks != null) 'InsideCidrBlocks': insideCidrBlocks,
+      if (segmentName != null) 'SegmentName': segmentName,
+      if (sharedSegments != null) 'SharedSegments': sharedSegments,
+    };
+  }
 }
 
 /// Describes a core network edge.
@@ -5249,6 +5561,17 @@ class CoreNetworkEdge {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final asn = this.asn;
+    final edgeLocation = this.edgeLocation;
+    final insideCidrBlocks = this.insideCidrBlocks;
+    return {
+      if (asn != null) 'Asn': asn,
+      if (edgeLocation != null) 'EdgeLocation': edgeLocation,
+      if (insideCidrBlocks != null) 'InsideCidrBlocks': insideCidrBlocks,
+    };
   }
 }
 
@@ -5307,6 +5630,27 @@ class CoreNetworkPolicy {
       policyVersionId: json['PolicyVersionId'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alias = this.alias;
+    final changeSetState = this.changeSetState;
+    final coreNetworkId = this.coreNetworkId;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final policyDocument = this.policyDocument;
+    final policyErrors = this.policyErrors;
+    final policyVersionId = this.policyVersionId;
+    return {
+      if (alias != null) 'Alias': alias.toValue(),
+      if (changeSetState != null) 'ChangeSetState': changeSetState.toValue(),
+      if (coreNetworkId != null) 'CoreNetworkId': coreNetworkId,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (policyDocument != null) 'PolicyDocument': jsonEncode(policyDocument),
+      if (policyErrors != null) 'PolicyErrors': policyErrors,
+      if (policyVersionId != null) 'PolicyVersionId': policyVersionId,
+    };
+  }
 }
 
 enum CoreNetworkPolicyAlias {
@@ -5360,6 +5704,17 @@ class CoreNetworkPolicyError {
       path: json['Path'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final message = this.message;
+    final path = this.path;
+    return {
+      'ErrorCode': errorCode,
+      'Message': message,
+      if (path != null) 'Path': path,
+    };
+  }
 }
 
 /// Describes a core network policy version.
@@ -5401,6 +5756,23 @@ class CoreNetworkPolicyVersion {
       policyVersionId: json['PolicyVersionId'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alias = this.alias;
+    final changeSetState = this.changeSetState;
+    final coreNetworkId = this.coreNetworkId;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final policyVersionId = this.policyVersionId;
+    return {
+      if (alias != null) 'Alias': alias.toValue(),
+      if (changeSetState != null) 'ChangeSetState': changeSetState.toValue(),
+      if (coreNetworkId != null) 'CoreNetworkId': coreNetworkId,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (policyVersionId != null) 'PolicyVersionId': policyVersionId,
+    };
+  }
 }
 
 /// Describes a core network segment, which are dedicated routes. Only
@@ -5432,6 +5804,17 @@ class CoreNetworkSegment {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final edgeLocations = this.edgeLocations;
+    final name = this.name;
+    final sharedSegments = this.sharedSegments;
+    return {
+      if (edgeLocations != null) 'EdgeLocations': edgeLocations,
+      if (name != null) 'Name': name,
+      if (sharedSegments != null) 'SharedSegments': sharedSegments,
+    };
   }
 }
 
@@ -5555,6 +5938,25 @@ class CoreNetworkSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreNetworkArn = this.coreNetworkArn;
+    final coreNetworkId = this.coreNetworkId;
+    final description = this.description;
+    final globalNetworkId = this.globalNetworkId;
+    final ownerAccountId = this.ownerAccountId;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (coreNetworkArn != null) 'CoreNetworkArn': coreNetworkArn,
+      if (coreNetworkId != null) 'CoreNetworkId': coreNetworkId,
+      if (description != null) 'Description': description,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class CreateConnectAttachmentResponse {
@@ -5572,6 +5974,13 @@ class CreateConnectAttachmentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectAttachment = this.connectAttachment;
+    return {
+      if (connectAttachment != null) 'ConnectAttachment': connectAttachment,
+    };
+  }
 }
 
 class CreateConnectPeerResponse {
@@ -5587,6 +5996,13 @@ class CreateConnectPeerResponse {
           ? ConnectPeer.fromJson(json['ConnectPeer'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectPeer = this.connectPeer;
+    return {
+      if (connectPeer != null) 'ConnectPeer': connectPeer,
+    };
   }
 }
 
@@ -5604,6 +6020,13 @@ class CreateConnectionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connection = this.connection;
+    return {
+      if (connection != null) 'Connection': connection,
+    };
+  }
 }
 
 class CreateCoreNetworkResponse {
@@ -5620,6 +6043,13 @@ class CreateCoreNetworkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreNetwork = this.coreNetwork;
+    return {
+      if (coreNetwork != null) 'CoreNetwork': coreNetwork,
+    };
+  }
 }
 
 class CreateDeviceResponse {
@@ -5635,6 +6065,13 @@ class CreateDeviceResponse {
           ? Device.fromJson(json['Device'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final device = this.device;
+    return {
+      if (device != null) 'Device': device,
+    };
   }
 }
 
@@ -5653,6 +6090,13 @@ class CreateGlobalNetworkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalNetwork = this.globalNetwork;
+    return {
+      if (globalNetwork != null) 'GlobalNetwork': globalNetwork,
+    };
+  }
 }
 
 class CreateLinkResponse {
@@ -5669,6 +6113,13 @@ class CreateLinkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final link = this.link;
+    return {
+      if (link != null) 'Link': link,
+    };
+  }
 }
 
 class CreateSiteResponse {
@@ -5684,6 +6135,13 @@ class CreateSiteResponse {
           ? Site.fromJson(json['Site'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final site = this.site;
+    return {
+      if (site != null) 'Site': site,
+    };
   }
 }
 
@@ -5703,6 +6161,14 @@ class CreateSiteToSiteVpnAttachmentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final siteToSiteVpnAttachment = this.siteToSiteVpnAttachment;
+    return {
+      if (siteToSiteVpnAttachment != null)
+        'SiteToSiteVpnAttachment': siteToSiteVpnAttachment,
+    };
+  }
 }
 
 class CreateTransitGatewayPeeringResponse {
@@ -5720,6 +6186,14 @@ class CreateTransitGatewayPeeringResponse {
               json['TransitGatewayPeering'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayPeering = this.transitGatewayPeering;
+    return {
+      if (transitGatewayPeering != null)
+        'TransitGatewayPeering': transitGatewayPeering,
+    };
   }
 }
 
@@ -5742,6 +6216,16 @@ class CreateTransitGatewayRouteTableAttachmentResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayRouteTableAttachment =
+        this.transitGatewayRouteTableAttachment;
+    return {
+      if (transitGatewayRouteTableAttachment != null)
+        'TransitGatewayRouteTableAttachment':
+            transitGatewayRouteTableAttachment,
+    };
+  }
 }
 
 class CreateVpcAttachmentResponse {
@@ -5758,6 +6242,13 @@ class CreateVpcAttachmentResponse {
               json['VpcAttachment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpcAttachment = this.vpcAttachment;
+    return {
+      if (vpcAttachment != null) 'VpcAttachment': vpcAttachment,
+    };
   }
 }
 
@@ -5793,6 +6284,21 @@ class CustomerGatewayAssociation {
       linkId: json['LinkId'] as String?,
       state: (json['State'] as String?)?.toCustomerGatewayAssociationState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customerGatewayArn = this.customerGatewayArn;
+    final deviceId = this.deviceId;
+    final globalNetworkId = this.globalNetworkId;
+    final linkId = this.linkId;
+    final state = this.state;
+    return {
+      if (customerGatewayArn != null) 'CustomerGatewayArn': customerGatewayArn,
+      if (deviceId != null) 'DeviceId': deviceId,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (linkId != null) 'LinkId': linkId,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -5850,6 +6356,13 @@ class DeleteAttachmentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachment = this.attachment;
+    return {
+      if (attachment != null) 'Attachment': attachment,
+    };
+  }
 }
 
 class DeleteConnectPeerResponse {
@@ -5866,6 +6379,13 @@ class DeleteConnectPeerResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectPeer = this.connectPeer;
+    return {
+      if (connectPeer != null) 'ConnectPeer': connectPeer,
+    };
+  }
 }
 
 class DeleteConnectionResponse {
@@ -5881,6 +6401,13 @@ class DeleteConnectionResponse {
           ? Connection.fromJson(json['Connection'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connection = this.connection;
+    return {
+      if (connection != null) 'Connection': connection,
+    };
   }
 }
 
@@ -5900,6 +6427,13 @@ class DeleteCoreNetworkPolicyVersionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreNetworkPolicy = this.coreNetworkPolicy;
+    return {
+      if (coreNetworkPolicy != null) 'CoreNetworkPolicy': coreNetworkPolicy,
+    };
+  }
 }
 
 class DeleteCoreNetworkResponse {
@@ -5916,6 +6450,13 @@ class DeleteCoreNetworkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreNetwork = this.coreNetwork;
+    return {
+      if (coreNetwork != null) 'CoreNetwork': coreNetwork,
+    };
+  }
 }
 
 class DeleteDeviceResponse {
@@ -5931,6 +6472,13 @@ class DeleteDeviceResponse {
           ? Device.fromJson(json['Device'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final device = this.device;
+    return {
+      if (device != null) 'Device': device,
+    };
   }
 }
 
@@ -5949,6 +6497,13 @@ class DeleteGlobalNetworkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalNetwork = this.globalNetwork;
+    return {
+      if (globalNetwork != null) 'GlobalNetwork': globalNetwork,
+    };
+  }
 }
 
 class DeleteLinkResponse {
@@ -5964,6 +6519,13 @@ class DeleteLinkResponse {
           ? Link.fromJson(json['Link'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final link = this.link;
+    return {
+      if (link != null) 'Link': link,
+    };
   }
 }
 
@@ -5981,12 +6543,23 @@ class DeletePeeringResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final peering = this.peering;
+    return {
+      if (peering != null) 'Peering': peering,
+    };
+  }
 }
 
 class DeleteResourcePolicyResponse {
   DeleteResourcePolicyResponse();
   factory DeleteResourcePolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteResourcePolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6004,6 +6577,13 @@ class DeleteSiteResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final site = this.site;
+    return {
+      if (site != null) 'Site': site,
+    };
+  }
 }
 
 class DeregisterTransitGatewayResponse {
@@ -6020,6 +6600,14 @@ class DeregisterTransitGatewayResponse {
               json['TransitGatewayRegistration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayRegistration = this.transitGatewayRegistration;
+    return {
+      if (transitGatewayRegistration != null)
+        'TransitGatewayRegistration': transitGatewayRegistration,
+    };
   }
 }
 
@@ -6042,6 +6630,15 @@ class DescribeGlobalNetworksResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalNetworks = this.globalNetworks;
+    final nextToken = this.nextToken;
+    return {
+      if (globalNetworks != null) 'GlobalNetworks': globalNetworks,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6130,6 +6727,39 @@ class Device {
       vendor: json['Vendor'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsLocation = this.awsLocation;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final deviceArn = this.deviceArn;
+    final deviceId = this.deviceId;
+    final globalNetworkId = this.globalNetworkId;
+    final location = this.location;
+    final model = this.model;
+    final serialNumber = this.serialNumber;
+    final siteId = this.siteId;
+    final state = this.state;
+    final tags = this.tags;
+    final type = this.type;
+    final vendor = this.vendor;
+    return {
+      if (awsLocation != null) 'AWSLocation': awsLocation,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (deviceArn != null) 'DeviceArn': deviceArn,
+      if (deviceId != null) 'DeviceId': deviceId,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (location != null) 'Location': location,
+      if (model != null) 'Model': model,
+      if (serialNumber != null) 'SerialNumber': serialNumber,
+      if (siteId != null) 'SiteId': siteId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (type != null) 'Type': type,
+      if (vendor != null) 'Vendor': vendor,
+    };
+  }
 }
 
 enum DeviceState {
@@ -6185,6 +6815,14 @@ class DisassociateConnectPeerResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectPeerAssociation = this.connectPeerAssociation;
+    return {
+      if (connectPeerAssociation != null)
+        'ConnectPeerAssociation': connectPeerAssociation,
+    };
+  }
 }
 
 class DisassociateCustomerGatewayResponse {
@@ -6203,6 +6841,14 @@ class DisassociateCustomerGatewayResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customerGatewayAssociation = this.customerGatewayAssociation;
+    return {
+      if (customerGatewayAssociation != null)
+        'CustomerGatewayAssociation': customerGatewayAssociation,
+    };
+  }
 }
 
 class DisassociateLinkResponse {
@@ -6219,6 +6865,13 @@ class DisassociateLinkResponse {
               json['LinkAssociation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final linkAssociation = this.linkAssociation;
+    return {
+      if (linkAssociation != null) 'LinkAssociation': linkAssociation,
+    };
   }
 }
 
@@ -6241,12 +6894,26 @@ class DisassociateTransitGatewayConnectPeerResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayConnectPeerAssociation =
+        this.transitGatewayConnectPeerAssociation;
+    return {
+      if (transitGatewayConnectPeerAssociation != null)
+        'TransitGatewayConnectPeerAssociation':
+            transitGatewayConnectPeerAssociation,
+    };
+  }
 }
 
 class ExecuteCoreNetworkChangeSetResponse {
   ExecuteCoreNetworkChangeSetResponse();
   factory ExecuteCoreNetworkChangeSetResponse.fromJson(Map<String, dynamic> _) {
     return ExecuteCoreNetworkChangeSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6264,6 +6931,13 @@ class GetConnectAttachmentResponse {
               json['ConnectAttachment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectAttachment = this.connectAttachment;
+    return {
+      if (connectAttachment != null) 'ConnectAttachment': connectAttachment,
+    };
   }
 }
 
@@ -6289,6 +6963,16 @@ class GetConnectPeerAssociationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectPeerAssociations = this.connectPeerAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (connectPeerAssociations != null)
+        'ConnectPeerAssociations': connectPeerAssociations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetConnectPeerResponse {
@@ -6304,6 +6988,13 @@ class GetConnectPeerResponse {
           ? ConnectPeer.fromJson(json['ConnectPeer'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectPeer = this.connectPeer;
+    return {
+      if (connectPeer != null) 'ConnectPeer': connectPeer,
+    };
   }
 }
 
@@ -6326,6 +7017,15 @@ class GetConnectionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connections = this.connections;
+    final nextToken = this.nextToken;
+    return {
+      if (connections != null) 'Connections': connections,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6351,6 +7051,16 @@ class GetCoreNetworkChangeEventsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreNetworkChangeEvents = this.coreNetworkChangeEvents;
+    final nextToken = this.nextToken;
+    return {
+      if (coreNetworkChangeEvents != null)
+        'CoreNetworkChangeEvents': coreNetworkChangeEvents,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetCoreNetworkChangeSetResponse {
@@ -6373,6 +7083,15 @@ class GetCoreNetworkChangeSetResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreNetworkChanges = this.coreNetworkChanges;
+    final nextToken = this.nextToken;
+    return {
+      if (coreNetworkChanges != null) 'CoreNetworkChanges': coreNetworkChanges,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetCoreNetworkPolicyResponse {
@@ -6390,6 +7109,13 @@ class GetCoreNetworkPolicyResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreNetworkPolicy = this.coreNetworkPolicy;
+    return {
+      if (coreNetworkPolicy != null) 'CoreNetworkPolicy': coreNetworkPolicy,
+    };
+  }
 }
 
 class GetCoreNetworkResponse {
@@ -6405,6 +7131,13 @@ class GetCoreNetworkResponse {
           ? CoreNetwork.fromJson(json['CoreNetwork'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final coreNetwork = this.coreNetwork;
+    return {
+      if (coreNetwork != null) 'CoreNetwork': coreNetwork,
+    };
   }
 }
 
@@ -6431,6 +7164,16 @@ class GetCustomerGatewayAssociationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customerGatewayAssociations = this.customerGatewayAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (customerGatewayAssociations != null)
+        'CustomerGatewayAssociations': customerGatewayAssociations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetDevicesResponse {
@@ -6452,6 +7195,15 @@ class GetDevicesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final devices = this.devices;
+    final nextToken = this.nextToken;
+    return {
+      if (devices != null) 'Devices': devices,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6475,6 +7227,15 @@ class GetLinkAssociationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final linkAssociations = this.linkAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (linkAssociations != null) 'LinkAssociations': linkAssociations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetLinksResponse {
@@ -6497,6 +7258,15 @@ class GetLinksResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final links = this.links;
+    final nextToken = this.nextToken;
+    return {
+      if (links != null) 'Links': links,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetNetworkResourceCountsResponse {
@@ -6518,6 +7288,16 @@ class GetNetworkResourceCountsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkResourceCounts = this.networkResourceCounts;
+    final nextToken = this.nextToken;
+    return {
+      if (networkResourceCounts != null)
+        'NetworkResourceCounts': networkResourceCounts,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6542,6 +7322,15 @@ class GetNetworkResourceRelationshipsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final relationships = this.relationships;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (relationships != null) 'Relationships': relationships,
+    };
+  }
 }
 
 class GetNetworkResourcesResponse {
@@ -6563,6 +7352,15 @@ class GetNetworkResourcesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkResources = this.networkResources;
+    final nextToken = this.nextToken;
+    return {
+      if (networkResources != null) 'NetworkResources': networkResources,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6604,6 +7402,23 @@ class GetNetworkRoutesResponse {
       routeTableType: (json['RouteTableType'] as String?)?.toRouteTableType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreNetworkSegmentEdge = this.coreNetworkSegmentEdge;
+    final networkRoutes = this.networkRoutes;
+    final routeTableArn = this.routeTableArn;
+    final routeTableTimestamp = this.routeTableTimestamp;
+    final routeTableType = this.routeTableType;
+    return {
+      if (coreNetworkSegmentEdge != null)
+        'CoreNetworkSegmentEdge': coreNetworkSegmentEdge,
+      if (networkRoutes != null) 'NetworkRoutes': networkRoutes,
+      if (routeTableArn != null) 'RouteTableArn': routeTableArn,
+      if (routeTableTimestamp != null)
+        'RouteTableTimestamp': unixTimestampToJson(routeTableTimestamp),
+      if (routeTableType != null) 'RouteTableType': routeTableType.toValue(),
+    };
+  }
 }
 
 class GetNetworkTelemetryResponse {
@@ -6626,6 +7441,15 @@ class GetNetworkTelemetryResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final networkTelemetry = this.networkTelemetry;
+    final nextToken = this.nextToken;
+    return {
+      if (networkTelemetry != null) 'NetworkTelemetry': networkTelemetry,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetResourcePolicyResponse {
@@ -6641,6 +7465,13 @@ class GetResourcePolicyResponse {
           ? null
           : jsonDecode(json['PolicyDocument'] as String),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyDocument = this.policyDocument;
+    return {
+      if (policyDocument != null) 'PolicyDocument': jsonEncode(policyDocument),
+    };
   }
 }
 
@@ -6659,6 +7490,13 @@ class GetRouteAnalysisResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final routeAnalysis = this.routeAnalysis;
+    return {
+      if (routeAnalysis != null) 'RouteAnalysis': routeAnalysis,
+    };
+  }
 }
 
 class GetSiteToSiteVpnAttachmentResponse {
@@ -6676,6 +7514,14 @@ class GetSiteToSiteVpnAttachmentResponse {
               json['SiteToSiteVpnAttachment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final siteToSiteVpnAttachment = this.siteToSiteVpnAttachment;
+    return {
+      if (siteToSiteVpnAttachment != null)
+        'SiteToSiteVpnAttachment': siteToSiteVpnAttachment,
+    };
   }
 }
 
@@ -6698,6 +7544,15 @@ class GetSitesResponse {
           .map((e) => Site.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final sites = this.sites;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (sites != null) 'Sites': sites,
+    };
   }
 }
 
@@ -6725,6 +7580,18 @@ class GetTransitGatewayConnectPeerAssociationsResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayConnectPeerAssociations =
+        this.transitGatewayConnectPeerAssociations;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (transitGatewayConnectPeerAssociations != null)
+        'TransitGatewayConnectPeerAssociations':
+            transitGatewayConnectPeerAssociations,
+    };
+  }
 }
 
 class GetTransitGatewayPeeringResponse {
@@ -6741,6 +7608,14 @@ class GetTransitGatewayPeeringResponse {
               json['TransitGatewayPeering'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayPeering = this.transitGatewayPeering;
+    return {
+      if (transitGatewayPeering != null)
+        'TransitGatewayPeering': transitGatewayPeering,
+    };
   }
 }
 
@@ -6767,6 +7642,16 @@ class GetTransitGatewayRegistrationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayRegistrations = this.transitGatewayRegistrations;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (transitGatewayRegistrations != null)
+        'TransitGatewayRegistrations': transitGatewayRegistrations,
+    };
+  }
 }
 
 class GetTransitGatewayRouteTableAttachmentResponse {
@@ -6787,6 +7672,16 @@ class GetTransitGatewayRouteTableAttachmentResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayRouteTableAttachment =
+        this.transitGatewayRouteTableAttachment;
+    return {
+      if (transitGatewayRouteTableAttachment != null)
+        'TransitGatewayRouteTableAttachment':
+            transitGatewayRouteTableAttachment,
+    };
+  }
 }
 
 class GetVpcAttachmentResponse {
@@ -6803,6 +7698,13 @@ class GetVpcAttachmentResponse {
               json['VpcAttachment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpcAttachment = this.vpcAttachment;
+    return {
+      if (vpcAttachment != null) 'VpcAttachment': vpcAttachment,
+    };
   }
 }
 
@@ -6848,6 +7750,23 @@ class GlobalNetwork {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final globalNetworkArn = this.globalNetworkArn;
+    final globalNetworkId = this.globalNetworkId;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (globalNetworkArn != null) 'GlobalNetworkArn': globalNetworkArn,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -6957,6 +7876,33 @@ class Link {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bandwidth = this.bandwidth;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final globalNetworkId = this.globalNetworkId;
+    final linkArn = this.linkArn;
+    final linkId = this.linkId;
+    final provider = this.provider;
+    final siteId = this.siteId;
+    final state = this.state;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      if (bandwidth != null) 'Bandwidth': bandwidth,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (linkArn != null) 'LinkArn': linkArn,
+      if (linkId != null) 'LinkId': linkId,
+      if (provider != null) 'Provider': provider,
+      if (siteId != null) 'SiteId': siteId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 /// Describes the association between a device and a link.
@@ -6987,6 +7933,20 @@ class LinkAssociation {
           (json['LinkAssociationState'] as String?)?.toLinkAssociationState(),
       linkId: json['LinkId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceId = this.deviceId;
+    final globalNetworkId = this.globalNetworkId;
+    final linkAssociationState = this.linkAssociationState;
+    final linkId = this.linkId;
+    return {
+      if (deviceId != null) 'DeviceId': deviceId,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (linkAssociationState != null)
+        'LinkAssociationState': linkAssociationState.toValue(),
+      if (linkId != null) 'LinkId': linkId,
+    };
   }
 }
 
@@ -7086,6 +8046,15 @@ class ListAttachmentsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachments = this.attachments;
+    final nextToken = this.nextToken;
+    return {
+      if (attachments != null) 'Attachments': attachments,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListConnectPeersResponse {
@@ -7107,6 +8076,15 @@ class ListConnectPeersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectPeers = this.connectPeers;
+    final nextToken = this.nextToken;
+    return {
+      if (connectPeers != null) 'ConnectPeers': connectPeers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -7132,6 +8110,16 @@ class ListCoreNetworkPolicyVersionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreNetworkPolicyVersions = this.coreNetworkPolicyVersions;
+    final nextToken = this.nextToken;
+    return {
+      if (coreNetworkPolicyVersions != null)
+        'CoreNetworkPolicyVersions': coreNetworkPolicyVersions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListCoreNetworksResponse {
@@ -7153,6 +8141,15 @@ class ListCoreNetworksResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final coreNetworks = this.coreNetworks;
+    final nextToken = this.nextToken;
+    return {
+      if (coreNetworks != null) 'CoreNetworks': coreNetworks,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -7177,6 +8174,15 @@ class ListOrganizationServiceAccessStatusResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final organizationStatus = this.organizationStatus;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (organizationStatus != null) 'OrganizationStatus': organizationStatus,
+    };
+  }
 }
 
 class ListPeeringsResponse {
@@ -7200,6 +8206,15 @@ class ListPeeringsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final peerings = this.peerings;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (peerings != null) 'Peerings': peerings,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -7216,6 +8231,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    return {
+      if (tagList != null) 'TagList': tagList,
+    };
   }
 }
 
@@ -7375,6 +8397,35 @@ class NetworkResource {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final awsRegion = this.awsRegion;
+    final coreNetworkId = this.coreNetworkId;
+    final definition = this.definition;
+    final definitionTimestamp = this.definitionTimestamp;
+    final metadata = this.metadata;
+    final registeredGatewayArn = this.registeredGatewayArn;
+    final resourceArn = this.resourceArn;
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final tags = this.tags;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (awsRegion != null) 'AwsRegion': awsRegion,
+      if (coreNetworkId != null) 'CoreNetworkId': coreNetworkId,
+      if (definition != null) 'Definition': definition,
+      if (definitionTimestamp != null)
+        'DefinitionTimestamp': unixTimestampToJson(definitionTimestamp),
+      if (metadata != null) 'Metadata': metadata,
+      if (registeredGatewayArn != null)
+        'RegisteredGatewayArn': registeredGatewayArn,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Describes a resource count.
@@ -7394,6 +8445,15 @@ class NetworkResourceCount {
       count: json['Count'] as int?,
       resourceType: json['ResourceType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final resourceType = this.resourceType;
+    return {
+      if (count != null) 'Count': count,
+      if (resourceType != null) 'ResourceType': resourceType,
+    };
   }
 }
 
@@ -7436,6 +8496,24 @@ class NetworkResourceSummary {
       resourceType: json['ResourceType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final definition = this.definition;
+    final isMiddlebox = this.isMiddlebox;
+    final nameTag = this.nameTag;
+    final registeredGatewayArn = this.registeredGatewayArn;
+    final resourceArn = this.resourceArn;
+    final resourceType = this.resourceType;
+    return {
+      if (definition != null) 'Definition': definition,
+      if (isMiddlebox != null) 'IsMiddlebox': isMiddlebox,
+      if (nameTag != null) 'NameTag': nameTag,
+      if (registeredGatewayArn != null)
+        'RegisteredGatewayArn': registeredGatewayArn,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceType != null) 'ResourceType': resourceType,
+    };
+  }
 }
 
 /// Describes a network route.
@@ -7477,6 +8555,22 @@ class NetworkRoute {
       type: (json['Type'] as String?)?.toRouteType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationCidrBlock = this.destinationCidrBlock;
+    final destinations = this.destinations;
+    final prefixListId = this.prefixListId;
+    final state = this.state;
+    final type = this.type;
+    return {
+      if (destinationCidrBlock != null)
+        'DestinationCidrBlock': destinationCidrBlock,
+      if (destinations != null) 'Destinations': destinations,
+      if (prefixListId != null) 'PrefixListId': prefixListId,
+      if (state != null) 'State': state.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Describes the destination of a network route.
@@ -7516,6 +8610,25 @@ class NetworkRouteDestination {
       segmentName: json['SegmentName'] as String?,
       transitGatewayAttachmentId: json['TransitGatewayAttachmentId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final coreNetworkAttachmentId = this.coreNetworkAttachmentId;
+    final edgeLocation = this.edgeLocation;
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final segmentName = this.segmentName;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    return {
+      if (coreNetworkAttachmentId != null)
+        'CoreNetworkAttachmentId': coreNetworkAttachmentId,
+      if (edgeLocation != null) 'EdgeLocation': edgeLocation,
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (segmentName != null) 'SegmentName': segmentName,
+      if (transitGatewayAttachmentId != null)
+        'TransitGatewayAttachmentId': transitGatewayAttachmentId,
+    };
   }
 }
 
@@ -7574,6 +8687,30 @@ class NetworkTelemetry {
       resourceType: json['ResourceType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final address = this.address;
+    final awsRegion = this.awsRegion;
+    final coreNetworkId = this.coreNetworkId;
+    final health = this.health;
+    final registeredGatewayArn = this.registeredGatewayArn;
+    final resourceArn = this.resourceArn;
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (address != null) 'Address': address,
+      if (awsRegion != null) 'AwsRegion': awsRegion,
+      if (coreNetworkId != null) 'CoreNetworkId': coreNetworkId,
+      if (health != null) 'Health': health,
+      if (registeredGatewayArn != null)
+        'RegisteredGatewayArn': registeredGatewayArn,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceType != null) 'ResourceType': resourceType,
+    };
+  }
 }
 
 /// The status of an Amazon Web Services Organization and the accounts within
@@ -7613,6 +8750,23 @@ class OrganizationStatus {
       sLRDeploymentStatus: json['SLRDeploymentStatus'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountStatusList = this.accountStatusList;
+    final organizationAwsServiceAccessStatus =
+        this.organizationAwsServiceAccessStatus;
+    final organizationId = this.organizationId;
+    final sLRDeploymentStatus = this.sLRDeploymentStatus;
+    return {
+      if (accountStatusList != null) 'AccountStatusList': accountStatusList,
+      if (organizationAwsServiceAccessStatus != null)
+        'OrganizationAwsServiceAccessStatus':
+            organizationAwsServiceAccessStatus,
+      if (organizationId != null) 'OrganizationId': organizationId,
+      if (sLRDeploymentStatus != null)
+        'SLRDeploymentStatus': sLRDeploymentStatus,
+    };
+  }
 }
 
 /// Describes a path component.
@@ -7640,6 +8794,18 @@ class PathComponent {
           : null,
       sequence: json['Sequence'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destinationCidrBlock = this.destinationCidrBlock;
+    final resource = this.resource;
+    final sequence = this.sequence;
+    return {
+      if (destinationCidrBlock != null)
+        'DestinationCidrBlock': destinationCidrBlock,
+      if (resource != null) 'Resource': resource,
+      if (sequence != null) 'Sequence': sequence,
+    };
   }
 }
 
@@ -7703,6 +8869,31 @@ class Peering {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final coreNetworkArn = this.coreNetworkArn;
+    final coreNetworkId = this.coreNetworkId;
+    final createdAt = this.createdAt;
+    final edgeLocation = this.edgeLocation;
+    final ownerAccountId = this.ownerAccountId;
+    final peeringId = this.peeringId;
+    final peeringType = this.peeringType;
+    final resourceArn = this.resourceArn;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (coreNetworkArn != null) 'CoreNetworkArn': coreNetworkArn,
+      if (coreNetworkId != null) 'CoreNetworkId': coreNetworkId,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (edgeLocation != null) 'EdgeLocation': edgeLocation,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (peeringId != null) 'PeeringId': peeringId,
+      if (peeringType != null) 'PeeringType': peeringType.toValue(),
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -7794,6 +8985,18 @@ class ProposedSegmentChange {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachmentPolicyRuleNumber = this.attachmentPolicyRuleNumber;
+    final segmentName = this.segmentName;
+    final tags = this.tags;
+    return {
+      if (attachmentPolicyRuleNumber != null)
+        'AttachmentPolicyRuleNumber': attachmentPolicyRuleNumber,
+      if (segmentName != null) 'SegmentName': segmentName,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class PutCoreNetworkPolicyResponse {
@@ -7811,12 +9014,23 @@ class PutCoreNetworkPolicyResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreNetworkPolicy = this.coreNetworkPolicy;
+    return {
+      if (coreNetworkPolicy != null) 'CoreNetworkPolicy': coreNetworkPolicy,
+    };
+  }
 }
 
 class PutResourcePolicyResponse {
   PutResourcePolicyResponse();
   factory PutResourcePolicyResponse.fromJson(Map<String, dynamic> _) {
     return PutResourcePolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7835,6 +9049,14 @@ class RegisterTransitGatewayResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayRegistration = this.transitGatewayRegistration;
+    return {
+      if (transitGatewayRegistration != null)
+        'TransitGatewayRegistration': transitGatewayRegistration,
+    };
+  }
 }
 
 class RejectAttachmentResponse {
@@ -7850,6 +9072,13 @@ class RejectAttachmentResponse {
           ? Attachment.fromJson(json['Attachment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachment = this.attachment;
+    return {
+      if (attachment != null) 'Attachment': attachment,
+    };
   }
 }
 
@@ -7871,6 +9100,15 @@ class Relationship {
       to: json['To'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final from = this.from;
+    final to = this.to;
+    return {
+      if (from != null) 'From': from,
+      if (to != null) 'To': to,
+    };
+  }
 }
 
 class RestoreCoreNetworkPolicyVersionResponse {
@@ -7888,6 +9126,13 @@ class RestoreCoreNetworkPolicyVersionResponse {
               json['CoreNetworkPolicy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final coreNetworkPolicy = this.coreNetworkPolicy;
+    return {
+      if (coreNetworkPolicy != null) 'CoreNetworkPolicy': coreNetworkPolicy,
+    };
   }
 }
 
@@ -7968,6 +9213,34 @@ class RouteAnalysis {
       useMiddleboxes: json['UseMiddleboxes'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destination = this.destination;
+    final forwardPath = this.forwardPath;
+    final globalNetworkId = this.globalNetworkId;
+    final includeReturnPath = this.includeReturnPath;
+    final ownerAccountId = this.ownerAccountId;
+    final returnPath = this.returnPath;
+    final routeAnalysisId = this.routeAnalysisId;
+    final source = this.source;
+    final startTimestamp = this.startTimestamp;
+    final status = this.status;
+    final useMiddleboxes = this.useMiddleboxes;
+    return {
+      if (destination != null) 'Destination': destination,
+      if (forwardPath != null) 'ForwardPath': forwardPath,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (includeReturnPath != null) 'IncludeReturnPath': includeReturnPath,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (returnPath != null) 'ReturnPath': returnPath,
+      if (routeAnalysisId != null) 'RouteAnalysisId': routeAnalysisId,
+      if (source != null) 'Source': source,
+      if (startTimestamp != null)
+        'StartTimestamp': unixTimestampToJson(startTimestamp),
+      if (status != null) 'Status': status.toValue(),
+      if (useMiddleboxes != null) 'UseMiddleboxes': useMiddleboxes,
+    };
+  }
 }
 
 /// Describes the status of an analysis at completion.
@@ -8035,6 +9308,17 @@ class RouteAnalysisCompletion {
       resultCode: (json['ResultCode'] as String?)
           ?.toRouteAnalysisCompletionResultCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reasonCode = this.reasonCode;
+    final reasonContext = this.reasonContext;
+    final resultCode = this.resultCode;
+    return {
+      if (reasonCode != null) 'ReasonCode': reasonCode.toValue(),
+      if (reasonContext != null) 'ReasonContext': reasonContext,
+      if (resultCode != null) 'ResultCode': resultCode.toValue(),
+    };
   }
 }
 
@@ -8176,6 +9460,18 @@ class RouteAnalysisEndpointOptions {
           json['TransitGatewayAttachmentArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ipAddress = this.ipAddress;
+    final transitGatewayArn = this.transitGatewayArn;
+    final transitGatewayAttachmentArn = this.transitGatewayAttachmentArn;
+    return {
+      if (ipAddress != null) 'IpAddress': ipAddress,
+      if (transitGatewayArn != null) 'TransitGatewayArn': transitGatewayArn,
+      if (transitGatewayAttachmentArn != null)
+        'TransitGatewayAttachmentArn': transitGatewayAttachmentArn,
+    };
+  }
 }
 
 /// Describes a source or a destination.
@@ -8190,6 +9486,7 @@ class RouteAnalysisEndpointOptionsSpecification {
     this.ipAddress,
     this.transitGatewayAttachmentArn,
   });
+
   Map<String, dynamic> toJson() {
     final ipAddress = this.ipAddress;
     final transitGatewayAttachmentArn = this.transitGatewayAttachmentArn;
@@ -8224,6 +9521,15 @@ class RouteAnalysisPath {
           .map((e) => PathComponent.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final completionStatus = this.completionStatus;
+    final path = this.path;
+    return {
+      if (completionStatus != null) 'CompletionStatus': completionStatus,
+      if (path != null) 'Path': path,
+    };
   }
 }
 
@@ -8300,6 +9606,7 @@ class RouteTableIdentifier {
     this.coreNetworkSegmentEdge,
     this.transitGatewayRouteTableArn,
   });
+
   Map<String, dynamic> toJson() {
     final coreNetworkSegmentEdge = this.coreNetworkSegmentEdge;
     final transitGatewayRouteTableArn = this.transitGatewayRouteTableArn;
@@ -8421,6 +9728,27 @@ class Site {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final globalNetworkId = this.globalNetworkId;
+    final location = this.location;
+    final siteArn = this.siteArn;
+    final siteId = this.siteId;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (location != null) 'Location': location,
+      if (siteArn != null) 'SiteArn': siteArn,
+      if (siteId != null) 'SiteId': siteId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 enum SiteState {
@@ -8481,6 +9809,15 @@ class SiteToSiteVpnAttachment {
       vpnConnectionArn: json['VpnConnectionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachment = this.attachment;
+    final vpnConnectionArn = this.vpnConnectionArn;
+    return {
+      if (attachment != null) 'Attachment': attachment,
+      if (vpnConnectionArn != null) 'VpnConnectionArn': vpnConnectionArn,
+    };
+  }
 }
 
 class StartOrganizationServiceAccessUpdateResponse {
@@ -8500,6 +9837,13 @@ class StartOrganizationServiceAccessUpdateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final organizationStatus = this.organizationStatus;
+    return {
+      if (organizationStatus != null) 'OrganizationStatus': organizationStatus,
+    };
+  }
 }
 
 class StartRouteAnalysisResponse {
@@ -8516,6 +9860,13 @@ class StartRouteAnalysisResponse {
               json['RouteAnalysis'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final routeAnalysis = this.routeAnalysis;
+    return {
+      if (routeAnalysis != null) 'RouteAnalysis': routeAnalysis,
+    };
   }
 }
 
@@ -8557,6 +9908,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Describes a transit gateway Connect peer association.
@@ -8594,6 +9949,22 @@ class TransitGatewayConnectPeerAssociation {
       transitGatewayConnectPeerArn:
           json['TransitGatewayConnectPeerArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceId = this.deviceId;
+    final globalNetworkId = this.globalNetworkId;
+    final linkId = this.linkId;
+    final state = this.state;
+    final transitGatewayConnectPeerArn = this.transitGatewayConnectPeerArn;
+    return {
+      if (deviceId != null) 'DeviceId': deviceId,
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (linkId != null) 'LinkId': linkId,
+      if (state != null) 'State': state.toValue(),
+      if (transitGatewayConnectPeerArn != null)
+        'TransitGatewayConnectPeerArn': transitGatewayConnectPeerArn,
+    };
   }
 }
 
@@ -8658,6 +10029,15 @@ class TransitGatewayPeering {
       transitGatewayArn: json['TransitGatewayArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final peering = this.peering;
+    final transitGatewayArn = this.transitGatewayArn;
+    return {
+      if (peering != null) 'Peering': peering,
+      if (transitGatewayArn != null) 'TransitGatewayArn': transitGatewayArn,
+    };
+  }
 }
 
 /// Describes the registration of a transit gateway to a global network.
@@ -8685,6 +10065,17 @@ class TransitGatewayRegistration {
           : null,
       transitGatewayArn: json['TransitGatewayArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalNetworkId = this.globalNetworkId;
+    final state = this.state;
+    final transitGatewayArn = this.transitGatewayArn;
+    return {
+      if (globalNetworkId != null) 'GlobalNetworkId': globalNetworkId,
+      if (state != null) 'State': state,
+      if (transitGatewayArn != null) 'TransitGatewayArn': transitGatewayArn,
+    };
   }
 }
 
@@ -8752,6 +10143,15 @@ class TransitGatewayRegistrationStateReason {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code.toValue(),
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Describes a transit gateway route table attachment.
@@ -8779,6 +10179,18 @@ class TransitGatewayRouteTableAttachment {
       transitGatewayRouteTableArn:
           json['TransitGatewayRouteTableArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachment = this.attachment;
+    final peeringId = this.peeringId;
+    final transitGatewayRouteTableArn = this.transitGatewayRouteTableArn;
+    return {
+      if (attachment != null) 'Attachment': attachment,
+      if (peeringId != null) 'PeeringId': peeringId,
+      if (transitGatewayRouteTableArn != null)
+        'TransitGatewayRouteTableArn': transitGatewayRouteTableArn,
+    };
   }
 }
 
@@ -8810,6 +10222,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateConnectionResponse {
@@ -8825,6 +10241,13 @@ class UpdateConnectionResponse {
           ? Connection.fromJson(json['Connection'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connection = this.connection;
+    return {
+      if (connection != null) 'Connection': connection,
+    };
   }
 }
 
@@ -8842,6 +10265,13 @@ class UpdateCoreNetworkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreNetwork = this.coreNetwork;
+    return {
+      if (coreNetwork != null) 'CoreNetwork': coreNetwork,
+    };
+  }
 }
 
 class UpdateDeviceResponse {
@@ -8857,6 +10287,13 @@ class UpdateDeviceResponse {
           ? Device.fromJson(json['Device'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final device = this.device;
+    return {
+      if (device != null) 'Device': device,
+    };
   }
 }
 
@@ -8875,6 +10312,13 @@ class UpdateGlobalNetworkResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final globalNetwork = this.globalNetwork;
+    return {
+      if (globalNetwork != null) 'GlobalNetwork': globalNetwork,
+    };
+  }
 }
 
 class UpdateLinkResponse {
@@ -8890,6 +10334,13 @@ class UpdateLinkResponse {
           ? Link.fromJson(json['Link'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final link = this.link;
+    return {
+      if (link != null) 'Link': link,
+    };
   }
 }
 
@@ -8912,6 +10363,15 @@ class UpdateNetworkResourceMetadataResponse {
       resourceArn: json['ResourceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metadata = this.metadata;
+    final resourceArn = this.resourceArn;
+    return {
+      if (metadata != null) 'Metadata': metadata,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+    };
+  }
 }
 
 class UpdateSiteResponse {
@@ -8927,6 +10387,13 @@ class UpdateSiteResponse {
           ? Site.fromJson(json['Site'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final site = this.site;
+    return {
+      if (site != null) 'Site': site,
+    };
   }
 }
 
@@ -8944,6 +10411,13 @@ class UpdateVpcAttachmentResponse {
               json['VpcAttachment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final vpcAttachment = this.vpcAttachment;
+    return {
+      if (vpcAttachment != null) 'VpcAttachment': vpcAttachment,
+    };
   }
 }
 
@@ -8976,6 +10450,17 @@ class VpcAttachment {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachment = this.attachment;
+    final options = this.options;
+    final subnetArns = this.subnetArns;
+    return {
+      if (attachment != null) 'Attachment': attachment,
+      if (options != null) 'Options': options,
+      if (subnetArns != null) 'SubnetArns': subnetArns,
+    };
   }
 }
 

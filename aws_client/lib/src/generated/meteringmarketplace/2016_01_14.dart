@@ -405,6 +405,15 @@ class BatchMeterUsageResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final results = this.results;
+    final unprocessedRecords = this.unprocessedRecords;
+    return {
+      if (results != null) 'Results': results,
+      if (unprocessedRecords != null) 'UnprocessedRecords': unprocessedRecords,
+    };
+  }
 }
 
 class MeterUsageResult {
@@ -418,6 +427,13 @@ class MeterUsageResult {
     return MeterUsageResult(
       meteringRecordId: json['MeteringRecordId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final meteringRecordId = this.meteringRecordId;
+    return {
+      if (meteringRecordId != null) 'MeteringRecordId': meteringRecordId,
+    };
   }
 }
 
@@ -438,6 +454,17 @@ class RegisterUsageResult {
           timeStampFromJson(json['PublicKeyRotationTimestamp']),
       signature: json['Signature'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final publicKeyRotationTimestamp = this.publicKeyRotationTimestamp;
+    final signature = this.signature;
+    return {
+      if (publicKeyRotationTimestamp != null)
+        'PublicKeyRotationTimestamp':
+            unixTimestampToJson(publicKeyRotationTimestamp),
+      if (signature != null) 'Signature': signature,
+    };
   }
 }
 
@@ -470,6 +497,18 @@ class ResolveCustomerResult {
       customerIdentifier: json['CustomerIdentifier'] as String?,
       productCode: json['ProductCode'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customerAWSAccountId = this.customerAWSAccountId;
+    final customerIdentifier = this.customerIdentifier;
+    final productCode = this.productCode;
+    return {
+      if (customerAWSAccountId != null)
+        'CustomerAWSAccountId': customerAWSAccountId,
+      if (customerIdentifier != null) 'CustomerIdentifier': customerIdentifier,
+      if (productCode != null) 'ProductCode': productCode,
+    };
   }
 }
 
@@ -670,6 +709,17 @@ class UsageRecordResult {
           ? UsageRecord.fromJson(json['UsageRecord'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final meteringRecordId = this.meteringRecordId;
+    final status = this.status;
+    final usageRecord = this.usageRecord;
+    return {
+      if (meteringRecordId != null) 'MeteringRecordId': meteringRecordId,
+      if (status != null) 'Status': status.toValue(),
+      if (usageRecord != null) 'UsageRecord': usageRecord,
+    };
   }
 }
 

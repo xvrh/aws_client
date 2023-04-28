@@ -880,6 +880,36 @@ class Backup {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupId = this.backupId;
+    final backupState = this.backupState;
+    final clusterId = this.clusterId;
+    final copyTimestamp = this.copyTimestamp;
+    final createTimestamp = this.createTimestamp;
+    final deleteTimestamp = this.deleteTimestamp;
+    final neverExpires = this.neverExpires;
+    final sourceBackup = this.sourceBackup;
+    final sourceCluster = this.sourceCluster;
+    final sourceRegion = this.sourceRegion;
+    final tagList = this.tagList;
+    return {
+      'BackupId': backupId,
+      if (backupState != null) 'BackupState': backupState.toValue(),
+      if (clusterId != null) 'ClusterId': clusterId,
+      if (copyTimestamp != null)
+        'CopyTimestamp': unixTimestampToJson(copyTimestamp),
+      if (createTimestamp != null)
+        'CreateTimestamp': unixTimestampToJson(createTimestamp),
+      if (deleteTimestamp != null)
+        'DeleteTimestamp': unixTimestampToJson(deleteTimestamp),
+      if (neverExpires != null) 'NeverExpires': neverExpires,
+      if (sourceBackup != null) 'SourceBackup': sourceBackup,
+      if (sourceCluster != null) 'SourceCluster': sourceCluster,
+      if (sourceRegion != null) 'SourceRegion': sourceRegion,
+      if (tagList != null) 'TagList': tagList,
+    };
+  }
 }
 
 enum BackupPolicy {
@@ -1032,6 +1062,24 @@ class Certificates {
           json['ManufacturerHardwareCertificate'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsHardwareCertificate = this.awsHardwareCertificate;
+    final clusterCertificate = this.clusterCertificate;
+    final clusterCsr = this.clusterCsr;
+    final hsmCertificate = this.hsmCertificate;
+    final manufacturerHardwareCertificate =
+        this.manufacturerHardwareCertificate;
+    return {
+      if (awsHardwareCertificate != null)
+        'AwsHardwareCertificate': awsHardwareCertificate,
+      if (clusterCertificate != null) 'ClusterCertificate': clusterCertificate,
+      if (clusterCsr != null) 'ClusterCsr': clusterCsr,
+      if (hsmCertificate != null) 'HsmCertificate': hsmCertificate,
+      if (manufacturerHardwareCertificate != null)
+        'ManufacturerHardwareCertificate': manufacturerHardwareCertificate,
+    };
+  }
 }
 
 /// Contains information about an AWS CloudHSM cluster.
@@ -1132,6 +1180,43 @@ class Cluster {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupPolicy = this.backupPolicy;
+    final backupRetentionPolicy = this.backupRetentionPolicy;
+    final certificates = this.certificates;
+    final clusterId = this.clusterId;
+    final createTimestamp = this.createTimestamp;
+    final hsmType = this.hsmType;
+    final hsms = this.hsms;
+    final preCoPassword = this.preCoPassword;
+    final securityGroup = this.securityGroup;
+    final sourceBackupId = this.sourceBackupId;
+    final state = this.state;
+    final stateMessage = this.stateMessage;
+    final subnetMapping = this.subnetMapping;
+    final tagList = this.tagList;
+    final vpcId = this.vpcId;
+    return {
+      if (backupPolicy != null) 'BackupPolicy': backupPolicy.toValue(),
+      if (backupRetentionPolicy != null)
+        'BackupRetentionPolicy': backupRetentionPolicy,
+      if (certificates != null) 'Certificates': certificates,
+      if (clusterId != null) 'ClusterId': clusterId,
+      if (createTimestamp != null)
+        'CreateTimestamp': unixTimestampToJson(createTimestamp),
+      if (hsmType != null) 'HsmType': hsmType,
+      if (hsms != null) 'Hsms': hsms,
+      if (preCoPassword != null) 'PreCoPassword': preCoPassword,
+      if (securityGroup != null) 'SecurityGroup': securityGroup,
+      if (sourceBackupId != null) 'SourceBackupId': sourceBackupId,
+      if (state != null) 'State': state.toValue(),
+      if (stateMessage != null) 'StateMessage': stateMessage,
+      if (subnetMapping != null) 'SubnetMapping': subnetMapping,
+      if (tagList != null) 'TagList': tagList,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 enum ClusterState {
@@ -1219,6 +1304,13 @@ class CopyBackupToRegionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationBackup = this.destinationBackup;
+    return {
+      if (destinationBackup != null) 'DestinationBackup': destinationBackup,
+    };
+  }
 }
 
 class CreateClusterResponse {
@@ -1234,6 +1326,13 @@ class CreateClusterResponse {
           ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -1251,6 +1350,13 @@ class CreateHsmResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hsm = this.hsm;
+    return {
+      if (hsm != null) 'Hsm': hsm,
+    };
+  }
 }
 
 class DeleteBackupResponse {
@@ -1266,6 +1372,13 @@ class DeleteBackupResponse {
           ? Backup.fromJson(json['Backup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backup = this.backup;
+    return {
+      if (backup != null) 'Backup': backup,
+    };
   }
 }
 
@@ -1283,6 +1396,13 @@ class DeleteClusterResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
+  }
 }
 
 class DeleteHsmResponse {
@@ -1296,6 +1416,13 @@ class DeleteHsmResponse {
     return DeleteHsmResponse(
       hsmId: json['HsmId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hsmId = this.hsmId;
+    return {
+      if (hsmId != null) 'HsmId': hsmId,
+    };
   }
 }
 
@@ -1321,6 +1448,15 @@ class DescribeBackupsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backups = this.backups;
+    final nextToken = this.nextToken;
+    return {
+      if (backups != null) 'Backups': backups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeClustersResponse {
@@ -1344,6 +1480,15 @@ class DescribeClustersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusters = this.clusters;
+    final nextToken = this.nextToken;
+    return {
+      if (clusters != null) 'Clusters': clusters,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1378,6 +1523,20 @@ class DestinationBackup {
       sourceCluster: json['SourceCluster'] as String?,
       sourceRegion: json['SourceRegion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createTimestamp = this.createTimestamp;
+    final sourceBackup = this.sourceBackup;
+    final sourceCluster = this.sourceCluster;
+    final sourceRegion = this.sourceRegion;
+    return {
+      if (createTimestamp != null)
+        'CreateTimestamp': unixTimestampToJson(createTimestamp),
+      if (sourceBackup != null) 'SourceBackup': sourceBackup,
+      if (sourceCluster != null) 'SourceCluster': sourceCluster,
+      if (sourceRegion != null) 'SourceRegion': sourceRegion,
+    };
   }
 }
 
@@ -1429,6 +1588,27 @@ class Hsm {
       stateMessage: json['StateMessage'] as String?,
       subnetId: json['SubnetId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hsmId = this.hsmId;
+    final availabilityZone = this.availabilityZone;
+    final clusterId = this.clusterId;
+    final eniId = this.eniId;
+    final eniIp = this.eniIp;
+    final state = this.state;
+    final stateMessage = this.stateMessage;
+    final subnetId = this.subnetId;
+    return {
+      'HsmId': hsmId,
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (clusterId != null) 'ClusterId': clusterId,
+      if (eniId != null) 'EniId': eniId,
+      if (eniIp != null) 'EniIp': eniIp,
+      if (state != null) 'State': state.toValue(),
+      if (stateMessage != null) 'StateMessage': stateMessage,
+      if (subnetId != null) 'SubnetId': subnetId,
+    };
   }
 }
 
@@ -1492,6 +1672,15 @@ class InitializeClusterResponse {
       stateMessage: json['StateMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final stateMessage = this.stateMessage;
+    return {
+      if (state != null) 'State': state.toValue(),
+      if (stateMessage != null) 'StateMessage': stateMessage,
+    };
+  }
 }
 
 class ListTagsResponse {
@@ -1516,6 +1705,15 @@ class ListTagsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tagList = this.tagList;
+    final nextToken = this.nextToken;
+    return {
+      'TagList': tagList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ModifyBackupAttributesResponse {
@@ -1530,6 +1728,13 @@ class ModifyBackupAttributesResponse {
           ? Backup.fromJson(json['Backup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backup = this.backup;
+    return {
+      if (backup != null) 'Backup': backup,
+    };
   }
 }
 
@@ -1546,6 +1751,13 @@ class ModifyClusterResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
+  }
 }
 
 class RestoreBackupResponse {
@@ -1561,6 +1773,13 @@ class RestoreBackupResponse {
           ? Backup.fromJson(json['Backup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backup = this.backup;
+    return {
+      if (backup != null) 'Backup': backup,
+    };
   }
 }
 
@@ -1598,12 +1817,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

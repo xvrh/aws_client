@@ -2229,6 +2229,7 @@ class ApiPassthrough {
     this.extensions,
     this.subject,
   });
+
   Map<String, dynamic> toJson() {
     final extensions = this.extensions;
     final subject = this.subject;
@@ -2416,6 +2417,45 @@ class CertificateAuthority {
       type: (json['Type'] as String?)?.toCertificateAuthorityType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final certificateAuthorityConfiguration =
+        this.certificateAuthorityConfiguration;
+    final createdAt = this.createdAt;
+    final failureReason = this.failureReason;
+    final keyStorageSecurityStandard = this.keyStorageSecurityStandard;
+    final lastStateChangeAt = this.lastStateChangeAt;
+    final notAfter = this.notAfter;
+    final notBefore = this.notBefore;
+    final ownerAccount = this.ownerAccount;
+    final restorableUntil = this.restorableUntil;
+    final revocationConfiguration = this.revocationConfiguration;
+    final serial = this.serial;
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (certificateAuthorityConfiguration != null)
+        'CertificateAuthorityConfiguration': certificateAuthorityConfiguration,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (failureReason != null) 'FailureReason': failureReason.toValue(),
+      if (keyStorageSecurityStandard != null)
+        'KeyStorageSecurityStandard': keyStorageSecurityStandard.toValue(),
+      if (lastStateChangeAt != null)
+        'LastStateChangeAt': unixTimestampToJson(lastStateChangeAt),
+      if (notAfter != null) 'NotAfter': unixTimestampToJson(notAfter),
+      if (notBefore != null) 'NotBefore': unixTimestampToJson(notBefore),
+      if (ownerAccount != null) 'OwnerAccount': ownerAccount,
+      if (restorableUntil != null)
+        'RestorableUntil': unixTimestampToJson(restorableUntil),
+      if (revocationConfiguration != null)
+        'RevocationConfiguration': revocationConfiguration,
+      if (serial != null) 'Serial': serial,
+      if (status != null) 'Status': status.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Contains configuration information for your private certificate authority
@@ -2580,6 +2620,15 @@ class CreateCertificateAuthorityAuditReportResponse {
       s3Key: json['S3Key'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final auditReportId = this.auditReportId;
+    final s3Key = this.s3Key;
+    return {
+      if (auditReportId != null) 'AuditReportId': auditReportId,
+      if (s3Key != null) 'S3Key': s3Key,
+    };
+  }
 }
 
 class CreateCertificateAuthorityResponse {
@@ -2598,6 +2647,14 @@ class CreateCertificateAuthorityResponse {
     return CreateCertificateAuthorityResponse(
       certificateAuthorityArn: json['CertificateAuthorityArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateAuthorityArn = this.certificateAuthorityArn;
+    return {
+      if (certificateAuthorityArn != null)
+        'CertificateAuthorityArn': certificateAuthorityArn,
+    };
   }
 }
 
@@ -2878,6 +2935,7 @@ class CustomExtension {
     required this.value,
     this.critical,
   });
+
   Map<String, dynamic> toJson() {
     final objectIdentifier = this.objectIdentifier;
     final value = this.value;
@@ -2920,6 +2978,20 @@ class DescribeCertificateAuthorityAuditReportResponse {
       s3Key: json['S3Key'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final auditReportStatus = this.auditReportStatus;
+    final createdAt = this.createdAt;
+    final s3BucketName = this.s3BucketName;
+    final s3Key = this.s3Key;
+    return {
+      if (auditReportStatus != null)
+        'AuditReportStatus': auditReportStatus.toValue(),
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (s3Key != null) 'S3Key': s3Key,
+    };
+  }
 }
 
 class DescribeCertificateAuthorityResponse {
@@ -2939,6 +3011,14 @@ class DescribeCertificateAuthorityResponse {
               json['CertificateAuthority'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateAuthority = this.certificateAuthority;
+    return {
+      if (certificateAuthority != null)
+        'CertificateAuthority': certificateAuthority,
+    };
   }
 }
 
@@ -2989,6 +3069,7 @@ class ExtendedKeyUsage {
     this.extendedKeyUsageObjectIdentifier,
     this.extendedKeyUsageType,
   });
+
   Map<String, dynamic> toJson() {
     final extendedKeyUsageObjectIdentifier =
         this.extendedKeyUsageObjectIdentifier;
@@ -3103,6 +3184,7 @@ class Extensions {
     this.keyUsage,
     this.subjectAlternativeNames,
   });
+
   Map<String, dynamic> toJson() {
     final certificatePolicies = this.certificatePolicies;
     final customExtensions = this.customExtensions;
@@ -3257,6 +3339,15 @@ class GetCertificateAuthorityCertificateResponse {
       certificateChain: json['CertificateChain'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    final certificateChain = this.certificateChain;
+    return {
+      if (certificate != null) 'Certificate': certificate,
+      if (certificateChain != null) 'CertificateChain': certificateChain,
+    };
+  }
 }
 
 class GetCertificateAuthorityCsrResponse {
@@ -3272,6 +3363,13 @@ class GetCertificateAuthorityCsrResponse {
     return GetCertificateAuthorityCsrResponse(
       csr: json['Csr'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final csr = this.csr;
+    return {
+      if (csr != null) 'Csr': csr,
+    };
   }
 }
 
@@ -3294,6 +3392,15 @@ class GetCertificateResponse {
       certificateChain: json['CertificateChain'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    final certificateChain = this.certificateChain;
+    return {
+      if (certificate != null) 'Certificate': certificate,
+      if (certificateChain != null) 'CertificateChain': certificateChain,
+    };
+  }
 }
 
 class GetPolicyResponse {
@@ -3307,6 +3414,13 @@ class GetPolicyResponse {
     return GetPolicyResponse(
       policy: json['Policy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -3325,6 +3439,13 @@ class IssueCertificateResponse {
     return IssueCertificateResponse(
       certificateArn: json['CertificateArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateArn = this.certificateArn;
+    return {
+      if (certificateArn != null) 'CertificateArn': certificateArn,
+    };
   }
 }
 
@@ -3496,6 +3617,16 @@ class ListCertificateAuthoritiesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateAuthorities = this.certificateAuthorities;
+    final nextToken = this.nextToken;
+    return {
+      if (certificateAuthorities != null)
+        'CertificateAuthorities': certificateAuthorities,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListPermissionsResponse {
@@ -3521,6 +3652,15 @@ class ListPermissionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final permissions = this.permissions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (permissions != null) 'Permissions': permissions,
+    };
+  }
 }
 
 class ListTagsResponse {
@@ -3543,6 +3683,15 @@ class ListTagsResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3678,6 +3827,24 @@ class Permission {
       sourceAccount: json['SourceAccount'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final certificateAuthorityArn = this.certificateAuthorityArn;
+    final createdAt = this.createdAt;
+    final policy = this.policy;
+    final principal = this.principal;
+    final sourceAccount = this.sourceAccount;
+    return {
+      if (actions != null) 'Actions': actions.map((e) => e.toValue()).toList(),
+      if (certificateAuthorityArn != null)
+        'CertificateAuthorityArn': certificateAuthorityArn,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (policy != null) 'Policy': policy,
+      if (principal != null) 'Principal': principal,
+      if (sourceAccount != null) 'SourceAccount': sourceAccount,
+    };
+  }
 }
 
 /// Defines the X.509 <code>CertificatePolicies</code> extension.
@@ -3696,6 +3863,7 @@ class PolicyInformation {
     required this.certPolicyId,
     this.policyQualifiers,
   });
+
   Map<String, dynamic> toJson() {
     final certPolicyId = this.certPolicyId;
     final policyQualifiers = this.policyQualifiers;
@@ -3744,6 +3912,7 @@ class PolicyQualifierInfo {
     required this.policyQualifierId,
     required this.qualifier,
   });
+
   Map<String, dynamic> toJson() {
     final policyQualifierId = this.policyQualifierId;
     final qualifier = this.qualifier;
@@ -3766,6 +3935,7 @@ class Qualifier {
   Qualifier({
     required this.cpsUri,
   });
+
   Map<String, dynamic> toJson() {
     final cpsUri = this.cpsUri;
     return {
@@ -4096,6 +4266,7 @@ class Validity {
     required this.type,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final type = this.type;
     final value = this.value;

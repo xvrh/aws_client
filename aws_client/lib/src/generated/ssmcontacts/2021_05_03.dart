@@ -1311,6 +1311,10 @@ class AcceptPageResult {
   factory AcceptPageResult.fromJson(Map<String, dynamic> _) {
     return AcceptPageResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 enum AcceptType {
@@ -1345,6 +1349,10 @@ class ActivateContactChannelResult {
   ActivateContactChannelResult();
   factory ActivateContactChannelResult.fromJson(Map<String, dynamic> _) {
     return ActivateContactChannelResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1472,6 +1480,19 @@ class Contact {
       displayName: json['DisplayName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alias = this.alias;
+    final contactArn = this.contactArn;
+    final type = this.type;
+    final displayName = this.displayName;
+    return {
+      'Alias': alias,
+      'ContactArn': contactArn,
+      'Type': type.toValue(),
+      if (displayName != null) 'DisplayName': displayName,
+    };
+  }
 }
 
 /// The method that Incident Manager uses to engage a contact.
@@ -1529,6 +1550,23 @@ class ContactChannel {
       name: json['Name'] as String,
       type: (json['Type'] as String?)?.toChannelType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activationStatus = this.activationStatus;
+    final contactArn = this.contactArn;
+    final contactChannelArn = this.contactChannelArn;
+    final deliveryAddress = this.deliveryAddress;
+    final name = this.name;
+    final type = this.type;
+    return {
+      'ActivationStatus': activationStatus.toValue(),
+      'ContactArn': contactArn,
+      'ContactChannelArn': contactChannelArn,
+      'DeliveryAddress': deliveryAddress,
+      'Name': name,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -1638,6 +1676,13 @@ class CreateContactChannelResult {
       contactChannelArn: json['ContactChannelArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactChannelArn = this.contactChannelArn;
+    return {
+      'ContactChannelArn': contactChannelArn,
+    };
+  }
 }
 
 class CreateContactResult {
@@ -1652,12 +1697,23 @@ class CreateContactResult {
       contactArn: json['ContactArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactArn = this.contactArn;
+    return {
+      'ContactArn': contactArn,
+    };
+  }
 }
 
 class DeactivateContactChannelResult {
   DeactivateContactChannelResult();
   factory DeactivateContactChannelResult.fromJson(Map<String, dynamic> _) {
     return DeactivateContactChannelResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1666,12 +1722,20 @@ class DeleteContactChannelResult {
   factory DeleteContactChannelResult.fromJson(Map<String, dynamic> _) {
     return DeleteContactChannelResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteContactResult {
   DeleteContactResult();
   factory DeleteContactResult.fromJson(Map<String, dynamic> _) {
     return DeleteContactResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1735,6 +1799,31 @@ class DescribeEngagementResult {
       startTime: timeStampFromJson(json['StartTime']),
       stopTime: timeStampFromJson(json['StopTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contactArn = this.contactArn;
+    final content = this.content;
+    final engagementArn = this.engagementArn;
+    final sender = this.sender;
+    final subject = this.subject;
+    final incidentId = this.incidentId;
+    final publicContent = this.publicContent;
+    final publicSubject = this.publicSubject;
+    final startTime = this.startTime;
+    final stopTime = this.stopTime;
+    return {
+      'ContactArn': contactArn,
+      'Content': content,
+      'EngagementArn': engagementArn,
+      'Sender': sender,
+      'Subject': subject,
+      if (incidentId != null) 'IncidentId': incidentId,
+      if (publicContent != null) 'PublicContent': publicContent,
+      if (publicSubject != null) 'PublicSubject': publicSubject,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (stopTime != null) 'StopTime': unixTimestampToJson(stopTime),
+    };
   }
 }
 
@@ -1809,6 +1898,36 @@ class DescribePageResult {
       sentTime: timeStampFromJson(json['SentTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactArn = this.contactArn;
+    final content = this.content;
+    final engagementArn = this.engagementArn;
+    final pageArn = this.pageArn;
+    final sender = this.sender;
+    final subject = this.subject;
+    final deliveryTime = this.deliveryTime;
+    final incidentId = this.incidentId;
+    final publicContent = this.publicContent;
+    final publicSubject = this.publicSubject;
+    final readTime = this.readTime;
+    final sentTime = this.sentTime;
+    return {
+      'ContactArn': contactArn,
+      'Content': content,
+      'EngagementArn': engagementArn,
+      'PageArn': pageArn,
+      'Sender': sender,
+      'Subject': subject,
+      if (deliveryTime != null)
+        'DeliveryTime': unixTimestampToJson(deliveryTime),
+      if (incidentId != null) 'IncidentId': incidentId,
+      if (publicContent != null) 'PublicContent': publicContent,
+      if (publicSubject != null) 'PublicSubject': publicSubject,
+      if (readTime != null) 'ReadTime': unixTimestampToJson(readTime),
+      if (sentTime != null) 'SentTime': unixTimestampToJson(sentTime),
+    };
+  }
 }
 
 /// Incident Manager reaching out to a contact or escalation plan to engage
@@ -1849,6 +1968,23 @@ class Engagement {
       startTime: timeStampFromJson(json['StartTime']),
       stopTime: timeStampFromJson(json['StopTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contactArn = this.contactArn;
+    final engagementArn = this.engagementArn;
+    final sender = this.sender;
+    final incidentId = this.incidentId;
+    final startTime = this.startTime;
+    final stopTime = this.stopTime;
+    return {
+      'ContactArn': contactArn,
+      'EngagementArn': engagementArn,
+      'Sender': sender,
+      if (incidentId != null) 'IncidentId': incidentId,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (stopTime != null) 'StopTime': unixTimestampToJson(stopTime),
+    };
   }
 }
 
@@ -1893,6 +2029,24 @@ class GetContactChannelResult {
           (json['ActivationStatus'] as String?)?.toActivationStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactArn = this.contactArn;
+    final contactChannelArn = this.contactChannelArn;
+    final deliveryAddress = this.deliveryAddress;
+    final name = this.name;
+    final type = this.type;
+    final activationStatus = this.activationStatus;
+    return {
+      'ContactArn': contactArn,
+      'ContactChannelArn': contactChannelArn,
+      'DeliveryAddress': deliveryAddress,
+      'Name': name,
+      'Type': type.toValue(),
+      if (activationStatus != null)
+        'ActivationStatus': activationStatus.toValue(),
+    };
+  }
 }
 
 class GetContactPolicyResult {
@@ -1912,6 +2066,15 @@ class GetContactPolicyResult {
       contactArn: json['ContactArn'] as String?,
       policy: json['Policy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contactArn = this.contactArn;
+    final policy = this.policy;
+    return {
+      if (contactArn != null) 'ContactArn': contactArn,
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -1950,6 +2113,21 @@ class GetContactResult {
       displayName: json['DisplayName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alias = this.alias;
+    final contactArn = this.contactArn;
+    final plan = this.plan;
+    final type = this.type;
+    final displayName = this.displayName;
+    return {
+      'Alias': alias,
+      'ContactArn': contactArn,
+      'Plan': plan,
+      'Type': type.toValue(),
+      if (displayName != null) 'DisplayName': displayName,
+    };
+  }
 }
 
 class ListContactChannelsResult {
@@ -1971,6 +2149,15 @@ class ListContactChannelsResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contactChannels = this.contactChannels;
+    final nextToken = this.nextToken;
+    return {
+      'ContactChannels': contactChannels,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1995,6 +2182,15 @@ class ListContactsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contacts = this.contacts;
+    final nextToken = this.nextToken;
+    return {
+      if (contacts != null) 'Contacts': contacts,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListEngagementsResult {
@@ -2018,6 +2214,15 @@ class ListEngagementsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final engagements = this.engagements;
+    final nextToken = this.nextToken;
+    return {
+      'Engagements': engagements,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListPageReceiptsResult {
@@ -2039,6 +2244,15 @@ class ListPageReceiptsResult {
           .map((e) => Receipt.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final receipts = this.receipts;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (receipts != null) 'Receipts': receipts,
+    };
   }
 }
 
@@ -2062,6 +2276,15 @@ class ListPagesByContactResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pages = this.pages;
+    final nextToken = this.nextToken;
+    return {
+      'Pages': pages,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListPagesByEngagementResult {
@@ -2084,6 +2307,15 @@ class ListPagesByEngagementResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pages = this.pages;
+    final nextToken = this.nextToken;
+    return {
+      'Pages': pages,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResult {
@@ -2100,6 +2332,13 @@ class ListTagsForResourceResult {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2151,6 +2390,28 @@ class Page {
       sentTime: timeStampFromJson(json['SentTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contactArn = this.contactArn;
+    final engagementArn = this.engagementArn;
+    final pageArn = this.pageArn;
+    final sender = this.sender;
+    final deliveryTime = this.deliveryTime;
+    final incidentId = this.incidentId;
+    final readTime = this.readTime;
+    final sentTime = this.sentTime;
+    return {
+      'ContactArn': contactArn,
+      'EngagementArn': engagementArn,
+      'PageArn': pageArn,
+      'Sender': sender,
+      if (deliveryTime != null)
+        'DeliveryTime': unixTimestampToJson(deliveryTime),
+      if (incidentId != null) 'IncidentId': incidentId,
+      if (readTime != null) 'ReadTime': unixTimestampToJson(readTime),
+      if (sentTime != null) 'SentTime': unixTimestampToJson(sentTime),
+    };
+  }
 }
 
 /// The stages that an escalation plan or engagement plan engages contacts and
@@ -2185,6 +2446,10 @@ class PutContactPolicyResult {
   factory PutContactPolicyResult.fromJson(Map<String, dynamic> _) {
     return PutContactPolicyResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Records events during an engagement.
@@ -2217,6 +2482,19 @@ class Receipt {
       contactChannelArn: json['ContactChannelArn'] as String?,
       receiptInfo: json['ReceiptInfo'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final receiptTime = this.receiptTime;
+    final receiptType = this.receiptType;
+    final contactChannelArn = this.contactChannelArn;
+    final receiptInfo = this.receiptInfo;
+    return {
+      'ReceiptTime': unixTimestampToJson(receiptTime),
+      'ReceiptType': receiptType.toValue(),
+      if (contactChannelArn != null) 'ContactChannelArn': contactChannelArn,
+      if (receiptInfo != null) 'ReceiptInfo': receiptInfo,
+    };
   }
 }
 
@@ -2268,6 +2546,10 @@ class SendActivationCodeResult {
   factory SendActivationCodeResult.fromJson(Map<String, dynamic> _) {
     return SendActivationCodeResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A set amount of time that an escalation plan or engagement plan engages the
@@ -2317,12 +2599,23 @@ class StartEngagementResult {
       engagementArn: json['EngagementArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final engagementArn = this.engagementArn;
+    return {
+      'EngagementArn': engagementArn,
+    };
+  }
 }
 
 class StopEngagementResult {
   StopEngagementResult();
   factory StopEngagementResult.fromJson(Map<String, dynamic> _) {
     return StopEngagementResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2359,6 +2652,10 @@ class TagResourceResult {
   TagResourceResult();
   factory TagResourceResult.fromJson(Map<String, dynamic> _) {
     return TagResourceResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2409,6 +2706,7 @@ class TimeRange {
     this.endTime,
     this.startTime,
   });
+
   Map<String, dynamic> toJson() {
     final endTime = this.endTime;
     final startTime = this.startTime;
@@ -2424,6 +2722,10 @@ class UntagResourceResult {
   factory UntagResourceResult.fromJson(Map<String, dynamic> _) {
     return UntagResourceResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateContactChannelResult {
@@ -2431,12 +2733,20 @@ class UpdateContactChannelResult {
   factory UpdateContactChannelResult.fromJson(Map<String, dynamic> _) {
     return UpdateContactChannelResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateContactResult {
   UpdateContactResult();
   factory UpdateContactResult.fromJson(Map<String, dynamic> _) {
     return UpdateContactResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

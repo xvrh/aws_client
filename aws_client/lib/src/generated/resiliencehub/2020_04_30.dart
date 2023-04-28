@@ -1982,6 +1982,17 @@ class AddDraftAppVersionResourceMappingsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    final appVersion = this.appVersion;
+    final resourceMappings = this.resourceMappings;
+    return {
+      'appArn': appArn,
+      'appVersion': appVersion,
+      'resourceMappings': resourceMappings,
+    };
+  }
 }
 
 /// Defines a recommendation for a CloudWatch alarm.
@@ -2034,6 +2045,27 @@ class AlarmRecommendation {
           .toList(),
       prerequisite: json['prerequisite'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final recommendationId = this.recommendationId;
+    final referenceId = this.referenceId;
+    final type = this.type;
+    final appComponentName = this.appComponentName;
+    final description = this.description;
+    final items = this.items;
+    final prerequisite = this.prerequisite;
+    return {
+      'name': name,
+      'recommendationId': recommendationId,
+      'referenceId': referenceId,
+      'type': type.toValue(),
+      if (appComponentName != null) 'appComponentName': appComponentName,
+      if (description != null) 'description': description,
+      if (items != null) 'items': items,
+      if (prerequisite != null) 'prerequisite': prerequisite,
+    };
   }
 }
 
@@ -2165,6 +2197,43 @@ class App {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    final creationTime = this.creationTime;
+    final name = this.name;
+    final assessmentSchedule = this.assessmentSchedule;
+    final complianceStatus = this.complianceStatus;
+    final description = this.description;
+    final lastAppComplianceEvaluationTime =
+        this.lastAppComplianceEvaluationTime;
+    final lastResiliencyScoreEvaluationTime =
+        this.lastResiliencyScoreEvaluationTime;
+    final policyArn = this.policyArn;
+    final resiliencyScore = this.resiliencyScore;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      'appArn': appArn,
+      'creationTime': unixTimestampToJson(creationTime),
+      'name': name,
+      if (assessmentSchedule != null)
+        'assessmentSchedule': assessmentSchedule.toValue(),
+      if (complianceStatus != null)
+        'complianceStatus': complianceStatus.toValue(),
+      if (description != null) 'description': description,
+      if (lastAppComplianceEvaluationTime != null)
+        'lastAppComplianceEvaluationTime':
+            unixTimestampToJson(lastAppComplianceEvaluationTime),
+      if (lastResiliencyScoreEvaluationTime != null)
+        'lastResiliencyScoreEvaluationTime':
+            unixTimestampToJson(lastResiliencyScoreEvaluationTime),
+      if (policyArn != null) 'policyArn': policyArn,
+      if (resiliencyScore != null) 'resiliencyScore': resiliencyScore,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Defines an application assessment.
@@ -2282,6 +2351,46 @@ class AppAssessment {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentArn = this.assessmentArn;
+    final assessmentStatus = this.assessmentStatus;
+    final invoker = this.invoker;
+    final appArn = this.appArn;
+    final appVersion = this.appVersion;
+    final assessmentName = this.assessmentName;
+    final compliance = this.compliance;
+    final complianceStatus = this.complianceStatus;
+    final cost = this.cost;
+    final endTime = this.endTime;
+    final message = this.message;
+    final policy = this.policy;
+    final resiliencyScore = this.resiliencyScore;
+    final resourceErrorsDetails = this.resourceErrorsDetails;
+    final startTime = this.startTime;
+    final tags = this.tags;
+    return {
+      'assessmentArn': assessmentArn,
+      'assessmentStatus': assessmentStatus.toValue(),
+      'invoker': invoker.toValue(),
+      if (appArn != null) 'appArn': appArn,
+      if (appVersion != null) 'appVersion': appVersion,
+      if (assessmentName != null) 'assessmentName': assessmentName,
+      if (compliance != null)
+        'compliance': compliance.map((k, e) => MapEntry(k.toValue(), e)),
+      if (complianceStatus != null)
+        'complianceStatus': complianceStatus.toValue(),
+      if (cost != null) 'cost': cost,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (message != null) 'message': message,
+      if (policy != null) 'policy': policy,
+      if (resiliencyScore != null) 'resiliencyScore': resiliencyScore,
+      if (resourceErrorsDetails != null)
+        'resourceErrorsDetails': resourceErrorsDetails,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum AppAssessmentScheduleType {
@@ -2394,6 +2503,36 @@ class AppAssessmentSummary {
       startTime: timeStampFromJson(json['startTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentArn = this.assessmentArn;
+    final assessmentStatus = this.assessmentStatus;
+    final appArn = this.appArn;
+    final appVersion = this.appVersion;
+    final assessmentName = this.assessmentName;
+    final complianceStatus = this.complianceStatus;
+    final cost = this.cost;
+    final endTime = this.endTime;
+    final invoker = this.invoker;
+    final message = this.message;
+    final resiliencyScore = this.resiliencyScore;
+    final startTime = this.startTime;
+    return {
+      'assessmentArn': assessmentArn,
+      'assessmentStatus': assessmentStatus.toValue(),
+      if (appArn != null) 'appArn': appArn,
+      if (appVersion != null) 'appVersion': appVersion,
+      if (assessmentName != null) 'assessmentName': assessmentName,
+      if (complianceStatus != null)
+        'complianceStatus': complianceStatus.toValue(),
+      if (cost != null) 'cost': cost,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (invoker != null) 'invoker': invoker.toValue(),
+      if (message != null) 'message': message,
+      if (resiliencyScore != null) 'resiliencyScore': resiliencyScore,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+    };
+  }
 }
 
 enum AppComplianceStatusType {
@@ -2452,6 +2591,15 @@ class AppComponent {
       type: json['type'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    return {
+      'name': name,
+      'type': type,
+    };
+  }
 }
 
 /// Defines the compliance of an application component against the resiliency
@@ -2499,6 +2647,24 @@ class AppComponentCompliance {
           : null,
       status: (json['status'] as String?)?.toComplianceStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appComponentName = this.appComponentName;
+    final compliance = this.compliance;
+    final cost = this.cost;
+    final message = this.message;
+    final resiliencyScore = this.resiliencyScore;
+    final status = this.status;
+    return {
+      if (appComponentName != null) 'appComponentName': appComponentName,
+      if (compliance != null)
+        'compliance': compliance.map((k, e) => MapEntry(k.toValue(), e)),
+      if (cost != null) 'cost': cost,
+      if (message != null) 'message': message,
+      if (resiliencyScore != null) 'resiliencyScore': resiliencyScore,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -2581,6 +2747,27 @@ class AppSummary {
       resiliencyScore: json['resiliencyScore'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    final creationTime = this.creationTime;
+    final name = this.name;
+    final assessmentSchedule = this.assessmentSchedule;
+    final complianceStatus = this.complianceStatus;
+    final description = this.description;
+    final resiliencyScore = this.resiliencyScore;
+    return {
+      'appArn': appArn,
+      'creationTime': unixTimestampToJson(creationTime),
+      'name': name,
+      if (assessmentSchedule != null)
+        'assessmentSchedule': assessmentSchedule.toValue(),
+      if (complianceStatus != null)
+        'complianceStatus': complianceStatus.toValue(),
+      if (description != null) 'description': description,
+      if (resiliencyScore != null) 'resiliencyScore': resiliencyScore,
+    };
+  }
 }
 
 /// The version of the application.
@@ -2595,6 +2782,13 @@ class AppVersionSummary {
     return AppVersionSummary(
       appVersion: json['appVersion'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appVersion = this.appVersion;
+    return {
+      'appVersion': appVersion,
+    };
   }
 }
 
@@ -2721,6 +2915,17 @@ class ComponentRecommendation {
           .toRecommendationComplianceStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appComponentName = this.appComponentName;
+    final configRecommendations = this.configRecommendations;
+    final recommendationStatus = this.recommendationStatus;
+    return {
+      'appComponentName': appComponentName,
+      'configRecommendations': configRecommendations,
+      'recommendationStatus': recommendationStatus.toValue(),
+    };
+  }
 }
 
 /// Defines a configuration recommendation.
@@ -2797,6 +3002,34 @@ class ConfigRecommendation {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final optimizationType = this.optimizationType;
+    final referenceId = this.referenceId;
+    final appComponentName = this.appComponentName;
+    final compliance = this.compliance;
+    final cost = this.cost;
+    final description = this.description;
+    final haArchitecture = this.haArchitecture;
+    final recommendationCompliance = this.recommendationCompliance;
+    final suggestedChanges = this.suggestedChanges;
+    return {
+      'name': name,
+      'optimizationType': optimizationType.toValue(),
+      'referenceId': referenceId,
+      if (appComponentName != null) 'appComponentName': appComponentName,
+      if (compliance != null)
+        'compliance': compliance.map((k, e) => MapEntry(k.toValue(), e)),
+      if (cost != null) 'cost': cost,
+      if (description != null) 'description': description,
+      if (haArchitecture != null) 'haArchitecture': haArchitecture.toValue(),
+      if (recommendationCompliance != null)
+        'recommendationCompliance':
+            recommendationCompliance.map((k, e) => MapEntry(k.toValue(), e)),
+      if (suggestedChanges != null) 'suggestedChanges': suggestedChanges,
+    };
+  }
 }
 
 enum ConfigRecommendationOptimizationType {
@@ -2868,6 +3101,17 @@ class Cost {
       frequency: (json['frequency'] as String).toCostFrequency(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amount = this.amount;
+    final currency = this.currency;
+    final frequency = this.frequency;
+    return {
+      'amount': amount,
+      'currency': currency,
+      'frequency': frequency.toValue(),
+    };
+  }
 }
 
 enum CostFrequency {
@@ -2921,6 +3165,13 @@ class CreateAppResponse {
       app: App.fromJson(json['app'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final app = this.app;
+    return {
+      'app': app,
+    };
+  }
 }
 
 class CreateRecommendationTemplateResponse {
@@ -2941,6 +3192,14 @@ class CreateRecommendationTemplateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recommendationTemplate = this.recommendationTemplate;
+    return {
+      if (recommendationTemplate != null)
+        'recommendationTemplate': recommendationTemplate,
+    };
+  }
 }
 
 class CreateResiliencyPolicyResponse {
@@ -2955,6 +3214,13 @@ class CreateResiliencyPolicyResponse {
     return CreateResiliencyPolicyResponse(
       policy: ResiliencyPolicy.fromJson(json['policy'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      'policy': policy,
+    };
   }
 }
 
@@ -3014,6 +3280,15 @@ class DeleteAppAssessmentResponse {
           (json['assessmentStatus'] as String).toAssessmentStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentArn = this.assessmentArn;
+    final assessmentStatus = this.assessmentStatus;
+    return {
+      'assessmentArn': assessmentArn,
+      'assessmentStatus': assessmentStatus.toValue(),
+    };
+  }
 }
 
 class DeleteAppResponse {
@@ -3032,6 +3307,13 @@ class DeleteAppResponse {
     return DeleteAppResponse(
       appArn: json['appArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    return {
+      'appArn': appArn,
+    };
   }
 }
 
@@ -3053,6 +3335,15 @@ class DeleteRecommendationTemplateResponse {
       status: (json['status'] as String).toRecommendationTemplateStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recommendationTemplateArn = this.recommendationTemplateArn;
+    final status = this.status;
+    return {
+      'recommendationTemplateArn': recommendationTemplateArn,
+      'status': status.toValue(),
+    };
+  }
 }
 
 class DeleteResiliencyPolicyResponse {
@@ -3072,6 +3363,13 @@ class DeleteResiliencyPolicyResponse {
       policyArn: json['policyArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyArn = this.policyArn;
+    return {
+      'policyArn': policyArn,
+    };
+  }
 }
 
 class DescribeAppAssessmentResponse {
@@ -3089,6 +3387,13 @@ class DescribeAppAssessmentResponse {
           AppAssessment.fromJson(json['assessment'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessment = this.assessment;
+    return {
+      'assessment': assessment,
+    };
+  }
 }
 
 class DescribeAppResponse {
@@ -3103,6 +3408,13 @@ class DescribeAppResponse {
     return DescribeAppResponse(
       app: App.fromJson(json['app'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final app = this.app;
+    return {
+      'app': app,
+    };
   }
 }
 
@@ -3144,6 +3456,21 @@ class DescribeAppVersionResourcesResolutionStatusResponse {
       errorMessage: json['errorMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    final appVersion = this.appVersion;
+    final resolutionId = this.resolutionId;
+    final status = this.status;
+    final errorMessage = this.errorMessage;
+    return {
+      'appArn': appArn,
+      'appVersion': appVersion,
+      'resolutionId': resolutionId,
+      'status': status.toValue(),
+      if (errorMessage != null) 'errorMessage': errorMessage,
+    };
+  }
 }
 
 class DescribeAppVersionTemplateResponse {
@@ -3173,6 +3500,17 @@ class DescribeAppVersionTemplateResponse {
       appTemplateBody: json['appTemplateBody'] as String,
       appVersion: json['appVersion'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    final appTemplateBody = this.appTemplateBody;
+    final appVersion = this.appVersion;
+    return {
+      'appArn': appArn,
+      'appTemplateBody': appTemplateBody,
+      'appVersion': appVersion,
+    };
   }
 }
 
@@ -3215,6 +3553,21 @@ class DescribeDraftAppVersionResourcesImportStatusResponse {
       errorMessage: json['errorMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    final appVersion = this.appVersion;
+    final status = this.status;
+    final statusChangeTime = this.statusChangeTime;
+    final errorMessage = this.errorMessage;
+    return {
+      'appArn': appArn,
+      'appVersion': appVersion,
+      'status': status.toValue(),
+      'statusChangeTime': unixTimestampToJson(statusChangeTime),
+      if (errorMessage != null) 'errorMessage': errorMessage,
+    };
+  }
 }
 
 class DescribeResiliencyPolicyResponse {
@@ -3231,6 +3584,13 @@ class DescribeResiliencyPolicyResponse {
     return DescribeResiliencyPolicyResponse(
       policy: ResiliencyPolicy.fromJson(json['policy'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      'policy': policy,
+    };
   }
 }
 
@@ -3292,6 +3652,33 @@ class DisruptionCompliance {
       rtoDescription: json['rtoDescription'] as String?,
       rtoReferenceId: json['rtoReferenceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final complianceStatus = this.complianceStatus;
+    final achievableRpoInSecs = this.achievableRpoInSecs;
+    final achievableRtoInSecs = this.achievableRtoInSecs;
+    final currentRpoInSecs = this.currentRpoInSecs;
+    final currentRtoInSecs = this.currentRtoInSecs;
+    final message = this.message;
+    final rpoDescription = this.rpoDescription;
+    final rpoReferenceId = this.rpoReferenceId;
+    final rtoDescription = this.rtoDescription;
+    final rtoReferenceId = this.rtoReferenceId;
+    return {
+      'complianceStatus': complianceStatus.toValue(),
+      if (achievableRpoInSecs != null)
+        'achievableRpoInSecs': achievableRpoInSecs,
+      if (achievableRtoInSecs != null)
+        'achievableRtoInSecs': achievableRtoInSecs,
+      if (currentRpoInSecs != null) 'currentRpoInSecs': currentRpoInSecs,
+      if (currentRtoInSecs != null) 'currentRtoInSecs': currentRtoInSecs,
+      if (message != null) 'message': message,
+      if (rpoDescription != null) 'rpoDescription': rpoDescription,
+      if (rpoReferenceId != null) 'rpoReferenceId': rpoReferenceId,
+      if (rtoDescription != null) 'rtoDescription': rtoDescription,
+      if (rtoReferenceId != null) 'rtoReferenceId': rtoReferenceId,
+    };
   }
 }
 
@@ -3487,6 +3874,21 @@ class ImportResourcesToDraftAppVersionResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    final appVersion = this.appVersion;
+    final status = this.status;
+    final sourceArns = this.sourceArns;
+    final terraformSources = this.terraformSources;
+    return {
+      'appArn': appArn,
+      'appVersion': appVersion,
+      'status': status.toValue(),
+      if (sourceArns != null) 'sourceArns': sourceArns,
+      if (terraformSources != null) 'terraformSources': terraformSources,
+    };
+  }
 }
 
 class ListAlarmRecommendationsResponse {
@@ -3512,6 +3914,15 @@ class ListAlarmRecommendationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarmRecommendations = this.alarmRecommendations;
+    final nextToken = this.nextToken;
+    return {
+      'alarmRecommendations': alarmRecommendations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAppAssessmentsResponse {
@@ -3535,6 +3946,15 @@ class ListAppAssessmentsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final assessmentSummaries = this.assessmentSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'assessmentSummaries': assessmentSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3562,6 +3982,15 @@ class ListAppComponentCompliancesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final componentCompliances = this.componentCompliances;
+    final nextToken = this.nextToken;
+    return {
+      'componentCompliances': componentCompliances,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAppComponentRecommendationsResponse {
@@ -3587,6 +4016,15 @@ class ListAppComponentRecommendationsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final componentRecommendations = this.componentRecommendations;
+    final nextToken = this.nextToken;
+    return {
+      'componentRecommendations': componentRecommendations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3616,6 +4054,15 @@ class ListAppVersionResourceMappingsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceMappings = this.resourceMappings;
+    final nextToken = this.nextToken;
+    return {
+      'resourceMappings': resourceMappings,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAppVersionResourcesResponse {
@@ -3643,6 +4090,17 @@ class ListAppVersionResourcesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final physicalResources = this.physicalResources;
+    final resolutionId = this.resolutionId;
+    final nextToken = this.nextToken;
+    return {
+      'physicalResources': physicalResources,
+      'resolutionId': resolutionId,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAppVersionsResponse {
@@ -3665,6 +4123,15 @@ class ListAppVersionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appVersions = this.appVersions;
+    final nextToken = this.nextToken;
+    return {
+      'appVersions': appVersions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListAppsResponse {
@@ -3686,6 +4153,15 @@ class ListAppsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appSummaries = this.appSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'appSummaries': appSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3711,6 +4187,16 @@ class ListRecommendationTemplatesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final recommendationTemplates = this.recommendationTemplates;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (recommendationTemplates != null)
+        'recommendationTemplates': recommendationTemplates,
+    };
+  }
 }
 
 class ListResiliencyPoliciesResponse {
@@ -3732,6 +4218,15 @@ class ListResiliencyPoliciesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resiliencyPolicies = this.resiliencyPolicies;
+    final nextToken = this.nextToken;
+    return {
+      'resiliencyPolicies': resiliencyPolicies,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3756,6 +4251,15 @@ class ListSopRecommendationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sopRecommendations = this.sopRecommendations;
+    final nextToken = this.nextToken;
+    return {
+      'sopRecommendations': sopRecommendations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListSuggestedResiliencyPoliciesResponse {
@@ -3779,6 +4283,15 @@ class ListSuggestedResiliencyPoliciesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resiliencyPolicies = this.resiliencyPolicies;
+    final nextToken = this.nextToken;
+    return {
+      'resiliencyPolicies': resiliencyPolicies,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3794,6 +4307,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3816,6 +4336,15 @@ class ListTestRecommendationsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final testRecommendations = this.testRecommendations;
+    final nextToken = this.nextToken;
+    return {
+      'testRecommendations': testRecommendations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3844,6 +4373,17 @@ class ListUnsupportedAppVersionResourcesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolutionId = this.resolutionId;
+    final unsupportedResources = this.unsupportedResources;
+    final nextToken = this.nextToken;
+    return {
+      'resolutionId': resolutionId,
+      'unsupportedResources': unsupportedResources,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3874,6 +4414,20 @@ class LogicalResourceId {
       resourceGroupName: json['resourceGroupName'] as String?,
       terraformSourceName: json['terraformSourceName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identifier = this.identifier;
+    final logicalStackName = this.logicalStackName;
+    final resourceGroupName = this.resourceGroupName;
+    final terraformSourceName = this.terraformSourceName;
+    return {
+      'identifier': identifier,
+      if (logicalStackName != null) 'logicalStackName': logicalStackName,
+      if (resourceGroupName != null) 'resourceGroupName': resourceGroupName,
+      if (terraformSourceName != null)
+        'terraformSourceName': terraformSourceName,
+    };
   }
 }
 
@@ -3944,6 +4498,21 @@ class PhysicalResource {
           .toList(),
       resourceName: json['resourceName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logicalResourceId = this.logicalResourceId;
+    final physicalResourceId = this.physicalResourceId;
+    final resourceType = this.resourceType;
+    final appComponents = this.appComponents;
+    final resourceName = this.resourceName;
+    return {
+      'logicalResourceId': logicalResourceId,
+      'physicalResourceId': physicalResourceId,
+      'resourceType': resourceType,
+      if (appComponents != null) 'appComponents': appComponents,
+      if (resourceName != null) 'resourceName': resourceName,
+    };
   }
 }
 
@@ -4017,6 +4586,15 @@ class PublishAppVersionResponse {
       appVersion: json['appVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    final appVersion = this.appVersion;
+    return {
+      'appArn': appArn,
+      if (appVersion != null) 'appVersion': appVersion,
+    };
+  }
 }
 
 class PutDraftAppVersionTemplateResponse {
@@ -4041,6 +4619,15 @@ class PutDraftAppVersionTemplateResponse {
       appArn: json['appArn'] as String?,
       appVersion: json['appVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    final appVersion = this.appVersion;
+    return {
+      if (appArn != null) 'appArn': appArn,
+      if (appVersion != null) 'appVersion': appVersion,
+    };
   }
 }
 
@@ -4117,6 +4704,23 @@ class RecommendationDisruptionCompliance {
       expectedRtoInSecs: json['expectedRtoInSecs'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final expectedComplianceStatus = this.expectedComplianceStatus;
+    final expectedRpoDescription = this.expectedRpoDescription;
+    final expectedRpoInSecs = this.expectedRpoInSecs;
+    final expectedRtoDescription = this.expectedRtoDescription;
+    final expectedRtoInSecs = this.expectedRtoInSecs;
+    return {
+      'expectedComplianceStatus': expectedComplianceStatus.toValue(),
+      if (expectedRpoDescription != null)
+        'expectedRpoDescription': expectedRpoDescription,
+      if (expectedRpoInSecs != null) 'expectedRpoInSecs': expectedRpoInSecs,
+      if (expectedRtoDescription != null)
+        'expectedRtoDescription': expectedRtoDescription,
+      if (expectedRtoInSecs != null) 'expectedRtoInSecs': expectedRtoInSecs,
+    };
+  }
 }
 
 /// Defines a recommendation.
@@ -4146,6 +4750,19 @@ class RecommendationItem {
       targetAccountId: json['targetAccountId'] as String?,
       targetRegion: json['targetRegion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alreadyImplemented = this.alreadyImplemented;
+    final resourceId = this.resourceId;
+    final targetAccountId = this.targetAccountId;
+    final targetRegion = this.targetRegion;
+    return {
+      if (alreadyImplemented != null) 'alreadyImplemented': alreadyImplemented,
+      if (resourceId != null) 'resourceId': resourceId,
+      if (targetAccountId != null) 'targetAccountId': targetAccountId,
+      if (targetRegion != null) 'targetRegion': targetRegion,
+    };
   }
 }
 
@@ -4261,6 +4878,40 @@ class RecommendationTemplate {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessmentArn = this.assessmentArn;
+    final format = this.format;
+    final name = this.name;
+    final recommendationTemplateArn = this.recommendationTemplateArn;
+    final recommendationTypes = this.recommendationTypes;
+    final status = this.status;
+    final appArn = this.appArn;
+    final endTime = this.endTime;
+    final message = this.message;
+    final needsReplacements = this.needsReplacements;
+    final recommendationIds = this.recommendationIds;
+    final startTime = this.startTime;
+    final tags = this.tags;
+    final templatesLocation = this.templatesLocation;
+    return {
+      'assessmentArn': assessmentArn,
+      'format': format.toValue(),
+      'name': name,
+      'recommendationTemplateArn': recommendationTemplateArn,
+      'recommendationTypes':
+          recommendationTypes.map((e) => e.toValue()).toList(),
+      'status': status.toValue(),
+      if (appArn != null) 'appArn': appArn,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (message != null) 'message': message,
+      if (needsReplacements != null) 'needsReplacements': needsReplacements,
+      if (recommendationIds != null) 'recommendationIds': recommendationIds,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (tags != null) 'tags': tags,
+      if (templatesLocation != null) 'templatesLocation': templatesLocation,
+    };
+  }
 }
 
 enum RecommendationTemplateStatus {
@@ -4324,6 +4975,15 @@ class RemoveDraftAppVersionResourceMappingsResponse {
       appArn: json['appArn'] as String?,
       appVersion: json['appVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    final appVersion = this.appVersion;
+    return {
+      if (appArn != null) 'appArn': appArn,
+      if (appVersion != null) 'appVersion': appVersion,
+    };
   }
 }
 
@@ -4426,6 +5086,33 @@ class ResiliencyPolicy {
       tier: (json['tier'] as String?)?.toResiliencyPolicyTier(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final dataLocationConstraint = this.dataLocationConstraint;
+    final estimatedCostTier = this.estimatedCostTier;
+    final policy = this.policy;
+    final policyArn = this.policyArn;
+    final policyDescription = this.policyDescription;
+    final policyName = this.policyName;
+    final tags = this.tags;
+    final tier = this.tier;
+    return {
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (dataLocationConstraint != null)
+        'dataLocationConstraint': dataLocationConstraint.toValue(),
+      if (estimatedCostTier != null)
+        'estimatedCostTier': estimatedCostTier.toValue(),
+      if (policy != null)
+        'policy': policy.map((k, e) => MapEntry(k.toValue(), e)),
+      if (policyArn != null) 'policyArn': policyArn,
+      if (policyDescription != null) 'policyDescription': policyDescription,
+      if (policyName != null) 'policyName': policyName,
+      if (tags != null) 'tags': tags,
+      if (tier != null) 'tier': tier.toValue(),
+    };
+  }
 }
 
 enum ResiliencyPolicyTier {
@@ -4491,6 +5178,16 @@ class ResiliencyScore {
       score: json['score'] as double,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final disruptionScore = this.disruptionScore;
+    final score = this.score;
+    return {
+      'disruptionScore':
+          disruptionScore.map((k, e) => MapEntry(k.toValue(), e)),
+      'score': score,
+    };
+  }
 }
 
 class ResolveAppVersionResourcesResponse {
@@ -4526,6 +5223,19 @@ class ResolveAppVersionResourcesResponse {
       status: (json['status'] as String).toResourceResolutionStatusType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    final appVersion = this.appVersion;
+    final resolutionId = this.resolutionId;
+    final status = this.status;
+    return {
+      'appArn': appArn,
+      'appVersion': appVersion,
+      'resolutionId': resolutionId,
+      'status': status.toValue(),
+    };
+  }
 }
 
 /// Defines application resource errors.
@@ -4551,6 +5261,17 @@ class ResourceError {
       reason: json['reason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logicalResourceId = this.logicalResourceId;
+    final physicalResourceId = this.physicalResourceId;
+    final reason = this.reason;
+    return {
+      if (logicalResourceId != null) 'logicalResourceId': logicalResourceId,
+      if (physicalResourceId != null) 'physicalResourceId': physicalResourceId,
+      if (reason != null) 'reason': reason,
+    };
+  }
 }
 
 /// A list of errors retrieving an application's resources.
@@ -4574,6 +5295,15 @@ class ResourceErrorsDetails {
           .map((e) => ResourceError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hasMoreErrors = this.hasMoreErrors;
+    final resourceErrors = this.resourceErrors;
+    return {
+      if (hasMoreErrors != null) 'hasMoreErrors': hasMoreErrors,
+      if (resourceErrors != null) 'resourceErrors': resourceErrors,
+    };
   }
 }
 
@@ -4795,6 +5525,15 @@ class S3Location {
       prefix: json['prefix'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final prefix = this.prefix;
+    return {
+      if (bucket != null) 'bucket': bucket,
+      if (prefix != null) 'prefix': prefix,
+    };
+  }
 }
 
 /// Defines a standard operating procedure (SOP) recommendation.
@@ -4848,6 +5587,27 @@ class SopRecommendation {
       prerequisite: json['prerequisite'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recommendationId = this.recommendationId;
+    final referenceId = this.referenceId;
+    final serviceType = this.serviceType;
+    final appComponentName = this.appComponentName;
+    final description = this.description;
+    final items = this.items;
+    final name = this.name;
+    final prerequisite = this.prerequisite;
+    return {
+      'recommendationId': recommendationId,
+      'referenceId': referenceId,
+      'serviceType': serviceType.toValue(),
+      if (appComponentName != null) 'appComponentName': appComponentName,
+      if (description != null) 'description': description,
+      if (items != null) 'items': items,
+      if (name != null) 'name': name,
+      if (prerequisite != null) 'prerequisite': prerequisite,
+    };
+  }
 }
 
 enum SopServiceType {
@@ -4886,12 +5646,23 @@ class StartAppAssessmentResponse {
           AppAssessment.fromJson(json['assessment'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assessment = this.assessment;
+    return {
+      'assessment': assessment,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5015,6 +5786,33 @@ class TestRecommendation {
       type: (json['type'] as String?)?.toTestType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final referenceId = this.referenceId;
+    final appComponentName = this.appComponentName;
+    final dependsOnAlarms = this.dependsOnAlarms;
+    final description = this.description;
+    final intent = this.intent;
+    final items = this.items;
+    final name = this.name;
+    final prerequisite = this.prerequisite;
+    final recommendationId = this.recommendationId;
+    final risk = this.risk;
+    final type = this.type;
+    return {
+      'referenceId': referenceId,
+      if (appComponentName != null) 'appComponentName': appComponentName,
+      if (dependsOnAlarms != null) 'dependsOnAlarms': dependsOnAlarms,
+      if (description != null) 'description': description,
+      if (intent != null) 'intent': intent,
+      if (items != null) 'items': items,
+      if (name != null) 'name': name,
+      if (prerequisite != null) 'prerequisite': prerequisite,
+      if (recommendationId != null) 'recommendationId': recommendationId,
+      if (risk != null) 'risk': risk.toValue(),
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 enum TestRisk {
@@ -5113,12 +5911,27 @@ class UnsupportedResource {
       resourceType: json['resourceType'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logicalResourceId = this.logicalResourceId;
+    final physicalResourceId = this.physicalResourceId;
+    final resourceType = this.resourceType;
+    return {
+      'logicalResourceId': logicalResourceId,
+      'physicalResourceId': physicalResourceId,
+      'resourceType': resourceType,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5135,6 +5948,13 @@ class UpdateAppResponse {
       app: App.fromJson(json['app'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final app = this.app;
+    return {
+      'app': app,
+    };
+  }
 }
 
 class UpdateResiliencyPolicyResponse {
@@ -5149,6 +5969,13 @@ class UpdateResiliencyPolicyResponse {
     return UpdateResiliencyPolicyResponse(
       policy: ResiliencyPolicy.fromJson(json['policy'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      'policy': policy,
+    };
   }
 }
 

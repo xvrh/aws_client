@@ -2204,6 +2204,26 @@ class ActionInvocation {
       uri: json['Uri'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionName = this.actionName;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final extensionIdentifier = this.extensionIdentifier;
+    final invocationId = this.invocationId;
+    final roleArn = this.roleArn;
+    final uri = this.uri;
+    return {
+      if (actionName != null) 'ActionName': actionName,
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (extensionIdentifier != null)
+        'ExtensionIdentifier': extensionIdentifier,
+      if (invocationId != null) 'InvocationId': invocationId,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (uri != null) 'Uri': uri,
+    };
+  }
 }
 
 enum ActionPoint {
@@ -2281,6 +2301,17 @@ class Application {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class Applications {
@@ -2303,6 +2334,15 @@ class Applications {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2335,6 +2375,20 @@ class AppliedExtension {
       versionNumber: json['VersionNumber'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final extensionAssociationId = this.extensionAssociationId;
+    final extensionId = this.extensionId;
+    final parameters = this.parameters;
+    final versionNumber = this.versionNumber;
+    return {
+      if (extensionAssociationId != null)
+        'ExtensionAssociationId': extensionAssociationId,
+      if (extensionId != null) 'ExtensionId': extensionId,
+      if (parameters != null) 'Parameters': parameters,
+      if (versionNumber != null) 'VersionNumber': versionNumber,
+    };
+  }
 }
 
 class Configuration {
@@ -2361,6 +2415,15 @@ class Configuration {
     this.content,
     this.contentType,
   });
+
+  Map<String, dynamic> toJson() {
+    final configurationVersion = this.configurationVersion;
+    final content = this.content;
+    final contentType = this.contentType;
+    return {
+      if (content != null) 'Content': base64Encode(content),
+    };
+  }
 }
 
 class ConfigurationProfile {
@@ -2423,6 +2486,27 @@ class ConfigurationProfile {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final description = this.description;
+    final id = this.id;
+    final locationUri = this.locationUri;
+    final name = this.name;
+    final retrievalRoleArn = this.retrievalRoleArn;
+    final type = this.type;
+    final validators = this.validators;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (locationUri != null) 'LocationUri': locationUri,
+      if (name != null) 'Name': name,
+      if (retrievalRoleArn != null) 'RetrievalRoleArn': retrievalRoleArn,
+      if (type != null) 'Type': type,
+      if (validators != null) 'Validators': validators,
+    };
+  }
 }
 
 /// A summary of a configuration profile.
@@ -2475,6 +2559,24 @@ class ConfigurationProfileSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final id = this.id;
+    final locationUri = this.locationUri;
+    final name = this.name;
+    final type = this.type;
+    final validatorTypes = this.validatorTypes;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (id != null) 'Id': id,
+      if (locationUri != null) 'LocationUri': locationUri,
+      if (name != null) 'Name': name,
+      if (type != null) 'Type': type,
+      if (validatorTypes != null)
+        'ValidatorTypes': validatorTypes.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 class ConfigurationProfiles {
@@ -2498,6 +2600,15 @@ class ConfigurationProfiles {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2615,6 +2726,55 @@ class Deployment {
       state: (json['State'] as String?)?.toDeploymentState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final appliedExtensions = this.appliedExtensions;
+    final completedAt = this.completedAt;
+    final configurationLocationUri = this.configurationLocationUri;
+    final configurationName = this.configurationName;
+    final configurationProfileId = this.configurationProfileId;
+    final configurationVersion = this.configurationVersion;
+    final deploymentDurationInMinutes = this.deploymentDurationInMinutes;
+    final deploymentNumber = this.deploymentNumber;
+    final deploymentStrategyId = this.deploymentStrategyId;
+    final description = this.description;
+    final environmentId = this.environmentId;
+    final eventLog = this.eventLog;
+    final finalBakeTimeInMinutes = this.finalBakeTimeInMinutes;
+    final growthFactor = this.growthFactor;
+    final growthType = this.growthType;
+    final percentageComplete = this.percentageComplete;
+    final startedAt = this.startedAt;
+    final state = this.state;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (appliedExtensions != null) 'AppliedExtensions': appliedExtensions,
+      if (completedAt != null) 'CompletedAt': iso8601ToJson(completedAt),
+      if (configurationLocationUri != null)
+        'ConfigurationLocationUri': configurationLocationUri,
+      if (configurationName != null) 'ConfigurationName': configurationName,
+      if (configurationProfileId != null)
+        'ConfigurationProfileId': configurationProfileId,
+      if (configurationVersion != null)
+        'ConfigurationVersion': configurationVersion,
+      if (deploymentDurationInMinutes != null)
+        'DeploymentDurationInMinutes': deploymentDurationInMinutes,
+      if (deploymentNumber != null) 'DeploymentNumber': deploymentNumber,
+      if (deploymentStrategyId != null)
+        'DeploymentStrategyId': deploymentStrategyId,
+      if (description != null) 'Description': description,
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (eventLog != null) 'EventLog': eventLog,
+      if (finalBakeTimeInMinutes != null)
+        'FinalBakeTimeInMinutes': finalBakeTimeInMinutes,
+      if (growthFactor != null) 'GrowthFactor': growthFactor,
+      if (growthType != null) 'GrowthType': growthType.toValue(),
+      if (percentageComplete != null) 'PercentageComplete': percentageComplete,
+      if (startedAt != null) 'StartedAt': iso8601ToJson(startedAt),
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 /// An object that describes a deployment event.
@@ -2659,6 +2819,21 @@ class DeploymentEvent {
       occurredAt: timeStampFromJson(json['OccurredAt']),
       triggeredBy: (json['TriggeredBy'] as String?)?.toTriggeredBy(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionInvocations = this.actionInvocations;
+    final description = this.description;
+    final eventType = this.eventType;
+    final occurredAt = this.occurredAt;
+    final triggeredBy = this.triggeredBy;
+    return {
+      if (actionInvocations != null) 'ActionInvocations': actionInvocations,
+      if (description != null) 'Description': description,
+      if (eventType != null) 'EventType': eventType.toValue(),
+      if (occurredAt != null) 'OccurredAt': iso8601ToJson(occurredAt),
+      if (triggeredBy != null) 'TriggeredBy': triggeredBy.toValue(),
+    };
   }
 }
 
@@ -2779,6 +2954,15 @@ class DeploymentStrategies {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DeploymentStrategy {
@@ -2829,6 +3013,29 @@ class DeploymentStrategy {
       name: json['Name'] as String?,
       replicateTo: (json['ReplicateTo'] as String?)?.toReplicateTo(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentDurationInMinutes = this.deploymentDurationInMinutes;
+    final description = this.description;
+    final finalBakeTimeInMinutes = this.finalBakeTimeInMinutes;
+    final growthFactor = this.growthFactor;
+    final growthType = this.growthType;
+    final id = this.id;
+    final name = this.name;
+    final replicateTo = this.replicateTo;
+    return {
+      if (deploymentDurationInMinutes != null)
+        'DeploymentDurationInMinutes': deploymentDurationInMinutes,
+      if (description != null) 'Description': description,
+      if (finalBakeTimeInMinutes != null)
+        'FinalBakeTimeInMinutes': finalBakeTimeInMinutes,
+      if (growthFactor != null) 'GrowthFactor': growthFactor,
+      if (growthType != null) 'GrowthType': growthType.toValue(),
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (replicateTo != null) 'ReplicateTo': replicateTo.toValue(),
+    };
   }
 }
 
@@ -2897,6 +3104,36 @@ class DeploymentSummary {
       state: (json['State'] as String?)?.toDeploymentState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completedAt = this.completedAt;
+    final configurationName = this.configurationName;
+    final configurationVersion = this.configurationVersion;
+    final deploymentDurationInMinutes = this.deploymentDurationInMinutes;
+    final deploymentNumber = this.deploymentNumber;
+    final finalBakeTimeInMinutes = this.finalBakeTimeInMinutes;
+    final growthFactor = this.growthFactor;
+    final growthType = this.growthType;
+    final percentageComplete = this.percentageComplete;
+    final startedAt = this.startedAt;
+    final state = this.state;
+    return {
+      if (completedAt != null) 'CompletedAt': iso8601ToJson(completedAt),
+      if (configurationName != null) 'ConfigurationName': configurationName,
+      if (configurationVersion != null)
+        'ConfigurationVersion': configurationVersion,
+      if (deploymentDurationInMinutes != null)
+        'DeploymentDurationInMinutes': deploymentDurationInMinutes,
+      if (deploymentNumber != null) 'DeploymentNumber': deploymentNumber,
+      if (finalBakeTimeInMinutes != null)
+        'FinalBakeTimeInMinutes': finalBakeTimeInMinutes,
+      if (growthFactor != null) 'GrowthFactor': growthFactor,
+      if (growthType != null) 'GrowthType': growthType.toValue(),
+      if (percentageComplete != null) 'PercentageComplete': percentageComplete,
+      if (startedAt != null) 'StartedAt': iso8601ToJson(startedAt),
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class Deployments {
@@ -2919,6 +3156,15 @@ class Deployments {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2963,6 +3209,23 @@ class Environment {
       name: json['Name'] as String?,
       state: (json['State'] as String?)?.toEnvironmentState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final description = this.description;
+    final id = this.id;
+    final monitors = this.monitors;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (monitors != null) 'Monitors': monitors,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -3025,6 +3288,15 @@ class Environments {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class Extension {
@@ -3079,6 +3351,26 @@ class Extension {
       versionNumber: json['VersionNumber'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final arn = this.arn;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final parameters = this.parameters;
+    final versionNumber = this.versionNumber;
+    return {
+      if (actions != null)
+        'Actions': actions.map((k, e) => MapEntry(k.toValue(), e)),
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (parameters != null) 'Parameters': parameters,
+      if (versionNumber != null) 'VersionNumber': versionNumber,
+    };
+  }
 }
 
 class ExtensionAssociation {
@@ -3120,6 +3412,24 @@ class ExtensionAssociation {
       resourceArn: json['ResourceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final extensionArn = this.extensionArn;
+    final extensionVersionNumber = this.extensionVersionNumber;
+    final id = this.id;
+    final parameters = this.parameters;
+    final resourceArn = this.resourceArn;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (extensionArn != null) 'ExtensionArn': extensionArn,
+      if (extensionVersionNumber != null)
+        'ExtensionVersionNumber': extensionVersionNumber,
+      if (id != null) 'Id': id,
+      if (parameters != null) 'Parameters': parameters,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+    };
+  }
 }
 
 /// Information about an association between an extension and an AppConfig
@@ -3152,6 +3462,17 @@ class ExtensionAssociationSummary {
       resourceArn: json['ResourceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final extensionArn = this.extensionArn;
+    final id = this.id;
+    final resourceArn = this.resourceArn;
+    return {
+      if (extensionArn != null) 'ExtensionArn': extensionArn,
+      if (id != null) 'Id': id,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+    };
+  }
 }
 
 class ExtensionAssociations {
@@ -3176,6 +3497,15 @@ class ExtensionAssociations {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3213,6 +3543,21 @@ class ExtensionSummary {
       versionNumber: json['VersionNumber'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final versionNumber = this.versionNumber;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (versionNumber != null) 'VersionNumber': versionNumber,
+    };
+  }
 }
 
 class Extensions {
@@ -3236,6 +3581,15 @@ class Extensions {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3296,6 +3650,18 @@ class HostedConfigurationVersion {
     this.description,
     this.versionNumber,
   });
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final configurationProfileId = this.configurationProfileId;
+    final content = this.content;
+    final contentType = this.contentType;
+    final description = this.description;
+    final versionNumber = this.versionNumber;
+    return {
+      if (content != null) 'Content': base64Encode(content),
+    };
+  }
 }
 
 /// Information about the configuration.
@@ -3334,6 +3700,22 @@ class HostedConfigurationVersionSummary {
       versionNumber: json['VersionNumber'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final configurationProfileId = this.configurationProfileId;
+    final contentType = this.contentType;
+    final description = this.description;
+    final versionNumber = this.versionNumber;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (configurationProfileId != null)
+        'ConfigurationProfileId': configurationProfileId,
+      if (contentType != null) 'ContentType': contentType,
+      if (description != null) 'Description': description,
+      if (versionNumber != null) 'VersionNumber': versionNumber,
+    };
+  }
 }
 
 class HostedConfigurationVersions {
@@ -3357,6 +3739,15 @@ class HostedConfigurationVersions {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final nextToken = this.nextToken;
+    return {
+      if (items != null) 'Items': items,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3466,6 +3857,13 @@ class ResourceTags {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 

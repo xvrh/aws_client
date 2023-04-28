@@ -2360,6 +2360,19 @@ class BatchResultErrorEntry {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final id = this.id;
+    final senderFault = this.senderFault;
+    final message = this.message;
+    return {
+      'Code': code,
+      'Id': id,
+      'SenderFault': senderFault,
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Encloses a receipt handle and an entry id for each message in <code>
@@ -2397,6 +2410,7 @@ class ChangeMessageVisibilityBatchRequestEntry {
     required this.receiptHandle,
     this.visibilityTimeout,
   });
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final receiptHandle = this.receiptHandle;
@@ -2437,6 +2451,15 @@ class ChangeMessageVisibilityBatchResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final successful = this.successful;
+    return {
+      'Failed': failed,
+      'Successful': successful,
+    };
+  }
 }
 
 /// Encloses the <code>Id</code> of an entry in <code>
@@ -2453,6 +2476,13 @@ class ChangeMessageVisibilityBatchResultEntry {
       id: _s.extractXmlStringValue(elem, 'Id')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      'Id': id,
+    };
+  }
 }
 
 /// Returns the <code>QueueUrl</code> attribute of the created queue.
@@ -2467,6 +2497,13 @@ class CreateQueueResult {
     return CreateQueueResult(
       queueUrl: _s.extractXmlStringValue(elem, 'QueueUrl'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queueUrl = this.queueUrl;
+    return {
+      if (queueUrl != null) 'QueueUrl': queueUrl,
+    };
   }
 }
 
@@ -2489,6 +2526,7 @@ class DeleteMessageBatchRequestEntry {
     required this.id,
     required this.receiptHandle,
   });
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final receiptHandle = this.receiptHandle;
@@ -2526,6 +2564,15 @@ class DeleteMessageBatchResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final successful = this.successful;
+    return {
+      'Failed': failed,
+      'Successful': successful,
+    };
+  }
 }
 
 /// Encloses the <code>Id</code> of an entry in <code>
@@ -2541,6 +2588,13 @@ class DeleteMessageBatchResultEntry {
     return DeleteMessageBatchResultEntry(
       id: _s.extractXmlStringValue(elem, 'Id')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      'Id': id,
+    };
   }
 }
 
@@ -2564,6 +2618,14 @@ class GetQueueAttributesResult {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null)
+        'Attribute': attributes.map((k, e) => MapEntry(k.toValue(), e)),
+    };
+  }
 }
 
 /// For more information, see <a
@@ -2580,6 +2642,13 @@ class GetQueueUrlResult {
     return GetQueueUrlResult(
       queueUrl: _s.extractXmlStringValue(elem, 'QueueUrl'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queueUrl = this.queueUrl;
+    return {
+      if (queueUrl != null) 'QueueUrl': queueUrl,
+    };
   }
 }
 
@@ -2604,6 +2673,15 @@ class ListDeadLetterSourceQueuesResult {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final queueUrls = this.queueUrls;
+    final nextToken = this.nextToken;
+    return {
+      'queueUrls': queueUrls,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListQueueTagsResult {
@@ -2624,6 +2702,13 @@ class ListQueueTagsResult {
             ),
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tag': tags,
+    };
   }
 }
 
@@ -2647,6 +2732,15 @@ class ListQueuesResult {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
       queueUrls: _s.extractXmlStringListValues(elem, 'QueueUrl'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final queueUrls = this.queueUrls;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (queueUrls != null) 'QueueUrls': queueUrls,
+    };
   }
 }
 
@@ -2749,6 +2843,27 @@ class Message {
       messageId: _s.extractXmlStringValue(elem, 'MessageId'),
       receiptHandle: _s.extractXmlStringValue(elem, 'ReceiptHandle'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final body = this.body;
+    final mD5OfBody = this.mD5OfBody;
+    final mD5OfMessageAttributes = this.mD5OfMessageAttributes;
+    final messageAttributes = this.messageAttributes;
+    final messageId = this.messageId;
+    final receiptHandle = this.receiptHandle;
+    return {
+      if (attributes != null)
+        'Attribute': attributes.map((k, e) => MapEntry(k.toValue(), e)),
+      if (body != null) 'Body': body,
+      if (mD5OfBody != null) 'MD5OfBody': mD5OfBody,
+      if (mD5OfMessageAttributes != null)
+        'MD5OfMessageAttributes': mD5OfMessageAttributes,
+      if (messageAttributes != null) 'MessageAttribute': messageAttributes,
+      if (messageId != null) 'MessageId': messageId,
+      if (receiptHandle != null) 'ReceiptHandle': receiptHandle,
+    };
   }
 }
 
@@ -2945,6 +3060,7 @@ class MessageSystemAttributeValue {
     this.stringListValues,
     this.stringValue,
   });
+
   Map<String, dynamic> toJson() {
     final dataType = this.dataType;
     final binaryListValues = this.binaryListValues;
@@ -3102,6 +3218,13 @@ class ReceiveMessageResult {
     return ReceiveMessageResult(
       messages: elem.findElements('Message').map(Message.fromXml).toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messages = this.messages;
+    return {
+      if (messages != null) 'Messages': messages,
+    };
   }
 }
 
@@ -3266,6 +3389,7 @@ class SendMessageBatchRequestEntry {
     this.messageGroupId,
     this.messageSystemAttributes,
   });
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final messageBody = this.messageBody;
@@ -3315,6 +3439,15 @@ class SendMessageBatchResult {
           .map(SendMessageBatchResultEntry.fromXml)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final successful = this.successful;
+    return {
+      'Failed': failed,
+      'Successful': successful,
+    };
   }
 }
 
@@ -3376,6 +3509,25 @@ class SendMessageBatchResultEntry {
       sequenceNumber: _s.extractXmlStringValue(elem, 'SequenceNumber'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final mD5OfMessageBody = this.mD5OfMessageBody;
+    final messageId = this.messageId;
+    final mD5OfMessageAttributes = this.mD5OfMessageAttributes;
+    final mD5OfMessageSystemAttributes = this.mD5OfMessageSystemAttributes;
+    final sequenceNumber = this.sequenceNumber;
+    return {
+      'Id': id,
+      'MD5OfMessageBody': mD5OfMessageBody,
+      'MessageId': messageId,
+      if (mD5OfMessageAttributes != null)
+        'MD5OfMessageAttributes': mD5OfMessageAttributes,
+      if (mD5OfMessageSystemAttributes != null)
+        'MD5OfMessageSystemAttributes': mD5OfMessageSystemAttributes,
+      if (sequenceNumber != null) 'SequenceNumber': sequenceNumber,
+    };
+  }
 }
 
 /// The <code>MD5OfMessageBody</code> and <code>MessageId</code> elements.
@@ -3431,6 +3583,23 @@ class SendMessageResult {
       messageId: _s.extractXmlStringValue(elem, 'MessageId'),
       sequenceNumber: _s.extractXmlStringValue(elem, 'SequenceNumber'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mD5OfMessageAttributes = this.mD5OfMessageAttributes;
+    final mD5OfMessageBody = this.mD5OfMessageBody;
+    final mD5OfMessageSystemAttributes = this.mD5OfMessageSystemAttributes;
+    final messageId = this.messageId;
+    final sequenceNumber = this.sequenceNumber;
+    return {
+      if (mD5OfMessageAttributes != null)
+        'MD5OfMessageAttributes': mD5OfMessageAttributes,
+      if (mD5OfMessageBody != null) 'MD5OfMessageBody': mD5OfMessageBody,
+      if (mD5OfMessageSystemAttributes != null)
+        'MD5OfMessageSystemAttributes': mD5OfMessageSystemAttributes,
+      if (messageId != null) 'MessageId': messageId,
+      if (sequenceNumber != null) 'SequenceNumber': sequenceNumber,
+    };
   }
 }
 

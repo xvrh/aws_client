@@ -2251,6 +2251,17 @@ class ChildShard {
       shardId: json['ShardId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hashKeyRange = this.hashKeyRange;
+    final parentShards = this.parentShards;
+    final shardId = this.shardId;
+    return {
+      'HashKeyRange': hashKeyRange,
+      'ParentShards': parentShards,
+      'ShardId': shardId,
+    };
+  }
 }
 
 /// An object that represents the details of the consumer you registered. This
@@ -2290,6 +2301,20 @@ class Consumer {
       consumerName: json['ConsumerName'] as String,
       consumerStatus: (json['ConsumerStatus'] as String).toConsumerStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final consumerARN = this.consumerARN;
+    final consumerCreationTimestamp = this.consumerCreationTimestamp;
+    final consumerName = this.consumerName;
+    final consumerStatus = this.consumerStatus;
+    return {
+      'ConsumerARN': consumerARN,
+      'ConsumerCreationTimestamp':
+          unixTimestampToJson(consumerCreationTimestamp),
+      'ConsumerName': consumerName,
+      'ConsumerStatus': consumerStatus.toValue(),
+    };
   }
 }
 
@@ -2335,6 +2360,22 @@ class ConsumerDescription {
       consumerStatus: (json['ConsumerStatus'] as String).toConsumerStatus(),
       streamARN: json['StreamARN'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final consumerARN = this.consumerARN;
+    final consumerCreationTimestamp = this.consumerCreationTimestamp;
+    final consumerName = this.consumerName;
+    final consumerStatus = this.consumerStatus;
+    final streamARN = this.streamARN;
+    return {
+      'ConsumerARN': consumerARN,
+      'ConsumerCreationTimestamp':
+          unixTimestampToJson(consumerCreationTimestamp),
+      'ConsumerName': consumerName,
+      'ConsumerStatus': consumerStatus.toValue(),
+      'StreamARN': streamARN,
+    };
   }
 }
 
@@ -2398,6 +2439,19 @@ class DescribeLimitsOutput {
       shardLimit: json['ShardLimit'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final onDemandStreamCount = this.onDemandStreamCount;
+    final onDemandStreamCountLimit = this.onDemandStreamCountLimit;
+    final openShardCount = this.openShardCount;
+    final shardLimit = this.shardLimit;
+    return {
+      'OnDemandStreamCount': onDemandStreamCount,
+      'OnDemandStreamCountLimit': onDemandStreamCountLimit,
+      'OpenShardCount': openShardCount,
+      'ShardLimit': shardLimit,
+    };
+  }
 }
 
 class DescribeStreamConsumerOutput {
@@ -2412,6 +2466,13 @@ class DescribeStreamConsumerOutput {
       consumerDescription: ConsumerDescription.fromJson(
           json['ConsumerDescription'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final consumerDescription = this.consumerDescription;
+    return {
+      'ConsumerDescription': consumerDescription,
+    };
   }
 }
 
@@ -2431,6 +2492,13 @@ class DescribeStreamOutput {
           json['StreamDescription'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final streamDescription = this.streamDescription;
+    return {
+      'StreamDescription': streamDescription,
+    };
+  }
 }
 
 class DescribeStreamSummaryOutput {
@@ -2445,6 +2513,13 @@ class DescribeStreamSummaryOutput {
       streamDescriptionSummary: StreamDescriptionSummary.fromJson(
           json['StreamDescriptionSummary'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamDescriptionSummary = this.streamDescriptionSummary;
+    return {
+      'StreamDescriptionSummary': streamDescriptionSummary,
+    };
   }
 }
 
@@ -2526,6 +2601,14 @@ class EnhancedMetrics {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final shardLevelMetrics = this.shardLevelMetrics;
+    return {
+      if (shardLevelMetrics != null)
+        'ShardLevelMetrics': shardLevelMetrics.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 /// Represents the output for <a>EnableEnhancedMonitoring</a> and
@@ -2559,6 +2642,21 @@ class EnhancedMonitoringOutput {
           .toList(),
       streamName: json['StreamName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currentShardLevelMetrics = this.currentShardLevelMetrics;
+    final desiredShardLevelMetrics = this.desiredShardLevelMetrics;
+    final streamName = this.streamName;
+    return {
+      if (currentShardLevelMetrics != null)
+        'CurrentShardLevelMetrics':
+            currentShardLevelMetrics.map((e) => e.toValue()).toList(),
+      if (desiredShardLevelMetrics != null)
+        'DesiredShardLevelMetrics':
+            desiredShardLevelMetrics.map((e) => e.toValue()).toList(),
+      if (streamName != null) 'StreamName': streamName,
+    };
   }
 }
 
@@ -2603,6 +2701,19 @@ class GetRecordsOutput {
       nextShardIterator: json['NextShardIterator'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final records = this.records;
+    final childShards = this.childShards;
+    final millisBehindLatest = this.millisBehindLatest;
+    final nextShardIterator = this.nextShardIterator;
+    return {
+      'Records': records,
+      if (childShards != null) 'ChildShards': childShards,
+      if (millisBehindLatest != null) 'MillisBehindLatest': millisBehindLatest,
+      if (nextShardIterator != null) 'NextShardIterator': nextShardIterator,
+    };
+  }
 }
 
 /// Represents the output for <code>GetShardIterator</code>.
@@ -2619,6 +2730,13 @@ class GetShardIteratorOutput {
     return GetShardIteratorOutput(
       shardIterator: json['ShardIterator'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final shardIterator = this.shardIterator;
+    return {
+      if (shardIterator != null) 'ShardIterator': shardIterator,
+    };
   }
 }
 
@@ -2640,6 +2758,15 @@ class HashKeyRange {
       endingHashKey: json['EndingHashKey'] as String,
       startingHashKey: json['StartingHashKey'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endingHashKey = this.endingHashKey;
+    final startingHashKey = this.startingHashKey;
+    return {
+      'EndingHashKey': endingHashKey,
+      'StartingHashKey': startingHashKey,
+    };
   }
 }
 
@@ -2680,6 +2807,15 @@ class ListShardsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final shards = this.shards;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (shards != null) 'Shards': shards,
+    };
+  }
 }
 
 class ListStreamConsumersOutput {
@@ -2718,6 +2854,15 @@ class ListStreamConsumersOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final consumers = this.consumers;
+    final nextToken = this.nextToken;
+    return {
+      if (consumers != null) 'Consumers': consumers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the output for <code>ListStreams</code>.
@@ -2741,6 +2886,15 @@ class ListStreamsOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hasMoreStreams = this.hasMoreStreams;
+    final streamNames = this.streamNames;
+    return {
+      'HasMoreStreams': hasMoreStreams,
+      'StreamNames': streamNames,
+    };
   }
 }
 
@@ -2768,6 +2922,15 @@ class ListTagsForStreamOutput {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hasMoreTags = this.hasMoreTags;
+    final tags = this.tags;
+    return {
+      'HasMoreTags': hasMoreTags,
+      'Tags': tags,
+    };
   }
 }
 
@@ -2866,6 +3029,17 @@ class PutRecordOutput {
       encryptionType: (json['EncryptionType'] as String?)?.toEncryptionType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sequenceNumber = this.sequenceNumber;
+    final shardId = this.shardId;
+    final encryptionType = this.encryptionType;
+    return {
+      'SequenceNumber': sequenceNumber,
+      'ShardId': shardId,
+      if (encryptionType != null) 'EncryptionType': encryptionType.toValue(),
+    };
+  }
 }
 
 /// <code>PutRecords</code> results.
@@ -2910,6 +3084,17 @@ class PutRecordsOutput {
       failedRecordCount: json['FailedRecordCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final records = this.records;
+    final encryptionType = this.encryptionType;
+    final failedRecordCount = this.failedRecordCount;
+    return {
+      'Records': records,
+      if (encryptionType != null) 'EncryptionType': encryptionType.toValue(),
+      if (failedRecordCount != null) 'FailedRecordCount': failedRecordCount,
+    };
+  }
 }
 
 /// Represents the output for <code>PutRecords</code>.
@@ -2939,6 +3124,7 @@ class PutRecordsRequestEntry {
     required this.partitionKey,
     this.explicitHashKey,
   });
+
   Map<String, dynamic> toJson() {
     final data = this.data;
     final partitionKey = this.partitionKey;
@@ -2988,6 +3174,19 @@ class PutRecordsResultEntry {
       sequenceNumber: json['SequenceNumber'] as String?,
       shardId: json['ShardId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final sequenceNumber = this.sequenceNumber;
+    final shardId = this.shardId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (sequenceNumber != null) 'SequenceNumber': sequenceNumber,
+      if (shardId != null) 'ShardId': shardId,
+    };
   }
 }
 
@@ -3041,6 +3240,23 @@ class Record {
       encryptionType: (json['EncryptionType'] as String?)?.toEncryptionType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final data = this.data;
+    final partitionKey = this.partitionKey;
+    final sequenceNumber = this.sequenceNumber;
+    final approximateArrivalTimestamp = this.approximateArrivalTimestamp;
+    final encryptionType = this.encryptionType;
+    return {
+      'Data': base64Encode(data),
+      'PartitionKey': partitionKey,
+      'SequenceNumber': sequenceNumber,
+      if (approximateArrivalTimestamp != null)
+        'ApproximateArrivalTimestamp':
+            unixTimestampToJson(approximateArrivalTimestamp),
+      if (encryptionType != null) 'EncryptionType': encryptionType.toValue(),
+    };
+  }
 }
 
 class RegisterStreamConsumerOutput {
@@ -3056,6 +3272,13 @@ class RegisterStreamConsumerOutput {
     return RegisterStreamConsumerOutput(
       consumer: Consumer.fromJson(json['Consumer'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final consumer = this.consumer;
+    return {
+      'Consumer': consumer,
+    };
   }
 }
 
@@ -3101,6 +3324,16 @@ class SequenceNumberRange {
       endingSequenceNumber: json['EndingSequenceNumber'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final startingSequenceNumber = this.startingSequenceNumber;
+    final endingSequenceNumber = this.endingSequenceNumber;
+    return {
+      'StartingSequenceNumber': startingSequenceNumber,
+      if (endingSequenceNumber != null)
+        'EndingSequenceNumber': endingSequenceNumber,
+    };
+  }
 }
 
 /// A uniquely identified group of data records in a Kinesis data stream.
@@ -3138,6 +3371,22 @@ class Shard {
       adjacentParentShardId: json['AdjacentParentShardId'] as String?,
       parentShardId: json['ParentShardId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hashKeyRange = this.hashKeyRange;
+    final sequenceNumberRange = this.sequenceNumberRange;
+    final shardId = this.shardId;
+    final adjacentParentShardId = this.adjacentParentShardId;
+    final parentShardId = this.parentShardId;
+    return {
+      'HashKeyRange': hashKeyRange,
+      'SequenceNumberRange': sequenceNumberRange,
+      'ShardId': shardId,
+      if (adjacentParentShardId != null)
+        'AdjacentParentShardId': adjacentParentShardId,
+      if (parentShardId != null) 'ParentShardId': parentShardId,
+    };
   }
 }
 
@@ -3199,6 +3448,7 @@ class ShardFilter {
     this.shardId,
     this.timestamp,
   });
+
   Map<String, dynamic> toJson() {
     final type = this.type;
     final shardId = this.shardId;
@@ -3440,6 +3690,33 @@ class StreamDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final enhancedMonitoring = this.enhancedMonitoring;
+    final hasMoreShards = this.hasMoreShards;
+    final retentionPeriodHours = this.retentionPeriodHours;
+    final shards = this.shards;
+    final streamARN = this.streamARN;
+    final streamCreationTimestamp = this.streamCreationTimestamp;
+    final streamName = this.streamName;
+    final streamStatus = this.streamStatus;
+    final encryptionType = this.encryptionType;
+    final keyId = this.keyId;
+    final streamModeDetails = this.streamModeDetails;
+    return {
+      'EnhancedMonitoring': enhancedMonitoring,
+      'HasMoreShards': hasMoreShards,
+      'RetentionPeriodHours': retentionPeriodHours,
+      'Shards': shards,
+      'StreamARN': streamARN,
+      'StreamCreationTimestamp': unixTimestampToJson(streamCreationTimestamp),
+      'StreamName': streamName,
+      'StreamStatus': streamStatus.toValue(),
+      if (encryptionType != null) 'EncryptionType': encryptionType.toValue(),
+      if (keyId != null) 'KeyId': keyId,
+      if (streamModeDetails != null) 'StreamModeDetails': streamModeDetails,
+    };
+  }
 }
 
 /// Represents the output for <a>DescribeStreamSummary</a>
@@ -3573,6 +3850,33 @@ class StreamDescriptionSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final enhancedMonitoring = this.enhancedMonitoring;
+    final openShardCount = this.openShardCount;
+    final retentionPeriodHours = this.retentionPeriodHours;
+    final streamARN = this.streamARN;
+    final streamCreationTimestamp = this.streamCreationTimestamp;
+    final streamName = this.streamName;
+    final streamStatus = this.streamStatus;
+    final consumerCount = this.consumerCount;
+    final encryptionType = this.encryptionType;
+    final keyId = this.keyId;
+    final streamModeDetails = this.streamModeDetails;
+    return {
+      'EnhancedMonitoring': enhancedMonitoring,
+      'OpenShardCount': openShardCount,
+      'RetentionPeriodHours': retentionPeriodHours,
+      'StreamARN': streamARN,
+      'StreamCreationTimestamp': unixTimestampToJson(streamCreationTimestamp),
+      'StreamName': streamName,
+      'StreamStatus': streamStatus.toValue(),
+      if (consumerCount != null) 'ConsumerCount': consumerCount,
+      if (encryptionType != null) 'EncryptionType': encryptionType.toValue(),
+      if (keyId != null) 'KeyId': keyId,
+      if (streamModeDetails != null) 'StreamModeDetails': streamModeDetails,
+    };
+  }
 }
 
 enum StreamMode {
@@ -3690,6 +3994,15 @@ class Tag {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 class UpdateShardCountOutput {
@@ -3713,6 +4026,17 @@ class UpdateShardCountOutput {
       streamName: json['StreamName'] as String?,
       targetShardCount: json['TargetShardCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currentShardCount = this.currentShardCount;
+    final streamName = this.streamName;
+    final targetShardCount = this.targetShardCount;
+    return {
+      if (currentShardCount != null) 'CurrentShardCount': currentShardCount,
+      if (streamName != null) 'StreamName': streamName,
+      if (targetShardCount != null) 'TargetShardCount': targetShardCount,
+    };
   }
 }
 

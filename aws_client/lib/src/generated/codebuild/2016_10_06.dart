@@ -3195,6 +3195,15 @@ class BatchDeleteBuildsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final buildsDeleted = this.buildsDeleted;
+    final buildsNotDeleted = this.buildsNotDeleted;
+    return {
+      if (buildsDeleted != null) 'buildsDeleted': buildsDeleted,
+      if (buildsNotDeleted != null) 'buildsNotDeleted': buildsNotDeleted,
+    };
+  }
 }
 
 class BatchGetBuildBatchesOutput {
@@ -3222,6 +3231,16 @@ class BatchGetBuildBatchesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final buildBatches = this.buildBatches;
+    final buildBatchesNotFound = this.buildBatchesNotFound;
+    return {
+      if (buildBatches != null) 'buildBatches': buildBatches,
+      if (buildBatchesNotFound != null)
+        'buildBatchesNotFound': buildBatchesNotFound,
+    };
+  }
 }
 
 class BatchGetBuildsOutput {
@@ -3247,6 +3266,15 @@ class BatchGetBuildsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final builds = this.builds;
+    final buildsNotFound = this.buildsNotFound;
+    return {
+      if (builds != null) 'builds': builds,
+      if (buildsNotFound != null) 'buildsNotFound': buildsNotFound,
+    };
+  }
 }
 
 class BatchGetProjectsOutput {
@@ -3271,6 +3299,15 @@ class BatchGetProjectsOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final projects = this.projects;
+    final projectsNotFound = this.projectsNotFound;
+    return {
+      if (projects != null) 'projects': projects,
+      if (projectsNotFound != null) 'projectsNotFound': projectsNotFound,
+    };
   }
 }
 
@@ -3298,6 +3335,16 @@ class BatchGetReportGroupsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final reportGroups = this.reportGroups;
+    final reportGroupsNotFound = this.reportGroupsNotFound;
+    return {
+      if (reportGroups != null) 'reportGroups': reportGroups,
+      if (reportGroupsNotFound != null)
+        'reportGroupsNotFound': reportGroupsNotFound,
+    };
+  }
 }
 
 class BatchGetReportsOutput {
@@ -3324,6 +3371,15 @@ class BatchGetReportsOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reports = this.reports;
+    final reportsNotFound = this.reportsNotFound;
+    return {
+      if (reports != null) 'reports': reports,
+      if (reportsNotFound != null) 'reportsNotFound': reportsNotFound,
+    };
   }
 }
 
@@ -3775,6 +3831,80 @@ class Build {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final artifacts = this.artifacts;
+    final buildBatchArn = this.buildBatchArn;
+    final buildComplete = this.buildComplete;
+    final buildNumber = this.buildNumber;
+    final buildStatus = this.buildStatus;
+    final cache = this.cache;
+    final currentPhase = this.currentPhase;
+    final debugSession = this.debugSession;
+    final encryptionKey = this.encryptionKey;
+    final endTime = this.endTime;
+    final environment = this.environment;
+    final exportedEnvironmentVariables = this.exportedEnvironmentVariables;
+    final fileSystemLocations = this.fileSystemLocations;
+    final id = this.id;
+    final initiator = this.initiator;
+    final logs = this.logs;
+    final networkInterface = this.networkInterface;
+    final phases = this.phases;
+    final projectName = this.projectName;
+    final queuedTimeoutInMinutes = this.queuedTimeoutInMinutes;
+    final reportArns = this.reportArns;
+    final resolvedSourceVersion = this.resolvedSourceVersion;
+    final secondaryArtifacts = this.secondaryArtifacts;
+    final secondarySourceVersions = this.secondarySourceVersions;
+    final secondarySources = this.secondarySources;
+    final serviceRole = this.serviceRole;
+    final source = this.source;
+    final sourceVersion = this.sourceVersion;
+    final startTime = this.startTime;
+    final timeoutInMinutes = this.timeoutInMinutes;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (arn != null) 'arn': arn,
+      if (artifacts != null) 'artifacts': artifacts,
+      if (buildBatchArn != null) 'buildBatchArn': buildBatchArn,
+      if (buildComplete != null) 'buildComplete': buildComplete,
+      if (buildNumber != null) 'buildNumber': buildNumber,
+      if (buildStatus != null) 'buildStatus': buildStatus.toValue(),
+      if (cache != null) 'cache': cache,
+      if (currentPhase != null) 'currentPhase': currentPhase,
+      if (debugSession != null) 'debugSession': debugSession,
+      if (encryptionKey != null) 'encryptionKey': encryptionKey,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (environment != null) 'environment': environment,
+      if (exportedEnvironmentVariables != null)
+        'exportedEnvironmentVariables': exportedEnvironmentVariables,
+      if (fileSystemLocations != null)
+        'fileSystemLocations': fileSystemLocations,
+      if (id != null) 'id': id,
+      if (initiator != null) 'initiator': initiator,
+      if (logs != null) 'logs': logs,
+      if (networkInterface != null) 'networkInterface': networkInterface,
+      if (phases != null) 'phases': phases,
+      if (projectName != null) 'projectName': projectName,
+      if (queuedTimeoutInMinutes != null)
+        'queuedTimeoutInMinutes': queuedTimeoutInMinutes,
+      if (reportArns != null) 'reportArns': reportArns,
+      if (resolvedSourceVersion != null)
+        'resolvedSourceVersion': resolvedSourceVersion,
+      if (secondaryArtifacts != null) 'secondaryArtifacts': secondaryArtifacts,
+      if (secondarySourceVersions != null)
+        'secondarySourceVersions': secondarySourceVersions,
+      if (secondarySources != null) 'secondarySources': secondarySources,
+      if (serviceRole != null) 'serviceRole': serviceRole,
+      if (source != null) 'source': source,
+      if (sourceVersion != null) 'sourceVersion': sourceVersion,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (timeoutInMinutes != null) 'timeoutInMinutes': timeoutInMinutes,
+      if (vpcConfig != null) 'vpcConfig': vpcConfig,
+    };
+  }
 }
 
 /// Information about build output artifacts.
@@ -3835,6 +3965,27 @@ class BuildArtifacts {
       overrideArtifactName: json['overrideArtifactName'] as bool?,
       sha256sum: json['sha256sum'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final artifactIdentifier = this.artifactIdentifier;
+    final bucketOwnerAccess = this.bucketOwnerAccess;
+    final encryptionDisabled = this.encryptionDisabled;
+    final location = this.location;
+    final md5sum = this.md5sum;
+    final overrideArtifactName = this.overrideArtifactName;
+    final sha256sum = this.sha256sum;
+    return {
+      if (artifactIdentifier != null) 'artifactIdentifier': artifactIdentifier,
+      if (bucketOwnerAccess != null)
+        'bucketOwnerAccess': bucketOwnerAccess.toValue(),
+      if (encryptionDisabled != null) 'encryptionDisabled': encryptionDisabled,
+      if (location != null) 'location': location,
+      if (md5sum != null) 'md5sum': md5sum,
+      if (overrideArtifactName != null)
+        'overrideArtifactName': overrideArtifactName,
+      if (sha256sum != null) 'sha256sum': sha256sum,
+    };
   }
 }
 
@@ -4097,6 +4248,78 @@ class BuildBatch {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final artifacts = this.artifacts;
+    final buildBatchConfig = this.buildBatchConfig;
+    final buildBatchNumber = this.buildBatchNumber;
+    final buildBatchStatus = this.buildBatchStatus;
+    final buildGroups = this.buildGroups;
+    final buildTimeoutInMinutes = this.buildTimeoutInMinutes;
+    final cache = this.cache;
+    final complete = this.complete;
+    final currentPhase = this.currentPhase;
+    final debugSessionEnabled = this.debugSessionEnabled;
+    final encryptionKey = this.encryptionKey;
+    final endTime = this.endTime;
+    final environment = this.environment;
+    final fileSystemLocations = this.fileSystemLocations;
+    final id = this.id;
+    final initiator = this.initiator;
+    final logConfig = this.logConfig;
+    final phases = this.phases;
+    final projectName = this.projectName;
+    final queuedTimeoutInMinutes = this.queuedTimeoutInMinutes;
+    final resolvedSourceVersion = this.resolvedSourceVersion;
+    final secondaryArtifacts = this.secondaryArtifacts;
+    final secondarySourceVersions = this.secondarySourceVersions;
+    final secondarySources = this.secondarySources;
+    final serviceRole = this.serviceRole;
+    final source = this.source;
+    final sourceVersion = this.sourceVersion;
+    final startTime = this.startTime;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (arn != null) 'arn': arn,
+      if (artifacts != null) 'artifacts': artifacts,
+      if (buildBatchConfig != null) 'buildBatchConfig': buildBatchConfig,
+      if (buildBatchNumber != null) 'buildBatchNumber': buildBatchNumber,
+      if (buildBatchStatus != null)
+        'buildBatchStatus': buildBatchStatus.toValue(),
+      if (buildGroups != null) 'buildGroups': buildGroups,
+      if (buildTimeoutInMinutes != null)
+        'buildTimeoutInMinutes': buildTimeoutInMinutes,
+      if (cache != null) 'cache': cache,
+      if (complete != null) 'complete': complete,
+      if (currentPhase != null) 'currentPhase': currentPhase,
+      if (debugSessionEnabled != null)
+        'debugSessionEnabled': debugSessionEnabled,
+      if (encryptionKey != null) 'encryptionKey': encryptionKey,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (environment != null) 'environment': environment,
+      if (fileSystemLocations != null)
+        'fileSystemLocations': fileSystemLocations,
+      if (id != null) 'id': id,
+      if (initiator != null) 'initiator': initiator,
+      if (logConfig != null) 'logConfig': logConfig,
+      if (phases != null) 'phases': phases,
+      if (projectName != null) 'projectName': projectName,
+      if (queuedTimeoutInMinutes != null)
+        'queuedTimeoutInMinutes': queuedTimeoutInMinutes,
+      if (resolvedSourceVersion != null)
+        'resolvedSourceVersion': resolvedSourceVersion,
+      if (secondaryArtifacts != null) 'secondaryArtifacts': secondaryArtifacts,
+      if (secondarySourceVersions != null)
+        'secondarySourceVersions': secondarySourceVersions,
+      if (secondarySources != null) 'secondarySources': secondarySources,
+      if (serviceRole != null) 'serviceRole': serviceRole,
+      if (source != null) 'source': source,
+      if (sourceVersion != null) 'sourceVersion': sourceVersion,
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (vpcConfig != null) 'vpcConfig': vpcConfig,
+    };
+  }
 }
 
 /// Specifies filters when retrieving batch builds.
@@ -4108,6 +4331,7 @@ class BuildBatchFilter {
   BuildBatchFilter({
     this.status,
   });
+
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
@@ -4187,6 +4411,23 @@ class BuildBatchPhase {
       phaseType: (json['phaseType'] as String?)?.toBuildBatchPhaseType(),
       startTime: timeStampFromJson(json['startTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contexts = this.contexts;
+    final durationInSeconds = this.durationInSeconds;
+    final endTime = this.endTime;
+    final phaseStatus = this.phaseStatus;
+    final phaseType = this.phaseType;
+    final startTime = this.startTime;
+    return {
+      if (contexts != null) 'contexts': contexts,
+      if (durationInSeconds != null) 'durationInSeconds': durationInSeconds,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (phaseStatus != null) 'phaseStatus': phaseStatus.toValue(),
+      if (phaseType != null) 'phaseType': phaseType.toValue(),
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+    };
   }
 }
 
@@ -4290,6 +4531,23 @@ class BuildGroup {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currentBuildSummary = this.currentBuildSummary;
+    final dependsOn = this.dependsOn;
+    final identifier = this.identifier;
+    final ignoreFailure = this.ignoreFailure;
+    final priorBuildSummaryList = this.priorBuildSummaryList;
+    return {
+      if (currentBuildSummary != null)
+        'currentBuildSummary': currentBuildSummary,
+      if (dependsOn != null) 'dependsOn': dependsOn,
+      if (identifier != null) 'identifier': identifier,
+      if (ignoreFailure != null) 'ignoreFailure': ignoreFailure,
+      if (priorBuildSummaryList != null)
+        'priorBuildSummaryList': priorBuildSummaryList,
+    };
+  }
 }
 
 /// Information about a build that could not be successfully deleted.
@@ -4310,6 +4568,15 @@ class BuildNotDeleted {
       id: json['id'] as String?,
       statusCode: json['statusCode'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final statusCode = this.statusCode;
+    return {
+      if (id != null) 'id': id,
+      if (statusCode != null) 'statusCode': statusCode,
+    };
   }
 }
 
@@ -4391,6 +4658,23 @@ class BuildPhase {
       phaseType: (json['phaseType'] as String?)?.toBuildPhaseType(),
       startTime: timeStampFromJson(json['startTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contexts = this.contexts;
+    final durationInSeconds = this.durationInSeconds;
+    final endTime = this.endTime;
+    final phaseStatus = this.phaseStatus;
+    final phaseType = this.phaseType;
+    final startTime = this.startTime;
+    return {
+      if (contexts != null) 'contexts': contexts,
+      if (durationInSeconds != null) 'durationInSeconds': durationInSeconds,
+      if (endTime != null) 'endTime': unixTimestampToJson(endTime),
+      if (phaseStatus != null) 'phaseStatus': phaseStatus.toValue(),
+      if (phaseType != null) 'phaseType': phaseType.toValue(),
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+    };
   }
 }
 
@@ -4574,6 +4858,21 @@ class BuildSummary {
           .map((e) => ResolvedArtifact.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final buildStatus = this.buildStatus;
+    final primaryArtifact = this.primaryArtifact;
+    final requestedOn = this.requestedOn;
+    final secondaryArtifacts = this.secondaryArtifacts;
+    return {
+      if (arn != null) 'arn': arn,
+      if (buildStatus != null) 'buildStatus': buildStatus.toValue(),
+      if (primaryArtifact != null) 'primaryArtifact': primaryArtifact,
+      if (requestedOn != null) 'requestedOn': unixTimestampToJson(requestedOn),
+      if (secondaryArtifacts != null) 'secondaryArtifacts': secondaryArtifacts,
+    };
   }
 }
 
@@ -4760,6 +5059,33 @@ class CodeCoverage {
       reportARN: json['reportARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final branchCoveragePercentage = this.branchCoveragePercentage;
+    final branchesCovered = this.branchesCovered;
+    final branchesMissed = this.branchesMissed;
+    final expired = this.expired;
+    final filePath = this.filePath;
+    final id = this.id;
+    final lineCoveragePercentage = this.lineCoveragePercentage;
+    final linesCovered = this.linesCovered;
+    final linesMissed = this.linesMissed;
+    final reportARN = this.reportARN;
+    return {
+      if (branchCoveragePercentage != null)
+        'branchCoveragePercentage': branchCoveragePercentage,
+      if (branchesCovered != null) 'branchesCovered': branchesCovered,
+      if (branchesMissed != null) 'branchesMissed': branchesMissed,
+      if (expired != null) 'expired': unixTimestampToJson(expired),
+      if (filePath != null) 'filePath': filePath,
+      if (id != null) 'id': id,
+      if (lineCoveragePercentage != null)
+        'lineCoveragePercentage': lineCoveragePercentage,
+      if (linesCovered != null) 'linesCovered': linesCovered,
+      if (linesMissed != null) 'linesMissed': linesMissed,
+      if (reportARN != null) 'reportARN': reportARN,
+    };
+  }
 }
 
 /// Contains a summary of a code coverage report.
@@ -4806,6 +5132,25 @@ class CodeCoverageReportSummary {
       linesCovered: json['linesCovered'] as int?,
       linesMissed: json['linesMissed'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final branchCoveragePercentage = this.branchCoveragePercentage;
+    final branchesCovered = this.branchesCovered;
+    final branchesMissed = this.branchesMissed;
+    final lineCoveragePercentage = this.lineCoveragePercentage;
+    final linesCovered = this.linesCovered;
+    final linesMissed = this.linesMissed;
+    return {
+      if (branchCoveragePercentage != null)
+        'branchCoveragePercentage': branchCoveragePercentage,
+      if (branchesCovered != null) 'branchesCovered': branchesCovered,
+      if (branchesMissed != null) 'branchesMissed': branchesMissed,
+      if (lineCoveragePercentage != null)
+        'lineCoveragePercentage': lineCoveragePercentage,
+      if (linesCovered != null) 'linesCovered': linesCovered,
+      if (linesMissed != null) 'linesMissed': linesMissed,
+    };
   }
 }
 
@@ -4861,6 +5206,13 @@ class CreateProjectOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final project = this.project;
+    return {
+      if (project != null) 'project': project,
+    };
+  }
 }
 
 class CreateReportGroupOutput {
@@ -4876,6 +5228,13 @@ class CreateReportGroupOutput {
           ? ReportGroup.fromJson(json['reportGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reportGroup = this.reportGroup;
+    return {
+      if (reportGroup != null) 'reportGroup': reportGroup,
+    };
   }
 }
 
@@ -4893,6 +5252,13 @@ class CreateWebhookOutput {
           ? Webhook.fromJson(json['webhook'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final webhook = this.webhook;
+    return {
+      if (webhook != null) 'webhook': webhook,
+    };
   }
 }
 
@@ -4942,6 +5308,15 @@ class DebugSession {
       sessionTarget: json['sessionTarget'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sessionEnabled = this.sessionEnabled;
+    final sessionTarget = this.sessionTarget;
+    return {
+      if (sessionEnabled != null) 'sessionEnabled': sessionEnabled,
+      if (sessionTarget != null) 'sessionTarget': sessionTarget,
+    };
+  }
 }
 
 class DeleteBuildBatchOutput {
@@ -4974,12 +5349,27 @@ class DeleteBuildBatchOutput {
       statusCode: json['statusCode'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final buildsDeleted = this.buildsDeleted;
+    final buildsNotDeleted = this.buildsNotDeleted;
+    final statusCode = this.statusCode;
+    return {
+      if (buildsDeleted != null) 'buildsDeleted': buildsDeleted,
+      if (buildsNotDeleted != null) 'buildsNotDeleted': buildsNotDeleted,
+      if (statusCode != null) 'statusCode': statusCode,
+    };
+  }
 }
 
 class DeleteProjectOutput {
   DeleteProjectOutput();
   factory DeleteProjectOutput.fromJson(Map<String, dynamic> _) {
     return DeleteProjectOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4988,6 +5378,10 @@ class DeleteReportGroupOutput {
   factory DeleteReportGroupOutput.fromJson(Map<String, dynamic> _) {
     return DeleteReportGroupOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteReportOutput {
@@ -4995,12 +5389,20 @@ class DeleteReportOutput {
   factory DeleteReportOutput.fromJson(Map<String, dynamic> _) {
     return DeleteReportOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteResourcePolicyOutput {
   DeleteResourcePolicyOutput();
   factory DeleteResourcePolicyOutput.fromJson(Map<String, dynamic> _) {
     return DeleteResourcePolicyOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5016,12 +5418,23 @@ class DeleteSourceCredentialsOutput {
       arn: json['arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'arn': arn,
+    };
+  }
 }
 
 class DeleteWebhookOutput {
   DeleteWebhookOutput();
   factory DeleteWebhookOutput.fromJson(Map<String, dynamic> _) {
     return DeleteWebhookOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5046,6 +5459,15 @@ class DescribeCodeCoveragesOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final codeCoverages = this.codeCoverages;
+    final nextToken = this.nextToken;
+    return {
+      if (codeCoverages != null) 'codeCoverages': codeCoverages,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5075,6 +5497,15 @@ class DescribeTestCasesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final testCases = this.testCases;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (testCases != null) 'testCases': testCases,
+    };
+  }
 }
 
 /// Information about a Docker image that is managed by CodeBuild.
@@ -5103,6 +5534,17 @@ class EnvironmentImage {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final name = this.name;
+    final versions = this.versions;
+    return {
+      if (description != null) 'description': description,
+      if (name != null) 'name': name,
+      if (versions != null) 'versions': versions,
+    };
+  }
 }
 
 /// A set of Docker images that are related by programming language and are
@@ -5128,6 +5570,15 @@ class EnvironmentLanguage {
       language: (json['language'] as String?)?.toLanguageType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final images = this.images;
+    final language = this.language;
+    return {
+      if (images != null) 'images': images,
+      if (language != null) 'language': language.toValue(),
+    };
+  }
 }
 
 /// A set of Docker images that are related by platform and are managed by
@@ -5152,6 +5603,15 @@ class EnvironmentPlatform {
           .toList(),
       platform: (json['platform'] as String?)?.toPlatformType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final languages = this.languages;
+    final platform = this.platform;
+    return {
+      if (languages != null) 'languages': languages,
+      if (platform != null) 'platform': platform.toValue(),
+    };
   }
 }
 
@@ -5327,6 +5787,15 @@ class ExportedEnvironmentVariable {
       value: json['value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 enum FileSystemType {
@@ -5375,6 +5844,15 @@ class GetReportGroupTrendOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rawData = this.rawData;
+    final stats = this.stats;
+    return {
+      if (rawData != null) 'rawData': rawData,
+      if (stats != null) 'stats': stats,
+    };
+  }
 }
 
 class GetResourcePolicyOutput {
@@ -5388,6 +5866,13 @@ class GetResourcePolicyOutput {
     return GetResourcePolicyOutput(
       policy: json['policy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'policy': policy,
+    };
   }
 }
 
@@ -5454,12 +5939,23 @@ class ImportSourceCredentialsOutput {
       arn: json['arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'arn': arn,
+    };
+  }
 }
 
 class InvalidateProjectCacheOutput {
   InvalidateProjectCacheOutput();
   factory InvalidateProjectCacheOutput.fromJson(Map<String, dynamic> _) {
     return InvalidateProjectCacheOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5553,6 +6049,15 @@ class ListBuildBatchesForProjectOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ids = this.ids;
+    final nextToken = this.nextToken;
+    return {
+      if (ids != null) 'ids': ids,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListBuildBatchesOutput {
@@ -5576,6 +6081,15 @@ class ListBuildBatchesOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ids = this.ids;
+    final nextToken = this.nextToken;
+    return {
+      if (ids != null) 'ids': ids,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5603,6 +6117,15 @@ class ListBuildsForProjectOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ids = this.ids;
+    final nextToken = this.nextToken;
+    return {
+      if (ids != null) 'ids': ids,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListBuildsOutput {
@@ -5628,6 +6151,15 @@ class ListBuildsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ids = this.ids;
+    final nextToken = this.nextToken;
+    return {
+      if (ids != null) 'ids': ids,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListCuratedEnvironmentImagesOutput {
@@ -5646,6 +6178,13 @@ class ListCuratedEnvironmentImagesOutput {
           .map((e) => EnvironmentPlatform.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final platforms = this.platforms;
+    return {
+      if (platforms != null) 'platforms': platforms,
+    };
   }
 }
 
@@ -5672,6 +6211,15 @@ class ListProjectsOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final projects = this.projects;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (projects != null) 'projects': projects,
+    };
   }
 }
 
@@ -5702,6 +6250,15 @@ class ListReportGroupsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reportGroups = this.reportGroups;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (reportGroups != null) 'reportGroups': reportGroups,
+    };
+  }
 }
 
 class ListReportsForReportGroupOutput {
@@ -5729,6 +6286,15 @@ class ListReportsForReportGroupOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reports = this.reports;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (reports != null) 'reports': reports,
+    };
   }
 }
 
@@ -5759,6 +6325,15 @@ class ListReportsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reports = this.reports;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (reports != null) 'reports': reports,
+    };
+  }
 }
 
 class ListSharedProjectsOutput {
@@ -5787,6 +6362,15 @@ class ListSharedProjectsOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final projects = this.projects;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (projects != null) 'projects': projects,
+    };
   }
 }
 
@@ -5817,6 +6401,15 @@ class ListSharedReportGroupsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reportGroups = this.reportGroups;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (reportGroups != null) 'reportGroups': reportGroups,
+    };
+  }
 }
 
 class ListSourceCredentialsOutput {
@@ -5835,6 +6428,14 @@ class ListSourceCredentialsOutput {
           .map((e) => SourceCredentialsInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sourceCredentialsInfos = this.sourceCredentialsInfos;
+    return {
+      if (sourceCredentialsInfos != null)
+        'sourceCredentialsInfos': sourceCredentialsInfos,
+    };
   }
 }
 
@@ -5964,6 +6565,27 @@ class LogsLocation {
       streamName: json['streamName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogs = this.cloudWatchLogs;
+    final cloudWatchLogsArn = this.cloudWatchLogsArn;
+    final deepLink = this.deepLink;
+    final groupName = this.groupName;
+    final s3DeepLink = this.s3DeepLink;
+    final s3Logs = this.s3Logs;
+    final s3LogsArn = this.s3LogsArn;
+    final streamName = this.streamName;
+    return {
+      if (cloudWatchLogs != null) 'cloudWatchLogs': cloudWatchLogs,
+      if (cloudWatchLogsArn != null) 'cloudWatchLogsArn': cloudWatchLogsArn,
+      if (deepLink != null) 'deepLink': deepLink,
+      if (groupName != null) 'groupName': groupName,
+      if (s3DeepLink != null) 's3DeepLink': s3DeepLink,
+      if (s3Logs != null) 's3Logs': s3Logs,
+      if (s3LogsArn != null) 's3LogsArn': s3LogsArn,
+      if (streamName != null) 'streamName': streamName,
+    };
+  }
 }
 
 /// Describes a network interface.
@@ -5983,6 +6605,15 @@ class NetworkInterface {
       networkInterfaceId: json['networkInterfaceId'] as String?,
       subnetId: json['subnetId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkInterfaceId = this.networkInterfaceId;
+    final subnetId = this.subnetId;
+    return {
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (subnetId != null) 'subnetId': subnetId,
+    };
   }
 }
 
@@ -6005,6 +6636,15 @@ class PhaseContext {
       message: json['message'] as String?,
       statusCode: json['statusCode'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final statusCode = this.statusCode;
+    return {
+      if (message != null) 'message': message,
+      if (statusCode != null) 'statusCode': statusCode,
+    };
   }
 }
 
@@ -6293,6 +6933,73 @@ class Project {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final artifacts = this.artifacts;
+    final badge = this.badge;
+    final buildBatchConfig = this.buildBatchConfig;
+    final cache = this.cache;
+    final concurrentBuildLimit = this.concurrentBuildLimit;
+    final created = this.created;
+    final description = this.description;
+    final encryptionKey = this.encryptionKey;
+    final environment = this.environment;
+    final fileSystemLocations = this.fileSystemLocations;
+    final lastModified = this.lastModified;
+    final logsConfig = this.logsConfig;
+    final name = this.name;
+    final projectVisibility = this.projectVisibility;
+    final publicProjectAlias = this.publicProjectAlias;
+    final queuedTimeoutInMinutes = this.queuedTimeoutInMinutes;
+    final resourceAccessRole = this.resourceAccessRole;
+    final secondaryArtifacts = this.secondaryArtifacts;
+    final secondarySourceVersions = this.secondarySourceVersions;
+    final secondarySources = this.secondarySources;
+    final serviceRole = this.serviceRole;
+    final source = this.source;
+    final sourceVersion = this.sourceVersion;
+    final tags = this.tags;
+    final timeoutInMinutes = this.timeoutInMinutes;
+    final vpcConfig = this.vpcConfig;
+    final webhook = this.webhook;
+    return {
+      if (arn != null) 'arn': arn,
+      if (artifacts != null) 'artifacts': artifacts,
+      if (badge != null) 'badge': badge,
+      if (buildBatchConfig != null) 'buildBatchConfig': buildBatchConfig,
+      if (cache != null) 'cache': cache,
+      if (concurrentBuildLimit != null)
+        'concurrentBuildLimit': concurrentBuildLimit,
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (description != null) 'description': description,
+      if (encryptionKey != null) 'encryptionKey': encryptionKey,
+      if (environment != null) 'environment': environment,
+      if (fileSystemLocations != null)
+        'fileSystemLocations': fileSystemLocations,
+      if (lastModified != null)
+        'lastModified': unixTimestampToJson(lastModified),
+      if (logsConfig != null) 'logsConfig': logsConfig,
+      if (name != null) 'name': name,
+      if (projectVisibility != null)
+        'projectVisibility': projectVisibility.toValue(),
+      if (publicProjectAlias != null) 'publicProjectAlias': publicProjectAlias,
+      if (queuedTimeoutInMinutes != null)
+        'queuedTimeoutInMinutes': queuedTimeoutInMinutes,
+      if (resourceAccessRole != null) 'resourceAccessRole': resourceAccessRole,
+      if (secondaryArtifacts != null) 'secondaryArtifacts': secondaryArtifacts,
+      if (secondarySourceVersions != null)
+        'secondarySourceVersions': secondarySourceVersions,
+      if (secondarySources != null) 'secondarySources': secondarySources,
+      if (serviceRole != null) 'serviceRole': serviceRole,
+      if (source != null) 'source': source,
+      if (sourceVersion != null) 'sourceVersion': sourceVersion,
+      if (tags != null) 'tags': tags,
+      if (timeoutInMinutes != null) 'timeoutInMinutes': timeoutInMinutes,
+      if (vpcConfig != null) 'vpcConfig': vpcConfig,
+      if (webhook != null) 'webhook': webhook,
+    };
+  }
 }
 
 /// Information about the build output artifacts for the build project.
@@ -6557,6 +7264,15 @@ class ProjectBadge {
       badgeEnabled: json['badgeEnabled'] as bool?,
       badgeRequestUrl: json['badgeRequestUrl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final badgeEnabled = this.badgeEnabled;
+    final badgeRequestUrl = this.badgeRequestUrl;
+    return {
+      if (badgeEnabled != null) 'badgeEnabled': badgeEnabled,
+      if (badgeRequestUrl != null) 'badgeRequestUrl': badgeRequestUrl,
+    };
   }
 }
 
@@ -7387,6 +8103,13 @@ class PutResourcePolicyOutput {
       resourceArn: json['resourceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    return {
+      if (resourceArn != null) 'resourceArn': resourceArn,
+    };
+  }
 }
 
 /// Information about credentials that provide access to a private Docker
@@ -7530,6 +8253,36 @@ class Report {
       type: (json['type'] as String?)?.toReportType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final codeCoverageSummary = this.codeCoverageSummary;
+    final created = this.created;
+    final executionId = this.executionId;
+    final expired = this.expired;
+    final exportConfig = this.exportConfig;
+    final name = this.name;
+    final reportGroupArn = this.reportGroupArn;
+    final status = this.status;
+    final testSummary = this.testSummary;
+    final truncated = this.truncated;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (codeCoverageSummary != null)
+        'codeCoverageSummary': codeCoverageSummary,
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (executionId != null) 'executionId': executionId,
+      if (expired != null) 'expired': unixTimestampToJson(expired),
+      if (exportConfig != null) 'exportConfig': exportConfig,
+      if (name != null) 'name': name,
+      if (reportGroupArn != null) 'reportGroupArn': reportGroupArn,
+      if (status != null) 'status': status.toValue(),
+      if (testSummary != null) 'testSummary': testSummary,
+      if (truncated != null) 'truncated': truncated,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 enum ReportCodeCoverageSortByType {
@@ -7642,6 +8395,7 @@ class ReportFilter {
   ReportFilter({
     this.status,
   });
+
   Map<String, dynamic> toJson() {
     final status = this.status;
     return {
@@ -7723,6 +8477,28 @@ class ReportGroup {
           .toList(),
       type: (json['type'] as String?)?.toReportType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final created = this.created;
+    final exportConfig = this.exportConfig;
+    final lastModified = this.lastModified;
+    final name = this.name;
+    final status = this.status;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (created != null) 'created': unixTimestampToJson(created),
+      if (exportConfig != null) 'exportConfig': exportConfig,
+      if (lastModified != null)
+        'lastModified': unixTimestampToJson(lastModified),
+      if (name != null) 'name': name,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type.toValue(),
+    };
   }
 }
 
@@ -7874,6 +8650,17 @@ class ReportGroupTrendStats {
       min: json['min'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final average = this.average;
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (average != null) 'average': average,
+      if (max != null) 'max': max,
+      if (min != null) 'min': min,
+    };
+  }
 }
 
 enum ReportPackagingType {
@@ -7993,6 +8780,15 @@ class ReportWithRawData {
       reportArn: json['reportArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final data = this.data;
+    final reportArn = this.reportArn;
+    return {
+      if (data != null) 'data': data,
+      if (reportArn != null) 'reportArn': reportArn,
+    };
+  }
 }
 
 /// Represents a resolved build artifact. A resolved artifact is an artifact
@@ -8019,6 +8815,17 @@ class ResolvedArtifact {
       type: (json['type'] as String?)?.toArtifactsType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identifier = this.identifier;
+    final location = this.location;
+    final type = this.type;
+    return {
+      if (identifier != null) 'identifier': identifier,
+      if (location != null) 'location': location,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 class RetryBuildBatchOutput {
@@ -8033,6 +8840,13 @@ class RetryBuildBatchOutput {
           ? BuildBatch.fromJson(json['buildBatch'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final buildBatch = this.buildBatch;
+    return {
+      if (buildBatch != null) 'buildBatch': buildBatch,
+    };
   }
 }
 
@@ -8076,6 +8890,13 @@ class RetryBuildOutput {
           ? Build.fromJson(json['build'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final build = this.build;
+    return {
+      if (build != null) 'build': build,
+    };
   }
 }
 
@@ -8381,6 +9202,17 @@ class SourceCredentialsInfo {
       serverType: (json['serverType'] as String?)?.toServerType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final authType = this.authType;
+    final serverType = this.serverType;
+    return {
+      if (arn != null) 'arn': arn,
+      if (authType != null) 'authType': authType.toValue(),
+      if (serverType != null) 'serverType': serverType.toValue(),
+    };
+  }
 }
 
 enum SourceType {
@@ -8451,6 +9283,13 @@ class StartBuildBatchOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final buildBatch = this.buildBatch;
+    return {
+      if (buildBatch != null) 'buildBatch': buildBatch,
+    };
+  }
 }
 
 class StartBuildOutput {
@@ -8466,6 +9305,13 @@ class StartBuildOutput {
           ? Build.fromJson(json['build'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final build = this.build;
+    return {
+      if (build != null) 'build': build,
+    };
   }
 }
 
@@ -8530,6 +9376,13 @@ class StopBuildBatchOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final buildBatch = this.buildBatch;
+    return {
+      if (buildBatch != null) 'buildBatch': buildBatch,
+    };
+  }
 }
 
 class StopBuildOutput {
@@ -8545,6 +9398,13 @@ class StopBuildOutput {
           ? Build.fromJson(json['build'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final build = this.build;
+    return {
+      if (build != null) 'build': build,
+    };
   }
 }
 
@@ -8635,6 +9495,28 @@ class TestCase {
       testRawDataPath: json['testRawDataPath'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final durationInNanoSeconds = this.durationInNanoSeconds;
+    final expired = this.expired;
+    final message = this.message;
+    final name = this.name;
+    final prefix = this.prefix;
+    final reportArn = this.reportArn;
+    final status = this.status;
+    final testRawDataPath = this.testRawDataPath;
+    return {
+      if (durationInNanoSeconds != null)
+        'durationInNanoSeconds': durationInNanoSeconds,
+      if (expired != null) 'expired': unixTimestampToJson(expired),
+      if (message != null) 'message': message,
+      if (name != null) 'name': name,
+      if (prefix != null) 'prefix': prefix,
+      if (reportArn != null) 'reportArn': reportArn,
+      if (status != null) 'status': status,
+      if (testRawDataPath != null) 'testRawDataPath': testRawDataPath,
+    };
+  }
 }
 
 /// A filter used to return specific types of test cases. In order to pass the
@@ -8672,6 +9554,7 @@ class TestCaseFilter {
     this.keyword,
     this.status,
   });
+
   Map<String, dynamic> toJson() {
     final keyword = this.keyword;
     final status = this.status;
@@ -8709,6 +9592,17 @@ class TestReportSummary {
       total: json['total'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final durationInNanoSeconds = this.durationInNanoSeconds;
+    final statusCounts = this.statusCounts;
+    final total = this.total;
+    return {
+      'durationInNanoSeconds': durationInNanoSeconds,
+      'statusCounts': statusCounts,
+      'total': total,
+    };
+  }
 }
 
 class UpdateProjectOutput {
@@ -8724,6 +9618,13 @@ class UpdateProjectOutput {
           ? Project.fromJson(json['project'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final project = this.project;
+    return {
+      if (project != null) 'project': project,
+    };
   }
 }
 
@@ -8748,6 +9649,18 @@ class UpdateProjectVisibilityOutput {
       publicProjectAlias: json['publicProjectAlias'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final projectArn = this.projectArn;
+    final projectVisibility = this.projectVisibility;
+    final publicProjectAlias = this.publicProjectAlias;
+    return {
+      if (projectArn != null) 'projectArn': projectArn,
+      if (projectVisibility != null)
+        'projectVisibility': projectVisibility.toValue(),
+      if (publicProjectAlias != null) 'publicProjectAlias': publicProjectAlias,
+    };
+  }
 }
 
 class UpdateReportGroupOutput {
@@ -8763,6 +9676,13 @@ class UpdateReportGroupOutput {
           ? ReportGroup.fromJson(json['reportGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reportGroup = this.reportGroup;
+    return {
+      if (reportGroup != null) 'reportGroup': reportGroup,
+    };
   }
 }
 
@@ -8780,6 +9700,13 @@ class UpdateWebhookOutput {
           ? Webhook.fromJson(json['webhook'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final webhook = this.webhook;
+    return {
+      if (webhook != null) 'webhook': webhook,
+    };
   }
 }
 
@@ -8891,6 +9818,26 @@ class Webhook {
       secret: json['secret'] as String?,
       url: json['url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final branchFilter = this.branchFilter;
+    final buildType = this.buildType;
+    final filterGroups = this.filterGroups;
+    final lastModifiedSecret = this.lastModifiedSecret;
+    final payloadUrl = this.payloadUrl;
+    final secret = this.secret;
+    final url = this.url;
+    return {
+      if (branchFilter != null) 'branchFilter': branchFilter,
+      if (buildType != null) 'buildType': buildType.toValue(),
+      if (filterGroups != null) 'filterGroups': filterGroups,
+      if (lastModifiedSecret != null)
+        'lastModifiedSecret': unixTimestampToJson(lastModifiedSecret),
+      if (payloadUrl != null) 'payloadUrl': payloadUrl,
+      if (secret != null) 'secret': secret,
+      if (url != null) 'url': url,
+    };
   }
 }
 

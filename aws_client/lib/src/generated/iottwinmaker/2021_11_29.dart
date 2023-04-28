@@ -1199,6 +1199,17 @@ class BatchPutPropertyError {
       errorMessage: json['errorMessage'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entry = this.entry;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    return {
+      'entry': entry,
+      'errorCode': errorCode,
+      'errorMessage': errorMessage,
+    };
+  }
 }
 
 /// An object that contains information about errors returned by the
@@ -1219,6 +1230,13 @@ class BatchPutPropertyErrorEntry {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      'errors': errors,
+    };
+  }
 }
 
 class BatchPutPropertyValuesResponse {
@@ -1236,6 +1254,13 @@ class BatchPutPropertyValuesResponse {
               BatchPutPropertyErrorEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorEntries = this.errorEntries;
+    return {
+      'errorEntries': errorEntries,
+    };
   }
 }
 
@@ -1257,6 +1282,7 @@ class ComponentRequest {
     this.description,
     this.properties,
   });
+
   Map<String, dynamic> toJson() {
     final componentTypeId = this.componentTypeId;
     final description = this.description;
@@ -1312,6 +1338,23 @@ class ComponentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final componentName = this.componentName;
+    final componentTypeId = this.componentTypeId;
+    final definedIn = this.definedIn;
+    final description = this.description;
+    final properties = this.properties;
+    final status = this.status;
+    return {
+      if (componentName != null) 'componentName': componentName,
+      if (componentTypeId != null) 'componentTypeId': componentTypeId,
+      if (definedIn != null) 'definedIn': definedIn,
+      if (description != null) 'description': description,
+      if (properties != null) 'properties': properties,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// An object that contains information about a component type.
@@ -1356,6 +1399,23 @@ class ComponentTypeSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final componentTypeId = this.componentTypeId;
+    final creationDateTime = this.creationDateTime;
+    final updateDateTime = this.updateDateTime;
+    final description = this.description;
+    final status = this.status;
+    return {
+      'arn': arn,
+      'componentTypeId': componentTypeId,
+      'creationDateTime': unixTimestampToJson(creationDateTime),
+      'updateDateTime': unixTimestampToJson(updateDateTime),
+      if (description != null) 'description': description,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// The component update request.
@@ -1379,6 +1439,7 @@ class ComponentUpdateRequest {
     this.propertyUpdates,
     this.updateType,
   });
+
   Map<String, dynamic> toJson() {
     final componentTypeId = this.componentTypeId;
     final description = this.description;
@@ -1449,6 +1510,17 @@ class CreateComponentTypeResponse {
       state: (json['state'] as String).toState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDateTime = this.creationDateTime;
+    final state = this.state;
+    return {
+      'arn': arn,
+      'creationDateTime': unixTimestampToJson(creationDateTime),
+      'state': state.toValue(),
+    };
+  }
 }
 
 class CreateEntityResponse {
@@ -1479,6 +1551,19 @@ class CreateEntityResponse {
       state: (json['state'] as String).toState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDateTime = this.creationDateTime;
+    final entityId = this.entityId;
+    final state = this.state;
+    return {
+      'arn': arn,
+      'creationDateTime': unixTimestampToJson(creationDateTime),
+      'entityId': entityId,
+      'state': state.toValue(),
+    };
+  }
 }
 
 class CreateSceneResponse {
@@ -1499,6 +1584,15 @@ class CreateSceneResponse {
           nonNullableTimeStampFromJson(json['creationDateTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDateTime = this.creationDateTime;
+    return {
+      'arn': arn,
+      'creationDateTime': unixTimestampToJson(creationDateTime),
+    };
+  }
 }
 
 class CreateWorkspaceResponse {
@@ -1518,6 +1612,15 @@ class CreateWorkspaceResponse {
       creationDateTime:
           nonNullableTimeStampFromJson(json['creationDateTime'] as Object),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDateTime = this.creationDateTime;
+    return {
+      'arn': arn,
+      'creationDateTime': unixTimestampToJson(creationDateTime),
+    };
   }
 }
 
@@ -1707,6 +1810,13 @@ class DeleteComponentTypeResponse {
       state: (json['state'] as String).toState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    return {
+      'state': state.toValue(),
+    };
+  }
 }
 
 class DeleteEntityResponse {
@@ -1721,6 +1831,13 @@ class DeleteEntityResponse {
       state: (json['state'] as String).toState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    return {
+      'state': state.toValue(),
+    };
+  }
 }
 
 class DeleteSceneResponse {
@@ -1728,12 +1845,20 @@ class DeleteSceneResponse {
   factory DeleteSceneResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSceneResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteWorkspaceResponse {
   DeleteWorkspaceResponse();
   factory DeleteWorkspaceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteWorkspaceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1837,6 +1962,29 @@ class EntitySummary {
       parentEntityId: json['parentEntityId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDateTime = this.creationDateTime;
+    final entityId = this.entityId;
+    final entityName = this.entityName;
+    final status = this.status;
+    final updateDateTime = this.updateDateTime;
+    final description = this.description;
+    final hasChildEntities = this.hasChildEntities;
+    final parentEntityId = this.parentEntityId;
+    return {
+      'arn': arn,
+      'creationDateTime': unixTimestampToJson(creationDateTime),
+      'entityId': entityId,
+      'entityName': entityName,
+      'status': status,
+      'updateDateTime': unixTimestampToJson(updateDateTime),
+      if (description != null) 'description': description,
+      if (hasChildEntities != null) 'hasChildEntities': hasChildEntities,
+      if (parentEntityId != null) 'parentEntityId': parentEntityId,
+    };
+  }
 }
 
 enum ErrorCode {
@@ -1885,6 +2033,15 @@ class ErrorDetails {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// The function request body.
@@ -1903,6 +2060,7 @@ class FunctionRequest {
     this.requiredProperties,
     this.scope,
   });
+
   Map<String, dynamic> toJson() {
     final implementedBy = this.implementedBy;
     final requiredProperties = this.requiredProperties;
@@ -1948,6 +2106,19 @@ class FunctionResponse {
           .toList(),
       scope: (json['scope'] as String?)?.toScope(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final implementedBy = this.implementedBy;
+    final isInherited = this.isInherited;
+    final requiredProperties = this.requiredProperties;
+    final scope = this.scope;
+    return {
+      if (implementedBy != null) 'implementedBy': implementedBy,
+      if (isInherited != null) 'isInherited': isInherited,
+      if (requiredProperties != null) 'requiredProperties': requiredProperties,
+      if (scope != null) 'scope': scope.toValue(),
+    };
   }
 }
 
@@ -2038,6 +2209,39 @@ class GetComponentTypeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final componentTypeId = this.componentTypeId;
+    final creationDateTime = this.creationDateTime;
+    final updateDateTime = this.updateDateTime;
+    final workspaceId = this.workspaceId;
+    final description = this.description;
+    final extendsFrom = this.extendsFrom;
+    final functions = this.functions;
+    final isAbstract = this.isAbstract;
+    final isSchemaInitialized = this.isSchemaInitialized;
+    final isSingleton = this.isSingleton;
+    final propertyDefinitions = this.propertyDefinitions;
+    final status = this.status;
+    return {
+      'arn': arn,
+      'componentTypeId': componentTypeId,
+      'creationDateTime': unixTimestampToJson(creationDateTime),
+      'updateDateTime': unixTimestampToJson(updateDateTime),
+      'workspaceId': workspaceId,
+      if (description != null) 'description': description,
+      if (extendsFrom != null) 'extendsFrom': extendsFrom,
+      if (functions != null) 'functions': functions,
+      if (isAbstract != null) 'isAbstract': isAbstract,
+      if (isSchemaInitialized != null)
+        'isSchemaInitialized': isSchemaInitialized,
+      if (isSingleton != null) 'isSingleton': isSingleton,
+      if (propertyDefinitions != null)
+        'propertyDefinitions': propertyDefinitions,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class GetEntityResponse {
@@ -2107,6 +2311,33 @@ class GetEntityResponse {
       description: json['description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDateTime = this.creationDateTime;
+    final entityId = this.entityId;
+    final entityName = this.entityName;
+    final hasChildEntities = this.hasChildEntities;
+    final parentEntityId = this.parentEntityId;
+    final status = this.status;
+    final updateDateTime = this.updateDateTime;
+    final workspaceId = this.workspaceId;
+    final components = this.components;
+    final description = this.description;
+    return {
+      'arn': arn,
+      'creationDateTime': unixTimestampToJson(creationDateTime),
+      'entityId': entityId,
+      'entityName': entityName,
+      'hasChildEntities': hasChildEntities,
+      'parentEntityId': parentEntityId,
+      'status': status,
+      'updateDateTime': unixTimestampToJson(updateDateTime),
+      'workspaceId': workspaceId,
+      if (components != null) 'components': components,
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 class GetPropertyValueHistoryResponse {
@@ -2130,6 +2361,15 @@ class GetPropertyValueHistoryResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final propertyValues = this.propertyValues;
+    final nextToken = this.nextToken;
+    return {
+      'propertyValues': propertyValues,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetPropertyValueResponse {
@@ -2146,6 +2386,13 @@ class GetPropertyValueResponse {
               e) =>
           MapEntry(k, PropertyLatestValue.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final propertyValues = this.propertyValues;
+    return {
+      'propertyValues': propertyValues,
+    };
   }
 }
 
@@ -2202,6 +2449,27 @@ class GetSceneResponse {
       description: json['description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final contentLocation = this.contentLocation;
+    final creationDateTime = this.creationDateTime;
+    final sceneId = this.sceneId;
+    final updateDateTime = this.updateDateTime;
+    final workspaceId = this.workspaceId;
+    final capabilities = this.capabilities;
+    final description = this.description;
+    return {
+      'arn': arn,
+      'contentLocation': contentLocation,
+      'creationDateTime': unixTimestampToJson(creationDateTime),
+      'sceneId': sceneId,
+      'updateDateTime': unixTimestampToJson(updateDateTime),
+      'workspaceId': workspaceId,
+      if (capabilities != null) 'capabilities': capabilities,
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 class GetWorkspaceResponse {
@@ -2249,6 +2517,25 @@ class GetWorkspaceResponse {
       description: json['description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDateTime = this.creationDateTime;
+    final role = this.role;
+    final s3Location = this.s3Location;
+    final updateDateTime = this.updateDateTime;
+    final workspaceId = this.workspaceId;
+    final description = this.description;
+    return {
+      'arn': arn,
+      'creationDateTime': unixTimestampToJson(creationDateTime),
+      'role': role,
+      's3Location': s3Location,
+      'updateDateTime': unixTimestampToJson(updateDateTime),
+      'workspaceId': workspaceId,
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 /// An object that specifies how to interpolate data in a list.
@@ -2263,6 +2550,7 @@ class InterpolationParameters {
     this.interpolationType,
     this.intervalInSeconds,
   });
+
   Map<String, dynamic> toJson() {
     final interpolationType = this.interpolationType;
     final intervalInSeconds = this.intervalInSeconds;
@@ -2339,6 +2627,7 @@ class ListComponentTypesFilter {
     this.isAbstract,
     this.namespace,
   });
+
   Map<String, dynamic> toJson() {
     final extendsFrom = this.extendsFrom;
     final isAbstract = this.isAbstract;
@@ -2381,6 +2670,19 @@ class ListComponentTypesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final componentTypeSummaries = this.componentTypeSummaries;
+    final workspaceId = this.workspaceId;
+    final maxResults = this.maxResults;
+    final nextToken = this.nextToken;
+    return {
+      'componentTypeSummaries': componentTypeSummaries,
+      'workspaceId': workspaceId,
+      if (maxResults != null) 'maxResults': maxResults,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// An object that filters items in a list of entities.
@@ -2400,6 +2702,7 @@ class ListEntitiesFilter {
     this.externalId,
     this.parentEntityId,
   });
+
   Map<String, dynamic> toJson() {
     final componentTypeId = this.componentTypeId;
     final externalId = this.externalId;
@@ -2432,6 +2735,15 @@ class ListEntitiesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entitySummaries = this.entitySummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (entitySummaries != null) 'entitySummaries': entitySummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListScenesResponse {
@@ -2454,6 +2766,15 @@ class ListScenesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final sceneSummaries = this.sceneSummaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (sceneSummaries != null) 'sceneSummaries': sceneSummaries,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2473,6 +2794,15 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2495,6 +2825,15 @@ class ListWorkspacesResponse {
           .map((e) => WorkspaceSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final workspaceSummaries = this.workspaceSummaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (workspaceSummaries != null) 'workspaceSummaries': workspaceSummaries,
+    };
   }
 }
 
@@ -2538,6 +2877,7 @@ class ParentEntityUpdateRequest {
     required this.updateType,
     this.parentEntityId,
   });
+
   Map<String, dynamic> toJson() {
     final updateType = this.updateType;
     final parentEntityId = this.parentEntityId;
@@ -2612,6 +2952,7 @@ class PropertyDefinitionRequest {
     this.isStoredExternally,
     this.isTimeSeries,
   });
+
   Map<String, dynamic> toJson() {
     final configuration = this.configuration;
     final dataType = this.dataType;
@@ -2699,6 +3040,31 @@ class PropertyDefinitionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataType = this.dataType;
+    final isExternalId = this.isExternalId;
+    final isFinal = this.isFinal;
+    final isImported = this.isImported;
+    final isInherited = this.isInherited;
+    final isRequiredInEntity = this.isRequiredInEntity;
+    final isStoredExternally = this.isStoredExternally;
+    final isTimeSeries = this.isTimeSeries;
+    final configuration = this.configuration;
+    final defaultValue = this.defaultValue;
+    return {
+      'dataType': dataType,
+      'isExternalId': isExternalId,
+      'isFinal': isFinal,
+      'isImported': isImported,
+      'isInherited': isInherited,
+      'isRequiredInEntity': isRequiredInEntity,
+      'isStoredExternally': isStoredExternally,
+      'isTimeSeries': isTimeSeries,
+      if (configuration != null) 'configuration': configuration,
+      if (defaultValue != null) 'defaultValue': defaultValue,
+    };
+  }
 }
 
 /// An object that filters items returned by a property request.
@@ -2717,6 +3083,7 @@ class PropertyFilter {
     this.propertyName,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final operator = this.operator;
     final propertyName = this.propertyName;
@@ -2750,6 +3117,15 @@ class PropertyLatestValue {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final propertyReference = this.propertyReference;
+    final propertyValue = this.propertyValue;
+    return {
+      'propertyReference': propertyReference,
+      if (propertyValue != null) 'propertyValue': propertyValue,
+    };
+  }
 }
 
 /// An object that sets information about a property.
@@ -2768,6 +3144,7 @@ class PropertyRequest {
     this.updateType,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final definition = this.definition;
     final updateType = this.updateType;
@@ -2802,6 +3179,15 @@ class PropertyResponse {
           ? DataValue.fromJson(json['value'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final definition = this.definition;
+    final value = this.value;
+    return {
+      if (definition != null) 'definition': definition,
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -2969,6 +3355,15 @@ class PropertyValueHistory {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entityPropertyReference = this.entityPropertyReference;
+    final values = this.values;
+    return {
+      'entityPropertyReference': entityPropertyReference,
+      if (values != null) 'values': values,
+    };
+  }
 }
 
 /// An object that specifies a relationship with another component type.
@@ -3072,6 +3467,23 @@ class SceneSummary {
       description: json['description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final contentLocation = this.contentLocation;
+    final creationDateTime = this.creationDateTime;
+    final sceneId = this.sceneId;
+    final updateDateTime = this.updateDateTime;
+    final description = this.description;
+    return {
+      'arn': arn,
+      'contentLocation': contentLocation,
+      'creationDateTime': unixTimestampToJson(creationDateTime),
+      'sceneId': sceneId,
+      'updateDateTime': unixTimestampToJson(updateDateTime),
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 enum Scope {
@@ -3166,12 +3578,25 @@ class Status {
       state: (json['state'] as String?)?.toState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final state = this.state;
+    return {
+      if (error != null) 'error': error,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3238,6 +3663,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateComponentTypeResponse {
@@ -3267,6 +3696,19 @@ class UpdateComponentTypeResponse {
       workspaceId: json['workspaceId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final componentTypeId = this.componentTypeId;
+    final state = this.state;
+    final workspaceId = this.workspaceId;
+    return {
+      'arn': arn,
+      'componentTypeId': componentTypeId,
+      'state': state.toValue(),
+      'workspaceId': workspaceId,
+    };
+  }
 }
 
 class UpdateEntityResponse {
@@ -3287,6 +3729,15 @@ class UpdateEntityResponse {
           nonNullableTimeStampFromJson(json['updateDateTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final updateDateTime = this.updateDateTime;
+    return {
+      'state': state.toValue(),
+      'updateDateTime': unixTimestampToJson(updateDateTime),
+    };
+  }
 }
 
 class UpdateSceneResponse {
@@ -3302,6 +3753,13 @@ class UpdateSceneResponse {
           nonNullableTimeStampFromJson(json['updateDateTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final updateDateTime = this.updateDateTime;
+    return {
+      'updateDateTime': unixTimestampToJson(updateDateTime),
+    };
+  }
 }
 
 class UpdateWorkspaceResponse {
@@ -3316,6 +3774,13 @@ class UpdateWorkspaceResponse {
       updateDateTime:
           nonNullableTimeStampFromJson(json['updateDateTime'] as Object),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final updateDateTime = this.updateDateTime;
+    return {
+      'updateDateTime': unixTimestampToJson(updateDateTime),
+    };
   }
 }
 
@@ -3353,6 +3818,21 @@ class WorkspaceSummary {
       workspaceId: json['workspaceId'] as String,
       description: json['description'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDateTime = this.creationDateTime;
+    final updateDateTime = this.updateDateTime;
+    final workspaceId = this.workspaceId;
+    final description = this.description;
+    return {
+      'arn': arn,
+      'creationDateTime': unixTimestampToJson(creationDateTime),
+      'updateDateTime': unixTimestampToJson(updateDateTime),
+      'workspaceId': workspaceId,
+      if (description != null) 'description': description,
+    };
   }
 }
 

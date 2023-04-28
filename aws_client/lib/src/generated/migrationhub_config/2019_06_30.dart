@@ -229,6 +229,13 @@ class CreateHomeRegionControlResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final homeRegionControl = this.homeRegionControl;
+    return {
+      if (homeRegionControl != null) 'HomeRegionControl': homeRegionControl,
+    };
+  }
 }
 
 class DescribeHomeRegionControlsResult {
@@ -253,6 +260,15 @@ class DescribeHomeRegionControlsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final homeRegionControls = this.homeRegionControls;
+    final nextToken = this.nextToken;
+    return {
+      if (homeRegionControls != null) 'HomeRegionControls': homeRegionControls,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetHomeRegionResult {
@@ -266,6 +282,13 @@ class GetHomeRegionResult {
     return GetHomeRegionResult(
       homeRegion: json['HomeRegion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final homeRegion = this.homeRegion;
+    return {
+      if (homeRegion != null) 'HomeRegion': homeRegion,
+    };
   }
 }
 
@@ -308,6 +331,20 @@ class HomeRegionControl {
           ? Target.fromJson(json['Target'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final controlId = this.controlId;
+    final homeRegion = this.homeRegion;
+    final requestedTime = this.requestedTime;
+    final target = this.target;
+    return {
+      if (controlId != null) 'ControlId': controlId,
+      if (homeRegion != null) 'HomeRegion': homeRegion,
+      if (requestedTime != null)
+        'RequestedTime': unixTimestampToJson(requestedTime),
+      if (target != null) 'Target': target,
+    };
   }
 }
 

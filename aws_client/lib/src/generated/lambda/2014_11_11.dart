@@ -638,6 +638,30 @@ class EventSourceConfiguration {
       uuid: json['UUID'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchSize = this.batchSize;
+    final eventSource = this.eventSource;
+    final functionName = this.functionName;
+    final isActive = this.isActive;
+    final lastModified = this.lastModified;
+    final parameters = this.parameters;
+    final role = this.role;
+    final status = this.status;
+    final uuid = this.uuid;
+    return {
+      if (batchSize != null) 'BatchSize': batchSize,
+      if (eventSource != null) 'EventSource': eventSource,
+      if (functionName != null) 'FunctionName': functionName,
+      if (isActive != null) 'IsActive': isActive,
+      if (lastModified != null)
+        'LastModified': unixTimestampToJson(lastModified),
+      if (parameters != null) 'Parameters': parameters,
+      if (role != null) 'Role': role,
+      if (status != null) 'Status': status,
+      if (uuid != null) 'UUID': uuid,
+    };
+  }
 }
 
 /// The object for the Lambda function location.
@@ -658,6 +682,15 @@ class FunctionCodeLocation {
       location: json['Location'] as String?,
       repositoryType: json['RepositoryType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final location = this.location;
+    final repositoryType = this.repositoryType;
+    return {
+      if (location != null) 'Location': location,
+      if (repositoryType != null) 'RepositoryType': repositoryType,
+    };
   }
 }
 
@@ -735,6 +768,36 @@ class FunctionConfiguration {
       timeout: json['Timeout'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeSize = this.codeSize;
+    final configurationId = this.configurationId;
+    final description = this.description;
+    final functionARN = this.functionARN;
+    final functionName = this.functionName;
+    final handler = this.handler;
+    final lastModified = this.lastModified;
+    final memorySize = this.memorySize;
+    final mode = this.mode;
+    final role = this.role;
+    final runtime = this.runtime;
+    final timeout = this.timeout;
+    return {
+      if (codeSize != null) 'CodeSize': codeSize,
+      if (configurationId != null) 'ConfigurationId': configurationId,
+      if (description != null) 'Description': description,
+      if (functionARN != null) 'FunctionARN': functionARN,
+      if (functionName != null) 'FunctionName': functionName,
+      if (handler != null) 'Handler': handler,
+      if (lastModified != null)
+        'LastModified': unixTimestampToJson(lastModified),
+      if (memorySize != null) 'MemorySize': memorySize,
+      if (mode != null) 'Mode': mode.toValue(),
+      if (role != null) 'Role': role,
+      if (runtime != null) 'Runtime': runtime.toValue(),
+      if (timeout != null) 'Timeout': timeout,
+    };
+  }
 }
 
 /// This response contains the object for AWS Lambda function location (see
@@ -758,6 +821,15 @@ class GetFunctionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final configuration = this.configuration;
+    return {
+      if (code != null) 'Code': code,
+      if (configuration != null) 'Configuration': configuration,
+    };
+  }
 }
 
 /// One of the parameters in the request is invalid. For example, if you
@@ -778,6 +850,15 @@ class InvalidParameterValueException implements _s.AwsException {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final message = this.message;
+    return {
+      if (type != null) 'Type': type,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// The request body could not be parsed as JSON.
@@ -795,6 +876,15 @@ class InvalidRequestContentException implements _s.AwsException {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final message = this.message;
+    return {
+      if (type != null) 'Type': type,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// Upon success, it returns empty response. Otherwise, throws an exception.
@@ -809,6 +899,11 @@ class InvokeAsyncResponse {
     return InvokeAsyncResponse(
       status: json['Status'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {};
   }
 }
 
@@ -834,6 +929,15 @@ class ListEventSourcesResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventSources = this.eventSources;
+    final nextMarker = this.nextMarker;
+    return {
+      if (eventSources != null) 'EventSources': eventSources,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 /// Contains a list of AWS Lambda function configurations (see
@@ -857,6 +961,15 @@ class ListFunctionsResponse {
           .toList(),
       nextMarker: json['NextMarker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final functions = this.functions;
+    final nextMarker = this.nextMarker;
+    return {
+      if (functions != null) 'Functions': functions,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -898,6 +1011,15 @@ class ResourceNotFoundException implements _s.AwsException {
       type: json['Type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final type = this.type;
+    return {
+      if (message != null) 'Message': message,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 enum Runtime {
@@ -937,6 +1059,15 @@ class ServiceException implements _s.AwsException {
       message: json['Message'] as String?,
       type: json['Type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final type = this.type;
+    return {
+      if (message != null) 'Message': message,
+      if (type != null) 'Type': type,
+    };
   }
 }
 

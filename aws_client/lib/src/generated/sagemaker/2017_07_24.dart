@@ -15090,6 +15090,27 @@ class ActionSummary {
       status: (json['Status'] as String?)?.toActionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionArn = this.actionArn;
+    final actionName = this.actionName;
+    final actionType = this.actionType;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final source = this.source;
+    final status = this.status;
+    return {
+      if (actionArn != null) 'ActionArn': actionArn,
+      if (actionName != null) 'ActionName': actionName,
+      if (actionType != null) 'ActionType': actionType,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (source != null) 'Source': source,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class AddAssociationResponse {
@@ -15109,6 +15130,15 @@ class AddAssociationResponse {
       sourceArn: json['SourceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationArn = this.destinationArn;
+    final sourceArn = this.sourceArn;
+    return {
+      if (destinationArn != null) 'DestinationArn': destinationArn,
+      if (sourceArn != null) 'SourceArn': sourceArn,
+    };
+  }
 }
 
 class AddTagsOutput {
@@ -15125,6 +15155,13 @@ class AddTagsOutput {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -15246,6 +15283,15 @@ class AgentVersion {
       agentCount: json['AgentCount'] as int,
       version: json['Version'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final agentCount = this.agentCount;
+    final version = this.version;
+    return {
+      'AgentCount': agentCount,
+      'Version': version,
+    };
   }
 }
 
@@ -15491,6 +15537,15 @@ class AlgorithmStatusDetails {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageScanStatuses = this.imageScanStatuses;
+    final validationStatuses = this.validationStatuses;
+    return {
+      if (imageScanStatuses != null) 'ImageScanStatuses': imageScanStatuses,
+      if (validationStatuses != null) 'ValidationStatuses': validationStatuses,
+    };
+  }
 }
 
 /// Represents the overall status of an algorithm.
@@ -15515,6 +15570,17 @@ class AlgorithmStatusItem {
       status: (json['Status'] as String).toDetailedAlgorithmStatus(),
       failureReason: json['FailureReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final status = this.status;
+    final failureReason = this.failureReason;
+    return {
+      'Name': name,
+      'Status': status.toValue(),
+      if (failureReason != null) 'FailureReason': failureReason,
+    };
   }
 }
 
@@ -15551,6 +15617,22 @@ class AlgorithmSummary {
           nonNullableTimeStampFromJson(json['CreationTime'] as Object),
       algorithmDescription: json['AlgorithmDescription'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final algorithmArn = this.algorithmArn;
+    final algorithmName = this.algorithmName;
+    final algorithmStatus = this.algorithmStatus;
+    final creationTime = this.creationTime;
+    final algorithmDescription = this.algorithmDescription;
+    return {
+      'AlgorithmArn': algorithmArn,
+      'AlgorithmName': algorithmName,
+      'AlgorithmStatus': algorithmStatus.toValue(),
+      'CreationTime': unixTimestampToJson(creationTime),
+      if (algorithmDescription != null)
+        'AlgorithmDescription': algorithmDescription,
+    };
   }
 }
 
@@ -16652,6 +16734,24 @@ class AppDetails {
       userProfileName: json['UserProfileName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appName = this.appName;
+    final appType = this.appType;
+    final creationTime = this.creationTime;
+    final domainId = this.domainId;
+    final status = this.status;
+    final userProfileName = this.userProfileName;
+    return {
+      if (appName != null) 'AppName': appName,
+      if (appType != null) 'AppType': appType.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (domainId != null) 'DomainId': domainId,
+      if (status != null) 'Status': status.toValue(),
+      if (userProfileName != null) 'UserProfileName': userProfileName,
+    };
+  }
 }
 
 /// The configuration for running a SageMaker image as a KernelGateway app.
@@ -16689,6 +16789,24 @@ class AppImageConfigDetails {
           : null,
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appImageConfigArn = this.appImageConfigArn;
+    final appImageConfigName = this.appImageConfigName;
+    final creationTime = this.creationTime;
+    final kernelGatewayImageConfig = this.kernelGatewayImageConfig;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      if (appImageConfigArn != null) 'AppImageConfigArn': appImageConfigArn,
+      if (appImageConfigName != null) 'AppImageConfigName': appImageConfigName,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (kernelGatewayImageConfig != null)
+        'KernelGatewayImageConfig': kernelGatewayImageConfig,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
   }
 }
 
@@ -17377,6 +17495,25 @@ class ArtifactSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final artifactArn = this.artifactArn;
+    final artifactName = this.artifactName;
+    final artifactType = this.artifactType;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final source = this.source;
+    return {
+      if (artifactArn != null) 'ArtifactArn': artifactArn,
+      if (artifactName != null) 'ArtifactName': artifactName,
+      if (artifactType != null) 'ArtifactType': artifactType,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (source != null) 'Source': source,
+    };
+  }
 }
 
 enum AssemblyType {
@@ -17423,6 +17560,15 @@ class AssociateTrialComponentResponse {
       trialArn: json['TrialArn'] as String?,
       trialComponentArn: json['TrialComponentArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trialArn = this.trialArn;
+    final trialComponentArn = this.trialComponentArn;
+    return {
+      if (trialArn != null) 'TrialArn': trialArn,
+      if (trialComponentArn != null) 'TrialComponentArn': trialComponentArn,
+    };
   }
 }
 
@@ -17519,6 +17665,30 @@ class AssociationSummary {
       sourceName: json['SourceName'] as String?,
       sourceType: json['SourceType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associationType = this.associationType;
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final destinationArn = this.destinationArn;
+    final destinationName = this.destinationName;
+    final destinationType = this.destinationType;
+    final sourceArn = this.sourceArn;
+    final sourceName = this.sourceName;
+    final sourceType = this.sourceType;
+    return {
+      if (associationType != null) 'AssociationType': associationType.toValue(),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (destinationArn != null) 'DestinationArn': destinationArn,
+      if (destinationName != null) 'DestinationName': destinationName,
+      if (destinationType != null) 'DestinationType': destinationType,
+      if (sourceArn != null) 'SourceArn': sourceArn,
+      if (sourceName != null) 'SourceName': sourceName,
+      if (sourceType != null) 'SourceType': sourceType,
+    };
   }
 }
 
@@ -17909,6 +18079,36 @@ class AutoMLCandidate {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final candidateName = this.candidateName;
+    final candidateStatus = this.candidateStatus;
+    final candidateSteps = this.candidateSteps;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final objectiveStatus = this.objectiveStatus;
+    final candidateProperties = this.candidateProperties;
+    final endTime = this.endTime;
+    final failureReason = this.failureReason;
+    final finalAutoMLJobObjectiveMetric = this.finalAutoMLJobObjectiveMetric;
+    final inferenceContainers = this.inferenceContainers;
+    return {
+      'CandidateName': candidateName,
+      'CandidateStatus': candidateStatus.toValue(),
+      'CandidateSteps': candidateSteps,
+      'CreationTime': unixTimestampToJson(creationTime),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'ObjectiveStatus': objectiveStatus.toValue(),
+      if (candidateProperties != null)
+        'CandidateProperties': candidateProperties,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (finalAutoMLJobObjectiveMetric != null)
+        'FinalAutoMLJobObjectiveMetric': finalAutoMLJobObjectiveMetric,
+      if (inferenceContainers != null)
+        'InferenceContainers': inferenceContainers,
+    };
+  }
 }
 
 /// Stores the config information for how a candidate is generated (optional).
@@ -17967,6 +18167,17 @@ class AutoMLCandidateStep {
       candidateStepType:
           (json['CandidateStepType'] as String).toCandidateStepType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final candidateStepArn = this.candidateStepArn;
+    final candidateStepName = this.candidateStepName;
+    final candidateStepType = this.candidateStepType;
+    return {
+      'CandidateStepArn': candidateStepArn,
+      'CandidateStepName': candidateStepName,
+      'CandidateStepType': candidateStepType.toValue(),
+    };
   }
 }
 
@@ -18093,6 +18304,17 @@ class AutoMLContainerDefinition {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final image = this.image;
+    final modelDataUrl = this.modelDataUrl;
+    final environment = this.environment;
+    return {
+      'Image': image,
+      'ModelDataUrl': modelDataUrl,
+      if (environment != null) 'Environment': environment,
+    };
+  }
 }
 
 /// The data source for the Autopilot job.
@@ -18164,6 +18386,20 @@ class AutoMLJobArtifacts {
       dataExplorationNotebookLocation:
           json['DataExplorationNotebookLocation'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final candidateDefinitionNotebookLocation =
+        this.candidateDefinitionNotebookLocation;
+    final dataExplorationNotebookLocation =
+        this.dataExplorationNotebookLocation;
+    return {
+      if (candidateDefinitionNotebookLocation != null)
+        'CandidateDefinitionNotebookLocation':
+            candidateDefinitionNotebookLocation,
+      if (dataExplorationNotebookLocation != null)
+        'DataExplorationNotebookLocation': dataExplorationNotebookLocation,
+    };
   }
 }
 
@@ -18613,6 +18849,30 @@ class AutoMLJobSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoMLJobArn = this.autoMLJobArn;
+    final autoMLJobName = this.autoMLJobName;
+    final autoMLJobSecondaryStatus = this.autoMLJobSecondaryStatus;
+    final autoMLJobStatus = this.autoMLJobStatus;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final endTime = this.endTime;
+    final failureReason = this.failureReason;
+    final partialFailureReasons = this.partialFailureReasons;
+    return {
+      'AutoMLJobArn': autoMLJobArn,
+      'AutoMLJobName': autoMLJobName,
+      'AutoMLJobSecondaryStatus': autoMLJobSecondaryStatus.toValue(),
+      'AutoMLJobStatus': autoMLJobStatus.toValue(),
+      'CreationTime': unixTimestampToJson(creationTime),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (partialFailureReasons != null)
+        'PartialFailureReasons': partialFailureReasons,
+    };
+  }
 }
 
 enum AutoMLMetricEnum {
@@ -18787,6 +19047,14 @@ class AutoMLPartialFailureReason {
     return AutoMLPartialFailureReason(
       partialFailureMessage: json['PartialFailureMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final partialFailureMessage = this.partialFailureMessage;
+    return {
+      if (partialFailureMessage != null)
+        'PartialFailureMessage': partialFailureMessage,
+    };
   }
 }
 
@@ -19044,6 +19312,15 @@ class BatchDescribeModelPackageError {
       errorResponse: json['ErrorResponse'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorResponse = this.errorResponse;
+    return {
+      'ErrorCode': errorCode,
+      'ErrorResponse': errorResponse,
+    };
+  }
 }
 
 class BatchDescribeModelPackageOutput {
@@ -19074,6 +19351,18 @@ class BatchDescribeModelPackageOutput {
                   BatchDescribeModelPackageSummary.fromJson(
                       e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final batchDescribeModelPackageErrorMap =
+        this.batchDescribeModelPackageErrorMap;
+    final modelPackageSummaries = this.modelPackageSummaries;
+    return {
+      if (batchDescribeModelPackageErrorMap != null)
+        'BatchDescribeModelPackageErrorMap': batchDescribeModelPackageErrorMap,
+      if (modelPackageSummaries != null)
+        'ModelPackageSummaries': modelPackageSummaries,
+    };
   }
 }
 
@@ -19126,6 +19415,30 @@ class BatchDescribeModelPackageSummary {
       modelPackageDescription: json['ModelPackageDescription'] as String?,
       modelPackageVersion: json['ModelPackageVersion'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final inferenceSpecification = this.inferenceSpecification;
+    final modelPackageArn = this.modelPackageArn;
+    final modelPackageGroupName = this.modelPackageGroupName;
+    final modelPackageStatus = this.modelPackageStatus;
+    final modelApprovalStatus = this.modelApprovalStatus;
+    final modelPackageDescription = this.modelPackageDescription;
+    final modelPackageVersion = this.modelPackageVersion;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'InferenceSpecification': inferenceSpecification,
+      'ModelPackageArn': modelPackageArn,
+      'ModelPackageGroupName': modelPackageGroupName,
+      'ModelPackageStatus': modelPackageStatus.toValue(),
+      if (modelApprovalStatus != null)
+        'ModelApprovalStatus': modelApprovalStatus.toValue(),
+      if (modelPackageDescription != null)
+        'ModelPackageDescription': modelPackageDescription,
+      if (modelPackageVersion != null)
+        'ModelPackageVersion': modelPackageVersion,
+    };
   }
 }
 
@@ -19294,6 +19607,14 @@ class CacheHitResult {
       sourcePipelineExecutionArn: json['SourcePipelineExecutionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sourcePipelineExecutionArn = this.sourcePipelineExecutionArn;
+    return {
+      if (sourcePipelineExecutionArn != null)
+        'SourcePipelineExecutionArn': sourcePipelineExecutionArn,
+    };
+  }
 }
 
 /// Metadata about a callback step.
@@ -19323,6 +19644,17 @@ class CallbackStepMetadata {
       sqsQueueUrl: json['SqsQueueUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final callbackToken = this.callbackToken;
+    final outputParameters = this.outputParameters;
+    final sqsQueueUrl = this.sqsQueueUrl;
+    return {
+      if (callbackToken != null) 'CallbackToken': callbackToken,
+      if (outputParameters != null) 'OutputParameters': outputParameters,
+      if (sqsQueueUrl != null) 'SqsQueueUrl': sqsQueueUrl,
+    };
+  }
 }
 
 /// The location of artifacts for an AutoML candidate job.
@@ -19344,6 +19676,15 @@ class CandidateArtifactLocations {
       explainability: json['Explainability'] as String,
       modelInsights: json['ModelInsights'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final explainability = this.explainability;
+    final modelInsights = this.modelInsights;
+    return {
+      'Explainability': explainability,
+      if (modelInsights != null) 'ModelInsights': modelInsights,
+    };
   }
 }
 
@@ -19370,6 +19711,16 @@ class CandidateProperties {
           .map((e) => MetricDatum.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final candidateArtifactLocations = this.candidateArtifactLocations;
+    final candidateMetrics = this.candidateMetrics;
+    return {
+      if (candidateArtifactLocations != null)
+        'CandidateArtifactLocations': candidateArtifactLocations,
+      if (candidateMetrics != null) 'CandidateMetrics': candidateMetrics,
+    };
   }
 }
 
@@ -20035,6 +20386,33 @@ class ClarifyCheckStepMetadata {
       violationReport: json['ViolationReport'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final baselineUsedForDriftCheckConstraints =
+        this.baselineUsedForDriftCheckConstraints;
+    final calculatedBaselineConstraints = this.calculatedBaselineConstraints;
+    final checkJobArn = this.checkJobArn;
+    final checkType = this.checkType;
+    final modelPackageGroupName = this.modelPackageGroupName;
+    final registerNewBaseline = this.registerNewBaseline;
+    final skipCheck = this.skipCheck;
+    final violationReport = this.violationReport;
+    return {
+      if (baselineUsedForDriftCheckConstraints != null)
+        'BaselineUsedForDriftCheckConstraints':
+            baselineUsedForDriftCheckConstraints,
+      if (calculatedBaselineConstraints != null)
+        'CalculatedBaselineConstraints': calculatedBaselineConstraints,
+      if (checkJobArn != null) 'CheckJobArn': checkJobArn,
+      if (checkType != null) 'CheckType': checkType,
+      if (modelPackageGroupName != null)
+        'ModelPackageGroupName': modelPackageGroupName,
+      if (registerNewBaseline != null)
+        'RegisterNewBaseline': registerNewBaseline,
+      if (skipCheck != null) 'SkipCheck': skipCheck,
+      if (violationReport != null) 'ViolationReport': violationReport,
+    };
+  }
 }
 
 enum CodeRepositorySortBy {
@@ -20136,6 +20514,21 @@ class CodeRepositorySummary {
           ? GitConfig.fromJson(json['GitConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final codeRepositoryArn = this.codeRepositoryArn;
+    final codeRepositoryName = this.codeRepositoryName;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final gitConfig = this.gitConfig;
+    return {
+      'CodeRepositoryArn': codeRepositoryArn,
+      'CodeRepositoryName': codeRepositoryName,
+      'CreationTime': unixTimestampToJson(creationTime),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (gitConfig != null) 'GitConfig': gitConfig,
+    };
   }
 }
 
@@ -20375,6 +20768,43 @@ class CompilationJobSummary {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final compilationJobArn = this.compilationJobArn;
+    final compilationJobName = this.compilationJobName;
+    final compilationJobStatus = this.compilationJobStatus;
+    final creationTime = this.creationTime;
+    final compilationEndTime = this.compilationEndTime;
+    final compilationStartTime = this.compilationStartTime;
+    final compilationTargetDevice = this.compilationTargetDevice;
+    final compilationTargetPlatformAccelerator =
+        this.compilationTargetPlatformAccelerator;
+    final compilationTargetPlatformArch = this.compilationTargetPlatformArch;
+    final compilationTargetPlatformOs = this.compilationTargetPlatformOs;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      'CompilationJobArn': compilationJobArn,
+      'CompilationJobName': compilationJobName,
+      'CompilationJobStatus': compilationJobStatus.toValue(),
+      'CreationTime': unixTimestampToJson(creationTime),
+      if (compilationEndTime != null)
+        'CompilationEndTime': unixTimestampToJson(compilationEndTime),
+      if (compilationStartTime != null)
+        'CompilationStartTime': unixTimestampToJson(compilationStartTime),
+      if (compilationTargetDevice != null)
+        'CompilationTargetDevice': compilationTargetDevice.toValue(),
+      if (compilationTargetPlatformAccelerator != null)
+        'CompilationTargetPlatformAccelerator':
+            compilationTargetPlatformAccelerator.toValue(),
+      if (compilationTargetPlatformArch != null)
+        'CompilationTargetPlatformArch':
+            compilationTargetPlatformArch.toValue(),
+      if (compilationTargetPlatformOs != null)
+        'CompilationTargetPlatformOs': compilationTargetPlatformOs.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
+  }
 }
 
 enum CompressionType {
@@ -20445,6 +20875,13 @@ class ConditionStepMetadata {
     return ConditionStepMetadata(
       outcome: (json['Outcome'] as String?)?.toConditionOutcome(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final outcome = this.outcome;
+    return {
+      if (outcome != null) 'Outcome': outcome.toValue(),
+    };
   }
 }
 
@@ -20720,6 +21157,25 @@ class ContextSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contextArn = this.contextArn;
+    final contextName = this.contextName;
+    final contextType = this.contextType;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final source = this.source;
+    return {
+      if (contextArn != null) 'ContextArn': contextArn,
+      if (contextName != null) 'ContextName': contextName,
+      if (contextType != null) 'ContextType': contextType,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (source != null) 'Source': source,
+    };
+  }
 }
 
 /// A list of continuous hyperparameters to tune.
@@ -20832,6 +21288,13 @@ class CreateActionResponse {
       actionArn: json['ActionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionArn = this.actionArn;
+    return {
+      if (actionArn != null) 'ActionArn': actionArn,
+    };
+  }
 }
 
 class CreateAlgorithmOutput {
@@ -20845,6 +21308,13 @@ class CreateAlgorithmOutput {
     return CreateAlgorithmOutput(
       algorithmArn: json['AlgorithmArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final algorithmArn = this.algorithmArn;
+    return {
+      'AlgorithmArn': algorithmArn,
+    };
   }
 }
 
@@ -20860,6 +21330,13 @@ class CreateAppImageConfigResponse {
       appImageConfigArn: json['AppImageConfigArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appImageConfigArn = this.appImageConfigArn;
+    return {
+      if (appImageConfigArn != null) 'AppImageConfigArn': appImageConfigArn,
+    };
+  }
 }
 
 class CreateAppResponse {
@@ -20873,6 +21350,13 @@ class CreateAppResponse {
     return CreateAppResponse(
       appArn: json['AppArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    return {
+      if (appArn != null) 'AppArn': appArn,
+    };
   }
 }
 
@@ -20888,6 +21372,13 @@ class CreateArtifactResponse {
       artifactArn: json['ArtifactArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final artifactArn = this.artifactArn;
+    return {
+      if (artifactArn != null) 'ArtifactArn': artifactArn,
+    };
+  }
 }
 
 class CreateAutoMLJobResponse {
@@ -20902,6 +21393,13 @@ class CreateAutoMLJobResponse {
       autoMLJobArn: json['AutoMLJobArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoMLJobArn = this.autoMLJobArn;
+    return {
+      'AutoMLJobArn': autoMLJobArn,
+    };
+  }
 }
 
 class CreateCodeRepositoryOutput {
@@ -20915,6 +21413,13 @@ class CreateCodeRepositoryOutput {
     return CreateCodeRepositoryOutput(
       codeRepositoryArn: json['CodeRepositoryArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final codeRepositoryArn = this.codeRepositoryArn;
+    return {
+      'CodeRepositoryArn': codeRepositoryArn,
+    };
   }
 }
 
@@ -20938,6 +21443,13 @@ class CreateCompilationJobResponse {
       compilationJobArn: json['CompilationJobArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final compilationJobArn = this.compilationJobArn;
+    return {
+      'CompilationJobArn': compilationJobArn,
+    };
+  }
 }
 
 class CreateContextResponse {
@@ -20951,6 +21463,13 @@ class CreateContextResponse {
     return CreateContextResponse(
       contextArn: json['ContextArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contextArn = this.contextArn;
+    return {
+      if (contextArn != null) 'ContextArn': contextArn,
+    };
   }
 }
 
@@ -20966,6 +21485,13 @@ class CreateDataQualityJobDefinitionResponse {
     return CreateDataQualityJobDefinitionResponse(
       jobDefinitionArn: json['JobDefinitionArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobDefinitionArn = this.jobDefinitionArn;
+    return {
+      'JobDefinitionArn': jobDefinitionArn,
+    };
   }
 }
 
@@ -20986,6 +21512,15 @@ class CreateDomainResponse {
       url: json['Url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainArn = this.domainArn;
+    final url = this.url;
+    return {
+      if (domainArn != null) 'DomainArn': domainArn,
+      if (url != null) 'Url': url,
+    };
+  }
 }
 
 class CreateEdgeDeploymentPlanResponse {
@@ -20999,6 +21534,13 @@ class CreateEdgeDeploymentPlanResponse {
     return CreateEdgeDeploymentPlanResponse(
       edgeDeploymentPlanArn: json['EdgeDeploymentPlanArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final edgeDeploymentPlanArn = this.edgeDeploymentPlanArn;
+    return {
+      'EdgeDeploymentPlanArn': edgeDeploymentPlanArn,
+    };
   }
 }
 
@@ -21014,6 +21556,13 @@ class CreateEndpointConfigOutput {
       endpointConfigArn: json['EndpointConfigArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointConfigArn = this.endpointConfigArn;
+    return {
+      'EndpointConfigArn': endpointConfigArn,
+    };
+  }
 }
 
 class CreateEndpointOutput {
@@ -21028,6 +21577,13 @@ class CreateEndpointOutput {
       endpointArn: json['EndpointArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointArn = this.endpointArn;
+    return {
+      'EndpointArn': endpointArn,
+    };
+  }
 }
 
 class CreateExperimentResponse {
@@ -21041,6 +21597,13 @@ class CreateExperimentResponse {
     return CreateExperimentResponse(
       experimentArn: json['ExperimentArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final experimentArn = this.experimentArn;
+    return {
+      if (experimentArn != null) 'ExperimentArn': experimentArn,
+    };
   }
 }
 
@@ -21057,6 +21620,13 @@ class CreateFeatureGroupResponse {
       featureGroupArn: json['FeatureGroupArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final featureGroupArn = this.featureGroupArn;
+    return {
+      'FeatureGroupArn': featureGroupArn,
+    };
+  }
 }
 
 class CreateFlowDefinitionResponse {
@@ -21070,6 +21640,13 @@ class CreateFlowDefinitionResponse {
     return CreateFlowDefinitionResponse(
       flowDefinitionArn: json['FlowDefinitionArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flowDefinitionArn = this.flowDefinitionArn;
+    return {
+      'FlowDefinitionArn': flowDefinitionArn,
+    };
   }
 }
 
@@ -21085,6 +21662,13 @@ class CreateHumanTaskUiResponse {
     return CreateHumanTaskUiResponse(
       humanTaskUiArn: json['HumanTaskUiArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final humanTaskUiArn = this.humanTaskUiArn;
+    return {
+      'HumanTaskUiArn': humanTaskUiArn,
+    };
   }
 }
 
@@ -21102,6 +21686,13 @@ class CreateHyperParameterTuningJobResponse {
       hyperParameterTuningJobArn: json['HyperParameterTuningJobArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hyperParameterTuningJobArn = this.hyperParameterTuningJobArn;
+    return {
+      'HyperParameterTuningJobArn': hyperParameterTuningJobArn,
+    };
+  }
 }
 
 class CreateImageResponse {
@@ -21116,6 +21707,13 @@ class CreateImageResponse {
       imageArn: json['ImageArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageArn = this.imageArn;
+    return {
+      if (imageArn != null) 'ImageArn': imageArn,
+    };
+  }
 }
 
 class CreateImageVersionResponse {
@@ -21129,6 +21727,13 @@ class CreateImageVersionResponse {
     return CreateImageVersionResponse(
       imageVersionArn: json['ImageVersionArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageVersionArn = this.imageVersionArn;
+    return {
+      if (imageVersionArn != null) 'ImageVersionArn': imageVersionArn,
+    };
   }
 }
 
@@ -21145,6 +21750,13 @@ class CreateInferenceRecommendationsJobResponse {
       jobArn: json['JobArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobArn = this.jobArn;
+    return {
+      'JobArn': jobArn,
+    };
+  }
 }
 
 class CreateLabelingJobResponse {
@@ -21159,6 +21771,13 @@ class CreateLabelingJobResponse {
     return CreateLabelingJobResponse(
       labelingJobArn: json['LabelingJobArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final labelingJobArn = this.labelingJobArn;
+    return {
+      'LabelingJobArn': labelingJobArn,
+    };
   }
 }
 
@@ -21175,6 +21794,13 @@ class CreateModelBiasJobDefinitionResponse {
       jobDefinitionArn: json['JobDefinitionArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobDefinitionArn = this.jobDefinitionArn;
+    return {
+      'JobDefinitionArn': jobDefinitionArn,
+    };
+  }
 }
 
 class CreateModelExplainabilityJobDefinitionResponse {
@@ -21190,6 +21816,13 @@ class CreateModelExplainabilityJobDefinitionResponse {
       jobDefinitionArn: json['JobDefinitionArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobDefinitionArn = this.jobDefinitionArn;
+    return {
+      'JobDefinitionArn': jobDefinitionArn,
+    };
+  }
 }
 
 class CreateModelOutput {
@@ -21203,6 +21836,13 @@ class CreateModelOutput {
     return CreateModelOutput(
       modelArn: json['ModelArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelArn = this.modelArn;
+    return {
+      'ModelArn': modelArn,
+    };
   }
 }
 
@@ -21218,6 +21858,13 @@ class CreateModelPackageGroupOutput {
       modelPackageGroupArn: json['ModelPackageGroupArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelPackageGroupArn = this.modelPackageGroupArn;
+    return {
+      'ModelPackageGroupArn': modelPackageGroupArn,
+    };
+  }
 }
 
 class CreateModelPackageOutput {
@@ -21231,6 +21878,13 @@ class CreateModelPackageOutput {
     return CreateModelPackageOutput(
       modelPackageArn: json['ModelPackageArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelPackageArn = this.modelPackageArn;
+    return {
+      'ModelPackageArn': modelPackageArn,
+    };
   }
 }
 
@@ -21247,6 +21901,13 @@ class CreateModelQualityJobDefinitionResponse {
       jobDefinitionArn: json['JobDefinitionArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobDefinitionArn = this.jobDefinitionArn;
+    return {
+      'JobDefinitionArn': jobDefinitionArn,
+    };
+  }
 }
 
 class CreateMonitoringScheduleResponse {
@@ -21260,6 +21921,13 @@ class CreateMonitoringScheduleResponse {
     return CreateMonitoringScheduleResponse(
       monitoringScheduleArn: json['MonitoringScheduleArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final monitoringScheduleArn = this.monitoringScheduleArn;
+    return {
+      'MonitoringScheduleArn': monitoringScheduleArn,
+    };
   }
 }
 
@@ -21277,6 +21945,16 @@ class CreateNotebookInstanceLifecycleConfigOutput {
           json['NotebookInstanceLifecycleConfigArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final notebookInstanceLifecycleConfigArn =
+        this.notebookInstanceLifecycleConfigArn;
+    return {
+      if (notebookInstanceLifecycleConfigArn != null)
+        'NotebookInstanceLifecycleConfigArn':
+            notebookInstanceLifecycleConfigArn,
+    };
+  }
 }
 
 class CreateNotebookInstanceOutput {
@@ -21290,6 +21968,14 @@ class CreateNotebookInstanceOutput {
     return CreateNotebookInstanceOutput(
       notebookInstanceArn: json['NotebookInstanceArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final notebookInstanceArn = this.notebookInstanceArn;
+    return {
+      if (notebookInstanceArn != null)
+        'NotebookInstanceArn': notebookInstanceArn,
+    };
   }
 }
 
@@ -21305,6 +21991,13 @@ class CreatePipelineResponse {
       pipelineArn: json['PipelineArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipelineArn = this.pipelineArn;
+    return {
+      if (pipelineArn != null) 'PipelineArn': pipelineArn,
+    };
+  }
 }
 
 class CreatePresignedDomainUrlResponse {
@@ -21318,6 +22011,13 @@ class CreatePresignedDomainUrlResponse {
     return CreatePresignedDomainUrlResponse(
       authorizedUrl: json['AuthorizedUrl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authorizedUrl = this.authorizedUrl;
+    return {
+      if (authorizedUrl != null) 'AuthorizedUrl': authorizedUrl,
+    };
   }
 }
 
@@ -21334,6 +22034,13 @@ class CreatePresignedNotebookInstanceUrlOutput {
       authorizedUrl: json['AuthorizedUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorizedUrl = this.authorizedUrl;
+    return {
+      if (authorizedUrl != null) 'AuthorizedUrl': authorizedUrl,
+    };
+  }
 }
 
 class CreateProcessingJobResponse {
@@ -21347,6 +22054,13 @@ class CreateProcessingJobResponse {
     return CreateProcessingJobResponse(
       processingJobArn: json['ProcessingJobArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final processingJobArn = this.processingJobArn;
+    return {
+      'ProcessingJobArn': processingJobArn,
+    };
   }
 }
 
@@ -21367,6 +22081,15 @@ class CreateProjectOutput {
       projectId: json['ProjectId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final projectArn = this.projectArn;
+    final projectId = this.projectId;
+    return {
+      'ProjectArn': projectArn,
+      'ProjectId': projectId,
+    };
+  }
 }
 
 class CreateStudioLifecycleConfigResponse {
@@ -21382,6 +22105,14 @@ class CreateStudioLifecycleConfigResponse {
       studioLifecycleConfigArn: json['StudioLifecycleConfigArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final studioLifecycleConfigArn = this.studioLifecycleConfigArn;
+    return {
+      if (studioLifecycleConfigArn != null)
+        'StudioLifecycleConfigArn': studioLifecycleConfigArn,
+    };
+  }
 }
 
 class CreateTrainingJobResponse {
@@ -21395,6 +22126,13 @@ class CreateTrainingJobResponse {
     return CreateTrainingJobResponse(
       trainingJobArn: json['TrainingJobArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trainingJobArn = this.trainingJobArn;
+    return {
+      'TrainingJobArn': trainingJobArn,
+    };
   }
 }
 
@@ -21410,6 +22148,13 @@ class CreateTransformJobResponse {
       transformJobArn: json['TransformJobArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final transformJobArn = this.transformJobArn;
+    return {
+      'TransformJobArn': transformJobArn,
+    };
+  }
 }
 
 class CreateTrialComponentResponse {
@@ -21423,6 +22168,13 @@ class CreateTrialComponentResponse {
     return CreateTrialComponentResponse(
       trialComponentArn: json['TrialComponentArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trialComponentArn = this.trialComponentArn;
+    return {
+      if (trialComponentArn != null) 'TrialComponentArn': trialComponentArn,
+    };
   }
 }
 
@@ -21438,6 +22190,13 @@ class CreateTrialResponse {
       trialArn: json['TrialArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trialArn = this.trialArn;
+    return {
+      if (trialArn != null) 'TrialArn': trialArn,
+    };
+  }
 }
 
 class CreateUserProfileResponse {
@@ -21451,6 +22210,13 @@ class CreateUserProfileResponse {
     return CreateUserProfileResponse(
       userProfileArn: json['UserProfileArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userProfileArn = this.userProfileArn;
+    return {
+      if (userProfileArn != null) 'UserProfileArn': userProfileArn,
+    };
   }
 }
 
@@ -21466,6 +22232,13 @@ class CreateWorkforceResponse {
       workforceArn: json['WorkforceArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final workforceArn = this.workforceArn;
+    return {
+      'WorkforceArn': workforceArn,
+    };
+  }
 }
 
 class CreateWorkteamResponse {
@@ -21480,6 +22253,13 @@ class CreateWorkteamResponse {
     return CreateWorkteamResponse(
       workteamArn: json['WorkteamArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workteamArn = this.workteamArn;
+    return {
+      if (workteamArn != null) 'WorkteamArn': workteamArn,
+    };
   }
 }
 
@@ -21641,6 +22421,21 @@ class DataCaptureConfigSummary {
       enableCapture: json['EnableCapture'] as bool,
       kmsKeyId: json['KmsKeyId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final captureStatus = this.captureStatus;
+    final currentSamplingPercentage = this.currentSamplingPercentage;
+    final destinationS3Uri = this.destinationS3Uri;
+    final enableCapture = this.enableCapture;
+    final kmsKeyId = this.kmsKeyId;
+    return {
+      'CaptureStatus': captureStatus.toValue(),
+      'CurrentSamplingPercentage': currentSamplingPercentage,
+      'DestinationS3Uri': destinationS3Uri,
+      'EnableCapture': enableCapture,
+      'KmsKeyId': kmsKeyId,
+    };
   }
 }
 
@@ -22206,6 +23001,25 @@ class DebugRuleEvaluationStatus {
       statusDetails: json['StatusDetails'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastModifiedTime = this.lastModifiedTime;
+    final ruleConfigurationName = this.ruleConfigurationName;
+    final ruleEvaluationJobArn = this.ruleEvaluationJobArn;
+    final ruleEvaluationStatus = this.ruleEvaluationStatus;
+    final statusDetails = this.statusDetails;
+    return {
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (ruleConfigurationName != null)
+        'RuleConfigurationName': ruleConfigurationName,
+      if (ruleEvaluationJobArn != null)
+        'RuleEvaluationJobArn': ruleEvaluationJobArn,
+      if (ruleEvaluationStatus != null)
+        'RuleEvaluationStatus': ruleEvaluationStatus.toValue(),
+      if (statusDetails != null) 'StatusDetails': statusDetails,
+    };
+  }
 }
 
 class DeleteActionResponse {
@@ -22220,6 +23034,13 @@ class DeleteActionResponse {
       actionArn: json['ActionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionArn = this.actionArn;
+    return {
+      if (actionArn != null) 'ActionArn': actionArn,
+    };
+  }
 }
 
 class DeleteArtifactResponse {
@@ -22233,6 +23054,13 @@ class DeleteArtifactResponse {
     return DeleteArtifactResponse(
       artifactArn: json['ArtifactArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final artifactArn = this.artifactArn;
+    return {
+      if (artifactArn != null) 'ArtifactArn': artifactArn,
+    };
   }
 }
 
@@ -22253,6 +23081,15 @@ class DeleteAssociationResponse {
       sourceArn: json['SourceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationArn = this.destinationArn;
+    final sourceArn = this.sourceArn;
+    return {
+      if (destinationArn != null) 'DestinationArn': destinationArn,
+      if (sourceArn != null) 'SourceArn': sourceArn,
+    };
+  }
 }
 
 class DeleteContextResponse {
@@ -22266,6 +23103,13 @@ class DeleteContextResponse {
     return DeleteContextResponse(
       contextArn: json['ContextArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contextArn = this.contextArn;
+    return {
+      if (contextArn != null) 'ContextArn': contextArn,
+    };
   }
 }
 
@@ -22281,12 +23125,23 @@ class DeleteExperimentResponse {
       experimentArn: json['ExperimentArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final experimentArn = this.experimentArn;
+    return {
+      if (experimentArn != null) 'ExperimentArn': experimentArn,
+    };
+  }
 }
 
 class DeleteFlowDefinitionResponse {
   DeleteFlowDefinitionResponse();
   factory DeleteFlowDefinitionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFlowDefinitionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -22295,6 +23150,10 @@ class DeleteHumanTaskUiResponse {
   factory DeleteHumanTaskUiResponse.fromJson(Map<String, dynamic> _) {
     return DeleteHumanTaskUiResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteImageResponse {
@@ -22302,12 +23161,20 @@ class DeleteImageResponse {
   factory DeleteImageResponse.fromJson(Map<String, dynamic> _) {
     return DeleteImageResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteImageVersionResponse {
   DeleteImageVersionResponse();
   factory DeleteImageVersionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteImageVersionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -22323,12 +23190,23 @@ class DeletePipelineResponse {
       pipelineArn: json['PipelineArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipelineArn = this.pipelineArn;
+    return {
+      if (pipelineArn != null) 'PipelineArn': pipelineArn,
+    };
+  }
 }
 
 class DeleteTagsOutput {
   DeleteTagsOutput();
   factory DeleteTagsOutput.fromJson(Map<String, dynamic> _) {
     return DeleteTagsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -22344,6 +23222,13 @@ class DeleteTrialComponentResponse {
       trialComponentArn: json['TrialComponentArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trialComponentArn = this.trialComponentArn;
+    return {
+      if (trialComponentArn != null) 'TrialComponentArn': trialComponentArn,
+    };
+  }
 }
 
 class DeleteTrialResponse {
@@ -22358,12 +23243,23 @@ class DeleteTrialResponse {
       trialArn: json['TrialArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trialArn = this.trialArn;
+    return {
+      if (trialArn != null) 'TrialArn': trialArn,
+    };
+  }
 }
 
 class DeleteWorkforceResponse {
   DeleteWorkforceResponse();
   factory DeleteWorkforceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteWorkforceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -22379,6 +23275,13 @@ class DeleteWorkteamResponse {
     return DeleteWorkteamResponse(
       success: json['Success'] as bool,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final success = this.success;
+    return {
+      'Success': success,
+    };
   }
 }
 
@@ -22416,6 +23319,18 @@ class DeployedImage {
       resolvedImage: json['ResolvedImage'] as String?,
       specifiedImage: json['SpecifiedImage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolutionTime = this.resolutionTime;
+    final resolvedImage = this.resolvedImage;
+    final specifiedImage = this.specifiedImage;
+    return {
+      if (resolutionTime != null)
+        'ResolutionTime': unixTimestampToJson(resolutionTime),
+      if (resolvedImage != null) 'ResolvedImage': resolvedImage,
+      if (specifiedImage != null) 'SpecifiedImage': specifiedImage,
+    };
   }
 }
 
@@ -22477,6 +23392,7 @@ class DeploymentStage {
     required this.stageName,
     this.deploymentConfig,
   });
+
   Map<String, dynamic> toJson() {
     final deviceSelectionConfig = this.deviceSelectionConfig;
     final stageName = this.stageName;
@@ -22519,6 +23435,19 @@ class DeploymentStageStatusSummary {
           json['DeviceSelectionConfig'] as Map<String, dynamic>),
       stageName: json['StageName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentConfig = this.deploymentConfig;
+    final deploymentStatus = this.deploymentStatus;
+    final deviceSelectionConfig = this.deviceSelectionConfig;
+    final stageName = this.stageName;
+    return {
+      'DeploymentConfig': deploymentConfig,
+      'DeploymentStatus': deploymentStatus,
+      'DeviceSelectionConfig': deviceSelectionConfig,
+      'StageName': stageName,
+    };
   }
 }
 
@@ -22598,6 +23527,39 @@ class DescribeActionResponse {
       status: (json['Status'] as String?)?.toActionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionArn = this.actionArn;
+    final actionName = this.actionName;
+    final actionType = this.actionType;
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final lineageGroupArn = this.lineageGroupArn;
+    final metadataProperties = this.metadataProperties;
+    final properties = this.properties;
+    final source = this.source;
+    final status = this.status;
+    return {
+      if (actionArn != null) 'ActionArn': actionArn,
+      if (actionName != null) 'ActionName': actionName,
+      if (actionType != null) 'ActionType': actionType,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (lineageGroupArn != null) 'LineageGroupArn': lineageGroupArn,
+      if (metadataProperties != null) 'MetadataProperties': metadataProperties,
+      if (properties != null) 'Properties': properties,
+      if (source != null) 'Source': source,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class DescribeAlgorithmOutput {
@@ -22673,6 +23635,37 @@ class DescribeAlgorithmOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final algorithmArn = this.algorithmArn;
+    final algorithmName = this.algorithmName;
+    final algorithmStatus = this.algorithmStatus;
+    final algorithmStatusDetails = this.algorithmStatusDetails;
+    final creationTime = this.creationTime;
+    final trainingSpecification = this.trainingSpecification;
+    final algorithmDescription = this.algorithmDescription;
+    final certifyForMarketplace = this.certifyForMarketplace;
+    final inferenceSpecification = this.inferenceSpecification;
+    final productId = this.productId;
+    final validationSpecification = this.validationSpecification;
+    return {
+      'AlgorithmArn': algorithmArn,
+      'AlgorithmName': algorithmName,
+      'AlgorithmStatus': algorithmStatus.toValue(),
+      'AlgorithmStatusDetails': algorithmStatusDetails,
+      'CreationTime': unixTimestampToJson(creationTime),
+      'TrainingSpecification': trainingSpecification,
+      if (algorithmDescription != null)
+        'AlgorithmDescription': algorithmDescription,
+      if (certifyForMarketplace != null)
+        'CertifyForMarketplace': certifyForMarketplace,
+      if (inferenceSpecification != null)
+        'InferenceSpecification': inferenceSpecification,
+      if (productId != null) 'ProductId': productId,
+      if (validationSpecification != null)
+        'ValidationSpecification': validationSpecification,
+    };
+  }
 }
 
 class DescribeAppImageConfigResponse {
@@ -22709,6 +23702,24 @@ class DescribeAppImageConfigResponse {
           : null,
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appImageConfigArn = this.appImageConfigArn;
+    final appImageConfigName = this.appImageConfigName;
+    final creationTime = this.creationTime;
+    final kernelGatewayImageConfig = this.kernelGatewayImageConfig;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      if (appImageConfigArn != null) 'AppImageConfigArn': appImageConfigArn,
+      if (appImageConfigName != null) 'AppImageConfigName': appImageConfigName,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (kernelGatewayImageConfig != null)
+        'KernelGatewayImageConfig': kernelGatewayImageConfig,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
   }
 }
 
@@ -22782,6 +23793,38 @@ class DescribeAppResponse {
       userProfileName: json['UserProfileName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appArn = this.appArn;
+    final appName = this.appName;
+    final appType = this.appType;
+    final creationTime = this.creationTime;
+    final domainId = this.domainId;
+    final failureReason = this.failureReason;
+    final lastHealthCheckTimestamp = this.lastHealthCheckTimestamp;
+    final lastUserActivityTimestamp = this.lastUserActivityTimestamp;
+    final resourceSpec = this.resourceSpec;
+    final status = this.status;
+    final userProfileName = this.userProfileName;
+    return {
+      if (appArn != null) 'AppArn': appArn,
+      if (appName != null) 'AppName': appName,
+      if (appType != null) 'AppType': appType.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (domainId != null) 'DomainId': domainId,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (lastHealthCheckTimestamp != null)
+        'LastHealthCheckTimestamp':
+            unixTimestampToJson(lastHealthCheckTimestamp),
+      if (lastUserActivityTimestamp != null)
+        'LastUserActivityTimestamp':
+            unixTimestampToJson(lastUserActivityTimestamp),
+      if (resourceSpec != null) 'ResourceSpec': resourceSpec,
+      if (status != null) 'Status': status.toValue(),
+      if (userProfileName != null) 'UserProfileName': userProfileName,
+    };
+  }
 }
 
 class DescribeArtifactResponse {
@@ -22849,6 +23892,35 @@ class DescribeArtifactResponse {
           ? ArtifactSource.fromJson(json['Source'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final artifactArn = this.artifactArn;
+    final artifactName = this.artifactName;
+    final artifactType = this.artifactType;
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final lineageGroupArn = this.lineageGroupArn;
+    final metadataProperties = this.metadataProperties;
+    final properties = this.properties;
+    final source = this.source;
+    return {
+      if (artifactArn != null) 'ArtifactArn': artifactArn,
+      if (artifactName != null) 'ArtifactName': artifactName,
+      if (artifactType != null) 'ArtifactType': artifactType,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (lineageGroupArn != null) 'LineageGroupArn': lineageGroupArn,
+      if (metadataProperties != null) 'MetadataProperties': metadataProperties,
+      if (properties != null) 'Properties': properties,
+      if (source != null) 'Source': source,
+    };
   }
 }
 
@@ -23005,6 +24077,56 @@ class DescribeAutoMLJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoMLJobArn = this.autoMLJobArn;
+    final autoMLJobName = this.autoMLJobName;
+    final autoMLJobSecondaryStatus = this.autoMLJobSecondaryStatus;
+    final autoMLJobStatus = this.autoMLJobStatus;
+    final creationTime = this.creationTime;
+    final inputDataConfig = this.inputDataConfig;
+    final lastModifiedTime = this.lastModifiedTime;
+    final outputDataConfig = this.outputDataConfig;
+    final roleArn = this.roleArn;
+    final autoMLJobArtifacts = this.autoMLJobArtifacts;
+    final autoMLJobConfig = this.autoMLJobConfig;
+    final autoMLJobObjective = this.autoMLJobObjective;
+    final bestCandidate = this.bestCandidate;
+    final endTime = this.endTime;
+    final failureReason = this.failureReason;
+    final generateCandidateDefinitionsOnly =
+        this.generateCandidateDefinitionsOnly;
+    final modelDeployConfig = this.modelDeployConfig;
+    final modelDeployResult = this.modelDeployResult;
+    final partialFailureReasons = this.partialFailureReasons;
+    final problemType = this.problemType;
+    final resolvedAttributes = this.resolvedAttributes;
+    return {
+      'AutoMLJobArn': autoMLJobArn,
+      'AutoMLJobName': autoMLJobName,
+      'AutoMLJobSecondaryStatus': autoMLJobSecondaryStatus.toValue(),
+      'AutoMLJobStatus': autoMLJobStatus.toValue(),
+      'CreationTime': unixTimestampToJson(creationTime),
+      'InputDataConfig': inputDataConfig,
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'OutputDataConfig': outputDataConfig,
+      'RoleArn': roleArn,
+      if (autoMLJobArtifacts != null) 'AutoMLJobArtifacts': autoMLJobArtifacts,
+      if (autoMLJobConfig != null) 'AutoMLJobConfig': autoMLJobConfig,
+      if (autoMLJobObjective != null) 'AutoMLJobObjective': autoMLJobObjective,
+      if (bestCandidate != null) 'BestCandidate': bestCandidate,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (generateCandidateDefinitionsOnly != null)
+        'GenerateCandidateDefinitionsOnly': generateCandidateDefinitionsOnly,
+      if (modelDeployConfig != null) 'ModelDeployConfig': modelDeployConfig,
+      if (modelDeployResult != null) 'ModelDeployResult': modelDeployResult,
+      if (partialFailureReasons != null)
+        'PartialFailureReasons': partialFailureReasons,
+      if (problemType != null) 'ProblemType': problemType.toValue(),
+      if (resolvedAttributes != null) 'ResolvedAttributes': resolvedAttributes,
+    };
+  }
 }
 
 class DescribeCodeRepositoryOutput {
@@ -23045,6 +24167,21 @@ class DescribeCodeRepositoryOutput {
           ? GitConfig.fromJson(json['GitConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final codeRepositoryArn = this.codeRepositoryArn;
+    final codeRepositoryName = this.codeRepositoryName;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final gitConfig = this.gitConfig;
+    return {
+      'CodeRepositoryArn': codeRepositoryArn,
+      'CodeRepositoryName': codeRepositoryName,
+      'CreationTime': unixTimestampToJson(creationTime),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (gitConfig != null) 'GitConfig': gitConfig,
+    };
   }
 }
 
@@ -23175,6 +24312,48 @@ class DescribeCompilationJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final compilationJobArn = this.compilationJobArn;
+    final compilationJobName = this.compilationJobName;
+    final compilationJobStatus = this.compilationJobStatus;
+    final creationTime = this.creationTime;
+    final failureReason = this.failureReason;
+    final inputConfig = this.inputConfig;
+    final lastModifiedTime = this.lastModifiedTime;
+    final modelArtifacts = this.modelArtifacts;
+    final outputConfig = this.outputConfig;
+    final roleArn = this.roleArn;
+    final stoppingCondition = this.stoppingCondition;
+    final compilationEndTime = this.compilationEndTime;
+    final compilationStartTime = this.compilationStartTime;
+    final inferenceImage = this.inferenceImage;
+    final modelDigests = this.modelDigests;
+    final modelPackageVersionArn = this.modelPackageVersionArn;
+    final vpcConfig = this.vpcConfig;
+    return {
+      'CompilationJobArn': compilationJobArn,
+      'CompilationJobName': compilationJobName,
+      'CompilationJobStatus': compilationJobStatus.toValue(),
+      'CreationTime': unixTimestampToJson(creationTime),
+      'FailureReason': failureReason,
+      'InputConfig': inputConfig,
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'ModelArtifacts': modelArtifacts,
+      'OutputConfig': outputConfig,
+      'RoleArn': roleArn,
+      'StoppingCondition': stoppingCondition,
+      if (compilationEndTime != null)
+        'CompilationEndTime': unixTimestampToJson(compilationEndTime),
+      if (compilationStartTime != null)
+        'CompilationStartTime': unixTimestampToJson(compilationStartTime),
+      if (inferenceImage != null) 'InferenceImage': inferenceImage,
+      if (modelDigests != null) 'ModelDigests': modelDigests,
+      if (modelPackageVersionArn != null)
+        'ModelPackageVersionArn': modelPackageVersionArn,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 class DescribeContextResponse {
@@ -23241,6 +24420,35 @@ class DescribeContextResponse {
           ? ContextSource.fromJson(json['Source'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contextArn = this.contextArn;
+    final contextName = this.contextName;
+    final contextType = this.contextType;
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final lineageGroupArn = this.lineageGroupArn;
+    final properties = this.properties;
+    final source = this.source;
+    return {
+      if (contextArn != null) 'ContextArn': contextArn,
+      if (contextName != null) 'ContextName': contextName,
+      if (contextType != null) 'ContextType': contextType,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (lineageGroupArn != null) 'LineageGroupArn': lineageGroupArn,
+      if (properties != null) 'Properties': properties,
+      if (source != null) 'Source': source,
+    };
   }
 }
 
@@ -23319,6 +24527,34 @@ class DescribeDataQualityJobDefinitionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final dataQualityAppSpecification = this.dataQualityAppSpecification;
+    final dataQualityJobInput = this.dataQualityJobInput;
+    final dataQualityJobOutputConfig = this.dataQualityJobOutputConfig;
+    final jobDefinitionArn = this.jobDefinitionArn;
+    final jobDefinitionName = this.jobDefinitionName;
+    final jobResources = this.jobResources;
+    final roleArn = this.roleArn;
+    final dataQualityBaselineConfig = this.dataQualityBaselineConfig;
+    final networkConfig = this.networkConfig;
+    final stoppingCondition = this.stoppingCondition;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'DataQualityAppSpecification': dataQualityAppSpecification,
+      'DataQualityJobInput': dataQualityJobInput,
+      'DataQualityJobOutputConfig': dataQualityJobOutputConfig,
+      'JobDefinitionArn': jobDefinitionArn,
+      'JobDefinitionName': jobDefinitionName,
+      'JobResources': jobResources,
+      'RoleArn': roleArn,
+      if (dataQualityBaselineConfig != null)
+        'DataQualityBaselineConfig': dataQualityBaselineConfig,
+      if (networkConfig != null) 'NetworkConfig': networkConfig,
+      if (stoppingCondition != null) 'StoppingCondition': stoppingCondition,
+    };
+  }
 }
 
 class DescribeDeviceFleetResponse {
@@ -23372,6 +24608,27 @@ class DescribeDeviceFleetResponse {
       iotRoleAlias: json['IotRoleAlias'] as String?,
       roleArn: json['RoleArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final deviceFleetArn = this.deviceFleetArn;
+    final deviceFleetName = this.deviceFleetName;
+    final lastModifiedTime = this.lastModifiedTime;
+    final outputConfig = this.outputConfig;
+    final description = this.description;
+    final iotRoleAlias = this.iotRoleAlias;
+    final roleArn = this.roleArn;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'DeviceFleetArn': deviceFleetArn,
+      'DeviceFleetName': deviceFleetName,
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'OutputConfig': outputConfig,
+      if (description != null) 'Description': description,
+      if (iotRoleAlias != null) 'IotRoleAlias': iotRoleAlias,
+      if (roleArn != null) 'RoleArn': roleArn,
+    };
   }
 }
 
@@ -23442,6 +24699,34 @@ class DescribeDeviceResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceFleetName = this.deviceFleetName;
+    final deviceName = this.deviceName;
+    final registrationTime = this.registrationTime;
+    final agentVersion = this.agentVersion;
+    final description = this.description;
+    final deviceArn = this.deviceArn;
+    final iotThingName = this.iotThingName;
+    final latestHeartbeat = this.latestHeartbeat;
+    final maxModels = this.maxModels;
+    final models = this.models;
+    final nextToken = this.nextToken;
+    return {
+      'DeviceFleetName': deviceFleetName,
+      'DeviceName': deviceName,
+      'RegistrationTime': unixTimestampToJson(registrationTime),
+      if (agentVersion != null) 'AgentVersion': agentVersion,
+      if (description != null) 'Description': description,
+      if (deviceArn != null) 'DeviceArn': deviceArn,
+      if (iotThingName != null) 'IotThingName': iotThingName,
+      if (latestHeartbeat != null)
+        'LatestHeartbeat': unixTimestampToJson(latestHeartbeat),
+      if (maxModels != null) 'MaxModels': maxModels,
+      if (models != null) 'Models': models,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -23586,6 +24871,63 @@ class DescribeDomainResponse {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appNetworkAccessType = this.appNetworkAccessType;
+    final appSecurityGroupManagement = this.appSecurityGroupManagement;
+    final authMode = this.authMode;
+    final creationTime = this.creationTime;
+    final defaultUserSettings = this.defaultUserSettings;
+    final domainArn = this.domainArn;
+    final domainId = this.domainId;
+    final domainName = this.domainName;
+    final domainSettings = this.domainSettings;
+    final failureReason = this.failureReason;
+    final homeEfsFileSystemId = this.homeEfsFileSystemId;
+    final homeEfsFileSystemKmsKeyId = this.homeEfsFileSystemKmsKeyId;
+    final kmsKeyId = this.kmsKeyId;
+    final lastModifiedTime = this.lastModifiedTime;
+    final securityGroupIdForDomainBoundary =
+        this.securityGroupIdForDomainBoundary;
+    final singleSignOnManagedApplicationInstanceId =
+        this.singleSignOnManagedApplicationInstanceId;
+    final status = this.status;
+    final subnetIds = this.subnetIds;
+    final url = this.url;
+    final vpcId = this.vpcId;
+    return {
+      if (appNetworkAccessType != null)
+        'AppNetworkAccessType': appNetworkAccessType.toValue(),
+      if (appSecurityGroupManagement != null)
+        'AppSecurityGroupManagement': appSecurityGroupManagement.toValue(),
+      if (authMode != null) 'AuthMode': authMode.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (defaultUserSettings != null)
+        'DefaultUserSettings': defaultUserSettings,
+      if (domainArn != null) 'DomainArn': domainArn,
+      if (domainId != null) 'DomainId': domainId,
+      if (domainName != null) 'DomainName': domainName,
+      if (domainSettings != null) 'DomainSettings': domainSettings,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (homeEfsFileSystemId != null)
+        'HomeEfsFileSystemId': homeEfsFileSystemId,
+      if (homeEfsFileSystemKmsKeyId != null)
+        'HomeEfsFileSystemKmsKeyId': homeEfsFileSystemKmsKeyId,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (securityGroupIdForDomainBoundary != null)
+        'SecurityGroupIdForDomainBoundary': securityGroupIdForDomainBoundary,
+      if (singleSignOnManagedApplicationInstanceId != null)
+        'SingleSignOnManagedApplicationInstanceId':
+            singleSignOnManagedApplicationInstanceId,
+      if (status != null) 'Status': status.toValue(),
+      if (subnetIds != null) 'SubnetIds': subnetIds,
+      if (url != null) 'Url': url,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 class DescribeEdgeDeploymentPlanResponse {
@@ -23659,6 +25001,38 @@ class DescribeEdgeDeploymentPlanResponse {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceFleetName = this.deviceFleetName;
+    final edgeDeploymentPlanArn = this.edgeDeploymentPlanArn;
+    final edgeDeploymentPlanName = this.edgeDeploymentPlanName;
+    final modelConfigs = this.modelConfigs;
+    final stages = this.stages;
+    final creationTime = this.creationTime;
+    final edgeDeploymentFailed = this.edgeDeploymentFailed;
+    final edgeDeploymentPending = this.edgeDeploymentPending;
+    final edgeDeploymentSuccess = this.edgeDeploymentSuccess;
+    final lastModifiedTime = this.lastModifiedTime;
+    final nextToken = this.nextToken;
+    return {
+      'DeviceFleetName': deviceFleetName,
+      'EdgeDeploymentPlanArn': edgeDeploymentPlanArn,
+      'EdgeDeploymentPlanName': edgeDeploymentPlanName,
+      'ModelConfigs': modelConfigs,
+      'Stages': stages,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (edgeDeploymentFailed != null)
+        'EdgeDeploymentFailed': edgeDeploymentFailed,
+      if (edgeDeploymentPending != null)
+        'EdgeDeploymentPending': edgeDeploymentPending,
+      if (edgeDeploymentSuccess != null)
+        'EdgeDeploymentSuccess': edgeDeploymentSuccess,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -23755,6 +25129,45 @@ class DescribeEdgePackagingJobResponse {
       roleArn: json['RoleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final edgePackagingJobArn = this.edgePackagingJobArn;
+    final edgePackagingJobName = this.edgePackagingJobName;
+    final edgePackagingJobStatus = this.edgePackagingJobStatus;
+    final compilationJobName = this.compilationJobName;
+    final creationTime = this.creationTime;
+    final edgePackagingJobStatusMessage = this.edgePackagingJobStatusMessage;
+    final lastModifiedTime = this.lastModifiedTime;
+    final modelArtifact = this.modelArtifact;
+    final modelName = this.modelName;
+    final modelSignature = this.modelSignature;
+    final modelVersion = this.modelVersion;
+    final outputConfig = this.outputConfig;
+    final presetDeploymentOutput = this.presetDeploymentOutput;
+    final resourceKey = this.resourceKey;
+    final roleArn = this.roleArn;
+    return {
+      'EdgePackagingJobArn': edgePackagingJobArn,
+      'EdgePackagingJobName': edgePackagingJobName,
+      'EdgePackagingJobStatus': edgePackagingJobStatus.toValue(),
+      if (compilationJobName != null) 'CompilationJobName': compilationJobName,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (edgePackagingJobStatusMessage != null)
+        'EdgePackagingJobStatusMessage': edgePackagingJobStatusMessage,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (modelArtifact != null) 'ModelArtifact': modelArtifact,
+      if (modelName != null) 'ModelName': modelName,
+      if (modelSignature != null) 'ModelSignature': modelSignature,
+      if (modelVersion != null) 'ModelVersion': modelVersion,
+      if (outputConfig != null) 'OutputConfig': outputConfig,
+      if (presetDeploymentOutput != null)
+        'PresetDeploymentOutput': presetDeploymentOutput,
+      if (resourceKey != null) 'ResourceKey': resourceKey,
+      if (roleArn != null) 'RoleArn': roleArn,
+    };
+  }
 }
 
 class DescribeEndpointConfigOutput {
@@ -23810,6 +25223,26 @@ class DescribeEndpointConfigOutput {
           : null,
       kmsKeyId: json['KmsKeyId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final endpointConfigArn = this.endpointConfigArn;
+    final endpointConfigName = this.endpointConfigName;
+    final productionVariants = this.productionVariants;
+    final asyncInferenceConfig = this.asyncInferenceConfig;
+    final dataCaptureConfig = this.dataCaptureConfig;
+    final kmsKeyId = this.kmsKeyId;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'EndpointConfigArn': endpointConfigArn,
+      'EndpointConfigName': endpointConfigName,
+      'ProductionVariants': productionVariants,
+      if (asyncInferenceConfig != null)
+        'AsyncInferenceConfig': asyncInferenceConfig,
+      if (dataCaptureConfig != null) 'DataCaptureConfig': dataCaptureConfig,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+    };
   }
 }
 
@@ -23944,6 +25377,38 @@ class DescribeEndpointOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final endpointArn = this.endpointArn;
+    final endpointConfigName = this.endpointConfigName;
+    final endpointName = this.endpointName;
+    final endpointStatus = this.endpointStatus;
+    final lastModifiedTime = this.lastModifiedTime;
+    final asyncInferenceConfig = this.asyncInferenceConfig;
+    final dataCaptureConfig = this.dataCaptureConfig;
+    final failureReason = this.failureReason;
+    final lastDeploymentConfig = this.lastDeploymentConfig;
+    final pendingDeploymentSummary = this.pendingDeploymentSummary;
+    final productionVariants = this.productionVariants;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'EndpointArn': endpointArn,
+      'EndpointConfigName': endpointConfigName,
+      'EndpointName': endpointName,
+      'EndpointStatus': endpointStatus.toValue(),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (asyncInferenceConfig != null)
+        'AsyncInferenceConfig': asyncInferenceConfig,
+      if (dataCaptureConfig != null) 'DataCaptureConfig': dataCaptureConfig,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (lastDeploymentConfig != null)
+        'LastDeploymentConfig': lastDeploymentConfig,
+      if (pendingDeploymentSummary != null)
+        'PendingDeploymentSummary': pendingDeploymentSummary,
+      if (productionVariants != null) 'ProductionVariants': productionVariants,
+    };
+  }
 }
 
 class DescribeExperimentResponse {
@@ -24004,6 +25469,31 @@ class DescribeExperimentResponse {
           ? ExperimentSource.fromJson(json['Source'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final displayName = this.displayName;
+    final experimentArn = this.experimentArn;
+    final experimentName = this.experimentName;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final source = this.source;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (displayName != null) 'DisplayName': displayName,
+      if (experimentArn != null) 'ExperimentArn': experimentArn,
+      if (experimentName != null) 'ExperimentName': experimentName,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (source != null) 'Source': source,
+    };
   }
 }
 
@@ -24146,6 +25636,48 @@ class DescribeFeatureGroupResponse {
       roleArn: json['RoleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final eventTimeFeatureName = this.eventTimeFeatureName;
+    final featureDefinitions = this.featureDefinitions;
+    final featureGroupArn = this.featureGroupArn;
+    final featureGroupName = this.featureGroupName;
+    final nextToken = this.nextToken;
+    final recordIdentifierFeatureName = this.recordIdentifierFeatureName;
+    final description = this.description;
+    final failureReason = this.failureReason;
+    final featureGroupStatus = this.featureGroupStatus;
+    final lastModifiedTime = this.lastModifiedTime;
+    final lastUpdateStatus = this.lastUpdateStatus;
+    final offlineStoreConfig = this.offlineStoreConfig;
+    final offlineStoreStatus = this.offlineStoreStatus;
+    final onlineStoreConfig = this.onlineStoreConfig;
+    final onlineStoreTotalSizeBytes = this.onlineStoreTotalSizeBytes;
+    final roleArn = this.roleArn;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'EventTimeFeatureName': eventTimeFeatureName,
+      'FeatureDefinitions': featureDefinitions,
+      'FeatureGroupArn': featureGroupArn,
+      'FeatureGroupName': featureGroupName,
+      'NextToken': nextToken,
+      'RecordIdentifierFeatureName': recordIdentifierFeatureName,
+      if (description != null) 'Description': description,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (featureGroupStatus != null)
+        'FeatureGroupStatus': featureGroupStatus.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (lastUpdateStatus != null) 'LastUpdateStatus': lastUpdateStatus,
+      if (offlineStoreConfig != null) 'OfflineStoreConfig': offlineStoreConfig,
+      if (offlineStoreStatus != null) 'OfflineStoreStatus': offlineStoreStatus,
+      if (onlineStoreConfig != null) 'OnlineStoreConfig': onlineStoreConfig,
+      if (onlineStoreTotalSizeBytes != null)
+        'OnlineStoreTotalSizeBytes': onlineStoreTotalSizeBytes,
+      if (roleArn != null) 'RoleArn': roleArn,
+    };
+  }
 }
 
 class DescribeFeatureMetadataResponse {
@@ -24202,6 +25734,27 @@ class DescribeFeatureMetadataResponse {
           .map((e) => FeatureParameter.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final featureGroupArn = this.featureGroupArn;
+    final featureGroupName = this.featureGroupName;
+    final featureName = this.featureName;
+    final featureType = this.featureType;
+    final lastModifiedTime = this.lastModifiedTime;
+    final description = this.description;
+    final parameters = this.parameters;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'FeatureGroupArn': featureGroupArn,
+      'FeatureGroupName': featureGroupName,
+      'FeatureName': featureName,
+      'FeatureType': featureType.toValue(),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (description != null) 'Description': description,
+      if (parameters != null) 'Parameters': parameters,
+    };
   }
 }
 
@@ -24276,6 +25829,33 @@ class DescribeFlowDefinitionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final flowDefinitionArn = this.flowDefinitionArn;
+    final flowDefinitionName = this.flowDefinitionName;
+    final flowDefinitionStatus = this.flowDefinitionStatus;
+    final humanLoopConfig = this.humanLoopConfig;
+    final outputConfig = this.outputConfig;
+    final roleArn = this.roleArn;
+    final failureReason = this.failureReason;
+    final humanLoopActivationConfig = this.humanLoopActivationConfig;
+    final humanLoopRequestSource = this.humanLoopRequestSource;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'FlowDefinitionArn': flowDefinitionArn,
+      'FlowDefinitionName': flowDefinitionName,
+      'FlowDefinitionStatus': flowDefinitionStatus.toValue(),
+      'HumanLoopConfig': humanLoopConfig,
+      'OutputConfig': outputConfig,
+      'RoleArn': roleArn,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (humanLoopActivationConfig != null)
+        'HumanLoopActivationConfig': humanLoopActivationConfig,
+      if (humanLoopRequestSource != null)
+        'HumanLoopRequestSource': humanLoopRequestSource,
+    };
+  }
 }
 
 class DescribeHumanTaskUiResponse {
@@ -24312,6 +25892,22 @@ class DescribeHumanTaskUiResponse {
       humanTaskUiStatus:
           (json['HumanTaskUiStatus'] as String?)?.toHumanTaskUiStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final humanTaskUiArn = this.humanTaskUiArn;
+    final humanTaskUiName = this.humanTaskUiName;
+    final uiTemplate = this.uiTemplate;
+    final humanTaskUiStatus = this.humanTaskUiStatus;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'HumanTaskUiArn': humanTaskUiArn,
+      'HumanTaskUiName': humanTaskUiName,
+      'UiTemplate': uiTemplate,
+      if (humanTaskUiStatus != null)
+        'HumanTaskUiStatus': humanTaskUiStatus.toValue(),
+    };
   }
 }
 
@@ -24437,6 +26033,47 @@ class DescribeHyperParameterTuningJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final hyperParameterTuningJobArn = this.hyperParameterTuningJobArn;
+    final hyperParameterTuningJobConfig = this.hyperParameterTuningJobConfig;
+    final hyperParameterTuningJobName = this.hyperParameterTuningJobName;
+    final hyperParameterTuningJobStatus = this.hyperParameterTuningJobStatus;
+    final objectiveStatusCounters = this.objectiveStatusCounters;
+    final trainingJobStatusCounters = this.trainingJobStatusCounters;
+    final bestTrainingJob = this.bestTrainingJob;
+    final failureReason = this.failureReason;
+    final hyperParameterTuningEndTime = this.hyperParameterTuningEndTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final overallBestTrainingJob = this.overallBestTrainingJob;
+    final trainingJobDefinition = this.trainingJobDefinition;
+    final trainingJobDefinitions = this.trainingJobDefinitions;
+    final warmStartConfig = this.warmStartConfig;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'HyperParameterTuningJobArn': hyperParameterTuningJobArn,
+      'HyperParameterTuningJobConfig': hyperParameterTuningJobConfig,
+      'HyperParameterTuningJobName': hyperParameterTuningJobName,
+      'HyperParameterTuningJobStatus': hyperParameterTuningJobStatus.toValue(),
+      'ObjectiveStatusCounters': objectiveStatusCounters,
+      'TrainingJobStatusCounters': trainingJobStatusCounters,
+      if (bestTrainingJob != null) 'BestTrainingJob': bestTrainingJob,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (hyperParameterTuningEndTime != null)
+        'HyperParameterTuningEndTime':
+            unixTimestampToJson(hyperParameterTuningEndTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (overallBestTrainingJob != null)
+        'OverallBestTrainingJob': overallBestTrainingJob,
+      if (trainingJobDefinition != null)
+        'TrainingJobDefinition': trainingJobDefinition,
+      if (trainingJobDefinitions != null)
+        'TrainingJobDefinitions': trainingJobDefinitions,
+      if (warmStartConfig != null) 'WarmStartConfig': warmStartConfig,
+    };
+  }
 }
 
 class DescribeImageResponse {
@@ -24493,6 +26130,31 @@ class DescribeImageResponse {
       roleArn: json['RoleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final displayName = this.displayName;
+    final failureReason = this.failureReason;
+    final imageArn = this.imageArn;
+    final imageName = this.imageName;
+    final imageStatus = this.imageStatus;
+    final lastModifiedTime = this.lastModifiedTime;
+    final roleArn = this.roleArn;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (displayName != null) 'DisplayName': displayName,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (imageArn != null) 'ImageArn': imageArn,
+      if (imageName != null) 'ImageName': imageName,
+      if (imageStatus != null) 'ImageStatus': imageStatus.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (roleArn != null) 'RoleArn': roleArn,
+    };
+  }
 }
 
 class DescribeImageVersionResponse {
@@ -24548,6 +26210,32 @@ class DescribeImageVersionResponse {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
       version: json['Version'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final baseImage = this.baseImage;
+    final containerImage = this.containerImage;
+    final creationTime = this.creationTime;
+    final failureReason = this.failureReason;
+    final imageArn = this.imageArn;
+    final imageVersionArn = this.imageVersionArn;
+    final imageVersionStatus = this.imageVersionStatus;
+    final lastModifiedTime = this.lastModifiedTime;
+    final version = this.version;
+    return {
+      if (baseImage != null) 'BaseImage': baseImage,
+      if (containerImage != null) 'ContainerImage': containerImage,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (imageArn != null) 'ImageArn': imageArn,
+      if (imageVersionArn != null) 'ImageVersionArn': imageVersionArn,
+      if (imageVersionStatus != null)
+        'ImageVersionStatus': imageVersionStatus.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -24637,6 +26325,39 @@ class DescribeInferenceRecommendationsJobResponse {
               json['StoppingConditions'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final inputConfig = this.inputConfig;
+    final jobArn = this.jobArn;
+    final jobName = this.jobName;
+    final jobType = this.jobType;
+    final lastModifiedTime = this.lastModifiedTime;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    final completionTime = this.completionTime;
+    final failureReason = this.failureReason;
+    final inferenceRecommendations = this.inferenceRecommendations;
+    final jobDescription = this.jobDescription;
+    final stoppingConditions = this.stoppingConditions;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'InputConfig': inputConfig,
+      'JobArn': jobArn,
+      'JobName': jobName,
+      'JobType': jobType.toValue(),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'RoleArn': roleArn,
+      'Status': status.toValue(),
+      if (completionTime != null)
+        'CompletionTime': unixTimestampToJson(completionTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (inferenceRecommendations != null)
+        'InferenceRecommendations': inferenceRecommendations,
+      if (jobDescription != null) 'JobDescription': jobDescription,
+      if (stoppingConditions != null) 'StoppingConditions': stoppingConditions,
+    };
   }
 }
 
@@ -24810,6 +26531,49 @@ class DescribeLabelingJobResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final humanTaskConfig = this.humanTaskConfig;
+    final inputConfig = this.inputConfig;
+    final jobReferenceCode = this.jobReferenceCode;
+    final labelCounters = this.labelCounters;
+    final labelingJobArn = this.labelingJobArn;
+    final labelingJobName = this.labelingJobName;
+    final labelingJobStatus = this.labelingJobStatus;
+    final lastModifiedTime = this.lastModifiedTime;
+    final outputConfig = this.outputConfig;
+    final roleArn = this.roleArn;
+    final failureReason = this.failureReason;
+    final labelAttributeName = this.labelAttributeName;
+    final labelCategoryConfigS3Uri = this.labelCategoryConfigS3Uri;
+    final labelingJobAlgorithmsConfig = this.labelingJobAlgorithmsConfig;
+    final labelingJobOutput = this.labelingJobOutput;
+    final stoppingConditions = this.stoppingConditions;
+    final tags = this.tags;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'HumanTaskConfig': humanTaskConfig,
+      'InputConfig': inputConfig,
+      'JobReferenceCode': jobReferenceCode,
+      'LabelCounters': labelCounters,
+      'LabelingJobArn': labelingJobArn,
+      'LabelingJobName': labelingJobName,
+      'LabelingJobStatus': labelingJobStatus.toValue(),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'OutputConfig': outputConfig,
+      'RoleArn': roleArn,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (labelAttributeName != null) 'LabelAttributeName': labelAttributeName,
+      if (labelCategoryConfigS3Uri != null)
+        'LabelCategoryConfigS3Uri': labelCategoryConfigS3Uri,
+      if (labelingJobAlgorithmsConfig != null)
+        'LabelingJobAlgorithmsConfig': labelingJobAlgorithmsConfig,
+      if (labelingJobOutput != null) 'LabelingJobOutput': labelingJobOutput,
+      if (stoppingConditions != null) 'StoppingConditions': stoppingConditions,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class DescribeLineageGroupResponse {
@@ -24859,6 +26623,29 @@ class DescribeLineageGroupResponse {
       lineageGroupArn: json['LineageGroupArn'] as String?,
       lineageGroupName: json['LineageGroupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final displayName = this.displayName;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final lineageGroupArn = this.lineageGroupArn;
+    final lineageGroupName = this.lineageGroupName;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (displayName != null) 'DisplayName': displayName,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (lineageGroupArn != null) 'LineageGroupArn': lineageGroupArn,
+      if (lineageGroupName != null) 'LineageGroupName': lineageGroupName,
+    };
   }
 }
 
@@ -24935,6 +26722,34 @@ class DescribeModelBiasJobDefinitionResponse {
               json['StoppingCondition'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final jobDefinitionArn = this.jobDefinitionArn;
+    final jobDefinitionName = this.jobDefinitionName;
+    final jobResources = this.jobResources;
+    final modelBiasAppSpecification = this.modelBiasAppSpecification;
+    final modelBiasJobInput = this.modelBiasJobInput;
+    final modelBiasJobOutputConfig = this.modelBiasJobOutputConfig;
+    final roleArn = this.roleArn;
+    final modelBiasBaselineConfig = this.modelBiasBaselineConfig;
+    final networkConfig = this.networkConfig;
+    final stoppingCondition = this.stoppingCondition;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'JobDefinitionArn': jobDefinitionArn,
+      'JobDefinitionName': jobDefinitionName,
+      'JobResources': jobResources,
+      'ModelBiasAppSpecification': modelBiasAppSpecification,
+      'ModelBiasJobInput': modelBiasJobInput,
+      'ModelBiasJobOutputConfig': modelBiasJobOutputConfig,
+      'RoleArn': roleArn,
+      if (modelBiasBaselineConfig != null)
+        'ModelBiasBaselineConfig': modelBiasBaselineConfig,
+      if (networkConfig != null) 'NetworkConfig': networkConfig,
+      if (stoppingCondition != null) 'StoppingCondition': stoppingCondition,
+    };
   }
 }
 
@@ -25017,6 +26832,38 @@ class DescribeModelExplainabilityJobDefinitionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final jobDefinitionArn = this.jobDefinitionArn;
+    final jobDefinitionName = this.jobDefinitionName;
+    final jobResources = this.jobResources;
+    final modelExplainabilityAppSpecification =
+        this.modelExplainabilityAppSpecification;
+    final modelExplainabilityJobInput = this.modelExplainabilityJobInput;
+    final modelExplainabilityJobOutputConfig =
+        this.modelExplainabilityJobOutputConfig;
+    final roleArn = this.roleArn;
+    final modelExplainabilityBaselineConfig =
+        this.modelExplainabilityBaselineConfig;
+    final networkConfig = this.networkConfig;
+    final stoppingCondition = this.stoppingCondition;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'JobDefinitionArn': jobDefinitionArn,
+      'JobDefinitionName': jobDefinitionName,
+      'JobResources': jobResources,
+      'ModelExplainabilityAppSpecification':
+          modelExplainabilityAppSpecification,
+      'ModelExplainabilityJobInput': modelExplainabilityJobInput,
+      'ModelExplainabilityJobOutputConfig': modelExplainabilityJobOutputConfig,
+      'RoleArn': roleArn,
+      if (modelExplainabilityBaselineConfig != null)
+        'ModelExplainabilityBaselineConfig': modelExplainabilityBaselineConfig,
+      if (networkConfig != null) 'NetworkConfig': networkConfig,
+      if (stoppingCondition != null) 'StoppingCondition': stoppingCondition,
+    };
+  }
 }
 
 class DescribeModelOutput {
@@ -25091,6 +26938,31 @@ class DescribeModelOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final executionRoleArn = this.executionRoleArn;
+    final modelArn = this.modelArn;
+    final modelName = this.modelName;
+    final containers = this.containers;
+    final enableNetworkIsolation = this.enableNetworkIsolation;
+    final inferenceExecutionConfig = this.inferenceExecutionConfig;
+    final primaryContainer = this.primaryContainer;
+    final vpcConfig = this.vpcConfig;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ExecutionRoleArn': executionRoleArn,
+      'ModelArn': modelArn,
+      'ModelName': modelName,
+      if (containers != null) 'Containers': containers,
+      if (enableNetworkIsolation != null)
+        'EnableNetworkIsolation': enableNetworkIsolation,
+      if (inferenceExecutionConfig != null)
+        'InferenceExecutionConfig': inferenceExecutionConfig,
+      if (primaryContainer != null) 'PrimaryContainer': primaryContainer,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 class DescribeModelPackageGroupOutput {
@@ -25132,6 +27004,24 @@ class DescribeModelPackageGroupOutput {
       modelPackageGroupDescription:
           json['ModelPackageGroupDescription'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final modelPackageGroupArn = this.modelPackageGroupArn;
+    final modelPackageGroupName = this.modelPackageGroupName;
+    final modelPackageGroupStatus = this.modelPackageGroupStatus;
+    final modelPackageGroupDescription = this.modelPackageGroupDescription;
+    return {
+      'CreatedBy': createdBy,
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ModelPackageGroupArn': modelPackageGroupArn,
+      'ModelPackageGroupName': modelPackageGroupName,
+      'ModelPackageGroupStatus': modelPackageGroupStatus.toValue(),
+      if (modelPackageGroupDescription != null)
+        'ModelPackageGroupDescription': modelPackageGroupDescription,
+    };
   }
 }
 
@@ -25311,6 +27201,75 @@ class DescribeModelPackageOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final modelPackageArn = this.modelPackageArn;
+    final modelPackageName = this.modelPackageName;
+    final modelPackageStatus = this.modelPackageStatus;
+    final modelPackageStatusDetails = this.modelPackageStatusDetails;
+    final additionalInferenceSpecifications =
+        this.additionalInferenceSpecifications;
+    final approvalDescription = this.approvalDescription;
+    final certifyForMarketplace = this.certifyForMarketplace;
+    final createdBy = this.createdBy;
+    final customerMetadataProperties = this.customerMetadataProperties;
+    final domain = this.domain;
+    final driftCheckBaselines = this.driftCheckBaselines;
+    final inferenceSpecification = this.inferenceSpecification;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final metadataProperties = this.metadataProperties;
+    final modelApprovalStatus = this.modelApprovalStatus;
+    final modelMetrics = this.modelMetrics;
+    final modelPackageDescription = this.modelPackageDescription;
+    final modelPackageGroupName = this.modelPackageGroupName;
+    final modelPackageVersion = this.modelPackageVersion;
+    final samplePayloadUrl = this.samplePayloadUrl;
+    final sourceAlgorithmSpecification = this.sourceAlgorithmSpecification;
+    final task = this.task;
+    final validationSpecification = this.validationSpecification;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ModelPackageArn': modelPackageArn,
+      'ModelPackageName': modelPackageName,
+      'ModelPackageStatus': modelPackageStatus.toValue(),
+      'ModelPackageStatusDetails': modelPackageStatusDetails,
+      if (additionalInferenceSpecifications != null)
+        'AdditionalInferenceSpecifications': additionalInferenceSpecifications,
+      if (approvalDescription != null)
+        'ApprovalDescription': approvalDescription,
+      if (certifyForMarketplace != null)
+        'CertifyForMarketplace': certifyForMarketplace,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (customerMetadataProperties != null)
+        'CustomerMetadataProperties': customerMetadataProperties,
+      if (domain != null) 'Domain': domain,
+      if (driftCheckBaselines != null)
+        'DriftCheckBaselines': driftCheckBaselines,
+      if (inferenceSpecification != null)
+        'InferenceSpecification': inferenceSpecification,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (metadataProperties != null) 'MetadataProperties': metadataProperties,
+      if (modelApprovalStatus != null)
+        'ModelApprovalStatus': modelApprovalStatus.toValue(),
+      if (modelMetrics != null) 'ModelMetrics': modelMetrics,
+      if (modelPackageDescription != null)
+        'ModelPackageDescription': modelPackageDescription,
+      if (modelPackageGroupName != null)
+        'ModelPackageGroupName': modelPackageGroupName,
+      if (modelPackageVersion != null)
+        'ModelPackageVersion': modelPackageVersion,
+      if (samplePayloadUrl != null) 'SamplePayloadUrl': samplePayloadUrl,
+      if (sourceAlgorithmSpecification != null)
+        'SourceAlgorithmSpecification': sourceAlgorithmSpecification,
+      if (task != null) 'Task': task,
+      if (validationSpecification != null)
+        'ValidationSpecification': validationSpecification,
+    };
+  }
 }
 
 class DescribeModelQualityJobDefinitionResponse {
@@ -25385,6 +27344,34 @@ class DescribeModelQualityJobDefinitionResponse {
               json['StoppingCondition'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final jobDefinitionArn = this.jobDefinitionArn;
+    final jobDefinitionName = this.jobDefinitionName;
+    final jobResources = this.jobResources;
+    final modelQualityAppSpecification = this.modelQualityAppSpecification;
+    final modelQualityJobInput = this.modelQualityJobInput;
+    final modelQualityJobOutputConfig = this.modelQualityJobOutputConfig;
+    final roleArn = this.roleArn;
+    final modelQualityBaselineConfig = this.modelQualityBaselineConfig;
+    final networkConfig = this.networkConfig;
+    final stoppingCondition = this.stoppingCondition;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'JobDefinitionArn': jobDefinitionArn,
+      'JobDefinitionName': jobDefinitionName,
+      'JobResources': jobResources,
+      'ModelQualityAppSpecification': modelQualityAppSpecification,
+      'ModelQualityJobInput': modelQualityJobInput,
+      'ModelQualityJobOutputConfig': modelQualityJobOutputConfig,
+      'RoleArn': roleArn,
+      if (modelQualityBaselineConfig != null)
+        'ModelQualityBaselineConfig': modelQualityBaselineConfig,
+      if (networkConfig != null) 'NetworkConfig': networkConfig,
+      if (stoppingCondition != null) 'StoppingCondition': stoppingCondition,
+    };
   }
 }
 
@@ -25475,6 +27462,32 @@ class DescribeMonitoringScheduleResponse {
       monitoringType: (json['MonitoringType'] as String?)?.toMonitoringType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final monitoringScheduleArn = this.monitoringScheduleArn;
+    final monitoringScheduleConfig = this.monitoringScheduleConfig;
+    final monitoringScheduleName = this.monitoringScheduleName;
+    final monitoringScheduleStatus = this.monitoringScheduleStatus;
+    final endpointName = this.endpointName;
+    final failureReason = this.failureReason;
+    final lastMonitoringExecutionSummary = this.lastMonitoringExecutionSummary;
+    final monitoringType = this.monitoringType;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'MonitoringScheduleArn': monitoringScheduleArn,
+      'MonitoringScheduleConfig': monitoringScheduleConfig,
+      'MonitoringScheduleName': monitoringScheduleName,
+      'MonitoringScheduleStatus': monitoringScheduleStatus.toValue(),
+      if (endpointName != null) 'EndpointName': endpointName,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (lastMonitoringExecutionSummary != null)
+        'LastMonitoringExecutionSummary': lastMonitoringExecutionSummary,
+      if (monitoringType != null) 'MonitoringType': monitoringType.toValue(),
+    };
+  }
 }
 
 class DescribeNotebookInstanceLifecycleConfigOutput {
@@ -25525,6 +27538,31 @@ class DescribeNotebookInstanceLifecycleConfigOutput {
               NotebookInstanceLifecycleHook.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final notebookInstanceLifecycleConfigArn =
+        this.notebookInstanceLifecycleConfigArn;
+    final notebookInstanceLifecycleConfigName =
+        this.notebookInstanceLifecycleConfigName;
+    final onCreate = this.onCreate;
+    final onStart = this.onStart;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (notebookInstanceLifecycleConfigArn != null)
+        'NotebookInstanceLifecycleConfigArn':
+            notebookInstanceLifecycleConfigArn,
+      if (notebookInstanceLifecycleConfigName != null)
+        'NotebookInstanceLifecycleConfigName':
+            notebookInstanceLifecycleConfigName,
+      if (onCreate != null) 'OnCreate': onCreate,
+      if (onStart != null) 'OnStart': onStart,
+    };
   }
 }
 
@@ -25706,6 +27744,70 @@ class DescribeNotebookInstanceOutput {
       volumeSizeInGB: json['VolumeSizeInGB'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorTypes = this.acceleratorTypes;
+    final additionalCodeRepositories = this.additionalCodeRepositories;
+    final creationTime = this.creationTime;
+    final defaultCodeRepository = this.defaultCodeRepository;
+    final directInternetAccess = this.directInternetAccess;
+    final failureReason = this.failureReason;
+    final instanceMetadataServiceConfiguration =
+        this.instanceMetadataServiceConfiguration;
+    final instanceType = this.instanceType;
+    final kmsKeyId = this.kmsKeyId;
+    final lastModifiedTime = this.lastModifiedTime;
+    final networkInterfaceId = this.networkInterfaceId;
+    final notebookInstanceArn = this.notebookInstanceArn;
+    final notebookInstanceLifecycleConfigName =
+        this.notebookInstanceLifecycleConfigName;
+    final notebookInstanceName = this.notebookInstanceName;
+    final notebookInstanceStatus = this.notebookInstanceStatus;
+    final platformIdentifier = this.platformIdentifier;
+    final roleArn = this.roleArn;
+    final rootAccess = this.rootAccess;
+    final securityGroups = this.securityGroups;
+    final subnetId = this.subnetId;
+    final url = this.url;
+    final volumeSizeInGB = this.volumeSizeInGB;
+    return {
+      if (acceleratorTypes != null)
+        'AcceleratorTypes': acceleratorTypes.map((e) => e.toValue()).toList(),
+      if (additionalCodeRepositories != null)
+        'AdditionalCodeRepositories': additionalCodeRepositories,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (defaultCodeRepository != null)
+        'DefaultCodeRepository': defaultCodeRepository,
+      if (directInternetAccess != null)
+        'DirectInternetAccess': directInternetAccess.toValue(),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (instanceMetadataServiceConfiguration != null)
+        'InstanceMetadataServiceConfiguration':
+            instanceMetadataServiceConfiguration,
+      if (instanceType != null) 'InstanceType': instanceType.toValue(),
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (networkInterfaceId != null) 'NetworkInterfaceId': networkInterfaceId,
+      if (notebookInstanceArn != null)
+        'NotebookInstanceArn': notebookInstanceArn,
+      if (notebookInstanceLifecycleConfigName != null)
+        'NotebookInstanceLifecycleConfigName':
+            notebookInstanceLifecycleConfigName,
+      if (notebookInstanceName != null)
+        'NotebookInstanceName': notebookInstanceName,
+      if (notebookInstanceStatus != null)
+        'NotebookInstanceStatus': notebookInstanceStatus.toValue(),
+      if (platformIdentifier != null) 'PlatformIdentifier': platformIdentifier,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (rootAccess != null) 'RootAccess': rootAccess.toValue(),
+      if (securityGroups != null) 'SecurityGroups': securityGroups,
+      if (subnetId != null) 'SubnetId': subnetId,
+      if (url != null) 'Url': url,
+      if (volumeSizeInGB != null) 'VolumeSizeInGB': volumeSizeInGB,
+    };
+  }
 }
 
 class DescribePipelineDefinitionForExecutionResponse {
@@ -25725,6 +27827,16 @@ class DescribePipelineDefinitionForExecutionResponse {
       creationTime: timeStampFromJson(json['CreationTime']),
       pipelineDefinition: json['PipelineDefinition'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final pipelineDefinition = this.pipelineDefinition;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (pipelineDefinition != null) 'PipelineDefinition': pipelineDefinition,
+    };
   }
 }
 
@@ -25804,6 +27916,43 @@ class DescribePipelineExecutionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final failureReason = this.failureReason;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final parallelismConfiguration = this.parallelismConfiguration;
+    final pipelineArn = this.pipelineArn;
+    final pipelineExecutionArn = this.pipelineExecutionArn;
+    final pipelineExecutionDescription = this.pipelineExecutionDescription;
+    final pipelineExecutionDisplayName = this.pipelineExecutionDisplayName;
+    final pipelineExecutionStatus = this.pipelineExecutionStatus;
+    final pipelineExperimentConfig = this.pipelineExperimentConfig;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (parallelismConfiguration != null)
+        'ParallelismConfiguration': parallelismConfiguration,
+      if (pipelineArn != null) 'PipelineArn': pipelineArn,
+      if (pipelineExecutionArn != null)
+        'PipelineExecutionArn': pipelineExecutionArn,
+      if (pipelineExecutionDescription != null)
+        'PipelineExecutionDescription': pipelineExecutionDescription,
+      if (pipelineExecutionDisplayName != null)
+        'PipelineExecutionDisplayName': pipelineExecutionDisplayName,
+      if (pipelineExecutionStatus != null)
+        'PipelineExecutionStatus': pipelineExecutionStatus.toValue(),
+      if (pipelineExperimentConfig != null)
+        'PipelineExperimentConfig': pipelineExperimentConfig,
+    };
+  }
 }
 
 class DescribePipelineResponse {
@@ -25881,6 +28030,42 @@ class DescribePipelineResponse {
       pipelineStatus: (json['PipelineStatus'] as String?)?.toPipelineStatus(),
       roleArn: json['RoleArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final lastRunTime = this.lastRunTime;
+    final parallelismConfiguration = this.parallelismConfiguration;
+    final pipelineArn = this.pipelineArn;
+    final pipelineDefinition = this.pipelineDefinition;
+    final pipelineDescription = this.pipelineDescription;
+    final pipelineDisplayName = this.pipelineDisplayName;
+    final pipelineName = this.pipelineName;
+    final pipelineStatus = this.pipelineStatus;
+    final roleArn = this.roleArn;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (lastRunTime != null) 'LastRunTime': unixTimestampToJson(lastRunTime),
+      if (parallelismConfiguration != null)
+        'ParallelismConfiguration': parallelismConfiguration,
+      if (pipelineArn != null) 'PipelineArn': pipelineArn,
+      if (pipelineDefinition != null) 'PipelineDefinition': pipelineDefinition,
+      if (pipelineDescription != null)
+        'PipelineDescription': pipelineDescription,
+      if (pipelineDisplayName != null)
+        'PipelineDisplayName': pipelineDisplayName,
+      if (pipelineName != null) 'PipelineName': pipelineName,
+      if (pipelineStatus != null) 'PipelineStatus': pipelineStatus.toValue(),
+      if (roleArn != null) 'RoleArn': roleArn,
+    };
   }
 }
 
@@ -26023,6 +28208,58 @@ class DescribeProcessingJobResponse {
       trainingJobArn: json['TrainingJobArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appSpecification = this.appSpecification;
+    final creationTime = this.creationTime;
+    final processingJobArn = this.processingJobArn;
+    final processingJobName = this.processingJobName;
+    final processingJobStatus = this.processingJobStatus;
+    final processingResources = this.processingResources;
+    final autoMLJobArn = this.autoMLJobArn;
+    final environment = this.environment;
+    final exitMessage = this.exitMessage;
+    final experimentConfig = this.experimentConfig;
+    final failureReason = this.failureReason;
+    final lastModifiedTime = this.lastModifiedTime;
+    final monitoringScheduleArn = this.monitoringScheduleArn;
+    final networkConfig = this.networkConfig;
+    final processingEndTime = this.processingEndTime;
+    final processingInputs = this.processingInputs;
+    final processingOutputConfig = this.processingOutputConfig;
+    final processingStartTime = this.processingStartTime;
+    final roleArn = this.roleArn;
+    final stoppingCondition = this.stoppingCondition;
+    final trainingJobArn = this.trainingJobArn;
+    return {
+      'AppSpecification': appSpecification,
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ProcessingJobArn': processingJobArn,
+      'ProcessingJobName': processingJobName,
+      'ProcessingJobStatus': processingJobStatus.toValue(),
+      'ProcessingResources': processingResources,
+      if (autoMLJobArn != null) 'AutoMLJobArn': autoMLJobArn,
+      if (environment != null) 'Environment': environment,
+      if (exitMessage != null) 'ExitMessage': exitMessage,
+      if (experimentConfig != null) 'ExperimentConfig': experimentConfig,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (monitoringScheduleArn != null)
+        'MonitoringScheduleArn': monitoringScheduleArn,
+      if (networkConfig != null) 'NetworkConfig': networkConfig,
+      if (processingEndTime != null)
+        'ProcessingEndTime': unixTimestampToJson(processingEndTime),
+      if (processingInputs != null) 'ProcessingInputs': processingInputs,
+      if (processingOutputConfig != null)
+        'ProcessingOutputConfig': processingOutputConfig,
+      if (processingStartTime != null)
+        'ProcessingStartTime': unixTimestampToJson(processingStartTime),
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (stoppingCondition != null) 'StoppingCondition': stoppingCondition,
+      if (trainingJobArn != null) 'TrainingJobArn': trainingJobArn,
+    };
+  }
 }
 
 class DescribeProjectOutput {
@@ -26100,6 +28337,38 @@ class DescribeProjectOutput {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final projectArn = this.projectArn;
+    final projectId = this.projectId;
+    final projectName = this.projectName;
+    final projectStatus = this.projectStatus;
+    final serviceCatalogProvisioningDetails =
+        this.serviceCatalogProvisioningDetails;
+    final createdBy = this.createdBy;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final projectDescription = this.projectDescription;
+    final serviceCatalogProvisionedProductDetails =
+        this.serviceCatalogProvisionedProductDetails;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ProjectArn': projectArn,
+      'ProjectId': projectId,
+      'ProjectName': projectName,
+      'ProjectStatus': projectStatus.toValue(),
+      'ServiceCatalogProvisioningDetails': serviceCatalogProvisioningDetails,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (projectDescription != null) 'ProjectDescription': projectDescription,
+      if (serviceCatalogProvisionedProductDetails != null)
+        'ServiceCatalogProvisionedProductDetails':
+            serviceCatalogProvisionedProductDetails,
+    };
+  }
 }
 
 class DescribeStudioLifecycleConfigResponse {
@@ -26144,6 +28413,29 @@ class DescribeStudioLifecycleConfigResponse {
       studioLifecycleConfigName: json['StudioLifecycleConfigName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final studioLifecycleConfigAppType = this.studioLifecycleConfigAppType;
+    final studioLifecycleConfigArn = this.studioLifecycleConfigArn;
+    final studioLifecycleConfigContent = this.studioLifecycleConfigContent;
+    final studioLifecycleConfigName = this.studioLifecycleConfigName;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (studioLifecycleConfigAppType != null)
+        'StudioLifecycleConfigAppType': studioLifecycleConfigAppType.toValue(),
+      if (studioLifecycleConfigArn != null)
+        'StudioLifecycleConfigArn': studioLifecycleConfigArn,
+      if (studioLifecycleConfigContent != null)
+        'StudioLifecycleConfigContent': studioLifecycleConfigContent,
+      if (studioLifecycleConfigName != null)
+        'StudioLifecycleConfigName': studioLifecycleConfigName,
+    };
+  }
 }
 
 class DescribeSubscribedWorkteamResponse {
@@ -26160,6 +28452,13 @@ class DescribeSubscribedWorkteamResponse {
       subscribedWorkteam: SubscribedWorkteam.fromJson(
           json['SubscribedWorkteam'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subscribedWorkteam = this.subscribedWorkteam;
+    return {
+      'SubscribedWorkteam': subscribedWorkteam,
+    };
   }
 }
 
@@ -26569,6 +28868,108 @@ class DescribeTrainingJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final algorithmSpecification = this.algorithmSpecification;
+    final creationTime = this.creationTime;
+    final modelArtifacts = this.modelArtifacts;
+    final resourceConfig = this.resourceConfig;
+    final secondaryStatus = this.secondaryStatus;
+    final stoppingCondition = this.stoppingCondition;
+    final trainingJobArn = this.trainingJobArn;
+    final trainingJobName = this.trainingJobName;
+    final trainingJobStatus = this.trainingJobStatus;
+    final autoMLJobArn = this.autoMLJobArn;
+    final billableTimeInSeconds = this.billableTimeInSeconds;
+    final checkpointConfig = this.checkpointConfig;
+    final debugHookConfig = this.debugHookConfig;
+    final debugRuleConfigurations = this.debugRuleConfigurations;
+    final debugRuleEvaluationStatuses = this.debugRuleEvaluationStatuses;
+    final enableInterContainerTrafficEncryption =
+        this.enableInterContainerTrafficEncryption;
+    final enableManagedSpotTraining = this.enableManagedSpotTraining;
+    final enableNetworkIsolation = this.enableNetworkIsolation;
+    final environment = this.environment;
+    final experimentConfig = this.experimentConfig;
+    final failureReason = this.failureReason;
+    final finalMetricDataList = this.finalMetricDataList;
+    final hyperParameters = this.hyperParameters;
+    final inputDataConfig = this.inputDataConfig;
+    final labelingJobArn = this.labelingJobArn;
+    final lastModifiedTime = this.lastModifiedTime;
+    final outputDataConfig = this.outputDataConfig;
+    final profilerConfig = this.profilerConfig;
+    final profilerRuleConfigurations = this.profilerRuleConfigurations;
+    final profilerRuleEvaluationStatuses = this.profilerRuleEvaluationStatuses;
+    final profilingStatus = this.profilingStatus;
+    final retryStrategy = this.retryStrategy;
+    final roleArn = this.roleArn;
+    final secondaryStatusTransitions = this.secondaryStatusTransitions;
+    final tensorBoardOutputConfig = this.tensorBoardOutputConfig;
+    final trainingEndTime = this.trainingEndTime;
+    final trainingStartTime = this.trainingStartTime;
+    final trainingTimeInSeconds = this.trainingTimeInSeconds;
+    final tuningJobArn = this.tuningJobArn;
+    final vpcConfig = this.vpcConfig;
+    return {
+      'AlgorithmSpecification': algorithmSpecification,
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ModelArtifacts': modelArtifacts,
+      'ResourceConfig': resourceConfig,
+      'SecondaryStatus': secondaryStatus.toValue(),
+      'StoppingCondition': stoppingCondition,
+      'TrainingJobArn': trainingJobArn,
+      'TrainingJobName': trainingJobName,
+      'TrainingJobStatus': trainingJobStatus.toValue(),
+      if (autoMLJobArn != null) 'AutoMLJobArn': autoMLJobArn,
+      if (billableTimeInSeconds != null)
+        'BillableTimeInSeconds': billableTimeInSeconds,
+      if (checkpointConfig != null) 'CheckpointConfig': checkpointConfig,
+      if (debugHookConfig != null) 'DebugHookConfig': debugHookConfig,
+      if (debugRuleConfigurations != null)
+        'DebugRuleConfigurations': debugRuleConfigurations,
+      if (debugRuleEvaluationStatuses != null)
+        'DebugRuleEvaluationStatuses': debugRuleEvaluationStatuses,
+      if (enableInterContainerTrafficEncryption != null)
+        'EnableInterContainerTrafficEncryption':
+            enableInterContainerTrafficEncryption,
+      if (enableManagedSpotTraining != null)
+        'EnableManagedSpotTraining': enableManagedSpotTraining,
+      if (enableNetworkIsolation != null)
+        'EnableNetworkIsolation': enableNetworkIsolation,
+      if (environment != null) 'Environment': environment,
+      if (experimentConfig != null) 'ExperimentConfig': experimentConfig,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (finalMetricDataList != null)
+        'FinalMetricDataList': finalMetricDataList,
+      if (hyperParameters != null) 'HyperParameters': hyperParameters,
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (labelingJobArn != null) 'LabelingJobArn': labelingJobArn,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (profilerConfig != null) 'ProfilerConfig': profilerConfig,
+      if (profilerRuleConfigurations != null)
+        'ProfilerRuleConfigurations': profilerRuleConfigurations,
+      if (profilerRuleEvaluationStatuses != null)
+        'ProfilerRuleEvaluationStatuses': profilerRuleEvaluationStatuses,
+      if (profilingStatus != null) 'ProfilingStatus': profilingStatus.toValue(),
+      if (retryStrategy != null) 'RetryStrategy': retryStrategy,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (secondaryStatusTransitions != null)
+        'SecondaryStatusTransitions': secondaryStatusTransitions,
+      if (tensorBoardOutputConfig != null)
+        'TensorBoardOutputConfig': tensorBoardOutputConfig,
+      if (trainingEndTime != null)
+        'TrainingEndTime': unixTimestampToJson(trainingEndTime),
+      if (trainingStartTime != null)
+        'TrainingStartTime': unixTimestampToJson(trainingStartTime),
+      if (trainingTimeInSeconds != null)
+        'TrainingTimeInSeconds': trainingTimeInSeconds,
+      if (tuningJobArn != null) 'TuningJobArn': tuningJobArn,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 class DescribeTransformJobResponse {
@@ -26713,6 +29114,54 @@ class DescribeTransformJobResponse {
       transformStartTime: timeStampFromJson(json['TransformStartTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final modelName = this.modelName;
+    final transformInput = this.transformInput;
+    final transformJobArn = this.transformJobArn;
+    final transformJobName = this.transformJobName;
+    final transformJobStatus = this.transformJobStatus;
+    final transformResources = this.transformResources;
+    final autoMLJobArn = this.autoMLJobArn;
+    final batchStrategy = this.batchStrategy;
+    final dataProcessing = this.dataProcessing;
+    final environment = this.environment;
+    final experimentConfig = this.experimentConfig;
+    final failureReason = this.failureReason;
+    final labelingJobArn = this.labelingJobArn;
+    final maxConcurrentTransforms = this.maxConcurrentTransforms;
+    final maxPayloadInMB = this.maxPayloadInMB;
+    final modelClientConfig = this.modelClientConfig;
+    final transformEndTime = this.transformEndTime;
+    final transformOutput = this.transformOutput;
+    final transformStartTime = this.transformStartTime;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ModelName': modelName,
+      'TransformInput': transformInput,
+      'TransformJobArn': transformJobArn,
+      'TransformJobName': transformJobName,
+      'TransformJobStatus': transformJobStatus.toValue(),
+      'TransformResources': transformResources,
+      if (autoMLJobArn != null) 'AutoMLJobArn': autoMLJobArn,
+      if (batchStrategy != null) 'BatchStrategy': batchStrategy.toValue(),
+      if (dataProcessing != null) 'DataProcessing': dataProcessing,
+      if (environment != null) 'Environment': environment,
+      if (experimentConfig != null) 'ExperimentConfig': experimentConfig,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (labelingJobArn != null) 'LabelingJobArn': labelingJobArn,
+      if (maxConcurrentTransforms != null)
+        'MaxConcurrentTransforms': maxConcurrentTransforms,
+      if (maxPayloadInMB != null) 'MaxPayloadInMB': maxPayloadInMB,
+      if (modelClientConfig != null) 'ModelClientConfig': modelClientConfig,
+      if (transformEndTime != null)
+        'TransformEndTime': unixTimestampToJson(transformEndTime),
+      if (transformOutput != null) 'TransformOutput': transformOutput,
+      if (transformStartTime != null)
+        'TransformStartTime': unixTimestampToJson(transformStartTime),
+    };
+  }
 }
 
 class DescribeTrialComponentResponse {
@@ -26843,6 +29292,47 @@ class DescribeTrialComponentResponse {
       trialComponentName: json['TrialComponentName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final displayName = this.displayName;
+    final endTime = this.endTime;
+    final inputArtifacts = this.inputArtifacts;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final lineageGroupArn = this.lineageGroupArn;
+    final metadataProperties = this.metadataProperties;
+    final metrics = this.metrics;
+    final outputArtifacts = this.outputArtifacts;
+    final parameters = this.parameters;
+    final source = this.source;
+    final startTime = this.startTime;
+    final status = this.status;
+    final trialComponentArn = this.trialComponentArn;
+    final trialComponentName = this.trialComponentName;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (displayName != null) 'DisplayName': displayName,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (inputArtifacts != null) 'InputArtifacts': inputArtifacts,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (lineageGroupArn != null) 'LineageGroupArn': lineageGroupArn,
+      if (metadataProperties != null) 'MetadataProperties': metadataProperties,
+      if (metrics != null) 'Metrics': metrics,
+      if (outputArtifacts != null) 'OutputArtifacts': outputArtifacts,
+      if (parameters != null) 'Parameters': parameters,
+      if (source != null) 'Source': source,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status,
+      if (trialComponentArn != null) 'TrialComponentArn': trialComponentArn,
+      if (trialComponentName != null) 'TrialComponentName': trialComponentName,
+    };
+  }
 }
 
 class DescribeTrialResponse {
@@ -26910,6 +29400,33 @@ class DescribeTrialResponse {
       trialName: json['TrialName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final displayName = this.displayName;
+    final experimentName = this.experimentName;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final metadataProperties = this.metadataProperties;
+    final source = this.source;
+    final trialArn = this.trialArn;
+    final trialName = this.trialName;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (displayName != null) 'DisplayName': displayName,
+      if (experimentName != null) 'ExperimentName': experimentName,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (metadataProperties != null) 'MetadataProperties': metadataProperties,
+      if (source != null) 'Source': source,
+      if (trialArn != null) 'TrialArn': trialArn,
+      if (trialName != null) 'TrialName': trialName,
+    };
+  }
 }
 
 class DescribeUserProfileResponse {
@@ -26976,6 +29493,38 @@ class DescribeUserProfileResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final domainId = this.domainId;
+    final failureReason = this.failureReason;
+    final homeEfsFileSystemUid = this.homeEfsFileSystemUid;
+    final lastModifiedTime = this.lastModifiedTime;
+    final singleSignOnUserIdentifier = this.singleSignOnUserIdentifier;
+    final singleSignOnUserValue = this.singleSignOnUserValue;
+    final status = this.status;
+    final userProfileArn = this.userProfileArn;
+    final userProfileName = this.userProfileName;
+    final userSettings = this.userSettings;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (domainId != null) 'DomainId': domainId,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (homeEfsFileSystemUid != null)
+        'HomeEfsFileSystemUid': homeEfsFileSystemUid,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (singleSignOnUserIdentifier != null)
+        'SingleSignOnUserIdentifier': singleSignOnUserIdentifier,
+      if (singleSignOnUserValue != null)
+        'SingleSignOnUserValue': singleSignOnUserValue,
+      if (status != null) 'Status': status.toValue(),
+      if (userProfileArn != null) 'UserProfileArn': userProfileArn,
+      if (userProfileName != null) 'UserProfileName': userProfileName,
+      if (userSettings != null) 'UserSettings': userSettings,
+    };
+  }
 }
 
 class DescribeWorkforceResponse {
@@ -26996,6 +29545,13 @@ class DescribeWorkforceResponse {
       workforce: Workforce.fromJson(json['Workforce'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final workforce = this.workforce;
+    return {
+      'Workforce': workforce,
+    };
+  }
 }
 
 class DescribeWorkteamResponse {
@@ -27010,6 +29566,13 @@ class DescribeWorkteamResponse {
     return DescribeWorkteamResponse(
       workteam: Workteam.fromJson(json['Workteam'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workteam = this.workteam;
+    return {
+      'Workteam': workteam,
+    };
   }
 }
 
@@ -27029,6 +29592,7 @@ class DesiredWeightAndCapacity {
     this.desiredInstanceCount,
     this.desiredWeight,
   });
+
   Map<String, dynamic> toJson() {
     final variantName = this.variantName;
     final desiredInstanceCount = this.desiredInstanceCount;
@@ -27135,6 +29699,7 @@ class Device {
     this.description,
     this.iotThingName,
   });
+
   Map<String, dynamic> toJson() {
     final deviceName = this.deviceName;
     final description = this.description;
@@ -27260,6 +29825,36 @@ class DeviceDeploymentSummary {
       deviceFleetName: json['DeviceFleetName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceArn = this.deviceArn;
+    final deviceName = this.deviceName;
+    final edgeDeploymentPlanArn = this.edgeDeploymentPlanArn;
+    final edgeDeploymentPlanName = this.edgeDeploymentPlanName;
+    final stageName = this.stageName;
+    final deployedStageName = this.deployedStageName;
+    final deploymentStartTime = this.deploymentStartTime;
+    final description = this.description;
+    final deviceDeploymentStatus = this.deviceDeploymentStatus;
+    final deviceDeploymentStatusMessage = this.deviceDeploymentStatusMessage;
+    final deviceFleetName = this.deviceFleetName;
+    return {
+      'DeviceArn': deviceArn,
+      'DeviceName': deviceName,
+      'EdgeDeploymentPlanArn': edgeDeploymentPlanArn,
+      'EdgeDeploymentPlanName': edgeDeploymentPlanName,
+      'StageName': stageName,
+      if (deployedStageName != null) 'DeployedStageName': deployedStageName,
+      if (deploymentStartTime != null)
+        'DeploymentStartTime': unixTimestampToJson(deploymentStartTime),
+      if (description != null) 'Description': description,
+      if (deviceDeploymentStatus != null)
+        'DeviceDeploymentStatus': deviceDeploymentStatus.toValue(),
+      if (deviceDeploymentStatusMessage != null)
+        'DeviceDeploymentStatusMessage': deviceDeploymentStatusMessage,
+      if (deviceFleetName != null) 'DeviceFleetName': deviceFleetName,
+    };
+  }
 }
 
 /// Summary of the device fleet.
@@ -27289,6 +29884,21 @@ class DeviceFleetSummary {
       creationTime: timeStampFromJson(json['CreationTime']),
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceFleetArn = this.deviceFleetArn;
+    final deviceFleetName = this.deviceFleetName;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      'DeviceFleetArn': deviceFleetArn,
+      'DeviceFleetName': deviceFleetName,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
   }
 }
 
@@ -27356,6 +29966,15 @@ class DeviceStats {
       connectedDeviceCount: json['ConnectedDeviceCount'] as int,
       registeredDeviceCount: json['RegisteredDeviceCount'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectedDeviceCount = this.connectedDeviceCount;
+    final registeredDeviceCount = this.registeredDeviceCount;
+    return {
+      'ConnectedDeviceCount': connectedDeviceCount,
+      'RegisteredDeviceCount': registeredDeviceCount,
+    };
   }
 }
 
@@ -27449,6 +30068,31 @@ class DeviceSummary {
       registrationTime: timeStampFromJson(json['RegistrationTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceArn = this.deviceArn;
+    final deviceName = this.deviceName;
+    final agentVersion = this.agentVersion;
+    final description = this.description;
+    final deviceFleetName = this.deviceFleetName;
+    final iotThingName = this.iotThingName;
+    final latestHeartbeat = this.latestHeartbeat;
+    final models = this.models;
+    final registrationTime = this.registrationTime;
+    return {
+      'DeviceArn': deviceArn,
+      'DeviceName': deviceName,
+      if (agentVersion != null) 'AgentVersion': agentVersion,
+      if (description != null) 'Description': description,
+      if (deviceFleetName != null) 'DeviceFleetName': deviceFleetName,
+      if (iotThingName != null) 'IotThingName': iotThingName,
+      if (latestHeartbeat != null)
+        'LatestHeartbeat': unixTimestampToJson(latestHeartbeat),
+      if (models != null) 'Models': models,
+      if (registrationTime != null)
+        'RegistrationTime': unixTimestampToJson(registrationTime),
+    };
+  }
 }
 
 enum DirectInternetAccess {
@@ -27518,6 +30162,10 @@ class DisableSagemakerServicecatalogPortfolioOutput {
       Map<String, dynamic> _) {
     return DisableSagemakerServicecatalogPortfolioOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateTrialComponentResponse {
@@ -27537,6 +30185,15 @@ class DisassociateTrialComponentResponse {
       trialArn: json['TrialArn'] as String?,
       trialComponentArn: json['TrialComponentArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trialArn = this.trialArn;
+    final trialComponentArn = this.trialComponentArn;
+    return {
+      if (trialArn != null) 'TrialArn': trialArn,
+      if (trialComponentArn != null) 'TrialComponentArn': trialComponentArn,
+    };
   }
 }
 
@@ -27582,6 +30239,27 @@ class DomainDetails {
       status: (json['Status'] as String?)?.toDomainStatus(),
       url: json['Url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final domainArn = this.domainArn;
+    final domainId = this.domainId;
+    final domainName = this.domainName;
+    final lastModifiedTime = this.lastModifiedTime;
+    final status = this.status;
+    final url = this.url;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (domainArn != null) 'DomainArn': domainArn,
+      if (domainId != null) 'DomainId': domainId,
+      if (domainName != null) 'DomainName': domainName,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (status != null) 'Status': status.toValue(),
+      if (url != null) 'Url': url,
+    };
   }
 }
 
@@ -27636,6 +30314,7 @@ class DomainSettingsForUpdate {
   DomainSettingsForUpdate({
     this.rStudioServerProDomainSettingsForUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final rStudioServerProDomainSettingsForUpdate =
         this.rStudioServerProDomainSettingsForUpdate;
@@ -27937,6 +30616,19 @@ class EMRStepMetadata {
       stepName: json['StepName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterId = this.clusterId;
+    final logFilePath = this.logFilePath;
+    final stepId = this.stepId;
+    final stepName = this.stepName;
+    return {
+      if (clusterId != null) 'ClusterId': clusterId,
+      if (logFilePath != null) 'LogFilePath': logFilePath,
+      if (stepId != null) 'StepId': stepId,
+      if (stepName != null) 'StepName': stepName,
+    };
+  }
 }
 
 /// A directed edge connecting two lineage entities.
@@ -27966,6 +30658,17 @@ class Edge {
       destinationArn: json['DestinationArn'] as String?,
       sourceArn: json['SourceArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associationType = this.associationType;
+    final destinationArn = this.destinationArn;
+    final sourceArn = this.sourceArn;
+    return {
+      if (associationType != null) 'AssociationType': associationType.toValue(),
+      if (destinationArn != null) 'DestinationArn': destinationArn,
+      if (sourceArn != null) 'SourceArn': sourceArn,
+    };
   }
 }
 
@@ -28071,6 +30774,29 @@ class EdgeDeploymentPlanSummary {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceFleetName = this.deviceFleetName;
+    final edgeDeploymentFailed = this.edgeDeploymentFailed;
+    final edgeDeploymentPending = this.edgeDeploymentPending;
+    final edgeDeploymentPlanArn = this.edgeDeploymentPlanArn;
+    final edgeDeploymentPlanName = this.edgeDeploymentPlanName;
+    final edgeDeploymentSuccess = this.edgeDeploymentSuccess;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      'DeviceFleetName': deviceFleetName,
+      'EdgeDeploymentFailed': edgeDeploymentFailed,
+      'EdgeDeploymentPending': edgeDeploymentPending,
+      'EdgeDeploymentPlanArn': edgeDeploymentPlanArn,
+      'EdgeDeploymentPlanName': edgeDeploymentPlanName,
+      'EdgeDeploymentSuccess': edgeDeploymentSuccess,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
+  }
 }
 
 /// Contains information summarizing the deployment stage results.
@@ -28115,6 +30841,26 @@ class EdgeDeploymentStatus {
           json['EdgeDeploymentStatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final edgeDeploymentFailedInStage = this.edgeDeploymentFailedInStage;
+    final edgeDeploymentPendingInStage = this.edgeDeploymentPendingInStage;
+    final edgeDeploymentSuccessInStage = this.edgeDeploymentSuccessInStage;
+    final stageStatus = this.stageStatus;
+    final edgeDeploymentStageStartTime = this.edgeDeploymentStageStartTime;
+    final edgeDeploymentStatusMessage = this.edgeDeploymentStatusMessage;
+    return {
+      'EdgeDeploymentFailedInStage': edgeDeploymentFailedInStage,
+      'EdgeDeploymentPendingInStage': edgeDeploymentPendingInStage,
+      'EdgeDeploymentSuccessInStage': edgeDeploymentSuccessInStage,
+      'StageStatus': stageStatus.toValue(),
+      if (edgeDeploymentStageStartTime != null)
+        'EdgeDeploymentStageStartTime':
+            unixTimestampToJson(edgeDeploymentStageStartTime),
+      if (edgeDeploymentStatusMessage != null)
+        'EdgeDeploymentStatusMessage': edgeDeploymentStatusMessage,
+    };
+  }
 }
 
 /// The model on the edge device.
@@ -28144,6 +30890,21 @@ class EdgeModel {
       latestInference: timeStampFromJson(json['LatestInference']),
       latestSampleTime: timeStampFromJson(json['LatestSampleTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelName = this.modelName;
+    final modelVersion = this.modelVersion;
+    final latestInference = this.latestInference;
+    final latestSampleTime = this.latestSampleTime;
+    return {
+      'ModelName': modelName,
+      'ModelVersion': modelVersion,
+      if (latestInference != null)
+        'LatestInference': unixTimestampToJson(latestInference),
+      if (latestSampleTime != null)
+        'LatestSampleTime': unixTimestampToJson(latestSampleTime),
+    };
   }
 }
 
@@ -28187,6 +30948,23 @@ class EdgeModelStat {
       samplingDeviceCount: json['SamplingDeviceCount'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeDeviceCount = this.activeDeviceCount;
+    final connectedDeviceCount = this.connectedDeviceCount;
+    final modelName = this.modelName;
+    final modelVersion = this.modelVersion;
+    final offlineDeviceCount = this.offlineDeviceCount;
+    final samplingDeviceCount = this.samplingDeviceCount;
+    return {
+      'ActiveDeviceCount': activeDeviceCount,
+      'ConnectedDeviceCount': connectedDeviceCount,
+      'ModelName': modelName,
+      'ModelVersion': modelVersion,
+      'OfflineDeviceCount': offlineDeviceCount,
+      'SamplingDeviceCount': samplingDeviceCount,
+    };
+  }
 }
 
 /// Summary of model on edge device.
@@ -28206,6 +30984,15 @@ class EdgeModelSummary {
       modelName: json['ModelName'] as String,
       modelVersion: json['ModelVersion'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelName = this.modelName;
+    final modelVersion = this.modelVersion;
+    return {
+      'ModelName': modelName,
+      'ModelVersion': modelVersion,
+    };
   }
 }
 
@@ -28391,6 +31178,29 @@ class EdgePackagingJobSummary {
       modelVersion: json['ModelVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final edgePackagingJobArn = this.edgePackagingJobArn;
+    final edgePackagingJobName = this.edgePackagingJobName;
+    final edgePackagingJobStatus = this.edgePackagingJobStatus;
+    final compilationJobName = this.compilationJobName;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final modelName = this.modelName;
+    final modelVersion = this.modelVersion;
+    return {
+      'EdgePackagingJobArn': edgePackagingJobArn,
+      'EdgePackagingJobName': edgePackagingJobName,
+      'EdgePackagingJobStatus': edgePackagingJobStatus.toValue(),
+      if (compilationJobName != null) 'CompilationJobName': compilationJobName,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (modelName != null) 'ModelName': modelName,
+      if (modelVersion != null) 'ModelVersion': modelVersion,
+    };
+  }
 }
 
 /// The output of a SageMaker Edge Manager deployable resource.
@@ -28421,6 +31231,19 @@ class EdgePresetDeploymentOutput {
       status: (json['Status'] as String?)?.toEdgePresetDeploymentStatus(),
       statusMessage: json['StatusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final artifact = this.artifact;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      'Type': type.toValue(),
+      if (artifact != null) 'Artifact': artifact,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
   }
 }
 
@@ -28481,6 +31304,10 @@ class EnableSagemakerServicecatalogPortfolioOutput {
   factory EnableSagemakerServicecatalogPortfolioOutput.fromJson(
       Map<String, dynamic> _) {
     return EnableSagemakerServicecatalogPortfolioOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -28568,6 +31395,34 @@ class Endpoint {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final endpointArn = this.endpointArn;
+    final endpointConfigName = this.endpointConfigName;
+    final endpointName = this.endpointName;
+    final endpointStatus = this.endpointStatus;
+    final lastModifiedTime = this.lastModifiedTime;
+    final dataCaptureConfig = this.dataCaptureConfig;
+    final failureReason = this.failureReason;
+    final monitoringSchedules = this.monitoringSchedules;
+    final productionVariants = this.productionVariants;
+    final tags = this.tags;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'EndpointArn': endpointArn,
+      'EndpointConfigName': endpointConfigName,
+      'EndpointName': endpointName,
+      'EndpointStatus': endpointStatus.toValue(),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (dataCaptureConfig != null) 'DataCaptureConfig': dataCaptureConfig,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (monitoringSchedules != null)
+        'MonitoringSchedules': monitoringSchedules,
+      if (productionVariants != null) 'ProductionVariants': productionVariants,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 enum EndpointConfigSortKey {
@@ -28621,6 +31476,17 @@ class EndpointConfigSummary {
       endpointConfigArn: json['EndpointConfigArn'] as String,
       endpointConfigName: json['EndpointConfigName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final endpointConfigArn = this.endpointConfigArn;
+    final endpointConfigName = this.endpointConfigName;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'EndpointConfigArn': endpointConfigArn,
+      'EndpointConfigName': endpointConfigName,
+    };
   }
 }
 
@@ -28801,6 +31667,19 @@ class EndpointOutputConfiguration {
       variantName: json['VariantName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointName = this.endpointName;
+    final initialInstanceCount = this.initialInstanceCount;
+    final instanceType = this.instanceType;
+    final variantName = this.variantName;
+    return {
+      'EndpointName': endpointName,
+      'InitialInstanceCount': initialInstanceCount,
+      'InstanceType': instanceType.toValue(),
+      'VariantName': variantName,
+    };
+  }
 }
 
 enum EndpointSortKey {
@@ -28973,6 +31852,21 @@ class EndpointSummary {
           nonNullableTimeStampFromJson(json['LastModifiedTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final endpointArn = this.endpointArn;
+    final endpointName = this.endpointName;
+    final endpointStatus = this.endpointStatus;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'EndpointArn': endpointArn,
+      'EndpointName': endpointName,
+      'EndpointStatus': endpointStatus.toValue(),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
+  }
 }
 
 /// A list of environment parameters suggested by the Amazon SageMaker Inference
@@ -28998,6 +31892,17 @@ class EnvironmentParameter {
       value: json['Value'] as String,
       valueType: json['ValueType'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    final valueType = this.valueType;
+    return {
+      'Key': key,
+      'Value': value,
+      'ValueType': valueType,
+    };
   }
 }
 
@@ -29145,6 +32050,33 @@ class Experiment {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final displayName = this.displayName;
+    final experimentArn = this.experimentArn;
+    final experimentName = this.experimentName;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final source = this.source;
+    final tags = this.tags;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (displayName != null) 'DisplayName': displayName,
+      if (experimentArn != null) 'ExperimentArn': experimentArn,
+      if (experimentName != null) 'ExperimentName': experimentName,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (source != null) 'Source': source,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Associates a SageMaker job as a trial component with an experiment and
@@ -29217,6 +32149,15 @@ class ExperimentSource {
       sourceType: json['SourceType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sourceArn = this.sourceArn;
+    final sourceType = this.sourceType;
+    return {
+      'SourceArn': sourceArn,
+      if (sourceType != null) 'SourceType': sourceType,
+    };
+  }
 }
 
 /// A summary of the properties of an experiment. To get the complete set of
@@ -29261,6 +32202,25 @@ class ExperimentSummary {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final displayName = this.displayName;
+    final experimentArn = this.experimentArn;
+    final experimentName = this.experimentName;
+    final experimentSource = this.experimentSource;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (displayName != null) 'DisplayName': displayName,
+      if (experimentArn != null) 'ExperimentArn': experimentArn,
+      if (experimentName != null) 'ExperimentName': experimentName,
+      if (experimentSource != null) 'ExperimentSource': experimentSource,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
+  }
 }
 
 /// Contains explainability metrics for a model.
@@ -29300,6 +32260,13 @@ class FailStepMetadata {
     return FailStepMetadata(
       errorMessage: json['ErrorMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorMessage = this.errorMessage;
+    return {
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+    };
   }
 }
 
@@ -29494,6 +32461,48 @@ class FeatureGroup {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final eventTimeFeatureName = this.eventTimeFeatureName;
+    final failureReason = this.failureReason;
+    final featureDefinitions = this.featureDefinitions;
+    final featureGroupArn = this.featureGroupArn;
+    final featureGroupName = this.featureGroupName;
+    final featureGroupStatus = this.featureGroupStatus;
+    final lastModifiedTime = this.lastModifiedTime;
+    final lastUpdateStatus = this.lastUpdateStatus;
+    final offlineStoreConfig = this.offlineStoreConfig;
+    final offlineStoreStatus = this.offlineStoreStatus;
+    final onlineStoreConfig = this.onlineStoreConfig;
+    final recordIdentifierFeatureName = this.recordIdentifierFeatureName;
+    final roleArn = this.roleArn;
+    final tags = this.tags;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (eventTimeFeatureName != null)
+        'EventTimeFeatureName': eventTimeFeatureName,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (featureDefinitions != null) 'FeatureDefinitions': featureDefinitions,
+      if (featureGroupArn != null) 'FeatureGroupArn': featureGroupArn,
+      if (featureGroupName != null) 'FeatureGroupName': featureGroupName,
+      if (featureGroupStatus != null)
+        'FeatureGroupStatus': featureGroupStatus.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (lastUpdateStatus != null) 'LastUpdateStatus': lastUpdateStatus,
+      if (offlineStoreConfig != null) 'OfflineStoreConfig': offlineStoreConfig,
+      if (offlineStoreStatus != null) 'OfflineStoreStatus': offlineStoreStatus,
+      if (onlineStoreConfig != null) 'OnlineStoreConfig': onlineStoreConfig,
+      if (recordIdentifierFeatureName != null)
+        'RecordIdentifierFeatureName': recordIdentifierFeatureName,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 enum FeatureGroupSortBy {
@@ -29649,6 +32658,22 @@ class FeatureGroupSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final featureGroupArn = this.featureGroupArn;
+    final featureGroupName = this.featureGroupName;
+    final featureGroupStatus = this.featureGroupStatus;
+    final offlineStoreStatus = this.offlineStoreStatus;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'FeatureGroupArn': featureGroupArn,
+      'FeatureGroupName': featureGroupName,
+      if (featureGroupStatus != null)
+        'FeatureGroupStatus': featureGroupStatus.toValue(),
+      if (offlineStoreStatus != null) 'OfflineStoreStatus': offlineStoreStatus,
+    };
+  }
 }
 
 /// The metadata for a feature. It can either be metadata that you specify, or
@@ -29702,6 +32727,29 @@ class FeatureMetadata {
           .map((e) => FeatureParameter.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final featureGroupArn = this.featureGroupArn;
+    final featureGroupName = this.featureGroupName;
+    final featureName = this.featureName;
+    final featureType = this.featureType;
+    final lastModifiedTime = this.lastModifiedTime;
+    final parameters = this.parameters;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (featureGroupArn != null) 'FeatureGroupArn': featureGroupArn,
+      if (featureGroupName != null) 'FeatureGroupName': featureGroupName,
+      if (featureName != null) 'FeatureName': featureName,
+      if (featureType != null) 'FeatureType': featureType.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (parameters != null) 'Parameters': parameters,
+    };
   }
 }
 
@@ -30086,6 +33134,7 @@ class Filter {
     this.operator,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -30122,6 +33171,17 @@ class FinalAutoMLJobObjectiveMetric {
       type: (json['Type'] as String?)?.toAutoMLJobObjectiveType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricName = this.metricName;
+    final value = this.value;
+    final type = this.type;
+    return {
+      'MetricName': metricName.toValue(),
+      'Value': value,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Shows the final value for the objective metric for a training job that was
@@ -30151,6 +33211,17 @@ class FinalHyperParameterTuningJobObjectiveMetric {
       value: json['Value'] as double,
       type: (json['Type'] as String?)?.toHyperParameterTuningJobObjectiveType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricName = this.metricName;
+    final value = this.value;
+    final type = this.type;
+    return {
+      'MetricName': metricName,
+      'Value': value,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -30261,6 +33332,21 @@ class FlowDefinitionSummary {
           (json['FlowDefinitionStatus'] as String).toFlowDefinitionStatus(),
       failureReason: json['FailureReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final flowDefinitionArn = this.flowDefinitionArn;
+    final flowDefinitionName = this.flowDefinitionName;
+    final flowDefinitionStatus = this.flowDefinitionStatus;
+    final failureReason = this.failureReason;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'FlowDefinitionArn': flowDefinitionArn,
+      'FlowDefinitionName': flowDefinitionName,
+      'FlowDefinitionStatus': flowDefinitionStatus.toValue(),
+      if (failureReason != null) 'FailureReason': failureReason,
+    };
   }
 }
 
@@ -30385,6 +33471,28 @@ class GetDeviceFleetReportResponse {
       reportGenerated: timeStampFromJson(json['ReportGenerated']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceFleetArn = this.deviceFleetArn;
+    final deviceFleetName = this.deviceFleetName;
+    final agentVersions = this.agentVersions;
+    final description = this.description;
+    final deviceStats = this.deviceStats;
+    final modelStats = this.modelStats;
+    final outputConfig = this.outputConfig;
+    final reportGenerated = this.reportGenerated;
+    return {
+      'DeviceFleetArn': deviceFleetArn,
+      'DeviceFleetName': deviceFleetName,
+      if (agentVersions != null) 'AgentVersions': agentVersions,
+      if (description != null) 'Description': description,
+      if (deviceStats != null) 'DeviceStats': deviceStats,
+      if (modelStats != null) 'ModelStats': modelStats,
+      if (outputConfig != null) 'OutputConfig': outputConfig,
+      if (reportGenerated != null)
+        'ReportGenerated': unixTimestampToJson(reportGenerated),
+    };
+  }
 }
 
 class GetLineageGroupPolicyResponse {
@@ -30405,6 +33513,15 @@ class GetLineageGroupPolicyResponse {
       resourcePolicy: json['ResourcePolicy'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lineageGroupArn = this.lineageGroupArn;
+    final resourcePolicy = this.resourcePolicy;
+    return {
+      if (lineageGroupArn != null) 'LineageGroupArn': lineageGroupArn,
+      if (resourcePolicy != null) 'ResourcePolicy': resourcePolicy,
+    };
+  }
 }
 
 class GetModelPackageGroupPolicyOutput {
@@ -30418,6 +33535,13 @@ class GetModelPackageGroupPolicyOutput {
     return GetModelPackageGroupPolicyOutput(
       resourcePolicy: json['ResourcePolicy'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourcePolicy = this.resourcePolicy;
+    return {
+      'ResourcePolicy': resourcePolicy,
+    };
   }
 }
 
@@ -30433,6 +33557,13 @@ class GetSagemakerServicecatalogPortfolioStatusOutput {
     return GetSagemakerServicecatalogPortfolioStatusOutput(
       status: (json['Status'] as String?)?.toSagemakerServicecatalogStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -30452,6 +33583,14 @@ class GetSearchSuggestionsResponse {
               (e) => PropertyNameSuggestion.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final propertyNameSuggestions = this.propertyNameSuggestions;
+    return {
+      if (propertyNameSuggestions != null)
+        'PropertyNameSuggestions': propertyNameSuggestions,
+    };
   }
 }
 
@@ -30511,6 +33650,7 @@ class GitConfigForUpdate {
   GitConfigForUpdate({
     this.secretArn,
   });
+
   Map<String, dynamic> toJson() {
     final secretArn = this.secretArn;
     return {
@@ -31880,6 +35020,17 @@ class HumanTaskUiSummary {
       humanTaskUiName: json['HumanTaskUiName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final humanTaskUiArn = this.humanTaskUiArn;
+    final humanTaskUiName = this.humanTaskUiName;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'HumanTaskUiArn': humanTaskUiArn,
+      'HumanTaskUiName': humanTaskUiName,
+    };
+  }
 }
 
 /// Specifies which training algorithm to use for training jobs that a
@@ -32340,6 +35491,41 @@ class HyperParameterTrainingJobSummary {
       tuningJobName: json['TuningJobName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final trainingJobArn = this.trainingJobArn;
+    final trainingJobName = this.trainingJobName;
+    final trainingJobStatus = this.trainingJobStatus;
+    final tunedHyperParameters = this.tunedHyperParameters;
+    final failureReason = this.failureReason;
+    final finalHyperParameterTuningJobObjectiveMetric =
+        this.finalHyperParameterTuningJobObjectiveMetric;
+    final objectiveStatus = this.objectiveStatus;
+    final trainingEndTime = this.trainingEndTime;
+    final trainingJobDefinitionName = this.trainingJobDefinitionName;
+    final trainingStartTime = this.trainingStartTime;
+    final tuningJobName = this.tuningJobName;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'TrainingJobArn': trainingJobArn,
+      'TrainingJobName': trainingJobName,
+      'TrainingJobStatus': trainingJobStatus.toValue(),
+      'TunedHyperParameters': tunedHyperParameters,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (finalHyperParameterTuningJobObjectiveMetric != null)
+        'FinalHyperParameterTuningJobObjectiveMetric':
+            finalHyperParameterTuningJobObjectiveMetric,
+      if (objectiveStatus != null) 'ObjectiveStatus': objectiveStatus.toValue(),
+      if (trainingEndTime != null)
+        'TrainingEndTime': unixTimestampToJson(trainingEndTime),
+      if (trainingJobDefinitionName != null)
+        'TrainingJobDefinitionName': trainingJobDefinitionName,
+      if (trainingStartTime != null)
+        'TrainingStartTime': unixTimestampToJson(trainingStartTime),
+      if (tuningJobName != null) 'TuningJobName': tuningJobName,
+    };
+  }
 }
 
 /// Configures a hyperparameter tuning job.
@@ -32691,6 +35877,34 @@ class HyperParameterTuningJobSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final hyperParameterTuningJobArn = this.hyperParameterTuningJobArn;
+    final hyperParameterTuningJobName = this.hyperParameterTuningJobName;
+    final hyperParameterTuningJobStatus = this.hyperParameterTuningJobStatus;
+    final objectiveStatusCounters = this.objectiveStatusCounters;
+    final strategy = this.strategy;
+    final trainingJobStatusCounters = this.trainingJobStatusCounters;
+    final hyperParameterTuningEndTime = this.hyperParameterTuningEndTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final resourceLimits = this.resourceLimits;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'HyperParameterTuningJobArn': hyperParameterTuningJobArn,
+      'HyperParameterTuningJobName': hyperParameterTuningJobName,
+      'HyperParameterTuningJobStatus': hyperParameterTuningJobStatus.toValue(),
+      'ObjectiveStatusCounters': objectiveStatusCounters,
+      'Strategy': strategy.toValue(),
+      'TrainingJobStatusCounters': trainingJobStatusCounters,
+      if (hyperParameterTuningEndTime != null)
+        'HyperParameterTuningEndTime':
+            unixTimestampToJson(hyperParameterTuningEndTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (resourceLimits != null) 'ResourceLimits': resourceLimits,
+    };
+  }
 }
 
 /// Specifies the configuration for a hyperparameter tuning job that uses one or
@@ -32856,6 +36070,27 @@ class Image {
       displayName: json['DisplayName'] as String?,
       failureReason: json['FailureReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final imageArn = this.imageArn;
+    final imageName = this.imageName;
+    final imageStatus = this.imageStatus;
+    final lastModifiedTime = this.lastModifiedTime;
+    final description = this.description;
+    final displayName = this.displayName;
+    final failureReason = this.failureReason;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ImageArn': imageArn,
+      'ImageName': imageName,
+      'ImageStatus': imageStatus.toValue(),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (description != null) 'Description': description,
+      if (displayName != null) 'DisplayName': displayName,
+      if (failureReason != null) 'FailureReason': failureReason,
+    };
   }
 }
 
@@ -33069,6 +36304,25 @@ class ImageVersion {
       failureReason: json['FailureReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final imageArn = this.imageArn;
+    final imageVersionArn = this.imageVersionArn;
+    final imageVersionStatus = this.imageVersionStatus;
+    final lastModifiedTime = this.lastModifiedTime;
+    final version = this.version;
+    final failureReason = this.failureReason;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ImageArn': imageArn,
+      'ImageVersionArn': imageVersionArn,
+      'ImageVersionStatus': imageVersionStatus.toValue(),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'Version': version,
+      if (failureReason != null) 'FailureReason': failureReason,
+    };
+  }
 }
 
 enum ImageVersionSortBy {
@@ -33261,6 +36515,17 @@ class InferenceRecommendation {
           json['ModelConfiguration'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointConfiguration = this.endpointConfiguration;
+    final metrics = this.metrics;
+    final modelConfiguration = this.modelConfiguration;
+    return {
+      'EndpointConfiguration': endpointConfiguration,
+      'Metrics': metrics,
+      'ModelConfiguration': modelConfiguration,
+    };
+  }
 }
 
 /// A structure that contains a list of recommendation jobs.
@@ -33323,6 +36588,32 @@ class InferenceRecommendationsJob {
       completionTime: timeStampFromJson(json['CompletionTime']),
       failureReason: json['FailureReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final jobArn = this.jobArn;
+    final jobDescription = this.jobDescription;
+    final jobName = this.jobName;
+    final jobType = this.jobType;
+    final lastModifiedTime = this.lastModifiedTime;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    final completionTime = this.completionTime;
+    final failureReason = this.failureReason;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'JobArn': jobArn,
+      'JobDescription': jobDescription,
+      'JobName': jobName,
+      'JobType': jobType.toValue(),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'RoleArn': roleArn,
+      'Status': status.toValue(),
+      if (completionTime != null)
+        'CompletionTime': unixTimestampToJson(completionTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+    };
   }
 }
 
@@ -34529,6 +37820,22 @@ class LabelCounters {
       unlabeled: json['Unlabeled'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedNonRetryableError = this.failedNonRetryableError;
+    final humanLabeled = this.humanLabeled;
+    final machineLabeled = this.machineLabeled;
+    final totalLabeled = this.totalLabeled;
+    final unlabeled = this.unlabeled;
+    return {
+      if (failedNonRetryableError != null)
+        'FailedNonRetryableError': failedNonRetryableError,
+      if (humanLabeled != null) 'HumanLabeled': humanLabeled,
+      if (machineLabeled != null) 'MachineLabeled': machineLabeled,
+      if (totalLabeled != null) 'TotalLabeled': totalLabeled,
+      if (unlabeled != null) 'Unlabeled': unlabeled,
+    };
+  }
 }
 
 /// Provides counts for human-labeled tasks in the labeling job.
@@ -34553,6 +37860,17 @@ class LabelCountersForWorkteam {
       pendingHuman: json['PendingHuman'] as int?,
       total: json['Total'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final humanLabeled = this.humanLabeled;
+    final pendingHuman = this.pendingHuman;
+    final total = this.total;
+    return {
+      if (humanLabeled != null) 'HumanLabeled': humanLabeled,
+      if (pendingHuman != null) 'PendingHuman': pendingHuman,
+      if (total != null) 'Total': total,
+    };
   }
 }
 
@@ -34755,6 +38073,25 @@ class LabelingJobForWorkteamSummary {
           json['NumberOfHumanWorkersPerDataObject'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final jobReferenceCode = this.jobReferenceCode;
+    final workRequesterAccountId = this.workRequesterAccountId;
+    final labelCounters = this.labelCounters;
+    final labelingJobName = this.labelingJobName;
+    final numberOfHumanWorkersPerDataObject =
+        this.numberOfHumanWorkersPerDataObject;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'JobReferenceCode': jobReferenceCode,
+      'WorkRequesterAccountId': workRequesterAccountId,
+      if (labelCounters != null) 'LabelCounters': labelCounters,
+      if (labelingJobName != null) 'LabelingJobName': labelingJobName,
+      if (numberOfHumanWorkersPerDataObject != null)
+        'NumberOfHumanWorkersPerDataObject': numberOfHumanWorkersPerDataObject,
+    };
+  }
 }
 
 /// Input configuration information for a labeling job.
@@ -34809,6 +38146,16 @@ class LabelingJobOutput {
       finalActiveLearningModelArn:
           json['FinalActiveLearningModelArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final outputDatasetS3Uri = this.outputDatasetS3Uri;
+    final finalActiveLearningModelArn = this.finalActiveLearningModelArn;
+    return {
+      'OutputDatasetS3Uri': outputDatasetS3Uri,
+      if (finalActiveLearningModelArn != null)
+        'FinalActiveLearningModelArn': finalActiveLearningModelArn,
+    };
   }
 }
 
@@ -35174,6 +38521,37 @@ class LabelingJobSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final labelCounters = this.labelCounters;
+    final labelingJobArn = this.labelingJobArn;
+    final labelingJobName = this.labelingJobName;
+    final labelingJobStatus = this.labelingJobStatus;
+    final lastModifiedTime = this.lastModifiedTime;
+    final preHumanTaskLambdaArn = this.preHumanTaskLambdaArn;
+    final workteamArn = this.workteamArn;
+    final annotationConsolidationLambdaArn =
+        this.annotationConsolidationLambdaArn;
+    final failureReason = this.failureReason;
+    final inputConfig = this.inputConfig;
+    final labelingJobOutput = this.labelingJobOutput;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'LabelCounters': labelCounters,
+      'LabelingJobArn': labelingJobArn,
+      'LabelingJobName': labelingJobName,
+      'LabelingJobStatus': labelingJobStatus.toValue(),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'PreHumanTaskLambdaArn': preHumanTaskLambdaArn,
+      'WorkteamArn': workteamArn,
+      if (annotationConsolidationLambdaArn != null)
+        'AnnotationConsolidationLambdaArn': annotationConsolidationLambdaArn,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (inputConfig != null) 'InputConfig': inputConfig,
+      if (labelingJobOutput != null) 'LabelingJobOutput': labelingJobOutput,
+    };
+  }
 }
 
 /// Metadata for a Lambda step.
@@ -35198,6 +38576,15 @@ class LambdaStepMetadata {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final outputParameters = this.outputParameters;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (outputParameters != null) 'OutputParameters': outputParameters,
+    };
+  }
 }
 
 /// A value that indicates whether the update was successful.
@@ -35217,6 +38604,15 @@ class LastUpdateStatus {
       status: (json['Status'] as String).toLastUpdateStatusValue(),
       failureReason: json['FailureReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final failureReason = this.failureReason;
+    return {
+      'Status': status.toValue(),
+      if (failureReason != null) 'FailureReason': failureReason,
+    };
   }
 }
 
@@ -35287,6 +38683,23 @@ class LineageGroupSummary {
       lineageGroupName: json['LineageGroupName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final displayName = this.displayName;
+    final lastModifiedTime = this.lastModifiedTime;
+    final lineageGroupArn = this.lineageGroupArn;
+    final lineageGroupName = this.lineageGroupName;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (displayName != null) 'DisplayName': displayName,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (lineageGroupArn != null) 'LineageGroupArn': lineageGroupArn,
+      if (lineageGroupName != null) 'LineageGroupName': lineageGroupName,
+    };
+  }
 }
 
 enum LineageType {
@@ -35347,6 +38760,15 @@ class ListActionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionSummaries = this.actionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (actionSummaries != null) 'ActionSummaries': actionSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListAlgorithmsOutput {
@@ -35371,6 +38793,15 @@ class ListAlgorithmsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final algorithmSummaryList = this.algorithmSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      'AlgorithmSummaryList': algorithmSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListAppImageConfigsResponse {
@@ -35392,6 +38823,15 @@ class ListAppImageConfigsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appImageConfigs = this.appImageConfigs;
+    final nextToken = this.nextToken;
+    return {
+      if (appImageConfigs != null) 'AppImageConfigs': appImageConfigs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -35416,6 +38856,15 @@ class ListAppsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apps = this.apps;
+    final nextToken = this.nextToken;
+    return {
+      if (apps != null) 'Apps': apps,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListArtifactsResponse {
@@ -35438,6 +38887,15 @@ class ListArtifactsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final artifactSummaries = this.artifactSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (artifactSummaries != null) 'ArtifactSummaries': artifactSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListAssociationsResponse {
@@ -35459,6 +38917,16 @@ class ListAssociationsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associationSummaries = this.associationSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (associationSummaries != null)
+        'AssociationSummaries': associationSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -35483,6 +38951,15 @@ class ListAutoMLJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoMLJobSummaries = this.autoMLJobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'AutoMLJobSummaries': autoMLJobSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListCandidatesForAutoMLJobResponse {
@@ -35506,6 +38983,15 @@ class ListCandidatesForAutoMLJobResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final candidates = this.candidates;
+    final nextToken = this.nextToken;
+    return {
+      'Candidates': candidates,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -35552,6 +39038,15 @@ class ListCodeRepositoriesOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeRepositorySummaryList = this.codeRepositorySummaryList;
+    final nextToken = this.nextToken;
+    return {
+      'CodeRepositorySummaryList': codeRepositorySummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListCompilationJobsResponse {
@@ -35576,6 +39071,15 @@ class ListCompilationJobsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final compilationJobSummaries = this.compilationJobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'CompilationJobSummaries': compilationJobSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -35632,6 +39136,15 @@ class ListContextsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contextSummaries = this.contextSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (contextSummaries != null) 'ContextSummaries': contextSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDataQualityJobDefinitionsResponse {
@@ -35659,6 +39172,15 @@ class ListDataQualityJobDefinitionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobDefinitionSummaries = this.jobDefinitionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'JobDefinitionSummaries': jobDefinitionSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDeviceFleetsResponse {
@@ -35681,6 +39203,15 @@ class ListDeviceFleetsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceFleetSummaries = this.deviceFleetSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'DeviceFleetSummaries': deviceFleetSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -35738,6 +39269,15 @@ class ListDevicesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceSummaries = this.deviceSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'DeviceSummaries': deviceSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDomainsResponse {
@@ -35761,6 +39301,15 @@ class ListDomainsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domains = this.domains;
+    final nextToken = this.nextToken;
+    return {
+      if (domains != null) 'Domains': domains,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListEdgeDeploymentPlansResponse {
@@ -35783,6 +39332,15 @@ class ListEdgeDeploymentPlansResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final edgeDeploymentPlanSummaries = this.edgeDeploymentPlanSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'EdgeDeploymentPlanSummaries': edgeDeploymentPlanSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -35845,6 +39403,15 @@ class ListEdgePackagingJobsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final edgePackagingJobSummaries = this.edgePackagingJobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'EdgePackagingJobSummaries': edgePackagingJobSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -35913,6 +39480,15 @@ class ListEndpointConfigsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointConfigs = this.endpointConfigs;
+    final nextToken = this.nextToken;
+    return {
+      'EndpointConfigs': endpointConfigs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListEndpointsOutput {
@@ -35936,6 +39512,15 @@ class ListEndpointsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoints = this.endpoints;
+    final nextToken = this.nextToken;
+    return {
+      'Endpoints': endpoints,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListExperimentsResponse {
@@ -35957,6 +39542,16 @@ class ListExperimentsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final experimentSummaries = this.experimentSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (experimentSummaries != null)
+        'ExperimentSummaries': experimentSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -35980,6 +39575,15 @@ class ListFeatureGroupsResponse {
       nextToken: json['NextToken'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final featureGroupSummaries = this.featureGroupSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'FeatureGroupSummaries': featureGroupSummaries,
+      'NextToken': nextToken,
+    };
+  }
 }
 
 class ListFlowDefinitionsResponse {
@@ -36002,6 +39606,15 @@ class ListFlowDefinitionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final flowDefinitionSummaries = this.flowDefinitionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'FlowDefinitionSummaries': flowDefinitionSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListHumanTaskUisResponse {
@@ -36023,6 +39636,15 @@ class ListHumanTaskUisResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final humanTaskUiSummaries = this.humanTaskUiSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'HumanTaskUiSummaries': humanTaskUiSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -36053,6 +39675,16 @@ class ListHyperParameterTuningJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hyperParameterTuningJobSummaries =
+        this.hyperParameterTuningJobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'HyperParameterTuningJobSummaries': hyperParameterTuningJobSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListImageVersionsResponse {
@@ -36075,6 +39707,15 @@ class ListImageVersionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageVersions = this.imageVersions;
+    final nextToken = this.nextToken;
+    return {
+      if (imageVersions != null) 'ImageVersions': imageVersions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListImagesResponse {
@@ -36096,6 +39737,15 @@ class ListImagesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final images = this.images;
+    final nextToken = this.nextToken;
+    return {
+      if (images != null) 'Images': images,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -36122,6 +39772,15 @@ class ListInferenceRecommendationsJobsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final inferenceRecommendationsJobs = this.inferenceRecommendationsJobs;
+    final nextToken = this.nextToken;
+    return {
+      'InferenceRecommendationsJobs': inferenceRecommendationsJobs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -36185,6 +39844,15 @@ class ListLabelingJobsForWorkteamResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final labelingJobSummaryList = this.labelingJobSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      'LabelingJobSummaryList': labelingJobSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 enum ListLabelingJobsForWorkteamSortByOptions {
@@ -36235,6 +39903,16 @@ class ListLabelingJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final labelingJobSummaryList = this.labelingJobSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (labelingJobSummaryList != null)
+        'LabelingJobSummaryList': labelingJobSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListLineageGroupsResponse {
@@ -36257,6 +39935,16 @@ class ListLineageGroupsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lineageGroupSummaries = this.lineageGroupSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (lineageGroupSummaries != null)
+        'LineageGroupSummaries': lineageGroupSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -36282,6 +39970,15 @@ class ListModelBiasJobDefinitionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobDefinitionSummaries = this.jobDefinitionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'JobDefinitionSummaries': jobDefinitionSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -36309,6 +40006,15 @@ class ListModelExplainabilityJobDefinitionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobDefinitionSummaries = this.jobDefinitionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'JobDefinitionSummaries': jobDefinitionSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListModelMetadataResponse {
@@ -36330,6 +40036,15 @@ class ListModelMetadataResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelMetadataSummaries = this.modelMetadataSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'ModelMetadataSummaries': modelMetadataSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -36356,6 +40071,15 @@ class ListModelPackageGroupsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelPackageGroupSummaryList = this.modelPackageGroupSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      'ModelPackageGroupSummaryList': modelPackageGroupSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListModelPackagesOutput {
@@ -36379,6 +40103,15 @@ class ListModelPackagesOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelPackageSummaryList = this.modelPackageSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      'ModelPackageSummaryList': modelPackageSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -36406,6 +40139,15 @@ class ListModelQualityJobDefinitionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobDefinitionSummaries = this.jobDefinitionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'JobDefinitionSummaries': jobDefinitionSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListModelsOutput {
@@ -36428,6 +40170,15 @@ class ListModelsOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final models = this.models;
+    final nextToken = this.nextToken;
+    return {
+      'Models': models,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -36454,6 +40205,15 @@ class ListMonitoringExecutionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final monitoringExecutionSummaries = this.monitoringExecutionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'MonitoringExecutionSummaries': monitoringExecutionSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListMonitoringSchedulesResponse {
@@ -36477,6 +40237,15 @@ class ListMonitoringSchedulesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final monitoringScheduleSummaries = this.monitoringScheduleSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'MonitoringScheduleSummaries': monitoringScheduleSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -36506,6 +40275,17 @@ class ListNotebookInstanceLifecycleConfigsOutput {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final notebookInstanceLifecycleConfigs =
+        this.notebookInstanceLifecycleConfigs;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (notebookInstanceLifecycleConfigs != null)
+        'NotebookInstanceLifecycleConfigs': notebookInstanceLifecycleConfigs,
+    };
+  }
 }
 
 class ListNotebookInstancesOutput {
@@ -36531,6 +40311,15 @@ class ListNotebookInstancesOutput {
               NotebookInstanceSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final notebookInstances = this.notebookInstances;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (notebookInstances != null) 'NotebookInstances': notebookInstances,
+    };
   }
 }
 
@@ -36561,6 +40350,16 @@ class ListPipelineExecutionStepsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final pipelineExecutionSteps = this.pipelineExecutionSteps;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (pipelineExecutionSteps != null)
+        'PipelineExecutionSteps': pipelineExecutionSteps,
+    };
+  }
 }
 
 class ListPipelineExecutionsResponse {
@@ -36589,6 +40388,16 @@ class ListPipelineExecutionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final pipelineExecutionSummaries = this.pipelineExecutionSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (pipelineExecutionSummaries != null)
+        'PipelineExecutionSummaries': pipelineExecutionSummaries,
+    };
+  }
 }
 
 class ListPipelineParametersForExecutionResponse {
@@ -36614,6 +40423,15 @@ class ListPipelineParametersForExecutionResponse {
           .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final pipelineParameters = this.pipelineParameters;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (pipelineParameters != null) 'PipelineParameters': pipelineParameters,
+    };
   }
 }
 
@@ -36643,6 +40461,15 @@ class ListPipelinesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final pipelineSummaries = this.pipelineSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (pipelineSummaries != null) 'PipelineSummaries': pipelineSummaries,
+    };
+  }
 }
 
 class ListProcessingJobsResponse {
@@ -36666,6 +40493,15 @@ class ListProcessingJobsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final processingJobSummaries = this.processingJobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'ProcessingJobSummaries': processingJobSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -36691,6 +40527,15 @@ class ListProjectsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final projectSummaryList = this.projectSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      'ProjectSummaryList': projectSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListStageDevicesResponse {
@@ -36713,6 +40558,15 @@ class ListStageDevicesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceDeploymentSummaries = this.deviceDeploymentSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'DeviceDeploymentSummaries': deviceDeploymentSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -36738,6 +40592,16 @@ class ListStudioLifecycleConfigsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final studioLifecycleConfigs = this.studioLifecycleConfigs;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (studioLifecycleConfigs != null)
+        'StudioLifecycleConfigs': studioLifecycleConfigs,
+    };
+  }
 }
 
 class ListSubscribedWorkteamsResponse {
@@ -36761,6 +40625,15 @@ class ListSubscribedWorkteamsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final subscribedWorkteams = this.subscribedWorkteams;
+    final nextToken = this.nextToken;
+    return {
+      'SubscribedWorkteams': subscribedWorkteams,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsOutput {
@@ -36783,6 +40656,15 @@ class ListTagsOutput {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -36813,6 +40695,15 @@ class ListTrainingJobsForHyperParameterTuningJobResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trainingJobSummaries = this.trainingJobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'TrainingJobSummaries': trainingJobSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTrainingJobsResponse {
@@ -36837,6 +40728,15 @@ class ListTrainingJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trainingJobSummaries = this.trainingJobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'TrainingJobSummaries': trainingJobSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTransformJobsResponse {
@@ -36860,6 +40760,15 @@ class ListTransformJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final transformJobSummaries = this.transformJobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'TransformJobSummaries': transformJobSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTrialComponentsResponse {
@@ -36882,6 +40791,16 @@ class ListTrialComponentsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final trialComponentSummaries = this.trialComponentSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (trialComponentSummaries != null)
+        'TrialComponentSummaries': trialComponentSummaries,
+    };
+  }
 }
 
 class ListTrialsResponse {
@@ -36903,6 +40822,15 @@ class ListTrialsResponse {
           .map((e) => TrialSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final trialSummaries = this.trialSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (trialSummaries != null) 'TrialSummaries': trialSummaries,
+    };
   }
 }
 
@@ -36927,6 +40855,15 @@ class ListUserProfilesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final userProfiles = this.userProfiles;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (userProfiles != null) 'UserProfiles': userProfiles,
+    };
+  }
 }
 
 class ListWorkforcesResponse {
@@ -36948,6 +40885,15 @@ class ListWorkforcesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workforces = this.workforces;
+    final nextToken = this.nextToken;
+    return {
+      'Workforces': workforces,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -37000,6 +40946,15 @@ class ListWorkteamsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workteams = this.workteams;
+    final nextToken = this.nextToken;
+    return {
+      'Workteams': workteams,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -37141,6 +41096,17 @@ class MetricData {
       value: json['Value'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricName = this.metricName;
+    final timestamp = this.timestamp;
+    final value = this.value;
+    return {
+      if (metricName != null) 'MetricName': metricName,
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// Information about the metric for a candidate produced by an AutoML job.
@@ -37176,6 +41142,20 @@ class MetricDatum {
           (json['StandardMetricName'] as String?)?.toAutoMLMetricExtendedEnum(),
       value: json['Value'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricName = this.metricName;
+    final set = this.set;
+    final standardMetricName = this.standardMetricName;
+    final value = this.value;
+    return {
+      if (metricName != null) 'MetricName': metricName.toValue(),
+      if (set != null) 'Set': set.toValue(),
+      if (standardMetricName != null)
+        'StandardMetricName': standardMetricName.toValue(),
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -37335,6 +41315,13 @@ class ModelArtifacts {
     return ModelArtifacts(
       s3ModelArtifacts: json['S3ModelArtifacts'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final s3ModelArtifacts = this.s3ModelArtifacts;
+    return {
+      'S3ModelArtifacts': s3ModelArtifacts,
+    };
   }
 }
 
@@ -37524,6 +41511,17 @@ class ModelConfiguration {
       inferenceSpecificationName: json['InferenceSpecificationName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentParameters = this.environmentParameters;
+    final inferenceSpecificationName = this.inferenceSpecificationName;
+    return {
+      if (environmentParameters != null)
+        'EnvironmentParameters': environmentParameters,
+      if (inferenceSpecificationName != null)
+        'InferenceSpecificationName': inferenceSpecificationName,
+    };
+  }
 }
 
 /// Data quality constraints and statistics for a model.
@@ -37618,6 +41616,13 @@ class ModelDeployResult {
       endpointName: json['EndpointName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointName = this.endpointName;
+    return {
+      if (endpointName != null) 'EndpointName': endpointName,
+    };
+  }
 }
 
 /// Provides information to verify the integrity of stored model artifacts.
@@ -37632,6 +41637,13 @@ class ModelDigests {
     return ModelDigests(
       artifactDigest: json['ArtifactDigest'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final artifactDigest = this.artifactDigest;
+    return {
+      if (artifactDigest != null) 'ArtifactDigest': artifactDigest,
+    };
   }
 }
 
@@ -37796,6 +41808,7 @@ class ModelMetadataFilter {
     required this.name,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -37854,6 +41867,7 @@ class ModelMetadataSearchExpression {
   ModelMetadataSearchExpression({
     this.filters,
   });
+
   Map<String, dynamic> toJson() {
     final filters = this.filters;
     return {
@@ -37894,6 +41908,21 @@ class ModelMetadataSummary {
       model: json['Model'] as String,
       task: json['Task'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    final framework = this.framework;
+    final frameworkVersion = this.frameworkVersion;
+    final model = this.model;
+    final task = this.task;
+    return {
+      'Domain': domain,
+      'Framework': framework,
+      'FrameworkVersion': frameworkVersion,
+      'Model': model,
+      'Task': task,
+    };
   }
 }
 
@@ -38175,6 +42204,80 @@ class ModelPackage {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalInferenceSpecifications =
+        this.additionalInferenceSpecifications;
+    final approvalDescription = this.approvalDescription;
+    final certifyForMarketplace = this.certifyForMarketplace;
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final customerMetadataProperties = this.customerMetadataProperties;
+    final domain = this.domain;
+    final driftCheckBaselines = this.driftCheckBaselines;
+    final inferenceSpecification = this.inferenceSpecification;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final metadataProperties = this.metadataProperties;
+    final modelApprovalStatus = this.modelApprovalStatus;
+    final modelMetrics = this.modelMetrics;
+    final modelPackageArn = this.modelPackageArn;
+    final modelPackageDescription = this.modelPackageDescription;
+    final modelPackageGroupName = this.modelPackageGroupName;
+    final modelPackageName = this.modelPackageName;
+    final modelPackageStatus = this.modelPackageStatus;
+    final modelPackageStatusDetails = this.modelPackageStatusDetails;
+    final modelPackageVersion = this.modelPackageVersion;
+    final samplePayloadUrl = this.samplePayloadUrl;
+    final sourceAlgorithmSpecification = this.sourceAlgorithmSpecification;
+    final tags = this.tags;
+    final task = this.task;
+    final validationSpecification = this.validationSpecification;
+    return {
+      if (additionalInferenceSpecifications != null)
+        'AdditionalInferenceSpecifications': additionalInferenceSpecifications,
+      if (approvalDescription != null)
+        'ApprovalDescription': approvalDescription,
+      if (certifyForMarketplace != null)
+        'CertifyForMarketplace': certifyForMarketplace,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (customerMetadataProperties != null)
+        'CustomerMetadataProperties': customerMetadataProperties,
+      if (domain != null) 'Domain': domain,
+      if (driftCheckBaselines != null)
+        'DriftCheckBaselines': driftCheckBaselines,
+      if (inferenceSpecification != null)
+        'InferenceSpecification': inferenceSpecification,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (metadataProperties != null) 'MetadataProperties': metadataProperties,
+      if (modelApprovalStatus != null)
+        'ModelApprovalStatus': modelApprovalStatus.toValue(),
+      if (modelMetrics != null) 'ModelMetrics': modelMetrics,
+      if (modelPackageArn != null) 'ModelPackageArn': modelPackageArn,
+      if (modelPackageDescription != null)
+        'ModelPackageDescription': modelPackageDescription,
+      if (modelPackageGroupName != null)
+        'ModelPackageGroupName': modelPackageGroupName,
+      if (modelPackageName != null) 'ModelPackageName': modelPackageName,
+      if (modelPackageStatus != null)
+        'ModelPackageStatus': modelPackageStatus.toValue(),
+      if (modelPackageStatusDetails != null)
+        'ModelPackageStatusDetails': modelPackageStatusDetails,
+      if (modelPackageVersion != null)
+        'ModelPackageVersion': modelPackageVersion,
+      if (samplePayloadUrl != null) 'SamplePayloadUrl': samplePayloadUrl,
+      if (sourceAlgorithmSpecification != null)
+        'SourceAlgorithmSpecification': sourceAlgorithmSpecification,
+      if (tags != null) 'Tags': tags,
+      if (task != null) 'Task': task,
+      if (validationSpecification != null)
+        'ValidationSpecification': validationSpecification,
+    };
+  }
 }
 
 /// Describes the Docker container for the model package.
@@ -38360,6 +42463,30 @@ class ModelPackageGroup {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final modelPackageGroupArn = this.modelPackageGroupArn;
+    final modelPackageGroupDescription = this.modelPackageGroupDescription;
+    final modelPackageGroupName = this.modelPackageGroupName;
+    final modelPackageGroupStatus = this.modelPackageGroupStatus;
+    final tags = this.tags;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (modelPackageGroupArn != null)
+        'ModelPackageGroupArn': modelPackageGroupArn,
+      if (modelPackageGroupDescription != null)
+        'ModelPackageGroupDescription': modelPackageGroupDescription,
+      if (modelPackageGroupName != null)
+        'ModelPackageGroupName': modelPackageGroupName,
+      if (modelPackageGroupStatus != null)
+        'ModelPackageGroupStatus': modelPackageGroupStatus.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 enum ModelPackageGroupSortBy {
@@ -38474,6 +42601,22 @@ class ModelPackageGroupSummary {
           json['ModelPackageGroupDescription'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final modelPackageGroupArn = this.modelPackageGroupArn;
+    final modelPackageGroupName = this.modelPackageGroupName;
+    final modelPackageGroupStatus = this.modelPackageGroupStatus;
+    final modelPackageGroupDescription = this.modelPackageGroupDescription;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ModelPackageGroupArn': modelPackageGroupArn,
+      'ModelPackageGroupName': modelPackageGroupName,
+      'ModelPackageGroupStatus': modelPackageGroupStatus.toValue(),
+      if (modelPackageGroupDescription != null)
+        'ModelPackageGroupDescription': modelPackageGroupDescription,
+    };
+  }
 }
 
 enum ModelPackageSortBy {
@@ -38573,6 +42716,15 @@ class ModelPackageStatusDetails {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final validationStatuses = this.validationStatuses;
+    final imageScanStatuses = this.imageScanStatuses;
+    return {
+      'ValidationStatuses': validationStatuses,
+      if (imageScanStatuses != null) 'ImageScanStatuses': imageScanStatuses,
+    };
+  }
 }
 
 /// Represents the overall status of a model package.
@@ -38598,6 +42750,17 @@ class ModelPackageStatusItem {
       status: (json['Status'] as String).toDetailedModelPackageStatus(),
       failureReason: json['FailureReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final status = this.status;
+    final failureReason = this.failureReason;
+    return {
+      'Name': name,
+      'Status': status.toValue(),
+      if (failureReason != null) 'FailureReason': failureReason,
+    };
   }
 }
 
@@ -38665,6 +42828,31 @@ class ModelPackageSummary {
       modelPackageGroupName: json['ModelPackageGroupName'] as String?,
       modelPackageVersion: json['ModelPackageVersion'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final modelPackageArn = this.modelPackageArn;
+    final modelPackageName = this.modelPackageName;
+    final modelPackageStatus = this.modelPackageStatus;
+    final modelApprovalStatus = this.modelApprovalStatus;
+    final modelPackageDescription = this.modelPackageDescription;
+    final modelPackageGroupName = this.modelPackageGroupName;
+    final modelPackageVersion = this.modelPackageVersion;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ModelPackageArn': modelPackageArn,
+      'ModelPackageName': modelPackageName,
+      'ModelPackageStatus': modelPackageStatus.toValue(),
+      if (modelApprovalStatus != null)
+        'ModelApprovalStatus': modelApprovalStatus.toValue(),
+      if (modelPackageDescription != null)
+        'ModelPackageDescription': modelPackageDescription,
+      if (modelPackageGroupName != null)
+        'ModelPackageGroupName': modelPackageGroupName,
+      if (modelPackageVersion != null)
+        'ModelPackageVersion': modelPackageVersion,
+    };
   }
 }
 
@@ -38994,6 +43182,13 @@ class ModelStepMetadata {
       arn: json['Arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
+  }
 }
 
 /// Provides summary information about a model.
@@ -39019,6 +43214,17 @@ class ModelSummary {
       modelArn: json['ModelArn'] as String,
       modelName: json['ModelName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final modelArn = this.modelArn;
+    final modelName = this.modelName;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ModelArn': modelArn,
+      'ModelName': modelName,
+    };
   }
 }
 
@@ -39302,6 +43508,32 @@ class MonitoringExecutionSummary {
       processingJobArn: json['ProcessingJobArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final monitoringExecutionStatus = this.monitoringExecutionStatus;
+    final monitoringScheduleName = this.monitoringScheduleName;
+    final scheduledTime = this.scheduledTime;
+    final endpointName = this.endpointName;
+    final failureReason = this.failureReason;
+    final monitoringJobDefinitionName = this.monitoringJobDefinitionName;
+    final monitoringType = this.monitoringType;
+    final processingJobArn = this.processingJobArn;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'MonitoringExecutionStatus': monitoringExecutionStatus.toValue(),
+      'MonitoringScheduleName': monitoringScheduleName,
+      'ScheduledTime': unixTimestampToJson(scheduledTime),
+      if (endpointName != null) 'EndpointName': endpointName,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (monitoringJobDefinitionName != null)
+        'MonitoringJobDefinitionName': monitoringJobDefinitionName,
+      if (monitoringType != null) 'MonitoringType': monitoringType.toValue(),
+      if (processingJobArn != null) 'ProcessingJobArn': processingJobArn,
+    };
+  }
 }
 
 /// The ground truth labels for the dataset used for the monitoring job.
@@ -39508,6 +43740,19 @@ class MonitoringJobDefinitionSummary {
       monitoringJobDefinitionName:
           json['MonitoringJobDefinitionName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final endpointName = this.endpointName;
+    final monitoringJobDefinitionArn = this.monitoringJobDefinitionArn;
+    final monitoringJobDefinitionName = this.monitoringJobDefinitionName;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'EndpointName': endpointName,
+      'MonitoringJobDefinitionArn': monitoringJobDefinitionArn,
+      'MonitoringJobDefinitionName': monitoringJobDefinitionName,
+    };
   }
 }
 
@@ -39806,6 +44051,40 @@ class MonitoringSchedule {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final endpointName = this.endpointName;
+    final failureReason = this.failureReason;
+    final lastModifiedTime = this.lastModifiedTime;
+    final lastMonitoringExecutionSummary = this.lastMonitoringExecutionSummary;
+    final monitoringScheduleArn = this.monitoringScheduleArn;
+    final monitoringScheduleConfig = this.monitoringScheduleConfig;
+    final monitoringScheduleName = this.monitoringScheduleName;
+    final monitoringScheduleStatus = this.monitoringScheduleStatus;
+    final monitoringType = this.monitoringType;
+    final tags = this.tags;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (endpointName != null) 'EndpointName': endpointName,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (lastMonitoringExecutionSummary != null)
+        'LastMonitoringExecutionSummary': lastMonitoringExecutionSummary,
+      if (monitoringScheduleArn != null)
+        'MonitoringScheduleArn': monitoringScheduleArn,
+      if (monitoringScheduleConfig != null)
+        'MonitoringScheduleConfig': monitoringScheduleConfig,
+      if (monitoringScheduleName != null)
+        'MonitoringScheduleName': monitoringScheduleName,
+      if (monitoringScheduleStatus != null)
+        'MonitoringScheduleStatus': monitoringScheduleStatus.toValue(),
+      if (monitoringType != null) 'MonitoringType': monitoringType.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Configures the monitoring schedule and defines the monitoring job.
@@ -39944,6 +44223,28 @@ class MonitoringScheduleSummary {
           json['MonitoringJobDefinitionName'] as String?,
       monitoringType: (json['MonitoringType'] as String?)?.toMonitoringType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final monitoringScheduleArn = this.monitoringScheduleArn;
+    final monitoringScheduleName = this.monitoringScheduleName;
+    final monitoringScheduleStatus = this.monitoringScheduleStatus;
+    final endpointName = this.endpointName;
+    final monitoringJobDefinitionName = this.monitoringJobDefinitionName;
+    final monitoringType = this.monitoringType;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'MonitoringScheduleArn': monitoringScheduleArn,
+      'MonitoringScheduleName': monitoringScheduleName,
+      'MonitoringScheduleStatus': monitoringScheduleStatus.toValue(),
+      if (endpointName != null) 'EndpointName': endpointName,
+      if (monitoringJobDefinitionName != null)
+        'MonitoringJobDefinitionName': monitoringJobDefinitionName,
+      if (monitoringType != null) 'MonitoringType': monitoringType.toValue(),
+    };
   }
 }
 
@@ -40143,6 +44444,7 @@ class NestedFilters {
     required this.filters,
     required this.nestedPropertyName,
   });
+
   Map<String, dynamic> toJson() {
     final filters = this.filters;
     final nestedPropertyName = this.nestedPropertyName;
@@ -40348,6 +44650,24 @@ class NotebookInstanceLifecycleConfigSummary {
       creationTime: timeStampFromJson(json['CreationTime']),
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final notebookInstanceLifecycleConfigArn =
+        this.notebookInstanceLifecycleConfigArn;
+    final notebookInstanceLifecycleConfigName =
+        this.notebookInstanceLifecycleConfigName;
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      'NotebookInstanceLifecycleConfigArn': notebookInstanceLifecycleConfigArn,
+      'NotebookInstanceLifecycleConfigName':
+          notebookInstanceLifecycleConfigName,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+    };
   }
 }
 
@@ -40590,6 +44910,39 @@ class NotebookInstanceSummary {
       url: json['Url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final notebookInstanceArn = this.notebookInstanceArn;
+    final notebookInstanceName = this.notebookInstanceName;
+    final additionalCodeRepositories = this.additionalCodeRepositories;
+    final creationTime = this.creationTime;
+    final defaultCodeRepository = this.defaultCodeRepository;
+    final instanceType = this.instanceType;
+    final lastModifiedTime = this.lastModifiedTime;
+    final notebookInstanceLifecycleConfigName =
+        this.notebookInstanceLifecycleConfigName;
+    final notebookInstanceStatus = this.notebookInstanceStatus;
+    final url = this.url;
+    return {
+      'NotebookInstanceArn': notebookInstanceArn,
+      'NotebookInstanceName': notebookInstanceName,
+      if (additionalCodeRepositories != null)
+        'AdditionalCodeRepositories': additionalCodeRepositories,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (defaultCodeRepository != null)
+        'DefaultCodeRepository': defaultCodeRepository,
+      if (instanceType != null) 'InstanceType': instanceType.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (notebookInstanceLifecycleConfigName != null)
+        'NotebookInstanceLifecycleConfigName':
+            notebookInstanceLifecycleConfigName,
+      if (notebookInstanceStatus != null)
+        'NotebookInstanceStatus': notebookInstanceStatus.toValue(),
+      if (url != null) 'Url': url,
+    };
+  }
 }
 
 enum NotebookOutputOption {
@@ -40708,6 +45061,17 @@ class ObjectiveStatusCounters {
       succeeded: json['Succeeded'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final pending = this.pending;
+    final succeeded = this.succeeded;
+    return {
+      if (failed != null) 'Failed': failed,
+      if (pending != null) 'Pending': pending,
+      if (succeeded != null) 'Succeeded': succeeded,
+    };
+  }
 }
 
 /// The configuration of an <code>OfflineStore</code>.
@@ -40777,6 +45141,15 @@ class OfflineStoreStatus {
       status: (json['Status'] as String).toOfflineStoreStatusValue(),
       blockedReason: json['BlockedReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final blockedReason = this.blockedReason;
+    return {
+      'Status': status.toValue(),
+      if (blockedReason != null) 'BlockedReason': blockedReason,
+    };
   }
 }
 
@@ -40852,6 +45225,7 @@ class OidcConfig {
     required this.tokenEndpoint,
     required this.userInfoEndpoint,
   });
+
   Map<String, dynamic> toJson() {
     final authorizationEndpoint = this.authorizationEndpoint;
     final clientId = this.clientId;
@@ -40919,6 +45293,26 @@ class OidcConfigForResponse {
       tokenEndpoint: json['TokenEndpoint'] as String?,
       userInfoEndpoint: json['UserInfoEndpoint'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final authorizationEndpoint = this.authorizationEndpoint;
+    final clientId = this.clientId;
+    final issuer = this.issuer;
+    final jwksUri = this.jwksUri;
+    final logoutEndpoint = this.logoutEndpoint;
+    final tokenEndpoint = this.tokenEndpoint;
+    final userInfoEndpoint = this.userInfoEndpoint;
+    return {
+      if (authorizationEndpoint != null)
+        'AuthorizationEndpoint': authorizationEndpoint,
+      if (clientId != null) 'ClientId': clientId,
+      if (issuer != null) 'Issuer': issuer,
+      if (jwksUri != null) 'JwksUri': jwksUri,
+      if (logoutEndpoint != null) 'LogoutEndpoint': logoutEndpoint,
+      if (tokenEndpoint != null) 'TokenEndpoint': tokenEndpoint,
+      if (userInfoEndpoint != null) 'UserInfoEndpoint': userInfoEndpoint,
+    };
   }
 }
 
@@ -41780,6 +46174,15 @@ class Parent {
       trialName: json['TrialName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final experimentName = this.experimentName;
+    final trialName = this.trialName;
+    return {
+      if (experimentName != null) 'ExperimentName': experimentName,
+      if (trialName != null) 'TrialName': trialName,
+    };
+  }
 }
 
 /// A previously completed or stopped hyperparameter tuning job to be used as a
@@ -41835,6 +46238,17 @@ class PendingDeploymentSummary {
           .toList(),
       startTime: timeStampFromJson(json['StartTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointConfigName = this.endpointConfigName;
+    final productionVariants = this.productionVariants;
+    final startTime = this.startTime;
+    return {
+      'EndpointConfigName': endpointConfigName,
+      if (productionVariants != null) 'ProductionVariants': productionVariants,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+    };
   }
 }
 
@@ -41931,6 +46345,37 @@ class PendingProductionVariantSummary {
               ProductionVariantStatus.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final variantName = this.variantName;
+    final acceleratorType = this.acceleratorType;
+    final currentInstanceCount = this.currentInstanceCount;
+    final currentServerlessConfig = this.currentServerlessConfig;
+    final currentWeight = this.currentWeight;
+    final deployedImages = this.deployedImages;
+    final desiredInstanceCount = this.desiredInstanceCount;
+    final desiredServerlessConfig = this.desiredServerlessConfig;
+    final desiredWeight = this.desiredWeight;
+    final instanceType = this.instanceType;
+    final variantStatus = this.variantStatus;
+    return {
+      'VariantName': variantName,
+      if (acceleratorType != null) 'AcceleratorType': acceleratorType.toValue(),
+      if (currentInstanceCount != null)
+        'CurrentInstanceCount': currentInstanceCount,
+      if (currentServerlessConfig != null)
+        'CurrentServerlessConfig': currentServerlessConfig,
+      if (currentWeight != null) 'CurrentWeight': currentWeight,
+      if (deployedImages != null) 'DeployedImages': deployedImages,
+      if (desiredInstanceCount != null)
+        'DesiredInstanceCount': desiredInstanceCount,
+      if (desiredServerlessConfig != null)
+        'DesiredServerlessConfig': desiredServerlessConfig,
+      if (desiredWeight != null) 'DesiredWeight': desiredWeight,
+      if (instanceType != null) 'InstanceType': instanceType.toValue(),
+      if (variantStatus != null) 'VariantStatus': variantStatus,
+    };
   }
 }
 
@@ -42051,6 +46496,42 @@ class Pipeline {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final lastRunTime = this.lastRunTime;
+    final parallelismConfiguration = this.parallelismConfiguration;
+    final pipelineArn = this.pipelineArn;
+    final pipelineDescription = this.pipelineDescription;
+    final pipelineDisplayName = this.pipelineDisplayName;
+    final pipelineName = this.pipelineName;
+    final pipelineStatus = this.pipelineStatus;
+    final roleArn = this.roleArn;
+    final tags = this.tags;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (lastRunTime != null) 'LastRunTime': unixTimestampToJson(lastRunTime),
+      if (parallelismConfiguration != null)
+        'ParallelismConfiguration': parallelismConfiguration,
+      if (pipelineArn != null) 'PipelineArn': pipelineArn,
+      if (pipelineDescription != null)
+        'PipelineDescription': pipelineDescription,
+      if (pipelineDisplayName != null)
+        'PipelineDisplayName': pipelineDisplayName,
+      if (pipelineName != null) 'PipelineName': pipelineName,
+      if (pipelineStatus != null) 'PipelineStatus': pipelineStatus.toValue(),
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// The location of the pipeline definition stored in Amazon S3.
@@ -42070,6 +46551,7 @@ class PipelineDefinitionS3Location {
     required this.objectKey,
     this.versionId,
   });
+
   Map<String, dynamic> toJson() {
     final bucket = this.bucket;
     final objectKey = this.objectKey;
@@ -42165,6 +46647,45 @@ class PipelineExecution {
           .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final failureReason = this.failureReason;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final parallelismConfiguration = this.parallelismConfiguration;
+    final pipelineArn = this.pipelineArn;
+    final pipelineExecutionArn = this.pipelineExecutionArn;
+    final pipelineExecutionDescription = this.pipelineExecutionDescription;
+    final pipelineExecutionDisplayName = this.pipelineExecutionDisplayName;
+    final pipelineExecutionStatus = this.pipelineExecutionStatus;
+    final pipelineExperimentConfig = this.pipelineExperimentConfig;
+    final pipelineParameters = this.pipelineParameters;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (parallelismConfiguration != null)
+        'ParallelismConfiguration': parallelismConfiguration,
+      if (pipelineArn != null) 'PipelineArn': pipelineArn,
+      if (pipelineExecutionArn != null)
+        'PipelineExecutionArn': pipelineExecutionArn,
+      if (pipelineExecutionDescription != null)
+        'PipelineExecutionDescription': pipelineExecutionDescription,
+      if (pipelineExecutionDisplayName != null)
+        'PipelineExecutionDisplayName': pipelineExecutionDisplayName,
+      if (pipelineExecutionStatus != null)
+        'PipelineExecutionStatus': pipelineExecutionStatus.toValue(),
+      if (pipelineExperimentConfig != null)
+        'PipelineExperimentConfig': pipelineExperimentConfig,
+      if (pipelineParameters != null) 'PipelineParameters': pipelineParameters,
+    };
   }
 }
 
@@ -42277,6 +46798,31 @@ class PipelineExecutionStep {
       stepName: json['StepName'] as String?,
       stepStatus: (json['StepStatus'] as String?)?.toStepStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attemptCount = this.attemptCount;
+    final cacheHitResult = this.cacheHitResult;
+    final endTime = this.endTime;
+    final failureReason = this.failureReason;
+    final metadata = this.metadata;
+    final startTime = this.startTime;
+    final stepDescription = this.stepDescription;
+    final stepDisplayName = this.stepDisplayName;
+    final stepName = this.stepName;
+    final stepStatus = this.stepStatus;
+    return {
+      if (attemptCount != null) 'AttemptCount': attemptCount,
+      if (cacheHitResult != null) 'CacheHitResult': cacheHitResult,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (metadata != null) 'Metadata': metadata,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (stepDescription != null) 'StepDescription': stepDescription,
+      if (stepDisplayName != null) 'StepDisplayName': stepDisplayName,
+      if (stepName != null) 'StepName': stepName,
+      if (stepStatus != null) 'StepStatus': stepStatus.toValue(),
+    };
   }
 }
 
@@ -42457,6 +47003,37 @@ class PipelineExecutionStepMetadata {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final callback = this.callback;
+    final clarifyCheck = this.clarifyCheck;
+    final condition = this.condition;
+    final emr = this.emr;
+    final fail = this.fail;
+    final lambda = this.lambda;
+    final model = this.model;
+    final processingJob = this.processingJob;
+    final qualityCheck = this.qualityCheck;
+    final registerModel = this.registerModel;
+    final trainingJob = this.trainingJob;
+    final transformJob = this.transformJob;
+    final tuningJob = this.tuningJob;
+    return {
+      if (callback != null) 'Callback': callback,
+      if (clarifyCheck != null) 'ClarifyCheck': clarifyCheck,
+      if (condition != null) 'Condition': condition,
+      if (emr != null) 'EMR': emr,
+      if (fail != null) 'Fail': fail,
+      if (lambda != null) 'Lambda': lambda,
+      if (model != null) 'Model': model,
+      if (processingJob != null) 'ProcessingJob': processingJob,
+      if (qualityCheck != null) 'QualityCheck': qualityCheck,
+      if (registerModel != null) 'RegisterModel': registerModel,
+      if (trainingJob != null) 'TrainingJob': trainingJob,
+      if (transformJob != null) 'TransformJob': transformJob,
+      if (tuningJob != null) 'TuningJob': tuningJob,
+    };
+  }
 }
 
 /// A pipeline execution summary.
@@ -42502,6 +47079,28 @@ class PipelineExecutionSummary {
       startTime: timeStampFromJson(json['StartTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipelineExecutionArn = this.pipelineExecutionArn;
+    final pipelineExecutionDescription = this.pipelineExecutionDescription;
+    final pipelineExecutionDisplayName = this.pipelineExecutionDisplayName;
+    final pipelineExecutionFailureReason = this.pipelineExecutionFailureReason;
+    final pipelineExecutionStatus = this.pipelineExecutionStatus;
+    final startTime = this.startTime;
+    return {
+      if (pipelineExecutionArn != null)
+        'PipelineExecutionArn': pipelineExecutionArn,
+      if (pipelineExecutionDescription != null)
+        'PipelineExecutionDescription': pipelineExecutionDescription,
+      if (pipelineExecutionDisplayName != null)
+        'PipelineExecutionDisplayName': pipelineExecutionDisplayName,
+      if (pipelineExecutionFailureReason != null)
+        'PipelineExecutionFailureReason': pipelineExecutionFailureReason,
+      if (pipelineExecutionStatus != null)
+        'PipelineExecutionStatus': pipelineExecutionStatus.toValue(),
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+    };
+  }
 }
 
 /// Specifies the names of the experiment and trial created by a pipeline.
@@ -42521,6 +47120,15 @@ class PipelineExperimentConfig {
       experimentName: json['ExperimentName'] as String?,
       trialName: json['TrialName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final experimentName = this.experimentName;
+    final trialName = this.trialName;
+    return {
+      if (experimentName != null) 'ExperimentName': experimentName,
+      if (trialName != null) 'TrialName': trialName,
+    };
   }
 }
 
@@ -42594,6 +47202,32 @@ class PipelineSummary {
       pipelineName: json['PipelineName'] as String?,
       roleArn: json['RoleArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final lastExecutionTime = this.lastExecutionTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final pipelineArn = this.pipelineArn;
+    final pipelineDescription = this.pipelineDescription;
+    final pipelineDisplayName = this.pipelineDisplayName;
+    final pipelineName = this.pipelineName;
+    final roleArn = this.roleArn;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastExecutionTime != null)
+        'LastExecutionTime': unixTimestampToJson(lastExecutionTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (pipelineArn != null) 'PipelineArn': pipelineArn,
+      if (pipelineDescription != null)
+        'PipelineDescription': pipelineDescription,
+      if (pipelineDisplayName != null)
+        'PipelineDisplayName': pipelineDisplayName,
+      if (pipelineName != null) 'PipelineName': pipelineName,
+      if (roleArn != null) 'RoleArn': roleArn,
+    };
   }
 }
 
@@ -43161,6 +47795,63 @@ class ProcessingJob {
       trainingJobArn: json['TrainingJobArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appSpecification = this.appSpecification;
+    final autoMLJobArn = this.autoMLJobArn;
+    final creationTime = this.creationTime;
+    final environment = this.environment;
+    final exitMessage = this.exitMessage;
+    final experimentConfig = this.experimentConfig;
+    final failureReason = this.failureReason;
+    final lastModifiedTime = this.lastModifiedTime;
+    final monitoringScheduleArn = this.monitoringScheduleArn;
+    final networkConfig = this.networkConfig;
+    final processingEndTime = this.processingEndTime;
+    final processingInputs = this.processingInputs;
+    final processingJobArn = this.processingJobArn;
+    final processingJobName = this.processingJobName;
+    final processingJobStatus = this.processingJobStatus;
+    final processingOutputConfig = this.processingOutputConfig;
+    final processingResources = this.processingResources;
+    final processingStartTime = this.processingStartTime;
+    final roleArn = this.roleArn;
+    final stoppingCondition = this.stoppingCondition;
+    final tags = this.tags;
+    final trainingJobArn = this.trainingJobArn;
+    return {
+      if (appSpecification != null) 'AppSpecification': appSpecification,
+      if (autoMLJobArn != null) 'AutoMLJobArn': autoMLJobArn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (environment != null) 'Environment': environment,
+      if (exitMessage != null) 'ExitMessage': exitMessage,
+      if (experimentConfig != null) 'ExperimentConfig': experimentConfig,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (monitoringScheduleArn != null)
+        'MonitoringScheduleArn': monitoringScheduleArn,
+      if (networkConfig != null) 'NetworkConfig': networkConfig,
+      if (processingEndTime != null)
+        'ProcessingEndTime': unixTimestampToJson(processingEndTime),
+      if (processingInputs != null) 'ProcessingInputs': processingInputs,
+      if (processingJobArn != null) 'ProcessingJobArn': processingJobArn,
+      if (processingJobName != null) 'ProcessingJobName': processingJobName,
+      if (processingJobStatus != null)
+        'ProcessingJobStatus': processingJobStatus.toValue(),
+      if (processingOutputConfig != null)
+        'ProcessingOutputConfig': processingOutputConfig,
+      if (processingResources != null)
+        'ProcessingResources': processingResources,
+      if (processingStartTime != null)
+        'ProcessingStartTime': unixTimestampToJson(processingStartTime),
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (stoppingCondition != null) 'StoppingCondition': stoppingCondition,
+      if (tags != null) 'Tags': tags,
+      if (trainingJobArn != null) 'TrainingJobArn': trainingJobArn,
+    };
+  }
 }
 
 enum ProcessingJobStatus {
@@ -43219,6 +47910,13 @@ class ProcessingJobStepMetadata {
       arn: json['Arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
+  }
 }
 
 /// Summary of information about a processing job.
@@ -43272,6 +47970,29 @@ class ProcessingJobSummary {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
       processingEndTime: timeStampFromJson(json['ProcessingEndTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final processingJobArn = this.processingJobArn;
+    final processingJobName = this.processingJobName;
+    final processingJobStatus = this.processingJobStatus;
+    final exitMessage = this.exitMessage;
+    final failureReason = this.failureReason;
+    final lastModifiedTime = this.lastModifiedTime;
+    final processingEndTime = this.processingEndTime;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ProcessingJobArn': processingJobArn,
+      'ProcessingJobName': processingJobName,
+      'ProcessingJobStatus': processingJobStatus.toValue(),
+      if (exitMessage != null) 'ExitMessage': exitMessage,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (processingEndTime != null)
+        'ProcessingEndTime': unixTimestampToJson(processingEndTime),
+    };
   }
 }
 
@@ -44423,6 +49144,17 @@ class ProductionVariantStatus {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final startTime = this.startTime;
+    final statusMessage = this.statusMessage;
+    return {
+      'Status': status.toValue(),
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 /// Describes weight and capacities for a production variant associated with an
@@ -44498,6 +49230,33 @@ class ProductionVariantSummary {
               ProductionVariantStatus.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final variantName = this.variantName;
+    final currentInstanceCount = this.currentInstanceCount;
+    final currentServerlessConfig = this.currentServerlessConfig;
+    final currentWeight = this.currentWeight;
+    final deployedImages = this.deployedImages;
+    final desiredInstanceCount = this.desiredInstanceCount;
+    final desiredServerlessConfig = this.desiredServerlessConfig;
+    final desiredWeight = this.desiredWeight;
+    final variantStatus = this.variantStatus;
+    return {
+      'VariantName': variantName,
+      if (currentInstanceCount != null)
+        'CurrentInstanceCount': currentInstanceCount,
+      if (currentServerlessConfig != null)
+        'CurrentServerlessConfig': currentServerlessConfig,
+      if (currentWeight != null) 'CurrentWeight': currentWeight,
+      if (deployedImages != null) 'DeployedImages': deployedImages,
+      if (desiredInstanceCount != null)
+        'DesiredInstanceCount': desiredInstanceCount,
+      if (desiredServerlessConfig != null)
+        'DesiredServerlessConfig': desiredServerlessConfig,
+      if (desiredWeight != null) 'DesiredWeight': desiredWeight,
+      if (variantStatus != null) 'VariantStatus': variantStatus,
+    };
   }
 }
 
@@ -44587,6 +49346,7 @@ class ProfilerConfigForUpdate {
     this.profilingParameters,
     this.s3OutputPath,
   });
+
   Map<String, dynamic> toJson() {
     final disableProfiler = this.disableProfiler;
     final profilingIntervalInMilliseconds =
@@ -44708,6 +49468,25 @@ class ProfilerRuleEvaluationStatus {
       statusDetails: json['StatusDetails'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastModifiedTime = this.lastModifiedTime;
+    final ruleConfigurationName = this.ruleConfigurationName;
+    final ruleEvaluationJobArn = this.ruleEvaluationJobArn;
+    final ruleEvaluationStatus = this.ruleEvaluationStatus;
+    final statusDetails = this.statusDetails;
+    return {
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (ruleConfigurationName != null)
+        'RuleConfigurationName': ruleConfigurationName,
+      if (ruleEvaluationJobArn != null)
+        'RuleEvaluationJobArn': ruleEvaluationJobArn,
+      if (ruleEvaluationStatus != null)
+        'RuleEvaluationStatus': ruleEvaluationStatus.toValue(),
+      if (statusDetails != null) 'StatusDetails': statusDetails,
+    };
+  }
 }
 
 enum ProfilingStatus {
@@ -44821,6 +49600,42 @@ class Project {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final projectArn = this.projectArn;
+    final projectDescription = this.projectDescription;
+    final projectId = this.projectId;
+    final projectName = this.projectName;
+    final projectStatus = this.projectStatus;
+    final serviceCatalogProvisionedProductDetails =
+        this.serviceCatalogProvisionedProductDetails;
+    final serviceCatalogProvisioningDetails =
+        this.serviceCatalogProvisioningDetails;
+    final tags = this.tags;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (projectArn != null) 'ProjectArn': projectArn,
+      if (projectDescription != null) 'ProjectDescription': projectDescription,
+      if (projectId != null) 'ProjectId': projectId,
+      if (projectName != null) 'ProjectName': projectName,
+      if (projectStatus != null) 'ProjectStatus': projectStatus.toValue(),
+      if (serviceCatalogProvisionedProductDetails != null)
+        'ServiceCatalogProvisionedProductDetails':
+            serviceCatalogProvisionedProductDetails,
+      if (serviceCatalogProvisioningDetails != null)
+        'ServiceCatalogProvisioningDetails': serviceCatalogProvisioningDetails,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -44987,6 +49802,23 @@ class ProjectSummary {
       projectDescription: json['ProjectDescription'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final projectArn = this.projectArn;
+    final projectId = this.projectId;
+    final projectName = this.projectName;
+    final projectStatus = this.projectStatus;
+    final projectDescription = this.projectDescription;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'ProjectArn': projectArn,
+      'ProjectId': projectId,
+      'ProjectName': projectName,
+      'ProjectStatus': projectStatus.toValue(),
+      if (projectDescription != null) 'ProjectDescription': projectDescription,
+    };
+  }
 }
 
 /// Part of the <code>SuggestionQuery</code> type. Specifies a hint for
@@ -44998,6 +49830,7 @@ class PropertyNameQuery {
   PropertyNameQuery({
     required this.propertyNameHint,
   });
+
   Map<String, dynamic> toJson() {
     final propertyNameHint = this.propertyNameHint;
     return {
@@ -45020,6 +49853,13 @@ class PropertyNameSuggestion {
     return PropertyNameSuggestion(
       propertyName: json['PropertyName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final propertyName = this.propertyName;
+    return {
+      if (propertyName != null) 'PropertyName': propertyName,
+    };
   }
 }
 
@@ -45401,6 +50241,13 @@ class PutModelPackageGroupPolicyOutput {
       modelPackageGroupArn: json['ModelPackageGroupArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelPackageGroupArn = this.modelPackageGroupArn;
+    return {
+      'ModelPackageGroupArn': modelPackageGroupArn,
+    };
+  }
 }
 
 /// Container for the metadata for a Quality check step. For more information,
@@ -45477,6 +50324,41 @@ class QualityCheckStepMetadata {
       violationReport: json['ViolationReport'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final baselineUsedForDriftCheckConstraints =
+        this.baselineUsedForDriftCheckConstraints;
+    final baselineUsedForDriftCheckStatistics =
+        this.baselineUsedForDriftCheckStatistics;
+    final calculatedBaselineConstraints = this.calculatedBaselineConstraints;
+    final calculatedBaselineStatistics = this.calculatedBaselineStatistics;
+    final checkJobArn = this.checkJobArn;
+    final checkType = this.checkType;
+    final modelPackageGroupName = this.modelPackageGroupName;
+    final registerNewBaseline = this.registerNewBaseline;
+    final skipCheck = this.skipCheck;
+    final violationReport = this.violationReport;
+    return {
+      if (baselineUsedForDriftCheckConstraints != null)
+        'BaselineUsedForDriftCheckConstraints':
+            baselineUsedForDriftCheckConstraints,
+      if (baselineUsedForDriftCheckStatistics != null)
+        'BaselineUsedForDriftCheckStatistics':
+            baselineUsedForDriftCheckStatistics,
+      if (calculatedBaselineConstraints != null)
+        'CalculatedBaselineConstraints': calculatedBaselineConstraints,
+      if (calculatedBaselineStatistics != null)
+        'CalculatedBaselineStatistics': calculatedBaselineStatistics,
+      if (checkJobArn != null) 'CheckJobArn': checkJobArn,
+      if (checkType != null) 'CheckType': checkType,
+      if (modelPackageGroupName != null)
+        'ModelPackageGroupName': modelPackageGroupName,
+      if (registerNewBaseline != null)
+        'RegisterNewBaseline': registerNewBaseline,
+      if (skipCheck != null) 'SkipCheck': skipCheck,
+      if (violationReport != null) 'ViolationReport': violationReport,
+    };
+  }
 }
 
 /// A set of filters to narrow the set of lineage entities connected to the
@@ -45522,6 +50404,7 @@ class QueryFilters {
     this.properties,
     this.types,
   });
+
   Map<String, dynamic> toJson() {
     final createdAfter = this.createdAfter;
     final createdBefore = this.createdBefore;
@@ -45576,6 +50459,17 @@ class QueryLineageResponse {
           .map((e) => Vertex.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final edges = this.edges;
+    final nextToken = this.nextToken;
+    final vertices = this.vertices;
+    return {
+      if (edges != null) 'Edges': edges,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (vertices != null) 'Vertices': vertices,
+    };
   }
 }
 
@@ -45739,6 +50633,7 @@ class RStudioServerProDomainSettingsForUpdate {
     required this.domainExecutionRoleArn,
     this.defaultResourceSpec,
   });
+
   Map<String, dynamic> toJson() {
     final domainExecutionRoleArn = this.domainExecutionRoleArn;
     final defaultResourceSpec = this.defaultResourceSpec;
@@ -45787,6 +50682,7 @@ class RecommendationJobCompiledOutputConfig {
   RecommendationJobCompiledOutputConfig({
     this.s3OutputUri,
   });
+
   Map<String, dynamic> toJson() {
     final s3OutputUri = this.s3OutputUri;
     return {
@@ -45947,6 +50843,7 @@ class RecommendationJobOutputConfig {
     this.compiledOutputConfig,
     this.kmsKeyId,
   });
+
   Map<String, dynamic> toJson() {
     final compiledOutputConfig = this.compiledOutputConfig;
     final kmsKeyId = this.kmsKeyId;
@@ -46130,6 +51027,19 @@ class RecommendationMetrics {
       maxInvocations: json['MaxInvocations'] as int,
       modelLatency: json['ModelLatency'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final costPerHour = this.costPerHour;
+    final costPerInference = this.costPerInference;
+    final maxInvocations = this.maxInvocations;
+    final modelLatency = this.modelLatency;
+    return {
+      'CostPerHour': costPerHour,
+      'CostPerInference': costPerInference,
+      'MaxInvocations': maxInvocations,
+      'ModelLatency': modelLatency,
+    };
   }
 }
 
@@ -46319,6 +51229,13 @@ class RegisterModelStepMetadata {
       arn: json['Arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
+  }
 }
 
 class RenderUiTemplateResponse {
@@ -46343,6 +51260,15 @@ class RenderUiTemplateResponse {
       renderedContent: json['RenderedContent'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final renderedContent = this.renderedContent;
+    return {
+      'Errors': errors,
+      'RenderedContent': renderedContent,
+    };
+  }
 }
 
 /// Contains input values for a task.
@@ -46357,6 +51283,7 @@ class RenderableTask {
   RenderableTask({
     required this.input,
   });
+
   Map<String, dynamic> toJson() {
     final input = this.input;
     return {
@@ -46382,6 +51309,15 @@ class RenderingError {
       code: json['Code'] as String,
       message: json['Message'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      'Code': code,
+      'Message': message,
+    };
   }
 }
 
@@ -46473,6 +51409,17 @@ class ResolvedAttributes {
           : null,
       problemType: (json['ProblemType'] as String?)?.toProblemType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoMLJobObjective = this.autoMLJobObjective;
+    final completionCriteria = this.completionCriteria;
+    final problemType = this.problemType;
+    return {
+      if (autoMLJobObjective != null) 'AutoMLJobObjective': autoMLJobObjective,
+      if (completionCriteria != null) 'CompletionCriteria': completionCriteria,
+      if (problemType != null) 'ProblemType': problemType.toValue(),
+    };
   }
 }
 
@@ -46759,6 +51706,7 @@ class RetentionPolicy {
   RetentionPolicy({
     this.homeEfsFileSystem,
   });
+
   Map<String, dynamic> toJson() {
     final homeEfsFileSystem = this.homeEfsFileSystem;
     return {
@@ -46807,6 +51755,14 @@ class RetryPipelineExecutionResponse {
     return RetryPipelineExecutionResponse(
       pipelineExecutionArn: json['PipelineExecutionArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipelineExecutionArn = this.pipelineExecutionArn;
+    return {
+      if (pipelineExecutionArn != null)
+        'PipelineExecutionArn': pipelineExecutionArn,
+    };
   }
 }
 
@@ -47357,6 +52313,7 @@ class SearchExpression {
     this.operator,
     this.subExpressions,
   });
+
   Map<String, dynamic> toJson() {
     final filters = this.filters;
     final nestedFilters = this.nestedFilters;
@@ -47456,6 +52413,35 @@ class SearchRecord {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    final experiment = this.experiment;
+    final featureGroup = this.featureGroup;
+    final featureMetadata = this.featureMetadata;
+    final modelPackage = this.modelPackage;
+    final modelPackageGroup = this.modelPackageGroup;
+    final pipeline = this.pipeline;
+    final pipelineExecution = this.pipelineExecution;
+    final project = this.project;
+    final trainingJob = this.trainingJob;
+    final trial = this.trial;
+    final trialComponent = this.trialComponent;
+    return {
+      if (endpoint != null) 'Endpoint': endpoint,
+      if (experiment != null) 'Experiment': experiment,
+      if (featureGroup != null) 'FeatureGroup': featureGroup,
+      if (featureMetadata != null) 'FeatureMetadata': featureMetadata,
+      if (modelPackage != null) 'ModelPackage': modelPackage,
+      if (modelPackageGroup != null) 'ModelPackageGroup': modelPackageGroup,
+      if (pipeline != null) 'Pipeline': pipeline,
+      if (pipelineExecution != null) 'PipelineExecution': pipelineExecution,
+      if (project != null) 'Project': project,
+      if (trainingJob != null) 'TrainingJob': trainingJob,
+      if (trial != null) 'Trial': trial,
+      if (trialComponent != null) 'TrialComponent': trialComponent,
+    };
+  }
 }
 
 class SearchResponse {
@@ -47479,6 +52465,15 @@ class SearchResponse {
           .map((e) => SearchRecord.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final results = this.results;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (results != null) 'Results': results,
+    };
   }
 }
 
@@ -47755,6 +52750,19 @@ class SecondaryStatusTransition {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final startTime = this.startTime;
+    final status = this.status;
+    final endTime = this.endTime;
+    final statusMessage = this.statusMessage;
+    return {
+      'StartTime': unixTimestampToJson(startTime),
+      'Status': status.toValue(),
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 class SendPipelineExecutionStepFailureResponse {
@@ -47770,6 +52778,14 @@ class SendPipelineExecutionStepFailureResponse {
       pipelineExecutionArn: json['PipelineExecutionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipelineExecutionArn = this.pipelineExecutionArn;
+    return {
+      if (pipelineExecutionArn != null)
+        'PipelineExecutionArn': pipelineExecutionArn,
+    };
+  }
 }
 
 class SendPipelineExecutionStepSuccessResponse {
@@ -47784,6 +52800,14 @@ class SendPipelineExecutionStepSuccessResponse {
     return SendPipelineExecutionStepSuccessResponse(
       pipelineExecutionArn: json['PipelineExecutionArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipelineExecutionArn = this.pipelineExecutionArn;
+    return {
+      if (pipelineExecutionArn != null)
+        'PipelineExecutionArn': pipelineExecutionArn,
+    };
   }
 }
 
@@ -47838,6 +52862,18 @@ class ServiceCatalogProvisionedProductDetails {
       provisionedProductStatusMessage:
           json['ProvisionedProductStatusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final provisionedProductId = this.provisionedProductId;
+    final provisionedProductStatusMessage =
+        this.provisionedProductStatusMessage;
+    return {
+      if (provisionedProductId != null)
+        'ProvisionedProductId': provisionedProductId,
+      if (provisionedProductStatusMessage != null)
+        'ProvisionedProductStatusMessage': provisionedProductStatusMessage,
+    };
   }
 }
 
@@ -47909,6 +52945,7 @@ class ServiceCatalogProvisioningUpdateDetails {
     this.provisioningArtifactId,
     this.provisioningParameters,
   });
+
   Map<String, dynamic> toJson() {
     final provisioningArtifactId = this.provisioningArtifactId;
     final provisioningParameters = this.provisioningParameters;
@@ -48566,6 +53603,14 @@ class StartPipelineExecutionResponse {
       pipelineExecutionArn: json['PipelineExecutionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipelineExecutionArn = this.pipelineExecutionArn;
+    return {
+      if (pipelineExecutionArn != null)
+        'PipelineExecutionArn': pipelineExecutionArn,
+    };
+  }
 }
 
 enum StepStatus {
@@ -48627,6 +53672,14 @@ class StopPipelineExecutionResponse {
     return StopPipelineExecutionResponse(
       pipelineExecutionArn: json['PipelineExecutionArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipelineExecutionArn = this.pipelineExecutionArn;
+    return {
+      if (pipelineExecutionArn != null)
+        'PipelineExecutionArn': pipelineExecutionArn,
+    };
   }
 }
 
@@ -48766,6 +53819,26 @@ class StudioLifecycleConfigDetails {
       studioLifecycleConfigName: json['StudioLifecycleConfigName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final studioLifecycleConfigAppType = this.studioLifecycleConfigAppType;
+    final studioLifecycleConfigArn = this.studioLifecycleConfigArn;
+    final studioLifecycleConfigName = this.studioLifecycleConfigName;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (studioLifecycleConfigAppType != null)
+        'StudioLifecycleConfigAppType': studioLifecycleConfigAppType.toValue(),
+      if (studioLifecycleConfigArn != null)
+        'StudioLifecycleConfigArn': studioLifecycleConfigArn,
+      if (studioLifecycleConfigName != null)
+        'StudioLifecycleConfigName': studioLifecycleConfigName,
+    };
+  }
 }
 
 enum StudioLifecycleConfigSortKey {
@@ -48835,6 +53908,22 @@ class SubscribedWorkteam {
       sellerName: json['SellerName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final workteamArn = this.workteamArn;
+    final listingId = this.listingId;
+    final marketplaceDescription = this.marketplaceDescription;
+    final marketplaceTitle = this.marketplaceTitle;
+    final sellerName = this.sellerName;
+    return {
+      'WorkteamArn': workteamArn,
+      if (listingId != null) 'ListingId': listingId,
+      if (marketplaceDescription != null)
+        'MarketplaceDescription': marketplaceDescription,
+      if (marketplaceTitle != null) 'MarketplaceTitle': marketplaceTitle,
+      if (sellerName != null) 'SellerName': sellerName,
+    };
+  }
 }
 
 /// Specified in the <a>GetSearchSuggestions</a> request. Limits the property
@@ -48847,6 +53936,7 @@ class SuggestionQuery {
   SuggestionQuery({
     this.propertyNameQuery,
   });
+
   Map<String, dynamic> toJson() {
     final propertyNameQuery = this.propertyNameQuery;
     return {
@@ -50180,6 +55270,103 @@ class TrainingJob {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final algorithmSpecification = this.algorithmSpecification;
+    final autoMLJobArn = this.autoMLJobArn;
+    final billableTimeInSeconds = this.billableTimeInSeconds;
+    final checkpointConfig = this.checkpointConfig;
+    final creationTime = this.creationTime;
+    final debugHookConfig = this.debugHookConfig;
+    final debugRuleConfigurations = this.debugRuleConfigurations;
+    final debugRuleEvaluationStatuses = this.debugRuleEvaluationStatuses;
+    final enableInterContainerTrafficEncryption =
+        this.enableInterContainerTrafficEncryption;
+    final enableManagedSpotTraining = this.enableManagedSpotTraining;
+    final enableNetworkIsolation = this.enableNetworkIsolation;
+    final environment = this.environment;
+    final experimentConfig = this.experimentConfig;
+    final failureReason = this.failureReason;
+    final finalMetricDataList = this.finalMetricDataList;
+    final hyperParameters = this.hyperParameters;
+    final inputDataConfig = this.inputDataConfig;
+    final labelingJobArn = this.labelingJobArn;
+    final lastModifiedTime = this.lastModifiedTime;
+    final modelArtifacts = this.modelArtifacts;
+    final outputDataConfig = this.outputDataConfig;
+    final resourceConfig = this.resourceConfig;
+    final retryStrategy = this.retryStrategy;
+    final roleArn = this.roleArn;
+    final secondaryStatus = this.secondaryStatus;
+    final secondaryStatusTransitions = this.secondaryStatusTransitions;
+    final stoppingCondition = this.stoppingCondition;
+    final tags = this.tags;
+    final tensorBoardOutputConfig = this.tensorBoardOutputConfig;
+    final trainingEndTime = this.trainingEndTime;
+    final trainingJobArn = this.trainingJobArn;
+    final trainingJobName = this.trainingJobName;
+    final trainingJobStatus = this.trainingJobStatus;
+    final trainingStartTime = this.trainingStartTime;
+    final trainingTimeInSeconds = this.trainingTimeInSeconds;
+    final tuningJobArn = this.tuningJobArn;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (algorithmSpecification != null)
+        'AlgorithmSpecification': algorithmSpecification,
+      if (autoMLJobArn != null) 'AutoMLJobArn': autoMLJobArn,
+      if (billableTimeInSeconds != null)
+        'BillableTimeInSeconds': billableTimeInSeconds,
+      if (checkpointConfig != null) 'CheckpointConfig': checkpointConfig,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (debugHookConfig != null) 'DebugHookConfig': debugHookConfig,
+      if (debugRuleConfigurations != null)
+        'DebugRuleConfigurations': debugRuleConfigurations,
+      if (debugRuleEvaluationStatuses != null)
+        'DebugRuleEvaluationStatuses': debugRuleEvaluationStatuses,
+      if (enableInterContainerTrafficEncryption != null)
+        'EnableInterContainerTrafficEncryption':
+            enableInterContainerTrafficEncryption,
+      if (enableManagedSpotTraining != null)
+        'EnableManagedSpotTraining': enableManagedSpotTraining,
+      if (enableNetworkIsolation != null)
+        'EnableNetworkIsolation': enableNetworkIsolation,
+      if (environment != null) 'Environment': environment,
+      if (experimentConfig != null) 'ExperimentConfig': experimentConfig,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (finalMetricDataList != null)
+        'FinalMetricDataList': finalMetricDataList,
+      if (hyperParameters != null) 'HyperParameters': hyperParameters,
+      if (inputDataConfig != null) 'InputDataConfig': inputDataConfig,
+      if (labelingJobArn != null) 'LabelingJobArn': labelingJobArn,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (modelArtifacts != null) 'ModelArtifacts': modelArtifacts,
+      if (outputDataConfig != null) 'OutputDataConfig': outputDataConfig,
+      if (resourceConfig != null) 'ResourceConfig': resourceConfig,
+      if (retryStrategy != null) 'RetryStrategy': retryStrategy,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (secondaryStatus != null) 'SecondaryStatus': secondaryStatus.toValue(),
+      if (secondaryStatusTransitions != null)
+        'SecondaryStatusTransitions': secondaryStatusTransitions,
+      if (stoppingCondition != null) 'StoppingCondition': stoppingCondition,
+      if (tags != null) 'Tags': tags,
+      if (tensorBoardOutputConfig != null)
+        'TensorBoardOutputConfig': tensorBoardOutputConfig,
+      if (trainingEndTime != null)
+        'TrainingEndTime': unixTimestampToJson(trainingEndTime),
+      if (trainingJobArn != null) 'TrainingJobArn': trainingJobArn,
+      if (trainingJobName != null) 'TrainingJobName': trainingJobName,
+      if (trainingJobStatus != null)
+        'TrainingJobStatus': trainingJobStatus.toValue(),
+      if (trainingStartTime != null)
+        'TrainingStartTime': unixTimestampToJson(trainingStartTime),
+      if (trainingTimeInSeconds != null)
+        'TrainingTimeInSeconds': trainingTimeInSeconds,
+      if (tuningJobArn != null) 'TuningJobArn': tuningJobArn,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 /// Defines the input needed to run a training job using the algorithm.
@@ -50405,6 +55592,21 @@ class TrainingJobStatusCounters {
       stopped: json['Stopped'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completed = this.completed;
+    final inProgress = this.inProgress;
+    final nonRetryableError = this.nonRetryableError;
+    final retryableError = this.retryableError;
+    final stopped = this.stopped;
+    return {
+      if (completed != null) 'Completed': completed,
+      if (inProgress != null) 'InProgress': inProgress,
+      if (nonRetryableError != null) 'NonRetryableError': nonRetryableError,
+      if (retryableError != null) 'RetryableError': retryableError,
+      if (stopped != null) 'Stopped': stopped,
+    };
+  }
 }
 
 /// Metadata for a training job step.
@@ -50420,6 +55622,13 @@ class TrainingJobStepMetadata {
     return TrainingJobStepMetadata(
       arn: json['Arn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -50464,6 +55673,25 @@ class TrainingJobSummary {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
       trainingEndTime: timeStampFromJson(json['TrainingEndTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final trainingJobArn = this.trainingJobArn;
+    final trainingJobName = this.trainingJobName;
+    final trainingJobStatus = this.trainingJobStatus;
+    final lastModifiedTime = this.lastModifiedTime;
+    final trainingEndTime = this.trainingEndTime;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'TrainingJobArn': trainingJobArn,
+      'TrainingJobName': trainingJobName,
+      'TrainingJobStatus': trainingJobStatus.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (trainingEndTime != null)
+        'TrainingEndTime': unixTimestampToJson(trainingEndTime),
+    };
   }
 }
 
@@ -51036,6 +56264,58 @@ class TransformJob {
       transformStartTime: timeStampFromJson(json['TransformStartTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoMLJobArn = this.autoMLJobArn;
+    final batchStrategy = this.batchStrategy;
+    final creationTime = this.creationTime;
+    final dataProcessing = this.dataProcessing;
+    final environment = this.environment;
+    final experimentConfig = this.experimentConfig;
+    final failureReason = this.failureReason;
+    final labelingJobArn = this.labelingJobArn;
+    final maxConcurrentTransforms = this.maxConcurrentTransforms;
+    final maxPayloadInMB = this.maxPayloadInMB;
+    final modelClientConfig = this.modelClientConfig;
+    final modelName = this.modelName;
+    final tags = this.tags;
+    final transformEndTime = this.transformEndTime;
+    final transformInput = this.transformInput;
+    final transformJobArn = this.transformJobArn;
+    final transformJobName = this.transformJobName;
+    final transformJobStatus = this.transformJobStatus;
+    final transformOutput = this.transformOutput;
+    final transformResources = this.transformResources;
+    final transformStartTime = this.transformStartTime;
+    return {
+      if (autoMLJobArn != null) 'AutoMLJobArn': autoMLJobArn,
+      if (batchStrategy != null) 'BatchStrategy': batchStrategy.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (dataProcessing != null) 'DataProcessing': dataProcessing,
+      if (environment != null) 'Environment': environment,
+      if (experimentConfig != null) 'ExperimentConfig': experimentConfig,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (labelingJobArn != null) 'LabelingJobArn': labelingJobArn,
+      if (maxConcurrentTransforms != null)
+        'MaxConcurrentTransforms': maxConcurrentTransforms,
+      if (maxPayloadInMB != null) 'MaxPayloadInMB': maxPayloadInMB,
+      if (modelClientConfig != null) 'ModelClientConfig': modelClientConfig,
+      if (modelName != null) 'ModelName': modelName,
+      if (tags != null) 'Tags': tags,
+      if (transformEndTime != null)
+        'TransformEndTime': unixTimestampToJson(transformEndTime),
+      if (transformInput != null) 'TransformInput': transformInput,
+      if (transformJobArn != null) 'TransformJobArn': transformJobArn,
+      if (transformJobName != null) 'TransformJobName': transformJobName,
+      if (transformJobStatus != null)
+        'TransformJobStatus': transformJobStatus.toValue(),
+      if (transformOutput != null) 'TransformOutput': transformOutput,
+      if (transformResources != null) 'TransformResources': transformResources,
+      if (transformStartTime != null)
+        'TransformStartTime': unixTimestampToJson(transformStartTime),
+    };
+  }
 }
 
 /// Defines the input needed to run a transform job using the inference
@@ -51174,6 +56454,13 @@ class TransformJobStepMetadata {
       arn: json['Arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
+  }
 }
 
 /// Provides a summary of a transform job. Multiple
@@ -51225,6 +56512,27 @@ class TransformJobSummary {
       lastModifiedTime: timeStampFromJson(json['LastModifiedTime']),
       transformEndTime: timeStampFromJson(json['TransformEndTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final transformJobArn = this.transformJobArn;
+    final transformJobName = this.transformJobName;
+    final transformJobStatus = this.transformJobStatus;
+    final failureReason = this.failureReason;
+    final lastModifiedTime = this.lastModifiedTime;
+    final transformEndTime = this.transformEndTime;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'TransformJobArn': transformJobArn,
+      'TransformJobName': transformJobName,
+      'TransformJobStatus': transformJobStatus.toValue(),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (transformEndTime != null)
+        'TransformEndTime': unixTimestampToJson(transformEndTime),
+    };
   }
 }
 
@@ -51562,6 +56870,38 @@ class Trial {
       trialName: json['TrialName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final displayName = this.displayName;
+    final experimentName = this.experimentName;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final metadataProperties = this.metadataProperties;
+    final source = this.source;
+    final tags = this.tags;
+    final trialArn = this.trialArn;
+    final trialComponentSummaries = this.trialComponentSummaries;
+    final trialName = this.trialName;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (displayName != null) 'DisplayName': displayName,
+      if (experimentName != null) 'ExperimentName': experimentName,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (metadataProperties != null) 'MetadataProperties': metadataProperties,
+      if (source != null) 'Source': source,
+      if (tags != null) 'Tags': tags,
+      if (trialArn != null) 'TrialArn': trialArn,
+      if (trialComponentSummaries != null)
+        'TrialComponentSummaries': trialComponentSummaries,
+      if (trialName != null) 'TrialName': trialName,
+    };
+  }
 }
 
 /// The properties of a trial component as returned by the <a>Search</a> API.
@@ -51704,6 +57044,53 @@ class TrialComponent {
       trialComponentName: json['TrialComponentName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final displayName = this.displayName;
+    final endTime = this.endTime;
+    final inputArtifacts = this.inputArtifacts;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final lineageGroupArn = this.lineageGroupArn;
+    final metadataProperties = this.metadataProperties;
+    final metrics = this.metrics;
+    final outputArtifacts = this.outputArtifacts;
+    final parameters = this.parameters;
+    final parents = this.parents;
+    final source = this.source;
+    final sourceDetail = this.sourceDetail;
+    final startTime = this.startTime;
+    final status = this.status;
+    final tags = this.tags;
+    final trialComponentArn = this.trialComponentArn;
+    final trialComponentName = this.trialComponentName;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (displayName != null) 'DisplayName': displayName,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (inputArtifacts != null) 'InputArtifacts': inputArtifacts,
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (lineageGroupArn != null) 'LineageGroupArn': lineageGroupArn,
+      if (metadataProperties != null) 'MetadataProperties': metadataProperties,
+      if (metrics != null) 'Metrics': metrics,
+      if (outputArtifacts != null) 'OutputArtifacts': outputArtifacts,
+      if (parameters != null) 'Parameters': parameters,
+      if (parents != null) 'Parents': parents,
+      if (source != null) 'Source': source,
+      if (sourceDetail != null) 'SourceDetail': sourceDetail,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status,
+      if (tags != null) 'Tags': tags,
+      if (trialComponentArn != null) 'TrialComponentArn': trialComponentArn,
+      if (trialComponentName != null) 'TrialComponentName': trialComponentName,
+    };
+  }
 }
 
 /// Represents an input or output artifact of a trial component. You specify
@@ -51798,6 +57185,29 @@ class TrialComponentMetricSummary {
       stdDev: json['StdDev'] as double?,
       timeStamp: timeStampFromJson(json['TimeStamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final avg = this.avg;
+    final count = this.count;
+    final last = this.last;
+    final max = this.max;
+    final metricName = this.metricName;
+    final min = this.min;
+    final sourceArn = this.sourceArn;
+    final stdDev = this.stdDev;
+    final timeStamp = this.timeStamp;
+    return {
+      if (avg != null) 'Avg': avg,
+      if (count != null) 'Count': count,
+      if (last != null) 'Last': last,
+      if (max != null) 'Max': max,
+      if (metricName != null) 'MetricName': metricName,
+      if (min != null) 'Min': min,
+      if (sourceArn != null) 'SourceArn': sourceArn,
+      if (stdDev != null) 'StdDev': stdDev,
+      if (timeStamp != null) 'TimeStamp': unixTimestampToJson(timeStamp),
+    };
   }
 }
 
@@ -51914,6 +57324,23 @@ class TrialComponentSimpleSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final trialComponentArn = this.trialComponentArn;
+    final trialComponentName = this.trialComponentName;
+    final trialComponentSource = this.trialComponentSource;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (trialComponentArn != null) 'TrialComponentArn': trialComponentArn,
+      if (trialComponentName != null) 'TrialComponentName': trialComponentName,
+      if (trialComponentSource != null)
+        'TrialComponentSource': trialComponentSource,
+    };
+  }
 }
 
 /// The Amazon Resource Name (ARN) and job type of the source of a trial
@@ -51934,6 +57361,15 @@ class TrialComponentSource {
       sourceArn: json['SourceArn'] as String,
       sourceType: json['SourceType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sourceArn = this.sourceArn;
+    final sourceType = this.sourceType;
+    return {
+      'SourceArn': sourceArn,
+      if (sourceType != null) 'SourceType': sourceType,
+    };
   }
 }
 
@@ -51972,6 +57408,19 @@ class TrialComponentSourceDetail {
           ? TransformJob.fromJson(json['TransformJob'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final processingJob = this.processingJob;
+    final sourceArn = this.sourceArn;
+    final trainingJob = this.trainingJob;
+    final transformJob = this.transformJob;
+    return {
+      if (processingJob != null) 'ProcessingJob': processingJob,
+      if (sourceArn != null) 'SourceArn': sourceArn,
+      if (trainingJob != null) 'TrainingJob': trainingJob,
+      if (transformJob != null) 'TransformJob': transformJob,
+    };
   }
 }
 
@@ -52091,6 +57540,36 @@ class TrialComponentSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final creationTime = this.creationTime;
+    final displayName = this.displayName;
+    final endTime = this.endTime;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final startTime = this.startTime;
+    final status = this.status;
+    final trialComponentArn = this.trialComponentArn;
+    final trialComponentName = this.trialComponentName;
+    final trialComponentSource = this.trialComponentSource;
+    return {
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (displayName != null) 'DisplayName': displayName,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (lastModifiedBy != null) 'LastModifiedBy': lastModifiedBy,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status,
+      if (trialComponentArn != null) 'TrialComponentArn': trialComponentArn,
+      if (trialComponentName != null) 'TrialComponentName': trialComponentName,
+      if (trialComponentSource != null)
+        'TrialComponentSource': trialComponentSource,
+    };
+  }
 }
 
 /// The source of the trial.
@@ -52110,6 +57589,15 @@ class TrialSource {
       sourceArn: json['SourceArn'] as String,
       sourceType: json['SourceType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sourceArn = this.sourceArn;
+    final sourceType = this.sourceType;
+    return {
+      'SourceArn': sourceArn,
+      if (sourceType != null) 'SourceType': sourceType,
+    };
   }
 }
 
@@ -52154,6 +57642,25 @@ class TrialSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final displayName = this.displayName;
+    final lastModifiedTime = this.lastModifiedTime;
+    final trialArn = this.trialArn;
+    final trialName = this.trialName;
+    final trialSource = this.trialSource;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (displayName != null) 'DisplayName': displayName,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (trialArn != null) 'TrialArn': trialArn,
+      if (trialName != null) 'TrialName': trialName,
+      if (trialSource != null) 'TrialSource': trialSource,
+    };
+  }
 }
 
 /// The job completion criteria.
@@ -52191,6 +57698,13 @@ class TuningJobStepMetaData {
     return TuningJobStepMetaData(
       arn: json['Arn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -52342,6 +57856,7 @@ class UiTemplate {
   UiTemplate({
     required this.content,
   });
+
   Map<String, dynamic> toJson() {
     final content = this.content;
     return {
@@ -52368,6 +57883,15 @@ class UiTemplateInfo {
       url: json['Url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentSha256 = this.contentSha256;
+    final url = this.url;
+    return {
+      if (contentSha256 != null) 'ContentSha256': contentSha256,
+      if (url != null) 'Url': url,
+    };
+  }
 }
 
 class UpdateActionResponse {
@@ -52381,6 +57905,13 @@ class UpdateActionResponse {
     return UpdateActionResponse(
       actionArn: json['ActionArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionArn = this.actionArn;
+    return {
+      if (actionArn != null) 'ActionArn': actionArn,
+    };
   }
 }
 
@@ -52396,6 +57927,13 @@ class UpdateAppImageConfigResponse {
       appImageConfigArn: json['AppImageConfigArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appImageConfigArn = this.appImageConfigArn;
+    return {
+      if (appImageConfigArn != null) 'AppImageConfigArn': appImageConfigArn,
+    };
+  }
 }
 
 class UpdateArtifactResponse {
@@ -52409,6 +57947,13 @@ class UpdateArtifactResponse {
     return UpdateArtifactResponse(
       artifactArn: json['ArtifactArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final artifactArn = this.artifactArn;
+    return {
+      if (artifactArn != null) 'ArtifactArn': artifactArn,
+    };
   }
 }
 
@@ -52424,6 +57969,13 @@ class UpdateCodeRepositoryOutput {
       codeRepositoryArn: json['CodeRepositoryArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeRepositoryArn = this.codeRepositoryArn;
+    return {
+      'CodeRepositoryArn': codeRepositoryArn,
+    };
+  }
 }
 
 class UpdateContextResponse {
@@ -52437,6 +57989,13 @@ class UpdateContextResponse {
     return UpdateContextResponse(
       contextArn: json['ContextArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contextArn = this.contextArn;
+    return {
+      if (contextArn != null) 'ContextArn': contextArn,
+    };
   }
 }
 
@@ -52452,6 +58011,13 @@ class UpdateDomainResponse {
       domainArn: json['DomainArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainArn = this.domainArn;
+    return {
+      if (domainArn != null) 'DomainArn': domainArn,
+    };
+  }
 }
 
 class UpdateEndpointOutput {
@@ -52465,6 +58031,13 @@ class UpdateEndpointOutput {
     return UpdateEndpointOutput(
       endpointArn: json['EndpointArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpointArn = this.endpointArn;
+    return {
+      'EndpointArn': endpointArn,
+    };
   }
 }
 
@@ -52481,6 +58054,13 @@ class UpdateEndpointWeightsAndCapacitiesOutput {
       endpointArn: json['EndpointArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointArn = this.endpointArn;
+    return {
+      'EndpointArn': endpointArn,
+    };
+  }
 }
 
 class UpdateExperimentResponse {
@@ -52494,6 +58074,13 @@ class UpdateExperimentResponse {
     return UpdateExperimentResponse(
       experimentArn: json['ExperimentArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final experimentArn = this.experimentArn;
+    return {
+      if (experimentArn != null) 'ExperimentArn': experimentArn,
+    };
   }
 }
 
@@ -52509,6 +58096,13 @@ class UpdateFeatureGroupResponse {
       featureGroupArn: json['FeatureGroupArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final featureGroupArn = this.featureGroupArn;
+    return {
+      'FeatureGroupArn': featureGroupArn,
+    };
+  }
 }
 
 class UpdateImageResponse {
@@ -52522,6 +58116,13 @@ class UpdateImageResponse {
     return UpdateImageResponse(
       imageArn: json['ImageArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageArn = this.imageArn;
+    return {
+      if (imageArn != null) 'ImageArn': imageArn,
+    };
   }
 }
 
@@ -52537,6 +58138,13 @@ class UpdateModelPackageOutput {
       modelPackageArn: json['ModelPackageArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelPackageArn = this.modelPackageArn;
+    return {
+      'ModelPackageArn': modelPackageArn,
+    };
+  }
 }
 
 class UpdateMonitoringScheduleResponse {
@@ -52551,6 +58159,13 @@ class UpdateMonitoringScheduleResponse {
       monitoringScheduleArn: json['MonitoringScheduleArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final monitoringScheduleArn = this.monitoringScheduleArn;
+    return {
+      'MonitoringScheduleArn': monitoringScheduleArn,
+    };
+  }
 }
 
 class UpdateNotebookInstanceLifecycleConfigOutput {
@@ -52559,12 +58174,20 @@ class UpdateNotebookInstanceLifecycleConfigOutput {
       Map<String, dynamic> _) {
     return UpdateNotebookInstanceLifecycleConfigOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateNotebookInstanceOutput {
   UpdateNotebookInstanceOutput();
   factory UpdateNotebookInstanceOutput.fromJson(Map<String, dynamic> _) {
     return UpdateNotebookInstanceOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -52580,6 +58203,14 @@ class UpdatePipelineExecutionResponse {
       pipelineExecutionArn: json['PipelineExecutionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pipelineExecutionArn = this.pipelineExecutionArn;
+    return {
+      if (pipelineExecutionArn != null)
+        'PipelineExecutionArn': pipelineExecutionArn,
+    };
+  }
 }
 
 class UpdatePipelineResponse {
@@ -52593,6 +58224,13 @@ class UpdatePipelineResponse {
     return UpdatePipelineResponse(
       pipelineArn: json['PipelineArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipelineArn = this.pipelineArn;
+    return {
+      if (pipelineArn != null) 'PipelineArn': pipelineArn,
+    };
   }
 }
 
@@ -52608,6 +58246,13 @@ class UpdateProjectOutput {
       projectArn: json['ProjectArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final projectArn = this.projectArn;
+    return {
+      'ProjectArn': projectArn,
+    };
+  }
 }
 
 class UpdateTrainingJobResponse {
@@ -52621,6 +58266,13 @@ class UpdateTrainingJobResponse {
     return UpdateTrainingJobResponse(
       trainingJobArn: json['TrainingJobArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trainingJobArn = this.trainingJobArn;
+    return {
+      'TrainingJobArn': trainingJobArn,
+    };
   }
 }
 
@@ -52636,6 +58288,13 @@ class UpdateTrialComponentResponse {
       trialComponentArn: json['TrialComponentArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trialComponentArn = this.trialComponentArn;
+    return {
+      if (trialComponentArn != null) 'TrialComponentArn': trialComponentArn,
+    };
+  }
 }
 
 class UpdateTrialResponse {
@@ -52650,6 +58309,13 @@ class UpdateTrialResponse {
       trialArn: json['TrialArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trialArn = this.trialArn;
+    return {
+      if (trialArn != null) 'TrialArn': trialArn,
+    };
+  }
 }
 
 class UpdateUserProfileResponse {
@@ -52663,6 +58329,13 @@ class UpdateUserProfileResponse {
     return UpdateUserProfileResponse(
       userProfileArn: json['UserProfileArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userProfileArn = this.userProfileArn;
+    return {
+      if (userProfileArn != null) 'UserProfileArn': userProfileArn,
+    };
   }
 }
 
@@ -52683,6 +58356,13 @@ class UpdateWorkforceResponse {
       workforce: Workforce.fromJson(json['Workforce'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final workforce = this.workforce;
+    return {
+      'Workforce': workforce,
+    };
+  }
 }
 
 class UpdateWorkteamResponse {
@@ -52696,6 +58376,13 @@ class UpdateWorkteamResponse {
     return UpdateWorkteamResponse(
       workteam: Workteam.fromJson(json['Workteam'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workteam = this.workteam;
+    return {
+      'Workteam': workteam,
+    };
   }
 }
 
@@ -52722,6 +58409,17 @@ class UserContext {
       userProfileArn: json['UserProfileArn'] as String?,
       userProfileName: json['UserProfileName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainId = this.domainId;
+    final userProfileArn = this.userProfileArn;
+    final userProfileName = this.userProfileName;
+    return {
+      if (domainId != null) 'DomainId': domainId,
+      if (userProfileArn != null) 'UserProfileArn': userProfileArn,
+      if (userProfileName != null) 'UserProfileName': userProfileName,
+    };
   }
 }
 
@@ -52757,6 +58455,23 @@ class UserProfileDetails {
       status: (json['Status'] as String?)?.toUserProfileStatus(),
       userProfileName: json['UserProfileName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final domainId = this.domainId;
+    final lastModifiedTime = this.lastModifiedTime;
+    final status = this.status;
+    final userProfileName = this.userProfileName;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (domainId != null) 'DomainId': domainId,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (status != null) 'Status': status.toValue(),
+      if (userProfileName != null) 'UserProfileName': userProfileName,
+    };
   }
 }
 
@@ -52989,6 +58704,7 @@ class VariantProperty {
   VariantProperty({
     required this.variantPropertyType,
   });
+
   Map<String, dynamic> toJson() {
     final variantPropertyType = this.variantPropertyType;
     return {
@@ -53096,6 +58812,17 @@ class Vertex {
       lineageType: (json['LineageType'] as String?)?.toLineageType(),
       type: json['Type'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final lineageType = this.lineageType;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (lineageType != null) 'LineageType': lineageType.toValue(),
+      if (type != null) 'Type': type,
+    };
   }
 }
 
@@ -53235,6 +58962,34 @@ class Workforce {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final workforceArn = this.workforceArn;
+    final workforceName = this.workforceName;
+    final cognitoConfig = this.cognitoConfig;
+    final createDate = this.createDate;
+    final failureReason = this.failureReason;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final oidcConfig = this.oidcConfig;
+    final sourceIpConfig = this.sourceIpConfig;
+    final status = this.status;
+    final subDomain = this.subDomain;
+    final workforceVpcConfig = this.workforceVpcConfig;
+    return {
+      'WorkforceArn': workforceArn,
+      'WorkforceName': workforceName,
+      if (cognitoConfig != null) 'CognitoConfig': cognitoConfig,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (lastUpdatedDate != null)
+        'LastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (oidcConfig != null) 'OidcConfig': oidcConfig,
+      if (sourceIpConfig != null) 'SourceIpConfig': sourceIpConfig,
+      if (status != null) 'Status': status.toValue(),
+      if (subDomain != null) 'SubDomain': subDomain,
+      if (workforceVpcConfig != null) 'WorkforceVpcConfig': workforceVpcConfig,
+    };
+  }
 }
 
 enum WorkforceStatus {
@@ -53297,6 +59052,7 @@ class WorkforceVpcConfigRequest {
     this.subnets,
     this.vpcId,
   });
+
   Map<String, dynamic> toJson() {
     final securityGroupIds = this.securityGroupIds;
     final subnets = this.subnets;
@@ -53345,6 +59101,19 @@ class WorkforceVpcConfigResponse {
       vpcId: json['VpcId'] as String,
       vpcEndpointId: json['VpcEndpointId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityGroupIds = this.securityGroupIds;
+    final subnets = this.subnets;
+    final vpcId = this.vpcId;
+    final vpcEndpointId = this.vpcEndpointId;
+    return {
+      'SecurityGroupIds': securityGroupIds,
+      'Subnets': subnets,
+      'VpcId': vpcId,
+      if (vpcEndpointId != null) 'VpcEndpointId': vpcEndpointId,
+    };
   }
 }
 
@@ -53422,6 +59191,33 @@ class Workteam {
       subDomain: json['SubDomain'] as String?,
       workforceArn: json['WorkforceArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final memberDefinitions = this.memberDefinitions;
+    final workteamArn = this.workteamArn;
+    final workteamName = this.workteamName;
+    final createDate = this.createDate;
+    final lastUpdatedDate = this.lastUpdatedDate;
+    final notificationConfiguration = this.notificationConfiguration;
+    final productListingIds = this.productListingIds;
+    final subDomain = this.subDomain;
+    final workforceArn = this.workforceArn;
+    return {
+      'Description': description,
+      'MemberDefinitions': memberDefinitions,
+      'WorkteamArn': workteamArn,
+      'WorkteamName': workteamName,
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (lastUpdatedDate != null)
+        'LastUpdatedDate': unixTimestampToJson(lastUpdatedDate),
+      if (notificationConfiguration != null)
+        'NotificationConfiguration': notificationConfiguration,
+      if (productListingIds != null) 'ProductListingIds': productListingIds,
+      if (subDomain != null) 'SubDomain': subDomain,
+      if (workforceArn != null) 'WorkforceArn': workforceArn,
+    };
   }
 }
 

@@ -3889,6 +3889,7 @@ class AggregatedUtterancesFilter {
     required this.operator,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -3999,6 +4000,7 @@ class AggregatedUtterancesSortBy {
     required this.attribute,
     required this.order,
   });
+
   Map<String, dynamic> toJson() {
     final attribute = this.attribute;
     final order = this.order;
@@ -4063,6 +4065,31 @@ class AggregatedUtterancesSummary {
           timeStampFromJson(json['utteranceLastRecordedInAggregationDuration']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final containsDataFromDeletedResources =
+        this.containsDataFromDeletedResources;
+    final hitCount = this.hitCount;
+    final missedCount = this.missedCount;
+    final utterance = this.utterance;
+    final utteranceFirstRecordedInAggregationDuration =
+        this.utteranceFirstRecordedInAggregationDuration;
+    final utteranceLastRecordedInAggregationDuration =
+        this.utteranceLastRecordedInAggregationDuration;
+    return {
+      if (containsDataFromDeletedResources != null)
+        'containsDataFromDeletedResources': containsDataFromDeletedResources,
+      if (hitCount != null) 'hitCount': hitCount,
+      if (missedCount != null) 'missedCount': missedCount,
+      if (utterance != null) 'utterance': utterance,
+      if (utteranceFirstRecordedInAggregationDuration != null)
+        'utteranceFirstRecordedInAggregationDuration':
+            unixTimestampToJson(utteranceFirstRecordedInAggregationDuration),
+      if (utteranceLastRecordedInAggregationDuration != null)
+        'utteranceLastRecordedInAggregationDuration':
+            unixTimestampToJson(utteranceLastRecordedInAggregationDuration),
+    };
+  }
 }
 
 /// The object containing information that associates the recommended
@@ -4082,6 +4109,13 @@ class AssociatedTranscript {
       transcript: json['transcript'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final transcript = this.transcript;
+    return {
+      if (transcript != null) 'transcript': transcript,
+    };
+  }
 }
 
 /// Filters to search for the associated transcript.
@@ -4097,6 +4131,7 @@ class AssociatedTranscriptFilter {
     required this.name,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -4242,6 +4277,17 @@ class BotAliasHistoryEvent {
       startDate: timeStampFromJson(json['startDate']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botVersion = this.botVersion;
+    final endDate = this.endDate;
+    final startDate = this.startDate;
+    return {
+      if (botVersion != null) 'botVersion': botVersion,
+      if (endDate != null) 'endDate': unixTimestampToJson(endDate),
+      if (startDate != null) 'startDate': unixTimestampToJson(startDate),
+    };
+  }
 }
 
 /// Specifies settings that are unique to a locale. For example, you can use
@@ -4366,6 +4412,27 @@ class BotAliasSummary {
       lastUpdatedDateTime: timeStampFromJson(json['lastUpdatedDateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botAliasId = this.botAliasId;
+    final botAliasName = this.botAliasName;
+    final botAliasStatus = this.botAliasStatus;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    return {
+      if (botAliasId != null) 'botAliasId': botAliasId,
+      if (botAliasName != null) 'botAliasName': botAliasName,
+      if (botAliasStatus != null) 'botAliasStatus': botAliasStatus.toValue(),
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+    };
+  }
 }
 
 /// Provides the identity of a the bot that was exported.
@@ -4417,6 +4484,7 @@ class BotFilter {
     required this.operator,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -4609,6 +4677,7 @@ class BotLocaleFilter {
     required this.operator,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -4689,6 +4758,15 @@ class BotLocaleHistoryEvent {
       event: json['event'] as String,
       eventDate: nonNullableTimeStampFromJson(json['eventDate'] as Object),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final event = this.event;
+    final eventDate = this.eventDate;
+    return {
+      'event': event,
+      'eventDate': unixTimestampToJson(eventDate),
+    };
   }
 }
 
@@ -4812,6 +4890,7 @@ class BotLocaleSortBy {
     required this.attribute,
     required this.order,
   });
+
   Map<String, dynamic> toJson() {
     final attribute = this.attribute;
     final order = this.order;
@@ -4928,6 +5007,26 @@ class BotLocaleSummary {
       localeName: json['localeName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botLocaleStatus = this.botLocaleStatus;
+    final description = this.description;
+    final lastBuildSubmittedDateTime = this.lastBuildSubmittedDateTime;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final localeId = this.localeId;
+    final localeName = this.localeName;
+    return {
+      if (botLocaleStatus != null) 'botLocaleStatus': botLocaleStatus.toValue(),
+      if (description != null) 'description': description,
+      if (lastBuildSubmittedDateTime != null)
+        'lastBuildSubmittedDateTime':
+            unixTimestampToJson(lastBuildSubmittedDateTime),
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (localeId != null) 'localeId': localeId,
+      if (localeName != null) 'localeName': localeName,
+    };
+  }
 }
 
 /// A statistical summary of the bot recommendation results.
@@ -4955,6 +5054,15 @@ class BotRecommendationResultStatistics {
               json['slotTypes'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final intents = this.intents;
+    final slotTypes = this.slotTypes;
+    return {
+      if (intents != null) 'intents': intents,
+      if (slotTypes != null) 'slotTypes': slotTypes,
+    };
   }
 }
 
@@ -4985,6 +5093,18 @@ class BotRecommendationResults {
               json['statistics'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associatedTranscriptsUrl = this.associatedTranscriptsUrl;
+    final botLocaleExportUrl = this.botLocaleExportUrl;
+    final statistics = this.statistics;
+    return {
+      if (associatedTranscriptsUrl != null)
+        'associatedTranscriptsUrl': associatedTranscriptsUrl,
+      if (botLocaleExportUrl != null) 'botLocaleExportUrl': botLocaleExportUrl,
+      if (statistics != null) 'statistics': statistics,
+    };
   }
 }
 
@@ -5074,6 +5194,21 @@ class BotRecommendationSummary {
       lastUpdatedDateTime: timeStampFromJson(json['lastUpdatedDateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botRecommendationId = this.botRecommendationId;
+    final botRecommendationStatus = this.botRecommendationStatus;
+    final creationDateTime = this.creationDateTime;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    return {
+      'botRecommendationId': botRecommendationId,
+      'botRecommendationStatus': botRecommendationStatus.toValue(),
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+    };
+  }
 }
 
 enum BotSortAttribute {
@@ -5111,6 +5246,7 @@ class BotSortBy {
     required this.attribute,
     required this.order,
   });
+
   Map<String, dynamic> toJson() {
     final attribute = this.attribute;
     final order = this.order;
@@ -5218,6 +5354,24 @@ class BotSummary {
       latestBotVersion: json['latestBotVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botName = this.botName;
+    final botStatus = this.botStatus;
+    final description = this.description;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final latestBotVersion = this.latestBotVersion;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botName != null) 'botName': botName,
+      if (botStatus != null) 'botStatus': botStatus.toValue(),
+      if (description != null) 'description': description,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (latestBotVersion != null) 'latestBotVersion': latestBotVersion,
+    };
+  }
 }
 
 /// The version of a bot used for a bot locale.
@@ -5277,6 +5431,7 @@ class BotVersionSortBy {
     required this.attribute,
     required this.order,
   });
+
   Map<String, dynamic> toJson() {
     final attribute = this.attribute;
     final order = this.order;
@@ -5324,6 +5479,22 @@ class BotVersionSummary {
       description: json['description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botName = this.botName;
+    final botStatus = this.botStatus;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    return {
+      if (botName != null) 'botName': botName,
+      if (botStatus != null) 'botStatus': botStatus.toValue(),
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 class BuildBotLocaleResponse {
@@ -5365,6 +5536,23 @@ class BuildBotLocaleResponse {
       localeId: json['localeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botLocaleStatus = this.botLocaleStatus;
+    final botVersion = this.botVersion;
+    final lastBuildSubmittedDateTime = this.lastBuildSubmittedDateTime;
+    final localeId = this.localeId;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botLocaleStatus != null) 'botLocaleStatus': botLocaleStatus.toValue(),
+      if (botVersion != null) 'botVersion': botVersion,
+      if (lastBuildSubmittedDateTime != null)
+        'lastBuildSubmittedDateTime':
+            unixTimestampToJson(lastBuildSubmittedDateTime),
+      if (localeId != null) 'localeId': localeId,
+    };
+  }
 }
 
 enum BuiltInIntentSortAttribute {
@@ -5403,6 +5591,7 @@ class BuiltInIntentSortBy {
     required this.attribute,
     required this.order,
   });
+
   Map<String, dynamic> toJson() {
     final attribute = this.attribute;
     final order = this.order;
@@ -5433,6 +5622,15 @@ class BuiltInIntentSummary {
       description: json['description'] as String?,
       intentSignature: json['intentSignature'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final intentSignature = this.intentSignature;
+    return {
+      if (description != null) 'description': description,
+      if (intentSignature != null) 'intentSignature': intentSignature,
+    };
   }
 }
 
@@ -5472,6 +5670,7 @@ class BuiltInSlotTypeSortBy {
     required this.attribute,
     required this.order,
   });
+
   Map<String, dynamic> toJson() {
     final attribute = this.attribute;
     final order = this.order;
@@ -5502,6 +5701,15 @@ class BuiltInSlotTypeSummary {
       description: json['description'] as String?,
       slotTypeSignature: json['slotTypeSignature'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final slotTypeSignature = this.slotTypeSignature;
+    return {
+      if (description != null) 'description': description,
+      if (slotTypeSignature != null) 'slotTypeSignature': slotTypeSignature,
+    };
   }
 }
 
@@ -5702,6 +5910,37 @@ class CreateBotAliasResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botAliasId = this.botAliasId;
+    final botAliasLocaleSettings = this.botAliasLocaleSettings;
+    final botAliasName = this.botAliasName;
+    final botAliasStatus = this.botAliasStatus;
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final conversationLogSettings = this.conversationLogSettings;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final sentimentAnalysisSettings = this.sentimentAnalysisSettings;
+    final tags = this.tags;
+    return {
+      if (botAliasId != null) 'botAliasId': botAliasId,
+      if (botAliasLocaleSettings != null)
+        'botAliasLocaleSettings': botAliasLocaleSettings,
+      if (botAliasName != null) 'botAliasName': botAliasName,
+      if (botAliasStatus != null) 'botAliasStatus': botAliasStatus.toValue(),
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (conversationLogSettings != null)
+        'conversationLogSettings': conversationLogSettings,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (sentimentAnalysisSettings != null)
+        'sentimentAnalysisSettings': sentimentAnalysisSettings,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class CreateBotLocaleResponse {
@@ -5776,6 +6015,31 @@ class CreateBotLocaleResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botLocaleStatus = this.botLocaleStatus;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final localeId = this.localeId;
+    final localeName = this.localeName;
+    final nluIntentConfidenceThreshold = this.nluIntentConfidenceThreshold;
+    final voiceSettings = this.voiceSettings;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botLocaleStatus != null) 'botLocaleStatus': botLocaleStatus.toValue(),
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (localeId != null) 'localeId': localeId,
+      if (localeName != null) 'localeName': localeName,
+      if (nluIntentConfidenceThreshold != null)
+        'nluIntentConfidenceThreshold': nluIntentConfidenceThreshold,
+      if (voiceSettings != null) 'voiceSettings': voiceSettings,
+    };
+  }
 }
 
 class CreateBotResponse {
@@ -5843,6 +6107,33 @@ class CreateBotResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botName = this.botName;
+    final botStatus = this.botStatus;
+    final botTags = this.botTags;
+    final creationDateTime = this.creationDateTime;
+    final dataPrivacy = this.dataPrivacy;
+    final description = this.description;
+    final idleSessionTTLInSeconds = this.idleSessionTTLInSeconds;
+    final roleArn = this.roleArn;
+    final testBotAliasTags = this.testBotAliasTags;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botName != null) 'botName': botName,
+      if (botStatus != null) 'botStatus': botStatus.toValue(),
+      if (botTags != null) 'botTags': botTags,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (dataPrivacy != null) 'dataPrivacy': dataPrivacy,
+      if (description != null) 'description': description,
+      if (idleSessionTTLInSeconds != null)
+        'idleSessionTTLInSeconds': idleSessionTTLInSeconds,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (testBotAliasTags != null) 'testBotAliasTags': testBotAliasTags,
+    };
+  }
 }
 
 class CreateBotVersionResponse {
@@ -5888,6 +6179,25 @@ class CreateBotVersionResponse {
       description: json['description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botStatus = this.botStatus;
+    final botVersion = this.botVersion;
+    final botVersionLocaleSpecification = this.botVersionLocaleSpecification;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botStatus != null) 'botStatus': botStatus.toValue(),
+      if (botVersion != null) 'botVersion': botVersion,
+      if (botVersionLocaleSpecification != null)
+        'botVersionLocaleSpecification': botVersionLocaleSpecification,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 class CreateExportResponse {
@@ -5929,6 +6239,23 @@ class CreateExportResponse {
               json['resourceSpecification'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final exportId = this.exportId;
+    final exportStatus = this.exportStatus;
+    final fileFormat = this.fileFormat;
+    final resourceSpecification = this.resourceSpecification;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (exportId != null) 'exportId': exportId,
+      if (exportStatus != null) 'exportStatus': exportStatus.toValue(),
+      if (fileFormat != null) 'fileFormat': fileFormat.toValue(),
+      if (resourceSpecification != null)
+        'resourceSpecification': resourceSpecification,
+    };
   }
 }
 
@@ -6043,6 +6370,49 @@ class CreateIntentResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final dialogCodeHook = this.dialogCodeHook;
+    final fulfillmentCodeHook = this.fulfillmentCodeHook;
+    final inputContexts = this.inputContexts;
+    final intentClosingSetting = this.intentClosingSetting;
+    final intentConfirmationSetting = this.intentConfirmationSetting;
+    final intentId = this.intentId;
+    final intentName = this.intentName;
+    final kendraConfiguration = this.kendraConfiguration;
+    final localeId = this.localeId;
+    final outputContexts = this.outputContexts;
+    final parentIntentSignature = this.parentIntentSignature;
+    final sampleUtterances = this.sampleUtterances;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (dialogCodeHook != null) 'dialogCodeHook': dialogCodeHook,
+      if (fulfillmentCodeHook != null)
+        'fulfillmentCodeHook': fulfillmentCodeHook,
+      if (inputContexts != null) 'inputContexts': inputContexts,
+      if (intentClosingSetting != null)
+        'intentClosingSetting': intentClosingSetting,
+      if (intentConfirmationSetting != null)
+        'intentConfirmationSetting': intentConfirmationSetting,
+      if (intentId != null) 'intentId': intentId,
+      if (intentName != null) 'intentName': intentName,
+      if (kendraConfiguration != null)
+        'kendraConfiguration': kendraConfiguration,
+      if (localeId != null) 'localeId': localeId,
+      if (outputContexts != null) 'outputContexts': outputContexts,
+      if (parentIntentSignature != null)
+        'parentIntentSignature': parentIntentSignature,
+      if (sampleUtterances != null) 'sampleUtterances': sampleUtterances,
+    };
+  }
 }
 
 class CreateResourcePolicyResponse {
@@ -6065,6 +6435,15 @@ class CreateResourcePolicyResponse {
       resourceArn: json['resourceArn'] as String?,
       revisionId: json['revisionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final revisionId = this.revisionId;
+    return {
+      if (resourceArn != null) 'resourceArn': resourceArn,
+      if (revisionId != null) 'revisionId': revisionId,
+    };
   }
 }
 
@@ -6089,6 +6468,15 @@ class CreateResourcePolicyStatementResponse {
       resourceArn: json['resourceArn'] as String?,
       revisionId: json['revisionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final revisionId = this.revisionId;
+    return {
+      if (resourceArn != null) 'resourceArn': resourceArn,
+      if (revisionId != null) 'revisionId': revisionId,
+    };
   }
 }
 
@@ -6170,6 +6558,38 @@ class CreateSlotResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final intentId = this.intentId;
+    final localeId = this.localeId;
+    final multipleValuesSetting = this.multipleValuesSetting;
+    final obfuscationSetting = this.obfuscationSetting;
+    final slotId = this.slotId;
+    final slotName = this.slotName;
+    final slotTypeId = this.slotTypeId;
+    final valueElicitationSetting = this.valueElicitationSetting;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (intentId != null) 'intentId': intentId,
+      if (localeId != null) 'localeId': localeId,
+      if (multipleValuesSetting != null)
+        'multipleValuesSetting': multipleValuesSetting,
+      if (obfuscationSetting != null) 'obfuscationSetting': obfuscationSetting,
+      if (slotId != null) 'slotId': slotId,
+      if (slotName != null) 'slotName': slotName,
+      if (slotTypeId != null) 'slotTypeId': slotTypeId,
+      if (valueElicitationSetting != null)
+        'valueElicitationSetting': valueElicitationSetting,
+    };
+  }
 }
 
 class CreateSlotTypeResponse {
@@ -6246,6 +6666,37 @@ class CreateSlotTypeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final externalSourceSetting = this.externalSourceSetting;
+    final localeId = this.localeId;
+    final parentSlotTypeSignature = this.parentSlotTypeSignature;
+    final slotTypeId = this.slotTypeId;
+    final slotTypeName = this.slotTypeName;
+    final slotTypeValues = this.slotTypeValues;
+    final valueSelectionSetting = this.valueSelectionSetting;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (externalSourceSetting != null)
+        'externalSourceSetting': externalSourceSetting,
+      if (localeId != null) 'localeId': localeId,
+      if (parentSlotTypeSignature != null)
+        'parentSlotTypeSignature': parentSlotTypeSignature,
+      if (slotTypeId != null) 'slotTypeId': slotTypeId,
+      if (slotTypeName != null) 'slotTypeName': slotTypeName,
+      if (slotTypeValues != null) 'slotTypeValues': slotTypeValues,
+      if (valueSelectionSetting != null)
+        'valueSelectionSetting': valueSelectionSetting,
+    };
+  }
 }
 
 class CreateUploadUrlResponse {
@@ -6267,6 +6718,15 @@ class CreateUploadUrlResponse {
       importId: json['importId'] as String?,
       uploadUrl: json['uploadUrl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final importId = this.importId;
+    final uploadUrl = this.uploadUrl;
+    return {
+      if (importId != null) 'importId': importId,
+      if (uploadUrl != null) 'uploadUrl': uploadUrl,
+    };
   }
 }
 
@@ -6514,6 +6974,17 @@ class DeleteBotAliasResponse {
       botId: json['botId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botAliasId = this.botAliasId;
+    final botAliasStatus = this.botAliasStatus;
+    final botId = this.botId;
+    return {
+      if (botAliasId != null) 'botAliasId': botAliasId,
+      if (botAliasStatus != null) 'botAliasStatus': botAliasStatus.toValue(),
+      if (botId != null) 'botId': botId,
+    };
+  }
 }
 
 class DeleteBotLocaleResponse {
@@ -6546,6 +7017,19 @@ class DeleteBotLocaleResponse {
       localeId: json['localeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botLocaleStatus = this.botLocaleStatus;
+    final botVersion = this.botVersion;
+    final localeId = this.localeId;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botLocaleStatus != null) 'botLocaleStatus': botLocaleStatus.toValue(),
+      if (botVersion != null) 'botVersion': botVersion,
+      if (localeId != null) 'localeId': localeId,
+    };
+  }
 }
 
 class DeleteBotResponse {
@@ -6565,6 +7049,15 @@ class DeleteBotResponse {
       botId: json['botId'] as String?,
       botStatus: (json['botStatus'] as String?)?.toBotStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botStatus = this.botStatus;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botStatus != null) 'botStatus': botStatus.toValue(),
+    };
   }
 }
 
@@ -6589,6 +7082,17 @@ class DeleteBotVersionResponse {
       botStatus: (json['botStatus'] as String?)?.toBotStatus(),
       botVersion: json['botVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botStatus = this.botStatus;
+    final botVersion = this.botVersion;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botStatus != null) 'botStatus': botStatus.toValue(),
+      if (botVersion != null) 'botVersion': botVersion,
+    };
   }
 }
 
@@ -6621,6 +7125,20 @@ class DeleteCustomVocabularyResponse {
       localeId: json['localeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final customVocabularyStatus = this.customVocabularyStatus;
+    final localeId = this.localeId;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (customVocabularyStatus != null)
+        'customVocabularyStatus': customVocabularyStatus.toValue(),
+      if (localeId != null) 'localeId': localeId,
+    };
+  }
 }
 
 class DeleteExportResponse {
@@ -6644,6 +7162,15 @@ class DeleteExportResponse {
       exportId: json['exportId'] as String?,
       exportStatus: (json['exportStatus'] as String?)?.toExportStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exportId = this.exportId;
+    final exportStatus = this.exportStatus;
+    return {
+      if (exportId != null) 'exportId': exportId,
+      if (exportStatus != null) 'exportStatus': exportStatus.toValue(),
+    };
   }
 }
 
@@ -6669,6 +7196,15 @@ class DeleteImportResponse {
       importStatus: (json['importStatus'] as String?)?.toImportStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final importId = this.importId;
+    final importStatus = this.importStatus;
+    return {
+      if (importId != null) 'importId': importId,
+      if (importStatus != null) 'importStatus': importStatus.toValue(),
+    };
+  }
 }
 
 class DeleteResourcePolicyResponse {
@@ -6691,6 +7227,15 @@ class DeleteResourcePolicyResponse {
       resourceArn: json['resourceArn'] as String?,
       revisionId: json['revisionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final revisionId = this.revisionId;
+    return {
+      if (resourceArn != null) 'resourceArn': resourceArn,
+      if (revisionId != null) 'revisionId': revisionId,
+    };
   }
 }
 
@@ -6716,12 +7261,25 @@ class DeleteResourcePolicyStatementResponse {
       revisionId: json['revisionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final revisionId = this.revisionId;
+    return {
+      if (resourceArn != null) 'resourceArn': resourceArn,
+      if (revisionId != null) 'revisionId': revisionId,
+    };
+  }
 }
 
 class DeleteUtterancesResponse {
   DeleteUtterancesResponse();
   factory DeleteUtterancesResponse.fromJson(Map<String, dynamic> _) {
     return DeleteUtterancesResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6804,6 +7362,41 @@ class DescribeBotAliasResponse {
               json['sentimentAnalysisSettings'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botAliasHistoryEvents = this.botAliasHistoryEvents;
+    final botAliasId = this.botAliasId;
+    final botAliasLocaleSettings = this.botAliasLocaleSettings;
+    final botAliasName = this.botAliasName;
+    final botAliasStatus = this.botAliasStatus;
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final conversationLogSettings = this.conversationLogSettings;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final sentimentAnalysisSettings = this.sentimentAnalysisSettings;
+    return {
+      if (botAliasHistoryEvents != null)
+        'botAliasHistoryEvents': botAliasHistoryEvents,
+      if (botAliasId != null) 'botAliasId': botAliasId,
+      if (botAliasLocaleSettings != null)
+        'botAliasLocaleSettings': botAliasLocaleSettings,
+      if (botAliasName != null) 'botAliasName': botAliasName,
+      if (botAliasStatus != null) 'botAliasStatus': botAliasStatus.toValue(),
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (conversationLogSettings != null)
+        'conversationLogSettings': conversationLogSettings,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (sentimentAnalysisSettings != null)
+        'sentimentAnalysisSettings': sentimentAnalysisSettings,
+    };
   }
 }
 
@@ -6916,6 +7509,49 @@ class DescribeBotLocaleResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botLocaleHistoryEvents = this.botLocaleHistoryEvents;
+    final botLocaleStatus = this.botLocaleStatus;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final failureReasons = this.failureReasons;
+    final intentsCount = this.intentsCount;
+    final lastBuildSubmittedDateTime = this.lastBuildSubmittedDateTime;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final localeId = this.localeId;
+    final localeName = this.localeName;
+    final nluIntentConfidenceThreshold = this.nluIntentConfidenceThreshold;
+    final recommendedActions = this.recommendedActions;
+    final slotTypesCount = this.slotTypesCount;
+    final voiceSettings = this.voiceSettings;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botLocaleHistoryEvents != null)
+        'botLocaleHistoryEvents': botLocaleHistoryEvents,
+      if (botLocaleStatus != null) 'botLocaleStatus': botLocaleStatus.toValue(),
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (failureReasons != null) 'failureReasons': failureReasons,
+      if (intentsCount != null) 'intentsCount': intentsCount,
+      if (lastBuildSubmittedDateTime != null)
+        'lastBuildSubmittedDateTime':
+            unixTimestampToJson(lastBuildSubmittedDateTime),
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (localeId != null) 'localeId': localeId,
+      if (localeName != null) 'localeName': localeName,
+      if (nluIntentConfidenceThreshold != null)
+        'nluIntentConfidenceThreshold': nluIntentConfidenceThreshold,
+      if (recommendedActions != null) 'recommendedActions': recommendedActions,
+      if (slotTypesCount != null) 'slotTypesCount': slotTypesCount,
+      if (voiceSettings != null) 'voiceSettings': voiceSettings,
+    };
+  }
 }
 
 class DescribeBotRecommendationResponse {
@@ -7001,6 +7637,39 @@ class DescribeBotRecommendationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botRecommendationId = this.botRecommendationId;
+    final botRecommendationResults = this.botRecommendationResults;
+    final botRecommendationStatus = this.botRecommendationStatus;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final encryptionSetting = this.encryptionSetting;
+    final failureReasons = this.failureReasons;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final localeId = this.localeId;
+    final transcriptSourceSetting = this.transcriptSourceSetting;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botRecommendationId != null)
+        'botRecommendationId': botRecommendationId,
+      if (botRecommendationResults != null)
+        'botRecommendationResults': botRecommendationResults,
+      if (botRecommendationStatus != null)
+        'botRecommendationStatus': botRecommendationStatus.toValue(),
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (encryptionSetting != null) 'encryptionSetting': encryptionSetting,
+      if (failureReasons != null) 'failureReasons': failureReasons,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (localeId != null) 'localeId': localeId,
+      if (transcriptSourceSetting != null)
+        'transcriptSourceSetting': transcriptSourceSetting,
+    };
+  }
 }
 
 class DescribeBotResponse {
@@ -7060,6 +7729,32 @@ class DescribeBotResponse {
       lastUpdatedDateTime: timeStampFromJson(json['lastUpdatedDateTime']),
       roleArn: json['roleArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botName = this.botName;
+    final botStatus = this.botStatus;
+    final creationDateTime = this.creationDateTime;
+    final dataPrivacy = this.dataPrivacy;
+    final description = this.description;
+    final idleSessionTTLInSeconds = this.idleSessionTTLInSeconds;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final roleArn = this.roleArn;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botName != null) 'botName': botName,
+      if (botStatus != null) 'botStatus': botStatus.toValue(),
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (dataPrivacy != null) 'dataPrivacy': dataPrivacy,
+      if (description != null) 'description': description,
+      if (idleSessionTTLInSeconds != null)
+        'idleSessionTTLInSeconds': idleSessionTTLInSeconds,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (roleArn != null) 'roleArn': roleArn,
+    };
   }
 }
 
@@ -7129,6 +7824,33 @@ class DescribeBotVersionResponse {
       roleArn: json['roleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botName = this.botName;
+    final botStatus = this.botStatus;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final dataPrivacy = this.dataPrivacy;
+    final description = this.description;
+    final failureReasons = this.failureReasons;
+    final idleSessionTTLInSeconds = this.idleSessionTTLInSeconds;
+    final roleArn = this.roleArn;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botName != null) 'botName': botName,
+      if (botStatus != null) 'botStatus': botStatus.toValue(),
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (dataPrivacy != null) 'dataPrivacy': dataPrivacy,
+      if (description != null) 'description': description,
+      if (failureReasons != null) 'failureReasons': failureReasons,
+      if (idleSessionTTLInSeconds != null)
+        'idleSessionTTLInSeconds': idleSessionTTLInSeconds,
+      if (roleArn != null) 'roleArn': roleArn,
+    };
+  }
 }
 
 class DescribeCustomVocabularyMetadataResponse {
@@ -7170,6 +7892,26 @@ class DescribeCustomVocabularyMetadataResponse {
       lastUpdatedDateTime: timeStampFromJson(json['lastUpdatedDateTime']),
       localeId: json['localeId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final customVocabularyStatus = this.customVocabularyStatus;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final localeId = this.localeId;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (customVocabularyStatus != null)
+        'customVocabularyStatus': customVocabularyStatus.toValue(),
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (localeId != null) 'localeId': localeId,
+    };
   }
 }
 
@@ -7229,6 +7971,30 @@ class DescribeExportResponse {
               json['resourceSpecification'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final downloadUrl = this.downloadUrl;
+    final exportId = this.exportId;
+    final exportStatus = this.exportStatus;
+    final failureReasons = this.failureReasons;
+    final fileFormat = this.fileFormat;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final resourceSpecification = this.resourceSpecification;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (downloadUrl != null) 'downloadUrl': downloadUrl,
+      if (exportId != null) 'exportId': exportId,
+      if (exportStatus != null) 'exportStatus': exportStatus.toValue(),
+      if (failureReasons != null) 'failureReasons': failureReasons,
+      if (fileFormat != null) 'fileFormat': fileFormat.toValue(),
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (resourceSpecification != null)
+        'resourceSpecification': resourceSpecification,
+    };
   }
 }
 
@@ -7295,6 +8061,33 @@ class DescribeImportResponse {
               json['resourceSpecification'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final failureReasons = this.failureReasons;
+    final importId = this.importId;
+    final importStatus = this.importStatus;
+    final importedResourceId = this.importedResourceId;
+    final importedResourceName = this.importedResourceName;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final mergeStrategy = this.mergeStrategy;
+    final resourceSpecification = this.resourceSpecification;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (failureReasons != null) 'failureReasons': failureReasons,
+      if (importId != null) 'importId': importId,
+      if (importStatus != null) 'importStatus': importStatus.toValue(),
+      if (importedResourceId != null) 'importedResourceId': importedResourceId,
+      if (importedResourceName != null)
+        'importedResourceName': importedResourceName,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (mergeStrategy != null) 'mergeStrategy': mergeStrategy.toValue(),
+      if (resourceSpecification != null)
+        'resourceSpecification': resourceSpecification,
+    };
   }
 }
 
@@ -7429,6 +8222,54 @@ class DescribeIntentResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final dialogCodeHook = this.dialogCodeHook;
+    final fulfillmentCodeHook = this.fulfillmentCodeHook;
+    final inputContexts = this.inputContexts;
+    final intentClosingSetting = this.intentClosingSetting;
+    final intentConfirmationSetting = this.intentConfirmationSetting;
+    final intentId = this.intentId;
+    final intentName = this.intentName;
+    final kendraConfiguration = this.kendraConfiguration;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final localeId = this.localeId;
+    final outputContexts = this.outputContexts;
+    final parentIntentSignature = this.parentIntentSignature;
+    final sampleUtterances = this.sampleUtterances;
+    final slotPriorities = this.slotPriorities;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (dialogCodeHook != null) 'dialogCodeHook': dialogCodeHook,
+      if (fulfillmentCodeHook != null)
+        'fulfillmentCodeHook': fulfillmentCodeHook,
+      if (inputContexts != null) 'inputContexts': inputContexts,
+      if (intentClosingSetting != null)
+        'intentClosingSetting': intentClosingSetting,
+      if (intentConfirmationSetting != null)
+        'intentConfirmationSetting': intentConfirmationSetting,
+      if (intentId != null) 'intentId': intentId,
+      if (intentName != null) 'intentName': intentName,
+      if (kendraConfiguration != null)
+        'kendraConfiguration': kendraConfiguration,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (localeId != null) 'localeId': localeId,
+      if (outputContexts != null) 'outputContexts': outputContexts,
+      if (parentIntentSignature != null)
+        'parentIntentSignature': parentIntentSignature,
+      if (sampleUtterances != null) 'sampleUtterances': sampleUtterances,
+      if (slotPriorities != null) 'slotPriorities': slotPriorities,
+    };
+  }
 }
 
 class DescribeResourcePolicyResponse {
@@ -7459,6 +8300,17 @@ class DescribeResourcePolicyResponse {
       resourceArn: json['resourceArn'] as String?,
       revisionId: json['revisionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    final resourceArn = this.resourceArn;
+    final revisionId = this.revisionId;
+    return {
+      if (policy != null) 'policy': policy,
+      if (resourceArn != null) 'resourceArn': resourceArn,
+      if (revisionId != null) 'revisionId': revisionId,
+    };
   }
 }
 
@@ -7548,6 +8400,41 @@ class DescribeSlotResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final intentId = this.intentId;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final localeId = this.localeId;
+    final multipleValuesSetting = this.multipleValuesSetting;
+    final obfuscationSetting = this.obfuscationSetting;
+    final slotId = this.slotId;
+    final slotName = this.slotName;
+    final slotTypeId = this.slotTypeId;
+    final valueElicitationSetting = this.valueElicitationSetting;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (intentId != null) 'intentId': intentId,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (localeId != null) 'localeId': localeId,
+      if (multipleValuesSetting != null)
+        'multipleValuesSetting': multipleValuesSetting,
+      if (obfuscationSetting != null) 'obfuscationSetting': obfuscationSetting,
+      if (slotId != null) 'slotId': slotId,
+      if (slotName != null) 'slotName': slotName,
+      if (slotTypeId != null) 'slotTypeId': slotTypeId,
+      if (valueElicitationSetting != null)
+        'valueElicitationSetting': valueElicitationSetting,
+    };
+  }
 }
 
 class DescribeSlotTypeResponse {
@@ -7625,6 +8512,40 @@ class DescribeSlotTypeResponse {
               json['valueSelectionSetting'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final externalSourceSetting = this.externalSourceSetting;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final localeId = this.localeId;
+    final parentSlotTypeSignature = this.parentSlotTypeSignature;
+    final slotTypeId = this.slotTypeId;
+    final slotTypeName = this.slotTypeName;
+    final slotTypeValues = this.slotTypeValues;
+    final valueSelectionSetting = this.valueSelectionSetting;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (externalSourceSetting != null)
+        'externalSourceSetting': externalSourceSetting,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (localeId != null) 'localeId': localeId,
+      if (parentSlotTypeSignature != null)
+        'parentSlotTypeSignature': parentSlotTypeSignature,
+      if (slotTypeId != null) 'slotTypeId': slotTypeId,
+      if (slotTypeName != null) 'slotTypeName': slotTypeName,
+      if (slotTypeValues != null) 'slotTypeValues': slotTypeValues,
+      if (valueSelectionSetting != null)
+        'valueSelectionSetting': valueSelectionSetting,
+    };
   }
 }
 
@@ -7743,6 +8664,7 @@ class ExportFilter {
     required this.operator,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -7896,6 +8818,7 @@ class ExportSortBy {
     required this.attribute,
     required this.order,
   });
+
   Map<String, dynamic> toJson() {
     final attribute = this.attribute;
     final order = this.order;
@@ -7985,6 +8908,26 @@ class ExportSummary {
               json['resourceSpecification'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final exportId = this.exportId;
+    final exportStatus = this.exportStatus;
+    final fileFormat = this.fileFormat;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final resourceSpecification = this.resourceSpecification;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (exportId != null) 'exportId': exportId,
+      if (exportStatus != null) 'exportStatus': exportStatus.toValue(),
+      if (fileFormat != null) 'fileFormat': fileFormat.toValue(),
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (resourceSpecification != null)
+        'resourceSpecification': resourceSpecification,
+    };
   }
 }
 
@@ -8388,6 +9331,7 @@ class ImportFilter {
     required this.operator,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -8572,6 +9516,7 @@ class ImportSortBy {
     required this.attribute,
     required this.order,
   });
+
   Map<String, dynamic> toJson() {
     final attribute = this.attribute;
     final order = this.order;
@@ -8670,6 +9615,31 @@ class ImportSummary {
       lastUpdatedDateTime: timeStampFromJson(json['lastUpdatedDateTime']),
       mergeStrategy: (json['mergeStrategy'] as String?)?.toMergeStrategy(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final importId = this.importId;
+    final importStatus = this.importStatus;
+    final importedResourceId = this.importedResourceId;
+    final importedResourceName = this.importedResourceName;
+    final importedResourceType = this.importedResourceType;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final mergeStrategy = this.mergeStrategy;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (importId != null) 'importId': importId,
+      if (importStatus != null) 'importStatus': importStatus.toValue(),
+      if (importedResourceId != null) 'importedResourceId': importedResourceId,
+      if (importedResourceName != null)
+        'importedResourceName': importedResourceName,
+      if (importedResourceType != null)
+        'importedResourceType': importedResourceType.toValue(),
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (mergeStrategy != null) 'mergeStrategy': mergeStrategy.toValue(),
+    };
   }
 }
 
@@ -8799,6 +9769,7 @@ class IntentFilter {
     required this.operator,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -8902,6 +9873,7 @@ class IntentSortBy {
     required this.attribute,
     required this.order,
   });
+
   Map<String, dynamic> toJson() {
     final attribute = this.attribute;
     final order = this.order;
@@ -8925,6 +9897,14 @@ class IntentStatistics {
     return IntentStatistics(
       discoveredIntentCount: json['discoveredIntentCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final discoveredIntentCount = this.discoveredIntentCount;
+    return {
+      if (discoveredIntentCount != null)
+        'discoveredIntentCount': discoveredIntentCount,
+    };
   }
 }
 
@@ -8980,6 +9960,27 @@ class IntentSummary {
           .toList(),
       parentIntentSignature: json['parentIntentSignature'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final inputContexts = this.inputContexts;
+    final intentId = this.intentId;
+    final intentName = this.intentName;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final outputContexts = this.outputContexts;
+    final parentIntentSignature = this.parentIntentSignature;
+    return {
+      if (description != null) 'description': description,
+      if (inputContexts != null) 'inputContexts': inputContexts,
+      if (intentId != null) 'intentId': intentId,
+      if (intentName != null) 'intentName': intentName,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (outputContexts != null) 'outputContexts': outputContexts,
+      if (parentIntentSignature != null)
+        'parentIntentSignature': parentIntentSignature,
+    };
   }
 }
 
@@ -9182,6 +10183,40 @@ class ListAggregatedUtterancesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aggregatedUtterancesSummaries = this.aggregatedUtterancesSummaries;
+    final aggregationDuration = this.aggregationDuration;
+    final aggregationLastRefreshedDateTime =
+        this.aggregationLastRefreshedDateTime;
+    final aggregationWindowEndTime = this.aggregationWindowEndTime;
+    final aggregationWindowStartTime = this.aggregationWindowStartTime;
+    final botAliasId = this.botAliasId;
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final localeId = this.localeId;
+    final nextToken = this.nextToken;
+    return {
+      if (aggregatedUtterancesSummaries != null)
+        'aggregatedUtterancesSummaries': aggregatedUtterancesSummaries,
+      if (aggregationDuration != null)
+        'aggregationDuration': aggregationDuration,
+      if (aggregationLastRefreshedDateTime != null)
+        'aggregationLastRefreshedDateTime':
+            unixTimestampToJson(aggregationLastRefreshedDateTime),
+      if (aggregationWindowEndTime != null)
+        'aggregationWindowEndTime':
+            unixTimestampToJson(aggregationWindowEndTime),
+      if (aggregationWindowStartTime != null)
+        'aggregationWindowStartTime':
+            unixTimestampToJson(aggregationWindowStartTime),
+      if (botAliasId != null) 'botAliasId': botAliasId,
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (localeId != null) 'localeId': localeId,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListBotAliasesResponse {
@@ -9216,6 +10251,17 @@ class ListBotAliasesResponse {
       botId: json['botId'] as String?,
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botAliasSummaries = this.botAliasSummaries;
+    final botId = this.botId;
+    final nextToken = this.nextToken;
+    return {
+      if (botAliasSummaries != null) 'botAliasSummaries': botAliasSummaries,
+      if (botId != null) 'botId': botId,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -9256,6 +10302,19 @@ class ListBotLocalesResponse {
       botVersion: json['botVersion'] as String?,
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botLocaleSummaries = this.botLocaleSummaries;
+    final botVersion = this.botVersion;
+    final nextToken = this.nextToken;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botLocaleSummaries != null) 'botLocaleSummaries': botLocaleSummaries,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -9302,6 +10361,22 @@ class ListBotRecommendationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botRecommendationSummaries = this.botRecommendationSummaries;
+    final botVersion = this.botVersion;
+    final localeId = this.localeId;
+    final nextToken = this.nextToken;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botRecommendationSummaries != null)
+        'botRecommendationSummaries': botRecommendationSummaries,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (localeId != null) 'localeId': localeId,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListBotVersionsResponse {
@@ -9337,6 +10412,18 @@ class ListBotVersionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersionSummaries = this.botVersionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersionSummaries != null)
+        'botVersionSummaries': botVersionSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListBotsResponse {
@@ -9366,6 +10453,15 @@ class ListBotsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botSummaries = this.botSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (botSummaries != null) 'botSummaries': botSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -9402,6 +10498,18 @@ class ListBuiltInIntentsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final builtInIntentSummaries = this.builtInIntentSummaries;
+    final localeId = this.localeId;
+    final nextToken = this.nextToken;
+    return {
+      if (builtInIntentSummaries != null)
+        'builtInIntentSummaries': builtInIntentSummaries,
+      if (localeId != null) 'localeId': localeId,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListBuiltInSlotTypesResponse {
@@ -9437,6 +10545,18 @@ class ListBuiltInSlotTypesResponse {
       localeId: json['localeId'] as String?,
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final builtInSlotTypeSummaries = this.builtInSlotTypeSummaries;
+    final localeId = this.localeId;
+    final nextToken = this.nextToken;
+    return {
+      if (builtInSlotTypeSummaries != null)
+        'builtInSlotTypeSummaries': builtInSlotTypeSummaries,
+      if (localeId != null) 'localeId': localeId,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -9482,6 +10602,21 @@ class ListExportsResponse {
       localeId: json['localeId'] as String?,
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final exportSummaries = this.exportSummaries;
+    final localeId = this.localeId;
+    final nextToken = this.nextToken;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (exportSummaries != null) 'exportSummaries': exportSummaries,
+      if (localeId != null) 'localeId': localeId,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -9529,6 +10664,21 @@ class ListImportsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final importSummaries = this.importSummaries;
+    final localeId = this.localeId;
+    final nextToken = this.nextToken;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (importSummaries != null) 'importSummaries': importSummaries,
+      if (localeId != null) 'localeId': localeId,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListIntentsResponse {
@@ -9573,6 +10723,21 @@ class ListIntentsResponse {
       localeId: json['localeId'] as String?,
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final intentSummaries = this.intentSummaries;
+    final localeId = this.localeId;
+    final nextToken = this.nextToken;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (intentSummaries != null) 'intentSummaries': intentSummaries,
+      if (localeId != null) 'localeId': localeId,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -9627,6 +10792,24 @@ class ListRecommendedIntentsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botRecommendationId = this.botRecommendationId;
+    final botVersion = this.botVersion;
+    final localeId = this.localeId;
+    final nextToken = this.nextToken;
+    final summaryList = this.summaryList;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botRecommendationId != null)
+        'botRecommendationId': botRecommendationId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (localeId != null) 'localeId': localeId,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (summaryList != null) 'summaryList': summaryList,
+    };
+  }
 }
 
 class ListSlotTypesResponse {
@@ -9671,6 +10854,21 @@ class ListSlotTypesResponse {
           .map((e) => SlotTypeSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final localeId = this.localeId;
+    final nextToken = this.nextToken;
+    final slotTypeSummaries = this.slotTypeSummaries;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (localeId != null) 'localeId': localeId,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (slotTypeSummaries != null) 'slotTypeSummaries': slotTypeSummaries,
+    };
   }
 }
 
@@ -9722,6 +10920,23 @@ class ListSlotsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final intentId = this.intentId;
+    final localeId = this.localeId;
+    final nextToken = this.nextToken;
+    final slotSummaries = this.slotSummaries;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (intentId != null) 'intentId': intentId,
+      if (localeId != null) 'localeId': localeId,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (slotSummaries != null) 'slotSummaries': slotSummaries,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -9736,6 +10951,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -10124,6 +11346,7 @@ class Principal {
     this.arn,
     this.service,
   });
+
   Map<String, dynamic> toJson() {
     final arn = this.arn;
     final service = this.service;
@@ -10209,6 +11432,18 @@ class RecommendedIntentSummary {
       intentName: json['intentName'] as String?,
       sampleUtterancesCount: json['sampleUtterancesCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final intentId = this.intentId;
+    final intentName = this.intentName;
+    final sampleUtterancesCount = this.sampleUtterancesCount;
+    return {
+      if (intentId != null) 'intentId': intentId,
+      if (intentName != null) 'intentName': intentName,
+      if (sampleUtterancesCount != null)
+        'sampleUtterancesCount': sampleUtterancesCount,
+    };
   }
 }
 
@@ -10540,6 +11775,27 @@ class SearchAssociatedTranscriptsResponse {
       totalResults: json['totalResults'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associatedTranscripts = this.associatedTranscripts;
+    final botId = this.botId;
+    final botRecommendationId = this.botRecommendationId;
+    final botVersion = this.botVersion;
+    final localeId = this.localeId;
+    final nextIndex = this.nextIndex;
+    final totalResults = this.totalResults;
+    return {
+      if (associatedTranscripts != null)
+        'associatedTranscripts': associatedTranscripts,
+      if (botId != null) 'botId': botId,
+      if (botRecommendationId != null)
+        'botRecommendationId': botRecommendationId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (localeId != null) 'localeId': localeId,
+      if (nextIndex != null) 'nextIndex': nextIndex,
+      if (totalResults != null) 'totalResults': totalResults,
+    };
+  }
 }
 
 enum SearchOrder {
@@ -10691,6 +11947,7 @@ class SlotFilter {
     required this.operator,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -10824,6 +12081,7 @@ class SlotSortBy {
     required this.attribute,
     required this.order,
   });
+
   Map<String, dynamic> toJson() {
     final attribute = this.attribute;
     final order = this.order;
@@ -10885,6 +12143,29 @@ class SlotSummary {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final slotConstraint = this.slotConstraint;
+    final slotId = this.slotId;
+    final slotName = this.slotName;
+    final slotTypeId = this.slotTypeId;
+    final valueElicitationPromptSpecification =
+        this.valueElicitationPromptSpecification;
+    return {
+      if (description != null) 'description': description,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (slotConstraint != null) 'slotConstraint': slotConstraint.toValue(),
+      if (slotId != null) 'slotId': slotId,
+      if (slotName != null) 'slotName': slotName,
+      if (slotTypeId != null) 'slotTypeId': slotTypeId,
+      if (valueElicitationPromptSpecification != null)
+        'valueElicitationPromptSpecification':
+            valueElicitationPromptSpecification,
+    };
+  }
 }
 
 enum SlotTypeCategory {
@@ -10940,6 +12221,7 @@ class SlotTypeFilter {
     required this.operator,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -11048,6 +12330,7 @@ class SlotTypeSortBy {
     required this.attribute,
     required this.order,
   });
+
   Map<String, dynamic> toJson() {
     final attribute = this.attribute;
     final order = this.order;
@@ -11071,6 +12354,14 @@ class SlotTypeStatistics {
     return SlotTypeStatistics(
       discoveredSlotTypeCount: json['discoveredSlotTypeCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final discoveredSlotTypeCount = this.discoveredSlotTypeCount;
+    return {
+      if (discoveredSlotTypeCount != null)
+        'discoveredSlotTypeCount': discoveredSlotTypeCount,
+    };
   }
 }
 
@@ -11133,6 +12424,26 @@ class SlotTypeSummary {
       slotTypeId: json['slotTypeId'] as String?,
       slotTypeName: json['slotTypeName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final parentSlotTypeSignature = this.parentSlotTypeSignature;
+    final slotTypeCategory = this.slotTypeCategory;
+    final slotTypeId = this.slotTypeId;
+    final slotTypeName = this.slotTypeName;
+    return {
+      if (description != null) 'description': description,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (parentSlotTypeSignature != null)
+        'parentSlotTypeSignature': parentSlotTypeSignature,
+      if (slotTypeCategory != null)
+        'slotTypeCategory': slotTypeCategory.toValue(),
+      if (slotTypeId != null) 'slotTypeId': slotTypeId,
+      if (slotTypeName != null) 'slotTypeName': slotTypeName,
+    };
   }
 }
 
@@ -11469,6 +12780,31 @@ class StartBotRecommendationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botRecommendationId = this.botRecommendationId;
+    final botRecommendationStatus = this.botRecommendationStatus;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final encryptionSetting = this.encryptionSetting;
+    final localeId = this.localeId;
+    final transcriptSourceSetting = this.transcriptSourceSetting;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botRecommendationId != null)
+        'botRecommendationId': botRecommendationId,
+      if (botRecommendationStatus != null)
+        'botRecommendationStatus': botRecommendationStatus.toValue(),
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (encryptionSetting != null) 'encryptionSetting': encryptionSetting,
+      if (localeId != null) 'localeId': localeId,
+      if (transcriptSourceSetting != null)
+        'transcriptSourceSetting': transcriptSourceSetting,
+    };
+  }
 }
 
 class StartImportResponse {
@@ -11509,6 +12845,23 @@ class StartImportResponse {
               json['resourceSpecification'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final importId = this.importId;
+    final importStatus = this.importStatus;
+    final mergeStrategy = this.mergeStrategy;
+    final resourceSpecification = this.resourceSpecification;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (importId != null) 'importId': importId,
+      if (importStatus != null) 'importStatus': importStatus.toValue(),
+      if (mergeStrategy != null) 'mergeStrategy': mergeStrategy.toValue(),
+      if (resourceSpecification != null)
+        'resourceSpecification': resourceSpecification,
+    };
   }
 }
 
@@ -11568,6 +12921,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -11741,6 +13098,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateBotAliasResponse {
@@ -11813,6 +13174,38 @@ class UpdateBotAliasResponse {
               json['sentimentAnalysisSettings'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botAliasId = this.botAliasId;
+    final botAliasLocaleSettings = this.botAliasLocaleSettings;
+    final botAliasName = this.botAliasName;
+    final botAliasStatus = this.botAliasStatus;
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final conversationLogSettings = this.conversationLogSettings;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final sentimentAnalysisSettings = this.sentimentAnalysisSettings;
+    return {
+      if (botAliasId != null) 'botAliasId': botAliasId,
+      if (botAliasLocaleSettings != null)
+        'botAliasLocaleSettings': botAliasLocaleSettings,
+      if (botAliasName != null) 'botAliasName': botAliasName,
+      if (botAliasStatus != null) 'botAliasStatus': botAliasStatus.toValue(),
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (conversationLogSettings != null)
+        'conversationLogSettings': conversationLogSettings,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (sentimentAnalysisSettings != null)
+        'sentimentAnalysisSettings': sentimentAnalysisSettings,
+    };
   }
 }
 
@@ -11901,6 +13294,38 @@ class UpdateBotLocaleResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botLocaleStatus = this.botLocaleStatus;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final failureReasons = this.failureReasons;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final localeId = this.localeId;
+    final localeName = this.localeName;
+    final nluIntentConfidenceThreshold = this.nluIntentConfidenceThreshold;
+    final recommendedActions = this.recommendedActions;
+    final voiceSettings = this.voiceSettings;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botLocaleStatus != null) 'botLocaleStatus': botLocaleStatus.toValue(),
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (failureReasons != null) 'failureReasons': failureReasons,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (localeId != null) 'localeId': localeId,
+      if (localeName != null) 'localeName': localeName,
+      if (nluIntentConfidenceThreshold != null)
+        'nluIntentConfidenceThreshold': nluIntentConfidenceThreshold,
+      if (recommendedActions != null) 'recommendedActions': recommendedActions,
+      if (voiceSettings != null) 'voiceSettings': voiceSettings,
+    };
+  }
 }
 
 class UpdateBotRecommendationResponse {
@@ -11975,6 +13400,34 @@ class UpdateBotRecommendationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botRecommendationId = this.botRecommendationId;
+    final botRecommendationStatus = this.botRecommendationStatus;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final encryptionSetting = this.encryptionSetting;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final localeId = this.localeId;
+    final transcriptSourceSetting = this.transcriptSourceSetting;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botRecommendationId != null)
+        'botRecommendationId': botRecommendationId,
+      if (botRecommendationStatus != null)
+        'botRecommendationStatus': botRecommendationStatus.toValue(),
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (encryptionSetting != null) 'encryptionSetting': encryptionSetting,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (localeId != null) 'localeId': localeId,
+      if (transcriptSourceSetting != null)
+        'transcriptSourceSetting': transcriptSourceSetting,
+    };
+  }
 }
 
 class UpdateBotResponse {
@@ -12035,6 +13488,32 @@ class UpdateBotResponse {
       roleArn: json['roleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botName = this.botName;
+    final botStatus = this.botStatus;
+    final creationDateTime = this.creationDateTime;
+    final dataPrivacy = this.dataPrivacy;
+    final description = this.description;
+    final idleSessionTTLInSeconds = this.idleSessionTTLInSeconds;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final roleArn = this.roleArn;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botName != null) 'botName': botName,
+      if (botStatus != null) 'botStatus': botStatus.toValue(),
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (dataPrivacy != null) 'dataPrivacy': dataPrivacy,
+      if (description != null) 'description': description,
+      if (idleSessionTTLInSeconds != null)
+        'idleSessionTTLInSeconds': idleSessionTTLInSeconds,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (roleArn != null) 'roleArn': roleArn,
+    };
+  }
 }
 
 class UpdateExportResponse {
@@ -12080,6 +13559,26 @@ class UpdateExportResponse {
               json['resourceSpecification'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final exportId = this.exportId;
+    final exportStatus = this.exportStatus;
+    final fileFormat = this.fileFormat;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final resourceSpecification = this.resourceSpecification;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (exportId != null) 'exportId': exportId,
+      if (exportStatus != null) 'exportStatus': exportStatus.toValue(),
+      if (fileFormat != null) 'fileFormat': fileFormat.toValue(),
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (resourceSpecification != null)
+        'resourceSpecification': resourceSpecification,
+    };
   }
 }
 
@@ -12215,6 +13714,54 @@ class UpdateIntentResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final dialogCodeHook = this.dialogCodeHook;
+    final fulfillmentCodeHook = this.fulfillmentCodeHook;
+    final inputContexts = this.inputContexts;
+    final intentClosingSetting = this.intentClosingSetting;
+    final intentConfirmationSetting = this.intentConfirmationSetting;
+    final intentId = this.intentId;
+    final intentName = this.intentName;
+    final kendraConfiguration = this.kendraConfiguration;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final localeId = this.localeId;
+    final outputContexts = this.outputContexts;
+    final parentIntentSignature = this.parentIntentSignature;
+    final sampleUtterances = this.sampleUtterances;
+    final slotPriorities = this.slotPriorities;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (dialogCodeHook != null) 'dialogCodeHook': dialogCodeHook,
+      if (fulfillmentCodeHook != null)
+        'fulfillmentCodeHook': fulfillmentCodeHook,
+      if (inputContexts != null) 'inputContexts': inputContexts,
+      if (intentClosingSetting != null)
+        'intentClosingSetting': intentClosingSetting,
+      if (intentConfirmationSetting != null)
+        'intentConfirmationSetting': intentConfirmationSetting,
+      if (intentId != null) 'intentId': intentId,
+      if (intentName != null) 'intentName': intentName,
+      if (kendraConfiguration != null)
+        'kendraConfiguration': kendraConfiguration,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (localeId != null) 'localeId': localeId,
+      if (outputContexts != null) 'outputContexts': outputContexts,
+      if (parentIntentSignature != null)
+        'parentIntentSignature': parentIntentSignature,
+      if (sampleUtterances != null) 'sampleUtterances': sampleUtterances,
+      if (slotPriorities != null) 'slotPriorities': slotPriorities,
+    };
+  }
 }
 
 class UpdateResourcePolicyResponse {
@@ -12237,6 +13784,15 @@ class UpdateResourcePolicyResponse {
       resourceArn: json['resourceArn'] as String?,
       revisionId: json['revisionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final revisionId = this.revisionId;
+    return {
+      if (resourceArn != null) 'resourceArn': resourceArn,
+      if (revisionId != null) 'revisionId': revisionId,
+    };
   }
 }
 
@@ -12324,6 +13880,41 @@ class UpdateSlotResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final intentId = this.intentId;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final localeId = this.localeId;
+    final multipleValuesSetting = this.multipleValuesSetting;
+    final obfuscationSetting = this.obfuscationSetting;
+    final slotId = this.slotId;
+    final slotName = this.slotName;
+    final slotTypeId = this.slotTypeId;
+    final valueElicitationSetting = this.valueElicitationSetting;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (intentId != null) 'intentId': intentId,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (localeId != null) 'localeId': localeId,
+      if (multipleValuesSetting != null)
+        'multipleValuesSetting': multipleValuesSetting,
+      if (obfuscationSetting != null) 'obfuscationSetting': obfuscationSetting,
+      if (slotId != null) 'slotId': slotId,
+      if (slotName != null) 'slotName': slotName,
+      if (slotTypeId != null) 'slotTypeId': slotTypeId,
+      if (valueElicitationSetting != null)
+        'valueElicitationSetting': valueElicitationSetting,
+    };
+  }
 }
 
 class UpdateSlotTypeResponse {
@@ -12402,6 +13993,40 @@ class UpdateSlotTypeResponse {
               json['valueSelectionSetting'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final botVersion = this.botVersion;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final externalSourceSetting = this.externalSourceSetting;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final localeId = this.localeId;
+    final parentSlotTypeSignature = this.parentSlotTypeSignature;
+    final slotTypeId = this.slotTypeId;
+    final slotTypeName = this.slotTypeName;
+    final slotTypeValues = this.slotTypeValues;
+    final valueSelectionSetting = this.valueSelectionSetting;
+    return {
+      if (botId != null) 'botId': botId,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (externalSourceSetting != null)
+        'externalSourceSetting': externalSourceSetting,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (localeId != null) 'localeId': localeId,
+      if (parentSlotTypeSignature != null)
+        'parentSlotTypeSignature': parentSlotTypeSignature,
+      if (slotTypeId != null) 'slotTypeId': slotTypeId,
+      if (slotTypeName != null) 'slotTypeName': slotTypeName,
+      if (slotTypeValues != null) 'slotTypeValues': slotTypeValues,
+      if (valueSelectionSetting != null)
+        'valueSelectionSetting': valueSelectionSetting,
+    };
   }
 }
 

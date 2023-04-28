@@ -2697,6 +2697,10 @@ class AcceptAdministratorInvitationResponse {
       Map<String, dynamic> _) {
     return AcceptAdministratorInvitationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 @deprecated
@@ -2704,6 +2708,10 @@ class AcceptInvitationResponse {
   AcceptInvitationResponse();
   factory AcceptInvitationResponse.fromJson(Map<String, dynamic> _) {
     return AcceptInvitationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2726,6 +2734,17 @@ class AccessControlList {
       allowsPublicReadAccess: json['allowsPublicReadAccess'] as bool?,
       allowsPublicWriteAccess: json['allowsPublicWriteAccess'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowsPublicReadAccess = this.allowsPublicReadAccess;
+    final allowsPublicWriteAccess = this.allowsPublicWriteAccess;
+    return {
+      if (allowsPublicReadAccess != null)
+        'allowsPublicReadAccess': allowsPublicReadAccess,
+      if (allowsPublicWriteAccess != null)
+        'allowsPublicWriteAccess': allowsPublicWriteAccess,
+    };
   }
 }
 
@@ -2757,6 +2776,19 @@ class AccessKeyDetails {
       userType: json['userType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final principalId = this.principalId;
+    final userName = this.userName;
+    final userType = this.userType;
+    return {
+      if (accessKeyId != null) 'accessKeyId': accessKeyId,
+      if (principalId != null) 'principalId': principalId,
+      if (userName != null) 'userName': userName,
+      if (userType != null) 'userType': userType,
+    };
+  }
 }
 
 /// Contains information about the account.
@@ -2771,6 +2803,7 @@ class AccountDetail {
     required this.accountId,
     required this.email,
   });
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final email = this.email;
@@ -2803,6 +2836,15 @@ class AccountFreeTrialInfo {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final dataSources = this.dataSources;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (dataSources != null) 'dataSources': dataSources,
+    };
+  }
 }
 
 /// Contains information about the account level permissions on the S3 bucket.
@@ -2821,6 +2863,13 @@ class AccountLevelPermissions {
               json['blockPublicAccess'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blockPublicAccess = this.blockPublicAccess;
+    return {
+      if (blockPublicAccess != null) 'blockPublicAccess': blockPublicAccess,
+    };
   }
 }
 
@@ -2877,6 +2926,25 @@ class Action {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionType = this.actionType;
+    final awsApiCallAction = this.awsApiCallAction;
+    final dnsRequestAction = this.dnsRequestAction;
+    final kubernetesApiCallAction = this.kubernetesApiCallAction;
+    final networkConnectionAction = this.networkConnectionAction;
+    final portProbeAction = this.portProbeAction;
+    return {
+      if (actionType != null) 'actionType': actionType,
+      if (awsApiCallAction != null) 'awsApiCallAction': awsApiCallAction,
+      if (dnsRequestAction != null) 'dnsRequestAction': dnsRequestAction,
+      if (kubernetesApiCallAction != null)
+        'kubernetesApiCallAction': kubernetesApiCallAction,
+      if (networkConnectionAction != null)
+        'networkConnectionAction': networkConnectionAction,
+      if (portProbeAction != null) 'portProbeAction': portProbeAction,
+    };
+  }
 }
 
 /// The account within the organization specified as the GuardDuty delegated
@@ -2897,6 +2965,15 @@ class AdminAccount {
       adminAccountId: json['adminAccountId'] as String?,
       adminStatus: (json['adminStatus'] as String?)?.toAdminStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final adminAccountId = this.adminAccountId;
+    final adminStatus = this.adminStatus;
+    return {
+      if (adminAccountId != null) 'adminAccountId': adminAccountId,
+      if (adminStatus != null) 'adminStatus': adminStatus.toValue(),
+    };
   }
 }
 
@@ -2958,12 +3035,29 @@ class Administrator {
       relationshipStatus: json['relationshipStatus'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final invitationId = this.invitationId;
+    final invitedAt = this.invitedAt;
+    final relationshipStatus = this.relationshipStatus;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (invitationId != null) 'invitationId': invitationId,
+      if (invitedAt != null) 'invitedAt': invitedAt,
+      if (relationshipStatus != null) 'relationshipStatus': relationshipStatus,
+    };
+  }
 }
 
 class ArchiveFindingsResponse {
   ArchiveFindingsResponse();
   factory ArchiveFindingsResponse.fromJson(Map<String, dynamic> _) {
     return ArchiveFindingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3033,6 +3127,30 @@ class AwsApiCallAction {
       userAgent: json['userAgent'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final affectedResources = this.affectedResources;
+    final api = this.api;
+    final callerType = this.callerType;
+    final domainDetails = this.domainDetails;
+    final errorCode = this.errorCode;
+    final remoteAccountDetails = this.remoteAccountDetails;
+    final remoteIpDetails = this.remoteIpDetails;
+    final serviceName = this.serviceName;
+    final userAgent = this.userAgent;
+    return {
+      if (affectedResources != null) 'affectedResources': affectedResources,
+      if (api != null) 'api': api,
+      if (callerType != null) 'callerType': callerType,
+      if (domainDetails != null) 'domainDetails': domainDetails,
+      if (errorCode != null) 'errorCode': errorCode,
+      if (remoteAccountDetails != null)
+        'remoteAccountDetails': remoteAccountDetails,
+      if (remoteIpDetails != null) 'remoteIpDetails': remoteIpDetails,
+      if (serviceName != null) 'serviceName': serviceName,
+      if (userAgent != null) 'userAgent': userAgent,
+    };
+  }
 }
 
 /// Contains information on how the bucker owner's S3 Block Public Access
@@ -3067,6 +3185,20 @@ class BlockPublicAccess {
       ignorePublicAcls: json['ignorePublicAcls'] as bool?,
       restrictPublicBuckets: json['restrictPublicBuckets'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blockPublicAcls = this.blockPublicAcls;
+    final blockPublicPolicy = this.blockPublicPolicy;
+    final ignorePublicAcls = this.ignorePublicAcls;
+    final restrictPublicBuckets = this.restrictPublicBuckets;
+    return {
+      if (blockPublicAcls != null) 'blockPublicAcls': blockPublicAcls,
+      if (blockPublicPolicy != null) 'blockPublicPolicy': blockPublicPolicy,
+      if (ignorePublicAcls != null) 'ignorePublicAcls': ignorePublicAcls,
+      if (restrictPublicBuckets != null)
+        'restrictPublicBuckets': restrictPublicBuckets,
+    };
   }
 }
 
@@ -3103,6 +3235,17 @@ class BucketLevelPermissions {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessControlList = this.accessControlList;
+    final blockPublicAccess = this.blockPublicAccess;
+    final bucketPolicy = this.bucketPolicy;
+    return {
+      if (accessControlList != null) 'accessControlList': accessControlList,
+      if (blockPublicAccess != null) 'blockPublicAccess': blockPublicAccess,
+      if (bucketPolicy != null) 'bucketPolicy': bucketPolicy,
+    };
+  }
 }
 
 /// Contains information on the current bucket policies for the S3 bucket.
@@ -3125,6 +3268,17 @@ class BucketPolicy {
       allowsPublicWriteAccess: json['allowsPublicWriteAccess'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final allowsPublicReadAccess = this.allowsPublicReadAccess;
+    final allowsPublicWriteAccess = this.allowsPublicWriteAccess;
+    return {
+      if (allowsPublicReadAccess != null)
+        'allowsPublicReadAccess': allowsPublicReadAccess,
+      if (allowsPublicWriteAccess != null)
+        'allowsPublicWriteAccess': allowsPublicWriteAccess,
+    };
+  }
 }
 
 /// Contains information about the city associated with the IP address.
@@ -3139,6 +3293,13 @@ class City {
     return City(
       cityName: json['cityName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cityName = this.cityName;
+    return {
+      if (cityName != null) 'cityName': cityName,
+    };
   }
 }
 
@@ -3155,6 +3316,13 @@ class CloudTrailConfigurationResult {
     return CloudTrailConfigurationResult(
       status: (json['status'] as String).toDataSourceStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -3334,6 +3502,25 @@ class Container {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final containerRuntime = this.containerRuntime;
+    final id = this.id;
+    final image = this.image;
+    final imagePrefix = this.imagePrefix;
+    final name = this.name;
+    final securityContext = this.securityContext;
+    final volumeMounts = this.volumeMounts;
+    return {
+      if (containerRuntime != null) 'containerRuntime': containerRuntime,
+      if (id != null) 'id': id,
+      if (image != null) 'image': image,
+      if (imagePrefix != null) 'imagePrefix': imagePrefix,
+      if (name != null) 'name': name,
+      if (securityContext != null) 'securityContext': securityContext,
+      if (volumeMounts != null) 'volumeMounts': volumeMounts,
+    };
+  }
 }
 
 /// Contains information about the country where the remote IP address is
@@ -3355,6 +3542,15 @@ class Country {
       countryName: json['countryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final countryCode = this.countryCode;
+    final countryName = this.countryName;
+    return {
+      if (countryCode != null) 'countryCode': countryCode,
+      if (countryName != null) 'countryName': countryName,
+    };
+  }
 }
 
 class CreateDetectorResponse {
@@ -3368,6 +3564,13 @@ class CreateDetectorResponse {
     return CreateDetectorResponse(
       detectorId: json['detectorId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detectorId = this.detectorId;
+    return {
+      if (detectorId != null) 'detectorId': detectorId,
+    };
   }
 }
 
@@ -3383,6 +3586,13 @@ class CreateFilterResponse {
       name: json['name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'name': name,
+    };
+  }
 }
 
 class CreateIPSetResponse {
@@ -3396,6 +3606,13 @@ class CreateIPSetResponse {
     return CreateIPSetResponse(
       ipSetId: json['ipSetId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ipSetId = this.ipSetId;
+    return {
+      'ipSetId': ipSetId,
+    };
   }
 }
 
@@ -3416,6 +3633,13 @@ class CreateMembersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class CreatePublishingDestinationResponse {
@@ -3431,12 +3655,23 @@ class CreatePublishingDestinationResponse {
       destinationId: json['destinationId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationId = this.destinationId;
+    return {
+      'destinationId': destinationId,
+    };
+  }
 }
 
 class CreateSampleFindingsResponse {
   CreateSampleFindingsResponse();
   factory CreateSampleFindingsResponse.fromJson(Map<String, dynamic> _) {
     return CreateSampleFindingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3451,6 +3686,13 @@ class CreateThreatIntelSetResponse {
     return CreateThreatIntelSetResponse(
       threatIntelSetId: json['threatIntelSetId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final threatIntelSetId = this.threatIntelSetId;
+    return {
+      'threatIntelSetId': threatIntelSetId,
+    };
   }
 }
 
@@ -3514,6 +3756,13 @@ class DNSLogsConfigurationResult {
     return DNSLogsConfigurationResult(
       status: (json['status'] as String).toDataSourceStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -3581,6 +3830,7 @@ class DataSourceConfigurations {
     this.malwareProtection,
     this.s3Logs,
   });
+
   Map<String, dynamic> toJson() {
     final kubernetes = this.kubernetes;
     final malwareProtection = this.malwareProtection;
@@ -3646,6 +3896,23 @@ class DataSourceConfigurationsResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudTrail = this.cloudTrail;
+    final dNSLogs = this.dNSLogs;
+    final flowLogs = this.flowLogs;
+    final s3Logs = this.s3Logs;
+    final kubernetes = this.kubernetes;
+    final malwareProtection = this.malwareProtection;
+    return {
+      'cloudTrail': cloudTrail,
+      'dnsLogs': dNSLogs,
+      'flowLogs': flowLogs,
+      's3Logs': s3Logs,
+      if (kubernetes != null) 'kubernetes': kubernetes,
+      if (malwareProtection != null) 'malwareProtection': malwareProtection,
+    };
+  }
 }
 
 /// Contains information about which data sources are enabled for the GuardDuty
@@ -3662,6 +3929,14 @@ class DataSourceFreeTrial {
     return DataSourceFreeTrial(
       freeTrialDaysRemaining: json['freeTrialDaysRemaining'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final freeTrialDaysRemaining = this.freeTrialDaysRemaining;
+    return {
+      if (freeTrialDaysRemaining != null)
+        'freeTrialDaysRemaining': freeTrialDaysRemaining,
+    };
   }
 }
 
@@ -3750,6 +4025,23 @@ class DataSourcesFreeTrial {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudTrail = this.cloudTrail;
+    final dnsLogs = this.dnsLogs;
+    final flowLogs = this.flowLogs;
+    final kubernetes = this.kubernetes;
+    final malwareProtection = this.malwareProtection;
+    final s3Logs = this.s3Logs;
+    return {
+      if (cloudTrail != null) 'cloudTrail': cloudTrail,
+      if (dnsLogs != null) 'dnsLogs': dnsLogs,
+      if (flowLogs != null) 'flowLogs': flowLogs,
+      if (kubernetes != null) 'kubernetes': kubernetes,
+      if (malwareProtection != null) 'malwareProtection': malwareProtection,
+      if (s3Logs != null) 's3Logs': s3Logs,
+    };
+  }
 }
 
 class DeclineInvitationsResponse {
@@ -3767,6 +4059,13 @@ class DeclineInvitationsResponse {
           .map((e) => UnprocessedAccount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -3792,12 +4091,25 @@ class DefaultServerSideEncryption {
       kmsMasterKeyArn: json['kmsMasterKeyArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final encryptionType = this.encryptionType;
+    final kmsMasterKeyArn = this.kmsMasterKeyArn;
+    return {
+      if (encryptionType != null) 'encryptionType': encryptionType,
+      if (kmsMasterKeyArn != null) 'kmsMasterKeyArn': kmsMasterKeyArn,
+    };
+  }
 }
 
 class DeleteDetectorResponse {
   DeleteDetectorResponse();
   factory DeleteDetectorResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDetectorResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3806,12 +4118,20 @@ class DeleteFilterResponse {
   factory DeleteFilterResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFilterResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteIPSetResponse {
   DeleteIPSetResponse();
   factory DeleteIPSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteIPSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3831,6 +4151,13 @@ class DeleteInvitationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class DeleteMembersResponse {
@@ -3848,6 +4175,13 @@ class DeleteMembersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class DeletePublishingDestinationResponse {
@@ -3855,12 +4189,20 @@ class DeletePublishingDestinationResponse {
   factory DeletePublishingDestinationResponse.fromJson(Map<String, dynamic> _) {
     return DeletePublishingDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteThreatIntelSetResponse {
   DeleteThreatIntelSetResponse();
   factory DeleteThreatIntelSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteThreatIntelSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3884,6 +4226,15 @@ class DescribeMalwareScansResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final scans = this.scans;
+    final nextToken = this.nextToken;
+    return {
+      'scans': scans,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3914,6 +4265,17 @@ class DescribeOrganizationConfigurationResponse {
               json['dataSources'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoEnable = this.autoEnable;
+    final memberAccountLimitReached = this.memberAccountLimitReached;
+    final dataSources = this.dataSources;
+    return {
+      'autoEnable': autoEnable,
+      'memberAccountLimitReached': memberAccountLimitReached,
+      if (dataSources != null) 'dataSources': dataSources,
+    };
   }
 }
 
@@ -3956,6 +4318,22 @@ class DescribePublishingDestinationResponse {
       status: (json['status'] as String).toPublishingStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationId = this.destinationId;
+    final destinationProperties = this.destinationProperties;
+    final destinationType = this.destinationType;
+    final publishingFailureStartTimestamp =
+        this.publishingFailureStartTimestamp;
+    final status = this.status;
+    return {
+      'destinationId': destinationId,
+      'destinationProperties': destinationProperties,
+      'destinationType': destinationType.toValue(),
+      'publishingFailureStartTimestamp': publishingFailureStartTimestamp,
+      'status': status.toValue(),
+    };
+  }
 }
 
 /// Contains information about the publishing destination, including the ID,
@@ -3982,6 +4360,17 @@ class Destination {
       destinationType: (json['destinationType'] as String).toDestinationType(),
       status: (json['status'] as String).toPublishingStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destinationId = this.destinationId;
+    final destinationType = this.destinationType;
+    final status = this.status;
+    return {
+      'destinationId': destinationId,
+      'destinationType': destinationType.toValue(),
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -4076,6 +4465,10 @@ class DisableOrganizationAdminAccountResponse {
       Map<String, dynamic> _) {
     return DisableOrganizationAdminAccountResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateFromAdministratorAccountResponse {
@@ -4083,6 +4476,10 @@ class DisassociateFromAdministratorAccountResponse {
   factory DisassociateFromAdministratorAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateFromAdministratorAccountResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4092,6 +4489,10 @@ class DisassociateFromMasterAccountResponse {
   factory DisassociateFromMasterAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateFromMasterAccountResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4110,6 +4511,13 @@ class DisassociateMembersResponse {
           .map((e) => UnprocessedAccount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -4137,6 +4545,17 @@ class DnsRequestAction {
       protocol: json['protocol'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blocked = this.blocked;
+    final domain = this.domain;
+    final protocol = this.protocol;
+    return {
+      if (blocked != null) 'blocked': blocked,
+      if (domain != null) 'domain': domain,
+      if (protocol != null) 'protocol': protocol,
+    };
+  }
 }
 
 /// Contains information about the domain.
@@ -4151,6 +4570,13 @@ class DomainDetails {
     return DomainDetails(
       domain: json['domain'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    return {
+      if (domain != null) 'domain': domain,
+    };
   }
 }
 
@@ -4206,6 +4632,17 @@ class EbsVolumeDetails {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final scannedVolumeDetails = this.scannedVolumeDetails;
+    final skippedVolumeDetails = this.skippedVolumeDetails;
+    return {
+      if (scannedVolumeDetails != null)
+        'scannedVolumeDetails': scannedVolumeDetails,
+      if (skippedVolumeDetails != null)
+        'skippedVolumeDetails': skippedVolumeDetails,
+    };
+  }
 }
 
 /// Contains details from the malware scan that created a finding.
@@ -4252,6 +4689,25 @@ class EbsVolumeScanDetails {
       triggerFindingId: json['triggerFindingId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final scanCompletedAt = this.scanCompletedAt;
+    final scanDetections = this.scanDetections;
+    final scanId = this.scanId;
+    final scanStartedAt = this.scanStartedAt;
+    final sources = this.sources;
+    final triggerFindingId = this.triggerFindingId;
+    return {
+      if (scanCompletedAt != null)
+        'scanCompletedAt': unixTimestampToJson(scanCompletedAt),
+      if (scanDetections != null) 'scanDetections': scanDetections,
+      if (scanId != null) 'scanId': scanId,
+      if (scanStartedAt != null)
+        'scanStartedAt': unixTimestampToJson(scanStartedAt),
+      if (sources != null) 'sources': sources,
+      if (triggerFindingId != null) 'triggerFindingId': triggerFindingId,
+    };
+  }
 }
 
 /// Describes the configuration of scanning EBS volumes as a data source.
@@ -4266,6 +4722,13 @@ class EbsVolumesResult {
     return EbsVolumesResult(
       status: (json['status'] as String?)?.toDataSourceStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -4322,6 +4785,30 @@ class EcsClusterDetails {
           ? EcsTaskDetails.fromJson(json['taskDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activeServicesCount = this.activeServicesCount;
+    final arn = this.arn;
+    final name = this.name;
+    final registeredContainerInstancesCount =
+        this.registeredContainerInstancesCount;
+    final runningTasksCount = this.runningTasksCount;
+    final status = this.status;
+    final tags = this.tags;
+    final taskDetails = this.taskDetails;
+    return {
+      if (activeServicesCount != null)
+        'activeServicesCount': activeServicesCount,
+      if (arn != null) 'arn': arn,
+      if (name != null) 'name': name,
+      if (registeredContainerInstancesCount != null)
+        'registeredContainerInstancesCount': registeredContainerInstancesCount,
+      if (runningTasksCount != null) 'runningTasksCount': runningTasksCount,
+      if (status != null) 'status': status,
+      if (tags != null) 'tags': tags,
+      if (taskDetails != null) 'taskDetails': taskDetails,
+    };
   }
 }
 
@@ -4392,6 +4879,32 @@ class EcsTaskDetails {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final containers = this.containers;
+    final definitionArn = this.definitionArn;
+    final group = this.group;
+    final startedAt = this.startedAt;
+    final startedBy = this.startedBy;
+    final tags = this.tags;
+    final taskCreatedAt = this.taskCreatedAt;
+    final version = this.version;
+    final volumes = this.volumes;
+    return {
+      if (arn != null) 'arn': arn,
+      if (containers != null) 'containers': containers,
+      if (definitionArn != null) 'definitionArn': definitionArn,
+      if (group != null) 'group': group,
+      if (startedAt != null) 'startedAt': unixTimestampToJson(startedAt),
+      if (startedBy != null) 'startedBy': startedBy,
+      if (tags != null) 'tags': tags,
+      if (taskCreatedAt != null)
+        'createdAt': unixTimestampToJson(taskCreatedAt),
+      if (version != null) 'version': version,
+      if (volumes != null) 'volumes': volumes,
+    };
+  }
 }
 
 /// Details about the EKS cluster involved in a Kubernetes finding.
@@ -4435,6 +4948,23 @@ class EksClusterDetails {
       vpcId: json['vpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final name = this.name;
+    final status = this.status;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (name != null) 'name': name,
+      if (status != null) 'status': status,
+      if (tags != null) 'tags': tags,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 class EnableOrganizationAdminAccountResponse {
@@ -4442,6 +4972,10 @@ class EnableOrganizationAdminAccountResponse {
   factory EnableOrganizationAdminAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return EnableOrganizationAdminAccountResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4461,6 +4995,14 @@ class Evidence {
               ThreatIntelligenceDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final threatIntelligenceDetails = this.threatIntelligenceDetails;
+    return {
+      if (threatIntelligenceDetails != null)
+        'threatIntelligenceDetails': threatIntelligenceDetails,
+    };
   }
 }
 
@@ -4539,6 +5081,7 @@ class FilterCondition {
     this.greaterThan,
     this.lessThan,
   });
+
   Map<String, dynamic> toJson() {
     final equalsValue = this.equalsValue;
     final greaterThan = this.greaterThan;
@@ -4561,6 +5104,7 @@ class FilterCriteria {
   FilterCriteria({
     this.filterCriterion,
   });
+
   Map<String, dynamic> toJson() {
     final filterCriterion = this.filterCriterion;
     return {
@@ -4583,6 +5127,7 @@ class FilterCriterion {
     this.criterionKey,
     this.filterCondition,
   });
+
   Map<String, dynamic> toJson() {
     final criterionKey = this.criterionKey;
     final filterCondition = this.filterCondition;
@@ -4674,6 +5219,41 @@ class Finding {
           : null,
       title: json['title'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final id = this.id;
+    final region = this.region;
+    final resource = this.resource;
+    final schemaVersion = this.schemaVersion;
+    final severity = this.severity;
+    final type = this.type;
+    final updatedAt = this.updatedAt;
+    final confidence = this.confidence;
+    final description = this.description;
+    final partition = this.partition;
+    final service = this.service;
+    final title = this.title;
+    return {
+      'accountId': accountId,
+      'arn': arn,
+      'createdAt': createdAt,
+      'id': id,
+      'region': region,
+      'resource': resource,
+      'schemaVersion': schemaVersion,
+      'severity': severity,
+      'type': type,
+      'updatedAt': updatedAt,
+      if (confidence != null) 'confidence': confidence,
+      if (description != null) 'description': description,
+      if (partition != null) 'partition': partition,
+      if (service != null) 'service': service,
+      if (title != null) 'title': title,
+    };
   }
 }
 
@@ -4772,6 +5352,13 @@ class FindingStatistics {
           ?.map((k, e) => MapEntry(k, e as int)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final countBySeverity = this.countBySeverity;
+    return {
+      if (countBySeverity != null) 'countBySeverity': countBySeverity,
+    };
+  }
 }
 
 /// Contains information on the status of VPC flow logs as a data source.
@@ -4786,6 +5373,13 @@ class FlowLogsConfigurationResult {
     return FlowLogsConfigurationResult(
       status: (json['status'] as String).toDataSourceStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -4807,6 +5401,15 @@ class GeoLocation {
       lon: json['lon'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lat = this.lat;
+    final lon = this.lon;
+    return {
+      if (lat != null) 'lat': lat,
+      if (lon != null) 'lon': lon,
+    };
+  }
 }
 
 class GetAdministratorAccountResponse {
@@ -4821,6 +5424,13 @@ class GetAdministratorAccountResponse {
       administrator:
           Administrator.fromJson(json['administrator'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final administrator = this.administrator;
+    return {
+      'administrator': administrator,
+    };
   }
 }
 
@@ -4872,6 +5482,26 @@ class GetDetectorResponse {
       updatedAt: json['updatedAt'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serviceRole = this.serviceRole;
+    final status = this.status;
+    final createdAt = this.createdAt;
+    final dataSources = this.dataSources;
+    final findingPublishingFrequency = this.findingPublishingFrequency;
+    final tags = this.tags;
+    final updatedAt = this.updatedAt;
+    return {
+      'serviceRole': serviceRole,
+      'status': status.toValue(),
+      if (createdAt != null) 'createdAt': createdAt,
+      if (dataSources != null) 'dataSources': dataSources,
+      if (findingPublishingFrequency != null)
+        'findingPublishingFrequency': findingPublishingFrequency.toValue(),
+      if (tags != null) 'tags': tags,
+      if (updatedAt != null) 'updatedAt': updatedAt,
+    };
+  }
 }
 
 class GetFilterResponse {
@@ -4915,6 +5545,23 @@ class GetFilterResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final findingCriteria = this.findingCriteria;
+    final name = this.name;
+    final description = this.description;
+    final rank = this.rank;
+    final tags = this.tags;
+    return {
+      'action': action.toValue(),
+      'findingCriteria': findingCriteria,
+      'name': name,
+      if (description != null) 'description': description,
+      if (rank != null) 'rank': rank,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetFindingsResponse {
@@ -4932,6 +5579,13 @@ class GetFindingsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final findings = this.findings;
+    return {
+      'findings': findings,
+    };
+  }
 }
 
 class GetFindingsStatisticsResponse {
@@ -4946,6 +5600,13 @@ class GetFindingsStatisticsResponse {
       findingStatistics: FindingStatistics.fromJson(
           json['findingStatistics'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final findingStatistics = this.findingStatistics;
+    return {
+      'findingStatistics': findingStatistics,
+    };
   }
 }
 
@@ -4982,6 +5643,21 @@ class GetIPSetResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final format = this.format;
+    final location = this.location;
+    final name = this.name;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      'format': format.toValue(),
+      'location': location,
+      'name': name,
+      'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetInvitationsCountResponse {
@@ -4995,6 +5671,13 @@ class GetInvitationsCountResponse {
     return GetInvitationsCountResponse(
       invitationsCount: json['invitationsCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final invitationsCount = this.invitationsCount;
+    return {
+      if (invitationsCount != null) 'invitationsCount': invitationsCount,
+    };
   }
 }
 
@@ -5019,6 +5702,17 @@ class GetMalwareScanSettingsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ebsSnapshotPreservation = this.ebsSnapshotPreservation;
+    final scanResourceCriteria = this.scanResourceCriteria;
+    return {
+      if (ebsSnapshotPreservation != null)
+        'ebsSnapshotPreservation': ebsSnapshotPreservation.toValue(),
+      if (scanResourceCriteria != null)
+        'scanResourceCriteria': scanResourceCriteria,
+    };
+  }
 }
 
 @deprecated
@@ -5033,6 +5727,13 @@ class GetMasterAccountResponse {
     return GetMasterAccountResponse(
       master: Master.fromJson(json['master'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final master = this.master;
+    return {
+      'master': master,
+    };
   }
 }
 
@@ -5062,6 +5763,15 @@ class GetMemberDetectorsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final memberDataSourceConfigurations = this.memberDataSourceConfigurations;
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'members': memberDataSourceConfigurations,
+      'unprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class GetMembersResponse {
@@ -5087,6 +5797,15 @@ class GetMembersResponse {
           .map((e) => UnprocessedAccount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final members = this.members;
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'members': members,
+      'unprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -5115,6 +5834,16 @@ class GetRemainingFreeTrialDaysResponse {
           .map((e) => UnprocessedAccount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accounts = this.accounts;
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      if (accounts != null) 'accounts': accounts,
+      if (unprocessedAccounts != null)
+        'unprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -5153,6 +5882,21 @@ class GetThreatIntelSetResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final format = this.format;
+    final location = this.location;
+    final name = this.name;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      'format': format.toValue(),
+      'location': location,
+      'name': name,
+      'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetUsageStatisticsResponse {
@@ -5176,6 +5920,15 @@ class GetUsageStatisticsResponse {
               json['usageStatistics'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final usageStatistics = this.usageStatistics;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (usageStatistics != null) 'usageStatistics': usageStatistics,
+    };
   }
 }
 
@@ -5204,6 +5957,17 @@ class HighestSeverityThreatDetails {
       threatName: json['threatName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final severity = this.severity;
+    final threatName = this.threatName;
+    return {
+      if (count != null) 'count': count,
+      if (severity != null) 'severity': severity,
+      if (threatName != null) 'threatName': threatName,
+    };
+  }
 }
 
 /// Represents a pre-existing file or directory on the host machine that the
@@ -5219,6 +5983,13 @@ class HostPath {
     return HostPath(
       path: json['path'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final path = this.path;
+    return {
+      if (path != null) 'path': path,
+    };
   }
 }
 
@@ -5239,6 +6010,15 @@ class IamInstanceProfile {
       arn: json['arn'] as String?,
       id: json['id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'arn': arn,
+      if (id != null) 'id': id,
+    };
   }
 }
 
@@ -5328,6 +6108,37 @@ class InstanceDetails {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final iamInstanceProfile = this.iamInstanceProfile;
+    final imageDescription = this.imageDescription;
+    final imageId = this.imageId;
+    final instanceId = this.instanceId;
+    final instanceState = this.instanceState;
+    final instanceType = this.instanceType;
+    final launchTime = this.launchTime;
+    final networkInterfaces = this.networkInterfaces;
+    final outpostArn = this.outpostArn;
+    final platform = this.platform;
+    final productCodes = this.productCodes;
+    final tags = this.tags;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (iamInstanceProfile != null) 'iamInstanceProfile': iamInstanceProfile,
+      if (imageDescription != null) 'imageDescription': imageDescription,
+      if (imageId != null) 'imageId': imageId,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (instanceState != null) 'instanceState': instanceState,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (launchTime != null) 'launchTime': launchTime,
+      if (networkInterfaces != null) 'networkInterfaces': networkInterfaces,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (platform != null) 'platform': platform,
+      if (productCodes != null) 'productCodes': productCodes,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Contains information about the invitation to become a member account.
@@ -5359,6 +6170,19 @@ class Invitation {
       relationshipStatus: json['relationshipStatus'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final invitationId = this.invitationId;
+    final invitedAt = this.invitedAt;
+    final relationshipStatus = this.relationshipStatus;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (invitationId != null) 'invitationId': invitationId,
+      if (invitedAt != null) 'invitedAt': invitedAt,
+      if (relationshipStatus != null) 'relationshipStatus': relationshipStatus,
+    };
+  }
 }
 
 class InviteMembersResponse {
@@ -5376,6 +6200,13 @@ class InviteMembersResponse {
           .map((e) => UnprocessedAccount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -5528,6 +6359,25 @@ class KubernetesApiCallAction {
       verb: json['verb'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final parameters = this.parameters;
+    final remoteIpDetails = this.remoteIpDetails;
+    final requestUri = this.requestUri;
+    final sourceIps = this.sourceIps;
+    final statusCode = this.statusCode;
+    final userAgent = this.userAgent;
+    final verb = this.verb;
+    return {
+      if (parameters != null) 'parameters': parameters,
+      if (remoteIpDetails != null) 'remoteIpDetails': remoteIpDetails,
+      if (requestUri != null) 'requestUri': requestUri,
+      if (sourceIps != null) 'sourceIps': sourceIps,
+      if (statusCode != null) 'statusCode': statusCode,
+      if (userAgent != null) 'userAgent': userAgent,
+      if (verb != null) 'verb': verb,
+    };
+  }
 }
 
 /// Describes whether Kubernetes audit logs are enabled as a data source.
@@ -5538,6 +6388,7 @@ class KubernetesAuditLogsConfiguration {
   KubernetesAuditLogsConfiguration({
     required this.enable,
   });
+
   Map<String, dynamic> toJson() {
     final enable = this.enable;
     return {
@@ -5561,6 +6412,13 @@ class KubernetesAuditLogsConfigurationResult {
       status: (json['status'] as String).toDataSourceStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
+  }
 }
 
 /// Describes whether any Kubernetes data sources are enabled.
@@ -5571,6 +6429,7 @@ class KubernetesConfiguration {
   KubernetesConfiguration({
     required this.auditLogs,
   });
+
   Map<String, dynamic> toJson() {
     final auditLogs = this.auditLogs;
     return {
@@ -5593,6 +6452,13 @@ class KubernetesConfigurationResult {
           json['auditLogs'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final auditLogs = this.auditLogs;
+    return {
+      'auditLogs': auditLogs,
+    };
+  }
 }
 
 /// Provides details about the Kubernetes resources when it is enabled as a data
@@ -5611,6 +6477,13 @@ class KubernetesDataSourceFreeTrial {
               json['auditLogs'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final auditLogs = this.auditLogs;
+    return {
+      if (auditLogs != null) 'auditLogs': auditLogs,
+    };
   }
 }
 
@@ -5639,6 +6512,17 @@ class KubernetesDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final kubernetesUserDetails = this.kubernetesUserDetails;
+    final kubernetesWorkloadDetails = this.kubernetesWorkloadDetails;
+    return {
+      if (kubernetesUserDetails != null)
+        'kubernetesUserDetails': kubernetesUserDetails,
+      if (kubernetesWorkloadDetails != null)
+        'kubernetesWorkloadDetails': kubernetesWorkloadDetails,
+    };
+  }
 }
 
 /// Details about the Kubernetes user involved in a Kubernetes finding.
@@ -5666,6 +6550,17 @@ class KubernetesUserDetails {
       uid: json['uid'] as String?,
       username: json['username'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final uid = this.uid;
+    final username = this.username;
+    return {
+      if (groups != null) 'groups': groups,
+      if (uid != null) 'uid': uid,
+      if (username != null) 'username': username,
+    };
   }
 }
 
@@ -5719,6 +6614,25 @@ class KubernetesWorkloadDetails {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final containers = this.containers;
+    final hostNetwork = this.hostNetwork;
+    final name = this.name;
+    final namespace = this.namespace;
+    final type = this.type;
+    final uid = this.uid;
+    final volumes = this.volumes;
+    return {
+      if (containers != null) 'containers': containers,
+      if (hostNetwork != null) 'hostNetwork': hostNetwork,
+      if (name != null) 'name': name,
+      if (namespace != null) 'namespace': namespace,
+      if (type != null) 'type': type,
+      if (uid != null) 'uid': uid,
+      if (volumes != null) 'volumes': volumes,
+    };
+  }
 }
 
 class ListDetectorsResponse {
@@ -5741,6 +6655,15 @@ class ListDetectorsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detectorIds = this.detectorIds;
+    final nextToken = this.nextToken;
+    return {
+      'detectorIds': detectorIds,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5765,6 +6688,15 @@ class ListFiltersResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final filterNames = this.filterNames;
+    final nextToken = this.nextToken;
+    return {
+      'filterNames': filterNames,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListFindingsResponse {
@@ -5787,6 +6719,15 @@ class ListFindingsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final findingIds = this.findingIds;
+    final nextToken = this.nextToken;
+    return {
+      'findingIds': findingIds,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5811,6 +6752,15 @@ class ListIPSetsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ipSetIds = this.ipSetIds;
+    final nextToken = this.nextToken;
+    return {
+      'ipSetIds': ipSetIds,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListInvitationsResponse {
@@ -5833,6 +6783,15 @@ class ListInvitationsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final invitations = this.invitations;
+    final nextToken = this.nextToken;
+    return {
+      if (invitations != null) 'invitations': invitations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5857,6 +6816,15 @@ class ListMembersResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final members = this.members;
+    final nextToken = this.nextToken;
+    return {
+      if (members != null) 'members': members,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListOrganizationAdminAccountsResponse {
@@ -5880,6 +6848,15 @@ class ListOrganizationAdminAccountsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final adminAccounts = this.adminAccounts;
+    final nextToken = this.nextToken;
+    return {
+      if (adminAccounts != null) 'adminAccounts': adminAccounts,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -5908,6 +6885,15 @@ class ListPublishingDestinationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinations = this.destinations;
+    final nextToken = this.nextToken;
+    return {
+      'destinations': destinations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -5922,6 +6908,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -5946,6 +6939,15 @@ class ListThreatIntelSetsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final threatIntelSetIds = this.threatIntelSetIds;
+    final nextToken = this.nextToken;
+    return {
+      'threatIntelSetIds': threatIntelSetIds,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Contains information about the local IP address of the connection.
@@ -5960,6 +6962,13 @@ class LocalIpDetails {
     return LocalIpDetails(
       ipAddressV4: json['ipAddressV4'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ipAddressV4 = this.ipAddressV4;
+    return {
+      if (ipAddressV4 != null) 'ipAddressV4': ipAddressV4,
+    };
   }
 }
 
@@ -5981,6 +6990,15 @@ class LocalPortDetails {
       portName: json['portName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final port = this.port;
+    final portName = this.portName;
+    return {
+      if (port != null) 'port': port,
+      if (portName != null) 'portName': portName,
+    };
+  }
 }
 
 /// Describes whether Malware Protection will be enabled as a data source.
@@ -5992,6 +7010,7 @@ class MalwareProtectionConfiguration {
   MalwareProtectionConfiguration({
     this.scanEc2InstanceWithFindings,
   });
+
   Map<String, dynamic> toJson() {
     final scanEc2InstanceWithFindings = this.scanEc2InstanceWithFindings;
     return {
@@ -6025,6 +7044,16 @@ class MalwareProtectionConfigurationResult {
       serviceRole: json['serviceRole'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final scanEc2InstanceWithFindings = this.scanEc2InstanceWithFindings;
+    final serviceRole = this.serviceRole;
+    return {
+      if (scanEc2InstanceWithFindings != null)
+        'scanEc2InstanceWithFindings': scanEc2InstanceWithFindings,
+      if (serviceRole != null) 'serviceRole': serviceRole,
+    };
+  }
 }
 
 /// Provides details about Malware Protection when it is enabled as a data
@@ -6045,6 +7074,14 @@ class MalwareProtectionDataSourceFreeTrial {
               json['scanEc2InstanceWithFindings'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final scanEc2InstanceWithFindings = this.scanEc2InstanceWithFindings;
+    return {
+      if (scanEc2InstanceWithFindings != null)
+        'scanEc2InstanceWithFindings': scanEc2InstanceWithFindings,
+    };
   }
 }
 
@@ -6076,6 +7113,19 @@ class Master {
       invitedAt: json['invitedAt'] as String?,
       relationshipStatus: json['relationshipStatus'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final invitationId = this.invitationId;
+    final invitedAt = this.invitedAt;
+    final relationshipStatus = this.relationshipStatus;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (invitationId != null) 'invitationId': invitationId,
+      if (invitedAt != null) 'invitedAt': invitedAt,
+      if (relationshipStatus != null) 'relationshipStatus': relationshipStatus,
+    };
   }
 }
 
@@ -6127,6 +7177,27 @@ class Member {
       invitedAt: json['invitedAt'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final email = this.email;
+    final masterId = this.masterId;
+    final relationshipStatus = this.relationshipStatus;
+    final updatedAt = this.updatedAt;
+    final administratorId = this.administratorId;
+    final detectorId = this.detectorId;
+    final invitedAt = this.invitedAt;
+    return {
+      'accountId': accountId,
+      'email': email,
+      'masterId': masterId,
+      'relationshipStatus': relationshipStatus,
+      'updatedAt': updatedAt,
+      if (administratorId != null) 'administratorId': administratorId,
+      if (detectorId != null) 'detectorId': detectorId,
+      if (invitedAt != null) 'invitedAt': invitedAt,
+    };
+  }
 }
 
 /// Contains information on which data sources are enabled for a member account.
@@ -6147,6 +7218,15 @@ class MemberDataSourceConfiguration {
       dataSources: DataSourceConfigurationsResult.fromJson(
           json['dataSources'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final dataSources = this.dataSources;
+    return {
+      'accountId': accountId,
+      'dataSources': dataSources,
+    };
   }
 }
 
@@ -6205,6 +7285,26 @@ class NetworkConnectionAction {
               json['remotePortDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blocked = this.blocked;
+    final connectionDirection = this.connectionDirection;
+    final localIpDetails = this.localIpDetails;
+    final localPortDetails = this.localPortDetails;
+    final protocol = this.protocol;
+    final remoteIpDetails = this.remoteIpDetails;
+    final remotePortDetails = this.remotePortDetails;
+    return {
+      if (blocked != null) 'blocked': blocked,
+      if (connectionDirection != null)
+        'connectionDirection': connectionDirection,
+      if (localIpDetails != null) 'localIpDetails': localIpDetails,
+      if (localPortDetails != null) 'localPortDetails': localPortDetails,
+      if (protocol != null) 'protocol': protocol,
+      if (remoteIpDetails != null) 'remoteIpDetails': remoteIpDetails,
+      if (remotePortDetails != null) 'remotePortDetails': remotePortDetails,
+    };
   }
 }
 
@@ -6277,6 +7377,31 @@ class NetworkInterface {
       vpcId: json['vpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ipv6Addresses = this.ipv6Addresses;
+    final networkInterfaceId = this.networkInterfaceId;
+    final privateDnsName = this.privateDnsName;
+    final privateIpAddress = this.privateIpAddress;
+    final privateIpAddresses = this.privateIpAddresses;
+    final publicDnsName = this.publicDnsName;
+    final publicIp = this.publicIp;
+    final securityGroups = this.securityGroups;
+    final subnetId = this.subnetId;
+    final vpcId = this.vpcId;
+    return {
+      if (ipv6Addresses != null) 'ipv6Addresses': ipv6Addresses,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (privateDnsName != null) 'privateDnsName': privateDnsName,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+      if (privateIpAddresses != null) 'privateIpAddresses': privateIpAddresses,
+      if (publicDnsName != null) 'publicDnsName': publicDnsName,
+      if (publicIp != null) 'publicIp': publicIp,
+      if (securityGroups != null) 'securityGroups': securityGroups,
+      if (subnetId != null) 'subnetId': subnetId,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 enum OrderBy {
@@ -6336,6 +7461,19 @@ class Organization {
       org: json['org'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final asn = this.asn;
+    final asnOrg = this.asnOrg;
+    final isp = this.isp;
+    final org = this.org;
+    return {
+      if (asn != null) 'asn': asn,
+      if (asnOrg != null) 'asnOrg': asnOrg,
+      if (isp != null) 'isp': isp,
+      if (org != null) 'org': org,
+    };
+  }
 }
 
 /// An object that contains information on which data sources will be configured
@@ -6358,6 +7496,7 @@ class OrganizationDataSourceConfigurations {
     this.malwareProtection,
     this.s3Logs,
   });
+
   Map<String, dynamic> toJson() {
     final kubernetes = this.kubernetes;
     final malwareProtection = this.malwareProtection;
@@ -6403,6 +7542,17 @@ class OrganizationDataSourceConfigurationsResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final s3Logs = this.s3Logs;
+    final kubernetes = this.kubernetes;
+    final malwareProtection = this.malwareProtection;
+    return {
+      's3Logs': s3Logs,
+      if (kubernetes != null) 'kubernetes': kubernetes,
+      if (malwareProtection != null) 'malwareProtection': malwareProtection,
+    };
+  }
 }
 
 /// Organization-wide EBS volumes scan configuration.
@@ -6414,6 +7564,7 @@ class OrganizationEbsVolumes {
   OrganizationEbsVolumes({
     this.autoEnable,
   });
+
   Map<String, dynamic> toJson() {
     final autoEnable = this.autoEnable;
     return {
@@ -6437,6 +7588,13 @@ class OrganizationEbsVolumesResult {
       autoEnable: json['autoEnable'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoEnable = this.autoEnable;
+    return {
+      if (autoEnable != null) 'autoEnable': autoEnable,
+    };
+  }
 }
 
 /// Organization-wide Kubernetes audit logs configuration.
@@ -6448,6 +7606,7 @@ class OrganizationKubernetesAuditLogsConfiguration {
   OrganizationKubernetesAuditLogsConfiguration({
     required this.autoEnable,
   });
+
   Map<String, dynamic> toJson() {
     final autoEnable = this.autoEnable;
     return {
@@ -6472,6 +7631,13 @@ class OrganizationKubernetesAuditLogsConfigurationResult {
       autoEnable: json['autoEnable'] as bool,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoEnable = this.autoEnable;
+    return {
+      'autoEnable': autoEnable,
+    };
+  }
 }
 
 /// Organization-wide Kubernetes data sources configurations.
@@ -6483,6 +7649,7 @@ class OrganizationKubernetesConfiguration {
   OrganizationKubernetesConfiguration({
     required this.auditLogs,
   });
+
   Map<String, dynamic> toJson() {
     final auditLogs = this.auditLogs;
     return {
@@ -6508,6 +7675,13 @@ class OrganizationKubernetesConfigurationResult {
           json['auditLogs'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final auditLogs = this.auditLogs;
+    return {
+      'auditLogs': auditLogs,
+    };
+  }
 }
 
 /// Organization-wide Malware Protection configurations.
@@ -6519,6 +7693,7 @@ class OrganizationMalwareProtectionConfiguration {
   OrganizationMalwareProtectionConfiguration({
     this.scanEc2InstanceWithFindings,
   });
+
   Map<String, dynamic> toJson() {
     final scanEc2InstanceWithFindings = this.scanEc2InstanceWithFindings;
     return {
@@ -6548,6 +7723,14 @@ class OrganizationMalwareProtectionConfigurationResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final scanEc2InstanceWithFindings = this.scanEc2InstanceWithFindings;
+    return {
+      if (scanEc2InstanceWithFindings != null)
+        'scanEc2InstanceWithFindings': scanEc2InstanceWithFindings,
+    };
+  }
 }
 
 /// Describes whether S3 data event logs will be automatically enabled for new
@@ -6560,6 +7743,7 @@ class OrganizationS3LogsConfiguration {
   OrganizationS3LogsConfiguration({
     required this.autoEnable,
   });
+
   Map<String, dynamic> toJson() {
     final autoEnable = this.autoEnable;
     return {
@@ -6584,6 +7768,13 @@ class OrganizationS3LogsConfigurationResult {
       autoEnable: json['autoEnable'] as bool,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoEnable = this.autoEnable;
+    return {
+      'autoEnable': autoEnable,
+    };
+  }
 }
 
 /// Organization-wide EC2 instances with findings scan configuration.
@@ -6595,6 +7786,7 @@ class OrganizationScanEc2InstanceWithFindings {
   OrganizationScanEc2InstanceWithFindings({
     this.ebsVolumes,
   });
+
   Map<String, dynamic> toJson() {
     final ebsVolumes = this.ebsVolumes;
     return {
@@ -6621,6 +7813,13 @@ class OrganizationScanEc2InstanceWithFindingsResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ebsVolumes = this.ebsVolumes;
+    return {
+      if (ebsVolumes != null) 'ebsVolumes': ebsVolumes,
+    };
+  }
 }
 
 /// Contains information on the owner of the bucket.
@@ -6638,6 +7837,13 @@ class Owner {
     return Owner(
       id: json['id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'id': id,
+    };
   }
 }
 
@@ -6665,6 +7871,17 @@ class PermissionConfiguration {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountLevelPermissions = this.accountLevelPermissions;
+    final bucketLevelPermissions = this.bucketLevelPermissions;
+    return {
+      if (accountLevelPermissions != null)
+        'accountLevelPermissions': accountLevelPermissions,
+      if (bucketLevelPermissions != null)
+        'bucketLevelPermissions': bucketLevelPermissions,
+    };
+  }
 }
 
 /// Contains information about the PORT_PROBE action described in the finding.
@@ -6688,6 +7905,15 @@ class PortProbeAction {
           .map((e) => PortProbeDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blocked = this.blocked;
+    final portProbeDetails = this.portProbeDetails;
+    return {
+      if (blocked != null) 'blocked': blocked,
+      if (portProbeDetails != null) 'portProbeDetails': portProbeDetails,
+    };
   }
 }
 
@@ -6723,6 +7949,17 @@ class PortProbeDetail {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final localIpDetails = this.localIpDetails;
+    final localPortDetails = this.localPortDetails;
+    final remoteIpDetails = this.remoteIpDetails;
+    return {
+      if (localIpDetails != null) 'localIpDetails': localIpDetails,
+      if (localPortDetails != null) 'localPortDetails': localPortDetails,
+      if (remoteIpDetails != null) 'remoteIpDetails': remoteIpDetails,
+    };
+  }
 }
 
 /// Contains other private IP address information of the EC2 instance.
@@ -6743,6 +7980,15 @@ class PrivateIpAddressDetails {
       privateIpAddress: json['privateIpAddress'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final privateDnsName = this.privateDnsName;
+    final privateIpAddress = this.privateIpAddress;
+    return {
+      if (privateDnsName != null) 'privateDnsName': privateDnsName,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+    };
+  }
 }
 
 /// Contains information about the product code for the EC2 instance.
@@ -6762,6 +8008,15 @@ class ProductCode {
       code: json['productCodeId'] as String?,
       productType: json['productCodeType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final productType = this.productType;
+    return {
+      if (code != null) 'productCodeId': code,
+      if (productType != null) 'productCodeType': productType,
+    };
   }
 }
 
@@ -6786,6 +8041,17 @@ class PublicAccess {
               json['permissionConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final effectivePermission = this.effectivePermission;
+    final permissionConfiguration = this.permissionConfiguration;
+    return {
+      if (effectivePermission != null)
+        'effectivePermission': effectivePermission,
+      if (permissionConfiguration != null)
+        'permissionConfiguration': permissionConfiguration,
+    };
   }
 }
 
@@ -6849,6 +8115,15 @@ class RemoteAccountDetails {
       affiliated: json['affiliated'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final affiliated = this.affiliated;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (affiliated != null) 'affiliated': affiliated,
+    };
+  }
 }
 
 /// Contains information about the remote IP address of the connection.
@@ -6892,6 +8167,21 @@ class RemoteIpDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final city = this.city;
+    final country = this.country;
+    final geoLocation = this.geoLocation;
+    final ipAddressV4 = this.ipAddressV4;
+    final organization = this.organization;
+    return {
+      if (city != null) 'city': city,
+      if (country != null) 'country': country,
+      if (geoLocation != null) 'geoLocation': geoLocation,
+      if (ipAddressV4 != null) 'ipAddressV4': ipAddressV4,
+      if (organization != null) 'organization': organization,
+    };
+  }
 }
 
 /// Contains information about the remote port.
@@ -6911,6 +8201,15 @@ class RemotePortDetails {
       port: json['port'] as int?,
       portName: json['portName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final port = this.port;
+    final portName = this.portName;
+    return {
+      if (port != null) 'port': port,
+      if (portName != null) 'portName': portName,
+    };
   }
 }
 
@@ -6992,6 +8291,29 @@ class Resource {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyDetails = this.accessKeyDetails;
+    final containerDetails = this.containerDetails;
+    final ebsVolumeDetails = this.ebsVolumeDetails;
+    final ecsClusterDetails = this.ecsClusterDetails;
+    final eksClusterDetails = this.eksClusterDetails;
+    final instanceDetails = this.instanceDetails;
+    final kubernetesDetails = this.kubernetesDetails;
+    final resourceType = this.resourceType;
+    final s3BucketDetails = this.s3BucketDetails;
+    return {
+      if (accessKeyDetails != null) 'accessKeyDetails': accessKeyDetails,
+      if (containerDetails != null) 'containerDetails': containerDetails,
+      if (ebsVolumeDetails != null) 'ebsVolumeDetails': ebsVolumeDetails,
+      if (ecsClusterDetails != null) 'ecsClusterDetails': ecsClusterDetails,
+      if (eksClusterDetails != null) 'eksClusterDetails': eksClusterDetails,
+      if (instanceDetails != null) 'instanceDetails': instanceDetails,
+      if (kubernetesDetails != null) 'kubernetesDetails': kubernetesDetails,
+      if (resourceType != null) 'resourceType': resourceType,
+      if (s3BucketDetails != null) 's3BucketDetails': s3BucketDetails,
+    };
+  }
 }
 
 /// Represents the resources that were scanned in the scan entry.
@@ -7006,6 +8328,13 @@ class ResourceDetails {
     return ResourceDetails(
       instanceArn: json['instanceArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceArn = this.instanceArn;
+    return {
+      if (instanceArn != null) 'instanceArn': instanceArn,
+    };
   }
 }
 
@@ -7067,6 +8396,28 @@ class S3BucketDetail {
       type: json['type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final defaultServerSideEncryption = this.defaultServerSideEncryption;
+    final name = this.name;
+    final owner = this.owner;
+    final publicAccess = this.publicAccess;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (defaultServerSideEncryption != null)
+        'defaultServerSideEncryption': defaultServerSideEncryption,
+      if (name != null) 'name': name,
+      if (owner != null) 'owner': owner,
+      if (publicAccess != null) 'publicAccess': publicAccess,
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 /// Describes whether S3 data event logs will be enabled as a data source.
@@ -7077,6 +8428,7 @@ class S3LogsConfiguration {
   S3LogsConfiguration({
     required this.enable,
   });
+
   Map<String, dynamic> toJson() {
     final enable = this.enable;
     return {
@@ -7098,6 +8450,13 @@ class S3LogsConfigurationResult {
     return S3LogsConfigurationResult(
       status: (json['status'] as String).toDataSourceStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status.toValue(),
+    };
   }
 }
 
@@ -7192,6 +8551,40 @@ class Scan {
               json['triggerDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final adminDetectorId = this.adminDetectorId;
+    final attachedVolumes = this.attachedVolumes;
+    final detectorId = this.detectorId;
+    final failureReason = this.failureReason;
+    final fileCount = this.fileCount;
+    final resourceDetails = this.resourceDetails;
+    final scanEndTime = this.scanEndTime;
+    final scanId = this.scanId;
+    final scanResultDetails = this.scanResultDetails;
+    final scanStartTime = this.scanStartTime;
+    final scanStatus = this.scanStatus;
+    final totalBytes = this.totalBytes;
+    final triggerDetails = this.triggerDetails;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (adminDetectorId != null) 'adminDetectorId': adminDetectorId,
+      if (attachedVolumes != null) 'attachedVolumes': attachedVolumes,
+      if (detectorId != null) 'detectorId': detectorId,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (fileCount != null) 'fileCount': fileCount,
+      if (resourceDetails != null) 'resourceDetails': resourceDetails,
+      if (scanEndTime != null) 'scanEndTime': unixTimestampToJson(scanEndTime),
+      if (scanId != null) 'scanId': scanId,
+      if (scanResultDetails != null) 'scanResultDetails': scanResultDetails,
+      if (scanStartTime != null)
+        'scanStartTime': unixTimestampToJson(scanStartTime),
+      if (scanStatus != null) 'scanStatus': scanStatus.toValue(),
+      if (totalBytes != null) 'totalBytes': totalBytes,
+      if (triggerDetails != null) 'triggerDetails': triggerDetails,
+    };
   }
 }
 
@@ -7317,6 +8710,22 @@ class ScanDetections {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final highestSeverityThreatDetails = this.highestSeverityThreatDetails;
+    final scannedItemCount = this.scannedItemCount;
+    final threatDetectedByName = this.threatDetectedByName;
+    final threatsDetectedItemCount = this.threatsDetectedItemCount;
+    return {
+      if (highestSeverityThreatDetails != null)
+        'highestSeverityThreatDetails': highestSeverityThreatDetails,
+      if (scannedItemCount != null) 'scannedItemCount': scannedItemCount,
+      if (threatDetectedByName != null)
+        'threatDetectedByName': threatDetectedByName,
+      if (threatsDetectedItemCount != null)
+        'threatsDetectedItemCount': threatsDetectedItemCount,
+    };
+  }
 }
 
 /// Describes whether Malware Protection for EC2 instances with findings will be
@@ -7328,6 +8737,7 @@ class ScanEc2InstanceWithFindings {
   ScanEc2InstanceWithFindings({
     this.ebsVolumes,
   });
+
   Map<String, dynamic> toJson() {
     final ebsVolumes = this.ebsVolumes;
     return {
@@ -7353,6 +8763,13 @@ class ScanEc2InstanceWithFindingsResult {
               json['ebsVolumes'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ebsVolumes = this.ebsVolumes;
+    return {
+      if (ebsVolumes != null) 'ebsVolumes': ebsVolumes,
+    };
   }
 }
 
@@ -7383,6 +8800,19 @@ class ScanFilePath {
       hash: json['hash'] as String?,
       volumeArn: json['volumeArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileName = this.fileName;
+    final filePath = this.filePath;
+    final hash = this.hash;
+    final volumeArn = this.volumeArn;
+    return {
+      if (fileName != null) 'fileName': fileName,
+      if (filePath != null) 'filePath': filePath,
+      if (hash != null) 'hash': hash,
+      if (volumeArn != null) 'volumeArn': volumeArn,
+    };
   }
 }
 
@@ -7465,6 +8895,13 @@ class ScanResultDetails {
       scanResult: (json['scanResult'] as String?)?.toScanResult(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final scanResult = this.scanResult;
+    return {
+      if (scanResult != null) 'scanResult': scanResult.toValue(),
+    };
+  }
 }
 
 enum ScanStatus {
@@ -7532,6 +8969,19 @@ class ScanThreatName {
       severity: json['severity'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final filePaths = this.filePaths;
+    final itemCount = this.itemCount;
+    final name = this.name;
+    final severity = this.severity;
+    return {
+      if (filePaths != null) 'filePaths': filePaths,
+      if (itemCount != null) 'itemCount': itemCount,
+      if (name != null) 'name': name,
+      if (severity != null) 'severity': severity,
+    };
+  }
 }
 
 /// Total number of scanned files.
@@ -7557,6 +9007,17 @@ class ScannedItemCount {
       volumes: json['volumes'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final files = this.files;
+    final totalGb = this.totalGb;
+    final volumes = this.volumes;
+    return {
+      if (files != null) 'files': files,
+      if (totalGb != null) 'totalGb': totalGb,
+      if (volumes != null) 'volumes': volumes,
+    };
+  }
 }
 
 /// Container security context.
@@ -7571,6 +9032,13 @@ class SecurityContext {
     return SecurityContext(
       privileged: json['privileged'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final privileged = this.privileged;
+    return {
+      if (privileged != null) 'privileged': privileged,
+    };
   }
 }
 
@@ -7592,6 +9060,15 @@ class SecurityGroup {
       groupId: json['groupId'] as String?,
       groupName: json['groupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    return {
+      if (groupId != null) 'groupId': groupId,
+      if (groupName != null) 'groupName': groupName,
+    };
   }
 }
 
@@ -7681,6 +9158,38 @@ class Service {
       userFeedback: json['userFeedback'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final additionalInfo = this.additionalInfo;
+    final archived = this.archived;
+    final count = this.count;
+    final detectorId = this.detectorId;
+    final ebsVolumeScanDetails = this.ebsVolumeScanDetails;
+    final eventFirstSeen = this.eventFirstSeen;
+    final eventLastSeen = this.eventLastSeen;
+    final evidence = this.evidence;
+    final featureName = this.featureName;
+    final resourceRole = this.resourceRole;
+    final serviceName = this.serviceName;
+    final userFeedback = this.userFeedback;
+    return {
+      if (action != null) 'action': action,
+      if (additionalInfo != null) 'additionalInfo': additionalInfo,
+      if (archived != null) 'archived': archived,
+      if (count != null) 'count': count,
+      if (detectorId != null) 'detectorId': detectorId,
+      if (ebsVolumeScanDetails != null)
+        'ebsVolumeScanDetails': ebsVolumeScanDetails,
+      if (eventFirstSeen != null) 'eventFirstSeen': eventFirstSeen,
+      if (eventLastSeen != null) 'eventLastSeen': eventLastSeen,
+      if (evidence != null) 'evidence': evidence,
+      if (featureName != null) 'featureName': featureName,
+      if (resourceRole != null) 'resourceRole': resourceRole,
+      if (serviceName != null) 'serviceName': serviceName,
+      if (userFeedback != null) 'userFeedback': userFeedback,
+    };
+  }
 }
 
 /// Additional information about the generated finding.
@@ -7701,6 +9210,15 @@ class ServiceAdditionalInfo {
       value: json['value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final value = this.value;
+    return {
+      if (type != null) 'type': type,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Contains information about the criteria used for sorting findings.
@@ -7716,6 +9234,7 @@ class SortCriteria {
     this.attributeName,
     this.orderBy,
   });
+
   Map<String, dynamic> toJson() {
     final attributeName = this.attributeName;
     final orderBy = this.orderBy;
@@ -7742,6 +9261,13 @@ class StartMonitoringMembersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class StopMonitoringMembersResponse {
@@ -7760,6 +9286,13 @@ class StopMonitoringMembersResponse {
           .map((e) => UnprocessedAccount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -7781,12 +9314,25 @@ class Tag {
       value: json['value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'key': key,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7822,6 +9368,20 @@ class ThreatDetectedByName {
           .toList(),
       uniqueThreatNameCount: json['uniqueThreatNameCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final itemCount = this.itemCount;
+    final shortened = this.shortened;
+    final threatNames = this.threatNames;
+    final uniqueThreatNameCount = this.uniqueThreatNameCount;
+    return {
+      if (itemCount != null) 'itemCount': itemCount,
+      if (shortened != null) 'shortened': shortened,
+      if (threatNames != null) 'threatNames': threatNames,
+      if (uniqueThreatNameCount != null)
+        'uniqueThreatNameCount': uniqueThreatNameCount,
+    };
   }
 }
 
@@ -7949,6 +9509,15 @@ class ThreatIntelligenceDetail {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final threatListName = this.threatListName;
+    final threatNames = this.threatNames;
+    return {
+      if (threatListName != null) 'threatListName': threatListName,
+      if (threatNames != null) 'threatNames': threatNames,
+    };
+  }
 }
 
 /// Contains total number of infected files.
@@ -7963,6 +9532,13 @@ class ThreatsDetectedItemCount {
     return ThreatsDetectedItemCount(
       files: json['files'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final files = this.files;
+    return {
+      if (files != null) 'files': files,
+    };
   }
 }
 
@@ -7985,6 +9561,15 @@ class Total {
       unit: json['unit'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amount = this.amount;
+    final unit = this.unit;
+    return {
+      if (amount != null) 'amount': amount,
+      if (unit != null) 'unit': unit,
+    };
+  }
 }
 
 /// Represents the reason the scan was triggered.
@@ -8005,12 +9590,25 @@ class TriggerDetails {
       guardDutyFindingId: json['guardDutyFindingId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final guardDutyFindingId = this.guardDutyFindingId;
+    return {
+      if (description != null) 'description': description,
+      if (guardDutyFindingId != null) 'guardDutyFindingId': guardDutyFindingId,
+    };
+  }
 }
 
 class UnarchiveFindingsResponse {
   UnarchiveFindingsResponse();
   factory UnarchiveFindingsResponse.fromJson(Map<String, dynamic> _) {
     return UnarchiveFindingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8032,6 +9630,15 @@ class UnprocessedAccount {
       result: json['result'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final result = this.result;
+    return {
+      'accountId': accountId,
+      'result': result,
+    };
+  }
 }
 
 class UntagResourceResponse {
@@ -8039,12 +9646,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateDetectorResponse {
   UpdateDetectorResponse();
   factory UpdateDetectorResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDetectorResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8060,12 +9675,23 @@ class UpdateFilterResponse {
       name: json['name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'name': name,
+    };
+  }
 }
 
 class UpdateFindingsFeedbackResponse {
   UpdateFindingsFeedbackResponse();
   factory UpdateFindingsFeedbackResponse.fromJson(Map<String, dynamic> _) {
     return UpdateFindingsFeedbackResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8074,12 +9700,20 @@ class UpdateIPSetResponse {
   factory UpdateIPSetResponse.fromJson(Map<String, dynamic> _) {
     return UpdateIPSetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateMalwareScanSettingsResponse {
   UpdateMalwareScanSettingsResponse();
   factory UpdateMalwareScanSettingsResponse.fromJson(Map<String, dynamic> _) {
     return UpdateMalwareScanSettingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8099,6 +9733,13 @@ class UpdateMemberDetectorsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      'unprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class UpdateOrganizationConfigurationResponse {
@@ -8107,6 +9748,10 @@ class UpdateOrganizationConfigurationResponse {
       Map<String, dynamic> _) {
     return UpdateOrganizationConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdatePublishingDestinationResponse {
@@ -8114,12 +9759,20 @@ class UpdatePublishingDestinationResponse {
   factory UpdatePublishingDestinationResponse.fromJson(Map<String, dynamic> _) {
     return UpdatePublishingDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateThreatIntelSetResponse {
   UpdateThreatIntelSetResponse();
   factory UpdateThreatIntelSetResponse.fromJson(Map<String, dynamic> _) {
     return UpdateThreatIntelSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8143,6 +9796,15 @@ class UsageAccountResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final total = this.total;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (total != null) 'total': total,
+    };
+  }
 }
 
 /// Contains information about the criteria used to query usage statistics.
@@ -8162,6 +9824,7 @@ class UsageCriteria {
     this.accountIds,
     this.resources,
   });
+
   Map<String, dynamic> toJson() {
     final dataSources = this.dataSources;
     final accountIds = this.accountIds;
@@ -8194,6 +9857,15 @@ class UsageDataSourceResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSource = this.dataSource;
+    final total = this.total;
+    return {
+      if (dataSource != null) 'dataSource': dataSource.toValue(),
+      if (total != null) 'total': total,
+    };
+  }
 }
 
 /// Contains information on the sum of usage based on an Amazon Web Services
@@ -8216,6 +9888,15 @@ class UsageResourceResult {
           ? Total.fromJson(json['total'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resource = this.resource;
+    final total = this.total;
+    return {
+      if (resource != null) 'resource': resource,
+      if (total != null) 'total': total,
+    };
   }
 }
 
@@ -8299,6 +9980,19 @@ class UsageStatistics {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sumByAccount = this.sumByAccount;
+    final sumByDataSource = this.sumByDataSource;
+    final sumByResource = this.sumByResource;
+    final topResources = this.topResources;
+    return {
+      if (sumByAccount != null) 'sumByAccount': sumByAccount,
+      if (sumByDataSource != null) 'sumByDataSource': sumByDataSource,
+      if (sumByResource != null) 'sumByResource': sumByResource,
+      if (topResources != null) 'topResources': topResources,
+    };
+  }
 }
 
 /// Volume used by the Kubernetes workload.
@@ -8321,6 +10015,15 @@ class Volume {
           : null,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostPath = this.hostPath;
+    final name = this.name;
+    return {
+      if (hostPath != null) 'hostPath': hostPath,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -8367,6 +10070,25 @@ class VolumeDetail {
       volumeType: json['volumeType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceName = this.deviceName;
+    final encryptionType = this.encryptionType;
+    final kmsKeyArn = this.kmsKeyArn;
+    final snapshotArn = this.snapshotArn;
+    final volumeArn = this.volumeArn;
+    final volumeSizeInGB = this.volumeSizeInGB;
+    final volumeType = this.volumeType;
+    return {
+      if (deviceName != null) 'deviceName': deviceName,
+      if (encryptionType != null) 'encryptionType': encryptionType,
+      if (kmsKeyArn != null) 'kmsKeyArn': kmsKeyArn,
+      if (snapshotArn != null) 'snapshotArn': snapshotArn,
+      if (volumeArn != null) 'volumeArn': volumeArn,
+      if (volumeSizeInGB != null) 'volumeSizeInGB': volumeSizeInGB,
+      if (volumeType != null) 'volumeType': volumeType,
+    };
+  }
 }
 
 /// Container volume mount.
@@ -8386,6 +10108,15 @@ class VolumeMount {
       mountPath: json['mountPath'] as String?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mountPath = this.mountPath;
+    final name = this.name;
+    return {
+      if (mountPath != null) 'mountPath': mountPath,
+      if (name != null) 'name': name,
+    };
   }
 }
 

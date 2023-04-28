@@ -575,6 +575,30 @@ class AppMonitor {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appMonitorConfiguration = this.appMonitorConfiguration;
+    final created = this.created;
+    final dataStorage = this.dataStorage;
+    final domain = this.domain;
+    final id = this.id;
+    final lastModified = this.lastModified;
+    final name = this.name;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (appMonitorConfiguration != null)
+        'AppMonitorConfiguration': appMonitorConfiguration,
+      if (created != null) 'Created': created,
+      if (dataStorage != null) 'DataStorage': dataStorage,
+      if (domain != null) 'Domain': domain,
+      if (id != null) 'Id': id,
+      if (lastModified != null) 'LastModified': lastModified,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// This structure contains much of the configuration data for the app monitor.
@@ -728,6 +752,7 @@ class AppMonitorDetails {
     this.name,
     this.version,
   });
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final name = this.name;
@@ -774,6 +799,21 @@ class AppMonitorSummary {
       state: (json['State'] as String?)?.toStateEnum(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final created = this.created;
+    final id = this.id;
+    final lastModified = this.lastModified;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (created != null) 'Created': created,
+      if (id != null) 'Id': id,
+      if (lastModified != null) 'LastModified': lastModified,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class CreateAppMonitorResponse {
@@ -787,6 +827,13 @@ class CreateAppMonitorResponse {
     return CreateAppMonitorResponse(
       id: json['Id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -811,6 +858,15 @@ class CwLog {
       cwLogGroup: json['CwLogGroup'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cwLogEnabled = this.cwLogEnabled;
+    final cwLogGroup = this.cwLogGroup;
+    return {
+      if (cwLogEnabled != null) 'CwLogEnabled': cwLogEnabled,
+      if (cwLogGroup != null) 'CwLogGroup': cwLogGroup,
+    };
+  }
 }
 
 /// A structure that contains information about whether this app monitor stores
@@ -831,12 +887,23 @@ class DataStorage {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cwLog = this.cwLog;
+    return {
+      if (cwLog != null) 'CwLog': cwLog,
+    };
+  }
 }
 
 class DeleteAppMonitorResponse {
   DeleteAppMonitorResponse();
   factory DeleteAppMonitorResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAppMonitorResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -861,6 +928,15 @@ class GetAppMonitorDataResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextToken = this.nextToken;
+    return {
+      if (events != null) 'Events': events,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetAppMonitorResponse {
@@ -877,6 +953,13 @@ class GetAppMonitorResponse {
           ? AppMonitor.fromJson(json['AppMonitor'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appMonitor = this.appMonitor;
+    return {
+      if (appMonitor != null) 'AppMonitor': appMonitor,
+    };
   }
 }
 
@@ -902,6 +985,16 @@ class ListAppMonitorsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appMonitorSummaries = this.appMonitorSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (appMonitorSummaries != null)
+        'AppMonitorSummaries': appMonitorSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -922,12 +1015,25 @@ class ListTagsForResourceResponse {
           .map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final tags = this.tags;
+    return {
+      'ResourceArn': resourceArn,
+      'Tags': tags,
+    };
+  }
 }
 
 class PutRumEventsResponse {
   PutRumEventsResponse();
   factory PutRumEventsResponse.fromJson(Map<String, dynamic> _) {
     return PutRumEventsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -961,6 +1067,7 @@ class QueryFilter {
     this.name,
     this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -1000,6 +1107,7 @@ class RumEvent {
     required this.type,
     this.metadata,
   });
+
   Map<String, dynamic> toJson() {
     final details = this.details;
     final id = this.id;
@@ -1054,6 +1162,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 enum Telemetry {
@@ -1103,6 +1215,7 @@ class TimeRange {
     required this.after,
     this.before,
   });
+
   Map<String, dynamic> toJson() {
     final after = this.after;
     final before = this.before;
@@ -1118,12 +1231,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateAppMonitorResponse {
   UpdateAppMonitorResponse();
   factory UpdateAppMonitorResponse.fromJson(Map<String, dynamic> _) {
     return UpdateAppMonitorResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1141,6 +1262,7 @@ class UserDetails {
     this.sessionId,
     this.userId,
   });
+
   Map<String, dynamic> toJson() {
     final sessionId = this.sessionId;
     final userId = this.userId;

@@ -478,6 +478,17 @@ class GetRoutingControlStateResponse {
       routingControlName: json['RoutingControlName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final routingControlArn = this.routingControlArn;
+    final routingControlState = this.routingControlState;
+    final routingControlName = this.routingControlName;
+    return {
+      'RoutingControlArn': routingControlArn,
+      'RoutingControlState': routingControlState.toValue(),
+      if (routingControlName != null) 'RoutingControlName': routingControlName,
+    };
+  }
 }
 
 class ListRoutingControlsResponse {
@@ -500,6 +511,15 @@ class ListRoutingControlsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final routingControls = this.routingControls;
+    final nextToken = this.nextToken;
+    return {
+      'RoutingControls': routingControls,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -540,6 +560,22 @@ class RoutingControl {
       routingControlState:
           (json['RoutingControlState'] as String?)?.toRoutingControlState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final controlPanelArn = this.controlPanelArn;
+    final controlPanelName = this.controlPanelName;
+    final routingControlArn = this.routingControlArn;
+    final routingControlName = this.routingControlName;
+    final routingControlState = this.routingControlState;
+    return {
+      if (controlPanelArn != null) 'ControlPanelArn': controlPanelArn,
+      if (controlPanelName != null) 'ControlPanelName': controlPanelName,
+      if (routingControlArn != null) 'RoutingControlArn': routingControlArn,
+      if (routingControlName != null) 'RoutingControlName': routingControlName,
+      if (routingControlState != null)
+        'RoutingControlState': routingControlState.toValue(),
+    };
   }
 }
 
@@ -583,6 +619,7 @@ class UpdateRoutingControlStateEntry {
     required this.routingControlArn,
     required this.routingControlState,
   });
+
   Map<String, dynamic> toJson() {
     final routingControlArn = this.routingControlArn;
     final routingControlState = this.routingControlState;
@@ -598,12 +635,20 @@ class UpdateRoutingControlStateResponse {
   factory UpdateRoutingControlStateResponse.fromJson(Map<String, dynamic> _) {
     return UpdateRoutingControlStateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateRoutingControlStatesResponse {
   UpdateRoutingControlStatesResponse();
   factory UpdateRoutingControlStatesResponse.fromJson(Map<String, dynamic> _) {
     return UpdateRoutingControlStatesResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

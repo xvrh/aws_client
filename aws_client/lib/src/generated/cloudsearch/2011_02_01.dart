@@ -744,6 +744,15 @@ class AccessPoliciesStatus {
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// The status and configuration of the domain's availability options.
@@ -762,6 +771,15 @@ class AvailabilityOptionsStatus {
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// An error occurred while processing the request.
@@ -779,6 +797,15 @@ class BaseException implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code,
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// A response message that contains the status of a newly created domain.
@@ -793,6 +820,13 @@ class CreateDomainResponse {
       domainStatus:
           _s.extractXmlChild(elem, 'DomainStatus')?.let(DomainStatus.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainStatus = this.domainStatus;
+    return {
+      if (domainStatus != null) 'DomainStatus': domainStatus,
+    };
   }
 }
 
@@ -815,6 +849,15 @@ class DefaultSearchFieldStatus {
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// A response message that contains the status of an updated index field.
@@ -829,6 +872,13 @@ class DefineIndexFieldResponse {
       indexField:
           IndexFieldStatus.fromXml(_s.extractXmlChild(elem, 'IndexField')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexField = this.indexField;
+    return {
+      'IndexField': indexField,
+    };
   }
 }
 
@@ -846,6 +896,13 @@ class DefineRankExpressionResponse {
           _s.extractXmlChild(elem, 'RankExpression')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rankExpression = this.rankExpression;
+    return {
+      'RankExpression': rankExpression,
+    };
+  }
 }
 
 /// A response message that contains the status of a newly deleted domain, or no
@@ -862,6 +919,13 @@ class DeleteDomainResponse {
           _s.extractXmlChild(elem, 'DomainStatus')?.let(DomainStatus.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainStatus = this.domainStatus;
+    return {
+      if (domainStatus != null) 'DomainStatus': domainStatus,
+    };
+  }
 }
 
 /// A response message that contains the status of a deleted index field.
@@ -876,6 +940,13 @@ class DeleteIndexFieldResponse {
       indexField:
           IndexFieldStatus.fromXml(_s.extractXmlChild(elem, 'IndexField')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexField = this.indexField;
+    return {
+      'IndexField': indexField,
+    };
   }
 }
 
@@ -892,6 +963,13 @@ class DeleteRankExpressionResponse {
       rankExpression: RankExpressionStatus.fromXml(
           _s.extractXmlChild(elem, 'RankExpression')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rankExpression = this.rankExpression;
+    return {
+      'RankExpression': rankExpression,
+    };
   }
 }
 
@@ -913,6 +991,14 @@ class DescribeAvailabilityOptionsResponse {
           ?.let(AvailabilityOptionsStatus.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityOptions = this.availabilityOptions;
+    return {
+      if (availabilityOptions != null)
+        'AvailabilityOptions': availabilityOptions,
+    };
+  }
 }
 
 /// A response message that contains the default search field for a search
@@ -932,6 +1018,13 @@ class DescribeDefaultSearchFieldResponse {
           _s.extractXmlChild(elem, 'DefaultSearchField')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final defaultSearchField = this.defaultSearchField;
+    return {
+      'DefaultSearchField': defaultSearchField,
+    };
+  }
 }
 
 /// A response message that contains the status of one or more domains.
@@ -949,6 +1042,13 @@ class DescribeDomainsResponse {
           .map(DomainStatus.fromXml)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainStatusList = this.domainStatusList;
+    return {
+      'DomainStatusList': domainStatusList,
+    };
   }
 }
 
@@ -969,6 +1069,13 @@ class DescribeIndexFieldsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final indexFields = this.indexFields;
+    return {
+      'IndexFields': indexFields,
+    };
+  }
 }
 
 /// A response message that contains the rank expressions for a search domain.
@@ -988,6 +1095,13 @@ class DescribeRankExpressionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rankExpressions = this.rankExpressions;
+    return {
+      'RankExpressions': rankExpressions,
+    };
+  }
 }
 
 /// A response message that contains the access policies for a domain.
@@ -1003,6 +1117,13 @@ class DescribeServiceAccessPoliciesResponse {
           _s.extractXmlChild(elem, 'AccessPolicies')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessPolicies = this.accessPolicies;
+    return {
+      'AccessPolicies': accessPolicies,
+    };
+  }
 }
 
 /// A response message that contains the stemming options for a search domain.
@@ -1016,6 +1137,13 @@ class DescribeStemmingOptionsResponse {
     return DescribeStemmingOptionsResponse(
       stems: StemmingOptionsStatus.fromXml(_s.extractXmlChild(elem, 'Stems')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stems = this.stems;
+    return {
+      'Stems': stems,
+    };
   }
 }
 
@@ -1032,6 +1160,13 @@ class DescribeStopwordOptionsResponse {
           StopwordOptionsStatus.fromXml(_s.extractXmlChild(elem, 'Stopwords')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stopwords = this.stopwords;
+    return {
+      'Stopwords': stopwords,
+    };
+  }
 }
 
 /// A response message that contains the synonym options for a search domain.
@@ -1047,6 +1182,13 @@ class DescribeSynonymOptionsResponse {
           SynonymOptionsStatus.fromXml(_s.extractXmlChild(elem, 'Synonyms')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final synonyms = this.synonyms;
+    return {
+      'Synonyms': synonyms,
+    };
+  }
 }
 
 /// The request was rejected because it attempted an operation which is not
@@ -1057,6 +1199,10 @@ class DisabledOperationException implements _s.AwsException {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DisabledOperationException();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1140,6 +1286,37 @@ class DomainStatus {
           ?.let(ServiceEndpoint.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainId = this.domainId;
+    final domainName = this.domainName;
+    final requiresIndexDocuments = this.requiresIndexDocuments;
+    final created = this.created;
+    final deleted = this.deleted;
+    final docService = this.docService;
+    final numSearchableDocs = this.numSearchableDocs;
+    final processing = this.processing;
+    final searchInstanceCount = this.searchInstanceCount;
+    final searchInstanceType = this.searchInstanceType;
+    final searchPartitionCount = this.searchPartitionCount;
+    final searchService = this.searchService;
+    return {
+      'DomainId': domainId,
+      'DomainName': domainName,
+      'RequiresIndexDocuments': requiresIndexDocuments,
+      if (created != null) 'Created': created,
+      if (deleted != null) 'Deleted': deleted,
+      if (docService != null) 'DocService': docService,
+      if (numSearchableDocs != null) 'NumSearchableDocs': numSearchableDocs,
+      if (processing != null) 'Processing': processing,
+      if (searchInstanceCount != null)
+        'SearchInstanceCount': searchInstanceCount,
+      if (searchInstanceType != null) 'SearchInstanceType': searchInstanceType,
+      if (searchPartitionCount != null)
+        'SearchPartitionCount': searchPartitionCount,
+      if (searchService != null) 'SearchService': searchService,
+    };
+  }
 }
 
 /// The result of an <code>IndexDocuments</code> action.
@@ -1157,6 +1334,13 @@ class IndexDocumentsResponse {
           .extractXmlChild(elem, 'FieldNames')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fieldNames = this.fieldNames;
+    return {
+      if (fieldNames != null) 'FieldNames': fieldNames,
+    };
   }
 }
 
@@ -1258,6 +1442,15 @@ class IndexFieldStatus {
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// The type of <code>IndexField</code>.
@@ -1304,6 +1497,10 @@ class InternalException implements _s.AwsException {
       _s.XmlElement elem) {
     return InternalException();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The request was rejected because it specified an invalid type definition.
@@ -1314,6 +1511,10 @@ class InvalidTypeException implements _s.AwsException {
       _s.XmlElement elem) {
     return InvalidTypeException();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The request was rejected because a resource limit has already been met.
@@ -1323,6 +1524,10 @@ class LimitExceededException implements _s.AwsException {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return LimitExceededException();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1522,6 +1727,21 @@ class OptionStatus {
       updateVersion: _s.extractXmlIntValue(elem, 'UpdateVersion'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final state = this.state;
+    final updateDate = this.updateDate;
+    final pendingDeletion = this.pendingDeletion;
+    final updateVersion = this.updateVersion;
+    return {
+      'CreationDate': iso8601ToJson(creationDate),
+      'State': state.toValue(),
+      'UpdateDate': iso8601ToJson(updateDate),
+      if (pendingDeletion != null) 'PendingDeletion': pendingDeletion,
+      if (updateVersion != null) 'UpdateVersion': updateVersion,
+    };
+  }
 }
 
 /// The value of a <code>RankExpression</code> and its current status.
@@ -1542,6 +1762,15 @@ class RankExpressionStatus {
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// The request was rejected because it attempted to reference a resource that
@@ -1552,6 +1781,10 @@ class ResourceNotFoundException implements _s.AwsException {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return ResourceNotFoundException();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1572,6 +1805,15 @@ class ServiceEndpoint {
       arn: _s.extractXmlStringValue(elem, 'Arn'),
       endpoint: _s.extractXmlStringValue(elem, 'Endpoint'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final endpoint = this.endpoint;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (endpoint != null) 'Endpoint': endpoint,
+    };
   }
 }
 
@@ -1804,6 +2046,15 @@ class StemmingOptionsStatus {
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// The stopword options configured for this search domain and the current
@@ -1822,6 +2073,15 @@ class StopwordOptionsStatus {
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
+  }
 }
 
 /// The synonym options configured for this search domain and the current status
@@ -1839,6 +2099,15 @@ class SynonymOptionsStatus {
       options: _s.extractXmlStringValue(elem, 'Options')!,
       status: OptionStatus.fromXml(_s.extractXmlChild(elem, 'Status')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final status = this.status;
+    return {
+      'Options': options,
+      'Status': status,
+    };
   }
 }
 
@@ -1931,6 +2200,14 @@ class UpdateAvailabilityOptionsResponse {
           ?.let(AvailabilityOptionsStatus.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityOptions = this.availabilityOptions;
+    return {
+      if (availabilityOptions != null)
+        'AvailabilityOptions': availabilityOptions,
+    };
+  }
 }
 
 /// A response message that contains the status of an updated default search
@@ -1947,6 +2224,13 @@ class UpdateDefaultSearchFieldResponse {
           _s.extractXmlChild(elem, 'DefaultSearchField')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final defaultSearchField = this.defaultSearchField;
+    return {
+      'DefaultSearchField': defaultSearchField,
+    };
+  }
 }
 
 /// A response message that contains the status of updated access policies.
@@ -1962,6 +2246,13 @@ class UpdateServiceAccessPoliciesResponse {
           _s.extractXmlChild(elem, 'AccessPolicies')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessPolicies = this.accessPolicies;
+    return {
+      'AccessPolicies': accessPolicies,
+    };
+  }
 }
 
 /// A response message that contains the status of updated stemming options.
@@ -1975,6 +2266,13 @@ class UpdateStemmingOptionsResponse {
     return UpdateStemmingOptionsResponse(
       stems: StemmingOptionsStatus.fromXml(_s.extractXmlChild(elem, 'Stems')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stems = this.stems;
+    return {
+      'Stems': stems,
+    };
   }
 }
 
@@ -1991,6 +2289,13 @@ class UpdateStopwordOptionsResponse {
           StopwordOptionsStatus.fromXml(_s.extractXmlChild(elem, 'Stopwords')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stopwords = this.stopwords;
+    return {
+      'Stopwords': stopwords,
+    };
+  }
 }
 
 /// A response message that contains the status of updated synonym options.
@@ -2005,6 +2310,13 @@ class UpdateSynonymOptionsResponse {
       synonyms:
           SynonymOptionsStatus.fromXml(_s.extractXmlChild(elem, 'Synonyms')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final synonyms = this.synonyms;
+    return {
+      'Synonyms': synonyms,
+    };
   }
 }
 

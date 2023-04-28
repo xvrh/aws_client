@@ -3376,12 +3376,23 @@ class AccessDeniedException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class AddFacetToObjectResponse {
   AddFacetToObjectResponse();
   factory AddFacetToObjectResponse.fromJson(Map<String, dynamic> _) {
     return AddFacetToObjectResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3405,6 +3416,15 @@ class ApplySchemaResponse {
       directoryArn: json['DirectoryArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appliedSchemaArn = this.appliedSchemaArn;
+    final directoryArn = this.directoryArn;
+    return {
+      if (appliedSchemaArn != null) 'AppliedSchemaArn': appliedSchemaArn,
+      if (directoryArn != null) 'DirectoryArn': directoryArn,
+    };
+  }
 }
 
 class AttachObjectResponse {
@@ -3420,12 +3440,24 @@ class AttachObjectResponse {
       attachedObjectIdentifier: json['AttachedObjectIdentifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachedObjectIdentifier = this.attachedObjectIdentifier;
+    return {
+      if (attachedObjectIdentifier != null)
+        'AttachedObjectIdentifier': attachedObjectIdentifier,
+    };
+  }
 }
 
 class AttachPolicyResponse {
   AttachPolicyResponse();
   factory AttachPolicyResponse.fromJson(Map<String, dynamic> _) {
     return AttachPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3441,6 +3473,14 @@ class AttachToIndexResponse {
     return AttachToIndexResponse(
       attachedObjectIdentifier: json['AttachedObjectIdentifier'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachedObjectIdentifier = this.attachedObjectIdentifier;
+    return {
+      if (attachedObjectIdentifier != null)
+        'AttachedObjectIdentifier': attachedObjectIdentifier,
+    };
   }
 }
 
@@ -3458,6 +3498,13 @@ class AttachTypedLinkResponse {
               json['TypedLinkSpecifier'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final typedLinkSpecifier = this.typedLinkSpecifier;
+    return {
+      if (typedLinkSpecifier != null) 'TypedLinkSpecifier': typedLinkSpecifier,
+    };
   }
 }
 
@@ -3574,6 +3621,7 @@ class BatchAddFacetToObject {
     required this.objectReference,
     required this.schemaFacet,
   });
+
   Map<String, dynamic> toJson() {
     final objectAttributeList = this.objectAttributeList;
     final objectReference = this.objectReference;
@@ -3591,6 +3639,10 @@ class BatchAddFacetToObjectResponse {
   BatchAddFacetToObjectResponse();
   factory BatchAddFacetToObjectResponse.fromJson(Map<String, dynamic> _) {
     return BatchAddFacetToObjectResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3610,6 +3662,7 @@ class BatchAttachObject {
     required this.linkName,
     required this.parentReference,
   });
+
   Map<String, dynamic> toJson() {
     final childReference = this.childReference;
     final linkName = this.linkName;
@@ -3635,6 +3688,14 @@ class BatchAttachObjectResponse {
       attachedObjectIdentifier: json['attachedObjectIdentifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachedObjectIdentifier = this.attachedObjectIdentifier;
+    return {
+      if (attachedObjectIdentifier != null)
+        'attachedObjectIdentifier': attachedObjectIdentifier,
+    };
+  }
 }
 
 /// Attaches a policy object to a regular object inside a <a>BatchRead</a>
@@ -3652,6 +3713,7 @@ class BatchAttachPolicy {
     required this.objectReference,
     required this.policyReference,
   });
+
   Map<String, dynamic> toJson() {
     final objectReference = this.objectReference;
     final policyReference = this.policyReference;
@@ -3667,6 +3729,10 @@ class BatchAttachPolicyResponse {
   BatchAttachPolicyResponse();
   factory BatchAttachPolicyResponse.fromJson(Map<String, dynamic> _) {
     return BatchAttachPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3684,6 +3750,7 @@ class BatchAttachToIndex {
     required this.indexReference,
     required this.targetReference,
   });
+
   Map<String, dynamic> toJson() {
     final indexReference = this.indexReference;
     final targetReference = this.targetReference;
@@ -3707,6 +3774,14 @@ class BatchAttachToIndexResponse {
     return BatchAttachToIndexResponse(
       attachedObjectIdentifier: json['AttachedObjectIdentifier'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachedObjectIdentifier = this.attachedObjectIdentifier;
+    return {
+      if (attachedObjectIdentifier != null)
+        'AttachedObjectIdentifier': attachedObjectIdentifier,
+    };
   }
 }
 
@@ -3732,6 +3807,7 @@ class BatchAttachTypedLink {
     required this.targetObjectReference,
     required this.typedLinkFacet,
   });
+
   Map<String, dynamic> toJson() {
     final attributes = this.attributes;
     final sourceObjectReference = this.sourceObjectReference;
@@ -3761,6 +3837,13 @@ class BatchAttachTypedLinkResponse {
               json['TypedLinkSpecifier'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final typedLinkSpecifier = this.typedLinkSpecifier;
+    return {
+      if (typedLinkSpecifier != null) 'TypedLinkSpecifier': typedLinkSpecifier,
+    };
   }
 }
 
@@ -3793,6 +3876,7 @@ class BatchCreateIndex {
     this.linkName,
     this.parentReference,
   });
+
   Map<String, dynamic> toJson() {
     final isUnique = this.isUnique;
     final orderedIndexedAttributeList = this.orderedIndexedAttributeList;
@@ -3821,6 +3905,13 @@ class BatchCreateIndexResponse {
     return BatchCreateIndexResponse(
       objectIdentifier: json['ObjectIdentifier'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final objectIdentifier = this.objectIdentifier;
+    return {
+      if (objectIdentifier != null) 'ObjectIdentifier': objectIdentifier,
+    };
   }
 }
 
@@ -3852,6 +3943,7 @@ class BatchCreateObject {
     this.linkName,
     this.parentReference,
   });
+
   Map<String, dynamic> toJson() {
     final objectAttributeList = this.objectAttributeList;
     final schemaFacet = this.schemaFacet;
@@ -3881,6 +3973,13 @@ class BatchCreateObjectResponse {
       objectIdentifier: json['ObjectIdentifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final objectIdentifier = this.objectIdentifier;
+    return {
+      if (objectIdentifier != null) 'ObjectIdentifier': objectIdentifier,
+    };
+  }
 }
 
 /// Represents the output of a <a>DeleteObject</a> operation.
@@ -3891,6 +3990,7 @@ class BatchDeleteObject {
   BatchDeleteObject({
     required this.objectReference,
   });
+
   Map<String, dynamic> toJson() {
     final objectReference = this.objectReference;
     return {
@@ -3904,6 +4004,10 @@ class BatchDeleteObjectResponse {
   BatchDeleteObjectResponse();
   factory BatchDeleteObjectResponse.fromJson(Map<String, dynamic> _) {
     return BatchDeleteObjectResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3921,6 +4025,7 @@ class BatchDetachFromIndex {
     required this.indexReference,
     required this.targetReference,
   });
+
   Map<String, dynamic> toJson() {
     final indexReference = this.indexReference;
     final targetReference = this.targetReference;
@@ -3945,6 +4050,14 @@ class BatchDetachFromIndexResponse {
       detachedObjectIdentifier: json['DetachedObjectIdentifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final detachedObjectIdentifier = this.detachedObjectIdentifier;
+    return {
+      if (detachedObjectIdentifier != null)
+        'DetachedObjectIdentifier': detachedObjectIdentifier,
+    };
+  }
 }
 
 /// Represents the output of a <a>DetachObject</a> operation.
@@ -3966,6 +4079,7 @@ class BatchDetachObject {
     required this.parentReference,
     this.batchReferenceName,
   });
+
   Map<String, dynamic> toJson() {
     final linkName = this.linkName;
     final parentReference = this.parentReference;
@@ -3991,6 +4105,14 @@ class BatchDetachObjectResponse {
       detachedObjectIdentifier: json['detachedObjectIdentifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final detachedObjectIdentifier = this.detachedObjectIdentifier;
+    return {
+      if (detachedObjectIdentifier != null)
+        'detachedObjectIdentifier': detachedObjectIdentifier,
+    };
+  }
 }
 
 /// Detaches the specified policy from the specified directory inside a
@@ -4007,6 +4129,7 @@ class BatchDetachPolicy {
     required this.objectReference,
     required this.policyReference,
   });
+
   Map<String, dynamic> toJson() {
     final objectReference = this.objectReference;
     final policyReference = this.policyReference;
@@ -4023,6 +4146,10 @@ class BatchDetachPolicyResponse {
   factory BatchDetachPolicyResponse.fromJson(Map<String, dynamic> _) {
     return BatchDetachPolicyResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Detaches a typed link from a specified source and target object inside a
@@ -4035,6 +4162,7 @@ class BatchDetachTypedLink {
   BatchDetachTypedLink({
     required this.typedLinkSpecifier,
   });
+
   Map<String, dynamic> toJson() {
     final typedLinkSpecifier = this.typedLinkSpecifier;
     return {
@@ -4048,6 +4176,10 @@ class BatchDetachTypedLinkResponse {
   BatchDetachTypedLinkResponse();
   factory BatchDetachTypedLinkResponse.fromJson(Map<String, dynamic> _) {
     return BatchDetachTypedLinkResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4065,6 +4197,7 @@ class BatchGetLinkAttributes {
     required this.attributeNames,
     required this.typedLinkSpecifier,
   });
+
   Map<String, dynamic> toJson() {
     final attributeNames = this.attributeNames;
     final typedLinkSpecifier = this.typedLinkSpecifier;
@@ -4091,6 +4224,13 @@ class BatchGetLinkAttributesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
+  }
 }
 
 /// Retrieves attributes within a facet that are associated with an object
@@ -4112,6 +4252,7 @@ class BatchGetObjectAttributes {
     required this.objectReference,
     required this.schemaFacet,
   });
+
   Map<String, dynamic> toJson() {
     final attributeNames = this.attributeNames;
     final objectReference = this.objectReference;
@@ -4140,6 +4281,13 @@ class BatchGetObjectAttributesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
+  }
 }
 
 /// Retrieves metadata about an object inside a <a>BatchRead</a> operation. For
@@ -4152,6 +4300,7 @@ class BatchGetObjectInformation {
   BatchGetObjectInformation({
     required this.objectReference,
   });
+
   Map<String, dynamic> toJson() {
     final objectReference = this.objectReference;
     return {
@@ -4182,6 +4331,15 @@ class BatchGetObjectInformationResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final objectIdentifier = this.objectIdentifier;
+    final schemaFacets = this.schemaFacets;
+    return {
+      if (objectIdentifier != null) 'ObjectIdentifier': objectIdentifier,
+      if (schemaFacets != null) 'SchemaFacets': schemaFacets,
+    };
+  }
 }
 
 /// Lists indices attached to an object inside a <a>BatchRead</a> operation. For
@@ -4202,6 +4360,7 @@ class BatchListAttachedIndices {
     this.maxResults,
     this.nextToken,
   });
+
   Map<String, dynamic> toJson() {
     final targetReference = this.targetReference;
     final maxResults = this.maxResults;
@@ -4234,6 +4393,15 @@ class BatchListAttachedIndicesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexAttachments = this.indexAttachments;
+    final nextToken = this.nextToken;
+    return {
+      if (indexAttachments != null) 'IndexAttachments': indexAttachments,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4268,6 +4436,7 @@ class BatchListIncomingTypedLinks {
     this.maxResults,
     this.nextToken,
   });
+
   Map<String, dynamic> toJson() {
     final objectReference = this.objectReference;
     final filterAttributeRanges = this.filterAttributeRanges;
@@ -4307,6 +4476,15 @@ class BatchListIncomingTypedLinksResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final linkSpecifiers = this.linkSpecifiers;
+    final nextToken = this.nextToken;
+    return {
+      if (linkSpecifiers != null) 'LinkSpecifiers': linkSpecifiers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Lists objects attached to the specified index inside a <a>BatchRead</a>
@@ -4331,6 +4509,7 @@ class BatchListIndex {
     this.nextToken,
     this.rangesOnIndexedValues,
   });
+
   Map<String, dynamic> toJson() {
     final indexReference = this.indexReference;
     final maxResults = this.maxResults;
@@ -4367,6 +4546,15 @@ class BatchListIndexResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final indexAttachments = this.indexAttachments;
+    final nextToken = this.nextToken;
+    return {
+      if (indexAttachments != null) 'IndexAttachments': indexAttachments,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the output of a <a>ListObjectAttributes</a> operation.
@@ -4391,6 +4579,7 @@ class BatchListObjectAttributes {
     this.maxResults,
     this.nextToken,
   });
+
   Map<String, dynamic> toJson() {
     final objectReference = this.objectReference;
     final facetFilter = this.facetFilter;
@@ -4428,6 +4617,15 @@ class BatchListObjectAttributesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final nextToken = this.nextToken;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the output of a <a>ListObjectChildren</a> operation.
@@ -4447,6 +4645,7 @@ class BatchListObjectChildren {
     this.maxResults,
     this.nextToken,
   });
+
   Map<String, dynamic> toJson() {
     final objectReference = this.objectReference;
     final maxResults = this.maxResults;
@@ -4479,6 +4678,15 @@ class BatchListObjectChildrenResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final children = this.children;
+    final nextToken = this.nextToken;
+    return {
+      if (children != null) 'Children': children,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Retrieves all available parent paths for any object type such as node, leaf
@@ -4500,6 +4708,7 @@ class BatchListObjectParentPaths {
     this.maxResults,
     this.nextToken,
   });
+
   Map<String, dynamic> toJson() {
     final objectReference = this.objectReference;
     final maxResults = this.maxResults;
@@ -4537,6 +4746,16 @@ class BatchListObjectParentPathsResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final pathToObjectIdentifiersList = this.pathToObjectIdentifiersList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (pathToObjectIdentifiersList != null)
+        'PathToObjectIdentifiersList': pathToObjectIdentifiersList,
+    };
+  }
 }
 
 /// Returns policies attached to an object in pagination fashion inside a
@@ -4557,6 +4776,7 @@ class BatchListObjectPolicies {
     this.maxResults,
     this.nextToken,
   });
+
   Map<String, dynamic> toJson() {
     final objectReference = this.objectReference;
     final maxResults = this.maxResults;
@@ -4591,6 +4811,15 @@ class BatchListObjectPoliciesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachedPolicyIds = this.attachedPolicyIds;
+    final nextToken = this.nextToken;
+    return {
+      if (attachedPolicyIds != null) 'AttachedPolicyIds': attachedPolicyIds,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Returns a paginated list of all the outgoing <a>TypedLinkSpecifier</a>
@@ -4624,6 +4853,7 @@ class BatchListOutgoingTypedLinks {
     this.maxResults,
     this.nextToken,
   });
+
   Map<String, dynamic> toJson() {
     final objectReference = this.objectReference;
     final filterAttributeRanges = this.filterAttributeRanges;
@@ -4663,6 +4893,16 @@ class BatchListOutgoingTypedLinksResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final typedLinkSpecifiers = this.typedLinkSpecifiers;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (typedLinkSpecifiers != null)
+        'TypedLinkSpecifiers': typedLinkSpecifiers,
+    };
+  }
 }
 
 /// Returns all of the <code>ObjectIdentifiers</code> to which a given policy is
@@ -4683,6 +4923,7 @@ class BatchListPolicyAttachments {
     this.maxResults,
     this.nextToken,
   });
+
   Map<String, dynamic> toJson() {
     final policyReference = this.policyReference;
     final maxResults = this.maxResults;
@@ -4717,6 +4958,15 @@ class BatchListPolicyAttachmentsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final objectIdentifiers = this.objectIdentifiers;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (objectIdentifiers != null) 'ObjectIdentifiers': objectIdentifiers,
+    };
+  }
 }
 
 /// Lists all policies from the root of the Directory to the object specified
@@ -4737,6 +4987,7 @@ class BatchLookupPolicy {
     this.maxResults,
     this.nextToken,
   });
+
   Map<String, dynamic> toJson() {
     final objectReference = this.objectReference;
     final maxResults = this.maxResults;
@@ -4773,6 +5024,15 @@ class BatchLookupPolicyResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final policyToPathList = this.policyToPathList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (policyToPathList != null) 'PolicyToPathList': policyToPathList,
+    };
+  }
 }
 
 /// The batch read exception structure, which contains the exception type and
@@ -4793,6 +5053,15 @@ class BatchReadException {
       message: json['Message'] as String?,
       type: (json['Type'] as String?)?.toBatchReadExceptionType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final type = this.type;
+    return {
+      if (message != null) 'Message': message,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -4956,6 +5225,7 @@ class BatchReadOperation {
     this.listPolicyAttachments,
     this.lookupPolicy,
   });
+
   Map<String, dynamic> toJson() {
     final getLinkAttributes = this.getLinkAttributes;
     final getObjectAttributes = this.getObjectAttributes;
@@ -5020,6 +5290,15 @@ class BatchReadOperationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exceptionResponse = this.exceptionResponse;
+    final successfulResponse = this.successfulResponse;
+    return {
+      if (exceptionResponse != null) 'ExceptionResponse': exceptionResponse,
+      if (successfulResponse != null) 'SuccessfulResponse': successfulResponse,
+    };
+  }
 }
 
 class BatchReadResponse {
@@ -5037,6 +5316,13 @@ class BatchReadResponse {
               BatchReadOperationResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final responses = this.responses;
+    return {
+      if (responses != null) 'Responses': responses,
+    };
   }
 }
 
@@ -5174,6 +5460,45 @@ class BatchReadSuccessfulResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final getLinkAttributes = this.getLinkAttributes;
+    final getObjectAttributes = this.getObjectAttributes;
+    final getObjectInformation = this.getObjectInformation;
+    final listAttachedIndices = this.listAttachedIndices;
+    final listIncomingTypedLinks = this.listIncomingTypedLinks;
+    final listIndex = this.listIndex;
+    final listObjectAttributes = this.listObjectAttributes;
+    final listObjectChildren = this.listObjectChildren;
+    final listObjectParentPaths = this.listObjectParentPaths;
+    final listObjectPolicies = this.listObjectPolicies;
+    final listOutgoingTypedLinks = this.listOutgoingTypedLinks;
+    final listPolicyAttachments = this.listPolicyAttachments;
+    final lookupPolicy = this.lookupPolicy;
+    return {
+      if (getLinkAttributes != null) 'GetLinkAttributes': getLinkAttributes,
+      if (getObjectAttributes != null)
+        'GetObjectAttributes': getObjectAttributes,
+      if (getObjectInformation != null)
+        'GetObjectInformation': getObjectInformation,
+      if (listAttachedIndices != null)
+        'ListAttachedIndices': listAttachedIndices,
+      if (listIncomingTypedLinks != null)
+        'ListIncomingTypedLinks': listIncomingTypedLinks,
+      if (listIndex != null) 'ListIndex': listIndex,
+      if (listObjectAttributes != null)
+        'ListObjectAttributes': listObjectAttributes,
+      if (listObjectChildren != null) 'ListObjectChildren': listObjectChildren,
+      if (listObjectParentPaths != null)
+        'ListObjectParentPaths': listObjectParentPaths,
+      if (listObjectPolicies != null) 'ListObjectPolicies': listObjectPolicies,
+      if (listOutgoingTypedLinks != null)
+        'ListOutgoingTypedLinks': listOutgoingTypedLinks,
+      if (listPolicyAttachments != null)
+        'ListPolicyAttachments': listPolicyAttachments,
+      if (lookupPolicy != null) 'LookupPolicy': lookupPolicy,
+    };
+  }
 }
 
 /// A batch operation to remove a facet from an object.
@@ -5188,6 +5513,7 @@ class BatchRemoveFacetFromObject {
     required this.objectReference,
     required this.schemaFacet,
   });
+
   Map<String, dynamic> toJson() {
     final objectReference = this.objectReference;
     final schemaFacet = this.schemaFacet;
@@ -5203,6 +5529,10 @@ class BatchRemoveFacetFromObjectResponse {
   BatchRemoveFacetFromObjectResponse();
   factory BatchRemoveFacetFromObjectResponse.fromJson(Map<String, dynamic> _) {
     return BatchRemoveFacetFromObjectResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5221,6 +5551,7 @@ class BatchUpdateLinkAttributes {
     required this.attributeUpdates,
     required this.typedLinkSpecifier,
   });
+
   Map<String, dynamic> toJson() {
     final attributeUpdates = this.attributeUpdates;
     final typedLinkSpecifier = this.typedLinkSpecifier;
@@ -5237,6 +5568,10 @@ class BatchUpdateLinkAttributesResponse {
   factory BatchUpdateLinkAttributesResponse.fromJson(Map<String, dynamic> _) {
     return BatchUpdateLinkAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Represents the output of a <code>BatchUpdate</code> operation.
@@ -5251,6 +5586,7 @@ class BatchUpdateObjectAttributes {
     required this.attributeUpdates,
     required this.objectReference,
   });
+
   Map<String, dynamic> toJson() {
     final attributeUpdates = this.attributeUpdates;
     final objectReference = this.objectReference;
@@ -5275,6 +5611,13 @@ class BatchUpdateObjectAttributesResponse {
       objectIdentifier: json['ObjectIdentifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final objectIdentifier = this.objectIdentifier;
+    return {
+      if (objectIdentifier != null) 'ObjectIdentifier': objectIdentifier,
+    };
+  }
 }
 
 /// A <code>BatchWrite</code> exception has occurred.
@@ -5294,6 +5637,17 @@ class BatchWriteException implements _s.AwsException {
       message: json['Message'] as String?,
       type: (json['Type'] as String?)?.toBatchWriteExceptionType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final index = this.index;
+    final message = this.message;
+    final type = this.type;
+    return {
+      if (index != null) 'Index': index,
+      if (message != null) 'Message': message,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -5478,6 +5832,7 @@ class BatchWriteOperation {
     this.updateLinkAttributes,
     this.updateObjectAttributes,
   });
+
   Map<String, dynamic> toJson() {
     final addFacetToObject = this.addFacetToObject;
     final attachObject = this.attachObject;
@@ -5654,6 +6009,44 @@ class BatchWriteOperationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addFacetToObject = this.addFacetToObject;
+    final attachObject = this.attachObject;
+    final attachPolicy = this.attachPolicy;
+    final attachToIndex = this.attachToIndex;
+    final attachTypedLink = this.attachTypedLink;
+    final createIndex = this.createIndex;
+    final createObject = this.createObject;
+    final deleteObject = this.deleteObject;
+    final detachFromIndex = this.detachFromIndex;
+    final detachObject = this.detachObject;
+    final detachPolicy = this.detachPolicy;
+    final detachTypedLink = this.detachTypedLink;
+    final removeFacetFromObject = this.removeFacetFromObject;
+    final updateLinkAttributes = this.updateLinkAttributes;
+    final updateObjectAttributes = this.updateObjectAttributes;
+    return {
+      if (addFacetToObject != null) 'AddFacetToObject': addFacetToObject,
+      if (attachObject != null) 'AttachObject': attachObject,
+      if (attachPolicy != null) 'AttachPolicy': attachPolicy,
+      if (attachToIndex != null) 'AttachToIndex': attachToIndex,
+      if (attachTypedLink != null) 'AttachTypedLink': attachTypedLink,
+      if (createIndex != null) 'CreateIndex': createIndex,
+      if (createObject != null) 'CreateObject': createObject,
+      if (deleteObject != null) 'DeleteObject': deleteObject,
+      if (detachFromIndex != null) 'DetachFromIndex': detachFromIndex,
+      if (detachObject != null) 'DetachObject': detachObject,
+      if (detachPolicy != null) 'DetachPolicy': detachPolicy,
+      if (detachTypedLink != null) 'DetachTypedLink': detachTypedLink,
+      if (removeFacetFromObject != null)
+        'RemoveFacetFromObject': removeFacetFromObject,
+      if (updateLinkAttributes != null)
+        'UpdateLinkAttributes': updateLinkAttributes,
+      if (updateObjectAttributes != null)
+        'UpdateObjectAttributes': updateObjectAttributes,
+    };
+  }
 }
 
 class BatchWriteResponse {
@@ -5672,6 +6065,13 @@ class BatchWriteResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final responses = this.responses;
+    return {
+      if (responses != null) 'Responses': responses,
+    };
+  }
 }
 
 /// Cannot list the parents of a <a>Directory</a> root.
@@ -5685,6 +6085,13 @@ class CannotListParentOfRootException implements _s.AwsException {
     return CannotListParentOfRootException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -5746,12 +6153,29 @@ class CreateDirectoryResponse {
       objectIdentifier: json['ObjectIdentifier'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appliedSchemaArn = this.appliedSchemaArn;
+    final directoryArn = this.directoryArn;
+    final name = this.name;
+    final objectIdentifier = this.objectIdentifier;
+    return {
+      'AppliedSchemaArn': appliedSchemaArn,
+      'DirectoryArn': directoryArn,
+      'Name': name,
+      'ObjectIdentifier': objectIdentifier,
+    };
+  }
 }
 
 class CreateFacetResponse {
   CreateFacetResponse();
   factory CreateFacetResponse.fromJson(Map<String, dynamic> _) {
     return CreateFacetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5767,6 +6191,13 @@ class CreateIndexResponse {
       objectIdentifier: json['ObjectIdentifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final objectIdentifier = this.objectIdentifier;
+    return {
+      if (objectIdentifier != null) 'ObjectIdentifier': objectIdentifier,
+    };
+  }
 }
 
 class CreateObjectResponse {
@@ -5780,6 +6211,13 @@ class CreateObjectResponse {
     return CreateObjectResponse(
       objectIdentifier: json['ObjectIdentifier'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final objectIdentifier = this.objectIdentifier;
+    return {
+      if (objectIdentifier != null) 'ObjectIdentifier': objectIdentifier,
+    };
   }
 }
 
@@ -5796,12 +6234,23 @@ class CreateSchemaResponse {
       schemaArn: json['SchemaArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final schemaArn = this.schemaArn;
+    return {
+      if (schemaArn != null) 'SchemaArn': schemaArn,
+    };
+  }
 }
 
 class CreateTypedLinkFacetResponse {
   CreateTypedLinkFacetResponse();
   factory CreateTypedLinkFacetResponse.fromJson(Map<String, dynamic> _) {
     return CreateTypedLinkFacetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5817,6 +6266,13 @@ class DeleteDirectoryResponse {
       directoryArn: json['DirectoryArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directoryArn = this.directoryArn;
+    return {
+      'DirectoryArn': directoryArn,
+    };
+  }
 }
 
 class DeleteFacetResponse {
@@ -5824,12 +6280,20 @@ class DeleteFacetResponse {
   factory DeleteFacetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFacetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteObjectResponse {
   DeleteObjectResponse();
   factory DeleteObjectResponse.fromJson(Map<String, dynamic> _) {
     return DeleteObjectResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5846,12 +6310,23 @@ class DeleteSchemaResponse {
       schemaArn: json['SchemaArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final schemaArn = this.schemaArn;
+    return {
+      if (schemaArn != null) 'SchemaArn': schemaArn,
+    };
+  }
 }
 
 class DeleteTypedLinkFacetResponse {
   DeleteTypedLinkFacetResponse();
   factory DeleteTypedLinkFacetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTypedLinkFacetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5868,6 +6343,14 @@ class DetachFromIndexResponse {
       detachedObjectIdentifier: json['DetachedObjectIdentifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final detachedObjectIdentifier = this.detachedObjectIdentifier;
+    return {
+      if (detachedObjectIdentifier != null)
+        'DetachedObjectIdentifier': detachedObjectIdentifier,
+    };
+  }
 }
 
 class DetachObjectResponse {
@@ -5882,12 +6365,24 @@ class DetachObjectResponse {
       detachedObjectIdentifier: json['DetachedObjectIdentifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final detachedObjectIdentifier = this.detachedObjectIdentifier;
+    return {
+      if (detachedObjectIdentifier != null)
+        'DetachedObjectIdentifier': detachedObjectIdentifier,
+    };
+  }
 }
 
 class DetachPolicyResponse {
   DetachPolicyResponse();
   factory DetachPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DetachPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5921,6 +6416,20 @@ class Directory {
       state: (json['State'] as String?)?.toDirectoryState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final directoryArn = this.directoryArn;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (directoryArn != null) 'DirectoryArn': directoryArn,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 /// Indicates that a <a>Directory</a> could not be created due to a naming
@@ -5935,6 +6444,13 @@ class DirectoryAlreadyExistsException implements _s.AwsException {
     return DirectoryAlreadyExistsException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -5951,6 +6467,13 @@ class DirectoryDeletedException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// An operation can only operate on a disabled directory.
@@ -5965,6 +6488,13 @@ class DirectoryNotDisabledException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Operations are only permitted on enabled directories.
@@ -5978,6 +6508,13 @@ class DirectoryNotEnabledException implements _s.AwsException {
     return DirectoryNotEnabledException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6026,6 +6563,13 @@ class DisableDirectoryResponse {
       directoryArn: json['DirectoryArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directoryArn = this.directoryArn;
+    return {
+      'DirectoryArn': directoryArn,
+    };
+  }
 }
 
 class EnableDirectoryResponse {
@@ -6039,6 +6583,13 @@ class EnableDirectoryResponse {
     return EnableDirectoryResponse(
       directoryArn: json['DirectoryArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final directoryArn = this.directoryArn;
+    return {
+      'DirectoryArn': directoryArn,
+    };
   }
 }
 
@@ -6065,6 +6616,15 @@ class Facet {
       objectType: (json['ObjectType'] as String?)?.toObjectType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final objectType = this.objectType;
+    return {
+      if (name != null) 'Name': name,
+      if (objectType != null) 'ObjectType': objectType.toValue(),
+    };
+  }
 }
 
 /// A facet with the same name already exists.
@@ -6078,6 +6638,13 @@ class FacetAlreadyExistsException implements _s.AwsException {
     return FacetAlreadyExistsException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6277,6 +6844,7 @@ class FacetAttributeUpdate {
     this.action,
     this.attribute,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final attribute = this.attribute;
@@ -6300,6 +6868,13 @@ class FacetInUseException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// The specified <a>Facet</a> could not be found.
@@ -6313,6 +6888,13 @@ class FacetNotFoundException implements _s.AwsException {
     return FacetNotFoundException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6329,6 +6911,13 @@ class FacetValidationException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class GetAppliedSchemaVersionResponse {
@@ -6344,6 +6933,13 @@ class GetAppliedSchemaVersionResponse {
       appliedSchemaArn: json['AppliedSchemaArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appliedSchemaArn = this.appliedSchemaArn;
+    return {
+      if (appliedSchemaArn != null) 'AppliedSchemaArn': appliedSchemaArn,
+    };
+  }
 }
 
 class GetDirectoryResponse {
@@ -6357,6 +6953,13 @@ class GetDirectoryResponse {
     return GetDirectoryResponse(
       directory: Directory.fromJson(json['Directory'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final directory = this.directory;
+    return {
+      'Directory': directory,
+    };
   }
 }
 
@@ -6373,6 +6976,13 @@ class GetFacetResponse {
           ? Facet.fromJson(json['Facet'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final facet = this.facet;
+    return {
+      if (facet != null) 'Facet': facet,
+    };
   }
 }
 
@@ -6391,6 +7001,13 @@ class GetLinkAttributesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
+  }
 }
 
 class GetObjectAttributesResponse {
@@ -6407,6 +7024,13 @@ class GetObjectAttributesResponse {
           .map((e) => AttributeKeyAndValue.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
   }
 }
 
@@ -6432,6 +7056,15 @@ class GetObjectInformationResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final objectIdentifier = this.objectIdentifier;
+    final schemaFacets = this.schemaFacets;
+    return {
+      if (objectIdentifier != null) 'ObjectIdentifier': objectIdentifier,
+      if (schemaFacets != null) 'SchemaFacets': schemaFacets,
+    };
+  }
 }
 
 class GetSchemaAsJsonResponse {
@@ -6450,6 +7083,15 @@ class GetSchemaAsJsonResponse {
       document: json['Document'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final document = this.document;
+    final name = this.name;
+    return {
+      if (document != null) 'Document': document,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -6478,6 +7120,14 @@ class GetTypedLinkFacetInformationResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityAttributeOrder = this.identityAttributeOrder;
+    return {
+      if (identityAttributeOrder != null)
+        'IdentityAttributeOrder': identityAttributeOrder,
+    };
+  }
 }
 
 /// Indicates a failure occurred while performing a check for backward
@@ -6493,6 +7143,13 @@ class IncompatibleSchemaException implements _s.AwsException {
     return IncompatibleSchemaException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6521,6 +7178,15 @@ class IndexAttachment {
       objectIdentifier: json['ObjectIdentifier'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final indexedAttributes = this.indexedAttributes;
+    final objectIdentifier = this.objectIdentifier;
+    return {
+      if (indexedAttributes != null) 'IndexedAttributes': indexedAttributes,
+      if (objectIdentifier != null) 'ObjectIdentifier': objectIdentifier,
+    };
+  }
 }
 
 /// An object has been attempted to be attached to an object that does not have
@@ -6535,6 +7201,13 @@ class IndexedAttributeMissingException implements _s.AwsException {
     return IndexedAttributeMissingException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6554,6 +7227,13 @@ class InternalServiceException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Indicates that the provided ARN value is not valid.
@@ -6567,6 +7247,13 @@ class InvalidArnException implements _s.AwsException {
     return InvalidArnException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6584,6 +7271,13 @@ class InvalidAttachmentException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// An attempt to modify a <a>Facet</a> resulted in an invalid schema exception.
@@ -6597,6 +7291,13 @@ class InvalidFacetUpdateException implements _s.AwsException {
     return InvalidFacetUpdateException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6612,6 +7313,13 @@ class InvalidNextTokenException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Occurs when any of the rule parameter keys or values are invalid.
@@ -6626,6 +7334,13 @@ class InvalidRuleException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Indicates that the provided <code>SchemaDoc</code> value is not valid.
@@ -6639,6 +7354,13 @@ class InvalidSchemaDocException implements _s.AwsException {
     return InvalidSchemaDocException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6656,6 +7378,13 @@ class InvalidTaggingRequestException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Indicates that limits are exceeded. See <a
@@ -6671,6 +7400,13 @@ class LimitExceededException implements _s.AwsException {
     return LimitExceededException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6688,6 +7424,7 @@ class LinkAttributeAction {
     this.attributeActionType,
     this.attributeUpdateValue,
   });
+
   Map<String, dynamic> toJson() {
     final attributeActionType = this.attributeActionType;
     final attributeUpdateValue = this.attributeUpdateValue;
@@ -6712,6 +7449,7 @@ class LinkAttributeUpdate {
     this.attributeAction,
     this.attributeKey,
   });
+
   Map<String, dynamic> toJson() {
     final attributeAction = this.attributeAction;
     final attributeKey = this.attributeKey;
@@ -6735,6 +7473,13 @@ class LinkNameAlreadyInUseException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class ListAppliedSchemaArnsResponse {
@@ -6757,6 +7502,15 @@ class ListAppliedSchemaArnsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final schemaArns = this.schemaArns;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (schemaArns != null) 'SchemaArns': schemaArns,
+    };
+  }
 }
 
 class ListAttachedIndicesResponse {
@@ -6778,6 +7532,15 @@ class ListAttachedIndicesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexAttachments = this.indexAttachments;
+    final nextToken = this.nextToken;
+    return {
+      if (indexAttachments != null) 'IndexAttachments': indexAttachments,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6802,6 +7565,15 @@ class ListDevelopmentSchemaArnsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final schemaArns = this.schemaArns;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (schemaArns != null) 'SchemaArns': schemaArns,
+    };
+  }
 }
 
 class ListDirectoriesResponse {
@@ -6825,6 +7597,15 @@ class ListDirectoriesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directories = this.directories;
+    final nextToken = this.nextToken;
+    return {
+      'Directories': directories,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListFacetAttributesResponse {
@@ -6846,6 +7627,15 @@ class ListFacetAttributesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final nextToken = this.nextToken;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6869,6 +7659,15 @@ class ListFacetNamesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final facetNames = this.facetNames;
+    final nextToken = this.nextToken;
+    return {
+      if (facetNames != null) 'FacetNames': facetNames,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListIncomingTypedLinksResponse {
@@ -6891,6 +7690,15 @@ class ListIncomingTypedLinksResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final linkSpecifiers = this.linkSpecifiers;
+    final nextToken = this.nextToken;
+    return {
+      if (linkSpecifiers != null) 'LinkSpecifiers': linkSpecifiers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListIndexResponse {
@@ -6912,6 +7720,15 @@ class ListIndexResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final indexAttachments = this.indexAttachments;
+    final nextToken = this.nextToken;
+    return {
+      if (indexAttachments != null) 'IndexAttachments': indexAttachments,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6936,6 +7753,15 @@ class ListObjectAttributesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final nextToken = this.nextToken;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListObjectChildrenResponse {
@@ -6956,6 +7782,15 @@ class ListObjectChildrenResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final children = this.children;
+    final nextToken = this.nextToken;
+    return {
+      if (children != null) 'Children': children,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6982,6 +7817,16 @@ class ListObjectParentPathsResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final pathToObjectIdentifiersList = this.pathToObjectIdentifiersList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (pathToObjectIdentifiersList != null)
+        'PathToObjectIdentifiersList': pathToObjectIdentifiersList,
+    };
+  }
 }
 
 class ListObjectParentsResponse {
@@ -7002,6 +7847,15 @@ class ListObjectParentsResponse {
       parents: (json['Parents'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final parents = this.parents;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (parents != null) 'Parents': parents,
+    };
   }
 }
 
@@ -7026,6 +7880,15 @@ class ListObjectPoliciesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachedPolicyIds = this.attachedPolicyIds;
+    final nextToken = this.nextToken;
+    return {
+      if (attachedPolicyIds != null) 'AttachedPolicyIds': attachedPolicyIds,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListOutgoingTypedLinksResponse {
@@ -7047,6 +7910,16 @@ class ListOutgoingTypedLinksResponse {
           .map((e) => TypedLinkSpecifier.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final typedLinkSpecifiers = this.typedLinkSpecifiers;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (typedLinkSpecifiers != null)
+        'TypedLinkSpecifiers': typedLinkSpecifiers,
+    };
   }
 }
 
@@ -7070,6 +7943,15 @@ class ListPolicyAttachmentsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final objectIdentifiers = this.objectIdentifiers;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (objectIdentifiers != null) 'ObjectIdentifiers': objectIdentifiers,
+    };
+  }
 }
 
 class ListPublishedSchemaArnsResponse {
@@ -7091,6 +7973,15 @@ class ListPublishedSchemaArnsResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final schemaArns = this.schemaArns;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (schemaArns != null) 'SchemaArns': schemaArns,
+    };
   }
 }
 
@@ -7114,6 +8005,15 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -7139,6 +8039,15 @@ class ListTypedLinkFacetAttributesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final nextToken = this.nextToken;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTypedLinkFacetNamesResponse {
@@ -7160,6 +8069,15 @@ class ListTypedLinkFacetNamesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final facetNames = this.facetNames;
+    final nextToken = this.nextToken;
+    return {
+      if (facetNames != null) 'FacetNames': facetNames,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -7186,6 +8104,15 @@ class LookupPolicyResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final policyToPathList = this.policyToPathList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (policyToPathList != null) 'PolicyToPathList': policyToPathList,
+    };
+  }
 }
 
 /// Indicates that the requested operation can only operate on index objects.
@@ -7199,6 +8126,13 @@ class NotIndexException implements _s.AwsException {
     return NotIndexException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -7216,6 +8150,13 @@ class NotNodeException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Indicates that the requested operation can only operate on policy objects.
@@ -7229,6 +8170,13 @@ class NotPolicyException implements _s.AwsException {
     return NotPolicyException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -7244,6 +8192,13 @@ class ObjectAlreadyDetachedException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// The action to take on the object attribute.
@@ -7258,6 +8213,7 @@ class ObjectAttributeAction {
     this.objectAttributeActionType,
     this.objectAttributeUpdateValue,
   });
+
   Map<String, dynamic> toJson() {
     final objectAttributeActionType = this.objectAttributeActionType;
     final objectAttributeUpdateValue = this.objectAttributeUpdateValue;
@@ -7282,6 +8238,7 @@ class ObjectAttributeRange {
     this.attributeKey,
     this.range,
   });
+
   Map<String, dynamic> toJson() {
     final attributeKey = this.attributeKey;
     final range = this.range;
@@ -7304,6 +8261,7 @@ class ObjectAttributeUpdate {
     this.objectAttributeAction,
     this.objectAttributeKey,
   });
+
   Map<String, dynamic> toJson() {
     final objectAttributeAction = this.objectAttributeAction;
     final objectAttributeKey = this.objectAttributeKey;
@@ -7327,6 +8285,13 @@ class ObjectNotDetachedException implements _s.AwsException {
     return ObjectNotDetachedException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -7434,6 +8399,15 @@ class PathToObjectIdentifiers {
       path: json['Path'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final objectIdentifiers = this.objectIdentifiers;
+    final path = this.path;
+    return {
+      if (objectIdentifiers != null) 'ObjectIdentifiers': objectIdentifiers,
+      if (path != null) 'Path': path,
+    };
+  }
 }
 
 /// Contains the <code>PolicyType</code>, <code>PolicyId</code>, and the
@@ -7464,6 +8438,17 @@ class PolicyAttachment {
       policyType: json['PolicyType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final objectIdentifier = this.objectIdentifier;
+    final policyId = this.policyId;
+    final policyType = this.policyType;
+    return {
+      if (objectIdentifier != null) 'ObjectIdentifier': objectIdentifier,
+      if (policyId != null) 'PolicyId': policyId,
+      if (policyType != null) 'PolicyType': policyType,
+    };
+  }
 }
 
 /// Used when a regular object exists in a <a>Directory</a> and you want to find
@@ -7489,6 +8474,15 @@ class PolicyToPath {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final path = this.path;
+    final policies = this.policies;
+    return {
+      if (path != null) 'Path': path,
+      if (policies != null) 'Policies': policies,
+    };
+  }
 }
 
 class PublishSchemaResponse {
@@ -7504,6 +8498,13 @@ class PublishSchemaResponse {
       publishedSchemaArn: json['PublishedSchemaArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final publishedSchemaArn = this.publishedSchemaArn;
+    return {
+      if (publishedSchemaArn != null) 'PublishedSchemaArn': publishedSchemaArn,
+    };
+  }
 }
 
 class PutSchemaFromJsonResponse {
@@ -7517,6 +8518,13 @@ class PutSchemaFromJsonResponse {
     return PutSchemaFromJsonResponse(
       arn: json['Arn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -7568,6 +8576,10 @@ class RemoveFacetFromObjectResponse {
   factory RemoveFacetFromObjectResponse.fromJson(Map<String, dynamic> _) {
     return RemoveFacetFromObjectResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 enum RequiredAttributeBehavior {
@@ -7610,6 +8622,13 @@ class ResourceNotFoundException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Occurs when a conflict with a previous successful write is detected. For
@@ -7628,6 +8647,13 @@ class RetryableConflictException implements _s.AwsException {
     return RetryableConflictException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -7713,6 +8739,13 @@ class SchemaAlreadyExistsException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Indicates that a schema is already published.
@@ -7726,6 +8759,13 @@ class SchemaAlreadyPublishedException implements _s.AwsException {
     return SchemaAlreadyPublishedException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -7774,6 +8814,13 @@ class StillContainsLinksException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// The tag structure that contains a tag key and value.
@@ -7809,6 +8856,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7887,6 +8938,7 @@ class TypedAttributeValueRange {
     this.endValue,
     this.startValue,
   });
+
   Map<String, dynamic> toJson() {
     final endMode = this.endMode;
     final startMode = this.startMode;
@@ -7975,6 +9027,7 @@ class TypedLinkAttributeRange {
     required this.range,
     this.attributeName,
   });
+
   Map<String, dynamic> toJson() {
     final range = this.range;
     final attributeName = this.attributeName;
@@ -8009,6 +9062,7 @@ class TypedLinkFacet {
     required this.identityAttributeOrder,
     required this.name,
   });
+
   Map<String, dynamic> toJson() {
     final attributes = this.attributes;
     final identityAttributeOrder = this.identityAttributeOrder;
@@ -8033,6 +9087,7 @@ class TypedLinkFacetAttributeUpdate {
     required this.action,
     required this.attribute,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final attribute = this.attribute;
@@ -8141,12 +9196,23 @@ class UnsupportedIndexTypeException implements _s.AwsException {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8183,12 +9249,20 @@ class UpdateFacetResponse {
   factory UpdateFacetResponse.fromJson(Map<String, dynamic> _) {
     return UpdateFacetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateLinkAttributesResponse {
   UpdateLinkAttributesResponse();
   factory UpdateLinkAttributesResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLinkAttributesResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8203,6 +9277,13 @@ class UpdateObjectAttributesResponse {
     return UpdateObjectAttributesResponse(
       objectIdentifier: json['ObjectIdentifier'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final objectIdentifier = this.objectIdentifier;
+    return {
+      if (objectIdentifier != null) 'ObjectIdentifier': objectIdentifier,
+    };
   }
 }
 
@@ -8219,12 +9300,23 @@ class UpdateSchemaResponse {
       schemaArn: json['SchemaArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final schemaArn = this.schemaArn;
+    return {
+      if (schemaArn != null) 'SchemaArn': schemaArn,
+    };
+  }
 }
 
 class UpdateTypedLinkFacetResponse {
   UpdateTypedLinkFacetResponse();
   factory UpdateTypedLinkFacetResponse.fromJson(Map<String, dynamic> _) {
     return UpdateTypedLinkFacetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8245,6 +9337,15 @@ class UpgradeAppliedSchemaResponse {
       upgradedSchemaArn: json['UpgradedSchemaArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final directoryArn = this.directoryArn;
+    final upgradedSchemaArn = this.upgradedSchemaArn;
+    return {
+      if (directoryArn != null) 'DirectoryArn': directoryArn,
+      if (upgradedSchemaArn != null) 'UpgradedSchemaArn': upgradedSchemaArn,
+    };
+  }
 }
 
 class UpgradePublishedSchemaResponse {
@@ -8258,6 +9359,13 @@ class UpgradePublishedSchemaResponse {
     return UpgradePublishedSchemaResponse(
       upgradedSchemaArn: json['UpgradedSchemaArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final upgradedSchemaArn = this.upgradedSchemaArn;
+    return {
+      if (upgradedSchemaArn != null) 'UpgradedSchemaArn': upgradedSchemaArn,
+    };
   }
 }
 
@@ -8273,6 +9381,13 @@ class ValidationException implements _s.AwsException {
     return ValidationException(
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 

@@ -1433,6 +1433,19 @@ class AccountAssociationsListElement {
       billingGroupArn: json['BillingGroupArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountEmail = this.accountEmail;
+    final accountId = this.accountId;
+    final accountName = this.accountName;
+    final billingGroupArn = this.billingGroupArn;
+    return {
+      if (accountEmail != null) 'AccountEmail': accountEmail,
+      if (accountId != null) 'AccountId': accountId,
+      if (accountName != null) 'AccountName': accountName,
+      if (billingGroupArn != null) 'BillingGroupArn': billingGroupArn,
+    };
+  }
 }
 
 /// The set of accounts that will be under the billing group. The set of
@@ -1446,6 +1459,7 @@ class AccountGrouping {
   AccountGrouping({
     required this.linkedAccountIds,
   });
+
   Map<String, dynamic> toJson() {
     final linkedAccountIds = this.linkedAccountIds;
     return {
@@ -1467,6 +1481,13 @@ class AssociateAccountsOutput {
       arn: json['Arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
+  }
 }
 
 class AssociatePricingRulesOutput {
@@ -1481,6 +1502,13 @@ class AssociatePricingRulesOutput {
     return AssociatePricingRulesOutput(
       arn: json['Arn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -1501,6 +1529,15 @@ class AssociateResourceError {
       message: json['Message'] as String?,
       reason: (json['Reason'] as String?)?.toAssociateResourceErrorReason(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final reason = this.reason;
+    return {
+      if (message != null) 'Message': message,
+      if (reason != null) 'Reason': reason.toValue(),
+    };
   }
 }
 
@@ -1565,6 +1602,15 @@ class AssociateResourceResponseElement {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final error = this.error;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (error != null) 'Error': error,
+    };
+  }
 }
 
 class BatchAssociateResourcesToCustomLineItemOutput {
@@ -1595,6 +1641,18 @@ class BatchAssociateResourcesToCustomLineItemOutput {
                   e as Map<String, dynamic>))
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedAssociatedResources = this.failedAssociatedResources;
+    final successfullyAssociatedResources =
+        this.successfullyAssociatedResources;
+    return {
+      if (failedAssociatedResources != null)
+        'FailedAssociatedResources': failedAssociatedResources,
+      if (successfullyAssociatedResources != null)
+        'SuccessfullyAssociatedResources': successfullyAssociatedResources,
+    };
   }
 }
 
@@ -1628,6 +1686,19 @@ class BatchDisassociateResourcesFromCustomLineItemOutput {
                   e as Map<String, dynamic>))
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failedDisassociatedResources = this.failedDisassociatedResources;
+    final successfullyDisassociatedResources =
+        this.successfullyDisassociatedResources;
+    return {
+      if (failedDisassociatedResources != null)
+        'FailedDisassociatedResources': failedDisassociatedResources,
+      if (successfullyDisassociatedResources != null)
+        'SuccessfullyDisassociatedResources':
+            successfullyDisassociatedResources,
+    };
   }
 }
 
@@ -1671,6 +1742,23 @@ class BillingGroupCostReportElement {
       marginPercentage: json['MarginPercentage'] as String?,
       proformaCost: json['ProformaCost'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final awsCost = this.awsCost;
+    final arn = this.arn;
+    final currency = this.currency;
+    final margin = this.margin;
+    final marginPercentage = this.marginPercentage;
+    final proformaCost = this.proformaCost;
+    return {
+      if (awsCost != null) 'AWSCost': awsCost,
+      if (arn != null) 'Arn': arn,
+      if (currency != null) 'Currency': currency,
+      if (margin != null) 'Margin': margin,
+      if (marginPercentage != null) 'MarginPercentage': marginPercentage,
+      if (proformaCost != null) 'ProformaCost': proformaCost,
+    };
   }
 }
 
@@ -1733,6 +1821,32 @@ class BillingGroupListElement {
       status: (json['Status'] as String?)?.toBillingGroupStatus(),
       statusReason: json['StatusReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final computationPreference = this.computationPreference;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final primaryAccountId = this.primaryAccountId;
+    final size = this.size;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (computationPreference != null)
+        'ComputationPreference': computationPreference,
+      if (creationTime != null) 'CreationTime': creationTime,
+      if (description != null) 'Description': description,
+      if (lastModifiedTime != null) 'LastModifiedTime': lastModifiedTime,
+      if (name != null) 'Name': name,
+      if (primaryAccountId != null) 'PrimaryAccountId': primaryAccountId,
+      if (size != null) 'Size': size,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
   }
 }
 
@@ -1800,6 +1914,13 @@ class CreateBillingGroupOutput {
       arn: json['Arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
+  }
 }
 
 class CreateCustomLineItemOutput {
@@ -1813,6 +1934,13 @@ class CreateCustomLineItemOutput {
     return CreateCustomLineItemOutput(
       arn: json['Arn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -1828,6 +1956,13 @@ class CreatePricingPlanOutput {
       arn: json['Arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
+  }
 }
 
 class CreatePricingRuleOutput {
@@ -1841,6 +1976,13 @@ class CreatePricingRuleOutput {
     return CreatePricingRuleOutput(
       arn: json['Arn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -1887,6 +2029,7 @@ class CustomLineItemBillingPeriodRange {
     required this.exclusiveEndBillingPeriod,
     required this.inclusiveStartBillingPeriod,
   });
+
   Map<String, dynamic> toJson() {
     final exclusiveEndBillingPeriod = this.exclusiveEndBillingPeriod;
     final inclusiveStartBillingPeriod = this.inclusiveStartBillingPeriod;
@@ -1917,6 +2060,7 @@ class CustomLineItemChargeDetails {
     this.flat,
     this.percentage,
   });
+
   Map<String, dynamic> toJson() {
     final type = this.type;
     final flat = this.flat;
@@ -1938,6 +2082,7 @@ class CustomLineItemFlatChargeDetails {
   CustomLineItemFlatChargeDetails({
     required this.chargeValue,
   });
+
   Map<String, dynamic> toJson() {
     final chargeValue = this.chargeValue;
     return {
@@ -2011,6 +2156,31 @@ class CustomLineItemListElement {
       productCode: json['ProductCode'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final associationSize = this.associationSize;
+    final billingGroupArn = this.billingGroupArn;
+    final chargeDetails = this.chargeDetails;
+    final creationTime = this.creationTime;
+    final currencyCode = this.currencyCode;
+    final description = this.description;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final productCode = this.productCode;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (associationSize != null) 'AssociationSize': associationSize,
+      if (billingGroupArn != null) 'BillingGroupArn': billingGroupArn,
+      if (chargeDetails != null) 'ChargeDetails': chargeDetails,
+      if (creationTime != null) 'CreationTime': creationTime,
+      if (currencyCode != null) 'CurrencyCode': currencyCode.toValue(),
+      if (description != null) 'Description': description,
+      if (lastModifiedTime != null) 'LastModifiedTime': lastModifiedTime,
+      if (name != null) 'Name': name,
+      if (productCode != null) 'ProductCode': productCode,
+    };
+  }
 }
 
 /// A representation of the charge details associated with a percentage custom
@@ -2027,6 +2197,7 @@ class CustomLineItemPercentageChargeDetails {
     required this.percentageValue,
     this.associatedValues,
   });
+
   Map<String, dynamic> toJson() {
     final percentageValue = this.percentageValue;
     final associatedValues = this.associatedValues;
@@ -2106,6 +2277,13 @@ class DeleteBillingGroupOutput {
       arn: json['Arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
+  }
 }
 
 class DeleteCustomLineItemOutput {
@@ -2119,6 +2297,13 @@ class DeleteCustomLineItemOutput {
     return DeleteCustomLineItemOutput(
       arn: json['Arn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -2134,6 +2319,13 @@ class DeletePricingPlanOutput {
       arn: json['Arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
+  }
 }
 
 class DeletePricingRuleOutput {
@@ -2147,6 +2339,13 @@ class DeletePricingRuleOutput {
     return DeletePricingRuleOutput(
       arn: json['Arn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -2163,6 +2362,13 @@ class DisassociateAccountsOutput {
       arn: json['Arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
+  }
 }
 
 class DisassociatePricingRulesOutput {
@@ -2177,6 +2383,13 @@ class DisassociatePricingRulesOutput {
     return DisassociatePricingRulesOutput(
       arn: json['Arn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -2202,6 +2415,15 @@ class DisassociateResourceResponseElement {
               json['Error'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final error = this.error;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (error != null) 'Error': error,
+    };
   }
 }
 
@@ -2233,6 +2455,7 @@ class ListAccountAssociationsFilter {
     this.accountId,
     this.association,
   });
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final association = this.association;
@@ -2264,6 +2487,15 @@ class ListAccountAssociationsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final linkedAccounts = this.linkedAccounts;
+    final nextToken = this.nextToken;
+    return {
+      if (linkedAccounts != null) 'LinkedAccounts': linkedAccounts,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The filter used to retrieve specific
@@ -2276,6 +2508,7 @@ class ListBillingGroupCostReportsFilter {
   ListBillingGroupCostReportsFilter({
     this.billingGroupArns,
   });
+
   Map<String, dynamic> toJson() {
     final billingGroupArns = this.billingGroupArns;
     return {
@@ -2306,6 +2539,16 @@ class ListBillingGroupCostReportsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final billingGroupCostReports = this.billingGroupCostReports;
+    final nextToken = this.nextToken;
+    return {
+      if (billingGroupCostReports != null)
+        'BillingGroupCostReports': billingGroupCostReports,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The filter that specifies the billing groups and pricing plans to retrieve
@@ -2322,6 +2565,7 @@ class ListBillingGroupsFilter {
     this.arns,
     this.pricingPlan,
   });
+
   Map<String, dynamic> toJson() {
     final arns = this.arns;
     final pricingPlan = this.pricingPlan;
@@ -2352,6 +2596,15 @@ class ListBillingGroupsOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final billingGroups = this.billingGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (billingGroups != null) 'BillingGroups': billingGroups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2387,6 +2640,17 @@ class ListCustomLineItemChargeDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final flat = this.flat;
+    final percentage = this.percentage;
+    return {
+      'Type': type.toValue(),
+      if (flat != null) 'Flat': flat,
+      if (percentage != null) 'Percentage': percentage,
+    };
+  }
 }
 
 /// A representation of the charge details associated with a flat custom line
@@ -2403,6 +2667,13 @@ class ListCustomLineItemFlatChargeDetails {
     return ListCustomLineItemFlatChargeDetails(
       chargeValue: json['ChargeValue'] as double,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final chargeValue = this.chargeValue;
+    return {
+      'ChargeValue': chargeValue,
+    };
   }
 }
 
@@ -2421,6 +2692,13 @@ class ListCustomLineItemPercentageChargeDetails {
     return ListCustomLineItemPercentageChargeDetails(
       percentageValue: json['PercentageValue'] as double,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final percentageValue = this.percentageValue;
+    return {
+      'PercentageValue': percentageValue,
+    };
   }
 }
 
@@ -2441,6 +2719,7 @@ class ListCustomLineItemsFilter {
     this.billingGroups,
     this.names,
   });
+
   Map<String, dynamic> toJson() {
     final arns = this.arns;
     final billingGroups = this.billingGroups;
@@ -2474,6 +2753,15 @@ class ListCustomLineItemsOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customLineItems = this.customLineItems;
+    final nextToken = this.nextToken;
+    return {
+      if (customLineItems != null) 'CustomLineItems': customLineItems,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2510,6 +2798,19 @@ class ListPricingPlansAssociatedWithPricingRuleOutput {
       pricingRuleArn: json['PricingRuleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final billingPeriod = this.billingPeriod;
+    final nextToken = this.nextToken;
+    final pricingPlanArns = this.pricingPlanArns;
+    final pricingRuleArn = this.pricingRuleArn;
+    return {
+      if (billingPeriod != null) 'BillingPeriod': billingPeriod,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (pricingPlanArns != null) 'PricingPlanArns': pricingPlanArns,
+      if (pricingRuleArn != null) 'PricingRuleArn': pricingRuleArn,
+    };
+  }
 }
 
 /// The filter that specifies the Amazon Resource Names (ARNs) of pricing plans,
@@ -2521,6 +2822,7 @@ class ListPricingPlansFilter {
   ListPricingPlansFilter({
     this.arns,
   });
+
   Map<String, dynamic> toJson() {
     final arns = this.arns;
     return {
@@ -2554,6 +2856,17 @@ class ListPricingPlansOutput {
               (e) => PricingPlanListElement.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final billingPeriod = this.billingPeriod;
+    final nextToken = this.nextToken;
+    final pricingPlans = this.pricingPlans;
+    return {
+      if (billingPeriod != null) 'BillingPeriod': billingPeriod,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (pricingPlans != null) 'PricingPlans': pricingPlans,
+    };
   }
 }
 
@@ -2589,6 +2902,19 @@ class ListPricingRulesAssociatedToPricingPlanOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final billingPeriod = this.billingPeriod;
+    final nextToken = this.nextToken;
+    final pricingPlanArn = this.pricingPlanArn;
+    final pricingRuleArns = this.pricingRuleArns;
+    return {
+      if (billingPeriod != null) 'BillingPeriod': billingPeriod,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (pricingPlanArn != null) 'PricingPlanArn': pricingPlanArn,
+      if (pricingRuleArns != null) 'PricingRuleArns': pricingRuleArns,
+    };
+  }
 }
 
 /// The filter that specifies criteria that the pricing rules returned by the
@@ -2601,6 +2927,7 @@ class ListPricingRulesFilter {
   ListPricingRulesFilter({
     this.arns,
   });
+
   Map<String, dynamic> toJson() {
     final arns = this.arns;
     return {
@@ -2635,6 +2962,17 @@ class ListPricingRulesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final billingPeriod = this.billingPeriod;
+    final nextToken = this.nextToken;
+    final pricingRules = this.pricingRules;
+    return {
+      if (billingPeriod != null) 'BillingPeriod': billingPeriod,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (pricingRules != null) 'PricingRules': pricingRules,
+    };
+  }
 }
 
 /// A filter that specifies the type of resource associations that should be
@@ -2647,6 +2985,7 @@ class ListResourcesAssociatedToCustomLineItemFilter {
   ListResourcesAssociatedToCustomLineItemFilter({
     this.relationship,
   });
+
   Map<String, dynamic> toJson() {
     final relationship = this.relationship;
     return {
@@ -2687,6 +3026,18 @@ class ListResourcesAssociatedToCustomLineItemOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final associatedResources = this.associatedResources;
+    final nextToken = this.nextToken;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (associatedResources != null)
+        'AssociatedResources': associatedResources,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// A representation of a resource association for a custom line item.
@@ -2710,6 +3061,15 @@ class ListResourcesAssociatedToCustomLineItemResponseElement {
           (json['Relationship'] as String?)?.toCustomLineItemRelationship(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final relationship = this.relationship;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (relationship != null) 'Relationship': relationship.toValue(),
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2724,6 +3084,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2766,6 +3133,23 @@ class PricingPlanListElement {
       name: json['Name'] as String?,
       size: json['Size'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final size = this.size;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationTime != null) 'CreationTime': creationTime,
+      if (description != null) 'Description': description,
+      if (lastModifiedTime != null) 'LastModifiedTime': lastModifiedTime,
+      if (name != null) 'Name': name,
+      if (size != null) 'Size': size,
+    };
   }
 }
 
@@ -2828,6 +3212,32 @@ class PricingRuleListElement {
       service: json['Service'] as String?,
       type: (json['Type'] as String?)?.toPricingRuleType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final associatedPricingPlanCount = this.associatedPricingPlanCount;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final lastModifiedTime = this.lastModifiedTime;
+    final modifierPercentage = this.modifierPercentage;
+    final name = this.name;
+    final scope = this.scope;
+    final service = this.service;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (associatedPricingPlanCount != null)
+        'AssociatedPricingPlanCount': associatedPricingPlanCount,
+      if (creationTime != null) 'CreationTime': creationTime,
+      if (description != null) 'Description': description,
+      if (lastModifiedTime != null) 'LastModifiedTime': lastModifiedTime,
+      if (modifierPercentage != null) 'ModifierPercentage': modifierPercentage,
+      if (name != null) 'Name': name,
+      if (scope != null) 'Scope': scope.toValue(),
+      if (service != null) 'Service': service,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -2892,12 +3302,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2955,6 +3373,29 @@ class UpdateBillingGroupOutput {
       statusReason: json['StatusReason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final pricingPlanArn = this.pricingPlanArn;
+    final primaryAccountId = this.primaryAccountId;
+    final size = this.size;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (lastModifiedTime != null) 'LastModifiedTime': lastModifiedTime,
+      if (name != null) 'Name': name,
+      if (pricingPlanArn != null) 'PricingPlanArn': pricingPlanArn,
+      if (primaryAccountId != null) 'PrimaryAccountId': primaryAccountId,
+      if (size != null) 'Size': size,
+      if (status != null) 'Status': status.toValue(),
+      if (statusReason != null) 'StatusReason': statusReason,
+    };
+  }
 }
 
 /// A representation of the new charge details of a custom line item. This
@@ -2972,6 +3413,7 @@ class UpdateCustomLineItemChargeDetails {
     this.flat,
     this.percentage,
   });
+
   Map<String, dynamic> toJson() {
     final flat = this.flat;
     final percentage = this.percentage;
@@ -2991,6 +3433,7 @@ class UpdateCustomLineItemFlatChargeDetails {
   UpdateCustomLineItemFlatChargeDetails({
     required this.chargeValue,
   });
+
   Map<String, dynamic> toJson() {
     final chargeValue = this.chargeValue;
     return {
@@ -3045,6 +3488,25 @@ class UpdateCustomLineItemOutput {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final associationSize = this.associationSize;
+    final billingGroupArn = this.billingGroupArn;
+    final chargeDetails = this.chargeDetails;
+    final description = this.description;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (associationSize != null) 'AssociationSize': associationSize,
+      if (billingGroupArn != null) 'BillingGroupArn': billingGroupArn,
+      if (chargeDetails != null) 'ChargeDetails': chargeDetails,
+      if (description != null) 'Description': description,
+      if (lastModifiedTime != null) 'LastModifiedTime': lastModifiedTime,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// A representation of the new charge details associated with a percentage
@@ -3058,6 +3520,7 @@ class UpdateCustomLineItemPercentageChargeDetails {
   UpdateCustomLineItemPercentageChargeDetails({
     required this.percentageValue,
   });
+
   Map<String, dynamic> toJson() {
     final percentageValue = this.percentageValue;
     return {
@@ -3097,6 +3560,21 @@ class UpdatePricingPlanOutput {
       name: json['Name'] as String?,
       size: json['Size'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final size = this.size;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (lastModifiedTime != null) 'LastModifiedTime': lastModifiedTime,
+      if (name != null) 'Name': name,
+      if (size != null) 'Size': size,
+    };
   }
 }
 
@@ -3155,6 +3633,30 @@ class UpdatePricingRuleOutput {
       service: json['Service'] as String?,
       type: (json['Type'] as String?)?.toPricingRuleType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final associatedPricingPlanCount = this.associatedPricingPlanCount;
+    final description = this.description;
+    final lastModifiedTime = this.lastModifiedTime;
+    final modifierPercentage = this.modifierPercentage;
+    final name = this.name;
+    final scope = this.scope;
+    final service = this.service;
+    final type = this.type;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (associatedPricingPlanCount != null)
+        'AssociatedPricingPlanCount': associatedPricingPlanCount,
+      if (description != null) 'Description': description,
+      if (lastModifiedTime != null) 'LastModifiedTime': lastModifiedTime,
+      if (modifierPercentage != null) 'ModifierPercentage': modifierPercentage,
+      if (name != null) 'Name': name,
+      if (scope != null) 'Scope': scope.toValue(),
+      if (service != null) 'Service': service,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 

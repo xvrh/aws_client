@@ -827,6 +827,46 @@ class Component {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final bindingProperties = this.bindingProperties;
+    final componentType = this.componentType;
+    final createdAt = this.createdAt;
+    final environmentName = this.environmentName;
+    final id = this.id;
+    final name = this.name;
+    final overrides = this.overrides;
+    final properties = this.properties;
+    final variants = this.variants;
+    final children = this.children;
+    final collectionProperties = this.collectionProperties;
+    final events = this.events;
+    final modifiedAt = this.modifiedAt;
+    final schemaVersion = this.schemaVersion;
+    final sourceId = this.sourceId;
+    final tags = this.tags;
+    return {
+      'appId': appId,
+      'bindingProperties': bindingProperties,
+      'componentType': componentType,
+      'createdAt': iso8601ToJson(createdAt),
+      'environmentName': environmentName,
+      'id': id,
+      'name': name,
+      'overrides': overrides,
+      'properties': properties,
+      'variants': variants,
+      if (children != null) 'children': children,
+      if (collectionProperties != null)
+        'collectionProperties': collectionProperties,
+      if (events != null) 'events': events,
+      if (modifiedAt != null) 'modifiedAt': iso8601ToJson(modifiedAt),
+      if (schemaVersion != null) 'schemaVersion': schemaVersion,
+      if (sourceId != null) 'sourceId': sourceId,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Represents the data binding configuration for a component at runtime. You
@@ -1382,6 +1422,21 @@ class ComponentSummary {
       name: json['name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final componentType = this.componentType;
+    final environmentName = this.environmentName;
+    final id = this.id;
+    final name = this.name;
+    return {
+      'appId': appId,
+      'componentType': componentType,
+      'environmentName': environmentName,
+      'id': id,
+      'name': name,
+    };
+  }
 }
 
 /// Describes the style configuration of a unique variation of a main component.
@@ -1477,6 +1532,7 @@ class CreateComponentData {
     this.sourceId,
     this.tags,
   });
+
   Map<String, dynamic> toJson() {
     final bindingProperties = this.bindingProperties;
     final componentType = this.componentType;
@@ -1515,6 +1571,13 @@ class CreateComponentResponse {
   CreateComponentResponse({
     this.entity,
   });
+
+  Map<String, dynamic> toJson() {
+    final entity = this.entity;
+    return {
+      if (entity != null) 'entity': entity,
+    };
+  }
 }
 
 /// Represents all of the information that is required to create a theme.
@@ -1538,6 +1601,7 @@ class CreateThemeData {
     this.overrides,
     this.tags,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -1559,6 +1623,13 @@ class CreateThemeResponse {
   CreateThemeResponse({
     this.entity,
   });
+
+  Map<String, dynamic> toJson() {
+    final entity = this.entity;
+    return {
+      if (entity != null) 'entity': entity,
+    };
+  }
 }
 
 /// Describes the configuration of a request to exchange an access code for a
@@ -1574,6 +1645,7 @@ class ExchangeCodeForTokenRequestBody {
     required this.code,
     required this.redirectUri,
   });
+
   Map<String, dynamic> toJson() {
     final code = this.code;
     final redirectUri = this.redirectUri;
@@ -1607,6 +1679,17 @@ class ExchangeCodeForTokenResponse {
       refreshToken: json['refreshToken'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessToken = this.accessToken;
+    final expiresIn = this.expiresIn;
+    final refreshToken = this.refreshToken;
+    return {
+      'accessToken': accessToken,
+      'expiresIn': expiresIn,
+      'refreshToken': refreshToken,
+    };
+  }
 }
 
 class ExportComponentsResponse {
@@ -1629,6 +1712,15 @@ class ExportComponentsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entities = this.entities;
+    final nextToken = this.nextToken;
+    return {
+      'entities': entities,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ExportThemesResponse {
@@ -1650,6 +1742,15 @@ class ExportThemesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entities = this.entities;
+    final nextToken = this.nextToken;
+    return {
+      'entities': entities,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1689,6 +1790,13 @@ class GetComponentResponse {
   GetComponentResponse({
     this.component,
   });
+
+  Map<String, dynamic> toJson() {
+    final component = this.component;
+    return {
+      if (component != null) 'component': component,
+    };
+  }
 }
 
 class GetThemeResponse {
@@ -1698,6 +1806,13 @@ class GetThemeResponse {
   GetThemeResponse({
     this.theme,
   });
+
+  Map<String, dynamic> toJson() {
+    final theme = this.theme;
+    return {
+      if (theme != null) 'theme': theme,
+    };
+  }
 }
 
 class ListComponentsResponse {
@@ -1720,6 +1835,15 @@ class ListComponentsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entities = this.entities;
+    final nextToken = this.nextToken;
+    return {
+      'entities': entities,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListThemesResponse {
@@ -1741,6 +1865,15 @@ class ListThemesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entities = this.entities;
+    final nextToken = this.nextToken;
+    return {
+      'entities': entities,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1847,6 +1980,7 @@ class RefreshTokenRequestBody {
   RefreshTokenRequestBody({
     required this.token,
   });
+
   Map<String, dynamic> toJson() {
     final token = this.token;
     return {
@@ -1871,6 +2005,15 @@ class RefreshTokenResponse {
       accessToken: json['accessToken'] as String,
       expiresIn: json['expiresIn'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessToken = this.accessToken;
+    final expiresIn = this.expiresIn;
+    return {
+      'accessToken': accessToken,
+      'expiresIn': expiresIn,
+    };
   }
 }
 
@@ -1992,6 +2135,29 @@ class Theme {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final createdAt = this.createdAt;
+    final environmentName = this.environmentName;
+    final id = this.id;
+    final name = this.name;
+    final values = this.values;
+    final modifiedAt = this.modifiedAt;
+    final overrides = this.overrides;
+    final tags = this.tags;
+    return {
+      'appId': appId,
+      'createdAt': iso8601ToJson(createdAt),
+      'environmentName': environmentName,
+      'id': id,
+      'name': name,
+      'values': values,
+      if (modifiedAt != null) 'modifiedAt': iso8601ToJson(modifiedAt),
+      if (overrides != null) 'overrides': overrides,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Describes the basic information about a theme.
@@ -2021,6 +2187,19 @@ class ThemeSummary {
       id: json['id'] as String,
       name: json['name'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appId = this.appId;
+    final environmentName = this.environmentName;
+    final id = this.id;
+    final name = this.name;
+    return {
+      'appId': appId,
+      'environmentName': environmentName,
+      'id': id,
+      'name': name,
+    };
   }
 }
 
@@ -2166,6 +2345,7 @@ class UpdateComponentData {
     this.sourceId,
     this.variants,
   });
+
   Map<String, dynamic> toJson() {
     final bindingProperties = this.bindingProperties;
     final children = this.children;
@@ -2204,6 +2384,13 @@ class UpdateComponentResponse {
   UpdateComponentResponse({
     this.entity,
   });
+
+  Map<String, dynamic> toJson() {
+    final entity = this.entity;
+    return {
+      if (entity != null) 'entity': entity,
+    };
+  }
 }
 
 /// Saves the data binding information for a theme.
@@ -2226,6 +2413,7 @@ class UpdateThemeData {
     this.name,
     this.overrides,
   });
+
   Map<String, dynamic> toJson() {
     final values = this.values;
     final id = this.id;
@@ -2247,6 +2435,13 @@ class UpdateThemeResponse {
   UpdateThemeResponse({
     this.entity,
   });
+
+  Map<String, dynamic> toJson() {
+    final entity = this.entity;
+    return {
+      if (entity != null) 'entity': entity,
+    };
+  }
 }
 
 class InternalServerException extends _s.GenericAwsException {

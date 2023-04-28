@@ -3182,6 +3182,54 @@ class BackupJob {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final backupJobId = this.backupJobId;
+    final backupOptions = this.backupOptions;
+    final backupSizeInBytes = this.backupSizeInBytes;
+    final backupType = this.backupType;
+    final backupVaultArn = this.backupVaultArn;
+    final backupVaultName = this.backupVaultName;
+    final bytesTransferred = this.bytesTransferred;
+    final completionDate = this.completionDate;
+    final createdBy = this.createdBy;
+    final creationDate = this.creationDate;
+    final expectedCompletionDate = this.expectedCompletionDate;
+    final iamRoleArn = this.iamRoleArn;
+    final percentDone = this.percentDone;
+    final recoveryPointArn = this.recoveryPointArn;
+    final resourceArn = this.resourceArn;
+    final resourceType = this.resourceType;
+    final startBy = this.startBy;
+    final state = this.state;
+    final statusMessage = this.statusMessage;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (backupJobId != null) 'BackupJobId': backupJobId,
+      if (backupOptions != null) 'BackupOptions': backupOptions,
+      if (backupSizeInBytes != null) 'BackupSizeInBytes': backupSizeInBytes,
+      if (backupType != null) 'BackupType': backupType,
+      if (backupVaultArn != null) 'BackupVaultArn': backupVaultArn,
+      if (backupVaultName != null) 'BackupVaultName': backupVaultName,
+      if (bytesTransferred != null) 'BytesTransferred': bytesTransferred,
+      if (completionDate != null)
+        'CompletionDate': unixTimestampToJson(completionDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (expectedCompletionDate != null)
+        'ExpectedCompletionDate': unixTimestampToJson(expectedCompletionDate),
+      if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
+      if (percentDone != null) 'PercentDone': percentDone,
+      if (recoveryPointArn != null) 'RecoveryPointArn': recoveryPointArn,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (startBy != null) 'StartBy': unixTimestampToJson(startBy),
+      if (state != null) 'State': state.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 enum BackupJobState {
@@ -3276,6 +3324,18 @@ class BackupPlan {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupPlanName = this.backupPlanName;
+    final rules = this.rules;
+    final advancedBackupSettings = this.advancedBackupSettings;
+    return {
+      'BackupPlanName': backupPlanName,
+      'Rules': rules,
+      if (advancedBackupSettings != null)
+        'AdvancedBackupSettings': advancedBackupSettings,
+    };
+  }
 }
 
 /// Contains an optional backup plan display name and an array of
@@ -3300,6 +3360,7 @@ class BackupPlanInput {
     required this.rules,
     this.advancedBackupSettings,
   });
+
   Map<String, dynamic> toJson() {
     final backupPlanName = this.backupPlanName;
     final rules = this.rules;
@@ -3330,6 +3391,17 @@ class BackupPlanTemplatesListMember {
       backupPlanTemplateId: json['BackupPlanTemplateId'] as String?,
       backupPlanTemplateName: json['BackupPlanTemplateName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupPlanTemplateId = this.backupPlanTemplateId;
+    final backupPlanTemplateName = this.backupPlanTemplateName;
+    return {
+      if (backupPlanTemplateId != null)
+        'BackupPlanTemplateId': backupPlanTemplateId,
+      if (backupPlanTemplateName != null)
+        'BackupPlanTemplateName': backupPlanTemplateName,
+    };
   }
 }
 
@@ -3405,6 +3477,33 @@ class BackupPlansListMember {
       lastExecutionDate: timeStampFromJson(json['LastExecutionDate']),
       versionId: json['VersionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final advancedBackupSettings = this.advancedBackupSettings;
+    final backupPlanArn = this.backupPlanArn;
+    final backupPlanId = this.backupPlanId;
+    final backupPlanName = this.backupPlanName;
+    final creationDate = this.creationDate;
+    final creatorRequestId = this.creatorRequestId;
+    final deletionDate = this.deletionDate;
+    final lastExecutionDate = this.lastExecutionDate;
+    final versionId = this.versionId;
+    return {
+      if (advancedBackupSettings != null)
+        'AdvancedBackupSettings': advancedBackupSettings,
+      if (backupPlanArn != null) 'BackupPlanArn': backupPlanArn,
+      if (backupPlanId != null) 'BackupPlanId': backupPlanId,
+      if (backupPlanName != null) 'BackupPlanName': backupPlanName,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (deletionDate != null)
+        'DeletionDate': unixTimestampToJson(deletionDate),
+      if (lastExecutionDate != null)
+        'LastExecutionDate': unixTimestampToJson(lastExecutionDate),
+      if (versionId != null) 'VersionId': versionId,
+    };
   }
 }
 
@@ -3504,6 +3603,33 @@ class BackupRule {
       startWindowMinutes: json['StartWindowMinutes'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ruleName = this.ruleName;
+    final targetBackupVaultName = this.targetBackupVaultName;
+    final completionWindowMinutes = this.completionWindowMinutes;
+    final copyActions = this.copyActions;
+    final enableContinuousBackup = this.enableContinuousBackup;
+    final lifecycle = this.lifecycle;
+    final recoveryPointTags = this.recoveryPointTags;
+    final ruleId = this.ruleId;
+    final scheduleExpression = this.scheduleExpression;
+    final startWindowMinutes = this.startWindowMinutes;
+    return {
+      'RuleName': ruleName,
+      'TargetBackupVaultName': targetBackupVaultName,
+      if (completionWindowMinutes != null)
+        'CompletionWindowMinutes': completionWindowMinutes,
+      if (copyActions != null) 'CopyActions': copyActions,
+      if (enableContinuousBackup != null)
+        'EnableContinuousBackup': enableContinuousBackup,
+      if (lifecycle != null) 'Lifecycle': lifecycle,
+      if (recoveryPointTags != null) 'RecoveryPointTags': recoveryPointTags,
+      if (ruleId != null) 'RuleId': ruleId,
+      if (scheduleExpression != null) 'ScheduleExpression': scheduleExpression,
+      if (startWindowMinutes != null) 'StartWindowMinutes': startWindowMinutes,
+    };
+  }
 }
 
 /// Specifies a scheduled task used to back up a selection of resources.
@@ -3570,6 +3696,7 @@ class BackupRuleInput {
     this.scheduleExpression,
     this.startWindowMinutes,
   });
+
   Map<String, dynamic> toJson() {
     final ruleName = this.ruleName;
     final targetBackupVaultName = this.targetBackupVaultName;
@@ -3765,6 +3892,24 @@ class BackupSelectionsListMember {
       selectionId: json['SelectionId'] as String?,
       selectionName: json['SelectionName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupPlanId = this.backupPlanId;
+    final creationDate = this.creationDate;
+    final creatorRequestId = this.creatorRequestId;
+    final iamRoleArn = this.iamRoleArn;
+    final selectionId = this.selectionId;
+    final selectionName = this.selectionName;
+    return {
+      if (backupPlanId != null) 'BackupPlanId': backupPlanId,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
+      if (selectionId != null) 'SelectionId': selectionId,
+      if (selectionName != null) 'SelectionName': selectionName,
+    };
   }
 }
 
@@ -3983,6 +4128,33 @@ class BackupVaultListMember {
       numberOfRecoveryPoints: json['NumberOfRecoveryPoints'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupVaultArn = this.backupVaultArn;
+    final backupVaultName = this.backupVaultName;
+    final creationDate = this.creationDate;
+    final creatorRequestId = this.creatorRequestId;
+    final encryptionKeyArn = this.encryptionKeyArn;
+    final lockDate = this.lockDate;
+    final locked = this.locked;
+    final maxRetentionDays = this.maxRetentionDays;
+    final minRetentionDays = this.minRetentionDays;
+    final numberOfRecoveryPoints = this.numberOfRecoveryPoints;
+    return {
+      if (backupVaultArn != null) 'BackupVaultArn': backupVaultArn,
+      if (backupVaultName != null) 'BackupVaultName': backupVaultName,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
+      if (lockDate != null) 'LockDate': unixTimestampToJson(lockDate),
+      if (locked != null) 'Locked': locked,
+      if (maxRetentionDays != null) 'MaxRetentionDays': maxRetentionDays,
+      if (minRetentionDays != null) 'MinRetentionDays': minRetentionDays,
+      if (numberOfRecoveryPoints != null)
+        'NumberOfRecoveryPoints': numberOfRecoveryPoints,
+    };
+  }
 }
 
 /// Contains <code>DeleteAt</code> and <code>MoveToColdStorageAt</code>
@@ -4020,6 +4192,16 @@ class CalculatedLifecycle {
       deleteAt: timeStampFromJson(json['DeleteAt']),
       moveToColdStorageAt: timeStampFromJson(json['MoveToColdStorageAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deleteAt = this.deleteAt;
+    final moveToColdStorageAt = this.moveToColdStorageAt;
+    return {
+      if (deleteAt != null) 'DeleteAt': unixTimestampToJson(deleteAt),
+      if (moveToColdStorageAt != null)
+        'MoveToColdStorageAt': unixTimestampToJson(moveToColdStorageAt),
+    };
   }
 }
 
@@ -4412,6 +4594,47 @@ class CopyJob {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final backupSizeInBytes = this.backupSizeInBytes;
+    final completionDate = this.completionDate;
+    final copyJobId = this.copyJobId;
+    final createdBy = this.createdBy;
+    final creationDate = this.creationDate;
+    final destinationBackupVaultArn = this.destinationBackupVaultArn;
+    final destinationRecoveryPointArn = this.destinationRecoveryPointArn;
+    final iamRoleArn = this.iamRoleArn;
+    final resourceArn = this.resourceArn;
+    final resourceType = this.resourceType;
+    final sourceBackupVaultArn = this.sourceBackupVaultArn;
+    final sourceRecoveryPointArn = this.sourceRecoveryPointArn;
+    final state = this.state;
+    final statusMessage = this.statusMessage;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (backupSizeInBytes != null) 'BackupSizeInBytes': backupSizeInBytes,
+      if (completionDate != null)
+        'CompletionDate': unixTimestampToJson(completionDate),
+      if (copyJobId != null) 'CopyJobId': copyJobId,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (destinationBackupVaultArn != null)
+        'DestinationBackupVaultArn': destinationBackupVaultArn,
+      if (destinationRecoveryPointArn != null)
+        'DestinationRecoveryPointArn': destinationRecoveryPointArn,
+      if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (sourceBackupVaultArn != null)
+        'SourceBackupVaultArn': sourceBackupVaultArn,
+      if (sourceRecoveryPointArn != null)
+        'SourceRecoveryPointArn': sourceRecoveryPointArn,
+      if (state != null) 'State': state.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 enum CopyJobState {
@@ -4495,6 +4718,23 @@ class CreateBackupPlanOutput {
       versionId: json['VersionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final advancedBackupSettings = this.advancedBackupSettings;
+    final backupPlanArn = this.backupPlanArn;
+    final backupPlanId = this.backupPlanId;
+    final creationDate = this.creationDate;
+    final versionId = this.versionId;
+    return {
+      if (advancedBackupSettings != null)
+        'AdvancedBackupSettings': advancedBackupSettings,
+      if (backupPlanArn != null) 'BackupPlanArn': backupPlanArn,
+      if (backupPlanId != null) 'BackupPlanId': backupPlanId,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (versionId != null) 'VersionId': versionId,
+    };
+  }
 }
 
 class CreateBackupSelectionOutput {
@@ -4522,6 +4762,18 @@ class CreateBackupSelectionOutput {
       creationDate: timeStampFromJson(json['CreationDate']),
       selectionId: json['SelectionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupPlanId = this.backupPlanId;
+    final creationDate = this.creationDate;
+    final selectionId = this.selectionId;
+    return {
+      if (backupPlanId != null) 'BackupPlanId': backupPlanId,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (selectionId != null) 'SelectionId': selectionId,
+    };
   }
 }
 
@@ -4555,6 +4807,18 @@ class CreateBackupVaultOutput {
       creationDate: timeStampFromJson(json['CreationDate']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupVaultArn = this.backupVaultArn;
+    final backupVaultName = this.backupVaultName;
+    final creationDate = this.creationDate;
+    return {
+      if (backupVaultArn != null) 'BackupVaultArn': backupVaultArn,
+      if (backupVaultName != null) 'BackupVaultName': backupVaultName,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+    };
+  }
 }
 
 class CreateFrameworkOutput {
@@ -4576,6 +4840,15 @@ class CreateFrameworkOutput {
       frameworkArn: json['FrameworkArn'] as String?,
       frameworkName: json['FrameworkName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final frameworkArn = this.frameworkArn;
+    final frameworkName = this.frameworkName;
+    return {
+      if (frameworkArn != null) 'FrameworkArn': frameworkArn,
+      if (frameworkName != null) 'FrameworkName': frameworkName,
+    };
   }
 }
 
@@ -4604,6 +4877,18 @@ class CreateReportPlanOutput {
       reportPlanArn: json['ReportPlanArn'] as String?,
       reportPlanName: json['ReportPlanName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final reportPlanArn = this.reportPlanArn;
+    final reportPlanName = this.reportPlanName;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (reportPlanArn != null) 'ReportPlanArn': reportPlanArn,
+      if (reportPlanName != null) 'ReportPlanName': reportPlanName,
+    };
   }
 }
 
@@ -4639,6 +4924,20 @@ class DeleteBackupPlanOutput {
       deletionDate: timeStampFromJson(json['DeletionDate']),
       versionId: json['VersionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupPlanArn = this.backupPlanArn;
+    final backupPlanId = this.backupPlanId;
+    final deletionDate = this.deletionDate;
+    final versionId = this.versionId;
+    return {
+      if (backupPlanArn != null) 'BackupPlanArn': backupPlanArn,
+      if (backupPlanId != null) 'BackupPlanId': backupPlanId,
+      if (deletionDate != null)
+        'DeletionDate': unixTimestampToJson(deletionDate),
+      if (versionId != null) 'VersionId': versionId,
+    };
   }
 }
 
@@ -4788,6 +5087,54 @@ class DescribeBackupJobOutput {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final backupJobId = this.backupJobId;
+    final backupOptions = this.backupOptions;
+    final backupSizeInBytes = this.backupSizeInBytes;
+    final backupType = this.backupType;
+    final backupVaultArn = this.backupVaultArn;
+    final backupVaultName = this.backupVaultName;
+    final bytesTransferred = this.bytesTransferred;
+    final completionDate = this.completionDate;
+    final createdBy = this.createdBy;
+    final creationDate = this.creationDate;
+    final expectedCompletionDate = this.expectedCompletionDate;
+    final iamRoleArn = this.iamRoleArn;
+    final percentDone = this.percentDone;
+    final recoveryPointArn = this.recoveryPointArn;
+    final resourceArn = this.resourceArn;
+    final resourceType = this.resourceType;
+    final startBy = this.startBy;
+    final state = this.state;
+    final statusMessage = this.statusMessage;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (backupJobId != null) 'BackupJobId': backupJobId,
+      if (backupOptions != null) 'BackupOptions': backupOptions,
+      if (backupSizeInBytes != null) 'BackupSizeInBytes': backupSizeInBytes,
+      if (backupType != null) 'BackupType': backupType,
+      if (backupVaultArn != null) 'BackupVaultArn': backupVaultArn,
+      if (backupVaultName != null) 'BackupVaultName': backupVaultName,
+      if (bytesTransferred != null) 'BytesTransferred': bytesTransferred,
+      if (completionDate != null)
+        'CompletionDate': unixTimestampToJson(completionDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (expectedCompletionDate != null)
+        'ExpectedCompletionDate': unixTimestampToJson(expectedCompletionDate),
+      if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
+      if (percentDone != null) 'PercentDone': percentDone,
+      if (recoveryPointArn != null) 'RecoveryPointArn': recoveryPointArn,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (startBy != null) 'StartBy': unixTimestampToJson(startBy),
+      if (state != null) 'State': state.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 class DescribeBackupVaultOutput {
@@ -4889,6 +5236,33 @@ class DescribeBackupVaultOutput {
       numberOfRecoveryPoints: json['NumberOfRecoveryPoints'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupVaultArn = this.backupVaultArn;
+    final backupVaultName = this.backupVaultName;
+    final creationDate = this.creationDate;
+    final creatorRequestId = this.creatorRequestId;
+    final encryptionKeyArn = this.encryptionKeyArn;
+    final lockDate = this.lockDate;
+    final locked = this.locked;
+    final maxRetentionDays = this.maxRetentionDays;
+    final minRetentionDays = this.minRetentionDays;
+    final numberOfRecoveryPoints = this.numberOfRecoveryPoints;
+    return {
+      if (backupVaultArn != null) 'BackupVaultArn': backupVaultArn,
+      if (backupVaultName != null) 'BackupVaultName': backupVaultName,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
+      if (lockDate != null) 'LockDate': unixTimestampToJson(lockDate),
+      if (locked != null) 'Locked': locked,
+      if (maxRetentionDays != null) 'MaxRetentionDays': maxRetentionDays,
+      if (minRetentionDays != null) 'MinRetentionDays': minRetentionDays,
+      if (numberOfRecoveryPoints != null)
+        'NumberOfRecoveryPoints': numberOfRecoveryPoints,
+    };
+  }
 }
 
 class DescribeCopyJobOutput {
@@ -4904,6 +5278,13 @@ class DescribeCopyJobOutput {
           ? CopyJob.fromJson(json['CopyJob'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final copyJob = this.copyJob;
+    return {
+      if (copyJob != null) 'CopyJob': copyJob,
+    };
   }
 }
 
@@ -4990,6 +5371,29 @@ class DescribeFrameworkOutput {
       idempotencyToken: json['IdempotencyToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final deploymentStatus = this.deploymentStatus;
+    final frameworkArn = this.frameworkArn;
+    final frameworkControls = this.frameworkControls;
+    final frameworkDescription = this.frameworkDescription;
+    final frameworkName = this.frameworkName;
+    final frameworkStatus = this.frameworkStatus;
+    final idempotencyToken = this.idempotencyToken;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (deploymentStatus != null) 'DeploymentStatus': deploymentStatus,
+      if (frameworkArn != null) 'FrameworkArn': frameworkArn,
+      if (frameworkControls != null) 'FrameworkControls': frameworkControls,
+      if (frameworkDescription != null)
+        'FrameworkDescription': frameworkDescription,
+      if (frameworkName != null) 'FrameworkName': frameworkName,
+      if (frameworkStatus != null) 'FrameworkStatus': frameworkStatus,
+      if (idempotencyToken != null) 'IdempotencyToken': idempotencyToken,
+    };
+  }
 }
 
 class DescribeGlobalSettingsOutput {
@@ -5013,6 +5417,16 @@ class DescribeGlobalSettingsOutput {
           ?.map((k, e) => MapEntry(k, e as String)),
       lastUpdateTime: timeStampFromJson(json['LastUpdateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final globalSettings = this.globalSettings;
+    final lastUpdateTime = this.lastUpdateTime;
+    return {
+      if (globalSettings != null) 'GlobalSettings': globalSettings,
+      if (lastUpdateTime != null)
+        'LastUpdateTime': unixTimestampToJson(lastUpdateTime),
+    };
   }
 }
 
@@ -5042,6 +5456,18 @@ class DescribeProtectedResourceOutput {
       resourceArn: json['ResourceArn'] as String?,
       resourceType: json['ResourceType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastBackupTime = this.lastBackupTime;
+    final resourceArn = this.resourceArn;
+    final resourceType = this.resourceType;
+    return {
+      if (lastBackupTime != null)
+        'LastBackupTime': unixTimestampToJson(lastBackupTime),
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceType != null) 'ResourceType': resourceType,
+    };
   }
 }
 
@@ -5214,6 +5640,54 @@ class DescribeRecoveryPointOutput {
       storageClass: (json['StorageClass'] as String?)?.toStorageClass(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupSizeInBytes = this.backupSizeInBytes;
+    final backupVaultArn = this.backupVaultArn;
+    final backupVaultName = this.backupVaultName;
+    final calculatedLifecycle = this.calculatedLifecycle;
+    final completionDate = this.completionDate;
+    final createdBy = this.createdBy;
+    final creationDate = this.creationDate;
+    final encryptionKeyArn = this.encryptionKeyArn;
+    final iamRoleArn = this.iamRoleArn;
+    final isEncrypted = this.isEncrypted;
+    final lastRestoreTime = this.lastRestoreTime;
+    final lifecycle = this.lifecycle;
+    final recoveryPointArn = this.recoveryPointArn;
+    final resourceArn = this.resourceArn;
+    final resourceType = this.resourceType;
+    final sourceBackupVaultArn = this.sourceBackupVaultArn;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final storageClass = this.storageClass;
+    return {
+      if (backupSizeInBytes != null) 'BackupSizeInBytes': backupSizeInBytes,
+      if (backupVaultArn != null) 'BackupVaultArn': backupVaultArn,
+      if (backupVaultName != null) 'BackupVaultName': backupVaultName,
+      if (calculatedLifecycle != null)
+        'CalculatedLifecycle': calculatedLifecycle,
+      if (completionDate != null)
+        'CompletionDate': unixTimestampToJson(completionDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
+      if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
+      if (isEncrypted != null) 'IsEncrypted': isEncrypted,
+      if (lastRestoreTime != null)
+        'LastRestoreTime': unixTimestampToJson(lastRestoreTime),
+      if (lifecycle != null) 'Lifecycle': lifecycle,
+      if (recoveryPointArn != null) 'RecoveryPointArn': recoveryPointArn,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (sourceBackupVaultArn != null)
+        'SourceBackupVaultArn': sourceBackupVaultArn,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+    };
+  }
 }
 
 class DescribeRegionSettingsOutput {
@@ -5252,6 +5726,18 @@ class DescribeRegionSettingsOutput {
               ?.map((k, e) => MapEntry(k, e as bool)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceTypeManagementPreference =
+        this.resourceTypeManagementPreference;
+    final resourceTypeOptInPreference = this.resourceTypeOptInPreference;
+    return {
+      if (resourceTypeManagementPreference != null)
+        'ResourceTypeManagementPreference': resourceTypeManagementPreference,
+      if (resourceTypeOptInPreference != null)
+        'ResourceTypeOptInPreference': resourceTypeOptInPreference,
+    };
+  }
 }
 
 class DescribeReportJobOutput {
@@ -5269,6 +5755,13 @@ class DescribeReportJobOutput {
           ? ReportJob.fromJson(json['ReportJob'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reportJob = this.reportJob;
+    return {
+      if (reportJob != null) 'ReportJob': reportJob,
+    };
   }
 }
 
@@ -5288,6 +5781,13 @@ class DescribeReportPlanOutput {
           ? ReportPlan.fromJson(json['ReportPlan'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reportPlan = this.reportPlan;
+    return {
+      if (reportPlan != null) 'ReportPlan': reportPlan,
+    };
   }
 }
 
@@ -5377,6 +5877,40 @@ class DescribeRestoreJobOutput {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final backupSizeInBytes = this.backupSizeInBytes;
+    final completionDate = this.completionDate;
+    final createdResourceArn = this.createdResourceArn;
+    final creationDate = this.creationDate;
+    final expectedCompletionTimeMinutes = this.expectedCompletionTimeMinutes;
+    final iamRoleArn = this.iamRoleArn;
+    final percentDone = this.percentDone;
+    final recoveryPointArn = this.recoveryPointArn;
+    final resourceType = this.resourceType;
+    final restoreJobId = this.restoreJobId;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (backupSizeInBytes != null) 'BackupSizeInBytes': backupSizeInBytes,
+      if (completionDate != null)
+        'CompletionDate': unixTimestampToJson(completionDate),
+      if (createdResourceArn != null) 'CreatedResourceArn': createdResourceArn,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (expectedCompletionTimeMinutes != null)
+        'ExpectedCompletionTimeMinutes': expectedCompletionTimeMinutes,
+      if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
+      if (percentDone != null) 'PercentDone': percentDone,
+      if (recoveryPointArn != null) 'RecoveryPointArn': recoveryPointArn,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (restoreJobId != null) 'RestoreJobId': restoreJobId,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 class ExportBackupPlanTemplateOutput {
@@ -5394,6 +5928,14 @@ class ExportBackupPlanTemplateOutput {
     return ExportBackupPlanTemplateOutput(
       backupPlanTemplateJson: json['BackupPlanTemplateJson'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupPlanTemplateJson = this.backupPlanTemplateJson;
+    return {
+      if (backupPlanTemplateJson != null)
+        'BackupPlanTemplateJson': backupPlanTemplateJson,
+    };
   }
 }
 
@@ -5445,6 +5987,25 @@ class Framework {
       frameworkName: json['FrameworkName'] as String?,
       numberOfControls: json['NumberOfControls'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final deploymentStatus = this.deploymentStatus;
+    final frameworkArn = this.frameworkArn;
+    final frameworkDescription = this.frameworkDescription;
+    final frameworkName = this.frameworkName;
+    final numberOfControls = this.numberOfControls;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (deploymentStatus != null) 'DeploymentStatus': deploymentStatus,
+      if (frameworkArn != null) 'FrameworkArn': frameworkArn,
+      if (frameworkDescription != null)
+        'FrameworkDescription': frameworkDescription,
+      if (frameworkName != null) 'FrameworkName': frameworkName,
+      if (numberOfControls != null) 'NumberOfControls': numberOfControls,
+    };
   }
 }
 
@@ -5510,6 +6071,13 @@ class GetBackupPlanFromJSONOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupPlan = this.backupPlan;
+    return {
+      if (backupPlan != null) 'BackupPlan': backupPlan,
+    };
+  }
 }
 
 class GetBackupPlanFromTemplateOutput {
@@ -5527,6 +6095,13 @@ class GetBackupPlanFromTemplateOutput {
               json['BackupPlanDocument'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupPlanDocument = this.backupPlanDocument;
+    return {
+      if (backupPlanDocument != null) 'BackupPlanDocument': backupPlanDocument,
+    };
   }
 }
 
@@ -5603,6 +6178,33 @@ class GetBackupPlanOutput {
       versionId: json['VersionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final advancedBackupSettings = this.advancedBackupSettings;
+    final backupPlan = this.backupPlan;
+    final backupPlanArn = this.backupPlanArn;
+    final backupPlanId = this.backupPlanId;
+    final creationDate = this.creationDate;
+    final creatorRequestId = this.creatorRequestId;
+    final deletionDate = this.deletionDate;
+    final lastExecutionDate = this.lastExecutionDate;
+    final versionId = this.versionId;
+    return {
+      if (advancedBackupSettings != null)
+        'AdvancedBackupSettings': advancedBackupSettings,
+      if (backupPlan != null) 'BackupPlan': backupPlan,
+      if (backupPlanArn != null) 'BackupPlanArn': backupPlanArn,
+      if (backupPlanId != null) 'BackupPlanId': backupPlanId,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (deletionDate != null)
+        'DeletionDate': unixTimestampToJson(deletionDate),
+      if (lastExecutionDate != null)
+        'LastExecutionDate': unixTimestampToJson(lastExecutionDate),
+      if (versionId != null) 'VersionId': versionId,
+    };
+  }
 }
 
 class GetBackupSelectionOutput {
@@ -5646,6 +6248,22 @@ class GetBackupSelectionOutput {
       selectionId: json['SelectionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupPlanId = this.backupPlanId;
+    final backupSelection = this.backupSelection;
+    final creationDate = this.creationDate;
+    final creatorRequestId = this.creatorRequestId;
+    final selectionId = this.selectionId;
+    return {
+      if (backupPlanId != null) 'BackupPlanId': backupPlanId,
+      if (backupSelection != null) 'BackupSelection': backupSelection,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (creatorRequestId != null) 'CreatorRequestId': creatorRequestId,
+      if (selectionId != null) 'SelectionId': selectionId,
+    };
+  }
 }
 
 class GetBackupVaultAccessPolicyOutput {
@@ -5674,6 +6292,17 @@ class GetBackupVaultAccessPolicyOutput {
       backupVaultName: json['BackupVaultName'] as String?,
       policy: json['Policy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupVaultArn = this.backupVaultArn;
+    final backupVaultName = this.backupVaultName;
+    final policy = this.policy;
+    return {
+      if (backupVaultArn != null) 'BackupVaultArn': backupVaultArn,
+      if (backupVaultName != null) 'BackupVaultName': backupVaultName,
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -5716,6 +6345,20 @@ class GetBackupVaultNotificationsOutput {
       sNSTopicArn: json['SNSTopicArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupVaultArn = this.backupVaultArn;
+    final backupVaultEvents = this.backupVaultEvents;
+    final backupVaultName = this.backupVaultName;
+    final sNSTopicArn = this.sNSTopicArn;
+    return {
+      if (backupVaultArn != null) 'BackupVaultArn': backupVaultArn,
+      if (backupVaultEvents != null)
+        'BackupVaultEvents': backupVaultEvents.map((e) => e.toValue()).toList(),
+      if (backupVaultName != null) 'BackupVaultName': backupVaultName,
+      if (sNSTopicArn != null) 'SNSTopicArn': sNSTopicArn,
+    };
+  }
 }
 
 class GetRecoveryPointRestoreMetadataOutput {
@@ -5745,6 +6388,17 @@ class GetRecoveryPointRestoreMetadataOutput {
       restoreMetadata: (json['RestoreMetadata'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupVaultArn = this.backupVaultArn;
+    final recoveryPointArn = this.recoveryPointArn;
+    final restoreMetadata = this.restoreMetadata;
+    return {
+      if (backupVaultArn != null) 'BackupVaultArn': backupVaultArn,
+      if (recoveryPointArn != null) 'RecoveryPointArn': recoveryPointArn,
+      if (restoreMetadata != null) 'RestoreMetadata': restoreMetadata,
+    };
   }
 }
 
@@ -5795,6 +6449,13 @@ class GetSupportedResourceTypesOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceTypes = this.resourceTypes;
+    return {
+      if (resourceTypes != null) 'ResourceTypes': resourceTypes,
+    };
   }
 }
 
@@ -5868,6 +6529,15 @@ class ListBackupJobsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupJobs = this.backupJobs;
+    final nextToken = this.nextToken;
+    return {
+      if (backupJobs != null) 'BackupJobs': backupJobs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListBackupPlanTemplatesOutput {
@@ -5895,6 +6565,16 @@ class ListBackupPlanTemplatesOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupPlanTemplatesList = this.backupPlanTemplatesList;
+    final nextToken = this.nextToken;
+    return {
+      if (backupPlanTemplatesList != null)
+        'BackupPlanTemplatesList': backupPlanTemplatesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListBackupPlanVersionsOutput {
@@ -5919,6 +6599,16 @@ class ListBackupPlanVersionsOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupPlanVersionsList = this.backupPlanVersionsList;
+    final nextToken = this.nextToken;
+    return {
+      if (backupPlanVersionsList != null)
+        'BackupPlanVersionsList': backupPlanVersionsList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5946,6 +6636,15 @@ class ListBackupPlansOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupPlansList = this.backupPlansList;
+    final nextToken = this.nextToken;
+    return {
+      if (backupPlansList != null) 'BackupPlansList': backupPlansList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListBackupSelectionsOutput {
@@ -5972,6 +6671,16 @@ class ListBackupSelectionsOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupSelectionsList = this.backupSelectionsList;
+    final nextToken = this.nextToken;
+    return {
+      if (backupSelectionsList != null)
+        'BackupSelectionsList': backupSelectionsList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6001,6 +6710,15 @@ class ListBackupVaultsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupVaultList = this.backupVaultList;
+    final nextToken = this.nextToken;
+    return {
+      if (backupVaultList != null) 'BackupVaultList': backupVaultList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListCopyJobsOutput {
@@ -6027,6 +6745,15 @@ class ListCopyJobsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final copyJobs = this.copyJobs;
+    final nextToken = this.nextToken;
+    return {
+      if (copyJobs != null) 'CopyJobs': copyJobs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListFrameworksOutput {
@@ -6051,6 +6778,15 @@ class ListFrameworksOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final frameworks = this.frameworks;
+    final nextToken = this.nextToken;
+    return {
+      if (frameworks != null) 'Frameworks': frameworks,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6079,6 +6815,15 @@ class ListProtectedResourcesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final results = this.results;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (results != null) 'Results': results,
+    };
+  }
 }
 
 class ListRecoveryPointsByBackupVaultOutput {
@@ -6106,6 +6851,15 @@ class ListRecoveryPointsByBackupVaultOutput {
               RecoveryPointByBackupVault.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final recoveryPoints = this.recoveryPoints;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (recoveryPoints != null) 'RecoveryPoints': recoveryPoints,
+    };
   }
 }
 
@@ -6138,6 +6892,15 @@ class ListRecoveryPointsByResourceOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final recoveryPoints = this.recoveryPoints;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (recoveryPoints != null) 'RecoveryPoints': recoveryPoints,
+    };
+  }
 }
 
 class ListReportJobsOutput {
@@ -6160,6 +6923,15 @@ class ListReportJobsOutput {
           .map((e) => ReportJob.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reportJobs = this.reportJobs;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (reportJobs != null) 'ReportJobs': reportJobs,
+    };
   }
 }
 
@@ -6187,6 +6959,15 @@ class ListReportPlansOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reportPlans = this.reportPlans;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (reportPlans != null) 'ReportPlans': reportPlans,
+    };
+  }
 }
 
 class ListRestoreJobsOutput {
@@ -6213,6 +6994,15 @@ class ListRestoreJobsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final restoreJobs = this.restoreJobs;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (restoreJobs != null) 'RestoreJobs': restoreJobs,
+    };
+  }
 }
 
 class ListTagsOutput {
@@ -6236,6 +7026,15 @@ class ListTagsOutput {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -6268,6 +7067,18 @@ class ProtectedResource {
       resourceArn: json['ResourceArn'] as String?,
       resourceType: json['ResourceType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastBackupTime = this.lastBackupTime;
+    final resourceArn = this.resourceArn;
+    final resourceType = this.resourceType;
+    return {
+      if (lastBackupTime != null)
+        'LastBackupTime': unixTimestampToJson(lastBackupTime),
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceType != null) 'ResourceType': resourceType,
+    };
   }
 }
 
@@ -6422,6 +7233,52 @@ class RecoveryPointByBackupVault {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupSizeInBytes = this.backupSizeInBytes;
+    final backupVaultArn = this.backupVaultArn;
+    final backupVaultName = this.backupVaultName;
+    final calculatedLifecycle = this.calculatedLifecycle;
+    final completionDate = this.completionDate;
+    final createdBy = this.createdBy;
+    final creationDate = this.creationDate;
+    final encryptionKeyArn = this.encryptionKeyArn;
+    final iamRoleArn = this.iamRoleArn;
+    final isEncrypted = this.isEncrypted;
+    final lastRestoreTime = this.lastRestoreTime;
+    final lifecycle = this.lifecycle;
+    final recoveryPointArn = this.recoveryPointArn;
+    final resourceArn = this.resourceArn;
+    final resourceType = this.resourceType;
+    final sourceBackupVaultArn = this.sourceBackupVaultArn;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (backupSizeInBytes != null) 'BackupSizeInBytes': backupSizeInBytes,
+      if (backupVaultArn != null) 'BackupVaultArn': backupVaultArn,
+      if (backupVaultName != null) 'BackupVaultName': backupVaultName,
+      if (calculatedLifecycle != null)
+        'CalculatedLifecycle': calculatedLifecycle,
+      if (completionDate != null)
+        'CompletionDate': unixTimestampToJson(completionDate),
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
+      if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
+      if (isEncrypted != null) 'IsEncrypted': isEncrypted,
+      if (lastRestoreTime != null)
+        'LastRestoreTime': unixTimestampToJson(lastRestoreTime),
+      if (lifecycle != null) 'Lifecycle': lifecycle,
+      if (recoveryPointArn != null) 'RecoveryPointArn': recoveryPointArn,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (sourceBackupVaultArn != null)
+        'SourceBackupVaultArn': sourceBackupVaultArn,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 /// Contains detailed information about a saved recovery point.
@@ -6477,6 +7334,26 @@ class RecoveryPointByResource {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupSizeBytes = this.backupSizeBytes;
+    final backupVaultName = this.backupVaultName;
+    final creationDate = this.creationDate;
+    final encryptionKeyArn = this.encryptionKeyArn;
+    final recoveryPointArn = this.recoveryPointArn;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (backupSizeBytes != null) 'BackupSizeBytes': backupSizeBytes,
+      if (backupVaultName != null) 'BackupVaultName': backupVaultName,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (encryptionKeyArn != null) 'EncryptionKeyArn': encryptionKeyArn,
+      if (recoveryPointArn != null) 'RecoveryPointArn': recoveryPointArn,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 /// Contains information about the backup plan and rule that Backup used to
@@ -6511,6 +7388,19 @@ class RecoveryPointCreator {
       backupPlanVersion: json['BackupPlanVersion'] as String?,
       backupRuleId: json['BackupRuleId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupPlanArn = this.backupPlanArn;
+    final backupPlanId = this.backupPlanId;
+    final backupPlanVersion = this.backupPlanVersion;
+    final backupRuleId = this.backupRuleId;
+    return {
+      if (backupPlanArn != null) 'BackupPlanArn': backupPlanArn,
+      if (backupPlanId != null) 'BackupPlanId': backupPlanId,
+      if (backupPlanVersion != null) 'BackupPlanVersion': backupPlanVersion,
+      if (backupRuleId != null) 'BackupRuleId': backupRuleId,
+    };
   }
 }
 
@@ -6618,6 +7508,15 @@ class ReportDestination {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final s3BucketName = this.s3BucketName;
+    final s3Keys = this.s3Keys;
+    return {
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (s3Keys != null) 'S3Keys': s3Keys,
+    };
+  }
 }
 
 /// Contains detailed information about a report job. A report job compiles a
@@ -6691,6 +7590,29 @@ class ReportJob {
       status: json['Status'] as String?,
       statusMessage: json['StatusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final completionTime = this.completionTime;
+    final creationTime = this.creationTime;
+    final reportDestination = this.reportDestination;
+    final reportJobId = this.reportJobId;
+    final reportPlanArn = this.reportPlanArn;
+    final reportTemplate = this.reportTemplate;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (completionTime != null)
+        'CompletionTime': unixTimestampToJson(completionTime),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (reportDestination != null) 'ReportDestination': reportDestination,
+      if (reportJobId != null) 'ReportJobId': reportJobId,
+      if (reportPlanArn != null) 'ReportPlanArn': reportPlanArn,
+      if (reportTemplate != null) 'ReportTemplate': reportTemplate,
+      if (status != null) 'Status': status,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
   }
 }
 
@@ -6781,6 +7703,36 @@ class ReportPlan {
               json['ReportSetting'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final deploymentStatus = this.deploymentStatus;
+    final lastAttemptedExecutionTime = this.lastAttemptedExecutionTime;
+    final lastSuccessfulExecutionTime = this.lastSuccessfulExecutionTime;
+    final reportDeliveryChannel = this.reportDeliveryChannel;
+    final reportPlanArn = this.reportPlanArn;
+    final reportPlanDescription = this.reportPlanDescription;
+    final reportPlanName = this.reportPlanName;
+    final reportSetting = this.reportSetting;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (deploymentStatus != null) 'DeploymentStatus': deploymentStatus,
+      if (lastAttemptedExecutionTime != null)
+        'LastAttemptedExecutionTime':
+            unixTimestampToJson(lastAttemptedExecutionTime),
+      if (lastSuccessfulExecutionTime != null)
+        'LastSuccessfulExecutionTime':
+            unixTimestampToJson(lastSuccessfulExecutionTime),
+      if (reportDeliveryChannel != null)
+        'ReportDeliveryChannel': reportDeliveryChannel,
+      if (reportPlanArn != null) 'ReportPlanArn': reportPlanArn,
+      if (reportPlanDescription != null)
+        'ReportPlanDescription': reportPlanDescription,
+      if (reportPlanName != null) 'ReportPlanName': reportPlanName,
+      if (reportSetting != null) 'ReportSetting': reportSetting,
+    };
   }
 }
 
@@ -6960,6 +7912,40 @@ class RestoreJobsListMember {
       statusMessage: json['StatusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final backupSizeInBytes = this.backupSizeInBytes;
+    final completionDate = this.completionDate;
+    final createdResourceArn = this.createdResourceArn;
+    final creationDate = this.creationDate;
+    final expectedCompletionTimeMinutes = this.expectedCompletionTimeMinutes;
+    final iamRoleArn = this.iamRoleArn;
+    final percentDone = this.percentDone;
+    final recoveryPointArn = this.recoveryPointArn;
+    final resourceType = this.resourceType;
+    final restoreJobId = this.restoreJobId;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (backupSizeInBytes != null) 'BackupSizeInBytes': backupSizeInBytes,
+      if (completionDate != null)
+        'CompletionDate': unixTimestampToJson(completionDate),
+      if (createdResourceArn != null) 'CreatedResourceArn': createdResourceArn,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (expectedCompletionTimeMinutes != null)
+        'ExpectedCompletionTimeMinutes': expectedCompletionTimeMinutes,
+      if (iamRoleArn != null) 'IamRoleArn': iamRoleArn,
+      if (percentDone != null) 'PercentDone': percentDone,
+      if (recoveryPointArn != null) 'RecoveryPointArn': recoveryPointArn,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (restoreJobId != null) 'RestoreJobId': restoreJobId,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
+  }
 }
 
 class StartBackupJobOutput {
@@ -6988,6 +7974,18 @@ class StartBackupJobOutput {
       recoveryPointArn: json['RecoveryPointArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupJobId = this.backupJobId;
+    final creationDate = this.creationDate;
+    final recoveryPointArn = this.recoveryPointArn;
+    return {
+      if (backupJobId != null) 'BackupJobId': backupJobId,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (recoveryPointArn != null) 'RecoveryPointArn': recoveryPointArn,
+    };
+  }
 }
 
 class StartCopyJobOutput {
@@ -7010,6 +8008,16 @@ class StartCopyJobOutput {
       creationDate: timeStampFromJson(json['CreationDate']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final copyJobId = this.copyJobId;
+    final creationDate = this.creationDate;
+    return {
+      if (copyJobId != null) 'CopyJobId': copyJobId,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+    };
+  }
 }
 
 class StartReportJobOutput {
@@ -7026,6 +8034,13 @@ class StartReportJobOutput {
       reportJobId: json['ReportJobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final reportJobId = this.reportJobId;
+    return {
+      if (reportJobId != null) 'ReportJobId': reportJobId,
+    };
+  }
 }
 
 class StartRestoreJobOutput {
@@ -7039,6 +8054,13 @@ class StartRestoreJobOutput {
     return StartRestoreJobOutput(
       restoreJobId: json['RestoreJobId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final restoreJobId = this.restoreJobId;
+    return {
+      if (restoreJobId != null) 'RestoreJobId': restoreJobId,
+    };
   }
 }
 
@@ -7116,6 +8138,23 @@ class UpdateBackupPlanOutput {
       versionId: json['VersionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final advancedBackupSettings = this.advancedBackupSettings;
+    final backupPlanArn = this.backupPlanArn;
+    final backupPlanId = this.backupPlanId;
+    final creationDate = this.creationDate;
+    final versionId = this.versionId;
+    return {
+      if (advancedBackupSettings != null)
+        'AdvancedBackupSettings': advancedBackupSettings,
+      if (backupPlanArn != null) 'BackupPlanArn': backupPlanArn,
+      if (backupPlanId != null) 'BackupPlanId': backupPlanId,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (versionId != null) 'VersionId': versionId,
+    };
+  }
 }
 
 class UpdateFrameworkOutput {
@@ -7145,6 +8184,18 @@ class UpdateFrameworkOutput {
       frameworkArn: json['FrameworkArn'] as String?,
       frameworkName: json['FrameworkName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final frameworkArn = this.frameworkArn;
+    final frameworkName = this.frameworkName;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (frameworkArn != null) 'FrameworkArn': frameworkArn,
+      if (frameworkName != null) 'FrameworkName': frameworkName,
+    };
   }
 }
 
@@ -7199,6 +8250,20 @@ class UpdateRecoveryPointLifecycleOutput {
       recoveryPointArn: json['RecoveryPointArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final backupVaultArn = this.backupVaultArn;
+    final calculatedLifecycle = this.calculatedLifecycle;
+    final lifecycle = this.lifecycle;
+    final recoveryPointArn = this.recoveryPointArn;
+    return {
+      if (backupVaultArn != null) 'BackupVaultArn': backupVaultArn,
+      if (calculatedLifecycle != null)
+        'CalculatedLifecycle': calculatedLifecycle,
+      if (lifecycle != null) 'Lifecycle': lifecycle,
+      if (recoveryPointArn != null) 'RecoveryPointArn': recoveryPointArn,
+    };
+  }
 }
 
 class UpdateReportPlanOutput {
@@ -7226,6 +8291,18 @@ class UpdateReportPlanOutput {
       reportPlanArn: json['ReportPlanArn'] as String?,
       reportPlanName: json['ReportPlanName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final reportPlanArn = this.reportPlanArn;
+    final reportPlanName = this.reportPlanName;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (reportPlanArn != null) 'ReportPlanArn': reportPlanArn,
+      if (reportPlanName != null) 'ReportPlanName': reportPlanName,
+    };
   }
 }
 

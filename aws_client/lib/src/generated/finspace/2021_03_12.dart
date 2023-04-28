@@ -375,12 +375,27 @@ class CreateEnvironmentResponse {
       environmentUrl: json['environmentUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentArn = this.environmentArn;
+    final environmentId = this.environmentId;
+    final environmentUrl = this.environmentUrl;
+    return {
+      if (environmentArn != null) 'environmentArn': environmentArn,
+      if (environmentId != null) 'environmentId': environmentId,
+      if (environmentUrl != null) 'environmentUrl': environmentUrl,
+    };
+  }
 }
 
 class DeleteEnvironmentResponse {
   DeleteEnvironmentResponse();
   factory DeleteEnvironmentResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEnvironmentResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -456,6 +471,38 @@ class Environment {
       sageMakerStudioDomainUrl: json['sageMakerStudioDomainUrl'] as String?,
       status: (json['status'] as String?)?.toEnvironmentStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final awsAccountId = this.awsAccountId;
+    final dedicatedServiceAccountId = this.dedicatedServiceAccountId;
+    final description = this.description;
+    final environmentArn = this.environmentArn;
+    final environmentId = this.environmentId;
+    final environmentUrl = this.environmentUrl;
+    final federationMode = this.federationMode;
+    final federationParameters = this.federationParameters;
+    final kmsKeyId = this.kmsKeyId;
+    final name = this.name;
+    final sageMakerStudioDomainUrl = this.sageMakerStudioDomainUrl;
+    final status = this.status;
+    return {
+      if (awsAccountId != null) 'awsAccountId': awsAccountId,
+      if (dedicatedServiceAccountId != null)
+        'dedicatedServiceAccountId': dedicatedServiceAccountId,
+      if (description != null) 'description': description,
+      if (environmentArn != null) 'environmentArn': environmentArn,
+      if (environmentId != null) 'environmentId': environmentId,
+      if (environmentUrl != null) 'environmentUrl': environmentUrl,
+      if (federationMode != null) 'federationMode': federationMode.toValue(),
+      if (federationParameters != null)
+        'federationParameters': federationParameters,
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (name != null) 'name': name,
+      if (sageMakerStudioDomainUrl != null)
+        'sageMakerStudioDomainUrl': sageMakerStudioDomainUrl,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -638,6 +685,13 @@ class GetEnvironmentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environment = this.environment;
+    return {
+      if (environment != null) 'environment': environment,
+    };
+  }
 }
 
 class ListEnvironmentsResponse {
@@ -661,6 +715,15 @@ class ListEnvironmentsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environments = this.environments;
+    final nextToken = this.nextToken;
+    return {
+      if (environments != null) 'environments': environments,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -675,6 +738,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -694,6 +764,7 @@ class SuperuserParameters {
     required this.firstName,
     required this.lastName,
   });
+
   Map<String, dynamic> toJson() {
     final emailAddress = this.emailAddress;
     final firstName = this.firstName;
@@ -711,12 +782,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -733,6 +812,13 @@ class UpdateEnvironmentResponse {
           ? Environment.fromJson(json['environment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environment = this.environment;
+    return {
+      if (environment != null) 'environment': environment,
+    };
   }
 }
 

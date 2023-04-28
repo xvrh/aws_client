@@ -1330,6 +1330,15 @@ class AddFlowMediaStreamsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final mediaStreams = this.mediaStreams;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (mediaStreams != null) 'mediaStreams': mediaStreams,
+    };
+  }
 }
 
 class AddFlowOutputsResponse {
@@ -1351,6 +1360,15 @@ class AddFlowOutputsResponse {
           .map((e) => Output.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final outputs = this.outputs;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (outputs != null) 'outputs': outputs,
+    };
   }
 }
 
@@ -1374,6 +1392,15 @@ class AddFlowSourcesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final sources = this.sources;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (sources != null) 'sources': sources,
+    };
+  }
 }
 
 class AddFlowVpcInterfacesResponse {
@@ -1396,6 +1423,15 @@ class AddFlowVpcInterfacesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final vpcInterfaces = this.vpcInterfaces;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (vpcInterfaces != null) 'vpcInterfaces': vpcInterfaces,
+    };
+  }
 }
 
 /// Create maintenance setting for a flow
@@ -1412,6 +1448,7 @@ class AddMaintenance {
     required this.maintenanceDay,
     required this.maintenanceStartHour,
   });
+
   Map<String, dynamic> toJson() {
     final maintenanceDay = this.maintenanceDay;
     final maintenanceStartHour = this.maintenanceStartHour;
@@ -1457,6 +1494,7 @@ class AddMediaStreamRequest {
     this.description,
     this.videoFormat,
   });
+
   Map<String, dynamic> toJson() {
     final mediaStreamId = this.mediaStreamId;
     final mediaStreamName = this.mediaStreamName;
@@ -1554,6 +1592,7 @@ class AddOutputRequest {
     this.streamId,
     this.vpcInterfaceAttachment,
   });
+
   Map<String, dynamic> toJson() {
     final protocol = this.protocol;
     final cidrAllowList = this.cidrAllowList;
@@ -1692,6 +1731,13 @@ class CreateFlowResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final flow = this.flow;
+    return {
+      if (flow != null) 'flow': flow,
+    };
+  }
 }
 
 class DeleteFlowResponse {
@@ -1710,6 +1756,15 @@ class DeleteFlowResponse {
       flowArn: json['flowArn'] as String?,
       status: (json['status'] as String?)?.toStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final status = this.status;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -1731,6 +1786,15 @@ class DescribeFlowResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final flow = this.flow;
+    final messages = this.messages;
+    return {
+      if (flow != null) 'flow': flow,
+      if (messages != null) 'messages': messages,
+    };
+  }
 }
 
 class DescribeOfferingResponse {
@@ -1746,6 +1810,13 @@ class DescribeOfferingResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final offering = this.offering;
+    return {
+      if (offering != null) 'offering': offering,
+    };
+  }
 }
 
 class DescribeReservationResponse {
@@ -1760,6 +1831,13 @@ class DescribeReservationResponse {
           ? Reservation.fromJson(json['reservation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reservation = this.reservation;
+    return {
+      if (reservation != null) 'reservation': reservation,
+    };
   }
 }
 
@@ -1796,6 +1874,19 @@ class DestinationConfiguration {
       outboundIp: json['outboundIp'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationIp = this.destinationIp;
+    final destinationPort = this.destinationPort;
+    final interface = this.interface;
+    final outboundIp = this.outboundIp;
+    return {
+      'destinationIp': destinationIp,
+      'destinationPort': destinationPort,
+      'interface': interface,
+      'outboundIp': outboundIp,
+    };
+  }
 }
 
 /// The transport parameters that you want to associate with an outbound media
@@ -1818,6 +1909,7 @@ class DestinationConfigurationRequest {
     required this.destinationPort,
     required this.interface,
   });
+
   Map<String, dynamic> toJson() {
     final destinationIp = this.destinationIp;
     final destinationPort = this.destinationPort;
@@ -1945,6 +2037,15 @@ class EncodingParameters {
       encoderProfile: (json['encoderProfile'] as String).toEncoderProfile(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final compressionFactor = this.compressionFactor;
+    final encoderProfile = this.encoderProfile;
+    return {
+      'compressionFactor': compressionFactor,
+      'encoderProfile': encoderProfile.toValue(),
+    };
+  }
 }
 
 /// A collection of parameters that determine how MediaConnect will convert the
@@ -1968,6 +2069,7 @@ class EncodingParametersRequest {
     required this.compressionFactor,
     required this.encoderProfile,
   });
+
   Map<String, dynamic> toJson() {
     final compressionFactor = this.compressionFactor;
     final encoderProfile = this.encoderProfile;
@@ -2127,6 +2229,28 @@ class Entitlement {
       entitlementStatus:
           (json['entitlementStatus'] as String?)?.toEntitlementStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entitlementArn = this.entitlementArn;
+    final name = this.name;
+    final subscribers = this.subscribers;
+    final dataTransferSubscriberFeePercent =
+        this.dataTransferSubscriberFeePercent;
+    final description = this.description;
+    final encryption = this.encryption;
+    final entitlementStatus = this.entitlementStatus;
+    return {
+      'entitlementArn': entitlementArn,
+      'name': name,
+      'subscribers': subscribers,
+      if (dataTransferSubscriberFeePercent != null)
+        'dataTransferSubscriberFeePercent': dataTransferSubscriberFeePercent,
+      if (description != null) 'description': description,
+      if (encryption != null) 'encryption': encryption,
+      if (entitlementStatus != null)
+        'entitlementStatus': entitlementStatus.toValue(),
+    };
   }
 }
 
@@ -2328,6 +2452,40 @@ class Flow {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final entitlements = this.entitlements;
+    final flowArn = this.flowArn;
+    final name = this.name;
+    final outputs = this.outputs;
+    final source = this.source;
+    final status = this.status;
+    final description = this.description;
+    final egressIp = this.egressIp;
+    final maintenance = this.maintenance;
+    final mediaStreams = this.mediaStreams;
+    final sourceFailoverConfig = this.sourceFailoverConfig;
+    final sources = this.sources;
+    final vpcInterfaces = this.vpcInterfaces;
+    return {
+      'availabilityZone': availabilityZone,
+      'entitlements': entitlements,
+      'flowArn': flowArn,
+      'name': name,
+      'outputs': outputs,
+      'source': source,
+      'status': status.toValue(),
+      if (description != null) 'description': description,
+      if (egressIp != null) 'egressIp': egressIp,
+      if (maintenance != null) 'maintenance': maintenance,
+      if (mediaStreams != null) 'mediaStreams': mediaStreams,
+      if (sourceFailoverConfig != null)
+        'sourceFailoverConfig': sourceFailoverConfig,
+      if (sources != null) 'sources': sources,
+      if (vpcInterfaces != null) 'vpcInterfaces': vpcInterfaces,
+    };
+  }
 }
 
 /// FMTP
@@ -2376,6 +2534,25 @@ class Fmtp {
       tcs: (json['tcs'] as String?)?.toTcs(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelOrder = this.channelOrder;
+    final colorimetry = this.colorimetry;
+    final exactFramerate = this.exactFramerate;
+    final par = this.par;
+    final range = this.range;
+    final scanMode = this.scanMode;
+    final tcs = this.tcs;
+    return {
+      if (channelOrder != null) 'channelOrder': channelOrder,
+      if (colorimetry != null) 'colorimetry': colorimetry.toValue(),
+      if (exactFramerate != null) 'exactFramerate': exactFramerate,
+      if (par != null) 'par': par,
+      if (range != null) 'range': range.toValue(),
+      if (scanMode != null) 'scanMode': scanMode.toValue(),
+      if (tcs != null) 'tcs': tcs.toValue(),
+    };
+  }
 }
 
 /// The settings that you want to use to define the media stream.
@@ -2413,6 +2590,7 @@ class FmtpRequest {
     this.scanMode,
     this.tcs,
   });
+
   Map<String, dynamic> toJson() {
     final channelOrder = this.channelOrder;
     final colorimetry = this.colorimetry;
@@ -2470,6 +2648,7 @@ class GrantEntitlementRequest {
     this.entitlementStatus,
     this.name,
   });
+
   Map<String, dynamic> toJson() {
     final subscribers = this.subscribers;
     final dataTransferSubscriberFeePercent =
@@ -2511,6 +2690,15 @@ class GrantFlowEntitlementsResponse {
       flowArn: json['flowArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entitlements = this.entitlements;
+    final flowArn = this.flowArn;
+    return {
+      if (entitlements != null) 'entitlements': entitlements,
+      if (flowArn != null) 'flowArn': flowArn,
+    };
+  }
 }
 
 /// The transport parameters that are associated with an incoming media stream.
@@ -2537,6 +2725,17 @@ class InputConfiguration {
       interface: Interface.fromJson(json['interface'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inputIp = this.inputIp;
+    final inputPort = this.inputPort;
+    final interface = this.interface;
+    return {
+      'inputIp': inputIp,
+      'inputPort': inputPort,
+      'interface': interface,
+    };
+  }
 }
 
 /// The transport parameters that you want to associate with an incoming media
@@ -2552,6 +2751,7 @@ class InputConfigurationRequest {
     required this.inputPort,
     required this.interface,
   });
+
   Map<String, dynamic> toJson() {
     final inputPort = this.inputPort;
     final interface = this.interface;
@@ -2576,6 +2776,13 @@ class Interface {
       name: json['name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      'name': name,
+    };
+  }
 }
 
 /// The VPC interface that you want to designate where the media stream is
@@ -2587,6 +2794,7 @@ class InterfaceRequest {
   InterfaceRequest({
     required this.name,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     return {
@@ -2653,6 +2861,15 @@ class ListEntitlementsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entitlements = this.entitlements;
+    final nextToken = this.nextToken;
+    return {
+      if (entitlements != null) 'entitlements': entitlements,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListFlowsResponse {
@@ -2678,6 +2895,15 @@ class ListFlowsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flows = this.flows;
+    final nextToken = this.nextToken;
+    return {
+      if (flows != null) 'flows': flows,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2706,6 +2932,15 @@ class ListOfferingsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final offerings = this.offerings;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (offerings != null) 'offerings': offerings,
+    };
+  }
 }
 
 class ListReservationsResponse {
@@ -2733,6 +2968,15 @@ class ListReservationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reservations = this.reservations;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (reservations != null) 'reservations': reservations,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2749,6 +2993,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2776,6 +3027,19 @@ class ListedEntitlement {
       dataTransferSubscriberFeePercent:
           json['dataTransferSubscriberFeePercent'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entitlementArn = this.entitlementArn;
+    final entitlementName = this.entitlementName;
+    final dataTransferSubscriberFeePercent =
+        this.dataTransferSubscriberFeePercent;
+    return {
+      'entitlementArn': entitlementArn,
+      'entitlementName': entitlementName,
+      if (dataTransferSubscriberFeePercent != null)
+        'dataTransferSubscriberFeePercent': dataTransferSubscriberFeePercent,
+    };
   }
 }
 
@@ -2826,6 +3090,25 @@ class ListedFlow {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final description = this.description;
+    final flowArn = this.flowArn;
+    final name = this.name;
+    final sourceType = this.sourceType;
+    final status = this.status;
+    final maintenance = this.maintenance;
+    return {
+      'availabilityZone': availabilityZone,
+      'description': description,
+      'flowArn': flowArn,
+      'name': name,
+      'sourceType': sourceType.toValue(),
+      'status': status.toValue(),
+      if (maintenance != null) 'maintenance': maintenance,
+    };
+  }
 }
 
 /// The maintenance setting of a flow
@@ -2859,6 +3142,22 @@ class Maintenance {
       maintenanceScheduledDate: json['maintenanceScheduledDate'] as String?,
       maintenanceStartHour: json['maintenanceStartHour'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final maintenanceDay = this.maintenanceDay;
+    final maintenanceDeadline = this.maintenanceDeadline;
+    final maintenanceScheduledDate = this.maintenanceScheduledDate;
+    final maintenanceStartHour = this.maintenanceStartHour;
+    return {
+      if (maintenanceDay != null) 'maintenanceDay': maintenanceDay.toValue(),
+      if (maintenanceDeadline != null)
+        'maintenanceDeadline': maintenanceDeadline,
+      if (maintenanceScheduledDate != null)
+        'maintenanceScheduledDate': maintenanceScheduledDate,
+      if (maintenanceStartHour != null)
+        'maintenanceStartHour': maintenanceStartHour,
+    };
   }
 }
 
@@ -2973,6 +3272,27 @@ class MediaStream {
       videoFormat: json['videoFormat'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fmt = this.fmt;
+    final mediaStreamId = this.mediaStreamId;
+    final mediaStreamName = this.mediaStreamName;
+    final mediaStreamType = this.mediaStreamType;
+    final attributes = this.attributes;
+    final clockRate = this.clockRate;
+    final description = this.description;
+    final videoFormat = this.videoFormat;
+    return {
+      'fmt': fmt,
+      'mediaStreamId': mediaStreamId,
+      'mediaStreamName': mediaStreamName,
+      'mediaStreamType': mediaStreamType.toValue(),
+      if (attributes != null) 'attributes': attributes,
+      if (clockRate != null) 'clockRate': clockRate,
+      if (description != null) 'description': description,
+      if (videoFormat != null) 'videoFormat': videoFormat,
+    };
+  }
 }
 
 /// Attributes that are related to the media stream.
@@ -2993,6 +3313,15 @@ class MediaStreamAttributes {
       lang: json['lang'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fmtp = this.fmtp;
+    final lang = this.lang;
+    return {
+      'fmtp': fmtp,
+      if (lang != null) 'lang': lang,
+    };
+  }
 }
 
 /// Attributes that are related to the media stream.
@@ -3007,6 +3336,7 @@ class MediaStreamAttributesRequest {
     this.fmtp,
     this.lang,
   });
+
   Map<String, dynamic> toJson() {
     final fmtp = this.fmtp;
     final lang = this.lang;
@@ -3057,6 +3387,20 @@ class MediaStreamOutputConfiguration {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final encodingName = this.encodingName;
+    final mediaStreamName = this.mediaStreamName;
+    final destinationConfigurations = this.destinationConfigurations;
+    final encodingParameters = this.encodingParameters;
+    return {
+      'encodingName': encodingName.toValue(),
+      'mediaStreamName': mediaStreamName,
+      if (destinationConfigurations != null)
+        'destinationConfigurations': destinationConfigurations,
+      if (encodingParameters != null) 'encodingParameters': encodingParameters,
+    };
+  }
 }
 
 /// The media stream that you want to associate with the output, and the
@@ -3084,6 +3428,7 @@ class MediaStreamOutputConfigurationRequest {
     this.destinationConfigurations,
     this.encodingParameters,
   });
+
   Map<String, dynamic> toJson() {
     final encodingName = this.encodingName;
     final mediaStreamName = this.mediaStreamName;
@@ -3129,6 +3474,18 @@ class MediaStreamSourceConfiguration {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final encodingName = this.encodingName;
+    final mediaStreamName = this.mediaStreamName;
+    final inputConfigurations = this.inputConfigurations;
+    return {
+      'encodingName': encodingName.toValue(),
+      'mediaStreamName': mediaStreamName,
+      if (inputConfigurations != null)
+        'inputConfigurations': inputConfigurations,
+    };
+  }
 }
 
 /// The definition of a media stream that you want to associate with the source.
@@ -3150,6 +3507,7 @@ class MediaStreamSourceConfigurationRequest {
     required this.mediaStreamName,
     this.inputConfigurations,
   });
+
   Map<String, dynamic> toJson() {
     final encodingName = this.encodingName;
     final mediaStreamName = this.mediaStreamName;
@@ -3211,6 +3569,13 @@ class Messages {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      'errors': errors,
+    };
   }
 }
 
@@ -3295,6 +3660,27 @@ class Offering {
       resourceSpecification: ResourceSpecification.fromJson(
           json['resourceSpecification'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final durationUnits = this.durationUnits;
+    final offeringArn = this.offeringArn;
+    final offeringDescription = this.offeringDescription;
+    final pricePerUnit = this.pricePerUnit;
+    final priceUnits = this.priceUnits;
+    final resourceSpecification = this.resourceSpecification;
+    return {
+      'currencyCode': currencyCode,
+      'duration': duration,
+      'durationUnits': durationUnits.toValue(),
+      'offeringArn': offeringArn,
+      'offeringDescription': offeringDescription,
+      'pricePerUnit': pricePerUnit,
+      'priceUnits': priceUnits.toValue(),
+      'resourceSpecification': resourceSpecification,
+    };
   }
 }
 
@@ -3392,6 +3778,42 @@ class Output {
               json['vpcInterfaceAttachment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final outputArn = this.outputArn;
+    final dataTransferSubscriberFeePercent =
+        this.dataTransferSubscriberFeePercent;
+    final description = this.description;
+    final destination = this.destination;
+    final encryption = this.encryption;
+    final entitlementArn = this.entitlementArn;
+    final listenerAddress = this.listenerAddress;
+    final mediaLiveInputArn = this.mediaLiveInputArn;
+    final mediaStreamOutputConfigurations =
+        this.mediaStreamOutputConfigurations;
+    final port = this.port;
+    final transport = this.transport;
+    final vpcInterfaceAttachment = this.vpcInterfaceAttachment;
+    return {
+      'name': name,
+      'outputArn': outputArn,
+      if (dataTransferSubscriberFeePercent != null)
+        'dataTransferSubscriberFeePercent': dataTransferSubscriberFeePercent,
+      if (description != null) 'description': description,
+      if (destination != null) 'destination': destination,
+      if (encryption != null) 'encryption': encryption,
+      if (entitlementArn != null) 'entitlementArn': entitlementArn,
+      if (listenerAddress != null) 'listenerAddress': listenerAddress,
+      if (mediaLiveInputArn != null) 'mediaLiveInputArn': mediaLiveInputArn,
+      if (mediaStreamOutputConfigurations != null)
+        'mediaStreamOutputConfigurations': mediaStreamOutputConfigurations,
+      if (port != null) 'port': port,
+      if (transport != null) 'transport': transport,
+      if (vpcInterfaceAttachment != null)
+        'vpcInterfaceAttachment': vpcInterfaceAttachment,
+    };
   }
 }
 
@@ -3494,6 +3916,13 @@ class PurchaseOfferingResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final reservation = this.reservation;
+    return {
+      if (reservation != null) 'reservation': reservation,
+    };
+  }
 }
 
 enum Range {
@@ -3546,6 +3975,15 @@ class RemoveFlowMediaStreamResponse {
       mediaStreamName: json['mediaStreamName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final mediaStreamName = this.mediaStreamName;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (mediaStreamName != null) 'mediaStreamName': mediaStreamName,
+    };
+  }
 }
 
 class RemoveFlowOutputResponse {
@@ -3565,6 +4003,15 @@ class RemoveFlowOutputResponse {
       outputArn: json['outputArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final outputArn = this.outputArn;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (outputArn != null) 'outputArn': outputArn,
+    };
+  }
 }
 
 class RemoveFlowSourceResponse {
@@ -3583,6 +4030,15 @@ class RemoveFlowSourceResponse {
       flowArn: json['flowArn'] as String?,
       sourceArn: json['sourceArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final sourceArn = this.sourceArn;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (sourceArn != null) 'sourceArn': sourceArn,
+    };
   }
 }
 
@@ -3612,6 +4068,18 @@ class RemoveFlowVpcInterfaceResponse {
               .toList(),
       vpcInterfaceName: json['vpcInterfaceName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final nonDeletedNetworkInterfaceIds = this.nonDeletedNetworkInterfaceIds;
+    final vpcInterfaceName = this.vpcInterfaceName;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (nonDeletedNetworkInterfaceIds != null)
+        'nonDeletedNetworkInterfaceIds': nonDeletedNetworkInterfaceIds,
+      if (vpcInterfaceName != null) 'vpcInterfaceName': vpcInterfaceName,
+    };
   }
 }
 
@@ -3709,6 +4177,37 @@ class Reservation {
       start: json['start'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final durationUnits = this.durationUnits;
+    final end = this.end;
+    final offeringArn = this.offeringArn;
+    final offeringDescription = this.offeringDescription;
+    final pricePerUnit = this.pricePerUnit;
+    final priceUnits = this.priceUnits;
+    final reservationArn = this.reservationArn;
+    final reservationName = this.reservationName;
+    final reservationState = this.reservationState;
+    final resourceSpecification = this.resourceSpecification;
+    final start = this.start;
+    return {
+      'currencyCode': currencyCode,
+      'duration': duration,
+      'durationUnits': durationUnits.toValue(),
+      'end': end,
+      'offeringArn': offeringArn,
+      'offeringDescription': offeringDescription,
+      'pricePerUnit': pricePerUnit,
+      'priceUnits': priceUnits.toValue(),
+      'reservationArn': reservationArn,
+      'reservationName': reservationName,
+      'reservationState': reservationState.toValue(),
+      'resourceSpecification': resourceSpecification,
+      'start': start,
+    };
+  }
 }
 
 enum ReservationState {
@@ -3767,6 +4266,15 @@ class ResourceSpecification {
       reservedBitrate: json['reservedBitrate'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceType = this.resourceType;
+    final reservedBitrate = this.reservedBitrate;
+    return {
+      'resourceType': resourceType.toValue(),
+      if (reservedBitrate != null) 'reservedBitrate': reservedBitrate,
+    };
+  }
 }
 
 enum ResourceType {
@@ -3808,6 +4316,15 @@ class RevokeFlowEntitlementResponse {
       entitlementArn: json['entitlementArn'] as String?,
       flowArn: json['flowArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final entitlementArn = this.entitlementArn;
+    final flowArn = this.flowArn;
+    return {
+      if (entitlementArn != null) 'entitlementArn': entitlementArn,
+      if (flowArn != null) 'flowArn': flowArn,
+    };
   }
 }
 
@@ -3929,6 +4446,7 @@ class SetSourceRequest {
     this.vpcInterfaceName,
     this.whitelistCidr,
   });
+
   Map<String, dynamic> toJson() {
     final decryption = this.decryption;
     final description = this.description;
@@ -4067,6 +4585,43 @@ class Source {
       whitelistCidr: json['whitelistCidr'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final sourceArn = this.sourceArn;
+    final dataTransferSubscriberFeePercent =
+        this.dataTransferSubscriberFeePercent;
+    final decryption = this.decryption;
+    final description = this.description;
+    final entitlementArn = this.entitlementArn;
+    final ingestIp = this.ingestIp;
+    final ingestPort = this.ingestPort;
+    final mediaStreamSourceConfigurations =
+        this.mediaStreamSourceConfigurations;
+    final senderControlPort = this.senderControlPort;
+    final senderIpAddress = this.senderIpAddress;
+    final transport = this.transport;
+    final vpcInterfaceName = this.vpcInterfaceName;
+    final whitelistCidr = this.whitelistCidr;
+    return {
+      'name': name,
+      'sourceArn': sourceArn,
+      if (dataTransferSubscriberFeePercent != null)
+        'dataTransferSubscriberFeePercent': dataTransferSubscriberFeePercent,
+      if (decryption != null) 'decryption': decryption,
+      if (description != null) 'description': description,
+      if (entitlementArn != null) 'entitlementArn': entitlementArn,
+      if (ingestIp != null) 'ingestIp': ingestIp,
+      if (ingestPort != null) 'ingestPort': ingestPort,
+      if (mediaStreamSourceConfigurations != null)
+        'mediaStreamSourceConfigurations': mediaStreamSourceConfigurations,
+      if (senderControlPort != null) 'senderControlPort': senderControlPort,
+      if (senderIpAddress != null) 'senderIpAddress': senderIpAddress,
+      if (transport != null) 'transport': transport,
+      if (vpcInterfaceName != null) 'vpcInterfaceName': vpcInterfaceName,
+      if (whitelistCidr != null) 'whitelistCidr': whitelistCidr,
+    };
+  }
 }
 
 /// The priority you want to assign to a source. You can have a primary stream
@@ -4136,6 +4691,15 @@ class StartFlowResponse {
       flowArn: json['flowArn'] as String?,
       status: (json['status'] as String?)?.toStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final status = this.status;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -4236,6 +4800,15 @@ class StopFlowResponse {
       flowArn: json['flowArn'] as String?,
       status: (json['status'] as String?)?.toStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final status = this.status;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -4380,6 +4953,33 @@ class Transport {
       streamId: json['streamId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final protocol = this.protocol;
+    final cidrAllowList = this.cidrAllowList;
+    final maxBitrate = this.maxBitrate;
+    final maxLatency = this.maxLatency;
+    final maxSyncBuffer = this.maxSyncBuffer;
+    final minLatency = this.minLatency;
+    final remoteId = this.remoteId;
+    final senderControlPort = this.senderControlPort;
+    final senderIpAddress = this.senderIpAddress;
+    final smoothingLatency = this.smoothingLatency;
+    final streamId = this.streamId;
+    return {
+      'protocol': protocol.toValue(),
+      if (cidrAllowList != null) 'cidrAllowList': cidrAllowList,
+      if (maxBitrate != null) 'maxBitrate': maxBitrate,
+      if (maxLatency != null) 'maxLatency': maxLatency,
+      if (maxSyncBuffer != null) 'maxSyncBuffer': maxSyncBuffer,
+      if (minLatency != null) 'minLatency': minLatency,
+      if (remoteId != null) 'remoteId': remoteId,
+      if (senderControlPort != null) 'senderControlPort': senderControlPort,
+      if (senderIpAddress != null) 'senderIpAddress': senderIpAddress,
+      if (smoothingLatency != null) 'smoothingLatency': smoothingLatency,
+      if (streamId != null) 'streamId': streamId,
+    };
+  }
 }
 
 /// Information about the encryption of the flow.
@@ -4438,6 +5038,7 @@ class UpdateEncryption {
     this.secretArn,
     this.url,
   });
+
   Map<String, dynamic> toJson() {
     final algorithm = this.algorithm;
     final constantInitializationVector = this.constantInitializationVector;
@@ -4484,6 +5085,7 @@ class UpdateFailoverConfig {
     this.sourcePriority,
     this.state,
   });
+
   Map<String, dynamic> toJson() {
     final failoverMode = this.failoverMode;
     final recoveryWindow = this.recoveryWindow;
@@ -4517,6 +5119,15 @@ class UpdateFlowEntitlementResponse {
       flowArn: json['flowArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entitlement = this.entitlement;
+    final flowArn = this.flowArn;
+    return {
+      if (entitlement != null) 'entitlement': entitlement,
+      if (flowArn != null) 'flowArn': flowArn,
+    };
+  }
 }
 
 class UpdateFlowMediaStreamResponse {
@@ -4539,6 +5150,15 @@ class UpdateFlowMediaStreamResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final mediaStream = this.mediaStream;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (mediaStream != null) 'mediaStream': mediaStream,
+    };
+  }
 }
 
 class UpdateFlowOutputResponse {
@@ -4560,6 +5180,15 @@ class UpdateFlowOutputResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final output = this.output;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (output != null) 'output': output,
+    };
+  }
 }
 
 class UpdateFlowResponse {
@@ -4574,6 +5203,13 @@ class UpdateFlowResponse {
           ? Flow.fromJson(json['flow'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final flow = this.flow;
+    return {
+      if (flow != null) 'flow': flow,
+    };
   }
 }
 
@@ -4596,6 +5232,15 @@ class UpdateFlowSourceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    final source = this.source;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+      if (source != null) 'source': source,
+    };
+  }
 }
 
 /// Update maintenance setting for a flow
@@ -4617,6 +5262,7 @@ class UpdateMaintenance {
     this.maintenanceScheduledDate,
     this.maintenanceStartHour,
   });
+
   Map<String, dynamic> toJson() {
     final maintenanceDay = this.maintenanceDay;
     final maintenanceScheduledDate = this.maintenanceScheduledDate;
@@ -4676,6 +5322,23 @@ class VpcInterface {
       subnetId: json['subnetId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final networkInterfaceIds = this.networkInterfaceIds;
+    final networkInterfaceType = this.networkInterfaceType;
+    final roleArn = this.roleArn;
+    final securityGroupIds = this.securityGroupIds;
+    final subnetId = this.subnetId;
+    return {
+      'name': name,
+      'networkInterfaceIds': networkInterfaceIds,
+      'networkInterfaceType': networkInterfaceType.toValue(),
+      'roleArn': roleArn,
+      'securityGroupIds': securityGroupIds,
+      'subnetId': subnetId,
+    };
+  }
 }
 
 /// The settings for attaching a VPC interface to an output.
@@ -4726,6 +5389,7 @@ class VpcInterfaceRequest {
     required this.subnetId,
     this.networkInterfaceType,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final roleArn = this.roleArn;

@@ -1203,6 +1203,7 @@ class ArtifactConfigInput {
   ArtifactConfigInput({
     this.s3Encryption,
   });
+
   Map<String, dynamic> toJson() {
     final s3Encryption = this.s3Encryption;
     return {
@@ -1230,12 +1231,23 @@ class ArtifactConfigOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final s3Encryption = this.s3Encryption;
+    return {
+      if (s3Encryption != null) 'S3Encryption': s3Encryption,
+    };
+  }
 }
 
 class AssociateResourceResponse {
   AssociateResourceResponse();
   factory AssociateResourceResponse.fromJson(Map<String, dynamic> _) {
     return AssociateResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1403,6 +1415,47 @@ class Canary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final artifactConfig = this.artifactConfig;
+    final artifactS3Location = this.artifactS3Location;
+    final code = this.code;
+    final engineArn = this.engineArn;
+    final executionRoleArn = this.executionRoleArn;
+    final failureRetentionPeriodInDays = this.failureRetentionPeriodInDays;
+    final id = this.id;
+    final name = this.name;
+    final runConfig = this.runConfig;
+    final runtimeVersion = this.runtimeVersion;
+    final schedule = this.schedule;
+    final status = this.status;
+    final successRetentionPeriodInDays = this.successRetentionPeriodInDays;
+    final tags = this.tags;
+    final timeline = this.timeline;
+    final visualReference = this.visualReference;
+    final vpcConfig = this.vpcConfig;
+    return {
+      if (artifactConfig != null) 'ArtifactConfig': artifactConfig,
+      if (artifactS3Location != null) 'ArtifactS3Location': artifactS3Location,
+      if (code != null) 'Code': code,
+      if (engineArn != null) 'EngineArn': engineArn,
+      if (executionRoleArn != null) 'ExecutionRoleArn': executionRoleArn,
+      if (failureRetentionPeriodInDays != null)
+        'FailureRetentionPeriodInDays': failureRetentionPeriodInDays,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (runConfig != null) 'RunConfig': runConfig,
+      if (runtimeVersion != null) 'RuntimeVersion': runtimeVersion,
+      if (schedule != null) 'Schedule': schedule,
+      if (status != null) 'Status': status,
+      if (successRetentionPeriodInDays != null)
+        'SuccessRetentionPeriodInDays': successRetentionPeriodInDays,
+      if (tags != null) 'Tags': tags,
+      if (timeline != null) 'Timeline': timeline,
+      if (visualReference != null) 'VisualReference': visualReference,
+      if (vpcConfig != null) 'VpcConfig': vpcConfig,
+    };
+  }
 }
 
 /// Use this structure to input your script code for the canary. This structure
@@ -1452,6 +1505,7 @@ class CanaryCodeInput {
     this.s3Version,
     this.zipFile,
   });
+
   Map<String, dynamic> toJson() {
     final handler = this.handler;
     final s3Bucket = this.s3Bucket;
@@ -1487,6 +1541,15 @@ class CanaryCodeOutput {
       sourceLocationArn: json['SourceLocationArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final handler = this.handler;
+    final sourceLocationArn = this.sourceLocationArn;
+    return {
+      if (handler != null) 'Handler': handler,
+      if (sourceLocationArn != null) 'SourceLocationArn': sourceLocationArn,
+    };
+  }
 }
 
 /// This structure contains information about the most recent run of a single
@@ -1509,6 +1572,15 @@ class CanaryLastRun {
           ? CanaryRun.fromJson(json['LastRun'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final canaryName = this.canaryName;
+    final lastRun = this.lastRun;
+    return {
+      if (canaryName != null) 'CanaryName': canaryName,
+      if (lastRun != null) 'LastRun': lastRun,
+    };
   }
 }
 
@@ -1549,6 +1621,21 @@ class CanaryRun {
           ? CanaryRunTimeline.fromJson(json['Timeline'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final artifactS3Location = this.artifactS3Location;
+    final id = this.id;
+    final name = this.name;
+    final status = this.status;
+    final timeline = this.timeline;
+    return {
+      if (artifactS3Location != null) 'ArtifactS3Location': artifactS3Location,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status,
+      if (timeline != null) 'Timeline': timeline,
+    };
   }
 }
 
@@ -1600,6 +1687,7 @@ class CanaryRunConfigInput {
     this.memoryInMB,
     this.timeoutInSeconds,
   });
+
   Map<String, dynamic> toJson() {
     final activeTracing = this.activeTracing;
     final environmentVariables = this.environmentVariables;
@@ -1638,6 +1726,17 @@ class CanaryRunConfigOutput {
       memoryInMB: json['MemoryInMB'] as int?,
       timeoutInSeconds: json['TimeoutInSeconds'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activeTracing = this.activeTracing;
+    final memoryInMB = this.memoryInMB;
+    final timeoutInSeconds = this.timeoutInSeconds;
+    return {
+      if (activeTracing != null) 'ActiveTracing': activeTracing,
+      if (memoryInMB != null) 'MemoryInMB': memoryInMB,
+      if (timeoutInSeconds != null) 'TimeoutInSeconds': timeoutInSeconds,
+    };
   }
 }
 
@@ -1728,6 +1827,17 @@ class CanaryRunStatus {
           (json['StateReasonCode'] as String?)?.toCanaryRunStateReasonCode(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final stateReason = this.stateReason;
+    final stateReasonCode = this.stateReasonCode;
+    return {
+      if (state != null) 'State': state.toValue(),
+      if (stateReason != null) 'StateReason': stateReason,
+      if (stateReasonCode != null) 'StateReasonCode': stateReasonCode.toValue(),
+    };
+  }
 }
 
 /// This structure contains the start and end times of a single canary run.
@@ -1747,6 +1857,15 @@ class CanaryRunTimeline {
       completed: timeStampFromJson(json['Completed']),
       started: timeStampFromJson(json['Started']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final completed = this.completed;
+    final started = this.started;
+    return {
+      if (completed != null) 'Completed': unixTimestampToJson(completed),
+      if (started != null) 'Started': unixTimestampToJson(started),
+    };
   }
 }
 
@@ -1785,6 +1904,7 @@ class CanaryScheduleInput {
     required this.expression,
     this.durationInSeconds,
   });
+
   Map<String, dynamic> toJson() {
     final expression = this.expression;
     final durationInSeconds = this.durationInSeconds;
@@ -1833,6 +1953,15 @@ class CanaryScheduleOutput {
       durationInSeconds: json['DurationInSeconds'] as int?,
       expression: json['Expression'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final durationInSeconds = this.durationInSeconds;
+    final expression = this.expression;
+    return {
+      if (durationInSeconds != null) 'DurationInSeconds': durationInSeconds,
+      if (expression != null) 'Expression': expression,
+    };
   }
 }
 
@@ -2002,6 +2131,17 @@ class CanaryStatus {
           (json['StateReasonCode'] as String?)?.toCanaryStateReasonCode(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final stateReason = this.stateReason;
+    final stateReasonCode = this.stateReasonCode;
+    return {
+      if (state != null) 'State': state.toValue(),
+      if (stateReason != null) 'StateReason': stateReason,
+      if (stateReasonCode != null) 'StateReasonCode': stateReasonCode.toValue(),
+    };
+  }
 }
 
 /// This structure contains information about when the canary was created and
@@ -2033,6 +2173,20 @@ class CanaryTimeline {
       lastStopped: timeStampFromJson(json['LastStopped']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final created = this.created;
+    final lastModified = this.lastModified;
+    final lastStarted = this.lastStarted;
+    final lastStopped = this.lastStopped;
+    return {
+      if (created != null) 'Created': unixTimestampToJson(created),
+      if (lastModified != null)
+        'LastModified': unixTimestampToJson(lastModified),
+      if (lastStarted != null) 'LastStarted': unixTimestampToJson(lastStarted),
+      if (lastStopped != null) 'LastStopped': unixTimestampToJson(lastStopped),
+    };
+  }
 }
 
 class CreateCanaryResponse {
@@ -2048,6 +2202,13 @@ class CreateCanaryResponse {
           ? Canary.fromJson(json['Canary'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final canary = this.canary;
+    return {
+      if (canary != null) 'Canary': canary,
+    };
   }
 }
 
@@ -2065,6 +2226,13 @@ class CreateGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    return {
+      if (group != null) 'Group': group,
+    };
+  }
 }
 
 class DeleteCanaryResponse {
@@ -2072,12 +2240,20 @@ class DeleteCanaryResponse {
   factory DeleteCanaryResponse.fromJson(Map<String, dynamic> _) {
     return DeleteCanaryResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteGroupResponse {
   DeleteGroupResponse();
   factory DeleteGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2104,6 +2280,15 @@ class DescribeCanariesLastRunResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final canariesLastRun = this.canariesLastRun;
+    final nextToken = this.nextToken;
+    return {
+      if (canariesLastRun != null) 'CanariesLastRun': canariesLastRun,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeCanariesResponse {
@@ -2128,6 +2313,15 @@ class DescribeCanariesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final canaries = this.canaries;
+    final nextToken = this.nextToken;
+    return {
+      if (canaries != null) 'Canaries': canaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2154,12 +2348,25 @@ class DescribeRuntimeVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final runtimeVersions = this.runtimeVersions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (runtimeVersions != null) 'RuntimeVersions': runtimeVersions,
+    };
+  }
 }
 
 class DisassociateResourceResponse {
   DisassociateResourceResponse();
   factory DisassociateResourceResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2205,6 +2412,13 @@ class GetCanaryResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final canary = this.canary;
+    return {
+      if (canary != null) 'Canary': canary,
+    };
+  }
 }
 
 class GetCanaryRunsResponse {
@@ -2230,6 +2444,15 @@ class GetCanaryRunsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final canaryRuns = this.canaryRuns;
+    final nextToken = this.nextToken;
+    return {
+      if (canaryRuns != null) 'CanaryRuns': canaryRuns,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetGroupResponse {
@@ -2245,6 +2468,13 @@ class GetGroupResponse {
           ? Group.fromJson(json['Group'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    return {
+      if (group != null) 'Group': group,
+    };
   }
 }
 
@@ -2287,6 +2517,24 @@ class Group {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final id = this.id;
+    final lastModifiedTime = this.lastModifiedTime;
+    final name = this.name;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (id != null) 'Id': id,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (name != null) 'Name': name,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// A structure containing some information about a group.
@@ -2311,6 +2559,17 @@ class GroupSummary {
       id: json['Id'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -2337,6 +2596,15 @@ class ListAssociatedGroupsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final nextToken = this.nextToken;
+    return {
+      if (groups != null) 'Groups': groups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListGroupResourcesResponse {
@@ -2362,6 +2630,15 @@ class ListGroupResourcesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resources = this.resources;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resources != null) 'Resources': resources,
+    };
+  }
 }
 
 class ListGroupsResponse {
@@ -2386,6 +2663,15 @@ class ListGroupsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final nextToken = this.nextToken;
+    return {
+      if (groups != null) 'Groups': groups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2401,6 +2687,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2438,6 +2731,20 @@ class RuntimeVersion {
       releaseDate: timeStampFromJson(json['ReleaseDate']),
       versionName: json['VersionName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deprecationDate = this.deprecationDate;
+    final description = this.description;
+    final releaseDate = this.releaseDate;
+    final versionName = this.versionName;
+    return {
+      if (deprecationDate != null)
+        'DeprecationDate': unixTimestampToJson(deprecationDate),
+      if (description != null) 'Description': description,
+      if (releaseDate != null) 'ReleaseDate': unixTimestampToJson(releaseDate),
+      if (versionName != null) 'VersionName': versionName,
+    };
   }
 }
 
@@ -2486,12 +2793,20 @@ class StartCanaryResponse {
   factory StartCanaryResponse.fromJson(Map<String, dynamic> _) {
     return StartCanaryResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class StopCanaryResponse {
   StopCanaryResponse();
   factory StopCanaryResponse.fromJson(Map<String, dynamic> _) {
     return StopCanaryResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2500,6 +2815,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
@@ -2507,12 +2826,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateCanaryResponse {
   UpdateCanaryResponse();
   factory UpdateCanaryResponse.fromJson(Map<String, dynamic> _) {
     return UpdateCanaryResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2546,6 +2873,7 @@ class VisualReferenceInput {
     required this.baseCanaryRunId,
     this.baseScreenshots,
   });
+
   Map<String, dynamic> toJson() {
     final baseCanaryRunId = this.baseCanaryRunId;
     final baseScreenshots = this.baseScreenshots;
@@ -2585,6 +2913,15 @@ class VisualReferenceOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final baseCanaryRunId = this.baseCanaryRunId;
+    final baseScreenshots = this.baseScreenshots;
+    return {
+      if (baseCanaryRunId != null) 'BaseCanaryRunId': baseCanaryRunId,
+      if (baseScreenshots != null) 'BaseScreenshots': baseScreenshots,
+    };
+  }
 }
 
 /// If this canary is to test an endpoint in a VPC, this structure contains
@@ -2603,6 +2940,7 @@ class VpcConfigInput {
     this.securityGroupIds,
     this.subnetIds,
   });
+
   Map<String, dynamic> toJson() {
     final securityGroupIds = this.securityGroupIds;
     final subnetIds = this.subnetIds;
@@ -2645,6 +2983,17 @@ class VpcConfigOutput {
           .toList(),
       vpcId: json['VpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityGroupIds = this.securityGroupIds;
+    final subnetIds = this.subnetIds;
+    final vpcId = this.vpcId;
+    return {
+      if (securityGroupIds != null) 'SecurityGroupIds': securityGroupIds,
+      if (subnetIds != null) 'SubnetIds': subnetIds,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 

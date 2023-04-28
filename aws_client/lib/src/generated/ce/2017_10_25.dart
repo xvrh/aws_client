@@ -3378,6 +3378,29 @@ class Anomaly {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyId = this.anomalyId;
+    final anomalyScore = this.anomalyScore;
+    final impact = this.impact;
+    final monitorArn = this.monitorArn;
+    final anomalyEndDate = this.anomalyEndDate;
+    final anomalyStartDate = this.anomalyStartDate;
+    final dimensionValue = this.dimensionValue;
+    final feedback = this.feedback;
+    final rootCauses = this.rootCauses;
+    return {
+      'AnomalyId': anomalyId,
+      'AnomalyScore': anomalyScore,
+      'Impact': impact,
+      'MonitorArn': monitorArn,
+      if (anomalyEndDate != null) 'AnomalyEndDate': anomalyEndDate,
+      if (anomalyStartDate != null) 'AnomalyStartDate': anomalyStartDate,
+      if (dimensionValue != null) 'DimensionValue': dimensionValue,
+      if (feedback != null) 'Feedback': feedback.toValue(),
+      if (rootCauses != null) 'RootCauses': rootCauses,
+    };
+  }
 }
 
 /// The time period for an anomaly.
@@ -3392,6 +3415,7 @@ class AnomalyDateInterval {
     required this.startDate,
     this.endDate,
   });
+
   Map<String, dynamic> toJson() {
     final startDate = this.startDate;
     final endDate = this.endDate;
@@ -3539,6 +3563,15 @@ class AnomalyScore {
       currentScore: json['CurrentScore'] as double,
       maxScore: json['MaxScore'] as double,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currentScore = this.currentScore;
+    final maxScore = this.maxScore;
+    return {
+      'CurrentScore': currentScore,
+      'MaxScore': maxScore,
+    };
   }
 }
 
@@ -3710,6 +3743,17 @@ class CostAllocationTag {
       type: (json['Type'] as String).toCostAllocationTagType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final tagKey = this.tagKey;
+    final type = this.type;
+    return {
+      'Status': status.toValue(),
+      'TagKey': tagKey,
+      'Type': type.toValue(),
+    };
+  }
 }
 
 enum CostAllocationTagStatus {
@@ -3753,6 +3797,7 @@ class CostAllocationTagStatusEntry {
     required this.status,
     required this.tagKey,
   });
+
   Map<String, dynamic> toJson() {
     final status = this.status;
     final tagKey = this.tagKey;
@@ -3854,6 +3899,29 @@ class CostCategory {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final costCategoryArn = this.costCategoryArn;
+    final effectiveStart = this.effectiveStart;
+    final name = this.name;
+    final ruleVersion = this.ruleVersion;
+    final rules = this.rules;
+    final defaultValue = this.defaultValue;
+    final effectiveEnd = this.effectiveEnd;
+    final processingStatus = this.processingStatus;
+    final splitChargeRules = this.splitChargeRules;
+    return {
+      'CostCategoryArn': costCategoryArn,
+      'EffectiveStart': effectiveStart,
+      'Name': name,
+      'RuleVersion': ruleVersion.toValue(),
+      'Rules': rules,
+      if (defaultValue != null) 'DefaultValue': defaultValue,
+      if (effectiveEnd != null) 'EffectiveEnd': effectiveEnd,
+      if (processingStatus != null) 'ProcessingStatus': processingStatus,
+      if (splitChargeRules != null) 'SplitChargeRules': splitChargeRules,
+    };
+  }
 }
 
 /// When you create or update a cost category, you can define the
@@ -3949,6 +4017,15 @@ class CostCategoryProcessingStatus {
       status: (json['Status'] as String?)?.toCostCategoryStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final component = this.component;
+    final status = this.status;
+    return {
+      if (component != null) 'Component': component.toValue(),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// A reference to a Cost Category containing only enough information to
@@ -4006,6 +4083,27 @@ class CostCategoryReference {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final costCategoryArn = this.costCategoryArn;
+    final defaultValue = this.defaultValue;
+    final effectiveEnd = this.effectiveEnd;
+    final effectiveStart = this.effectiveStart;
+    final name = this.name;
+    final numberOfRules = this.numberOfRules;
+    final processingStatus = this.processingStatus;
+    final values = this.values;
+    return {
+      if (costCategoryArn != null) 'CostCategoryArn': costCategoryArn,
+      if (defaultValue != null) 'DefaultValue': defaultValue,
+      if (effectiveEnd != null) 'EffectiveEnd': effectiveEnd,
+      if (effectiveStart != null) 'EffectiveStart': effectiveStart,
+      if (name != null) 'Name': name,
+      if (numberOfRules != null) 'NumberOfRules': numberOfRules,
+      if (processingStatus != null) 'ProcessingStatus': processingStatus,
+      if (values != null) 'Values': values,
+    };
   }
 }
 
@@ -4430,6 +4528,18 @@ class Coverage {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coverageCost = this.coverageCost;
+    final coverageHours = this.coverageHours;
+    final coverageNormalizedUnits = this.coverageNormalizedUnits;
+    return {
+      if (coverageCost != null) 'CoverageCost': coverageCost,
+      if (coverageHours != null) 'CoverageHours': coverageHours,
+      if (coverageNormalizedUnits != null)
+        'CoverageNormalizedUnits': coverageNormalizedUnits,
+    };
+  }
 }
 
 /// Reservation coverage for a specified period, in hours.
@@ -4463,6 +4573,17 @@ class CoverageByTime {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final timePeriod = this.timePeriod;
+    final total = this.total;
+    return {
+      if (groups != null) 'Groups': groups,
+      if (timePeriod != null) 'TimePeriod': timePeriod,
+      if (total != null) 'Total': total,
+    };
+  }
 }
 
 /// How much it costs to run an instance.
@@ -4477,6 +4598,13 @@ class CoverageCost {
     return CoverageCost(
       onDemandCost: json['OnDemandCost'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final onDemandCost = this.onDemandCost;
+    return {
+      if (onDemandCost != null) 'OnDemandCost': onDemandCost,
+    };
   }
 }
 
@@ -4507,6 +4635,20 @@ class CoverageHours {
       reservedHours: json['ReservedHours'] as String?,
       totalRunningHours: json['TotalRunningHours'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final coverageHoursPercentage = this.coverageHoursPercentage;
+    final onDemandHours = this.onDemandHours;
+    final reservedHours = this.reservedHours;
+    final totalRunningHours = this.totalRunningHours;
+    return {
+      if (coverageHoursPercentage != null)
+        'CoverageHoursPercentage': coverageHoursPercentage,
+      if (onDemandHours != null) 'OnDemandHours': onDemandHours,
+      if (reservedHours != null) 'ReservedHours': reservedHours,
+      if (totalRunningHours != null) 'TotalRunningHours': totalRunningHours,
+    };
   }
 }
 
@@ -4554,6 +4696,24 @@ class CoverageNormalizedUnits {
           json['TotalRunningNormalizedUnits'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coverageNormalizedUnitsPercentage =
+        this.coverageNormalizedUnitsPercentage;
+    final onDemandNormalizedUnits = this.onDemandNormalizedUnits;
+    final reservedNormalizedUnits = this.reservedNormalizedUnits;
+    final totalRunningNormalizedUnits = this.totalRunningNormalizedUnits;
+    return {
+      if (coverageNormalizedUnitsPercentage != null)
+        'CoverageNormalizedUnitsPercentage': coverageNormalizedUnitsPercentage,
+      if (onDemandNormalizedUnits != null)
+        'OnDemandNormalizedUnits': onDemandNormalizedUnits,
+      if (reservedNormalizedUnits != null)
+        'ReservedNormalizedUnits': reservedNormalizedUnits,
+      if (totalRunningNormalizedUnits != null)
+        'TotalRunningNormalizedUnits': totalRunningNormalizedUnits,
+    };
+  }
 }
 
 class CreateAnomalyMonitorResponse {
@@ -4567,6 +4727,13 @@ class CreateAnomalyMonitorResponse {
     return CreateAnomalyMonitorResponse(
       monitorArn: json['MonitorArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final monitorArn = this.monitorArn;
+    return {
+      'MonitorArn': monitorArn,
+    };
   }
 }
 
@@ -4582,6 +4749,13 @@ class CreateAnomalySubscriptionResponse {
     return CreateAnomalySubscriptionResponse(
       subscriptionArn: json['SubscriptionArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subscriptionArn = this.subscriptionArn;
+    return {
+      'SubscriptionArn': subscriptionArn,
+    };
   }
 }
 
@@ -4602,6 +4776,15 @@ class CreateCostCategoryDefinitionResponse {
       costCategoryArn: json['CostCategoryArn'] as String?,
       effectiveStart: json['EffectiveStart'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final costCategoryArn = this.costCategoryArn;
+    final effectiveStart = this.effectiveStart;
+    return {
+      if (costCategoryArn != null) 'CostCategoryArn': costCategoryArn,
+      if (effectiveStart != null) 'EffectiveStart': effectiveStart,
+    };
   }
 }
 
@@ -4686,6 +4869,43 @@ class CurrentInstance {
           json['TotalRunningHoursInLookbackPeriod'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final instanceName = this.instanceName;
+    final monthlyCost = this.monthlyCost;
+    final onDemandHoursInLookbackPeriod = this.onDemandHoursInLookbackPeriod;
+    final reservationCoveredHoursInLookbackPeriod =
+        this.reservationCoveredHoursInLookbackPeriod;
+    final resourceDetails = this.resourceDetails;
+    final resourceId = this.resourceId;
+    final resourceUtilization = this.resourceUtilization;
+    final savingsPlansCoveredHoursInLookbackPeriod =
+        this.savingsPlansCoveredHoursInLookbackPeriod;
+    final tags = this.tags;
+    final totalRunningHoursInLookbackPeriod =
+        this.totalRunningHoursInLookbackPeriod;
+    return {
+      if (currencyCode != null) 'CurrencyCode': currencyCode,
+      if (instanceName != null) 'InstanceName': instanceName,
+      if (monthlyCost != null) 'MonthlyCost': monthlyCost,
+      if (onDemandHoursInLookbackPeriod != null)
+        'OnDemandHoursInLookbackPeriod': onDemandHoursInLookbackPeriod,
+      if (reservationCoveredHoursInLookbackPeriod != null)
+        'ReservationCoveredHoursInLookbackPeriod':
+            reservationCoveredHoursInLookbackPeriod,
+      if (resourceDetails != null) 'ResourceDetails': resourceDetails,
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (resourceUtilization != null)
+        'ResourceUtilization': resourceUtilization,
+      if (savingsPlansCoveredHoursInLookbackPeriod != null)
+        'SavingsPlansCoveredHoursInLookbackPeriod':
+            savingsPlansCoveredHoursInLookbackPeriod,
+      if (tags != null) 'Tags': tags,
+      if (totalRunningHoursInLookbackPeriod != null)
+        'TotalRunningHoursInLookbackPeriod': totalRunningHoursInLookbackPeriod,
+    };
+  }
 }
 
 /// The time period of the request.
@@ -4729,12 +4949,20 @@ class DeleteAnomalyMonitorResponse {
   factory DeleteAnomalyMonitorResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAnomalyMonitorResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteAnomalySubscriptionResponse {
   DeleteAnomalySubscriptionResponse();
   factory DeleteAnomalySubscriptionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAnomalySubscriptionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4757,6 +4985,15 @@ class DeleteCostCategoryDefinitionResponse {
       effectiveEnd: json['EffectiveEnd'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final costCategoryArn = this.costCategoryArn;
+    final effectiveEnd = this.effectiveEnd;
+    return {
+      if (costCategoryArn != null) 'CostCategoryArn': costCategoryArn,
+      if (effectiveEnd != null) 'EffectiveEnd': effectiveEnd,
+    };
+  }
 }
 
 class DescribeCostCategoryDefinitionResponse {
@@ -4772,6 +5009,13 @@ class DescribeCostCategoryDefinitionResponse {
           ? CostCategory.fromJson(json['CostCategory'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final costCategory = this.costCategory;
+    return {
+      if (costCategory != null) 'CostCategory': costCategory,
+    };
   }
 }
 
@@ -5023,6 +5267,15 @@ class DimensionValuesWithAttributes {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final value = this.value;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// The field that contains a list of disk (local storage) metrics that are
@@ -5054,6 +5307,23 @@ class DiskResourceUtilization {
       diskWriteOpsPerSecond: json['DiskWriteOpsPerSecond'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final diskReadBytesPerSecond = this.diskReadBytesPerSecond;
+    final diskReadOpsPerSecond = this.diskReadOpsPerSecond;
+    final diskWriteBytesPerSecond = this.diskWriteBytesPerSecond;
+    final diskWriteOpsPerSecond = this.diskWriteOpsPerSecond;
+    return {
+      if (diskReadBytesPerSecond != null)
+        'DiskReadBytesPerSecond': diskReadBytesPerSecond,
+      if (diskReadOpsPerSecond != null)
+        'DiskReadOpsPerSecond': diskReadOpsPerSecond,
+      if (diskWriteBytesPerSecond != null)
+        'DiskWriteBytesPerSecond': diskWriteBytesPerSecond,
+      if (diskWriteOpsPerSecond != null)
+        'DiskWriteOpsPerSecond': diskWriteOpsPerSecond,
+    };
+  }
 }
 
 /// The EBS field that contains a list of EBS metrics that are associated with
@@ -5084,6 +5354,23 @@ class EBSResourceUtilization {
       ebsWriteBytesPerSecond: json['EbsWriteBytesPerSecond'] as String?,
       ebsWriteOpsPerSecond: json['EbsWriteOpsPerSecond'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ebsReadBytesPerSecond = this.ebsReadBytesPerSecond;
+    final ebsReadOpsPerSecond = this.ebsReadOpsPerSecond;
+    final ebsWriteBytesPerSecond = this.ebsWriteBytesPerSecond;
+    final ebsWriteOpsPerSecond = this.ebsWriteOpsPerSecond;
+    return {
+      if (ebsReadBytesPerSecond != null)
+        'EbsReadBytesPerSecond': ebsReadBytesPerSecond,
+      if (ebsReadOpsPerSecond != null)
+        'EbsReadOpsPerSecond': ebsReadOpsPerSecond,
+      if (ebsWriteBytesPerSecond != null)
+        'EbsWriteBytesPerSecond': ebsWriteBytesPerSecond,
+      if (ebsWriteOpsPerSecond != null)
+        'EbsWriteOpsPerSecond': ebsWriteOpsPerSecond,
+    };
   }
 }
 
@@ -5136,6 +5423,27 @@ class EC2InstanceDetails {
       sizeFlexEligible: json['SizeFlexEligible'] as bool?,
       tenancy: json['Tenancy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final currentGeneration = this.currentGeneration;
+    final family = this.family;
+    final instanceType = this.instanceType;
+    final platform = this.platform;
+    final region = this.region;
+    final sizeFlexEligible = this.sizeFlexEligible;
+    final tenancy = this.tenancy;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (currentGeneration != null) 'CurrentGeneration': currentGeneration,
+      if (family != null) 'Family': family,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (platform != null) 'Platform': platform,
+      if (region != null) 'Region': region,
+      if (sizeFlexEligible != null) 'SizeFlexEligible': sizeFlexEligible,
+      if (tenancy != null) 'Tenancy': tenancy,
+    };
   }
 }
 
@@ -5195,6 +5503,29 @@ class EC2ResourceDetails {
       vcpu: json['Vcpu'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hourlyOnDemandRate = this.hourlyOnDemandRate;
+    final instanceType = this.instanceType;
+    final memory = this.memory;
+    final networkPerformance = this.networkPerformance;
+    final platform = this.platform;
+    final region = this.region;
+    final sku = this.sku;
+    final storage = this.storage;
+    final vcpu = this.vcpu;
+    return {
+      if (hourlyOnDemandRate != null) 'HourlyOnDemandRate': hourlyOnDemandRate,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (memory != null) 'Memory': memory,
+      if (networkPerformance != null) 'NetworkPerformance': networkPerformance,
+      if (platform != null) 'Platform': platform,
+      if (region != null) 'Region': region,
+      if (sku != null) 'Sku': sku,
+      if (storage != null) 'Storage': storage,
+      if (vcpu != null) 'Vcpu': vcpu,
+    };
+  }
 }
 
 /// Utilization metrics for the instance.
@@ -5250,6 +5581,30 @@ class EC2ResourceUtilization {
               json['NetworkResourceUtilization'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final diskResourceUtilization = this.diskResourceUtilization;
+    final eBSResourceUtilization = this.eBSResourceUtilization;
+    final maxCpuUtilizationPercentage = this.maxCpuUtilizationPercentage;
+    final maxMemoryUtilizationPercentage = this.maxMemoryUtilizationPercentage;
+    final maxStorageUtilizationPercentage =
+        this.maxStorageUtilizationPercentage;
+    final networkResourceUtilization = this.networkResourceUtilization;
+    return {
+      if (diskResourceUtilization != null)
+        'DiskResourceUtilization': diskResourceUtilization,
+      if (eBSResourceUtilization != null)
+        'EBSResourceUtilization': eBSResourceUtilization,
+      if (maxCpuUtilizationPercentage != null)
+        'MaxCpuUtilizationPercentage': maxCpuUtilizationPercentage,
+      if (maxMemoryUtilizationPercentage != null)
+        'MaxMemoryUtilizationPercentage': maxMemoryUtilizationPercentage,
+      if (maxStorageUtilizationPercentage != null)
+        'MaxStorageUtilizationPercentage': maxStorageUtilizationPercentage,
+      if (networkResourceUtilization != null)
+        'NetworkResourceUtilization': networkResourceUtilization,
+    };
   }
 }
 
@@ -5311,6 +5666,21 @@ class ESInstanceDetails {
       sizeFlexEligible: json['SizeFlexEligible'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currentGeneration = this.currentGeneration;
+    final instanceClass = this.instanceClass;
+    final instanceSize = this.instanceSize;
+    final region = this.region;
+    final sizeFlexEligible = this.sizeFlexEligible;
+    return {
+      if (currentGeneration != null) 'CurrentGeneration': currentGeneration,
+      if (instanceClass != null) 'InstanceClass': instanceClass,
+      if (instanceSize != null) 'InstanceSize': instanceSize,
+      if (region != null) 'Region': region,
+      if (sizeFlexEligible != null) 'SizeFlexEligible': sizeFlexEligible,
+    };
+  }
 }
 
 /// Details about the Amazon ElastiCache instances that Amazon Web Services
@@ -5351,6 +5721,23 @@ class ElastiCacheInstanceDetails {
       region: json['Region'] as String?,
       sizeFlexEligible: json['SizeFlexEligible'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currentGeneration = this.currentGeneration;
+    final family = this.family;
+    final nodeType = this.nodeType;
+    final productDescription = this.productDescription;
+    final region = this.region;
+    final sizeFlexEligible = this.sizeFlexEligible;
+    return {
+      if (currentGeneration != null) 'CurrentGeneration': currentGeneration,
+      if (family != null) 'Family': family,
+      if (nodeType != null) 'NodeType': nodeType,
+      if (productDescription != null) 'ProductDescription': productDescription,
+      if (region != null) 'Region': region,
+      if (sizeFlexEligible != null) 'SizeFlexEligible': sizeFlexEligible,
+    };
   }
 }
 
@@ -5607,6 +5994,21 @@ class ForecastResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final meanValue = this.meanValue;
+    final predictionIntervalLowerBound = this.predictionIntervalLowerBound;
+    final predictionIntervalUpperBound = this.predictionIntervalUpperBound;
+    final timePeriod = this.timePeriod;
+    return {
+      if (meanValue != null) 'MeanValue': meanValue,
+      if (predictionIntervalLowerBound != null)
+        'PredictionIntervalLowerBound': predictionIntervalLowerBound,
+      if (predictionIntervalUpperBound != null)
+        'PredictionIntervalUpperBound': predictionIntervalUpperBound,
+      if (timePeriod != null) 'TimePeriod': timePeriod,
+    };
+  }
 }
 
 class GetAnomaliesResponse {
@@ -5630,6 +6032,15 @@ class GetAnomaliesResponse {
           .toList(),
       nextPageToken: json['NextPageToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final anomalies = this.anomalies;
+    final nextPageToken = this.nextPageToken;
+    return {
+      'Anomalies': anomalies,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+    };
   }
 }
 
@@ -5656,6 +6067,15 @@ class GetAnomalyMonitorsResponse {
       nextPageToken: json['NextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyMonitors = this.anomalyMonitors;
+    final nextPageToken = this.nextPageToken;
+    return {
+      'AnomalyMonitors': anomalyMonitors,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetAnomalySubscriptionsResponse {
@@ -5680,6 +6100,15 @@ class GetAnomalySubscriptionsResponse {
           .toList(),
       nextPageToken: json['NextPageToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final anomalySubscriptions = this.anomalySubscriptions;
+    final nextPageToken = this.nextPageToken;
+    return {
+      'AnomalySubscriptions': anomalySubscriptions,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+    };
   }
 }
 
@@ -5724,6 +6153,20 @@ class GetCostAndUsageResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dimensionValueAttributes = this.dimensionValueAttributes;
+    final groupDefinitions = this.groupDefinitions;
+    final nextPageToken = this.nextPageToken;
+    final resultsByTime = this.resultsByTime;
+    return {
+      if (dimensionValueAttributes != null)
+        'DimensionValueAttributes': dimensionValueAttributes,
+      if (groupDefinitions != null) 'GroupDefinitions': groupDefinitions,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (resultsByTime != null) 'ResultsByTime': resultsByTime,
+    };
+  }
 }
 
 class GetCostAndUsageWithResourcesResponse {
@@ -5767,6 +6210,20 @@ class GetCostAndUsageWithResourcesResponse {
           .map((e) => ResultByTime.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dimensionValueAttributes = this.dimensionValueAttributes;
+    final groupDefinitions = this.groupDefinitions;
+    final nextPageToken = this.nextPageToken;
+    final resultsByTime = this.resultsByTime;
+    return {
+      if (dimensionValueAttributes != null)
+        'DimensionValueAttributes': dimensionValueAttributes,
+      if (groupDefinitions != null) 'GroupDefinitions': groupDefinitions,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (resultsByTime != null) 'ResultsByTime': resultsByTime,
+    };
   }
 }
 
@@ -5814,6 +6271,21 @@ class GetCostCategoriesResponse {
       nextPageToken: json['NextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final returnSize = this.returnSize;
+    final totalSize = this.totalSize;
+    final costCategoryNames = this.costCategoryNames;
+    final costCategoryValues = this.costCategoryValues;
+    final nextPageToken = this.nextPageToken;
+    return {
+      'ReturnSize': returnSize,
+      'TotalSize': totalSize,
+      if (costCategoryNames != null) 'CostCategoryNames': costCategoryNames,
+      if (costCategoryValues != null) 'CostCategoryValues': costCategoryValues,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetCostForecastResponse {
@@ -5840,6 +6312,16 @@ class GetCostForecastResponse {
           ? MetricValue.fromJson(json['Total'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final forecastResultsByTime = this.forecastResultsByTime;
+    final total = this.total;
+    return {
+      if (forecastResultsByTime != null)
+        'ForecastResultsByTime': forecastResultsByTime,
+      if (total != null) 'Total': total,
+    };
   }
 }
 
@@ -6009,6 +6491,19 @@ class GetDimensionValuesResponse {
       nextPageToken: json['NextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dimensionValues = this.dimensionValues;
+    final returnSize = this.returnSize;
+    final totalSize = this.totalSize;
+    final nextPageToken = this.nextPageToken;
+    return {
+      'DimensionValues': dimensionValues,
+      'ReturnSize': returnSize,
+      'TotalSize': totalSize,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetReservationCoverageResponse {
@@ -6039,6 +6534,17 @@ class GetReservationCoverageResponse {
           ? Coverage.fromJson(json['Total'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final coveragesByTime = this.coveragesByTime;
+    final nextPageToken = this.nextPageToken;
+    final total = this.total;
+    return {
+      'CoveragesByTime': coveragesByTime,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (total != null) 'Total': total,
+    };
   }
 }
 
@@ -6073,6 +6579,17 @@ class GetReservationPurchaseRecommendationResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metadata = this.metadata;
+    final nextPageToken = this.nextPageToken;
+    final recommendations = this.recommendations;
+    return {
+      if (metadata != null) 'Metadata': metadata,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (recommendations != null) 'Recommendations': recommendations,
+    };
+  }
 }
 
 class GetReservationUtilizationResponse {
@@ -6105,6 +6622,17 @@ class GetReservationUtilizationResponse {
               json['Total'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final utilizationsByTime = this.utilizationsByTime;
+    final nextPageToken = this.nextPageToken;
+    final total = this.total;
+    return {
+      'UtilizationsByTime': utilizationsByTime,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (total != null) 'Total': total,
+    };
   }
 }
 
@@ -6159,6 +6687,22 @@ class GetRightsizingRecommendationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    final metadata = this.metadata;
+    final nextPageToken = this.nextPageToken;
+    final rightsizingRecommendations = this.rightsizingRecommendations;
+    final summary = this.summary;
+    return {
+      if (configuration != null) 'Configuration': configuration,
+      if (metadata != null) 'Metadata': metadata,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (rightsizingRecommendations != null)
+        'RightsizingRecommendations': rightsizingRecommendations,
+      if (summary != null) 'Summary': summary,
+    };
+  }
 }
 
 class GetSavingsPlansCoverageResponse {
@@ -6182,6 +6726,15 @@ class GetSavingsPlansCoverageResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final savingsPlansCoverages = this.savingsPlansCoverages;
+    final nextToken = this.nextToken;
+    return {
+      'SavingsPlansCoverages': savingsPlansCoverages,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6218,6 +6771,20 @@ class GetSavingsPlansPurchaseRecommendationResponse {
                       as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metadata = this.metadata;
+    final nextPageToken = this.nextPageToken;
+    final savingsPlansPurchaseRecommendation =
+        this.savingsPlansPurchaseRecommendation;
+    return {
+      if (metadata != null) 'Metadata': metadata,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+      if (savingsPlansPurchaseRecommendation != null)
+        'SavingsPlansPurchaseRecommendation':
+            savingsPlansPurchaseRecommendation,
+    };
   }
 }
 
@@ -6259,6 +6826,19 @@ class GetSavingsPlansUtilizationDetailsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final savingsPlansUtilizationDetails = this.savingsPlansUtilizationDetails;
+    final timePeriod = this.timePeriod;
+    final nextToken = this.nextToken;
+    final total = this.total;
+    return {
+      'SavingsPlansUtilizationDetails': savingsPlansUtilizationDetails,
+      'TimePeriod': timePeriod,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (total != null) 'Total': total,
+    };
+  }
 }
 
 class GetSavingsPlansUtilizationResponse {
@@ -6286,6 +6866,16 @@ class GetSavingsPlansUtilizationResponse {
               SavingsPlansUtilizationByTime.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final total = this.total;
+    final savingsPlansUtilizationsByTime = this.savingsPlansUtilizationsByTime;
+    return {
+      'Total': total,
+      if (savingsPlansUtilizationsByTime != null)
+        'SavingsPlansUtilizationsByTime': savingsPlansUtilizationsByTime,
+    };
   }
 }
 
@@ -6321,6 +6911,19 @@ class GetTagsResponse {
       nextPageToken: json['NextPageToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final returnSize = this.returnSize;
+    final tags = this.tags;
+    final totalSize = this.totalSize;
+    final nextPageToken = this.nextPageToken;
+    return {
+      'ReturnSize': returnSize,
+      'Tags': tags,
+      'TotalSize': totalSize,
+      if (nextPageToken != null) 'NextPageToken': nextPageToken,
+    };
+  }
 }
 
 class GetUsageForecastResponse {
@@ -6346,6 +6949,16 @@ class GetUsageForecastResponse {
           ? MetricValue.fromJson(json['Total'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final forecastResultsByTime = this.forecastResultsByTime;
+    final total = this.total;
+    return {
+      if (forecastResultsByTime != null)
+        'ForecastResultsByTime': forecastResultsByTime,
+      if (total != null) 'Total': total,
+    };
   }
 }
 
@@ -6403,6 +7016,15 @@ class Group {
       metrics: (json['Metrics'] as Map<String, dynamic>?)?.map((k, e) =>
           MapEntry(k, MetricValue.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keys = this.keys;
+    final metrics = this.metrics;
+    return {
+      if (keys != null) 'Keys': keys,
+      if (metrics != null) 'Metrics': metrics,
+    };
   }
 }
 
@@ -6487,6 +7109,15 @@ class Impact {
       totalImpact: json['TotalImpact'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final maxImpact = this.maxImpact;
+    final totalImpact = this.totalImpact;
+    return {
+      'MaxImpact': maxImpact,
+      if (totalImpact != null) 'TotalImpact': totalImpact,
+    };
+  }
 }
 
 /// Details about the instances that Amazon Web Services recommends that you
@@ -6543,6 +7174,23 @@ class InstanceDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eC2InstanceDetails = this.eC2InstanceDetails;
+    final eSInstanceDetails = this.eSInstanceDetails;
+    final elastiCacheInstanceDetails = this.elastiCacheInstanceDetails;
+    final rDSInstanceDetails = this.rDSInstanceDetails;
+    final redshiftInstanceDetails = this.redshiftInstanceDetails;
+    return {
+      if (eC2InstanceDetails != null) 'EC2InstanceDetails': eC2InstanceDetails,
+      if (eSInstanceDetails != null) 'ESInstanceDetails': eSInstanceDetails,
+      if (elastiCacheInstanceDetails != null)
+        'ElastiCacheInstanceDetails': elastiCacheInstanceDetails,
+      if (rDSInstanceDetails != null) 'RDSInstanceDetails': rDSInstanceDetails,
+      if (redshiftInstanceDetails != null)
+        'RedshiftInstanceDetails': redshiftInstanceDetails,
+    };
+  }
 }
 
 class ListCostAllocationTagsResponse {
@@ -6567,6 +7215,15 @@ class ListCostAllocationTagsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final costAllocationTags = this.costAllocationTags;
+    final nextToken = this.nextToken;
+    return {
+      if (costAllocationTags != null) 'CostAllocationTags': costAllocationTags,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6594,6 +7251,16 @@ class ListCostCategoryDefinitionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final costCategoryReferences = this.costCategoryReferences;
+    final nextToken = this.nextToken;
+    return {
+      if (costCategoryReferences != null)
+        'CostCategoryReferences': costCategoryReferences,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -6610,6 +7277,13 @@ class ListTagsForResourceResponse {
           .map((e) => ResourceTag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceTags = this.resourceTags;
+    return {
+      if (resourceTags != null) 'ResourceTags': resourceTags,
+    };
   }
 }
 
@@ -6770,6 +7444,15 @@ class MetricValue {
       unit: json['Unit'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amount = this.amount;
+    final unit = this.unit;
+    return {
+      if (amount != null) 'Amount': amount,
+      if (unit != null) 'Unit': unit,
+    };
+  }
 }
 
 /// Details for the modification recommendation.
@@ -6788,6 +7471,13 @@ class ModifyRecommendationDetail {
           .map((e) => TargetInstance.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final targetInstances = this.targetInstances;
+    return {
+      if (targetInstances != null) 'TargetInstances': targetInstances,
+    };
   }
 }
 
@@ -6872,6 +7562,23 @@ class NetworkResourceUtilization {
       networkPacketsInPerSecond: json['NetworkPacketsInPerSecond'] as String?,
       networkPacketsOutPerSecond: json['NetworkPacketsOutPerSecond'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkInBytesPerSecond = this.networkInBytesPerSecond;
+    final networkOutBytesPerSecond = this.networkOutBytesPerSecond;
+    final networkPacketsInPerSecond = this.networkPacketsInPerSecond;
+    final networkPacketsOutPerSecond = this.networkPacketsOutPerSecond;
+    return {
+      if (networkInBytesPerSecond != null)
+        'NetworkInBytesPerSecond': networkInBytesPerSecond,
+      if (networkOutBytesPerSecond != null)
+        'NetworkOutBytesPerSecond': networkOutBytesPerSecond,
+      if (networkPacketsInPerSecond != null)
+        'NetworkPacketsInPerSecond': networkPacketsInPerSecond,
+      if (networkPacketsOutPerSecond != null)
+        'NetworkPacketsOutPerSecond': networkPacketsOutPerSecond,
+    };
   }
 }
 
@@ -7054,6 +7761,13 @@ class ProvideAnomalyFeedbackResponse {
       anomalyId: json['AnomalyId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyId = this.anomalyId;
+    return {
+      'AnomalyId': anomalyId,
+    };
+  }
 }
 
 /// Details about the Amazon RDS instances that Amazon Web Services recommends
@@ -7111,6 +7825,29 @@ class RDSInstanceDetails {
       region: json['Region'] as String?,
       sizeFlexEligible: json['SizeFlexEligible'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currentGeneration = this.currentGeneration;
+    final databaseEdition = this.databaseEdition;
+    final databaseEngine = this.databaseEngine;
+    final deploymentOption = this.deploymentOption;
+    final family = this.family;
+    final instanceType = this.instanceType;
+    final licenseModel = this.licenseModel;
+    final region = this.region;
+    final sizeFlexEligible = this.sizeFlexEligible;
+    return {
+      if (currentGeneration != null) 'CurrentGeneration': currentGeneration,
+      if (databaseEdition != null) 'DatabaseEdition': databaseEdition,
+      if (databaseEngine != null) 'DatabaseEngine': databaseEngine,
+      if (deploymentOption != null) 'DeploymentOption': deploymentOption,
+      if (family != null) 'Family': family,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (licenseModel != null) 'LicenseModel': licenseModel,
+      if (region != null) 'Region': region,
+      if (sizeFlexEligible != null) 'SizeFlexEligible': sizeFlexEligible,
+    };
   }
 }
 
@@ -7175,6 +7912,21 @@ class RedshiftInstanceDetails {
       region: json['Region'] as String?,
       sizeFlexEligible: json['SizeFlexEligible'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currentGeneration = this.currentGeneration;
+    final family = this.family;
+    final nodeType = this.nodeType;
+    final region = this.region;
+    final sizeFlexEligible = this.sizeFlexEligible;
+    return {
+      if (currentGeneration != null) 'CurrentGeneration': currentGeneration,
+      if (family != null) 'Family': family,
+      if (nodeType != null) 'NodeType': nodeType,
+      if (region != null) 'Region': region,
+      if (sizeFlexEligible != null) 'SizeFlexEligible': sizeFlexEligible,
+    };
   }
 }
 
@@ -7285,6 +8037,52 @@ class ReservationAggregates {
           json['UtilizationPercentageInUnits'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amortizedRecurringFee = this.amortizedRecurringFee;
+    final amortizedUpfrontFee = this.amortizedUpfrontFee;
+    final netRISavings = this.netRISavings;
+    final onDemandCostOfRIHoursUsed = this.onDemandCostOfRIHoursUsed;
+    final purchasedHours = this.purchasedHours;
+    final purchasedUnits = this.purchasedUnits;
+    final rICostForUnusedHours = this.rICostForUnusedHours;
+    final realizedSavings = this.realizedSavings;
+    final totalActualHours = this.totalActualHours;
+    final totalActualUnits = this.totalActualUnits;
+    final totalAmortizedFee = this.totalAmortizedFee;
+    final totalPotentialRISavings = this.totalPotentialRISavings;
+    final unrealizedSavings = this.unrealizedSavings;
+    final unusedHours = this.unusedHours;
+    final unusedUnits = this.unusedUnits;
+    final utilizationPercentage = this.utilizationPercentage;
+    final utilizationPercentageInUnits = this.utilizationPercentageInUnits;
+    return {
+      if (amortizedRecurringFee != null)
+        'AmortizedRecurringFee': amortizedRecurringFee,
+      if (amortizedUpfrontFee != null)
+        'AmortizedUpfrontFee': amortizedUpfrontFee,
+      if (netRISavings != null) 'NetRISavings': netRISavings,
+      if (onDemandCostOfRIHoursUsed != null)
+        'OnDemandCostOfRIHoursUsed': onDemandCostOfRIHoursUsed,
+      if (purchasedHours != null) 'PurchasedHours': purchasedHours,
+      if (purchasedUnits != null) 'PurchasedUnits': purchasedUnits,
+      if (rICostForUnusedHours != null)
+        'RICostForUnusedHours': rICostForUnusedHours,
+      if (realizedSavings != null) 'RealizedSavings': realizedSavings,
+      if (totalActualHours != null) 'TotalActualHours': totalActualHours,
+      if (totalActualUnits != null) 'TotalActualUnits': totalActualUnits,
+      if (totalAmortizedFee != null) 'TotalAmortizedFee': totalAmortizedFee,
+      if (totalPotentialRISavings != null)
+        'TotalPotentialRISavings': totalPotentialRISavings,
+      if (unrealizedSavings != null) 'UnrealizedSavings': unrealizedSavings,
+      if (unusedHours != null) 'UnusedHours': unusedHours,
+      if (unusedUnits != null) 'UnusedUnits': unusedUnits,
+      if (utilizationPercentage != null)
+        'UtilizationPercentage': utilizationPercentage,
+      if (utilizationPercentageInUnits != null)
+        'UtilizationPercentageInUnits': utilizationPercentageInUnits,
+    };
+  }
 }
 
 /// A group of reservations that share a set of attributes.
@@ -7307,6 +8105,15 @@ class ReservationCoverageGroup {
           ? Coverage.fromJson(json['Coverage'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final coverage = this.coverage;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (coverage != null) 'Coverage': coverage,
+    };
   }
 }
 
@@ -7368,6 +8175,29 @@ class ReservationPurchaseRecommendation {
           : null,
       termInYears: (json['TermInYears'] as String?)?.toTermInYears(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountScope = this.accountScope;
+    final lookbackPeriodInDays = this.lookbackPeriodInDays;
+    final paymentOption = this.paymentOption;
+    final recommendationDetails = this.recommendationDetails;
+    final recommendationSummary = this.recommendationSummary;
+    final serviceSpecification = this.serviceSpecification;
+    final termInYears = this.termInYears;
+    return {
+      if (accountScope != null) 'AccountScope': accountScope.toValue(),
+      if (lookbackPeriodInDays != null)
+        'LookbackPeriodInDays': lookbackPeriodInDays.toValue(),
+      if (paymentOption != null) 'PaymentOption': paymentOption.toValue(),
+      if (recommendationDetails != null)
+        'RecommendationDetails': recommendationDetails,
+      if (recommendationSummary != null)
+        'RecommendationSummary': recommendationSummary,
+      if (serviceSpecification != null)
+        'ServiceSpecification': serviceSpecification,
+      if (termInYears != null) 'TermInYears': termInYears.toValue(),
+    };
   }
 }
 
@@ -7513,6 +8343,79 @@ class ReservationPurchaseRecommendationDetail {
       upfrontCost: json['UpfrontCost'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final averageNormalizedUnitsUsedPerHour =
+        this.averageNormalizedUnitsUsedPerHour;
+    final averageNumberOfInstancesUsedPerHour =
+        this.averageNumberOfInstancesUsedPerHour;
+    final averageUtilization = this.averageUtilization;
+    final currencyCode = this.currencyCode;
+    final estimatedBreakEvenInMonths = this.estimatedBreakEvenInMonths;
+    final estimatedMonthlyOnDemandCost = this.estimatedMonthlyOnDemandCost;
+    final estimatedMonthlySavingsAmount = this.estimatedMonthlySavingsAmount;
+    final estimatedMonthlySavingsPercentage =
+        this.estimatedMonthlySavingsPercentage;
+    final estimatedReservationCostForLookbackPeriod =
+        this.estimatedReservationCostForLookbackPeriod;
+    final instanceDetails = this.instanceDetails;
+    final maximumNormalizedUnitsUsedPerHour =
+        this.maximumNormalizedUnitsUsedPerHour;
+    final maximumNumberOfInstancesUsedPerHour =
+        this.maximumNumberOfInstancesUsedPerHour;
+    final minimumNormalizedUnitsUsedPerHour =
+        this.minimumNormalizedUnitsUsedPerHour;
+    final minimumNumberOfInstancesUsedPerHour =
+        this.minimumNumberOfInstancesUsedPerHour;
+    final recommendedNormalizedUnitsToPurchase =
+        this.recommendedNormalizedUnitsToPurchase;
+    final recommendedNumberOfInstancesToPurchase =
+        this.recommendedNumberOfInstancesToPurchase;
+    final recurringStandardMonthlyCost = this.recurringStandardMonthlyCost;
+    final upfrontCost = this.upfrontCost;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (averageNormalizedUnitsUsedPerHour != null)
+        'AverageNormalizedUnitsUsedPerHour': averageNormalizedUnitsUsedPerHour,
+      if (averageNumberOfInstancesUsedPerHour != null)
+        'AverageNumberOfInstancesUsedPerHour':
+            averageNumberOfInstancesUsedPerHour,
+      if (averageUtilization != null) 'AverageUtilization': averageUtilization,
+      if (currencyCode != null) 'CurrencyCode': currencyCode,
+      if (estimatedBreakEvenInMonths != null)
+        'EstimatedBreakEvenInMonths': estimatedBreakEvenInMonths,
+      if (estimatedMonthlyOnDemandCost != null)
+        'EstimatedMonthlyOnDemandCost': estimatedMonthlyOnDemandCost,
+      if (estimatedMonthlySavingsAmount != null)
+        'EstimatedMonthlySavingsAmount': estimatedMonthlySavingsAmount,
+      if (estimatedMonthlySavingsPercentage != null)
+        'EstimatedMonthlySavingsPercentage': estimatedMonthlySavingsPercentage,
+      if (estimatedReservationCostForLookbackPeriod != null)
+        'EstimatedReservationCostForLookbackPeriod':
+            estimatedReservationCostForLookbackPeriod,
+      if (instanceDetails != null) 'InstanceDetails': instanceDetails,
+      if (maximumNormalizedUnitsUsedPerHour != null)
+        'MaximumNormalizedUnitsUsedPerHour': maximumNormalizedUnitsUsedPerHour,
+      if (maximumNumberOfInstancesUsedPerHour != null)
+        'MaximumNumberOfInstancesUsedPerHour':
+            maximumNumberOfInstancesUsedPerHour,
+      if (minimumNormalizedUnitsUsedPerHour != null)
+        'MinimumNormalizedUnitsUsedPerHour': minimumNormalizedUnitsUsedPerHour,
+      if (minimumNumberOfInstancesUsedPerHour != null)
+        'MinimumNumberOfInstancesUsedPerHour':
+            minimumNumberOfInstancesUsedPerHour,
+      if (recommendedNormalizedUnitsToPurchase != null)
+        'RecommendedNormalizedUnitsToPurchase':
+            recommendedNormalizedUnitsToPurchase,
+      if (recommendedNumberOfInstancesToPurchase != null)
+        'RecommendedNumberOfInstancesToPurchase':
+            recommendedNumberOfInstancesToPurchase,
+      if (recurringStandardMonthlyCost != null)
+        'RecurringStandardMonthlyCost': recurringStandardMonthlyCost,
+      if (upfrontCost != null) 'UpfrontCost': upfrontCost,
+    };
+  }
 }
 
 /// Information about this specific recommendation, such as the timestamp for
@@ -7534,6 +8437,16 @@ class ReservationPurchaseRecommendationMetadata {
       generationTimestamp: json['GenerationTimestamp'] as String?,
       recommendationId: json['RecommendationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final generationTimestamp = this.generationTimestamp;
+    final recommendationId = this.recommendationId;
+    return {
+      if (generationTimestamp != null)
+        'GenerationTimestamp': generationTimestamp,
+      if (recommendationId != null) 'RecommendationId': recommendationId,
+    };
   }
 }
 
@@ -7566,6 +8479,23 @@ class ReservationPurchaseRecommendationSummary {
       totalEstimatedMonthlySavingsPercentage:
           json['TotalEstimatedMonthlySavingsPercentage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final totalEstimatedMonthlySavingsAmount =
+        this.totalEstimatedMonthlySavingsAmount;
+    final totalEstimatedMonthlySavingsPercentage =
+        this.totalEstimatedMonthlySavingsPercentage;
+    return {
+      if (currencyCode != null) 'CurrencyCode': currencyCode,
+      if (totalEstimatedMonthlySavingsAmount != null)
+        'TotalEstimatedMonthlySavingsAmount':
+            totalEstimatedMonthlySavingsAmount,
+      if (totalEstimatedMonthlySavingsPercentage != null)
+        'TotalEstimatedMonthlySavingsPercentage':
+            totalEstimatedMonthlySavingsPercentage,
+    };
   }
 }
 
@@ -7601,6 +8531,19 @@ class ReservationUtilizationGroup {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final key = this.key;
+    final utilization = this.utilization;
+    final value = this.value;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (key != null) 'Key': key,
+      if (utilization != null) 'Utilization': utilization,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// Details for the resource.
@@ -7618,6 +8561,13 @@ class ResourceDetails {
               json['EC2ResourceDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eC2ResourceDetails = this.eC2ResourceDetails;
+    return {
+      if (eC2ResourceDetails != null) 'EC2ResourceDetails': eC2ResourceDetails,
+    };
   }
 }
 
@@ -7675,6 +8625,14 @@ class ResourceUtilization {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eC2ResourceUtilization = this.eC2ResourceUtilization;
+    return {
+      if (eC2ResourceUtilization != null)
+        'EC2ResourceUtilization': eC2ResourceUtilization,
+    };
+  }
 }
 
 /// The result that's associated with a time period.
@@ -7710,6 +8668,19 @@ class ResultByTime {
       total: (json['Total'] as Map<String, dynamic>?)?.map((k, e) =>
           MapEntry(k, MetricValue.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final estimated = this.estimated;
+    final groups = this.groups;
+    final timePeriod = this.timePeriod;
+    final total = this.total;
+    return {
+      if (estimated != null) 'Estimated': estimated,
+      if (groups != null) 'Groups': groups,
+      if (timePeriod != null) 'TimePeriod': timePeriod,
+      if (total != null) 'Total': total,
+    };
   }
 }
 
@@ -7766,6 +8737,27 @@ class RightsizingRecommendation {
                   json['TerminateRecommendationDetail'] as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final currentInstance = this.currentInstance;
+    final findingReasonCodes = this.findingReasonCodes;
+    final modifyRecommendationDetail = this.modifyRecommendationDetail;
+    final rightsizingType = this.rightsizingType;
+    final terminateRecommendationDetail = this.terminateRecommendationDetail;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (currentInstance != null) 'CurrentInstance': currentInstance,
+      if (findingReasonCodes != null)
+        'FindingReasonCodes':
+            findingReasonCodes.map((e) => e.toValue()).toList(),
+      if (modifyRecommendationDetail != null)
+        'ModifyRecommendationDetail': modifyRecommendationDetail,
+      if (rightsizingType != null) 'RightsizingType': rightsizingType.toValue(),
+      if (terminateRecommendationDetail != null)
+        'TerminateRecommendationDetail': terminateRecommendationDetail,
+    };
   }
 }
 
@@ -7839,6 +8831,21 @@ class RightsizingRecommendationMetadata {
       recommendationId: json['RecommendationId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalMetadata = this.additionalMetadata;
+    final generationTimestamp = this.generationTimestamp;
+    final lookbackPeriodInDays = this.lookbackPeriodInDays;
+    final recommendationId = this.recommendationId;
+    return {
+      if (additionalMetadata != null) 'AdditionalMetadata': additionalMetadata,
+      if (generationTimestamp != null)
+        'GenerationTimestamp': generationTimestamp,
+      if (lookbackPeriodInDays != null)
+        'LookbackPeriodInDays': lookbackPeriodInDays.toValue(),
+      if (recommendationId != null) 'RecommendationId': recommendationId,
+    };
+  }
 }
 
 /// The summary of rightsizing recommendations
@@ -7871,6 +8878,24 @@ class RightsizingRecommendationSummary {
       savingsPercentage: json['SavingsPercentage'] as String?,
       totalRecommendationCount: json['TotalRecommendationCount'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final estimatedTotalMonthlySavingsAmount =
+        this.estimatedTotalMonthlySavingsAmount;
+    final savingsCurrencyCode = this.savingsCurrencyCode;
+    final savingsPercentage = this.savingsPercentage;
+    final totalRecommendationCount = this.totalRecommendationCount;
+    return {
+      if (estimatedTotalMonthlySavingsAmount != null)
+        'EstimatedTotalMonthlySavingsAmount':
+            estimatedTotalMonthlySavingsAmount,
+      if (savingsCurrencyCode != null)
+        'SavingsCurrencyCode': savingsCurrencyCode,
+      if (savingsPercentage != null) 'SavingsPercentage': savingsPercentage,
+      if (totalRecommendationCount != null)
+        'TotalRecommendationCount': totalRecommendationCount,
+    };
   }
 }
 
@@ -7931,6 +8956,19 @@ class RootCause {
       usageType: json['UsageType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final linkedAccount = this.linkedAccount;
+    final region = this.region;
+    final service = this.service;
+    final usageType = this.usageType;
+    return {
+      if (linkedAccount != null) 'LinkedAccount': linkedAccount,
+      if (region != null) 'Region': region,
+      if (service != null) 'Service': service,
+      if (usageType != null) 'UsageType': usageType,
+    };
+  }
 }
 
 /// The amortized amount of Savings Plans purchased in a specific account during
@@ -7960,6 +8998,20 @@ class SavingsPlansAmortizedCommitment {
       amortizedUpfrontCommitment: json['AmortizedUpfrontCommitment'] as String?,
       totalAmortizedCommitment: json['TotalAmortizedCommitment'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final amortizedRecurringCommitment = this.amortizedRecurringCommitment;
+    final amortizedUpfrontCommitment = this.amortizedUpfrontCommitment;
+    final totalAmortizedCommitment = this.totalAmortizedCommitment;
+    return {
+      if (amortizedRecurringCommitment != null)
+        'AmortizedRecurringCommitment': amortizedRecurringCommitment,
+      if (amortizedUpfrontCommitment != null)
+        'AmortizedUpfrontCommitment': amortizedUpfrontCommitment,
+      if (totalAmortizedCommitment != null)
+        'TotalAmortizedCommitment': totalAmortizedCommitment,
+    };
   }
 }
 
@@ -7991,6 +9043,17 @@ class SavingsPlansCoverage {
           ? DateInterval.fromJson(json['TimePeriod'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final coverage = this.coverage;
+    final timePeriod = this.timePeriod;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (coverage != null) 'Coverage': coverage,
+      if (timePeriod != null) 'TimePeriod': timePeriod,
+    };
   }
 }
 
@@ -8025,6 +9088,20 @@ class SavingsPlansCoverageData {
       spendCoveredBySavingsPlans: json['SpendCoveredBySavingsPlans'] as String?,
       totalCost: json['TotalCost'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final coveragePercentage = this.coveragePercentage;
+    final onDemandCost = this.onDemandCost;
+    final spendCoveredBySavingsPlans = this.spendCoveredBySavingsPlans;
+    final totalCost = this.totalCost;
+    return {
+      if (coveragePercentage != null) 'CoveragePercentage': coveragePercentage,
+      if (onDemandCost != null) 'OnDemandCost': onDemandCost,
+      if (spendCoveredBySavingsPlans != null)
+        'SpendCoveredBySavingsPlans': spendCoveredBySavingsPlans,
+      if (totalCost != null) 'TotalCost': totalCost,
+    };
   }
 }
 
@@ -8089,6 +9166,17 @@ class SavingsPlansDetails {
       offeringId: json['OfferingId'] as String?,
       region: json['Region'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceFamily = this.instanceFamily;
+    final offeringId = this.offeringId;
+    final region = this.region;
+    return {
+      if (instanceFamily != null) 'InstanceFamily': instanceFamily,
+      if (offeringId != null) 'OfferingId': offeringId,
+      if (region != null) 'Region': region,
+    };
   }
 }
 
@@ -8156,6 +9244,33 @@ class SavingsPlansPurchaseRecommendation {
           (json['SavingsPlansType'] as String?)?.toSupportedSavingsPlansType(),
       termInYears: (json['TermInYears'] as String?)?.toTermInYears(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountScope = this.accountScope;
+    final lookbackPeriodInDays = this.lookbackPeriodInDays;
+    final paymentOption = this.paymentOption;
+    final savingsPlansPurchaseRecommendationDetails =
+        this.savingsPlansPurchaseRecommendationDetails;
+    final savingsPlansPurchaseRecommendationSummary =
+        this.savingsPlansPurchaseRecommendationSummary;
+    final savingsPlansType = this.savingsPlansType;
+    final termInYears = this.termInYears;
+    return {
+      if (accountScope != null) 'AccountScope': accountScope.toValue(),
+      if (lookbackPeriodInDays != null)
+        'LookbackPeriodInDays': lookbackPeriodInDays.toValue(),
+      if (paymentOption != null) 'PaymentOption': paymentOption.toValue(),
+      if (savingsPlansPurchaseRecommendationDetails != null)
+        'SavingsPlansPurchaseRecommendationDetails':
+            savingsPlansPurchaseRecommendationDetails,
+      if (savingsPlansPurchaseRecommendationSummary != null)
+        'SavingsPlansPurchaseRecommendationSummary':
+            savingsPlansPurchaseRecommendationSummary,
+      if (savingsPlansType != null)
+        'SavingsPlansType': savingsPlansType.toValue(),
+      if (termInYears != null) 'TermInYears': termInYears.toValue(),
+    };
   }
 }
 
@@ -8271,6 +9386,59 @@ class SavingsPlansPurchaseRecommendationDetail {
       upfrontCost: json['UpfrontCost'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final currencyCode = this.currencyCode;
+    final currentAverageHourlyOnDemandSpend =
+        this.currentAverageHourlyOnDemandSpend;
+    final currentMaximumHourlyOnDemandSpend =
+        this.currentMaximumHourlyOnDemandSpend;
+    final currentMinimumHourlyOnDemandSpend =
+        this.currentMinimumHourlyOnDemandSpend;
+    final estimatedAverageUtilization = this.estimatedAverageUtilization;
+    final estimatedMonthlySavingsAmount = this.estimatedMonthlySavingsAmount;
+    final estimatedOnDemandCost = this.estimatedOnDemandCost;
+    final estimatedOnDemandCostWithCurrentCommitment =
+        this.estimatedOnDemandCostWithCurrentCommitment;
+    final estimatedROI = this.estimatedROI;
+    final estimatedSPCost = this.estimatedSPCost;
+    final estimatedSavingsAmount = this.estimatedSavingsAmount;
+    final estimatedSavingsPercentage = this.estimatedSavingsPercentage;
+    final hourlyCommitmentToPurchase = this.hourlyCommitmentToPurchase;
+    final savingsPlansDetails = this.savingsPlansDetails;
+    final upfrontCost = this.upfrontCost;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (currencyCode != null) 'CurrencyCode': currencyCode,
+      if (currentAverageHourlyOnDemandSpend != null)
+        'CurrentAverageHourlyOnDemandSpend': currentAverageHourlyOnDemandSpend,
+      if (currentMaximumHourlyOnDemandSpend != null)
+        'CurrentMaximumHourlyOnDemandSpend': currentMaximumHourlyOnDemandSpend,
+      if (currentMinimumHourlyOnDemandSpend != null)
+        'CurrentMinimumHourlyOnDemandSpend': currentMinimumHourlyOnDemandSpend,
+      if (estimatedAverageUtilization != null)
+        'EstimatedAverageUtilization': estimatedAverageUtilization,
+      if (estimatedMonthlySavingsAmount != null)
+        'EstimatedMonthlySavingsAmount': estimatedMonthlySavingsAmount,
+      if (estimatedOnDemandCost != null)
+        'EstimatedOnDemandCost': estimatedOnDemandCost,
+      if (estimatedOnDemandCostWithCurrentCommitment != null)
+        'EstimatedOnDemandCostWithCurrentCommitment':
+            estimatedOnDemandCostWithCurrentCommitment,
+      if (estimatedROI != null) 'EstimatedROI': estimatedROI,
+      if (estimatedSPCost != null) 'EstimatedSPCost': estimatedSPCost,
+      if (estimatedSavingsAmount != null)
+        'EstimatedSavingsAmount': estimatedSavingsAmount,
+      if (estimatedSavingsPercentage != null)
+        'EstimatedSavingsPercentage': estimatedSavingsPercentage,
+      if (hourlyCommitmentToPurchase != null)
+        'HourlyCommitmentToPurchase': hourlyCommitmentToPurchase,
+      if (savingsPlansDetails != null)
+        'SavingsPlansDetails': savingsPlansDetails,
+      if (upfrontCost != null) 'UpfrontCost': upfrontCost,
+    };
+  }
 }
 
 /// Metadata about your Savings Plans Purchase Recommendations.
@@ -8296,6 +9464,18 @@ class SavingsPlansPurchaseRecommendationMetadata {
       generationTimestamp: json['GenerationTimestamp'] as String?,
       recommendationId: json['RecommendationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final additionalMetadata = this.additionalMetadata;
+    final generationTimestamp = this.generationTimestamp;
+    final recommendationId = this.recommendationId;
+    return {
+      if (additionalMetadata != null) 'AdditionalMetadata': additionalMetadata,
+      if (generationTimestamp != null)
+        'GenerationTimestamp': generationTimestamp,
+      if (recommendationId != null) 'RecommendationId': recommendationId,
+    };
   }
 }
 
@@ -8378,6 +9558,43 @@ class SavingsPlansPurchaseRecommendationSummary {
       totalRecommendationCount: json['TotalRecommendationCount'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final currentOnDemandSpend = this.currentOnDemandSpend;
+    final dailyCommitmentToPurchase = this.dailyCommitmentToPurchase;
+    final estimatedMonthlySavingsAmount = this.estimatedMonthlySavingsAmount;
+    final estimatedOnDemandCostWithCurrentCommitment =
+        this.estimatedOnDemandCostWithCurrentCommitment;
+    final estimatedROI = this.estimatedROI;
+    final estimatedSavingsAmount = this.estimatedSavingsAmount;
+    final estimatedSavingsPercentage = this.estimatedSavingsPercentage;
+    final estimatedTotalCost = this.estimatedTotalCost;
+    final hourlyCommitmentToPurchase = this.hourlyCommitmentToPurchase;
+    final totalRecommendationCount = this.totalRecommendationCount;
+    return {
+      if (currencyCode != null) 'CurrencyCode': currencyCode,
+      if (currentOnDemandSpend != null)
+        'CurrentOnDemandSpend': currentOnDemandSpend,
+      if (dailyCommitmentToPurchase != null)
+        'DailyCommitmentToPurchase': dailyCommitmentToPurchase,
+      if (estimatedMonthlySavingsAmount != null)
+        'EstimatedMonthlySavingsAmount': estimatedMonthlySavingsAmount,
+      if (estimatedOnDemandCostWithCurrentCommitment != null)
+        'EstimatedOnDemandCostWithCurrentCommitment':
+            estimatedOnDemandCostWithCurrentCommitment,
+      if (estimatedROI != null) 'EstimatedROI': estimatedROI,
+      if (estimatedSavingsAmount != null)
+        'EstimatedSavingsAmount': estimatedSavingsAmount,
+      if (estimatedSavingsPercentage != null)
+        'EstimatedSavingsPercentage': estimatedSavingsPercentage,
+      if (estimatedTotalCost != null) 'EstimatedTotalCost': estimatedTotalCost,
+      if (hourlyCommitmentToPurchase != null)
+        'HourlyCommitmentToPurchase': hourlyCommitmentToPurchase,
+      if (totalRecommendationCount != null)
+        'TotalRecommendationCount': totalRecommendationCount,
+    };
+  }
 }
 
 /// The amount of savings that you're accumulating, against the public On-Demand
@@ -8401,6 +9618,16 @@ class SavingsPlansSavings {
       netSavings: json['NetSavings'] as String?,
       onDemandCostEquivalent: json['OnDemandCostEquivalent'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final netSavings = this.netSavings;
+    final onDemandCostEquivalent = this.onDemandCostEquivalent;
+    return {
+      if (netSavings != null) 'NetSavings': netSavings,
+      if (onDemandCostEquivalent != null)
+        'OnDemandCostEquivalent': onDemandCostEquivalent,
+    };
   }
 }
 
@@ -8435,6 +9662,20 @@ class SavingsPlansUtilization {
       usedCommitment: json['UsedCommitment'] as String?,
       utilizationPercentage: json['UtilizationPercentage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final totalCommitment = this.totalCommitment;
+    final unusedCommitment = this.unusedCommitment;
+    final usedCommitment = this.usedCommitment;
+    final utilizationPercentage = this.utilizationPercentage;
+    return {
+      if (totalCommitment != null) 'TotalCommitment': totalCommitment,
+      if (unusedCommitment != null) 'UnusedCommitment': unusedCommitment,
+      if (usedCommitment != null) 'UsedCommitment': usedCommitment,
+      if (utilizationPercentage != null)
+        'UtilizationPercentage': utilizationPercentage,
+    };
   }
 }
 
@@ -8473,6 +9714,18 @@ class SavingsPlansUtilizationAggregates {
               json['Savings'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final utilization = this.utilization;
+    final amortizedCommitment = this.amortizedCommitment;
+    final savings = this.savings;
+    return {
+      'Utilization': utilization,
+      if (amortizedCommitment != null)
+        'AmortizedCommitment': amortizedCommitment,
+      if (savings != null) 'Savings': savings,
+    };
   }
 }
 
@@ -8515,6 +9768,20 @@ class SavingsPlansUtilizationByTime {
               json['Savings'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final timePeriod = this.timePeriod;
+    final utilization = this.utilization;
+    final amortizedCommitment = this.amortizedCommitment;
+    final savings = this.savings;
+    return {
+      'TimePeriod': timePeriod,
+      'Utilization': utilization,
+      if (amortizedCommitment != null)
+        'AmortizedCommitment': amortizedCommitment,
+      if (savings != null) 'Savings': savings,
+    };
   }
 }
 
@@ -8568,6 +9835,22 @@ class SavingsPlansUtilizationDetail {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amortizedCommitment = this.amortizedCommitment;
+    final attributes = this.attributes;
+    final savings = this.savings;
+    final savingsPlanArn = this.savingsPlanArn;
+    final utilization = this.utilization;
+    return {
+      if (amortizedCommitment != null)
+        'AmortizedCommitment': amortizedCommitment,
+      if (attributes != null) 'Attributes': attributes,
+      if (savings != null) 'Savings': savings,
+      if (savingsPlanArn != null) 'SavingsPlanArn': savingsPlanArn,
+      if (utilization != null) 'Utilization': utilization,
+    };
+  }
 }
 
 /// Hardware specifications for the service that you want recommendations for.
@@ -8608,6 +9891,7 @@ class SortDefinition {
     required this.key,
     this.sortOrder,
   });
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     final sortOrder = this.sortOrder;
@@ -8777,6 +10061,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The values that are available for a tag.
@@ -8890,6 +10178,31 @@ class TargetInstance {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final defaultTargetInstance = this.defaultTargetInstance;
+    final estimatedMonthlyCost = this.estimatedMonthlyCost;
+    final estimatedMonthlySavings = this.estimatedMonthlySavings;
+    final expectedResourceUtilization = this.expectedResourceUtilization;
+    final platformDifferences = this.platformDifferences;
+    final resourceDetails = this.resourceDetails;
+    return {
+      if (currencyCode != null) 'CurrencyCode': currencyCode,
+      if (defaultTargetInstance != null)
+        'DefaultTargetInstance': defaultTargetInstance,
+      if (estimatedMonthlyCost != null)
+        'EstimatedMonthlyCost': estimatedMonthlyCost,
+      if (estimatedMonthlySavings != null)
+        'EstimatedMonthlySavings': estimatedMonthlySavings,
+      if (expectedResourceUtilization != null)
+        'ExpectedResourceUtilization': expectedResourceUtilization,
+      if (platformDifferences != null)
+        'PlatformDifferences':
+            platformDifferences.map((e) => e.toValue()).toList(),
+      if (resourceDetails != null) 'ResourceDetails': resourceDetails,
+    };
+  }
 }
 
 enum TermInYears {
@@ -8939,6 +10252,16 @@ class TerminateRecommendationDetail {
       estimatedMonthlySavings: json['EstimatedMonthlySavings'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final estimatedMonthlySavings = this.estimatedMonthlySavings;
+    return {
+      if (currencyCode != null) 'CurrencyCode': currencyCode,
+      if (estimatedMonthlySavings != null)
+        'EstimatedMonthlySavings': estimatedMonthlySavings,
+    };
+  }
 }
 
 /// Filters cost anomalies based on the total impact.
@@ -8957,6 +10280,7 @@ class TotalImpactFilter {
     required this.startValue,
     this.endValue,
   });
+
   Map<String, dynamic> toJson() {
     final numericOperator = this.numericOperator;
     final startValue = this.startValue;
@@ -8974,6 +10298,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateAnomalyMonitorResponse {
@@ -8987,6 +10315,13 @@ class UpdateAnomalyMonitorResponse {
     return UpdateAnomalyMonitorResponse(
       monitorArn: json['MonitorArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final monitorArn = this.monitorArn;
+    return {
+      'MonitorArn': monitorArn,
+    };
   }
 }
 
@@ -9002,6 +10337,13 @@ class UpdateAnomalySubscriptionResponse {
     return UpdateAnomalySubscriptionResponse(
       subscriptionArn: json['SubscriptionArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subscriptionArn = this.subscriptionArn;
+    return {
+      'SubscriptionArn': subscriptionArn,
+    };
   }
 }
 
@@ -9030,6 +10372,17 @@ class UpdateCostAllocationTagsStatusError {
       tagKey: json['TagKey'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    final tagKey = this.tagKey;
+    return {
+      if (code != null) 'Code': code,
+      if (message != null) 'Message': message,
+      if (tagKey != null) 'TagKey': tagKey,
+    };
+  }
 }
 
 class UpdateCostAllocationTagsStatusResponse {
@@ -9051,6 +10404,13 @@ class UpdateCostAllocationTagsStatusResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      if (errors != null) 'Errors': errors,
+    };
+  }
 }
 
 class UpdateCostCategoryDefinitionResponse {
@@ -9070,6 +10430,15 @@ class UpdateCostCategoryDefinitionResponse {
       costCategoryArn: json['CostCategoryArn'] as String?,
       effectiveStart: json['EffectiveStart'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final costCategoryArn = this.costCategoryArn;
+    final effectiveStart = this.effectiveStart;
+    return {
+      if (costCategoryArn != null) 'CostCategoryArn': costCategoryArn,
+      if (effectiveStart != null) 'EffectiveStart': effectiveStart,
+    };
   }
 }
 
@@ -9104,6 +10473,17 @@ class UtilizationByTime {
               json['Total'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final timePeriod = this.timePeriod;
+    final total = this.total;
+    return {
+      if (groups != null) 'Groups': groups,
+      if (timePeriod != null) 'TimePeriod': timePeriod,
+      if (total != null) 'Total': total,
+    };
   }
 }
 

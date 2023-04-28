@@ -725,6 +725,19 @@ class CreateFHIRDatastoreResponse {
       datastoreStatus: (json['DatastoreStatus'] as String).toDatastoreStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datastoreArn = this.datastoreArn;
+    final datastoreEndpoint = this.datastoreEndpoint;
+    final datastoreId = this.datastoreId;
+    final datastoreStatus = this.datastoreStatus;
+    return {
+      'DatastoreArn': datastoreArn,
+      'DatastoreEndpoint': datastoreEndpoint,
+      'DatastoreId': datastoreId,
+      'DatastoreStatus': datastoreStatus.toValue(),
+    };
+  }
 }
 
 /// The filters applied to Data Store query.
@@ -749,6 +762,7 @@ class DatastoreFilter {
     this.datastoreName,
     this.datastoreStatus,
   });
+
   Map<String, dynamic> toJson() {
     final createdAfter = this.createdAfter;
     final createdBefore = this.createdBefore;
@@ -830,6 +844,29 @@ class DatastoreProperties {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datastoreArn = this.datastoreArn;
+    final datastoreEndpoint = this.datastoreEndpoint;
+    final datastoreId = this.datastoreId;
+    final datastoreStatus = this.datastoreStatus;
+    final datastoreTypeVersion = this.datastoreTypeVersion;
+    final createdAt = this.createdAt;
+    final datastoreName = this.datastoreName;
+    final preloadDataConfig = this.preloadDataConfig;
+    final sseConfiguration = this.sseConfiguration;
+    return {
+      'DatastoreArn': datastoreArn,
+      'DatastoreEndpoint': datastoreEndpoint,
+      'DatastoreId': datastoreId,
+      'DatastoreStatus': datastoreStatus.toValue(),
+      'DatastoreTypeVersion': datastoreTypeVersion.toValue(),
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (datastoreName != null) 'DatastoreName': datastoreName,
+      if (preloadDataConfig != null) 'PreloadDataConfig': preloadDataConfig,
+      if (sseConfiguration != null) 'SseConfiguration': sseConfiguration,
+    };
+  }
 }
 
 enum DatastoreStatus {
@@ -898,6 +935,19 @@ class DeleteFHIRDatastoreResponse {
       datastoreStatus: (json['DatastoreStatus'] as String).toDatastoreStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datastoreArn = this.datastoreArn;
+    final datastoreEndpoint = this.datastoreEndpoint;
+    final datastoreId = this.datastoreId;
+    final datastoreStatus = this.datastoreStatus;
+    return {
+      'DatastoreArn': datastoreArn,
+      'DatastoreEndpoint': datastoreEndpoint,
+      'DatastoreId': datastoreId,
+      'DatastoreStatus': datastoreStatus.toValue(),
+    };
+  }
 }
 
 class DescribeFHIRDatastoreResponse {
@@ -915,6 +965,13 @@ class DescribeFHIRDatastoreResponse {
           json['DatastoreProperties'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datastoreProperties = this.datastoreProperties;
+    return {
+      'DatastoreProperties': datastoreProperties,
+    };
+  }
 }
 
 class DescribeFHIRExportJobResponse {
@@ -931,6 +988,13 @@ class DescribeFHIRExportJobResponse {
           json['ExportJobProperties'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exportJobProperties = this.exportJobProperties;
+    return {
+      'ExportJobProperties': exportJobProperties,
+    };
+  }
 }
 
 class DescribeFHIRImportJobResponse {
@@ -946,6 +1010,13 @@ class DescribeFHIRImportJobResponse {
       importJobProperties: ImportJobProperties.fromJson(
           json['ImportJobProperties'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final importJobProperties = this.importJobProperties;
+    return {
+      'ImportJobProperties': importJobProperties,
+    };
   }
 }
 
@@ -1006,6 +1077,29 @@ class ExportJobProperties {
       jobName: json['JobName'] as String?,
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datastoreId = this.datastoreId;
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    final outputDataConfig = this.outputDataConfig;
+    final submitTime = this.submitTime;
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final endTime = this.endTime;
+    final jobName = this.jobName;
+    final message = this.message;
+    return {
+      'DatastoreId': datastoreId,
+      'JobId': jobId,
+      'JobStatus': jobStatus.toValue(),
+      'OutputDataConfig': outputDataConfig,
+      'SubmitTime': unixTimestampToJson(submitTime),
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (jobName != null) 'JobName': jobName,
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -1096,6 +1190,32 @@ class ImportJobProperties {
           : null,
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datastoreId = this.datastoreId;
+    final inputDataConfig = this.inputDataConfig;
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    final submitTime = this.submitTime;
+    final dataAccessRoleArn = this.dataAccessRoleArn;
+    final endTime = this.endTime;
+    final jobName = this.jobName;
+    final jobOutputDataConfig = this.jobOutputDataConfig;
+    final message = this.message;
+    return {
+      'DatastoreId': datastoreId,
+      'InputDataConfig': inputDataConfig,
+      'JobId': jobId,
+      'JobStatus': jobStatus.toValue(),
+      'SubmitTime': unixTimestampToJson(submitTime),
+      if (dataAccessRoleArn != null) 'DataAccessRoleArn': dataAccessRoleArn,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (jobName != null) 'JobName': jobName,
+      if (jobOutputDataConfig != null)
+        'JobOutputDataConfig': jobOutputDataConfig,
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -1217,6 +1337,15 @@ class ListFHIRDatastoresResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datastorePropertiesList = this.datastorePropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      'DatastorePropertiesList': datastorePropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListFHIRExportJobsResponse {
@@ -1240,6 +1369,15 @@ class ListFHIRExportJobsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exportJobPropertiesList = this.exportJobPropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      'ExportJobPropertiesList': exportJobPropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1265,6 +1403,15 @@ class ListFHIRImportJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final importJobPropertiesList = this.importJobPropertiesList;
+    final nextToken = this.nextToken;
+    return {
+      'ImportJobPropertiesList': importJobPropertiesList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1281,6 +1428,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1437,6 +1591,17 @@ class StartFHIRExportJobResponse {
       datastoreId: json['DatastoreId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    final datastoreId = this.datastoreId;
+    return {
+      'JobId': jobId,
+      'JobStatus': jobStatus.toValue(),
+      if (datastoreId != null) 'DatastoreId': datastoreId,
+    };
+  }
 }
 
 class StartFHIRImportJobResponse {
@@ -1460,6 +1625,17 @@ class StartFHIRImportJobResponse {
       jobStatus: (json['JobStatus'] as String).toJobStatus(),
       datastoreId: json['DatastoreId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final jobStatus = this.jobStatus;
+    final datastoreId = this.datastoreId;
+    return {
+      'JobId': jobId,
+      'JobStatus': jobStatus.toValue(),
+      if (datastoreId != null) 'DatastoreId': datastoreId,
+    };
   }
 }
 
@@ -1498,12 +1674,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

@@ -532,6 +532,14 @@ class CreateMediaCapturePipelineResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final mediaCapturePipeline = this.mediaCapturePipeline;
+    return {
+      if (mediaCapturePipeline != null)
+        'MediaCapturePipeline': mediaCapturePipeline,
+    };
+  }
 }
 
 class GetMediaCapturePipelineResponse {
@@ -548,6 +556,14 @@ class GetMediaCapturePipelineResponse {
               json['MediaCapturePipeline'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mediaCapturePipeline = this.mediaCapturePipeline;
+    return {
+      if (mediaCapturePipeline != null)
+        'MediaCapturePipeline': mediaCapturePipeline,
+    };
   }
 }
 
@@ -573,6 +589,16 @@ class ListMediaCapturePipelinesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final mediaCapturePipelines = this.mediaCapturePipelines;
+    final nextToken = this.nextToken;
+    return {
+      if (mediaCapturePipelines != null)
+        'MediaCapturePipelines': mediaCapturePipelines,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -589,6 +615,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -657,6 +690,34 @@ class MediaCapturePipeline {
       updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final chimeSdkMeetingConfiguration = this.chimeSdkMeetingConfiguration;
+    final createdTimestamp = this.createdTimestamp;
+    final mediaPipelineArn = this.mediaPipelineArn;
+    final mediaPipelineId = this.mediaPipelineId;
+    final sinkArn = this.sinkArn;
+    final sinkType = this.sinkType;
+    final sourceArn = this.sourceArn;
+    final sourceType = this.sourceType;
+    final status = this.status;
+    final updatedTimestamp = this.updatedTimestamp;
+    return {
+      if (chimeSdkMeetingConfiguration != null)
+        'ChimeSdkMeetingConfiguration': chimeSdkMeetingConfiguration,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': iso8601ToJson(createdTimestamp),
+      if (mediaPipelineArn != null) 'MediaPipelineArn': mediaPipelineArn,
+      if (mediaPipelineId != null) 'MediaPipelineId': mediaPipelineId,
+      if (sinkArn != null) 'SinkArn': sinkArn,
+      if (sinkType != null) 'SinkType': sinkType.toValue(),
+      if (sourceArn != null) 'SourceArn': sourceArn,
+      if (sourceType != null) 'SourceType': sourceType.toValue(),
+      if (status != null) 'Status': status.toValue(),
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': iso8601ToJson(updatedTimestamp),
+    };
+  }
 }
 
 /// A summary of a media capture pipeline.
@@ -676,6 +737,15 @@ class MediaCapturePipelineSummary {
       mediaPipelineArn: json['MediaPipelineArn'] as String?,
       mediaPipelineId: json['MediaPipelineId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mediaPipelineArn = this.mediaPipelineArn;
+    final mediaPipelineId = this.mediaPipelineId;
+    return {
+      if (mediaPipelineArn != null) 'MediaPipelineArn': mediaPipelineArn,
+      if (mediaPipelineId != null) 'MediaPipelineId': mediaPipelineId,
+    };
   }
 }
 
@@ -865,12 +935,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

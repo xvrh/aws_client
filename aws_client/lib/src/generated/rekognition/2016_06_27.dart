@@ -4975,6 +4975,15 @@ class AgeRange {
       low: json['Low'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final high = this.high;
+    final low = this.low;
+    return {
+      if (high != null) 'High': high,
+      if (low != null) 'Low': low,
+    };
+  }
 }
 
 /// Assets are the images that you use to train and evaluate a model version.
@@ -5062,6 +5071,19 @@ class AudioMetadata {
       sampleRate: json['SampleRate'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codec = this.codec;
+    final durationMillis = this.durationMillis;
+    final numberOfChannels = this.numberOfChannels;
+    final sampleRate = this.sampleRate;
+    return {
+      if (codec != null) 'Codec': codec,
+      if (durationMillis != null) 'DurationMillis': durationMillis,
+      if (numberOfChannels != null) 'NumberOfChannels': numberOfChannels,
+      if (sampleRate != null) 'SampleRate': sampleRate,
+    };
+  }
 }
 
 /// Indicates whether or not the face has a beard, and the confidence level in
@@ -5082,6 +5104,15 @@ class Beard {
       confidence: json['Confidence'] as double?,
       value: json['Value'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final value = this.value;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -5118,6 +5149,7 @@ class BlackFrame {
     this.maxPixelThreshold,
     this.minCoveragePercentage,
   });
+
   Map<String, dynamic> toJson() {
     final maxPixelThreshold = this.maxPixelThreshold;
     final minCoveragePercentage = this.minCoveragePercentage;
@@ -5280,6 +5312,23 @@ class Celebrity {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final face = this.face;
+    final id = this.id;
+    final knownGender = this.knownGender;
+    final matchConfidence = this.matchConfidence;
+    final name = this.name;
+    final urls = this.urls;
+    return {
+      if (face != null) 'Face': face,
+      if (id != null) 'Id': id,
+      if (knownGender != null) 'KnownGender': knownGender,
+      if (matchConfidence != null) 'MatchConfidence': matchConfidence,
+      if (name != null) 'Name': name,
+      if (urls != null) 'Urls': urls,
+    };
+  }
 }
 
 /// Information about a recognized celebrity.
@@ -5335,6 +5384,25 @@ class CelebrityDetail {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final boundingBox = this.boundingBox;
+    final confidence = this.confidence;
+    final face = this.face;
+    final id = this.id;
+    final knownGender = this.knownGender;
+    final name = this.name;
+    final urls = this.urls;
+    return {
+      if (boundingBox != null) 'BoundingBox': boundingBox,
+      if (confidence != null) 'Confidence': confidence,
+      if (face != null) 'Face': face,
+      if (id != null) 'Id': id,
+      if (knownGender != null) 'KnownGender': knownGender,
+      if (name != null) 'Name': name,
+      if (urls != null) 'Urls': urls,
+    };
+  }
 }
 
 /// Information about a detected celebrity and the time the celebrity was
@@ -5359,6 +5427,15 @@ class CelebrityRecognition {
           : null,
       timestamp: json['Timestamp'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final celebrity = this.celebrity;
+    final timestamp = this.timestamp;
+    return {
+      if (celebrity != null) 'Celebrity': celebrity,
+      if (timestamp != null) 'Timestamp': timestamp,
+    };
   }
 }
 
@@ -5415,6 +5492,15 @@ class CompareFacesMatch {
           : null,
       similarity: json['Similarity'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final face = this.face;
+    final similarity = this.similarity;
+    return {
+      if (face != null) 'Face': face,
+      if (similarity != null) 'Similarity': similarity,
+    };
   }
 }
 
@@ -5491,6 +5577,27 @@ class CompareFacesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final faceMatches = this.faceMatches;
+    final sourceImageFace = this.sourceImageFace;
+    final sourceImageOrientationCorrection =
+        this.sourceImageOrientationCorrection;
+    final targetImageOrientationCorrection =
+        this.targetImageOrientationCorrection;
+    final unmatchedFaces = this.unmatchedFaces;
+    return {
+      if (faceMatches != null) 'FaceMatches': faceMatches,
+      if (sourceImageFace != null) 'SourceImageFace': sourceImageFace,
+      if (sourceImageOrientationCorrection != null)
+        'SourceImageOrientationCorrection':
+            sourceImageOrientationCorrection.toValue(),
+      if (targetImageOrientationCorrection != null)
+        'TargetImageOrientationCorrection':
+            targetImageOrientationCorrection.toValue(),
+      if (unmatchedFaces != null) 'UnmatchedFaces': unmatchedFaces,
+    };
+  }
 }
 
 /// Provides face metadata for target image faces that are analyzed by
@@ -5554,6 +5661,25 @@ class ComparedFace {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final boundingBox = this.boundingBox;
+    final confidence = this.confidence;
+    final emotions = this.emotions;
+    final landmarks = this.landmarks;
+    final pose = this.pose;
+    final quality = this.quality;
+    final smile = this.smile;
+    return {
+      if (boundingBox != null) 'BoundingBox': boundingBox,
+      if (confidence != null) 'Confidence': confidence,
+      if (emotions != null) 'Emotions': emotions,
+      if (landmarks != null) 'Landmarks': landmarks,
+      if (pose != null) 'Pose': pose,
+      if (quality != null) 'Quality': quality,
+      if (smile != null) 'Smile': smile,
+    };
+  }
 }
 
 /// Type that describes the face Amazon Rekognition chose to compare with the
@@ -5579,6 +5705,15 @@ class ComparedSourceImageFace {
           : null,
       confidence: json['Confidence'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boundingBox = this.boundingBox;
+    final confidence = this.confidence;
+    return {
+      if (boundingBox != null) 'BoundingBox': boundingBox,
+      if (confidence != null) 'Confidence': confidence,
+    };
   }
 }
 
@@ -5641,6 +5776,7 @@ class ConnectedHomeSettingsForUpdate {
     this.labels,
     this.minConfidence,
   });
+
   Map<String, dynamic> toJson() {
     final labels = this.labels;
     final minConfidence = this.minConfidence;
@@ -5702,6 +5838,15 @@ class ContentModerationDetection {
       timestamp: json['Timestamp'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final moderationLabel = this.moderationLabel;
+    final timestamp = this.timestamp;
+    return {
+      if (moderationLabel != null) 'ModerationLabel': moderationLabel,
+      if (timestamp != null) 'Timestamp': timestamp,
+    };
+  }
 }
 
 enum ContentModerationSortBy {
@@ -5753,6 +5898,15 @@ class CoversBodyPart {
       value: json['Value'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final value = this.value;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 class CreateCollectionResponse {
@@ -5779,6 +5933,17 @@ class CreateCollectionResponse {
       statusCode: json['StatusCode'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final collectionArn = this.collectionArn;
+    final faceModelVersion = this.faceModelVersion;
+    final statusCode = this.statusCode;
+    return {
+      if (collectionArn != null) 'CollectionArn': collectionArn,
+      if (faceModelVersion != null) 'FaceModelVersion': faceModelVersion,
+      if (statusCode != null) 'StatusCode': statusCode,
+    };
+  }
 }
 
 class CreateDatasetResponse {
@@ -5792,6 +5957,13 @@ class CreateDatasetResponse {
     return CreateDatasetResponse(
       datasetArn: json['DatasetArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasetArn = this.datasetArn;
+    return {
+      if (datasetArn != null) 'DatasetArn': datasetArn,
+    };
   }
 }
 
@@ -5807,6 +5979,13 @@ class CreateProjectResponse {
     return CreateProjectResponse(
       projectArn: json['ProjectArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final projectArn = this.projectArn;
+    return {
+      if (projectArn != null) 'ProjectArn': projectArn,
+    };
   }
 }
 
@@ -5824,6 +6003,13 @@ class CreateProjectVersionResponse {
       projectVersionArn: json['ProjectVersionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final projectVersionArn = this.projectVersionArn;
+    return {
+      if (projectVersionArn != null) 'ProjectVersionArn': projectVersionArn,
+    };
+  }
 }
 
 class CreateStreamProcessorResponse {
@@ -5837,6 +6023,13 @@ class CreateStreamProcessorResponse {
     return CreateStreamProcessorResponse(
       streamProcessorArn: json['StreamProcessorArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final streamProcessorArn = this.streamProcessorArn;
+    return {
+      if (streamProcessorArn != null) 'StreamProcessorArn': streamProcessorArn,
+    };
   }
 }
 
@@ -5868,6 +6061,17 @@ class CustomLabel {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final geometry = this.geometry;
+    final name = this.name;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (geometry != null) 'Geometry': geometry,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Describes updates or additions to a dataset. A Single update or addition is
@@ -5891,6 +6095,7 @@ class DatasetChanges {
   DatasetChanges({
     required this.groundTruth,
   });
+
   Map<String, dynamic> toJson() {
     final groundTruth = this.groundTruth;
     return {
@@ -5946,6 +6151,26 @@ class DatasetDescription {
           (json['StatusMessageCode'] as String?)?.toDatasetStatusMessageCode(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final datasetStats = this.datasetStats;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final statusMessageCode = this.statusMessageCode;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (datasetStats != null) 'DatasetStats': datasetStats,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (statusMessageCode != null)
+        'StatusMessageCode': statusMessageCode.toValue(),
+    };
+  }
 }
 
 /// Describes a dataset label. For more information, see
@@ -5970,6 +6195,15 @@ class DatasetLabelDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final labelName = this.labelName;
+    final labelStats = this.labelStats;
+    return {
+      if (labelName != null) 'LabelName': labelName,
+      if (labelStats != null) 'LabelStats': labelStats,
+    };
+  }
 }
 
 /// Statistics about a label used in a dataset. For more information, see
@@ -5990,6 +6224,15 @@ class DatasetLabelStats {
       boundingBoxCount: json['BoundingBoxCount'] as int?,
       entryCount: json['EntryCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boundingBoxCount = this.boundingBoxCount;
+    final entryCount = this.entryCount;
+    return {
+      if (boundingBoxCount != null) 'BoundingBoxCount': boundingBoxCount,
+      if (entryCount != null) 'EntryCount': entryCount,
+    };
   }
 }
 
@@ -6035,6 +6278,25 @@ class DatasetMetadata {
           (json['StatusMessageCode'] as String?)?.toDatasetStatusMessageCode(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final datasetArn = this.datasetArn;
+    final datasetType = this.datasetType;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final statusMessageCode = this.statusMessageCode;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (datasetArn != null) 'DatasetArn': datasetArn,
+      if (datasetType != null) 'DatasetType': datasetType.toValue(),
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (statusMessageCode != null)
+        'StatusMessageCode': statusMessageCode.toValue(),
+    };
+  }
 }
 
 /// The source that Amazon Rekognition Custom Labels uses to create a dataset.
@@ -6060,6 +6322,7 @@ class DatasetSource {
     this.datasetArn,
     this.groundTruthManifest,
   });
+
   Map<String, dynamic> toJson() {
     final datasetArn = this.datasetArn;
     final groundTruthManifest = this.groundTruthManifest;
@@ -6099,6 +6362,19 @@ class DatasetStats {
       totalEntries: json['TotalEntries'] as int?,
       totalLabels: json['TotalLabels'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorEntries = this.errorEntries;
+    final labeledEntries = this.labeledEntries;
+    final totalEntries = this.totalEntries;
+    final totalLabels = this.totalLabels;
+    return {
+      if (errorEntries != null) 'ErrorEntries': errorEntries,
+      if (labeledEntries != null) 'LabeledEntries': labeledEntries,
+      if (totalEntries != null) 'TotalEntries': totalEntries,
+      if (totalLabels != null) 'TotalLabels': totalLabels,
+    };
   }
 }
 
@@ -6228,12 +6504,23 @@ class DeleteCollectionResponse {
       statusCode: json['StatusCode'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final statusCode = this.statusCode;
+    return {
+      if (statusCode != null) 'StatusCode': statusCode,
+    };
+  }
 }
 
 class DeleteDatasetResponse {
   DeleteDatasetResponse();
   factory DeleteDatasetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDatasetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6252,6 +6539,13 @@ class DeleteFacesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deletedFaces = this.deletedFaces;
+    return {
+      if (deletedFaces != null) 'DeletedFaces': deletedFaces,
+    };
+  }
 }
 
 class DeleteProjectResponse {
@@ -6265,6 +6559,13 @@ class DeleteProjectResponse {
     return DeleteProjectResponse(
       status: (json['Status'] as String?)?.toProjectStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -6280,12 +6581,23 @@ class DeleteProjectVersionResponse {
       status: (json['Status'] as String?)?.toProjectVersionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class DeleteStreamProcessorResponse {
   DeleteStreamProcessorResponse();
   factory DeleteStreamProcessorResponse.fromJson(Map<String, dynamic> _) {
     return DeleteStreamProcessorResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6323,6 +6635,20 @@ class DescribeCollectionResponse {
       faceModelVersion: json['FaceModelVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final collectionARN = this.collectionARN;
+    final creationTimestamp = this.creationTimestamp;
+    final faceCount = this.faceCount;
+    final faceModelVersion = this.faceModelVersion;
+    return {
+      if (collectionARN != null) 'CollectionARN': collectionARN,
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (faceCount != null) 'FaceCount': faceCount,
+      if (faceModelVersion != null) 'FaceModelVersion': faceModelVersion,
+    };
+  }
 }
 
 class DescribeDatasetResponse {
@@ -6339,6 +6665,13 @@ class DescribeDatasetResponse {
               json['DatasetDescription'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasetDescription = this.datasetDescription;
+    return {
+      if (datasetDescription != null) 'DatasetDescription': datasetDescription,
+    };
   }
 }
 
@@ -6367,6 +6700,16 @@ class DescribeProjectVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final projectVersionDescriptions = this.projectVersionDescriptions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (projectVersionDescriptions != null)
+        'ProjectVersionDescriptions': projectVersionDescriptions,
+    };
+  }
 }
 
 class DescribeProjectsResponse {
@@ -6392,6 +6735,16 @@ class DescribeProjectsResponse {
           .map((e) => ProjectDescription.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final projectDescriptions = this.projectDescriptions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (projectDescriptions != null)
+        'ProjectDescriptions': projectDescriptions,
+    };
   }
 }
 
@@ -6498,6 +6851,43 @@ class DescribeStreamProcessorResponse {
       streamProcessorArn: json['StreamProcessorArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final dataSharingPreference = this.dataSharingPreference;
+    final input = this.input;
+    final kmsKeyId = this.kmsKeyId;
+    final lastUpdateTimestamp = this.lastUpdateTimestamp;
+    final name = this.name;
+    final notificationChannel = this.notificationChannel;
+    final output = this.output;
+    final regionsOfInterest = this.regionsOfInterest;
+    final roleArn = this.roleArn;
+    final settings = this.settings;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final streamProcessorArn = this.streamProcessorArn;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (dataSharingPreference != null)
+        'DataSharingPreference': dataSharingPreference,
+      if (input != null) 'Input': input,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (lastUpdateTimestamp != null)
+        'LastUpdateTimestamp': unixTimestampToJson(lastUpdateTimestamp),
+      if (name != null) 'Name': name,
+      if (notificationChannel != null)
+        'NotificationChannel': notificationChannel,
+      if (output != null) 'Output': output,
+      if (regionsOfInterest != null) 'RegionsOfInterest': regionsOfInterest,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (settings != null) 'Settings': settings,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (streamProcessorArn != null) 'StreamProcessorArn': streamProcessorArn,
+    };
+  }
 }
 
 class DetectCustomLabelsResponse {
@@ -6514,6 +6904,13 @@ class DetectCustomLabelsResponse {
           .map((e) => CustomLabel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customLabels = this.customLabels;
+    return {
+      if (customLabels != null) 'CustomLabels': customLabels,
+    };
   }
 }
 
@@ -6549,6 +6946,16 @@ class DetectFacesResponse {
       orientationCorrection:
           (json['OrientationCorrection'] as String?)?.toOrientationCorrection(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final faceDetails = this.faceDetails;
+    final orientationCorrection = this.orientationCorrection;
+    return {
+      if (faceDetails != null) 'FaceDetails': faceDetails,
+      if (orientationCorrection != null)
+        'OrientationCorrection': orientationCorrection.toValue(),
+    };
   }
 }
 
@@ -6590,6 +6997,18 @@ class DetectLabelsResponse {
           (json['OrientationCorrection'] as String?)?.toOrientationCorrection(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final labelModelVersion = this.labelModelVersion;
+    final labels = this.labels;
+    final orientationCorrection = this.orientationCorrection;
+    return {
+      if (labelModelVersion != null) 'LabelModelVersion': labelModelVersion,
+      if (labels != null) 'Labels': labels,
+      if (orientationCorrection != null)
+        'OrientationCorrection': orientationCorrection.toValue(),
+    };
+  }
 }
 
 class DetectModerationLabelsResponse {
@@ -6621,6 +7040,19 @@ class DetectModerationLabelsResponse {
           .toList(),
       moderationModelVersion: json['ModerationModelVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final humanLoopActivationOutput = this.humanLoopActivationOutput;
+    final moderationLabels = this.moderationLabels;
+    final moderationModelVersion = this.moderationModelVersion;
+    return {
+      if (humanLoopActivationOutput != null)
+        'HumanLoopActivationOutput': humanLoopActivationOutput,
+      if (moderationLabels != null) 'ModerationLabels': moderationLabels,
+      if (moderationModelVersion != null)
+        'ModerationModelVersion': moderationModelVersion,
+    };
   }
 }
 
@@ -6658,6 +7090,19 @@ class DetectProtectiveEquipmentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final persons = this.persons;
+    final protectiveEquipmentModelVersion =
+        this.protectiveEquipmentModelVersion;
+    final summary = this.summary;
+    return {
+      if (persons != null) 'Persons': persons,
+      if (protectiveEquipmentModelVersion != null)
+        'ProtectiveEquipmentModelVersion': protectiveEquipmentModelVersion,
+      if (summary != null) 'Summary': summary,
+    };
+  }
 }
 
 /// A set of optional parameters that you can use to set the criteria that the
@@ -6675,6 +7120,7 @@ class DetectTextFilters {
     this.regionsOfInterest,
     this.wordFilter,
   });
+
   Map<String, dynamic> toJson() {
     final regionsOfInterest = this.regionsOfInterest;
     final wordFilter = this.wordFilter;
@@ -6705,6 +7151,15 @@ class DetectTextResponse {
       textModelVersion: json['TextModelVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final textDetections = this.textDetections;
+    final textModelVersion = this.textModelVersion;
+    return {
+      if (textDetections != null) 'TextDetections': textDetections,
+      if (textModelVersion != null) 'TextModelVersion': textModelVersion,
+    };
+  }
 }
 
 /// A set of parameters that allow you to filter out certain results from your
@@ -6730,6 +7185,7 @@ class DetectionFilter {
     this.minBoundingBoxWidth,
     this.minConfidence,
   });
+
   Map<String, dynamic> toJson() {
     final minBoundingBoxHeight = this.minBoundingBoxHeight;
     final minBoundingBoxWidth = this.minBoundingBoxWidth;
@@ -6753,6 +7209,7 @@ class DistributeDataset {
   DistributeDataset({
     required this.arn,
   });
+
   Map<String, dynamic> toJson() {
     final arn = this.arn;
     return {
@@ -6765,6 +7222,10 @@ class DistributeDatasetEntriesResponse {
   DistributeDatasetEntriesResponse();
   factory DistributeDatasetEntriesResponse.fromJson(Map<String, dynamic> _) {
     return DistributeDatasetEntriesResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6790,6 +7251,15 @@ class Emotion {
       confidence: json['Confidence'] as double?,
       type: (json['Type'] as String?)?.toEmotionName(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final type = this.type;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -6892,6 +7362,19 @@ class EquipmentDetection {
       type: (json['Type'] as String?)?.toProtectiveEquipmentType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final boundingBox = this.boundingBox;
+    final confidence = this.confidence;
+    final coversBodyPart = this.coversBodyPart;
+    final type = this.type;
+    return {
+      if (boundingBox != null) 'BoundingBox': boundingBox,
+      if (confidence != null) 'Confidence': confidence,
+      if (coversBodyPart != null) 'CoversBodyPart': coversBodyPart,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// The evaluation results for the training of a model.
@@ -6917,6 +7400,15 @@ class EvaluationResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final f1Score = this.f1Score;
+    final summary = this.summary;
+    return {
+      if (f1Score != null) 'F1Score': f1Score,
+      if (summary != null) 'Summary': summary,
+    };
+  }
 }
 
 /// Indicates whether or not the eyes on the face are open, and the confidence
@@ -6938,6 +7430,15 @@ class EyeOpen {
       value: json['Value'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final value = this.value;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// Indicates whether or not the face is wearing eye glasses, and the confidence
@@ -6958,6 +7459,15 @@ class Eyeglasses {
       confidence: json['Confidence'] as double?,
       value: json['Value'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final value = this.value;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -7003,6 +7513,24 @@ class Face {
       imageId: json['ImageId'] as String?,
       indexFacesModelVersion: json['IndexFacesModelVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boundingBox = this.boundingBox;
+    final confidence = this.confidence;
+    final externalImageId = this.externalImageId;
+    final faceId = this.faceId;
+    final imageId = this.imageId;
+    final indexFacesModelVersion = this.indexFacesModelVersion;
+    return {
+      if (boundingBox != null) 'BoundingBox': boundingBox,
+      if (confidence != null) 'Confidence': confidence,
+      if (externalImageId != null) 'ExternalImageId': externalImageId,
+      if (faceId != null) 'FaceId': faceId,
+      if (imageId != null) 'ImageId': imageId,
+      if (indexFacesModelVersion != null)
+        'IndexFacesModelVersion': indexFacesModelVersion,
+    };
   }
 }
 
@@ -7192,6 +7720,41 @@ class FaceDetail {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ageRange = this.ageRange;
+    final beard = this.beard;
+    final boundingBox = this.boundingBox;
+    final confidence = this.confidence;
+    final emotions = this.emotions;
+    final eyeglasses = this.eyeglasses;
+    final eyesOpen = this.eyesOpen;
+    final gender = this.gender;
+    final landmarks = this.landmarks;
+    final mouthOpen = this.mouthOpen;
+    final mustache = this.mustache;
+    final pose = this.pose;
+    final quality = this.quality;
+    final smile = this.smile;
+    final sunglasses = this.sunglasses;
+    return {
+      if (ageRange != null) 'AgeRange': ageRange,
+      if (beard != null) 'Beard': beard,
+      if (boundingBox != null) 'BoundingBox': boundingBox,
+      if (confidence != null) 'Confidence': confidence,
+      if (emotions != null) 'Emotions': emotions,
+      if (eyeglasses != null) 'Eyeglasses': eyeglasses,
+      if (eyesOpen != null) 'EyesOpen': eyesOpen,
+      if (gender != null) 'Gender': gender,
+      if (landmarks != null) 'Landmarks': landmarks,
+      if (mouthOpen != null) 'MouthOpen': mouthOpen,
+      if (mustache != null) 'Mustache': mustache,
+      if (pose != null) 'Pose': pose,
+      if (quality != null) 'Quality': quality,
+      if (smile != null) 'Smile': smile,
+      if (sunglasses != null) 'Sunglasses': sunglasses,
+    };
+  }
 }
 
 /// Information about a face detected in a video analysis request and the time
@@ -7216,6 +7779,15 @@ class FaceDetection {
       timestamp: json['Timestamp'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final face = this.face;
+    final timestamp = this.timestamp;
+    return {
+      if (face != null) 'Face': face,
+      if (timestamp != null) 'Timestamp': timestamp,
+    };
+  }
 }
 
 /// Provides face metadata. In addition, it also provides the confidence in the
@@ -7239,6 +7811,15 @@ class FaceMatch {
           : null,
       similarity: json['Similarity'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final face = this.face;
+    final similarity = this.similarity;
+    return {
+      if (face != null) 'Face': face,
+      if (similarity != null) 'Similarity': similarity,
+    };
   }
 }
 
@@ -7265,6 +7846,15 @@ class FaceRecord {
           ? FaceDetail.fromJson(json['FaceDetail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final face = this.face;
+    final faceDetail = this.faceDetail;
+    return {
+      if (face != null) 'Face': face,
+      if (faceDetail != null) 'FaceDetail': faceDetail,
+    };
   }
 }
 
@@ -7364,6 +7954,15 @@ class Gender {
       value: (json['Value'] as String?)?.toGenderType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final value = this.value;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (value != null) 'Value': value.toValue(),
+    };
+  }
 }
 
 enum GenderType {
@@ -7419,6 +8018,15 @@ class Geometry {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final boundingBox = this.boundingBox;
+    final polygon = this.polygon;
+    return {
+      if (boundingBox != null) 'BoundingBox': boundingBox,
+      if (polygon != null) 'Polygon': polygon,
+    };
+  }
 }
 
 class GetCelebrityInfoResponse {
@@ -7447,6 +8055,17 @@ class GetCelebrityInfoResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final knownGender = this.knownGender;
+    final name = this.name;
+    final urls = this.urls;
+    return {
+      if (knownGender != null) 'KnownGender': knownGender,
+      if (name != null) 'Name': name,
+      if (urls != null) 'Urls': urls,
+    };
   }
 }
 
@@ -7492,6 +8111,21 @@ class GetCelebrityRecognitionResponse {
               json['VideoMetadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final celebrities = this.celebrities;
+    final jobStatus = this.jobStatus;
+    final nextToken = this.nextToken;
+    final statusMessage = this.statusMessage;
+    final videoMetadata = this.videoMetadata;
+    return {
+      if (celebrities != null) 'Celebrities': celebrities,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (videoMetadata != null) 'VideoMetadata': videoMetadata,
+    };
   }
 }
 
@@ -7546,6 +8180,24 @@ class GetContentModerationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobStatus = this.jobStatus;
+    final moderationLabels = this.moderationLabels;
+    final moderationModelVersion = this.moderationModelVersion;
+    final nextToken = this.nextToken;
+    final statusMessage = this.statusMessage;
+    final videoMetadata = this.videoMetadata;
+    return {
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (moderationLabels != null) 'ModerationLabels': moderationLabels,
+      if (moderationModelVersion != null)
+        'ModerationModelVersion': moderationModelVersion,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (videoMetadata != null) 'VideoMetadata': videoMetadata,
+    };
+  }
 }
 
 class GetFaceDetectionResponse {
@@ -7591,6 +8243,21 @@ class GetFaceDetectionResponse {
               json['VideoMetadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final faces = this.faces;
+    final jobStatus = this.jobStatus;
+    final nextToken = this.nextToken;
+    final statusMessage = this.statusMessage;
+    final videoMetadata = this.videoMetadata;
+    return {
+      if (faces != null) 'Faces': faces,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (videoMetadata != null) 'VideoMetadata': videoMetadata,
+    };
   }
 }
 
@@ -7644,6 +8311,21 @@ class GetFaceSearchResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobStatus = this.jobStatus;
+    final nextToken = this.nextToken;
+    final persons = this.persons;
+    final statusMessage = this.statusMessage;
+    final videoMetadata = this.videoMetadata;
+    return {
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (persons != null) 'Persons': persons,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (videoMetadata != null) 'VideoMetadata': videoMetadata,
+    };
+  }
 }
 
 class GetLabelDetectionResponse {
@@ -7696,6 +8378,23 @@ class GetLabelDetectionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobStatus = this.jobStatus;
+    final labelModelVersion = this.labelModelVersion;
+    final labels = this.labels;
+    final nextToken = this.nextToken;
+    final statusMessage = this.statusMessage;
+    final videoMetadata = this.videoMetadata;
+    return {
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (labelModelVersion != null) 'LabelModelVersion': labelModelVersion,
+      if (labels != null) 'Labels': labels,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (videoMetadata != null) 'VideoMetadata': videoMetadata,
+    };
+  }
 }
 
 class GetPersonTrackingResponse {
@@ -7742,6 +8441,21 @@ class GetPersonTrackingResponse {
               json['VideoMetadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobStatus = this.jobStatus;
+    final nextToken = this.nextToken;
+    final persons = this.persons;
+    final statusMessage = this.statusMessage;
+    final videoMetadata = this.videoMetadata;
+    return {
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (persons != null) 'Persons': persons,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (videoMetadata != null) 'VideoMetadata': videoMetadata,
+    };
   }
 }
 
@@ -7817,6 +8531,26 @@ class GetSegmentDetectionResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final audioMetadata = this.audioMetadata;
+    final jobStatus = this.jobStatus;
+    final nextToken = this.nextToken;
+    final segments = this.segments;
+    final selectedSegmentTypes = this.selectedSegmentTypes;
+    final statusMessage = this.statusMessage;
+    final videoMetadata = this.videoMetadata;
+    return {
+      if (audioMetadata != null) 'AudioMetadata': audioMetadata,
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (segments != null) 'Segments': segments,
+      if (selectedSegmentTypes != null)
+        'SelectedSegmentTypes': selectedSegmentTypes,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (videoMetadata != null) 'VideoMetadata': videoMetadata,
+    };
+  }
 }
 
 class GetTextDetectionResponse {
@@ -7863,6 +8597,23 @@ class GetTextDetectionResponse {
               json['VideoMetadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobStatus = this.jobStatus;
+    final nextToken = this.nextToken;
+    final statusMessage = this.statusMessage;
+    final textDetections = this.textDetections;
+    final textModelVersion = this.textModelVersion;
+    final videoMetadata = this.videoMetadata;
+    return {
+      if (jobStatus != null) 'JobStatus': jobStatus.toValue(),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (textDetections != null) 'TextDetections': textDetections,
+      if (textModelVersion != null) 'TextModelVersion': textModelVersion,
+      if (videoMetadata != null) 'VideoMetadata': videoMetadata,
+    };
   }
 }
 
@@ -7923,6 +8674,21 @@ class HumanLoopActivationOutput {
       humanLoopArn: json['HumanLoopArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final humanLoopActivationConditionsEvaluationResults =
+        this.humanLoopActivationConditionsEvaluationResults;
+    final humanLoopActivationReasons = this.humanLoopActivationReasons;
+    final humanLoopArn = this.humanLoopArn;
+    return {
+      if (humanLoopActivationConditionsEvaluationResults != null)
+        'HumanLoopActivationConditionsEvaluationResults':
+            jsonEncode(humanLoopActivationConditionsEvaluationResults),
+      if (humanLoopActivationReasons != null)
+        'HumanLoopActivationReasons': humanLoopActivationReasons,
+      if (humanLoopArn != null) 'HumanLoopArn': humanLoopArn,
+    };
+  }
 }
 
 /// Sets up the flow definition the image will be sent to if one of the
@@ -7947,6 +8713,7 @@ class HumanLoopConfig {
     required this.humanLoopName,
     this.dataAttributes,
   });
+
   Map<String, dynamic> toJson() {
     final flowDefinitionArn = this.flowDefinitionArn;
     final humanLoopName = this.humanLoopName;
@@ -7968,6 +8735,7 @@ class HumanLoopDataAttributes {
   HumanLoopDataAttributes({
     this.contentClassifiers,
   });
+
   Map<String, dynamic> toJson() {
     final contentClassifiers = this.contentClassifiers;
     return {
@@ -8016,6 +8784,7 @@ class Image {
     this.bytes,
     this.s3Object,
   });
+
   Map<String, dynamic> toJson() {
     final bytes = this.bytes;
     final s3Object = this.s3Object;
@@ -8047,6 +8816,15 @@ class ImageQuality {
       brightness: json['Brightness'] as double?,
       sharpness: json['Sharpness'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final brightness = this.brightness;
+    final sharpness = this.sharpness;
+    return {
+      if (brightness != null) 'Brightness': brightness,
+      if (sharpness != null) 'Sharpness': sharpness,
+    };
   }
 }
 
@@ -8118,6 +8896,20 @@ class IndexFacesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final faceModelVersion = this.faceModelVersion;
+    final faceRecords = this.faceRecords;
+    final orientationCorrection = this.orientationCorrection;
+    final unindexedFaces = this.unindexedFaces;
+    return {
+      if (faceModelVersion != null) 'FaceModelVersion': faceModelVersion,
+      if (faceRecords != null) 'FaceRecords': faceRecords,
+      if (orientationCorrection != null)
+        'OrientationCorrection': orientationCorrection.toValue(),
+      if (unindexedFaces != null) 'UnindexedFaces': unindexedFaces,
+    };
+  }
 }
 
 /// An instance of a label returned by Amazon Rekognition Image
@@ -8142,6 +8934,15 @@ class Instance {
           : null,
       confidence: json['Confidence'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final boundingBox = this.boundingBox;
+    final confidence = this.confidence;
+    return {
+      if (boundingBox != null) 'BoundingBox': boundingBox,
+      if (confidence != null) 'Confidence': confidence,
+    };
   }
 }
 
@@ -8209,6 +9010,7 @@ class KinesisVideoStreamStartSelector {
     this.fragmentNumber,
     this.producerTimestamp,
   });
+
   Map<String, dynamic> toJson() {
     final fragmentNumber = this.fragmentNumber;
     final producerTimestamp = this.producerTimestamp;
@@ -8232,6 +9034,13 @@ class KnownGender {
     return KnownGender(
       type: (json['Type'] as String?)?.toKnownGenderType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    return {
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -8314,6 +9123,19 @@ class Label {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final instances = this.instances;
+    final name = this.name;
+    final parents = this.parents;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (instances != null) 'Instances': instances,
+      if (name != null) 'Name': name,
+      if (parents != null) 'Parents': parents,
+    };
+  }
 }
 
 /// Information about a label detected in a video analysis request and the time
@@ -8337,6 +9159,15 @@ class LabelDetection {
           : null,
       timestamp: json['Timestamp'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final label = this.label;
+    final timestamp = this.timestamp;
+    return {
+      if (label != null) 'Label': label,
+      if (timestamp != null) 'Timestamp': timestamp,
+    };
   }
 }
 
@@ -8396,6 +9227,17 @@ class Landmark {
       x: json['X'] as double?,
       y: json['Y'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final x = this.x;
+    final y = this.y;
+    return {
+      if (type != null) 'Type': type.toValue(),
+      if (x != null) 'X': x,
+      if (y != null) 'Y': y,
+    };
   }
 }
 
@@ -8600,6 +9442,17 @@ class ListCollectionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final collectionIds = this.collectionIds;
+    final faceModelVersions = this.faceModelVersions;
+    final nextToken = this.nextToken;
+    return {
+      if (collectionIds != null) 'CollectionIds': collectionIds,
+      if (faceModelVersions != null) 'FaceModelVersions': faceModelVersions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDatasetEntriesResponse {
@@ -8624,6 +9477,15 @@ class ListDatasetEntriesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasetEntries = this.datasetEntries;
+    final nextToken = this.nextToken;
+    return {
+      if (datasetEntries != null) 'DatasetEntries': datasetEntries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -8650,6 +9512,16 @@ class ListDatasetLabelsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasetLabelDescriptions = this.datasetLabelDescriptions;
+    final nextToken = this.nextToken;
+    return {
+      if (datasetLabelDescriptions != null)
+        'DatasetLabelDescriptions': datasetLabelDescriptions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -8680,6 +9552,17 @@ class ListFacesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final faceModelVersion = this.faceModelVersion;
+    final faces = this.faces;
+    final nextToken = this.nextToken;
+    return {
+      if (faceModelVersion != null) 'FaceModelVersion': faceModelVersion,
+      if (faces != null) 'Faces': faces,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListStreamProcessorsResponse {
@@ -8704,6 +9587,15 @@ class ListStreamProcessorsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final streamProcessors = this.streamProcessors;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (streamProcessors != null) 'StreamProcessors': streamProcessors,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -8718,6 +9610,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -8753,6 +9652,17 @@ class ModerationLabel {
       parentName: json['ParentName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final name = this.name;
+    final parentName = this.parentName;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (name != null) 'Name': name,
+      if (parentName != null) 'ParentName': parentName,
+    };
+  }
 }
 
 /// Indicates whether or not the mouth on the face is open, and the confidence
@@ -8774,6 +9684,15 @@ class MouthOpen {
       value: json['Value'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final value = this.value;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// Indicates whether or not the face has a mustache, and the confidence level
@@ -8794,6 +9713,15 @@ class Mustache {
       confidence: json['Confidence'] as double?,
       value: json['Value'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final value = this.value;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -8820,6 +9748,7 @@ class NotificationChannel {
     required this.roleArn,
     required this.sNSTopicArn,
   });
+
   Map<String, dynamic> toJson() {
     final roleArn = this.roleArn;
     final sNSTopicArn = this.sNSTopicArn;
@@ -8910,6 +9839,13 @@ class Parent {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Details about a person detected in a video analysis request.
@@ -8941,6 +9877,17 @@ class PersonDetail {
       index: json['Index'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final boundingBox = this.boundingBox;
+    final face = this.face;
+    final index = this.index;
+    return {
+      if (boundingBox != null) 'BoundingBox': boundingBox,
+      if (face != null) 'Face': face,
+      if (index != null) 'Index': index,
+    };
+  }
 }
 
 /// Details and path tracking information for a single time a person's path is
@@ -8969,6 +9916,15 @@ class PersonDetection {
           : null,
       timestamp: json['Timestamp'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final person = this.person;
+    final timestamp = this.timestamp;
+    return {
+      if (person != null) 'Person': person,
+      if (timestamp != null) 'Timestamp': timestamp,
+    };
   }
 }
 
@@ -9006,6 +9962,17 @@ class PersonMatch {
           : null,
       timestamp: json['Timestamp'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final faceMatches = this.faceMatches;
+    final person = this.person;
+    final timestamp = this.timestamp;
+    return {
+      if (faceMatches != null) 'FaceMatches': faceMatches,
+      if (person != null) 'Person': person,
+      if (timestamp != null) 'Timestamp': timestamp,
+    };
   }
 }
 
@@ -9098,6 +10065,17 @@ class Pose {
       yaw: json['Yaw'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pitch = this.pitch;
+    final roll = this.roll;
+    final yaw = this.yaw;
+    return {
+      if (pitch != null) 'Pitch': pitch,
+      if (roll != null) 'Roll': roll,
+      if (yaw != null) 'Yaw': yaw,
+    };
+  }
 }
 
 /// A description of an Amazon Rekognition Custom Labels project. For more
@@ -9131,6 +10109,20 @@ class ProjectDescription {
       projectArn: json['ProjectArn'] as String?,
       status: (json['Status'] as String?)?.toProjectStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final datasets = this.datasets;
+    final projectArn = this.projectArn;
+    final status = this.status;
+    return {
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (datasets != null) 'Datasets': datasets,
+      if (projectArn != null) 'ProjectArn': projectArn,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -9268,6 +10260,42 @@ class ProjectVersionDescription {
       trainingEndTimestamp: timeStampFromJson(json['TrainingEndTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final billableTrainingTimeInSeconds = this.billableTrainingTimeInSeconds;
+    final creationTimestamp = this.creationTimestamp;
+    final evaluationResult = this.evaluationResult;
+    final kmsKeyId = this.kmsKeyId;
+    final manifestSummary = this.manifestSummary;
+    final maxInferenceUnits = this.maxInferenceUnits;
+    final minInferenceUnits = this.minInferenceUnits;
+    final outputConfig = this.outputConfig;
+    final projectVersionArn = this.projectVersionArn;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final testingDataResult = this.testingDataResult;
+    final trainingDataResult = this.trainingDataResult;
+    final trainingEndTimestamp = this.trainingEndTimestamp;
+    return {
+      if (billableTrainingTimeInSeconds != null)
+        'BillableTrainingTimeInSeconds': billableTrainingTimeInSeconds,
+      if (creationTimestamp != null)
+        'CreationTimestamp': unixTimestampToJson(creationTimestamp),
+      if (evaluationResult != null) 'EvaluationResult': evaluationResult,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (manifestSummary != null) 'ManifestSummary': manifestSummary,
+      if (maxInferenceUnits != null) 'MaxInferenceUnits': maxInferenceUnits,
+      if (minInferenceUnits != null) 'MinInferenceUnits': minInferenceUnits,
+      if (outputConfig != null) 'OutputConfig': outputConfig,
+      if (projectVersionArn != null) 'ProjectVersionArn': projectVersionArn,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (testingDataResult != null) 'TestingDataResult': testingDataResult,
+      if (trainingDataResult != null) 'TrainingDataResult': trainingDataResult,
+      if (trainingEndTimestamp != null)
+        'TrainingEndTimestamp': unixTimestampToJson(trainingEndTimestamp),
+    };
+  }
 }
 
 enum ProjectVersionStatus {
@@ -9363,6 +10391,18 @@ class ProtectiveEquipmentBodyPart {
       name: (json['Name'] as String?)?.toBodyPart(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final equipmentDetections = this.equipmentDetections;
+    final name = this.name;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (equipmentDetections != null)
+        'EquipmentDetections': equipmentDetections,
+      if (name != null) 'Name': name.toValue(),
+    };
+  }
 }
 
 /// A person detected by a call to <a>DetectProtectiveEquipment</a>. The API
@@ -9404,6 +10444,19 @@ class ProtectiveEquipmentPerson {
       id: json['Id'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bodyParts = this.bodyParts;
+    final boundingBox = this.boundingBox;
+    final confidence = this.confidence;
+    final id = this.id;
+    return {
+      if (bodyParts != null) 'BodyParts': bodyParts,
+      if (boundingBox != null) 'BoundingBox': boundingBox,
+      if (confidence != null) 'Confidence': confidence,
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 /// Specifies summary attributes to return from a call to
@@ -9442,6 +10495,7 @@ class ProtectiveEquipmentSummarizationAttributes {
     required this.minConfidence,
     required this.requiredEquipmentTypes,
   });
+
   Map<String, dynamic> toJson() {
     final minConfidence = this.minConfidence;
     final requiredEquipmentTypes = this.requiredEquipmentTypes;
@@ -9507,6 +10561,21 @@ class ProtectiveEquipmentSummary {
               .map((e) => e as int)
               .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final personsIndeterminate = this.personsIndeterminate;
+    final personsWithRequiredEquipment = this.personsWithRequiredEquipment;
+    final personsWithoutRequiredEquipment =
+        this.personsWithoutRequiredEquipment;
+    return {
+      if (personsIndeterminate != null)
+        'PersonsIndeterminate': personsIndeterminate,
+      if (personsWithRequiredEquipment != null)
+        'PersonsWithRequiredEquipment': personsWithRequiredEquipment,
+      if (personsWithoutRequiredEquipment != null)
+        'PersonsWithoutRequiredEquipment': personsWithoutRequiredEquipment,
+    };
   }
 }
 
@@ -9692,6 +10761,18 @@ class RecognizeCelebritiesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final celebrityFaces = this.celebrityFaces;
+    final orientationCorrection = this.orientationCorrection;
+    final unrecognizedFaces = this.unrecognizedFaces;
+    return {
+      if (celebrityFaces != null) 'CelebrityFaces': celebrityFaces,
+      if (orientationCorrection != null)
+        'OrientationCorrection': orientationCorrection.toValue(),
+      if (unrecognizedFaces != null) 'UnrecognizedFaces': unrecognizedFaces,
+    };
+  }
 }
 
 /// Specifies a location within the frame that Rekognition checks for objects of
@@ -9853,6 +10934,21 @@ class SearchFacesByImageResponse {
       searchedFaceConfidence: json['SearchedFaceConfidence'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final faceMatches = this.faceMatches;
+    final faceModelVersion = this.faceModelVersion;
+    final searchedFaceBoundingBox = this.searchedFaceBoundingBox;
+    final searchedFaceConfidence = this.searchedFaceConfidence;
+    return {
+      if (faceMatches != null) 'FaceMatches': faceMatches,
+      if (faceModelVersion != null) 'FaceModelVersion': faceModelVersion,
+      if (searchedFaceBoundingBox != null)
+        'SearchedFaceBoundingBox': searchedFaceBoundingBox,
+      if (searchedFaceConfidence != null)
+        'SearchedFaceConfidence': searchedFaceConfidence,
+    };
+  }
 }
 
 class SearchFacesResponse {
@@ -9881,6 +10977,17 @@ class SearchFacesResponse {
       faceModelVersion: json['FaceModelVersion'] as String?,
       searchedFaceId: json['SearchedFaceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final faceMatches = this.faceMatches;
+    final faceModelVersion = this.faceModelVersion;
+    final searchedFaceId = this.searchedFaceId;
+    return {
+      if (faceMatches != null) 'FaceMatches': faceMatches,
+      if (faceModelVersion != null) 'FaceModelVersion': faceModelVersion,
+      if (searchedFaceId != null) 'SearchedFaceId': searchedFaceId,
+    };
   }
 }
 
@@ -9972,6 +11079,37 @@ class SegmentDetection {
       type: (json['Type'] as String?)?.toSegmentType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final durationFrames = this.durationFrames;
+    final durationMillis = this.durationMillis;
+    final durationSMPTE = this.durationSMPTE;
+    final endFrameNumber = this.endFrameNumber;
+    final endTimecodeSMPTE = this.endTimecodeSMPTE;
+    final endTimestampMillis = this.endTimestampMillis;
+    final shotSegment = this.shotSegment;
+    final startFrameNumber = this.startFrameNumber;
+    final startTimecodeSMPTE = this.startTimecodeSMPTE;
+    final startTimestampMillis = this.startTimestampMillis;
+    final technicalCueSegment = this.technicalCueSegment;
+    final type = this.type;
+    return {
+      if (durationFrames != null) 'DurationFrames': durationFrames,
+      if (durationMillis != null) 'DurationMillis': durationMillis,
+      if (durationSMPTE != null) 'DurationSMPTE': durationSMPTE,
+      if (endFrameNumber != null) 'EndFrameNumber': endFrameNumber,
+      if (endTimecodeSMPTE != null) 'EndTimecodeSMPTE': endTimecodeSMPTE,
+      if (endTimestampMillis != null) 'EndTimestampMillis': endTimestampMillis,
+      if (shotSegment != null) 'ShotSegment': shotSegment,
+      if (startFrameNumber != null) 'StartFrameNumber': startFrameNumber,
+      if (startTimecodeSMPTE != null) 'StartTimecodeSMPTE': startTimecodeSMPTE,
+      if (startTimestampMillis != null)
+        'StartTimestampMillis': startTimestampMillis,
+      if (technicalCueSegment != null)
+        'TechnicalCueSegment': technicalCueSegment,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum SegmentType {
@@ -10022,6 +11160,15 @@ class SegmentTypeInfo {
       type: (json['Type'] as String?)?.toSegmentType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final modelVersion = this.modelVersion;
+    final type = this.type;
+    return {
+      if (modelVersion != null) 'ModelVersion': modelVersion,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Information about a shot detection segment detected in a video. For more
@@ -10044,6 +11191,15 @@ class ShotSegment {
       index: json['Index'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final index = this.index;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (index != null) 'Index': index,
+    };
+  }
 }
 
 /// Indicates whether or not the face is smiling, and the confidence level in
@@ -10065,6 +11221,15 @@ class Smile {
       value: json['Value'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final value = this.value;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 class StartCelebrityRecognitionResponse {
@@ -10082,6 +11247,13 @@ class StartCelebrityRecognitionResponse {
       jobId: json['JobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
+  }
 }
 
 class StartContentModerationResponse {
@@ -10096,6 +11268,13 @@ class StartContentModerationResponse {
     return StartContentModerationResponse(
       jobId: json['JobId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
   }
 }
 
@@ -10112,6 +11291,13 @@ class StartFaceDetectionResponse {
       jobId: json['JobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
+  }
 }
 
 class StartFaceSearchResponse {
@@ -10126,6 +11312,13 @@ class StartFaceSearchResponse {
     return StartFaceSearchResponse(
       jobId: json['JobId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
   }
 }
 
@@ -10142,6 +11335,13 @@ class StartLabelDetectionResponse {
       jobId: json['JobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
+  }
 }
 
 class StartPersonTrackingResponse {
@@ -10157,6 +11357,13 @@ class StartPersonTrackingResponse {
       jobId: json['JobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
+  }
 }
 
 class StartProjectVersionResponse {
@@ -10170,6 +11377,13 @@ class StartProjectVersionResponse {
     return StartProjectVersionResponse(
       status: (json['Status'] as String?)?.toProjectVersionStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -10186,6 +11400,7 @@ class StartSegmentDetectionFilters {
     this.shotFilter,
     this.technicalCueFilter,
   });
+
   Map<String, dynamic> toJson() {
     final shotFilter = this.shotFilter;
     final technicalCueFilter = this.technicalCueFilter;
@@ -10209,6 +11424,13 @@ class StartSegmentDetectionResponse {
       jobId: json['JobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
+  }
 }
 
 /// Filters for the shot detection segments returned by
@@ -10229,6 +11451,7 @@ class StartShotDetectionFilter {
   StartShotDetectionFilter({
     this.minSegmentConfidence,
   });
+
   Map<String, dynamic> toJson() {
     final minSegmentConfidence = this.minSegmentConfidence;
     return {
@@ -10249,6 +11472,13 @@ class StartStreamProcessorResponse {
     return StartStreamProcessorResponse(
       sessionId: json['SessionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sessionId = this.sessionId;
+    return {
+      if (sessionId != null) 'SessionId': sessionId,
+    };
   }
 }
 
@@ -10277,6 +11507,7 @@ class StartTechnicalCueDetectionFilter {
     this.blackFrame,
     this.minSegmentConfidence,
   });
+
   Map<String, dynamic> toJson() {
     final blackFrame = this.blackFrame;
     final minSegmentConfidence = this.minSegmentConfidence;
@@ -10304,6 +11535,7 @@ class StartTextDetectionFilters {
     this.regionsOfInterest,
     this.wordFilter,
   });
+
   Map<String, dynamic> toJson() {
     final regionsOfInterest = this.regionsOfInterest;
     final wordFilter = this.wordFilter;
@@ -10327,6 +11559,13 @@ class StartTextDetectionResponse {
       jobId: json['JobId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    return {
+      if (jobId != null) 'JobId': jobId,
+    };
+  }
 }
 
 class StopProjectVersionResponse {
@@ -10341,12 +11580,23 @@ class StopProjectVersionResponse {
       status: (json['Status'] as String?)?.toProjectVersionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class StopStreamProcessorResponse {
   StopStreamProcessorResponse();
   factory StopStreamProcessorResponse.fromJson(Map<String, dynamic> _) {
     return StopStreamProcessorResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -10359,6 +11609,7 @@ class StreamProcessingStartSelector {
   StreamProcessingStartSelector({
     this.kVSStreamStartSelector,
   });
+
   Map<String, dynamic> toJson() {
     final kVSStreamStartSelector = this.kVSStreamStartSelector;
     return {
@@ -10379,6 +11630,7 @@ class StreamProcessingStopSelector {
   StreamProcessingStopSelector({
     this.maxDurationInSeconds,
   });
+
   Map<String, dynamic> toJson() {
     final maxDurationInSeconds = this.maxDurationInSeconds;
     return {
@@ -10410,6 +11662,15 @@ class StreamProcessor {
       name: json['Name'] as String?,
       status: (json['Status'] as String?)?.toStreamProcessorStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -10617,6 +11878,7 @@ class StreamProcessorSettingsForUpdate {
   StreamProcessorSettingsForUpdate({
     this.connectedHomeForUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final connectedHomeForUpdate = this.connectedHomeForUpdate;
     return {
@@ -10693,6 +11955,13 @@ class Summary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final s3Object = this.s3Object;
+    return {
+      if (s3Object != null) 'S3Object': s3Object,
+    };
+  }
 }
 
 /// Indicates whether or not the face is wearing sunglasses, and the confidence
@@ -10714,12 +11983,25 @@ class Sunglasses {
       value: json['Value'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final value = this.value;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -10742,6 +12024,15 @@ class TechnicalCueSegment {
       confidence: json['Confidence'] as double?,
       type: (json['Type'] as String?)?.toTechnicalCueType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final type = this.type;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -10867,6 +12158,17 @@ class TestingDataResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final input = this.input;
+    final output = this.output;
+    final validation = this.validation;
+    return {
+      if (input != null) 'Input': input,
+      if (output != null) 'Output': output,
+      if (validation != null) 'Validation': validation,
+    };
+  }
 }
 
 /// Information about a word or line of text detected by <a>DetectText</a>.
@@ -10926,6 +12228,23 @@ class TextDetection {
       type: (json['Type'] as String?)?.toTextTypes(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final detectedText = this.detectedText;
+    final geometry = this.geometry;
+    final id = this.id;
+    final parentId = this.parentId;
+    final type = this.type;
+    return {
+      if (confidence != null) 'Confidence': confidence,
+      if (detectedText != null) 'DetectedText': detectedText,
+      if (geometry != null) 'Geometry': geometry,
+      if (id != null) 'Id': id,
+      if (parentId != null) 'ParentId': parentId,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Information about text detected in a video. Incudes the detected text, the
@@ -10951,6 +12270,15 @@ class TextDetectionResult {
           : null,
       timestamp: json['Timestamp'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final textDetection = this.textDetection;
+    final timestamp = this.timestamp;
+    return {
+      if (textDetection != null) 'TextDetection': textDetection,
+      if (timestamp != null) 'Timestamp': timestamp,
+    };
   }
 }
 
@@ -11040,6 +12368,17 @@ class TrainingDataResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final input = this.input;
+    final output = this.output;
+    final validation = this.validation;
+    return {
+      if (input != null) 'Input': input,
+      if (output != null) 'Output': output,
+      if (validation != null) 'Validation': validation,
+    };
+  }
 }
 
 /// A face that <a>IndexFaces</a> detected, but didn't index. Use the
@@ -11092,12 +12431,25 @@ class UnindexedFace {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final faceDetail = this.faceDetail;
+    final reasons = this.reasons;
+    return {
+      if (faceDetail != null) 'FaceDetail': faceDetail,
+      if (reasons != null) 'Reasons': reasons.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -11106,12 +12458,20 @@ class UpdateDatasetEntriesResponse {
   factory UpdateDatasetEntriesResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDatasetEntriesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateStreamProcessorResponse {
   UpdateStreamProcessorResponse();
   factory UpdateStreamProcessorResponse.fromJson(Map<String, dynamic> _) {
     return UpdateStreamProcessorResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -11144,6 +12504,13 @@ class ValidationData {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final assets = this.assets;
+    return {
+      if (assets != null) 'Assets': assets,
+    };
+  }
 }
 
 /// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
@@ -11157,6 +12524,7 @@ class Video {
   Video({
     this.s3Object,
   });
+
   Map<String, dynamic> toJson() {
     final s3Object = this.s3Object;
     return {
@@ -11271,6 +12639,25 @@ class VideoMetadata {
       frameRate: json['FrameRate'] as double?,
       frameWidth: json['FrameWidth'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final codec = this.codec;
+    final colorRange = this.colorRange;
+    final durationMillis = this.durationMillis;
+    final format = this.format;
+    final frameHeight = this.frameHeight;
+    final frameRate = this.frameRate;
+    final frameWidth = this.frameWidth;
+    return {
+      if (codec != null) 'Codec': codec,
+      if (colorRange != null) 'ColorRange': colorRange.toValue(),
+      if (durationMillis != null) 'DurationMillis': durationMillis,
+      if (format != null) 'Format': format,
+      if (frameHeight != null) 'FrameHeight': frameHeight,
+      if (frameRate != null) 'FrameRate': frameRate,
+      if (frameWidth != null) 'FrameWidth': frameWidth,
+    };
   }
 }
 

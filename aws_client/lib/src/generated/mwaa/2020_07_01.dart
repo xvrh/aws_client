@@ -739,6 +739,15 @@ class CreateCliTokenResponse {
       webServerHostname: json['WebServerHostname'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cliToken = this.cliToken;
+    final webServerHostname = this.webServerHostname;
+    return {
+      if (cliToken != null) 'CliToken': cliToken,
+      if (webServerHostname != null) 'WebServerHostname': webServerHostname,
+    };
+  }
 }
 
 class CreateEnvironmentOutput {
@@ -752,6 +761,13 @@ class CreateEnvironmentOutput {
     return CreateEnvironmentOutput(
       arn: json['Arn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -772,12 +788,25 @@ class CreateWebLoginTokenResponse {
       webToken: json['WebToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final webServerHostname = this.webServerHostname;
+    final webToken = this.webToken;
+    return {
+      if (webServerHostname != null) 'WebServerHostname': webServerHostname,
+      if (webToken != null) 'WebToken': webToken,
+    };
+  }
 }
 
 class DeleteEnvironmentOutput {
   DeleteEnvironmentOutput();
   factory DeleteEnvironmentOutput.fromJson(Map<String, dynamic> _) {
     return DeleteEnvironmentOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -796,6 +825,7 @@ class Dimension {
     required this.name,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -1052,6 +1082,70 @@ class Environment {
           json['WeeklyMaintenanceWindowStart'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final airflowConfigurationOptions = this.airflowConfigurationOptions;
+    final airflowVersion = this.airflowVersion;
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final dagS3Path = this.dagS3Path;
+    final environmentClass = this.environmentClass;
+    final executionRoleArn = this.executionRoleArn;
+    final kmsKey = this.kmsKey;
+    final lastUpdate = this.lastUpdate;
+    final loggingConfiguration = this.loggingConfiguration;
+    final maxWorkers = this.maxWorkers;
+    final minWorkers = this.minWorkers;
+    final name = this.name;
+    final networkConfiguration = this.networkConfiguration;
+    final pluginsS3ObjectVersion = this.pluginsS3ObjectVersion;
+    final pluginsS3Path = this.pluginsS3Path;
+    final requirementsS3ObjectVersion = this.requirementsS3ObjectVersion;
+    final requirementsS3Path = this.requirementsS3Path;
+    final schedulers = this.schedulers;
+    final serviceRoleArn = this.serviceRoleArn;
+    final sourceBucketArn = this.sourceBucketArn;
+    final status = this.status;
+    final tags = this.tags;
+    final webserverAccessMode = this.webserverAccessMode;
+    final webserverUrl = this.webserverUrl;
+    final weeklyMaintenanceWindowStart = this.weeklyMaintenanceWindowStart;
+    return {
+      if (airflowConfigurationOptions != null)
+        'AirflowConfigurationOptions': airflowConfigurationOptions,
+      if (airflowVersion != null) 'AirflowVersion': airflowVersion,
+      if (arn != null) 'Arn': arn,
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (dagS3Path != null) 'DagS3Path': dagS3Path,
+      if (environmentClass != null) 'EnvironmentClass': environmentClass,
+      if (executionRoleArn != null) 'ExecutionRoleArn': executionRoleArn,
+      if (kmsKey != null) 'KmsKey': kmsKey,
+      if (lastUpdate != null) 'LastUpdate': lastUpdate,
+      if (loggingConfiguration != null)
+        'LoggingConfiguration': loggingConfiguration,
+      if (maxWorkers != null) 'MaxWorkers': maxWorkers,
+      if (minWorkers != null) 'MinWorkers': minWorkers,
+      if (name != null) 'Name': name,
+      if (networkConfiguration != null)
+        'NetworkConfiguration': networkConfiguration,
+      if (pluginsS3ObjectVersion != null)
+        'PluginsS3ObjectVersion': pluginsS3ObjectVersion,
+      if (pluginsS3Path != null) 'PluginsS3Path': pluginsS3Path,
+      if (requirementsS3ObjectVersion != null)
+        'RequirementsS3ObjectVersion': requirementsS3ObjectVersion,
+      if (requirementsS3Path != null) 'RequirementsS3Path': requirementsS3Path,
+      if (schedulers != null) 'Schedulers': schedulers,
+      if (serviceRoleArn != null) 'ServiceRoleArn': serviceRoleArn,
+      if (sourceBucketArn != null) 'SourceBucketArn': sourceBucketArn,
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (webserverAccessMode != null)
+        'WebserverAccessMode': webserverAccessMode.toValue(),
+      if (webserverUrl != null) 'WebserverUrl': webserverUrl,
+      if (weeklyMaintenanceWindowStart != null)
+        'WeeklyMaintenanceWindowStart': weeklyMaintenanceWindowStart,
+    };
+  }
 }
 
 enum EnvironmentStatus {
@@ -1126,6 +1220,13 @@ class GetEnvironmentOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environment = this.environment;
+    return {
+      if (environment != null) 'Environment': environment,
+    };
+  }
 }
 
 /// Describes the status of the last update on the environment, and any errors
@@ -1160,6 +1261,19 @@ class LastUpdate {
       status: (json['Status'] as String?)?.toUpdateStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final error = this.error;
+    final source = this.source;
+    final status = this.status;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (error != null) 'Error': error,
+      if (source != null) 'Source': source,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class ListEnvironmentsOutput {
@@ -1182,6 +1296,15 @@ class ListEnvironmentsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environments = this.environments;
+    final nextToken = this.nextToken;
+    return {
+      'Environments': environments,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceOutput {
@@ -1199,6 +1322,13 @@ class ListTagsForResourceOutput {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1252,6 +1382,21 @@ class LoggingConfiguration {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dagProcessingLogs = this.dagProcessingLogs;
+    final schedulerLogs = this.schedulerLogs;
+    final taskLogs = this.taskLogs;
+    final webserverLogs = this.webserverLogs;
+    final workerLogs = this.workerLogs;
+    return {
+      if (dagProcessingLogs != null) 'DagProcessingLogs': dagProcessingLogs,
+      if (schedulerLogs != null) 'SchedulerLogs': schedulerLogs,
+      if (taskLogs != null) 'TaskLogs': taskLogs,
+      if (webserverLogs != null) 'WebserverLogs': webserverLogs,
+      if (workerLogs != null) 'WorkerLogs': workerLogs,
+    };
+  }
 }
 
 /// Defines the Apache Airflow log types to send to CloudWatch Logs.
@@ -1278,6 +1423,7 @@ class LoggingConfigurationInput {
     this.webserverLogs,
     this.workerLogs,
   });
+
   Map<String, dynamic> toJson() {
     final dagProcessingLogs = this.dagProcessingLogs;
     final schedulerLogs = this.schedulerLogs;
@@ -1368,6 +1514,7 @@ class MetricDatum {
     this.unit,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final metricName = this.metricName;
     final timestamp = this.timestamp;
@@ -1415,6 +1562,18 @@ class ModuleLoggingConfiguration {
       logLevel: (json['LogLevel'] as String?)?.toLoggingLevel(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogGroupArn = this.cloudWatchLogGroupArn;
+    final enabled = this.enabled;
+    final logLevel = this.logLevel;
+    return {
+      if (cloudWatchLogGroupArn != null)
+        'CloudWatchLogGroupArn': cloudWatchLogGroupArn,
+      if (enabled != null) 'Enabled': enabled,
+      if (logLevel != null) 'LogLevel': logLevel.toValue(),
+    };
+  }
 }
 
 /// Enables the Apache Airflow log type (e.g. <code>DagProcessingLogs</code>)
@@ -1433,6 +1592,7 @@ class ModuleLoggingConfigurationInput {
     required this.enabled,
     required this.logLevel,
   });
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     final logLevel = this.logLevel;
@@ -1491,6 +1651,10 @@ class PublishMetricsOutput {
   factory PublishMetricsOutput.fromJson(Map<String, dynamic> _) {
     return PublishMetricsOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// <b>Internal only</b>. Represents a set of statistics that describe a
@@ -1517,6 +1681,7 @@ class StatisticSet {
     this.sampleCount,
     this.sum,
   });
+
   Map<String, dynamic> toJson() {
     final maximum = this.maximum;
     final minimum = this.minimum;
@@ -1535,6 +1700,10 @@ class TagResourceOutput {
   TagResourceOutput();
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1696,6 +1865,10 @@ class UntagResourceOutput {
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateEnvironmentOutput {
@@ -1710,6 +1883,13 @@ class UpdateEnvironmentOutput {
     return UpdateEnvironmentOutput(
       arn: json['Arn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -1731,6 +1911,15 @@ class UpdateError {
       errorMessage: json['ErrorMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+    };
+  }
 }
 
 /// Defines the VPC networking components used to secure and enable network
@@ -1748,6 +1937,7 @@ class UpdateNetworkConfigurationInput {
   UpdateNetworkConfigurationInput({
     required this.securityGroupIds,
   });
+
   Map<String, dynamic> toJson() {
     final securityGroupIds = this.securityGroupIds;
     return {

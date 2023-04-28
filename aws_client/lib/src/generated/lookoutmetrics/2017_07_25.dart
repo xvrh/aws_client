@@ -1310,6 +1310,10 @@ class ActivateAnomalyDetectorResponse {
   factory ActivateAnomalyDetectorResponse.fromJson(Map<String, dynamic> _) {
     return ActivateAnomalyDetectorResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 enum AggregationFunction {
@@ -1407,6 +1411,36 @@ class Alert {
       creationTime: timeStampFromJson(json['CreationTime']),
       lastModificationTime: timeStampFromJson(json['LastModificationTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final alertArn = this.alertArn;
+    final alertDescription = this.alertDescription;
+    final alertFilters = this.alertFilters;
+    final alertName = this.alertName;
+    final alertSensitivityThreshold = this.alertSensitivityThreshold;
+    final alertStatus = this.alertStatus;
+    final alertType = this.alertType;
+    final anomalyDetectorArn = this.anomalyDetectorArn;
+    final creationTime = this.creationTime;
+    final lastModificationTime = this.lastModificationTime;
+    return {
+      if (action != null) 'Action': action,
+      if (alertArn != null) 'AlertArn': alertArn,
+      if (alertDescription != null) 'AlertDescription': alertDescription,
+      if (alertFilters != null) 'AlertFilters': alertFilters,
+      if (alertName != null) 'AlertName': alertName,
+      if (alertSensitivityThreshold != null)
+        'AlertSensitivityThreshold': alertSensitivityThreshold,
+      if (alertStatus != null) 'AlertStatus': alertStatus.toValue(),
+      if (alertType != null) 'AlertType': alertType.toValue(),
+      if (anomalyDetectorArn != null) 'AnomalyDetectorArn': anomalyDetectorArn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+    };
   }
 }
 
@@ -1530,6 +1564,32 @@ class AlertSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alertArn = this.alertArn;
+    final alertName = this.alertName;
+    final alertSensitivityThreshold = this.alertSensitivityThreshold;
+    final alertStatus = this.alertStatus;
+    final alertType = this.alertType;
+    final anomalyDetectorArn = this.anomalyDetectorArn;
+    final creationTime = this.creationTime;
+    final lastModificationTime = this.lastModificationTime;
+    final tags = this.tags;
+    return {
+      if (alertArn != null) 'AlertArn': alertArn,
+      if (alertName != null) 'AlertName': alertName,
+      if (alertSensitivityThreshold != null)
+        'AlertSensitivityThreshold': alertSensitivityThreshold,
+      if (alertStatus != null) 'AlertStatus': alertStatus.toValue(),
+      if (alertType != null) 'AlertType': alertType.toValue(),
+      if (anomalyDetectorArn != null) 'AnomalyDetectorArn': anomalyDetectorArn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 enum AlertType {
@@ -1612,6 +1672,7 @@ class AnomalyDetectorConfig {
   AnomalyDetectorConfig({
     this.anomalyDetectorFrequency,
   });
+
   Map<String, dynamic> toJson() {
     final anomalyDetectorFrequency = this.anomalyDetectorFrequency;
     return {
@@ -1634,6 +1695,14 @@ class AnomalyDetectorConfigSummary {
       anomalyDetectorFrequency:
           (json['AnomalyDetectorFrequency'] as String?)?.toFrequency(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final anomalyDetectorFrequency = this.anomalyDetectorFrequency;
+    return {
+      if (anomalyDetectorFrequency != null)
+        'AnomalyDetectorFrequency': anomalyDetectorFrequency.toValue(),
+    };
   }
 }
 
@@ -1794,6 +1863,29 @@ class AnomalyDetectorSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyDetectorArn = this.anomalyDetectorArn;
+    final anomalyDetectorDescription = this.anomalyDetectorDescription;
+    final anomalyDetectorName = this.anomalyDetectorName;
+    final creationTime = this.creationTime;
+    final lastModificationTime = this.lastModificationTime;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (anomalyDetectorArn != null) 'AnomalyDetectorArn': anomalyDetectorArn,
+      if (anomalyDetectorDescription != null)
+        'AnomalyDetectorDescription': anomalyDetectorDescription,
+      if (anomalyDetectorName != null)
+        'AnomalyDetectorName': anomalyDetectorName,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// A group of anomalous metrics
@@ -1837,6 +1929,24 @@ class AnomalyGroup {
       startTime: json['StartTime'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyGroupId = this.anomalyGroupId;
+    final anomalyGroupScore = this.anomalyGroupScore;
+    final endTime = this.endTime;
+    final metricLevelImpactList = this.metricLevelImpactList;
+    final primaryMetricName = this.primaryMetricName;
+    final startTime = this.startTime;
+    return {
+      if (anomalyGroupId != null) 'AnomalyGroupId': anomalyGroupId,
+      if (anomalyGroupScore != null) 'AnomalyGroupScore': anomalyGroupScore,
+      if (endTime != null) 'EndTime': endTime,
+      if (metricLevelImpactList != null)
+        'MetricLevelImpactList': metricLevelImpactList,
+      if (primaryMetricName != null) 'PrimaryMetricName': primaryMetricName,
+      if (startTime != null) 'StartTime': startTime,
+    };
+  }
 }
 
 /// Aggregated statistics for a group of anomalous metrics.
@@ -1864,6 +1974,19 @@ class AnomalyGroupStatistics {
           .toList(),
       totalCount: json['TotalCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evaluationStartDate = this.evaluationStartDate;
+    final itemizedMetricStatsList = this.itemizedMetricStatsList;
+    final totalCount = this.totalCount;
+    return {
+      if (evaluationStartDate != null)
+        'EvaluationStartDate': evaluationStartDate,
+      if (itemizedMetricStatsList != null)
+        'ItemizedMetricStatsList': itemizedMetricStatsList,
+      if (totalCount != null) 'TotalCount': totalCount,
+    };
   }
 }
 
@@ -1900,6 +2023,21 @@ class AnomalyGroupSummary {
       startTime: json['StartTime'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyGroupId = this.anomalyGroupId;
+    final anomalyGroupScore = this.anomalyGroupScore;
+    final endTime = this.endTime;
+    final primaryMetricName = this.primaryMetricName;
+    final startTime = this.startTime;
+    return {
+      if (anomalyGroupId != null) 'AnomalyGroupId': anomalyGroupId,
+      if (anomalyGroupScore != null) 'AnomalyGroupScore': anomalyGroupScore,
+      if (endTime != null) 'EndTime': endTime,
+      if (primaryMetricName != null) 'PrimaryMetricName': primaryMetricName,
+      if (startTime != null) 'StartTime': startTime,
+    };
+  }
 }
 
 /// An anomalous metric in an anomaly group.
@@ -1914,6 +2052,7 @@ class AnomalyGroupTimeSeries {
     required this.anomalyGroupId,
     this.timeSeriesId,
   });
+
   Map<String, dynamic> toJson() {
     final anomalyGroupId = this.anomalyGroupId;
     final timeSeriesId = this.timeSeriesId;
@@ -1940,6 +2079,7 @@ class AnomalyGroupTimeSeriesFeedback {
     required this.isAnomaly,
     required this.timeSeriesId,
   });
+
   Map<String, dynamic> toJson() {
     final anomalyGroupId = this.anomalyGroupId;
     final isAnomaly = this.isAnomaly;
@@ -2098,6 +2238,23 @@ class AttributeValue {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final b = this.b;
+    final bs = this.bs;
+    final n = this.n;
+    final ns = this.ns;
+    final s = this.s;
+    final ss = this.ss;
+    return {
+      if (b != null) 'B': b,
+      if (bs != null) 'BS': bs,
+      if (n != null) 'N': n,
+      if (ns != null) 'NS': ns,
+      if (s != null) 'S': s,
+      if (ss != null) 'SS': ss,
+    };
+  }
 }
 
 /// An auto detection metric source.
@@ -2108,6 +2265,7 @@ class AutoDetectionMetricSource {
   AutoDetectionMetricSource({
     this.s3SourceConfig,
   });
+
   Map<String, dynamic> toJson() {
     final s3SourceConfig = this.s3SourceConfig;
     return {
@@ -2128,6 +2286,7 @@ class AutoDetectionS3SourceConfig {
     this.historicalDataPathList,
     this.templatedPathList,
   });
+
   Map<String, dynamic> toJson() {
     final historicalDataPathList = this.historicalDataPathList;
     final templatedPathList = this.templatedPathList;
@@ -2143,6 +2302,10 @@ class BackTestAnomalyDetectorResponse {
   BackTestAnomalyDetectorResponse();
   factory BackTestAnomalyDetectorResponse.fromJson(Map<String, dynamic> _) {
     return BackTestAnomalyDetectorResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2279,6 +2442,14 @@ class ContributionMatrix {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dimensionContributionList = this.dimensionContributionList;
+    return {
+      if (dimensionContributionList != null)
+        'DimensionContributionList': dimensionContributionList,
+    };
+  }
 }
 
 class CreateAlertResponse {
@@ -2292,6 +2463,13 @@ class CreateAlertResponse {
     return CreateAlertResponse(
       alertArn: json['AlertArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alertArn = this.alertArn;
+    return {
+      if (alertArn != null) 'AlertArn': alertArn,
+    };
   }
 }
 
@@ -2307,6 +2485,13 @@ class CreateAnomalyDetectorResponse {
       anomalyDetectorArn: json['AnomalyDetectorArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyDetectorArn = this.anomalyDetectorArn;
+    return {
+      if (anomalyDetectorArn != null) 'AnomalyDetectorArn': anomalyDetectorArn,
+    };
+  }
 }
 
 class CreateMetricSetResponse {
@@ -2320,6 +2505,13 @@ class CreateMetricSetResponse {
     return CreateMetricSetResponse(
       metricSetArn: json['MetricSetArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricSetArn = this.metricSetArn;
+    return {
+      if (metricSetArn != null) 'MetricSetArn': metricSetArn,
+    };
   }
 }
 
@@ -2389,6 +2581,10 @@ class DeactivateAnomalyDetectorResponse {
   factory DeactivateAnomalyDetectorResponse.fromJson(Map<String, dynamic> _) {
     return DeactivateAnomalyDetectorResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteAlertResponse {
@@ -2396,12 +2592,20 @@ class DeleteAlertResponse {
   factory DeleteAlertResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAlertResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteAnomalyDetectorResponse {
   DeleteAnomalyDetectorResponse();
   factory DeleteAnomalyDetectorResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAnomalyDetectorResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2418,6 +2622,13 @@ class DescribeAlertResponse {
           ? Alert.fromJson(json['Alert'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alert = this.alert;
+    return {
+      if (alert != null) 'Alert': alert,
+    };
   }
 }
 
@@ -2441,6 +2652,15 @@ class DescribeAnomalyDetectionExecutionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final executionList = this.executionList;
+    final nextToken = this.nextToken;
+    return {
+      if (executionList != null) 'ExecutionList': executionList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2504,6 +2724,36 @@ class DescribeAnomalyDetectorResponse {
       lastModificationTime: timeStampFromJson(json['LastModificationTime']),
       status: (json['Status'] as String?)?.toAnomalyDetectorStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final anomalyDetectorArn = this.anomalyDetectorArn;
+    final anomalyDetectorConfig = this.anomalyDetectorConfig;
+    final anomalyDetectorDescription = this.anomalyDetectorDescription;
+    final anomalyDetectorName = this.anomalyDetectorName;
+    final creationTime = this.creationTime;
+    final failureReason = this.failureReason;
+    final failureType = this.failureType;
+    final kmsKeyArn = this.kmsKeyArn;
+    final lastModificationTime = this.lastModificationTime;
+    final status = this.status;
+    return {
+      if (anomalyDetectorArn != null) 'AnomalyDetectorArn': anomalyDetectorArn,
+      if (anomalyDetectorConfig != null)
+        'AnomalyDetectorConfig': anomalyDetectorConfig,
+      if (anomalyDetectorDescription != null)
+        'AnomalyDetectorDescription': anomalyDetectorDescription,
+      if (anomalyDetectorName != null)
+        'AnomalyDetectorName': anomalyDetectorName,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (failureType != null) 'FailureType': failureType.toValue(),
+      if (kmsKeyArn != null) 'KmsKeyArn': kmsKeyArn,
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -2592,6 +2842,41 @@ class DescribeMetricSetResponse {
       timezone: json['Timezone'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyDetectorArn = this.anomalyDetectorArn;
+    final creationTime = this.creationTime;
+    final dimensionList = this.dimensionList;
+    final lastModificationTime = this.lastModificationTime;
+    final metricList = this.metricList;
+    final metricSetArn = this.metricSetArn;
+    final metricSetDescription = this.metricSetDescription;
+    final metricSetFrequency = this.metricSetFrequency;
+    final metricSetName = this.metricSetName;
+    final metricSource = this.metricSource;
+    final offset = this.offset;
+    final timestampColumn = this.timestampColumn;
+    final timezone = this.timezone;
+    return {
+      if (anomalyDetectorArn != null) 'AnomalyDetectorArn': anomalyDetectorArn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (dimensionList != null) 'DimensionList': dimensionList,
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (metricList != null) 'MetricList': metricList,
+      if (metricSetArn != null) 'MetricSetArn': metricSetArn,
+      if (metricSetDescription != null)
+        'MetricSetDescription': metricSetDescription,
+      if (metricSetFrequency != null)
+        'MetricSetFrequency': metricSetFrequency.toValue(),
+      if (metricSetName != null) 'MetricSetName': metricSetName,
+      if (metricSource != null) 'MetricSource': metricSource,
+      if (offset != null) 'Offset': offset,
+      if (timestampColumn != null) 'TimestampColumn': timestampColumn,
+      if (timezone != null) 'Timezone': timezone,
+    };
+  }
 }
 
 class DetectMetricSetConfigResponse {
@@ -2608,6 +2893,14 @@ class DetectMetricSetConfigResponse {
               json['DetectedMetricSetConfig'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final detectedMetricSetConfig = this.detectedMetricSetConfig;
+    return {
+      if (detectedMetricSetConfig != null)
+        'DetectedMetricSetConfig': detectedMetricSetConfig,
+    };
   }
 }
 
@@ -2663,6 +2956,23 @@ class DetectedCsvFormatDescriptor {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final charset = this.charset;
+    final containsHeader = this.containsHeader;
+    final delimiter = this.delimiter;
+    final fileCompression = this.fileCompression;
+    final headerList = this.headerList;
+    final quoteSymbol = this.quoteSymbol;
+    return {
+      if (charset != null) 'Charset': charset,
+      if (containsHeader != null) 'ContainsHeader': containsHeader,
+      if (delimiter != null) 'Delimiter': delimiter,
+      if (fileCompression != null) 'FileCompression': fileCompression,
+      if (headerList != null) 'HeaderList': headerList,
+      if (quoteSymbol != null) 'QuoteSymbol': quoteSymbol,
+    };
+  }
 }
 
 /// An inferred field.
@@ -2690,6 +3000,17 @@ class DetectedField {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final confidence = this.confidence;
+    final message = this.message;
+    final value = this.value;
+    return {
+      if (confidence != null) 'Confidence': confidence.toValue(),
+      if (message != null) 'Message': message,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// Properties of an inferred data format.
@@ -2716,6 +3037,17 @@ class DetectedFileFormatDescriptor {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final csvFormatDescriptor = this.csvFormatDescriptor;
+    final jsonFormatDescriptor = this.jsonFormatDescriptor;
+    return {
+      if (csvFormatDescriptor != null)
+        'CsvFormatDescriptor': csvFormatDescriptor,
+      if (jsonFormatDescriptor != null)
+        'JsonFormatDescriptor': jsonFormatDescriptor,
+    };
+  }
 }
 
 /// A detected JSON format descriptor.
@@ -2740,6 +3072,15 @@ class DetectedJsonFormatDescriptor {
               json['FileCompression'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final charset = this.charset;
+    final fileCompression = this.fileCompression;
+    return {
+      if (charset != null) 'Charset': charset,
+      if (fileCompression != null) 'FileCompression': fileCompression,
+    };
   }
 }
 
@@ -2774,6 +3115,17 @@ class DetectedMetricSetConfig {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricSetFrequency = this.metricSetFrequency;
+    final metricSource = this.metricSource;
+    final offset = this.offset;
+    return {
+      if (metricSetFrequency != null) 'MetricSetFrequency': metricSetFrequency,
+      if (metricSource != null) 'MetricSource': metricSource,
+      if (offset != null) 'Offset': offset,
+    };
+  }
 }
 
 /// An inferred data source.
@@ -2792,6 +3144,13 @@ class DetectedMetricSource {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final s3SourceConfig = this.s3SourceConfig;
+    return {
+      if (s3SourceConfig != null) 'S3SourceConfig': s3SourceConfig,
+    };
+  }
 }
 
 /// An inferred source configuration.
@@ -2809,6 +3168,14 @@ class DetectedS3SourceConfig {
               json['FileFormatDescriptor'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileFormatDescriptor = this.fileFormatDescriptor;
+    return {
+      if (fileFormatDescriptor != null)
+        'FileFormatDescriptor': fileFormatDescriptor,
+    };
   }
 }
 
@@ -2834,6 +3201,16 @@ class DimensionContribution {
               DimensionValueContribution.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dimensionName = this.dimensionName;
+    final dimensionValueContributionList = this.dimensionValueContributionList;
+    return {
+      if (dimensionName != null) 'DimensionName': dimensionName,
+      if (dimensionValueContributionList != null)
+        'DimensionValueContributionList': dimensionValueContributionList,
+    };
   }
 }
 
@@ -2888,6 +3265,15 @@ class DimensionNameValue {
       dimensionValue: json['DimensionValue'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dimensionName = this.dimensionName;
+    final dimensionValue = this.dimensionValue;
+    return {
+      'DimensionName': dimensionName,
+      'DimensionValue': dimensionValue,
+    };
+  }
 }
 
 /// The severity of a value of a dimension that contributed to an anomaly.
@@ -2907,6 +3293,15 @@ class DimensionValueContribution {
       contributionScore: json['ContributionScore'] as double?,
       dimensionValue: json['DimensionValue'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final contributionScore = this.contributionScore;
+    final dimensionValue = this.dimensionValue;
+    return {
+      if (contributionScore != null) 'ContributionScore': contributionScore,
+      if (dimensionValue != null) 'DimensionValue': dimensionValue,
+    };
   }
 }
 
@@ -2932,6 +3327,17 @@ class ExecutionStatus {
       status: (json['Status'] as String?)?.toAnomalyDetectionTaskStatus(),
       timestamp: json['Timestamp'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failureReason = this.failureReason;
+    final status = this.status;
+    final timestamp = this.timestamp;
+    return {
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (status != null) 'Status': status.toValue(),
+      if (timestamp != null) 'Timestamp': timestamp,
+    };
   }
 }
 
@@ -3024,6 +3430,13 @@ class GetAnomalyGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyGroup = this.anomalyGroup;
+    return {
+      if (anomalyGroup != null) 'AnomalyGroup': anomalyGroup,
+    };
+  }
 }
 
 class GetFeedbackResponse {
@@ -3046,6 +3459,16 @@ class GetFeedbackResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final anomalyGroupTimeSeriesFeedback = this.anomalyGroupTimeSeriesFeedback;
+    final nextToken = this.nextToken;
+    return {
+      if (anomalyGroupTimeSeriesFeedback != null)
+        'AnomalyGroupTimeSeriesFeedback': anomalyGroupTimeSeriesFeedback,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3072,6 +3495,15 @@ class GetSampleDataResponse {
               (e as List).whereNotNull().map((e) => e as String).toList())
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final headerValues = this.headerValues;
+    final sampleRows = this.sampleRows;
+    return {
+      if (headerValues != null) 'HeaderValues': headerValues,
+      if (sampleRows != null) 'SampleRows': sampleRows,
+    };
   }
 }
 
@@ -3109,6 +3541,21 @@ class InterMetricImpactDetails {
           (json['RelationshipType'] as String?)?.toRelationshipType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyGroupId = this.anomalyGroupId;
+    final contributionPercentage = this.contributionPercentage;
+    final metricName = this.metricName;
+    final relationshipType = this.relationshipType;
+    return {
+      if (anomalyGroupId != null) 'AnomalyGroupId': anomalyGroupId,
+      if (contributionPercentage != null)
+        'ContributionPercentage': contributionPercentage,
+      if (metricName != null) 'MetricName': metricName,
+      if (relationshipType != null)
+        'RelationshipType': relationshipType.toValue(),
+    };
+  }
 }
 
 /// Aggregated statistics about a measure affected by an anomaly.
@@ -3128,6 +3575,15 @@ class ItemizedMetricStats {
       metricName: json['MetricName'] as String?,
       occurrenceCount: json['OccurrenceCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricName = this.metricName;
+    final occurrenceCount = this.occurrenceCount;
+    return {
+      if (metricName != null) 'MetricName': metricName,
+      if (occurrenceCount != null) 'OccurrenceCount': occurrenceCount,
+    };
   }
 }
 
@@ -3239,6 +3695,15 @@ class ListAlertsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alertSummaryList = this.alertSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (alertSummaryList != null) 'AlertSummaryList': alertSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListAnomalyDetectorsResponse {
@@ -3262,6 +3727,16 @@ class ListAnomalyDetectorsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final anomalyDetectorSummaryList = this.anomalyDetectorSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (anomalyDetectorSummaryList != null)
+        'AnomalyDetectorSummaryList': anomalyDetectorSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3287,6 +3762,16 @@ class ListAnomalyGroupRelatedMetricsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final interMetricImpactList = this.interMetricImpactList;
+    final nextToken = this.nextToken;
+    return {
+      if (interMetricImpactList != null)
+        'InterMetricImpactList': interMetricImpactList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3318,6 +3803,19 @@ class ListAnomalyGroupSummariesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final anomalyGroupStatistics = this.anomalyGroupStatistics;
+    final anomalyGroupSummaryList = this.anomalyGroupSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (anomalyGroupStatistics != null)
+        'AnomalyGroupStatistics': anomalyGroupStatistics,
+      if (anomalyGroupSummaryList != null)
+        'AnomalyGroupSummaryList': anomalyGroupSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3360,6 +3858,21 @@ class ListAnomalyGroupTimeSeriesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyGroupId = this.anomalyGroupId;
+    final metricName = this.metricName;
+    final nextToken = this.nextToken;
+    final timeSeriesList = this.timeSeriesList;
+    final timestampList = this.timestampList;
+    return {
+      if (anomalyGroupId != null) 'AnomalyGroupId': anomalyGroupId,
+      if (metricName != null) 'MetricName': metricName,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (timeSeriesList != null) 'TimeSeriesList': timeSeriesList,
+      if (timestampList != null) 'TimestampList': timestampList,
+    };
+  }
 }
 
 class ListMetricSetsResponse {
@@ -3384,6 +3897,16 @@ class ListMetricSetsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricSetSummaryList = this.metricSetSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (metricSetSummaryList != null)
+        'MetricSetSummaryList': metricSetSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3398,6 +3921,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3465,6 +3995,17 @@ class MetricLevelImpact {
       numTimeSeries: json['NumTimeSeries'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contributionMatrix = this.contributionMatrix;
+    final metricName = this.metricName;
+    final numTimeSeries = this.numTimeSeries;
+    return {
+      if (contributionMatrix != null) 'ContributionMatrix': contributionMatrix,
+      if (metricName != null) 'MetricName': metricName,
+      if (numTimeSeries != null) 'NumTimeSeries': numTimeSeries,
+    };
+  }
 }
 
 /// Contains information about a dataset.
@@ -3511,6 +4052,28 @@ class MetricSetSummary {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final anomalyDetectorArn = this.anomalyDetectorArn;
+    final creationTime = this.creationTime;
+    final lastModificationTime = this.lastModificationTime;
+    final metricSetArn = this.metricSetArn;
+    final metricSetDescription = this.metricSetDescription;
+    final metricSetName = this.metricSetName;
+    final tags = this.tags;
+    return {
+      if (anomalyDetectorArn != null) 'AnomalyDetectorArn': anomalyDetectorArn,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (lastModificationTime != null)
+        'LastModificationTime': unixTimestampToJson(lastModificationTime),
+      if (metricSetArn != null) 'MetricSetArn': metricSetArn,
+      if (metricSetDescription != null)
+        'MetricSetDescription': metricSetDescription,
+      if (metricSetName != null) 'MetricSetName': metricSetName,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3592,6 +4155,10 @@ class PutFeedbackResponse {
   PutFeedbackResponse();
   factory PutFeedbackResponse.fromJson(Map<String, dynamic> _) {
     return PutFeedbackResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3903,6 +4470,7 @@ class SampleDataS3SourceConfig {
     this.historicalDataPathList,
     this.templatedPathList,
   });
+
   Map<String, dynamic> toJson() {
     final fileFormatDescriptor = this.fileFormatDescriptor;
     final roleArn = this.roleArn;
@@ -3956,6 +4524,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Details about a metric. A metric is an aggregation of the values of a
@@ -3989,6 +4561,17 @@ class TimeSeries {
       timeSeriesId: json['TimeSeriesId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dimensionList = this.dimensionList;
+    final metricValueList = this.metricValueList;
+    final timeSeriesId = this.timeSeriesId;
+    return {
+      'DimensionList': dimensionList,
+      'MetricValueList': metricValueList,
+      'TimeSeriesId': timeSeriesId,
+    };
+  }
 }
 
 /// Details about feedback submitted for an anomalous metric.
@@ -4008,6 +4591,15 @@ class TimeSeriesFeedback {
       isAnomaly: json['IsAnomaly'] as bool?,
       timeSeriesId: json['TimeSeriesId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isAnomaly = this.isAnomaly;
+    final timeSeriesId = this.timeSeriesId;
+    return {
+      if (isAnomaly != null) 'IsAnomaly': isAnomaly,
+      if (timeSeriesId != null) 'TimeSeriesId': timeSeriesId,
+    };
   }
 }
 
@@ -4046,6 +4638,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateAlertResponse {
@@ -4059,6 +4655,13 @@ class UpdateAlertResponse {
     return UpdateAlertResponse(
       alertArn: json['AlertArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alertArn = this.alertArn;
+    return {
+      if (alertArn != null) 'AlertArn': alertArn,
+    };
   }
 }
 
@@ -4074,6 +4677,13 @@ class UpdateAnomalyDetectorResponse {
       anomalyDetectorArn: json['AnomalyDetectorArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyDetectorArn = this.anomalyDetectorArn;
+    return {
+      if (anomalyDetectorArn != null) 'AnomalyDetectorArn': anomalyDetectorArn,
+    };
+  }
 }
 
 class UpdateMetricSetResponse {
@@ -4087,6 +4697,13 @@ class UpdateMetricSetResponse {
     return UpdateMetricSetResponse(
       metricSetArn: json['MetricSetArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricSetArn = this.metricSetArn;
+    return {
+      if (metricSetArn != null) 'MetricSetArn': metricSetArn,
+    };
   }
 }
 

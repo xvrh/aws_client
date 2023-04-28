@@ -1493,6 +1493,17 @@ class BatchPutMessageErrorEntry {
       messageId: json['messageId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final messageId = this.messageId;
+    return {
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (messageId != null) 'messageId': messageId,
+    };
+  }
 }
 
 class BatchPutMessageResponse {
@@ -1512,12 +1523,24 @@ class BatchPutMessageResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchPutMessageErrorEntries = this.batchPutMessageErrorEntries;
+    return {
+      if (batchPutMessageErrorEntries != null)
+        'batchPutMessageErrorEntries': batchPutMessageErrorEntries,
+    };
+  }
 }
 
 class CancelPipelineReprocessingResponse {
   CancelPipelineReprocessingResponse();
   factory CancelPipelineReprocessingResponse.fromJson(Map<String, dynamic> _) {
     return CancelPipelineReprocessingResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1584,6 +1607,30 @@ class Channel {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final lastMessageArrivalTime = this.lastMessageArrivalTime;
+    final lastUpdateTime = this.lastUpdateTime;
+    final name = this.name;
+    final retentionPeriod = this.retentionPeriod;
+    final status = this.status;
+    final storage = this.storage;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (lastMessageArrivalTime != null)
+        'lastMessageArrivalTime': unixTimestampToJson(lastMessageArrivalTime),
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (name != null) 'name': name,
+      if (retentionPeriod != null) 'retentionPeriod': retentionPeriod,
+      if (status != null) 'status': status.toValue(),
+      if (storage != null) 'storage': storage,
+    };
+  }
 }
 
 /// The activity that determines the source of the messages to be processed.
@@ -1636,6 +1683,7 @@ class ChannelMessages {
   ChannelMessages({
     this.s3Paths,
   });
+
   Map<String, dynamic> toJson() {
     final s3Paths = this.s3Paths;
     return {
@@ -1658,6 +1706,13 @@ class ChannelStatistics {
           ? EstimatedResourceSize.fromJson(json['size'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final size = this.size;
+    return {
+      if (size != null) 'size': size,
+    };
   }
 }
 
@@ -1760,6 +1815,15 @@ class ChannelStorageSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customerManagedS3 = this.customerManagedS3;
+    final serviceManagedS3 = this.serviceManagedS3;
+    return {
+      if (customerManagedS3 != null) 'customerManagedS3': customerManagedS3,
+      if (serviceManagedS3 != null) 'serviceManagedS3': serviceManagedS3,
+    };
+  }
 }
 
 /// A summary of information about a channel.
@@ -1808,6 +1872,26 @@ class ChannelSummary {
       lastUpdateTime: timeStampFromJson(json['lastUpdateTime']),
       status: (json['status'] as String?)?.toChannelStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelName = this.channelName;
+    final channelStorage = this.channelStorage;
+    final creationTime = this.creationTime;
+    final lastMessageArrivalTime = this.lastMessageArrivalTime;
+    final lastUpdateTime = this.lastUpdateTime;
+    final status = this.status;
+    return {
+      if (channelName != null) 'channelName': channelName,
+      if (channelStorage != null) 'channelStorage': channelStorage,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (lastMessageArrivalTime != null)
+        'lastMessageArrivalTime': unixTimestampToJson(lastMessageArrivalTime),
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -1954,6 +2038,17 @@ class CreateChannelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final channelName = this.channelName;
+    final retentionPeriod = this.retentionPeriod;
+    return {
+      if (channelArn != null) 'channelArn': channelArn,
+      if (channelName != null) 'channelName': channelName,
+      if (retentionPeriod != null) 'retentionPeriod': retentionPeriod,
+    };
+  }
 }
 
 class CreateDatasetContentResponse {
@@ -1967,6 +2062,13 @@ class CreateDatasetContentResponse {
     return CreateDatasetContentResponse(
       versionId: json['versionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final versionId = this.versionId;
+    return {
+      if (versionId != null) 'versionId': versionId,
+    };
   }
 }
 
@@ -1995,6 +2097,17 @@ class CreateDatasetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetArn = this.datasetArn;
+    final datasetName = this.datasetName;
+    final retentionPeriod = this.retentionPeriod;
+    return {
+      if (datasetArn != null) 'datasetArn': datasetArn,
+      if (datasetName != null) 'datasetName': datasetName,
+      if (retentionPeriod != null) 'retentionPeriod': retentionPeriod,
+    };
+  }
 }
 
 class CreateDatastoreResponse {
@@ -2022,6 +2135,17 @@ class CreateDatastoreResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datastoreArn = this.datastoreArn;
+    final datastoreName = this.datastoreName;
+    final retentionPeriod = this.retentionPeriod;
+    return {
+      if (datastoreArn != null) 'datastoreArn': datastoreArn,
+      if (datastoreName != null) 'datastoreName': datastoreName,
+      if (retentionPeriod != null) 'retentionPeriod': retentionPeriod,
+    };
+  }
 }
 
 class CreatePipelineResponse {
@@ -2040,6 +2164,15 @@ class CreatePipelineResponse {
       pipelineArn: json['pipelineArn'] as String?,
       pipelineName: json['pipelineName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipelineArn = this.pipelineArn;
+    final pipelineName = this.pipelineName;
+    return {
+      if (pipelineArn != null) 'pipelineArn': pipelineArn,
+      if (pipelineName != null) 'pipelineName': pipelineName,
+    };
   }
 }
 
@@ -2114,6 +2247,17 @@ class CustomerManagedChannelS3StorageSummary {
       roleArn: json['roleArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final keyPrefix = this.keyPrefix;
+    final roleArn = this.roleArn;
+    return {
+      if (bucket != null) 'bucket': bucket,
+      if (keyPrefix != null) 'keyPrefix': keyPrefix,
+      if (roleArn != null) 'roleArn': roleArn,
+    };
+  }
 }
 
 /// S3-customer-managed; When you choose customer-managed storage, the
@@ -2186,6 +2330,17 @@ class CustomerManagedDatastoreS3StorageSummary {
       keyPrefix: json['keyPrefix'] as String?,
       roleArn: json['roleArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final keyPrefix = this.keyPrefix;
+    final roleArn = this.roleArn;
+    return {
+      if (bucket != null) 'bucket': bucket,
+      if (keyPrefix != null) 'keyPrefix': keyPrefix,
+      if (roleArn != null) 'roleArn': roleArn,
+    };
   }
 }
 
@@ -2284,6 +2439,37 @@ class Dataset {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final arn = this.arn;
+    final contentDeliveryRules = this.contentDeliveryRules;
+    final creationTime = this.creationTime;
+    final lastUpdateTime = this.lastUpdateTime;
+    final lateDataRules = this.lateDataRules;
+    final name = this.name;
+    final retentionPeriod = this.retentionPeriod;
+    final status = this.status;
+    final triggers = this.triggers;
+    final versioningConfiguration = this.versioningConfiguration;
+    return {
+      if (actions != null) 'actions': actions,
+      if (arn != null) 'arn': arn,
+      if (contentDeliveryRules != null)
+        'contentDeliveryRules': contentDeliveryRules,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (lateDataRules != null) 'lateDataRules': lateDataRules,
+      if (name != null) 'name': name,
+      if (retentionPeriod != null) 'retentionPeriod': retentionPeriod,
+      if (status != null) 'status': status.toValue(),
+      if (triggers != null) 'triggers': triggers,
+      if (versioningConfiguration != null)
+        'versioningConfiguration': versioningConfiguration,
+    };
+  }
 }
 
 /// A <code>DatasetAction</code> object that specifies how dataset contents are
@@ -2352,6 +2538,15 @@ class DatasetActionSummary {
       actionName: json['actionName'] as String?,
       actionType: (json['actionType'] as String?)?.toDatasetActionType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionName = this.actionName;
+    final actionType = this.actionType;
+    return {
+      if (actionName != null) 'actionName': actionName,
+      if (actionType != null) 'actionType': actionType.toValue(),
+    };
   }
 }
 
@@ -2507,6 +2702,15 @@ class DatasetContentStatus {
       state: (json['state'] as String?)?.toDatasetContentState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final reason = this.reason;
+    final state = this.state;
+    return {
+      if (reason != null) 'reason': reason,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 /// Summary information about dataset contents.
@@ -2544,6 +2748,24 @@ class DatasetContentSummary {
           : null,
       version: json['version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final completionTime = this.completionTime;
+    final creationTime = this.creationTime;
+    final scheduleTime = this.scheduleTime;
+    final status = this.status;
+    final version = this.version;
+    return {
+      if (completionTime != null)
+        'completionTime': unixTimestampToJson(completionTime),
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (scheduleTime != null)
+        'scheduleTime': unixTimestampToJson(scheduleTime),
+      if (status != null) 'status': status,
+      if (version != null) 'version': version,
+    };
   }
 }
 
@@ -2588,6 +2810,15 @@ class DatasetEntry {
       dataURI: json['dataURI'] as String?,
       entryName: json['entryName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataURI = this.dataURI;
+    final entryName = this.entryName;
+    return {
+      if (dataURI != null) 'dataURI': dataURI,
+      if (entryName != null) 'entryName': entryName,
+    };
   }
 }
 
@@ -2670,6 +2901,25 @@ class DatasetSummary {
           .map((e) => DatasetTrigger.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final creationTime = this.creationTime;
+    final datasetName = this.datasetName;
+    final lastUpdateTime = this.lastUpdateTime;
+    final status = this.status;
+    final triggers = this.triggers;
+    return {
+      if (actions != null) 'actions': actions,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (datasetName != null) 'datasetName': datasetName,
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (status != null) 'status': status.toValue(),
+      if (triggers != null) 'triggers': triggers,
+    };
   }
 }
 
@@ -2802,6 +3052,36 @@ class Datastore {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final datastorePartitions = this.datastorePartitions;
+    final fileFormatConfiguration = this.fileFormatConfiguration;
+    final lastMessageArrivalTime = this.lastMessageArrivalTime;
+    final lastUpdateTime = this.lastUpdateTime;
+    final name = this.name;
+    final retentionPeriod = this.retentionPeriod;
+    final status = this.status;
+    final storage = this.storage;
+    return {
+      if (arn != null) 'arn': arn,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (datastorePartitions != null)
+        'datastorePartitions': datastorePartitions,
+      if (fileFormatConfiguration != null)
+        'fileFormatConfiguration': fileFormatConfiguration,
+      if (lastMessageArrivalTime != null)
+        'lastMessageArrivalTime': unixTimestampToJson(lastMessageArrivalTime),
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (name != null) 'name': name,
+      if (retentionPeriod != null) 'retentionPeriod': retentionPeriod,
+      if (status != null) 'status': status.toValue(),
+      if (storage != null) 'storage': storage,
+    };
+  }
 }
 
 /// The datastore activity that specifies where to store the processed data.
@@ -2881,6 +3161,14 @@ class DatastoreIotSiteWiseMultiLayerStorageSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customerManagedS3Storage = this.customerManagedS3Storage;
+    return {
+      if (customerManagedS3Storage != null)
+        'customerManagedS3Storage': customerManagedS3Storage,
+    };
+  }
 }
 
 /// A single dimension to partition a data store. The dimension must be an
@@ -2958,6 +3246,13 @@ class DatastoreStatistics {
           ? EstimatedResourceSize.fromJson(json['size'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final size = this.size;
+    return {
+      if (size != null) 'size': size,
+    };
   }
 }
 
@@ -3084,6 +3379,18 @@ class DatastoreStorageSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customerManagedS3 = this.customerManagedS3;
+    final iotSiteWiseMultiLayerStorage = this.iotSiteWiseMultiLayerStorage;
+    final serviceManagedS3 = this.serviceManagedS3;
+    return {
+      if (customerManagedS3 != null) 'customerManagedS3': customerManagedS3,
+      if (iotSiteWiseMultiLayerStorage != null)
+        'iotSiteWiseMultiLayerStorage': iotSiteWiseMultiLayerStorage,
+      if (serviceManagedS3 != null) 'serviceManagedS3': serviceManagedS3,
+    };
+  }
 }
 
 /// A summary of information about a data store.
@@ -3146,6 +3453,31 @@ class DatastoreSummary {
       lastUpdateTime: timeStampFromJson(json['lastUpdateTime']),
       status: (json['status'] as String?)?.toDatastoreStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final datastoreName = this.datastoreName;
+    final datastorePartitions = this.datastorePartitions;
+    final datastoreStorage = this.datastoreStorage;
+    final fileFormatType = this.fileFormatType;
+    final lastMessageArrivalTime = this.lastMessageArrivalTime;
+    final lastUpdateTime = this.lastUpdateTime;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (datastoreName != null) 'datastoreName': datastoreName,
+      if (datastorePartitions != null)
+        'datastorePartitions': datastorePartitions,
+      if (datastoreStorage != null) 'datastoreStorage': datastoreStorage,
+      if (fileFormatType != null) 'fileFormatType': fileFormatType.toValue(),
+      if (lastMessageArrivalTime != null)
+        'lastMessageArrivalTime': unixTimestampToJson(lastMessageArrivalTime),
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -3252,6 +3584,15 @@ class DescribeChannelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channel = this.channel;
+    final statistics = this.statistics;
+    return {
+      if (channel != null) 'channel': channel,
+      if (statistics != null) 'statistics': statistics,
+    };
+  }
 }
 
 class DescribeDatasetResponse {
@@ -3267,6 +3608,13 @@ class DescribeDatasetResponse {
           ? Dataset.fromJson(json['dataset'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataset = this.dataset;
+    return {
+      if (dataset != null) 'dataset': dataset,
+    };
   }
 }
 
@@ -3294,6 +3642,15 @@ class DescribeDatastoreResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datastore = this.datastore;
+    final statistics = this.statistics;
+    return {
+      if (datastore != null) 'datastore': datastore,
+      if (statistics != null) 'statistics': statistics,
+    };
+  }
 }
 
 class DescribeLoggingOptionsResponse {
@@ -3311,6 +3668,13 @@ class DescribeLoggingOptionsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loggingOptions = this.loggingOptions;
+    return {
+      if (loggingOptions != null) 'loggingOptions': loggingOptions,
+    };
+  }
 }
 
 class DescribePipelineResponse {
@@ -3326,6 +3690,13 @@ class DescribePipelineResponse {
           ? Pipeline.fromJson(json['pipeline'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pipeline = this.pipeline;
+    return {
+      if (pipeline != null) 'pipeline': pipeline,
+    };
   }
 }
 
@@ -3448,6 +3819,16 @@ class EstimatedResourceSize {
       estimatedOn: timeStampFromJson(json['estimatedOn']),
       estimatedSizeInBytes: json['estimatedSizeInBytes'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final estimatedOn = this.estimatedOn;
+    final estimatedSizeInBytes = this.estimatedSizeInBytes;
+    return {
+      if (estimatedOn != null) 'estimatedOn': unixTimestampToJson(estimatedOn),
+      if (estimatedSizeInBytes != null)
+        'estimatedSizeInBytes': estimatedSizeInBytes,
+    };
   }
 }
 
@@ -3585,6 +3966,17 @@ class GetDatasetContentResponse {
       timestamp: timeStampFromJson(json['timestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entries = this.entries;
+    final status = this.status;
+    final timestamp = this.timestamp;
+    return {
+      if (entries != null) 'entries': entries,
+      if (status != null) 'status': status,
+      if (timestamp != null) 'timestamp': unixTimestampToJson(timestamp),
+    };
+  }
 }
 
 /// Configuration information for coordination with Glue, a fully managed
@@ -3708,6 +4100,15 @@ class IotSiteWiseCustomerManagedDatastoreS3StorageSummary {
       bucket: json['bucket'] as String?,
       keyPrefix: json['keyPrefix'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final keyPrefix = this.keyPrefix;
+    return {
+      if (bucket != null) 'bucket': bucket,
+      if (keyPrefix != null) 'keyPrefix': keyPrefix,
+    };
   }
 }
 
@@ -3852,6 +4253,15 @@ class ListChannelsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelSummaries = this.channelSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (channelSummaries != null) 'channelSummaries': channelSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDatasetContentsResponse {
@@ -3874,6 +4284,16 @@ class ListDatasetContentsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasetContentSummaries = this.datasetContentSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (datasetContentSummaries != null)
+        'datasetContentSummaries': datasetContentSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3898,6 +4318,15 @@ class ListDatasetsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetSummaries = this.datasetSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (datasetSummaries != null) 'datasetSummaries': datasetSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDatastoresResponse {
@@ -3920,6 +4349,15 @@ class ListDatastoresResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datastoreSummaries = this.datastoreSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (datastoreSummaries != null) 'datastoreSummaries': datastoreSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3944,6 +4382,15 @@ class ListPipelinesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final pipelineSummaries = this.pipelineSummaries;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (pipelineSummaries != null) 'pipelineSummaries': pipelineSummaries,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3960,6 +4407,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4083,6 +4537,7 @@ class Message {
     required this.messageId,
     required this.payload,
   });
+
   Map<String, dynamic> toJson() {
     final messageId = this.messageId;
     final payload = this.payload;
@@ -4206,6 +4661,26 @@ class Pipeline {
           .map((e) => ReprocessingSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activities = this.activities;
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final lastUpdateTime = this.lastUpdateTime;
+    final name = this.name;
+    final reprocessingSummaries = this.reprocessingSummaries;
+    return {
+      if (activities != null) 'activities': activities,
+      if (arn != null) 'arn': arn,
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (name != null) 'name': name,
+      if (reprocessingSummaries != null)
+        'reprocessingSummaries': reprocessingSummaries,
+    };
   }
 }
 
@@ -4354,6 +4829,22 @@ class PipelineSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final lastUpdateTime = this.lastUpdateTime;
+    final pipelineName = this.pipelineName;
+    final reprocessingSummaries = this.reprocessingSummaries;
+    return {
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (lastUpdateTime != null)
+        'lastUpdateTime': unixTimestampToJson(lastUpdateTime),
+      if (pipelineName != null) 'pipelineName': pipelineName,
+      if (reprocessingSummaries != null)
+        'reprocessingSummaries': reprocessingSummaries,
+    };
+  }
 }
 
 /// Information that is used to filter message data, to segregate it according
@@ -4483,6 +4974,18 @@ class ReprocessingSummary {
       status: (json['status'] as String?)?.toReprocessingStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final id = this.id;
+    final status = this.status;
+    return {
+      if (creationTime != null)
+        'creationTime': unixTimestampToJson(creationTime),
+      if (id != null) 'id': id,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// The configuration of the resource used to execute the
@@ -4569,6 +5072,15 @@ class RunPipelineActivityResponse {
           .map((e) => _s.decodeUint8List(e as String))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logResult = this.logResult;
+    final payloads = this.payloads;
+    return {
+      if (logResult != null) 'logResult': logResult,
+      if (payloads != null) 'payloads': payloads.map(base64Encode).toList(),
+    };
   }
 }
 
@@ -4663,6 +5175,13 @@ class SampleChannelDataResponse {
           .map((e) => _s.decodeUint8List(e as String))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final payloads = this.payloads;
+    return {
+      if (payloads != null) 'payloads': payloads.map(base64Encode).toList(),
+    };
   }
 }
 
@@ -4779,6 +5298,10 @@ class ServiceManagedChannelS3StorageSummary {
       Map<String, dynamic> _) {
     return ServiceManagedChannelS3StorageSummary();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Used to store data in an Amazon S3 bucket managed by IoT Analytics. You
@@ -4801,6 +5324,10 @@ class ServiceManagedDatastoreS3StorageSummary {
   factory ServiceManagedDatastoreS3StorageSummary.fromJson(
       Map<String, dynamic> _) {
     return ServiceManagedDatastoreS3StorageSummary();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4849,6 +5376,13 @@ class StartPipelineReprocessingResponse {
       reprocessingId: json['reprocessingId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final reprocessingId = this.reprocessingId;
+    return {
+      if (reprocessingId != null) 'reprocessingId': reprocessingId,
+    };
+  }
 }
 
 /// A set of key-value pairs that are used to manage the resource.
@@ -4884,6 +5418,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4945,6 +5483,10 @@ class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

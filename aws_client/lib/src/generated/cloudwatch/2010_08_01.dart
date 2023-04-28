@@ -3225,6 +3225,23 @@ class AlarmHistoryItem {
       timestamp: _s.extractXmlDateTimeValue(elem, 'Timestamp'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarmName = this.alarmName;
+    final alarmType = this.alarmType;
+    final historyData = this.historyData;
+    final historyItemType = this.historyItemType;
+    final historySummary = this.historySummary;
+    final timestamp = this.timestamp;
+    return {
+      if (alarmName != null) 'AlarmName': alarmName,
+      if (alarmType != null) 'AlarmType': alarmType.toValue(),
+      if (historyData != null) 'HistoryData': historyData,
+      if (historyItemType != null) 'HistoryItemType': historyItemType.toValue(),
+      if (historySummary != null) 'HistorySummary': historySummary,
+      if (timestamp != null) 'Timestamp': iso8601ToJson(timestamp),
+    };
+  }
 }
 
 enum AlarmType {
@@ -3316,6 +3333,29 @@ class AnomalyDetector {
           .extractXmlStringValue(elem, 'StateValue')
           ?.toAnomalyDetectorStateValue(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configuration = this.configuration;
+    final dimensions = this.dimensions;
+    final metricMathAnomalyDetector = this.metricMathAnomalyDetector;
+    final metricName = this.metricName;
+    final namespace = this.namespace;
+    final singleMetricAnomalyDetector = this.singleMetricAnomalyDetector;
+    final stat = this.stat;
+    final stateValue = this.stateValue;
+    return {
+      if (configuration != null) 'Configuration': configuration,
+      if (dimensions != null) 'Dimensions': dimensions,
+      if (metricMathAnomalyDetector != null)
+        'MetricMathAnomalyDetector': metricMathAnomalyDetector,
+      if (metricName != null) 'MetricName': metricName,
+      if (namespace != null) 'Namespace': namespace,
+      if (singleMetricAnomalyDetector != null)
+        'SingleMetricAnomalyDetector': singleMetricAnomalyDetector,
+      if (stat != null) 'Stat': stat,
+      if (stateValue != null) 'StateValue': stateValue.toValue(),
+    };
   }
 }
 
@@ -3622,6 +3662,60 @@ class CompositeAlarm {
       stateValue: _s.extractXmlStringValue(elem, 'StateValue')?.toStateValue(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionsEnabled = this.actionsEnabled;
+    final actionsSuppressedBy = this.actionsSuppressedBy;
+    final actionsSuppressedReason = this.actionsSuppressedReason;
+    final actionsSuppressor = this.actionsSuppressor;
+    final actionsSuppressorExtensionPeriod =
+        this.actionsSuppressorExtensionPeriod;
+    final actionsSuppressorWaitPeriod = this.actionsSuppressorWaitPeriod;
+    final alarmActions = this.alarmActions;
+    final alarmArn = this.alarmArn;
+    final alarmConfigurationUpdatedTimestamp =
+        this.alarmConfigurationUpdatedTimestamp;
+    final alarmDescription = this.alarmDescription;
+    final alarmName = this.alarmName;
+    final alarmRule = this.alarmRule;
+    final insufficientDataActions = this.insufficientDataActions;
+    final oKActions = this.oKActions;
+    final stateReason = this.stateReason;
+    final stateReasonData = this.stateReasonData;
+    final stateTransitionedTimestamp = this.stateTransitionedTimestamp;
+    final stateUpdatedTimestamp = this.stateUpdatedTimestamp;
+    final stateValue = this.stateValue;
+    return {
+      if (actionsEnabled != null) 'ActionsEnabled': actionsEnabled,
+      if (actionsSuppressedBy != null)
+        'ActionsSuppressedBy': actionsSuppressedBy.toValue(),
+      if (actionsSuppressedReason != null)
+        'ActionsSuppressedReason': actionsSuppressedReason,
+      if (actionsSuppressor != null) 'ActionsSuppressor': actionsSuppressor,
+      if (actionsSuppressorExtensionPeriod != null)
+        'ActionsSuppressorExtensionPeriod': actionsSuppressorExtensionPeriod,
+      if (actionsSuppressorWaitPeriod != null)
+        'ActionsSuppressorWaitPeriod': actionsSuppressorWaitPeriod,
+      if (alarmActions != null) 'AlarmActions': alarmActions,
+      if (alarmArn != null) 'AlarmArn': alarmArn,
+      if (alarmConfigurationUpdatedTimestamp != null)
+        'AlarmConfigurationUpdatedTimestamp':
+            iso8601ToJson(alarmConfigurationUpdatedTimestamp),
+      if (alarmDescription != null) 'AlarmDescription': alarmDescription,
+      if (alarmName != null) 'AlarmName': alarmName,
+      if (alarmRule != null) 'AlarmRule': alarmRule,
+      if (insufficientDataActions != null)
+        'InsufficientDataActions': insufficientDataActions,
+      if (oKActions != null) 'OKActions': oKActions,
+      if (stateReason != null) 'StateReason': stateReason,
+      if (stateReasonData != null) 'StateReasonData': stateReasonData,
+      if (stateTransitionedTimestamp != null)
+        'StateTransitionedTimestamp': iso8601ToJson(stateTransitionedTimestamp),
+      if (stateUpdatedTimestamp != null)
+        'StateUpdatedTimestamp': iso8601ToJson(stateUpdatedTimestamp),
+      if (stateValue != null) 'StateValue': stateValue.toValue(),
+    };
+  }
 }
 
 /// Represents a specific dashboard.
@@ -3654,6 +3748,19 @@ class DashboardEntry {
       size: _s.extractXmlIntValue(elem, 'Size'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dashboardArn = this.dashboardArn;
+    final dashboardName = this.dashboardName;
+    final lastModified = this.lastModified;
+    final size = this.size;
+    return {
+      if (dashboardArn != null) 'DashboardArn': dashboardArn,
+      if (dashboardName != null) 'DashboardName': dashboardName,
+      if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
+      if (size != null) 'Size': size,
+    };
+  }
 }
 
 /// An error or warning for the operation.
@@ -3673,6 +3780,15 @@ class DashboardValidationMessage {
       dataPath: _s.extractXmlStringValue(elem, 'DataPath'),
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataPath = this.dataPath;
+    final message = this.message;
+    return {
+      if (dataPath != null) 'DataPath': dataPath,
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3733,6 +3849,27 @@ class Datapoint {
       unit: _s.extractXmlStringValue(elem, 'Unit')?.toStandardUnit(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final average = this.average;
+    final extendedStatistics = this.extendedStatistics;
+    final maximum = this.maximum;
+    final minimum = this.minimum;
+    final sampleCount = this.sampleCount;
+    final sum = this.sum;
+    final timestamp = this.timestamp;
+    final unit = this.unit;
+    return {
+      if (average != null) 'Average': average,
+      if (extendedStatistics != null) 'ExtendedStatistics': extendedStatistics,
+      if (maximum != null) 'Maximum': maximum,
+      if (minimum != null) 'Minimum': minimum,
+      if (sampleCount != null) 'SampleCount': sampleCount,
+      if (sum != null) 'Sum': sum,
+      if (timestamp != null) 'Timestamp': iso8601ToJson(timestamp),
+      if (unit != null) 'Unit': unit.toValue(),
+    };
+  }
 }
 
 class DeleteAnomalyDetectorOutput {
@@ -3742,6 +3879,10 @@ class DeleteAnomalyDetectorOutput {
       _s.XmlElement elem) {
     return DeleteAnomalyDetectorOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteDashboardsOutput {
@@ -3750,6 +3891,10 @@ class DeleteDashboardsOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteDashboardsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3767,6 +3912,13 @@ class DeleteInsightRulesOutput {
           elem.findElements('member').map(PartialFailure.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    return {
+      if (failures != null) 'Failures': failures,
+    };
+  }
 }
 
 class DeleteMetricStreamOutput {
@@ -3775,6 +3927,10 @@ class DeleteMetricStreamOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteMetricStreamOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3799,6 +3955,15 @@ class DescribeAlarmHistoryOutput {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alarmHistoryItems = this.alarmHistoryItems;
+    final nextToken = this.nextToken;
+    return {
+      if (alarmHistoryItems != null) 'AlarmHistoryItems': alarmHistoryItems,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeAlarmsForMetricOutput {
@@ -3813,6 +3978,13 @@ class DescribeAlarmsForMetricOutput {
       metricAlarms: _s.extractXmlChild(elem, 'MetricAlarms')?.let((elem) =>
           elem.findElements('member').map(MetricAlarm.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricAlarms = this.metricAlarms;
+    return {
+      if (metricAlarms != null) 'MetricAlarms': metricAlarms,
+    };
   }
 }
 
@@ -3841,6 +4013,17 @@ class DescribeAlarmsOutput {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final compositeAlarms = this.compositeAlarms;
+    final metricAlarms = this.metricAlarms;
+    final nextToken = this.nextToken;
+    return {
+      if (compositeAlarms != null) 'CompositeAlarms': compositeAlarms,
+      if (metricAlarms != null) 'MetricAlarms': metricAlarms,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeAnomalyDetectorsOutput {
@@ -3865,6 +4048,15 @@ class DescribeAnomalyDetectorsOutput {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final anomalyDetectors = this.anomalyDetectors;
+    final nextToken = this.nextToken;
+    return {
+      if (anomalyDetectors != null) 'AnomalyDetectors': anomalyDetectors,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeInsightRulesOutput {
@@ -3885,6 +4077,15 @@ class DescribeInsightRulesOutput {
           elem.findElements('member').map(InsightRule.fromXml).toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final insightRules = this.insightRules;
+    final nextToken = this.nextToken;
+    return {
+      if (insightRules != null) 'InsightRules': insightRules,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3939,6 +4140,7 @@ class DimensionFilter {
     required this.name,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -3963,6 +4165,13 @@ class DisableInsightRulesOutput {
           elem.findElements('member').map(PartialFailure.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    return {
+      if (failures != null) 'Failures': failures,
+    };
+  }
 }
 
 class EnableInsightRulesOutput {
@@ -3978,6 +4187,13 @@ class EnableInsightRulesOutput {
       failures: _s.extractXmlChild(elem, 'Failures')?.let((elem) =>
           elem.findElements('member').map(PartialFailure.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    return {
+      if (failures != null) 'Failures': failures,
+    };
   }
 }
 
@@ -4006,6 +4222,17 @@ class GetDashboardOutput {
       dashboardBody: _s.extractXmlStringValue(elem, 'DashboardBody'),
       dashboardName: _s.extractXmlStringValue(elem, 'DashboardName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dashboardArn = this.dashboardArn;
+    final dashboardBody = this.dashboardBody;
+    final dashboardName = this.dashboardName;
+    return {
+      if (dashboardArn != null) 'DashboardArn': dashboardArn,
+      if (dashboardBody != null) 'DashboardBody': dashboardBody,
+      if (dashboardName != null) 'DashboardName': dashboardName,
+    };
   }
 }
 
@@ -4064,6 +4291,25 @@ class GetInsightRuleReportOutput {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aggregateValue = this.aggregateValue;
+    final aggregationStatistic = this.aggregationStatistic;
+    final approximateUniqueCount = this.approximateUniqueCount;
+    final contributors = this.contributors;
+    final keyLabels = this.keyLabels;
+    final metricDatapoints = this.metricDatapoints;
+    return {
+      if (aggregateValue != null) 'AggregateValue': aggregateValue,
+      if (aggregationStatistic != null)
+        'AggregationStatistic': aggregationStatistic,
+      if (approximateUniqueCount != null)
+        'ApproximateUniqueCount': approximateUniqueCount,
+      if (contributors != null) 'Contributors': contributors,
+      if (keyLabels != null) 'KeyLabels': keyLabels,
+      if (metricDatapoints != null) 'MetricDatapoints': metricDatapoints,
+    };
+  }
 }
 
 class GetMetricDataOutput {
@@ -4102,6 +4348,17 @@ class GetMetricDataOutput {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final messages = this.messages;
+    final metricDataResults = this.metricDataResults;
+    final nextToken = this.nextToken;
+    return {
+      if (messages != null) 'Messages': messages,
+      if (metricDataResults != null) 'MetricDataResults': metricDataResults,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetMetricStatisticsOutput {
@@ -4121,6 +4378,15 @@ class GetMetricStatisticsOutput {
           elem.findElements('member').map(Datapoint.fromXml).toList()),
       label: _s.extractXmlStringValue(elem, 'Label'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datapoints = this.datapoints;
+    final label = this.label;
+    return {
+      if (datapoints != null) 'Datapoints': datapoints,
+      if (label != null) 'Label': label,
+    };
   }
 }
 
@@ -4209,6 +4475,35 @@ class GetMetricStreamOutput {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final excludeFilters = this.excludeFilters;
+    final firehoseArn = this.firehoseArn;
+    final includeFilters = this.includeFilters;
+    final lastUpdateDate = this.lastUpdateDate;
+    final name = this.name;
+    final outputFormat = this.outputFormat;
+    final roleArn = this.roleArn;
+    final state = this.state;
+    final statisticsConfigurations = this.statisticsConfigurations;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (excludeFilters != null) 'ExcludeFilters': excludeFilters,
+      if (firehoseArn != null) 'FirehoseArn': firehoseArn,
+      if (includeFilters != null) 'IncludeFilters': includeFilters,
+      if (lastUpdateDate != null)
+        'LastUpdateDate': iso8601ToJson(lastUpdateDate),
+      if (name != null) 'Name': name,
+      if (outputFormat != null) 'OutputFormat': outputFormat.toValue(),
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (state != null) 'State': state,
+      if (statisticsConfigurations != null)
+        'StatisticsConfigurations': statisticsConfigurations,
+    };
+  }
 }
 
 class GetMetricWidgetImageOutput {
@@ -4223,6 +4518,14 @@ class GetMetricWidgetImageOutput {
     return GetMetricWidgetImageOutput(
       metricWidgetImage: _s.extractXmlUint8ListValue(elem, 'MetricWidgetImage'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricWidgetImage = this.metricWidgetImage;
+    return {
+      if (metricWidgetImage != null)
+        'MetricWidgetImage': base64Encode(metricWidgetImage),
+    };
   }
 }
 
@@ -4298,6 +4601,19 @@ class InsightRule {
       state: _s.extractXmlStringValue(elem, 'State')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final definition = this.definition;
+    final name = this.name;
+    final schema = this.schema;
+    final state = this.state;
+    return {
+      'Definition': definition,
+      'Name': name,
+      'Schema': schema,
+      'State': state,
+    };
+  }
 }
 
 /// One of the unique contributors found by a Contributor Insights rule. If the
@@ -4339,6 +4655,17 @@ class InsightRuleContributor {
           _s.extractXmlChild(elem, 'Keys')!, 'member'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approximateAggregateValue = this.approximateAggregateValue;
+    final datapoints = this.datapoints;
+    final keys = this.keys;
+    return {
+      'ApproximateAggregateValue': approximateAggregateValue,
+      'Datapoints': datapoints,
+      'Keys': keys,
+    };
+  }
 }
 
 /// One data point related to one contributor.
@@ -4363,6 +4690,15 @@ class InsightRuleContributorDatapoint {
       approximateValue: _s.extractXmlDoubleValue(elem, 'ApproximateValue')!,
       timestamp: _s.extractXmlDateTimeValue(elem, 'Timestamp')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final approximateValue = this.approximateValue;
+    final timestamp = this.timestamp;
+    return {
+      'ApproximateValue': approximateValue,
+      'Timestamp': iso8601ToJson(timestamp),
+    };
   }
 }
 
@@ -4446,6 +4782,28 @@ class InsightRuleMetricDatapoint {
       uniqueContributors: _s.extractXmlDoubleValue(elem, 'UniqueContributors'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final timestamp = this.timestamp;
+    final average = this.average;
+    final maxContributorValue = this.maxContributorValue;
+    final maximum = this.maximum;
+    final minimum = this.minimum;
+    final sampleCount = this.sampleCount;
+    final sum = this.sum;
+    final uniqueContributors = this.uniqueContributors;
+    return {
+      'Timestamp': iso8601ToJson(timestamp),
+      if (average != null) 'Average': average,
+      if (maxContributorValue != null)
+        'MaxContributorValue': maxContributorValue,
+      if (maximum != null) 'Maximum': maximum,
+      if (minimum != null) 'Minimum': minimum,
+      if (sampleCount != null) 'SampleCount': sampleCount,
+      if (sum != null) 'Sum': sum,
+      if (uniqueContributors != null) 'UniqueContributors': uniqueContributors,
+    };
+  }
 }
 
 /// This structure includes the <code>Timezone</code> parameter, which you can
@@ -4468,6 +4826,7 @@ class LabelOptions {
   LabelOptions({
     this.timezone,
   });
+
   Map<String, dynamic> toJson() {
     final timezone = this.timezone;
     return {
@@ -4495,6 +4854,15 @@ class ListDashboardsOutput {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dashboardEntries = this.dashboardEntries;
+    final nextToken = this.nextToken;
+    return {
+      if (dashboardEntries != null) 'DashboardEntries': dashboardEntries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListMetricStreamsOutput {
@@ -4517,6 +4885,15 @@ class ListMetricStreamsOutput {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entries = this.entries;
+    final nextToken = this.nextToken;
+    return {
+      if (entries != null) 'Entries': entries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListMetricsOutput {
@@ -4537,6 +4914,15 @@ class ListMetricsOutput {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metrics = this.metrics;
+    final nextToken = this.nextToken;
+    return {
+      if (metrics != null) 'Metrics': metrics,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceOutput {
@@ -4551,6 +4937,13 @@ class ListTagsForResourceOutput {
       tags: _s.extractXmlChild(elem, 'Tags')?.let(
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -4578,6 +4971,15 @@ class MessageData {
       code: _s.extractXmlStringValue(elem, 'Code'),
       value: _s.extractXmlStringValue(elem, 'Value'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final value = this.value;
+    return {
+      if (code != null) 'Code': code,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -4803,6 +5205,73 @@ class MetricAlarm {
       unit: _s.extractXmlStringValue(elem, 'Unit')?.toStandardUnit(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionsEnabled = this.actionsEnabled;
+    final alarmActions = this.alarmActions;
+    final alarmArn = this.alarmArn;
+    final alarmConfigurationUpdatedTimestamp =
+        this.alarmConfigurationUpdatedTimestamp;
+    final alarmDescription = this.alarmDescription;
+    final alarmName = this.alarmName;
+    final comparisonOperator = this.comparisonOperator;
+    final datapointsToAlarm = this.datapointsToAlarm;
+    final dimensions = this.dimensions;
+    final evaluateLowSampleCountPercentile =
+        this.evaluateLowSampleCountPercentile;
+    final evaluationPeriods = this.evaluationPeriods;
+    final extendedStatistic = this.extendedStatistic;
+    final insufficientDataActions = this.insufficientDataActions;
+    final metricName = this.metricName;
+    final metrics = this.metrics;
+    final namespace = this.namespace;
+    final oKActions = this.oKActions;
+    final period = this.period;
+    final stateReason = this.stateReason;
+    final stateReasonData = this.stateReasonData;
+    final stateUpdatedTimestamp = this.stateUpdatedTimestamp;
+    final stateValue = this.stateValue;
+    final statistic = this.statistic;
+    final threshold = this.threshold;
+    final thresholdMetricId = this.thresholdMetricId;
+    final treatMissingData = this.treatMissingData;
+    final unit = this.unit;
+    return {
+      if (actionsEnabled != null) 'ActionsEnabled': actionsEnabled,
+      if (alarmActions != null) 'AlarmActions': alarmActions,
+      if (alarmArn != null) 'AlarmArn': alarmArn,
+      if (alarmConfigurationUpdatedTimestamp != null)
+        'AlarmConfigurationUpdatedTimestamp':
+            iso8601ToJson(alarmConfigurationUpdatedTimestamp),
+      if (alarmDescription != null) 'AlarmDescription': alarmDescription,
+      if (alarmName != null) 'AlarmName': alarmName,
+      if (comparisonOperator != null)
+        'ComparisonOperator': comparisonOperator.toValue(),
+      if (datapointsToAlarm != null) 'DatapointsToAlarm': datapointsToAlarm,
+      if (dimensions != null) 'Dimensions': dimensions,
+      if (evaluateLowSampleCountPercentile != null)
+        'EvaluateLowSampleCountPercentile': evaluateLowSampleCountPercentile,
+      if (evaluationPeriods != null) 'EvaluationPeriods': evaluationPeriods,
+      if (extendedStatistic != null) 'ExtendedStatistic': extendedStatistic,
+      if (insufficientDataActions != null)
+        'InsufficientDataActions': insufficientDataActions,
+      if (metricName != null) 'MetricName': metricName,
+      if (metrics != null) 'Metrics': metrics,
+      if (namespace != null) 'Namespace': namespace,
+      if (oKActions != null) 'OKActions': oKActions,
+      if (period != null) 'Period': period,
+      if (stateReason != null) 'StateReason': stateReason,
+      if (stateReasonData != null) 'StateReasonData': stateReasonData,
+      if (stateUpdatedTimestamp != null)
+        'StateUpdatedTimestamp': iso8601ToJson(stateUpdatedTimestamp),
+      if (stateValue != null) 'StateValue': stateValue.toValue(),
+      if (statistic != null) 'Statistic': statistic.toValue(),
+      if (threshold != null) 'Threshold': threshold,
+      if (thresholdMetricId != null) 'ThresholdMetricId': thresholdMetricId,
+      if (treatMissingData != null) 'TreatMissingData': treatMissingData,
+      if (unit != null) 'Unit': unit.toValue(),
+    };
+  }
 }
 
 /// This structure is used in both <code>GetMetricData</code> and
@@ -5009,6 +5478,24 @@ class MetricDataResult {
           ?.let((elem) => _s.extractXmlDoubleListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final label = this.label;
+    final messages = this.messages;
+    final statusCode = this.statusCode;
+    final timestamps = this.timestamps;
+    final values = this.values;
+    return {
+      if (id != null) 'Id': id,
+      if (label != null) 'Label': label,
+      if (messages != null) 'Messages': messages,
+      if (statusCode != null) 'StatusCode': statusCode.toValue(),
+      if (timestamps != null)
+        'Timestamps': timestamps.map(unixTimestampToJson).toList(),
+      if (values != null) 'Values': values,
+    };
+  }
 }
 
 /// Encapsulates the information sent to either create a metric or add new
@@ -5088,6 +5575,7 @@ class MetricDatum {
     this.value,
     this.values,
   });
+
   Map<String, dynamic> toJson() {
     final metricName = this.metricName;
     final counts = this.counts;
@@ -5277,6 +5765,26 @@ class MetricStreamEntry {
       state: _s.extractXmlStringValue(elem, 'State'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationDate = this.creationDate;
+    final firehoseArn = this.firehoseArn;
+    final lastUpdateDate = this.lastUpdateDate;
+    final name = this.name;
+    final outputFormat = this.outputFormat;
+    final state = this.state;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (firehoseArn != null) 'FirehoseArn': firehoseArn,
+      if (lastUpdateDate != null)
+        'LastUpdateDate': iso8601ToJson(lastUpdateDate),
+      if (name != null) 'Name': name,
+      if (outputFormat != null) 'OutputFormat': outputFormat.toValue(),
+      if (state != null) 'State': state,
+    };
+  }
 }
 
 /// This structure contains the name of one of the metric namespaces that is
@@ -5449,6 +5957,19 @@ class PartialFailure {
       failureResource: _s.extractXmlStringValue(elem, 'FailureResource'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final exceptionType = this.exceptionType;
+    final failureCode = this.failureCode;
+    final failureDescription = this.failureDescription;
+    final failureResource = this.failureResource;
+    return {
+      if (exceptionType != null) 'ExceptionType': exceptionType,
+      if (failureCode != null) 'FailureCode': failureCode,
+      if (failureDescription != null) 'FailureDescription': failureDescription,
+      if (failureResource != null) 'FailureResource': failureResource,
+    };
+  }
 }
 
 class PutAnomalyDetectorOutput {
@@ -5457,6 +5978,10 @@ class PutAnomalyDetectorOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return PutAnomalyDetectorOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5485,6 +6010,14 @@ class PutDashboardOutput {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dashboardValidationMessages = this.dashboardValidationMessages;
+    return {
+      if (dashboardValidationMessages != null)
+        'DashboardValidationMessages': dashboardValidationMessages,
+    };
+  }
 }
 
 class PutInsightRuleOutput {
@@ -5493,6 +6026,10 @@ class PutInsightRuleOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return PutInsightRuleOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5507,6 +6044,13 @@ class PutMetricStreamOutput {
     return PutMetricStreamOutput(
       arn: _s.extractXmlStringValue(elem, 'Arn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -5800,6 +6344,10 @@ class StartMetricStreamsOutput {
       _s.XmlElement elem) {
     return StartMetricStreamsOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 enum StateValue {
@@ -5898,6 +6446,7 @@ class StatisticSet {
     required this.sampleCount,
     required this.sum,
   });
+
   Map<String, dynamic> toJson() {
     final maximum = this.maximum;
     final minimum = this.minimum;
@@ -5952,6 +6501,10 @@ class StopMetricStreamsOutput {
       _s.XmlElement elem) {
     return StopMetricStreamsOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A key-value pair associated with a CloudWatch resource.
@@ -5991,6 +6544,10 @@ class TagResourceOutput {
       _s.XmlElement elem) {
     return TagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceOutput {
@@ -5999,6 +6556,10 @@ class UntagResourceOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return UntagResourceOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

@@ -2333,6 +2333,13 @@ class AddListenerCertificatesOutput {
           elem.findElements('member').map(Certificate.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificates = this.certificates;
+    return {
+      if (certificates != null) 'Certificates': certificates,
+    };
+  }
 }
 
 class AddTagsOutput {
@@ -2341,6 +2348,10 @@ class AddTagsOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return AddTagsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2710,6 +2721,20 @@ class AvailabilityZone {
       zoneName: _s.extractXmlStringValue(elem, 'ZoneName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancerAddresses = this.loadBalancerAddresses;
+    final outpostId = this.outpostId;
+    final subnetId = this.subnetId;
+    final zoneName = this.zoneName;
+    return {
+      if (loadBalancerAddresses != null)
+        'LoadBalancerAddresses': loadBalancerAddresses,
+      if (outpostId != null) 'OutpostId': outpostId,
+      if (subnetId != null) 'SubnetId': subnetId,
+      if (zoneName != null) 'ZoneName': zoneName,
+    };
+  }
 }
 
 /// Information about an SSL server certificate.
@@ -2762,6 +2787,15 @@ class Cipher {
       priority: _s.extractXmlIntValue(elem, 'Priority'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final priority = this.priority;
+    return {
+      if (name != null) 'Name': name,
+      if (priority != null) 'Priority': priority,
+    };
+  }
 }
 
 class CreateListenerOutput {
@@ -2776,6 +2810,13 @@ class CreateListenerOutput {
       listeners: _s.extractXmlChild(elem, 'Listeners')?.let(
           (elem) => elem.findElements('member').map(Listener.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final listeners = this.listeners;
+    return {
+      if (listeners != null) 'Listeners': listeners,
+    };
   }
 }
 
@@ -2792,6 +2833,13 @@ class CreateLoadBalancerOutput {
           elem.findElements('member').map(LoadBalancer.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancers = this.loadBalancers;
+    return {
+      if (loadBalancers != null) 'LoadBalancers': loadBalancers,
+    };
+  }
 }
 
 class CreateRuleOutput {
@@ -2806,6 +2854,13 @@ class CreateRuleOutput {
       rules: _s.extractXmlChild(elem, 'Rules')?.let(
           (elem) => elem.findElements('member').map(Rule.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rules = this.rules;
+    return {
+      if (rules != null) 'Rules': rules,
+    };
   }
 }
 
@@ -2822,6 +2877,13 @@ class CreateTargetGroupOutput {
           elem.findElements('member').map(TargetGroup.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final targetGroups = this.targetGroups;
+    return {
+      if (targetGroups != null) 'TargetGroups': targetGroups,
+    };
+  }
 }
 
 class DeleteListenerOutput {
@@ -2830,6 +2892,10 @@ class DeleteListenerOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteListenerOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2840,6 +2906,10 @@ class DeleteLoadBalancerOutput {
       _s.XmlElement elem) {
     return DeleteLoadBalancerOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteRuleOutput {
@@ -2848,6 +2918,10 @@ class DeleteRuleOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteRuleOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2858,6 +2932,10 @@ class DeleteTargetGroupOutput {
       _s.XmlElement elem) {
     return DeleteTargetGroupOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeregisterTargetsOutput {
@@ -2866,6 +2944,10 @@ class DeregisterTargetsOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeregisterTargetsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2888,6 +2970,15 @@ class DescribeAccountLimitsOutput {
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final limits = this.limits;
+    final nextMarker = this.nextMarker;
+    return {
+      if (limits != null) 'Limits': limits,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class DescribeListenerCertificatesOutput {
@@ -2908,6 +2999,15 @@ class DescribeListenerCertificatesOutput {
           elem.findElements('member').map(Certificate.fromXml).toList()),
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificates = this.certificates;
+    final nextMarker = this.nextMarker;
+    return {
+      if (certificates != null) 'Certificates': certificates,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -2930,6 +3030,15 @@ class DescribeListenersOutput {
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final listeners = this.listeners;
+    final nextMarker = this.nextMarker;
+    return {
+      if (listeners != null) 'Listeners': listeners,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class DescribeLoadBalancerAttributesOutput {
@@ -2946,6 +3055,13 @@ class DescribeLoadBalancerAttributesOutput {
           .map(LoadBalancerAttribute.fromXml)
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
   }
 }
 
@@ -2968,6 +3084,15 @@ class DescribeLoadBalancersOutput {
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancers = this.loadBalancers;
+    final nextMarker = this.nextMarker;
+    return {
+      if (loadBalancers != null) 'LoadBalancers': loadBalancers,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class DescribeRulesOutput {
@@ -2988,6 +3113,15 @@ class DescribeRulesOutput {
       rules: _s.extractXmlChild(elem, 'Rules')?.let(
           (elem) => elem.findElements('member').map(Rule.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final rules = this.rules;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (rules != null) 'Rules': rules,
+    };
   }
 }
 
@@ -3010,6 +3144,15 @@ class DescribeSSLPoliciesOutput {
           elem.findElements('member').map(SslPolicy.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final sslPolicies = this.sslPolicies;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (sslPolicies != null) 'SslPolicies': sslPolicies,
+    };
+  }
 }
 
 class DescribeTagsOutput {
@@ -3025,6 +3168,13 @@ class DescribeTagsOutput {
           (elem) =>
               elem.findElements('member').map(TagDescription.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagDescriptions = this.tagDescriptions;
+    return {
+      if (tagDescriptions != null) 'TagDescriptions': tagDescriptions,
+    };
   }
 }
 
@@ -3042,6 +3192,13 @@ class DescribeTargetGroupAttributesOutput {
           .map(TargetGroupAttribute.fromXml)
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
   }
 }
 
@@ -3064,6 +3221,15 @@ class DescribeTargetGroupsOutput {
           elem.findElements('member').map(TargetGroup.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final targetGroups = this.targetGroups;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (targetGroups != null) 'TargetGroups': targetGroups,
+    };
+  }
 }
 
 class DescribeTargetHealthOutput {
@@ -3082,6 +3248,14 @@ class DescribeTargetHealthOutput {
               .map(TargetHealthDescription.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final targetHealthDescriptions = this.targetHealthDescriptions;
+    return {
+      if (targetHealthDescriptions != null)
+        'TargetHealthDescriptions': targetHealthDescriptions,
+    };
   }
 }
 
@@ -3378,6 +3552,15 @@ class Limit {
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final name = this.name;
+    return {
+      if (max != null) 'Max': max,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Information about a listener.
@@ -3433,6 +3616,27 @@ class Listener {
       protocol: _s.extractXmlStringValue(elem, 'Protocol')?.toProtocolEnum(),
       sslPolicy: _s.extractXmlStringValue(elem, 'SslPolicy'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alpnPolicy = this.alpnPolicy;
+    final certificates = this.certificates;
+    final defaultActions = this.defaultActions;
+    final listenerArn = this.listenerArn;
+    final loadBalancerArn = this.loadBalancerArn;
+    final port = this.port;
+    final protocol = this.protocol;
+    final sslPolicy = this.sslPolicy;
+    return {
+      if (alpnPolicy != null) 'AlpnPolicy': alpnPolicy,
+      if (certificates != null) 'Certificates': certificates,
+      if (defaultActions != null) 'DefaultActions': defaultActions,
+      if (listenerArn != null) 'ListenerArn': listenerArn,
+      if (loadBalancerArn != null) 'LoadBalancerArn': loadBalancerArn,
+      if (port != null) 'Port': port,
+      if (protocol != null) 'Protocol': protocol.toValue(),
+      if (sslPolicy != null) 'SslPolicy': sslPolicy,
+    };
   }
 }
 
@@ -3530,6 +3734,39 @@ class LoadBalancer {
       vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final canonicalHostedZoneId = this.canonicalHostedZoneId;
+    final createdTime = this.createdTime;
+    final customerOwnedIpv4Pool = this.customerOwnedIpv4Pool;
+    final dNSName = this.dNSName;
+    final ipAddressType = this.ipAddressType;
+    final loadBalancerArn = this.loadBalancerArn;
+    final loadBalancerName = this.loadBalancerName;
+    final scheme = this.scheme;
+    final securityGroups = this.securityGroups;
+    final state = this.state;
+    final type = this.type;
+    final vpcId = this.vpcId;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (canonicalHostedZoneId != null)
+        'CanonicalHostedZoneId': canonicalHostedZoneId,
+      if (createdTime != null) 'CreatedTime': iso8601ToJson(createdTime),
+      if (customerOwnedIpv4Pool != null)
+        'CustomerOwnedIpv4Pool': customerOwnedIpv4Pool,
+      if (dNSName != null) 'DNSName': dNSName,
+      if (ipAddressType != null) 'IpAddressType': ipAddressType.toValue(),
+      if (loadBalancerArn != null) 'LoadBalancerArn': loadBalancerArn,
+      if (loadBalancerName != null) 'LoadBalancerName': loadBalancerName,
+      if (scheme != null) 'Scheme': scheme.toValue(),
+      if (securityGroups != null) 'SecurityGroups': securityGroups,
+      if (state != null) 'State': state,
+      if (type != null) 'Type': type.toValue(),
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 /// Information about a static IP address for a load balancer.
@@ -3561,6 +3798,19 @@ class LoadBalancerAddress {
       ipAddress: _s.extractXmlStringValue(elem, 'IpAddress'),
       privateIPv4Address: _s.extractXmlStringValue(elem, 'PrivateIPv4Address'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allocationId = this.allocationId;
+    final iPv6Address = this.iPv6Address;
+    final ipAddress = this.ipAddress;
+    final privateIPv4Address = this.privateIPv4Address;
+    return {
+      if (allocationId != null) 'AllocationId': allocationId,
+      if (iPv6Address != null) 'IPv6Address': iPv6Address,
+      if (ipAddress != null) 'IpAddress': ipAddress,
+      if (privateIPv4Address != null) 'PrivateIPv4Address': privateIPv4Address,
+    };
   }
 }
 
@@ -3774,6 +4024,15 @@ class LoadBalancerState {
       reason: _s.extractXmlStringValue(elem, 'Reason'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final reason = this.reason;
+    return {
+      if (code != null) 'Code': code.toValue(),
+      if (reason != null) 'Reason': reason,
+    };
+  }
 }
 
 enum LoadBalancerStateEnum {
@@ -3901,6 +4160,13 @@ class ModifyListenerOutput {
           (elem) => elem.findElements('member').map(Listener.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final listeners = this.listeners;
+    return {
+      if (listeners != null) 'Listeners': listeners,
+    };
+  }
 }
 
 class ModifyLoadBalancerAttributesOutput {
@@ -3918,6 +4184,13 @@ class ModifyLoadBalancerAttributesOutput {
           .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
+  }
 }
 
 class ModifyRuleOutput {
@@ -3932,6 +4205,13 @@ class ModifyRuleOutput {
       rules: _s.extractXmlChild(elem, 'Rules')?.let(
           (elem) => elem.findElements('member').map(Rule.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rules = this.rules;
+    return {
+      if (rules != null) 'Rules': rules,
+    };
   }
 }
 
@@ -3950,6 +4230,13 @@ class ModifyTargetGroupAttributesOutput {
           .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+    };
+  }
 }
 
 class ModifyTargetGroupOutput {
@@ -3964,6 +4251,13 @@ class ModifyTargetGroupOutput {
       targetGroups: _s.extractXmlChild(elem, 'TargetGroups')?.let((elem) =>
           elem.findElements('member').map(TargetGroup.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final targetGroups = this.targetGroups;
+    return {
+      if (targetGroups != null) 'TargetGroups': targetGroups,
+    };
   }
 }
 
@@ -4249,6 +4543,10 @@ class RegisterTargetsOutput {
       _s.XmlElement elem) {
     return RegisterTargetsOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class RemoveListenerCertificatesOutput {
@@ -4258,6 +4556,10 @@ class RemoveListenerCertificatesOutput {
       _s.XmlElement elem) {
     return RemoveListenerCertificatesOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class RemoveTagsOutput {
@@ -4266,6 +4568,10 @@ class RemoveTagsOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return RemoveTagsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4309,6 +4615,21 @@ class Rule {
       priority: _s.extractXmlStringValue(elem, 'Priority'),
       ruleArn: _s.extractXmlStringValue(elem, 'RuleArn'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final conditions = this.conditions;
+    final isDefault = this.isDefault;
+    final priority = this.priority;
+    final ruleArn = this.ruleArn;
+    return {
+      if (actions != null) 'Actions': actions,
+      if (conditions != null) 'Conditions': conditions,
+      if (isDefault != null) 'IsDefault': isDefault,
+      if (priority != null) 'Priority': priority,
+      if (ruleArn != null) 'RuleArn': ruleArn,
+    };
   }
 }
 
@@ -4491,6 +4812,7 @@ class RulePriorityPair {
     this.priority,
     this.ruleArn,
   });
+
   Map<String, dynamic> toJson() {
     final priority = this.priority;
     final ruleArn = this.ruleArn;
@@ -4514,6 +4836,13 @@ class SetIpAddressTypeOutput {
           _s.extractXmlStringValue(elem, 'IpAddressType')?.toIpAddressType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ipAddressType = this.ipAddressType;
+    return {
+      if (ipAddressType != null) 'IpAddressType': ipAddressType.toValue(),
+    };
+  }
 }
 
 class SetRulePrioritiesOutput {
@@ -4528,6 +4857,13 @@ class SetRulePrioritiesOutput {
       rules: _s.extractXmlChild(elem, 'Rules')?.let(
           (elem) => elem.findElements('member').map(Rule.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rules = this.rules;
+    return {
+      if (rules != null) 'Rules': rules,
+    };
   }
 }
 
@@ -4544,6 +4880,13 @@ class SetSecurityGroupsOutput {
           .extractXmlChild(elem, 'SecurityGroupIds')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityGroupIds = this.securityGroupIds;
+    return {
+      if (securityGroupIds != null) 'SecurityGroupIds': securityGroupIds,
+    };
   }
 }
 
@@ -4568,6 +4911,15 @@ class SetSubnetsOutput {
       ipAddressType:
           _s.extractXmlStringValue(elem, 'IpAddressType')?.toIpAddressType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final ipAddressType = this.ipAddressType;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (ipAddressType != null) 'IpAddressType': ipAddressType.toValue(),
+    };
   }
 }
 
@@ -4639,6 +4991,20 @@ class SslPolicy {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ciphers = this.ciphers;
+    final name = this.name;
+    final sslProtocols = this.sslProtocols;
+    final supportedLoadBalancerTypes = this.supportedLoadBalancerTypes;
+    return {
+      if (ciphers != null) 'Ciphers': ciphers,
+      if (name != null) 'Name': name,
+      if (sslProtocols != null) 'SslProtocols': sslProtocols,
+      if (supportedLoadBalancerTypes != null)
+        'SupportedLoadBalancerTypes': supportedLoadBalancerTypes,
+    };
+  }
 }
 
 /// Information about a subnet mapping.
@@ -4663,6 +5029,7 @@ class SubnetMapping {
     this.privateIPv4Address,
     this.subnetId,
   });
+
   Map<String, dynamic> toJson() {
     final allocationId = this.allocationId;
     final iPv6Address = this.iPv6Address;
@@ -4724,6 +5091,15 @@ class TagDescription {
       tags: _s.extractXmlChild(elem, 'Tags')?.let(
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final tags = this.tags;
+    return {
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -4912,6 +5288,52 @@ class TargetGroup {
           _s.extractXmlIntValue(elem, 'UnhealthyThresholdCount'),
       vpcId: _s.extractXmlStringValue(elem, 'VpcId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthCheckEnabled = this.healthCheckEnabled;
+    final healthCheckIntervalSeconds = this.healthCheckIntervalSeconds;
+    final healthCheckPath = this.healthCheckPath;
+    final healthCheckPort = this.healthCheckPort;
+    final healthCheckProtocol = this.healthCheckProtocol;
+    final healthCheckTimeoutSeconds = this.healthCheckTimeoutSeconds;
+    final healthyThresholdCount = this.healthyThresholdCount;
+    final ipAddressType = this.ipAddressType;
+    final loadBalancerArns = this.loadBalancerArns;
+    final matcher = this.matcher;
+    final port = this.port;
+    final protocol = this.protocol;
+    final protocolVersion = this.protocolVersion;
+    final targetGroupArn = this.targetGroupArn;
+    final targetGroupName = this.targetGroupName;
+    final targetType = this.targetType;
+    final unhealthyThresholdCount = this.unhealthyThresholdCount;
+    final vpcId = this.vpcId;
+    return {
+      if (healthCheckEnabled != null) 'HealthCheckEnabled': healthCheckEnabled,
+      if (healthCheckIntervalSeconds != null)
+        'HealthCheckIntervalSeconds': healthCheckIntervalSeconds,
+      if (healthCheckPath != null) 'HealthCheckPath': healthCheckPath,
+      if (healthCheckPort != null) 'HealthCheckPort': healthCheckPort,
+      if (healthCheckProtocol != null)
+        'HealthCheckProtocol': healthCheckProtocol.toValue(),
+      if (healthCheckTimeoutSeconds != null)
+        'HealthCheckTimeoutSeconds': healthCheckTimeoutSeconds,
+      if (healthyThresholdCount != null)
+        'HealthyThresholdCount': healthyThresholdCount,
+      if (ipAddressType != null) 'IpAddressType': ipAddressType.toValue(),
+      if (loadBalancerArns != null) 'LoadBalancerArns': loadBalancerArns,
+      if (matcher != null) 'Matcher': matcher,
+      if (port != null) 'Port': port,
+      if (protocol != null) 'Protocol': protocol.toValue(),
+      if (protocolVersion != null) 'ProtocolVersion': protocolVersion,
+      if (targetGroupArn != null) 'TargetGroupArn': targetGroupArn,
+      if (targetGroupName != null) 'TargetGroupName': targetGroupName,
+      if (targetType != null) 'TargetType': targetType.toValue(),
+      if (unhealthyThresholdCount != null)
+        'UnhealthyThresholdCount': unhealthyThresholdCount,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -5246,6 +5668,17 @@ class TargetHealth {
       state: _s.extractXmlStringValue(elem, 'State')?.toTargetHealthStateEnum(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final reason = this.reason;
+    final state = this.state;
+    return {
+      if (description != null) 'Description': description,
+      if (reason != null) 'Reason': reason.toValue(),
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 /// Information about the health of a target.
@@ -5272,6 +5705,17 @@ class TargetHealthDescription {
       targetHealth:
           _s.extractXmlChild(elem, 'TargetHealth')?.let(TargetHealth.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthCheckPort = this.healthCheckPort;
+    final target = this.target;
+    final targetHealth = this.targetHealth;
+    return {
+      if (healthCheckPort != null) 'HealthCheckPort': healthCheckPort,
+      if (target != null) 'Target': target,
+      if (targetHealth != null) 'TargetHealth': targetHealth,
+    };
   }
 }
 

@@ -7801,6 +7801,32 @@ class Account {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final awsAccountId = this.awsAccountId;
+    final name = this.name;
+    final accountStatus = this.accountStatus;
+    final accountType = this.accountType;
+    final createdTimestamp = this.createdTimestamp;
+    final defaultLicense = this.defaultLicense;
+    final signinDelegateGroups = this.signinDelegateGroups;
+    final supportedLicenses = this.supportedLicenses;
+    return {
+      'AccountId': accountId,
+      'AwsAccountId': awsAccountId,
+      'Name': name,
+      if (accountStatus != null) 'AccountStatus': accountStatus.toValue(),
+      if (accountType != null) 'AccountType': accountType.toValue(),
+      if (createdTimestamp != null)
+        'CreatedTimestamp': iso8601ToJson(createdTimestamp),
+      if (defaultLicense != null) 'DefaultLicense': defaultLicense.toValue(),
+      if (signinDelegateGroups != null)
+        'SigninDelegateGroups': signinDelegateGroups,
+      if (supportedLicenses != null)
+        'SupportedLicenses': supportedLicenses.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 /// Settings related to the Amazon Chime account. This includes settings that
@@ -7968,6 +7994,31 @@ class Address {
       streetSuffix: json['streetSuffix'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final city = this.city;
+    final country = this.country;
+    final postDirectional = this.postDirectional;
+    final postalCode = this.postalCode;
+    final postalCodePlus4 = this.postalCodePlus4;
+    final preDirectional = this.preDirectional;
+    final state = this.state;
+    final streetName = this.streetName;
+    final streetNumber = this.streetNumber;
+    final streetSuffix = this.streetSuffix;
+    return {
+      if (city != null) 'city': city,
+      if (country != null) 'country': country,
+      if (postDirectional != null) 'postDirectional': postDirectional,
+      if (postalCode != null) 'postalCode': postalCode,
+      if (postalCodePlus4 != null) 'postalCodePlus4': postalCodePlus4,
+      if (preDirectional != null) 'preDirectional': preDirectional,
+      if (state != null) 'state': state,
+      if (streetName != null) 'streetName': streetName,
+      if (streetNumber != null) 'streetNumber': streetNumber,
+      if (streetSuffix != null) 'streetSuffix': streetSuffix,
+    };
+  }
 }
 
 /// The Alexa for Business metadata associated with an Amazon Chime user, used
@@ -8038,6 +8089,23 @@ class AppInstance {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceArn = this.appInstanceArn;
+    final createdTimestamp = this.createdTimestamp;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final metadata = this.metadata;
+    final name = this.name;
+    return {
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (metadata != null) 'Metadata': metadata,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// The details of an <code>AppInstanceAdmin</code>.
@@ -8066,6 +8134,18 @@ class AppInstanceAdmin {
       createdTimestamp: timeStampFromJson(json['CreatedTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final admin = this.admin;
+    final appInstanceArn = this.appInstanceArn;
+    final createdTimestamp = this.createdTimestamp;
+    return {
+      if (admin != null) 'Admin': admin,
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+    };
+  }
 }
 
 /// Summary of the details of an <code>AppInstanceAdmin</code>.
@@ -8082,6 +8162,13 @@ class AppInstanceAdminSummary {
           ? Identity.fromJson(json['Admin'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final admin = this.admin;
+    return {
+      if (admin != null) 'Admin': admin,
+    };
   }
 }
 
@@ -8193,6 +8280,17 @@ class AppInstanceSummary {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceArn = this.appInstanceArn;
+    final metadata = this.metadata;
+    final name = this.name;
+    return {
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+      if (metadata != null) 'Metadata': metadata,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// The details of an <code>AppInstanceUser</code>.
@@ -8228,6 +8326,23 @@ class AppInstanceUser {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUserArn = this.appInstanceUserArn;
+    final createdTimestamp = this.createdTimestamp;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final metadata = this.metadata;
+    final name = this.name;
+    return {
+      if (appInstanceUserArn != null) 'AppInstanceUserArn': appInstanceUserArn,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (metadata != null) 'Metadata': metadata,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Summary of the membership details of an <code>AppInstanceUser</code>.
@@ -8247,6 +8362,16 @@ class AppInstanceUserMembershipSummary {
       readMarkerTimestamp: timeStampFromJson(json['ReadMarkerTimestamp']),
       type: (json['Type'] as String?)?.toChannelMembershipType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final readMarkerTimestamp = this.readMarkerTimestamp;
+    final type = this.type;
+    return {
+      if (readMarkerTimestamp != null)
+        'ReadMarkerTimestamp': unixTimestampToJson(readMarkerTimestamp),
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -8272,6 +8397,17 @@ class AppInstanceUserSummary {
       metadata: json['Metadata'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUserArn = this.appInstanceUserArn;
+    final metadata = this.metadata;
+    final name = this.name;
+    return {
+      if (appInstanceUserArn != null) 'AppInstanceUserArn': appInstanceUserArn,
+      if (metadata != null) 'Metadata': metadata,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -8348,6 +8484,10 @@ class AssociatePhoneNumberWithUserResponse {
       Map<String, dynamic> _) {
     return AssociatePhoneNumberWithUserResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AssociatePhoneNumbersWithVoiceConnectorGroupResponse {
@@ -8367,6 +8507,13 @@ class AssociatePhoneNumbersWithVoiceConnectorGroupResponse {
           .map((e) => PhoneNumberError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumberErrors = this.phoneNumberErrors;
+    return {
+      if (phoneNumberErrors != null) 'PhoneNumberErrors': phoneNumberErrors,
+    };
   }
 }
 
@@ -8388,6 +8535,13 @@ class AssociatePhoneNumbersWithVoiceConnectorResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumberErrors = this.phoneNumberErrors;
+    return {
+      if (phoneNumberErrors != null) 'PhoneNumberErrors': phoneNumberErrors,
+    };
+  }
 }
 
 class AssociateSigninDelegateGroupsWithAccountResponse {
@@ -8395,6 +8549,10 @@ class AssociateSigninDelegateGroupsWithAccountResponse {
   factory AssociateSigninDelegateGroupsWithAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return AssociateSigninDelegateGroupsWithAccountResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8430,6 +8588,17 @@ class Attendee {
       externalUserId: json['ExternalUserId'] as String?,
       joinToken: json['JoinToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attendeeId = this.attendeeId;
+    final externalUserId = this.externalUserId;
+    final joinToken = this.joinToken;
+    return {
+      if (attendeeId != null) 'AttendeeId': attendeeId,
+      if (externalUserId != null) 'ExternalUserId': externalUserId,
+      if (joinToken != null) 'JoinToken': joinToken,
+    };
   }
 }
 
@@ -8517,6 +8686,19 @@ class BatchChannelMemberships {
       type: (json['Type'] as String?)?.toChannelMembershipType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final invitedBy = this.invitedBy;
+    final members = this.members;
+    final type = this.type;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (invitedBy != null) 'InvitedBy': invitedBy,
+      if (members != null) 'Members': members,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 class BatchCreateAttendeeResponse {
@@ -8543,6 +8725,15 @@ class BatchCreateAttendeeResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attendees = this.attendees;
+    final errors = this.errors;
+    return {
+      if (attendees != null) 'Attendees': attendees,
+      if (errors != null) 'Errors': errors,
+    };
+  }
 }
 
 /// A list of failed member ARNs, error codes, and error messages.
@@ -8568,6 +8759,17 @@ class BatchCreateChannelMembershipError {
       errorMessage: json['ErrorMessage'] as String?,
       memberArn: json['MemberArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final memberArn = this.memberArn;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (memberArn != null) 'MemberArn': memberArn,
+    };
   }
 }
 
@@ -8598,6 +8800,16 @@ class BatchCreateChannelMembershipResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchChannelMemberships = this.batchChannelMemberships;
+    final errors = this.errors;
+    return {
+      if (batchChannelMemberships != null)
+        'BatchChannelMemberships': batchChannelMemberships,
+      if (errors != null) 'Errors': errors,
+    };
+  }
 }
 
 class BatchCreateRoomMembershipResponse {
@@ -8616,6 +8828,13 @@ class BatchCreateRoomMembershipResponse {
           .map((e) => MemberError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      if (errors != null) 'Errors': errors,
+    };
   }
 }
 
@@ -8636,6 +8855,13 @@ class BatchDeletePhoneNumberResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumberErrors = this.phoneNumberErrors;
+    return {
+      if (phoneNumberErrors != null) 'PhoneNumberErrors': phoneNumberErrors,
+    };
+  }
 }
 
 class BatchSuspendUserResponse {
@@ -8654,6 +8880,13 @@ class BatchSuspendUserResponse {
           .map((e) => UserError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userErrors = this.userErrors;
+    return {
+      if (userErrors != null) 'UserErrors': userErrors,
+    };
   }
 }
 
@@ -8674,6 +8907,13 @@ class BatchUnsuspendUserResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userErrors = this.userErrors;
+    return {
+      if (userErrors != null) 'UserErrors': userErrors,
+    };
+  }
 }
 
 class BatchUpdatePhoneNumberResponse {
@@ -8693,6 +8933,13 @@ class BatchUpdatePhoneNumberResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumberErrors = this.phoneNumberErrors;
+    return {
+      if (phoneNumberErrors != null) 'PhoneNumberErrors': phoneNumberErrors,
+    };
+  }
 }
 
 class BatchUpdateUserResponse {
@@ -8711,6 +8958,13 @@ class BatchUpdateUserResponse {
           .map((e) => UserError.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userErrors = this.userErrors;
+    return {
+      if (userErrors != null) 'UserErrors': userErrors,
+    };
   }
 }
 
@@ -8768,6 +9022,31 @@ class Bot {
       updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
       userId: json['UserId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botEmail = this.botEmail;
+    final botId = this.botId;
+    final botType = this.botType;
+    final createdTimestamp = this.createdTimestamp;
+    final disabled = this.disabled;
+    final displayName = this.displayName;
+    final securityToken = this.securityToken;
+    final updatedTimestamp = this.updatedTimestamp;
+    final userId = this.userId;
+    return {
+      if (botEmail != null) 'BotEmail': botEmail,
+      if (botId != null) 'BotId': botId,
+      if (botType != null) 'BotType': botType.toValue(),
+      if (createdTimestamp != null)
+        'CreatedTimestamp': iso8601ToJson(createdTimestamp),
+      if (disabled != null) 'Disabled': disabled,
+      if (displayName != null) 'DisplayName': displayName,
+      if (securityToken != null) 'SecurityToken': securityToken,
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': iso8601ToJson(updatedTimestamp),
+      if (userId != null) 'UserId': userId,
+    };
   }
 }
 
@@ -8899,6 +9178,25 @@ class CandidateAddress {
       streetNumber: json['streetNumber'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final city = this.city;
+    final country = this.country;
+    final postalCode = this.postalCode;
+    final postalCodePlus4 = this.postalCodePlus4;
+    final state = this.state;
+    final streetInfo = this.streetInfo;
+    final streetNumber = this.streetNumber;
+    return {
+      if (city != null) 'city': city,
+      if (country != null) 'country': country,
+      if (postalCode != null) 'postalCode': postalCode,
+      if (postalCodePlus4 != null) 'postalCodePlus4': postalCodePlus4,
+      if (state != null) 'state': state,
+      if (streetInfo != null) 'streetInfo': streetInfo,
+      if (streetNumber != null) 'streetNumber': streetNumber,
+    };
+  }
 }
 
 enum Capability {
@@ -8984,6 +9282,32 @@ class Channel {
       privacy: (json['Privacy'] as String?)?.toChannelPrivacy(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final createdBy = this.createdBy;
+    final createdTimestamp = this.createdTimestamp;
+    final lastMessageTimestamp = this.lastMessageTimestamp;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final metadata = this.metadata;
+    final mode = this.mode;
+    final name = this.name;
+    final privacy = this.privacy;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (lastMessageTimestamp != null)
+        'LastMessageTimestamp': unixTimestampToJson(lastMessageTimestamp),
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (metadata != null) 'Metadata': metadata,
+      if (mode != null) 'Mode': mode.toValue(),
+      if (name != null) 'Name': name,
+      if (privacy != null) 'Privacy': privacy.toValue(),
+    };
+  }
 }
 
 /// The details of a channel ban.
@@ -9018,6 +9342,20 @@ class ChannelBan {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final createdBy = this.createdBy;
+    final createdTimestamp = this.createdTimestamp;
+    final member = this.member;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (member != null) 'Member': member,
+    };
+  }
 }
 
 /// Summary of the details of a <code>ChannelBan</code>.
@@ -9034,6 +9372,13 @@ class ChannelBanSummary {
           ? Identity.fromJson(json['Member'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final member = this.member;
+    return {
+      if (member != null) 'Member': member,
+    };
   }
 }
 
@@ -9079,6 +9424,25 @@ class ChannelMembership {
       type: (json['Type'] as String?)?.toChannelMembershipType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final createdTimestamp = this.createdTimestamp;
+    final invitedBy = this.invitedBy;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final member = this.member;
+    final type = this.type;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (invitedBy != null) 'InvitedBy': invitedBy,
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (member != null) 'Member': member,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Summary of the channel membership details of an
@@ -9106,6 +9470,17 @@ class ChannelMembershipForAppInstanceUserSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUserMembershipSummary =
+        this.appInstanceUserMembershipSummary;
+    final channelSummary = this.channelSummary;
+    return {
+      if (appInstanceUserMembershipSummary != null)
+        'AppInstanceUserMembershipSummary': appInstanceUserMembershipSummary,
+      if (channelSummary != null) 'ChannelSummary': channelSummary,
+    };
+  }
 }
 
 /// Summary of the details of a <code>ChannelMembership</code>.
@@ -9122,6 +9497,13 @@ class ChannelMembershipSummary {
           ? Identity.fromJson(json['Member'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final member = this.member;
+    return {
+      if (member != null) 'Member': member,
+    };
   }
 }
 
@@ -9219,6 +9601,36 @@ class ChannelMessage {
       type: (json['Type'] as String?)?.toChannelMessageType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final content = this.content;
+    final createdTimestamp = this.createdTimestamp;
+    final lastEditedTimestamp = this.lastEditedTimestamp;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final messageId = this.messageId;
+    final metadata = this.metadata;
+    final persistence = this.persistence;
+    final redacted = this.redacted;
+    final sender = this.sender;
+    final type = this.type;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (content != null) 'Content': content,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (lastEditedTimestamp != null)
+        'LastEditedTimestamp': unixTimestampToJson(lastEditedTimestamp),
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (messageId != null) 'MessageId': messageId,
+      if (metadata != null) 'Metadata': metadata,
+      if (persistence != null) 'Persistence': persistence.toValue(),
+      if (redacted != null) 'Redacted': redacted,
+      if (sender != null) 'Sender': sender,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum ChannelMessagePersistenceType {
@@ -9305,6 +9717,32 @@ class ChannelMessageSummary {
       type: (json['Type'] as String?)?.toChannelMessageType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    final createdTimestamp = this.createdTimestamp;
+    final lastEditedTimestamp = this.lastEditedTimestamp;
+    final lastUpdatedTimestamp = this.lastUpdatedTimestamp;
+    final messageId = this.messageId;
+    final metadata = this.metadata;
+    final redacted = this.redacted;
+    final sender = this.sender;
+    final type = this.type;
+    return {
+      if (content != null) 'Content': content,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (lastEditedTimestamp != null)
+        'LastEditedTimestamp': unixTimestampToJson(lastEditedTimestamp),
+      if (lastUpdatedTimestamp != null)
+        'LastUpdatedTimestamp': unixTimestampToJson(lastUpdatedTimestamp),
+      if (messageId != null) 'MessageId': messageId,
+      if (metadata != null) 'Metadata': metadata,
+      if (redacted != null) 'Redacted': redacted,
+      if (sender != null) 'Sender': sender,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum ChannelMessageType {
@@ -9380,6 +9818,13 @@ class ChannelModeratedByAppInstanceUserSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelSummary = this.channelSummary;
+    return {
+      if (channelSummary != null) 'ChannelSummary': channelSummary,
+    };
+  }
 }
 
 /// The details of a channel moderator.
@@ -9414,6 +9859,20 @@ class ChannelModerator {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final createdBy = this.createdBy;
+    final createdTimestamp = this.createdTimestamp;
+    final moderator = this.moderator;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (moderator != null) 'Moderator': moderator,
+    };
+  }
 }
 
 /// Summary of the details of a <code>ChannelModerator</code>.
@@ -9430,6 +9889,13 @@ class ChannelModeratorSummary {
           ? Identity.fromJson(json['Moderator'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final moderator = this.moderator;
+    return {
+      if (moderator != null) 'Moderator': moderator,
+    };
   }
 }
 
@@ -9520,6 +9986,24 @@ class ChannelSummary {
       name: json['Name'] as String?,
       privacy: (json['Privacy'] as String?)?.toChannelPrivacy(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final lastMessageTimestamp = this.lastMessageTimestamp;
+    final metadata = this.metadata;
+    final mode = this.mode;
+    final name = this.name;
+    final privacy = this.privacy;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (lastMessageTimestamp != null)
+        'LastMessageTimestamp': unixTimestampToJson(lastMessageTimestamp),
+      if (metadata != null) 'Metadata': metadata,
+      if (mode != null) 'Mode': mode.toValue(),
+      if (name != null) 'Name': name,
+      if (privacy != null) 'Privacy': privacy.toValue(),
+    };
   }
 }
 
@@ -9651,6 +10135,13 @@ class CreateAccountResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final account = this.account;
+    return {
+      if (account != null) 'Account': account,
+    };
+  }
 }
 
 class CreateAppInstanceAdminResponse {
@@ -9672,6 +10163,15 @@ class CreateAppInstanceAdminResponse {
       appInstanceArn: json['AppInstanceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceAdmin = this.appInstanceAdmin;
+    final appInstanceArn = this.appInstanceArn;
+    return {
+      if (appInstanceAdmin != null) 'AppInstanceAdmin': appInstanceAdmin,
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+    };
+  }
 }
 
 class CreateAppInstanceResponse {
@@ -9686,6 +10186,13 @@ class CreateAppInstanceResponse {
       appInstanceArn: json['AppInstanceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceArn = this.appInstanceArn;
+    return {
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+    };
+  }
 }
 
 class CreateAppInstanceUserResponse {
@@ -9699,6 +10206,13 @@ class CreateAppInstanceUserResponse {
     return CreateAppInstanceUserResponse(
       appInstanceUserArn: json['AppInstanceUserArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUserArn = this.appInstanceUserArn;
+    return {
+      if (appInstanceUserArn != null) 'AppInstanceUserArn': appInstanceUserArn,
+    };
   }
 }
 
@@ -9728,6 +10242,17 @@ class CreateAttendeeError {
       externalUserId: json['ExternalUserId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final externalUserId = this.externalUserId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (externalUserId != null) 'ExternalUserId': externalUserId,
+    };
+  }
 }
 
 /// The Amazon Chime SDK attendee fields to create, used with the
@@ -9744,6 +10269,7 @@ class CreateAttendeeRequestItem {
     required this.externalUserId,
     this.tags,
   });
+
   Map<String, dynamic> toJson() {
     final externalUserId = this.externalUserId;
     final tags = this.tags;
@@ -9768,6 +10294,13 @@ class CreateAttendeeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attendee = this.attendee;
+    return {
+      if (attendee != null) 'Attendee': attendee,
+    };
+  }
 }
 
 class CreateBotResponse {
@@ -9783,6 +10316,13 @@ class CreateBotResponse {
           ? Bot.fromJson(json['Bot'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bot = this.bot;
+    return {
+      if (bot != null) 'Bot': bot,
+    };
   }
 }
 
@@ -9806,6 +10346,15 @@ class CreateChannelBanResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final member = this.member;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (member != null) 'Member': member,
+    };
+  }
 }
 
 class CreateChannelMembershipResponse {
@@ -9826,6 +10375,15 @@ class CreateChannelMembershipResponse {
           ? Identity.fromJson(json['Member'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final member = this.member;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (member != null) 'Member': member,
+    };
   }
 }
 
@@ -9848,6 +10406,15 @@ class CreateChannelModeratorResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final channelModerator = this.channelModerator;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (channelModerator != null) 'ChannelModerator': channelModerator,
+    };
+  }
 }
 
 class CreateChannelResponse {
@@ -9861,6 +10428,13 @@ class CreateChannelResponse {
     return CreateChannelResponse(
       channelArn: json['ChannelArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+    };
   }
 }
 
@@ -9881,6 +10455,14 @@ class CreateMediaCapturePipelineResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final mediaCapturePipeline = this.mediaCapturePipeline;
+    return {
+      if (mediaCapturePipeline != null)
+        'MediaCapturePipeline': mediaCapturePipeline,
+    };
+  }
 }
 
 class CreateMeetingDialOutResponse {
@@ -9894,6 +10476,13 @@ class CreateMeetingDialOutResponse {
     return CreateMeetingDialOutResponse(
       transactionId: json['TransactionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transactionId = this.transactionId;
+    return {
+      if (transactionId != null) 'TransactionId': transactionId,
+    };
   }
 }
 
@@ -9911,6 +10500,13 @@ class CreateMeetingResponse {
           ? Meeting.fromJson(json['Meeting'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final meeting = this.meeting;
+    return {
+      if (meeting != null) 'Meeting': meeting,
+    };
   }
 }
 
@@ -9944,6 +10540,17 @@ class CreateMeetingWithAttendeesResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attendees = this.attendees;
+    final errors = this.errors;
+    final meeting = this.meeting;
+    return {
+      if (attendees != null) 'Attendees': attendees,
+      if (errors != null) 'Errors': errors,
+      if (meeting != null) 'Meeting': meeting,
+    };
+  }
 }
 
 class CreatePhoneNumberOrderResponse {
@@ -9961,6 +10568,13 @@ class CreatePhoneNumberOrderResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumberOrder = this.phoneNumberOrder;
+    return {
+      if (phoneNumberOrder != null) 'PhoneNumberOrder': phoneNumberOrder,
+    };
+  }
 }
 
 class CreateProxySessionResponse {
@@ -9976,6 +10590,13 @@ class CreateProxySessionResponse {
           ? ProxySession.fromJson(json['ProxySession'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final proxySession = this.proxySession;
+    return {
+      if (proxySession != null) 'ProxySession': proxySession,
+    };
   }
 }
 
@@ -9994,6 +10615,13 @@ class CreateRoomMembershipResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final roomMembership = this.roomMembership;
+    return {
+      if (roomMembership != null) 'RoomMembership': roomMembership,
+    };
+  }
 }
 
 class CreateRoomResponse {
@@ -10009,6 +10637,13 @@ class CreateRoomResponse {
           ? Room.fromJson(json['Room'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final room = this.room;
+    return {
+      if (room != null) 'Room': room,
+    };
   }
 }
 
@@ -10028,6 +10663,14 @@ class CreateSipMediaApplicationCallResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sipMediaApplicationCall = this.sipMediaApplicationCall;
+    return {
+      if (sipMediaApplicationCall != null)
+        'SipMediaApplicationCall': sipMediaApplicationCall,
+    };
+  }
 }
 
 class CreateSipMediaApplicationResponse {
@@ -10046,6 +10689,14 @@ class CreateSipMediaApplicationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sipMediaApplication = this.sipMediaApplication;
+    return {
+      if (sipMediaApplication != null)
+        'SipMediaApplication': sipMediaApplication,
+    };
+  }
 }
 
 class CreateSipRuleResponse {
@@ -10063,6 +10714,13 @@ class CreateSipRuleResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sipRule = this.sipRule;
+    return {
+      if (sipRule != null) 'SipRule': sipRule,
+    };
+  }
 }
 
 class CreateUserResponse {
@@ -10077,6 +10735,13 @@ class CreateUserResponse {
           ? User.fromJson(json['User'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
   }
 }
 
@@ -10096,6 +10761,14 @@ class CreateVoiceConnectorGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final voiceConnectorGroup = this.voiceConnectorGroup;
+    return {
+      if (voiceConnectorGroup != null)
+        'VoiceConnectorGroup': voiceConnectorGroup,
+    };
+  }
 }
 
 class CreateVoiceConnectorResponse {
@@ -10112,6 +10785,13 @@ class CreateVoiceConnectorResponse {
               json['VoiceConnector'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final voiceConnector = this.voiceConnector;
+    return {
+      if (voiceConnector != null) 'VoiceConnector': voiceConnector,
+    };
   }
 }
 
@@ -10130,6 +10810,7 @@ class Credential {
     this.password,
     this.username,
   });
+
   Map<String, dynamic> toJson() {
     final password = this.password;
     final username = this.username;
@@ -10185,6 +10866,10 @@ class DeleteAccountResponse {
   factory DeleteAccountResponse.fromJson(Map<String, dynamic> _) {
     return DeleteAccountResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DescribeAppInstanceAdminResponse {
@@ -10204,6 +10889,13 @@ class DescribeAppInstanceAdminResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceAdmin = this.appInstanceAdmin;
+    return {
+      if (appInstanceAdmin != null) 'AppInstanceAdmin': appInstanceAdmin,
+    };
+  }
 }
 
 class DescribeAppInstanceResponse {
@@ -10220,6 +10912,13 @@ class DescribeAppInstanceResponse {
           ? AppInstance.fromJson(json['AppInstance'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appInstance = this.appInstance;
+    return {
+      if (appInstance != null) 'AppInstance': appInstance,
+    };
   }
 }
 
@@ -10238,6 +10937,13 @@ class DescribeAppInstanceUserResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUser = this.appInstanceUser;
+    return {
+      if (appInstanceUser != null) 'AppInstanceUser': appInstanceUser,
+    };
+  }
 }
 
 class DescribeChannelBanResponse {
@@ -10253,6 +10959,13 @@ class DescribeChannelBanResponse {
           ? ChannelBan.fromJson(json['ChannelBan'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelBan = this.channelBan;
+    return {
+      if (channelBan != null) 'ChannelBan': channelBan,
+    };
   }
 }
 
@@ -10272,6 +10985,13 @@ class DescribeChannelMembershipForAppInstanceUserResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelMembership = this.channelMembership;
+    return {
+      if (channelMembership != null) 'ChannelMembership': channelMembership,
+    };
+  }
 }
 
 class DescribeChannelMembershipResponse {
@@ -10289,6 +11009,13 @@ class DescribeChannelMembershipResponse {
               json['ChannelMembership'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelMembership = this.channelMembership;
+    return {
+      if (channelMembership != null) 'ChannelMembership': channelMembership,
+    };
   }
 }
 
@@ -10308,6 +11035,13 @@ class DescribeChannelModeratedByAppInstanceUserResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channel = this.channel;
+    return {
+      if (channel != null) 'Channel': channel,
+    };
+  }
 }
 
 class DescribeChannelModeratorResponse {
@@ -10325,6 +11059,13 @@ class DescribeChannelModeratorResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelModerator = this.channelModerator;
+    return {
+      if (channelModerator != null) 'ChannelModerator': channelModerator,
+    };
+  }
 }
 
 class DescribeChannelResponse {
@@ -10341,6 +11082,13 @@ class DescribeChannelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channel = this.channel;
+    return {
+      if (channel != null) 'Channel': channel,
+    };
+  }
 }
 
 class DisassociatePhoneNumberFromUserResponse {
@@ -10348,6 +11096,10 @@ class DisassociatePhoneNumberFromUserResponse {
   factory DisassociatePhoneNumberFromUserResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociatePhoneNumberFromUserResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -10369,6 +11121,13 @@ class DisassociatePhoneNumbersFromVoiceConnectorGroupResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumberErrors = this.phoneNumberErrors;
+    return {
+      if (phoneNumberErrors != null) 'PhoneNumberErrors': phoneNumberErrors,
+    };
+  }
 }
 
 class DisassociatePhoneNumbersFromVoiceConnectorResponse {
@@ -10389,6 +11148,13 @@ class DisassociatePhoneNumbersFromVoiceConnectorResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumberErrors = this.phoneNumberErrors;
+    return {
+      if (phoneNumberErrors != null) 'PhoneNumberErrors': phoneNumberErrors,
+    };
+  }
 }
 
 class DisassociateSigninDelegateGroupsFromAccountResponse {
@@ -10396,6 +11162,10 @@ class DisassociateSigninDelegateGroupsFromAccountResponse {
   factory DisassociateSigninDelegateGroupsFromAccountResponse.fromJson(
       Map<String, dynamic> _) {
     return DisassociateSigninDelegateGroupsFromAccountResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -10490,6 +11260,7 @@ class EngineTranscribeMedicalSettings {
     this.region,
     this.vocabularyName,
   });
+
   Map<String, dynamic> toJson() {
     final languageCode = this.languageCode;
     final specialty = this.specialty;
@@ -10577,6 +11348,7 @@ class EngineTranscribeSettings {
     this.vocabularyFilterName,
     this.vocabularyName,
   });
+
   Map<String, dynamic> toJson() {
     final languageCode = this.languageCode;
     final contentIdentificationType = this.contentIdentificationType;
@@ -10730,6 +11502,18 @@ class EventsConfiguration {
           json['OutboundEventsHTTPSEndpoint'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final botId = this.botId;
+    final lambdaFunctionArn = this.lambdaFunctionArn;
+    final outboundEventsHTTPSEndpoint = this.outboundEventsHTTPSEndpoint;
+    return {
+      if (botId != null) 'BotId': botId,
+      if (lambdaFunctionArn != null) 'LambdaFunctionArn': lambdaFunctionArn,
+      if (outboundEventsHTTPSEndpoint != null)
+        'OutboundEventsHTTPSEndpoint': outboundEventsHTTPSEndpoint,
+    };
+  }
 }
 
 enum GeoMatchLevel {
@@ -10803,6 +11587,13 @@ class GetAccountResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final account = this.account;
+    return {
+      if (account != null) 'Account': account,
+    };
+  }
 }
 
 class GetAccountSettingsResponse {
@@ -10819,6 +11610,13 @@ class GetAccountSettingsResponse {
               json['AccountSettings'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountSettings = this.accountSettings;
+    return {
+      if (accountSettings != null) 'AccountSettings': accountSettings,
+    };
   }
 }
 
@@ -10845,6 +11643,18 @@ class GetAppInstanceRetentionSettingsResponse {
           timeStampFromJson(json['InitiateDeletionTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceRetentionSettings = this.appInstanceRetentionSettings;
+    final initiateDeletionTimestamp = this.initiateDeletionTimestamp;
+    return {
+      if (appInstanceRetentionSettings != null)
+        'AppInstanceRetentionSettings': appInstanceRetentionSettings,
+      if (initiateDeletionTimestamp != null)
+        'InitiateDeletionTimestamp':
+            unixTimestampToJson(initiateDeletionTimestamp),
+    };
+  }
 }
 
 class GetAppInstanceStreamingConfigurationsResponse {
@@ -10866,6 +11676,16 @@ class GetAppInstanceStreamingConfigurationsResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceStreamingConfigurations =
+        this.appInstanceStreamingConfigurations;
+    return {
+      if (appInstanceStreamingConfigurations != null)
+        'AppInstanceStreamingConfigurations':
+            appInstanceStreamingConfigurations,
+    };
+  }
 }
 
 class GetAttendeeResponse {
@@ -10882,6 +11702,13 @@ class GetAttendeeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attendee = this.attendee;
+    return {
+      if (attendee != null) 'Attendee': attendee,
+    };
+  }
 }
 
 class GetBotResponse {
@@ -10897,6 +11724,13 @@ class GetBotResponse {
           ? Bot.fromJson(json['Bot'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bot = this.bot;
+    return {
+      if (bot != null) 'Bot': bot,
+    };
   }
 }
 
@@ -10915,6 +11749,13 @@ class GetChannelMessageResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelMessage = this.channelMessage;
+    return {
+      if (channelMessage != null) 'ChannelMessage': channelMessage,
+    };
+  }
 }
 
 class GetEventsConfigurationResponse {
@@ -10931,6 +11772,14 @@ class GetEventsConfigurationResponse {
               json['EventsConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventsConfiguration = this.eventsConfiguration;
+    return {
+      if (eventsConfiguration != null)
+        'EventsConfiguration': eventsConfiguration,
+    };
   }
 }
 
@@ -10957,6 +11806,15 @@ class GetGlobalSettingsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final businessCalling = this.businessCalling;
+    final voiceConnector = this.voiceConnector;
+    return {
+      if (businessCalling != null) 'BusinessCalling': businessCalling,
+      if (voiceConnector != null) 'VoiceConnector': voiceConnector,
+    };
+  }
 }
 
 class GetMediaCapturePipelineResponse {
@@ -10974,6 +11832,14 @@ class GetMediaCapturePipelineResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final mediaCapturePipeline = this.mediaCapturePipeline;
+    return {
+      if (mediaCapturePipeline != null)
+        'MediaCapturePipeline': mediaCapturePipeline,
+    };
+  }
 }
 
 class GetMeetingResponse {
@@ -10989,6 +11855,13 @@ class GetMeetingResponse {
           ? Meeting.fromJson(json['Meeting'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final meeting = this.meeting;
+    return {
+      if (meeting != null) 'Meeting': meeting,
+    };
   }
 }
 
@@ -11008,6 +11881,13 @@ class GetMessagingSessionEndpointResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    return {
+      if (endpoint != null) 'Endpoint': endpoint,
+    };
+  }
 }
 
 class GetPhoneNumberOrderResponse {
@@ -11025,6 +11905,13 @@ class GetPhoneNumberOrderResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumberOrder = this.phoneNumberOrder;
+    return {
+      if (phoneNumberOrder != null) 'PhoneNumberOrder': phoneNumberOrder,
+    };
+  }
 }
 
 class GetPhoneNumberResponse {
@@ -11040,6 +11927,13 @@ class GetPhoneNumberResponse {
           ? PhoneNumber.fromJson(json['PhoneNumber'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumber = this.phoneNumber;
+    return {
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+    };
   }
 }
 
@@ -11061,6 +11955,17 @@ class GetPhoneNumberSettingsResponse {
           timeStampFromJson(json['CallingNameUpdatedTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final callingName = this.callingName;
+    final callingNameUpdatedTimestamp = this.callingNameUpdatedTimestamp;
+    return {
+      if (callingName != null) 'CallingName': callingName,
+      if (callingNameUpdatedTimestamp != null)
+        'CallingNameUpdatedTimestamp':
+            iso8601ToJson(callingNameUpdatedTimestamp),
+    };
+  }
 }
 
 class GetProxySessionResponse {
@@ -11076,6 +11981,13 @@ class GetProxySessionResponse {
           ? ProxySession.fromJson(json['ProxySession'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final proxySession = this.proxySession;
+    return {
+      if (proxySession != null) 'ProxySession': proxySession,
+    };
   }
 }
 
@@ -11101,6 +12013,16 @@ class GetRetentionSettingsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final initiateDeletionTimestamp = this.initiateDeletionTimestamp;
+    final retentionSettings = this.retentionSettings;
+    return {
+      if (initiateDeletionTimestamp != null)
+        'InitiateDeletionTimestamp': iso8601ToJson(initiateDeletionTimestamp),
+      if (retentionSettings != null) 'RetentionSettings': retentionSettings,
+    };
+  }
 }
 
 class GetRoomResponse {
@@ -11116,6 +12038,13 @@ class GetRoomResponse {
           ? Room.fromJson(json['Room'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final room = this.room;
+    return {
+      if (room != null) 'Room': room,
+    };
   }
 }
 
@@ -11138,6 +12067,16 @@ class GetSipMediaApplicationLoggingConfigurationResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sipMediaApplicationLoggingConfiguration =
+        this.sipMediaApplicationLoggingConfiguration;
+    return {
+      if (sipMediaApplicationLoggingConfiguration != null)
+        'SipMediaApplicationLoggingConfiguration':
+            sipMediaApplicationLoggingConfiguration,
+    };
+  }
 }
 
 class GetSipMediaApplicationResponse {
@@ -11155,6 +12094,14 @@ class GetSipMediaApplicationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sipMediaApplication = this.sipMediaApplication;
+    return {
+      if (sipMediaApplication != null)
+        'SipMediaApplication': sipMediaApplication,
+    };
+  }
 }
 
 class GetSipRuleResponse {
@@ -11170,6 +12117,13 @@ class GetSipRuleResponse {
           ? SipRule.fromJson(json['SipRule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sipRule = this.sipRule;
+    return {
+      if (sipRule != null) 'SipRule': sipRule,
+    };
   }
 }
 
@@ -11187,6 +12141,13 @@ class GetUserResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
+  }
 }
 
 class GetUserSettingsResponse {
@@ -11202,6 +12163,13 @@ class GetUserSettingsResponse {
           ? UserSettings.fromJson(json['UserSettings'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userSettings = this.userSettings;
+    return {
+      if (userSettings != null) 'UserSettings': userSettings,
+    };
   }
 }
 
@@ -11222,6 +12190,14 @@ class GetVoiceConnectorEmergencyCallingConfigurationResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final emergencyCallingConfiguration = this.emergencyCallingConfiguration;
+    return {
+      if (emergencyCallingConfiguration != null)
+        'EmergencyCallingConfiguration': emergencyCallingConfiguration,
+    };
+  }
 }
 
 class GetVoiceConnectorGroupResponse {
@@ -11238,6 +12214,14 @@ class GetVoiceConnectorGroupResponse {
               json['VoiceConnectorGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final voiceConnectorGroup = this.voiceConnectorGroup;
+    return {
+      if (voiceConnectorGroup != null)
+        'VoiceConnectorGroup': voiceConnectorGroup,
+    };
   }
 }
 
@@ -11257,6 +12241,14 @@ class GetVoiceConnectorLoggingConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loggingConfiguration = this.loggingConfiguration;
+    return {
+      if (loggingConfiguration != null)
+        'LoggingConfiguration': loggingConfiguration,
+    };
+  }
 }
 
 class GetVoiceConnectorOriginationResponse {
@@ -11274,6 +12266,13 @@ class GetVoiceConnectorOriginationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final origination = this.origination;
+    return {
+      if (origination != null) 'Origination': origination,
+    };
+  }
 }
 
 class GetVoiceConnectorProxyResponse {
@@ -11289,6 +12288,13 @@ class GetVoiceConnectorProxyResponse {
           ? Proxy.fromJson(json['Proxy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final proxy = this.proxy;
+    return {
+      if (proxy != null) 'Proxy': proxy,
+    };
   }
 }
 
@@ -11306,6 +12312,13 @@ class GetVoiceConnectorResponse {
               json['VoiceConnector'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final voiceConnector = this.voiceConnector;
+    return {
+      if (voiceConnector != null) 'VoiceConnector': voiceConnector,
+    };
   }
 }
 
@@ -11325,6 +12338,14 @@ class GetVoiceConnectorStreamingConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final streamingConfiguration = this.streamingConfiguration;
+    return {
+      if (streamingConfiguration != null)
+        'StreamingConfiguration': streamingConfiguration,
+    };
+  }
 }
 
 class GetVoiceConnectorTerminationHealthResponse {
@@ -11343,6 +12364,13 @@ class GetVoiceConnectorTerminationHealthResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final terminationHealth = this.terminationHealth;
+    return {
+      if (terminationHealth != null) 'TerminationHealth': terminationHealth,
+    };
+  }
 }
 
 class GetVoiceConnectorTerminationResponse {
@@ -11359,6 +12387,13 @@ class GetVoiceConnectorTerminationResponse {
           ? Termination.fromJson(json['Termination'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final termination = this.termination;
+    return {
+      if (termination != null) 'Termination': termination,
+    };
   }
 }
 
@@ -11379,6 +12414,15 @@ class Identity {
       arn: json['Arn'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -11410,6 +12454,19 @@ class Invite {
       inviteId: json['InviteId'] as String?,
       status: (json['Status'] as String?)?.toInviteStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final emailAddress = this.emailAddress;
+    final emailStatus = this.emailStatus;
+    final inviteId = this.inviteId;
+    final status = this.status;
+    return {
+      if (emailAddress != null) 'EmailAddress': emailAddress,
+      if (emailStatus != null) 'EmailStatus': emailStatus.toValue(),
+      if (inviteId != null) 'InviteId': inviteId,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -11460,6 +12517,13 @@ class InviteUsersResponse {
           .map((e) => Invite.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final invites = this.invites;
+    return {
+      if (invites != null) 'Invites': invites,
+    };
   }
 }
 
@@ -11521,6 +12585,15 @@ class ListAccountsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accounts = this.accounts;
+    final nextToken = this.nextToken;
+    return {
+      if (accounts != null) 'Accounts': accounts,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListAppInstanceAdminsResponse {
@@ -11549,6 +12622,17 @@ class ListAppInstanceAdminsResponse {
       appInstanceArn: json['AppInstanceArn'] as String?,
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceAdmins = this.appInstanceAdmins;
+    final appInstanceArn = this.appInstanceArn;
+    final nextToken = this.nextToken;
+    return {
+      if (appInstanceAdmins != null) 'AppInstanceAdmins': appInstanceAdmins,
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -11579,6 +12663,17 @@ class ListAppInstanceUsersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceArn = this.appInstanceArn;
+    final appInstanceUsers = this.appInstanceUsers;
+    final nextToken = this.nextToken;
+    return {
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+      if (appInstanceUsers != null) 'AppInstanceUsers': appInstanceUsers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListAppInstancesResponse {
@@ -11602,6 +12697,15 @@ class ListAppInstancesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstances = this.appInstances;
+    final nextToken = this.nextToken;
+    return {
+      if (appInstances != null) 'AppInstances': appInstances,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListAttendeeTagsResponse {
@@ -11618,6 +12722,13 @@ class ListAttendeeTagsResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -11641,6 +12752,15 @@ class ListAttendeesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attendees = this.attendees;
+    final nextToken = this.nextToken;
+    return {
+      if (attendees != null) 'Attendees': attendees,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListBotsResponse {
@@ -11662,6 +12782,15 @@ class ListBotsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bots = this.bots;
+    final nextToken = this.nextToken;
+    return {
+      if (bots != null) 'Bots': bots,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -11691,6 +12820,17 @@ class ListChannelBansResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final channelBans = this.channelBans;
+    final nextToken = this.nextToken;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (channelBans != null) 'ChannelBans': channelBans,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListChannelMembershipsForAppInstanceUserResponse {
@@ -11716,6 +12856,15 @@ class ListChannelMembershipsForAppInstanceUserResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelMemberships = this.channelMemberships;
+    final nextToken = this.nextToken;
+    return {
+      if (channelMemberships != null) 'ChannelMemberships': channelMemberships,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -11746,6 +12895,17 @@ class ListChannelMembershipsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final channelMemberships = this.channelMemberships;
+    final nextToken = this.nextToken;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (channelMemberships != null) 'ChannelMemberships': channelMemberships,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListChannelMessagesResponse {
@@ -11773,6 +12933,17 @@ class ListChannelMessagesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final channelMessages = this.channelMessages;
+    final nextToken = this.nextToken;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (channelMessages != null) 'ChannelMessages': channelMessages,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -11803,6 +12974,17 @@ class ListChannelModeratorsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final channelModerators = this.channelModerators;
+    final nextToken = this.nextToken;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (channelModerators != null) 'ChannelModerators': channelModerators,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListChannelsModeratedByAppInstanceUserResponse {
@@ -11828,6 +13010,15 @@ class ListChannelsModeratedByAppInstanceUserResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channels = this.channels;
+    final nextToken = this.nextToken;
+    return {
+      if (channels != null) 'Channels': channels,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListChannelsResponse {
@@ -11850,6 +13041,15 @@ class ListChannelsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channels = this.channels;
+    final nextToken = this.nextToken;
+    return {
+      if (channels != null) 'Channels': channels,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -11874,6 +13074,16 @@ class ListMediaCapturePipelinesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final mediaCapturePipelines = this.mediaCapturePipelines;
+    final nextToken = this.nextToken;
+    return {
+      if (mediaCapturePipelines != null)
+        'MediaCapturePipelines': mediaCapturePipelines,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListMeetingTagsResponse {
@@ -11890,6 +13100,13 @@ class ListMeetingTagsResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -11913,6 +13130,15 @@ class ListMeetingsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final meetings = this.meetings;
+    final nextToken = this.nextToken;
+    return {
+      if (meetings != null) 'Meetings': meetings,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListPhoneNumberOrdersResponse {
@@ -11934,6 +13160,15 @@ class ListPhoneNumberOrdersResponse {
           .map((e) => PhoneNumberOrder.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final phoneNumberOrders = this.phoneNumberOrders;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (phoneNumberOrders != null) 'PhoneNumberOrders': phoneNumberOrders,
+    };
   }
 }
 
@@ -11957,6 +13192,15 @@ class ListPhoneNumbersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final phoneNumbers = this.phoneNumbers;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (phoneNumbers != null) 'PhoneNumbers': phoneNumbers,
+    };
+  }
 }
 
 class ListProxySessionsResponse {
@@ -11978,6 +13222,15 @@ class ListProxySessionsResponse {
           .map((e) => ProxySession.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final proxySessions = this.proxySessions;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (proxySessions != null) 'ProxySessions': proxySessions,
+    };
   }
 }
 
@@ -12001,6 +13254,15 @@ class ListRoomMembershipsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final roomMemberships = this.roomMemberships;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (roomMemberships != null) 'RoomMemberships': roomMemberships,
+    };
+  }
 }
 
 class ListRoomsResponse {
@@ -12022,6 +13284,15 @@ class ListRoomsResponse {
           .map((e) => Room.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final rooms = this.rooms;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (rooms != null) 'Rooms': rooms,
+    };
   }
 }
 
@@ -12045,6 +13316,16 @@ class ListSipMediaApplicationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final sipMediaApplications = this.sipMediaApplications;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (sipMediaApplications != null)
+        'SipMediaApplications': sipMediaApplications,
+    };
+  }
 }
 
 class ListSipRulesResponse {
@@ -12067,6 +13348,15 @@ class ListSipRulesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final sipRules = this.sipRules;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (sipRules != null) 'SipRules': sipRules,
+    };
+  }
 }
 
 class ListSupportedPhoneNumberCountriesResponse {
@@ -12085,6 +13375,14 @@ class ListSupportedPhoneNumberCountriesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumberCountries = this.phoneNumberCountries;
+    return {
+      if (phoneNumberCountries != null)
+        'PhoneNumberCountries': phoneNumberCountries,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -12101,6 +13399,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -12124,6 +13429,15 @@ class ListUsersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final users = this.users;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (users != null) 'Users': users,
+    };
+  }
 }
 
 class ListVoiceConnectorGroupsResponse {
@@ -12146,6 +13460,16 @@ class ListVoiceConnectorGroupsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final voiceConnectorGroups = this.voiceConnectorGroups;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (voiceConnectorGroups != null)
+        'VoiceConnectorGroups': voiceConnectorGroups,
+    };
+  }
 }
 
 class ListVoiceConnectorTerminationCredentialsResponse {
@@ -12163,6 +13487,13 @@ class ListVoiceConnectorTerminationCredentialsResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final usernames = this.usernames;
+    return {
+      if (usernames != null) 'Usernames': usernames,
+    };
   }
 }
 
@@ -12185,6 +13516,15 @@ class ListVoiceConnectorsResponse {
           .map((e) => VoiceConnector.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final voiceConnectors = this.voiceConnectors;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (voiceConnectors != null) 'VoiceConnectors': voiceConnectors,
+    };
   }
 }
 
@@ -12224,6 +13564,10 @@ class LogoutUserResponse {
   LogoutUserResponse();
   factory LogoutUserResponse.fromJson(Map<String, dynamic> _) {
     return LogoutUserResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -12286,6 +13630,32 @@ class MediaCapturePipeline {
       status: (json['Status'] as String?)?.toMediaPipelineStatus(),
       updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final chimeSdkMeetingConfiguration = this.chimeSdkMeetingConfiguration;
+    final createdTimestamp = this.createdTimestamp;
+    final mediaPipelineId = this.mediaPipelineId;
+    final sinkArn = this.sinkArn;
+    final sinkType = this.sinkType;
+    final sourceArn = this.sourceArn;
+    final sourceType = this.sourceType;
+    final status = this.status;
+    final updatedTimestamp = this.updatedTimestamp;
+    return {
+      if (chimeSdkMeetingConfiguration != null)
+        'ChimeSdkMeetingConfiguration': chimeSdkMeetingConfiguration,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': iso8601ToJson(createdTimestamp),
+      if (mediaPipelineId != null) 'MediaPipelineId': mediaPipelineId,
+      if (sinkArn != null) 'SinkArn': sinkArn,
+      if (sinkType != null) 'SinkType': sinkType.toValue(),
+      if (sourceArn != null) 'SourceArn': sourceArn,
+      if (sourceType != null) 'SourceType': sourceType.toValue(),
+      if (status != null) 'Status': status.toValue(),
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': iso8601ToJson(updatedTimestamp),
+    };
   }
 }
 
@@ -12427,6 +13797,27 @@ class MediaPlacement {
       turnControlUrl: json['TurnControlUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final audioFallbackUrl = this.audioFallbackUrl;
+    final audioHostUrl = this.audioHostUrl;
+    final eventIngestionUrl = this.eventIngestionUrl;
+    final screenDataUrl = this.screenDataUrl;
+    final screenSharingUrl = this.screenSharingUrl;
+    final screenViewingUrl = this.screenViewingUrl;
+    final signalingUrl = this.signalingUrl;
+    final turnControlUrl = this.turnControlUrl;
+    return {
+      if (audioFallbackUrl != null) 'AudioFallbackUrl': audioFallbackUrl,
+      if (audioHostUrl != null) 'AudioHostUrl': audioHostUrl,
+      if (eventIngestionUrl != null) 'EventIngestionUrl': eventIngestionUrl,
+      if (screenDataUrl != null) 'ScreenDataUrl': screenDataUrl,
+      if (screenSharingUrl != null) 'ScreenSharingUrl': screenSharingUrl,
+      if (screenViewingUrl != null) 'ScreenViewingUrl': screenViewingUrl,
+      if (signalingUrl != null) 'SignalingUrl': signalingUrl,
+      if (turnControlUrl != null) 'TurnControlUrl': turnControlUrl,
+    };
+  }
 }
 
 /// A meeting created using the Amazon Chime SDK.
@@ -12468,6 +13859,19 @@ class Meeting {
       meetingId: json['MeetingId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final externalMeetingId = this.externalMeetingId;
+    final mediaPlacement = this.mediaPlacement;
+    final mediaRegion = this.mediaRegion;
+    final meetingId = this.meetingId;
+    return {
+      if (externalMeetingId != null) 'ExternalMeetingId': externalMeetingId,
+      if (mediaPlacement != null) 'MediaPlacement': mediaPlacement,
+      if (mediaRegion != null) 'MediaRegion': mediaRegion,
+      if (meetingId != null) 'MeetingId': meetingId,
+    };
+  }
 }
 
 /// The resource target configurations for receiving Amazon Chime SDK meeting
@@ -12485,6 +13889,7 @@ class MeetingNotificationConfiguration {
     this.snsTopicArn,
     this.sqsQueueArn,
   });
+
   Map<String, dynamic> toJson() {
     final snsTopicArn = this.snsTopicArn;
     final sqsQueueArn = this.sqsQueueArn;
@@ -12528,6 +13933,21 @@ class Member {
       memberType: (json['MemberType'] as String?)?.toMemberType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final email = this.email;
+    final fullName = this.fullName;
+    final memberId = this.memberId;
+    final memberType = this.memberType;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (email != null) 'Email': email,
+      if (fullName != null) 'FullName': fullName,
+      if (memberId != null) 'MemberId': memberId,
+      if (memberType != null) 'MemberType': memberType.toValue(),
+    };
+  }
 }
 
 /// The list of errors returned when a member action results in an error.
@@ -12552,6 +13972,17 @@ class MemberError {
       errorMessage: json['ErrorMessage'] as String?,
       memberId: json['MemberId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final memberId = this.memberId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (memberId != null) 'MemberId': memberId,
+    };
   }
 }
 
@@ -12600,6 +14031,7 @@ class MembershipItem {
     this.memberId,
     this.role,
   });
+
   Map<String, dynamic> toJson() {
     final memberId = this.memberId;
     final role = this.role;
@@ -12622,6 +14054,13 @@ class MessagingSessionEndpoint {
     return MessagingSessionEndpoint(
       url: json['Url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final url = this.url;
+    return {
+      if (url != null) 'Url': url,
+    };
   }
 }
 
@@ -12703,6 +14142,15 @@ class OrderedPhoneNumber {
       e164PhoneNumber: json['E164PhoneNumber'] as String?,
       status: (json['Status'] as String?)?.toOrderedPhoneNumberStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final e164PhoneNumber = this.e164PhoneNumber;
+    final status = this.status;
+    return {
+      if (e164PhoneNumber != null) 'E164PhoneNumber': e164PhoneNumber,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -12884,6 +14332,15 @@ class Participant {
       proxyPhoneNumber: json['ProxyPhoneNumber'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumber = this.phoneNumber;
+    final proxyPhoneNumber = this.proxyPhoneNumber;
+    return {
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (proxyPhoneNumber != null) 'ProxyPhoneNumber': proxyPhoneNumber,
+    };
+  }
 }
 
 /// A phone number used for Amazon Chime Business Calling or an Amazon Chime
@@ -12968,6 +14425,41 @@ class PhoneNumber {
       updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associations = this.associations;
+    final callingName = this.callingName;
+    final callingNameStatus = this.callingNameStatus;
+    final capabilities = this.capabilities;
+    final country = this.country;
+    final createdTimestamp = this.createdTimestamp;
+    final deletionTimestamp = this.deletionTimestamp;
+    final e164PhoneNumber = this.e164PhoneNumber;
+    final phoneNumberId = this.phoneNumberId;
+    final productType = this.productType;
+    final status = this.status;
+    final type = this.type;
+    final updatedTimestamp = this.updatedTimestamp;
+    return {
+      if (associations != null) 'Associations': associations,
+      if (callingName != null) 'CallingName': callingName,
+      if (callingNameStatus != null)
+        'CallingNameStatus': callingNameStatus.toValue(),
+      if (capabilities != null) 'Capabilities': capabilities,
+      if (country != null) 'Country': country,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': iso8601ToJson(createdTimestamp),
+      if (deletionTimestamp != null)
+        'DeletionTimestamp': iso8601ToJson(deletionTimestamp),
+      if (e164PhoneNumber != null) 'E164PhoneNumber': e164PhoneNumber,
+      if (phoneNumberId != null) 'PhoneNumberId': phoneNumberId,
+      if (productType != null) 'ProductType': productType.toValue(),
+      if (status != null) 'Status': status.toValue(),
+      if (type != null) 'Type': type.toValue(),
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': iso8601ToJson(updatedTimestamp),
+    };
+  }
 }
 
 /// The phone number associations, such as Amazon Chime account ID, Amazon Chime
@@ -12995,6 +14487,18 @@ class PhoneNumberAssociation {
       name: (json['Name'] as String?)?.toPhoneNumberAssociationName(),
       value: json['Value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associatedTimestamp = this.associatedTimestamp;
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (associatedTimestamp != null)
+        'AssociatedTimestamp': iso8601ToJson(associatedTimestamp),
+      if (name != null) 'Name': name.toValue(),
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -13081,6 +14585,23 @@ class PhoneNumberCapabilities {
       outboundSMS: json['OutboundSMS'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inboundCall = this.inboundCall;
+    final inboundMMS = this.inboundMMS;
+    final inboundSMS = this.inboundSMS;
+    final outboundCall = this.outboundCall;
+    final outboundMMS = this.outboundMMS;
+    final outboundSMS = this.outboundSMS;
+    return {
+      if (inboundCall != null) 'InboundCall': inboundCall,
+      if (inboundMMS != null) 'InboundMMS': inboundMMS,
+      if (inboundSMS != null) 'InboundSMS': inboundSMS,
+      if (outboundCall != null) 'OutboundCall': outboundCall,
+      if (outboundMMS != null) 'OutboundMMS': outboundMMS,
+      if (outboundSMS != null) 'OutboundSMS': outboundSMS,
+    };
+  }
 }
 
 /// The phone number country.
@@ -13103,6 +14624,17 @@ class PhoneNumberCountry {
           .map((e) => (e as String).toPhoneNumberType())
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final countryCode = this.countryCode;
+    final supportedPhoneNumberTypes = this.supportedPhoneNumberTypes;
+    return {
+      if (countryCode != null) 'CountryCode': countryCode,
+      if (supportedPhoneNumberTypes != null)
+        'SupportedPhoneNumberTypes':
+            supportedPhoneNumberTypes.map((e) => e.toValue()).toList(),
+    };
   }
 }
 
@@ -13130,6 +14662,17 @@ class PhoneNumberError {
       errorMessage: json['ErrorMessage'] as String?,
       phoneNumberId: json['PhoneNumberId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final phoneNumberId = this.phoneNumberId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (phoneNumberId != null) 'PhoneNumberId': phoneNumberId,
+    };
   }
 }
 
@@ -13174,6 +14717,26 @@ class PhoneNumberOrder {
       status: (json['Status'] as String?)?.toPhoneNumberOrderStatus(),
       updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final orderedPhoneNumbers = this.orderedPhoneNumbers;
+    final phoneNumberOrderId = this.phoneNumberOrderId;
+    final productType = this.productType;
+    final status = this.status;
+    final updatedTimestamp = this.updatedTimestamp;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': iso8601ToJson(createdTimestamp),
+      if (orderedPhoneNumbers != null)
+        'OrderedPhoneNumbers': orderedPhoneNumbers,
+      if (phoneNumberOrderId != null) 'PhoneNumberOrderId': phoneNumberOrderId,
+      if (productType != null) 'ProductType': productType.toValue(),
+      if (status != null) 'Status': status.toValue(),
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': iso8601ToJson(updatedTimestamp),
+    };
   }
 }
 
@@ -13366,6 +14929,22 @@ class Proxy {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final defaultSessionExpiryMinutes = this.defaultSessionExpiryMinutes;
+    final disabled = this.disabled;
+    final fallBackPhoneNumber = this.fallBackPhoneNumber;
+    final phoneNumberCountries = this.phoneNumberCountries;
+    return {
+      if (defaultSessionExpiryMinutes != null)
+        'DefaultSessionExpiryMinutes': defaultSessionExpiryMinutes,
+      if (disabled != null) 'Disabled': disabled,
+      if (fallBackPhoneNumber != null)
+        'FallBackPhoneNumber': fallBackPhoneNumber,
+      if (phoneNumberCountries != null)
+        'PhoneNumberCountries': phoneNumberCountries,
+    };
+  }
 }
 
 /// The proxy session for an Amazon Chime Voice Connector.
@@ -13453,6 +15032,42 @@ class ProxySession {
       voiceConnectorId: json['VoiceConnectorId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capabilities = this.capabilities;
+    final createdTimestamp = this.createdTimestamp;
+    final endedTimestamp = this.endedTimestamp;
+    final expiryMinutes = this.expiryMinutes;
+    final geoMatchLevel = this.geoMatchLevel;
+    final geoMatchParams = this.geoMatchParams;
+    final name = this.name;
+    final numberSelectionBehavior = this.numberSelectionBehavior;
+    final participants = this.participants;
+    final proxySessionId = this.proxySessionId;
+    final status = this.status;
+    final updatedTimestamp = this.updatedTimestamp;
+    final voiceConnectorId = this.voiceConnectorId;
+    return {
+      if (capabilities != null)
+        'Capabilities': capabilities.map((e) => e.toValue()).toList(),
+      if (createdTimestamp != null)
+        'CreatedTimestamp': iso8601ToJson(createdTimestamp),
+      if (endedTimestamp != null)
+        'EndedTimestamp': iso8601ToJson(endedTimestamp),
+      if (expiryMinutes != null) 'ExpiryMinutes': expiryMinutes,
+      if (geoMatchLevel != null) 'GeoMatchLevel': geoMatchLevel.toValue(),
+      if (geoMatchParams != null) 'GeoMatchParams': geoMatchParams,
+      if (name != null) 'Name': name,
+      if (numberSelectionBehavior != null)
+        'NumberSelectionBehavior': numberSelectionBehavior.toValue(),
+      if (participants != null) 'Participants': participants,
+      if (proxySessionId != null) 'ProxySessionId': proxySessionId,
+      if (status != null) 'Status': status.toValue(),
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': iso8601ToJson(updatedTimestamp),
+      if (voiceConnectorId != null) 'VoiceConnectorId': voiceConnectorId,
+    };
+  }
 }
 
 enum ProxySessionStatus {
@@ -13510,6 +15125,18 @@ class PutAppInstanceRetentionSettingsResponse {
           timeStampFromJson(json['InitiateDeletionTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceRetentionSettings = this.appInstanceRetentionSettings;
+    final initiateDeletionTimestamp = this.initiateDeletionTimestamp;
+    return {
+      if (appInstanceRetentionSettings != null)
+        'AppInstanceRetentionSettings': appInstanceRetentionSettings,
+      if (initiateDeletionTimestamp != null)
+        'InitiateDeletionTimestamp':
+            unixTimestampToJson(initiateDeletionTimestamp),
+    };
+  }
 }
 
 class PutAppInstanceStreamingConfigurationsResponse {
@@ -13531,6 +15158,16 @@ class PutAppInstanceStreamingConfigurationsResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceStreamingConfigurations =
+        this.appInstanceStreamingConfigurations;
+    return {
+      if (appInstanceStreamingConfigurations != null)
+        'AppInstanceStreamingConfigurations':
+            appInstanceStreamingConfigurations,
+    };
+  }
 }
 
 class PutEventsConfigurationResponse {
@@ -13546,6 +15183,14 @@ class PutEventsConfigurationResponse {
               json['EventsConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventsConfiguration = this.eventsConfiguration;
+    return {
+      if (eventsConfiguration != null)
+        'EventsConfiguration': eventsConfiguration,
+    };
   }
 }
 
@@ -13571,6 +15216,16 @@ class PutRetentionSettingsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final initiateDeletionTimestamp = this.initiateDeletionTimestamp;
+    final retentionSettings = this.retentionSettings;
+    return {
+      if (initiateDeletionTimestamp != null)
+        'InitiateDeletionTimestamp': iso8601ToJson(initiateDeletionTimestamp),
+      if (retentionSettings != null) 'RetentionSettings': retentionSettings,
+    };
+  }
 }
 
 class PutSipMediaApplicationLoggingConfigurationResponse {
@@ -13591,6 +15246,16 @@ class PutSipMediaApplicationLoggingConfigurationResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sipMediaApplicationLoggingConfiguration =
+        this.sipMediaApplicationLoggingConfiguration;
+    return {
+      if (sipMediaApplicationLoggingConfiguration != null)
+        'SipMediaApplicationLoggingConfiguration':
+            sipMediaApplicationLoggingConfiguration,
+    };
+  }
 }
 
 class PutVoiceConnectorEmergencyCallingConfigurationResponse {
@@ -13610,6 +15275,14 @@ class PutVoiceConnectorEmergencyCallingConfigurationResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final emergencyCallingConfiguration = this.emergencyCallingConfiguration;
+    return {
+      if (emergencyCallingConfiguration != null)
+        'EmergencyCallingConfiguration': emergencyCallingConfiguration,
+    };
+  }
 }
 
 class PutVoiceConnectorLoggingConfigurationResponse {
@@ -13628,6 +15301,14 @@ class PutVoiceConnectorLoggingConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loggingConfiguration = this.loggingConfiguration;
+    return {
+      if (loggingConfiguration != null)
+        'LoggingConfiguration': loggingConfiguration,
+    };
+  }
 }
 
 class PutVoiceConnectorOriginationResponse {
@@ -13645,6 +15326,13 @@ class PutVoiceConnectorOriginationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final origination = this.origination;
+    return {
+      if (origination != null) 'Origination': origination,
+    };
+  }
 }
 
 class PutVoiceConnectorProxyResponse {
@@ -13660,6 +15348,13 @@ class PutVoiceConnectorProxyResponse {
           ? Proxy.fromJson(json['Proxy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final proxy = this.proxy;
+    return {
+      if (proxy != null) 'Proxy': proxy,
+    };
   }
 }
 
@@ -13679,6 +15374,14 @@ class PutVoiceConnectorStreamingConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final streamingConfiguration = this.streamingConfiguration;
+    return {
+      if (streamingConfiguration != null)
+        'StreamingConfiguration': streamingConfiguration,
+    };
+  }
 }
 
 class PutVoiceConnectorTerminationResponse {
@@ -13695,6 +15398,13 @@ class PutVoiceConnectorTerminationResponse {
           ? Termination.fromJson(json['Termination'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final termination = this.termination;
+    return {
+      if (termination != null) 'Termination': termination,
+    };
   }
 }
 
@@ -13715,6 +15425,15 @@ class RedactChannelMessageResponse {
       messageId: json['MessageId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final messageId = this.messageId;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (messageId != null) 'MessageId': messageId,
+    };
+  }
 }
 
 class RedactConversationMessageResponse {
@@ -13722,12 +15441,20 @@ class RedactConversationMessageResponse {
   factory RedactConversationMessageResponse.fromJson(Map<String, dynamic> _) {
     return RedactConversationMessageResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class RedactRoomMessageResponse {
   RedactRoomMessageResponse();
   factory RedactRoomMessageResponse.fromJson(Map<String, dynamic> _) {
     return RedactRoomMessageResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -13743,6 +15470,13 @@ class RegenerateSecurityTokenResponse {
           ? Bot.fromJson(json['Bot'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bot = this.bot;
+    return {
+      if (bot != null) 'Bot': bot,
+    };
   }
 }
 
@@ -13793,6 +15527,13 @@ class ResetPersonalPINResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
+  }
 }
 
 class RestorePhoneNumberResponse {
@@ -13808,6 +15549,13 @@ class RestorePhoneNumberResponse {
           ? PhoneNumber.fromJson(json['PhoneNumber'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumber = this.phoneNumber;
+    return {
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+    };
   }
 }
 
@@ -13889,6 +15637,25 @@ class Room {
       updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final createdBy = this.createdBy;
+    final createdTimestamp = this.createdTimestamp;
+    final name = this.name;
+    final roomId = this.roomId;
+    final updatedTimestamp = this.updatedTimestamp;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': iso8601ToJson(createdTimestamp),
+      if (name != null) 'Name': name,
+      if (roomId != null) 'RoomId': roomId,
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': iso8601ToJson(updatedTimestamp),
+    };
+  }
 }
 
 /// The room membership details.
@@ -13923,6 +15690,22 @@ class RoomMembership {
       roomId: json['RoomId'] as String?,
       updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final invitedBy = this.invitedBy;
+    final member = this.member;
+    final role = this.role;
+    final roomId = this.roomId;
+    final updatedTimestamp = this.updatedTimestamp;
+    return {
+      if (invitedBy != null) 'InvitedBy': invitedBy,
+      if (member != null) 'Member': member,
+      if (role != null) 'Role': role.toValue(),
+      if (roomId != null) 'RoomId': roomId,
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': iso8601ToJson(updatedTimestamp),
+    };
   }
 }
 
@@ -13998,6 +15781,15 @@ class SearchAvailablePhoneNumbersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final e164PhoneNumbers = this.e164PhoneNumbers;
+    final nextToken = this.nextToken;
+    return {
+      if (e164PhoneNumbers != null) 'E164PhoneNumbers': e164PhoneNumbers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The video streams to capture for a specified media capture pipeline. The
@@ -14052,6 +15844,15 @@ class SendChannelMessageResponse {
       channelArn: json['ChannelArn'] as String?,
       messageId: json['MessageId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final messageId = this.messageId;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (messageId != null) 'MessageId': messageId,
+    };
   }
 }
 
@@ -14122,6 +15923,26 @@ class SipMediaApplication {
       updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsRegion = this.awsRegion;
+    final createdTimestamp = this.createdTimestamp;
+    final endpoints = this.endpoints;
+    final name = this.name;
+    final sipMediaApplicationId = this.sipMediaApplicationId;
+    final updatedTimestamp = this.updatedTimestamp;
+    return {
+      if (awsRegion != null) 'AwsRegion': awsRegion,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': iso8601ToJson(createdTimestamp),
+      if (endpoints != null) 'Endpoints': endpoints,
+      if (name != null) 'Name': name,
+      if (sipMediaApplicationId != null)
+        'SipMediaApplicationId': sipMediaApplicationId,
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': iso8601ToJson(updatedTimestamp),
+    };
+  }
 }
 
 /// A <code>Call</code> instance for a SIP media application.
@@ -14136,6 +15957,13 @@ class SipMediaApplicationCall {
     return SipMediaApplicationCall(
       transactionId: json['TransactionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transactionId = this.transactionId;
+    return {
+      if (transactionId != null) 'TransactionId': transactionId,
+    };
   }
 }
 
@@ -14250,6 +16078,29 @@ class SipRule {
       triggerValue: json['TriggerValue'] as String?,
       updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final disabled = this.disabled;
+    final name = this.name;
+    final sipRuleId = this.sipRuleId;
+    final targetApplications = this.targetApplications;
+    final triggerType = this.triggerType;
+    final triggerValue = this.triggerValue;
+    final updatedTimestamp = this.updatedTimestamp;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': iso8601ToJson(createdTimestamp),
+      if (disabled != null) 'Disabled': disabled,
+      if (name != null) 'Name': name,
+      if (sipRuleId != null) 'SipRuleId': sipRuleId,
+      if (targetApplications != null) 'TargetApplications': targetApplications,
+      if (triggerType != null) 'TriggerType': triggerType.toValue(),
+      if (triggerValue != null) 'TriggerValue': triggerValue,
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': iso8601ToJson(updatedTimestamp),
+    };
   }
 }
 
@@ -14380,12 +16231,20 @@ class StartMeetingTranscriptionResponse {
   factory StartMeetingTranscriptionResponse.fromJson(Map<String, dynamic> _) {
     return StartMeetingTranscriptionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class StopMeetingTranscriptionResponse {
   StopMeetingTranscriptionResponse();
   factory StopMeetingTranscriptionResponse.fromJson(Map<String, dynamic> _) {
     return StopMeetingTranscriptionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -14600,6 +16459,15 @@ class TerminationHealth {
       source: json['Source'] as String?,
       timestamp: timeStampFromJson(json['Timestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final source = this.source;
+    final timestamp = this.timestamp;
+    return {
+      if (source != null) 'Source': source,
+      if (timestamp != null) 'Timestamp': iso8601ToJson(timestamp),
+    };
   }
 }
 
@@ -15074,6 +16942,7 @@ class TranscriptionConfiguration {
     this.engineTranscribeMedicalSettings,
     this.engineTranscribeSettings,
   });
+
   Map<String, dynamic> toJson() {
     final engineTranscribeMedicalSettings =
         this.engineTranscribeMedicalSettings;
@@ -15101,12 +16970,23 @@ class UpdateAccountResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final account = this.account;
+    return {
+      if (account != null) 'Account': account,
+    };
+  }
 }
 
 class UpdateAccountSettingsResponse {
   UpdateAccountSettingsResponse();
   factory UpdateAccountSettingsResponse.fromJson(Map<String, dynamic> _) {
     return UpdateAccountSettingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -15122,6 +17002,13 @@ class UpdateAppInstanceResponse {
       appInstanceArn: json['AppInstanceArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceArn = this.appInstanceArn;
+    return {
+      if (appInstanceArn != null) 'AppInstanceArn': appInstanceArn,
+    };
+  }
 }
 
 class UpdateAppInstanceUserResponse {
@@ -15135,6 +17022,13 @@ class UpdateAppInstanceUserResponse {
     return UpdateAppInstanceUserResponse(
       appInstanceUserArn: json['AppInstanceUserArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appInstanceUserArn = this.appInstanceUserArn;
+    return {
+      if (appInstanceUserArn != null) 'AppInstanceUserArn': appInstanceUserArn,
+    };
   }
 }
 
@@ -15151,6 +17045,13 @@ class UpdateBotResponse {
           ? Bot.fromJson(json['Bot'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bot = this.bot;
+    return {
+      if (bot != null) 'Bot': bot,
+    };
   }
 }
 
@@ -15171,6 +17072,15 @@ class UpdateChannelMessageResponse {
       messageId: json['MessageId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    final messageId = this.messageId;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+      if (messageId != null) 'MessageId': messageId,
+    };
+  }
 }
 
 class UpdateChannelReadMarkerResponse {
@@ -15185,6 +17095,13 @@ class UpdateChannelReadMarkerResponse {
       channelArn: json['ChannelArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+    };
+  }
 }
 
 class UpdateChannelResponse {
@@ -15198,6 +17115,13 @@ class UpdateChannelResponse {
     return UpdateChannelResponse(
       channelArn: json['ChannelArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelArn = this.channelArn;
+    return {
+      if (channelArn != null) 'ChannelArn': channelArn,
+    };
   }
 }
 
@@ -15218,6 +17142,7 @@ class UpdatePhoneNumberRequestItem {
     this.callingName,
     this.productType,
   });
+
   Map<String, dynamic> toJson() {
     final phoneNumberId = this.phoneNumberId;
     final callingName = this.callingName;
@@ -15244,6 +17169,13 @@ class UpdatePhoneNumberResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final phoneNumber = this.phoneNumber;
+    return {
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+    };
+  }
 }
 
 class UpdateProxySessionResponse {
@@ -15259,6 +17191,13 @@ class UpdateProxySessionResponse {
           ? ProxySession.fromJson(json['ProxySession'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final proxySession = this.proxySession;
+    return {
+      if (proxySession != null) 'ProxySession': proxySession,
+    };
   }
 }
 
@@ -15277,6 +17216,13 @@ class UpdateRoomMembershipResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final roomMembership = this.roomMembership;
+    return {
+      if (roomMembership != null) 'RoomMembership': roomMembership,
+    };
+  }
 }
 
 class UpdateRoomResponse {
@@ -15292,6 +17238,13 @@ class UpdateRoomResponse {
           ? Room.fromJson(json['Room'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final room = this.room;
+    return {
+      if (room != null) 'Room': room,
+    };
   }
 }
 
@@ -15309,6 +17262,14 @@ class UpdateSipMediaApplicationCallResponse {
               json['SipMediaApplicationCall'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sipMediaApplicationCall = this.sipMediaApplicationCall;
+    return {
+      if (sipMediaApplicationCall != null)
+        'SipMediaApplicationCall': sipMediaApplicationCall,
+    };
   }
 }
 
@@ -15328,6 +17289,14 @@ class UpdateSipMediaApplicationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sipMediaApplication = this.sipMediaApplication;
+    return {
+      if (sipMediaApplication != null)
+        'SipMediaApplication': sipMediaApplication,
+    };
+  }
 }
 
 class UpdateSipRuleResponse {
@@ -15343,6 +17312,13 @@ class UpdateSipRuleResponse {
           ? SipRule.fromJson(json['SipRule'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sipRule = this.sipRule;
+    return {
+      if (sipRule != null) 'SipRule': sipRule,
+    };
   }
 }
 
@@ -15367,6 +17343,7 @@ class UpdateUserRequestItem {
     this.licenseType,
     this.userType,
   });
+
   Map<String, dynamic> toJson() {
     final userId = this.userId;
     final alexaForBusinessMetadata = this.alexaForBusinessMetadata;
@@ -15396,6 +17373,13 @@ class UpdateUserResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
+  }
 }
 
 class UpdateVoiceConnectorGroupResponse {
@@ -15414,6 +17398,14 @@ class UpdateVoiceConnectorGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final voiceConnectorGroup = this.voiceConnectorGroup;
+    return {
+      if (voiceConnectorGroup != null)
+        'VoiceConnectorGroup': voiceConnectorGroup,
+    };
+  }
 }
 
 class UpdateVoiceConnectorResponse {
@@ -15430,6 +17422,13 @@ class UpdateVoiceConnectorResponse {
               json['VoiceConnector'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final voiceConnector = this.voiceConnector;
+    return {
+      if (voiceConnector != null) 'VoiceConnector': voiceConnector,
+    };
   }
 }
 
@@ -15512,6 +17511,41 @@ class User {
       userType: (json['UserType'] as String?)?.toUserType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userId = this.userId;
+    final accountId = this.accountId;
+    final alexaForBusinessMetadata = this.alexaForBusinessMetadata;
+    final displayName = this.displayName;
+    final invitedOn = this.invitedOn;
+    final licenseType = this.licenseType;
+    final personalPIN = this.personalPIN;
+    final primaryEmail = this.primaryEmail;
+    final primaryProvisionedNumber = this.primaryProvisionedNumber;
+    final registeredOn = this.registeredOn;
+    final userInvitationStatus = this.userInvitationStatus;
+    final userRegistrationStatus = this.userRegistrationStatus;
+    final userType = this.userType;
+    return {
+      'UserId': userId,
+      if (accountId != null) 'AccountId': accountId,
+      if (alexaForBusinessMetadata != null)
+        'AlexaForBusinessMetadata': alexaForBusinessMetadata,
+      if (displayName != null) 'DisplayName': displayName,
+      if (invitedOn != null) 'InvitedOn': iso8601ToJson(invitedOn),
+      if (licenseType != null) 'LicenseType': licenseType.toValue(),
+      if (personalPIN != null) 'PersonalPIN': personalPIN,
+      if (primaryEmail != null) 'PrimaryEmail': primaryEmail,
+      if (primaryProvisionedNumber != null)
+        'PrimaryProvisionedNumber': primaryProvisionedNumber,
+      if (registeredOn != null) 'RegisteredOn': iso8601ToJson(registeredOn),
+      if (userInvitationStatus != null)
+        'UserInvitationStatus': userInvitationStatus.toValue(),
+      if (userRegistrationStatus != null)
+        'UserRegistrationStatus': userRegistrationStatus.toValue(),
+      if (userType != null) 'UserType': userType.toValue(),
+    };
+  }
 }
 
 /// The list of errors returned when errors are encountered during the
@@ -15539,6 +17573,17 @@ class UserError {
       errorMessage: json['ErrorMessage'] as String?,
       userId: json['UserId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final userId = this.userId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode.toValue(),
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (userId != null) 'UserId': userId,
+    };
   }
 }
 
@@ -15628,6 +17673,20 @@ class ValidateE911AddressResponse {
           .toList(),
       validationResult: json['ValidationResult'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final addressExternalId = this.addressExternalId;
+    final candidateAddressList = this.candidateAddressList;
+    final validationResult = this.validationResult;
+    return {
+      if (address != null) 'Address': address,
+      if (addressExternalId != null) 'AddressExternalId': addressExternalId,
+      if (candidateAddressList != null)
+        'CandidateAddressList': candidateAddressList,
+      if (validationResult != null) 'ValidationResult': validationResult,
+    };
   }
 }
 
@@ -15734,6 +17793,29 @@ class VoiceConnector {
       voiceConnectorId: json['VoiceConnectorId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsRegion = this.awsRegion;
+    final createdTimestamp = this.createdTimestamp;
+    final name = this.name;
+    final outboundHostName = this.outboundHostName;
+    final requireEncryption = this.requireEncryption;
+    final updatedTimestamp = this.updatedTimestamp;
+    final voiceConnectorArn = this.voiceConnectorArn;
+    final voiceConnectorId = this.voiceConnectorId;
+    return {
+      if (awsRegion != null) 'AwsRegion': awsRegion.toValue(),
+      if (createdTimestamp != null)
+        'CreatedTimestamp': iso8601ToJson(createdTimestamp),
+      if (name != null) 'Name': name,
+      if (outboundHostName != null) 'OutboundHostName': outboundHostName,
+      if (requireEncryption != null) 'RequireEncryption': requireEncryption,
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': iso8601ToJson(updatedTimestamp),
+      if (voiceConnectorArn != null) 'VoiceConnectorArn': voiceConnectorArn,
+      if (voiceConnectorId != null) 'VoiceConnectorId': voiceConnectorId,
+    };
+  }
 }
 
 enum VoiceConnectorAwsRegion {
@@ -15809,6 +17891,28 @@ class VoiceConnectorGroup {
           .map((e) => VoiceConnectorItem.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final name = this.name;
+    final updatedTimestamp = this.updatedTimestamp;
+    final voiceConnectorGroupArn = this.voiceConnectorGroupArn;
+    final voiceConnectorGroupId = this.voiceConnectorGroupId;
+    final voiceConnectorItems = this.voiceConnectorItems;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': iso8601ToJson(createdTimestamp),
+      if (name != null) 'Name': name,
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': iso8601ToJson(updatedTimestamp),
+      if (voiceConnectorGroupArn != null)
+        'VoiceConnectorGroupArn': voiceConnectorGroupArn,
+      if (voiceConnectorGroupId != null)
+        'VoiceConnectorGroupId': voiceConnectorGroupId,
+      if (voiceConnectorItems != null)
+        'VoiceConnectorItems': voiceConnectorItems,
+    };
   }
 }
 

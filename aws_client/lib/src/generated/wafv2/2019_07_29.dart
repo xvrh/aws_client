@@ -3940,6 +3940,10 @@ class AssociateWebACLResponse {
   factory AssociateWebACLResponse.fromJson(Map<String, dynamic> _) {
     return AssociateWebACLResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Specifies that WAF should block the request and optionally defines
@@ -4324,6 +4328,17 @@ class CaptchaResponse {
       solveTimestamp: json['SolveTimestamp'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failureReason = this.failureReason;
+    final responseCode = this.responseCode;
+    final solveTimestamp = this.solveTimestamp;
+    return {
+      if (failureReason != null) 'FailureReason': failureReason.toValue(),
+      if (responseCode != null) 'ResponseCode': responseCode,
+      if (solveTimestamp != null) 'SolveTimestamp': solveTimestamp,
+    };
+  }
 }
 
 class CheckCapacityResponse {
@@ -4337,6 +4352,13 @@ class CheckCapacityResponse {
     return CheckCapacityResponse(
       capacity: json['Capacity'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final capacity = this.capacity;
+    return {
+      if (capacity != null) 'Capacity': capacity,
+    };
   }
 }
 
@@ -5877,6 +5899,13 @@ class CreateIPSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final summary = this.summary;
+    return {
+      if (summary != null) 'Summary': summary,
+    };
+  }
 }
 
 class CreateRegexPatternSetResponse {
@@ -5898,6 +5927,13 @@ class CreateRegexPatternSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final summary = this.summary;
+    return {
+      if (summary != null) 'Summary': summary,
+    };
+  }
 }
 
 class CreateRuleGroupResponse {
@@ -5918,6 +5954,13 @@ class CreateRuleGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final summary = this.summary;
+    return {
+      if (summary != null) 'Summary': summary,
+    };
+  }
 }
 
 class CreateWebACLResponse {
@@ -5936,6 +5979,13 @@ class CreateWebACLResponse {
           ? WebACLSummary.fromJson(json['Summary'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final summary = this.summary;
+    return {
+      if (summary != null) 'Summary': summary,
+    };
   }
 }
 
@@ -6182,12 +6232,24 @@ class DeleteFirewallManagerRuleGroupsResponse {
       nextWebACLLockToken: json['NextWebACLLockToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextWebACLLockToken = this.nextWebACLLockToken;
+    return {
+      if (nextWebACLLockToken != null)
+        'NextWebACLLockToken': nextWebACLLockToken,
+    };
+  }
 }
 
 class DeleteIPSetResponse {
   DeleteIPSetResponse();
   factory DeleteIPSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteIPSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6196,12 +6258,20 @@ class DeleteLoggingConfigurationResponse {
   factory DeleteLoggingConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLoggingConfigurationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeletePermissionPolicyResponse {
   DeletePermissionPolicyResponse();
   factory DeletePermissionPolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeletePermissionPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6210,6 +6280,10 @@ class DeleteRegexPatternSetResponse {
   factory DeleteRegexPatternSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRegexPatternSetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteRuleGroupResponse {
@@ -6217,12 +6291,20 @@ class DeleteRuleGroupResponse {
   factory DeleteRuleGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRuleGroupResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteWebACLResponse {
   DeleteWebACLResponse();
   factory DeleteWebACLResponse.fromJson(Map<String, dynamic> _) {
     return DeleteWebACLResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6312,12 +6394,35 @@ class DescribeManagedRuleGroupResponse {
       versionName: json['VersionName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availableLabels = this.availableLabels;
+    final capacity = this.capacity;
+    final consumedLabels = this.consumedLabels;
+    final labelNamespace = this.labelNamespace;
+    final rules = this.rules;
+    final snsTopicArn = this.snsTopicArn;
+    final versionName = this.versionName;
+    return {
+      if (availableLabels != null) 'AvailableLabels': availableLabels,
+      if (capacity != null) 'Capacity': capacity,
+      if (consumedLabels != null) 'ConsumedLabels': consumedLabels,
+      if (labelNamespace != null) 'LabelNamespace': labelNamespace,
+      if (rules != null) 'Rules': rules,
+      if (snsTopicArn != null) 'SnsTopicArn': snsTopicArn,
+      if (versionName != null) 'VersionName': versionName,
+    };
+  }
 }
 
 class DisassociateWebACLResponse {
   DisassociateWebACLResponse();
   factory DisassociateWebACLResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateWebACLResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6722,6 +6827,21 @@ class FirewallManagerRuleGroup {
           json['VisibilityConfig'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final firewallManagerStatement = this.firewallManagerStatement;
+    final name = this.name;
+    final overrideAction = this.overrideAction;
+    final priority = this.priority;
+    final visibilityConfig = this.visibilityConfig;
+    return {
+      'FirewallManagerStatement': firewallManagerStatement,
+      'Name': name,
+      'OverrideAction': overrideAction,
+      'Priority': priority,
+      'VisibilityConfig': visibilityConfig,
+    };
+  }
 }
 
 /// The processing guidance for an Firewall Manager rule. This is like a regular
@@ -6761,6 +6881,17 @@ class FirewallManagerStatement {
               json['RuleGroupReferenceStatement'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final managedRuleGroupStatement = this.managedRuleGroupStatement;
+    final ruleGroupReferenceStatement = this.ruleGroupReferenceStatement;
+    return {
+      if (managedRuleGroupStatement != null)
+        'ManagedRuleGroupStatement': managedRuleGroupStatement,
+      if (ruleGroupReferenceStatement != null)
+        'RuleGroupReferenceStatement': ruleGroupReferenceStatement,
+    };
   }
 }
 
@@ -6874,6 +7005,13 @@ class GenerateMobileSdkReleaseUrlResponse {
       url: json['Url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final url = this.url;
+    return {
+      if (url != null) 'Url': url,
+    };
+  }
 }
 
 /// A rule statement used to identify web requests based on country of origin.
@@ -6948,6 +7086,15 @@ class GetIPSetResponse {
       lockToken: json['LockToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final iPSet = this.iPSet;
+    final lockToken = this.lockToken;
+    return {
+      if (iPSet != null) 'IPSet': iPSet,
+      if (lockToken != null) 'LockToken': lockToken,
+    };
+  }
 }
 
 class GetLoggingConfigurationResponse {
@@ -6964,6 +7111,14 @@ class GetLoggingConfigurationResponse {
               json['LoggingConfiguration'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loggingConfiguration = this.loggingConfiguration;
+    return {
+      if (loggingConfiguration != null)
+        'LoggingConfiguration': loggingConfiguration,
+    };
   }
 }
 
@@ -6995,6 +7150,15 @@ class GetManagedRuleSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lockToken = this.lockToken;
+    final managedRuleSet = this.managedRuleSet;
+    return {
+      if (lockToken != null) 'LockToken': lockToken,
+      if (managedRuleSet != null) 'ManagedRuleSet': managedRuleSet,
+    };
+  }
 }
 
 class GetMobileSdkReleaseResponse {
@@ -7012,6 +7176,13 @@ class GetMobileSdkReleaseResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final mobileSdkRelease = this.mobileSdkRelease;
+    return {
+      if (mobileSdkRelease != null) 'MobileSdkRelease': mobileSdkRelease,
+    };
+  }
 }
 
 class GetPermissionPolicyResponse {
@@ -7025,6 +7196,13 @@ class GetPermissionPolicyResponse {
     return GetPermissionPolicyResponse(
       policy: json['Policy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -7051,6 +7229,15 @@ class GetRateBasedStatementManagedKeysResponse {
               json['ManagedKeysIPV6'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final managedKeysIPV4 = this.managedKeysIPV4;
+    final managedKeysIPV6 = this.managedKeysIPV6;
+    return {
+      if (managedKeysIPV4 != null) 'ManagedKeysIPV4': managedKeysIPV4,
+      if (managedKeysIPV6 != null) 'ManagedKeysIPV6': managedKeysIPV6,
+    };
   }
 }
 
@@ -7082,6 +7269,15 @@ class GetRegexPatternSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lockToken = this.lockToken;
+    final regexPatternSet = this.regexPatternSet;
+    return {
+      if (lockToken != null) 'LockToken': lockToken,
+      if (regexPatternSet != null) 'RegexPatternSet': regexPatternSet,
+    };
+  }
 }
 
 class GetRuleGroupResponse {
@@ -7110,6 +7306,15 @@ class GetRuleGroupResponse {
           ? RuleGroup.fromJson(json['RuleGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lockToken = this.lockToken;
+    final ruleGroup = this.ruleGroup;
+    return {
+      if (lockToken != null) 'LockToken': lockToken,
+      if (ruleGroup != null) 'RuleGroup': ruleGroup,
+    };
   }
 }
 
@@ -7149,6 +7354,17 @@ class GetSampledRequestsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final populationSize = this.populationSize;
+    final sampledRequests = this.sampledRequests;
+    final timeWindow = this.timeWindow;
+    return {
+      if (populationSize != null) 'PopulationSize': populationSize,
+      if (sampledRequests != null) 'SampledRequests': sampledRequests,
+      if (timeWindow != null) 'TimeWindow': timeWindow,
+    };
+  }
 }
 
 class GetWebACLForResourceResponse {
@@ -7165,6 +7381,13 @@ class GetWebACLForResourceResponse {
           ? WebACL.fromJson(json['WebACL'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final webACL = this.webACL;
+    return {
+      if (webACL != null) 'WebACL': webACL,
+    };
   }
 }
 
@@ -7208,6 +7431,18 @@ class GetWebACLResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationIntegrationURL = this.applicationIntegrationURL;
+    final lockToken = this.lockToken;
+    final webACL = this.webACL;
+    return {
+      if (applicationIntegrationURL != null)
+        'ApplicationIntegrationURL': applicationIntegrationURL,
+      if (lockToken != null) 'LockToken': lockToken,
+      if (webACL != null) 'WebACL': webACL,
+    };
+  }
 }
 
 /// Part of the response from <a>GetSampledRequests</a>. This is a complex type
@@ -7230,6 +7465,15 @@ class HTTPHeader {
       name: json['Name'] as String?,
       value: json['Value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
   }
 }
 
@@ -7294,6 +7538,23 @@ class HTTPRequest {
       method: json['Method'] as String?,
       uri: json['URI'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientIP = this.clientIP;
+    final country = this.country;
+    final hTTPVersion = this.hTTPVersion;
+    final headers = this.headers;
+    final method = this.method;
+    final uri = this.uri;
+    return {
+      if (clientIP != null) 'ClientIP': clientIP,
+      if (country != null) 'Country': country,
+      if (hTTPVersion != null) 'HTTPVersion': hTTPVersion,
+      if (headers != null) 'Headers': headers,
+      if (method != null) 'Method': method,
+      if (uri != null) 'URI': uri,
+    };
   }
 }
 
@@ -7558,6 +7819,23 @@ class IPSet {
       description: json['Description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final addresses = this.addresses;
+    final iPAddressVersion = this.iPAddressVersion;
+    final id = this.id;
+    final name = this.name;
+    final description = this.description;
+    return {
+      'ARN': arn,
+      'Addresses': addresses,
+      'IPAddressVersion': iPAddressVersion.toValue(),
+      'Id': id,
+      'Name': name,
+      if (description != null) 'Description': description,
+    };
+  }
 }
 
 /// The configuration for inspecting IP addresses in an HTTP header that you
@@ -7745,6 +8023,21 @@ class IPSetSummary {
       lockToken: json['LockToken'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final id = this.id;
+    final lockToken = this.lockToken;
+    final name = this.name;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (lockToken != null) 'LockToken': lockToken,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -8144,6 +8437,13 @@ class LabelSummary {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class ListAvailableManagedRuleGroupVersionsResponse {
@@ -8178,6 +8478,18 @@ class ListAvailableManagedRuleGroupVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currentDefaultVersion = this.currentDefaultVersion;
+    final nextMarker = this.nextMarker;
+    final versions = this.versions;
+    return {
+      if (currentDefaultVersion != null)
+        'CurrentDefaultVersion': currentDefaultVersion,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (versions != null) 'Versions': versions,
+    };
+  }
 }
 
 class ListAvailableManagedRuleGroupsResponse {
@@ -8206,6 +8518,15 @@ class ListAvailableManagedRuleGroupsResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final managedRuleGroups = this.managedRuleGroups;
+    final nextMarker = this.nextMarker;
+    return {
+      if (managedRuleGroups != null) 'ManagedRuleGroups': managedRuleGroups,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class ListIPSetsResponse {
@@ -8232,6 +8553,15 @@ class ListIPSetsResponse {
           .toList(),
       nextMarker: json['NextMarker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final iPSets = this.iPSets;
+    final nextMarker = this.nextMarker;
+    return {
+      if (iPSets != null) 'IPSets': iPSets,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -8260,6 +8590,16 @@ class ListLoggingConfigurationsResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loggingConfigurations = this.loggingConfigurations;
+    final nextMarker = this.nextMarker;
+    return {
+      if (loggingConfigurations != null)
+        'LoggingConfigurations': loggingConfigurations,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class ListManagedRuleSetsResponse {
@@ -8286,6 +8626,15 @@ class ListManagedRuleSetsResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final managedRuleSets = this.managedRuleSets;
+    final nextMarker = this.nextMarker;
+    return {
+      if (managedRuleSets != null) 'ManagedRuleSets': managedRuleSets,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class ListMobileSdkReleasesResponse {
@@ -8311,6 +8660,15 @@ class ListMobileSdkReleasesResponse {
           .map((e) => ReleaseSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final releaseSummaries = this.releaseSummaries;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (releaseSummaries != null) 'ReleaseSummaries': releaseSummaries,
+    };
   }
 }
 
@@ -8339,6 +8697,15 @@ class ListRegexPatternSetsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final regexPatternSets = this.regexPatternSets;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (regexPatternSets != null) 'RegexPatternSets': regexPatternSets,
+    };
+  }
 }
 
 class ListResourcesForWebACLResponse {
@@ -8355,6 +8722,13 @@ class ListResourcesForWebACLResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceArns = this.resourceArns;
+    return {
+      if (resourceArns != null) 'ResourceArns': resourceArns,
+    };
   }
 }
 
@@ -8382,6 +8756,15 @@ class ListRuleGroupsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final ruleGroups = this.ruleGroups;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (ruleGroups != null) 'RuleGroups': ruleGroups,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -8408,6 +8791,15 @@ class ListTagsForResourceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final tagInfoForResource = this.tagInfoForResource;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (tagInfoForResource != null) 'TagInfoForResource': tagInfoForResource,
+    };
+  }
 }
 
 class ListWebACLsResponse {
@@ -8433,6 +8825,15 @@ class ListWebACLsResponse {
           .map((e) => WebACLSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextMarker = this.nextMarker;
+    final webACLs = this.webACLs;
+    return {
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (webACLs != null) 'WebACLs': webACLs,
+    };
   }
 }
 
@@ -8784,6 +9185,20 @@ class ManagedRuleGroupSummary {
       versioningSupported: json['VersioningSupported'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final name = this.name;
+    final vendorName = this.vendorName;
+    final versioningSupported = this.versioningSupported;
+    return {
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+      if (vendorName != null) 'VendorName': vendorName,
+      if (versioningSupported != null)
+        'VersioningSupported': versioningSupported,
+    };
+  }
 }
 
 /// Describes a single version of a managed rule group.
@@ -8804,6 +9219,16 @@ class ManagedRuleGroupVersion {
       lastUpdateTimestamp: timeStampFromJson(json['LastUpdateTimestamp']),
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastUpdateTimestamp = this.lastUpdateTimestamp;
+    final name = this.name;
+    return {
+      if (lastUpdateTimestamp != null)
+        'LastUpdateTimestamp': unixTimestampToJson(lastUpdateTimestamp),
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -8890,6 +9315,25 @@ class ManagedRuleSet {
       recommendedVersion: json['RecommendedVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    final description = this.description;
+    final labelNamespace = this.labelNamespace;
+    final publishedVersions = this.publishedVersions;
+    final recommendedVersion = this.recommendedVersion;
+    return {
+      'ARN': arn,
+      'Id': id,
+      'Name': name,
+      if (description != null) 'Description': description,
+      if (labelNamespace != null) 'LabelNamespace': labelNamespace,
+      if (publishedVersions != null) 'PublishedVersions': publishedVersions,
+      if (recommendedVersion != null) 'RecommendedVersion': recommendedVersion,
+    };
+  }
 }
 
 /// High-level information for a managed rule set.
@@ -8973,6 +9417,23 @@ class ManagedRuleSetSummary {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final id = this.id;
+    final labelNamespace = this.labelNamespace;
+    final lockToken = this.lockToken;
+    final name = this.name;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (labelNamespace != null) 'LabelNamespace': labelNamespace,
+      if (lockToken != null) 'LockToken': lockToken,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Information for a single version of a managed rule set.
@@ -9041,6 +9502,27 @@ class ManagedRuleSetVersion {
       lastUpdateTimestamp: timeStampFromJson(json['LastUpdateTimestamp']),
       publishTimestamp: timeStampFromJson(json['PublishTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final associatedRuleGroupArn = this.associatedRuleGroupArn;
+    final capacity = this.capacity;
+    final expiryTimestamp = this.expiryTimestamp;
+    final forecastedLifetime = this.forecastedLifetime;
+    final lastUpdateTimestamp = this.lastUpdateTimestamp;
+    final publishTimestamp = this.publishTimestamp;
+    return {
+      if (associatedRuleGroupArn != null)
+        'AssociatedRuleGroupArn': associatedRuleGroupArn,
+      if (capacity != null) 'Capacity': capacity,
+      if (expiryTimestamp != null)
+        'ExpiryTimestamp': unixTimestampToJson(expiryTimestamp),
+      if (forecastedLifetime != null) 'ForecastedLifetime': forecastedLifetime,
+      if (lastUpdateTimestamp != null)
+        'LastUpdateTimestamp': unixTimestampToJson(lastUpdateTimestamp),
+      if (publishTimestamp != null)
+        'PublishTimestamp': unixTimestampToJson(publishTimestamp),
+    };
   }
 }
 
@@ -9133,6 +9615,19 @@ class MobileSdkRelease {
           .toList(),
       timestamp: timeStampFromJson(json['Timestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final releaseNotes = this.releaseNotes;
+    final releaseVersion = this.releaseVersion;
+    final tags = this.tags;
+    final timestamp = this.timestamp;
+    return {
+      if (releaseNotes != null) 'ReleaseNotes': releaseNotes,
+      if (releaseVersion != null) 'ReleaseVersion': releaseVersion,
+      if (tags != null) 'Tags': tags,
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+    };
   }
 }
 
@@ -9429,6 +9924,14 @@ class PutLoggingConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loggingConfiguration = this.loggingConfiguration;
+    return {
+      if (loggingConfiguration != null)
+        'LoggingConfiguration': loggingConfiguration,
+    };
+  }
 }
 
 class PutManagedRuleSetVersionsResponse {
@@ -9452,12 +9955,23 @@ class PutManagedRuleSetVersionsResponse {
       nextLockToken: json['NextLockToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextLockToken = this.nextLockToken;
+    return {
+      if (nextLockToken != null) 'NextLockToken': nextLockToken,
+    };
+  }
 }
 
 class PutPermissionPolicyResponse {
   PutPermissionPolicyResponse();
   factory PutPermissionPolicyResponse.fromJson(Map<String, dynamic> _) {
     return PutPermissionPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -9655,6 +10169,16 @@ class RateBasedStatementManagedKeysIPSet {
           (json['IPAddressVersion'] as String?)?.toIPAddressVersion(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final addresses = this.addresses;
+    final iPAddressVersion = this.iPAddressVersion;
+    return {
+      if (addresses != null) 'Addresses': addresses,
+      if (iPAddressVersion != null)
+        'IPAddressVersion': iPAddressVersion.toValue(),
+    };
+  }
 }
 
 /// A single regular expression. This is used in a <a>RegexPatternSet</a>.
@@ -9767,6 +10291,22 @@ class RegexPatternSet {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final id = this.id;
+    final name = this.name;
+    final regularExpressionList = this.regularExpressionList;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (regularExpressionList != null)
+        'RegularExpressionList': regularExpressionList,
+    };
+  }
 }
 
 /// A rule statement used to search web request components for matches with
@@ -9874,6 +10414,21 @@ class RegexPatternSetSummary {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final id = this.id;
+    final lockToken = this.lockToken;
+    final name = this.name;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (lockToken != null) 'LockToken': lockToken,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// High level information for an SDK release.
@@ -9893,6 +10448,15 @@ class ReleaseSummary {
       releaseVersion: json['ReleaseVersion'] as String?,
       timestamp: timeStampFromJson(json['Timestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final releaseVersion = this.releaseVersion;
+    final timestamp = this.timestamp;
+    return {
+      if (releaseVersion != null) 'ReleaseVersion': releaseVersion,
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+    };
   }
 }
 
@@ -10311,6 +10875,34 @@ class RuleGroup {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final capacity = this.capacity;
+    final id = this.id;
+    final name = this.name;
+    final visibilityConfig = this.visibilityConfig;
+    final availableLabels = this.availableLabels;
+    final consumedLabels = this.consumedLabels;
+    final customResponseBodies = this.customResponseBodies;
+    final description = this.description;
+    final labelNamespace = this.labelNamespace;
+    final rules = this.rules;
+    return {
+      'ARN': arn,
+      'Capacity': capacity,
+      'Id': id,
+      'Name': name,
+      'VisibilityConfig': visibilityConfig,
+      if (availableLabels != null) 'AvailableLabels': availableLabels,
+      if (consumedLabels != null) 'ConsumedLabels': consumedLabels,
+      if (customResponseBodies != null)
+        'CustomResponseBodies': customResponseBodies,
+      if (description != null) 'Description': description,
+      if (labelNamespace != null) 'LabelNamespace': labelNamespace,
+      if (rules != null) 'Rules': rules,
+    };
+  }
 }
 
 /// A rule statement used to run the rules that are defined in a
@@ -10403,6 +10995,21 @@ class RuleGroupSummary {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final id = this.id;
+    final lockToken = this.lockToken;
+    final name = this.name;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (lockToken != null) 'LockToken': lockToken,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// High-level information about a <a>Rule</a>, returned by operations like
@@ -10430,6 +11037,15 @@ class RuleSummary {
           : null,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final name = this.name;
+    return {
+      if (action != null) 'Action': action,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -10515,6 +11131,31 @@ class SampledHTTPRequest {
       ruleNameWithinRuleGroup: json['RuleNameWithinRuleGroup'] as String?,
       timestamp: timeStampFromJson(json['Timestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final request = this.request;
+    final weight = this.weight;
+    final action = this.action;
+    final captchaResponse = this.captchaResponse;
+    final labels = this.labels;
+    final requestHeadersInserted = this.requestHeadersInserted;
+    final responseCodeSent = this.responseCodeSent;
+    final ruleNameWithinRuleGroup = this.ruleNameWithinRuleGroup;
+    final timestamp = this.timestamp;
+    return {
+      'Request': request,
+      'Weight': weight,
+      if (action != null) 'Action': action,
+      if (captchaResponse != null) 'CaptchaResponse': captchaResponse,
+      if (labels != null) 'Labels': labels,
+      if (requestHeadersInserted != null)
+        'RequestHeadersInserted': requestHeadersInserted,
+      if (responseCodeSent != null) 'ResponseCodeSent': responseCodeSent,
+      if (ruleNameWithinRuleGroup != null)
+        'RuleNameWithinRuleGroup': ruleNameWithinRuleGroup,
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+    };
   }
 }
 
@@ -11126,12 +11767,25 @@ class TagInfoForResource {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    final tagList = this.tagList;
+    return {
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+      if (tagList != null) 'TagList': tagList,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -11494,6 +12148,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateIPSetResponse {
@@ -11509,6 +12167,13 @@ class UpdateIPSetResponse {
     return UpdateIPSetResponse(
       nextLockToken: json['NextLockToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextLockToken = this.nextLockToken;
+    return {
+      if (nextLockToken != null) 'NextLockToken': nextLockToken,
+    };
   }
 }
 
@@ -11546,6 +12211,18 @@ class UpdateManagedRuleSetVersionExpiryDateResponse {
       nextLockToken: json['NextLockToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final expiringVersion = this.expiringVersion;
+    final expiryTimestamp = this.expiryTimestamp;
+    final nextLockToken = this.nextLockToken;
+    return {
+      if (expiringVersion != null) 'ExpiringVersion': expiringVersion,
+      if (expiryTimestamp != null)
+        'ExpiryTimestamp': unixTimestampToJson(expiryTimestamp),
+      if (nextLockToken != null) 'NextLockToken': nextLockToken,
+    };
+  }
 }
 
 class UpdateRegexPatternSetResponse {
@@ -11561,6 +12238,13 @@ class UpdateRegexPatternSetResponse {
     return UpdateRegexPatternSetResponse(
       nextLockToken: json['NextLockToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextLockToken = this.nextLockToken;
+    return {
+      if (nextLockToken != null) 'NextLockToken': nextLockToken,
+    };
   }
 }
 
@@ -11578,6 +12262,13 @@ class UpdateRuleGroupResponse {
       nextLockToken: json['NextLockToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextLockToken = this.nextLockToken;
+    return {
+      if (nextLockToken != null) 'NextLockToken': nextLockToken,
+    };
+  }
 }
 
 class UpdateWebACLResponse {
@@ -11593,6 +12284,13 @@ class UpdateWebACLResponse {
     return UpdateWebACLResponse(
       nextLockToken: json['NextLockToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextLockToken = this.nextLockToken;
+    return {
+      if (nextLockToken != null) 'NextLockToken': nextLockToken,
+    };
   }
 }
 
@@ -11663,6 +12361,7 @@ class VersionToPublish {
     this.associatedRuleGroupArn,
     this.forecastedLifetime,
   });
+
   Map<String, dynamic> toJson() {
     final associatedRuleGroupArn = this.associatedRuleGroupArn;
     final forecastedLifetime = this.forecastedLifetime;
@@ -11897,6 +12596,47 @@ class WebACL {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final defaultAction = this.defaultAction;
+    final id = this.id;
+    final name = this.name;
+    final visibilityConfig = this.visibilityConfig;
+    final capacity = this.capacity;
+    final captchaConfig = this.captchaConfig;
+    final customResponseBodies = this.customResponseBodies;
+    final description = this.description;
+    final labelNamespace = this.labelNamespace;
+    final managedByFirewallManager = this.managedByFirewallManager;
+    final postProcessFirewallManagerRuleGroups =
+        this.postProcessFirewallManagerRuleGroups;
+    final preProcessFirewallManagerRuleGroups =
+        this.preProcessFirewallManagerRuleGroups;
+    final rules = this.rules;
+    return {
+      'ARN': arn,
+      'DefaultAction': defaultAction,
+      'Id': id,
+      'Name': name,
+      'VisibilityConfig': visibilityConfig,
+      if (capacity != null) 'Capacity': capacity,
+      if (captchaConfig != null) 'CaptchaConfig': captchaConfig,
+      if (customResponseBodies != null)
+        'CustomResponseBodies': customResponseBodies,
+      if (description != null) 'Description': description,
+      if (labelNamespace != null) 'LabelNamespace': labelNamespace,
+      if (managedByFirewallManager != null)
+        'ManagedByFirewallManager': managedByFirewallManager,
+      if (postProcessFirewallManagerRuleGroups != null)
+        'PostProcessFirewallManagerRuleGroups':
+            postProcessFirewallManagerRuleGroups,
+      if (preProcessFirewallManagerRuleGroups != null)
+        'PreProcessFirewallManagerRuleGroups':
+            preProcessFirewallManagerRuleGroups,
+      if (rules != null) 'Rules': rules,
+    };
+  }
 }
 
 /// High-level information about a <a>WebACL</a>, returned by operations like
@@ -11945,6 +12685,21 @@ class WebACLSummary {
       lockToken: json['LockToken'] as String?,
       name: json['Name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final id = this.id;
+    final lockToken = this.lockToken;
+    final name = this.name;
+    return {
+      if (arn != null) 'ARN': arn,
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (lockToken != null) 'LockToken': lockToken,
+      if (name != null) 'Name': name,
+    };
   }
 }
 

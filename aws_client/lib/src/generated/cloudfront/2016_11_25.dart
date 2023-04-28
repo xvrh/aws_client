@@ -1152,6 +1152,13 @@ class AccessDenied implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// A complex type that lists the AWS accounts, if any, that you included in the
@@ -1205,6 +1212,17 @@ class ActiveTrustedSigners {
           (elem) => elem.findElements('Signer').map(Signer.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Enabled': enabled,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
+  }
 }
 
 /// A complex type that contains information about CNAMEs (alternate domain
@@ -1229,6 +1247,15 @@ class Aliases {
           .extractXmlChild(elem, 'Items')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'CNAME')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -1303,6 +1330,17 @@ class AllowedMethods {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final quantity = this.quantity;
+    final cachedMethods = this.cachedMethods;
+    return {
+      'Items': items.map((e) => e.toValue()).toList(),
+      'Quantity': quantity,
+      if (cachedMethods != null) 'CachedMethods': cachedMethods,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final items = this.items;
     final quantity = this.quantity;
@@ -1335,6 +1373,13 @@ class BatchTooLarge implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class CNAMEAlreadyExists implements _s.AwsException {
@@ -1347,6 +1392,13 @@ class CNAMEAlreadyExists implements _s.AwsException {
     return CNAMEAlreadyExists(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -1566,6 +1618,36 @@ class CacheBehavior {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final forwardedValues = this.forwardedValues;
+    final minTTL = this.minTTL;
+    final pathPattern = this.pathPattern;
+    final targetOriginId = this.targetOriginId;
+    final trustedSigners = this.trustedSigners;
+    final viewerProtocolPolicy = this.viewerProtocolPolicy;
+    final allowedMethods = this.allowedMethods;
+    final compress = this.compress;
+    final defaultTTL = this.defaultTTL;
+    final lambdaFunctionAssociations = this.lambdaFunctionAssociations;
+    final maxTTL = this.maxTTL;
+    final smoothStreaming = this.smoothStreaming;
+    return {
+      'ForwardedValues': forwardedValues,
+      'MinTTL': minTTL,
+      'PathPattern': pathPattern,
+      'TargetOriginId': targetOriginId,
+      'TrustedSigners': trustedSigners,
+      'ViewerProtocolPolicy': viewerProtocolPolicy.toValue(),
+      if (allowedMethods != null) 'AllowedMethods': allowedMethods,
+      if (compress != null) 'Compress': compress,
+      if (defaultTTL != null) 'DefaultTTL': defaultTTL,
+      if (lambdaFunctionAssociations != null)
+        'LambdaFunctionAssociations': lambdaFunctionAssociations,
+      if (maxTTL != null) 'MaxTTL': maxTTL,
+      if (smoothStreaming != null) 'SmoothStreaming': smoothStreaming,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final forwardedValues = this.forwardedValues;
     final minTTL = this.minTTL;
@@ -1632,6 +1714,15 @@ class CacheBehaviors {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final quantity = this.quantity;
     final items = this.items;
@@ -1692,6 +1783,15 @@ class CachedMethods {
           .toList(),
       quantity: _s.extractXmlIntValue(elem, 'Quantity')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final quantity = this.quantity;
+    return {
+      'Items': items.map((e) => e.toValue()).toList(),
+      'Quantity': quantity,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -1774,6 +1874,20 @@ class CloudFrontOriginAccessIdentity {
           ?.let(CloudFrontOriginAccessIdentityConfig.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final s3CanonicalUserId = this.s3CanonicalUserId;
+    final cloudFrontOriginAccessIdentityConfig =
+        this.cloudFrontOriginAccessIdentityConfig;
+    return {
+      'Id': id,
+      'S3CanonicalUserId': s3CanonicalUserId,
+      if (cloudFrontOriginAccessIdentityConfig != null)
+        'CloudFrontOriginAccessIdentityConfig':
+            cloudFrontOriginAccessIdentityConfig,
+    };
+  }
 }
 
 /// If the <code>CallerReference</code> is a value you already sent in a
@@ -1792,6 +1906,13 @@ class CloudFrontOriginAccessIdentityAlreadyExists implements _s.AwsException {
     return CloudFrontOriginAccessIdentityAlreadyExists(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -1832,6 +1953,15 @@ class CloudFrontOriginAccessIdentityConfig {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final comment = this.comment;
+    return {
+      'CallerReference': callerReference,
+      'Comment': comment,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final callerReference = this.callerReference;
     final comment = this.comment;
@@ -1860,6 +1990,13 @@ class CloudFrontOriginAccessIdentityInUse implements _s.AwsException {
     return CloudFrontOriginAccessIdentityInUse(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -1926,6 +2063,23 @@ class CloudFrontOriginAccessIdentityList {
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxItems = this.maxItems;
+    final quantity = this.quantity;
+    final items = this.items;
+    final nextMarker = this.nextMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'Marker': marker,
+      'MaxItems': maxItems,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 /// Summary of the information about a CloudFront origin access identity.
@@ -1955,6 +2109,17 @@ class CloudFrontOriginAccessIdentitySummary {
       s3CanonicalUserId: _s.extractXmlStringValue(elem, 'S3CanonicalUserId')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final comment = this.comment;
+    final id = this.id;
+    final s3CanonicalUserId = this.s3CanonicalUserId;
+    return {
+      'Comment': comment,
+      'Id': id,
+      'S3CanonicalUserId': s3CanonicalUserId,
+    };
+  }
 }
 
 /// A complex type that specifies whether you want CloudFront to forward cookies
@@ -1983,6 +2148,15 @@ class CookieNames {
           .extractXmlChild(elem, 'Items')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'Name')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -2051,6 +2225,15 @@ class CookiePreference {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final forward = this.forward;
+    final whitelistedNames = this.whitelistedNames;
+    return {
+      'Forward': forward.toValue(),
+      if (whitelistedNames != null) 'WhitelistedNames': whitelistedNames,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final forward = this.forward;
     final whitelistedNames = this.whitelistedNames;
@@ -2087,6 +2270,16 @@ class CreateCloudFrontOriginAccessIdentityResult {
     this.eTag,
     this.location,
   });
+
+  Map<String, dynamic> toJson() {
+    final cloudFrontOriginAccessIdentity = this.cloudFrontOriginAccessIdentity;
+    final eTag = this.eTag;
+    final location = this.location;
+    return {
+      if (cloudFrontOriginAccessIdentity != null)
+        'CloudFrontOriginAccessIdentity': cloudFrontOriginAccessIdentity,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -2107,6 +2300,15 @@ class CreateDistributionResult {
     this.eTag,
     this.location,
   });
+
+  Map<String, dynamic> toJson() {
+    final distribution = this.distribution;
+    final eTag = this.eTag;
+    final location = this.location;
+    return {
+      if (distribution != null) 'Distribution': distribution,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -2127,6 +2329,15 @@ class CreateDistributionWithTagsResult {
     this.eTag,
     this.location,
   });
+
+  Map<String, dynamic> toJson() {
+    final distribution = this.distribution;
+    final eTag = this.eTag;
+    final location = this.location;
+    return {
+      if (distribution != null) 'Distribution': distribution,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -2142,6 +2353,14 @@ class CreateInvalidationResult {
     this.invalidation,
     this.location,
   });
+
+  Map<String, dynamic> toJson() {
+    final invalidation = this.invalidation;
+    final location = this.location;
+    return {
+      if (invalidation != null) 'Invalidation': invalidation,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -2162,6 +2381,16 @@ class CreateStreamingDistributionResult {
     this.location,
     this.streamingDistribution,
   });
+
+  Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
+    final location = this.location;
+    final streamingDistribution = this.streamingDistribution;
+    return {
+      if (streamingDistribution != null)
+        'StreamingDistribution': streamingDistribution,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -2181,6 +2410,16 @@ class CreateStreamingDistributionWithTagsResult {
     this.location,
     this.streamingDistribution,
   });
+
+  Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
+    final location = this.location;
+    final streamingDistribution = this.streamingDistribution;
+    return {
+      if (streamingDistribution != null)
+        'StreamingDistribution': streamingDistribution,
+    };
+  }
 }
 
 /// A complex type that controls:
@@ -2292,6 +2531,19 @@ class CustomErrorResponse {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorCachingMinTTL = this.errorCachingMinTTL;
+    final responseCode = this.responseCode;
+    final responsePagePath = this.responsePagePath;
+    return {
+      'ErrorCode': errorCode,
+      if (errorCachingMinTTL != null) 'ErrorCachingMinTTL': errorCachingMinTTL,
+      if (responseCode != null) 'ResponseCode': responseCode,
+      if (responsePagePath != null) 'ResponsePagePath': responsePagePath,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final errorCode = this.errorCode;
     final errorCachingMinTTL = this.errorCachingMinTTL;
@@ -2356,6 +2608,15 @@ class CustomErrorResponses {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final quantity = this.quantity;
     final items = this.items;
@@ -2398,6 +2659,15 @@ class CustomHeaders {
           .map(OriginCustomHeader.fromXml)
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -2452,6 +2722,19 @@ class CustomOriginConfig {
           .extractXmlChild(elem, 'OriginSslProtocols')
           ?.let(OriginSslProtocols.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hTTPPort = this.hTTPPort;
+    final hTTPSPort = this.hTTPSPort;
+    final originProtocolPolicy = this.originProtocolPolicy;
+    final originSslProtocols = this.originSslProtocols;
+    return {
+      'HTTPPort': hTTPPort,
+      'HTTPSPort': hTTPSPort,
+      'OriginProtocolPolicy': originProtocolPolicy.toValue(),
+      if (originSslProtocols != null) 'OriginSslProtocols': originSslProtocols,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -2636,6 +2919,34 @@ class DefaultCacheBehavior {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final forwardedValues = this.forwardedValues;
+    final minTTL = this.minTTL;
+    final targetOriginId = this.targetOriginId;
+    final trustedSigners = this.trustedSigners;
+    final viewerProtocolPolicy = this.viewerProtocolPolicy;
+    final allowedMethods = this.allowedMethods;
+    final compress = this.compress;
+    final defaultTTL = this.defaultTTL;
+    final lambdaFunctionAssociations = this.lambdaFunctionAssociations;
+    final maxTTL = this.maxTTL;
+    final smoothStreaming = this.smoothStreaming;
+    return {
+      'ForwardedValues': forwardedValues,
+      'MinTTL': minTTL,
+      'TargetOriginId': targetOriginId,
+      'TrustedSigners': trustedSigners,
+      'ViewerProtocolPolicy': viewerProtocolPolicy.toValue(),
+      if (allowedMethods != null) 'AllowedMethods': allowedMethods,
+      if (compress != null) 'Compress': compress,
+      if (defaultTTL != null) 'DefaultTTL': defaultTTL,
+      if (lambdaFunctionAssociations != null)
+        'LambdaFunctionAssociations': lambdaFunctionAssociations,
+      if (maxTTL != null) 'MaxTTL': maxTTL,
+      if (smoothStreaming != null) 'SmoothStreaming': smoothStreaming,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final forwardedValues = this.forwardedValues;
     final minTTL = this.minTTL;
@@ -2742,6 +3053,27 @@ class Distribution {
       status: _s.extractXmlStringValue(elem, 'Status')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final activeTrustedSigners = this.activeTrustedSigners;
+    final distributionConfig = this.distributionConfig;
+    final domainName = this.domainName;
+    final id = this.id;
+    final inProgressInvalidationBatches = this.inProgressInvalidationBatches;
+    final lastModifiedTime = this.lastModifiedTime;
+    final status = this.status;
+    return {
+      'ARN': arn,
+      'ActiveTrustedSigners': activeTrustedSigners,
+      'DistributionConfig': distributionConfig,
+      'DomainName': domainName,
+      'Id': id,
+      'InProgressInvalidationBatches': inProgressInvalidationBatches,
+      'LastModifiedTime': iso8601ToJson(lastModifiedTime),
+      'Status': status,
+    };
+  }
 }
 
 /// The caller reference you attempted to create the distribution with is
@@ -2756,6 +3088,13 @@ class DistributionAlreadyExists implements _s.AwsException {
     return DistributionAlreadyExists(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3012,6 +3351,44 @@ class DistributionConfig {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final comment = this.comment;
+    final defaultCacheBehavior = this.defaultCacheBehavior;
+    final enabled = this.enabled;
+    final origins = this.origins;
+    final aliases = this.aliases;
+    final cacheBehaviors = this.cacheBehaviors;
+    final customErrorResponses = this.customErrorResponses;
+    final defaultRootObject = this.defaultRootObject;
+    final httpVersion = this.httpVersion;
+    final isIPV6Enabled = this.isIPV6Enabled;
+    final logging = this.logging;
+    final priceClass = this.priceClass;
+    final restrictions = this.restrictions;
+    final viewerCertificate = this.viewerCertificate;
+    final webACLId = this.webACLId;
+    return {
+      'CallerReference': callerReference,
+      'Comment': comment,
+      'DefaultCacheBehavior': defaultCacheBehavior,
+      'Enabled': enabled,
+      'Origins': origins,
+      if (aliases != null) 'Aliases': aliases,
+      if (cacheBehaviors != null) 'CacheBehaviors': cacheBehaviors,
+      if (customErrorResponses != null)
+        'CustomErrorResponses': customErrorResponses,
+      if (defaultRootObject != null) 'DefaultRootObject': defaultRootObject,
+      if (httpVersion != null) 'HttpVersion': httpVersion.toValue(),
+      if (isIPV6Enabled != null) 'IsIPV6Enabled': isIPV6Enabled,
+      if (logging != null) 'Logging': logging,
+      if (priceClass != null) 'PriceClass': priceClass.toValue(),
+      if (restrictions != null) 'Restrictions': restrictions,
+      if (viewerCertificate != null) 'ViewerCertificate': viewerCertificate,
+      if (webACLId != null) 'WebACLId': webACLId,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final callerReference = this.callerReference;
     final comment = this.comment;
@@ -3077,6 +3454,16 @@ class DistributionConfigWithTags {
     required this.distributionConfig,
     required this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final distributionConfig = this.distributionConfig;
+    final tags = this.tags;
+    return {
+      'DistributionConfig': distributionConfig,
+      'Tags': tags,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final distributionConfig = this.distributionConfig;
     final tags = this.tags;
@@ -3142,6 +3529,23 @@ class DistributionList {
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxItems = this.maxItems;
+    final quantity = this.quantity;
+    final items = this.items;
+    final nextMarker = this.nextMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'Marker': marker,
+      'MaxItems': maxItems,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class DistributionNotDisabled implements _s.AwsException {
@@ -3154,6 +3558,13 @@ class DistributionNotDisabled implements _s.AwsException {
     return DistributionNotDisabled(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3272,6 +3683,47 @@ class DistributionSummary {
       webACLId: _s.extractXmlStringValue(elem, 'WebACLId')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final aliases = this.aliases;
+    final cacheBehaviors = this.cacheBehaviors;
+    final comment = this.comment;
+    final customErrorResponses = this.customErrorResponses;
+    final defaultCacheBehavior = this.defaultCacheBehavior;
+    final domainName = this.domainName;
+    final enabled = this.enabled;
+    final httpVersion = this.httpVersion;
+    final id = this.id;
+    final isIPV6Enabled = this.isIPV6Enabled;
+    final lastModifiedTime = this.lastModifiedTime;
+    final origins = this.origins;
+    final priceClass = this.priceClass;
+    final restrictions = this.restrictions;
+    final status = this.status;
+    final viewerCertificate = this.viewerCertificate;
+    final webACLId = this.webACLId;
+    return {
+      'ARN': arn,
+      'Aliases': aliases,
+      'CacheBehaviors': cacheBehaviors,
+      'Comment': comment,
+      'CustomErrorResponses': customErrorResponses,
+      'DefaultCacheBehavior': defaultCacheBehavior,
+      'DomainName': domainName,
+      'Enabled': enabled,
+      'HttpVersion': httpVersion.toValue(),
+      'Id': id,
+      'IsIPV6Enabled': isIPV6Enabled,
+      'LastModifiedTime': iso8601ToJson(lastModifiedTime),
+      'Origins': origins,
+      'PriceClass': priceClass.toValue(),
+      'Restrictions': restrictions,
+      'Status': status,
+      'ViewerCertificate': viewerCertificate,
+      'WebACLId': webACLId,
+    };
+  }
 }
 
 enum EventType {
@@ -3376,6 +3828,20 @@ class ForwardedValues {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final cookies = this.cookies;
+    final queryString = this.queryString;
+    final headers = this.headers;
+    final queryStringCacheKeys = this.queryStringCacheKeys;
+    return {
+      'Cookies': cookies,
+      'QueryString': queryString,
+      if (headers != null) 'Headers': headers,
+      if (queryStringCacheKeys != null)
+        'QueryStringCacheKeys': queryStringCacheKeys,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final cookies = this.cookies;
     final queryString = this.queryString;
@@ -3462,6 +3928,17 @@ class GeoRestriction {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final restrictionType = this.restrictionType;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      'RestrictionType': restrictionType.toValue(),
+      if (items != null) 'Items': items,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final quantity = this.quantity;
     final restrictionType = this.restrictionType;
@@ -3531,6 +4008,17 @@ class GetCloudFrontOriginAccessIdentityConfigResult {
     this.cloudFrontOriginAccessIdentityConfig,
     this.eTag,
   });
+
+  Map<String, dynamic> toJson() {
+    final cloudFrontOriginAccessIdentityConfig =
+        this.cloudFrontOriginAccessIdentityConfig;
+    final eTag = this.eTag;
+    return {
+      if (cloudFrontOriginAccessIdentityConfig != null)
+        'CloudFrontOriginAccessIdentityConfig':
+            cloudFrontOriginAccessIdentityConfig,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -3546,6 +4034,15 @@ class GetCloudFrontOriginAccessIdentityResult {
     this.cloudFrontOriginAccessIdentity,
     this.eTag,
   });
+
+  Map<String, dynamic> toJson() {
+    final cloudFrontOriginAccessIdentity = this.cloudFrontOriginAccessIdentity;
+    final eTag = this.eTag;
+    return {
+      if (cloudFrontOriginAccessIdentity != null)
+        'CloudFrontOriginAccessIdentity': cloudFrontOriginAccessIdentity,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -3561,6 +4058,14 @@ class GetDistributionConfigResult {
     this.distributionConfig,
     this.eTag,
   });
+
+  Map<String, dynamic> toJson() {
+    final distributionConfig = this.distributionConfig;
+    final eTag = this.eTag;
+    return {
+      if (distributionConfig != null) 'DistributionConfig': distributionConfig,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -3576,6 +4081,14 @@ class GetDistributionResult {
     this.distribution,
     this.eTag,
   });
+
+  Map<String, dynamic> toJson() {
+    final distribution = this.distribution;
+    final eTag = this.eTag;
+    return {
+      if (distribution != null) 'Distribution': distribution,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -3588,6 +4101,13 @@ class GetInvalidationResult {
   GetInvalidationResult({
     this.invalidation,
   });
+
+  Map<String, dynamic> toJson() {
+    final invalidation = this.invalidation;
+    return {
+      if (invalidation != null) 'Invalidation': invalidation,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -3603,6 +4123,15 @@ class GetStreamingDistributionConfigResult {
     this.eTag,
     this.streamingDistributionConfig,
   });
+
+  Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
+    final streamingDistributionConfig = this.streamingDistributionConfig;
+    return {
+      if (streamingDistributionConfig != null)
+        'StreamingDistributionConfig': streamingDistributionConfig,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -3618,6 +4147,15 @@ class GetStreamingDistributionResult {
     this.eTag,
     this.streamingDistribution,
   });
+
+  Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
+    final streamingDistribution = this.streamingDistribution;
+    return {
+      if (streamingDistribution != null)
+        'StreamingDistribution': streamingDistribution,
+    };
+  }
 }
 
 /// A complex type that specifies the headers that you want CloudFront to
@@ -3684,6 +4222,15 @@ class Headers {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final quantity = this.quantity;
     final items = this.items;
@@ -3744,6 +4291,13 @@ class IllegalUpdate implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// The value of <code>Quantity</code> and the size of <code>Items</code> do not
@@ -3759,6 +4313,13 @@ class InconsistentQuantities implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// The argument is invalid.
@@ -3772,6 +4333,13 @@ class InvalidArgument implements _s.AwsException {
     return InvalidArgument(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3788,6 +4356,13 @@ class InvalidDefaultRootObject implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class InvalidErrorCode implements _s.AwsException {
@@ -3800,6 +4375,13 @@ class InvalidErrorCode implements _s.AwsException {
     return InvalidErrorCode(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3818,6 +4400,13 @@ class InvalidForwardCookies implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class InvalidGeoRestrictionParameter implements _s.AwsException {
@@ -3831,6 +4420,13 @@ class InvalidGeoRestrictionParameter implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class InvalidHeadersForS3Origin implements _s.AwsException {
@@ -3843,6 +4439,13 @@ class InvalidHeadersForS3Origin implements _s.AwsException {
     return InvalidHeadersForS3Origin(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3859,6 +4462,13 @@ class InvalidIfMatchVersion implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// The specified Lambda function association is invalid.
@@ -3873,6 +4483,13 @@ class InvalidLambdaFunctionAssociation implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class InvalidLocationCode implements _s.AwsException {
@@ -3886,6 +4503,13 @@ class InvalidLocationCode implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class InvalidMinimumProtocolVersion implements _s.AwsException {
@@ -3898,6 +4522,13 @@ class InvalidMinimumProtocolVersion implements _s.AwsException {
     return InvalidMinimumProtocolVersion(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3914,6 +4545,13 @@ class InvalidOrigin implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// The origin access identity is not valid or doesn't exist.
@@ -3927,6 +4565,13 @@ class InvalidOriginAccessIdentity implements _s.AwsException {
     return InvalidOriginAccessIdentity(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3943,6 +4588,13 @@ class InvalidProtocolSettings implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class InvalidQueryStringParameters implements _s.AwsException {
@@ -3955,6 +4607,13 @@ class InvalidQueryStringParameters implements _s.AwsException {
     return InvalidQueryStringParameters(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3970,6 +4629,13 @@ class InvalidRelativePath implements _s.AwsException {
     return InvalidRelativePath(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3987,6 +4653,13 @@ class InvalidRequiredProtocol implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class InvalidResponseCode implements _s.AwsException {
@@ -3999,6 +4672,13 @@ class InvalidResponseCode implements _s.AwsException {
     return InvalidResponseCode(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -4013,6 +4693,13 @@ class InvalidTTLOrder implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class InvalidTagging implements _s.AwsException {
@@ -4025,6 +4712,13 @@ class InvalidTagging implements _s.AwsException {
     return InvalidTagging(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -4039,6 +4733,13 @@ class InvalidViewerCertificate implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class InvalidWebACLId implements _s.AwsException {
@@ -4051,6 +4752,13 @@ class InvalidWebACLId implements _s.AwsException {
     return InvalidWebACLId(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -4084,6 +4792,19 @@ class Invalidation {
           _s.extractXmlChild(elem, 'InvalidationBatch')!),
       status: _s.extractXmlStringValue(elem, 'Status')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final id = this.id;
+    final invalidationBatch = this.invalidationBatch;
+    final status = this.status;
+    return {
+      'CreateTime': iso8601ToJson(createTime),
+      'Id': id,
+      'InvalidationBatch': invalidationBatch,
+      'Status': status,
+    };
   }
 }
 
@@ -4125,6 +4846,15 @@ class InvalidationBatch {
       callerReference: _s.extractXmlStringValue(elem, 'CallerReference')!,
       paths: Paths.fromXml(_s.extractXmlChild(elem, 'Paths')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final paths = this.paths;
+    return {
+      'CallerReference': callerReference,
+      'Paths': paths,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4197,6 +4927,23 @@ class InvalidationList {
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxItems = this.maxItems;
+    final quantity = this.quantity;
+    final items = this.items;
+    final nextMarker = this.nextMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'Marker': marker,
+      'MaxItems': maxItems,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 /// A summary of an invalidation request.
@@ -4220,6 +4967,17 @@ class InvalidationSummary {
       id: _s.extractXmlStringValue(elem, 'Id')!,
       status: _s.extractXmlStringValue(elem, 'Status')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final id = this.id;
+    final status = this.status;
+    return {
+      'CreateTime': iso8601ToJson(createTime),
+      'Id': id,
+      'Status': status,
+    };
   }
 }
 
@@ -4284,6 +5042,15 @@ class KeyPairIds {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'KeyPairId')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
+  }
 }
 
 /// A complex type that contains a Lambda function association.
@@ -4319,6 +5086,15 @@ class LambdaFunctionAssociation {
       eventType: _s.extractXmlStringValue(elem, 'EventType')?.toEventType(),
       lambdaFunctionARN: _s.extractXmlStringValue(elem, 'LambdaFunctionARN'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventType = this.eventType;
+    final lambdaFunctionARN = this.lambdaFunctionARN;
+    return {
+      if (eventType != null) 'EventType': eventType.toValue(),
+      if (lambdaFunctionARN != null) 'LambdaFunctionARN': lambdaFunctionARN,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4377,6 +5153,15 @@ class LambdaFunctionAssociations {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final quantity = this.quantity;
     final items = this.items;
@@ -4405,6 +5190,16 @@ class ListCloudFrontOriginAccessIdentitiesResult {
   ListCloudFrontOriginAccessIdentitiesResult({
     this.cloudFrontOriginAccessIdentityList,
   });
+
+  Map<String, dynamic> toJson() {
+    final cloudFrontOriginAccessIdentityList =
+        this.cloudFrontOriginAccessIdentityList;
+    return {
+      if (cloudFrontOriginAccessIdentityList != null)
+        'CloudFrontOriginAccessIdentityList':
+            cloudFrontOriginAccessIdentityList,
+    };
+  }
 }
 
 /// The response to a request to list the distributions that are associated with
@@ -4416,6 +5211,13 @@ class ListDistributionsByWebACLIdResult {
   ListDistributionsByWebACLIdResult({
     this.distributionList,
   });
+
+  Map<String, dynamic> toJson() {
+    final distributionList = this.distributionList;
+    return {
+      if (distributionList != null) 'DistributionList': distributionList,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -4426,6 +5228,13 @@ class ListDistributionsResult {
   ListDistributionsResult({
     this.distributionList,
   });
+
+  Map<String, dynamic> toJson() {
+    final distributionList = this.distributionList;
+    return {
+      if (distributionList != null) 'DistributionList': distributionList,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -4436,6 +5245,13 @@ class ListInvalidationsResult {
   ListInvalidationsResult({
     this.invalidationList,
   });
+
+  Map<String, dynamic> toJson() {
+    final invalidationList = this.invalidationList;
+    return {
+      if (invalidationList != null) 'InvalidationList': invalidationList,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -4446,6 +5262,14 @@ class ListStreamingDistributionsResult {
   ListStreamingDistributionsResult({
     this.streamingDistributionList,
   });
+
+  Map<String, dynamic> toJson() {
+    final streamingDistributionList = this.streamingDistributionList;
+    return {
+      if (streamingDistributionList != null)
+        'StreamingDistributionList': streamingDistributionList,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -4456,6 +5280,13 @@ class ListTagsForResourceResult {
   ListTagsForResourceResult({
     required this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      'Tags': tags,
+    };
+  }
 }
 
 /// A complex type that controls whether access logs are written for the
@@ -4504,6 +5335,19 @@ class LoggingConfig {
       includeCookies: _s.extractXmlBoolValue(elem, 'IncludeCookies')!,
       prefix: _s.extractXmlStringValue(elem, 'Prefix')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final enabled = this.enabled;
+    final includeCookies = this.includeCookies;
+    final prefix = this.prefix;
+    return {
+      'Bucket': bucket,
+      'Enabled': enabled,
+      'IncludeCookies': includeCookies,
+      'Prefix': prefix,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4622,6 +5466,13 @@ class MissingBody implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// The specified origin access identity does not exist.
@@ -4635,6 +5486,13 @@ class NoSuchCloudFrontOriginAccessIdentity implements _s.AwsException {
     return NoSuchCloudFrontOriginAccessIdentity(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -4650,6 +5508,13 @@ class NoSuchDistribution implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// The specified invalidation does not exist.
@@ -4663,6 +5528,13 @@ class NoSuchInvalidation implements _s.AwsException {
     return NoSuchInvalidation(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -4678,6 +5550,13 @@ class NoSuchOrigin implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class NoSuchResource implements _s.AwsException {
@@ -4690,6 +5569,13 @@ class NoSuchResource implements _s.AwsException {
     return NoSuchResource(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -4704,6 +5590,13 @@ class NoSuchStreamingDistribution implements _s.AwsException {
     return NoSuchStreamingDistribution(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -4836,6 +5729,23 @@ class Origin {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final id = this.id;
+    final customHeaders = this.customHeaders;
+    final customOriginConfig = this.customOriginConfig;
+    final originPath = this.originPath;
+    final s3OriginConfig = this.s3OriginConfig;
+    return {
+      'DomainName': domainName,
+      'Id': id,
+      if (customHeaders != null) 'CustomHeaders': customHeaders,
+      if (customOriginConfig != null) 'CustomOriginConfig': customOriginConfig,
+      if (originPath != null) 'OriginPath': originPath,
+      if (s3OriginConfig != null) 'S3OriginConfig': s3OriginConfig,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final domainName = this.domainName;
     final id = this.id;
@@ -4886,6 +5796,15 @@ class OriginCustomHeader {
       headerName: _s.extractXmlStringValue(elem, 'HeaderName')!,
       headerValue: _s.extractXmlStringValue(elem, 'HeaderValue')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final headerName = this.headerName;
+    final headerValue = this.headerValue;
+    return {
+      'HeaderName': headerName,
+      'HeaderValue': headerValue,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -4964,6 +5883,15 @@ class OriginSslProtocols {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    final quantity = this.quantity;
+    return {
+      'Items': items.map((e) => e.toValue()).toList(),
+      'Quantity': quantity,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final items = this.items;
     final quantity = this.quantity;
@@ -5005,6 +5933,15 @@ class Origins {
       items: _s.extractXmlChild(elem, 'Items')?.let(
           (elem) => elem.findElements('Origin').map(Origin.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5053,6 +5990,15 @@ class Paths {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final quantity = this.quantity;
     final items = this.items;
@@ -5085,6 +6031,13 @@ class PreconditionFailed implements _s.AwsException {
     return PreconditionFailed(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -5144,6 +6097,15 @@ class QueryStringCacheKeys {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final quantity = this.quantity;
     final items = this.items;
@@ -5177,6 +6139,13 @@ class Restrictions {
       geoRestriction:
           GeoRestriction.fromXml(_s.extractXmlChild(elem, 'GeoRestriction')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final geoRestriction = this.geoRestriction;
+    return {
+      'GeoRestriction': geoRestriction,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5233,6 +6202,15 @@ class S3Origin {
       originAccessIdentity:
           _s.extractXmlStringValue(elem, 'OriginAccessIdentity')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainName = this.domainName;
+    final originAccessIdentity = this.originAccessIdentity;
+    return {
+      'DomainName': domainName,
+      'OriginAccessIdentity': originAccessIdentity,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5293,6 +6271,13 @@ class S3OriginConfig {
       originAccessIdentity:
           _s.extractXmlStringValue(elem, 'OriginAccessIdentity')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final originAccessIdentity = this.originAccessIdentity;
+    return {
+      'OriginAccessIdentity': originAccessIdentity,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5370,6 +6355,15 @@ class Signer {
       keyPairIds:
           _s.extractXmlChild(elem, 'KeyPairIds')?.let(KeyPairIds.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final awsAccountNumber = this.awsAccountNumber;
+    final keyPairIds = this.keyPairIds;
+    return {
+      if (awsAccountNumber != null) 'AwsAccountNumber': awsAccountNumber,
+      if (keyPairIds != null) 'KeyPairIds': keyPairIds,
+    };
   }
 }
 
@@ -5474,6 +6468,26 @@ class StreamingDistribution {
       lastModifiedTime: _s.extractXmlDateTimeValue(elem, 'LastModifiedTime'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final activeTrustedSigners = this.activeTrustedSigners;
+    final domainName = this.domainName;
+    final id = this.id;
+    final status = this.status;
+    final streamingDistributionConfig = this.streamingDistributionConfig;
+    final lastModifiedTime = this.lastModifiedTime;
+    return {
+      'ARN': arn,
+      'ActiveTrustedSigners': activeTrustedSigners,
+      'DomainName': domainName,
+      'Id': id,
+      'Status': status,
+      'StreamingDistributionConfig': streamingDistributionConfig,
+      if (lastModifiedTime != null)
+        'LastModifiedTime': iso8601ToJson(lastModifiedTime),
+    };
+  }
 }
 
 class StreamingDistributionAlreadyExists implements _s.AwsException {
@@ -5486,6 +6500,13 @@ class StreamingDistributionAlreadyExists implements _s.AwsException {
     return StreamingDistributionAlreadyExists(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -5563,6 +6584,27 @@ class StreamingDistributionConfig {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final callerReference = this.callerReference;
+    final comment = this.comment;
+    final enabled = this.enabled;
+    final s3Origin = this.s3Origin;
+    final trustedSigners = this.trustedSigners;
+    final aliases = this.aliases;
+    final logging = this.logging;
+    final priceClass = this.priceClass;
+    return {
+      'CallerReference': callerReference,
+      'Comment': comment,
+      'Enabled': enabled,
+      'S3Origin': s3Origin,
+      'TrustedSigners': trustedSigners,
+      if (aliases != null) 'Aliases': aliases,
+      if (logging != null) 'Logging': logging,
+      if (priceClass != null) 'PriceClass': priceClass.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final callerReference = this.callerReference;
     final comment = this.comment;
@@ -5607,6 +6649,16 @@ class StreamingDistributionConfigWithTags {
     required this.streamingDistributionConfig,
     required this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final streamingDistributionConfig = this.streamingDistributionConfig;
+    final tags = this.tags;
+    return {
+      'StreamingDistributionConfig': streamingDistributionConfig,
+      'Tags': tags,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final streamingDistributionConfig = this.streamingDistributionConfig;
     final tags = this.tags;
@@ -5673,6 +6725,23 @@ class StreamingDistributionList {
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxItems = this.maxItems;
+    final quantity = this.quantity;
+    final items = this.items;
+    final nextMarker = this.nextMarker;
+    return {
+      'IsTruncated': isTruncated,
+      'Marker': marker,
+      'MaxItems': maxItems,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class StreamingDistributionNotDisabled implements _s.AwsException {
@@ -5685,6 +6754,13 @@ class StreamingDistributionNotDisabled implements _s.AwsException {
     return StreamingDistributionNotDisabled(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -5771,6 +6847,33 @@ class StreamingDistributionSummary {
           TrustedSigners.fromXml(_s.extractXmlChild(elem, 'TrustedSigners')!),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final aliases = this.aliases;
+    final comment = this.comment;
+    final domainName = this.domainName;
+    final enabled = this.enabled;
+    final id = this.id;
+    final lastModifiedTime = this.lastModifiedTime;
+    final priceClass = this.priceClass;
+    final s3Origin = this.s3Origin;
+    final status = this.status;
+    final trustedSigners = this.trustedSigners;
+    return {
+      'ARN': arn,
+      'Aliases': aliases,
+      'Comment': comment,
+      'DomainName': domainName,
+      'Enabled': enabled,
+      'Id': id,
+      'LastModifiedTime': iso8601ToJson(lastModifiedTime),
+      'PriceClass': priceClass.toValue(),
+      'S3Origin': s3Origin,
+      'Status': status,
+      'TrustedSigners': trustedSigners,
+    };
+  }
 }
 
 /// A complex type that controls whether access logs are written for this
@@ -5808,6 +6911,17 @@ class StreamingLoggingConfig {
       enabled: _s.extractXmlBoolValue(elem, 'Enabled')!,
       prefix: _s.extractXmlStringValue(elem, 'Prefix')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final enabled = this.enabled;
+    final prefix = this.prefix;
+    return {
+      'Bucket': bucket,
+      'Enabled': enabled,
+      'Prefix': prefix,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -5858,6 +6972,15 @@ class Tag {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final key = this.key;
     final value = this.value;
@@ -5884,6 +7007,14 @@ class TagKeys {
   TagKeys({
     this.items,
   });
+
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    return {
+      if (items != null) 'Items': items,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final items = this.items;
     final $children = <_s.XmlNode>[
@@ -5918,6 +7049,13 @@ class Tags {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final items = this.items;
+    return {
+      if (items != null) 'Items': items,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final items = this.items;
     final $children = <_s.XmlNode>[
@@ -5948,6 +7086,13 @@ class TooManyCacheBehaviors implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// You cannot create anymore custom SSL/TLS certificates.
@@ -5961,6 +7106,13 @@ class TooManyCertificates implements _s.AwsException {
     return TooManyCertificates(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -5977,6 +7129,13 @@ class TooManyCloudFrontOriginAccessIdentities implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Your request contains more cookie names in the whitelist than are allowed
@@ -5992,6 +7151,13 @@ class TooManyCookieNamesInWhiteList implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Your request contains more CNAMEs than are allowed per distribution.
@@ -6005,6 +7171,13 @@ class TooManyDistributionCNAMEs implements _s.AwsException {
     return TooManyDistributionCNAMEs(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6020,6 +7193,13 @@ class TooManyDistributions implements _s.AwsException {
     return TooManyDistributions(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6037,6 +7217,13 @@ class TooManyDistributionsWithLambdaAssociations implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class TooManyHeadersInForwardedValues implements _s.AwsException {
@@ -6049,6 +7236,13 @@ class TooManyHeadersInForwardedValues implements _s.AwsException {
     return TooManyHeadersInForwardedValues(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6065,6 +7259,13 @@ class TooManyInvalidationsInProgress implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Your request contains more Lambda function associations than are allowed per
@@ -6080,6 +7281,13 @@ class TooManyLambdaFunctionAssociations implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class TooManyOriginCustomHeaders implements _s.AwsException {
@@ -6092,6 +7300,13 @@ class TooManyOriginCustomHeaders implements _s.AwsException {
     return TooManyOriginCustomHeaders(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6107,6 +7322,13 @@ class TooManyOrigins implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class TooManyQueryStringParameters implements _s.AwsException {
@@ -6120,6 +7342,13 @@ class TooManyQueryStringParameters implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 class TooManyStreamingDistributionCNAMEs implements _s.AwsException {
@@ -6132,6 +7361,13 @@ class TooManyStreamingDistributionCNAMEs implements _s.AwsException {
     return TooManyStreamingDistributionCNAMEs(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6148,6 +7384,13 @@ class TooManyStreamingDistributions implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// Your request contains more trusted signers than are allowed per
@@ -6163,6 +7406,13 @@ class TooManyTrustedSigners implements _s.AwsException {
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 /// One or more of your trusted signers do not exist.
@@ -6176,6 +7426,13 @@ class TrustedSignerDoesNotExist implements _s.AwsException {
     return TrustedSignerDoesNotExist(
       message: _s.extractXmlStringValue(elem, 'Message'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -6232,6 +7489,17 @@ class TrustedSigners {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final quantity = this.quantity;
+    final items = this.items;
+    return {
+      'Enabled': enabled,
+      'Quantity': quantity,
+      if (items != null) 'Items': items,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final enabled = this.enabled;
     final quantity = this.quantity;
@@ -6267,6 +7535,15 @@ class UpdateCloudFrontOriginAccessIdentityResult {
     this.cloudFrontOriginAccessIdentity,
     this.eTag,
   });
+
+  Map<String, dynamic> toJson() {
+    final cloudFrontOriginAccessIdentity = this.cloudFrontOriginAccessIdentity;
+    final eTag = this.eTag;
+    return {
+      if (cloudFrontOriginAccessIdentity != null)
+        'CloudFrontOriginAccessIdentity': cloudFrontOriginAccessIdentity,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -6282,6 +7559,14 @@ class UpdateDistributionResult {
     this.distribution,
     this.eTag,
   });
+
+  Map<String, dynamic> toJson() {
+    final distribution = this.distribution;
+    final eTag = this.eTag;
+    return {
+      if (distribution != null) 'Distribution': distribution,
+    };
+  }
 }
 
 /// The returned result of the corresponding request.
@@ -6297,6 +7582,15 @@ class UpdateStreamingDistributionResult {
     this.eTag,
     this.streamingDistribution,
   });
+
+  Map<String, dynamic> toJson() {
+    final eTag = this.eTag;
+    final streamingDistribution = this.streamingDistribution;
+    return {
+      if (streamingDistribution != null)
+        'StreamingDistribution': streamingDistribution,
+    };
+  }
 }
 
 /// A complex type that specifies the following:
@@ -6548,6 +7842,29 @@ class ViewerCertificate {
           .extractXmlStringValue(elem, 'SSLSupportMethod')
           ?.toSSLSupportMethod(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final aCMCertificateArn = this.aCMCertificateArn;
+    final certificate = this.certificate;
+    final certificateSource = this.certificateSource;
+    final cloudFrontDefaultCertificate = this.cloudFrontDefaultCertificate;
+    final iAMCertificateId = this.iAMCertificateId;
+    final minimumProtocolVersion = this.minimumProtocolVersion;
+    final sSLSupportMethod = this.sSLSupportMethod;
+    return {
+      if (aCMCertificateArn != null) 'ACMCertificateArn': aCMCertificateArn,
+      if (certificate != null) 'Certificate': certificate,
+      if (certificateSource != null)
+        'CertificateSource': certificateSource.toValue(),
+      if (cloudFrontDefaultCertificate != null)
+        'CloudFrontDefaultCertificate': cloudFrontDefaultCertificate,
+      if (iAMCertificateId != null) 'IAMCertificateId': iAMCertificateId,
+      if (minimumProtocolVersion != null)
+        'MinimumProtocolVersion': minimumProtocolVersion.toValue(),
+      if (sSLSupportMethod != null)
+        'SSLSupportMethod': sSLSupportMethod.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {

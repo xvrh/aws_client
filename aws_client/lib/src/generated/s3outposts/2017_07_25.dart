@@ -290,6 +290,13 @@ class CreateEndpointResult {
       endpointArn: json['EndpointArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpointArn = this.endpointArn;
+    return {
+      if (endpointArn != null) 'EndpointArn': endpointArn,
+    };
+  }
 }
 
 /// Amazon S3 on Outposts Access Points simplify managing data access at scale
@@ -363,6 +370,35 @@ class Endpoint {
       subnetId: json['SubnetId'] as String?,
       vpcId: json['VpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessType = this.accessType;
+    final cidrBlock = this.cidrBlock;
+    final creationTime = this.creationTime;
+    final customerOwnedIpv4Pool = this.customerOwnedIpv4Pool;
+    final endpointArn = this.endpointArn;
+    final networkInterfaces = this.networkInterfaces;
+    final outpostsId = this.outpostsId;
+    final securityGroupId = this.securityGroupId;
+    final status = this.status;
+    final subnetId = this.subnetId;
+    final vpcId = this.vpcId;
+    return {
+      if (accessType != null) 'AccessType': accessType.toValue(),
+      if (cidrBlock != null) 'CidrBlock': cidrBlock,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (customerOwnedIpv4Pool != null)
+        'CustomerOwnedIpv4Pool': customerOwnedIpv4Pool,
+      if (endpointArn != null) 'EndpointArn': endpointArn,
+      if (networkInterfaces != null) 'NetworkInterfaces': networkInterfaces,
+      if (outpostsId != null) 'OutpostsId': outpostsId,
+      if (securityGroupId != null) 'SecurityGroupId': securityGroupId,
+      if (status != null) 'Status': status.toValue(),
+      if (subnetId != null) 'SubnetId': subnetId,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -449,6 +485,15 @@ class ListEndpointsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoints = this.endpoints;
+    final nextToken = this.nextToken;
+    return {
+      if (endpoints != null) 'Endpoints': endpoints,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListSharedEndpointsResult {
@@ -474,6 +519,15 @@ class ListSharedEndpointsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoints = this.endpoints;
+    final nextToken = this.nextToken;
+    return {
+      if (endpoints != null) 'Endpoints': endpoints,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The container for the network interface.
@@ -488,6 +542,13 @@ class NetworkInterface {
     return NetworkInterface(
       networkInterfaceId: json['NetworkInterfaceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkInterfaceId = this.networkInterfaceId;
+    return {
+      if (networkInterfaceId != null) 'NetworkInterfaceId': networkInterfaceId,
+    };
   }
 }
 

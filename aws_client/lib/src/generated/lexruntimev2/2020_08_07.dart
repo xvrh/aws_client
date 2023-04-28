@@ -720,6 +720,13 @@ class ConfidenceScore {
       score: json['score'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final score = this.score;
+    return {
+      if (score != null) 'score': score,
+    };
+  }
 }
 
 enum ConfirmationState {
@@ -781,6 +788,19 @@ class DeleteSessionResponse {
       localeId: json['localeId'] as String?,
       sessionId: json['sessionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botAliasId = this.botAliasId;
+    final botId = this.botId;
+    final localeId = this.localeId;
+    final sessionId = this.sessionId;
+    return {
+      if (botAliasId != null) 'botAliasId': botAliasId,
+      if (botId != null) 'botId': botId,
+      if (localeId != null) 'localeId': localeId,
+      if (sessionId != null) 'sessionId': sessionId,
+    };
   }
 }
 
@@ -950,6 +970,19 @@ class GetSessionResponse {
           ? SessionState.fromJson(json['sessionState'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final interpretations = this.interpretations;
+    final messages = this.messages;
+    final sessionId = this.sessionId;
+    final sessionState = this.sessionState;
+    return {
+      if (interpretations != null) 'interpretations': interpretations,
+      if (messages != null) 'messages': messages,
+      if (sessionId != null) 'sessionId': sessionId,
+      if (sessionState != null) 'sessionState': sessionState,
+    };
   }
 }
 
@@ -1146,6 +1179,17 @@ class Interpretation {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final intent = this.intent;
+    final nluConfidence = this.nluConfidence;
+    final sentimentResponse = this.sentimentResponse;
+    return {
+      if (intent != null) 'intent': intent,
+      if (nluConfidence != null) 'nluConfidence': nluConfidence,
+      if (sentimentResponse != null) 'sentimentResponse': sentimentResponse,
+    };
+  }
 }
 
 /// Container for text that is returned to the customer..
@@ -1259,6 +1303,18 @@ class PutSessionResponse {
     this.sessionId,
     this.sessionState,
   });
+
+  Map<String, dynamic> toJson() {
+    final audioStream = this.audioStream;
+    final contentType = this.contentType;
+    final messages = this.messages;
+    final requestAttributes = this.requestAttributes;
+    final sessionId = this.sessionId;
+    final sessionState = this.sessionState;
+    return {
+      if (audioStream != null) 'audioStream': base64Encode(audioStream),
+    };
+  }
 }
 
 class RecognizeTextResponse {
@@ -1312,6 +1368,21 @@ class RecognizeTextResponse {
           ? SessionState.fromJson(json['sessionState'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final interpretations = this.interpretations;
+    final messages = this.messages;
+    final requestAttributes = this.requestAttributes;
+    final sessionId = this.sessionId;
+    final sessionState = this.sessionState;
+    return {
+      if (interpretations != null) 'interpretations': interpretations,
+      if (messages != null) 'messages': messages,
+      if (requestAttributes != null) 'requestAttributes': requestAttributes,
+      if (sessionId != null) 'sessionId': sessionId,
+      if (sessionState != null) 'sessionState': sessionState,
+    };
   }
 }
 
@@ -1403,6 +1474,21 @@ class RecognizeUtteranceResponse {
     this.sessionId,
     this.sessionState,
   });
+
+  Map<String, dynamic> toJson() {
+    final audioStream = this.audioStream;
+    final contentType = this.contentType;
+    final inputMode = this.inputMode;
+    final inputTranscript = this.inputTranscript;
+    final interpretations = this.interpretations;
+    final messages = this.messages;
+    final requestAttributes = this.requestAttributes;
+    final sessionId = this.sessionId;
+    final sessionState = this.sessionState;
+    return {
+      if (audioStream != null) 'audioStream': base64Encode(audioStream),
+    };
+  }
 }
 
 /// Provides an array of phrases that should be given preference when resolving
@@ -1528,6 +1614,15 @@ class SentimentResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sentiment = this.sentiment;
+    final sentimentScore = this.sentimentScore;
+    return {
+      if (sentiment != null) 'sentiment': sentiment.toValue(),
+      if (sentimentScore != null) 'sentimentScore': sentimentScore,
+    };
+  }
 }
 
 /// The individual sentiment responses for the utterance.
@@ -1561,6 +1656,19 @@ class SentimentScore {
       neutral: json['neutral'] as double?,
       positive: json['positive'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mixed = this.mixed;
+    final negative = this.negative;
+    final neutral = this.neutral;
+    final positive = this.positive;
+    return {
+      if (mixed != null) 'mixed': mixed,
+      if (negative != null) 'negative': negative,
+      if (neutral != null) 'neutral': neutral,
+      if (positive != null) 'positive': positive,
+    };
   }
 }
 

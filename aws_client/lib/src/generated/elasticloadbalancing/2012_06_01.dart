@@ -1466,6 +1466,13 @@ class AddAvailabilityZonesOutput {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+    };
+  }
 }
 
 /// Contains the output of AddTags.
@@ -1475,6 +1482,10 @@ class AddTagsOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return AddTagsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1538,6 +1549,15 @@ class AppCookieStickinessPolicy {
       policyName: _s.extractXmlStringValue(elem, 'PolicyName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cookieName = this.cookieName;
+    final policyName = this.policyName;
+    return {
+      if (cookieName != null) 'CookieName': cookieName,
+      if (policyName != null) 'PolicyName': policyName,
+    };
+  }
 }
 
 /// Contains the output of ApplySecurityGroupsToLoadBalancer.
@@ -1555,6 +1575,13 @@ class ApplySecurityGroupsToLoadBalancerOutput {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final securityGroups = this.securityGroups;
+    return {
+      if (securityGroups != null) 'SecurityGroups': securityGroups,
+    };
+  }
 }
 
 /// Contains the output of AttachLoadBalancerToSubnets.
@@ -1571,6 +1598,13 @@ class AttachLoadBalancerToSubnetsOutput {
           .extractXmlChild(elem, 'Subnets')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subnets = this.subnets;
+    return {
+      if (subnets != null) 'Subnets': subnets,
+    };
   }
 }
 
@@ -1594,6 +1628,15 @@ class BackendServerDescription {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instancePort = this.instancePort;
+    final policyNames = this.policyNames;
+    return {
+      if (instancePort != null) 'InstancePort': instancePort,
+      if (policyNames != null) 'PolicyNames': policyNames,
+    };
+  }
 }
 
 /// Contains the output of ConfigureHealthCheck.
@@ -1609,6 +1652,13 @@ class ConfigureHealthCheckOutput {
       healthCheck:
           _s.extractXmlChild(elem, 'HealthCheck')?.let(HealthCheck.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthCheck = this.healthCheck;
+    return {
+      if (healthCheck != null) 'HealthCheck': healthCheck,
+    };
   }
 }
 
@@ -1678,6 +1728,13 @@ class CreateAccessPointOutput {
       dNSName: _s.extractXmlStringValue(elem, 'DNSName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dNSName = this.dNSName;
+    return {
+      if (dNSName != null) 'DNSName': dNSName,
+    };
+  }
 }
 
 /// Contains the output for CreateAppCookieStickinessPolicy.
@@ -1687,6 +1744,10 @@ class CreateAppCookieStickinessPolicyOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateAppCookieStickinessPolicyOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1698,6 +1759,10 @@ class CreateLBCookieStickinessPolicyOutput {
       _s.XmlElement elem) {
     return CreateLBCookieStickinessPolicyOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains the parameters for CreateLoadBalancerListener.
@@ -1708,6 +1773,10 @@ class CreateLoadBalancerListenerOutput {
       _s.XmlElement elem) {
     return CreateLoadBalancerListenerOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains the output of CreateLoadBalancerPolicy.
@@ -1717,6 +1786,10 @@ class CreateLoadBalancerPolicyOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateLoadBalancerPolicyOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1751,6 +1824,10 @@ class DeleteAccessPointOutput {
       _s.XmlElement elem) {
     return DeleteAccessPointOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains the output of DeleteLoadBalancerListeners.
@@ -1761,6 +1838,10 @@ class DeleteLoadBalancerListenerOutput {
       _s.XmlElement elem) {
     return DeleteLoadBalancerListenerOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains the output of DeleteLoadBalancerPolicy.
@@ -1770,6 +1851,10 @@ class DeleteLoadBalancerPolicyOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteLoadBalancerPolicyOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1786,6 +1871,13 @@ class DeregisterEndPointsOutput {
       instances: _s.extractXmlChild(elem, 'Instances')?.let(
           (elem) => elem.findElements('member').map(Instance.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    return {
+      if (instances != null) 'Instances': instances,
+    };
   }
 }
 
@@ -1813,6 +1905,16 @@ class DescribeAccessPointsOutput {
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancerDescriptions = this.loadBalancerDescriptions;
+    final nextMarker = this.nextMarker;
+    return {
+      if (loadBalancerDescriptions != null)
+        'LoadBalancerDescriptions': loadBalancerDescriptions,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class DescribeAccountLimitsOutput {
@@ -1834,6 +1936,15 @@ class DescribeAccountLimitsOutput {
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final limits = this.limits;
+    final nextMarker = this.nextMarker;
+    return {
+      if (limits != null) 'Limits': limits,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 /// Contains the output for DescribeInstanceHealth.
@@ -1849,6 +1960,13 @@ class DescribeEndPointStateOutput {
       instanceStates: _s.extractXmlChild(elem, 'InstanceStates')?.let((elem) =>
           elem.findElements('member').map(InstanceState.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceStates = this.instanceStates;
+    return {
+      if (instanceStates != null) 'InstanceStates': instanceStates,
+    };
   }
 }
 
@@ -1866,6 +1984,14 @@ class DescribeLoadBalancerAttributesOutput {
           .extractXmlChild(elem, 'LoadBalancerAttributes')
           ?.let(LoadBalancerAttributes.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancerAttributes = this.loadBalancerAttributes;
+    return {
+      if (loadBalancerAttributes != null)
+        'LoadBalancerAttributes': loadBalancerAttributes,
+    };
   }
 }
 
@@ -1885,6 +2011,13 @@ class DescribeLoadBalancerPoliciesOutput {
               .map(PolicyDescription.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyDescriptions = this.policyDescriptions;
+    return {
+      if (policyDescriptions != null) 'PolicyDescriptions': policyDescriptions,
+    };
   }
 }
 
@@ -1906,6 +2039,14 @@ class DescribeLoadBalancerPolicyTypesOutput {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyTypeDescriptions = this.policyTypeDescriptions;
+    return {
+      if (policyTypeDescriptions != null)
+        'PolicyTypeDescriptions': policyTypeDescriptions,
+    };
+  }
 }
 
 /// Contains the output for DescribeTags.
@@ -1923,6 +2064,13 @@ class DescribeTagsOutput {
               elem.findElements('member').map(TagDescription.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tagDescriptions = this.tagDescriptions;
+    return {
+      if (tagDescriptions != null) 'TagDescriptions': tagDescriptions,
+    };
+  }
 }
 
 /// Contains the output of DetachLoadBalancerFromSubnets.
@@ -1939,6 +2087,13 @@ class DetachLoadBalancerFromSubnetsOutput {
           .extractXmlChild(elem, 'Subnets')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final subnets = this.subnets;
+    return {
+      if (subnets != null) 'Subnets': subnets,
+    };
   }
 }
 
@@ -2114,6 +2269,19 @@ class InstanceState {
       state: _s.extractXmlStringValue(elem, 'State'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final instanceId = this.instanceId;
+    final reasonCode = this.reasonCode;
+    final state = this.state;
+    return {
+      if (description != null) 'Description': description,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (reasonCode != null) 'ReasonCode': reasonCode,
+      if (state != null) 'State': state,
+    };
+  }
 }
 
 /// Information about a policy for duration-based session stickiness.
@@ -2137,6 +2305,16 @@ class LBCookieStickinessPolicy {
           _s.extractXmlIntValue(elem, 'CookieExpirationPeriod'),
       policyName: _s.extractXmlStringValue(elem, 'PolicyName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cookieExpirationPeriod = this.cookieExpirationPeriod;
+    final policyName = this.policyName;
+    return {
+      if (cookieExpirationPeriod != null)
+        'CookieExpirationPeriod': cookieExpirationPeriod,
+      if (policyName != null) 'PolicyName': policyName,
+    };
   }
 }
 
@@ -2170,6 +2348,15 @@ class Limit {
       max: _s.extractXmlStringValue(elem, 'Max'),
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final name = this.name;
+    return {
+      if (max != null) 'Max': max,
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -2264,6 +2451,15 @@ class ListenerDescription {
           .extractXmlChild(elem, 'PolicyNames')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final listener = this.listener;
+    final policyNames = this.policyNames;
+    return {
+      if (listener != null) 'Listener': listener,
+      if (policyNames != null) 'PolicyNames': policyNames,
+    };
   }
 }
 
@@ -2477,6 +2673,48 @@ class LoadBalancerDescription {
       vPCId: _s.extractXmlStringValue(elem, 'VPCId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final backendServerDescriptions = this.backendServerDescriptions;
+    final canonicalHostedZoneName = this.canonicalHostedZoneName;
+    final canonicalHostedZoneNameID = this.canonicalHostedZoneNameID;
+    final createdTime = this.createdTime;
+    final dNSName = this.dNSName;
+    final healthCheck = this.healthCheck;
+    final instances = this.instances;
+    final listenerDescriptions = this.listenerDescriptions;
+    final loadBalancerName = this.loadBalancerName;
+    final policies = this.policies;
+    final scheme = this.scheme;
+    final securityGroups = this.securityGroups;
+    final sourceSecurityGroup = this.sourceSecurityGroup;
+    final subnets = this.subnets;
+    final vPCId = this.vPCId;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+      if (backendServerDescriptions != null)
+        'BackendServerDescriptions': backendServerDescriptions,
+      if (canonicalHostedZoneName != null)
+        'CanonicalHostedZoneName': canonicalHostedZoneName,
+      if (canonicalHostedZoneNameID != null)
+        'CanonicalHostedZoneNameID': canonicalHostedZoneNameID,
+      if (createdTime != null) 'CreatedTime': iso8601ToJson(createdTime),
+      if (dNSName != null) 'DNSName': dNSName,
+      if (healthCheck != null) 'HealthCheck': healthCheck,
+      if (instances != null) 'Instances': instances,
+      if (listenerDescriptions != null)
+        'ListenerDescriptions': listenerDescriptions,
+      if (loadBalancerName != null) 'LoadBalancerName': loadBalancerName,
+      if (policies != null) 'Policies': policies,
+      if (scheme != null) 'Scheme': scheme,
+      if (securityGroups != null) 'SecurityGroups': securityGroups,
+      if (sourceSecurityGroup != null)
+        'SourceSecurityGroup': sourceSecurityGroup,
+      if (subnets != null) 'Subnets': subnets,
+      if (vPCId != null) 'VPCId': vPCId,
+    };
+  }
 }
 
 /// Contains the output of ModifyLoadBalancerAttributes.
@@ -2498,6 +2736,16 @@ class ModifyLoadBalancerAttributesOutput {
           ?.let(LoadBalancerAttributes.fromXml),
       loadBalancerName: _s.extractXmlStringValue(elem, 'LoadBalancerName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancerAttributes = this.loadBalancerAttributes;
+    final loadBalancerName = this.loadBalancerName;
+    return {
+      if (loadBalancerAttributes != null)
+        'LoadBalancerAttributes': loadBalancerAttributes,
+      if (loadBalancerName != null) 'LoadBalancerName': loadBalancerName,
+    };
   }
 }
 
@@ -2537,6 +2785,19 @@ class Policies {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final appCookieStickinessPolicies = this.appCookieStickinessPolicies;
+    final lBCookieStickinessPolicies = this.lBCookieStickinessPolicies;
+    final otherPolicies = this.otherPolicies;
+    return {
+      if (appCookieStickinessPolicies != null)
+        'AppCookieStickinessPolicies': appCookieStickinessPolicies,
+      if (lBCookieStickinessPolicies != null)
+        'LBCookieStickinessPolicies': lBCookieStickinessPolicies,
+      if (otherPolicies != null) 'OtherPolicies': otherPolicies,
+    };
+  }
 }
 
 /// Information about a policy attribute.
@@ -2551,6 +2812,7 @@ class PolicyAttribute {
     this.attributeName,
     this.attributeValue,
   });
+
   Map<String, dynamic> toJson() {
     final attributeName = this.attributeName;
     final attributeValue = this.attributeValue;
@@ -2578,6 +2840,15 @@ class PolicyAttributeDescription {
       attributeName: _s.extractXmlStringValue(elem, 'AttributeName'),
       attributeValue: _s.extractXmlStringValue(elem, 'AttributeValue'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributeName = this.attributeName;
+    final attributeValue = this.attributeValue;
+    return {
+      if (attributeName != null) 'AttributeName': attributeName,
+      if (attributeValue != null) 'AttributeValue': attributeValue,
+    };
   }
 }
 
@@ -2632,6 +2903,21 @@ class PolicyAttributeTypeDescription {
       description: _s.extractXmlStringValue(elem, 'Description'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributeName = this.attributeName;
+    final attributeType = this.attributeType;
+    final cardinality = this.cardinality;
+    final defaultValue = this.defaultValue;
+    final description = this.description;
+    return {
+      if (attributeName != null) 'AttributeName': attributeName,
+      if (attributeType != null) 'AttributeType': attributeType,
+      if (cardinality != null) 'Cardinality': cardinality,
+      if (defaultValue != null) 'DefaultValue': defaultValue,
+      if (description != null) 'Description': description,
+    };
+  }
 }
 
 /// Information about a policy.
@@ -2661,6 +2947,18 @@ class PolicyDescription {
       policyName: _s.extractXmlStringValue(elem, 'PolicyName'),
       policyTypeName: _s.extractXmlStringValue(elem, 'PolicyTypeName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyAttributeDescriptions = this.policyAttributeDescriptions;
+    final policyName = this.policyName;
+    final policyTypeName = this.policyTypeName;
+    return {
+      if (policyAttributeDescriptions != null)
+        'PolicyAttributeDescriptions': policyAttributeDescriptions,
+      if (policyName != null) 'PolicyName': policyName,
+      if (policyTypeName != null) 'PolicyTypeName': policyTypeName,
+    };
   }
 }
 
@@ -2693,6 +2991,19 @@ class PolicyTypeDescription {
       policyTypeName: _s.extractXmlStringValue(elem, 'PolicyTypeName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final policyAttributeTypeDescriptions =
+        this.policyAttributeTypeDescriptions;
+    final policyTypeName = this.policyTypeName;
+    return {
+      if (description != null) 'Description': description,
+      if (policyAttributeTypeDescriptions != null)
+        'PolicyAttributeTypeDescriptions': policyAttributeTypeDescriptions,
+      if (policyTypeName != null) 'PolicyTypeName': policyTypeName,
+    };
+  }
 }
 
 /// Contains the output of RegisterInstancesWithLoadBalancer.
@@ -2708,6 +3019,13 @@ class RegisterEndPointsOutput {
       instances: _s.extractXmlChild(elem, 'Instances')?.let(
           (elem) => elem.findElements('member').map(Instance.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    return {
+      if (instances != null) 'Instances': instances,
+    };
   }
 }
 
@@ -2726,6 +3044,13 @@ class RemoveAvailabilityZonesOutput {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    return {
+      if (availabilityZones != null) 'AvailabilityZones': availabilityZones,
+    };
+  }
 }
 
 /// Contains the output of RemoveTags.
@@ -2735,6 +3060,10 @@ class RemoveTagsOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return RemoveTagsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2746,6 +3075,10 @@ class SetLoadBalancerListenerSSLCertificateOutput {
       _s.XmlElement elem) {
     return SetLoadBalancerListenerSSLCertificateOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains the output of SetLoadBalancerPoliciesForBackendServer.
@@ -2756,6 +3089,10 @@ class SetLoadBalancerPoliciesForBackendServerOutput {
       _s.XmlElement elem) {
     return SetLoadBalancerPoliciesForBackendServerOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Contains the output of SetLoadBalancePoliciesOfListener.
@@ -2765,6 +3102,10 @@ class SetLoadBalancerPoliciesOfListenerOutput {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetLoadBalancerPoliciesOfListenerOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2785,6 +3126,15 @@ class SourceSecurityGroup {
       groupName: _s.extractXmlStringValue(elem, 'GroupName'),
       ownerAlias: _s.extractXmlStringValue(elem, 'OwnerAlias'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupName = this.groupName;
+    final ownerAlias = this.ownerAlias;
+    return {
+      if (groupName != null) 'GroupName': groupName,
+      if (ownerAlias != null) 'OwnerAlias': ownerAlias,
+    };
   }
 }
 
@@ -2836,6 +3186,15 @@ class TagDescription {
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancerName = this.loadBalancerName;
+    final tags = this.tags;
+    return {
+      if (loadBalancerName != null) 'LoadBalancerName': loadBalancerName,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// The key of a tag.
@@ -2846,6 +3205,7 @@ class TagKeyOnly {
   TagKeyOnly({
     this.key,
   });
+
   Map<String, dynamic> toJson() {
     final key = this.key;
     return {

@@ -2786,6 +2786,17 @@ class AddInstanceFleetOutput {
       instanceFleetId: json['InstanceFleetId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final clusterId = this.clusterId;
+    final instanceFleetId = this.instanceFleetId;
+    return {
+      if (clusterArn != null) 'ClusterArn': clusterArn,
+      if (clusterId != null) 'ClusterId': clusterId,
+      if (instanceFleetId != null) 'InstanceFleetId': instanceFleetId,
+    };
+  }
 }
 
 /// Output from an AddInstanceGroups call.
@@ -2814,6 +2825,17 @@ class AddInstanceGroupsOutput {
       jobFlowId: json['JobFlowId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final instanceGroupIds = this.instanceGroupIds;
+    final jobFlowId = this.jobFlowId;
+    return {
+      if (clusterArn != null) 'ClusterArn': clusterArn,
+      if (instanceGroupIds != null) 'InstanceGroupIds': instanceGroupIds,
+      if (jobFlowId != null) 'JobFlowId': jobFlowId,
+    };
+  }
 }
 
 /// The output for the <a>AddJobFlowSteps</a> operation.
@@ -2832,6 +2854,13 @@ class AddJobFlowStepsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stepIds = this.stepIds;
+    return {
+      if (stepIds != null) 'StepIds': stepIds,
+    };
+  }
 }
 
 /// This output indicates the result of adding tags to a resource.
@@ -2839,6 +2868,10 @@ class AddTagsOutput {
   AddTagsOutput();
   factory AddTagsOutput.fromJson(Map<String, dynamic> _) {
     return AddTagsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2980,6 +3013,7 @@ class AutoScalingPolicy {
     required this.constraints,
     required this.rules,
   });
+
   Map<String, dynamic> toJson() {
     final constraints = this.constraints;
     final rules = this.rules;
@@ -3026,6 +3060,17 @@ class AutoScalingPolicyDescription {
               json['Status'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final constraints = this.constraints;
+    final rules = this.rules;
+    final status = this.status;
+    return {
+      if (constraints != null) 'Constraints': constraints,
+      if (rules != null) 'Rules': rules,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -3102,6 +3147,15 @@ class AutoScalingPolicyStateChangeReason {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code.toValue(),
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 enum AutoScalingPolicyStateChangeReasonCode {
@@ -3160,6 +3214,15 @@ class AutoScalingPolicyStatus {
               json['StateChangeReason'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final stateChangeReason = this.stateChangeReason;
+    return {
+      if (state != null) 'State': state.toValue(),
+      if (stateChangeReason != null) 'StateChangeReason': stateChangeReason,
+    };
   }
 }
 
@@ -3272,6 +3335,15 @@ class BlockPublicAccessConfigurationMetadata {
           nonNullableTimeStampFromJson(json['CreationDateTime'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdByArn = this.createdByArn;
+    final creationDateTime = this.creationDateTime;
+    return {
+      'CreatedByArn': createdByArn,
+      'CreationDateTime': unixTimestampToJson(creationDateTime),
+    };
+  }
 }
 
 /// Configuration of a bootstrap action.
@@ -3320,6 +3392,14 @@ class BootstrapActionDetail {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bootstrapActionConfig = this.bootstrapActionConfig;
+    return {
+      if (bootstrapActionConfig != null)
+        'BootstrapActionConfig': bootstrapActionConfig,
+    };
+  }
 }
 
 /// Specification of the status of a CancelSteps request. Available only in
@@ -3346,6 +3426,17 @@ class CancelStepsInfo {
       stepId: json['StepId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final reason = this.reason;
+    final status = this.status;
+    final stepId = this.stepId;
+    return {
+      if (reason != null) 'Reason': reason,
+      if (status != null) 'Status': status.toValue(),
+      if (stepId != null) 'StepId': stepId,
+    };
+  }
 }
 
 /// The output for the <a>CancelSteps</a> operation.
@@ -3364,6 +3455,14 @@ class CancelStepsOutput {
           .map((e) => CancelStepsInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cancelStepsInfoList = this.cancelStepsInfoList;
+    return {
+      if (cancelStepsInfoList != null)
+        'CancelStepsInfoList': cancelStepsInfoList,
+    };
   }
 }
 
@@ -3738,6 +3837,84 @@ class Cluster {
       visibleToAllUsers: json['VisibleToAllUsers'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applications = this.applications;
+    final autoScalingRole = this.autoScalingRole;
+    final autoTerminate = this.autoTerminate;
+    final clusterArn = this.clusterArn;
+    final configurations = this.configurations;
+    final customAmiId = this.customAmiId;
+    final ebsRootVolumeSize = this.ebsRootVolumeSize;
+    final ec2InstanceAttributes = this.ec2InstanceAttributes;
+    final id = this.id;
+    final instanceCollectionType = this.instanceCollectionType;
+    final kerberosAttributes = this.kerberosAttributes;
+    final logEncryptionKmsKeyId = this.logEncryptionKmsKeyId;
+    final logUri = this.logUri;
+    final masterPublicDnsName = this.masterPublicDnsName;
+    final name = this.name;
+    final normalizedInstanceHours = this.normalizedInstanceHours;
+    final oSReleaseLabel = this.oSReleaseLabel;
+    final outpostArn = this.outpostArn;
+    final placementGroups = this.placementGroups;
+    final releaseLabel = this.releaseLabel;
+    final repoUpgradeOnBoot = this.repoUpgradeOnBoot;
+    final requestedAmiVersion = this.requestedAmiVersion;
+    final runningAmiVersion = this.runningAmiVersion;
+    final scaleDownBehavior = this.scaleDownBehavior;
+    final securityConfiguration = this.securityConfiguration;
+    final serviceRole = this.serviceRole;
+    final status = this.status;
+    final stepConcurrencyLevel = this.stepConcurrencyLevel;
+    final tags = this.tags;
+    final terminationProtected = this.terminationProtected;
+    final visibleToAllUsers = this.visibleToAllUsers;
+    return {
+      if (applications != null) 'Applications': applications,
+      if (autoScalingRole != null) 'AutoScalingRole': autoScalingRole,
+      if (autoTerminate != null) 'AutoTerminate': autoTerminate,
+      if (clusterArn != null) 'ClusterArn': clusterArn,
+      if (configurations != null) 'Configurations': configurations,
+      if (customAmiId != null) 'CustomAmiId': customAmiId,
+      if (ebsRootVolumeSize != null) 'EbsRootVolumeSize': ebsRootVolumeSize,
+      if (ec2InstanceAttributes != null)
+        'Ec2InstanceAttributes': ec2InstanceAttributes,
+      if (id != null) 'Id': id,
+      if (instanceCollectionType != null)
+        'InstanceCollectionType': instanceCollectionType.toValue(),
+      if (kerberosAttributes != null) 'KerberosAttributes': kerberosAttributes,
+      if (logEncryptionKmsKeyId != null)
+        'LogEncryptionKmsKeyId': logEncryptionKmsKeyId,
+      if (logUri != null) 'LogUri': logUri,
+      if (masterPublicDnsName != null)
+        'MasterPublicDnsName': masterPublicDnsName,
+      if (name != null) 'Name': name,
+      if (normalizedInstanceHours != null)
+        'NormalizedInstanceHours': normalizedInstanceHours,
+      if (oSReleaseLabel != null) 'OSReleaseLabel': oSReleaseLabel,
+      if (outpostArn != null) 'OutpostArn': outpostArn,
+      if (placementGroups != null) 'PlacementGroups': placementGroups,
+      if (releaseLabel != null) 'ReleaseLabel': releaseLabel,
+      if (repoUpgradeOnBoot != null)
+        'RepoUpgradeOnBoot': repoUpgradeOnBoot.toValue(),
+      if (requestedAmiVersion != null)
+        'RequestedAmiVersion': requestedAmiVersion,
+      if (runningAmiVersion != null) 'RunningAmiVersion': runningAmiVersion,
+      if (scaleDownBehavior != null)
+        'ScaleDownBehavior': scaleDownBehavior.toValue(),
+      if (securityConfiguration != null)
+        'SecurityConfiguration': securityConfiguration,
+      if (serviceRole != null) 'ServiceRole': serviceRole,
+      if (status != null) 'Status': status,
+      if (stepConcurrencyLevel != null)
+        'StepConcurrencyLevel': stepConcurrencyLevel,
+      if (tags != null) 'Tags': tags,
+      if (terminationProtected != null)
+        'TerminationProtected': terminationProtected,
+      if (visibleToAllUsers != null) 'VisibleToAllUsers': visibleToAllUsers,
+    };
+  }
 }
 
 enum ClusterState {
@@ -3810,6 +3987,15 @@ class ClusterStateChangeReason {
       code: (json['Code'] as String?)?.toClusterStateChangeReasonCode(),
       message: json['Message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code.toValue(),
+      if (message != null) 'Message': message,
+    };
   }
 }
 
@@ -3901,6 +4087,17 @@ class ClusterStatus {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final stateChangeReason = this.stateChangeReason;
+    final timeline = this.timeline;
+    return {
+      if (state != null) 'State': state.toValue(),
+      if (stateChangeReason != null) 'StateChangeReason': stateChangeReason,
+      if (timeline != null) 'Timeline': timeline,
+    };
+  }
 }
 
 /// The summary description of the cluster.
@@ -3948,6 +4145,24 @@ class ClusterSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final id = this.id;
+    final name = this.name;
+    final normalizedInstanceHours = this.normalizedInstanceHours;
+    final outpostArn = this.outpostArn;
+    final status = this.status;
+    return {
+      if (clusterArn != null) 'ClusterArn': clusterArn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (normalizedInstanceHours != null)
+        'NormalizedInstanceHours': normalizedInstanceHours,
+      if (outpostArn != null) 'OutpostArn': outpostArn,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// Represents the timeline of the cluster's lifecycle.
@@ -3972,6 +4187,19 @@ class ClusterTimeline {
       endDateTime: timeStampFromJson(json['EndDateTime']),
       readyDateTime: timeStampFromJson(json['ReadyDateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final endDateTime = this.endDateTime;
+    final readyDateTime = this.readyDateTime;
+    return {
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (endDateTime != null) 'EndDateTime': unixTimestampToJson(endDateTime),
+      if (readyDateTime != null)
+        'ReadyDateTime': unixTimestampToJson(readyDateTime),
+    };
   }
 }
 
@@ -4000,6 +4228,17 @@ class Command {
       name: json['Name'] as String?,
       scriptPath: json['ScriptPath'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final args = this.args;
+    final name = this.name;
+    final scriptPath = this.scriptPath;
+    return {
+      if (args != null) 'Args': args,
+      if (name != null) 'Name': name,
+      if (scriptPath != null) 'ScriptPath': scriptPath,
+    };
   }
 }
 
@@ -4215,6 +4454,15 @@ class CreateSecurityConfigurationOutput {
       name: json['Name'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final name = this.name;
+    return {
+      'CreationDateTime': unixTimestampToJson(creationDateTime),
+      'Name': name,
+    };
+  }
 }
 
 class CreateStudioOutput {
@@ -4234,12 +4482,25 @@ class CreateStudioOutput {
       url: json['Url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final studioId = this.studioId;
+    final url = this.url;
+    return {
+      if (studioId != null) 'StudioId': studioId,
+      if (url != null) 'Url': url,
+    };
+  }
 }
 
 class DeleteSecurityConfigurationOutput {
   DeleteSecurityConfigurationOutput();
   factory DeleteSecurityConfigurationOutput.fromJson(Map<String, dynamic> _) {
     return DeleteSecurityConfigurationOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4257,6 +4518,13 @@ class DescribeClusterOutput {
           ? Cluster.fromJson(json['Cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'Cluster': cluster,
+    };
   }
 }
 
@@ -4276,6 +4544,13 @@ class DescribeJobFlowsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobFlows = this.jobFlows;
+    return {
+      if (jobFlows != null) 'JobFlows': jobFlows,
+    };
+  }
 }
 
 class DescribeNotebookExecutionOutput {
@@ -4292,6 +4567,13 @@ class DescribeNotebookExecutionOutput {
               json['NotebookExecution'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final notebookExecution = this.notebookExecution;
+    return {
+      if (notebookExecution != null) 'NotebookExecution': notebookExecution,
+    };
   }
 }
 
@@ -4334,6 +4616,20 @@ class DescribeReleaseLabelOutput {
       releaseLabel: json['ReleaseLabel'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applications = this.applications;
+    final availableOSReleases = this.availableOSReleases;
+    final nextToken = this.nextToken;
+    final releaseLabel = this.releaseLabel;
+    return {
+      if (applications != null) 'Applications': applications,
+      if (availableOSReleases != null)
+        'AvailableOSReleases': availableOSReleases,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (releaseLabel != null) 'ReleaseLabel': releaseLabel,
+    };
+  }
 }
 
 class DescribeSecurityConfigurationOutput {
@@ -4359,6 +4655,19 @@ class DescribeSecurityConfigurationOutput {
       securityConfiguration: json['SecurityConfiguration'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final name = this.name;
+    final securityConfiguration = this.securityConfiguration;
+    return {
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (name != null) 'Name': name,
+      if (securityConfiguration != null)
+        'SecurityConfiguration': securityConfiguration,
+    };
+  }
 }
 
 /// This output contains the description of the cluster step.
@@ -4376,6 +4685,13 @@ class DescribeStepOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final step = this.step;
+    return {
+      if (step != null) 'Step': step,
+    };
+  }
 }
 
 class DescribeStudioOutput {
@@ -4391,6 +4707,13 @@ class DescribeStudioOutput {
           ? Studio.fromJson(json['Studio'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final studio = this.studio;
+    return {
+      if (studio != null) 'Studio': studio,
+    };
   }
 }
 
@@ -4418,6 +4741,16 @@ class EbsBlockDevice {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final device = this.device;
+    final volumeSpecification = this.volumeSpecification;
+    return {
+      if (device != null) 'Device': device,
+      if (volumeSpecification != null)
+        'VolumeSpecification': volumeSpecification,
+    };
+  }
 }
 
 /// Configuration of requested EBS block device associated with the instance
@@ -4436,6 +4769,7 @@ class EbsBlockDeviceConfig {
     required this.volumeSpecification,
     this.volumesPerInstance,
   });
+
   Map<String, dynamic> toJson() {
     final volumeSpecification = this.volumeSpecification;
     final volumesPerInstance = this.volumesPerInstance;
@@ -4458,6 +4792,7 @@ class EbsConfiguration {
     this.ebsBlockDeviceConfigs,
     this.ebsOptimized,
   });
+
   Map<String, dynamic> toJson() {
     final ebsBlockDeviceConfigs = this.ebsBlockDeviceConfigs;
     final ebsOptimized = this.ebsOptimized;
@@ -4486,6 +4821,15 @@ class EbsVolume {
       device: json['Device'] as String?,
       volumeId: json['VolumeId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final device = this.device;
+    final volumeId = this.volumeId;
+    return {
+      if (device != null) 'Device': device,
+      if (volumeId != null) 'VolumeId': volumeId,
+    };
   }
 }
 
@@ -4595,6 +4939,41 @@ class Ec2InstanceAttributes {
       serviceAccessSecurityGroup: json['ServiceAccessSecurityGroup'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalMasterSecurityGroups = this.additionalMasterSecurityGroups;
+    final additionalSlaveSecurityGroups = this.additionalSlaveSecurityGroups;
+    final ec2AvailabilityZone = this.ec2AvailabilityZone;
+    final ec2KeyName = this.ec2KeyName;
+    final ec2SubnetId = this.ec2SubnetId;
+    final emrManagedMasterSecurityGroup = this.emrManagedMasterSecurityGroup;
+    final emrManagedSlaveSecurityGroup = this.emrManagedSlaveSecurityGroup;
+    final iamInstanceProfile = this.iamInstanceProfile;
+    final requestedEc2AvailabilityZones = this.requestedEc2AvailabilityZones;
+    final requestedEc2SubnetIds = this.requestedEc2SubnetIds;
+    final serviceAccessSecurityGroup = this.serviceAccessSecurityGroup;
+    return {
+      if (additionalMasterSecurityGroups != null)
+        'AdditionalMasterSecurityGroups': additionalMasterSecurityGroups,
+      if (additionalSlaveSecurityGroups != null)
+        'AdditionalSlaveSecurityGroups': additionalSlaveSecurityGroups,
+      if (ec2AvailabilityZone != null)
+        'Ec2AvailabilityZone': ec2AvailabilityZone,
+      if (ec2KeyName != null) 'Ec2KeyName': ec2KeyName,
+      if (ec2SubnetId != null) 'Ec2SubnetId': ec2SubnetId,
+      if (emrManagedMasterSecurityGroup != null)
+        'EmrManagedMasterSecurityGroup': emrManagedMasterSecurityGroup,
+      if (emrManagedSlaveSecurityGroup != null)
+        'EmrManagedSlaveSecurityGroup': emrManagedSlaveSecurityGroup,
+      if (iamInstanceProfile != null) 'IamInstanceProfile': iamInstanceProfile,
+      if (requestedEc2AvailabilityZones != null)
+        'RequestedEc2AvailabilityZones': requestedEc2AvailabilityZones,
+      if (requestedEc2SubnetIds != null)
+        'RequestedEc2SubnetIds': requestedEc2SubnetIds,
+      if (serviceAccessSecurityGroup != null)
+        'ServiceAccessSecurityGroup': serviceAccessSecurityGroup,
+    };
+  }
 }
 
 /// Specifies the execution engine (cluster) to run the notebook and perform the
@@ -4695,6 +5074,17 @@ class FailureDetails {
       reason: json['Reason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logFile = this.logFile;
+    final message = this.message;
+    final reason = this.reason;
+    return {
+      if (logFile != null) 'LogFile': logFile,
+      if (message != null) 'Message': message,
+      if (reason != null) 'Reason': reason,
+    };
+  }
 }
 
 class GetAutoTerminationPolicyOutput {
@@ -4712,6 +5102,14 @@ class GetAutoTerminationPolicyOutput {
               json['AutoTerminationPolicy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoTerminationPolicy = this.autoTerminationPolicy;
+    return {
+      if (autoTerminationPolicy != null)
+        'AutoTerminationPolicy': autoTerminationPolicy,
+    };
   }
 }
 
@@ -4758,6 +5156,17 @@ class GetBlockPublicAccessConfigurationOutput {
                   as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blockPublicAccessConfiguration = this.blockPublicAccessConfiguration;
+    final blockPublicAccessConfigurationMetadata =
+        this.blockPublicAccessConfigurationMetadata;
+    return {
+      'BlockPublicAccessConfiguration': blockPublicAccessConfiguration,
+      'BlockPublicAccessConfigurationMetadata':
+          blockPublicAccessConfigurationMetadata,
+    };
+  }
 }
 
 class GetManagedScalingPolicyOutput {
@@ -4776,6 +5185,14 @@ class GetManagedScalingPolicyOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final managedScalingPolicy = this.managedScalingPolicy;
+    return {
+      if (managedScalingPolicy != null)
+        'ManagedScalingPolicy': managedScalingPolicy,
+    };
+  }
 }
 
 class GetStudioSessionMappingOutput {
@@ -4793,6 +5210,13 @@ class GetStudioSessionMappingOutput {
               json['SessionMapping'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sessionMapping = this.sessionMapping;
+    return {
+      if (sessionMapping != null) 'SessionMapping': sessionMapping,
+    };
   }
 }
 
@@ -4886,6 +5310,19 @@ class HadoopStepConfig {
       properties: (json['Properties'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final args = this.args;
+    final jar = this.jar;
+    final mainClass = this.mainClass;
+    final properties = this.properties;
+    return {
+      if (args != null) 'Args': args,
+      if (jar != null) 'Jar': jar,
+      if (mainClass != null) 'MainClass': mainClass,
+      if (properties != null) 'Properties': properties,
+    };
   }
 }
 
@@ -4991,6 +5428,35 @@ class Instance {
           ? InstanceStatus.fromJson(json['Status'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ebsVolumes = this.ebsVolumes;
+    final ec2InstanceId = this.ec2InstanceId;
+    final id = this.id;
+    final instanceFleetId = this.instanceFleetId;
+    final instanceGroupId = this.instanceGroupId;
+    final instanceType = this.instanceType;
+    final market = this.market;
+    final privateDnsName = this.privateDnsName;
+    final privateIpAddress = this.privateIpAddress;
+    final publicDnsName = this.publicDnsName;
+    final publicIpAddress = this.publicIpAddress;
+    final status = this.status;
+    return {
+      if (ebsVolumes != null) 'EbsVolumes': ebsVolumes,
+      if (ec2InstanceId != null) 'Ec2InstanceId': ec2InstanceId,
+      if (id != null) 'Id': id,
+      if (instanceFleetId != null) 'InstanceFleetId': instanceFleetId,
+      if (instanceGroupId != null) 'InstanceGroupId': instanceGroupId,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (market != null) 'Market': market.toValue(),
+      if (privateDnsName != null) 'PrivateDnsName': privateDnsName,
+      if (privateIpAddress != null) 'PrivateIpAddress': privateIpAddress,
+      if (publicDnsName != null) 'PublicDnsName': publicDnsName,
+      if (publicIpAddress != null) 'PublicIpAddress': publicIpAddress,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -5144,6 +5610,37 @@ class InstanceFleet {
       targetSpotCapacity: json['TargetSpotCapacity'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final instanceFleetType = this.instanceFleetType;
+    final instanceTypeSpecifications = this.instanceTypeSpecifications;
+    final launchSpecifications = this.launchSpecifications;
+    final name = this.name;
+    final provisionedOnDemandCapacity = this.provisionedOnDemandCapacity;
+    final provisionedSpotCapacity = this.provisionedSpotCapacity;
+    final status = this.status;
+    final targetOnDemandCapacity = this.targetOnDemandCapacity;
+    final targetSpotCapacity = this.targetSpotCapacity;
+    return {
+      if (id != null) 'Id': id,
+      if (instanceFleetType != null)
+        'InstanceFleetType': instanceFleetType.toValue(),
+      if (instanceTypeSpecifications != null)
+        'InstanceTypeSpecifications': instanceTypeSpecifications,
+      if (launchSpecifications != null)
+        'LaunchSpecifications': launchSpecifications,
+      if (name != null) 'Name': name,
+      if (provisionedOnDemandCapacity != null)
+        'ProvisionedOnDemandCapacity': provisionedOnDemandCapacity,
+      if (provisionedSpotCapacity != null)
+        'ProvisionedSpotCapacity': provisionedSpotCapacity,
+      if (status != null) 'Status': status,
+      if (targetOnDemandCapacity != null)
+        'TargetOnDemandCapacity': targetOnDemandCapacity,
+      if (targetSpotCapacity != null) 'TargetSpotCapacity': targetSpotCapacity,
+    };
+  }
 }
 
 /// The configuration that defines an instance fleet.
@@ -5216,6 +5713,7 @@ class InstanceFleetConfig {
     this.targetOnDemandCapacity,
     this.targetSpotCapacity,
   });
+
   Map<String, dynamic> toJson() {
     final instanceFleetType = this.instanceFleetType;
     final instanceTypeConfigs = this.instanceTypeConfigs;
@@ -5259,6 +5757,7 @@ class InstanceFleetModifyConfig {
     this.targetOnDemandCapacity,
     this.targetSpotCapacity,
   });
+
   Map<String, dynamic> toJson() {
     final instanceFleetId = this.instanceFleetId;
     final targetOnDemandCapacity = this.targetOnDemandCapacity;
@@ -5399,6 +5898,15 @@ class InstanceFleetStateChangeReason {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code.toValue(),
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 enum InstanceFleetStateChangeReasonCode {
@@ -5506,6 +6014,17 @@ class InstanceFleetStatus {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final stateChangeReason = this.stateChangeReason;
+    final timeline = this.timeline;
+    return {
+      if (state != null) 'State': state.toValue(),
+      if (stateChangeReason != null) 'StateChangeReason': stateChangeReason,
+      if (timeline != null) 'Timeline': timeline,
+    };
+  }
 }
 
 /// Provides historical timestamps for the instance fleet, including the time of
@@ -5535,6 +6054,19 @@ class InstanceFleetTimeline {
       endDateTime: timeStampFromJson(json['EndDateTime']),
       readyDateTime: timeStampFromJson(json['ReadyDateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final endDateTime = this.endDateTime;
+    final readyDateTime = this.readyDateTime;
+    return {
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (endDateTime != null) 'EndDateTime': unixTimestampToJson(endDateTime),
+      if (readyDateTime != null)
+        'ReadyDateTime': unixTimestampToJson(readyDateTime),
+    };
   }
 }
 
@@ -5706,6 +6238,57 @@ class InstanceGroup {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingPolicy = this.autoScalingPolicy;
+    final bidPrice = this.bidPrice;
+    final configurations = this.configurations;
+    final configurationsVersion = this.configurationsVersion;
+    final customAmiId = this.customAmiId;
+    final ebsBlockDevices = this.ebsBlockDevices;
+    final ebsOptimized = this.ebsOptimized;
+    final id = this.id;
+    final instanceGroupType = this.instanceGroupType;
+    final instanceType = this.instanceType;
+    final lastSuccessfullyAppliedConfigurations =
+        this.lastSuccessfullyAppliedConfigurations;
+    final lastSuccessfullyAppliedConfigurationsVersion =
+        this.lastSuccessfullyAppliedConfigurationsVersion;
+    final market = this.market;
+    final name = this.name;
+    final requestedInstanceCount = this.requestedInstanceCount;
+    final runningInstanceCount = this.runningInstanceCount;
+    final shrinkPolicy = this.shrinkPolicy;
+    final status = this.status;
+    return {
+      if (autoScalingPolicy != null) 'AutoScalingPolicy': autoScalingPolicy,
+      if (bidPrice != null) 'BidPrice': bidPrice,
+      if (configurations != null) 'Configurations': configurations,
+      if (configurationsVersion != null)
+        'ConfigurationsVersion': configurationsVersion,
+      if (customAmiId != null) 'CustomAmiId': customAmiId,
+      if (ebsBlockDevices != null) 'EbsBlockDevices': ebsBlockDevices,
+      if (ebsOptimized != null) 'EbsOptimized': ebsOptimized,
+      if (id != null) 'Id': id,
+      if (instanceGroupType != null)
+        'InstanceGroupType': instanceGroupType.toValue(),
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (lastSuccessfullyAppliedConfigurations != null)
+        'LastSuccessfullyAppliedConfigurations':
+            lastSuccessfullyAppliedConfigurations,
+      if (lastSuccessfullyAppliedConfigurationsVersion != null)
+        'LastSuccessfullyAppliedConfigurationsVersion':
+            lastSuccessfullyAppliedConfigurationsVersion,
+      if (market != null) 'Market': market.toValue(),
+      if (name != null) 'Name': name,
+      if (requestedInstanceCount != null)
+        'RequestedInstanceCount': requestedInstanceCount,
+      if (runningInstanceCount != null)
+        'RunningInstanceCount': runningInstanceCount,
+      if (shrinkPolicy != null) 'ShrinkPolicy': shrinkPolicy,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// Configuration defining a new instance group.
@@ -5764,6 +6347,7 @@ class InstanceGroupConfig {
     this.market,
     this.name,
   });
+
   Map<String, dynamic> toJson() {
     final instanceCount = this.instanceCount;
     final instanceRole = this.instanceRole;
@@ -5878,6 +6462,44 @@ class InstanceGroupDetail {
       startDateTime: timeStampFromJson(json['StartDateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final instanceRequestCount = this.instanceRequestCount;
+    final instanceRole = this.instanceRole;
+    final instanceRunningCount = this.instanceRunningCount;
+    final instanceType = this.instanceType;
+    final market = this.market;
+    final state = this.state;
+    final bidPrice = this.bidPrice;
+    final customAmiId = this.customAmiId;
+    final endDateTime = this.endDateTime;
+    final instanceGroupId = this.instanceGroupId;
+    final lastStateChangeReason = this.lastStateChangeReason;
+    final name = this.name;
+    final readyDateTime = this.readyDateTime;
+    final startDateTime = this.startDateTime;
+    return {
+      'CreationDateTime': unixTimestampToJson(creationDateTime),
+      'InstanceRequestCount': instanceRequestCount,
+      'InstanceRole': instanceRole.toValue(),
+      'InstanceRunningCount': instanceRunningCount,
+      'InstanceType': instanceType,
+      'Market': market.toValue(),
+      'State': state.toValue(),
+      if (bidPrice != null) 'BidPrice': bidPrice,
+      if (customAmiId != null) 'CustomAmiId': customAmiId,
+      if (endDateTime != null) 'EndDateTime': unixTimestampToJson(endDateTime),
+      if (instanceGroupId != null) 'InstanceGroupId': instanceGroupId,
+      if (lastStateChangeReason != null)
+        'LastStateChangeReason': lastStateChangeReason,
+      if (name != null) 'Name': name,
+      if (readyDateTime != null)
+        'ReadyDateTime': unixTimestampToJson(readyDateTime),
+      if (startDateTime != null)
+        'StartDateTime': unixTimestampToJson(startDateTime),
+    };
+  }
 }
 
 /// Modify the size or configurations of an instance group.
@@ -5909,6 +6531,7 @@ class InstanceGroupModifyConfig {
     this.reconfigurationType,
     this.shrinkPolicy,
   });
+
   Map<String, dynamic> toJson() {
     final instanceGroupId = this.instanceGroupId;
     final configurations = this.configurations;
@@ -6020,6 +6643,15 @@ class InstanceGroupStateChangeReason {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code.toValue(),
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 enum InstanceGroupStateChangeReasonCode {
@@ -6091,6 +6723,17 @@ class InstanceGroupStatus {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final stateChangeReason = this.stateChangeReason;
+    final timeline = this.timeline;
+    return {
+      if (state != null) 'State': state.toValue(),
+      if (stateChangeReason != null) 'StateChangeReason': stateChangeReason,
+      if (timeline != null) 'Timeline': timeline,
+    };
+  }
 }
 
 /// The timeline of the instance group lifecycle.
@@ -6115,6 +6758,19 @@ class InstanceGroupTimeline {
       endDateTime: timeStampFromJson(json['EndDateTime']),
       readyDateTime: timeStampFromJson(json['ReadyDateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final endDateTime = this.endDateTime;
+    final readyDateTime = this.readyDateTime;
+    return {
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (endDateTime != null) 'EndDateTime': unixTimestampToJson(endDateTime),
+      if (readyDateTime != null)
+        'ReadyDateTime': unixTimestampToJson(readyDateTime),
+    };
   }
 }
 
@@ -6292,6 +6948,15 @@ class InstanceStateChangeReason {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code.toValue(),
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 enum InstanceStateChangeReasonCode {
@@ -6366,6 +7031,17 @@ class InstanceStatus {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final stateChangeReason = this.stateChangeReason;
+    final timeline = this.timeline;
+    return {
+      if (state != null) 'State': state.toValue(),
+      if (stateChangeReason != null) 'StateChangeReason': stateChangeReason,
+      if (timeline != null) 'Timeline': timeline,
+    };
+  }
 }
 
 /// The timeline of the instance lifecycle.
@@ -6390,6 +7066,19 @@ class InstanceTimeline {
       endDateTime: timeStampFromJson(json['EndDateTime']),
       readyDateTime: timeStampFromJson(json['ReadyDateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final endDateTime = this.endDateTime;
+    final readyDateTime = this.readyDateTime;
+    return {
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (endDateTime != null) 'EndDateTime': unixTimestampToJson(endDateTime),
+      if (readyDateTime != null)
+        'ReadyDateTime': unixTimestampToJson(readyDateTime),
+    };
   }
 }
 
@@ -6450,6 +7139,7 @@ class InstanceTypeConfig {
     this.ebsConfiguration,
     this.weightedCapacity,
   });
+
   Map<String, dynamic> toJson() {
     final instanceType = this.instanceType;
     final bidPrice = this.bidPrice;
@@ -6541,6 +7231,30 @@ class InstanceTypeSpecification {
       instanceType: json['InstanceType'] as String?,
       weightedCapacity: json['WeightedCapacity'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bidPrice = this.bidPrice;
+    final bidPriceAsPercentageOfOnDemandPrice =
+        this.bidPriceAsPercentageOfOnDemandPrice;
+    final configurations = this.configurations;
+    final customAmiId = this.customAmiId;
+    final ebsBlockDevices = this.ebsBlockDevices;
+    final ebsOptimized = this.ebsOptimized;
+    final instanceType = this.instanceType;
+    final weightedCapacity = this.weightedCapacity;
+    return {
+      if (bidPrice != null) 'BidPrice': bidPrice,
+      if (bidPriceAsPercentageOfOnDemandPrice != null)
+        'BidPriceAsPercentageOfOnDemandPrice':
+            bidPriceAsPercentageOfOnDemandPrice,
+      if (configurations != null) 'Configurations': configurations,
+      if (customAmiId != null) 'CustomAmiId': customAmiId,
+      if (ebsBlockDevices != null) 'EbsBlockDevices': ebsBlockDevices,
+      if (ebsOptimized != null) 'EbsOptimized': ebsOptimized,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (weightedCapacity != null) 'WeightedCapacity': weightedCapacity,
+    };
   }
 }
 
@@ -6673,6 +7387,43 @@ class JobFlowDetail {
       visibleToAllUsers: json['VisibleToAllUsers'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionStatusDetail = this.executionStatusDetail;
+    final instances = this.instances;
+    final jobFlowId = this.jobFlowId;
+    final name = this.name;
+    final amiVersion = this.amiVersion;
+    final autoScalingRole = this.autoScalingRole;
+    final bootstrapActions = this.bootstrapActions;
+    final jobFlowRole = this.jobFlowRole;
+    final logEncryptionKmsKeyId = this.logEncryptionKmsKeyId;
+    final logUri = this.logUri;
+    final scaleDownBehavior = this.scaleDownBehavior;
+    final serviceRole = this.serviceRole;
+    final steps = this.steps;
+    final supportedProducts = this.supportedProducts;
+    final visibleToAllUsers = this.visibleToAllUsers;
+    return {
+      'ExecutionStatusDetail': executionStatusDetail,
+      'Instances': instances,
+      'JobFlowId': jobFlowId,
+      'Name': name,
+      if (amiVersion != null) 'AmiVersion': amiVersion,
+      if (autoScalingRole != null) 'AutoScalingRole': autoScalingRole,
+      if (bootstrapActions != null) 'BootstrapActions': bootstrapActions,
+      if (jobFlowRole != null) 'JobFlowRole': jobFlowRole,
+      if (logEncryptionKmsKeyId != null)
+        'LogEncryptionKmsKeyId': logEncryptionKmsKeyId,
+      if (logUri != null) 'LogUri': logUri,
+      if (scaleDownBehavior != null)
+        'ScaleDownBehavior': scaleDownBehavior.toValue(),
+      if (serviceRole != null) 'ServiceRole': serviceRole,
+      if (steps != null) 'Steps': steps,
+      if (supportedProducts != null) 'SupportedProducts': supportedProducts,
+      if (visibleToAllUsers != null) 'VisibleToAllUsers': visibleToAllUsers,
+    };
+  }
 }
 
 /// The type of instance.
@@ -6773,6 +7524,26 @@ class JobFlowExecutionStatusDetail {
       readyDateTime: timeStampFromJson(json['ReadyDateTime']),
       startDateTime: timeStampFromJson(json['StartDateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final state = this.state;
+    final endDateTime = this.endDateTime;
+    final lastStateChangeReason = this.lastStateChangeReason;
+    final readyDateTime = this.readyDateTime;
+    final startDateTime = this.startDateTime;
+    return {
+      'CreationDateTime': unixTimestampToJson(creationDateTime),
+      'State': state.toValue(),
+      if (endDateTime != null) 'EndDateTime': unixTimestampToJson(endDateTime),
+      if (lastStateChangeReason != null)
+        'LastStateChangeReason': lastStateChangeReason,
+      if (readyDateTime != null)
+        'ReadyDateTime': unixTimestampToJson(readyDateTime),
+      if (startDateTime != null)
+        'StartDateTime': unixTimestampToJson(startDateTime),
+    };
   }
 }
 
@@ -6886,6 +7657,7 @@ class JobFlowInstancesConfig {
     this.slaveInstanceType,
     this.terminationProtected,
   });
+
   Map<String, dynamic> toJson() {
     final additionalMasterSecurityGroups = this.additionalMasterSecurityGroups;
     final additionalSlaveSecurityGroups = this.additionalSlaveSecurityGroups;
@@ -7026,6 +7798,41 @@ class JobFlowInstancesDetail {
       terminationProtected: json['TerminationProtected'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceCount = this.instanceCount;
+    final masterInstanceType = this.masterInstanceType;
+    final slaveInstanceType = this.slaveInstanceType;
+    final ec2KeyName = this.ec2KeyName;
+    final ec2SubnetId = this.ec2SubnetId;
+    final hadoopVersion = this.hadoopVersion;
+    final instanceGroups = this.instanceGroups;
+    final keepJobFlowAliveWhenNoSteps = this.keepJobFlowAliveWhenNoSteps;
+    final masterInstanceId = this.masterInstanceId;
+    final masterPublicDnsName = this.masterPublicDnsName;
+    final normalizedInstanceHours = this.normalizedInstanceHours;
+    final placement = this.placement;
+    final terminationProtected = this.terminationProtected;
+    return {
+      'InstanceCount': instanceCount,
+      'MasterInstanceType': masterInstanceType,
+      'SlaveInstanceType': slaveInstanceType,
+      if (ec2KeyName != null) 'Ec2KeyName': ec2KeyName,
+      if (ec2SubnetId != null) 'Ec2SubnetId': ec2SubnetId,
+      if (hadoopVersion != null) 'HadoopVersion': hadoopVersion,
+      if (instanceGroups != null) 'InstanceGroups': instanceGroups,
+      if (keepJobFlowAliveWhenNoSteps != null)
+        'KeepJobFlowAliveWhenNoSteps': keepJobFlowAliveWhenNoSteps,
+      if (masterInstanceId != null) 'MasterInstanceId': masterInstanceId,
+      if (masterPublicDnsName != null)
+        'MasterPublicDnsName': masterPublicDnsName,
+      if (normalizedInstanceHours != null)
+        'NormalizedInstanceHours': normalizedInstanceHours,
+      if (placement != null) 'Placement': placement,
+      if (terminationProtected != null)
+        'TerminationProtected': terminationProtected,
+    };
+  }
 }
 
 /// Attributes for Kerberos configuration when Kerberos authentication is
@@ -7141,6 +7948,15 @@ class ListBootstrapActionsOutput {
       marker: json['Marker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bootstrapActions = this.bootstrapActions;
+    final marker = this.marker;
+    return {
+      if (bootstrapActions != null) 'BootstrapActions': bootstrapActions,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// This contains a ClusterSummaryList with the cluster details; for example,
@@ -7165,6 +7981,15 @@ class ListClustersOutput {
       marker: json['Marker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusters = this.clusters;
+    final marker = this.marker;
+    return {
+      if (clusters != null) 'Clusters': clusters,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 class ListInstanceFleetsOutput {
@@ -7186,6 +8011,15 @@ class ListInstanceFleetsOutput {
           .toList(),
       marker: json['Marker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instanceFleets = this.instanceFleets;
+    final marker = this.marker;
+    return {
+      if (instanceFleets != null) 'InstanceFleets': instanceFleets,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7210,6 +8044,15 @@ class ListInstanceGroupsOutput {
       marker: json['Marker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceGroups = this.instanceGroups;
+    final marker = this.marker;
+    return {
+      if (instanceGroups != null) 'InstanceGroups': instanceGroups,
+      if (marker != null) 'Marker': marker,
+    };
+  }
 }
 
 /// This output contains the list of instances.
@@ -7232,6 +8075,15 @@ class ListInstancesOutput {
           .toList(),
       marker: json['Marker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    final marker = this.marker;
+    return {
+      if (instances != null) 'Instances': instances,
+      if (marker != null) 'Marker': marker,
+    };
   }
 }
 
@@ -7257,6 +8109,15 @@ class ListNotebookExecutionsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final notebookExecutions = this.notebookExecutions;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (notebookExecutions != null) 'NotebookExecutions': notebookExecutions,
+    };
+  }
 }
 
 class ListReleaseLabelsOutput {
@@ -7279,6 +8140,15 @@ class ListReleaseLabelsOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final releaseLabels = this.releaseLabels;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (releaseLabels != null) 'ReleaseLabels': releaseLabels,
+    };
   }
 }
 
@@ -7304,6 +8174,16 @@ class ListSecurityConfigurationsOutput {
               SecurityConfigurationSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final securityConfigurations = this.securityConfigurations;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (securityConfigurations != null)
+        'SecurityConfigurations': securityConfigurations,
+    };
   }
 }
 
@@ -7333,6 +8213,15 @@ class ListStepsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final steps = this.steps;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (steps != null) 'Steps': steps,
+    };
+  }
 }
 
 class ListStudioSessionMappingsOutput {
@@ -7357,6 +8246,15 @@ class ListStudioSessionMappingsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final sessionMappings = this.sessionMappings;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (sessionMappings != null) 'SessionMappings': sessionMappings,
+    };
+  }
 }
 
 class ListStudiosOutput {
@@ -7378,6 +8276,15 @@ class ListStudiosOutput {
           .map((e) => StudioSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final studios = this.studios;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (studios != null) 'Studios': studios,
+    };
   }
 }
 
@@ -7485,6 +8392,14 @@ class ModifyClusterOutput {
     return ModifyClusterOutput(
       stepConcurrencyLevel: json['StepConcurrencyLevel'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stepConcurrencyLevel = this.stepConcurrencyLevel;
+    return {
+      if (stepConcurrencyLevel != null)
+        'StepConcurrencyLevel': stepConcurrencyLevel,
+    };
   }
 }
 
@@ -7620,6 +8535,42 @@ class NotebookExecution {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final editorId = this.editorId;
+    final endTime = this.endTime;
+    final executionEngine = this.executionEngine;
+    final lastStateChangeReason = this.lastStateChangeReason;
+    final notebookExecutionId = this.notebookExecutionId;
+    final notebookExecutionName = this.notebookExecutionName;
+    final notebookInstanceSecurityGroupId =
+        this.notebookInstanceSecurityGroupId;
+    final notebookParams = this.notebookParams;
+    final outputNotebookURI = this.outputNotebookURI;
+    final startTime = this.startTime;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (editorId != null) 'EditorId': editorId,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (executionEngine != null) 'ExecutionEngine': executionEngine,
+      if (lastStateChangeReason != null)
+        'LastStateChangeReason': lastStateChangeReason,
+      if (notebookExecutionId != null)
+        'NotebookExecutionId': notebookExecutionId,
+      if (notebookExecutionName != null)
+        'NotebookExecutionName': notebookExecutionName,
+      if (notebookInstanceSecurityGroupId != null)
+        'NotebookInstanceSecurityGroupId': notebookInstanceSecurityGroupId,
+      if (notebookParams != null) 'NotebookParams': notebookParams,
+      if (outputNotebookURI != null) 'OutputNotebookURI': outputNotebookURI,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -7773,6 +8724,25 @@ class NotebookExecutionSummary {
       status: (json['Status'] as String?)?.toNotebookExecutionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final editorId = this.editorId;
+    final endTime = this.endTime;
+    final notebookExecutionId = this.notebookExecutionId;
+    final notebookExecutionName = this.notebookExecutionName;
+    final startTime = this.startTime;
+    final status = this.status;
+    return {
+      if (editorId != null) 'EditorId': editorId,
+      if (endTime != null) 'EndTime': unixTimestampToJson(endTime),
+      if (notebookExecutionId != null)
+        'NotebookExecutionId': notebookExecutionId,
+      if (notebookExecutionName != null)
+        'NotebookExecutionName': notebookExecutionName,
+      if (startTime != null) 'StartTime': unixTimestampToJson(startTime),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// The Amazon Linux release specified for a cluster in the RunJobFlow request.
@@ -7790,6 +8760,13 @@ class OSRelease {
     return OSRelease(
       label: json['Label'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final label = this.label;
+    return {
+      if (label != null) 'Label': label,
+    };
   }
 }
 
@@ -8180,12 +9157,29 @@ class PutAutoScalingPolicyOutput {
       instanceGroupId: json['InstanceGroupId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingPolicy = this.autoScalingPolicy;
+    final clusterArn = this.clusterArn;
+    final clusterId = this.clusterId;
+    final instanceGroupId = this.instanceGroupId;
+    return {
+      if (autoScalingPolicy != null) 'AutoScalingPolicy': autoScalingPolicy,
+      if (clusterArn != null) 'ClusterArn': clusterArn,
+      if (clusterId != null) 'ClusterId': clusterId,
+      if (instanceGroupId != null) 'InstanceGroupId': instanceGroupId,
+    };
+  }
 }
 
 class PutAutoTerminationPolicyOutput {
   PutAutoTerminationPolicyOutput();
   factory PutAutoTerminationPolicyOutput.fromJson(Map<String, dynamic> _) {
     return PutAutoTerminationPolicyOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8195,12 +9189,20 @@ class PutBlockPublicAccessConfigurationOutput {
       Map<String, dynamic> _) {
     return PutBlockPublicAccessConfigurationOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class PutManagedScalingPolicyOutput {
   PutManagedScalingPolicyOutput();
   factory PutManagedScalingPolicyOutput.fromJson(Map<String, dynamic> _) {
     return PutManagedScalingPolicyOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8246,6 +9248,7 @@ class ReleaseLabelFilter {
     this.application,
     this.prefix,
   });
+
   Map<String, dynamic> toJson() {
     final application = this.application;
     final prefix = this.prefix;
@@ -8261,12 +9264,20 @@ class RemoveAutoScalingPolicyOutput {
   factory RemoveAutoScalingPolicyOutput.fromJson(Map<String, dynamic> _) {
     return RemoveAutoScalingPolicyOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class RemoveAutoTerminationPolicyOutput {
   RemoveAutoTerminationPolicyOutput();
   factory RemoveAutoTerminationPolicyOutput.fromJson(Map<String, dynamic> _) {
     return RemoveAutoTerminationPolicyOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8275,6 +9286,10 @@ class RemoveManagedScalingPolicyOutput {
   factory RemoveManagedScalingPolicyOutput.fromJson(Map<String, dynamic> _) {
     return RemoveManagedScalingPolicyOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// This output indicates the result of removing tags from the resource.
@@ -8282,6 +9297,10 @@ class RemoveTagsOutput {
   RemoveTagsOutput();
   factory RemoveTagsOutput.fromJson(Map<String, dynamic> _) {
     return RemoveTagsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8330,6 +9349,15 @@ class RunJobFlowOutput {
       clusterArn: json['ClusterArn'] as String?,
       jobFlowId: json['JobFlowId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final jobFlowId = this.jobFlowId;
+    return {
+      if (clusterArn != null) 'ClusterArn': clusterArn,
+      if (jobFlowId != null) 'JobFlowId': jobFlowId,
+    };
   }
 }
 
@@ -8554,6 +9582,16 @@ class SecurityConfigurationSummary {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final name = this.name;
+    return {
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Details for an Amazon EMR Studio session mapping including creation time,
@@ -8606,6 +9644,27 @@ class SessionMappingDetail {
       studioId: json['StudioId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final identityId = this.identityId;
+    final identityName = this.identityName;
+    final identityType = this.identityType;
+    final lastModifiedTime = this.lastModifiedTime;
+    final sessionPolicyArn = this.sessionPolicyArn;
+    final studioId = this.studioId;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (identityId != null) 'IdentityId': identityId,
+      if (identityName != null) 'IdentityName': identityName,
+      if (identityType != null) 'IdentityType': identityType.toValue(),
+      if (lastModifiedTime != null)
+        'LastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      if (sessionPolicyArn != null) 'SessionPolicyArn': sessionPolicyArn,
+      if (studioId != null) 'StudioId': studioId,
+    };
+  }
 }
 
 /// Details for an Amazon EMR Studio session mapping. The details do not include
@@ -8653,6 +9712,24 @@ class SessionMappingSummary {
       sessionPolicyArn: json['SessionPolicyArn'] as String?,
       studioId: json['StudioId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final identityId = this.identityId;
+    final identityName = this.identityName;
+    final identityType = this.identityType;
+    final sessionPolicyArn = this.sessionPolicyArn;
+    final studioId = this.studioId;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (identityId != null) 'IdentityId': identityId,
+      if (identityName != null) 'IdentityName': identityName,
+      if (identityType != null) 'IdentityType': identityType.toValue(),
+      if (sessionPolicyArn != null) 'SessionPolicyArn': sessionPolicyArn,
+      if (studioId != null) 'StudioId': studioId,
+    };
   }
 }
 
@@ -8772,6 +9849,15 @@ class SimplifiedApplication {
       name: json['Name'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final version = this.version;
+    return {
+      if (name != null) 'Name': name,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -8925,6 +10011,14 @@ class StartNotebookExecutionOutput {
       notebookExecutionId: json['NotebookExecutionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final notebookExecutionId = this.notebookExecutionId;
+    return {
+      if (notebookExecutionId != null)
+        'NotebookExecutionId': notebookExecutionId,
+    };
+  }
 }
 
 enum Statistic {
@@ -9037,6 +10131,23 @@ class Step {
           ? StepStatus.fromJson(json['Status'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionOnFailure = this.actionOnFailure;
+    final config = this.config;
+    final executionRoleArn = this.executionRoleArn;
+    final id = this.id;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (actionOnFailure != null) 'ActionOnFailure': actionOnFailure.toValue(),
+      if (config != null) 'Config': config,
+      if (executionRoleArn != null) 'ExecutionRoleArn': executionRoleArn,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status,
+    };
   }
 }
 
@@ -9157,6 +10268,15 @@ class StepDetail {
           StepConfig.fromJson(json['StepConfig'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionStatusDetail = this.executionStatusDetail;
+    final stepConfig = this.stepConfig;
+    return {
+      'ExecutionStatusDetail': executionStatusDetail,
+      'StepConfig': stepConfig,
+    };
+  }
 }
 
 enum StepExecutionState {
@@ -9246,6 +10366,23 @@ class StepExecutionStatusDetail {
       startDateTime: timeStampFromJson(json['StartDateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final state = this.state;
+    final endDateTime = this.endDateTime;
+    final lastStateChangeReason = this.lastStateChangeReason;
+    final startDateTime = this.startDateTime;
+    return {
+      'CreationDateTime': unixTimestampToJson(creationDateTime),
+      'State': state.toValue(),
+      if (endDateTime != null) 'EndDateTime': unixTimestampToJson(endDateTime),
+      if (lastStateChangeReason != null)
+        'LastStateChangeReason': lastStateChangeReason,
+      if (startDateTime != null)
+        'StartDateTime': unixTimestampToJson(startDateTime),
+    };
+  }
 }
 
 enum StepState {
@@ -9320,6 +10457,15 @@ class StepStateChangeReason {
       message: json['Message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'Code': code.toValue(),
+      if (message != null) 'Message': message,
+    };
+  }
 }
 
 enum StepStateChangeReasonCode {
@@ -9382,6 +10528,19 @@ class StepStatus {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failureDetails = this.failureDetails;
+    final state = this.state;
+    final stateChangeReason = this.stateChangeReason;
+    final timeline = this.timeline;
+    return {
+      if (failureDetails != null) 'FailureDetails': failureDetails,
+      if (state != null) 'State': state.toValue(),
+      if (stateChangeReason != null) 'StateChangeReason': stateChangeReason,
+      if (timeline != null) 'Timeline': timeline,
+    };
+  }
 }
 
 /// The summary of the cluster step.
@@ -9424,6 +10583,21 @@ class StepSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionOnFailure = this.actionOnFailure;
+    final config = this.config;
+    final id = this.id;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (actionOnFailure != null) 'ActionOnFailure': actionOnFailure.toValue(),
+      if (config != null) 'Config': config,
+      if (id != null) 'Id': id,
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// The timeline of the cluster step lifecycle.
@@ -9448,6 +10622,19 @@ class StepTimeline {
       endDateTime: timeStampFromJson(json['EndDateTime']),
       startDateTime: timeStampFromJson(json['StartDateTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final endDateTime = this.endDateTime;
+    final startDateTime = this.startDateTime;
+    return {
+      if (creationDateTime != null)
+        'CreationDateTime': unixTimestampToJson(creationDateTime),
+      if (endDateTime != null) 'EndDateTime': unixTimestampToJson(endDateTime),
+      if (startDateTime != null)
+        'StartDateTime': unixTimestampToJson(startDateTime),
+    };
   }
 }
 
@@ -9561,6 +10748,49 @@ class Studio {
       workspaceSecurityGroupId: json['WorkspaceSecurityGroupId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authMode = this.authMode;
+    final creationTime = this.creationTime;
+    final defaultS3Location = this.defaultS3Location;
+    final description = this.description;
+    final engineSecurityGroupId = this.engineSecurityGroupId;
+    final idpAuthUrl = this.idpAuthUrl;
+    final idpRelayStateParameterName = this.idpRelayStateParameterName;
+    final name = this.name;
+    final serviceRole = this.serviceRole;
+    final studioArn = this.studioArn;
+    final studioId = this.studioId;
+    final subnetIds = this.subnetIds;
+    final tags = this.tags;
+    final url = this.url;
+    final userRole = this.userRole;
+    final vpcId = this.vpcId;
+    final workspaceSecurityGroupId = this.workspaceSecurityGroupId;
+    return {
+      if (authMode != null) 'AuthMode': authMode.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (defaultS3Location != null) 'DefaultS3Location': defaultS3Location,
+      if (description != null) 'Description': description,
+      if (engineSecurityGroupId != null)
+        'EngineSecurityGroupId': engineSecurityGroupId,
+      if (idpAuthUrl != null) 'IdpAuthUrl': idpAuthUrl,
+      if (idpRelayStateParameterName != null)
+        'IdpRelayStateParameterName': idpRelayStateParameterName,
+      if (name != null) 'Name': name,
+      if (serviceRole != null) 'ServiceRole': serviceRole,
+      if (studioArn != null) 'StudioArn': studioArn,
+      if (studioId != null) 'StudioId': studioId,
+      if (subnetIds != null) 'SubnetIds': subnetIds,
+      if (tags != null) 'Tags': tags,
+      if (url != null) 'Url': url,
+      if (userRole != null) 'UserRole': userRole,
+      if (vpcId != null) 'VpcId': vpcId,
+      if (workspaceSecurityGroupId != null)
+        'WorkspaceSecurityGroupId': workspaceSecurityGroupId,
+    };
+  }
 }
 
 /// Details for an Amazon EMR Studio, including ID, Name, VPC, and Description.
@@ -9610,6 +10840,26 @@ class StudioSummary {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authMode = this.authMode;
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final name = this.name;
+    final studioId = this.studioId;
+    final url = this.url;
+    final vpcId = this.vpcId;
+    return {
+      if (authMode != null) 'AuthMode': authMode.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+      if (studioId != null) 'StudioId': studioId,
+      if (url != null) 'Url': url,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 /// The list of supported product configurations that allow user-supplied
@@ -9626,6 +10876,7 @@ class SupportedProductConfig {
     this.args,
     this.name,
   });
+
   Map<String, dynamic> toJson() {
     final args = this.args;
     final name = this.name;

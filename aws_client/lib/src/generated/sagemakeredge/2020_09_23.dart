@@ -176,6 +176,15 @@ class Checksum {
       type: (json['Type'] as String?)?.toChecksumType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sum = this.sum;
+    final type = this.type;
+    return {
+      if (sum != null) 'Sum': sum,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum ChecksumType {
@@ -231,6 +240,19 @@ class Definition {
       state: (json['State'] as String?)?.toModelState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checksum = this.checksum;
+    final modelHandle = this.modelHandle;
+    final s3Url = this.s3Url;
+    final state = this.state;
+    return {
+      if (checksum != null) 'Checksum': checksum,
+      if (modelHandle != null) 'ModelHandle': modelHandle,
+      if (s3Url != null) 'S3Url': s3Url,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 /// <p/>
@@ -269,6 +291,7 @@ class DeploymentModel {
     this.status,
     this.statusReason,
   });
+
   Map<String, dynamic> toJson() {
     final desiredState = this.desiredState;
     final modelHandle = this.modelHandle;
@@ -322,6 +345,7 @@ class DeploymentResult {
     this.deploymentStatus,
     this.deploymentStatusMessage,
   });
+
   Map<String, dynamic> toJson() {
     final deploymentEndTime = this.deploymentEndTime;
     final deploymentModels = this.deploymentModels;
@@ -428,6 +452,20 @@ class EdgeDeployment {
       type: (json['Type'] as String?)?.toDeploymentType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final definitions = this.definitions;
+    final deploymentName = this.deploymentName;
+    final failureHandlingPolicy = this.failureHandlingPolicy;
+    final type = this.type;
+    return {
+      if (definitions != null) 'Definitions': definitions,
+      if (deploymentName != null) 'DeploymentName': deploymentName,
+      if (failureHandlingPolicy != null)
+        'FailureHandlingPolicy': failureHandlingPolicy.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// Information required for edge device metrics.
@@ -450,6 +488,7 @@ class EdgeMetric {
     this.timestamp,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final dimension = this.dimension;
     final metricName = this.metricName;
@@ -508,6 +547,13 @@ class GetDeploymentsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deployments = this.deployments;
+    return {
+      if (deployments != null) 'Deployments': deployments,
+    };
+  }
 }
 
 class GetDeviceRegistrationResult {
@@ -527,6 +573,15 @@ class GetDeviceRegistrationResult {
       cacheTTL: json['CacheTTL'] as String?,
       deviceRegistration: json['DeviceRegistration'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cacheTTL = this.cacheTTL;
+    final deviceRegistration = this.deviceRegistration;
+    return {
+      if (cacheTTL != null) 'CacheTTL': cacheTTL,
+      if (deviceRegistration != null) 'DeviceRegistration': deviceRegistration,
+    };
   }
 }
 
@@ -555,6 +610,7 @@ class Model {
     this.modelName,
     this.modelVersion,
   });
+
   Map<String, dynamic> toJson() {
     final latestInference = this.latestInference;
     final latestSampleTime = this.latestSampleTime;

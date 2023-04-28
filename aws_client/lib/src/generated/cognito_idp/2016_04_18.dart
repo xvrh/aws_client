@@ -8047,6 +8047,10 @@ class AddCustomAttributesResponse {
   factory AddCustomAttributesResponse.fromJson(Map<String, dynamic> _) {
     return AddCustomAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Represents the response from the server for the request to confirm
@@ -8055,6 +8059,10 @@ class AdminConfirmSignUpResponse {
   AdminConfirmSignUpResponse();
   factory AdminConfirmSignUpResponse.fromJson(Map<String, dynamic> _) {
     return AdminConfirmSignUpResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8131,6 +8139,13 @@ class AdminCreateUserResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final user = this.user;
+    return {
+      if (user != null) 'User': user,
+    };
+  }
 }
 
 /// Represents the response received from the server for a request to delete
@@ -8140,12 +8155,20 @@ class AdminDeleteUserAttributesResponse {
   factory AdminDeleteUserAttributesResponse.fromJson(Map<String, dynamic> _) {
     return AdminDeleteUserAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AdminDisableProviderForUserResponse {
   AdminDisableProviderForUserResponse();
   factory AdminDisableProviderForUserResponse.fromJson(Map<String, dynamic> _) {
     return AdminDisableProviderForUserResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8156,6 +8179,10 @@ class AdminDisableUserResponse {
   factory AdminDisableUserResponse.fromJson(Map<String, dynamic> _) {
     return AdminDisableUserResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Represents the response from the server for the request to enable a user as
@@ -8164,6 +8191,10 @@ class AdminEnableUserResponse {
   AdminEnableUserResponse();
   factory AdminEnableUserResponse.fromJson(Map<String, dynamic> _) {
     return AdminEnableUserResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8179,6 +8210,13 @@ class AdminGetDeviceResponse {
     return AdminGetDeviceResponse(
       device: DeviceType.fromJson(json['Device'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final device = this.device;
+    return {
+      'Device': device,
+    };
   }
 }
 
@@ -8273,6 +8311,32 @@ class AdminGetUserResponse {
           .toList(),
       userStatus: (json['UserStatus'] as String?)?.toUserStatusType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final username = this.username;
+    final enabled = this.enabled;
+    final mFAOptions = this.mFAOptions;
+    final preferredMfaSetting = this.preferredMfaSetting;
+    final userAttributes = this.userAttributes;
+    final userCreateDate = this.userCreateDate;
+    final userLastModifiedDate = this.userLastModifiedDate;
+    final userMFASettingList = this.userMFASettingList;
+    final userStatus = this.userStatus;
+    return {
+      'Username': username,
+      if (enabled != null) 'Enabled': enabled,
+      if (mFAOptions != null) 'MFAOptions': mFAOptions,
+      if (preferredMfaSetting != null)
+        'PreferredMfaSetting': preferredMfaSetting,
+      if (userAttributes != null) 'UserAttributes': userAttributes,
+      if (userCreateDate != null)
+        'UserCreateDate': unixTimestampToJson(userCreateDate),
+      if (userLastModifiedDate != null)
+        'UserLastModifiedDate': unixTimestampToJson(userLastModifiedDate),
+      if (userMFASettingList != null) 'UserMFASettingList': userMFASettingList,
+      if (userStatus != null) 'UserStatus': userStatus.toValue(),
+    };
   }
 }
 
@@ -8405,12 +8469,31 @@ class AdminInitiateAuthResponse {
       session: json['Session'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authenticationResult = this.authenticationResult;
+    final challengeName = this.challengeName;
+    final challengeParameters = this.challengeParameters;
+    final session = this.session;
+    return {
+      if (authenticationResult != null)
+        'AuthenticationResult': authenticationResult,
+      if (challengeName != null) 'ChallengeName': challengeName.toValue(),
+      if (challengeParameters != null)
+        'ChallengeParameters': challengeParameters,
+      if (session != null) 'Session': session,
+    };
+  }
 }
 
 class AdminLinkProviderForUserResponse {
   AdminLinkProviderForUserResponse();
   factory AdminLinkProviderForUserResponse.fromJson(Map<String, dynamic> _) {
     return AdminLinkProviderForUserResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8435,6 +8518,15 @@ class AdminListDevicesResponse {
       paginationToken: json['PaginationToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final devices = this.devices;
+    final paginationToken = this.paginationToken;
+    return {
+      if (devices != null) 'Devices': devices,
+      if (paginationToken != null) 'PaginationToken': paginationToken,
+    };
+  }
 }
 
 class AdminListGroupsForUserResponse {
@@ -8457,6 +8549,15 @@ class AdminListGroupsForUserResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final nextToken = this.nextToken;
+    return {
+      if (groups != null) 'Groups': groups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -8482,6 +8583,15 @@ class AdminListUserAuthEventsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authEvents = this.authEvents;
+    final nextToken = this.nextToken;
+    return {
+      if (authEvents != null) 'AuthEvents': authEvents,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the response from the server to reset a user password as an
@@ -8490,6 +8600,10 @@ class AdminResetUserPasswordResponse {
   AdminResetUserPasswordResponse();
   factory AdminResetUserPasswordResponse.fromJson(Map<String, dynamic> _) {
     return AdminResetUserPasswordResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8532,6 +8646,21 @@ class AdminRespondToAuthChallengeResponse {
       session: json['Session'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authenticationResult = this.authenticationResult;
+    final challengeName = this.challengeName;
+    final challengeParameters = this.challengeParameters;
+    final session = this.session;
+    return {
+      if (authenticationResult != null)
+        'AuthenticationResult': authenticationResult,
+      if (challengeName != null) 'ChallengeName': challengeName.toValue(),
+      if (challengeParameters != null)
+        'ChallengeParameters': challengeParameters,
+      if (session != null) 'Session': session,
+    };
+  }
 }
 
 class AdminSetUserMFAPreferenceResponse {
@@ -8539,12 +8668,20 @@ class AdminSetUserMFAPreferenceResponse {
   factory AdminSetUserMFAPreferenceResponse.fromJson(Map<String, dynamic> _) {
     return AdminSetUserMFAPreferenceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AdminSetUserPasswordResponse {
   AdminSetUserPasswordResponse();
   factory AdminSetUserPasswordResponse.fromJson(Map<String, dynamic> _) {
     return AdminSetUserPasswordResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8555,6 +8692,10 @@ class AdminSetUserSettingsResponse {
   factory AdminSetUserSettingsResponse.fromJson(Map<String, dynamic> _) {
     return AdminSetUserSettingsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class AdminUpdateAuthEventFeedbackResponse {
@@ -8562,6 +8703,10 @@ class AdminUpdateAuthEventFeedbackResponse {
   factory AdminUpdateAuthEventFeedbackResponse.fromJson(
       Map<String, dynamic> _) {
     return AdminUpdateAuthEventFeedbackResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8572,6 +8717,10 @@ class AdminUpdateDeviceStatusResponse {
   factory AdminUpdateDeviceStatusResponse.fromJson(Map<String, dynamic> _) {
     return AdminUpdateDeviceStatusResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Represents the response from the server for the request to update user
@@ -8581,6 +8730,10 @@ class AdminUpdateUserAttributesResponse {
   factory AdminUpdateUserAttributesResponse.fromJson(Map<String, dynamic> _) {
     return AdminUpdateUserAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The global sign-out response, as an administrator.
@@ -8588,6 +8741,10 @@ class AdminUserGlobalSignOutResponse {
   AdminUserGlobalSignOutResponse();
   factory AdminUserGlobalSignOutResponse.fromJson(Map<String, dynamic> _) {
     return AdminUserGlobalSignOutResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -8734,6 +8891,7 @@ class AnalyticsMetadataType {
   AnalyticsMetadataType({
     this.analyticsEndpointId,
   });
+
   Map<String, dynamic> toJson() {
     final analyticsEndpointId = this.analyticsEndpointId;
     return {
@@ -8762,6 +8920,15 @@ class AssociateSoftwareTokenResponse {
       secretCode: json['SecretCode'] as String?,
       session: json['Session'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final secretCode = this.secretCode;
+    final session = this.session;
+    return {
+      if (secretCode != null) 'SecretCode': secretCode,
+      if (session != null) 'Session': session,
+    };
   }
 }
 
@@ -8894,6 +9061,28 @@ class AuthEventType {
       eventType: (json['EventType'] as String?)?.toEventType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final challengeResponses = this.challengeResponses;
+    final creationDate = this.creationDate;
+    final eventContextData = this.eventContextData;
+    final eventFeedback = this.eventFeedback;
+    final eventId = this.eventId;
+    final eventResponse = this.eventResponse;
+    final eventRisk = this.eventRisk;
+    final eventType = this.eventType;
+    return {
+      if (challengeResponses != null) 'ChallengeResponses': challengeResponses,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (eventContextData != null) 'EventContextData': eventContextData,
+      if (eventFeedback != null) 'EventFeedback': eventFeedback,
+      if (eventId != null) 'EventId': eventId,
+      if (eventResponse != null) 'EventResponse': eventResponse.toValue(),
+      if (eventRisk != null) 'EventRisk': eventRisk,
+      if (eventType != null) 'EventType': eventType.toValue(),
+    };
+  }
 }
 
 enum AuthFlowType {
@@ -8990,6 +9179,23 @@ class AuthenticationResultType {
       refreshToken: json['RefreshToken'] as String?,
       tokenType: json['TokenType'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessToken = this.accessToken;
+    final expiresIn = this.expiresIn;
+    final idToken = this.idToken;
+    final newDeviceMetadata = this.newDeviceMetadata;
+    final refreshToken = this.refreshToken;
+    final tokenType = this.tokenType;
+    return {
+      if (accessToken != null) 'AccessToken': accessToken,
+      if (expiresIn != null) 'ExpiresIn': expiresIn,
+      if (idToken != null) 'IdToken': idToken,
+      if (newDeviceMetadata != null) 'NewDeviceMetadata': newDeviceMetadata,
+      if (refreshToken != null) 'RefreshToken': refreshToken,
+      if (tokenType != null) 'TokenType': tokenType,
+    };
   }
 }
 
@@ -9136,6 +9342,16 @@ class ChallengeResponseType {
           (json['ChallengeResponse'] as String?)?.toChallengeResponse(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final challengeName = this.challengeName;
+    final challengeResponse = this.challengeResponse;
+    return {
+      if (challengeName != null) 'ChallengeName': challengeName.toValue(),
+      if (challengeResponse != null)
+        'ChallengeResponse': challengeResponse.toValue(),
+    };
+  }
 }
 
 /// The response from the server to the change password request.
@@ -9143,6 +9359,10 @@ class ChangePasswordResponse {
   ChangePasswordResponse();
   factory ChangePasswordResponse.fromJson(Map<String, dynamic> _) {
     return ChangePasswordResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -9171,6 +9391,17 @@ class CodeDeliveryDetailsType {
           (json['DeliveryMedium'] as String?)?.toDeliveryMediumType(),
       destination: json['Destination'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributeName = this.attributeName;
+    final deliveryMedium = this.deliveryMedium;
+    final destination = this.destination;
+    return {
+      if (attributeName != null) 'AttributeName': attributeName,
+      if (deliveryMedium != null) 'DeliveryMedium': deliveryMedium.toValue(),
+      if (destination != null) 'Destination': destination,
+    };
   }
 }
 
@@ -9278,6 +9509,14 @@ class ConfirmDeviceResponse {
       userConfirmationNecessary: json['UserConfirmationNecessary'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userConfirmationNecessary = this.userConfirmationNecessary;
+    return {
+      if (userConfirmationNecessary != null)
+        'UserConfirmationNecessary': userConfirmationNecessary,
+    };
+  }
 }
 
 /// The response from the server that results from a user's request to retrieve
@@ -9287,6 +9526,10 @@ class ConfirmForgotPasswordResponse {
   factory ConfirmForgotPasswordResponse.fromJson(Map<String, dynamic> _) {
     return ConfirmForgotPasswordResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Represents the response from the server for the registration confirmation.
@@ -9294,6 +9537,10 @@ class ConfirmSignUpResponse {
   ConfirmSignUpResponse();
   factory ConfirmSignUpResponse.fromJson(Map<String, dynamic> _) {
     return ConfirmSignUpResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -9325,6 +9572,7 @@ class ContextDataType {
     required this.serverPath,
     this.encodedData,
   });
+
   Map<String, dynamic> toJson() {
     final httpHeaders = this.httpHeaders;
     final ipAddress = this.ipAddress;
@@ -9355,6 +9603,13 @@ class CreateGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    return {
+      if (group != null) 'Group': group,
+    };
+  }
 }
 
 class CreateIdentityProviderResponse {
@@ -9370,6 +9625,13 @@ class CreateIdentityProviderResponse {
           json['IdentityProvider'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityProvider = this.identityProvider;
+    return {
+      'IdentityProvider': identityProvider,
+    };
+  }
 }
 
 class CreateResourceServerResponse {
@@ -9384,6 +9646,13 @@ class CreateResourceServerResponse {
       resourceServer: ResourceServerType.fromJson(
           json['ResourceServer'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceServer = this.resourceServer;
+    return {
+      'ResourceServer': resourceServer,
+    };
   }
 }
 
@@ -9404,6 +9673,13 @@ class CreateUserImportJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userImportJob = this.userImportJob;
+    return {
+      if (userImportJob != null) 'UserImportJob': userImportJob,
+    };
+  }
 }
 
 /// Represents the response from the server to create a user pool client.
@@ -9422,6 +9698,13 @@ class CreateUserPoolClientResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userPoolClient = this.userPoolClient;
+    return {
+      if (userPoolClient != null) 'UserPoolClient': userPoolClient,
+    };
+  }
 }
 
 class CreateUserPoolDomainResponse {
@@ -9436,6 +9719,13 @@ class CreateUserPoolDomainResponse {
     return CreateUserPoolDomainResponse(
       cloudFrontDomain: json['CloudFrontDomain'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudFrontDomain = this.cloudFrontDomain;
+    return {
+      if (cloudFrontDomain != null) 'CloudFrontDomain': cloudFrontDomain,
+    };
   }
 }
 
@@ -9454,6 +9744,13 @@ class CreateUserPoolResponse {
           ? UserPoolType.fromJson(json['UserPool'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userPool = this.userPool;
+    return {
+      if (userPool != null) 'UserPool': userPool,
+    };
   }
 }
 
@@ -9632,12 +9929,20 @@ class DeleteUserAttributesResponse {
   factory DeleteUserAttributesResponse.fromJson(Map<String, dynamic> _) {
     return DeleteUserAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteUserPoolDomainResponse {
   DeleteUserPoolDomainResponse();
   factory DeleteUserPoolDomainResponse.fromJson(Map<String, dynamic> _) {
     return DeleteUserPoolDomainResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -9682,6 +9987,13 @@ class DescribeIdentityProviderResponse {
           json['IdentityProvider'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityProvider = this.identityProvider;
+    return {
+      'IdentityProvider': identityProvider,
+    };
+  }
 }
 
 class DescribeResourceServerResponse {
@@ -9696,6 +10008,13 @@ class DescribeResourceServerResponse {
       resourceServer: ResourceServerType.fromJson(
           json['ResourceServer'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceServer = this.resourceServer;
+    return {
+      'ResourceServer': resourceServer,
+    };
   }
 }
 
@@ -9712,6 +10031,13 @@ class DescribeRiskConfigurationResponse {
       riskConfiguration: RiskConfigurationType.fromJson(
           json['RiskConfiguration'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final riskConfiguration = this.riskConfiguration;
+    return {
+      'RiskConfiguration': riskConfiguration,
+    };
   }
 }
 
@@ -9731,6 +10057,13 @@ class DescribeUserImportJobResponse {
               json['UserImportJob'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userImportJob = this.userImportJob;
+    return {
+      if (userImportJob != null) 'UserImportJob': userImportJob,
+    };
   }
 }
 
@@ -9752,6 +10085,13 @@ class DescribeUserPoolClientResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userPoolClient = this.userPoolClient;
+    return {
+      if (userPoolClient != null) 'UserPoolClient': userPoolClient,
+    };
+  }
 }
 
 class DescribeUserPoolDomainResponse {
@@ -9769,6 +10109,13 @@ class DescribeUserPoolDomainResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainDescription = this.domainDescription;
+    return {
+      if (domainDescription != null) 'DomainDescription': domainDescription,
+    };
+  }
 }
 
 /// Represents the response to describe the user pool.
@@ -9785,6 +10132,13 @@ class DescribeUserPoolResponse {
           ? UserPoolType.fromJson(json['UserPool'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userPool = this.userPool;
+    return {
+      if (userPool != null) 'UserPool': userPool,
+    };
   }
 }
 
@@ -9875,6 +10229,7 @@ class DeviceSecretVerifierConfigType {
     this.passwordVerifier,
     this.salt,
   });
+
   Map<String, dynamic> toJson() {
     final passwordVerifier = this.passwordVerifier;
     final salt = this.salt;
@@ -9921,6 +10276,25 @@ class DeviceType {
           timeStampFromJson(json['DeviceLastAuthenticatedDate']),
       deviceLastModifiedDate: timeStampFromJson(json['DeviceLastModifiedDate']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceAttributes = this.deviceAttributes;
+    final deviceCreateDate = this.deviceCreateDate;
+    final deviceKey = this.deviceKey;
+    final deviceLastAuthenticatedDate = this.deviceLastAuthenticatedDate;
+    final deviceLastModifiedDate = this.deviceLastModifiedDate;
+    return {
+      if (deviceAttributes != null) 'DeviceAttributes': deviceAttributes,
+      if (deviceCreateDate != null)
+        'DeviceCreateDate': unixTimestampToJson(deviceCreateDate),
+      if (deviceKey != null) 'DeviceKey': deviceKey,
+      if (deviceLastAuthenticatedDate != null)
+        'DeviceLastAuthenticatedDate':
+            unixTimestampToJson(deviceLastAuthenticatedDate),
+      if (deviceLastModifiedDate != null)
+        'DeviceLastModifiedDate': unixTimestampToJson(deviceLastModifiedDate),
+    };
   }
 }
 
@@ -9977,6 +10351,28 @@ class DomainDescriptionType {
       userPoolId: json['UserPoolId'] as String?,
       version: json['Version'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final awsAccountId = this.awsAccountId;
+    final cloudFrontDistribution = this.cloudFrontDistribution;
+    final customDomainConfig = this.customDomainConfig;
+    final domain = this.domain;
+    final s3Bucket = this.s3Bucket;
+    final status = this.status;
+    final userPoolId = this.userPoolId;
+    final version = this.version;
+    return {
+      if (awsAccountId != null) 'AWSAccountId': awsAccountId,
+      if (cloudFrontDistribution != null)
+        'CloudFrontDistribution': cloudFrontDistribution,
+      if (customDomainConfig != null) 'CustomDomainConfig': customDomainConfig,
+      if (domain != null) 'Domain': domain,
+      if (s3Bucket != null) 'S3Bucket': s3Bucket,
+      if (status != null) 'Status': status.toValue(),
+      if (userPoolId != null) 'UserPoolId': userPoolId,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -10225,6 +10621,21 @@ class EventContextDataType {
       timezone: json['Timezone'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final city = this.city;
+    final country = this.country;
+    final deviceName = this.deviceName;
+    final ipAddress = this.ipAddress;
+    final timezone = this.timezone;
+    return {
+      if (city != null) 'City': city,
+      if (country != null) 'Country': country,
+      if (deviceName != null) 'DeviceName': deviceName,
+      if (ipAddress != null) 'IpAddress': ipAddress,
+      if (timezone != null) 'Timezone': timezone,
+    };
+  }
 }
 
 /// Specifies the event feedback type.
@@ -10249,6 +10660,18 @@ class EventFeedbackType {
       provider: json['Provider'] as String,
       feedbackDate: timeStampFromJson(json['FeedbackDate']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final feedbackValue = this.feedbackValue;
+    final provider = this.provider;
+    final feedbackDate = this.feedbackDate;
+    return {
+      'FeedbackValue': feedbackValue.toValue(),
+      'Provider': provider,
+      if (feedbackDate != null)
+        'FeedbackDate': unixTimestampToJson(feedbackDate),
+    };
   }
 }
 
@@ -10337,6 +10760,18 @@ class EventRiskType {
       riskDecision: (json['RiskDecision'] as String?)?.toRiskDecisionType(),
       riskLevel: (json['RiskLevel'] as String?)?.toRiskLevelType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final compromisedCredentialsDetected = this.compromisedCredentialsDetected;
+    final riskDecision = this.riskDecision;
+    final riskLevel = this.riskLevel;
+    return {
+      if (compromisedCredentialsDetected != null)
+        'CompromisedCredentialsDetected': compromisedCredentialsDetected,
+      if (riskDecision != null) 'RiskDecision': riskDecision.toValue(),
+      if (riskLevel != null) 'RiskLevel': riskLevel.toValue(),
+    };
   }
 }
 
@@ -10476,6 +10911,14 @@ class ForgotPasswordResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeDeliveryDetails = this.codeDeliveryDetails;
+    return {
+      if (codeDeliveryDetails != null)
+        'CodeDeliveryDetails': codeDeliveryDetails,
+    };
+  }
 }
 
 /// Represents the response from the server to the request to get the header
@@ -10500,6 +10943,15 @@ class GetCSVHeaderResponse {
       userPoolId: json['UserPoolId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cSVHeader = this.cSVHeader;
+    final userPoolId = this.userPoolId;
+    return {
+      if (cSVHeader != null) 'CSVHeader': cSVHeader,
+      if (userPoolId != null) 'UserPoolId': userPoolId,
+    };
+  }
 }
 
 /// Gets the device response.
@@ -10514,6 +10966,13 @@ class GetDeviceResponse {
     return GetDeviceResponse(
       device: DeviceType.fromJson(json['Device'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final device = this.device;
+    return {
+      'Device': device,
+    };
   }
 }
 
@@ -10531,6 +10990,13 @@ class GetGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    return {
+      if (group != null) 'Group': group,
+    };
+  }
 }
 
 class GetIdentityProviderByIdentifierResponse {
@@ -10547,6 +11013,13 @@ class GetIdentityProviderByIdentifierResponse {
           json['IdentityProvider'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityProvider = this.identityProvider;
+    return {
+      'IdentityProvider': identityProvider,
+    };
+  }
 }
 
 /// Response from Amazon Cognito for a signing certificate request.
@@ -10562,6 +11035,13 @@ class GetSigningCertificateResponse {
       certificate: json['Certificate'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    return {
+      if (certificate != null) 'Certificate': certificate,
+    };
+  }
 }
 
 class GetUICustomizationResponse {
@@ -10576,6 +11056,13 @@ class GetUICustomizationResponse {
       uICustomization: UICustomizationType.fromJson(
           json['UICustomization'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final uICustomization = this.uICustomization;
+    return {
+      'UICustomization': uICustomization,
+    };
   }
 }
 
@@ -10597,6 +11084,14 @@ class GetUserAttributeVerificationCodeResponse {
               json['CodeDeliveryDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final codeDeliveryDetails = this.codeDeliveryDetails;
+    return {
+      if (codeDeliveryDetails != null)
+        'CodeDeliveryDetails': codeDeliveryDetails,
+    };
   }
 }
 
@@ -10642,6 +11137,20 @@ class GetUserPoolMfaConfigResponse {
                   json['SoftwareTokenMfaConfiguration'] as Map<String, dynamic>)
               : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mfaConfiguration = this.mfaConfiguration;
+    final smsMfaConfiguration = this.smsMfaConfiguration;
+    final softwareTokenMfaConfiguration = this.softwareTokenMfaConfiguration;
+    return {
+      if (mfaConfiguration != null)
+        'MfaConfiguration': mfaConfiguration.toValue(),
+      if (smsMfaConfiguration != null)
+        'SmsMfaConfiguration': smsMfaConfiguration,
+      if (softwareTokenMfaConfiguration != null)
+        'SoftwareTokenMfaConfiguration': softwareTokenMfaConfiguration,
+    };
   }
 }
 
@@ -10696,6 +11205,22 @@ class GetUserResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userAttributes = this.userAttributes;
+    final username = this.username;
+    final mFAOptions = this.mFAOptions;
+    final preferredMfaSetting = this.preferredMfaSetting;
+    final userMFASettingList = this.userMFASettingList;
+    return {
+      'UserAttributes': userAttributes,
+      'Username': username,
+      if (mFAOptions != null) 'MFAOptions': mFAOptions,
+      if (preferredMfaSetting != null)
+        'PreferredMfaSetting': preferredMfaSetting,
+      if (userMFASettingList != null) 'UserMFASettingList': userMFASettingList,
+    };
+  }
 }
 
 /// The response to the request to sign out all devices.
@@ -10703,6 +11228,10 @@ class GlobalSignOutResponse {
   GlobalSignOutResponse();
   factory GlobalSignOutResponse.fromJson(Map<String, dynamic> _) {
     return GlobalSignOutResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -10765,6 +11294,27 @@ class GroupType {
       userPoolId: json['UserPoolId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final groupName = this.groupName;
+    final lastModifiedDate = this.lastModifiedDate;
+    final precedence = this.precedence;
+    final roleArn = this.roleArn;
+    final userPoolId = this.userPoolId;
+    return {
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (description != null) 'Description': description,
+      if (groupName != null) 'GroupName': groupName,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (precedence != null) 'Precedence': precedence,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (userPoolId != null) 'UserPoolId': userPoolId,
+    };
+  }
 }
 
 /// The HTTP header.
@@ -10779,6 +11329,7 @@ class HttpHeader {
     this.headerName,
     this.headerValue,
   });
+
   Map<String, dynamic> toJson() {
     final headerName = this.headerName;
     final headerValue = this.headerValue;
@@ -10959,6 +11510,29 @@ class IdentityProviderType {
       userPoolId: json['UserPoolId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributeMapping = this.attributeMapping;
+    final creationDate = this.creationDate;
+    final idpIdentifiers = this.idpIdentifiers;
+    final lastModifiedDate = this.lastModifiedDate;
+    final providerDetails = this.providerDetails;
+    final providerName = this.providerName;
+    final providerType = this.providerType;
+    final userPoolId = this.userPoolId;
+    return {
+      if (attributeMapping != null) 'AttributeMapping': attributeMapping,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (idpIdentifiers != null) 'IdpIdentifiers': idpIdentifiers,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (providerDetails != null) 'ProviderDetails': providerDetails,
+      if (providerName != null) 'ProviderName': providerName,
+      if (providerType != null) 'ProviderType': providerType.toValue(),
+      if (userPoolId != null) 'UserPoolId': userPoolId,
+    };
+  }
 }
 
 enum IdentityProviderTypeType {
@@ -11121,6 +11695,21 @@ class InitiateAuthResponse {
       session: json['Session'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authenticationResult = this.authenticationResult;
+    final challengeName = this.challengeName;
+    final challengeParameters = this.challengeParameters;
+    final session = this.session;
+    return {
+      if (authenticationResult != null)
+        'AuthenticationResult': authenticationResult,
+      if (challengeName != null) 'ChallengeName': challengeName.toValue(),
+      if (challengeParameters != null)
+        'ChallengeParameters': challengeParameters,
+      if (session != null) 'Session': session,
+    };
+  }
 }
 
 /// Specifies the configuration for Lambda triggers.
@@ -11263,6 +11852,15 @@ class ListDevicesResponse {
       paginationToken: json['PaginationToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final devices = this.devices;
+    final paginationToken = this.paginationToken;
+    return {
+      if (devices != null) 'Devices': devices,
+      if (paginationToken != null) 'PaginationToken': paginationToken,
+    };
+  }
 }
 
 class ListGroupsResponse {
@@ -11286,6 +11884,15 @@ class ListGroupsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final nextToken = this.nextToken;
+    return {
+      if (groups != null) 'Groups': groups,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListIdentityProvidersResponse {
@@ -11307,6 +11914,15 @@ class ListIdentityProvidersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final providers = this.providers;
+    final nextToken = this.nextToken;
+    return {
+      'Providers': providers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -11330,6 +11946,15 @@ class ListResourceServersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceServers = this.resourceServers;
+    final nextToken = this.nextToken;
+    return {
+      'ResourceServers': resourceServers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -11344,6 +11969,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -11370,6 +12002,15 @@ class ListUserImportJobsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final paginationToken = this.paginationToken;
+    final userImportJobs = this.userImportJobs;
+    return {
+      if (paginationToken != null) 'PaginationToken': paginationToken,
+      if (userImportJobs != null) 'UserImportJobs': userImportJobs,
+    };
+  }
 }
 
 /// Represents the response from the server that lists user pool clients.
@@ -11394,6 +12035,15 @@ class ListUserPoolClientsResponse {
               UserPoolClientDescription.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final userPoolClients = this.userPoolClients;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (userPoolClients != null) 'UserPoolClients': userPoolClients,
+    };
   }
 }
 
@@ -11420,6 +12070,15 @@ class ListUserPoolsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final userPools = this.userPools;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (userPools != null) 'UserPools': userPools,
+    };
+  }
 }
 
 class ListUsersInGroupResponse {
@@ -11442,6 +12101,15 @@ class ListUsersInGroupResponse {
           .map((e) => UserType.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final users = this.users;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (users != null) 'Users': users,
+    };
   }
 }
 
@@ -11466,6 +12134,15 @@ class ListUsersResponse {
           .map((e) => UserType.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final paginationToken = this.paginationToken;
+    final users = this.users;
+    return {
+      if (paginationToken != null) 'PaginationToken': paginationToken,
+      if (users != null) 'Users': users,
+    };
   }
 }
 
@@ -11588,6 +12265,15 @@ class NewDeviceMetadataType {
       deviceGroupKey: json['DeviceGroupKey'] as String?,
       deviceKey: json['DeviceKey'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceGroupKey = this.deviceGroupKey;
+    final deviceKey = this.deviceKey;
+    return {
+      if (deviceGroupKey != null) 'DeviceGroupKey': deviceGroupKey,
+      if (deviceKey != null) 'DeviceKey': deviceKey,
+    };
   }
 }
 
@@ -11889,6 +12575,21 @@ class ProviderDescription {
           (json['ProviderType'] as String?)?.toIdentityProviderTypeType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final providerName = this.providerName;
+    final providerType = this.providerType;
+    return {
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (providerName != null) 'ProviderName': providerName,
+      if (providerType != null) 'ProviderType': providerType.toValue(),
+    };
+  }
 }
 
 /// A container for information about an IdP for a user pool.
@@ -11908,6 +12609,7 @@ class ProviderUserIdentifierType {
     this.providerAttributeValue,
     this.providerName,
   });
+
   Map<String, dynamic> toJson() {
     final providerAttributeName = this.providerAttributeName;
     final providerAttributeValue = this.providerAttributeValue;
@@ -12003,6 +12705,14 @@ class ResendConfirmationCodeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeDeliveryDetails = this.codeDeliveryDetails;
+    return {
+      if (codeDeliveryDetails != null)
+        'CodeDeliveryDetails': codeDeliveryDetails,
+    };
+  }
 }
 
 /// A resource server scope.
@@ -12066,6 +12776,19 @@ class ResourceServerType {
       userPoolId: json['UserPoolId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identifier = this.identifier;
+    final name = this.name;
+    final scopes = this.scopes;
+    final userPoolId = this.userPoolId;
+    return {
+      if (identifier != null) 'Identifier': identifier,
+      if (name != null) 'Name': name,
+      if (scopes != null) 'Scopes': scopes,
+      if (userPoolId != null) 'UserPoolId': userPoolId,
+    };
+  }
 }
 
 /// The response to respond to the authentication challenge.
@@ -12107,12 +12830,31 @@ class RespondToAuthChallengeResponse {
       session: json['Session'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authenticationResult = this.authenticationResult;
+    final challengeName = this.challengeName;
+    final challengeParameters = this.challengeParameters;
+    final session = this.session;
+    return {
+      if (authenticationResult != null)
+        'AuthenticationResult': authenticationResult,
+      if (challengeName != null) 'ChallengeName': challengeName.toValue(),
+      if (challengeParameters != null)
+        'ChallengeParameters': challengeParameters,
+      if (session != null) 'Session': session,
+    };
+  }
 }
 
 class RevokeTokenResponse {
   RevokeTokenResponse();
   factory RevokeTokenResponse.fromJson(Map<String, dynamic> _) {
     return RevokeTokenResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -12170,6 +12912,30 @@ class RiskConfigurationType {
           : null,
       userPoolId: json['UserPoolId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountTakeoverRiskConfiguration =
+        this.accountTakeoverRiskConfiguration;
+    final clientId = this.clientId;
+    final compromisedCredentialsRiskConfiguration =
+        this.compromisedCredentialsRiskConfiguration;
+    final lastModifiedDate = this.lastModifiedDate;
+    final riskExceptionConfiguration = this.riskExceptionConfiguration;
+    final userPoolId = this.userPoolId;
+    return {
+      if (accountTakeoverRiskConfiguration != null)
+        'AccountTakeoverRiskConfiguration': accountTakeoverRiskConfiguration,
+      if (clientId != null) 'ClientId': clientId,
+      if (compromisedCredentialsRiskConfiguration != null)
+        'CompromisedCredentialsRiskConfiguration':
+            compromisedCredentialsRiskConfiguration,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (riskExceptionConfiguration != null)
+        'RiskExceptionConfiguration': riskExceptionConfiguration,
+      if (userPoolId != null) 'UserPoolId': userPoolId,
+    };
   }
 }
 
@@ -12298,6 +13064,7 @@ class SMSMfaSettingsType {
     this.enabled,
     this.preferredMfa,
   });
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     final preferredMfa = this.preferredMfa;
@@ -12416,6 +13183,13 @@ class SetRiskConfigurationResponse {
           json['RiskConfiguration'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final riskConfiguration = this.riskConfiguration;
+    return {
+      'RiskConfiguration': riskConfiguration,
+    };
+  }
 }
 
 class SetUICustomizationResponse {
@@ -12431,12 +13205,23 @@ class SetUICustomizationResponse {
           json['UICustomization'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final uICustomization = this.uICustomization;
+    return {
+      'UICustomization': uICustomization,
+    };
+  }
 }
 
 class SetUserMFAPreferenceResponse {
   SetUserMFAPreferenceResponse();
   factory SetUserMFAPreferenceResponse.fromJson(Map<String, dynamic> _) {
     return SetUserMFAPreferenceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -12483,6 +13268,20 @@ class SetUserPoolMfaConfigResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final mfaConfiguration = this.mfaConfiguration;
+    final smsMfaConfiguration = this.smsMfaConfiguration;
+    final softwareTokenMfaConfiguration = this.softwareTokenMfaConfiguration;
+    return {
+      if (mfaConfiguration != null)
+        'MfaConfiguration': mfaConfiguration.toValue(),
+      if (smsMfaConfiguration != null)
+        'SmsMfaConfiguration': smsMfaConfiguration,
+      if (softwareTokenMfaConfiguration != null)
+        'SoftwareTokenMfaConfiguration': softwareTokenMfaConfiguration,
+    };
+  }
 }
 
 /// The response from the server for a set user settings request.
@@ -12490,6 +13289,10 @@ class SetUserSettingsResponse {
   SetUserSettingsResponse();
   factory SetUserSettingsResponse.fromJson(Map<String, dynamic> _) {
     return SetUserSettingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -12521,6 +13324,18 @@ class SignUpResponse {
               json['CodeDeliveryDetails'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userConfirmed = this.userConfirmed;
+    final userSub = this.userSub;
+    final codeDeliveryDetails = this.codeDeliveryDetails;
+    return {
+      'UserConfirmed': userConfirmed,
+      'UserSub': userSub,
+      if (codeDeliveryDetails != null)
+        'CodeDeliveryDetails': codeDeliveryDetails,
+    };
   }
 }
 
@@ -12674,6 +13489,7 @@ class SoftwareTokenMfaSettingsType {
     this.enabled,
     this.preferredMfa,
   });
+
   Map<String, dynamic> toJson() {
     final enabled = this.enabled;
     final preferredMfa = this.preferredMfa;
@@ -12700,6 +13516,13 @@ class StartUserImportJobResponse {
               json['UserImportJob'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userImportJob = this.userImportJob;
+    return {
+      if (userImportJob != null) 'UserImportJob': userImportJob,
+    };
   }
 }
 
@@ -12748,6 +13571,13 @@ class StopUserImportJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userImportJob = this.userImportJob;
+    return {
+      if (userImportJob != null) 'UserImportJob': userImportJob,
+    };
+  }
 }
 
 /// The constraints associated with a string attribute.
@@ -12783,6 +13613,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -12914,12 +13748,37 @@ class UICustomizationType {
       userPoolId: json['UserPoolId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final css = this.css;
+    final cSSVersion = this.cSSVersion;
+    final clientId = this.clientId;
+    final creationDate = this.creationDate;
+    final imageUrl = this.imageUrl;
+    final lastModifiedDate = this.lastModifiedDate;
+    final userPoolId = this.userPoolId;
+    return {
+      if (css != null) 'CSS': css,
+      if (cSSVersion != null) 'CSSVersion': cSSVersion,
+      if (clientId != null) 'ClientId': clientId,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (imageUrl != null) 'ImageUrl': imageUrl,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (userPoolId != null) 'UserPoolId': userPoolId,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -12928,6 +13787,10 @@ class UpdateAuthEventFeedbackResponse {
   factory UpdateAuthEventFeedbackResponse.fromJson(Map<String, dynamic> _) {
     return UpdateAuthEventFeedbackResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The response to the request to update the device status.
@@ -12935,6 +13798,10 @@ class UpdateDeviceStatusResponse {
   UpdateDeviceStatusResponse();
   factory UpdateDeviceStatusResponse.fromJson(Map<String, dynamic> _) {
     return UpdateDeviceStatusResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -12952,6 +13819,13 @@ class UpdateGroupResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    return {
+      if (group != null) 'Group': group,
+    };
+  }
 }
 
 class UpdateIdentityProviderResponse {
@@ -12967,6 +13841,13 @@ class UpdateIdentityProviderResponse {
           json['IdentityProvider'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityProvider = this.identityProvider;
+    return {
+      'IdentityProvider': identityProvider,
+    };
+  }
 }
 
 class UpdateResourceServerResponse {
@@ -12981,6 +13862,13 @@ class UpdateResourceServerResponse {
       resourceServer: ResourceServerType.fromJson(
           json['ResourceServer'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceServer = this.resourceServer;
+    return {
+      'ResourceServer': resourceServer,
+    };
   }
 }
 
@@ -13003,6 +13891,14 @@ class UpdateUserAttributesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeDeliveryDetailsList = this.codeDeliveryDetailsList;
+    return {
+      if (codeDeliveryDetailsList != null)
+        'CodeDeliveryDetailsList': codeDeliveryDetailsList,
+    };
+  }
 }
 
 /// Represents the response from the server to the request to update the user
@@ -13023,6 +13919,13 @@ class UpdateUserPoolClientResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userPoolClient = this.userPoolClient;
+    return {
+      if (userPoolClient != null) 'UserPoolClient': userPoolClient,
+    };
+  }
 }
 
 /// The UpdateUserPoolDomain response output.
@@ -13039,6 +13942,13 @@ class UpdateUserPoolDomainResponse {
       cloudFrontDomain: json['CloudFrontDomain'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudFrontDomain = this.cloudFrontDomain;
+    return {
+      if (cloudFrontDomain != null) 'CloudFrontDomain': cloudFrontDomain,
+    };
+  }
 }
 
 /// Represents the response from the server when you make a request to update
@@ -13047,6 +13957,10 @@ class UpdateUserPoolResponse {
   UpdateUserPoolResponse();
   factory UpdateUserPoolResponse.fromJson(Map<String, dynamic> _) {
     return UpdateUserPoolResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -13125,6 +14039,7 @@ class UserContextDataType {
     this.encodedData,
     this.ipAddress,
   });
+
   Map<String, dynamic> toJson() {
     final encodedData = this.encodedData;
     final ipAddress = this.ipAddress;
@@ -13300,6 +14215,40 @@ class UserImportJobType {
       userPoolId: json['UserPoolId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsRoleArn = this.cloudWatchLogsRoleArn;
+    final completionDate = this.completionDate;
+    final completionMessage = this.completionMessage;
+    final creationDate = this.creationDate;
+    final failedUsers = this.failedUsers;
+    final importedUsers = this.importedUsers;
+    final jobId = this.jobId;
+    final jobName = this.jobName;
+    final preSignedUrl = this.preSignedUrl;
+    final skippedUsers = this.skippedUsers;
+    final startDate = this.startDate;
+    final status = this.status;
+    final userPoolId = this.userPoolId;
+    return {
+      if (cloudWatchLogsRoleArn != null)
+        'CloudWatchLogsRoleArn': cloudWatchLogsRoleArn,
+      if (completionDate != null)
+        'CompletionDate': unixTimestampToJson(completionDate),
+      if (completionMessage != null) 'CompletionMessage': completionMessage,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (failedUsers != null) 'FailedUsers': failedUsers,
+      if (importedUsers != null) 'ImportedUsers': importedUsers,
+      if (jobId != null) 'JobId': jobId,
+      if (jobName != null) 'JobName': jobName,
+      if (preSignedUrl != null) 'PreSignedUrl': preSignedUrl,
+      if (skippedUsers != null) 'SkippedUsers': skippedUsers,
+      if (startDate != null) 'StartDate': unixTimestampToJson(startDate),
+      if (status != null) 'Status': status.toValue(),
+      if (userPoolId != null) 'UserPoolId': userPoolId,
+    };
+  }
 }
 
 /// The user pool add-ons type.
@@ -13348,6 +14297,17 @@ class UserPoolClientDescription {
       clientName: json['ClientName'] as String?,
       userPoolId: json['UserPoolId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clientId = this.clientId;
+    final clientName = this.clientName;
+    final userPoolId = this.userPoolId;
+    return {
+      if (clientId != null) 'ClientId': clientId,
+      if (clientName != null) 'ClientName': clientName,
+      if (userPoolId != null) 'UserPoolId': userPoolId,
+    };
   }
 }
 
@@ -13690,6 +14650,74 @@ class UserPoolClientType {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessTokenValidity = this.accessTokenValidity;
+    final allowedOAuthFlows = this.allowedOAuthFlows;
+    final allowedOAuthFlowsUserPoolClient =
+        this.allowedOAuthFlowsUserPoolClient;
+    final allowedOAuthScopes = this.allowedOAuthScopes;
+    final analyticsConfiguration = this.analyticsConfiguration;
+    final callbackURLs = this.callbackURLs;
+    final clientId = this.clientId;
+    final clientName = this.clientName;
+    final clientSecret = this.clientSecret;
+    final creationDate = this.creationDate;
+    final defaultRedirectURI = this.defaultRedirectURI;
+    final enablePropagateAdditionalUserContextData =
+        this.enablePropagateAdditionalUserContextData;
+    final enableTokenRevocation = this.enableTokenRevocation;
+    final explicitAuthFlows = this.explicitAuthFlows;
+    final idTokenValidity = this.idTokenValidity;
+    final lastModifiedDate = this.lastModifiedDate;
+    final logoutURLs = this.logoutURLs;
+    final preventUserExistenceErrors = this.preventUserExistenceErrors;
+    final readAttributes = this.readAttributes;
+    final refreshTokenValidity = this.refreshTokenValidity;
+    final supportedIdentityProviders = this.supportedIdentityProviders;
+    final tokenValidityUnits = this.tokenValidityUnits;
+    final userPoolId = this.userPoolId;
+    final writeAttributes = this.writeAttributes;
+    return {
+      if (accessTokenValidity != null)
+        'AccessTokenValidity': accessTokenValidity,
+      if (allowedOAuthFlows != null)
+        'AllowedOAuthFlows': allowedOAuthFlows.map((e) => e.toValue()).toList(),
+      if (allowedOAuthFlowsUserPoolClient != null)
+        'AllowedOAuthFlowsUserPoolClient': allowedOAuthFlowsUserPoolClient,
+      if (allowedOAuthScopes != null) 'AllowedOAuthScopes': allowedOAuthScopes,
+      if (analyticsConfiguration != null)
+        'AnalyticsConfiguration': analyticsConfiguration,
+      if (callbackURLs != null) 'CallbackURLs': callbackURLs,
+      if (clientId != null) 'ClientId': clientId,
+      if (clientName != null) 'ClientName': clientName,
+      if (clientSecret != null) 'ClientSecret': clientSecret,
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (defaultRedirectURI != null) 'DefaultRedirectURI': defaultRedirectURI,
+      if (enablePropagateAdditionalUserContextData != null)
+        'EnablePropagateAdditionalUserContextData':
+            enablePropagateAdditionalUserContextData,
+      if (enableTokenRevocation != null)
+        'EnableTokenRevocation': enableTokenRevocation,
+      if (explicitAuthFlows != null)
+        'ExplicitAuthFlows': explicitAuthFlows.map((e) => e.toValue()).toList(),
+      if (idTokenValidity != null) 'IdTokenValidity': idTokenValidity,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (logoutURLs != null) 'LogoutURLs': logoutURLs,
+      if (preventUserExistenceErrors != null)
+        'PreventUserExistenceErrors': preventUserExistenceErrors.toValue(),
+      if (readAttributes != null) 'ReadAttributes': readAttributes,
+      if (refreshTokenValidity != null)
+        'RefreshTokenValidity': refreshTokenValidity,
+      if (supportedIdentityProviders != null)
+        'SupportedIdentityProviders': supportedIdentityProviders,
+      if (tokenValidityUnits != null) 'TokenValidityUnits': tokenValidityUnits,
+      if (userPoolId != null) 'UserPoolId': userPoolId,
+      if (writeAttributes != null) 'WriteAttributes': writeAttributes,
+    };
+  }
 }
 
 /// A user pool description.
@@ -13732,6 +14760,25 @@ class UserPoolDescriptionType {
       name: json['Name'] as String?,
       status: (json['Status'] as String?)?.toStatusType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final id = this.id;
+    final lambdaConfig = this.lambdaConfig;
+    final lastModifiedDate = this.lastModifiedDate;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (id != null) 'Id': id,
+      if (lambdaConfig != null) 'LambdaConfig': lambdaConfig,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (name != null) 'Name': name,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -14074,6 +15121,96 @@ class UserPoolType {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountRecoverySetting = this.accountRecoverySetting;
+    final adminCreateUserConfig = this.adminCreateUserConfig;
+    final aliasAttributes = this.aliasAttributes;
+    final arn = this.arn;
+    final autoVerifiedAttributes = this.autoVerifiedAttributes;
+    final creationDate = this.creationDate;
+    final customDomain = this.customDomain;
+    final deviceConfiguration = this.deviceConfiguration;
+    final domain = this.domain;
+    final emailConfiguration = this.emailConfiguration;
+    final emailConfigurationFailure = this.emailConfigurationFailure;
+    final emailVerificationMessage = this.emailVerificationMessage;
+    final emailVerificationSubject = this.emailVerificationSubject;
+    final estimatedNumberOfUsers = this.estimatedNumberOfUsers;
+    final id = this.id;
+    final lambdaConfig = this.lambdaConfig;
+    final lastModifiedDate = this.lastModifiedDate;
+    final mfaConfiguration = this.mfaConfiguration;
+    final name = this.name;
+    final policies = this.policies;
+    final schemaAttributes = this.schemaAttributes;
+    final smsAuthenticationMessage = this.smsAuthenticationMessage;
+    final smsConfiguration = this.smsConfiguration;
+    final smsConfigurationFailure = this.smsConfigurationFailure;
+    final smsVerificationMessage = this.smsVerificationMessage;
+    final status = this.status;
+    final userAttributeUpdateSettings = this.userAttributeUpdateSettings;
+    final userPoolAddOns = this.userPoolAddOns;
+    final userPoolTags = this.userPoolTags;
+    final usernameAttributes = this.usernameAttributes;
+    final usernameConfiguration = this.usernameConfiguration;
+    final verificationMessageTemplate = this.verificationMessageTemplate;
+    return {
+      if (accountRecoverySetting != null)
+        'AccountRecoverySetting': accountRecoverySetting,
+      if (adminCreateUserConfig != null)
+        'AdminCreateUserConfig': adminCreateUserConfig,
+      if (aliasAttributes != null)
+        'AliasAttributes': aliasAttributes.map((e) => e.toValue()).toList(),
+      if (arn != null) 'Arn': arn,
+      if (autoVerifiedAttributes != null)
+        'AutoVerifiedAttributes':
+            autoVerifiedAttributes.map((e) => e.toValue()).toList(),
+      if (creationDate != null)
+        'CreationDate': unixTimestampToJson(creationDate),
+      if (customDomain != null) 'CustomDomain': customDomain,
+      if (deviceConfiguration != null)
+        'DeviceConfiguration': deviceConfiguration,
+      if (domain != null) 'Domain': domain,
+      if (emailConfiguration != null) 'EmailConfiguration': emailConfiguration,
+      if (emailConfigurationFailure != null)
+        'EmailConfigurationFailure': emailConfigurationFailure,
+      if (emailVerificationMessage != null)
+        'EmailVerificationMessage': emailVerificationMessage,
+      if (emailVerificationSubject != null)
+        'EmailVerificationSubject': emailVerificationSubject,
+      if (estimatedNumberOfUsers != null)
+        'EstimatedNumberOfUsers': estimatedNumberOfUsers,
+      if (id != null) 'Id': id,
+      if (lambdaConfig != null) 'LambdaConfig': lambdaConfig,
+      if (lastModifiedDate != null)
+        'LastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (mfaConfiguration != null)
+        'MfaConfiguration': mfaConfiguration.toValue(),
+      if (name != null) 'Name': name,
+      if (policies != null) 'Policies': policies,
+      if (schemaAttributes != null) 'SchemaAttributes': schemaAttributes,
+      if (smsAuthenticationMessage != null)
+        'SmsAuthenticationMessage': smsAuthenticationMessage,
+      if (smsConfiguration != null) 'SmsConfiguration': smsConfiguration,
+      if (smsConfigurationFailure != null)
+        'SmsConfigurationFailure': smsConfigurationFailure,
+      if (smsVerificationMessage != null)
+        'SmsVerificationMessage': smsVerificationMessage,
+      if (status != null) 'Status': status.toValue(),
+      if (userAttributeUpdateSettings != null)
+        'UserAttributeUpdateSettings': userAttributeUpdateSettings,
+      if (userPoolAddOns != null) 'UserPoolAddOns': userPoolAddOns,
+      if (userPoolTags != null) 'UserPoolTags': userPoolTags,
+      if (usernameAttributes != null)
+        'UsernameAttributes':
+            usernameAttributes.map((e) => e.toValue()).toList(),
+      if (usernameConfiguration != null)
+        'UsernameConfiguration': usernameConfiguration,
+      if (verificationMessageTemplate != null)
+        'VerificationMessageTemplate': verificationMessageTemplate,
+    };
+  }
 }
 
 enum UserStatusType {
@@ -14204,6 +15341,27 @@ class UserType {
       userStatus: (json['UserStatus'] as String?)?.toUserStatusType(),
       username: json['Username'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final enabled = this.enabled;
+    final mFAOptions = this.mFAOptions;
+    final userCreateDate = this.userCreateDate;
+    final userLastModifiedDate = this.userLastModifiedDate;
+    final userStatus = this.userStatus;
+    final username = this.username;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (enabled != null) 'Enabled': enabled,
+      if (mFAOptions != null) 'MFAOptions': mFAOptions,
+      if (userCreateDate != null)
+        'UserCreateDate': unixTimestampToJson(userCreateDate),
+      if (userLastModifiedDate != null)
+        'UserLastModifiedDate': unixTimestampToJson(userLastModifiedDate),
+      if (userStatus != null) 'UserStatus': userStatus.toValue(),
+      if (username != null) 'Username': username,
+    };
   }
 }
 
@@ -14401,6 +15559,15 @@ class VerifySoftwareTokenResponse {
       status: (json['Status'] as String?)?.toVerifySoftwareTokenResponseType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final session = this.session;
+    final status = this.status;
+    return {
+      if (session != null) 'Session': session,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 enum VerifySoftwareTokenResponseType {
@@ -14439,6 +15606,10 @@ class VerifyUserAttributeResponse {
   VerifyUserAttributeResponse();
   factory VerifyUserAttributeResponse.fromJson(Map<String, dynamic> _) {
     return VerifyUserAttributeResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

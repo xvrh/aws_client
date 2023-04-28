@@ -1985,6 +1985,13 @@ class BatchEvaluateFeatureResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final results = this.results;
+    return {
+      if (results != null) 'results': results,
+    };
+  }
 }
 
 enum ChangeDirectionEnum {
@@ -2029,6 +2036,13 @@ class CloudWatchLogsDestination {
       logGroup: json['logGroup'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logGroup = this.logGroup;
+    return {
+      if (logGroup != null) 'logGroup': logGroup,
+    };
+  }
 }
 
 /// A structure containing the CloudWatch Logs log group where the project
@@ -2040,6 +2054,7 @@ class CloudWatchLogsDestinationConfig {
   CloudWatchLogsDestinationConfig({
     this.logGroup,
   });
+
   Map<String, dynamic> toJson() {
     final logGroup = this.logGroup;
     return {
@@ -2062,6 +2077,13 @@ class CreateExperimentResponse {
           Experiment.fromJson(json['experiment'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final experiment = this.experiment;
+    return {
+      'experiment': experiment,
+    };
+  }
 }
 
 class CreateFeatureResponse {
@@ -2078,6 +2100,13 @@ class CreateFeatureResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final feature = this.feature;
+    return {
+      if (feature != null) 'feature': feature,
+    };
+  }
 }
 
 class CreateLaunchResponse {
@@ -2092,6 +2121,13 @@ class CreateLaunchResponse {
       launch: Launch.fromJson(json['launch'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final launch = this.launch;
+    return {
+      'launch': launch,
+    };
+  }
 }
 
 class CreateProjectResponse {
@@ -2105,6 +2141,13 @@ class CreateProjectResponse {
     return CreateProjectResponse(
       project: Project.fromJson(json['project'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final project = this.project;
+    return {
+      'project': project,
+    };
   }
 }
 
@@ -2121,12 +2164,23 @@ class CreateSegmentResponse {
       segment: Segment.fromJson(json['segment'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final segment = this.segment;
+    return {
+      'segment': segment,
+    };
+  }
 }
 
 class DeleteExperimentResponse {
   DeleteExperimentResponse();
   factory DeleteExperimentResponse.fromJson(Map<String, dynamic> _) {
     return DeleteExperimentResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2135,12 +2189,20 @@ class DeleteFeatureResponse {
   factory DeleteFeatureResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFeatureResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteLaunchResponse {
   DeleteLaunchResponse();
   factory DeleteLaunchResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLaunchResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2149,12 +2211,20 @@ class DeleteProjectResponse {
   factory DeleteProjectResponse.fromJson(Map<String, dynamic> _) {
     return DeleteProjectResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteSegmentResponse {
   DeleteSegmentResponse();
   factory DeleteSegmentResponse.fromJson(Map<String, dynamic> _) {
     return DeleteSegmentResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2197,6 +2267,19 @@ class EvaluateFeatureResponse {
       variation: json['variation'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    final reason = this.reason;
+    final value = this.value;
+    final variation = this.variation;
+    return {
+      if (details != null) 'details': jsonEncode(details),
+      if (reason != null) 'reason': reason,
+      if (value != null) 'value': value,
+      if (variation != null) 'variation': variation,
+    };
+  }
 }
 
 /// This structure assigns a feature variation to one user session.
@@ -2219,6 +2302,7 @@ class EvaluationRequest {
     required this.feature,
     this.evaluationContext,
   });
+
   Map<String, dynamic> toJson() {
     final entityId = this.entityId;
     final feature = this.feature;
@@ -2286,6 +2370,25 @@ class EvaluationResult {
       variation: json['variation'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entityId = this.entityId;
+    final feature = this.feature;
+    final details = this.details;
+    final project = this.project;
+    final reason = this.reason;
+    final value = this.value;
+    final variation = this.variation;
+    return {
+      'entityId': entityId,
+      'feature': feature,
+      if (details != null) 'details': jsonEncode(details),
+      if (project != null) 'project': project,
+      if (reason != null) 'reason': reason,
+      if (value != null) 'value': value,
+      if (variation != null) 'variation': variation,
+    };
+  }
 }
 
 /// A structure that contains the information about an evaluation rule for this
@@ -2308,6 +2411,15 @@ class EvaluationRule {
       type: json['type'] as String,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final name = this.name;
+    return {
+      'type': type,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -2333,6 +2445,7 @@ class Event {
     required this.timestamp,
     required this.type,
   });
+
   Map<String, dynamic> toJson() {
     final data = this.data;
     final timestamp = this.timestamp;
@@ -2507,6 +2620,47 @@ class Experiment {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final status = this.status;
+    final type = this.type;
+    final description = this.description;
+    final execution = this.execution;
+    final metricGoals = this.metricGoals;
+    final onlineAbDefinition = this.onlineAbDefinition;
+    final project = this.project;
+    final randomizationSalt = this.randomizationSalt;
+    final samplingRate = this.samplingRate;
+    final schedule = this.schedule;
+    final segment = this.segment;
+    final statusReason = this.statusReason;
+    final tags = this.tags;
+    final treatments = this.treatments;
+    return {
+      'arn': arn,
+      'createdTime': unixTimestampToJson(createdTime),
+      'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      'name': name,
+      'status': status.toValue(),
+      'type': type.toValue(),
+      if (description != null) 'description': description,
+      if (execution != null) 'execution': execution,
+      if (metricGoals != null) 'metricGoals': metricGoals,
+      if (onlineAbDefinition != null) 'onlineAbDefinition': onlineAbDefinition,
+      if (project != null) 'project': project,
+      if (randomizationSalt != null) 'randomizationSalt': randomizationSalt,
+      if (samplingRate != null) 'samplingRate': samplingRate,
+      if (schedule != null) 'schedule': schedule,
+      if (segment != null) 'segment': segment,
+      if (statusReason != null) 'statusReason': statusReason,
+      if (tags != null) 'tags': tags,
+      if (treatments != null) 'treatments': treatments,
+    };
+  }
 }
 
 enum ExperimentBaseStat {
@@ -2551,6 +2705,15 @@ class ExperimentExecution {
       startedTime: timeStampFromJson(json['startedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endedTime = this.endedTime;
+    final startedTime = this.startedTime;
+    return {
+      if (endedTime != null) 'endedTime': unixTimestampToJson(endedTime),
+      if (startedTime != null) 'startedTime': unixTimestampToJson(startedTime),
+    };
+  }
 }
 
 /// A structure that contains results of an experiment.
@@ -2582,6 +2745,19 @@ class ExperimentReport {
       reportName: (json['reportName'] as String?)?.toExperimentReportName(),
       treatmentName: json['treatmentName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    final metricName = this.metricName;
+    final reportName = this.reportName;
+    final treatmentName = this.treatmentName;
+    return {
+      if (content != null) 'content': jsonEncode(content),
+      if (metricName != null) 'metricName': metricName,
+      if (reportName != null) 'reportName': reportName.toValue(),
+      if (treatmentName != null) 'treatmentName': treatmentName,
+    };
   }
 }
 
@@ -2726,6 +2902,19 @@ class ExperimentResultsData {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricName = this.metricName;
+    final resultStat = this.resultStat;
+    final treatmentName = this.treatmentName;
+    final values = this.values;
+    return {
+      if (metricName != null) 'metricName': metricName,
+      if (resultStat != null) 'resultStat': resultStat.toValue(),
+      if (treatmentName != null) 'treatmentName': treatmentName,
+      if (values != null) 'values': values,
+    };
+  }
 }
 
 /// This structure contains the time and date that Evidently completed the
@@ -2741,6 +2930,14 @@ class ExperimentSchedule {
     return ExperimentSchedule(
       analysisCompleteTime: timeStampFromJson(json['analysisCompleteTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final analysisCompleteTime = this.analysisCompleteTime;
+    return {
+      if (analysisCompleteTime != null)
+        'analysisCompleteTime': unixTimestampToJson(analysisCompleteTime),
+    };
   }
 }
 
@@ -2950,6 +3147,39 @@ class Feature {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final evaluationStrategy = this.evaluationStrategy;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final status = this.status;
+    final valueType = this.valueType;
+    final variations = this.variations;
+    final defaultVariation = this.defaultVariation;
+    final description = this.description;
+    final entityOverrides = this.entityOverrides;
+    final evaluationRules = this.evaluationRules;
+    final project = this.project;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'createdTime': unixTimestampToJson(createdTime),
+      'evaluationStrategy': evaluationStrategy.toValue(),
+      'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      'name': name,
+      'status': status.toValue(),
+      'valueType': valueType.toValue(),
+      'variations': variations,
+      if (defaultVariation != null) 'defaultVariation': defaultVariation,
+      if (description != null) 'description': description,
+      if (entityOverrides != null) 'entityOverrides': entityOverrides,
+      if (evaluationRules != null) 'evaluationRules': evaluationRules,
+      if (project != null) 'project': project,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum FeatureEvaluationStrategy {
@@ -3078,6 +3308,31 @@ class FeatureSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final evaluationStrategy = this.evaluationStrategy;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final status = this.status;
+    final defaultVariation = this.defaultVariation;
+    final evaluationRules = this.evaluationRules;
+    final project = this.project;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'createdTime': unixTimestampToJson(createdTime),
+      'evaluationStrategy': evaluationStrategy.toValue(),
+      'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      'name': name,
+      'status': status.toValue(),
+      if (defaultVariation != null) 'defaultVariation': defaultVariation,
+      if (evaluationRules != null) 'evaluationRules': evaluationRules,
+      if (project != null) 'project': project,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetExperimentResponse {
@@ -3093,6 +3348,13 @@ class GetExperimentResponse {
           ? Experiment.fromJson(json['experiment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final experiment = this.experiment;
+    return {
+      if (experiment != null) 'experiment': experiment,
+    };
   }
 }
 
@@ -3136,6 +3398,20 @@ class GetExperimentResultsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    final reports = this.reports;
+    final resultsData = this.resultsData;
+    final timestamps = this.timestamps;
+    return {
+      if (details != null) 'details': details,
+      if (reports != null) 'reports': reports,
+      if (resultsData != null) 'resultsData': resultsData,
+      if (timestamps != null)
+        'timestamps': timestamps.map(unixTimestampToJson).toList(),
+    };
+  }
 }
 
 class GetFeatureResponse {
@@ -3149,6 +3425,13 @@ class GetFeatureResponse {
     return GetFeatureResponse(
       feature: Feature.fromJson(json['feature'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final feature = this.feature;
+    return {
+      'feature': feature,
+    };
   }
 }
 
@@ -3166,6 +3449,13 @@ class GetLaunchResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final launch = this.launch;
+    return {
+      if (launch != null) 'launch': launch,
+    };
+  }
 }
 
 class GetProjectResponse {
@@ -3180,6 +3470,13 @@ class GetProjectResponse {
       project: Project.fromJson(json['project'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final project = this.project;
+    return {
+      'project': project,
+    };
+  }
 }
 
 class GetSegmentResponse {
@@ -3193,6 +3490,13 @@ class GetSegmentResponse {
     return GetSegmentResponse(
       segment: Segment.fromJson(json['segment'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final segment = this.segment;
+    return {
+      'segment': segment,
+    };
   }
 }
 
@@ -3300,6 +3604,42 @@ class Launch {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final status = this.status;
+    final type = this.type;
+    final description = this.description;
+    final execution = this.execution;
+    final groups = this.groups;
+    final metricMonitors = this.metricMonitors;
+    final project = this.project;
+    final randomizationSalt = this.randomizationSalt;
+    final scheduledSplitsDefinition = this.scheduledSplitsDefinition;
+    final statusReason = this.statusReason;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'createdTime': unixTimestampToJson(createdTime),
+      'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      'name': name,
+      'status': status.toValue(),
+      'type': type.toValue(),
+      if (description != null) 'description': description,
+      if (execution != null) 'execution': execution,
+      if (groups != null) 'groups': groups,
+      if (metricMonitors != null) 'metricMonitors': metricMonitors,
+      if (project != null) 'project': project,
+      if (randomizationSalt != null) 'randomizationSalt': randomizationSalt,
+      if (scheduledSplitsDefinition != null)
+        'scheduledSplitsDefinition': scheduledSplitsDefinition,
+      if (statusReason != null) 'statusReason': statusReason,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// This structure contains information about the start and end times of the
@@ -3320,6 +3660,15 @@ class LaunchExecution {
       endedTime: timeStampFromJson(json['endedTime']),
       startedTime: timeStampFromJson(json['startedTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endedTime = this.endedTime;
+    final startedTime = this.startedTime;
+    return {
+      if (endedTime != null) 'endedTime': unixTimestampToJson(endedTime),
+      if (startedTime != null) 'startedTime': unixTimestampToJson(startedTime),
+    };
   }
 }
 
@@ -3348,6 +3697,17 @@ class LaunchGroup {
       description: json['description'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final featureVariations = this.featureVariations;
+    final name = this.name;
+    final description = this.description;
+    return {
+      'featureVariations': featureVariations,
+      'name': name,
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 /// A structure that defines one launch group in a launch. A launch group is a
@@ -3371,6 +3731,7 @@ class LaunchGroupConfig {
     required this.variation,
     this.description,
   });
+
   Map<String, dynamic> toJson() {
     final feature = this.feature;
     final name = this.name;
@@ -3501,6 +3862,15 @@ class ListExperimentsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final experiments = this.experiments;
+    final nextToken = this.nextToken;
+    return {
+      if (experiments != null) 'experiments': experiments,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListFeaturesResponse {
@@ -3524,6 +3894,15 @@ class ListFeaturesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final features = this.features;
+    final nextToken = this.nextToken;
+    return {
+      if (features != null) 'features': features,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3549,6 +3928,15 @@ class ListLaunchesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final launches = this.launches;
+    final nextToken = this.nextToken;
+    return {
+      if (launches != null) 'launches': launches,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListProjectsResponse {
@@ -3572,6 +3960,15 @@ class ListProjectsResponse {
           .map((e) => ProjectSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final projects = this.projects;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (projects != null) 'projects': projects,
+    };
   }
 }
 
@@ -3597,6 +3994,15 @@ class ListSegmentReferencesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final referencedBy = this.referencedBy;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (referencedBy != null) 'referencedBy': referencedBy,
+    };
+  }
 }
 
 class ListSegmentsResponse {
@@ -3621,6 +4027,15 @@ class ListSegmentsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final segments = this.segments;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (segments != null) 'segments': segments,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3635,6 +4050,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3679,6 +4101,21 @@ class MetricDefinition {
       valueKey: json['valueKey'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entityIdKey = this.entityIdKey;
+    final eventPattern = this.eventPattern;
+    final name = this.name;
+    final unitLabel = this.unitLabel;
+    final valueKey = this.valueKey;
+    return {
+      if (entityIdKey != null) 'entityIdKey': entityIdKey,
+      if (eventPattern != null) 'eventPattern': jsonEncode(eventPattern),
+      if (name != null) 'name': name,
+      if (unitLabel != null) 'unitLabel': unitLabel,
+      if (valueKey != null) 'valueKey': valueKey,
+    };
+  }
 }
 
 /// This structure defines a metric that you want to use to evaluate the
@@ -3711,6 +4148,7 @@ class MetricDefinitionConfig {
     this.eventPattern,
     this.unitLabel,
   });
+
   Map<String, dynamic> toJson() {
     final entityIdKey = this.entityIdKey;
     final name = this.name;
@@ -3752,6 +4190,15 @@ class MetricGoal {
           (json['desiredChange'] as String?)?.toChangeDirectionEnum(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricDefinition = this.metricDefinition;
+    final desiredChange = this.desiredChange;
+    return {
+      'metricDefinition': metricDefinition,
+      if (desiredChange != null) 'desiredChange': desiredChange.toValue(),
+    };
+  }
 }
 
 /// Use this structure to tell Evidently whether higher or lower values are
@@ -3771,6 +4218,7 @@ class MetricGoalConfig {
     required this.metricDefinition,
     this.desiredChange,
   });
+
   Map<String, dynamic> toJson() {
     final metricDefinition = this.metricDefinition;
     final desiredChange = this.desiredChange;
@@ -3796,6 +4244,13 @@ class MetricMonitor {
           json['metricDefinition'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metricDefinition = this.metricDefinition;
+    return {
+      'metricDefinition': metricDefinition,
+    };
+  }
 }
 
 /// A structure that defines a metric to be used to monitor performance of the
@@ -3807,6 +4262,7 @@ class MetricMonitorConfig {
   MetricMonitorConfig({
     required this.metricDefinition,
   });
+
   Map<String, dynamic> toJson() {
     final metricDefinition = this.metricDefinition;
     return {
@@ -3834,6 +4290,7 @@ class OnlineAbConfig {
     this.controlTreatmentName,
     this.treatmentWeights,
   });
+
   Map<String, dynamic> toJson() {
     final controlTreatmentName = this.controlTreatmentName;
     final treatmentWeights = this.treatmentWeights;
@@ -3870,6 +4327,16 @@ class OnlineAbDefinition {
       treatmentWeights: (json['treatmentWeights'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as int)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final controlTreatmentName = this.controlTreatmentName;
+    final treatmentWeights = this.treatmentWeights;
+    return {
+      if (controlTreatmentName != null)
+        'controlTreatmentName': controlTreatmentName,
+      if (treatmentWeights != null) 'treatmentWeights': treatmentWeights,
+    };
   }
 }
 
@@ -3957,6 +4424,38 @@ class Project {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final status = this.status;
+    final activeExperimentCount = this.activeExperimentCount;
+    final activeLaunchCount = this.activeLaunchCount;
+    final dataDelivery = this.dataDelivery;
+    final description = this.description;
+    final experimentCount = this.experimentCount;
+    final featureCount = this.featureCount;
+    final launchCount = this.launchCount;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'createdTime': unixTimestampToJson(createdTime),
+      'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      'name': name,
+      'status': status.toValue(),
+      if (activeExperimentCount != null)
+        'activeExperimentCount': activeExperimentCount,
+      if (activeLaunchCount != null) 'activeLaunchCount': activeLaunchCount,
+      if (dataDelivery != null) 'dataDelivery': dataDelivery,
+      if (description != null) 'description': description,
+      if (experimentCount != null) 'experimentCount': experimentCount,
+      if (featureCount != null) 'featureCount': featureCount,
+      if (launchCount != null) 'launchCount': launchCount,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// A structure that contains information about where Evidently is to store
@@ -3986,6 +4485,15 @@ class ProjectDataDelivery {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogs = this.cloudWatchLogs;
+    final s3Destination = this.s3Destination;
+    return {
+      if (cloudWatchLogs != null) 'cloudWatchLogs': cloudWatchLogs,
+      if (s3Destination != null) 's3Destination': s3Destination,
+    };
+  }
 }
 
 /// A structure that contains information about where Evidently is to store
@@ -4003,6 +4511,7 @@ class ProjectDataDeliveryConfig {
     this.cloudWatchLogs,
     this.s3Destination,
   });
+
   Map<String, dynamic> toJson() {
     final cloudWatchLogs = this.cloudWatchLogs;
     final s3Destination = this.s3Destination;
@@ -4113,6 +4622,36 @@ class ProjectSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final status = this.status;
+    final activeExperimentCount = this.activeExperimentCount;
+    final activeLaunchCount = this.activeLaunchCount;
+    final description = this.description;
+    final experimentCount = this.experimentCount;
+    final featureCount = this.featureCount;
+    final launchCount = this.launchCount;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'createdTime': unixTimestampToJson(createdTime),
+      'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      'name': name,
+      'status': status.toValue(),
+      if (activeExperimentCount != null)
+        'activeExperimentCount': activeExperimentCount,
+      if (activeLaunchCount != null) 'activeLaunchCount': activeLaunchCount,
+      if (description != null) 'description': description,
+      if (experimentCount != null) 'experimentCount': experimentCount,
+      if (featureCount != null) 'featureCount': featureCount,
+      if (launchCount != null) 'launchCount': launchCount,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class PutProjectEventsResponse {
@@ -4136,6 +4675,15 @@ class PutProjectEventsResponse {
           .toList(),
       failedEventCount: json['failedEventCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventResults = this.eventResults;
+    final failedEventCount = this.failedEventCount;
+    return {
+      if (eventResults != null) 'eventResults': eventResults,
+      if (failedEventCount != null) 'failedEventCount': failedEventCount,
+    };
   }
 }
 
@@ -4164,6 +4712,17 @@ class PutProjectEventsResultEntry {
       errorMessage: json['errorMessage'] as String?,
       eventId: json['eventId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final eventId = this.eventId;
+    return {
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (eventId != null) 'eventId': eventId,
+    };
   }
 }
 
@@ -4212,6 +4771,25 @@ class RefResource {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    final arn = this.arn;
+    final endTime = this.endTime;
+    final lastUpdatedOn = this.lastUpdatedOn;
+    final startTime = this.startTime;
+    final status = this.status;
+    return {
+      'name': name,
+      'type': type,
+      if (arn != null) 'arn': arn,
+      if (endTime != null) 'endTime': endTime,
+      if (lastUpdatedOn != null) 'lastUpdatedOn': lastUpdatedOn,
+      if (startTime != null) 'startTime': startTime,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// If the project stores evaluation events in an Amazon S3 bucket, this
@@ -4233,6 +4811,15 @@ class S3Destination {
       prefix: json['prefix'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final prefix = this.prefix;
+    return {
+      if (bucket != null) 'bucket': bucket,
+      if (prefix != null) 'prefix': prefix,
+    };
+  }
 }
 
 /// If the project stores evaluation events in an Amazon S3 bucket, this
@@ -4248,6 +4835,7 @@ class S3DestinationConfig {
     this.bucket,
     this.prefix,
   });
+
   Map<String, dynamic> toJson() {
     final bucket = this.bucket;
     final prefix = this.prefix;
@@ -4305,6 +4893,17 @@ class ScheduledSplit {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final startTime = this.startTime;
+    final groupWeights = this.groupWeights;
+    final segmentOverrides = this.segmentOverrides;
+    return {
+      'startTime': unixTimestampToJson(startTime),
+      if (groupWeights != null) 'groupWeights': groupWeights,
+      if (segmentOverrides != null) 'segmentOverrides': segmentOverrides,
+    };
+  }
 }
 
 /// This structure defines the traffic allocation percentages among the feature
@@ -4342,6 +4941,7 @@ class ScheduledSplitConfig {
     required this.startTime,
     this.segmentOverrides,
   });
+
   Map<String, dynamic> toJson() {
     final groupWeights = this.groupWeights;
     final startTime = this.startTime;
@@ -4366,6 +4966,7 @@ class ScheduledSplitsLaunchConfig {
   ScheduledSplitsLaunchConfig({
     required this.steps,
   });
+
   Map<String, dynamic> toJson() {
     final steps = this.steps;
     return {
@@ -4393,6 +4994,13 @@ class ScheduledSplitsLaunchDefinition {
           .map((e) => ScheduledSplit.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final steps = this.steps;
+    return {
+      if (steps != null) 'steps': steps,
+    };
   }
 }
 
@@ -4455,6 +5063,29 @@ class Segment {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final pattern = this.pattern;
+    final description = this.description;
+    final experimentCount = this.experimentCount;
+    final launchCount = this.launchCount;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'createdTime': unixTimestampToJson(createdTime),
+      'lastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      'name': name,
+      'pattern': jsonEncode(pattern),
+      if (description != null) 'description': description,
+      if (experimentCount != null) 'experimentCount': experimentCount,
+      if (launchCount != null) 'launchCount': launchCount,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4542,6 +5173,13 @@ class StartExperimentResponse {
       startedTime: timeStampFromJson(json['startedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final startedTime = this.startedTime;
+    return {
+      if (startedTime != null) 'startedTime': unixTimestampToJson(startedTime),
+    };
+  }
 }
 
 class StartLaunchResponse {
@@ -4555,6 +5193,13 @@ class StartLaunchResponse {
     return StartLaunchResponse(
       launch: Launch.fromJson(json['launch'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final launch = this.launch;
+    return {
+      'launch': launch,
+    };
   }
 }
 
@@ -4570,6 +5215,13 @@ class StopExperimentResponse {
       endedTime: timeStampFromJson(json['endedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endedTime = this.endedTime;
+    return {
+      if (endedTime != null) 'endedTime': unixTimestampToJson(endedTime),
+    };
+  }
 }
 
 class StopLaunchResponse {
@@ -4584,12 +5236,23 @@ class StopLaunchResponse {
       endedTime: timeStampFromJson(json['endedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endedTime = this.endedTime;
+    return {
+      if (endedTime != null) 'endedTime': unixTimestampToJson(endedTime),
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4604,6 +5267,13 @@ class TestSegmentPatternResponse {
     return TestSegmentPatternResponse(
       match: json['match'] as bool,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final match = this.match;
+    return {
+      'match': match,
+    };
   }
 }
 
@@ -4633,6 +5303,17 @@ class Treatment {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final description = this.description;
+    final featureVariations = this.featureVariations;
+    return {
+      'name': name,
+      if (description != null) 'description': description,
+      if (featureVariations != null) 'featureVariations': featureVariations,
+    };
+  }
 }
 
 /// A structure that defines one treatment in an experiment. A treatment is a
@@ -4656,6 +5337,7 @@ class TreatmentConfig {
     required this.variation,
     this.description,
   });
+
   Map<String, dynamic> toJson() {
     final feature = this.feature;
     final name = this.name;
@@ -4675,6 +5357,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateExperimentResponse {
@@ -4691,6 +5377,13 @@ class UpdateExperimentResponse {
           Experiment.fromJson(json['experiment'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final experiment = this.experiment;
+    return {
+      'experiment': experiment,
+    };
+  }
 }
 
 class UpdateFeatureResponse {
@@ -4704,6 +5397,13 @@ class UpdateFeatureResponse {
     return UpdateFeatureResponse(
       feature: Feature.fromJson(json['feature'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final feature = this.feature;
+    return {
+      'feature': feature,
+    };
   }
 }
 
@@ -4720,6 +5420,13 @@ class UpdateLaunchResponse {
       launch: Launch.fromJson(json['launch'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final launch = this.launch;
+    return {
+      'launch': launch,
+    };
+  }
 }
 
 class UpdateProjectDataDeliveryResponse {
@@ -4735,6 +5442,13 @@ class UpdateProjectDataDeliveryResponse {
       project: Project.fromJson(json['project'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final project = this.project;
+    return {
+      'project': project,
+    };
+  }
 }
 
 class UpdateProjectResponse {
@@ -4748,6 +5462,13 @@ class UpdateProjectResponse {
     return UpdateProjectResponse(
       project: Project.fromJson(json['project'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final project = this.project;
+    return {
+      'project': project,
+    };
   }
 }
 
@@ -4822,6 +5543,15 @@ class Variation {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// This structure contains the name and variation value of one variation of a
@@ -4837,6 +5567,7 @@ class VariationConfig {
     required this.name,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;

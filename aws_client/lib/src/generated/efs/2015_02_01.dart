@@ -2000,6 +2000,31 @@ class AccessPointDescription {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessPointArn = this.accessPointArn;
+    final accessPointId = this.accessPointId;
+    final clientToken = this.clientToken;
+    final fileSystemId = this.fileSystemId;
+    final lifeCycleState = this.lifeCycleState;
+    final name = this.name;
+    final ownerId = this.ownerId;
+    final posixUser = this.posixUser;
+    final rootDirectory = this.rootDirectory;
+    final tags = this.tags;
+    return {
+      if (accessPointArn != null) 'AccessPointArn': accessPointArn,
+      if (accessPointId != null) 'AccessPointId': accessPointId,
+      if (clientToken != null) 'ClientToken': clientToken,
+      if (fileSystemId != null) 'FileSystemId': fileSystemId,
+      if (lifeCycleState != null) 'LifeCycleState': lifeCycleState.toValue(),
+      if (name != null) 'Name': name,
+      if (ownerId != null) 'OwnerId': ownerId,
+      if (posixUser != null) 'PosixUser': posixUser,
+      if (rootDirectory != null) 'RootDirectory': rootDirectory,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// The backup policy for the file system used to create automatic daily
@@ -2061,6 +2086,13 @@ class BackupPolicyDescription {
           ? BackupPolicy.fromJson(json['BackupPolicy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final backupPolicy = this.backupPolicy;
+    return {
+      if (backupPolicy != null) 'BackupPolicy': backupPolicy,
+    };
   }
 }
 
@@ -2142,6 +2174,15 @@ class DescribeAccessPointsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accessPoints = this.accessPoints;
+    final nextToken = this.nextToken;
+    return {
+      if (accessPoints != null) 'AccessPoints': accessPoints,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeAccountPreferencesResponse {
@@ -2168,6 +2209,16 @@ class DescribeAccountPreferencesResponse {
               json['ResourceIdPreference'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceIdPreference = this.resourceIdPreference;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resourceIdPreference != null)
+        'ResourceIdPreference': resourceIdPreference,
+    };
   }
 }
 
@@ -2198,6 +2249,17 @@ class DescribeFileSystemsResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fileSystems = this.fileSystems;
+    final marker = this.marker;
+    final nextMarker = this.nextMarker;
+    return {
+      if (fileSystems != null) 'FileSystems': fileSystems,
+      if (marker != null) 'Marker': marker,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class DescribeMountTargetSecurityGroupsResponse {
@@ -2215,6 +2277,13 @@ class DescribeMountTargetSecurityGroupsResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityGroups = this.securityGroups;
+    return {
+      'SecurityGroups': securityGroups,
+    };
   }
 }
 
@@ -2249,6 +2318,17 @@ class DescribeMountTargetsResponse {
       nextMarker: json['NextMarker'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final marker = this.marker;
+    final mountTargets = this.mountTargets;
+    final nextMarker = this.nextMarker;
+    return {
+      if (marker != null) 'Marker': marker,
+      if (mountTargets != null) 'MountTargets': mountTargets,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
+  }
 }
 
 class DescribeReplicationConfigurationsResponse {
@@ -2273,6 +2353,15 @@ class DescribeReplicationConfigurationsResponse {
               e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final replications = this.replications;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (replications != null) 'Replications': replications,
+    };
   }
 }
 
@@ -2306,6 +2395,17 @@ class DescribeTagsResponse {
       marker: json['Marker'] as String?,
       nextMarker: json['NextMarker'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final marker = this.marker;
+    final nextMarker = this.nextMarker;
+    return {
+      'Tags': tags,
+      if (marker != null) 'Marker': marker,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+    };
   }
 }
 
@@ -2346,6 +2446,20 @@ class Destination {
       lastReplicatedTimestamp:
           timeStampFromJson(json['LastReplicatedTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileSystemId = this.fileSystemId;
+    final region = this.region;
+    final status = this.status;
+    final lastReplicatedTimestamp = this.lastReplicatedTimestamp;
+    return {
+      'FileSystemId': fileSystemId,
+      'Region': region,
+      'Status': status.toValue(),
+      if (lastReplicatedTimestamp != null)
+        'LastReplicatedTimestamp': unixTimestampToJson(lastReplicatedTimestamp),
+    };
   }
 }
 
@@ -2391,6 +2505,7 @@ class DestinationToCreate {
     this.kmsKeyId,
     this.region,
   });
+
   Map<String, dynamic> toJson() {
     final availabilityZoneName = this.availabilityZoneName;
     final kmsKeyId = this.kmsKeyId;
@@ -2534,6 +2649,47 @@ class FileSystemDescription {
       throughputMode: (json['ThroughputMode'] as String?)?.toThroughputMode(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final creationToken = this.creationToken;
+    final fileSystemId = this.fileSystemId;
+    final lifeCycleState = this.lifeCycleState;
+    final numberOfMountTargets = this.numberOfMountTargets;
+    final ownerId = this.ownerId;
+    final performanceMode = this.performanceMode;
+    final sizeInBytes = this.sizeInBytes;
+    final tags = this.tags;
+    final availabilityZoneId = this.availabilityZoneId;
+    final availabilityZoneName = this.availabilityZoneName;
+    final encrypted = this.encrypted;
+    final fileSystemArn = this.fileSystemArn;
+    final kmsKeyId = this.kmsKeyId;
+    final name = this.name;
+    final provisionedThroughputInMibps = this.provisionedThroughputInMibps;
+    final throughputMode = this.throughputMode;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'CreationToken': creationToken,
+      'FileSystemId': fileSystemId,
+      'LifeCycleState': lifeCycleState.toValue(),
+      'NumberOfMountTargets': numberOfMountTargets,
+      'OwnerId': ownerId,
+      'PerformanceMode': performanceMode.toValue(),
+      'SizeInBytes': sizeInBytes,
+      'Tags': tags,
+      if (availabilityZoneId != null) 'AvailabilityZoneId': availabilityZoneId,
+      if (availabilityZoneName != null)
+        'AvailabilityZoneName': availabilityZoneName,
+      if (encrypted != null) 'Encrypted': encrypted,
+      if (fileSystemArn != null) 'FileSystemArn': fileSystemArn,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (name != null) 'Name': name,
+      if (provisionedThroughputInMibps != null)
+        'ProvisionedThroughputInMibps': provisionedThroughputInMibps,
+      if (throughputMode != null) 'ThroughputMode': throughputMode.toValue(),
+    };
+  }
 }
 
 class FileSystemPolicyDescription {
@@ -2553,6 +2709,15 @@ class FileSystemPolicyDescription {
       fileSystemId: json['FileSystemId'] as String?,
       policy: json['Policy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileSystemId = this.fileSystemId;
+    final policy = this.policy;
+    return {
+      if (fileSystemId != null) 'FileSystemId': fileSystemId,
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -2594,6 +2759,19 @@ class FileSystemSize {
       valueInIA: json['ValueInIA'] as int?,
       valueInStandard: json['ValueInStandard'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    final timestamp = this.timestamp;
+    final valueInIA = this.valueInIA;
+    final valueInStandard = this.valueInStandard;
+    return {
+      'Value': value,
+      if (timestamp != null) 'Timestamp': unixTimestampToJson(timestamp),
+      if (valueInIA != null) 'ValueInIA': valueInIA,
+      if (valueInStandard != null) 'ValueInStandard': valueInStandard,
+    };
   }
 }
 
@@ -2661,6 +2839,13 @@ class LifecycleConfigurationDescription {
           .map((e) => LifecyclePolicy.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lifecyclePolicies = this.lifecyclePolicies;
+    return {
+      if (lifecyclePolicies != null) 'LifecyclePolicies': lifecyclePolicies,
+    };
   }
 }
 
@@ -2740,6 +2925,15 @@ class ListTagsForResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Provides a description of a mount target.
@@ -2807,6 +3001,32 @@ class MountTargetDescription {
       ownerId: json['OwnerId'] as String?,
       vpcId: json['VpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fileSystemId = this.fileSystemId;
+    final lifeCycleState = this.lifeCycleState;
+    final mountTargetId = this.mountTargetId;
+    final subnetId = this.subnetId;
+    final availabilityZoneId = this.availabilityZoneId;
+    final availabilityZoneName = this.availabilityZoneName;
+    final ipAddress = this.ipAddress;
+    final networkInterfaceId = this.networkInterfaceId;
+    final ownerId = this.ownerId;
+    final vpcId = this.vpcId;
+    return {
+      'FileSystemId': fileSystemId,
+      'LifeCycleState': lifeCycleState.toValue(),
+      'MountTargetId': mountTargetId,
+      'SubnetId': subnetId,
+      if (availabilityZoneId != null) 'AvailabilityZoneId': availabilityZoneId,
+      if (availabilityZoneName != null)
+        'AvailabilityZoneName': availabilityZoneName,
+      if (ipAddress != null) 'IpAddress': ipAddress,
+      if (networkInterfaceId != null) 'NetworkInterfaceId': networkInterfaceId,
+      if (ownerId != null) 'OwnerId': ownerId,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
   }
 }
 
@@ -2896,6 +3116,14 @@ class PutAccountPreferencesResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceIdPreference = this.resourceIdPreference;
+    return {
+      if (resourceIdPreference != null)
+        'ResourceIdPreference': resourceIdPreference,
+    };
+  }
 }
 
 class ReplicationConfigurationDescription {
@@ -2943,6 +3171,23 @@ class ReplicationConfigurationDescription {
       sourceFileSystemId: json['SourceFileSystemId'] as String,
       sourceFileSystemRegion: json['SourceFileSystemRegion'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final destinations = this.destinations;
+    final originalSourceFileSystemArn = this.originalSourceFileSystemArn;
+    final sourceFileSystemArn = this.sourceFileSystemArn;
+    final sourceFileSystemId = this.sourceFileSystemId;
+    final sourceFileSystemRegion = this.sourceFileSystemRegion;
+    return {
+      'CreationTime': unixTimestampToJson(creationTime),
+      'Destinations': destinations,
+      'OriginalSourceFileSystemArn': originalSourceFileSystemArn,
+      'SourceFileSystemArn': sourceFileSystemArn,
+      'SourceFileSystemId': sourceFileSystemId,
+      'SourceFileSystemRegion': sourceFileSystemRegion,
+    };
   }
 }
 
@@ -3036,6 +3281,16 @@ class ResourceIdPreference {
           .map((e) => (e as String).toResource())
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceIdType = this.resourceIdType;
+    final resources = this.resources;
+    return {
+      if (resourceIdType != null) 'ResourceIdType': resourceIdType.toValue(),
+      if (resources != null)
+        'Resources': resources.map((e) => e.toValue()).toList(),
+    };
   }
 }
 

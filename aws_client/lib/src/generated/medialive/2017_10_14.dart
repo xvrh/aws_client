@@ -2861,6 +2861,10 @@ class AcceptInputDeviceTransferResponse {
   factory AcceptInputDeviceTransferResponse.fromJson(Map<String, dynamic> _) {
     return AcceptInputDeviceTransferResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Accessibility Type
@@ -4238,6 +4242,15 @@ class BatchDeleteResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final successful = this.successful;
+    return {
+      if (failed != null) 'failed': failed,
+      if (successful != null) 'successful': successful,
+    };
+  }
 }
 
 /// Details from a failed operation
@@ -4268,6 +4281,19 @@ class BatchFailedResultModel {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final code = this.code;
+    final id = this.id;
+    final message = this.message;
+    return {
+      if (arn != null) 'arn': arn,
+      if (code != null) 'code': code,
+      if (id != null) 'id': id,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// A list of schedule actions to create (in a request) or that have been
@@ -4279,6 +4305,7 @@ class BatchScheduleActionCreateRequest {
   BatchScheduleActionCreateRequest({
     required this.scheduleActions,
   });
+
   Map<String, dynamic> toJson() {
     final scheduleActions = this.scheduleActions;
     return {
@@ -4303,6 +4330,13 @@ class BatchScheduleActionCreateResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final scheduleActions = this.scheduleActions;
+    return {
+      'scheduleActions': scheduleActions,
+    };
+  }
 }
 
 /// A list of schedule actions to delete.
@@ -4313,6 +4347,7 @@ class BatchScheduleActionDeleteRequest {
   BatchScheduleActionDeleteRequest({
     required this.actionNames,
   });
+
   Map<String, dynamic> toJson() {
     final actionNames = this.actionNames;
     return {
@@ -4336,6 +4371,13 @@ class BatchScheduleActionDeleteResult {
           .map((e) => ScheduleAction.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final scheduleActions = this.scheduleActions;
+    return {
+      'scheduleActions': scheduleActions,
+    };
   }
 }
 
@@ -4365,6 +4407,15 @@ class BatchStartResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final successful = this.successful;
+    return {
+      if (failed != null) 'failed': failed,
+      if (successful != null) 'successful': successful,
+    };
+  }
 }
 
 /// Placeholder documentation for BatchStopResponse
@@ -4393,6 +4444,15 @@ class BatchStopResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failed = this.failed;
+    final successful = this.successful;
+    return {
+      if (failed != null) 'failed': failed,
+      if (successful != null) 'successful': successful,
+    };
+  }
 }
 
 /// Details from a successful operation
@@ -4417,6 +4477,17 @@ class BatchSuccessfulResultModel {
       id: json['id'] as String?,
       state: json['state'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final state = this.state;
+    return {
+      if (arn != null) 'arn': arn,
+      if (id != null) 'id': id,
+      if (state != null) 'state': state,
+    };
   }
 }
 
@@ -4443,6 +4514,15 @@ class BatchUpdateScheduleResponse {
               json['deletes'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creates = this.creates;
+    final deletes = this.deletes;
+    return {
+      if (creates != null) 'creates': creates,
+      if (deletes != null) 'deletes': deletes,
+    };
   }
 }
 
@@ -4992,6 +5072,10 @@ class CancelInputDeviceTransferResponse {
   CancelInputDeviceTransferResponse();
   factory CancelInputDeviceTransferResponse.fromJson(Map<String, dynamic> _) {
     return CancelInputDeviceTransferResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5630,6 +5714,49 @@ class Channel {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cdiInputSpecification = this.cdiInputSpecification;
+    final channelClass = this.channelClass;
+    final destinations = this.destinations;
+    final egressEndpoints = this.egressEndpoints;
+    final encoderSettings = this.encoderSettings;
+    final id = this.id;
+    final inputAttachments = this.inputAttachments;
+    final inputSpecification = this.inputSpecification;
+    final logLevel = this.logLevel;
+    final maintenance = this.maintenance;
+    final name = this.name;
+    final pipelineDetails = this.pipelineDetails;
+    final pipelinesRunningCount = this.pipelinesRunningCount;
+    final roleArn = this.roleArn;
+    final state = this.state;
+    final tags = this.tags;
+    final vpc = this.vpc;
+    return {
+      if (arn != null) 'arn': arn,
+      if (cdiInputSpecification != null)
+        'cdiInputSpecification': cdiInputSpecification,
+      if (channelClass != null) 'channelClass': channelClass.toValue(),
+      if (destinations != null) 'destinations': destinations,
+      if (egressEndpoints != null) 'egressEndpoints': egressEndpoints,
+      if (encoderSettings != null) 'encoderSettings': encoderSettings,
+      if (id != null) 'id': id,
+      if (inputAttachments != null) 'inputAttachments': inputAttachments,
+      if (inputSpecification != null) 'inputSpecification': inputSpecification,
+      if (logLevel != null) 'logLevel': logLevel.toValue(),
+      if (maintenance != null) 'maintenance': maintenance,
+      if (name != null) 'name': name,
+      if (pipelineDetails != null) 'pipelineDetails': pipelineDetails,
+      if (pipelinesRunningCount != null)
+        'pipelinesRunningCount': pipelinesRunningCount,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (vpc != null) 'vpc': vpc,
+    };
+  }
 }
 
 /// A standard channel has two encoding pipelines and a single pipeline channel
@@ -5674,6 +5801,13 @@ class ChannelEgressEndpoint {
     return ChannelEgressEndpoint(
       sourceIp: json['sourceIp'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sourceIp = this.sourceIp;
+    return {
+      if (sourceIp != null) 'sourceIp': sourceIp,
+    };
   }
 }
 
@@ -5862,6 +5996,45 @@ class ChannelSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cdiInputSpecification = this.cdiInputSpecification;
+    final channelClass = this.channelClass;
+    final destinations = this.destinations;
+    final egressEndpoints = this.egressEndpoints;
+    final id = this.id;
+    final inputAttachments = this.inputAttachments;
+    final inputSpecification = this.inputSpecification;
+    final logLevel = this.logLevel;
+    final maintenance = this.maintenance;
+    final name = this.name;
+    final pipelinesRunningCount = this.pipelinesRunningCount;
+    final roleArn = this.roleArn;
+    final state = this.state;
+    final tags = this.tags;
+    final vpc = this.vpc;
+    return {
+      if (arn != null) 'arn': arn,
+      if (cdiInputSpecification != null)
+        'cdiInputSpecification': cdiInputSpecification,
+      if (channelClass != null) 'channelClass': channelClass.toValue(),
+      if (destinations != null) 'destinations': destinations,
+      if (egressEndpoints != null) 'egressEndpoints': egressEndpoints,
+      if (id != null) 'id': id,
+      if (inputAttachments != null) 'inputAttachments': inputAttachments,
+      if (inputSpecification != null) 'inputSpecification': inputSpecification,
+      if (logLevel != null) 'logLevel': logLevel.toValue(),
+      if (maintenance != null) 'maintenance': maintenance,
+      if (name != null) 'name': name,
+      if (pipelinesRunningCount != null)
+        'pipelinesRunningCount': pipelinesRunningCount,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (vpc != null) 'vpc': vpc,
+    };
+  }
 }
 
 /// Placeholder documentation for ClaimDeviceResponse
@@ -5869,6 +6042,10 @@ class ClaimDeviceResponse {
   ClaimDeviceResponse();
   factory ClaimDeviceResponse.fromJson(Map<String, dynamic> _) {
     return ClaimDeviceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5898,6 +6075,13 @@ class CreateChannelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channel = this.channel;
+    return {
+      if (channel != null) 'channel': channel,
+    };
+  }
 }
 
 /// Placeholder documentation for CreateInputResponse
@@ -5913,6 +6097,13 @@ class CreateInputResponse {
           ? Input.fromJson(json['input'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final input = this.input;
+    return {
+      if (input != null) 'input': input,
+    };
   }
 }
 
@@ -5930,6 +6121,13 @@ class CreateInputSecurityGroupResponse {
               json['securityGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityGroup = this.securityGroup;
+    return {
+      if (securityGroup != null) 'securityGroup': securityGroup,
+    };
   }
 }
 
@@ -5949,6 +6147,13 @@ class CreateMultiplexProgramResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final multiplexProgram = this.multiplexProgram;
+    return {
+      if (multiplexProgram != null) 'multiplexProgram': multiplexProgram,
+    };
+  }
 }
 
 /// Placeholder documentation for CreateMultiplexResponse
@@ -5966,6 +6171,13 @@ class CreateMultiplexResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final multiplex = this.multiplex;
+    return {
+      if (multiplex != null) 'multiplex': multiplex,
+    };
+  }
 }
 
 /// Placeholder documentation for CreatePartnerInputResponse
@@ -5981,6 +6193,13 @@ class CreatePartnerInputResponse {
           ? Input.fromJson(json['input'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final input = this.input;
+    return {
+      if (input != null) 'input': input,
+    };
   }
 }
 
@@ -6109,6 +6328,49 @@ class DeleteChannelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cdiInputSpecification = this.cdiInputSpecification;
+    final channelClass = this.channelClass;
+    final destinations = this.destinations;
+    final egressEndpoints = this.egressEndpoints;
+    final encoderSettings = this.encoderSettings;
+    final id = this.id;
+    final inputAttachments = this.inputAttachments;
+    final inputSpecification = this.inputSpecification;
+    final logLevel = this.logLevel;
+    final maintenance = this.maintenance;
+    final name = this.name;
+    final pipelineDetails = this.pipelineDetails;
+    final pipelinesRunningCount = this.pipelinesRunningCount;
+    final roleArn = this.roleArn;
+    final state = this.state;
+    final tags = this.tags;
+    final vpc = this.vpc;
+    return {
+      if (arn != null) 'arn': arn,
+      if (cdiInputSpecification != null)
+        'cdiInputSpecification': cdiInputSpecification,
+      if (channelClass != null) 'channelClass': channelClass.toValue(),
+      if (destinations != null) 'destinations': destinations,
+      if (egressEndpoints != null) 'egressEndpoints': egressEndpoints,
+      if (encoderSettings != null) 'encoderSettings': encoderSettings,
+      if (id != null) 'id': id,
+      if (inputAttachments != null) 'inputAttachments': inputAttachments,
+      if (inputSpecification != null) 'inputSpecification': inputSpecification,
+      if (logLevel != null) 'logLevel': logLevel.toValue(),
+      if (maintenance != null) 'maintenance': maintenance,
+      if (name != null) 'name': name,
+      if (pipelineDetails != null) 'pipelineDetails': pipelineDetails,
+      if (pipelinesRunningCount != null)
+        'pipelinesRunningCount': pipelinesRunningCount,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (vpc != null) 'vpc': vpc,
+    };
+  }
 }
 
 /// Placeholder documentation for DeleteInputResponse
@@ -6117,6 +6379,10 @@ class DeleteInputResponse {
   factory DeleteInputResponse.fromJson(Map<String, dynamic> _) {
     return DeleteInputResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Placeholder documentation for DeleteInputSecurityGroupResponse
@@ -6124,6 +6390,10 @@ class DeleteInputSecurityGroupResponse {
   DeleteInputSecurityGroupResponse();
   factory DeleteInputSecurityGroupResponse.fromJson(Map<String, dynamic> _) {
     return DeleteInputSecurityGroupResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6173,6 +6443,23 @@ class DeleteMultiplexProgramResponse {
           .toList(),
       programName: json['programName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelId = this.channelId;
+    final multiplexProgramSettings = this.multiplexProgramSettings;
+    final packetIdentifiersMap = this.packetIdentifiersMap;
+    final pipelineDetails = this.pipelineDetails;
+    final programName = this.programName;
+    return {
+      if (channelId != null) 'channelId': channelId,
+      if (multiplexProgramSettings != null)
+        'multiplexProgramSettings': multiplexProgramSettings,
+      if (packetIdentifiersMap != null)
+        'packetIdentifiersMap': packetIdentifiersMap,
+      if (pipelineDetails != null) 'pipelineDetails': pipelineDetails,
+      if (programName != null) 'programName': programName,
+    };
   }
 }
 
@@ -6244,6 +6531,32 @@ class DeleteMultiplexResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final availabilityZones = this.availabilityZones;
+    final destinations = this.destinations;
+    final id = this.id;
+    final multiplexSettings = this.multiplexSettings;
+    final name = this.name;
+    final pipelinesRunningCount = this.pipelinesRunningCount;
+    final programCount = this.programCount;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (availabilityZones != null) 'availabilityZones': availabilityZones,
+      if (destinations != null) 'destinations': destinations,
+      if (id != null) 'id': id,
+      if (multiplexSettings != null) 'multiplexSettings': multiplexSettings,
+      if (name != null) 'name': name,
+      if (pipelinesRunningCount != null)
+        'pipelinesRunningCount': pipelinesRunningCount,
+      if (programCount != null) 'programCount': programCount,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -6363,6 +6676,51 @@ class DeleteReservationResponse {
       usagePrice: json['usagePrice'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final count = this.count;
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final durationUnits = this.durationUnits;
+    final end = this.end;
+    final fixedPrice = this.fixedPrice;
+    final name = this.name;
+    final offeringDescription = this.offeringDescription;
+    final offeringId = this.offeringId;
+    final offeringType = this.offeringType;
+    final region = this.region;
+    final renewalSettings = this.renewalSettings;
+    final reservationId = this.reservationId;
+    final resourceSpecification = this.resourceSpecification;
+    final start = this.start;
+    final state = this.state;
+    final tags = this.tags;
+    final usagePrice = this.usagePrice;
+    return {
+      if (arn != null) 'arn': arn,
+      if (count != null) 'count': count,
+      if (currencyCode != null) 'currencyCode': currencyCode,
+      if (duration != null) 'duration': duration,
+      if (durationUnits != null) 'durationUnits': durationUnits.toValue(),
+      if (end != null) 'end': end,
+      if (fixedPrice != null) 'fixedPrice': fixedPrice,
+      if (name != null) 'name': name,
+      if (offeringDescription != null)
+        'offeringDescription': offeringDescription,
+      if (offeringId != null) 'offeringId': offeringId,
+      if (offeringType != null) 'offeringType': offeringType.toValue(),
+      if (region != null) 'region': region,
+      if (renewalSettings != null) 'renewalSettings': renewalSettings,
+      if (reservationId != null) 'reservationId': reservationId,
+      if (resourceSpecification != null)
+        'resourceSpecification': resourceSpecification,
+      if (start != null) 'start': start,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (usagePrice != null) 'usagePrice': usagePrice,
+    };
+  }
 }
 
 /// Placeholder documentation for DeleteScheduleResponse
@@ -6370,6 +6728,10 @@ class DeleteScheduleResponse {
   DeleteScheduleResponse();
   factory DeleteScheduleResponse.fromJson(Map<String, dynamic> _) {
     return DeleteScheduleResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6498,6 +6860,49 @@ class DescribeChannelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cdiInputSpecification = this.cdiInputSpecification;
+    final channelClass = this.channelClass;
+    final destinations = this.destinations;
+    final egressEndpoints = this.egressEndpoints;
+    final encoderSettings = this.encoderSettings;
+    final id = this.id;
+    final inputAttachments = this.inputAttachments;
+    final inputSpecification = this.inputSpecification;
+    final logLevel = this.logLevel;
+    final maintenance = this.maintenance;
+    final name = this.name;
+    final pipelineDetails = this.pipelineDetails;
+    final pipelinesRunningCount = this.pipelinesRunningCount;
+    final roleArn = this.roleArn;
+    final state = this.state;
+    final tags = this.tags;
+    final vpc = this.vpc;
+    return {
+      if (arn != null) 'arn': arn,
+      if (cdiInputSpecification != null)
+        'cdiInputSpecification': cdiInputSpecification,
+      if (channelClass != null) 'channelClass': channelClass.toValue(),
+      if (destinations != null) 'destinations': destinations,
+      if (egressEndpoints != null) 'egressEndpoints': egressEndpoints,
+      if (encoderSettings != null) 'encoderSettings': encoderSettings,
+      if (id != null) 'id': id,
+      if (inputAttachments != null) 'inputAttachments': inputAttachments,
+      if (inputSpecification != null) 'inputSpecification': inputSpecification,
+      if (logLevel != null) 'logLevel': logLevel.toValue(),
+      if (maintenance != null) 'maintenance': maintenance,
+      if (name != null) 'name': name,
+      if (pipelineDetails != null) 'pipelineDetails': pipelineDetails,
+      if (pipelinesRunningCount != null)
+        'pipelinesRunningCount': pipelinesRunningCount,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (vpc != null) 'vpc': vpc,
+    };
+  }
 }
 
 /// Placeholder documentation for DescribeInputDeviceResponse
@@ -6584,6 +6989,37 @@ class DescribeInputDeviceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final connectionState = this.connectionState;
+    final deviceSettingsSyncState = this.deviceSettingsSyncState;
+    final deviceUpdateStatus = this.deviceUpdateStatus;
+    final hdDeviceSettings = this.hdDeviceSettings;
+    final id = this.id;
+    final macAddress = this.macAddress;
+    final name = this.name;
+    final networkSettings = this.networkSettings;
+    final serialNumber = this.serialNumber;
+    final type = this.type;
+    final uhdDeviceSettings = this.uhdDeviceSettings;
+    return {
+      if (arn != null) 'arn': arn,
+      if (connectionState != null) 'connectionState': connectionState.toValue(),
+      if (deviceSettingsSyncState != null)
+        'deviceSettingsSyncState': deviceSettingsSyncState.toValue(),
+      if (deviceUpdateStatus != null)
+        'deviceUpdateStatus': deviceUpdateStatus.toValue(),
+      if (hdDeviceSettings != null) 'hdDeviceSettings': hdDeviceSettings,
+      if (id != null) 'id': id,
+      if (macAddress != null) 'macAddress': macAddress,
+      if (name != null) 'name': name,
+      if (networkSettings != null) 'networkSettings': networkSettings,
+      if (serialNumber != null) 'serialNumber': serialNumber,
+      if (type != null) 'type': type.toValue(),
+      if (uhdDeviceSettings != null) 'uhdDeviceSettings': uhdDeviceSettings,
+    };
+  }
 }
 
 /// Placeholder documentation for DescribeInputDeviceThumbnailResponse
@@ -6611,6 +7047,17 @@ class DescribeInputDeviceThumbnailResponse {
     this.eTag,
     this.lastModified,
   });
+
+  Map<String, dynamic> toJson() {
+    final body = this.body;
+    final contentLength = this.contentLength;
+    final contentType = this.contentType;
+    final eTag = this.eTag;
+    final lastModified = this.lastModified;
+    return {
+      if (body != null) 'body': base64Encode(body),
+    };
+  }
 }
 
 /// Placeholder documentation for DescribeInputResponse
@@ -6732,6 +7179,43 @@ class DescribeInputResponse {
       type: (json['type'] as String?)?.toInputType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attachedChannels = this.attachedChannels;
+    final destinations = this.destinations;
+    final id = this.id;
+    final inputClass = this.inputClass;
+    final inputDevices = this.inputDevices;
+    final inputPartnerIds = this.inputPartnerIds;
+    final inputSourceType = this.inputSourceType;
+    final mediaConnectFlows = this.mediaConnectFlows;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    final securityGroups = this.securityGroups;
+    final sources = this.sources;
+    final state = this.state;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (attachedChannels != null) 'attachedChannels': attachedChannels,
+      if (destinations != null) 'destinations': destinations,
+      if (id != null) 'id': id,
+      if (inputClass != null) 'inputClass': inputClass.toValue(),
+      if (inputDevices != null) 'inputDevices': inputDevices,
+      if (inputPartnerIds != null) 'inputPartnerIds': inputPartnerIds,
+      if (inputSourceType != null) 'inputSourceType': inputSourceType.toValue(),
+      if (mediaConnectFlows != null) 'mediaConnectFlows': mediaConnectFlows,
+      if (name != null) 'name': name,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (securityGroups != null) 'securityGroups': securityGroups,
+      if (sources != null) 'sources': sources,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// Placeholder documentation for DescribeInputSecurityGroupResponse
@@ -6779,6 +7263,23 @@ class DescribeInputSecurityGroupResponse {
           .map((e) => InputWhitelistRule.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final inputs = this.inputs;
+    final state = this.state;
+    final tags = this.tags;
+    final whitelistRules = this.whitelistRules;
+    return {
+      if (arn != null) 'arn': arn,
+      if (id != null) 'id': id,
+      if (inputs != null) 'inputs': inputs,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (whitelistRules != null) 'whitelistRules': whitelistRules,
+    };
   }
 }
 
@@ -6828,6 +7329,23 @@ class DescribeMultiplexProgramResponse {
           .toList(),
       programName: json['programName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelId = this.channelId;
+    final multiplexProgramSettings = this.multiplexProgramSettings;
+    final packetIdentifiersMap = this.packetIdentifiersMap;
+    final pipelineDetails = this.pipelineDetails;
+    final programName = this.programName;
+    return {
+      if (channelId != null) 'channelId': channelId,
+      if (multiplexProgramSettings != null)
+        'multiplexProgramSettings': multiplexProgramSettings,
+      if (packetIdentifiersMap != null)
+        'packetIdentifiersMap': packetIdentifiersMap,
+      if (pipelineDetails != null) 'pipelineDetails': pipelineDetails,
+      if (programName != null) 'programName': programName,
+    };
   }
 }
 
@@ -6900,6 +7418,32 @@ class DescribeMultiplexResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final availabilityZones = this.availabilityZones;
+    final destinations = this.destinations;
+    final id = this.id;
+    final multiplexSettings = this.multiplexSettings;
+    final name = this.name;
+    final pipelinesRunningCount = this.pipelinesRunningCount;
+    final programCount = this.programCount;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (availabilityZones != null) 'availabilityZones': availabilityZones,
+      if (destinations != null) 'destinations': destinations,
+      if (id != null) 'id': id,
+      if (multiplexSettings != null) 'multiplexSettings': multiplexSettings,
+      if (name != null) 'name': name,
+      if (pipelinesRunningCount != null)
+        'pipelinesRunningCount': pipelinesRunningCount,
+      if (programCount != null) 'programCount': programCount,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Placeholder documentation for DescribeOfferingResponse
@@ -6971,6 +7515,35 @@ class DescribeOfferingResponse {
           : null,
       usagePrice: json['usagePrice'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final durationUnits = this.durationUnits;
+    final fixedPrice = this.fixedPrice;
+    final offeringDescription = this.offeringDescription;
+    final offeringId = this.offeringId;
+    final offeringType = this.offeringType;
+    final region = this.region;
+    final resourceSpecification = this.resourceSpecification;
+    final usagePrice = this.usagePrice;
+    return {
+      if (arn != null) 'arn': arn,
+      if (currencyCode != null) 'currencyCode': currencyCode,
+      if (duration != null) 'duration': duration,
+      if (durationUnits != null) 'durationUnits': durationUnits.toValue(),
+      if (fixedPrice != null) 'fixedPrice': fixedPrice,
+      if (offeringDescription != null)
+        'offeringDescription': offeringDescription,
+      if (offeringId != null) 'offeringId': offeringId,
+      if (offeringType != null) 'offeringType': offeringType.toValue(),
+      if (region != null) 'region': region,
+      if (resourceSpecification != null)
+        'resourceSpecification': resourceSpecification,
+      if (usagePrice != null) 'usagePrice': usagePrice,
+    };
   }
 }
 
@@ -7090,6 +7663,51 @@ class DescribeReservationResponse {
       usagePrice: json['usagePrice'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final count = this.count;
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final durationUnits = this.durationUnits;
+    final end = this.end;
+    final fixedPrice = this.fixedPrice;
+    final name = this.name;
+    final offeringDescription = this.offeringDescription;
+    final offeringId = this.offeringId;
+    final offeringType = this.offeringType;
+    final region = this.region;
+    final renewalSettings = this.renewalSettings;
+    final reservationId = this.reservationId;
+    final resourceSpecification = this.resourceSpecification;
+    final start = this.start;
+    final state = this.state;
+    final tags = this.tags;
+    final usagePrice = this.usagePrice;
+    return {
+      if (arn != null) 'arn': arn,
+      if (count != null) 'count': count,
+      if (currencyCode != null) 'currencyCode': currencyCode,
+      if (duration != null) 'duration': duration,
+      if (durationUnits != null) 'durationUnits': durationUnits.toValue(),
+      if (end != null) 'end': end,
+      if (fixedPrice != null) 'fixedPrice': fixedPrice,
+      if (name != null) 'name': name,
+      if (offeringDescription != null)
+        'offeringDescription': offeringDescription,
+      if (offeringId != null) 'offeringId': offeringId,
+      if (offeringType != null) 'offeringType': offeringType.toValue(),
+      if (region != null) 'region': region,
+      if (renewalSettings != null) 'renewalSettings': renewalSettings,
+      if (reservationId != null) 'reservationId': reservationId,
+      if (resourceSpecification != null)
+        'resourceSpecification': resourceSpecification,
+      if (start != null) 'start': start,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (usagePrice != null) 'usagePrice': usagePrice,
+    };
+  }
 }
 
 /// Placeholder documentation for DescribeScheduleResponse
@@ -7112,6 +7730,15 @@ class DescribeScheduleResponse {
           .map((e) => ScheduleAction.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final scheduleActions = this.scheduleActions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (scheduleActions != null) 'scheduleActions': scheduleActions,
+    };
   }
 }
 
@@ -13907,6 +14534,43 @@ class Input {
       type: (json['type'] as String?)?.toInputType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final attachedChannels = this.attachedChannels;
+    final destinations = this.destinations;
+    final id = this.id;
+    final inputClass = this.inputClass;
+    final inputDevices = this.inputDevices;
+    final inputPartnerIds = this.inputPartnerIds;
+    final inputSourceType = this.inputSourceType;
+    final mediaConnectFlows = this.mediaConnectFlows;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    final securityGroups = this.securityGroups;
+    final sources = this.sources;
+    final state = this.state;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      if (arn != null) 'arn': arn,
+      if (attachedChannels != null) 'attachedChannels': attachedChannels,
+      if (destinations != null) 'destinations': destinations,
+      if (id != null) 'id': id,
+      if (inputClass != null) 'inputClass': inputClass.toValue(),
+      if (inputDevices != null) 'inputDevices': inputDevices,
+      if (inputPartnerIds != null) 'inputPartnerIds': inputPartnerIds,
+      if (inputSourceType != null) 'inputSourceType': inputSourceType.toValue(),
+      if (mediaConnectFlows != null) 'mediaConnectFlows': mediaConnectFlows,
+      if (name != null) 'name': name,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (securityGroups != null) 'securityGroups': securityGroups,
+      if (sources != null) 'sources': sources,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// Placeholder documentation for InputAttachment
@@ -14187,6 +14851,19 @@ class InputDestination {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ip = this.ip;
+    final port = this.port;
+    final url = this.url;
+    final vpc = this.vpc;
+    return {
+      if (ip != null) 'ip': ip,
+      if (port != null) 'port': port,
+      if (url != null) 'url': url,
+      if (vpc != null) 'vpc': vpc,
+    };
+  }
 }
 
 /// Endpoint settings for a PUSH type input.
@@ -14198,6 +14875,7 @@ class InputDestinationRequest {
   InputDestinationRequest({
     this.streamName,
   });
+
   Map<String, dynamic> toJson() {
     final streamName = this.streamName;
     return {
@@ -14223,6 +14901,15 @@ class InputDestinationVpc {
       availabilityZone: json['availabilityZone'] as String?,
       networkInterfaceId: json['networkInterfaceId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final networkInterfaceId = this.networkInterfaceId;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+    };
   }
 }
 
@@ -14271,6 +14958,7 @@ class InputDeviceConfigurableSettings {
     this.configuredInput,
     this.maxBitrate,
   });
+
   Map<String, dynamic> toJson() {
     final configuredInput = this.configuredInput;
     final maxBitrate = this.maxBitrate;
@@ -14399,6 +15087,27 @@ class InputDeviceHdSettings {
       width: json['width'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeInput = this.activeInput;
+    final configuredInput = this.configuredInput;
+    final deviceState = this.deviceState;
+    final framerate = this.framerate;
+    final height = this.height;
+    final maxBitrate = this.maxBitrate;
+    final scanType = this.scanType;
+    final width = this.width;
+    return {
+      if (activeInput != null) 'activeInput': activeInput.toValue(),
+      if (configuredInput != null) 'configuredInput': configuredInput.toValue(),
+      if (deviceState != null) 'deviceState': deviceState.toValue(),
+      if (framerate != null) 'framerate': framerate,
+      if (height != null) 'height': height,
+      if (maxBitrate != null) 'maxBitrate': maxBitrate,
+      if (scanType != null) 'scanType': scanType.toValue(),
+      if (width != null) 'width': width,
+    };
+  }
 }
 
 /// Specifies whether the input device has been configured (outside of
@@ -14470,6 +15179,21 @@ class InputDeviceNetworkSettings {
       subnetMask: json['subnetMask'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dnsAddresses = this.dnsAddresses;
+    final gateway = this.gateway;
+    final ipAddress = this.ipAddress;
+    final ipScheme = this.ipScheme;
+    final subnetMask = this.subnetMask;
+    return {
+      if (dnsAddresses != null) 'dnsAddresses': dnsAddresses,
+      if (gateway != null) 'gateway': gateway,
+      if (ipAddress != null) 'ipAddress': ipAddress,
+      if (ipScheme != null) 'ipScheme': ipScheme.toValue(),
+      if (subnetMask != null) 'subnetMask': subnetMask,
+    };
+  }
 }
 
 /// Settings for an input device.
@@ -14480,6 +15204,7 @@ class InputDeviceRequest {
   InputDeviceRequest({
     this.id,
   });
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     return {
@@ -14652,6 +15377,37 @@ class InputDeviceSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final connectionState = this.connectionState;
+    final deviceSettingsSyncState = this.deviceSettingsSyncState;
+    final deviceUpdateStatus = this.deviceUpdateStatus;
+    final hdDeviceSettings = this.hdDeviceSettings;
+    final id = this.id;
+    final macAddress = this.macAddress;
+    final name = this.name;
+    final networkSettings = this.networkSettings;
+    final serialNumber = this.serialNumber;
+    final type = this.type;
+    final uhdDeviceSettings = this.uhdDeviceSettings;
+    return {
+      if (arn != null) 'arn': arn,
+      if (connectionState != null) 'connectionState': connectionState.toValue(),
+      if (deviceSettingsSyncState != null)
+        'deviceSettingsSyncState': deviceSettingsSyncState.toValue(),
+      if (deviceUpdateStatus != null)
+        'deviceUpdateStatus': deviceUpdateStatus.toValue(),
+      if (hdDeviceSettings != null) 'hdDeviceSettings': hdDeviceSettings,
+      if (id != null) 'id': id,
+      if (macAddress != null) 'macAddress': macAddress,
+      if (name != null) 'name': name,
+      if (networkSettings != null) 'networkSettings': networkSettings,
+      if (serialNumber != null) 'serialNumber': serialNumber,
+      if (type != null) 'type': type.toValue(),
+      if (uhdDeviceSettings != null) 'uhdDeviceSettings': uhdDeviceSettings,
+    };
+  }
 }
 
 /// The type of device transfer. INCOMING for an input device that is being
@@ -14762,6 +15518,27 @@ class InputDeviceUhdSettings {
       scanType: (json['scanType'] as String?)?.toInputDeviceScanType(),
       width: json['width'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activeInput = this.activeInput;
+    final configuredInput = this.configuredInput;
+    final deviceState = this.deviceState;
+    final framerate = this.framerate;
+    final height = this.height;
+    final maxBitrate = this.maxBitrate;
+    final scanType = this.scanType;
+    final width = this.width;
+    return {
+      if (activeInput != null) 'activeInput': activeInput.toValue(),
+      if (configuredInput != null) 'configuredInput': configuredInput.toValue(),
+      if (deviceState != null) 'deviceState': deviceState.toValue(),
+      if (framerate != null) 'framerate': framerate,
+      if (height != null) 'height': height,
+      if (maxBitrate != null) 'maxBitrate': maxBitrate,
+      if (scanType != null) 'scanType': scanType.toValue(),
+      if (width != null) 'width': width,
+    };
   }
 }
 
@@ -15275,6 +16052,23 @@ class InputSecurityGroup {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final inputs = this.inputs;
+    final state = this.state;
+    final tags = this.tags;
+    final whitelistRules = this.whitelistRules;
+    return {
+      if (arn != null) 'arn': arn,
+      if (id != null) 'id': id,
+      if (inputs != null) 'inputs': inputs,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (whitelistRules != null) 'whitelistRules': whitelistRules,
+    };
+  }
 }
 
 /// Placeholder documentation for InputSecurityGroupState
@@ -15464,6 +16258,17 @@ class InputSource {
       username: json['username'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final passwordParam = this.passwordParam;
+    final url = this.url;
+    final username = this.username;
+    return {
+      if (passwordParam != null) 'passwordParam': passwordParam,
+      if (url != null) 'url': url,
+      if (username != null) 'username': username,
+    };
+  }
 }
 
 /// Input Source End Behavior
@@ -15512,6 +16317,7 @@ class InputSourceRequest {
     this.url,
     this.username,
   });
+
   Map<String, dynamic> toJson() {
     final passwordParam = this.passwordParam;
     final url = this.url;
@@ -15808,6 +16614,7 @@ class InputVpcRequest {
     required this.subnetIds,
     this.securityGroupIds,
   });
+
   Map<String, dynamic> toJson() {
     final subnetIds = this.subnetIds;
     final securityGroupIds = this.securityGroupIds;
@@ -15831,6 +16638,13 @@ class InputWhitelistRule {
       cidr: json['cidr'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cidr = this.cidr;
+    return {
+      if (cidr != null) 'cidr': cidr,
+    };
+  }
 }
 
 /// An IPv4 CIDR to whitelist.
@@ -15841,6 +16655,7 @@ class InputWhitelistRuleCidr {
   InputWhitelistRuleCidr({
     this.cidr,
   });
+
   Map<String, dynamic> toJson() {
     final cidr = this.cidr;
     return {
@@ -15922,6 +16737,15 @@ class ListChannelsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channels = this.channels;
+    final nextToken = this.nextToken;
+    return {
+      if (channels != null) 'channels': channels,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Placeholder documentation for ListInputDeviceTransfersResponse
@@ -15947,6 +16771,16 @@ class ListInputDeviceTransfersResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inputDeviceTransfers = this.inputDeviceTransfers;
+    final nextToken = this.nextToken;
+    return {
+      if (inputDeviceTransfers != null)
+        'inputDeviceTransfers': inputDeviceTransfers,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Placeholder documentation for ListInputDevicesResponse
@@ -15970,6 +16804,15 @@ class ListInputDevicesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inputDevices = this.inputDevices;
+    final nextToken = this.nextToken;
+    return {
+      if (inputDevices != null) 'inputDevices': inputDevices,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Placeholder documentation for ListInputSecurityGroupsResponse
@@ -15991,6 +16834,16 @@ class ListInputSecurityGroupsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inputSecurityGroups = this.inputSecurityGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (inputSecurityGroups != null)
+        'inputSecurityGroups': inputSecurityGroups,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Placeholder documentation for ListInputsResponse
@@ -16010,6 +16863,15 @@ class ListInputsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final inputs = this.inputs;
+    final nextToken = this.nextToken;
+    return {
+      if (inputs != null) 'inputs': inputs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -16035,6 +16897,15 @@ class ListMultiplexProgramsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final multiplexPrograms = this.multiplexPrograms;
+    final nextToken = this.nextToken;
+    return {
+      if (multiplexPrograms != null) 'multiplexPrograms': multiplexPrograms,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Placeholder documentation for ListMultiplexesResponse
@@ -16057,6 +16928,15 @@ class ListMultiplexesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final multiplexes = this.multiplexes;
+    final nextToken = this.nextToken;
+    return {
+      if (multiplexes != null) 'multiplexes': multiplexes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -16081,6 +16961,15 @@ class ListOfferingsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final offerings = this.offerings;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (offerings != null) 'offerings': offerings,
+    };
+  }
 }
 
 /// Placeholder documentation for ListReservationsResponse
@@ -16104,6 +16993,15 @@ class ListReservationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reservations = this.reservations;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (reservations != null) 'reservations': reservations,
+    };
+  }
 }
 
 /// Placeholder documentation for ListTagsForResourceResponse
@@ -16118,6 +17016,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -17492,6 +18397,7 @@ class MaintenanceCreateSettings {
     this.maintenanceDay,
     this.maintenanceStartTime,
   });
+
   Map<String, dynamic> toJson() {
     final maintenanceDay = this.maintenanceDay;
     final maintenanceStartTime = this.maintenanceStartTime;
@@ -17586,6 +18492,22 @@ class MaintenanceStatus {
       maintenanceStartTime: json['maintenanceStartTime'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final maintenanceDay = this.maintenanceDay;
+    final maintenanceDeadline = this.maintenanceDeadline;
+    final maintenanceScheduledDate = this.maintenanceScheduledDate;
+    final maintenanceStartTime = this.maintenanceStartTime;
+    return {
+      if (maintenanceDay != null) 'maintenanceDay': maintenanceDay.toValue(),
+      if (maintenanceDeadline != null)
+        'maintenanceDeadline': maintenanceDeadline,
+      if (maintenanceScheduledDate != null)
+        'maintenanceScheduledDate': maintenanceScheduledDate,
+      if (maintenanceStartTime != null)
+        'maintenanceStartTime': maintenanceStartTime,
+    };
+  }
 }
 
 /// Placeholder documentation for MaintenanceUpdateSettings
@@ -17607,6 +18529,7 @@ class MaintenanceUpdateSettings {
     this.maintenanceScheduledDate,
     this.maintenanceStartTime,
   });
+
   Map<String, dynamic> toJson() {
     final maintenanceDay = this.maintenanceDay;
     final maintenanceScheduledDate = this.maintenanceScheduledDate;
@@ -17634,6 +18557,13 @@ class MediaConnectFlow {
       flowArn: json['flowArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final flowArn = this.flowArn;
+    return {
+      if (flowArn != null) 'flowArn': flowArn,
+    };
+  }
 }
 
 /// The settings for a MediaConnect Flow.
@@ -17644,6 +18574,7 @@ class MediaConnectFlowRequest {
   MediaConnectFlowRequest({
     this.flowArn,
   });
+
   Map<String, dynamic> toJson() {
     final flowArn = this.flowArn;
     return {
@@ -18711,6 +19642,32 @@ class Multiplex {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final availabilityZones = this.availabilityZones;
+    final destinations = this.destinations;
+    final id = this.id;
+    final multiplexSettings = this.multiplexSettings;
+    final name = this.name;
+    final pipelinesRunningCount = this.pipelinesRunningCount;
+    final programCount = this.programCount;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (availabilityZones != null) 'availabilityZones': availabilityZones,
+      if (destinations != null) 'destinations': destinations,
+      if (id != null) 'id': id,
+      if (multiplexSettings != null) 'multiplexSettings': multiplexSettings,
+      if (name != null) 'name': name,
+      if (pipelinesRunningCount != null)
+        'pipelinesRunningCount': pipelinesRunningCount,
+      if (programCount != null) 'programCount': programCount,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Multiplex Group Settings
@@ -18739,6 +19696,13 @@ class MultiplexMediaConnectOutputDestinationSettings {
       entitlementArn: json['entitlementArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final entitlementArn = this.entitlementArn;
+    return {
+      if (entitlementArn != null) 'entitlementArn': entitlementArn,
+    };
+  }
 }
 
 /// Multiplex output destination settings
@@ -18756,6 +19720,14 @@ class MultiplexOutputDestination {
               json['mediaConnectSettings'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mediaConnectSettings = this.mediaConnectSettings;
+    return {
+      if (mediaConnectSettings != null)
+        'mediaConnectSettings': mediaConnectSettings,
+    };
   }
 }
 
@@ -18828,6 +19800,23 @@ class MultiplexProgram {
           .toList(),
       programName: json['programName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelId = this.channelId;
+    final multiplexProgramSettings = this.multiplexProgramSettings;
+    final packetIdentifiersMap = this.packetIdentifiersMap;
+    final pipelineDetails = this.pipelineDetails;
+    final programName = this.programName;
+    return {
+      if (channelId != null) 'channelId': channelId,
+      if (multiplexProgramSettings != null)
+        'multiplexProgramSettings': multiplexProgramSettings,
+      if (packetIdentifiersMap != null)
+        'packetIdentifiersMap': packetIdentifiersMap,
+      if (pipelineDetails != null) 'pipelineDetails': pipelineDetails,
+      if (programName != null) 'programName': programName,
+    };
   }
 }
 
@@ -18928,6 +19917,37 @@ class MultiplexProgramPacketIdentifiersMap {
       videoPid: json['videoPid'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final audioPids = this.audioPids;
+    final dvbSubPids = this.dvbSubPids;
+    final dvbTeletextPid = this.dvbTeletextPid;
+    final etvPlatformPid = this.etvPlatformPid;
+    final etvSignalPid = this.etvSignalPid;
+    final klvDataPids = this.klvDataPids;
+    final pcrPid = this.pcrPid;
+    final pmtPid = this.pmtPid;
+    final privateMetadataPid = this.privateMetadataPid;
+    final scte27Pids = this.scte27Pids;
+    final scte35Pid = this.scte35Pid;
+    final timedMetadataPid = this.timedMetadataPid;
+    final videoPid = this.videoPid;
+    return {
+      if (audioPids != null) 'audioPids': audioPids,
+      if (dvbSubPids != null) 'dvbSubPids': dvbSubPids,
+      if (dvbTeletextPid != null) 'dvbTeletextPid': dvbTeletextPid,
+      if (etvPlatformPid != null) 'etvPlatformPid': etvPlatformPid,
+      if (etvSignalPid != null) 'etvSignalPid': etvSignalPid,
+      if (klvDataPids != null) 'klvDataPids': klvDataPids,
+      if (pcrPid != null) 'pcrPid': pcrPid,
+      if (pmtPid != null) 'pmtPid': pmtPid,
+      if (privateMetadataPid != null) 'privateMetadataPid': privateMetadataPid,
+      if (scte27Pids != null) 'scte27Pids': scte27Pids,
+      if (scte35Pid != null) 'scte35Pid': scte35Pid,
+      if (timedMetadataPid != null) 'timedMetadataPid': timedMetadataPid,
+      if (videoPid != null) 'videoPid': videoPid,
+    };
+  }
 }
 
 /// The current source for one of the pipelines in the multiplex.
@@ -18948,6 +19968,16 @@ class MultiplexProgramPipelineDetail {
       activeChannelPipeline: json['activeChannelPipeline'] as String?,
       pipelineId: json['pipelineId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activeChannelPipeline = this.activeChannelPipeline;
+    final pipelineId = this.pipelineId;
+    return {
+      if (activeChannelPipeline != null)
+        'activeChannelPipeline': activeChannelPipeline,
+      if (pipelineId != null) 'pipelineId': pipelineId,
+    };
   }
 }
 
@@ -19050,6 +20080,15 @@ class MultiplexProgramSummary {
       programName: json['programName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channelId = this.channelId;
+    final programName = this.programName;
+    return {
+      if (channelId != null) 'channelId': channelId,
+      if (programName != null) 'programName': programName,
+    };
+  }
 }
 
 /// Contains configuration for a Multiplex event
@@ -19113,6 +20152,14 @@ class MultiplexSettingsSummary {
     return MultiplexSettingsSummary(
       transportStreamBitrate: json['transportStreamBitrate'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transportStreamBitrate = this.transportStreamBitrate;
+    return {
+      if (transportStreamBitrate != null)
+        'transportStreamBitrate': transportStreamBitrate,
+    };
   }
 }
 
@@ -19279,6 +20326,30 @@ class MultiplexSummary {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final availabilityZones = this.availabilityZones;
+    final id = this.id;
+    final multiplexSettings = this.multiplexSettings;
+    final name = this.name;
+    final pipelinesRunningCount = this.pipelinesRunningCount;
+    final programCount = this.programCount;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (availabilityZones != null) 'availabilityZones': availabilityZones,
+      if (id != null) 'id': id,
+      if (multiplexSettings != null) 'multiplexSettings': multiplexSettings,
+      if (name != null) 'name': name,
+      if (pipelinesRunningCount != null)
+        'pipelinesRunningCount': pipelinesRunningCount,
+      if (programCount != null) 'programCount': programCount,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -19695,6 +20766,35 @@ class Offering {
           : null,
       usagePrice: json['usagePrice'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final durationUnits = this.durationUnits;
+    final fixedPrice = this.fixedPrice;
+    final offeringDescription = this.offeringDescription;
+    final offeringId = this.offeringId;
+    final offeringType = this.offeringType;
+    final region = this.region;
+    final resourceSpecification = this.resourceSpecification;
+    final usagePrice = this.usagePrice;
+    return {
+      if (arn != null) 'arn': arn,
+      if (currencyCode != null) 'currencyCode': currencyCode,
+      if (duration != null) 'duration': duration,
+      if (durationUnits != null) 'durationUnits': durationUnits.toValue(),
+      if (fixedPrice != null) 'fixedPrice': fixedPrice,
+      if (offeringDescription != null)
+        'offeringDescription': offeringDescription,
+      if (offeringId != null) 'offeringId': offeringId,
+      if (offeringType != null) 'offeringType': offeringType.toValue(),
+      if (region != null) 'region': region,
+      if (resourceSpecification != null)
+        'resourceSpecification': resourceSpecification,
+      if (usagePrice != null) 'usagePrice': usagePrice,
+    };
   }
 }
 
@@ -20214,6 +21314,25 @@ class PipelineDetail {
       pipelineId: json['pipelineId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeInputAttachmentName = this.activeInputAttachmentName;
+    final activeInputSwitchActionName = this.activeInputSwitchActionName;
+    final activeMotionGraphicsActionName = this.activeMotionGraphicsActionName;
+    final activeMotionGraphicsUri = this.activeMotionGraphicsUri;
+    final pipelineId = this.pipelineId;
+    return {
+      if (activeInputAttachmentName != null)
+        'activeInputAttachmentName': activeInputAttachmentName,
+      if (activeInputSwitchActionName != null)
+        'activeInputSwitchActionName': activeInputSwitchActionName,
+      if (activeMotionGraphicsActionName != null)
+        'activeMotionGraphicsActionName': activeMotionGraphicsActionName,
+      if (activeMotionGraphicsUri != null)
+        'activeMotionGraphicsUri': activeMotionGraphicsUri,
+      if (pipelineId != null) 'pipelineId': pipelineId,
+    };
+  }
 }
 
 /// Pipeline ID
@@ -20322,6 +21441,13 @@ class PurchaseOfferingResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final reservation = this.reservation;
+    return {
+      if (reservation != null) 'reservation': reservation,
+    };
+  }
 }
 
 /// Raw Settings
@@ -20371,6 +21497,10 @@ class RebootInputDeviceResponse {
   factory RebootInputDeviceResponse.fromJson(Map<String, dynamic> _) {
     return RebootInputDeviceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Rec601 Settings
@@ -20402,6 +21532,10 @@ class RejectInputDeviceTransferResponse {
   RejectInputDeviceTransferResponse();
   factory RejectInputDeviceTransferResponse.fromJson(Map<String, dynamic> _) {
     return RejectInputDeviceTransferResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -20592,6 +21726,51 @@ class Reservation {
           ?.map((k, e) => MapEntry(k, e as String)),
       usagePrice: json['usagePrice'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final count = this.count;
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final durationUnits = this.durationUnits;
+    final end = this.end;
+    final fixedPrice = this.fixedPrice;
+    final name = this.name;
+    final offeringDescription = this.offeringDescription;
+    final offeringId = this.offeringId;
+    final offeringType = this.offeringType;
+    final region = this.region;
+    final renewalSettings = this.renewalSettings;
+    final reservationId = this.reservationId;
+    final resourceSpecification = this.resourceSpecification;
+    final start = this.start;
+    final state = this.state;
+    final tags = this.tags;
+    final usagePrice = this.usagePrice;
+    return {
+      if (arn != null) 'arn': arn,
+      if (count != null) 'count': count,
+      if (currencyCode != null) 'currencyCode': currencyCode,
+      if (duration != null) 'duration': duration,
+      if (durationUnits != null) 'durationUnits': durationUnits.toValue(),
+      if (end != null) 'end': end,
+      if (fixedPrice != null) 'fixedPrice': fixedPrice,
+      if (name != null) 'name': name,
+      if (offeringDescription != null)
+        'offeringDescription': offeringDescription,
+      if (offeringId != null) 'offeringId': offeringId,
+      if (offeringType != null) 'offeringType': offeringType.toValue(),
+      if (region != null) 'region': region,
+      if (renewalSettings != null) 'renewalSettings': renewalSettings,
+      if (reservationId != null) 'reservationId': reservationId,
+      if (resourceSpecification != null)
+        'resourceSpecification': resourceSpecification,
+      if (start != null) 'start': start,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (usagePrice != null) 'usagePrice': usagePrice,
+    };
   }
 }
 
@@ -20830,6 +22009,28 @@ class ReservationResourceSpecification {
       videoQuality:
           (json['videoQuality'] as String?)?.toReservationVideoQuality(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channelClass = this.channelClass;
+    final codec = this.codec;
+    final maximumBitrate = this.maximumBitrate;
+    final maximumFramerate = this.maximumFramerate;
+    final resolution = this.resolution;
+    final resourceType = this.resourceType;
+    final specialFeature = this.specialFeature;
+    final videoQuality = this.videoQuality;
+    return {
+      if (channelClass != null) 'channelClass': channelClass.toValue(),
+      if (codec != null) 'codec': codec.toValue(),
+      if (maximumBitrate != null) 'maximumBitrate': maximumBitrate.toValue(),
+      if (maximumFramerate != null)
+        'maximumFramerate': maximumFramerate.toValue(),
+      if (resolution != null) 'resolution': resolution.toValue(),
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (specialFeature != null) 'specialFeature': specialFeature.toValue(),
+      if (videoQuality != null) 'videoQuality': videoQuality.toValue(),
+    };
   }
 }
 
@@ -22879,6 +24080,49 @@ class StartChannelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cdiInputSpecification = this.cdiInputSpecification;
+    final channelClass = this.channelClass;
+    final destinations = this.destinations;
+    final egressEndpoints = this.egressEndpoints;
+    final encoderSettings = this.encoderSettings;
+    final id = this.id;
+    final inputAttachments = this.inputAttachments;
+    final inputSpecification = this.inputSpecification;
+    final logLevel = this.logLevel;
+    final maintenance = this.maintenance;
+    final name = this.name;
+    final pipelineDetails = this.pipelineDetails;
+    final pipelinesRunningCount = this.pipelinesRunningCount;
+    final roleArn = this.roleArn;
+    final state = this.state;
+    final tags = this.tags;
+    final vpc = this.vpc;
+    return {
+      if (arn != null) 'arn': arn,
+      if (cdiInputSpecification != null)
+        'cdiInputSpecification': cdiInputSpecification,
+      if (channelClass != null) 'channelClass': channelClass.toValue(),
+      if (destinations != null) 'destinations': destinations,
+      if (egressEndpoints != null) 'egressEndpoints': egressEndpoints,
+      if (encoderSettings != null) 'encoderSettings': encoderSettings,
+      if (id != null) 'id': id,
+      if (inputAttachments != null) 'inputAttachments': inputAttachments,
+      if (inputSpecification != null) 'inputSpecification': inputSpecification,
+      if (logLevel != null) 'logLevel': logLevel.toValue(),
+      if (maintenance != null) 'maintenance': maintenance,
+      if (name != null) 'name': name,
+      if (pipelineDetails != null) 'pipelineDetails': pipelineDetails,
+      if (pipelinesRunningCount != null)
+        'pipelinesRunningCount': pipelinesRunningCount,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (vpc != null) 'vpc': vpc,
+    };
+  }
 }
 
 /// Placeholder documentation for StartInputDeviceMaintenanceWindowResponse
@@ -22887,6 +24131,10 @@ class StartInputDeviceMaintenanceWindowResponse {
   factory StartInputDeviceMaintenanceWindowResponse.fromJson(
       Map<String, dynamic> _) {
     return StartInputDeviceMaintenanceWindowResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -22958,6 +24206,32 @@ class StartMultiplexResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final availabilityZones = this.availabilityZones;
+    final destinations = this.destinations;
+    final id = this.id;
+    final multiplexSettings = this.multiplexSettings;
+    final name = this.name;
+    final pipelinesRunningCount = this.pipelinesRunningCount;
+    final programCount = this.programCount;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (availabilityZones != null) 'availabilityZones': availabilityZones,
+      if (destinations != null) 'destinations': destinations,
+      if (id != null) 'id': id,
+      if (multiplexSettings != null) 'multiplexSettings': multiplexSettings,
+      if (name != null) 'name': name,
+      if (pipelinesRunningCount != null)
+        'pipelinesRunningCount': pipelinesRunningCount,
+      if (programCount != null) 'programCount': programCount,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -23280,6 +24554,49 @@ class StopChannelResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final cdiInputSpecification = this.cdiInputSpecification;
+    final channelClass = this.channelClass;
+    final destinations = this.destinations;
+    final egressEndpoints = this.egressEndpoints;
+    final encoderSettings = this.encoderSettings;
+    final id = this.id;
+    final inputAttachments = this.inputAttachments;
+    final inputSpecification = this.inputSpecification;
+    final logLevel = this.logLevel;
+    final maintenance = this.maintenance;
+    final name = this.name;
+    final pipelineDetails = this.pipelineDetails;
+    final pipelinesRunningCount = this.pipelinesRunningCount;
+    final roleArn = this.roleArn;
+    final state = this.state;
+    final tags = this.tags;
+    final vpc = this.vpc;
+    return {
+      if (arn != null) 'arn': arn,
+      if (cdiInputSpecification != null)
+        'cdiInputSpecification': cdiInputSpecification,
+      if (channelClass != null) 'channelClass': channelClass.toValue(),
+      if (destinations != null) 'destinations': destinations,
+      if (egressEndpoints != null) 'egressEndpoints': egressEndpoints,
+      if (encoderSettings != null) 'encoderSettings': encoderSettings,
+      if (id != null) 'id': id,
+      if (inputAttachments != null) 'inputAttachments': inputAttachments,
+      if (inputSpecification != null) 'inputSpecification': inputSpecification,
+      if (logLevel != null) 'logLevel': logLevel.toValue(),
+      if (maintenance != null) 'maintenance': maintenance,
+      if (name != null) 'name': name,
+      if (pipelineDetails != null) 'pipelineDetails': pipelineDetails,
+      if (pipelinesRunningCount != null)
+        'pipelinesRunningCount': pipelinesRunningCount,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (vpc != null) 'vpc': vpc,
+    };
+  }
 }
 
 /// Placeholder documentation for StopMultiplexResponse
@@ -23350,6 +24667,32 @@ class StopMultiplexResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final availabilityZones = this.availabilityZones;
+    final destinations = this.destinations;
+    final id = this.id;
+    final multiplexSettings = this.multiplexSettings;
+    final name = this.name;
+    final pipelinesRunningCount = this.pipelinesRunningCount;
+    final programCount = this.programCount;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (availabilityZones != null) 'availabilityZones': availabilityZones,
+      if (destinations != null) 'destinations': destinations,
+      if (id != null) 'id': id,
+      if (multiplexSettings != null) 'multiplexSettings': multiplexSettings,
+      if (name != null) 'name': name,
+      if (pipelinesRunningCount != null)
+        'pipelinesRunningCount': pipelinesRunningCount,
+      if (programCount != null) 'programCount': programCount,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -23691,6 +25034,10 @@ class TransferInputDeviceResponse {
   factory TransferInputDeviceResponse.fromJson(Map<String, dynamic> _) {
     return TransferInputDeviceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Details about the input device that is being transferred.
@@ -23721,6 +25068,19 @@ class TransferringInputDeviceSummary {
       transferType:
           (json['transferType'] as String?)?.toInputDeviceTransferType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final message = this.message;
+    final targetCustomerId = this.targetCustomerId;
+    final transferType = this.transferType;
+    return {
+      if (id != null) 'id': id,
+      if (message != null) 'message': message,
+      if (targetCustomerId != null) 'targetCustomerId': targetCustomerId,
+      if (transferType != null) 'transferType': transferType.toValue(),
+    };
   }
 }
 
@@ -23947,6 +25307,13 @@ class UpdateChannelClassResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final channel = this.channel;
+    return {
+      if (channel != null) 'channel': channel,
+    };
+  }
 }
 
 /// Placeholder documentation for UpdateChannelResponse
@@ -23962,6 +25329,13 @@ class UpdateChannelResponse {
           ? Channel.fromJson(json['channel'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final channel = this.channel;
+    return {
+      if (channel != null) 'channel': channel,
+    };
   }
 }
 
@@ -24049,6 +25423,37 @@ class UpdateInputDeviceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final connectionState = this.connectionState;
+    final deviceSettingsSyncState = this.deviceSettingsSyncState;
+    final deviceUpdateStatus = this.deviceUpdateStatus;
+    final hdDeviceSettings = this.hdDeviceSettings;
+    final id = this.id;
+    final macAddress = this.macAddress;
+    final name = this.name;
+    final networkSettings = this.networkSettings;
+    final serialNumber = this.serialNumber;
+    final type = this.type;
+    final uhdDeviceSettings = this.uhdDeviceSettings;
+    return {
+      if (arn != null) 'arn': arn,
+      if (connectionState != null) 'connectionState': connectionState.toValue(),
+      if (deviceSettingsSyncState != null)
+        'deviceSettingsSyncState': deviceSettingsSyncState.toValue(),
+      if (deviceUpdateStatus != null)
+        'deviceUpdateStatus': deviceUpdateStatus.toValue(),
+      if (hdDeviceSettings != null) 'hdDeviceSettings': hdDeviceSettings,
+      if (id != null) 'id': id,
+      if (macAddress != null) 'macAddress': macAddress,
+      if (name != null) 'name': name,
+      if (networkSettings != null) 'networkSettings': networkSettings,
+      if (serialNumber != null) 'serialNumber': serialNumber,
+      if (type != null) 'type': type.toValue(),
+      if (uhdDeviceSettings != null) 'uhdDeviceSettings': uhdDeviceSettings,
+    };
+  }
 }
 
 /// Placeholder documentation for UpdateInputResponse
@@ -24064,6 +25469,13 @@ class UpdateInputResponse {
           ? Input.fromJson(json['input'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final input = this.input;
+    return {
+      if (input != null) 'input': input,
+    };
   }
 }
 
@@ -24081,6 +25493,13 @@ class UpdateInputSecurityGroupResponse {
               json['securityGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityGroup = this.securityGroup;
+    return {
+      if (securityGroup != null) 'securityGroup': securityGroup,
+    };
   }
 }
 
@@ -24100,6 +25519,13 @@ class UpdateMultiplexProgramResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final multiplexProgram = this.multiplexProgram;
+    return {
+      if (multiplexProgram != null) 'multiplexProgram': multiplexProgram,
+    };
+  }
 }
 
 /// Placeholder documentation for UpdateMultiplexResponse
@@ -24117,6 +25543,13 @@ class UpdateMultiplexResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final multiplex = this.multiplex;
+    return {
+      if (multiplex != null) 'multiplex': multiplex,
+    };
+  }
 }
 
 /// Placeholder documentation for UpdateReservationResponse
@@ -24132,6 +25565,13 @@ class UpdateReservationResponse {
           ? Reservation.fromJson(json['reservation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reservation = this.reservation;
+    return {
+      if (reservation != null) 'reservation': reservation,
+    };
   }
 }
 
@@ -24641,6 +26081,7 @@ class VpcOutputSettings {
     this.publicAddressAllocationIds,
     this.securityGroupIds,
   });
+
   Map<String, dynamic> toJson() {
     final subnetIds = this.subnetIds;
     final publicAddressAllocationIds = this.publicAddressAllocationIds;
@@ -24700,6 +26141,20 @@ class VpcOutputSettingsDescription {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    final networkInterfaceIds = this.networkInterfaceIds;
+    final securityGroupIds = this.securityGroupIds;
+    final subnetIds = this.subnetIds;
+    return {
+      if (availabilityZones != null) 'availabilityZones': availabilityZones,
+      if (networkInterfaceIds != null)
+        'networkInterfaceIds': networkInterfaceIds,
+      if (securityGroupIds != null) 'securityGroupIds': securityGroupIds,
+      if (subnetIds != null) 'subnetIds': subnetIds,
+    };
   }
 }
 

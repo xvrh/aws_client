@@ -1445,6 +1445,7 @@ class AddRegionAction {
     required this.regionName,
     this.sseKmsKeyId,
   });
+
   Map<String, dynamic> toJson() {
     final regionName = this.regionName;
     final sseKmsKeyId = this.sseKmsKeyId;
@@ -1467,6 +1468,7 @@ class AttributeValueList {
     this.integerValues,
     this.stringValues,
   });
+
   Map<String, dynamic> toJson() {
     final integerValues = this.integerValues;
     final stringValues = this.stringValues;
@@ -1490,6 +1492,13 @@ class AutomationExecution {
     return AutomationExecution(
       ssmExecutionArn: json['ssmExecutionArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ssmExecutionArn = this.ssmExecutionArn;
+    return {
+      if (ssmExecutionArn != null) 'ssmExecutionArn': ssmExecutionArn,
+    };
   }
 }
 
@@ -1549,6 +1558,7 @@ class Condition {
     this.before,
     this.equals,
   });
+
   Map<String, dynamic> toJson() {
     final after = this.after;
     final before = this.before;
@@ -1573,6 +1583,13 @@ class CreateReplicationSetOutput {
       arn: json['arn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      'arn': arn,
+    };
+  }
 }
 
 class CreateResponsePlanOutput {
@@ -1586,6 +1603,13 @@ class CreateResponsePlanOutput {
     return CreateResponsePlanOutput(
       arn: json['arn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      'arn': arn,
+    };
   }
 }
 
@@ -1606,12 +1630,25 @@ class CreateTimelineEventOutput {
       incidentRecordArn: json['incidentRecordArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventId = this.eventId;
+    final incidentRecordArn = this.incidentRecordArn;
+    return {
+      'eventId': eventId,
+      'incidentRecordArn': incidentRecordArn,
+    };
+  }
 }
 
 class DeleteIncidentRecordOutput {
   DeleteIncidentRecordOutput();
   factory DeleteIncidentRecordOutput.fromJson(Map<String, dynamic> _) {
     return DeleteIncidentRecordOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1625,6 +1662,7 @@ class DeleteRegionAction {
   DeleteRegionAction({
     required this.regionName,
   });
+
   Map<String, dynamic> toJson() {
     final regionName = this.regionName;
     return {
@@ -1638,12 +1676,20 @@ class DeleteReplicationSetOutput {
   factory DeleteReplicationSetOutput.fromJson(Map<String, dynamic> _) {
     return DeleteReplicationSetOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteResourcePolicyOutput {
   DeleteResourcePolicyOutput();
   factory DeleteResourcePolicyOutput.fromJson(Map<String, dynamic> _) {
     return DeleteResourcePolicyOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1652,12 +1698,20 @@ class DeleteResponsePlanOutput {
   factory DeleteResponsePlanOutput.fromJson(Map<String, dynamic> _) {
     return DeleteResponsePlanOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteTimelineEventOutput {
   DeleteTimelineEventOutput();
   factory DeleteTimelineEventOutput.fromJson(Map<String, dynamic> _) {
     return DeleteTimelineEventOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1731,6 +1785,21 @@ class EventSummary {
       incidentRecordArn: json['incidentRecordArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventId = this.eventId;
+    final eventTime = this.eventTime;
+    final eventType = this.eventType;
+    final eventUpdatedTime = this.eventUpdatedTime;
+    final incidentRecordArn = this.incidentRecordArn;
+    return {
+      'eventId': eventId,
+      'eventTime': unixTimestampToJson(eventTime),
+      'eventType': eventType,
+      'eventUpdatedTime': unixTimestampToJson(eventUpdatedTime),
+      'incidentRecordArn': incidentRecordArn,
+    };
+  }
 }
 
 /// Filter the selection by using a condition.
@@ -1746,6 +1815,7 @@ class Filter {
     required this.condition,
     required this.key,
   });
+
   Map<String, dynamic> toJson() {
     final condition = this.condition;
     final key = this.key;
@@ -1769,6 +1839,13 @@ class GetIncidentRecordOutput {
           json['incidentRecord'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final incidentRecord = this.incidentRecord;
+    return {
+      'incidentRecord': incidentRecord,
+    };
+  }
 }
 
 class GetReplicationSetOutput {
@@ -1783,6 +1860,13 @@ class GetReplicationSetOutput {
       replicationSet: ReplicationSet.fromJson(
           json['replicationSet'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final replicationSet = this.replicationSet;
+    return {
+      'replicationSet': replicationSet,
+    };
   }
 }
 
@@ -1805,6 +1889,15 @@ class GetResourcePoliciesOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourcePolicies = this.resourcePolicies;
+    final nextToken = this.nextToken;
+    return {
+      'resourcePolicies': resourcePolicies,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1860,6 +1953,25 @@ class GetResponsePlanOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final incidentTemplate = this.incidentTemplate;
+    final name = this.name;
+    final actions = this.actions;
+    final chatChannel = this.chatChannel;
+    final displayName = this.displayName;
+    final engagements = this.engagements;
+    return {
+      'arn': arn,
+      'incidentTemplate': incidentTemplate,
+      'name': name,
+      if (actions != null) 'actions': actions,
+      if (chatChannel != null) 'chatChannel': chatChannel,
+      if (displayName != null) 'displayName': displayName,
+      if (engagements != null) 'engagements': engagements,
+    };
+  }
 }
 
 class GetTimelineEventOutput {
@@ -1873,6 +1985,13 @@ class GetTimelineEventOutput {
     return GetTimelineEventOutput(
       event: TimelineEvent.fromJson(json['event'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final event = this.event;
+    return {
+      'event': event,
+    };
   }
 }
 
@@ -1971,6 +2090,42 @@ class IncidentRecord {
       summary: json['summary'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final dedupeString = this.dedupeString;
+    final impact = this.impact;
+    final incidentRecordSource = this.incidentRecordSource;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final status = this.status;
+    final title = this.title;
+    final automationExecutions = this.automationExecutions;
+    final chatChannel = this.chatChannel;
+    final notificationTargets = this.notificationTargets;
+    final resolvedTime = this.resolvedTime;
+    final summary = this.summary;
+    return {
+      'arn': arn,
+      'creationTime': unixTimestampToJson(creationTime),
+      'dedupeString': dedupeString,
+      'impact': impact,
+      'incidentRecordSource': incidentRecordSource,
+      'lastModifiedBy': lastModifiedBy,
+      'lastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'status': status.toValue(),
+      'title': title,
+      if (automationExecutions != null)
+        'automationExecutions': automationExecutions,
+      if (chatChannel != null) 'chatChannel': chatChannel,
+      if (notificationTargets != null)
+        'notificationTargets': notificationTargets,
+      if (resolvedTime != null)
+        'resolvedTime': unixTimestampToJson(resolvedTime),
+      if (summary != null) 'summary': summary,
+    };
+  }
 }
 
 /// Details about what created the incident record and when it was created.
@@ -2004,6 +2159,19 @@ class IncidentRecordSource {
       invokedBy: json['invokedBy'] as String?,
       resourceArn: json['resourceArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final source = this.source;
+    final invokedBy = this.invokedBy;
+    final resourceArn = this.resourceArn;
+    return {
+      'createdBy': createdBy,
+      'source': source,
+      if (invokedBy != null) 'invokedBy': invokedBy,
+      if (resourceArn != null) 'resourceArn': resourceArn,
+    };
   }
 }
 
@@ -2080,6 +2248,26 @@ class IncidentRecordSummary {
       title: json['title'] as String,
       resolvedTime: timeStampFromJson(json['resolvedTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final creationTime = this.creationTime;
+    final impact = this.impact;
+    final incidentRecordSource = this.incidentRecordSource;
+    final status = this.status;
+    final title = this.title;
+    final resolvedTime = this.resolvedTime;
+    return {
+      'arn': arn,
+      'creationTime': unixTimestampToJson(creationTime),
+      'impact': impact,
+      'incidentRecordSource': incidentRecordSource,
+      'status': status.toValue(),
+      'title': title,
+      if (resolvedTime != null)
+        'resolvedTime': unixTimestampToJson(resolvedTime),
+    };
   }
 }
 
@@ -2295,6 +2483,15 @@ class ListIncidentRecordsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final incidentRecordSummaries = this.incidentRecordSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'incidentRecordSummaries': incidentRecordSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListRelatedItemsOutput {
@@ -2316,6 +2513,15 @@ class ListRelatedItemsOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final relatedItems = this.relatedItems;
+    final nextToken = this.nextToken;
+    return {
+      'relatedItems': relatedItems,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2339,6 +2545,15 @@ class ListReplicationSetsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final replicationSetArns = this.replicationSetArns;
+    final nextToken = this.nextToken;
+    return {
+      'replicationSetArns': replicationSetArns,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListResponsePlansOutput {
@@ -2361,6 +2576,15 @@ class ListResponsePlansOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final responsePlanSummaries = this.responsePlanSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'responsePlanSummaries': responsePlanSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2375,6 +2599,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>)
           .map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      'tags': tags,
+    };
   }
 }
 
@@ -2397,6 +2628,15 @@ class ListTimelineEventsOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventSummaries = this.eventSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'eventSummaries': eventSummaries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2434,6 +2674,13 @@ class PutResourcePolicyOutput {
       policyId: json['policyId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyId = this.policyId;
+    return {
+      'policyId': policyId,
+    };
+  }
 }
 
 /// Information about a Amazon Web Services Region in your replication set.
@@ -2467,6 +2714,19 @@ class RegionInfo {
       statusMessage: json['statusMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final statusUpdateDateTime = this.statusUpdateDateTime;
+    final sseKmsKeyId = this.sseKmsKeyId;
+    final statusMessage = this.statusMessage;
+    return {
+      'status': status.toValue(),
+      'statusUpdateDateTime': unixTimestampToJson(statusUpdateDateTime),
+      if (sseKmsKeyId != null) 'sseKmsKeyId': sseKmsKeyId,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
+  }
 }
 
 /// The mapping between a Amazon Web Services Region and the key that's used to
@@ -2478,6 +2738,7 @@ class RegionMapInputValue {
   RegionMapInputValue({
     this.sseKmsKeyId,
   });
+
   Map<String, dynamic> toJson() {
     final sseKmsKeyId = this.sseKmsKeyId;
     return {
@@ -2566,6 +2827,7 @@ class RelatedItemsUpdate {
     this.itemToAdd,
     this.itemToRemove,
   });
+
   Map<String, dynamic> toJson() {
     final itemToAdd = this.itemToAdd;
     final itemToRemove = this.itemToRemove;
@@ -2630,6 +2892,27 @@ class ReplicationSet {
       status: (json['status'] as String).toReplicationSetStatus(),
       arn: json['arn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdBy = this.createdBy;
+    final createdTime = this.createdTime;
+    final deletionProtected = this.deletionProtected;
+    final lastModifiedBy = this.lastModifiedBy;
+    final lastModifiedTime = this.lastModifiedTime;
+    final regionMap = this.regionMap;
+    final status = this.status;
+    final arn = this.arn;
+    return {
+      'createdBy': createdBy,
+      'createdTime': unixTimestampToJson(createdTime),
+      'deletionProtected': deletionProtected,
+      'lastModifiedBy': lastModifiedBy,
+      'lastModifiedTime': unixTimestampToJson(lastModifiedTime),
+      'regionMap': regionMap,
+      'status': status.toValue(),
+      if (arn != null) 'arn': arn,
+    };
   }
 }
 
@@ -2700,6 +2983,17 @@ class ResourcePolicy {
       ramResourceShareRegion: json['ramResourceShareRegion'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyDocument = this.policyDocument;
+    final policyId = this.policyId;
+    final ramResourceShareRegion = this.ramResourceShareRegion;
+    return {
+      'policyDocument': policyDocument,
+      'policyId': policyId,
+      'ramResourceShareRegion': ramResourceShareRegion,
+    };
+  }
 }
 
 /// Details of the response plan that are used when creating an incident.
@@ -2724,6 +3018,17 @@ class ResponsePlanSummary {
       name: json['name'] as String,
       displayName: json['displayName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final displayName = this.displayName;
+    return {
+      'arn': arn,
+      'name': name,
+      if (displayName != null) 'displayName': displayName,
+    };
   }
 }
 
@@ -2860,12 +3165,23 @@ class StartIncidentOutput {
       incidentRecordArn: json['incidentRecordArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final incidentRecordArn = this.incidentRecordArn;
+    return {
+      'incidentRecordArn': incidentRecordArn,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2909,6 +3225,23 @@ class TimelineEvent {
           nonNullableTimeStampFromJson(json['eventUpdatedTime'] as Object),
       incidentRecordArn: json['incidentRecordArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventData = this.eventData;
+    final eventId = this.eventId;
+    final eventTime = this.eventTime;
+    final eventType = this.eventType;
+    final eventUpdatedTime = this.eventUpdatedTime;
+    final incidentRecordArn = this.incidentRecordArn;
+    return {
+      'eventData': eventData,
+      'eventId': eventId,
+      'eventTime': unixTimestampToJson(eventTime),
+      'eventType': eventType,
+      'eventUpdatedTime': unixTimestampToJson(eventUpdatedTime),
+      'incidentRecordArn': incidentRecordArn,
+    };
   }
 }
 
@@ -2960,6 +3293,7 @@ class TriggerDetails {
     this.rawData,
     this.triggerArn,
   });
+
   Map<String, dynamic> toJson() {
     final source = this.source;
     final timestamp = this.timestamp;
@@ -2979,12 +3313,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateDeletionProtectionOutput {
   UpdateDeletionProtectionOutput();
   factory UpdateDeletionProtectionOutput.fromJson(Map<String, dynamic> _) {
     return UpdateDeletionProtectionOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2993,12 +3335,20 @@ class UpdateIncidentRecordOutput {
   factory UpdateIncidentRecordOutput.fromJson(Map<String, dynamic> _) {
     return UpdateIncidentRecordOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateRelatedItemsOutput {
   UpdateRelatedItemsOutput();
   factory UpdateRelatedItemsOutput.fromJson(Map<String, dynamic> _) {
     return UpdateRelatedItemsOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3016,6 +3366,7 @@ class UpdateReplicationSetAction {
     this.addRegionAction,
     this.deleteRegionAction,
   });
+
   Map<String, dynamic> toJson() {
     final addRegionAction = this.addRegionAction;
     final deleteRegionAction = this.deleteRegionAction;
@@ -3031,6 +3382,10 @@ class UpdateReplicationSetOutput {
   factory UpdateReplicationSetOutput.fromJson(Map<String, dynamic> _) {
     return UpdateReplicationSetOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateResponsePlanOutput {
@@ -3038,12 +3393,20 @@ class UpdateResponsePlanOutput {
   factory UpdateResponsePlanOutput.fromJson(Map<String, dynamic> _) {
     return UpdateResponsePlanOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateTimelineEventOutput {
   UpdateTimelineEventOutput();
   factory UpdateTimelineEventOutput.fromJson(Map<String, dynamic> _) {
     return UpdateTimelineEventOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

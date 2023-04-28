@@ -5218,6 +5218,19 @@ class Attachment {
       type: json['type'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    final id = this.id;
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (details != null) 'details': details,
+      if (id != null) 'id': id,
+      if (status != null) 'status': status,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 /// An object representing a change in state for a task attachment.
@@ -5232,6 +5245,7 @@ class AttachmentStateChange {
     required this.attachmentArn,
     required this.status,
   });
+
   Map<String, dynamic> toJson() {
     final attachmentArn = this.attachmentArn;
     final status = this.status;
@@ -5385,6 +5399,7 @@ class AutoScalingGroupProviderUpdate {
     this.managedScaling,
     this.managedTerminationProtection,
   });
+
   Map<String, dynamic> toJson() {
     final managedScaling = this.managedScaling;
     final managedTerminationProtection = this.managedTerminationProtection;
@@ -5575,6 +5590,27 @@ class CapacityProvider {
           (json['updateStatus'] as String?)?.toCapacityProviderUpdateStatus(),
       updateStatusReason: json['updateStatusReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingGroupProvider = this.autoScalingGroupProvider;
+    final capacityProviderArn = this.capacityProviderArn;
+    final name = this.name;
+    final status = this.status;
+    final tags = this.tags;
+    final updateStatus = this.updateStatus;
+    final updateStatusReason = this.updateStatusReason;
+    return {
+      if (autoScalingGroupProvider != null)
+        'autoScalingGroupProvider': autoScalingGroupProvider,
+      if (capacityProviderArn != null)
+        'capacityProviderArn': capacityProviderArn,
+      if (name != null) 'name': name,
+      if (status != null) 'status': status.toValue(),
+      if (tags != null) 'tags': tags,
+      if (updateStatus != null) 'updateStatus': updateStatus.toValue(),
+      if (updateStatusReason != null) 'updateStatusReason': updateStatusReason,
+    };
   }
 }
 
@@ -5973,6 +6009,46 @@ class Cluster {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeServicesCount = this.activeServicesCount;
+    final attachments = this.attachments;
+    final attachmentsStatus = this.attachmentsStatus;
+    final capacityProviders = this.capacityProviders;
+    final clusterArn = this.clusterArn;
+    final clusterName = this.clusterName;
+    final configuration = this.configuration;
+    final defaultCapacityProviderStrategy =
+        this.defaultCapacityProviderStrategy;
+    final pendingTasksCount = this.pendingTasksCount;
+    final registeredContainerInstancesCount =
+        this.registeredContainerInstancesCount;
+    final runningTasksCount = this.runningTasksCount;
+    final settings = this.settings;
+    final statistics = this.statistics;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (activeServicesCount != null)
+        'activeServicesCount': activeServicesCount,
+      if (attachments != null) 'attachments': attachments,
+      if (attachmentsStatus != null) 'attachmentsStatus': attachmentsStatus,
+      if (capacityProviders != null) 'capacityProviders': capacityProviders,
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (clusterName != null) 'clusterName': clusterName,
+      if (configuration != null) 'configuration': configuration,
+      if (defaultCapacityProviderStrategy != null)
+        'defaultCapacityProviderStrategy': defaultCapacityProviderStrategy,
+      if (pendingTasksCount != null) 'pendingTasksCount': pendingTasksCount,
+      if (registeredContainerInstancesCount != null)
+        'registeredContainerInstancesCount': registeredContainerInstancesCount,
+      if (runningTasksCount != null) 'runningTasksCount': runningTasksCount,
+      if (settings != null) 'settings': settings,
+      if (statistics != null) 'statistics': statistics,
+      if (status != null) 'status': status,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// The execute command configuration for the cluster.
@@ -6278,6 +6354,45 @@ class Container {
       runtimeId: json['runtimeId'] as String?,
       taskArn: json['taskArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerArn = this.containerArn;
+    final cpu = this.cpu;
+    final exitCode = this.exitCode;
+    final gpuIds = this.gpuIds;
+    final healthStatus = this.healthStatus;
+    final image = this.image;
+    final imageDigest = this.imageDigest;
+    final lastStatus = this.lastStatus;
+    final managedAgents = this.managedAgents;
+    final memory = this.memory;
+    final memoryReservation = this.memoryReservation;
+    final name = this.name;
+    final networkBindings = this.networkBindings;
+    final networkInterfaces = this.networkInterfaces;
+    final reason = this.reason;
+    final runtimeId = this.runtimeId;
+    final taskArn = this.taskArn;
+    return {
+      if (containerArn != null) 'containerArn': containerArn,
+      if (cpu != null) 'cpu': cpu,
+      if (exitCode != null) 'exitCode': exitCode,
+      if (gpuIds != null) 'gpuIds': gpuIds,
+      if (healthStatus != null) 'healthStatus': healthStatus.toValue(),
+      if (image != null) 'image': image,
+      if (imageDigest != null) 'imageDigest': imageDigest,
+      if (lastStatus != null) 'lastStatus': lastStatus,
+      if (managedAgents != null) 'managedAgents': managedAgents,
+      if (memory != null) 'memory': memory,
+      if (memoryReservation != null) 'memoryReservation': memoryReservation,
+      if (name != null) 'name': name,
+      if (networkBindings != null) 'networkBindings': networkBindings,
+      if (networkInterfaces != null) 'networkInterfaces': networkInterfaces,
+      if (reason != null) 'reason': reason,
+      if (runtimeId != null) 'runtimeId': runtimeId,
+      if (taskArn != null) 'taskArn': taskArn,
+    };
   }
 }
 
@@ -7665,6 +7780,52 @@ class ContainerInstance {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agentConnected = this.agentConnected;
+    final agentUpdateStatus = this.agentUpdateStatus;
+    final attachments = this.attachments;
+    final attributes = this.attributes;
+    final capacityProviderName = this.capacityProviderName;
+    final containerInstanceArn = this.containerInstanceArn;
+    final ec2InstanceId = this.ec2InstanceId;
+    final healthStatus = this.healthStatus;
+    final pendingTasksCount = this.pendingTasksCount;
+    final registeredAt = this.registeredAt;
+    final registeredResources = this.registeredResources;
+    final remainingResources = this.remainingResources;
+    final runningTasksCount = this.runningTasksCount;
+    final status = this.status;
+    final statusReason = this.statusReason;
+    final tags = this.tags;
+    final version = this.version;
+    final versionInfo = this.versionInfo;
+    return {
+      if (agentConnected != null) 'agentConnected': agentConnected,
+      if (agentUpdateStatus != null)
+        'agentUpdateStatus': agentUpdateStatus.toValue(),
+      if (attachments != null) 'attachments': attachments,
+      if (attributes != null) 'attributes': attributes,
+      if (capacityProviderName != null)
+        'capacityProviderName': capacityProviderName,
+      if (containerInstanceArn != null)
+        'containerInstanceArn': containerInstanceArn,
+      if (ec2InstanceId != null) 'ec2InstanceId': ec2InstanceId,
+      if (healthStatus != null) 'healthStatus': healthStatus,
+      if (pendingTasksCount != null) 'pendingTasksCount': pendingTasksCount,
+      if (registeredAt != null)
+        'registeredAt': unixTimestampToJson(registeredAt),
+      if (registeredResources != null)
+        'registeredResources': registeredResources,
+      if (remainingResources != null) 'remainingResources': remainingResources,
+      if (runningTasksCount != null) 'runningTasksCount': runningTasksCount,
+      if (status != null) 'status': status,
+      if (statusReason != null) 'statusReason': statusReason,
+      if (tags != null) 'tags': tags,
+      if (version != null) 'version': version,
+      if (versionInfo != null) 'versionInfo': versionInfo,
+    };
+  }
 }
 
 enum ContainerInstanceField {
@@ -7719,6 +7880,15 @@ class ContainerInstanceHealthStatus {
       overallStatus:
           (json['overallStatus'] as String?)?.toInstanceHealthCheckState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    final overallStatus = this.overallStatus;
+    return {
+      if (details != null) 'details': details,
+      if (overallStatus != null) 'overallStatus': overallStatus.toValue(),
+    };
   }
 }
 
@@ -7901,6 +8071,7 @@ class ContainerStateChange {
     this.runtimeId,
     this.status,
   });
+
   Map<String, dynamic> toJson() {
     final containerName = this.containerName;
     final exitCode = this.exitCode;
@@ -7936,6 +8107,13 @@ class CreateCapacityProviderResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capacityProvider = this.capacityProvider;
+    return {
+      if (capacityProvider != null) 'capacityProvider': capacityProvider,
+    };
+  }
 }
 
 class CreateClusterResponse {
@@ -7951,6 +8129,13 @@ class CreateClusterResponse {
           ? Cluster.fromJson(json['cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'cluster': cluster,
+    };
   }
 }
 
@@ -7981,6 +8166,13 @@ class CreateServiceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final service = this.service;
+    return {
+      if (service != null) 'service': service,
+    };
+  }
 }
 
 class CreateTaskSetResponse {
@@ -8000,6 +8192,13 @@ class CreateTaskSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final taskSet = this.taskSet;
+    return {
+      if (taskSet != null) 'taskSet': taskSet,
+    };
+  }
 }
 
 class DeleteAccountSettingResponse {
@@ -8015,6 +8214,13 @@ class DeleteAccountSettingResponse {
           ? Setting.fromJson(json['setting'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final setting = this.setting;
+    return {
+      if (setting != null) 'setting': setting,
+    };
   }
 }
 
@@ -8034,6 +8240,13 @@ class DeleteAttributesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'attributes': attributes,
+    };
+  }
 }
 
 class DeleteCapacityProviderResponse {
@@ -8051,6 +8264,13 @@ class DeleteCapacityProviderResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capacityProvider = this.capacityProvider;
+    return {
+      if (capacityProvider != null) 'capacityProvider': capacityProvider,
+    };
+  }
 }
 
 class DeleteClusterResponse {
@@ -8066,6 +8286,13 @@ class DeleteClusterResponse {
           ? Cluster.fromJson(json['cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'cluster': cluster,
+    };
   }
 }
 
@@ -8083,6 +8310,13 @@ class DeleteServiceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final service = this.service;
+    return {
+      if (service != null) 'service': service,
+    };
+  }
 }
 
 class DeleteTaskSetResponse {
@@ -8098,6 +8332,13 @@ class DeleteTaskSetResponse {
           ? TaskSet.fromJson(json['taskSet'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final taskSet = this.taskSet;
+    return {
+      if (taskSet != null) 'taskSet': taskSet,
+    };
   }
 }
 
@@ -8246,6 +8487,45 @@ class Deployment {
       taskDefinition: json['taskDefinition'] as String?,
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final capacityProviderStrategy = this.capacityProviderStrategy;
+    final createdAt = this.createdAt;
+    final desiredCount = this.desiredCount;
+    final failedTasks = this.failedTasks;
+    final id = this.id;
+    final launchType = this.launchType;
+    final networkConfiguration = this.networkConfiguration;
+    final pendingCount = this.pendingCount;
+    final platformFamily = this.platformFamily;
+    final platformVersion = this.platformVersion;
+    final rolloutState = this.rolloutState;
+    final rolloutStateReason = this.rolloutStateReason;
+    final runningCount = this.runningCount;
+    final status = this.status;
+    final taskDefinition = this.taskDefinition;
+    final updatedAt = this.updatedAt;
+    return {
+      if (capacityProviderStrategy != null)
+        'capacityProviderStrategy': capacityProviderStrategy,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (desiredCount != null) 'desiredCount': desiredCount,
+      if (failedTasks != null) 'failedTasks': failedTasks,
+      if (id != null) 'id': id,
+      if (launchType != null) 'launchType': launchType.toValue(),
+      if (networkConfiguration != null)
+        'networkConfiguration': networkConfiguration,
+      if (pendingCount != null) 'pendingCount': pendingCount,
+      if (platformFamily != null) 'platformFamily': platformFamily,
+      if (platformVersion != null) 'platformVersion': platformVersion,
+      if (rolloutState != null) 'rolloutState': rolloutState.toValue(),
+      if (rolloutStateReason != null) 'rolloutStateReason': rolloutStateReason,
+      if (runningCount != null) 'runningCount': runningCount,
+      if (status != null) 'status': status,
+      if (taskDefinition != null) 'taskDefinition': taskDefinition,
+      if (updatedAt != null) 'updatedAt': unixTimestampToJson(updatedAt),
+    };
   }
 }
 
@@ -8551,6 +8831,13 @@ class DeregisterContainerInstanceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final containerInstance = this.containerInstance;
+    return {
+      if (containerInstance != null) 'containerInstance': containerInstance,
+    };
+  }
 }
 
 class DeregisterTaskDefinitionResponse {
@@ -8567,6 +8854,13 @@ class DeregisterTaskDefinitionResponse {
               json['taskDefinition'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final taskDefinition = this.taskDefinition;
+    return {
+      if (taskDefinition != null) 'taskDefinition': taskDefinition,
+    };
   }
 }
 
@@ -8604,6 +8898,17 @@ class DescribeCapacityProvidersResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capacityProviders = this.capacityProviders;
+    final failures = this.failures;
+    final nextToken = this.nextToken;
+    return {
+      if (capacityProviders != null) 'capacityProviders': capacityProviders,
+      if (failures != null) 'failures': failures,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeClustersResponse {
@@ -8628,6 +8933,15 @@ class DescribeClustersResponse {
           .map((e) => Failure.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final clusters = this.clusters;
+    final failures = this.failures;
+    return {
+      if (clusters != null) 'clusters': clusters,
+      if (failures != null) 'failures': failures,
+    };
   }
 }
 
@@ -8655,6 +8969,15 @@ class DescribeContainerInstancesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final containerInstances = this.containerInstances;
+    final failures = this.failures;
+    return {
+      if (containerInstances != null) 'containerInstances': containerInstances,
+      if (failures != null) 'failures': failures,
+    };
+  }
 }
 
 class DescribeServicesResponse {
@@ -8679,6 +9002,15 @@ class DescribeServicesResponse {
           .map((e) => Service.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    final services = this.services;
+    return {
+      if (failures != null) 'failures': failures,
+      if (services != null) 'services': services,
+    };
   }
 }
 
@@ -8741,6 +9073,15 @@ class DescribeTaskDefinitionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final taskDefinition = this.taskDefinition;
+    return {
+      if (tags != null) 'tags': tags,
+      if (taskDefinition != null) 'taskDefinition': taskDefinition,
+    };
+  }
 }
 
 class DescribeTaskSetsResponse {
@@ -8766,6 +9107,15 @@ class DescribeTaskSetsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    final taskSets = this.taskSets;
+    return {
+      if (failures != null) 'failures': failures,
+      if (taskSets != null) 'taskSets': taskSets,
+    };
+  }
 }
 
 class DescribeTasksResponse {
@@ -8790,6 +9140,15 @@ class DescribeTasksResponse {
           .map((e) => Task.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    final tasks = this.tasks;
+    return {
+      if (failures != null) 'failures': failures,
+      if (tasks != null) 'tasks': tasks,
+    };
   }
 }
 
@@ -8917,6 +9276,15 @@ class DiscoverPollEndpointResponse {
       endpoint: json['endpoint'] as String?,
       telemetryEndpoint: json['telemetryEndpoint'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    final telemetryEndpoint = this.telemetryEndpoint;
+    return {
+      if (endpoint != null) 'endpoint': endpoint,
+      if (telemetryEndpoint != null) 'telemetryEndpoint': telemetryEndpoint,
+    };
   }
 }
 
@@ -9502,6 +9870,23 @@ class ExecuteCommandResponse {
       taskArn: json['taskArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterArn = this.clusterArn;
+    final containerArn = this.containerArn;
+    final containerName = this.containerName;
+    final interactive = this.interactive;
+    final session = this.session;
+    final taskArn = this.taskArn;
+    return {
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (containerArn != null) 'containerArn': containerArn,
+      if (containerName != null) 'containerName': containerName,
+      if (interactive != null) 'interactive': interactive,
+      if (session != null) 'session': session,
+      if (taskArn != null) 'taskArn': taskArn,
+    };
+  }
 }
 
 /// The authorization configuration details for Amazon FSx for Windows File
@@ -9620,6 +10005,17 @@ class Failure {
       detail: json['detail'] as String?,
       reason: json['reason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final detail = this.detail;
+    final reason = this.reason;
+    return {
+      if (arn != null) 'arn': arn,
+      if (detail != null) 'detail': detail,
+      if (reason != null) 'reason': reason,
+    };
   }
 }
 
@@ -10056,6 +10452,20 @@ class InstanceHealthCheckResult {
       type: (json['type'] as String?)?.toInstanceHealthCheckType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastStatusChange = this.lastStatusChange;
+    final lastUpdated = this.lastUpdated;
+    final status = this.status;
+    final type = this.type;
+    return {
+      if (lastStatusChange != null)
+        'lastStatusChange': unixTimestampToJson(lastStatusChange),
+      if (lastUpdated != null) 'lastUpdated': unixTimestampToJson(lastUpdated),
+      if (status != null) 'status': status.toValue(),
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 enum InstanceHealthCheckState {
@@ -10461,6 +10871,15 @@ class ListAccountSettingsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final settings = this.settings;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (settings != null) 'settings': settings,
+    };
+  }
 }
 
 class ListAttributesResponse {
@@ -10486,6 +10905,15 @@ class ListAttributesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final nextToken = this.nextToken;
+    return {
+      if (attributes != null) 'attributes': attributes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -10514,6 +10942,15 @@ class ListClustersResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final clusterArns = this.clusterArns;
+    final nextToken = this.nextToken;
+    return {
+      if (clusterArns != null) 'clusterArns': clusterArns,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListContainerInstancesResponse {
@@ -10540,6 +10977,16 @@ class ListContainerInstancesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerInstanceArns = this.containerInstanceArns;
+    final nextToken = this.nextToken;
+    return {
+      if (containerInstanceArns != null)
+        'containerInstanceArns': containerInstanceArns,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -10568,6 +11015,15 @@ class ListServicesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final serviceArns = this.serviceArns;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (serviceArns != null) 'serviceArns': serviceArns,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -10584,6 +11040,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -10614,6 +11077,15 @@ class ListTaskDefinitionFamiliesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final families = this.families;
+    final nextToken = this.nextToken;
+    return {
+      if (families != null) 'families': families,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTaskDefinitionsResponse {
@@ -10641,6 +11113,15 @@ class ListTaskDefinitionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final taskDefinitionArns = this.taskDefinitionArns;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (taskDefinitionArns != null) 'taskDefinitionArns': taskDefinitionArns,
+    };
+  }
 }
 
 class ListTasksResponse {
@@ -10666,6 +11147,15 @@ class ListTasksResponse {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final taskArns = this.taskArns;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (taskArns != null) 'taskArns': taskArns,
+    };
   }
 }
 
@@ -10973,6 +11463,20 @@ class ManagedAgent {
       reason: json['reason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastStartedAt = this.lastStartedAt;
+    final lastStatus = this.lastStatus;
+    final name = this.name;
+    final reason = this.reason;
+    return {
+      if (lastStartedAt != null)
+        'lastStartedAt': unixTimestampToJson(lastStartedAt),
+      if (lastStatus != null) 'lastStatus': lastStatus,
+      if (name != null) 'name': name.toValue(),
+      if (reason != null) 'reason': reason,
+    };
+  }
 }
 
 enum ManagedAgentName {
@@ -11018,6 +11522,7 @@ class ManagedAgentStateChange {
     required this.status,
     this.reason,
   });
+
   Map<String, dynamic> toJson() {
     final containerName = this.containerName;
     final managedAgentName = this.managedAgentName;
@@ -11300,6 +11805,17 @@ class NetworkInterface {
       ipv6Address: json['ipv6Address'] as String?,
       privateIpv4Address: json['privateIpv4Address'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachmentId = this.attachmentId;
+    final ipv6Address = this.ipv6Address;
+    final privateIpv4Address = this.privateIpv4Address;
+    return {
+      if (attachmentId != null) 'attachmentId': attachmentId,
+      if (ipv6Address != null) 'ipv6Address': ipv6Address,
+      if (privateIpv4Address != null) 'privateIpv4Address': privateIpv4Address,
+    };
   }
 }
 
@@ -11597,6 +12113,7 @@ class PlatformDevice {
     required this.id,
     required this.type,
   });
+
   Map<String, dynamic> toJson() {
     final id = this.id;
     final type = this.type;
@@ -11882,6 +12399,13 @@ class PutAccountSettingDefaultResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final setting = this.setting;
+    return {
+      if (setting != null) 'setting': setting,
+    };
+  }
 }
 
 class PutAccountSettingResponse {
@@ -11897,6 +12421,13 @@ class PutAccountSettingResponse {
           ? Setting.fromJson(json['setting'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final setting = this.setting;
+    return {
+      if (setting != null) 'setting': setting,
+    };
   }
 }
 
@@ -11915,6 +12446,13 @@ class PutAttributesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    return {
+      if (attributes != null) 'attributes': attributes,
+    };
+  }
 }
 
 class PutClusterCapacityProvidersResponse {
@@ -11931,6 +12469,13 @@ class PutClusterCapacityProvidersResponse {
           ? Cluster.fromJson(json['cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'cluster': cluster,
+    };
   }
 }
 
@@ -11949,6 +12494,13 @@ class RegisterContainerInstanceResponse {
               json['containerInstance'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerInstance = this.containerInstance;
+    return {
+      if (containerInstance != null) 'containerInstance': containerInstance,
+    };
   }
 }
 
@@ -11974,6 +12526,15 @@ class RegisterTaskDefinitionResponse {
               json['taskDefinition'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final taskDefinition = this.taskDefinition;
+    return {
+      if (tags != null) 'tags': tags,
+      if (taskDefinition != null) 'taskDefinition': taskDefinition,
+    };
   }
 }
 
@@ -12171,6 +12732,15 @@ class RunTaskResponse {
           .map((e) => Task.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    final tasks = this.tasks;
+    return {
+      if (failures != null) 'failures': failures,
+      if (tasks != null) 'tasks': tasks,
+    };
   }
 }
 
@@ -12698,6 +13268,82 @@ class Service {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capacityProviderStrategy = this.capacityProviderStrategy;
+    final clusterArn = this.clusterArn;
+    final createdAt = this.createdAt;
+    final createdBy = this.createdBy;
+    final deploymentConfiguration = this.deploymentConfiguration;
+    final deploymentController = this.deploymentController;
+    final deployments = this.deployments;
+    final desiredCount = this.desiredCount;
+    final enableECSManagedTags = this.enableECSManagedTags;
+    final enableExecuteCommand = this.enableExecuteCommand;
+    final events = this.events;
+    final healthCheckGracePeriodSeconds = this.healthCheckGracePeriodSeconds;
+    final launchType = this.launchType;
+    final loadBalancers = this.loadBalancers;
+    final networkConfiguration = this.networkConfiguration;
+    final pendingCount = this.pendingCount;
+    final placementConstraints = this.placementConstraints;
+    final placementStrategy = this.placementStrategy;
+    final platformFamily = this.platformFamily;
+    final platformVersion = this.platformVersion;
+    final propagateTags = this.propagateTags;
+    final roleArn = this.roleArn;
+    final runningCount = this.runningCount;
+    final schedulingStrategy = this.schedulingStrategy;
+    final serviceArn = this.serviceArn;
+    final serviceName = this.serviceName;
+    final serviceRegistries = this.serviceRegistries;
+    final status = this.status;
+    final tags = this.tags;
+    final taskDefinition = this.taskDefinition;
+    final taskSets = this.taskSets;
+    return {
+      if (capacityProviderStrategy != null)
+        'capacityProviderStrategy': capacityProviderStrategy,
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (deploymentConfiguration != null)
+        'deploymentConfiguration': deploymentConfiguration,
+      if (deploymentController != null)
+        'deploymentController': deploymentController,
+      if (deployments != null) 'deployments': deployments,
+      if (desiredCount != null) 'desiredCount': desiredCount,
+      if (enableECSManagedTags != null)
+        'enableECSManagedTags': enableECSManagedTags,
+      if (enableExecuteCommand != null)
+        'enableExecuteCommand': enableExecuteCommand,
+      if (events != null) 'events': events,
+      if (healthCheckGracePeriodSeconds != null)
+        'healthCheckGracePeriodSeconds': healthCheckGracePeriodSeconds,
+      if (launchType != null) 'launchType': launchType.toValue(),
+      if (loadBalancers != null) 'loadBalancers': loadBalancers,
+      if (networkConfiguration != null)
+        'networkConfiguration': networkConfiguration,
+      if (pendingCount != null) 'pendingCount': pendingCount,
+      if (placementConstraints != null)
+        'placementConstraints': placementConstraints,
+      if (placementStrategy != null) 'placementStrategy': placementStrategy,
+      if (platformFamily != null) 'platformFamily': platformFamily,
+      if (platformVersion != null) 'platformVersion': platformVersion,
+      if (propagateTags != null) 'propagateTags': propagateTags.toValue(),
+      if (roleArn != null) 'roleArn': roleArn,
+      if (runningCount != null) 'runningCount': runningCount,
+      if (schedulingStrategy != null)
+        'schedulingStrategy': schedulingStrategy.toValue(),
+      if (serviceArn != null) 'serviceArn': serviceArn,
+      if (serviceName != null) 'serviceName': serviceName,
+      if (serviceRegistries != null) 'serviceRegistries': serviceRegistries,
+      if (status != null) 'status': status,
+      if (tags != null) 'tags': tags,
+      if (taskDefinition != null) 'taskDefinition': taskDefinition,
+      if (taskSets != null) 'taskSets': taskSets,
+    };
+  }
 }
 
 /// The details for an event that's associated with a service.
@@ -12722,6 +13368,17 @@ class ServiceEvent {
       id: json['id'] as String?,
       message: json['message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final id = this.id;
+    final message = this.message;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (id != null) 'id': id,
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -12843,6 +13500,17 @@ class Session {
       tokenValue: json['tokenValue'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sessionId = this.sessionId;
+    final streamUrl = this.streamUrl;
+    final tokenValue = this.tokenValue;
+    return {
+      if (sessionId != null) 'sessionId': sessionId,
+      if (streamUrl != null) 'streamUrl': streamUrl,
+      if (tokenValue != null) 'tokenValue': tokenValue,
+    };
+  }
 }
 
 /// The current account setting for a resource.
@@ -12869,6 +13537,17 @@ class Setting {
       principalArn: json['principalArn'] as String?,
       value: json['value'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final principalArn = this.principalArn;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name.toValue(),
+      if (principalArn != null) 'principalArn': principalArn,
+      if (value != null) 'value': value,
+    };
   }
 }
 
@@ -12995,6 +13674,15 @@ class StartTaskResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failures = this.failures;
+    final tasks = this.tasks;
+    return {
+      if (failures != null) 'failures': failures,
+      if (tasks != null) 'tasks': tasks,
+    };
+  }
 }
 
 class StopTaskResponse {
@@ -13011,6 +13699,13 @@ class StopTaskResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final task = this.task;
+    return {
+      if (task != null) 'task': task,
+    };
+  }
 }
 
 class SubmitAttachmentStateChangesResponse {
@@ -13025,6 +13720,13 @@ class SubmitAttachmentStateChangesResponse {
     return SubmitAttachmentStateChangesResponse(
       acknowledgment: json['acknowledgment'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final acknowledgment = this.acknowledgment;
+    return {
+      if (acknowledgment != null) 'acknowledgment': acknowledgment,
+    };
   }
 }
 
@@ -13041,6 +13743,13 @@ class SubmitContainerStateChangeResponse {
       acknowledgment: json['acknowledgment'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acknowledgment = this.acknowledgment;
+    return {
+      if (acknowledgment != null) 'acknowledgment': acknowledgment,
+    };
+  }
 }
 
 class SubmitTaskStateChangeResponse {
@@ -13054,6 +13763,13 @@ class SubmitTaskStateChangeResponse {
     return SubmitTaskStateChangeResponse(
       acknowledgment: json['acknowledgment'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final acknowledgment = this.acknowledgment;
+    return {
+      if (acknowledgment != null) 'acknowledgment': acknowledgment,
+    };
   }
 }
 
@@ -13186,6 +13902,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -13603,6 +14323,91 @@ class Task {
       version: json['version'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachments = this.attachments;
+    final attributes = this.attributes;
+    final availabilityZone = this.availabilityZone;
+    final capacityProviderName = this.capacityProviderName;
+    final clusterArn = this.clusterArn;
+    final connectivity = this.connectivity;
+    final connectivityAt = this.connectivityAt;
+    final containerInstanceArn = this.containerInstanceArn;
+    final containers = this.containers;
+    final cpu = this.cpu;
+    final createdAt = this.createdAt;
+    final desiredStatus = this.desiredStatus;
+    final enableExecuteCommand = this.enableExecuteCommand;
+    final ephemeralStorage = this.ephemeralStorage;
+    final executionStoppedAt = this.executionStoppedAt;
+    final group = this.group;
+    final healthStatus = this.healthStatus;
+    final inferenceAccelerators = this.inferenceAccelerators;
+    final lastStatus = this.lastStatus;
+    final launchType = this.launchType;
+    final memory = this.memory;
+    final overrides = this.overrides;
+    final platformFamily = this.platformFamily;
+    final platformVersion = this.platformVersion;
+    final pullStartedAt = this.pullStartedAt;
+    final pullStoppedAt = this.pullStoppedAt;
+    final startedAt = this.startedAt;
+    final startedBy = this.startedBy;
+    final stopCode = this.stopCode;
+    final stoppedAt = this.stoppedAt;
+    final stoppedReason = this.stoppedReason;
+    final stoppingAt = this.stoppingAt;
+    final tags = this.tags;
+    final taskArn = this.taskArn;
+    final taskDefinitionArn = this.taskDefinitionArn;
+    final version = this.version;
+    return {
+      if (attachments != null) 'attachments': attachments,
+      if (attributes != null) 'attributes': attributes,
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (capacityProviderName != null)
+        'capacityProviderName': capacityProviderName,
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (connectivity != null) 'connectivity': connectivity.toValue(),
+      if (connectivityAt != null)
+        'connectivityAt': unixTimestampToJson(connectivityAt),
+      if (containerInstanceArn != null)
+        'containerInstanceArn': containerInstanceArn,
+      if (containers != null) 'containers': containers,
+      if (cpu != null) 'cpu': cpu,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (desiredStatus != null) 'desiredStatus': desiredStatus,
+      if (enableExecuteCommand != null)
+        'enableExecuteCommand': enableExecuteCommand,
+      if (ephemeralStorage != null) 'ephemeralStorage': ephemeralStorage,
+      if (executionStoppedAt != null)
+        'executionStoppedAt': unixTimestampToJson(executionStoppedAt),
+      if (group != null) 'group': group,
+      if (healthStatus != null) 'healthStatus': healthStatus.toValue(),
+      if (inferenceAccelerators != null)
+        'inferenceAccelerators': inferenceAccelerators,
+      if (lastStatus != null) 'lastStatus': lastStatus,
+      if (launchType != null) 'launchType': launchType.toValue(),
+      if (memory != null) 'memory': memory,
+      if (overrides != null) 'overrides': overrides,
+      if (platformFamily != null) 'platformFamily': platformFamily,
+      if (platformVersion != null) 'platformVersion': platformVersion,
+      if (pullStartedAt != null)
+        'pullStartedAt': unixTimestampToJson(pullStartedAt),
+      if (pullStoppedAt != null)
+        'pullStoppedAt': unixTimestampToJson(pullStoppedAt),
+      if (startedAt != null) 'startedAt': unixTimestampToJson(startedAt),
+      if (startedBy != null) 'startedBy': startedBy,
+      if (stopCode != null) 'stopCode': stopCode.toValue(),
+      if (stoppedAt != null) 'stoppedAt': unixTimestampToJson(stoppedAt),
+      if (stoppedReason != null) 'stoppedReason': stoppedReason,
+      if (stoppingAt != null) 'stoppingAt': unixTimestampToJson(stoppingAt),
+      if (tags != null) 'tags': tags,
+      if (taskArn != null) 'taskArn': taskArn,
+      if (taskDefinitionArn != null) 'taskDefinitionArn': taskDefinitionArn,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// The details of a task definition which describes the container and volume
@@ -14005,6 +14810,67 @@ class TaskDefinition {
           .map((e) => Volume.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final compatibilities = this.compatibilities;
+    final containerDefinitions = this.containerDefinitions;
+    final cpu = this.cpu;
+    final deregisteredAt = this.deregisteredAt;
+    final ephemeralStorage = this.ephemeralStorage;
+    final executionRoleArn = this.executionRoleArn;
+    final family = this.family;
+    final inferenceAccelerators = this.inferenceAccelerators;
+    final ipcMode = this.ipcMode;
+    final memory = this.memory;
+    final networkMode = this.networkMode;
+    final pidMode = this.pidMode;
+    final placementConstraints = this.placementConstraints;
+    final proxyConfiguration = this.proxyConfiguration;
+    final registeredAt = this.registeredAt;
+    final registeredBy = this.registeredBy;
+    final requiresAttributes = this.requiresAttributes;
+    final requiresCompatibilities = this.requiresCompatibilities;
+    final revision = this.revision;
+    final runtimePlatform = this.runtimePlatform;
+    final status = this.status;
+    final taskDefinitionArn = this.taskDefinitionArn;
+    final taskRoleArn = this.taskRoleArn;
+    final volumes = this.volumes;
+    return {
+      if (compatibilities != null)
+        'compatibilities': compatibilities.map((e) => e.toValue()).toList(),
+      if (containerDefinitions != null)
+        'containerDefinitions': containerDefinitions,
+      if (cpu != null) 'cpu': cpu,
+      if (deregisteredAt != null)
+        'deregisteredAt': unixTimestampToJson(deregisteredAt),
+      if (ephemeralStorage != null) 'ephemeralStorage': ephemeralStorage,
+      if (executionRoleArn != null) 'executionRoleArn': executionRoleArn,
+      if (family != null) 'family': family,
+      if (inferenceAccelerators != null)
+        'inferenceAccelerators': inferenceAccelerators,
+      if (ipcMode != null) 'ipcMode': ipcMode.toValue(),
+      if (memory != null) 'memory': memory,
+      if (networkMode != null) 'networkMode': networkMode.toValue(),
+      if (pidMode != null) 'pidMode': pidMode.toValue(),
+      if (placementConstraints != null)
+        'placementConstraints': placementConstraints,
+      if (proxyConfiguration != null) 'proxyConfiguration': proxyConfiguration,
+      if (registeredAt != null)
+        'registeredAt': unixTimestampToJson(registeredAt),
+      if (registeredBy != null) 'registeredBy': registeredBy,
+      if (requiresAttributes != null) 'requiresAttributes': requiresAttributes,
+      if (requiresCompatibilities != null)
+        'requiresCompatibilities':
+            requiresCompatibilities.map((e) => e.toValue()).toList(),
+      if (revision != null) 'revision': revision,
+      if (runtimePlatform != null) 'runtimePlatform': runtimePlatform,
+      if (status != null) 'status': status.toValue(),
+      if (taskDefinitionArn != null) 'taskDefinitionArn': taskDefinitionArn,
+      if (taskRoleArn != null) 'taskRoleArn': taskRoleArn,
+      if (volumes != null) 'volumes': volumes,
+    };
   }
 }
 
@@ -14535,6 +15401,63 @@ class TaskSet {
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capacityProviderStrategy = this.capacityProviderStrategy;
+    final clusterArn = this.clusterArn;
+    final computedDesiredCount = this.computedDesiredCount;
+    final createdAt = this.createdAt;
+    final externalId = this.externalId;
+    final id = this.id;
+    final launchType = this.launchType;
+    final loadBalancers = this.loadBalancers;
+    final networkConfiguration = this.networkConfiguration;
+    final pendingCount = this.pendingCount;
+    final platformFamily = this.platformFamily;
+    final platformVersion = this.platformVersion;
+    final runningCount = this.runningCount;
+    final scale = this.scale;
+    final serviceArn = this.serviceArn;
+    final serviceRegistries = this.serviceRegistries;
+    final stabilityStatus = this.stabilityStatus;
+    final stabilityStatusAt = this.stabilityStatusAt;
+    final startedBy = this.startedBy;
+    final status = this.status;
+    final tags = this.tags;
+    final taskDefinition = this.taskDefinition;
+    final taskSetArn = this.taskSetArn;
+    final updatedAt = this.updatedAt;
+    return {
+      if (capacityProviderStrategy != null)
+        'capacityProviderStrategy': capacityProviderStrategy,
+      if (clusterArn != null) 'clusterArn': clusterArn,
+      if (computedDesiredCount != null)
+        'computedDesiredCount': computedDesiredCount,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (externalId != null) 'externalId': externalId,
+      if (id != null) 'id': id,
+      if (launchType != null) 'launchType': launchType.toValue(),
+      if (loadBalancers != null) 'loadBalancers': loadBalancers,
+      if (networkConfiguration != null)
+        'networkConfiguration': networkConfiguration,
+      if (pendingCount != null) 'pendingCount': pendingCount,
+      if (platformFamily != null) 'platformFamily': platformFamily,
+      if (platformVersion != null) 'platformVersion': platformVersion,
+      if (runningCount != null) 'runningCount': runningCount,
+      if (scale != null) 'scale': scale,
+      if (serviceArn != null) 'serviceArn': serviceArn,
+      if (serviceRegistries != null) 'serviceRegistries': serviceRegistries,
+      if (stabilityStatus != null) 'stabilityStatus': stabilityStatus.toValue(),
+      if (stabilityStatusAt != null)
+        'stabilityStatusAt': unixTimestampToJson(stabilityStatusAt),
+      if (startedBy != null) 'startedBy': startedBy,
+      if (status != null) 'status': status,
+      if (tags != null) 'tags': tags,
+      if (taskDefinition != null) 'taskDefinition': taskDefinition,
+      if (taskSetArn != null) 'taskSetArn': taskSetArn,
+      if (updatedAt != null) 'updatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 enum TaskSetField {
@@ -14809,6 +15732,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateCapacityProviderResponse {
@@ -14826,6 +15753,13 @@ class UpdateCapacityProviderResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final capacityProvider = this.capacityProvider;
+    return {
+      if (capacityProvider != null) 'capacityProvider': capacityProvider,
+    };
+  }
 }
 
 class UpdateClusterResponse {
@@ -14841,6 +15775,13 @@ class UpdateClusterResponse {
           ? Cluster.fromJson(json['cluster'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'cluster': cluster,
+    };
   }
 }
 
@@ -14858,6 +15799,13 @@ class UpdateClusterSettingsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cluster = this.cluster;
+    return {
+      if (cluster != null) 'cluster': cluster,
+    };
+  }
 }
 
 class UpdateContainerAgentResponse {
@@ -14874,6 +15822,13 @@ class UpdateContainerAgentResponse {
               json['containerInstance'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final containerInstance = this.containerInstance;
+    return {
+      if (containerInstance != null) 'containerInstance': containerInstance,
+    };
   }
 }
 
@@ -14901,6 +15856,15 @@ class UpdateContainerInstancesStateResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final containerInstances = this.containerInstances;
+    final failures = this.failures;
+    return {
+      if (containerInstances != null) 'containerInstances': containerInstances,
+      if (failures != null) 'failures': failures,
+    };
+  }
 }
 
 class UpdateServicePrimaryTaskSetResponse {
@@ -14918,6 +15882,13 @@ class UpdateServicePrimaryTaskSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final taskSet = this.taskSet;
+    return {
+      if (taskSet != null) 'taskSet': taskSet,
+    };
+  }
 }
 
 class UpdateServiceResponse {
@@ -14934,6 +15905,13 @@ class UpdateServiceResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final service = this.service;
+    return {
+      if (service != null) 'service': service,
+    };
+  }
 }
 
 class UpdateTaskSetResponse {
@@ -14949,6 +15927,13 @@ class UpdateTaskSetResponse {
           ? TaskSet.fromJson(json['taskSet'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final taskSet = this.taskSet;
+    return {
+      if (taskSet != null) 'taskSet': taskSet,
+    };
   }
 }
 

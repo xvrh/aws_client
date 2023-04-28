@@ -257,6 +257,18 @@ class AcceleratorType {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorTypeName = this.acceleratorTypeName;
+    final memoryInfo = this.memoryInfo;
+    final throughputInfo = this.throughputInfo;
+    return {
+      if (acceleratorTypeName != null)
+        'acceleratorTypeName': acceleratorTypeName,
+      if (memoryInfo != null) 'memoryInfo': memoryInfo,
+      if (throughputInfo != null) 'throughputInfo': throughputInfo,
+    };
+  }
 }
 
 /// The offering for an Elastic Inference Accelerator type.
@@ -288,6 +300,17 @@ class AcceleratorTypeOffering {
       locationType: (json['locationType'] as String?)?.toLocationType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorType = this.acceleratorType;
+    final location = this.location;
+    final locationType = this.locationType;
+    return {
+      if (acceleratorType != null) 'acceleratorType': acceleratorType,
+      if (location != null) 'location': location,
+      if (locationType != null) 'locationType': locationType.toValue(),
+    };
+  }
 }
 
 class DescribeAcceleratorOfferingsResponse {
@@ -307,6 +330,14 @@ class DescribeAcceleratorOfferingsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorTypeOfferings = this.acceleratorTypeOfferings;
+    return {
+      if (acceleratorTypeOfferings != null)
+        'acceleratorTypeOfferings': acceleratorTypeOfferings,
+    };
+  }
 }
 
 class DescribeAcceleratorTypesResponse {
@@ -323,6 +354,13 @@ class DescribeAcceleratorTypesResponse {
           .map((e) => AcceleratorType.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorTypes = this.acceleratorTypes;
+    return {
+      if (acceleratorTypes != null) 'acceleratorTypes': acceleratorTypes,
+    };
   }
 }
 
@@ -347,6 +385,15 @@ class DescribeAcceleratorsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorSet = this.acceleratorSet;
+    final nextToken = this.nextToken;
+    return {
+      if (acceleratorSet != null) 'acceleratorSet': acceleratorSet,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -387,6 +434,21 @@ class ElasticInferenceAccelerator {
       availabilityZone: json['availabilityZone'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final acceleratorHealth = this.acceleratorHealth;
+    final acceleratorId = this.acceleratorId;
+    final acceleratorType = this.acceleratorType;
+    final attachedResource = this.attachedResource;
+    final availabilityZone = this.availabilityZone;
+    return {
+      if (acceleratorHealth != null) 'acceleratorHealth': acceleratorHealth,
+      if (acceleratorId != null) 'acceleratorId': acceleratorId,
+      if (acceleratorType != null) 'acceleratorType': acceleratorType,
+      if (attachedResource != null) 'attachedResource': attachedResource,
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+    };
+  }
 }
 
 /// The health details of an Elastic Inference Accelerator.
@@ -402,6 +464,13 @@ class ElasticInferenceAcceleratorHealth {
     return ElasticInferenceAcceleratorHealth(
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -419,6 +488,7 @@ class Filter {
     this.name,
     this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -449,6 +519,15 @@ class KeyValuePair {
       value: json['value'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'key': key,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 class ListTagsForResourceResult {
@@ -463,6 +542,13 @@ class ListTagsForResourceResult {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -512,6 +598,13 @@ class MemoryInfo {
       sizeInMiB: json['sizeInMiB'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sizeInMiB = this.sizeInMiB;
+    return {
+      if (sizeInMiB != null) 'sizeInMiB': sizeInMiB,
+    };
+  }
 }
 
 class TagResourceResult {
@@ -519,12 +612,20 @@ class TagResourceResult {
   factory TagResourceResult.fromJson(Map<String, dynamic> _) {
     return TagResourceResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResult {
   UntagResourceResult();
   factory UntagResourceResult.fromJson(Map<String, dynamic> _) {
     return UntagResourceResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

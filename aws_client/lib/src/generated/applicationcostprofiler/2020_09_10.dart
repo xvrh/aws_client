@@ -286,6 +286,13 @@ class DeleteReportDefinitionResult {
       reportId: json['reportId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final reportId = this.reportId;
+    return {
+      if (reportId != null) 'reportId': reportId,
+    };
+  }
 }
 
 enum Format {
@@ -360,6 +367,25 @@ class GetReportDefinitionResult {
       reportId: json['reportId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final destinationS3Location = this.destinationS3Location;
+    final format = this.format;
+    final lastUpdated = this.lastUpdated;
+    final reportDescription = this.reportDescription;
+    final reportFrequency = this.reportFrequency;
+    final reportId = this.reportId;
+    return {
+      'createdAt': unixTimestampToJson(createdAt),
+      'destinationS3Location': destinationS3Location,
+      'format': format.toValue(),
+      'lastUpdated': unixTimestampToJson(lastUpdated),
+      'reportDescription': reportDescription,
+      'reportFrequency': reportFrequency.toValue(),
+      'reportId': reportId,
+    };
+  }
 }
 
 class ImportApplicationUsageResult {
@@ -373,6 +399,13 @@ class ImportApplicationUsageResult {
     return ImportApplicationUsageResult(
       importId: json['importId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final importId = this.importId;
+    return {
+      'importId': importId,
+    };
   }
 }
 
@@ -397,6 +430,15 @@ class ListReportDefinitionsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reportDefinitions = this.reportDefinitions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (reportDefinitions != null) 'reportDefinitions': reportDefinitions,
+    };
+  }
 }
 
 class PutReportDefinitionResult {
@@ -410,6 +452,13 @@ class PutReportDefinitionResult {
     return PutReportDefinitionResult(
       reportId: json['reportId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reportId = this.reportId;
+    return {
+      if (reportId != null) 'reportId': reportId,
+    };
   }
 }
 
@@ -460,6 +509,27 @@ class ReportDefinition {
           (json['reportFrequency'] as String?)?.toReportFrequency(),
       reportId: json['reportId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final destinationS3Location = this.destinationS3Location;
+    final format = this.format;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final reportDescription = this.reportDescription;
+    final reportFrequency = this.reportFrequency;
+    final reportId = this.reportId;
+    return {
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (destinationS3Location != null)
+        'destinationS3Location': destinationS3Location,
+      if (format != null) 'format': format.toValue(),
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (reportDescription != null) 'reportDescription': reportDescription,
+      if (reportFrequency != null) 'reportFrequency': reportFrequency.toValue(),
+      if (reportId != null) 'reportId': reportId,
+    };
   }
 }
 
@@ -585,6 +655,7 @@ class SourceS3Location {
     required this.key,
     this.region,
   });
+
   Map<String, dynamic> toJson() {
     final bucket = this.bucket;
     final key = this.key;
@@ -608,6 +679,13 @@ class UpdateReportDefinitionResult {
     return UpdateReportDefinitionResult(
       reportId: json['reportId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reportId = this.reportId;
+    return {
+      if (reportId != null) 'reportId': reportId,
+    };
   }
 }
 

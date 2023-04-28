@@ -414,6 +414,13 @@ class DeleteThingShadowResponse {
   DeleteThingShadowResponse({
     required this.payload,
   });
+
+  Map<String, dynamic> toJson() {
+    final payload = this.payload;
+    return {
+      'payload': base64Encode(payload),
+    };
+  }
 }
 
 /// The output from the GetRetainedMessage operation.
@@ -445,6 +452,19 @@ class GetRetainedMessageResponse {
       topic: json['topic'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastModifiedTime = this.lastModifiedTime;
+    final payload = this.payload;
+    final qos = this.qos;
+    final topic = this.topic;
+    return {
+      if (lastModifiedTime != null) 'lastModifiedTime': lastModifiedTime,
+      if (payload != null) 'payload': base64Encode(payload),
+      if (qos != null) 'qos': qos,
+      if (topic != null) 'topic': topic,
+    };
+  }
 }
 
 /// The output from the GetThingShadow operation.
@@ -455,6 +475,13 @@ class GetThingShadowResponse {
   GetThingShadowResponse({
     this.payload,
   });
+
+  Map<String, dynamic> toJson() {
+    final payload = this.payload;
+    return {
+      if (payload != null) 'payload': base64Encode(payload),
+    };
+  }
 }
 
 class ListNamedShadowsForThingResponse {
@@ -483,6 +510,17 @@ class ListNamedShadowsForThingResponse {
       timestamp: json['timestamp'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final results = this.results;
+    final timestamp = this.timestamp;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (results != null) 'results': results,
+      if (timestamp != null) 'timestamp': timestamp,
+    };
+  }
 }
 
 class ListRetainedMessagesResponse {
@@ -507,6 +545,15 @@ class ListRetainedMessagesResponse {
               (e) => RetainedMessageSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final retainedTopics = this.retainedTopics;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (retainedTopics != null) 'retainedTopics': retainedTopics,
+    };
   }
 }
 
@@ -539,6 +586,19 @@ class RetainedMessageSummary {
       topic: json['topic'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lastModifiedTime = this.lastModifiedTime;
+    final payloadSize = this.payloadSize;
+    final qos = this.qos;
+    final topic = this.topic;
+    return {
+      if (lastModifiedTime != null) 'lastModifiedTime': lastModifiedTime,
+      if (payloadSize != null) 'payloadSize': payloadSize,
+      if (qos != null) 'qos': qos,
+      if (topic != null) 'topic': topic,
+    };
+  }
 }
 
 /// The output from the UpdateThingShadow operation.
@@ -549,6 +609,13 @@ class UpdateThingShadowResponse {
   UpdateThingShadowResponse({
     this.payload,
   });
+
+  Map<String, dynamic> toJson() {
+    final payload = this.payload;
+    return {
+      if (payload != null) 'payload': base64Encode(payload),
+    };
+  }
 }
 
 class ConflictException extends _s.GenericAwsException {

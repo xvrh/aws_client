@@ -1938,6 +1938,15 @@ class AssociateBrowserSettingsResponse {
       portalArn: json['portalArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final browserSettingsArn = this.browserSettingsArn;
+    final portalArn = this.portalArn;
+    return {
+      'browserSettingsArn': browserSettingsArn,
+      'portalArn': portalArn,
+    };
+  }
 }
 
 class AssociateNetworkSettingsResponse {
@@ -1956,6 +1965,15 @@ class AssociateNetworkSettingsResponse {
       networkSettingsArn: json['networkSettingsArn'] as String,
       portalArn: json['portalArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkSettingsArn = this.networkSettingsArn;
+    final portalArn = this.portalArn;
+    return {
+      'networkSettingsArn': networkSettingsArn,
+      'portalArn': portalArn,
+    };
   }
 }
 
@@ -1976,6 +1994,15 @@ class AssociateTrustStoreResponse {
       trustStoreArn: json['trustStoreArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final portalArn = this.portalArn;
+    final trustStoreArn = this.trustStoreArn;
+    return {
+      'portalArn': portalArn,
+      'trustStoreArn': trustStoreArn,
+    };
+  }
 }
 
 class AssociateUserSettingsResponse {
@@ -1994,6 +2021,15 @@ class AssociateUserSettingsResponse {
       portalArn: json['portalArn'] as String,
       userSettingsArn: json['userSettingsArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final portalArn = this.portalArn;
+    final userSettingsArn = this.userSettingsArn;
+    return {
+      'portalArn': portalArn,
+      'userSettingsArn': userSettingsArn,
+    };
   }
 }
 
@@ -2026,6 +2062,18 @@ class BrowserSettings {
       browserPolicy: json['browserPolicy'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final browserSettingsArn = this.browserSettingsArn;
+    final associatedPortalArns = this.associatedPortalArns;
+    final browserPolicy = this.browserPolicy;
+    return {
+      'browserSettingsArn': browserSettingsArn,
+      if (associatedPortalArns != null)
+        'associatedPortalArns': associatedPortalArns,
+      if (browserPolicy != null) 'browserPolicy': browserPolicy,
+    };
+  }
 }
 
 /// The summary for browser settings.
@@ -2040,6 +2088,13 @@ class BrowserSettingsSummary {
     return BrowserSettingsSummary(
       browserSettingsArn: json['browserSettingsArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final browserSettingsArn = this.browserSettingsArn;
+    return {
+      if (browserSettingsArn != null) 'browserSettingsArn': browserSettingsArn,
+    };
   }
 }
 
@@ -2104,6 +2159,25 @@ class Certificate {
       thumbprint: json['thumbprint'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final body = this.body;
+    final issuer = this.issuer;
+    final notValidAfter = this.notValidAfter;
+    final notValidBefore = this.notValidBefore;
+    final subject = this.subject;
+    final thumbprint = this.thumbprint;
+    return {
+      if (body != null) 'body': base64Encode(body),
+      if (issuer != null) 'issuer': issuer,
+      if (notValidAfter != null)
+        'notValidAfter': unixTimestampToJson(notValidAfter),
+      if (notValidBefore != null)
+        'notValidBefore': unixTimestampToJson(notValidBefore),
+      if (subject != null) 'subject': subject,
+      if (thumbprint != null) 'thumbprint': thumbprint,
+    };
+  }
 }
 
 /// The summary of the certificate.
@@ -2139,6 +2213,23 @@ class CertificateSummary {
       thumbprint: json['thumbprint'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final issuer = this.issuer;
+    final notValidAfter = this.notValidAfter;
+    final notValidBefore = this.notValidBefore;
+    final subject = this.subject;
+    final thumbprint = this.thumbprint;
+    return {
+      if (issuer != null) 'issuer': issuer,
+      if (notValidAfter != null)
+        'notValidAfter': unixTimestampToJson(notValidAfter),
+      if (notValidBefore != null)
+        'notValidBefore': unixTimestampToJson(notValidBefore),
+      if (subject != null) 'subject': subject,
+      if (thumbprint != null) 'thumbprint': thumbprint,
+    };
+  }
 }
 
 class CreateBrowserSettingsResponse {
@@ -2152,6 +2243,13 @@ class CreateBrowserSettingsResponse {
     return CreateBrowserSettingsResponse(
       browserSettingsArn: json['browserSettingsArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final browserSettingsArn = this.browserSettingsArn;
+    return {
+      'browserSettingsArn': browserSettingsArn,
+    };
   }
 }
 
@@ -2167,6 +2265,13 @@ class CreateIdentityProviderResponse {
       identityProviderArn: json['identityProviderArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityProviderArn = this.identityProviderArn;
+    return {
+      'identityProviderArn': identityProviderArn,
+    };
+  }
 }
 
 class CreateNetworkSettingsResponse {
@@ -2180,6 +2285,13 @@ class CreateNetworkSettingsResponse {
     return CreateNetworkSettingsResponse(
       networkSettingsArn: json['networkSettingsArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkSettingsArn = this.networkSettingsArn;
+    return {
+      'networkSettingsArn': networkSettingsArn,
+    };
   }
 }
 
@@ -2201,6 +2313,15 @@ class CreatePortalResponse {
       portalEndpoint: json['portalEndpoint'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final portalArn = this.portalArn;
+    final portalEndpoint = this.portalEndpoint;
+    return {
+      'portalArn': portalArn,
+      'portalEndpoint': portalEndpoint,
+    };
+  }
 }
 
 class CreateTrustStoreResponse {
@@ -2214,6 +2335,13 @@ class CreateTrustStoreResponse {
     return CreateTrustStoreResponse(
       trustStoreArn: json['trustStoreArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trustStoreArn = this.trustStoreArn;
+    return {
+      'trustStoreArn': trustStoreArn,
+    };
   }
 }
 
@@ -2229,12 +2357,23 @@ class CreateUserSettingsResponse {
       userSettingsArn: json['userSettingsArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userSettingsArn = this.userSettingsArn;
+    return {
+      'userSettingsArn': userSettingsArn,
+    };
+  }
 }
 
 class DeleteBrowserSettingsResponse {
   DeleteBrowserSettingsResponse();
   factory DeleteBrowserSettingsResponse.fromJson(Map<String, dynamic> _) {
     return DeleteBrowserSettingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2243,12 +2382,20 @@ class DeleteIdentityProviderResponse {
   factory DeleteIdentityProviderResponse.fromJson(Map<String, dynamic> _) {
     return DeleteIdentityProviderResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteNetworkSettingsResponse {
   DeleteNetworkSettingsResponse();
   factory DeleteNetworkSettingsResponse.fromJson(Map<String, dynamic> _) {
     return DeleteNetworkSettingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2257,12 +2404,20 @@ class DeletePortalResponse {
   factory DeletePortalResponse.fromJson(Map<String, dynamic> _) {
     return DeletePortalResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteTrustStoreResponse {
   DeleteTrustStoreResponse();
   factory DeleteTrustStoreResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTrustStoreResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2271,12 +2426,20 @@ class DeleteUserSettingsResponse {
   factory DeleteUserSettingsResponse.fromJson(Map<String, dynamic> _) {
     return DeleteUserSettingsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateBrowserSettingsResponse {
   DisassociateBrowserSettingsResponse();
   factory DisassociateBrowserSettingsResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateBrowserSettingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2285,6 +2448,10 @@ class DisassociateNetworkSettingsResponse {
   factory DisassociateNetworkSettingsResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateNetworkSettingsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateTrustStoreResponse {
@@ -2292,12 +2459,20 @@ class DisassociateTrustStoreResponse {
   factory DisassociateTrustStoreResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateTrustStoreResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DisassociateUserSettingsResponse {
   DisassociateUserSettingsResponse();
   factory DisassociateUserSettingsResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateUserSettingsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2344,6 +2519,13 @@ class GetBrowserSettingsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final browserSettings = this.browserSettings;
+    return {
+      if (browserSettings != null) 'browserSettings': browserSettings,
+    };
+  }
 }
 
 class GetIdentityProviderResponse {
@@ -2360,6 +2542,13 @@ class GetIdentityProviderResponse {
               json['identityProvider'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identityProvider = this.identityProvider;
+    return {
+      if (identityProvider != null) 'identityProvider': identityProvider,
+    };
   }
 }
 
@@ -2378,6 +2567,13 @@ class GetNetworkSettingsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final networkSettings = this.networkSettings;
+    return {
+      if (networkSettings != null) 'networkSettings': networkSettings,
+    };
+  }
 }
 
 class GetPortalResponse {
@@ -2393,6 +2589,13 @@ class GetPortalResponse {
           ? Portal.fromJson(json['portal'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final portal = this.portal;
+    return {
+      if (portal != null) 'portal': portal,
+    };
   }
 }
 
@@ -2415,6 +2618,16 @@ class GetPortalServiceProviderMetadataResponse {
           json['serviceProviderSamlMetadata'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final portalArn = this.portalArn;
+    final serviceProviderSamlMetadata = this.serviceProviderSamlMetadata;
+    return {
+      'portalArn': portalArn,
+      if (serviceProviderSamlMetadata != null)
+        'serviceProviderSamlMetadata': serviceProviderSamlMetadata,
+    };
+  }
 }
 
 class GetTrustStoreCertificateResponse {
@@ -2436,6 +2649,15 @@ class GetTrustStoreCertificateResponse {
       trustStoreArn: json['trustStoreArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    final trustStoreArn = this.trustStoreArn;
+    return {
+      if (certificate != null) 'certificate': certificate,
+      if (trustStoreArn != null) 'trustStoreArn': trustStoreArn,
+    };
+  }
 }
 
 class GetTrustStoreResponse {
@@ -2452,6 +2674,13 @@ class GetTrustStoreResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trustStore = this.trustStore;
+    return {
+      if (trustStore != null) 'trustStore': trustStore,
+    };
+  }
 }
 
 class GetUserSettingsResponse {
@@ -2467,6 +2696,13 @@ class GetUserSettingsResponse {
           ? UserSettings.fromJson(json['userSettings'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userSettings = this.userSettings;
+    return {
+      if (userSettings != null) 'userSettings': userSettings,
+    };
   }
 }
 
@@ -2603,6 +2839,22 @@ class IdentityProvider {
           (json['identityProviderType'] as String?)?.toIdentityProviderType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityProviderArn = this.identityProviderArn;
+    final identityProviderDetails = this.identityProviderDetails;
+    final identityProviderName = this.identityProviderName;
+    final identityProviderType = this.identityProviderType;
+    return {
+      'identityProviderArn': identityProviderArn,
+      if (identityProviderDetails != null)
+        'identityProviderDetails': identityProviderDetails,
+      if (identityProviderName != null)
+        'identityProviderName': identityProviderName,
+      if (identityProviderType != null)
+        'identityProviderType': identityProviderType.toValue(),
+    };
+  }
 }
 
 /// The summary of the identity provider.
@@ -2628,6 +2880,20 @@ class IdentityProviderSummary {
       identityProviderType:
           (json['identityProviderType'] as String?)?.toIdentityProviderType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identityProviderArn = this.identityProviderArn;
+    final identityProviderName = this.identityProviderName;
+    final identityProviderType = this.identityProviderType;
+    return {
+      if (identityProviderArn != null)
+        'identityProviderArn': identityProviderArn,
+      if (identityProviderName != null)
+        'identityProviderName': identityProviderName,
+      if (identityProviderType != null)
+        'identityProviderType': identityProviderType.toValue(),
+    };
   }
 }
 
@@ -2701,6 +2967,15 @@ class ListBrowserSettingsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final browserSettings = this.browserSettings;
+    final nextToken = this.nextToken;
+    return {
+      if (browserSettings != null) 'browserSettings': browserSettings,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListIdentityProvidersResponse {
@@ -2724,6 +2999,15 @@ class ListIdentityProvidersResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identityProviders = this.identityProviders;
+    final nextToken = this.nextToken;
+    return {
+      if (identityProviders != null) 'identityProviders': identityProviders,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -2749,6 +3033,15 @@ class ListNetworkSettingsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final networkSettings = this.networkSettings;
+    final nextToken = this.nextToken;
+    return {
+      if (networkSettings != null) 'networkSettings': networkSettings,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListPortalsResponse {
@@ -2772,6 +3065,15 @@ class ListPortalsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final portals = this.portals;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (portals != null) 'portals': portals,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2788,6 +3090,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2818,6 +3127,17 @@ class ListTrustStoreCertificatesResponse {
       trustStoreArn: json['trustStoreArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateList = this.certificateList;
+    final nextToken = this.nextToken;
+    final trustStoreArn = this.trustStoreArn;
+    return {
+      if (certificateList != null) 'certificateList': certificateList,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (trustStoreArn != null) 'trustStoreArn': trustStoreArn,
+    };
+  }
 }
 
 class ListTrustStoresResponse {
@@ -2841,6 +3161,15 @@ class ListTrustStoresResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final trustStores = this.trustStores;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (trustStores != null) 'trustStores': trustStores,
+    };
+  }
 }
 
 class ListUserSettingsResponse {
@@ -2863,6 +3192,15 @@ class ListUserSettingsResponse {
           .map((e) => UserSettingsSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final userSettings = this.userSettings;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (userSettings != null) 'userSettings': userSettings,
+    };
   }
 }
 
@@ -2913,6 +3251,22 @@ class NetworkSettings {
       vpcId: json['vpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final networkSettingsArn = this.networkSettingsArn;
+    final associatedPortalArns = this.associatedPortalArns;
+    final securityGroupIds = this.securityGroupIds;
+    final subnetIds = this.subnetIds;
+    final vpcId = this.vpcId;
+    return {
+      'networkSettingsArn': networkSettingsArn,
+      if (associatedPortalArns != null)
+        'associatedPortalArns': associatedPortalArns,
+      if (securityGroupIds != null) 'securityGroupIds': securityGroupIds,
+      if (subnetIds != null) 'subnetIds': subnetIds,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// The summary of network settings.
@@ -2932,6 +3286,15 @@ class NetworkSettingsSummary {
       networkSettingsArn: json['networkSettingsArn'] as String?,
       vpcId: json['vpcId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkSettingsArn = this.networkSettingsArn;
+    final vpcId = this.vpcId;
+    return {
+      if (networkSettingsArn != null) 'networkSettingsArn': networkSettingsArn,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
   }
 }
 
@@ -3003,6 +3366,36 @@ class Portal {
       trustStoreArn: json['trustStoreArn'] as String?,
       userSettingsArn: json['userSettingsArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final browserSettingsArn = this.browserSettingsArn;
+    final browserType = this.browserType;
+    final creationDate = this.creationDate;
+    final displayName = this.displayName;
+    final networkSettingsArn = this.networkSettingsArn;
+    final portalArn = this.portalArn;
+    final portalEndpoint = this.portalEndpoint;
+    final portalStatus = this.portalStatus;
+    final rendererType = this.rendererType;
+    final statusReason = this.statusReason;
+    final trustStoreArn = this.trustStoreArn;
+    final userSettingsArn = this.userSettingsArn;
+    return {
+      if (browserSettingsArn != null) 'browserSettingsArn': browserSettingsArn,
+      if (browserType != null) 'browserType': browserType.toValue(),
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (displayName != null) 'displayName': displayName,
+      if (networkSettingsArn != null) 'networkSettingsArn': networkSettingsArn,
+      if (portalArn != null) 'portalArn': portalArn,
+      if (portalEndpoint != null) 'portalEndpoint': portalEndpoint,
+      if (portalStatus != null) 'portalStatus': portalStatus.toValue(),
+      if (rendererType != null) 'rendererType': rendererType.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+      if (trustStoreArn != null) 'trustStoreArn': trustStoreArn,
+      if (userSettingsArn != null) 'userSettingsArn': userSettingsArn,
+    };
   }
 }
 
@@ -3103,6 +3496,34 @@ class PortalSummary {
       userSettingsArn: json['userSettingsArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final browserSettingsArn = this.browserSettingsArn;
+    final browserType = this.browserType;
+    final creationDate = this.creationDate;
+    final displayName = this.displayName;
+    final networkSettingsArn = this.networkSettingsArn;
+    final portalArn = this.portalArn;
+    final portalEndpoint = this.portalEndpoint;
+    final portalStatus = this.portalStatus;
+    final rendererType = this.rendererType;
+    final trustStoreArn = this.trustStoreArn;
+    final userSettingsArn = this.userSettingsArn;
+    return {
+      if (browserSettingsArn != null) 'browserSettingsArn': browserSettingsArn,
+      if (browserType != null) 'browserType': browserType.toValue(),
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (displayName != null) 'displayName': displayName,
+      if (networkSettingsArn != null) 'networkSettingsArn': networkSettingsArn,
+      if (portalArn != null) 'portalArn': portalArn,
+      if (portalEndpoint != null) 'portalEndpoint': portalEndpoint,
+      if (portalStatus != null) 'portalStatus': portalStatus.toValue(),
+      if (rendererType != null) 'rendererType': rendererType.toValue(),
+      if (trustStoreArn != null) 'trustStoreArn': trustStoreArn,
+      if (userSettingsArn != null) 'userSettingsArn': userSettingsArn,
+    };
+  }
 }
 
 enum RendererType {
@@ -3162,6 +3583,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A trust store that can be associated with a web portal. A trust store
@@ -3190,6 +3615,16 @@ class TrustStore {
       trustStoreArn: json['trustStoreArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associatedPortalArns = this.associatedPortalArns;
+    final trustStoreArn = this.trustStoreArn;
+    return {
+      if (associatedPortalArns != null)
+        'associatedPortalArns': associatedPortalArns,
+      if (trustStoreArn != null) 'trustStoreArn': trustStoreArn,
+    };
+  }
 }
 
 /// The summary of the trust store.
@@ -3205,12 +3640,23 @@ class TrustStoreSummary {
       trustStoreArn: json['trustStoreArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final trustStoreArn = this.trustStoreArn;
+    return {
+      if (trustStoreArn != null) 'trustStoreArn': trustStoreArn,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3227,6 +3673,13 @@ class UpdateBrowserSettingsResponse {
           json['browserSettings'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final browserSettings = this.browserSettings;
+    return {
+      'browserSettings': browserSettings,
+    };
+  }
 }
 
 class UpdateIdentityProviderResponse {
@@ -3242,6 +3695,13 @@ class UpdateIdentityProviderResponse {
           json['identityProvider'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identityProvider = this.identityProvider;
+    return {
+      'identityProvider': identityProvider,
+    };
+  }
 }
 
 class UpdateNetworkSettingsResponse {
@@ -3256,6 +3716,13 @@ class UpdateNetworkSettingsResponse {
       networkSettings: NetworkSettings.fromJson(
           json['networkSettings'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkSettings = this.networkSettings;
+    return {
+      'networkSettings': networkSettings,
+    };
   }
 }
 
@@ -3273,6 +3740,13 @@ class UpdatePortalResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final portal = this.portal;
+    return {
+      if (portal != null) 'portal': portal,
+    };
+  }
 }
 
 class UpdateTrustStoreResponse {
@@ -3286,6 +3760,13 @@ class UpdateTrustStoreResponse {
     return UpdateTrustStoreResponse(
       trustStoreArn: json['trustStoreArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trustStoreArn = this.trustStoreArn;
+    return {
+      'trustStoreArn': trustStoreArn,
+    };
   }
 }
 
@@ -3301,6 +3782,13 @@ class UpdateUserSettingsResponse {
       userSettings:
           UserSettings.fromJson(json['userSettings'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userSettings = this.userSettings;
+    return {
+      'userSettings': userSettings,
+    };
   }
 }
 
@@ -3370,6 +3858,32 @@ class UserSettings {
       uploadAllowed: (json['uploadAllowed'] as String?)?.toEnabledType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final userSettingsArn = this.userSettingsArn;
+    final associatedPortalArns = this.associatedPortalArns;
+    final copyAllowed = this.copyAllowed;
+    final disconnectTimeoutInMinutes = this.disconnectTimeoutInMinutes;
+    final downloadAllowed = this.downloadAllowed;
+    final idleDisconnectTimeoutInMinutes = this.idleDisconnectTimeoutInMinutes;
+    final pasteAllowed = this.pasteAllowed;
+    final printAllowed = this.printAllowed;
+    final uploadAllowed = this.uploadAllowed;
+    return {
+      'userSettingsArn': userSettingsArn,
+      if (associatedPortalArns != null)
+        'associatedPortalArns': associatedPortalArns,
+      if (copyAllowed != null) 'copyAllowed': copyAllowed.toValue(),
+      if (disconnectTimeoutInMinutes != null)
+        'disconnectTimeoutInMinutes': disconnectTimeoutInMinutes,
+      if (downloadAllowed != null) 'downloadAllowed': downloadAllowed.toValue(),
+      if (idleDisconnectTimeoutInMinutes != null)
+        'idleDisconnectTimeoutInMinutes': idleDisconnectTimeoutInMinutes,
+      if (pasteAllowed != null) 'pasteAllowed': pasteAllowed.toValue(),
+      if (printAllowed != null) 'printAllowed': printAllowed.toValue(),
+      if (uploadAllowed != null) 'uploadAllowed': uploadAllowed.toValue(),
+    };
+  }
 }
 
 /// The summary of user settings.
@@ -3427,6 +3941,29 @@ class UserSettingsSummary {
       uploadAllowed: (json['uploadAllowed'] as String?)?.toEnabledType(),
       userSettingsArn: json['userSettingsArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final copyAllowed = this.copyAllowed;
+    final disconnectTimeoutInMinutes = this.disconnectTimeoutInMinutes;
+    final downloadAllowed = this.downloadAllowed;
+    final idleDisconnectTimeoutInMinutes = this.idleDisconnectTimeoutInMinutes;
+    final pasteAllowed = this.pasteAllowed;
+    final printAllowed = this.printAllowed;
+    final uploadAllowed = this.uploadAllowed;
+    final userSettingsArn = this.userSettingsArn;
+    return {
+      if (copyAllowed != null) 'copyAllowed': copyAllowed.toValue(),
+      if (disconnectTimeoutInMinutes != null)
+        'disconnectTimeoutInMinutes': disconnectTimeoutInMinutes,
+      if (downloadAllowed != null) 'downloadAllowed': downloadAllowed.toValue(),
+      if (idleDisconnectTimeoutInMinutes != null)
+        'idleDisconnectTimeoutInMinutes': idleDisconnectTimeoutInMinutes,
+      if (pasteAllowed != null) 'pasteAllowed': pasteAllowed.toValue(),
+      if (printAllowed != null) 'printAllowed': printAllowed.toValue(),
+      if (uploadAllowed != null) 'uploadAllowed': uploadAllowed.toValue(),
+      if (userSettingsArn != null) 'userSettingsArn': userSettingsArn,
+    };
   }
 }
 

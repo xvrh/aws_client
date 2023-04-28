@@ -3928,6 +3928,15 @@ class CreateAccessResponse {
       serverId: json['ServerId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final externalId = this.externalId;
+    final serverId = this.serverId;
+    return {
+      'ExternalId': externalId,
+      'ServerId': serverId,
+    };
+  }
 }
 
 class CreateAgreementResponse {
@@ -3944,6 +3953,13 @@ class CreateAgreementResponse {
       agreementId: json['AgreementId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agreementId = this.agreementId;
+    return {
+      'AgreementId': agreementId,
+    };
+  }
 }
 
 class CreateConnectorResponse {
@@ -3958,6 +3974,13 @@ class CreateConnectorResponse {
     return CreateConnectorResponse(
       connectorId: json['ConnectorId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectorId = this.connectorId;
+    return {
+      'ConnectorId': connectorId,
+    };
   }
 }
 
@@ -3974,6 +3997,13 @@ class CreateProfileResponse {
       profileId: json['ProfileId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final profileId = this.profileId;
+    return {
+      'ProfileId': profileId,
+    };
+  }
 }
 
 class CreateServerResponse {
@@ -3987,6 +4017,13 @@ class CreateServerResponse {
     return CreateServerResponse(
       serverId: json['ServerId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    return {
+      'ServerId': serverId,
+    };
   }
 }
 
@@ -4007,6 +4044,15 @@ class CreateUserResponse {
       userName: json['UserName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    final userName = this.userName;
+    return {
+      'ServerId': serverId,
+      'UserName': userName,
+    };
+  }
 }
 
 class CreateWorkflowResponse {
@@ -4020,6 +4066,13 @@ class CreateWorkflowResponse {
     return CreateWorkflowResponse(
       workflowId: json['WorkflowId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workflowId = this.workflowId;
+    return {
+      'WorkflowId': workflowId,
+    };
   }
 }
 
@@ -4167,6 +4220,15 @@ class DescribeAccessResponse {
       serverId: json['ServerId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final access = this.access;
+    final serverId = this.serverId;
+    return {
+      'Access': access,
+      'ServerId': serverId,
+    };
+  }
 }
 
 class DescribeAgreementResponse {
@@ -4183,6 +4245,13 @@ class DescribeAgreementResponse {
           json['Agreement'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agreement = this.agreement;
+    return {
+      'Agreement': agreement,
+    };
+  }
 }
 
 class DescribeCertificateResponse {
@@ -4198,6 +4267,13 @@ class DescribeCertificateResponse {
           json['Certificate'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificate = this.certificate;
+    return {
+      'Certificate': certificate,
+    };
+  }
 }
 
 class DescribeConnectorResponse {
@@ -4212,6 +4288,13 @@ class DescribeConnectorResponse {
       connector: DescribedConnector.fromJson(
           json['Connector'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connector = this.connector;
+    return {
+      'Connector': connector,
+    };
   }
 }
 
@@ -4233,6 +4316,15 @@ class DescribeExecutionResponse {
       workflowId: json['WorkflowId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final execution = this.execution;
+    final workflowId = this.workflowId;
+    return {
+      'Execution': execution,
+      'WorkflowId': workflowId,
+    };
+  }
 }
 
 class DescribeProfileResponse {
@@ -4247,6 +4339,13 @@ class DescribeProfileResponse {
       profile:
           DescribedProfile.fromJson(json['Profile'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final profile = this.profile;
+    return {
+      'Profile': profile,
+    };
   }
 }
 
@@ -4263,6 +4362,13 @@ class DescribeSecurityPolicyResponse {
           json['SecurityPolicy'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final securityPolicy = this.securityPolicy;
+    return {
+      'SecurityPolicy': securityPolicy,
+    };
+  }
 }
 
 class DescribeServerResponse {
@@ -4277,6 +4383,13 @@ class DescribeServerResponse {
     return DescribeServerResponse(
       server: DescribedServer.fromJson(json['Server'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final server = this.server;
+    return {
+      'Server': server,
+    };
   }
 }
 
@@ -4299,6 +4412,15 @@ class DescribeUserResponse {
       user: DescribedUser.fromJson(json['User'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    final user = this.user;
+    return {
+      'ServerId': serverId,
+      'User': user,
+    };
+  }
 }
 
 class DescribeWorkflowResponse {
@@ -4313,6 +4435,13 @@ class DescribeWorkflowResponse {
       workflow:
           DescribedWorkflow.fromJson(json['Workflow'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workflow = this.workflow;
+    return {
+      'Workflow': workflow,
+    };
   }
 }
 
@@ -4413,6 +4542,27 @@ class DescribedAccess {
       role: json['Role'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final externalId = this.externalId;
+    final homeDirectory = this.homeDirectory;
+    final homeDirectoryMappings = this.homeDirectoryMappings;
+    final homeDirectoryType = this.homeDirectoryType;
+    final policy = this.policy;
+    final posixProfile = this.posixProfile;
+    final role = this.role;
+    return {
+      if (externalId != null) 'ExternalId': externalId,
+      if (homeDirectory != null) 'HomeDirectory': homeDirectory,
+      if (homeDirectoryMappings != null)
+        'HomeDirectoryMappings': homeDirectoryMappings,
+      if (homeDirectoryType != null)
+        'HomeDirectoryType': homeDirectoryType.toValue(),
+      if (policy != null) 'Policy': policy,
+      if (posixProfile != null) 'PosixProfile': posixProfile,
+      if (role != null) 'Role': role,
+    };
+  }
 }
 
 /// Describes the properties of an agreement.
@@ -4481,6 +4631,31 @@ class DescribedAgreement {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final accessRole = this.accessRole;
+    final agreementId = this.agreementId;
+    final baseDirectory = this.baseDirectory;
+    final description = this.description;
+    final localProfileId = this.localProfileId;
+    final partnerProfileId = this.partnerProfileId;
+    final serverId = this.serverId;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      if (accessRole != null) 'AccessRole': accessRole,
+      if (agreementId != null) 'AgreementId': agreementId,
+      if (baseDirectory != null) 'BaseDirectory': baseDirectory,
+      if (description != null) 'Description': description,
+      if (localProfileId != null) 'LocalProfileId': localProfileId,
+      if (partnerProfileId != null) 'PartnerProfileId': partnerProfileId,
+      if (serverId != null) 'ServerId': serverId,
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -4571,6 +4746,42 @@ class DescribedCertificate {
       usage: (json['Usage'] as String?)?.toCertificateUsageType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final activeDate = this.activeDate;
+    final certificate = this.certificate;
+    final certificateChain = this.certificateChain;
+    final certificateId = this.certificateId;
+    final description = this.description;
+    final inactiveDate = this.inactiveDate;
+    final notAfterDate = this.notAfterDate;
+    final notBeforeDate = this.notBeforeDate;
+    final serial = this.serial;
+    final status = this.status;
+    final tags = this.tags;
+    final type = this.type;
+    final usage = this.usage;
+    return {
+      'Arn': arn,
+      if (activeDate != null) 'ActiveDate': unixTimestampToJson(activeDate),
+      if (certificate != null) 'Certificate': certificate,
+      if (certificateChain != null) 'CertificateChain': certificateChain,
+      if (certificateId != null) 'CertificateId': certificateId,
+      if (description != null) 'Description': description,
+      if (inactiveDate != null)
+        'InactiveDate': unixTimestampToJson(inactiveDate),
+      if (notAfterDate != null)
+        'NotAfterDate': unixTimestampToJson(notAfterDate),
+      if (notBeforeDate != null)
+        'NotBeforeDate': unixTimestampToJson(notBeforeDate),
+      if (serial != null) 'Serial': serial,
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (type != null) 'Type': type.toValue(),
+      if (usage != null) 'Usage': usage.toValue(),
+    };
+  }
 }
 
 /// Describes the parameters for the connector, as identified by the
@@ -4635,6 +4846,25 @@ class DescribedConnector {
           .toList(),
       url: json['Url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final accessRole = this.accessRole;
+    final as2Config = this.as2Config;
+    final connectorId = this.connectorId;
+    final loggingRole = this.loggingRole;
+    final tags = this.tags;
+    final url = this.url;
+    return {
+      'Arn': arn,
+      if (accessRole != null) 'AccessRole': accessRole,
+      if (as2Config != null) 'As2Config': as2Config,
+      if (connectorId != null) 'ConnectorId': connectorId,
+      if (loggingRole != null) 'LoggingRole': loggingRole,
+      if (tags != null) 'Tags': tags,
+      if (url != null) 'Url': url,
+    };
   }
 }
 
@@ -4703,6 +4933,29 @@ class DescribedExecution {
       status: (json['Status'] as String?)?.toExecutionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionId = this.executionId;
+    final executionRole = this.executionRole;
+    final initialFileLocation = this.initialFileLocation;
+    final loggingConfiguration = this.loggingConfiguration;
+    final posixProfile = this.posixProfile;
+    final results = this.results;
+    final serviceMetadata = this.serviceMetadata;
+    final status = this.status;
+    return {
+      if (executionId != null) 'ExecutionId': executionId,
+      if (executionRole != null) 'ExecutionRole': executionRole,
+      if (initialFileLocation != null)
+        'InitialFileLocation': initialFileLocation,
+      if (loggingConfiguration != null)
+        'LoggingConfiguration': loggingConfiguration,
+      if (posixProfile != null) 'PosixProfile': posixProfile,
+      if (results != null) 'Results': results,
+      if (serviceMetadata != null) 'ServiceMetadata': serviceMetadata,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// The details for a local or partner AS2 profile. profile.
@@ -4751,6 +5004,23 @@ class DescribedProfile {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final as2Id = this.as2Id;
+    final certificateIds = this.certificateIds;
+    final profileId = this.profileId;
+    final profileType = this.profileType;
+    final tags = this.tags;
+    return {
+      'Arn': arn,
+      if (as2Id != null) 'As2Id': as2Id,
+      if (certificateIds != null) 'CertificateIds': certificateIds,
+      if (profileId != null) 'ProfileId': profileId,
+      if (profileType != null) 'ProfileType': profileType.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -4811,6 +5081,23 @@ class DescribedSecurityPolicy {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final securityPolicyName = this.securityPolicyName;
+    final fips = this.fips;
+    final sshCiphers = this.sshCiphers;
+    final sshKexs = this.sshKexs;
+    final sshMacs = this.sshMacs;
+    final tlsCiphers = this.tlsCiphers;
+    return {
+      'SecurityPolicyName': securityPolicyName,
+      if (fips != null) 'Fips': fips,
+      if (sshCiphers != null) 'SshCiphers': sshCiphers,
+      if (sshKexs != null) 'SshKexs': sshKexs,
+      if (sshMacs != null) 'SshMacs': sshMacs,
+      if (tlsCiphers != null) 'TlsCiphers': tlsCiphers,
+    };
   }
 }
 
@@ -5017,6 +5304,54 @@ class DescribedServer {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final certificate = this.certificate;
+    final domain = this.domain;
+    final endpointDetails = this.endpointDetails;
+    final endpointType = this.endpointType;
+    final hostKeyFingerprint = this.hostKeyFingerprint;
+    final identityProviderDetails = this.identityProviderDetails;
+    final identityProviderType = this.identityProviderType;
+    final loggingRole = this.loggingRole;
+    final postAuthenticationLoginBanner = this.postAuthenticationLoginBanner;
+    final preAuthenticationLoginBanner = this.preAuthenticationLoginBanner;
+    final protocolDetails = this.protocolDetails;
+    final protocols = this.protocols;
+    final securityPolicyName = this.securityPolicyName;
+    final serverId = this.serverId;
+    final state = this.state;
+    final tags = this.tags;
+    final userCount = this.userCount;
+    final workflowDetails = this.workflowDetails;
+    return {
+      'Arn': arn,
+      if (certificate != null) 'Certificate': certificate,
+      if (domain != null) 'Domain': domain.toValue(),
+      if (endpointDetails != null) 'EndpointDetails': endpointDetails,
+      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (hostKeyFingerprint != null) 'HostKeyFingerprint': hostKeyFingerprint,
+      if (identityProviderDetails != null)
+        'IdentityProviderDetails': identityProviderDetails,
+      if (identityProviderType != null)
+        'IdentityProviderType': identityProviderType.toValue(),
+      if (loggingRole != null) 'LoggingRole': loggingRole,
+      if (postAuthenticationLoginBanner != null)
+        'PostAuthenticationLoginBanner': postAuthenticationLoginBanner,
+      if (preAuthenticationLoginBanner != null)
+        'PreAuthenticationLoginBanner': preAuthenticationLoginBanner,
+      if (protocolDetails != null) 'ProtocolDetails': protocolDetails,
+      if (protocols != null)
+        'Protocols': protocols.map((e) => e.toValue()).toList(),
+      if (securityPolicyName != null) 'SecurityPolicyName': securityPolicyName,
+      if (serverId != null) 'ServerId': serverId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (userCount != null) 'UserCount': userCount,
+      if (workflowDetails != null) 'WorkflowDetails': workflowDetails,
+    };
+  }
 }
 
 /// Describes the properties of a user that was specified.
@@ -5134,6 +5469,33 @@ class DescribedUser {
       userName: json['UserName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final homeDirectory = this.homeDirectory;
+    final homeDirectoryMappings = this.homeDirectoryMappings;
+    final homeDirectoryType = this.homeDirectoryType;
+    final policy = this.policy;
+    final posixProfile = this.posixProfile;
+    final role = this.role;
+    final sshPublicKeys = this.sshPublicKeys;
+    final tags = this.tags;
+    final userName = this.userName;
+    return {
+      'Arn': arn,
+      if (homeDirectory != null) 'HomeDirectory': homeDirectory,
+      if (homeDirectoryMappings != null)
+        'HomeDirectoryMappings': homeDirectoryMappings,
+      if (homeDirectoryType != null)
+        'HomeDirectoryType': homeDirectoryType.toValue(),
+      if (policy != null) 'Policy': policy,
+      if (posixProfile != null) 'PosixProfile': posixProfile,
+      if (role != null) 'Role': role,
+      if (sshPublicKeys != null) 'SshPublicKeys': sshPublicKeys,
+      if (tags != null) 'Tags': tags,
+      if (userName != null) 'UserName': userName,
+    };
+  }
 }
 
 /// Describes the properties of the specified workflow
@@ -5184,6 +5546,23 @@ class DescribedWorkflow {
           .toList(),
       workflowId: json['WorkflowId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final onExceptionSteps = this.onExceptionSteps;
+    final steps = this.steps;
+    final tags = this.tags;
+    final workflowId = this.workflowId;
+    return {
+      'Arn': arn,
+      if (description != null) 'Description': description,
+      if (onExceptionSteps != null) 'OnExceptionSteps': onExceptionSteps,
+      if (steps != null) 'Steps': steps,
+      if (tags != null) 'Tags': tags,
+      if (workflowId != null) 'WorkflowId': workflowId,
+    };
   }
 }
 
@@ -5481,6 +5860,15 @@ class ExecutionError {
       type: (json['Type'] as String).toExecutionErrorType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final type = this.type;
+    return {
+      'Message': message,
+      'Type': type.toValue(),
+    };
+  }
 }
 
 enum ExecutionErrorType {
@@ -5567,6 +5955,15 @@ class ExecutionResults {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final onExceptionSteps = this.onExceptionSteps;
+    final steps = this.steps;
+    return {
+      if (onExceptionSteps != null) 'OnExceptionSteps': onExceptionSteps,
+      if (steps != null) 'Steps': steps,
+    };
+  }
 }
 
 enum ExecutionStatus {
@@ -5650,6 +6047,17 @@ class ExecutionStepResult {
       stepType: (json['StepType'] as String?)?.toWorkflowStepType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final outputs = this.outputs;
+    final stepType = this.stepType;
+    return {
+      if (error != null) 'Error': error,
+      if (outputs != null) 'Outputs': outputs,
+      if (stepType != null) 'StepType': stepType.toValue(),
+    };
+  }
 }
 
 /// Specifies the Amazon S3 or EFS file details to be used in the step.
@@ -5676,6 +6084,15 @@ class FileLocation {
               json['S3FileLocation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final efsFileLocation = this.efsFileLocation;
+    final s3FileLocation = this.s3FileLocation;
+    return {
+      if (efsFileLocation != null) 'EfsFileLocation': efsFileLocation,
+      if (s3FileLocation != null) 'S3FileLocation': s3FileLocation,
+    };
   }
 }
 
@@ -5848,6 +6265,13 @@ class ImportCertificateResponse {
       certificateId: json['CertificateId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificateId = this.certificateId;
+    return {
+      'CertificateId': certificateId,
+    };
+  }
 }
 
 /// Identifies the user, the server they belong to, and the identifier of the
@@ -5874,6 +6298,17 @@ class ImportSshPublicKeyResponse {
       sshPublicKeyId: json['SshPublicKeyId'] as String,
       userName: json['UserName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    final sshPublicKeyId = this.sshPublicKeyId;
+    final userName = this.userName;
+    return {
+      'ServerId': serverId,
+      'SshPublicKeyId': sshPublicKeyId,
+      'UserName': userName,
+    };
   }
 }
 
@@ -5943,6 +6378,17 @@ class ListAccessesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accesses = this.accesses;
+    final serverId = this.serverId;
+    final nextToken = this.nextToken;
+    return {
+      'Accesses': accesses,
+      'ServerId': serverId,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListAgreementsResponse {
@@ -5965,6 +6411,15 @@ class ListAgreementsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final agreements = this.agreements;
+    final nextToken = this.nextToken;
+    return {
+      'Agreements': agreements,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -5989,6 +6444,15 @@ class ListCertificatesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final certificates = this.certificates;
+    final nextToken = this.nextToken;
+    return {
+      'Certificates': certificates,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListConnectorsResponse {
@@ -6011,6 +6475,15 @@ class ListConnectorsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final connectors = this.connectors;
+    final nextToken = this.nextToken;
+    return {
+      'Connectors': connectors,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6060,6 +6533,17 @@ class ListExecutionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executions = this.executions;
+    final workflowId = this.workflowId;
+    final nextToken = this.nextToken;
+    return {
+      'Executions': executions,
+      'WorkflowId': workflowId,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListProfilesResponse {
@@ -6082,6 +6566,15 @@ class ListProfilesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final profiles = this.profiles;
+    final nextToken = this.nextToken;
+    return {
+      'Profiles': profiles,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6108,6 +6601,15 @@ class ListSecurityPoliciesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final securityPolicyNames = this.securityPolicyNames;
+    final nextToken = this.nextToken;
+    return {
+      'SecurityPolicyNames': securityPolicyNames,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListServersResponse {
@@ -6132,6 +6634,15 @@ class ListServersResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final servers = this.servers;
+    final nextToken = this.nextToken;
+    return {
+      'Servers': servers,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6163,6 +6674,17 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -6196,6 +6718,17 @@ class ListUsersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    final users = this.users;
+    final nextToken = this.nextToken;
+    return {
+      'ServerId': serverId,
+      'Users': users,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListWorkflowsResponse {
@@ -6220,6 +6753,15 @@ class ListWorkflowsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workflows = this.workflows;
+    final nextToken = this.nextToken;
+    return {
+      'Workflows': workflows,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -6283,6 +6825,20 @@ class ListedAccess {
       role: json['Role'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final externalId = this.externalId;
+    final homeDirectory = this.homeDirectory;
+    final homeDirectoryType = this.homeDirectoryType;
+    final role = this.role;
+    return {
+      if (externalId != null) 'ExternalId': externalId,
+      if (homeDirectory != null) 'HomeDirectory': homeDirectory,
+      if (homeDirectoryType != null)
+        'HomeDirectoryType': homeDirectoryType.toValue(),
+      if (role != null) 'Role': role,
+    };
+  }
 }
 
 /// Describes the properties of an agreement.
@@ -6329,6 +6885,25 @@ class ListedAgreement {
       serverId: json['ServerId'] as String?,
       status: (json['Status'] as String?)?.toAgreementStatusType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final agreementId = this.agreementId;
+    final arn = this.arn;
+    final description = this.description;
+    final localProfileId = this.localProfileId;
+    final partnerProfileId = this.partnerProfileId;
+    final serverId = this.serverId;
+    final status = this.status;
+    return {
+      if (agreementId != null) 'AgreementId': agreementId,
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (localProfileId != null) 'LocalProfileId': localProfileId,
+      if (partnerProfileId != null) 'PartnerProfileId': partnerProfileId,
+      if (serverId != null) 'ServerId': serverId,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -6386,6 +6961,28 @@ class ListedCertificate {
       usage: (json['Usage'] as String?)?.toCertificateUsageType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeDate = this.activeDate;
+    final arn = this.arn;
+    final certificateId = this.certificateId;
+    final description = this.description;
+    final inactiveDate = this.inactiveDate;
+    final status = this.status;
+    final type = this.type;
+    final usage = this.usage;
+    return {
+      if (activeDate != null) 'ActiveDate': unixTimestampToJson(activeDate),
+      if (arn != null) 'Arn': arn,
+      if (certificateId != null) 'CertificateId': certificateId,
+      if (description != null) 'Description': description,
+      if (inactiveDate != null)
+        'InactiveDate': unixTimestampToJson(inactiveDate),
+      if (status != null) 'Status': status.toValue(),
+      if (type != null) 'Type': type.toValue(),
+      if (usage != null) 'Usage': usage.toValue(),
+    };
+  }
 }
 
 /// Returns details of the connector that is specified.
@@ -6410,6 +7007,17 @@ class ListedConnector {
       connectorId: json['ConnectorId'] as String?,
       url: json['Url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final connectorId = this.connectorId;
+    final url = this.url;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (connectorId != null) 'ConnectorId': connectorId,
+      if (url != null) 'Url': url,
+    };
   }
 }
 
@@ -6451,6 +7059,20 @@ class ListedExecution {
       status: (json['Status'] as String?)?.toExecutionStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executionId = this.executionId;
+    final initialFileLocation = this.initialFileLocation;
+    final serviceMetadata = this.serviceMetadata;
+    final status = this.status;
+    return {
+      if (executionId != null) 'ExecutionId': executionId,
+      if (initialFileLocation != null)
+        'InitialFileLocation': initialFileLocation,
+      if (serviceMetadata != null) 'ServiceMetadata': serviceMetadata,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Returns the properties of the profile that was specified.
@@ -6482,6 +7104,19 @@ class ListedProfile {
       profileId: json['ProfileId'] as String?,
       profileType: (json['ProfileType'] as String?)?.toProfileType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final as2Id = this.as2Id;
+    final profileId = this.profileId;
+    final profileType = this.profileType;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (as2Id != null) 'As2Id': as2Id,
+      if (profileId != null) 'ProfileId': profileId,
+      if (profileType != null) 'ProfileType': profileType.toValue(),
+    };
   }
 }
 
@@ -6568,6 +7203,28 @@ class ListedServer {
       userCount: json['UserCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final domain = this.domain;
+    final endpointType = this.endpointType;
+    final identityProviderType = this.identityProviderType;
+    final loggingRole = this.loggingRole;
+    final serverId = this.serverId;
+    final state = this.state;
+    final userCount = this.userCount;
+    return {
+      'Arn': arn,
+      if (domain != null) 'Domain': domain.toValue(),
+      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (identityProviderType != null)
+        'IdentityProviderType': identityProviderType.toValue(),
+      if (loggingRole != null) 'LoggingRole': loggingRole,
+      if (serverId != null) 'ServerId': serverId,
+      if (state != null) 'State': state.toValue(),
+      if (userCount != null) 'UserCount': userCount,
+    };
+  }
 }
 
 /// Returns properties of the user that you specify.
@@ -6636,6 +7293,24 @@ class ListedUser {
       userName: json['UserName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final homeDirectory = this.homeDirectory;
+    final homeDirectoryType = this.homeDirectoryType;
+    final role = this.role;
+    final sshPublicKeyCount = this.sshPublicKeyCount;
+    final userName = this.userName;
+    return {
+      'Arn': arn,
+      if (homeDirectory != null) 'HomeDirectory': homeDirectory,
+      if (homeDirectoryType != null)
+        'HomeDirectoryType': homeDirectoryType.toValue(),
+      if (role != null) 'Role': role,
+      if (sshPublicKeyCount != null) 'SshPublicKeyCount': sshPublicKeyCount,
+      if (userName != null) 'UserName': userName,
+    };
+  }
 }
 
 /// Contains the ID, text description, and Amazon Resource Name (ARN) for the
@@ -6662,6 +7337,17 @@ class ListedWorkflow {
       workflowId: json['WorkflowId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final description = this.description;
+    final workflowId = this.workflowId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (description != null) 'Description': description,
+      if (workflowId != null) 'WorkflowId': workflowId,
+    };
+  }
 }
 
 /// Consists of the logging role and the log group name.
@@ -6685,6 +7371,15 @@ class LoggingConfiguration {
       logGroupName: json['LogGroupName'] as String?,
       loggingRole: json['LoggingRole'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final logGroupName = this.logGroupName;
+    final loggingRole = this.loggingRole;
+    return {
+      if (logGroupName != null) 'LogGroupName': logGroupName,
+      if (loggingRole != null) 'LoggingRole': loggingRole,
+    };
   }
 }
 
@@ -7053,6 +7748,19 @@ class S3FileLocation {
       versionId: json['VersionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final etag = this.etag;
+    final key = this.key;
+    final versionId = this.versionId;
+    return {
+      if (bucket != null) 'Bucket': bucket,
+      if (etag != null) 'Etag': etag,
+      if (key != null) 'Key': key,
+      if (versionId != null) 'VersionId': versionId,
+    };
+  }
 }
 
 /// Specifies the customer input S3 file location. If it is used inside
@@ -7136,6 +7844,10 @@ class SendWorkflowStepStateResponse {
   factory SendWorkflowStepStateResponse.fromJson(Map<String, dynamic> _) {
     return SendWorkflowStepStateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A container object for the session details that are associated with a
@@ -7153,6 +7865,13 @@ class ServiceMetadata {
       userDetails:
           UserDetails.fromJson(json['UserDetails'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userDetails = this.userDetails;
+    return {
+      'UserDetails': userDetails,
+    };
   }
 }
 
@@ -7260,6 +7979,17 @@ class SshPublicKey {
       sshPublicKeyId: json['SshPublicKeyId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dateImported = this.dateImported;
+    final sshPublicKeyBody = this.sshPublicKeyBody;
+    final sshPublicKeyId = this.sshPublicKeyId;
+    return {
+      'DateImported': unixTimestampToJson(dateImported),
+      'SshPublicKeyBody': sshPublicKeyBody,
+      'SshPublicKeyId': sshPublicKeyId,
+    };
+  }
 }
 
 class StartFileTransferResponse {
@@ -7273,6 +8003,13 @@ class StartFileTransferResponse {
     return StartFileTransferResponse(
       transferId: json['TransferId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final transferId = this.transferId;
+    return {
+      'TransferId': transferId,
+    };
   }
 }
 
@@ -7457,6 +8194,19 @@ class TestIdentityProviderResponse {
       response: json['Response'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final statusCode = this.statusCode;
+    final url = this.url;
+    final message = this.message;
+    final response = this.response;
+    return {
+      'StatusCode': statusCode,
+      'Url': url,
+      if (message != null) 'Message': message,
+      if (response != null) 'Response': response,
+    };
+  }
 }
 
 enum TlsSessionResumptionMode {
@@ -7511,6 +8261,15 @@ class UpdateAccessResponse {
       serverId: json['ServerId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final externalId = this.externalId;
+    final serverId = this.serverId;
+    return {
+      'ExternalId': externalId,
+      'ServerId': serverId,
+    };
+  }
 }
 
 class UpdateAgreementResponse {
@@ -7526,6 +8285,13 @@ class UpdateAgreementResponse {
       agreementId: json['AgreementId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final agreementId = this.agreementId;
+    return {
+      'AgreementId': agreementId,
+    };
+  }
 }
 
 class UpdateCertificateResponse {
@@ -7539,6 +8305,13 @@ class UpdateCertificateResponse {
     return UpdateCertificateResponse(
       certificateId: json['CertificateId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final certificateId = this.certificateId;
+    return {
+      'CertificateId': certificateId,
+    };
   }
 }
 
@@ -7554,6 +8327,13 @@ class UpdateConnectorResponse {
       connectorId: json['ConnectorId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connectorId = this.connectorId;
+    return {
+      'ConnectorId': connectorId,
+    };
+  }
 }
 
 class UpdateProfileResponse {
@@ -7567,6 +8347,13 @@ class UpdateProfileResponse {
     return UpdateProfileResponse(
       profileId: json['ProfileId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final profileId = this.profileId;
+    return {
+      'ProfileId': profileId,
+    };
   }
 }
 
@@ -7582,6 +8369,13 @@ class UpdateServerResponse {
     return UpdateServerResponse(
       serverId: json['ServerId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    return {
+      'ServerId': serverId,
+    };
   }
 }
 
@@ -7605,6 +8399,15 @@ class UpdateUserResponse {
       serverId: json['ServerId'] as String,
       userName: json['UserName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    final userName = this.userName;
+    return {
+      'ServerId': serverId,
+      'UserName': userName,
+    };
   }
 }
 
@@ -7631,6 +8434,17 @@ class UserDetails {
       userName: json['UserName'] as String,
       sessionId: json['SessionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serverId = this.serverId;
+    final userName = this.userName;
+    final sessionId = this.sessionId;
+    return {
+      'ServerId': serverId,
+      'UserName': userName,
+      if (sessionId != null) 'SessionId': sessionId,
+    };
   }
 }
 

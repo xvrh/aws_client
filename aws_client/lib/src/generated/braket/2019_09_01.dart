@@ -643,6 +643,15 @@ class CancelJobResponse {
       jobArn: json['jobArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cancellationStatus = this.cancellationStatus;
+    final jobArn = this.jobArn;
+    return {
+      'cancellationStatus': cancellationStatus.toValue(),
+      'jobArn': jobArn,
+    };
+  }
 }
 
 class CancelQuantumTaskResponse {
@@ -662,6 +671,15 @@ class CancelQuantumTaskResponse {
           (json['cancellationStatus'] as String).toCancellationStatus(),
       quantumTaskArn: json['quantumTaskArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cancellationStatus = this.cancellationStatus;
+    final quantumTaskArn = this.quantumTaskArn;
+    return {
+      'cancellationStatus': cancellationStatus.toValue(),
+      'quantumTaskArn': quantumTaskArn,
+    };
   }
 }
 
@@ -755,6 +773,13 @@ class CreateJobResponse {
       jobArn: json['jobArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobArn = this.jobArn;
+    return {
+      'jobArn': jobArn,
+    };
+  }
 }
 
 class CreateQuantumTaskResponse {
@@ -768,6 +793,13 @@ class CreateQuantumTaskResponse {
     return CreateQuantumTaskResponse(
       quantumTaskArn: json['quantumTaskArn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final quantumTaskArn = this.quantumTaskArn;
+    return {
+      'quantumTaskArn': quantumTaskArn,
+    };
   }
 }
 
@@ -885,6 +917,21 @@ class DeviceSummary {
       providerName: json['providerName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deviceArn = this.deviceArn;
+    final deviceName = this.deviceName;
+    final deviceStatus = this.deviceStatus;
+    final deviceType = this.deviceType;
+    final providerName = this.providerName;
+    return {
+      'deviceArn': deviceArn,
+      'deviceName': deviceName,
+      'deviceStatus': deviceStatus.toValue(),
+      'deviceType': deviceType.toValue(),
+      'providerName': providerName,
+    };
+  }
 }
 
 enum DeviceType {
@@ -952,6 +999,23 @@ class GetDeviceResponse {
       deviceType: (json['deviceType'] as String).toDeviceType(),
       providerName: json['providerName'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceArn = this.deviceArn;
+    final deviceCapabilities = this.deviceCapabilities;
+    final deviceName = this.deviceName;
+    final deviceStatus = this.deviceStatus;
+    final deviceType = this.deviceType;
+    final providerName = this.providerName;
+    return {
+      'deviceArn': deviceArn,
+      'deviceCapabilities': jsonEncode(deviceCapabilities),
+      'deviceName': deviceName,
+      'deviceStatus': deviceStatus.toValue(),
+      'deviceType': deviceType.toValue(),
+      'providerName': providerName,
+    };
   }
 }
 
@@ -1089,6 +1153,49 @@ class GetJobResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final algorithmSpecification = this.algorithmSpecification;
+    final createdAt = this.createdAt;
+    final instanceConfig = this.instanceConfig;
+    final jobArn = this.jobArn;
+    final jobName = this.jobName;
+    final outputDataConfig = this.outputDataConfig;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    final billableDuration = this.billableDuration;
+    final checkpointConfig = this.checkpointConfig;
+    final deviceConfig = this.deviceConfig;
+    final endedAt = this.endedAt;
+    final events = this.events;
+    final failureReason = this.failureReason;
+    final hyperParameters = this.hyperParameters;
+    final inputDataConfig = this.inputDataConfig;
+    final startedAt = this.startedAt;
+    final stoppingCondition = this.stoppingCondition;
+    final tags = this.tags;
+    return {
+      'algorithmSpecification': algorithmSpecification,
+      'createdAt': iso8601ToJson(createdAt),
+      'instanceConfig': instanceConfig,
+      'jobArn': jobArn,
+      'jobName': jobName,
+      'outputDataConfig': outputDataConfig,
+      'roleArn': roleArn,
+      'status': status.toValue(),
+      if (billableDuration != null) 'billableDuration': billableDuration,
+      if (checkpointConfig != null) 'checkpointConfig': checkpointConfig,
+      if (deviceConfig != null) 'deviceConfig': deviceConfig,
+      if (endedAt != null) 'endedAt': iso8601ToJson(endedAt),
+      if (events != null) 'events': events,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (hyperParameters != null) 'hyperParameters': hyperParameters,
+      if (inputDataConfig != null) 'inputDataConfig': inputDataConfig,
+      if (startedAt != null) 'startedAt': iso8601ToJson(startedAt),
+      if (stoppingCondition != null) 'stoppingCondition': stoppingCondition,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class GetQuantumTaskResponse {
@@ -1159,6 +1266,35 @@ class GetQuantumTaskResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final deviceArn = this.deviceArn;
+    final deviceParameters = this.deviceParameters;
+    final outputS3Bucket = this.outputS3Bucket;
+    final outputS3Directory = this.outputS3Directory;
+    final quantumTaskArn = this.quantumTaskArn;
+    final shots = this.shots;
+    final status = this.status;
+    final endedAt = this.endedAt;
+    final failureReason = this.failureReason;
+    final jobArn = this.jobArn;
+    final tags = this.tags;
+    return {
+      'createdAt': iso8601ToJson(createdAt),
+      'deviceArn': deviceArn,
+      'deviceParameters': jsonEncode(deviceParameters),
+      'outputS3Bucket': outputS3Bucket,
+      'outputS3Directory': outputS3Directory,
+      'quantumTaskArn': quantumTaskArn,
+      'shots': shots,
+      'status': status.toValue(),
+      if (endedAt != null) 'endedAt': iso8601ToJson(endedAt),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (jobArn != null) 'jobArn': jobArn,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1508,6 +1644,17 @@ class JobEventDetails {
       timeOfEvent: timeStampFromJson(json['timeOfEvent']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventType = this.eventType;
+    final message = this.message;
+    final timeOfEvent = this.timeOfEvent;
+    return {
+      if (eventType != null) 'eventType': eventType.toValue(),
+      if (message != null) 'message': message,
+      if (timeOfEvent != null) 'timeOfEvent': iso8601ToJson(timeOfEvent),
+    };
+  }
 }
 
 enum JobEventType {
@@ -1739,6 +1886,27 @@ class JobSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final device = this.device;
+    final jobArn = this.jobArn;
+    final jobName = this.jobName;
+    final status = this.status;
+    final endedAt = this.endedAt;
+    final startedAt = this.startedAt;
+    final tags = this.tags;
+    return {
+      'createdAt': iso8601ToJson(createdAt),
+      'device': device,
+      'jobArn': jobArn,
+      'jobName': jobName,
+      'status': status.toValue(),
+      if (endedAt != null) 'endedAt': iso8601ToJson(endedAt),
+      if (startedAt != null) 'startedAt': iso8601ToJson(startedAt),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1753,6 +1921,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1863,6 +2038,29 @@ class QuantumTaskSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final deviceArn = this.deviceArn;
+    final outputS3Bucket = this.outputS3Bucket;
+    final outputS3Directory = this.outputS3Directory;
+    final quantumTaskArn = this.quantumTaskArn;
+    final shots = this.shots;
+    final status = this.status;
+    final endedAt = this.endedAt;
+    final tags = this.tags;
+    return {
+      'createdAt': iso8601ToJson(createdAt),
+      'deviceArn': deviceArn,
+      'outputS3Bucket': outputS3Bucket,
+      'outputS3Directory': outputS3Directory,
+      'quantumTaskArn': quantumTaskArn,
+      'shots': shots,
+      'status': status.toValue(),
+      if (endedAt != null) 'endedAt': iso8601ToJson(endedAt),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Information about the data stored in Amazon S3 used by the Amazon Braket
@@ -1941,6 +2139,7 @@ class SearchDevicesFilter {
     required this.name,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -1974,6 +2173,15 @@ class SearchDevicesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final devices = this.devices;
+    final nextToken = this.nextToken;
+    return {
+      'devices': devices,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// A filter used to search for Amazon Braket jobs.
@@ -1992,6 +2200,7 @@ class SearchJobsFilter {
     required this.operator,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -2080,6 +2289,15 @@ class SearchJobsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    final nextToken = this.nextToken;
+    return {
+      'jobs': jobs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// A filter to use to search for tasks.
@@ -2098,6 +2316,7 @@ class SearchQuantumTasksFilter {
     required this.operator,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final operator = this.operator;
@@ -2183,6 +2402,15 @@ class SearchQuantumTasksResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final quantumTasks = this.quantumTasks;
+    final nextToken = this.nextToken;
+    return {
+      'quantumTasks': quantumTasks,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class TagResourceResponse {
@@ -2190,12 +2418,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

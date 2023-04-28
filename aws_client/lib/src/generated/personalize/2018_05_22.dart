@@ -3374,6 +3374,36 @@ class Algorithm {
       trainingInputMode: json['trainingInputMode'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final algorithmArn = this.algorithmArn;
+    final algorithmImage = this.algorithmImage;
+    final creationDateTime = this.creationDateTime;
+    final defaultHyperParameterRanges = this.defaultHyperParameterRanges;
+    final defaultHyperParameters = this.defaultHyperParameters;
+    final defaultResourceConfig = this.defaultResourceConfig;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    final trainingInputMode = this.trainingInputMode;
+    return {
+      if (algorithmArn != null) 'algorithmArn': algorithmArn,
+      if (algorithmImage != null) 'algorithmImage': algorithmImage,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (defaultHyperParameterRanges != null)
+        'defaultHyperParameterRanges': defaultHyperParameterRanges,
+      if (defaultHyperParameters != null)
+        'defaultHyperParameters': defaultHyperParameters,
+      if (defaultResourceConfig != null)
+        'defaultResourceConfig': defaultResourceConfig,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (trainingInputMode != null) 'trainingInputMode': trainingInputMode,
+    };
+  }
 }
 
 /// Describes an algorithm image.
@@ -3393,6 +3423,15 @@ class AlgorithmImage {
       dockerURI: json['dockerURI'] as String,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dockerURI = this.dockerURI;
+    final name = this.name;
+    return {
+      'dockerURI': dockerURI,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -3446,6 +3485,13 @@ class AutoMLResult {
     return AutoMLResult(
       bestRecipeArn: json['bestRecipeArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bestRecipeArn = this.bestRecipeArn;
+    return {
+      if (bestRecipeArn != null) 'bestRecipeArn': bestRecipeArn,
+    };
   }
 }
 
@@ -3552,6 +3598,41 @@ class BatchInferenceJob {
       solutionVersionArn: json['solutionVersionArn'] as String?,
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final batchInferenceJobArn = this.batchInferenceJobArn;
+    final batchInferenceJobConfig = this.batchInferenceJobConfig;
+    final creationDateTime = this.creationDateTime;
+    final failureReason = this.failureReason;
+    final filterArn = this.filterArn;
+    final jobInput = this.jobInput;
+    final jobName = this.jobName;
+    final jobOutput = this.jobOutput;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final numResults = this.numResults;
+    final roleArn = this.roleArn;
+    final solutionVersionArn = this.solutionVersionArn;
+    final status = this.status;
+    return {
+      if (batchInferenceJobArn != null)
+        'batchInferenceJobArn': batchInferenceJobArn,
+      if (batchInferenceJobConfig != null)
+        'batchInferenceJobConfig': batchInferenceJobConfig,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (filterArn != null) 'filterArn': filterArn,
+      if (jobInput != null) 'jobInput': jobInput,
+      if (jobName != null) 'jobName': jobName,
+      if (jobOutput != null) 'jobOutput': jobOutput,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (numResults != null) 'numResults': numResults,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (solutionVersionArn != null) 'solutionVersionArn': solutionVersionArn,
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -3696,6 +3777,28 @@ class BatchInferenceJobSummary {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchInferenceJobArn = this.batchInferenceJobArn;
+    final creationDateTime = this.creationDateTime;
+    final failureReason = this.failureReason;
+    final jobName = this.jobName;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final solutionVersionArn = this.solutionVersionArn;
+    final status = this.status;
+    return {
+      if (batchInferenceJobArn != null)
+        'batchInferenceJobArn': batchInferenceJobArn,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (jobName != null) 'jobName': jobName,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (solutionVersionArn != null) 'solutionVersionArn': solutionVersionArn,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Contains information on a batch segment job.
@@ -3792,6 +3895,37 @@ class BatchSegmentJob {
       solutionVersionArn: json['solutionVersionArn'] as String?,
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final batchSegmentJobArn = this.batchSegmentJobArn;
+    final creationDateTime = this.creationDateTime;
+    final failureReason = this.failureReason;
+    final filterArn = this.filterArn;
+    final jobInput = this.jobInput;
+    final jobName = this.jobName;
+    final jobOutput = this.jobOutput;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final numResults = this.numResults;
+    final roleArn = this.roleArn;
+    final solutionVersionArn = this.solutionVersionArn;
+    final status = this.status;
+    return {
+      if (batchSegmentJobArn != null) 'batchSegmentJobArn': batchSegmentJobArn,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (filterArn != null) 'filterArn': filterArn,
+      if (jobInput != null) 'jobInput': jobInput,
+      if (jobName != null) 'jobName': jobName,
+      if (jobOutput != null) 'jobOutput': jobOutput,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (numResults != null) 'numResults': numResults,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (solutionVersionArn != null) 'solutionVersionArn': solutionVersionArn,
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -3903,6 +4037,27 @@ class BatchSegmentJobSummary {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchSegmentJobArn = this.batchSegmentJobArn;
+    final creationDateTime = this.creationDateTime;
+    final failureReason = this.failureReason;
+    final jobName = this.jobName;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final solutionVersionArn = this.solutionVersionArn;
+    final status = this.status;
+    return {
+      if (batchSegmentJobArn != null) 'batchSegmentJobArn': batchSegmentJobArn,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (jobName != null) 'jobName': jobName,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (solutionVersionArn != null) 'solutionVersionArn': solutionVersionArn,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// An object that describes the deployment of a solution version. For more
@@ -3980,6 +4135,34 @@ class Campaign {
       solutionVersionArn: json['solutionVersionArn'] as String?,
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final campaignArn = this.campaignArn;
+    final campaignConfig = this.campaignConfig;
+    final creationDateTime = this.creationDateTime;
+    final failureReason = this.failureReason;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final latestCampaignUpdate = this.latestCampaignUpdate;
+    final minProvisionedTPS = this.minProvisionedTPS;
+    final name = this.name;
+    final solutionVersionArn = this.solutionVersionArn;
+    final status = this.status;
+    return {
+      if (campaignArn != null) 'campaignArn': campaignArn,
+      if (campaignConfig != null) 'campaignConfig': campaignConfig,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (latestCampaignUpdate != null)
+        'latestCampaignUpdate': latestCampaignUpdate,
+      if (minProvisionedTPS != null) 'minProvisionedTPS': minProvisionedTPS,
+      if (name != null) 'name': name,
+      if (solutionVersionArn != null) 'solutionVersionArn': solutionVersionArn,
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -4066,6 +4249,25 @@ class CampaignSummary {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final campaignArn = this.campaignArn;
+    final creationDateTime = this.creationDateTime;
+    final failureReason = this.failureReason;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (campaignArn != null) 'campaignArn': campaignArn,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Provides a summary of the properties of a campaign update. For a complete
@@ -4127,6 +4329,27 @@ class CampaignUpdateSummary {
       solutionVersionArn: json['solutionVersionArn'] as String?,
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final campaignConfig = this.campaignConfig;
+    final creationDateTime = this.creationDateTime;
+    final failureReason = this.failureReason;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final minProvisionedTPS = this.minProvisionedTPS;
+    final solutionVersionArn = this.solutionVersionArn;
+    final status = this.status;
+    return {
+      if (campaignConfig != null) 'campaignConfig': campaignConfig,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (minProvisionedTPS != null) 'minProvisionedTPS': minProvisionedTPS,
+      if (solutionVersionArn != null) 'solutionVersionArn': solutionVersionArn,
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -4210,6 +4433,14 @@ class CreateBatchInferenceJobResponse {
       batchInferenceJobArn: json['batchInferenceJobArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchInferenceJobArn = this.batchInferenceJobArn;
+    return {
+      if (batchInferenceJobArn != null)
+        'batchInferenceJobArn': batchInferenceJobArn,
+    };
+  }
 }
 
 class CreateBatchSegmentJobResponse {
@@ -4223,6 +4454,13 @@ class CreateBatchSegmentJobResponse {
     return CreateBatchSegmentJobResponse(
       batchSegmentJobArn: json['batchSegmentJobArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final batchSegmentJobArn = this.batchSegmentJobArn;
+    return {
+      if (batchSegmentJobArn != null) 'batchSegmentJobArn': batchSegmentJobArn,
+    };
   }
 }
 
@@ -4238,6 +4476,13 @@ class CreateCampaignResponse {
       campaignArn: json['campaignArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final campaignArn = this.campaignArn;
+    return {
+      if (campaignArn != null) 'campaignArn': campaignArn,
+    };
+  }
 }
 
 class CreateDatasetExportJobResponse {
@@ -4251,6 +4496,14 @@ class CreateDatasetExportJobResponse {
     return CreateDatasetExportJobResponse(
       datasetExportJobArn: json['datasetExportJobArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasetExportJobArn = this.datasetExportJobArn;
+    return {
+      if (datasetExportJobArn != null)
+        'datasetExportJobArn': datasetExportJobArn,
+    };
   }
 }
 
@@ -4271,6 +4524,15 @@ class CreateDatasetGroupResponse {
       domain: (json['domain'] as String?)?.toDomain(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetGroupArn = this.datasetGroupArn;
+    final domain = this.domain;
+    return {
+      if (datasetGroupArn != null) 'datasetGroupArn': datasetGroupArn,
+      if (domain != null) 'domain': domain.toValue(),
+    };
+  }
 }
 
 class CreateDatasetImportJobResponse {
@@ -4285,6 +4547,14 @@ class CreateDatasetImportJobResponse {
       datasetImportJobArn: json['datasetImportJobArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetImportJobArn = this.datasetImportJobArn;
+    return {
+      if (datasetImportJobArn != null)
+        'datasetImportJobArn': datasetImportJobArn,
+    };
+  }
 }
 
 class CreateDatasetResponse {
@@ -4298,6 +4568,13 @@ class CreateDatasetResponse {
     return CreateDatasetResponse(
       datasetArn: json['datasetArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasetArn = this.datasetArn;
+    return {
+      if (datasetArn != null) 'datasetArn': datasetArn,
+    };
   }
 }
 
@@ -4320,6 +4597,15 @@ class CreateEventTrackerResponse {
       trackingId: json['trackingId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventTrackerArn = this.eventTrackerArn;
+    final trackingId = this.trackingId;
+    return {
+      if (eventTrackerArn != null) 'eventTrackerArn': eventTrackerArn,
+      if (trackingId != null) 'trackingId': trackingId,
+    };
+  }
 }
 
 class CreateFilterResponse {
@@ -4333,6 +4619,13 @@ class CreateFilterResponse {
     return CreateFilterResponse(
       filterArn: json['filterArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final filterArn = this.filterArn;
+    return {
+      if (filterArn != null) 'filterArn': filterArn,
+    };
   }
 }
 
@@ -4348,6 +4641,13 @@ class CreateRecommenderResponse {
       recommenderArn: json['recommenderArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recommenderArn = this.recommenderArn;
+    return {
+      if (recommenderArn != null) 'recommenderArn': recommenderArn,
+    };
+  }
 }
 
 class CreateSchemaResponse {
@@ -4361,6 +4661,13 @@ class CreateSchemaResponse {
     return CreateSchemaResponse(
       schemaArn: json['schemaArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final schemaArn = this.schemaArn;
+    return {
+      if (schemaArn != null) 'schemaArn': schemaArn,
+    };
   }
 }
 
@@ -4376,6 +4683,13 @@ class CreateSolutionResponse {
       solutionArn: json['solutionArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final solutionArn = this.solutionArn;
+    return {
+      if (solutionArn != null) 'solutionArn': solutionArn,
+    };
+  }
 }
 
 class CreateSolutionVersionResponse {
@@ -4389,6 +4703,13 @@ class CreateSolutionVersionResponse {
     return CreateSolutionVersionResponse(
       solutionVersionArn: json['solutionVersionArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final solutionVersionArn = this.solutionVersionArn;
+    return {
+      if (solutionVersionArn != null) 'solutionVersionArn': solutionVersionArn,
+    };
   }
 }
 
@@ -4488,6 +4809,29 @@ class Dataset {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final datasetArn = this.datasetArn;
+    final datasetGroupArn = this.datasetGroupArn;
+    final datasetType = this.datasetType;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final schemaArn = this.schemaArn;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (datasetArn != null) 'datasetArn': datasetArn,
+      if (datasetGroupArn != null) 'datasetGroupArn': datasetGroupArn,
+      if (datasetType != null) 'datasetType': datasetType,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (schemaArn != null) 'schemaArn': schemaArn,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Describes a job that exports a dataset to an Amazon S3 bucket. For more
@@ -4578,6 +4922,34 @@ class DatasetExportJob {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final datasetArn = this.datasetArn;
+    final datasetExportJobArn = this.datasetExportJobArn;
+    final failureReason = this.failureReason;
+    final ingestionMode = this.ingestionMode;
+    final jobName = this.jobName;
+    final jobOutput = this.jobOutput;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (datasetArn != null) 'datasetArn': datasetArn,
+      if (datasetExportJobArn != null)
+        'datasetExportJobArn': datasetExportJobArn,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (ingestionMode != null) 'ingestionMode': ingestionMode.toValue(),
+      if (jobName != null) 'jobName': jobName,
+      if (jobOutput != null) 'jobOutput': jobOutput,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (roleArn != null) 'roleArn': roleArn,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// The output configuration parameters of a dataset export job.
@@ -4651,6 +5023,26 @@ class DatasetExportJobSummary {
       lastUpdatedDateTime: timeStampFromJson(json['lastUpdatedDateTime']),
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final datasetExportJobArn = this.datasetExportJobArn;
+    final failureReason = this.failureReason;
+    final jobName = this.jobName;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (datasetExportJobArn != null)
+        'datasetExportJobArn': datasetExportJobArn,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (jobName != null) 'jobName': jobName,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -4729,6 +5121,31 @@ class DatasetGroup {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final datasetGroupArn = this.datasetGroupArn;
+    final domain = this.domain;
+    final failureReason = this.failureReason;
+    final kmsKeyArn = this.kmsKeyArn;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (datasetGroupArn != null) 'datasetGroupArn': datasetGroupArn,
+      if (domain != null) 'domain': domain.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (kmsKeyArn != null) 'kmsKeyArn': kmsKeyArn,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (roleArn != null) 'roleArn': roleArn,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Provides a summary of the properties of a dataset group. For a complete
@@ -4787,6 +5204,27 @@ class DatasetGroupSummary {
       name: json['name'] as String?,
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final datasetGroupArn = this.datasetGroupArn;
+    final domain = this.domain;
+    final failureReason = this.failureReason;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (datasetGroupArn != null) 'datasetGroupArn': datasetGroupArn,
+      if (domain != null) 'domain': domain.toValue(),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -4865,6 +5303,32 @@ class DatasetImportJob {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final dataSource = this.dataSource;
+    final datasetArn = this.datasetArn;
+    final datasetImportJobArn = this.datasetImportJobArn;
+    final failureReason = this.failureReason;
+    final jobName = this.jobName;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (dataSource != null) 'dataSource': dataSource,
+      if (datasetArn != null) 'datasetArn': datasetArn,
+      if (datasetImportJobArn != null)
+        'datasetImportJobArn': datasetImportJobArn,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (jobName != null) 'jobName': jobName,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (roleArn != null) 'roleArn': roleArn,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Provides a summary of the properties of a dataset import job. For a complete
@@ -4917,6 +5381,26 @@ class DatasetImportJobSummary {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final datasetImportJobArn = this.datasetImportJobArn;
+    final failureReason = this.failureReason;
+    final jobName = this.jobName;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (datasetImportJobArn != null)
+        'datasetImportJobArn': datasetImportJobArn,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (jobName != null) 'jobName': jobName,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Describes the schema for a dataset. For more information on schemas, see <a
@@ -4959,6 +5443,25 @@ class DatasetSchema {
       schemaArn: json['schemaArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final domain = this.domain;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final schema = this.schema;
+    final schemaArn = this.schemaArn;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (domain != null) 'domain': domain.toValue(),
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (schema != null) 'schema': schema,
+      if (schemaArn != null) 'schemaArn': schemaArn,
+    };
+  }
 }
 
 /// Provides a summary of the properties of a dataset schema. For a complete
@@ -4997,6 +5500,23 @@ class DatasetSchemaSummary {
       name: json['name'] as String?,
       schemaArn: json['schemaArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final domain = this.domain;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final schemaArn = this.schemaArn;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (domain != null) 'domain': domain.toValue(),
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (schemaArn != null) 'schemaArn': schemaArn,
+    };
   }
 }
 
@@ -5067,6 +5587,25 @@ class DatasetSummary {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final datasetArn = this.datasetArn;
+    final datasetType = this.datasetType;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (datasetArn != null) 'datasetArn': datasetArn,
+      if (datasetType != null) 'datasetType': datasetType,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Provides the name and default range of a categorical hyperparameter and
@@ -5097,6 +5636,17 @@ class DefaultCategoricalHyperParameterRange {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTunable = this.isTunable;
+    final name = this.name;
+    final values = this.values;
+    return {
+      if (isTunable != null) 'isTunable': isTunable,
+      if (name != null) 'name': name,
+      if (values != null) 'values': values,
+    };
   }
 }
 
@@ -5130,6 +5680,19 @@ class DefaultContinuousHyperParameterRange {
       minValue: json['minValue'] as double?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final isTunable = this.isTunable;
+    final maxValue = this.maxValue;
+    final minValue = this.minValue;
+    final name = this.name;
+    return {
+      if (isTunable != null) 'isTunable': isTunable,
+      if (maxValue != null) 'maxValue': maxValue,
+      if (minValue != null) 'minValue': minValue,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -5174,6 +5737,21 @@ class DefaultHyperParameterRanges {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final categoricalHyperParameterRanges =
+        this.categoricalHyperParameterRanges;
+    final continuousHyperParameterRanges = this.continuousHyperParameterRanges;
+    final integerHyperParameterRanges = this.integerHyperParameterRanges;
+    return {
+      if (categoricalHyperParameterRanges != null)
+        'categoricalHyperParameterRanges': categoricalHyperParameterRanges,
+      if (continuousHyperParameterRanges != null)
+        'continuousHyperParameterRanges': continuousHyperParameterRanges,
+      if (integerHyperParameterRanges != null)
+        'integerHyperParameterRanges': integerHyperParameterRanges,
+    };
+  }
 }
 
 /// Provides the name and default range of a integer-valued hyperparameter and
@@ -5207,6 +5785,19 @@ class DefaultIntegerHyperParameterRange {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isTunable = this.isTunable;
+    final maxValue = this.maxValue;
+    final minValue = this.minValue;
+    final name = this.name;
+    return {
+      if (isTunable != null) 'isTunable': isTunable,
+      if (maxValue != null) 'maxValue': maxValue,
+      if (minValue != null) 'minValue': minValue,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 class DescribeAlgorithmResponse {
@@ -5222,6 +5813,13 @@ class DescribeAlgorithmResponse {
           ? Algorithm.fromJson(json['algorithm'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final algorithm = this.algorithm;
+    return {
+      if (algorithm != null) 'algorithm': algorithm,
+    };
   }
 }
 
@@ -5241,6 +5839,13 @@ class DescribeBatchInferenceJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchInferenceJob = this.batchInferenceJob;
+    return {
+      if (batchInferenceJob != null) 'batchInferenceJob': batchInferenceJob,
+    };
+  }
 }
 
 class DescribeBatchSegmentJobResponse {
@@ -5258,6 +5863,13 @@ class DescribeBatchSegmentJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchSegmentJob = this.batchSegmentJob;
+    return {
+      if (batchSegmentJob != null) 'batchSegmentJob': batchSegmentJob,
+    };
+  }
 }
 
 class DescribeCampaignResponse {
@@ -5273,6 +5885,13 @@ class DescribeCampaignResponse {
           ? Campaign.fromJson(json['campaign'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final campaign = this.campaign;
+    return {
+      if (campaign != null) 'campaign': campaign,
+    };
   }
 }
 
@@ -5308,6 +5927,13 @@ class DescribeDatasetExportJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetExportJob = this.datasetExportJob;
+    return {
+      if (datasetExportJob != null) 'datasetExportJob': datasetExportJob,
+    };
+  }
 }
 
 class DescribeDatasetGroupResponse {
@@ -5323,6 +5949,13 @@ class DescribeDatasetGroupResponse {
           ? DatasetGroup.fromJson(json['datasetGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasetGroup = this.datasetGroup;
+    return {
+      if (datasetGroup != null) 'datasetGroup': datasetGroup,
+    };
   }
 }
 
@@ -5358,6 +5991,13 @@ class DescribeDatasetImportJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetImportJob = this.datasetImportJob;
+    return {
+      if (datasetImportJob != null) 'datasetImportJob': datasetImportJob,
+    };
+  }
 }
 
 class DescribeDatasetResponse {
@@ -5374,6 +6014,13 @@ class DescribeDatasetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataset = this.dataset;
+    return {
+      if (dataset != null) 'dataset': dataset,
+    };
+  }
 }
 
 class DescribeEventTrackerResponse {
@@ -5389,6 +6036,13 @@ class DescribeEventTrackerResponse {
           ? EventTracker.fromJson(json['eventTracker'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventTracker = this.eventTracker;
+    return {
+      if (eventTracker != null) 'eventTracker': eventTracker,
+    };
   }
 }
 
@@ -5408,6 +6062,14 @@ class DescribeFeatureTransformationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final featureTransformation = this.featureTransformation;
+    return {
+      if (featureTransformation != null)
+        'featureTransformation': featureTransformation,
+    };
+  }
 }
 
 class DescribeFilterResponse {
@@ -5423,6 +6085,13 @@ class DescribeFilterResponse {
           ? Filter.fromJson(json['filter'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final filter = this.filter;
+    return {
+      if (filter != null) 'filter': filter,
+    };
   }
 }
 
@@ -5440,6 +6109,13 @@ class DescribeRecipeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recipe = this.recipe;
+    return {
+      if (recipe != null) 'recipe': recipe,
+    };
+  }
 }
 
 class DescribeRecommenderResponse {
@@ -5455,6 +6131,13 @@ class DescribeRecommenderResponse {
           ? Recommender.fromJson(json['recommender'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recommender = this.recommender;
+    return {
+      if (recommender != null) 'recommender': recommender,
+    };
   }
 }
 
@@ -5472,6 +6155,13 @@ class DescribeSchemaResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final schema = this.schema;
+    return {
+      if (schema != null) 'schema': schema,
+    };
+  }
 }
 
 class DescribeSolutionResponse {
@@ -5487,6 +6177,13 @@ class DescribeSolutionResponse {
           ? Solution.fromJson(json['solution'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final solution = this.solution;
+    return {
+      if (solution != null) 'solution': solution,
+    };
   }
 }
 
@@ -5504,6 +6201,13 @@ class DescribeSolutionVersionResponse {
               json['solutionVersion'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final solutionVersion = this.solutionVersion;
+    return {
+      if (solutionVersion != null) 'solutionVersion': solutionVersion,
+    };
   }
 }
 
@@ -5597,6 +6301,29 @@ class EventTracker {
       trackingId: json['trackingId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final creationDateTime = this.creationDateTime;
+    final datasetGroupArn = this.datasetGroupArn;
+    final eventTrackerArn = this.eventTrackerArn;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final status = this.status;
+    final trackingId = this.trackingId;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (datasetGroupArn != null) 'datasetGroupArn': datasetGroupArn,
+      if (eventTrackerArn != null) 'eventTrackerArn': eventTrackerArn,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (status != null) 'status': status,
+      if (trackingId != null) 'trackingId': trackingId,
+    };
+  }
 }
 
 /// Provides a summary of the properties of an event tracker. For a complete
@@ -5645,6 +6372,23 @@ class EventTrackerSummary {
       name: json['name'] as String?,
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final eventTrackerArn = this.eventTrackerArn;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (eventTrackerArn != null) 'eventTrackerArn': eventTrackerArn,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -5696,6 +6440,26 @@ class FeatureTransformation {
       name: json['name'] as String?,
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final defaultParameters = this.defaultParameters;
+    final featureTransformationArn = this.featureTransformationArn;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (defaultParameters != null) 'defaultParameters': defaultParameters,
+      if (featureTransformationArn != null)
+        'featureTransformationArn': featureTransformationArn,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -5752,6 +6516,29 @@ class Filter {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final datasetGroupArn = this.datasetGroupArn;
+    final failureReason = this.failureReason;
+    final filterArn = this.filterArn;
+    final filterExpression = this.filterExpression;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (datasetGroupArn != null) 'datasetGroupArn': datasetGroupArn,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (filterArn != null) 'filterArn': filterArn,
+      if (filterExpression != null) 'filterExpression': filterExpression,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// A short summary of a filter's attributes.
@@ -5797,6 +6584,27 @@ class FilterSummary {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final datasetGroupArn = this.datasetGroupArn;
+    final failureReason = this.failureReason;
+    final filterArn = this.filterArn;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (datasetGroupArn != null) 'datasetGroupArn': datasetGroupArn,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (filterArn != null) 'filterArn': filterArn,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class GetSolutionMetricsResponse {
@@ -5818,6 +6626,15 @@ class GetSolutionMetricsResponse {
           ?.map((k, e) => MapEntry(k, e as double)),
       solutionVersionArn: json['solutionVersionArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metrics = this.metrics;
+    final solutionVersionArn = this.solutionVersionArn;
+    return {
+      if (metrics != null) 'metrics': metrics,
+      if (solutionVersionArn != null) 'solutionVersionArn': solutionVersionArn,
+    };
   }
 }
 
@@ -6093,6 +6910,15 @@ class ListBatchInferenceJobsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchInferenceJobs = this.batchInferenceJobs;
+    final nextToken = this.nextToken;
+    return {
+      if (batchInferenceJobs != null) 'batchInferenceJobs': batchInferenceJobs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListBatchSegmentJobsResponse {
@@ -6117,6 +6943,15 @@ class ListBatchSegmentJobsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final batchSegmentJobs = this.batchSegmentJobs;
+    final nextToken = this.nextToken;
+    return {
+      if (batchSegmentJobs != null) 'batchSegmentJobs': batchSegmentJobs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListCampaignsResponse {
@@ -6138,6 +6973,15 @@ class ListCampaignsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final campaigns = this.campaigns;
+    final nextToken = this.nextToken;
+    return {
+      if (campaigns != null) 'campaigns': campaigns,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6162,6 +7006,15 @@ class ListDatasetExportJobsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetExportJobs = this.datasetExportJobs;
+    final nextToken = this.nextToken;
+    return {
+      if (datasetExportJobs != null) 'datasetExportJobs': datasetExportJobs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDatasetGroupsResponse {
@@ -6183,6 +7036,15 @@ class ListDatasetGroupsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasetGroups = this.datasetGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (datasetGroups != null) 'datasetGroups': datasetGroups,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6207,6 +7069,15 @@ class ListDatasetImportJobsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetImportJobs = this.datasetImportJobs;
+    final nextToken = this.nextToken;
+    return {
+      if (datasetImportJobs != null) 'datasetImportJobs': datasetImportJobs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDatasetsResponse {
@@ -6230,6 +7101,15 @@ class ListDatasetsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasets = this.datasets;
+    final nextToken = this.nextToken;
+    return {
+      if (datasets != null) 'datasets': datasets,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListEventTrackersResponse {
@@ -6251,6 +7131,15 @@ class ListEventTrackersResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventTrackers = this.eventTrackers;
+    final nextToken = this.nextToken;
+    return {
+      if (eventTrackers != null) 'eventTrackers': eventTrackers,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6274,6 +7163,15 @@ class ListFiltersResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final filters = this.filters;
+    final nextToken = this.nextToken;
+    return {
+      if (filters != null) 'Filters': filters,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListRecipesResponse {
@@ -6295,6 +7193,15 @@ class ListRecipesResponse {
           .map((e) => RecipeSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final recipes = this.recipes;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (recipes != null) 'recipes': recipes,
+    };
   }
 }
 
@@ -6318,6 +7225,15 @@ class ListRecommendersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final recommenders = this.recommenders;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (recommenders != null) 'recommenders': recommenders,
+    };
+  }
 }
 
 class ListSchemasResponse {
@@ -6339,6 +7255,15 @@ class ListSchemasResponse {
           .map((e) => DatasetSchemaSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final schemas = this.schemas;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (schemas != null) 'schemas': schemas,
+    };
   }
 }
 
@@ -6363,6 +7288,15 @@ class ListSolutionVersionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final solutionVersions = this.solutionVersions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (solutionVersions != null) 'solutionVersions': solutionVersions,
+    };
+  }
 }
 
 class ListSolutionsResponse {
@@ -6385,6 +7319,15 @@ class ListSolutionsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final solutions = this.solutions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (solutions != null) 'solutions': solutions,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -6401,6 +7344,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -6548,6 +7498,32 @@ class Recipe {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final algorithmArn = this.algorithmArn;
+    final creationDateTime = this.creationDateTime;
+    final description = this.description;
+    final featureTransformationArn = this.featureTransformationArn;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final recipeArn = this.recipeArn;
+    final recipeType = this.recipeType;
+    final status = this.status;
+    return {
+      if (algorithmArn != null) 'algorithmArn': algorithmArn,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (description != null) 'description': description,
+      if (featureTransformationArn != null)
+        'featureTransformationArn': featureTransformationArn,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (recipeArn != null) 'recipeArn': recipeArn,
+      if (recipeType != null) 'recipeType': recipeType,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 enum RecipeProvider {
@@ -6613,6 +7589,25 @@ class RecipeSummary {
       recipeArn: json['recipeArn'] as String?,
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final domain = this.domain;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final recipeArn = this.recipeArn;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (domain != null) 'domain': domain.toValue(),
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (recipeArn != null) 'recipeArn': recipeArn,
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -6709,6 +7704,36 @@ class Recommender {
           : null,
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final datasetGroupArn = this.datasetGroupArn;
+    final failureReason = this.failureReason;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final latestRecommenderUpdate = this.latestRecommenderUpdate;
+    final modelMetrics = this.modelMetrics;
+    final name = this.name;
+    final recipeArn = this.recipeArn;
+    final recommenderArn = this.recommenderArn;
+    final recommenderConfig = this.recommenderConfig;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (datasetGroupArn != null) 'datasetGroupArn': datasetGroupArn,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (latestRecommenderUpdate != null)
+        'latestRecommenderUpdate': latestRecommenderUpdate,
+      if (modelMetrics != null) 'modelMetrics': modelMetrics,
+      if (name != null) 'name': name,
+      if (recipeArn != null) 'recipeArn': recipeArn,
+      if (recommenderArn != null) 'recommenderArn': recommenderArn,
+      if (recommenderConfig != null) 'recommenderConfig': recommenderConfig,
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -6822,6 +7847,29 @@ class RecommenderSummary {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final datasetGroupArn = this.datasetGroupArn;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final recipeArn = this.recipeArn;
+    final recommenderArn = this.recommenderArn;
+    final recommenderConfig = this.recommenderConfig;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (datasetGroupArn != null) 'datasetGroupArn': datasetGroupArn,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (recipeArn != null) 'recipeArn': recipeArn,
+      if (recommenderArn != null) 'recommenderArn': recommenderArn,
+      if (recommenderConfig != null) 'recommenderConfig': recommenderConfig,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Provides a summary of the properties of a recommender update. For a complete
@@ -6878,6 +7926,23 @@ class RecommenderUpdateSummary {
           : null,
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final failureReason = this.failureReason;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final recommenderConfig = this.recommenderConfig;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (recommenderConfig != null) 'recommenderConfig': recommenderConfig,
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -7012,6 +8077,40 @@ class Solution {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoMLResult = this.autoMLResult;
+    final creationDateTime = this.creationDateTime;
+    final datasetGroupArn = this.datasetGroupArn;
+    final eventType = this.eventType;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final latestSolutionVersion = this.latestSolutionVersion;
+    final name = this.name;
+    final performAutoML = this.performAutoML;
+    final performHPO = this.performHPO;
+    final recipeArn = this.recipeArn;
+    final solutionArn = this.solutionArn;
+    final solutionConfig = this.solutionConfig;
+    final status = this.status;
+    return {
+      if (autoMLResult != null) 'autoMLResult': autoMLResult,
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (datasetGroupArn != null) 'datasetGroupArn': datasetGroupArn,
+      if (eventType != null) 'eventType': eventType,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (latestSolutionVersion != null)
+        'latestSolutionVersion': latestSolutionVersion,
+      if (name != null) 'name': name,
+      if (performAutoML != null) 'performAutoML': performAutoML,
+      if (performHPO != null) 'performHPO': performHPO,
+      if (recipeArn != null) 'recipeArn': recipeArn,
+      if (solutionArn != null) 'solutionArn': solutionArn,
+      if (solutionConfig != null) 'solutionConfig': solutionConfig,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Describes the configuration properties for the solution.
@@ -7139,6 +8238,23 @@ class SolutionSummary {
       solutionArn: json['solutionArn'] as String?,
       status: json['status'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final name = this.name;
+    final solutionArn = this.solutionArn;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (name != null) 'name': name,
+      if (solutionArn != null) 'solutionArn': solutionArn,
+      if (status != null) 'status': status,
+    };
   }
 }
 
@@ -7280,6 +8396,43 @@ class SolutionVersion {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final datasetGroupArn = this.datasetGroupArn;
+    final eventType = this.eventType;
+    final failureReason = this.failureReason;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final performAutoML = this.performAutoML;
+    final performHPO = this.performHPO;
+    final recipeArn = this.recipeArn;
+    final solutionArn = this.solutionArn;
+    final solutionConfig = this.solutionConfig;
+    final solutionVersionArn = this.solutionVersionArn;
+    final status = this.status;
+    final trainingHours = this.trainingHours;
+    final trainingMode = this.trainingMode;
+    final tunedHPOParams = this.tunedHPOParams;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (datasetGroupArn != null) 'datasetGroupArn': datasetGroupArn,
+      if (eventType != null) 'eventType': eventType,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (performAutoML != null) 'performAutoML': performAutoML,
+      if (performHPO != null) 'performHPO': performHPO,
+      if (recipeArn != null) 'recipeArn': recipeArn,
+      if (solutionArn != null) 'solutionArn': solutionArn,
+      if (solutionConfig != null) 'solutionConfig': solutionConfig,
+      if (solutionVersionArn != null) 'solutionVersionArn': solutionVersionArn,
+      if (status != null) 'status': status,
+      if (trainingHours != null) 'trainingHours': trainingHours,
+      if (trainingMode != null) 'trainingMode': trainingMode.toValue(),
+      if (tunedHPOParams != null) 'tunedHPOParams': tunedHPOParams,
+    };
+  }
 }
 
 /// Provides a summary of the properties of a solution version. For a complete
@@ -7327,6 +8480,23 @@ class SolutionVersionSummary {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDateTime = this.creationDateTime;
+    final failureReason = this.failureReason;
+    final lastUpdatedDateTime = this.lastUpdatedDateTime;
+    final solutionVersionArn = this.solutionVersionArn;
+    final status = this.status;
+    return {
+      if (creationDateTime != null)
+        'creationDateTime': unixTimestampToJson(creationDateTime),
+      if (failureReason != null) 'failureReason': failureReason,
+      if (lastUpdatedDateTime != null)
+        'lastUpdatedDateTime': unixTimestampToJson(lastUpdatedDateTime),
+      if (solutionVersionArn != null) 'solutionVersionArn': solutionVersionArn,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class StartRecommenderResponse {
@@ -7341,6 +8511,13 @@ class StartRecommenderResponse {
       recommenderArn: json['recommenderArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recommenderArn = this.recommenderArn;
+    return {
+      if (recommenderArn != null) 'recommenderArn': recommenderArn,
+    };
+  }
 }
 
 class StopRecommenderResponse {
@@ -7354,6 +8531,13 @@ class StopRecommenderResponse {
     return StopRecommenderResponse(
       recommenderArn: json['recommenderArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recommenderArn = this.recommenderArn;
+    return {
+      if (recommenderArn != null) 'recommenderArn': recommenderArn,
+    };
   }
 }
 
@@ -7396,6 +8580,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7443,12 +8631,24 @@ class TunedHPOParams {
               ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final algorithmHyperParameters = this.algorithmHyperParameters;
+    return {
+      if (algorithmHyperParameters != null)
+        'algorithmHyperParameters': algorithmHyperParameters,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7464,6 +8664,13 @@ class UpdateCampaignResponse {
       campaignArn: json['campaignArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final campaignArn = this.campaignArn;
+    return {
+      if (campaignArn != null) 'campaignArn': campaignArn,
+    };
+  }
 }
 
 class UpdateRecommenderResponse {
@@ -7477,6 +8684,13 @@ class UpdateRecommenderResponse {
     return UpdateRecommenderResponse(
       recommenderArn: json['recommenderArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final recommenderArn = this.recommenderArn;
+    return {
+      if (recommenderArn != null) 'recommenderArn': recommenderArn,
+    };
   }
 }
 

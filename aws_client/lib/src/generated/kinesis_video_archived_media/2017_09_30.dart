@@ -1295,6 +1295,7 @@ class ClipFragmentSelector {
     required this.fragmentSelectorType,
     required this.timestampRange,
   });
+
   Map<String, dynamic> toJson() {
     final fragmentSelectorType = this.fragmentSelectorType;
     final timestampRange = this.timestampRange;
@@ -1364,6 +1365,7 @@ class ClipTimestampRange {
     required this.endTimestamp,
     required this.startTimestamp,
   });
+
   Map<String, dynamic> toJson() {
     final endTimestamp = this.endTimestamp;
     final startTimestamp = this.startTimestamp;
@@ -1506,6 +1508,7 @@ class DASHFragmentSelector {
     this.fragmentSelectorType,
     this.timestampRange,
   });
+
   Map<String, dynamic> toJson() {
     final fragmentSelectorType = this.fragmentSelectorType;
     final timestampRange = this.timestampRange;
@@ -1625,6 +1628,7 @@ class DASHTimestampRange {
     this.endTimestamp,
     this.startTimestamp,
   });
+
   Map<String, dynamic> toJson() {
     final endTimestamp = this.endTimestamp;
     final startTimestamp = this.startTimestamp;
@@ -1724,6 +1728,25 @@ class Fragment {
       serverTimestamp: timeStampFromJson(json['ServerTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fragmentLengthInMilliseconds = this.fragmentLengthInMilliseconds;
+    final fragmentNumber = this.fragmentNumber;
+    final fragmentSizeInBytes = this.fragmentSizeInBytes;
+    final producerTimestamp = this.producerTimestamp;
+    final serverTimestamp = this.serverTimestamp;
+    return {
+      if (fragmentLengthInMilliseconds != null)
+        'FragmentLengthInMilliseconds': fragmentLengthInMilliseconds,
+      if (fragmentNumber != null) 'FragmentNumber': fragmentNumber,
+      if (fragmentSizeInBytes != null)
+        'FragmentSizeInBytes': fragmentSizeInBytes,
+      if (producerTimestamp != null)
+        'ProducerTimestamp': unixTimestampToJson(producerTimestamp),
+      if (serverTimestamp != null)
+        'ServerTimestamp': unixTimestampToJson(serverTimestamp),
+    };
+  }
 }
 
 /// Describes the timestamp range and timestamp origin of a range of fragments.
@@ -1760,6 +1783,7 @@ class FragmentSelector {
     required this.fragmentSelectorType,
     required this.timestampRange,
   });
+
   Map<String, dynamic> toJson() {
     final fragmentSelectorType = this.fragmentSelectorType;
     final timestampRange = this.timestampRange;
@@ -1813,6 +1837,14 @@ class GetClipOutput {
     this.contentType,
     this.payload,
   });
+
+  Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
+    final payload = this.payload;
+    return {
+      if (payload != null) 'Payload': base64Encode(payload),
+    };
+  }
 }
 
 class GetDASHStreamingSessionURLOutput {
@@ -1828,6 +1860,14 @@ class GetDASHStreamingSessionURLOutput {
       dASHStreamingSessionURL: json['DASHStreamingSessionURL'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dASHStreamingSessionURL = this.dASHStreamingSessionURL;
+    return {
+      if (dASHStreamingSessionURL != null)
+        'DASHStreamingSessionURL': dASHStreamingSessionURL,
+    };
+  }
 }
 
 class GetHLSStreamingSessionURLOutput {
@@ -1842,6 +1882,14 @@ class GetHLSStreamingSessionURLOutput {
     return GetHLSStreamingSessionURLOutput(
       hLSStreamingSessionURL: json['HLSStreamingSessionURL'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hLSStreamingSessionURL = this.hLSStreamingSessionURL;
+    return {
+      if (hLSStreamingSessionURL != null)
+        'HLSStreamingSessionURL': hLSStreamingSessionURL,
+    };
   }
 }
 
@@ -1868,6 +1916,15 @@ class GetImagesOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final images = this.images;
+    final nextToken = this.nextToken;
+    return {
+      if (images != null) 'Images': images,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1915,6 +1972,14 @@ class GetMediaForFragmentListOutput {
     this.contentType,
     this.payload,
   });
+
+  Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
+    final payload = this.payload;
+    return {
+      if (payload != null) 'Payload': base64Encode(payload),
+    };
+  }
 }
 
 enum HLSDiscontinuityMode {
@@ -2025,6 +2090,7 @@ class HLSFragmentSelector {
     this.fragmentSelectorType,
     this.timestampRange,
   });
+
   Map<String, dynamic> toJson() {
     final fragmentSelectorType = this.fragmentSelectorType;
     final timestampRange = this.timestampRange;
@@ -2139,6 +2205,7 @@ class HLSTimestampRange {
     this.endTimestamp,
     this.startTimestamp,
   });
+
   Map<String, dynamic> toJson() {
     final endTimestamp = this.endTimestamp;
     final startTimestamp = this.startTimestamp;
@@ -2189,6 +2256,17 @@ class Image {
       imageContent: json['ImageContent'] as String?,
       timeStamp: timeStampFromJson(json['TimeStamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final imageContent = this.imageContent;
+    final timeStamp = this.timeStamp;
+    return {
+      if (error != null) 'Error': error.toValue(),
+      if (imageContent != null) 'ImageContent': imageContent,
+      if (timeStamp != null) 'TimeStamp': unixTimestampToJson(timeStamp),
+    };
   }
 }
 
@@ -2271,6 +2349,15 @@ class ListFragmentsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final fragments = this.fragments;
+    final nextToken = this.nextToken;
+    return {
+      if (fragments != null) 'Fragments': fragments,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The range of timestamps for which to return fragments.
@@ -2287,6 +2374,7 @@ class TimestampRange {
     required this.endTimestamp,
     required this.startTimestamp,
   });
+
   Map<String, dynamic> toJson() {
     final endTimestamp = this.endTimestamp;
     final startTimestamp = this.startTimestamp;

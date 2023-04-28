@@ -714,6 +714,15 @@ class DataPoint {
       value: json['Value'] as double,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final timestamp = this.timestamp;
+    final value = this.value;
+    return {
+      'Timestamp': unixTimestampToJson(timestamp),
+      'Value': value,
+    };
+  }
 }
 
 class DescribeDimensionKeysResponse {
@@ -766,6 +775,23 @@ class DescribeDimensionKeysResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alignedEndTime = this.alignedEndTime;
+    final alignedStartTime = this.alignedStartTime;
+    final keys = this.keys;
+    final nextToken = this.nextToken;
+    final partitionKeys = this.partitionKeys;
+    return {
+      if (alignedEndTime != null)
+        'AlignedEndTime': unixTimestampToJson(alignedEndTime),
+      if (alignedStartTime != null)
+        'AlignedStartTime': unixTimestampToJson(alignedStartTime),
+      if (keys != null) 'Keys': keys,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (partitionKeys != null) 'PartitionKeys': partitionKeys,
+    };
+  }
 }
 
 enum DetailStatus {
@@ -813,6 +839,13 @@ class DimensionDetail {
     return DimensionDetail(
       identifier: json['Identifier'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identifier = this.identifier;
+    return {
+      if (identifier != null) 'Identifier': identifier,
+    };
   }
 }
 
@@ -1080,6 +1113,7 @@ class DimensionGroup {
     this.dimensions,
     this.limit,
   });
+
   Map<String, dynamic> toJson() {
     final group = this.group;
     final dimensions = this.dimensions;
@@ -1112,6 +1146,15 @@ class DimensionGroupDetail {
           .toList(),
       group: json['Group'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dimensions = this.dimensions;
+    final group = this.group;
+    return {
+      if (dimensions != null) 'Dimensions': dimensions,
+      if (group != null) 'Group': group,
+    };
   }
 }
 
@@ -1150,6 +1193,19 @@ class DimensionKeyDescription {
           .toList(),
       total: json['Total'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final additionalMetrics = this.additionalMetrics;
+    final dimensions = this.dimensions;
+    final partitions = this.partitions;
+    final total = this.total;
+    return {
+      if (additionalMetrics != null) 'AdditionalMetrics': additionalMetrics,
+      if (dimensions != null) 'Dimensions': dimensions,
+      if (partitions != null) 'Partitions': partitions,
+      if (total != null) 'Total': total,
+    };
   }
 }
 
@@ -1214,6 +1270,17 @@ class DimensionKeyDetail {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dimension = this.dimension;
+    final status = this.status;
+    final value = this.value;
+    return {
+      if (dimension != null) 'Dimension': dimension,
+      if (status != null) 'Status': status.toValue(),
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// The metadata for a feature. For example, the metadata might indicate that a
@@ -1253,6 +1320,13 @@ class FeatureMetadata {
     return FeatureMetadata(
       status: (json['Status'] as String?)?.toFeatureStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -1319,6 +1393,13 @@ class GetDimensionKeyDetailsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dimensions = this.dimensions;
+    return {
+      if (dimensions != null) 'Dimensions': dimensions,
+    };
+  }
 }
 
 class GetResourceMetadataResponse {
@@ -1343,6 +1424,15 @@ class GetResourceMetadataResponse {
           MapEntry(k, FeatureMetadata.fromJson(e as Map<String, dynamic>))),
       identifier: json['Identifier'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final features = this.features;
+    final identifier = this.identifier;
+    return {
+      if (features != null) 'Features': features,
+      if (identifier != null) 'Identifier': identifier,
+    };
   }
 }
 
@@ -1394,6 +1484,23 @@ class GetResourceMetricsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alignedEndTime = this.alignedEndTime;
+    final alignedStartTime = this.alignedStartTime;
+    final identifier = this.identifier;
+    final metricList = this.metricList;
+    final nextToken = this.nextToken;
+    return {
+      if (alignedEndTime != null)
+        'AlignedEndTime': unixTimestampToJson(alignedEndTime),
+      if (alignedStartTime != null)
+        'AlignedStartTime': unixTimestampToJson(alignedStartTime),
+      if (identifier != null) 'Identifier': identifier,
+      if (metricList != null) 'MetricList': metricList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListAvailableResourceDimensionsResponse {
@@ -1418,6 +1525,15 @@ class ListAvailableResourceDimensionsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metricDimensions = this.metricDimensions;
+    final nextToken = this.nextToken;
+    return {
+      if (metricDimensions != null) 'MetricDimensions': metricDimensions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1447,6 +1563,15 @@ class ListAvailableResourceMetricsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metrics = this.metrics;
+    final nextToken = this.nextToken;
+    return {
+      if (metrics != null) 'Metrics': metrics,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The available dimension information for a metric type.
@@ -1469,6 +1594,15 @@ class MetricDimensionGroups {
           .toList(),
       metric: json['Metric'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final metric = this.metric;
+    return {
+      if (groups != null) 'Groups': groups,
+      if (metric != null) 'Metric': metric,
+    };
   }
 }
 
@@ -1497,6 +1631,15 @@ class MetricKeyDataPoints {
               json['Key'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataPoints = this.dataPoints;
+    final key = this.key;
+    return {
+      if (dataPoints != null) 'DataPoints': dataPoints,
+      if (key != null) 'Key': key,
+    };
   }
 }
 
@@ -1561,6 +1704,7 @@ class MetricQuery {
     this.filter,
     this.groupBy,
   });
+
   Map<String, dynamic> toJson() {
     final metric = this.metric;
     final filter = this.filter;
@@ -1589,6 +1733,13 @@ class ResponsePartitionKey {
           .map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dimensions = this.dimensions;
+    return {
+      'Dimensions': dimensions,
+    };
+  }
 }
 
 /// An object that contains the full name, description, and unit of a metric.
@@ -1613,6 +1764,17 @@ class ResponseResourceMetric {
       metric: json['Metric'] as String?,
       unit: json['Unit'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final metric = this.metric;
+    final unit = this.unit;
+    return {
+      if (description != null) 'Description': description,
+      if (metric != null) 'Metric': metric,
+      if (unit != null) 'Unit': unit,
+    };
   }
 }
 
@@ -1662,6 +1824,15 @@ class ResponseResourceMetricKey {
       dimensions: (json['Dimensions'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metric = this.metric;
+    final dimensions = this.dimensions;
+    return {
+      'Metric': metric,
+      if (dimensions != null) 'Dimensions': dimensions,
+    };
   }
 }
 

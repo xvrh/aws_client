@@ -812,6 +812,13 @@ class CreateEnvironmentEC2Result {
       environmentId: json['environmentId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentId = this.environmentId;
+    return {
+      if (environmentId != null) 'environmentId': environmentId,
+    };
+  }
 }
 
 class CreateEnvironmentMembershipResult {
@@ -828,6 +835,13 @@ class CreateEnvironmentMembershipResult {
           json['membership'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final membership = this.membership;
+    return {
+      'membership': membership,
+    };
+  }
 }
 
 class DeleteEnvironmentMembershipResult {
@@ -835,12 +849,20 @@ class DeleteEnvironmentMembershipResult {
   factory DeleteEnvironmentMembershipResult.fromJson(Map<String, dynamic> _) {
     return DeleteEnvironmentMembershipResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteEnvironmentResult {
   DeleteEnvironmentResult();
   factory DeleteEnvironmentResult.fromJson(Map<String, dynamic> _) {
     return DeleteEnvironmentResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -867,6 +889,15 @@ class DescribeEnvironmentMembershipsResult {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final memberships = this.memberships;
+    final nextToken = this.nextToken;
+    return {
+      if (memberships != null) 'memberships': memberships,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -911,6 +942,15 @@ class DescribeEnvironmentStatusResult {
       status: (json['status'] as String).toEnvironmentStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final status = this.status;
+    return {
+      'message': message,
+      'status': status.toValue(),
+    };
+  }
 }
 
 class DescribeEnvironmentsResult {
@@ -927,6 +967,13 @@ class DescribeEnvironmentsResult {
           .map((e) => Environment.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environments = this.environments;
+    return {
+      if (environments != null) 'environments': environments,
+    };
   }
 }
 
@@ -1032,6 +1079,30 @@ class Environment {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final ownerArn = this.ownerArn;
+    final type = this.type;
+    final connectionType = this.connectionType;
+    final description = this.description;
+    final id = this.id;
+    final lifecycle = this.lifecycle;
+    final managedCredentialsStatus = this.managedCredentialsStatus;
+    final name = this.name;
+    return {
+      'arn': arn,
+      'ownerArn': ownerArn,
+      'type': type.toValue(),
+      if (connectionType != null) 'connectionType': connectionType.toValue(),
+      if (description != null) 'description': description,
+      if (id != null) 'id': id,
+      if (lifecycle != null) 'lifecycle': lifecycle,
+      if (managedCredentialsStatus != null)
+        'managedCredentialsStatus': managedCredentialsStatus.toValue(),
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// Information about the current creation or deletion lifecycle state of an
@@ -1076,6 +1147,17 @@ class EnvironmentLifecycle {
       reason: json['reason'] as String?,
       status: (json['status'] as String?)?.toEnvironmentLifecycleStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final failureResource = this.failureResource;
+    final reason = this.reason;
+    final status = this.status;
+    return {
+      if (failureResource != null) 'failureResource': failureResource,
+      if (reason != null) 'reason': reason,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -1171,6 +1253,21 @@ class EnvironmentMember {
       userId: json['userId'] as String,
       lastAccess: timeStampFromJson(json['lastAccess']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentId = this.environmentId;
+    final permissions = this.permissions;
+    final userArn = this.userArn;
+    final userId = this.userId;
+    final lastAccess = this.lastAccess;
+    return {
+      'environmentId': environmentId,
+      'permissions': permissions.toValue(),
+      'userArn': userArn,
+      'userId': userId,
+      if (lastAccess != null) 'lastAccess': unixTimestampToJson(lastAccess),
+    };
   }
 }
 
@@ -1278,6 +1375,15 @@ class ListEnvironmentsResult {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentIds = this.environmentIds;
+    final nextToken = this.nextToken;
+    return {
+      if (environmentIds != null) 'environmentIds': environmentIds,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1294,6 +1400,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1498,12 +1611,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1523,12 +1644,23 @@ class UpdateEnvironmentMembershipResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final membership = this.membership;
+    return {
+      if (membership != null) 'membership': membership,
+    };
+  }
 }
 
 class UpdateEnvironmentResult {
   UpdateEnvironmentResult();
   factory UpdateEnvironmentResult.fromJson(Map<String, dynamic> _) {
     return UpdateEnvironmentResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

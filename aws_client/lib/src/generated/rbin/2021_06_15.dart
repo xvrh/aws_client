@@ -424,12 +424,35 @@ class CreateRuleResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final identifier = this.identifier;
+    final resourceTags = this.resourceTags;
+    final resourceType = this.resourceType;
+    final retentionPeriod = this.retentionPeriod;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (identifier != null) 'Identifier': identifier,
+      if (resourceTags != null) 'ResourceTags': resourceTags,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+      if (retentionPeriod != null) 'RetentionPeriod': retentionPeriod,
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class DeleteRuleResponse {
   DeleteRuleResponse();
   factory DeleteRuleResponse.fromJson(Map<String, dynamic> _) {
     return DeleteRuleResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -479,6 +502,23 @@ class GetRuleResponse {
       status: (json['Status'] as String?)?.toRuleStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final identifier = this.identifier;
+    final resourceTags = this.resourceTags;
+    final resourceType = this.resourceType;
+    final retentionPeriod = this.retentionPeriod;
+    final status = this.status;
+    return {
+      if (description != null) 'Description': description,
+      if (identifier != null) 'Identifier': identifier,
+      if (resourceTags != null) 'ResourceTags': resourceTags,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+      if (retentionPeriod != null) 'RetentionPeriod': retentionPeriod,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class ListRulesResponse {
@@ -502,6 +542,15 @@ class ListRulesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final rules = this.rules;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (rules != null) 'Rules': rules,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -518,6 +567,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -690,6 +746,17 @@ class RuleSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final identifier = this.identifier;
+    final retentionPeriod = this.retentionPeriod;
+    return {
+      if (description != null) 'Description': description,
+      if (identifier != null) 'Identifier': identifier,
+      if (retentionPeriod != null) 'RetentionPeriod': retentionPeriod,
+    };
+  }
 }
 
 /// Information about the tags to assign to the retention rule.
@@ -726,12 +793,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -777,6 +852,23 @@ class UpdateRuleResponse {
           : null,
       status: (json['Status'] as String?)?.toRuleStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final identifier = this.identifier;
+    final resourceTags = this.resourceTags;
+    final resourceType = this.resourceType;
+    final retentionPeriod = this.retentionPeriod;
+    final status = this.status;
+    return {
+      if (description != null) 'Description': description,
+      if (identifier != null) 'Identifier': identifier,
+      if (resourceTags != null) 'ResourceTags': resourceTags,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+      if (retentionPeriod != null) 'RetentionPeriod': retentionPeriod,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 

@@ -806,6 +806,19 @@ class Attendee {
       joinToken: json['JoinToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attendeeId = this.attendeeId;
+    final capabilities = this.capabilities;
+    final externalUserId = this.externalUserId;
+    final joinToken = this.joinToken;
+    return {
+      if (attendeeId != null) 'AttendeeId': attendeeId,
+      if (capabilities != null) 'Capabilities': capabilities,
+      if (externalUserId != null) 'ExternalUserId': externalUserId,
+      if (joinToken != null) 'JoinToken': joinToken,
+    };
+  }
 }
 
 /// The media capabilities of an attendee: audio, video, or content.
@@ -883,6 +896,7 @@ class AttendeeIdItem {
   AttendeeIdItem({
     required this.attendeeId,
   });
+
   Map<String, dynamic> toJson() {
     final attendeeId = this.attendeeId;
     return {
@@ -939,6 +953,15 @@ class BatchCreateAttendeeResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attendees = this.attendees;
+    final errors = this.errors;
+    return {
+      if (attendees != null) 'Attendees': attendees,
+      if (errors != null) 'Errors': errors,
+    };
+  }
 }
 
 /// The list of errors returned when errors are encountered during the
@@ -967,6 +990,17 @@ class CreateAttendeeError {
       externalUserId: json['ExternalUserId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final externalUserId = this.externalUserId;
+    return {
+      if (errorCode != null) 'ErrorCode': errorCode,
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (externalUserId != null) 'ExternalUserId': externalUserId,
+    };
+  }
 }
 
 /// The Amazon Chime SDK attendee fields to create, used with the
@@ -983,6 +1017,7 @@ class CreateAttendeeRequestItem {
     required this.externalUserId,
     this.capabilities,
   });
+
   Map<String, dynamic> toJson() {
     final externalUserId = this.externalUserId;
     final capabilities = this.capabilities;
@@ -1007,6 +1042,13 @@ class CreateAttendeeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attendee = this.attendee;
+    return {
+      if (attendee != null) 'Attendee': attendee,
+    };
+  }
 }
 
 class CreateMeetingResponse {
@@ -1023,6 +1065,13 @@ class CreateMeetingResponse {
           ? Meeting.fromJson(json['Meeting'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final meeting = this.meeting;
+    return {
+      if (meeting != null) 'Meeting': meeting,
+    };
   }
 }
 
@@ -1059,6 +1108,17 @@ class CreateMeetingWithAttendeesResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attendees = this.attendees;
+    final errors = this.errors;
+    final meeting = this.meeting;
+    return {
+      if (attendees != null) 'Attendees': attendees,
+      if (errors != null) 'Errors': errors,
+      if (meeting != null) 'Meeting': meeting,
+    };
+  }
 }
 
 /// Settings specific to the Amazon Transcribe Medical engine.
@@ -1091,6 +1151,7 @@ class EngineTranscribeMedicalSettings {
     this.region,
     this.vocabularyName,
   });
+
   Map<String, dynamic> toJson() {
     final languageCode = this.languageCode;
     final specialty = this.specialty;
@@ -1195,6 +1256,7 @@ class EngineTranscribeSettings {
     this.vocabularyFilterName,
     this.vocabularyName,
   });
+
   Map<String, dynamic> toJson() {
     final contentIdentificationType = this.contentIdentificationType;
     final contentRedactionType = this.contentRedactionType;
@@ -1251,6 +1313,13 @@ class GetAttendeeResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attendee = this.attendee;
+    return {
+      if (attendee != null) 'Attendee': attendee,
+    };
+  }
 }
 
 class GetMeetingResponse {
@@ -1266,6 +1335,13 @@ class GetMeetingResponse {
           ? Meeting.fromJson(json['Meeting'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final meeting = this.meeting;
+    return {
+      if (meeting != null) 'Meeting': meeting,
+    };
   }
 }
 
@@ -1288,6 +1364,15 @@ class ListAttendeesResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attendees = this.attendees;
+    final nextToken = this.nextToken;
+    return {
+      if (attendees != null) 'Attendees': attendees,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1378,6 +1463,27 @@ class MediaPlacement {
       turnControlUrl: json['TurnControlUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final audioFallbackUrl = this.audioFallbackUrl;
+    final audioHostUrl = this.audioHostUrl;
+    final eventIngestionUrl = this.eventIngestionUrl;
+    final screenDataUrl = this.screenDataUrl;
+    final screenSharingUrl = this.screenSharingUrl;
+    final screenViewingUrl = this.screenViewingUrl;
+    final signalingUrl = this.signalingUrl;
+    final turnControlUrl = this.turnControlUrl;
+    return {
+      if (audioFallbackUrl != null) 'AudioFallbackUrl': audioFallbackUrl,
+      if (audioHostUrl != null) 'AudioHostUrl': audioHostUrl,
+      if (eventIngestionUrl != null) 'EventIngestionUrl': eventIngestionUrl,
+      if (screenDataUrl != null) 'ScreenDataUrl': screenDataUrl,
+      if (screenSharingUrl != null) 'ScreenSharingUrl': screenSharingUrl,
+      if (screenViewingUrl != null) 'ScreenViewingUrl': screenViewingUrl,
+      if (signalingUrl != null) 'SignalingUrl': signalingUrl,
+      if (turnControlUrl != null) 'TurnControlUrl': turnControlUrl,
+    };
+  }
 }
 
 /// A meeting created using the Amazon Chime SDK.
@@ -1448,6 +1554,27 @@ class Meeting {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final externalMeetingId = this.externalMeetingId;
+    final mediaPlacement = this.mediaPlacement;
+    final mediaRegion = this.mediaRegion;
+    final meetingFeatures = this.meetingFeatures;
+    final meetingHostId = this.meetingHostId;
+    final meetingId = this.meetingId;
+    final primaryMeetingId = this.primaryMeetingId;
+    final tenantIds = this.tenantIds;
+    return {
+      if (externalMeetingId != null) 'ExternalMeetingId': externalMeetingId,
+      if (mediaPlacement != null) 'MediaPlacement': mediaPlacement,
+      if (mediaRegion != null) 'MediaRegion': mediaRegion,
+      if (meetingFeatures != null) 'MeetingFeatures': meetingFeatures,
+      if (meetingHostId != null) 'MeetingHostId': meetingHostId,
+      if (meetingId != null) 'MeetingId': meetingId,
+      if (primaryMeetingId != null) 'PrimaryMeetingId': primaryMeetingId,
+      if (tenantIds != null) 'TenantIds': tenantIds,
+    };
   }
 }
 
@@ -1520,6 +1647,7 @@ class NotificationsConfiguration {
     this.snsTopicArn,
     this.sqsQueueArn,
   });
+
   Map<String, dynamic> toJson() {
     final lambdaFunctionArn = this.lambdaFunctionArn;
     final snsTopicArn = this.snsTopicArn;
@@ -2008,6 +2136,7 @@ class TranscriptionConfiguration {
     this.engineTranscribeMedicalSettings,
     this.engineTranscribeSettings,
   });
+
   Map<String, dynamic> toJson() {
     final engineTranscribeMedicalSettings =
         this.engineTranscribeMedicalSettings;
@@ -2035,6 +2164,13 @@ class UpdateAttendeeCapabilitiesResponse {
           ? Attendee.fromJson(json['Attendee'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attendee = this.attendee;
+    return {
+      if (attendee != null) 'Attendee': attendee,
+    };
   }
 }
 

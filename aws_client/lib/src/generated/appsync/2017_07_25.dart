@@ -2391,6 +2391,20 @@ class ApiAssociation {
       domainName: json['domainName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiId = this.apiId;
+    final associationStatus = this.associationStatus;
+    final deploymentDetail = this.deploymentDetail;
+    final domainName = this.domainName;
+    return {
+      if (apiId != null) 'apiId': apiId,
+      if (associationStatus != null)
+        'associationStatus': associationStatus.toValue(),
+      if (deploymentDetail != null) 'deploymentDetail': deploymentDetail,
+      if (domainName != null) 'domainName': domainName,
+    };
+  }
 }
 
 /// The <code>ApiCache</code> object.
@@ -2520,6 +2534,26 @@ class ApiCache {
       ttl: json['ttl'] as int?,
       type: (json['type'] as String?)?.toApiCacheType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiCachingBehavior = this.apiCachingBehavior;
+    final atRestEncryptionEnabled = this.atRestEncryptionEnabled;
+    final status = this.status;
+    final transitEncryptionEnabled = this.transitEncryptionEnabled;
+    final ttl = this.ttl;
+    final type = this.type;
+    return {
+      if (apiCachingBehavior != null)
+        'apiCachingBehavior': apiCachingBehavior.toValue(),
+      if (atRestEncryptionEnabled != null)
+        'atRestEncryptionEnabled': atRestEncryptionEnabled,
+      if (status != null) 'status': status.toValue(),
+      if (transitEncryptionEnabled != null)
+        'transitEncryptionEnabled': transitEncryptionEnabled,
+      if (ttl != null) 'ttl': ttl,
+      if (type != null) 'type': type.toValue(),
+    };
   }
 }
 
@@ -2777,6 +2811,19 @@ class ApiKey {
       id: json['id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deletes = this.deletes;
+    final description = this.description;
+    final expires = this.expires;
+    final id = this.id;
+    return {
+      if (deletes != null) 'deletes': deletes,
+      if (description != null) 'description': description,
+      if (expires != null) 'expires': expires,
+      if (id != null) 'id': id,
+    };
+  }
 }
 
 class AssociateApiResponse {
@@ -2793,6 +2840,13 @@ class AssociateApiResponse {
               json['apiAssociation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiAssociation = this.apiAssociation;
+    return {
+      if (apiAssociation != null) 'apiAssociation': apiAssociation,
+    };
   }
 }
 
@@ -3118,6 +3172,13 @@ class CreateApiCacheResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiCache = this.apiCache;
+    return {
+      if (apiCache != null) 'apiCache': apiCache,
+    };
+  }
 }
 
 class CreateApiKeyResponse {
@@ -3134,6 +3195,13 @@ class CreateApiKeyResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiKey = this.apiKey;
+    return {
+      if (apiKey != null) 'apiKey': apiKey,
+    };
+  }
 }
 
 class CreateDataSourceResponse {
@@ -3149,6 +3217,13 @@ class CreateDataSourceResponse {
           ? DataSource.fromJson(json['dataSource'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSource = this.dataSource;
+    return {
+      if (dataSource != null) 'dataSource': dataSource,
+    };
   }
 }
 
@@ -3167,6 +3242,13 @@ class CreateDomainNameResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainNameConfig = this.domainNameConfig;
+    return {
+      if (domainNameConfig != null) 'domainNameConfig': domainNameConfig,
+    };
+  }
 }
 
 class CreateFunctionResponse {
@@ -3184,6 +3266,14 @@ class CreateFunctionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final functionConfiguration = this.functionConfiguration;
+    return {
+      if (functionConfiguration != null)
+        'functionConfiguration': functionConfiguration,
+    };
+  }
 }
 
 class CreateGraphqlApiResponse {
@@ -3199,6 +3289,13 @@ class CreateGraphqlApiResponse {
           ? GraphqlApi.fromJson(json['graphqlApi'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final graphqlApi = this.graphqlApi;
+    return {
+      if (graphqlApi != null) 'graphqlApi': graphqlApi,
+    };
   }
 }
 
@@ -3216,6 +3313,13 @@ class CreateResolverResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resolver = this.resolver;
+    return {
+      if (resolver != null) 'resolver': resolver,
+    };
+  }
 }
 
 class CreateTypeResponse {
@@ -3231,6 +3335,13 @@ class CreateTypeResponse {
           ? Type.fromJson(json['type'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    return {
+      if (type != null) 'type': type,
+    };
   }
 }
 
@@ -3346,6 +3457,36 @@ class DataSource {
       type: (json['type'] as String?)?.toDataSourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSourceArn = this.dataSourceArn;
+    final description = this.description;
+    final dynamodbConfig = this.dynamodbConfig;
+    final elasticsearchConfig = this.elasticsearchConfig;
+    final httpConfig = this.httpConfig;
+    final lambdaConfig = this.lambdaConfig;
+    final name = this.name;
+    final openSearchServiceConfig = this.openSearchServiceConfig;
+    final relationalDatabaseConfig = this.relationalDatabaseConfig;
+    final serviceRoleArn = this.serviceRoleArn;
+    final type = this.type;
+    return {
+      if (dataSourceArn != null) 'dataSourceArn': dataSourceArn,
+      if (description != null) 'description': description,
+      if (dynamodbConfig != null) 'dynamodbConfig': dynamodbConfig,
+      if (elasticsearchConfig != null)
+        'elasticsearchConfig': elasticsearchConfig,
+      if (httpConfig != null) 'httpConfig': httpConfig,
+      if (lambdaConfig != null) 'lambdaConfig': lambdaConfig,
+      if (name != null) 'name': name,
+      if (openSearchServiceConfig != null)
+        'openSearchServiceConfig': openSearchServiceConfig,
+      if (relationalDatabaseConfig != null)
+        'relationalDatabaseConfig': relationalDatabaseConfig,
+      if (serviceRoleArn != null) 'serviceRoleArn': serviceRoleArn,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 enum DataSourceType {
@@ -3435,12 +3576,20 @@ class DeleteApiCacheResponse {
   factory DeleteApiCacheResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApiCacheResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteApiKeyResponse {
   DeleteApiKeyResponse();
   factory DeleteApiKeyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApiKeyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3449,12 +3598,20 @@ class DeleteDataSourceResponse {
   factory DeleteDataSourceResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDataSourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteDomainNameResponse {
   DeleteDomainNameResponse();
   factory DeleteDomainNameResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDomainNameResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3463,12 +3620,20 @@ class DeleteFunctionResponse {
   factory DeleteFunctionResponse.fromJson(Map<String, dynamic> _) {
     return DeleteFunctionResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteGraphqlApiResponse {
   DeleteGraphqlApiResponse();
   factory DeleteGraphqlApiResponse.fromJson(Map<String, dynamic> _) {
     return DeleteGraphqlApiResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3477,12 +3642,20 @@ class DeleteResolverResponse {
   factory DeleteResolverResponse.fromJson(Map<String, dynamic> _) {
     return DeleteResolverResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteTypeResponse {
   DeleteTypeResponse();
   factory DeleteTypeResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTypeResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3528,6 +3701,10 @@ class DisassociateApiResponse {
   factory DisassociateApiResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateApiResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Describes a configuration for a custom domain.
@@ -3564,6 +3741,21 @@ class DomainNameConfig {
       domainName: json['domainName'] as String?,
       hostedZoneId: json['hostedZoneId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final appsyncDomainName = this.appsyncDomainName;
+    final certificateArn = this.certificateArn;
+    final description = this.description;
+    final domainName = this.domainName;
+    final hostedZoneId = this.hostedZoneId;
+    return {
+      if (appsyncDomainName != null) 'appsyncDomainName': appsyncDomainName,
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (description != null) 'description': description,
+      if (domainName != null) 'domainName': domainName,
+      if (hostedZoneId != null) 'hostedZoneId': hostedZoneId,
+    };
   }
 }
 
@@ -3669,6 +3861,13 @@ class ErrorDetail {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 class EvaluateMappingTemplateResponse {
@@ -3689,6 +3888,15 @@ class EvaluateMappingTemplateResponse {
           : null,
       evaluationResult: json['evaluationResult'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final evaluationResult = this.evaluationResult;
+    return {
+      if (error != null) 'error': error,
+      if (evaluationResult != null) 'evaluationResult': evaluationResult,
+    };
   }
 }
 
@@ -3730,6 +3938,10 @@ class FlushApiCacheResponse {
   FlushApiCacheResponse();
   factory FlushApiCacheResponse.fromJson(Map<String, dynamic> _) {
     return FlushApiCacheResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3794,6 +4006,33 @@ class FunctionConfiguration {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSourceName = this.dataSourceName;
+    final description = this.description;
+    final functionArn = this.functionArn;
+    final functionId = this.functionId;
+    final functionVersion = this.functionVersion;
+    final maxBatchSize = this.maxBatchSize;
+    final name = this.name;
+    final requestMappingTemplate = this.requestMappingTemplate;
+    final responseMappingTemplate = this.responseMappingTemplate;
+    final syncConfig = this.syncConfig;
+    return {
+      if (dataSourceName != null) 'dataSourceName': dataSourceName,
+      if (description != null) 'description': description,
+      if (functionArn != null) 'functionArn': functionArn,
+      if (functionId != null) 'functionId': functionId,
+      if (functionVersion != null) 'functionVersion': functionVersion,
+      if (maxBatchSize != null) 'maxBatchSize': maxBatchSize,
+      if (name != null) 'name': name,
+      if (requestMappingTemplate != null)
+        'requestMappingTemplate': requestMappingTemplate,
+      if (responseMappingTemplate != null)
+        'responseMappingTemplate': responseMappingTemplate,
+      if (syncConfig != null) 'syncConfig': syncConfig,
+    };
+  }
 }
 
 class GetApiAssociationResponse {
@@ -3810,6 +4049,13 @@ class GetApiAssociationResponse {
               json['apiAssociation'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiAssociation = this.apiAssociation;
+    return {
+      if (apiAssociation != null) 'apiAssociation': apiAssociation,
+    };
   }
 }
 
@@ -3828,6 +4074,13 @@ class GetApiCacheResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiCache = this.apiCache;
+    return {
+      if (apiCache != null) 'apiCache': apiCache,
+    };
+  }
 }
 
 class GetDataSourceResponse {
@@ -3843,6 +4096,13 @@ class GetDataSourceResponse {
           ? DataSource.fromJson(json['dataSource'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSource = this.dataSource;
+    return {
+      if (dataSource != null) 'dataSource': dataSource,
+    };
   }
 }
 
@@ -3861,6 +4121,13 @@ class GetDomainNameResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainNameConfig = this.domainNameConfig;
+    return {
+      if (domainNameConfig != null) 'domainNameConfig': domainNameConfig,
+    };
+  }
 }
 
 class GetFunctionResponse {
@@ -3878,6 +4145,14 @@ class GetFunctionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final functionConfiguration = this.functionConfiguration;
+    return {
+      if (functionConfiguration != null)
+        'functionConfiguration': functionConfiguration,
+    };
+  }
 }
 
 class GetGraphqlApiResponse {
@@ -3894,6 +4169,13 @@ class GetGraphqlApiResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final graphqlApi = this.graphqlApi;
+    return {
+      if (graphqlApi != null) 'graphqlApi': graphqlApi,
+    };
+  }
 }
 
 class GetIntrospectionSchemaResponse {
@@ -3906,6 +4188,13 @@ class GetIntrospectionSchemaResponse {
   GetIntrospectionSchemaResponse({
     this.schema,
   });
+
+  Map<String, dynamic> toJson() {
+    final schema = this.schema;
+    return {
+      if (schema != null) 'schema': base64Encode(schema),
+    };
+  }
 }
 
 class GetResolverResponse {
@@ -3921,6 +4210,13 @@ class GetResolverResponse {
           ? Resolver.fromJson(json['resolver'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resolver = this.resolver;
+    return {
+      if (resolver != null) 'resolver': resolver,
+    };
   }
 }
 
@@ -3942,6 +4238,15 @@ class GetSchemaCreationStatusResponse {
       status: (json['status'] as String?)?.toSchemaStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    final status = this.status;
+    return {
+      if (details != null) 'details': details,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class GetTypeResponse {
@@ -3957,6 +4262,13 @@ class GetTypeResponse {
           ? Type.fromJson(json['type'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    return {
+      if (type != null) 'type': type,
+    };
   }
 }
 
@@ -4055,6 +4367,42 @@ class GraphqlApi {
       wafWebAclArn: json['wafWebAclArn'] as String?,
       xrayEnabled: json['xrayEnabled'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final additionalAuthenticationProviders =
+        this.additionalAuthenticationProviders;
+    final apiId = this.apiId;
+    final arn = this.arn;
+    final authenticationType = this.authenticationType;
+    final lambdaAuthorizerConfig = this.lambdaAuthorizerConfig;
+    final logConfig = this.logConfig;
+    final name = this.name;
+    final openIDConnectConfig = this.openIDConnectConfig;
+    final tags = this.tags;
+    final uris = this.uris;
+    final userPoolConfig = this.userPoolConfig;
+    final wafWebAclArn = this.wafWebAclArn;
+    final xrayEnabled = this.xrayEnabled;
+    return {
+      if (additionalAuthenticationProviders != null)
+        'additionalAuthenticationProviders': additionalAuthenticationProviders,
+      if (apiId != null) 'apiId': apiId,
+      if (arn != null) 'arn': arn,
+      if (authenticationType != null)
+        'authenticationType': authenticationType.toValue(),
+      if (lambdaAuthorizerConfig != null)
+        'lambdaAuthorizerConfig': lambdaAuthorizerConfig,
+      if (logConfig != null) 'logConfig': logConfig,
+      if (name != null) 'name': name,
+      if (openIDConnectConfig != null)
+        'openIDConnectConfig': openIDConnectConfig,
+      if (tags != null) 'tags': tags,
+      if (uris != null) 'uris': uris,
+      if (userPoolConfig != null) 'userPoolConfig': userPoolConfig,
+      if (wafWebAclArn != null) 'wafWebAclArn': wafWebAclArn,
+      if (xrayEnabled != null) 'xrayEnabled': xrayEnabled,
+    };
   }
 }
 
@@ -4221,6 +4569,15 @@ class ListApiKeysResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiKeys = this.apiKeys;
+    final nextToken = this.nextToken;
+    return {
+      if (apiKeys != null) 'apiKeys': apiKeys,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDataSourcesResponse {
@@ -4244,6 +4601,15 @@ class ListDataSourcesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataSources = this.dataSources;
+    final nextToken = this.nextToken;
+    return {
+      if (dataSources != null) 'dataSources': dataSources,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDomainNamesResponse {
@@ -4265,6 +4631,15 @@ class ListDomainNamesResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainNameConfigs = this.domainNameConfigs;
+    final nextToken = this.nextToken;
+    return {
+      if (domainNameConfigs != null) 'domainNameConfigs': domainNameConfigs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4289,6 +4664,15 @@ class ListFunctionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final functions = this.functions;
+    final nextToken = this.nextToken;
+    return {
+      if (functions != null) 'functions': functions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListGraphqlApisResponse {
@@ -4312,6 +4696,15 @@ class ListGraphqlApisResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final graphqlApis = this.graphqlApis;
+    final nextToken = this.nextToken;
+    return {
+      if (graphqlApis != null) 'graphqlApis': graphqlApis,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListResolversByFunctionResponse {
@@ -4333,6 +4726,15 @@ class ListResolversByFunctionResponse {
           .map((e) => Resolver.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resolvers = this.resolvers;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resolvers != null) 'resolvers': resolvers,
+    };
   }
 }
 
@@ -4357,6 +4759,15 @@ class ListResolversResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resolvers = this.resolvers;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resolvers != null) 'resolvers': resolvers,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -4371,6 +4782,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4394,6 +4812,15 @@ class ListTypesResponse {
           .map((e) => Type.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final types = this.types;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (types != null) 'types': types,
+    };
   }
 }
 
@@ -4806,6 +5233,35 @@ class Resolver {
       typeName: json['typeName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cachingConfig = this.cachingConfig;
+    final dataSourceName = this.dataSourceName;
+    final fieldName = this.fieldName;
+    final kind = this.kind;
+    final maxBatchSize = this.maxBatchSize;
+    final pipelineConfig = this.pipelineConfig;
+    final requestMappingTemplate = this.requestMappingTemplate;
+    final resolverArn = this.resolverArn;
+    final responseMappingTemplate = this.responseMappingTemplate;
+    final syncConfig = this.syncConfig;
+    final typeName = this.typeName;
+    return {
+      if (cachingConfig != null) 'cachingConfig': cachingConfig,
+      if (dataSourceName != null) 'dataSourceName': dataSourceName,
+      if (fieldName != null) 'fieldName': fieldName,
+      if (kind != null) 'kind': kind.toValue(),
+      if (maxBatchSize != null) 'maxBatchSize': maxBatchSize,
+      if (pipelineConfig != null) 'pipelineConfig': pipelineConfig,
+      if (requestMappingTemplate != null)
+        'requestMappingTemplate': requestMappingTemplate,
+      if (resolverArn != null) 'resolverArn': resolverArn,
+      if (responseMappingTemplate != null)
+        'responseMappingTemplate': responseMappingTemplate,
+      if (syncConfig != null) 'syncConfig': syncConfig,
+      if (typeName != null) 'typeName': typeName,
+    };
+  }
 }
 
 enum ResolverKind {
@@ -4897,6 +5353,13 @@ class StartSchemaCreationResponse {
       status: (json['status'] as String?)?.toSchemaStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Describes a Sync configuration for a resolver.
@@ -4975,6 +5438,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Describes a type.
@@ -5009,6 +5476,21 @@ class Type {
       format: (json['format'] as String?)?.toTypeDefinitionFormat(),
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final definition = this.definition;
+    final description = this.description;
+    final format = this.format;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (definition != null) 'definition': definition,
+      if (description != null) 'description': description,
+      if (format != null) 'format': format.toValue(),
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -5045,6 +5527,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Represents the output of a <code>UpdateApiCache</code> operation.
@@ -5062,6 +5548,13 @@ class UpdateApiCacheResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiCache = this.apiCache;
+    return {
+      if (apiCache != null) 'apiCache': apiCache,
+    };
+  }
 }
 
 class UpdateApiKeyResponse {
@@ -5078,6 +5571,13 @@ class UpdateApiKeyResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiKey = this.apiKey;
+    return {
+      if (apiKey != null) 'apiKey': apiKey,
+    };
+  }
 }
 
 class UpdateDataSourceResponse {
@@ -5093,6 +5593,13 @@ class UpdateDataSourceResponse {
           ? DataSource.fromJson(json['dataSource'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataSource = this.dataSource;
+    return {
+      if (dataSource != null) 'dataSource': dataSource,
+    };
   }
 }
 
@@ -5111,6 +5618,13 @@ class UpdateDomainNameResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainNameConfig = this.domainNameConfig;
+    return {
+      if (domainNameConfig != null) 'domainNameConfig': domainNameConfig,
+    };
+  }
 }
 
 class UpdateFunctionResponse {
@@ -5128,6 +5642,14 @@ class UpdateFunctionResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final functionConfiguration = this.functionConfiguration;
+    return {
+      if (functionConfiguration != null)
+        'functionConfiguration': functionConfiguration,
+    };
+  }
 }
 
 class UpdateGraphqlApiResponse {
@@ -5143,6 +5665,13 @@ class UpdateGraphqlApiResponse {
           ? GraphqlApi.fromJson(json['graphqlApi'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final graphqlApi = this.graphqlApi;
+    return {
+      if (graphqlApi != null) 'graphqlApi': graphqlApi,
+    };
   }
 }
 
@@ -5160,6 +5689,13 @@ class UpdateResolverResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resolver = this.resolver;
+    return {
+      if (resolver != null) 'resolver': resolver,
+    };
+  }
 }
 
 class UpdateTypeResponse {
@@ -5175,6 +5711,13 @@ class UpdateTypeResponse {
           ? Type.fromJson(json['type'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    return {
+      if (type != null) 'type': type,
+    };
   }
 }
 

@@ -321,6 +321,14 @@ class InvokeEndpointAsyncOutput {
     this.inferenceId,
     this.outputLocation,
   });
+
+  Map<String, dynamic> toJson() {
+    final inferenceId = this.inferenceId;
+    final outputLocation = this.outputLocation;
+    return {
+      if (inferenceId != null) 'InferenceId': inferenceId,
+    };
+  }
 }
 
 class InvokeEndpointOutput {
@@ -365,6 +373,16 @@ class InvokeEndpointOutput {
     this.customAttributes,
     this.invokedProductionVariant,
   });
+
+  Map<String, dynamic> toJson() {
+    final body = this.body;
+    final contentType = this.contentType;
+    final customAttributes = this.customAttributes;
+    final invokedProductionVariant = this.invokedProductionVariant;
+    return {
+      'Body': base64Encode(body),
+    };
+  }
 }
 
 class InternalDependencyException extends _s.GenericAwsException {

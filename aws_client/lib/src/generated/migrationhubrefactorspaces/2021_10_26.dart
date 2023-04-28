@@ -1200,6 +1200,25 @@ class ApiGatewayProxyConfig {
       vpcLinkId: json['VpcLinkId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiGatewayId = this.apiGatewayId;
+    final endpointType = this.endpointType;
+    final nlbArn = this.nlbArn;
+    final nlbName = this.nlbName;
+    final proxyUrl = this.proxyUrl;
+    final stageName = this.stageName;
+    final vpcLinkId = this.vpcLinkId;
+    return {
+      if (apiGatewayId != null) 'ApiGatewayId': apiGatewayId,
+      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (nlbArn != null) 'NlbArn': nlbArn,
+      if (nlbName != null) 'NlbName': nlbName,
+      if (proxyUrl != null) 'ProxyUrl': proxyUrl,
+      if (stageName != null) 'StageName': stageName,
+      if (vpcLinkId != null) 'VpcLinkId': vpcLinkId,
+    };
+  }
 }
 
 /// A wrapper object holding the Amazon API Gateway endpoint input.
@@ -1284,6 +1303,25 @@ class ApiGatewayProxySummary {
       stageName: json['StageName'] as String?,
       vpcLinkId: json['VpcLinkId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiGatewayId = this.apiGatewayId;
+    final endpointType = this.endpointType;
+    final nlbArn = this.nlbArn;
+    final nlbName = this.nlbName;
+    final proxyUrl = this.proxyUrl;
+    final stageName = this.stageName;
+    final vpcLinkId = this.vpcLinkId;
+    return {
+      if (apiGatewayId != null) 'ApiGatewayId': apiGatewayId,
+      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (nlbArn != null) 'NlbArn': nlbArn,
+      if (nlbName != null) 'NlbName': nlbName,
+      if (proxyUrl != null) 'ProxyUrl': proxyUrl,
+      if (stageName != null) 'StageName': stageName,
+      if (vpcLinkId != null) 'VpcLinkId': vpcLinkId,
+    };
   }
 }
 
@@ -1415,6 +1453,40 @@ class ApplicationSummary {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiGatewayProxy = this.apiGatewayProxy;
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final createdByAccountId = this.createdByAccountId;
+    final createdTime = this.createdTime;
+    final environmentId = this.environmentId;
+    final error = this.error;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final ownerAccountId = this.ownerAccountId;
+    final proxyType = this.proxyType;
+    final state = this.state;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (apiGatewayProxy != null) 'ApiGatewayProxy': apiGatewayProxy,
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (arn != null) 'Arn': arn,
+      if (createdByAccountId != null) 'CreatedByAccountId': createdByAccountId,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (error != null) 'Error': error,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (proxyType != null) 'ProxyType': proxyType.toValue(),
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 class CreateApplicationResponse {
@@ -1502,6 +1574,38 @@ class CreateApplicationResponse {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiGatewayProxy = this.apiGatewayProxy;
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final createdByAccountId = this.createdByAccountId;
+    final createdTime = this.createdTime;
+    final environmentId = this.environmentId;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final ownerAccountId = this.ownerAccountId;
+    final proxyType = this.proxyType;
+    final state = this.state;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (apiGatewayProxy != null) 'ApiGatewayProxy': apiGatewayProxy,
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (arn != null) 'Arn': arn,
+      if (createdByAccountId != null) 'CreatedByAccountId': createdByAccountId,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (proxyType != null) 'ProxyType': proxyType.toValue(),
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 class CreateEnvironmentResponse {
@@ -1564,6 +1668,33 @@ class CreateEnvironmentResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final environmentId = this.environmentId;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final networkFabricType = this.networkFabricType;
+    final ownerAccountId = this.ownerAccountId;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (networkFabricType != null)
+        'NetworkFabricType': networkFabricType.toValue(),
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1646,6 +1777,36 @@ class CreateRouteResponse {
               json['UriPathRoute'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final createdByAccountId = this.createdByAccountId;
+    final createdTime = this.createdTime;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final ownerAccountId = this.ownerAccountId;
+    final routeId = this.routeId;
+    final routeType = this.routeType;
+    final serviceId = this.serviceId;
+    final state = this.state;
+    final tags = this.tags;
+    final uriPathRoute = this.uriPathRoute;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (arn != null) 'Arn': arn,
+      if (createdByAccountId != null) 'CreatedByAccountId': createdByAccountId,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (routeId != null) 'RouteId': routeId,
+      if (routeType != null) 'RouteType': routeType.toValue(),
+      if (serviceId != null) 'ServiceId': serviceId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (uriPathRoute != null) 'UriPathRoute': uriPathRoute,
+    };
   }
 }
 
@@ -1744,6 +1905,44 @@ class CreateServiceResponse {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final createdByAccountId = this.createdByAccountId;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final endpointType = this.endpointType;
+    final environmentId = this.environmentId;
+    final lambdaEndpoint = this.lambdaEndpoint;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final ownerAccountId = this.ownerAccountId;
+    final serviceId = this.serviceId;
+    final state = this.state;
+    final tags = this.tags;
+    final urlEndpoint = this.urlEndpoint;
+    final vpcId = this.vpcId;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (arn != null) 'Arn': arn,
+      if (createdByAccountId != null) 'CreatedByAccountId': createdByAccountId,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (lambdaEndpoint != null) 'LambdaEndpoint': lambdaEndpoint,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (serviceId != null) 'ServiceId': serviceId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (urlEndpoint != null) 'UrlEndpoint': urlEndpoint,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 /// The configuration for the default route type.
@@ -1755,6 +1954,7 @@ class DefaultRouteInput {
   DefaultRouteInput({
     this.activationState,
   });
+
   Map<String, dynamic> toJson() {
     final activationState = this.activationState;
     return {
@@ -1800,6 +2000,24 @@ class DeleteApplicationResponse {
       state: (json['State'] as String?)?.toApplicationState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final environmentId = this.environmentId;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (arn != null) 'Arn': arn,
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class DeleteEnvironmentResponse {
@@ -1834,12 +2052,32 @@ class DeleteEnvironmentResponse {
       state: (json['State'] as String?)?.toEnvironmentState(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final environmentId = this.environmentId;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
+  }
 }
 
 class DeleteResourcePolicyResponse {
   DeleteResourcePolicyResponse();
   factory DeleteResourcePolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteResourcePolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1879,6 +2117,24 @@ class DeleteRouteResponse {
       serviceId: json['ServiceId'] as String?,
       state: (json['State'] as String?)?.toRouteState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final routeId = this.routeId;
+    final serviceId = this.serviceId;
+    final state = this.state;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (arn != null) 'Arn': arn,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (routeId != null) 'RouteId': routeId,
+      if (serviceId != null) 'ServiceId': serviceId,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -1923,6 +2179,26 @@ class DeleteServiceResponse {
       serviceId: json['ServiceId'] as String?,
       state: (json['State'] as String?)?.toServiceState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final environmentId = this.environmentId;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final serviceId = this.serviceId;
+    final state = this.state;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (arn != null) 'Arn': arn,
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (serviceId != null) 'ServiceId': serviceId,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -2037,6 +2313,37 @@ class EnvironmentSummary {
       transitGatewayId: json['TransitGatewayId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final environmentId = this.environmentId;
+    final error = this.error;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final networkFabricType = this.networkFabricType;
+    final ownerAccountId = this.ownerAccountId;
+    final state = this.state;
+    final tags = this.tags;
+    final transitGatewayId = this.transitGatewayId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (error != null) 'Error': error,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (networkFabricType != null)
+        'NetworkFabricType': networkFabricType.toValue(),
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (transitGatewayId != null) 'TransitGatewayId': transitGatewayId,
+    };
+  }
 }
 
 /// Provides summary information for the <code>EnvironmentVpc</code> resource as
@@ -2085,6 +2392,26 @@ class EnvironmentVpc {
       vpcId: json['VpcId'] as String?,
       vpcName: json['VpcName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final cidrBlocks = this.cidrBlocks;
+    final createdTime = this.createdTime;
+    final environmentId = this.environmentId;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final vpcId = this.vpcId;
+    final vpcName = this.vpcName;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (cidrBlocks != null) 'CidrBlocks': cidrBlocks,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (vpcId != null) 'VpcId': vpcId,
+      if (vpcName != null) 'VpcName': vpcName,
+    };
   }
 }
 
@@ -2319,6 +2646,23 @@ class ErrorResponse {
       resourceType: (json['ResourceType'] as String?)?.toErrorResourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final additionalDetails = this.additionalDetails;
+    final code = this.code;
+    final message = this.message;
+    final resourceIdentifier = this.resourceIdentifier;
+    final resourceType = this.resourceType;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (additionalDetails != null) 'AdditionalDetails': additionalDetails,
+      if (code != null) 'Code': code.toValue(),
+      if (message != null) 'Message': message,
+      if (resourceIdentifier != null) 'ResourceIdentifier': resourceIdentifier,
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+    };
+  }
 }
 
 class GetApplicationResponse {
@@ -2406,6 +2750,40 @@ class GetApplicationResponse {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiGatewayProxy = this.apiGatewayProxy;
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final createdByAccountId = this.createdByAccountId;
+    final createdTime = this.createdTime;
+    final environmentId = this.environmentId;
+    final error = this.error;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final ownerAccountId = this.ownerAccountId;
+    final proxyType = this.proxyType;
+    final state = this.state;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (apiGatewayProxy != null) 'ApiGatewayProxy': apiGatewayProxy,
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (arn != null) 'Arn': arn,
+      if (createdByAccountId != null) 'CreatedByAccountId': createdByAccountId,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (error != null) 'Error': error,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (proxyType != null) 'ProxyType': proxyType.toValue(),
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 class GetEnvironmentResponse {
@@ -2480,6 +2858,37 @@ class GetEnvironmentResponse {
       transitGatewayId: json['TransitGatewayId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final environmentId = this.environmentId;
+    final error = this.error;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final networkFabricType = this.networkFabricType;
+    final ownerAccountId = this.ownerAccountId;
+    final state = this.state;
+    final tags = this.tags;
+    final transitGatewayId = this.transitGatewayId;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (error != null) 'Error': error,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (networkFabricType != null)
+        'NetworkFabricType': networkFabricType.toValue(),
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (transitGatewayId != null) 'TransitGatewayId': transitGatewayId,
+    };
+  }
 }
 
 class GetResourcePolicyResponse {
@@ -2493,6 +2902,13 @@ class GetResourcePolicyResponse {
     return GetResourcePolicyResponse(
       policy: json['Policy'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -2607,6 +3023,46 @@ class GetRouteResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final createdByAccountId = this.createdByAccountId;
+    final createdTime = this.createdTime;
+    final environmentId = this.environmentId;
+    final error = this.error;
+    final includeChildPaths = this.includeChildPaths;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final methods = this.methods;
+    final ownerAccountId = this.ownerAccountId;
+    final pathResourceToId = this.pathResourceToId;
+    final routeId = this.routeId;
+    final routeType = this.routeType;
+    final serviceId = this.serviceId;
+    final sourcePath = this.sourcePath;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (arn != null) 'Arn': arn,
+      if (createdByAccountId != null) 'CreatedByAccountId': createdByAccountId,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (error != null) 'Error': error,
+      if (includeChildPaths != null) 'IncludeChildPaths': includeChildPaths,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (methods != null) 'Methods': methods.map((e) => e.toValue()).toList(),
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (pathResourceToId != null) 'PathResourceToId': pathResourceToId,
+      if (routeId != null) 'RouteId': routeId,
+      if (routeType != null) 'RouteType': routeType.toValue(),
+      if (serviceId != null) 'ServiceId': serviceId,
+      if (sourcePath != null) 'SourcePath': sourcePath,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class GetServiceResponse {
@@ -2718,6 +3174,46 @@ class GetServiceResponse {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final createdByAccountId = this.createdByAccountId;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final endpointType = this.endpointType;
+    final environmentId = this.environmentId;
+    final error = this.error;
+    final lambdaEndpoint = this.lambdaEndpoint;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final ownerAccountId = this.ownerAccountId;
+    final serviceId = this.serviceId;
+    final state = this.state;
+    final tags = this.tags;
+    final urlEndpoint = this.urlEndpoint;
+    final vpcId = this.vpcId;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (arn != null) 'Arn': arn,
+      if (createdByAccountId != null) 'CreatedByAccountId': createdByAccountId,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (error != null) 'Error': error,
+      if (lambdaEndpoint != null) 'LambdaEndpoint': lambdaEndpoint,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (serviceId != null) 'ServiceId': serviceId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (urlEndpoint != null) 'UrlEndpoint': urlEndpoint,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 enum HttpMethod {
@@ -2786,6 +3282,13 @@ class LambdaEndpointConfig {
       arn: json['Arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
+  }
 }
 
 /// The input for the Lambda endpoint type.
@@ -2823,6 +3326,13 @@ class LambdaEndpointSummary {
       arn: json['Arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
+  }
 }
 
 class ListApplicationsResponse {
@@ -2844,6 +3354,16 @@ class ListApplicationsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationSummaryList = this.applicationSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (applicationSummaryList != null)
+        'ApplicationSummaryList': applicationSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2867,6 +3387,15 @@ class ListEnvironmentVpcsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final environmentVpcList = this.environmentVpcList;
+    final nextToken = this.nextToken;
+    return {
+      if (environmentVpcList != null) 'EnvironmentVpcList': environmentVpcList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListEnvironmentsResponse {
@@ -2888,6 +3417,16 @@ class ListEnvironmentsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentSummaryList = this.environmentSummaryList;
+    final nextToken = this.nextToken;
+    return {
+      if (environmentSummaryList != null)
+        'EnvironmentSummaryList': environmentSummaryList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2911,6 +3450,15 @@ class ListRoutesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final routeSummaryList = this.routeSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (routeSummaryList != null) 'RouteSummaryList': routeSummaryList,
+    };
+  }
 }
 
 class ListServicesResponse {
@@ -2933,6 +3481,15 @@ class ListServicesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final serviceSummaryList = this.serviceSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (serviceSummaryList != null) 'ServiceSummaryList': serviceSummaryList,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -2947,6 +3504,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3000,6 +3564,10 @@ class PutResourcePolicyResponse {
   PutResourcePolicyResponse();
   factory PutResourcePolicyResponse.fromJson(Map<String, dynamic> _) {
     return PutResourcePolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3184,6 +3752,46 @@ class RouteSummary {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final createdByAccountId = this.createdByAccountId;
+    final createdTime = this.createdTime;
+    final environmentId = this.environmentId;
+    final error = this.error;
+    final includeChildPaths = this.includeChildPaths;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final methods = this.methods;
+    final ownerAccountId = this.ownerAccountId;
+    final pathResourceToId = this.pathResourceToId;
+    final routeId = this.routeId;
+    final routeType = this.routeType;
+    final serviceId = this.serviceId;
+    final sourcePath = this.sourcePath;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (arn != null) 'Arn': arn,
+      if (createdByAccountId != null) 'CreatedByAccountId': createdByAccountId,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (error != null) 'Error': error,
+      if (includeChildPaths != null) 'IncludeChildPaths': includeChildPaths,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (methods != null) 'Methods': methods.map((e) => e.toValue()).toList(),
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (pathResourceToId != null) 'PathResourceToId': pathResourceToId,
+      if (routeId != null) 'RouteId': routeId,
+      if (routeType != null) 'RouteType': routeType.toValue(),
+      if (serviceId != null) 'ServiceId': serviceId,
+      if (sourcePath != null) 'SourcePath': sourcePath,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3383,6 +3991,46 @@ class ServiceSummary {
       vpcId: json['VpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final createdByAccountId = this.createdByAccountId;
+    final createdTime = this.createdTime;
+    final description = this.description;
+    final endpointType = this.endpointType;
+    final environmentId = this.environmentId;
+    final error = this.error;
+    final lambdaEndpoint = this.lambdaEndpoint;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final name = this.name;
+    final ownerAccountId = this.ownerAccountId;
+    final serviceId = this.serviceId;
+    final state = this.state;
+    final tags = this.tags;
+    final urlEndpoint = this.urlEndpoint;
+    final vpcId = this.vpcId;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (arn != null) 'Arn': arn,
+      if (createdByAccountId != null) 'CreatedByAccountId': createdByAccountId,
+      if (createdTime != null) 'CreatedTime': unixTimestampToJson(createdTime),
+      if (description != null) 'Description': description,
+      if (endpointType != null) 'EndpointType': endpointType.toValue(),
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (error != null) 'Error': error,
+      if (lambdaEndpoint != null) 'LambdaEndpoint': lambdaEndpoint,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (name != null) 'Name': name,
+      if (ownerAccountId != null) 'OwnerAccountId': ownerAccountId,
+      if (serviceId != null) 'ServiceId': serviceId,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (urlEndpoint != null) 'UrlEndpoint': urlEndpoint,
+      if (vpcId != null) 'VpcId': vpcId,
+    };
+  }
 }
 
 class TagResourceResponse {
@@ -3390,12 +4038,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3441,6 +4097,24 @@ class UpdateRouteResponse {
       serviceId: json['ServiceId'] as String?,
       state: (json['State'] as String?)?.toRouteState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationId = this.applicationId;
+    final arn = this.arn;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final routeId = this.routeId;
+    final serviceId = this.serviceId;
+    final state = this.state;
+    return {
+      if (applicationId != null) 'ApplicationId': applicationId,
+      if (arn != null) 'Arn': arn,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (routeId != null) 'RouteId': routeId,
+      if (serviceId != null) 'ServiceId': serviceId,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -3515,6 +4189,15 @@ class UrlEndpointConfig {
       url: json['Url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final healthUrl = this.healthUrl;
+    final url = this.url;
+    return {
+      if (healthUrl != null) 'HealthUrl': healthUrl,
+      if (url != null) 'Url': url,
+    };
+  }
 }
 
 /// The configuration for the URL endpoint type.
@@ -3581,6 +4264,15 @@ class UrlEndpointSummary {
       healthUrl: json['HealthUrl'] as String?,
       url: json['Url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final healthUrl = this.healthUrl;
+    final url = this.url;
+    return {
+      if (healthUrl != null) 'HealthUrl': healthUrl,
+      if (url != null) 'Url': url,
+    };
   }
 }
 

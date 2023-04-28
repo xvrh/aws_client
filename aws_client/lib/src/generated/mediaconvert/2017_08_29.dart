@@ -2482,6 +2482,10 @@ class AssociateCertificateResponse {
   factory AssociateCertificateResponse.fromJson(Map<String, dynamic> _) {
     return AssociateCertificateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// You can add a tag for this mono-channel audio track to mimic its placement
@@ -5564,6 +5568,10 @@ class CancelJobResponse {
   factory CancelJobResponse.fromJson(Map<String, dynamic> _) {
     return CancelJobResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// This object holds groups of settings related to captions for one output. For
@@ -8435,6 +8443,13 @@ class CreateJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'job': job,
+    };
+  }
 }
 
 class CreateJobTemplateResponse {
@@ -8452,6 +8467,13 @@ class CreateJobTemplateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobTemplate = this.jobTemplate;
+    return {
+      if (jobTemplate != null) 'jobTemplate': jobTemplate,
+    };
+  }
 }
 
 class CreatePresetResponse {
@@ -8468,6 +8490,13 @@ class CreatePresetResponse {
           ? Preset.fromJson(json['preset'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final preset = this.preset;
+    return {
+      if (preset != null) 'preset': preset,
+    };
   }
 }
 
@@ -8488,6 +8517,13 @@ class CreateQueueResponse {
           ? Queue.fromJson(json['queue'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queue = this.queue;
+    return {
+      if (queue != null) 'queue': queue,
+    };
   }
 }
 
@@ -9482,12 +9518,20 @@ class DeleteJobTemplateResponse {
   factory DeleteJobTemplateResponse.fromJson(Map<String, dynamic> _) {
     return DeleteJobTemplateResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeletePolicyResponse {
   DeletePolicyResponse();
   factory DeletePolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeletePolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -9496,12 +9540,20 @@ class DeletePresetResponse {
   factory DeletePresetResponse.fromJson(Map<String, dynamic> _) {
     return DeletePresetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteQueueResponse {
   DeleteQueueResponse();
   factory DeleteQueueResponse.fromJson(Map<String, dynamic> _) {
     return DeleteQueueResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -9557,6 +9609,15 @@ class DescribeEndpointsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoints = this.endpoints;
+    final nextToken = this.nextToken;
+    return {
+      if (endpoints != null) 'endpoints': endpoints,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Settings associated with the destination. Will vary based on the type of
@@ -9589,6 +9650,10 @@ class DisassociateCertificateResponse {
   DisassociateCertificateResponse();
   factory DisassociateCertificateResponse.fromJson(Map<String, dynamic> _) {
     return DisassociateCertificateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -12432,6 +12497,13 @@ class Endpoint {
       url: json['url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final url = this.url;
+    return {
+      if (url != null) 'url': url,
+    };
+  }
 }
 
 /// ESAM ManifestConfirmConditionNotification defined by
@@ -12982,6 +13054,13 @@ class GetJobResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final job = this.job;
+    return {
+      if (job != null) 'job': job,
+    };
+  }
 }
 
 class GetJobTemplateResponse {
@@ -12998,6 +13077,13 @@ class GetJobTemplateResponse {
           ? JobTemplate.fromJson(json['jobTemplate'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobTemplate = this.jobTemplate;
+    return {
+      if (jobTemplate != null) 'jobTemplate': jobTemplate,
+    };
   }
 }
 
@@ -13017,6 +13103,13 @@ class GetPolicyResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'policy': policy,
+    };
+  }
 }
 
 class GetPresetResponse {
@@ -13033,6 +13126,13 @@ class GetPresetResponse {
           ? Preset.fromJson(json['preset'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final preset = this.preset;
+    return {
+      if (preset != null) 'preset': preset,
+    };
   }
 }
 
@@ -13053,6 +13153,13 @@ class GetQueueResponse {
           ? Queue.fromJson(json['queue'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queue = this.queue;
+    return {
+      if (queue != null) 'queue': queue,
+    };
   }
 }
 
@@ -19778,6 +19885,66 @@ class Job {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final role = this.role;
+    final settings = this.settings;
+    final accelerationSettings = this.accelerationSettings;
+    final accelerationStatus = this.accelerationStatus;
+    final arn = this.arn;
+    final billingTagsSource = this.billingTagsSource;
+    final createdAt = this.createdAt;
+    final currentPhase = this.currentPhase;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final hopDestinations = this.hopDestinations;
+    final id = this.id;
+    final jobPercentComplete = this.jobPercentComplete;
+    final jobTemplate = this.jobTemplate;
+    final messages = this.messages;
+    final outputGroupDetails = this.outputGroupDetails;
+    final priority = this.priority;
+    final queue = this.queue;
+    final queueTransitions = this.queueTransitions;
+    final retryCount = this.retryCount;
+    final simulateReservedQueue = this.simulateReservedQueue;
+    final status = this.status;
+    final statusUpdateInterval = this.statusUpdateInterval;
+    final timing = this.timing;
+    final userMetadata = this.userMetadata;
+    return {
+      'role': role,
+      'settings': settings,
+      if (accelerationSettings != null)
+        'accelerationSettings': accelerationSettings,
+      if (accelerationStatus != null)
+        'accelerationStatus': accelerationStatus.toValue(),
+      if (arn != null) 'arn': arn,
+      if (billingTagsSource != null)
+        'billingTagsSource': billingTagsSource.toValue(),
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (currentPhase != null) 'currentPhase': currentPhase.toValue(),
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (hopDestinations != null) 'hopDestinations': hopDestinations,
+      if (id != null) 'id': id,
+      if (jobPercentComplete != null) 'jobPercentComplete': jobPercentComplete,
+      if (jobTemplate != null) 'jobTemplate': jobTemplate,
+      if (messages != null) 'messages': messages,
+      if (outputGroupDetails != null) 'outputGroupDetails': outputGroupDetails,
+      if (priority != null) 'priority': priority,
+      if (queue != null) 'queue': queue,
+      if (queueTransitions != null) 'queueTransitions': queueTransitions,
+      if (retryCount != null) 'retryCount': retryCount,
+      if (simulateReservedQueue != null)
+        'simulateReservedQueue': simulateReservedQueue.toValue(),
+      if (status != null) 'status': status.toValue(),
+      if (statusUpdateInterval != null)
+        'statusUpdateInterval': statusUpdateInterval.toValue(),
+      if (timing != null) 'timing': timing,
+      if (userMetadata != null) 'userMetadata': userMetadata,
+    };
+  }
 }
 
 /// Provides messages from the service about jobs that you have already
@@ -19806,6 +19973,15 @@ class JobMessages {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final info = this.info;
+    final warning = this.warning;
+    return {
+      if (info != null) 'info': info,
+      if (warning != null) 'warning': warning,
+    };
   }
 }
 
@@ -20155,6 +20331,39 @@ class JobTemplate {
           (json['statusUpdateInterval'] as String?)?.toStatusUpdateInterval(),
       type: (json['type'] as String?)?.toType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final settings = this.settings;
+    final accelerationSettings = this.accelerationSettings;
+    final arn = this.arn;
+    final category = this.category;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final hopDestinations = this.hopDestinations;
+    final lastUpdated = this.lastUpdated;
+    final priority = this.priority;
+    final queue = this.queue;
+    final statusUpdateInterval = this.statusUpdateInterval;
+    final type = this.type;
+    return {
+      'name': name,
+      'settings': settings,
+      if (accelerationSettings != null)
+        'accelerationSettings': accelerationSettings,
+      if (arn != null) 'arn': arn,
+      if (category != null) 'category': category,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (description != null) 'description': description,
+      if (hopDestinations != null) 'hopDestinations': hopDestinations,
+      if (lastUpdated != null) 'lastUpdated': unixTimestampToJson(lastUpdated),
+      if (priority != null) 'priority': priority,
+      if (queue != null) 'queue': queue,
+      if (statusUpdateInterval != null)
+        'statusUpdateInterval': statusUpdateInterval.toValue(),
+      if (type != null) 'type': type.toValue(),
+    };
   }
 }
 
@@ -21509,6 +21718,15 @@ class ListJobTemplatesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobTemplates = this.jobTemplates;
+    final nextToken = this.nextToken;
+    return {
+      if (jobTemplates != null) 'jobTemplates': jobTemplates,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListJobsResponse {
@@ -21530,6 +21748,15 @@ class ListJobsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobs = this.jobs;
+    final nextToken = this.nextToken;
+    return {
+      if (jobs != null) 'jobs': jobs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -21553,6 +21780,15 @@ class ListPresetsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final presets = this.presets;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (presets != null) 'presets': presets,
+    };
+  }
 }
 
 class ListQueuesResponse {
@@ -21575,6 +21811,15 @@ class ListQueuesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final queues = this.queues;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (queues != null) 'queues': queues,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -21591,6 +21836,13 @@ class ListTagsForResourceResponse {
           ? ResourceTags.fromJson(json['resourceTags'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceTags = this.resourceTags;
+    return {
+      if (resourceTags != null) 'resourceTags': resourceTags,
+    };
   }
 }
 
@@ -26715,6 +26967,15 @@ class OutputDetail {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final durationInMs = this.durationInMs;
+    final videoDetails = this.videoDetails;
+    return {
+      if (durationInMs != null) 'durationInMs': durationInMs,
+      if (videoDetails != null) 'videoDetails': videoDetails,
+    };
+  }
 }
 
 /// Group of outputs
@@ -26798,6 +27059,13 @@ class OutputGroupDetail {
           .map((e) => OutputDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final outputDetails = this.outputDetails;
+    return {
+      if (outputDetails != null) 'outputDetails': outputDetails,
+    };
   }
 }
 
@@ -27166,6 +27434,27 @@ class Preset {
       lastUpdated: timeStampFromJson(json['lastUpdated']),
       type: (json['type'] as String?)?.toType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final settings = this.settings;
+    final arn = this.arn;
+    final category = this.category;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final lastUpdated = this.lastUpdated;
+    final type = this.type;
+    return {
+      'name': name,
+      'settings': settings,
+      if (arn != null) 'arn': arn,
+      if (category != null) 'category': category,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (description != null) 'description': description,
+      if (lastUpdated != null) 'lastUpdated': unixTimestampToJson(lastUpdated),
+      if (type != null) 'type': type.toValue(),
+    };
   }
 }
 
@@ -27914,6 +28203,13 @@ class PutPolicyResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'policy': policy,
+    };
+  }
 }
 
 /// You can use queues to manage the resources that are available to your AWS
@@ -27995,6 +28291,34 @@ class Queue {
       submittedJobsCount: json['submittedJobsCount'] as int?,
       type: (json['type'] as String?)?.toType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final lastUpdated = this.lastUpdated;
+    final pricingPlan = this.pricingPlan;
+    final progressingJobsCount = this.progressingJobsCount;
+    final reservationPlan = this.reservationPlan;
+    final status = this.status;
+    final submittedJobsCount = this.submittedJobsCount;
+    final type = this.type;
+    return {
+      'name': name,
+      if (arn != null) 'arn': arn,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (description != null) 'description': description,
+      if (lastUpdated != null) 'lastUpdated': unixTimestampToJson(lastUpdated),
+      if (pricingPlan != null) 'pricingPlan': pricingPlan.toValue(),
+      if (progressingJobsCount != null)
+        'progressingJobsCount': progressingJobsCount,
+      if (reservationPlan != null) 'reservationPlan': reservationPlan,
+      if (status != null) 'status': status.toValue(),
+      if (submittedJobsCount != null) 'submittedJobsCount': submittedJobsCount,
+      if (type != null) 'type': type.toValue(),
+    };
   }
 }
 
@@ -28084,6 +28408,17 @@ class QueueTransition {
       sourceQueue: json['sourceQueue'] as String?,
       timestamp: timeStampFromJson(json['timestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destinationQueue = this.destinationQueue;
+    final sourceQueue = this.sourceQueue;
+    final timestamp = this.timestamp;
+    return {
+      if (destinationQueue != null) 'destinationQueue': destinationQueue,
+      if (sourceQueue != null) 'sourceQueue': sourceQueue,
+      if (timestamp != null) 'timestamp': unixTimestampToJson(timestamp),
+    };
   }
 }
 
@@ -28302,6 +28637,23 @@ class ReservationPlan {
       status: (json['status'] as String?)?.toReservationPlanStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commitment = this.commitment;
+    final expiresAt = this.expiresAt;
+    final purchasedAt = this.purchasedAt;
+    final renewalType = this.renewalType;
+    final reservedSlots = this.reservedSlots;
+    final status = this.status;
+    return {
+      if (commitment != null) 'commitment': commitment.toValue(),
+      if (expiresAt != null) 'expiresAt': unixTimestampToJson(expiresAt),
+      if (purchasedAt != null) 'purchasedAt': unixTimestampToJson(purchasedAt),
+      if (renewalType != null) 'renewalType': renewalType.toValue(),
+      if (reservedSlots != null) 'reservedSlots': reservedSlots,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Details about the pricing plan for your reserved queue. Required for
@@ -28331,6 +28683,7 @@ class ReservationPlanSettings {
     required this.renewalType,
     required this.reservedSlots,
   });
+
   Map<String, dynamic> toJson() {
     final commitment = this.commitment;
     final renewalType = this.renewalType;
@@ -28392,6 +28745,15 @@ class ResourceTags {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'arn': arn,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -29244,6 +29606,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Settings related to teletext captions. Set up teletext captions in the same
@@ -29670,6 +30036,17 @@ class Timing {
       submitTime: timeStampFromJson(json['submitTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final finishTime = this.finishTime;
+    final startTime = this.startTime;
+    final submitTime = this.submitTime;
+    return {
+      if (finishTime != null) 'finishTime': unixTimestampToJson(finishTime),
+      if (startTime != null) 'startTime': unixTimestampToJson(startTime),
+      if (submitTime != null) 'submitTime': unixTimestampToJson(submitTime),
+    };
+  }
 }
 
 /// Settings specific to caption sources that are specified by track number.
@@ -29797,6 +30174,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateJobTemplateResponse {
@@ -29814,6 +30195,13 @@ class UpdateJobTemplateResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final jobTemplate = this.jobTemplate;
+    return {
+      if (jobTemplate != null) 'jobTemplate': jobTemplate,
+    };
+  }
 }
 
 class UpdatePresetResponse {
@@ -29830,6 +30218,13 @@ class UpdatePresetResponse {
           ? Preset.fromJson(json['preset'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final preset = this.preset;
+    return {
+      if (preset != null) 'preset': preset,
+    };
   }
 }
 
@@ -29850,6 +30245,13 @@ class UpdateQueueResponse {
           ? Queue.fromJson(json['queue'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final queue = this.queue;
+    return {
+      if (queue != null) 'queue': queue,
+    };
   }
 }
 
@@ -30738,6 +31140,15 @@ class VideoDetail {
       heightInPx: json['heightInPx'] as int?,
       widthInPx: json['widthInPx'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final heightInPx = this.heightInPx;
+    final widthInPx = this.widthInPx;
+    return {
+      if (heightInPx != null) 'heightInPx': heightInPx,
+      if (widthInPx != null) 'widthInPx': widthInPx,
+    };
   }
 }
 

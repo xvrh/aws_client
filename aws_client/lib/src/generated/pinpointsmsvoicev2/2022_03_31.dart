@@ -2571,6 +2571,15 @@ class AccountAttribute {
       value: json['Value'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      'Name': name.toValue(),
+      'Value': value,
+    };
+  }
 }
 
 enum AccountAttributeName {
@@ -2618,6 +2627,17 @@ class AccountLimit {
       name: (json['Name'] as String).toAccountLimitName(),
       used: json['Used'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final name = this.name;
+    final used = this.used;
+    return {
+      'Max': max,
+      'Name': name.toValue(),
+      'Used': used,
+    };
   }
 }
 
@@ -2694,6 +2714,23 @@ class AssociateOriginationIdentityResult {
       poolId: json['PoolId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isoCountryCode = this.isoCountryCode;
+    final originationIdentity = this.originationIdentity;
+    final originationIdentityArn = this.originationIdentityArn;
+    final poolArn = this.poolArn;
+    final poolId = this.poolId;
+    return {
+      if (isoCountryCode != null) 'IsoCountryCode': isoCountryCode,
+      if (originationIdentity != null)
+        'OriginationIdentity': originationIdentity,
+      if (originationIdentityArn != null)
+        'OriginationIdentityArn': originationIdentityArn,
+      if (poolArn != null) 'PoolArn': poolArn,
+      if (poolId != null) 'PoolId': poolId,
+    };
+  }
 }
 
 /// Contains the destination configuration to use when publishing message
@@ -2741,6 +2778,7 @@ class ConfigurationSetFilter {
     required this.name,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -2838,6 +2876,24 @@ class ConfigurationSetInformation {
       defaultSenderId: json['DefaultSenderId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSetArn = this.configurationSetArn;
+    final configurationSetName = this.configurationSetName;
+    final createdTimestamp = this.createdTimestamp;
+    final eventDestinations = this.eventDestinations;
+    final defaultMessageType = this.defaultMessageType;
+    final defaultSenderId = this.defaultSenderId;
+    return {
+      'ConfigurationSetArn': configurationSetArn,
+      'ConfigurationSetName': configurationSetName,
+      'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      'EventDestinations': eventDestinations,
+      if (defaultMessageType != null)
+        'DefaultMessageType': defaultMessageType.toValue(),
+      if (defaultSenderId != null) 'DefaultSenderId': defaultSenderId,
+    };
+  }
 }
 
 class CreateConfigurationSetResult {
@@ -2872,6 +2928,22 @@ class CreateConfigurationSetResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSetArn = this.configurationSetArn;
+    final configurationSetName = this.configurationSetName;
+    final createdTimestamp = this.createdTimestamp;
+    final tags = this.tags;
+    return {
+      if (configurationSetArn != null)
+        'ConfigurationSetArn': configurationSetArn,
+      if (configurationSetName != null)
+        'ConfigurationSetName': configurationSetName,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class CreateEventDestinationResult {
@@ -2898,6 +2970,19 @@ class CreateEventDestinationResult {
               json['EventDestination'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationSetArn = this.configurationSetArn;
+    final configurationSetName = this.configurationSetName;
+    final eventDestination = this.eventDestination;
+    return {
+      if (configurationSetArn != null)
+        'ConfigurationSetArn': configurationSetArn,
+      if (configurationSetName != null)
+        'ConfigurationSetName': configurationSetName,
+      if (eventDestination != null) 'EventDestination': eventDestination,
+    };
   }
 }
 
@@ -2931,6 +3016,20 @@ class CreateOptOutListResult {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final optOutListArn = this.optOutListArn;
+    final optOutListName = this.optOutListName;
+    final tags = this.tags;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (optOutListArn != null) 'OptOutListArn': optOutListArn,
+      if (optOutListName != null) 'OptOutListName': optOutListName,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3025,6 +3124,39 @@ class CreatePoolResult {
       twoWayEnabled: json['TwoWayEnabled'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final deletionProtectionEnabled = this.deletionProtectionEnabled;
+    final messageType = this.messageType;
+    final optOutListName = this.optOutListName;
+    final poolArn = this.poolArn;
+    final poolId = this.poolId;
+    final selfManagedOptOutsEnabled = this.selfManagedOptOutsEnabled;
+    final sharedRoutesEnabled = this.sharedRoutesEnabled;
+    final status = this.status;
+    final tags = this.tags;
+    final twoWayChannelArn = this.twoWayChannelArn;
+    final twoWayEnabled = this.twoWayEnabled;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (deletionProtectionEnabled != null)
+        'DeletionProtectionEnabled': deletionProtectionEnabled,
+      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (optOutListName != null) 'OptOutListName': optOutListName,
+      if (poolArn != null) 'PoolArn': poolArn,
+      if (poolId != null) 'PoolId': poolId,
+      if (selfManagedOptOutsEnabled != null)
+        'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
+      if (sharedRoutesEnabled != null)
+        'SharedRoutesEnabled': sharedRoutesEnabled,
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
+      if (twoWayEnabled != null) 'TwoWayEnabled': twoWayEnabled,
+    };
+  }
 }
 
 class DeleteConfigurationSetResult {
@@ -3070,6 +3202,27 @@ class DeleteConfigurationSetResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSetArn = this.configurationSetArn;
+    final configurationSetName = this.configurationSetName;
+    final createdTimestamp = this.createdTimestamp;
+    final defaultMessageType = this.defaultMessageType;
+    final defaultSenderId = this.defaultSenderId;
+    final eventDestinations = this.eventDestinations;
+    return {
+      if (configurationSetArn != null)
+        'ConfigurationSetArn': configurationSetArn,
+      if (configurationSetName != null)
+        'ConfigurationSetName': configurationSetName,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (defaultMessageType != null)
+        'DefaultMessageType': defaultMessageType.toValue(),
+      if (defaultSenderId != null) 'DefaultSenderId': defaultSenderId,
+      if (eventDestinations != null) 'EventDestinations': eventDestinations,
+    };
+  }
 }
 
 class DeleteDefaultMessageTypeResult {
@@ -3094,6 +3247,19 @@ class DeleteDefaultMessageTypeResult {
       messageType: (json['MessageType'] as String?)?.toMessageType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSetArn = this.configurationSetArn;
+    final configurationSetName = this.configurationSetName;
+    final messageType = this.messageType;
+    return {
+      if (configurationSetArn != null)
+        'ConfigurationSetArn': configurationSetArn,
+      if (configurationSetName != null)
+        'ConfigurationSetName': configurationSetName,
+      if (messageType != null) 'MessageType': messageType.toValue(),
+    };
+  }
 }
 
 class DeleteDefaultSenderIdResult {
@@ -3117,6 +3283,19 @@ class DeleteDefaultSenderIdResult {
       configurationSetName: json['ConfigurationSetName'] as String?,
       senderId: json['SenderId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationSetArn = this.configurationSetArn;
+    final configurationSetName = this.configurationSetName;
+    final senderId = this.senderId;
+    return {
+      if (configurationSetArn != null)
+        'ConfigurationSetArn': configurationSetArn,
+      if (configurationSetName != null)
+        'ConfigurationSetName': configurationSetName,
+      if (senderId != null) 'SenderId': senderId,
+    };
   }
 }
 
@@ -3144,6 +3323,19 @@ class DeleteEventDestinationResult {
               json['EventDestination'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationSetArn = this.configurationSetArn;
+    final configurationSetName = this.configurationSetName;
+    final eventDestination = this.eventDestination;
+    return {
+      if (configurationSetArn != null)
+        'ConfigurationSetArn': configurationSetArn,
+      if (configurationSetName != null)
+        'ConfigurationSetName': configurationSetName,
+      if (eventDestination != null) 'EventDestination': eventDestination,
+    };
   }
 }
 
@@ -3179,6 +3371,23 @@ class DeleteKeywordResult {
       originationIdentityArn: json['OriginationIdentityArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyword = this.keyword;
+    final keywordAction = this.keywordAction;
+    final keywordMessage = this.keywordMessage;
+    final originationIdentity = this.originationIdentity;
+    final originationIdentityArn = this.originationIdentityArn;
+    return {
+      if (keyword != null) 'Keyword': keyword,
+      if (keywordAction != null) 'KeywordAction': keywordAction.toValue(),
+      if (keywordMessage != null) 'KeywordMessage': keywordMessage,
+      if (originationIdentity != null)
+        'OriginationIdentity': originationIdentity,
+      if (originationIdentityArn != null)
+        'OriginationIdentityArn': originationIdentityArn,
+    };
+  }
 }
 
 class DeleteOptOutListResult {
@@ -3203,6 +3412,18 @@ class DeleteOptOutListResult {
       optOutListArn: json['OptOutListArn'] as String?,
       optOutListName: json['OptOutListName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final optOutListArn = this.optOutListArn;
+    final optOutListName = this.optOutListName;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (optOutListArn != null) 'OptOutListArn': optOutListArn,
+      if (optOutListName != null) 'OptOutListName': optOutListName,
+    };
   }
 }
 
@@ -3239,6 +3460,22 @@ class DeleteOptedOutNumberResult {
       optedOutNumber: json['OptedOutNumber'] as String?,
       optedOutTimestamp: timeStampFromJson(json['OptedOutTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endUserOptedOut = this.endUserOptedOut;
+    final optOutListArn = this.optOutListArn;
+    final optOutListName = this.optOutListName;
+    final optedOutNumber = this.optedOutNumber;
+    final optedOutTimestamp = this.optedOutTimestamp;
+    return {
+      if (endUserOptedOut != null) 'EndUserOptedOut': endUserOptedOut,
+      if (optOutListArn != null) 'OptOutListArn': optOutListArn,
+      if (optOutListName != null) 'OptOutListName': optOutListName,
+      if (optedOutNumber != null) 'OptedOutNumber': optedOutNumber,
+      if (optedOutTimestamp != null)
+        'OptedOutTimestamp': unixTimestampToJson(optedOutTimestamp),
+    };
   }
 }
 
@@ -3319,6 +3556,34 @@ class DeletePoolResult {
       twoWayEnabled: json['TwoWayEnabled'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final messageType = this.messageType;
+    final optOutListName = this.optOutListName;
+    final poolArn = this.poolArn;
+    final poolId = this.poolId;
+    final selfManagedOptOutsEnabled = this.selfManagedOptOutsEnabled;
+    final sharedRoutesEnabled = this.sharedRoutesEnabled;
+    final status = this.status;
+    final twoWayChannelArn = this.twoWayChannelArn;
+    final twoWayEnabled = this.twoWayEnabled;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (optOutListName != null) 'OptOutListName': optOutListName,
+      if (poolArn != null) 'PoolArn': poolArn,
+      if (poolId != null) 'PoolId': poolId,
+      if (selfManagedOptOutsEnabled != null)
+        'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
+      if (sharedRoutesEnabled != null)
+        'SharedRoutesEnabled': sharedRoutesEnabled,
+      if (status != null) 'Status': status.toValue(),
+      if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
+      if (twoWayEnabled != null) 'TwoWayEnabled': twoWayEnabled,
+    };
+  }
 }
 
 class DeleteTextMessageSpendLimitOverrideResult {
@@ -3334,6 +3599,13 @@ class DeleteTextMessageSpendLimitOverrideResult {
       monthlyLimit: json['MonthlyLimit'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final monthlyLimit = this.monthlyLimit;
+    return {
+      if (monthlyLimit != null) 'MonthlyLimit': monthlyLimit,
+    };
+  }
 }
 
 class DeleteVoiceMessageSpendLimitOverrideResult {
@@ -3348,6 +3620,13 @@ class DeleteVoiceMessageSpendLimitOverrideResult {
     return DeleteVoiceMessageSpendLimitOverrideResult(
       monthlyLimit: json['MonthlyLimit'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final monthlyLimit = this.monthlyLimit;
+    return {
+      if (monthlyLimit != null) 'MonthlyLimit': monthlyLimit,
+    };
   }
 }
 
@@ -3372,6 +3651,15 @@ class DescribeAccountAttributesResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountAttributes = this.accountAttributes;
+    final nextToken = this.nextToken;
+    return {
+      if (accountAttributes != null) 'AccountAttributes': accountAttributes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class DescribeAccountLimitsResult {
@@ -3394,6 +3682,15 @@ class DescribeAccountLimitsResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountLimits = this.accountLimits;
+    final nextToken = this.nextToken;
+    return {
+      if (accountLimits != null) 'AccountLimits': accountLimits,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3418,6 +3715,15 @@ class DescribeConfigurationSetsResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationSets = this.configurationSets;
+    final nextToken = this.nextToken;
+    return {
+      if (configurationSets != null) 'ConfigurationSets': configurationSets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3453,6 +3759,21 @@ class DescribeKeywordsResult {
       originationIdentityArn: json['OriginationIdentityArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keywords = this.keywords;
+    final nextToken = this.nextToken;
+    final originationIdentity = this.originationIdentity;
+    final originationIdentityArn = this.originationIdentityArn;
+    return {
+      if (keywords != null) 'Keywords': keywords,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (originationIdentity != null)
+        'OriginationIdentity': originationIdentity,
+      if (originationIdentityArn != null)
+        'OriginationIdentityArn': originationIdentityArn,
+    };
+  }
 }
 
 class DescribeOptOutListsResult {
@@ -3476,6 +3797,15 @@ class DescribeOptOutListsResult {
           .map((e) => OptOutListInformation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final optOutLists = this.optOutLists;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (optOutLists != null) 'OptOutLists': optOutLists,
+    };
   }
 }
 
@@ -3512,6 +3842,19 @@ class DescribeOptedOutNumbersResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final optOutListArn = this.optOutListArn;
+    final optOutListName = this.optOutListName;
+    final optedOutNumbers = this.optedOutNumbers;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (optOutListArn != null) 'OptOutListArn': optOutListArn,
+      if (optOutListName != null) 'OptOutListName': optOutListName,
+      if (optedOutNumbers != null) 'OptedOutNumbers': optedOutNumbers,
+    };
+  }
 }
 
 class DescribePhoneNumbersResult {
@@ -3537,6 +3880,15 @@ class DescribePhoneNumbersResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final phoneNumbers = this.phoneNumbers;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (phoneNumbers != null) 'PhoneNumbers': phoneNumbers,
+    };
+  }
 }
 
 class DescribePoolsResult {
@@ -3560,6 +3912,15 @@ class DescribePoolsResult {
           .map((e) => PoolInformation.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final pools = this.pools;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (pools != null) 'Pools': pools,
+    };
   }
 }
 
@@ -3585,6 +3946,15 @@ class DescribeSenderIdsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final senderIds = this.senderIds;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (senderIds != null) 'SenderIds': senderIds,
+    };
+  }
 }
 
 class DescribeSpendLimitsResult {
@@ -3608,6 +3978,15 @@ class DescribeSpendLimitsResult {
           .map((e) => SpendLimit.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final spendLimits = this.spendLimits;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (spendLimits != null) 'SpendLimits': spendLimits,
+    };
   }
 }
 
@@ -3675,6 +4054,23 @@ class DisassociateOriginationIdentityResult {
       poolId: json['PoolId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isoCountryCode = this.isoCountryCode;
+    final originationIdentity = this.originationIdentity;
+    final originationIdentityArn = this.originationIdentityArn;
+    final poolArn = this.poolArn;
+    final poolId = this.poolId;
+    return {
+      if (isoCountryCode != null) 'IsoCountryCode': isoCountryCode,
+      if (originationIdentity != null)
+        'OriginationIdentity': originationIdentity,
+      if (originationIdentityArn != null)
+        'OriginationIdentityArn': originationIdentityArn,
+      if (poolArn != null) 'PoolArn': poolArn,
+      if (poolId != null) 'PoolId': poolId,
+    };
+  }
 }
 
 /// Contains information about an event destination.
@@ -3733,6 +4129,25 @@ class EventDestination {
               json['SnsDestination'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final eventDestinationName = this.eventDestinationName;
+    final matchingEventTypes = this.matchingEventTypes;
+    final cloudWatchLogsDestination = this.cloudWatchLogsDestination;
+    final kinesisFirehoseDestination = this.kinesisFirehoseDestination;
+    final snsDestination = this.snsDestination;
+    return {
+      'Enabled': enabled,
+      'EventDestinationName': eventDestinationName,
+      'MatchingEventTypes': matchingEventTypes.map((e) => e.toValue()).toList(),
+      if (cloudWatchLogsDestination != null)
+        'CloudWatchLogsDestination': cloudWatchLogsDestination,
+      if (kinesisFirehoseDestination != null)
+        'KinesisFirehoseDestination': kinesisFirehoseDestination,
+      if (snsDestination != null) 'SnsDestination': snsDestination,
+    };
   }
 }
 
@@ -3924,6 +4339,7 @@ class KeywordFilter {
     required this.name,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -3979,6 +4395,17 @@ class KeywordInformation {
       keywordAction: (json['KeywordAction'] as String).toKeywordAction(),
       keywordMessage: json['KeywordMessage'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final keyword = this.keyword;
+    final keywordAction = this.keywordAction;
+    final keywordMessage = this.keywordMessage;
+    return {
+      'Keyword': keyword,
+      'KeywordAction': keywordAction.toValue(),
+      'KeywordMessage': keywordMessage,
+    };
   }
 }
 
@@ -4050,6 +4477,20 @@ class ListPoolOriginationIdentitiesResult {
       poolId: json['PoolId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final originationIdentities = this.originationIdentities;
+    final poolArn = this.poolArn;
+    final poolId = this.poolId;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (originationIdentities != null)
+        'OriginationIdentities': originationIdentities,
+      if (poolArn != null) 'PoolArn': poolArn,
+      if (poolId != null) 'PoolId': poolId,
+    };
+  }
 }
 
 class ListTagsForResourceResult {
@@ -4071,6 +4512,15 @@ class ListTagsForResourceResult {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final tags = this.tags;
+    return {
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -4236,6 +4686,17 @@ class OptOutListInformation {
       optOutListName: json['OptOutListName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final optOutListArn = this.optOutListArn;
+    final optOutListName = this.optOutListName;
+    return {
+      'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      'OptOutListArn': optOutListArn,
+      'OptOutListName': optOutListName,
+    };
+  }
 }
 
 /// The information for opted out numbers that meet a specified criteria.
@@ -4250,6 +4711,7 @@ class OptedOutFilter {
     required this.name,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -4308,6 +4770,17 @@ class OptedOutNumberInformation {
           nonNullableTimeStampFromJson(json['OptedOutTimestamp'] as Object),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endUserOptedOut = this.endUserOptedOut;
+    final optedOutNumber = this.optedOutNumber;
+    final optedOutTimestamp = this.optedOutTimestamp;
+    return {
+      'EndUserOptedOut': endUserOptedOut,
+      'OptedOutNumber': optedOutNumber,
+      'OptedOutTimestamp': unixTimestampToJson(optedOutTimestamp),
+    };
+  }
 }
 
 /// The metadata for an origination identity associated with a pool.
@@ -4343,6 +4816,19 @@ class OriginationIdentityMetadata {
       originationIdentityArn: json['OriginationIdentityArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isoCountryCode = this.isoCountryCode;
+    final numberCapabilities = this.numberCapabilities;
+    final originationIdentity = this.originationIdentity;
+    final originationIdentityArn = this.originationIdentityArn;
+    return {
+      'IsoCountryCode': isoCountryCode,
+      'NumberCapabilities': numberCapabilities.map((e) => e.toValue()).toList(),
+      'OriginationIdentity': originationIdentity,
+      'OriginationIdentityArn': originationIdentityArn,
+    };
+  }
 }
 
 /// The information for a phone number that meets a specified criteria.
@@ -4357,6 +4843,7 @@ class PhoneNumberFilter {
     required this.name,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -4535,6 +5022,43 @@ class PhoneNumberInformation {
       twoWayChannelArn: json['TwoWayChannelArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final deletionProtectionEnabled = this.deletionProtectionEnabled;
+    final isoCountryCode = this.isoCountryCode;
+    final messageType = this.messageType;
+    final monthlyLeasingPrice = this.monthlyLeasingPrice;
+    final numberCapabilities = this.numberCapabilities;
+    final numberType = this.numberType;
+    final optOutListName = this.optOutListName;
+    final phoneNumber = this.phoneNumber;
+    final phoneNumberArn = this.phoneNumberArn;
+    final selfManagedOptOutsEnabled = this.selfManagedOptOutsEnabled;
+    final status = this.status;
+    final twoWayEnabled = this.twoWayEnabled;
+    final phoneNumberId = this.phoneNumberId;
+    final poolId = this.poolId;
+    final twoWayChannelArn = this.twoWayChannelArn;
+    return {
+      'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      'DeletionProtectionEnabled': deletionProtectionEnabled,
+      'IsoCountryCode': isoCountryCode,
+      'MessageType': messageType.toValue(),
+      'MonthlyLeasingPrice': monthlyLeasingPrice,
+      'NumberCapabilities': numberCapabilities.map((e) => e.toValue()).toList(),
+      'NumberType': numberType.toValue(),
+      'OptOutListName': optOutListName,
+      'PhoneNumber': phoneNumber,
+      'PhoneNumberArn': phoneNumberArn,
+      'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
+      'Status': status.toValue(),
+      'TwoWayEnabled': twoWayEnabled,
+      if (phoneNumberId != null) 'PhoneNumberId': phoneNumberId,
+      if (poolId != null) 'PoolId': poolId,
+      if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
+    };
+  }
 }
 
 /// The information for a pool that meets a specified criteria.
@@ -4549,6 +5073,7 @@ class PoolFilter {
     required this.name,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -4693,6 +5218,33 @@ class PoolInformation {
       twoWayChannelArn: json['TwoWayChannelArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final deletionProtectionEnabled = this.deletionProtectionEnabled;
+    final messageType = this.messageType;
+    final optOutListName = this.optOutListName;
+    final poolArn = this.poolArn;
+    final poolId = this.poolId;
+    final selfManagedOptOutsEnabled = this.selfManagedOptOutsEnabled;
+    final sharedRoutesEnabled = this.sharedRoutesEnabled;
+    final status = this.status;
+    final twoWayEnabled = this.twoWayEnabled;
+    final twoWayChannelArn = this.twoWayChannelArn;
+    return {
+      'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      'DeletionProtectionEnabled': deletionProtectionEnabled,
+      'MessageType': messageType.toValue(),
+      'OptOutListName': optOutListName,
+      'PoolArn': poolArn,
+      'PoolId': poolId,
+      'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
+      'SharedRoutesEnabled': sharedRoutesEnabled,
+      'Status': status.toValue(),
+      'TwoWayEnabled': twoWayEnabled,
+      if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
+    };
+  }
 }
 
 /// Information about origination identities associated with a pool that meets a
@@ -4708,6 +5260,7 @@ class PoolOriginationIdentitiesFilter {
     required this.name,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -4813,6 +5366,23 @@ class PutKeywordResult {
       originationIdentityArn: json['OriginationIdentityArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final keyword = this.keyword;
+    final keywordAction = this.keywordAction;
+    final keywordMessage = this.keywordMessage;
+    final originationIdentity = this.originationIdentity;
+    final originationIdentityArn = this.originationIdentityArn;
+    return {
+      if (keyword != null) 'Keyword': keyword,
+      if (keywordAction != null) 'KeywordAction': keywordAction.toValue(),
+      if (keywordMessage != null) 'KeywordMessage': keywordMessage,
+      if (originationIdentity != null)
+        'OriginationIdentity': originationIdentity,
+      if (originationIdentityArn != null)
+        'OriginationIdentityArn': originationIdentityArn,
+    };
+  }
 }
 
 class PutOptedOutNumberResult {
@@ -4848,6 +5418,22 @@ class PutOptedOutNumberResult {
       optedOutNumber: json['OptedOutNumber'] as String?,
       optedOutTimestamp: timeStampFromJson(json['OptedOutTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endUserOptedOut = this.endUserOptedOut;
+    final optOutListArn = this.optOutListArn;
+    final optOutListName = this.optOutListName;
+    final optedOutNumber = this.optedOutNumber;
+    final optedOutTimestamp = this.optedOutTimestamp;
+    return {
+      if (endUserOptedOut != null) 'EndUserOptedOut': endUserOptedOut,
+      if (optOutListArn != null) 'OptOutListArn': optOutListArn,
+      if (optOutListName != null) 'OptOutListName': optOutListName,
+      if (optedOutNumber != null) 'OptedOutNumber': optedOutNumber,
+      if (optedOutTimestamp != null)
+        'OptedOutTimestamp': unixTimestampToJson(optedOutTimestamp),
+    };
   }
 }
 
@@ -4938,6 +5524,44 @@ class ReleasePhoneNumberResult {
       twoWayChannelArn: json['TwoWayChannelArn'] as String?,
       twoWayEnabled: json['TwoWayEnabled'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final isoCountryCode = this.isoCountryCode;
+    final messageType = this.messageType;
+    final monthlyLeasingPrice = this.monthlyLeasingPrice;
+    final numberCapabilities = this.numberCapabilities;
+    final numberType = this.numberType;
+    final optOutListName = this.optOutListName;
+    final phoneNumber = this.phoneNumber;
+    final phoneNumberArn = this.phoneNumberArn;
+    final phoneNumberId = this.phoneNumberId;
+    final selfManagedOptOutsEnabled = this.selfManagedOptOutsEnabled;
+    final status = this.status;
+    final twoWayChannelArn = this.twoWayChannelArn;
+    final twoWayEnabled = this.twoWayEnabled;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (isoCountryCode != null) 'IsoCountryCode': isoCountryCode,
+      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (monthlyLeasingPrice != null)
+        'MonthlyLeasingPrice': monthlyLeasingPrice,
+      if (numberCapabilities != null)
+        'NumberCapabilities':
+            numberCapabilities.map((e) => e.toValue()).toList(),
+      if (numberType != null) 'NumberType': numberType.toValue(),
+      if (optOutListName != null) 'OptOutListName': optOutListName,
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (phoneNumberArn != null) 'PhoneNumberArn': phoneNumberArn,
+      if (phoneNumberId != null) 'PhoneNumberId': phoneNumberId,
+      if (selfManagedOptOutsEnabled != null)
+        'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
+      if (status != null) 'Status': status.toValue(),
+      if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
+      if (twoWayEnabled != null) 'TwoWayEnabled': twoWayEnabled,
+    };
   }
 }
 
@@ -5053,6 +5677,51 @@ class RequestPhoneNumberResult {
       twoWayEnabled: json['TwoWayEnabled'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final deletionProtectionEnabled = this.deletionProtectionEnabled;
+    final isoCountryCode = this.isoCountryCode;
+    final messageType = this.messageType;
+    final monthlyLeasingPrice = this.monthlyLeasingPrice;
+    final numberCapabilities = this.numberCapabilities;
+    final numberType = this.numberType;
+    final optOutListName = this.optOutListName;
+    final phoneNumber = this.phoneNumber;
+    final phoneNumberArn = this.phoneNumberArn;
+    final phoneNumberId = this.phoneNumberId;
+    final poolId = this.poolId;
+    final selfManagedOptOutsEnabled = this.selfManagedOptOutsEnabled;
+    final status = this.status;
+    final tags = this.tags;
+    final twoWayChannelArn = this.twoWayChannelArn;
+    final twoWayEnabled = this.twoWayEnabled;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (deletionProtectionEnabled != null)
+        'DeletionProtectionEnabled': deletionProtectionEnabled,
+      if (isoCountryCode != null) 'IsoCountryCode': isoCountryCode,
+      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (monthlyLeasingPrice != null)
+        'MonthlyLeasingPrice': monthlyLeasingPrice,
+      if (numberCapabilities != null)
+        'NumberCapabilities':
+            numberCapabilities.map((e) => e.toValue()).toList(),
+      if (numberType != null) 'NumberType': numberType.toValue(),
+      if (optOutListName != null) 'OptOutListName': optOutListName,
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (phoneNumberArn != null) 'PhoneNumberArn': phoneNumberArn,
+      if (phoneNumberId != null) 'PhoneNumberId': phoneNumberId,
+      if (poolId != null) 'PoolId': poolId,
+      if (selfManagedOptOutsEnabled != null)
+        'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
+      if (twoWayEnabled != null) 'TwoWayEnabled': twoWayEnabled,
+    };
+  }
 }
 
 enum RequestableNumberType {
@@ -5100,6 +5769,13 @@ class SendTextMessageResult {
       messageId: json['MessageId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      if (messageId != null) 'MessageId': messageId,
+    };
+  }
 }
 
 class SendVoiceMessageResult {
@@ -5113,6 +5789,13 @@ class SendVoiceMessageResult {
     return SendVoiceMessageResult(
       messageId: json['MessageId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      if (messageId != null) 'MessageId': messageId,
+    };
   }
 }
 
@@ -5133,6 +5816,7 @@ class SenderIdAndCountry {
     required this.isoCountryCode,
     required this.senderId,
   });
+
   Map<String, dynamic> toJson() {
     final isoCountryCode = this.isoCountryCode;
     final senderId = this.senderId;
@@ -5155,6 +5839,7 @@ class SenderIdFilter {
     required this.name,
     required this.values,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final values = this.values;
@@ -5238,6 +5923,21 @@ class SenderIdInformation {
       senderIdArn: json['SenderIdArn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isoCountryCode = this.isoCountryCode;
+    final messageTypes = this.messageTypes;
+    final monthlyLeasingPrice = this.monthlyLeasingPrice;
+    final senderId = this.senderId;
+    final senderIdArn = this.senderIdArn;
+    return {
+      'IsoCountryCode': isoCountryCode,
+      'MessageTypes': messageTypes.map((e) => e.toValue()).toList(),
+      'MonthlyLeasingPrice': monthlyLeasingPrice,
+      'SenderId': senderId,
+      'SenderIdArn': senderIdArn,
+    };
+  }
 }
 
 class SetDefaultMessageTypeResult {
@@ -5261,6 +5961,19 @@ class SetDefaultMessageTypeResult {
       configurationSetName: json['ConfigurationSetName'] as String?,
       messageType: (json['MessageType'] as String?)?.toMessageType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationSetArn = this.configurationSetArn;
+    final configurationSetName = this.configurationSetName;
+    final messageType = this.messageType;
+    return {
+      if (configurationSetArn != null)
+        'ConfigurationSetArn': configurationSetArn,
+      if (configurationSetName != null)
+        'ConfigurationSetName': configurationSetName,
+      if (messageType != null) 'MessageType': messageType.toValue(),
+    };
   }
 }
 
@@ -5286,6 +5999,19 @@ class SetDefaultSenderIdResult {
       senderId: json['SenderId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSetArn = this.configurationSetArn;
+    final configurationSetName = this.configurationSetName;
+    final senderId = this.senderId;
+    return {
+      if (configurationSetArn != null)
+        'ConfigurationSetArn': configurationSetArn,
+      if (configurationSetName != null)
+        'ConfigurationSetName': configurationSetName,
+      if (senderId != null) 'SenderId': senderId,
+    };
+  }
 }
 
 class SetTextMessageSpendLimitOverrideResult {
@@ -5301,6 +6027,13 @@ class SetTextMessageSpendLimitOverrideResult {
       monthlyLimit: json['MonthlyLimit'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final monthlyLimit = this.monthlyLimit;
+    return {
+      if (monthlyLimit != null) 'MonthlyLimit': monthlyLimit,
+    };
+  }
 }
 
 class SetVoiceMessageSpendLimitOverrideResult {
@@ -5315,6 +6048,13 @@ class SetVoiceMessageSpendLimitOverrideResult {
     return SetVoiceMessageSpendLimitOverrideResult(
       monthlyLimit: json['MonthlyLimit'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final monthlyLimit = this.monthlyLimit;
+    return {
+      if (monthlyLimit != null) 'MonthlyLimit': monthlyLimit,
+    };
   }
 }
 
@@ -5381,6 +6121,19 @@ class SpendLimit {
       overridden: json['Overridden'] as bool,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final enforcedLimit = this.enforcedLimit;
+    final maxLimit = this.maxLimit;
+    final name = this.name;
+    final overridden = this.overridden;
+    return {
+      'EnforcedLimit': enforcedLimit,
+      'MaxLimit': maxLimit,
+      'Name': name.toValue(),
+      'Overridden': overridden,
+    };
+  }
 }
 
 enum SpendLimitName {
@@ -5445,12 +6198,20 @@ class TagResourceResult {
   factory TagResourceResult.fromJson(Map<String, dynamic> _) {
     return TagResourceResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResult {
   UntagResourceResult();
   factory UntagResourceResult.fromJson(Map<String, dynamic> _) {
     return UntagResourceResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5479,6 +6240,19 @@ class UpdateEventDestinationResult {
               json['EventDestination'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationSetArn = this.configurationSetArn;
+    final configurationSetName = this.configurationSetName;
+    final eventDestination = this.eventDestination;
+    return {
+      if (configurationSetArn != null)
+        'ConfigurationSetArn': configurationSetArn,
+      if (configurationSetName != null)
+        'ConfigurationSetName': configurationSetName,
+      if (eventDestination != null) 'EventDestination': eventDestination,
+    };
   }
 }
 
@@ -5572,6 +6346,47 @@ class UpdatePhoneNumberResult {
       twoWayEnabled: json['TwoWayEnabled'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final deletionProtectionEnabled = this.deletionProtectionEnabled;
+    final isoCountryCode = this.isoCountryCode;
+    final messageType = this.messageType;
+    final monthlyLeasingPrice = this.monthlyLeasingPrice;
+    final numberCapabilities = this.numberCapabilities;
+    final numberType = this.numberType;
+    final optOutListName = this.optOutListName;
+    final phoneNumber = this.phoneNumber;
+    final phoneNumberArn = this.phoneNumberArn;
+    final phoneNumberId = this.phoneNumberId;
+    final selfManagedOptOutsEnabled = this.selfManagedOptOutsEnabled;
+    final status = this.status;
+    final twoWayChannelArn = this.twoWayChannelArn;
+    final twoWayEnabled = this.twoWayEnabled;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (deletionProtectionEnabled != null)
+        'DeletionProtectionEnabled': deletionProtectionEnabled,
+      if (isoCountryCode != null) 'IsoCountryCode': isoCountryCode,
+      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (monthlyLeasingPrice != null)
+        'MonthlyLeasingPrice': monthlyLeasingPrice,
+      if (numberCapabilities != null)
+        'NumberCapabilities':
+            numberCapabilities.map((e) => e.toValue()).toList(),
+      if (numberType != null) 'NumberType': numberType.toValue(),
+      if (optOutListName != null) 'OptOutListName': optOutListName,
+      if (phoneNumber != null) 'PhoneNumber': phoneNumber,
+      if (phoneNumberArn != null) 'PhoneNumberArn': phoneNumberArn,
+      if (phoneNumberId != null) 'PhoneNumberId': phoneNumberId,
+      if (selfManagedOptOutsEnabled != null)
+        'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
+      if (status != null) 'Status': status.toValue(),
+      if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
+      if (twoWayEnabled != null) 'TwoWayEnabled': twoWayEnabled,
+    };
+  }
 }
 
 class UpdatePoolResult {
@@ -5641,6 +6456,37 @@ class UpdatePoolResult {
       twoWayChannelArn: json['TwoWayChannelArn'] as String?,
       twoWayEnabled: json['TwoWayEnabled'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final deletionProtectionEnabled = this.deletionProtectionEnabled;
+    final messageType = this.messageType;
+    final optOutListName = this.optOutListName;
+    final poolArn = this.poolArn;
+    final poolId = this.poolId;
+    final selfManagedOptOutsEnabled = this.selfManagedOptOutsEnabled;
+    final sharedRoutesEnabled = this.sharedRoutesEnabled;
+    final status = this.status;
+    final twoWayChannelArn = this.twoWayChannelArn;
+    final twoWayEnabled = this.twoWayEnabled;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (deletionProtectionEnabled != null)
+        'DeletionProtectionEnabled': deletionProtectionEnabled,
+      if (messageType != null) 'MessageType': messageType.toValue(),
+      if (optOutListName != null) 'OptOutListName': optOutListName,
+      if (poolArn != null) 'PoolArn': poolArn,
+      if (poolId != null) 'PoolId': poolId,
+      if (selfManagedOptOutsEnabled != null)
+        'SelfManagedOptOutsEnabled': selfManagedOptOutsEnabled,
+      if (sharedRoutesEnabled != null)
+        'SharedRoutesEnabled': sharedRoutesEnabled,
+      if (status != null) 'Status': status.toValue(),
+      if (twoWayChannelArn != null) 'TwoWayChannelArn': twoWayChannelArn,
+      if (twoWayEnabled != null) 'TwoWayEnabled': twoWayEnabled,
+    };
   }
 }
 

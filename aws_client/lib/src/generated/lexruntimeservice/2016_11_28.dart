@@ -927,6 +927,15 @@ class Button {
       value: json['value'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final text = this.text;
+    final value = this.value;
+    return {
+      'text': text,
+      'value': value,
+    };
+  }
 }
 
 enum ConfirmationStatus {
@@ -1011,6 +1020,19 @@ class DeleteSessionResponse {
       sessionId: json['sessionId'] as String?,
       userId: json['userId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final botAlias = this.botAlias;
+    final botName = this.botName;
+    final sessionId = this.sessionId;
+    final userId = this.userId;
+    return {
+      if (botAlias != null) 'botAlias': botAlias,
+      if (botName != null) 'botName': botName,
+      if (sessionId != null) 'sessionId': sessionId,
+      if (userId != null) 'userId': userId,
+    };
   }
 }
 
@@ -1304,6 +1326,21 @@ class GenericAttachment {
       title: json['title'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachmentLinkUrl = this.attachmentLinkUrl;
+    final buttons = this.buttons;
+    final imageUrl = this.imageUrl;
+    final subTitle = this.subTitle;
+    final title = this.title;
+    return {
+      if (attachmentLinkUrl != null) 'attachmentLinkUrl': attachmentLinkUrl,
+      if (buttons != null) 'buttons': buttons,
+      if (imageUrl != null) 'imageUrl': imageUrl,
+      if (subTitle != null) 'subTitle': subTitle,
+      if (title != null) 'title': title,
+    };
+  }
 }
 
 class GetSessionResponse {
@@ -1360,6 +1397,22 @@ class GetSessionResponse {
       sessionId: json['sessionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeContexts = this.activeContexts;
+    final dialogAction = this.dialogAction;
+    final recentIntentSummaryView = this.recentIntentSummaryView;
+    final sessionAttributes = this.sessionAttributes;
+    final sessionId = this.sessionId;
+    return {
+      if (activeContexts != null) 'activeContexts': activeContexts,
+      if (dialogAction != null) 'dialogAction': dialogAction,
+      if (recentIntentSummaryView != null)
+        'recentIntentSummaryView': recentIntentSummaryView,
+      if (sessionAttributes != null) 'sessionAttributes': sessionAttributes,
+      if (sessionId != null) 'sessionId': sessionId,
+    };
+  }
 }
 
 /// Provides a score that indicates the confidence that Amazon Lex has that an
@@ -1377,6 +1430,13 @@ class IntentConfidence {
     return IntentConfidence(
       score: json['score'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final score = this.score;
+    return {
+      if (score != null) 'score': score,
+    };
   }
 }
 
@@ -1801,6 +1861,30 @@ class PostContentResponse {
     this.slotToElicit,
     this.slots,
   });
+
+  Map<String, dynamic> toJson() {
+    final activeContexts = this.activeContexts;
+    final alternativeIntents = this.alternativeIntents;
+    final audioStream = this.audioStream;
+    final botVersion = this.botVersion;
+    final contentType = this.contentType;
+    final dialogState = this.dialogState;
+    final encodedInputTranscript = this.encodedInputTranscript;
+    final encodedMessage = this.encodedMessage;
+    final inputTranscript = this.inputTranscript;
+    final intentName = this.intentName;
+    final message = this.message;
+    final messageFormat = this.messageFormat;
+    final nluIntentConfidence = this.nluIntentConfidence;
+    final sentimentResponse = this.sentimentResponse;
+    final sessionAttributes = this.sessionAttributes;
+    final sessionId = this.sessionId;
+    final slotToElicit = this.slotToElicit;
+    final slots = this.slots;
+    return {
+      if (audioStream != null) 'audioStream': base64Encode(audioStream),
+    };
+  }
 }
 
 class PostTextResponse {
@@ -2021,6 +2105,40 @@ class PostTextResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeContexts = this.activeContexts;
+    final alternativeIntents = this.alternativeIntents;
+    final botVersion = this.botVersion;
+    final dialogState = this.dialogState;
+    final intentName = this.intentName;
+    final message = this.message;
+    final messageFormat = this.messageFormat;
+    final nluIntentConfidence = this.nluIntentConfidence;
+    final responseCard = this.responseCard;
+    final sentimentResponse = this.sentimentResponse;
+    final sessionAttributes = this.sessionAttributes;
+    final sessionId = this.sessionId;
+    final slotToElicit = this.slotToElicit;
+    final slots = this.slots;
+    return {
+      if (activeContexts != null) 'activeContexts': activeContexts,
+      if (alternativeIntents != null) 'alternativeIntents': alternativeIntents,
+      if (botVersion != null) 'botVersion': botVersion,
+      if (dialogState != null) 'dialogState': dialogState.toValue(),
+      if (intentName != null) 'intentName': intentName,
+      if (message != null) 'message': message,
+      if (messageFormat != null) 'messageFormat': messageFormat.toValue(),
+      if (nluIntentConfidence != null)
+        'nluIntentConfidence': nluIntentConfidence,
+      if (responseCard != null) 'responseCard': responseCard,
+      if (sentimentResponse != null) 'sentimentResponse': sentimentResponse,
+      if (sessionAttributes != null) 'sessionAttributes': sessionAttributes,
+      if (sessionId != null) 'sessionId': sessionId,
+      if (slotToElicit != null) 'slotToElicit': slotToElicit,
+      if (slots != null) 'slots': slots,
+    };
+  }
 }
 
 /// An intent that Amazon Lex suggests satisfies the user's intent. Includes the
@@ -2052,6 +2170,18 @@ class PredictedIntent {
       slots: (json['slots'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final intentName = this.intentName;
+    final nluIntentConfidence = this.nluIntentConfidence;
+    final slots = this.slots;
+    return {
+      if (intentName != null) 'intentName': intentName,
+      if (nluIntentConfidence != null)
+        'nluIntentConfidence': nluIntentConfidence,
+      if (slots != null) 'slots': slots,
+    };
   }
 }
 
@@ -2173,6 +2303,24 @@ class PutSessionResponse {
     this.slotToElicit,
     this.slots,
   });
+
+  Map<String, dynamic> toJson() {
+    final activeContexts = this.activeContexts;
+    final audioStream = this.audioStream;
+    final contentType = this.contentType;
+    final dialogState = this.dialogState;
+    final encodedMessage = this.encodedMessage;
+    final intentName = this.intentName;
+    final message = this.message;
+    final messageFormat = this.messageFormat;
+    final sessionAttributes = this.sessionAttributes;
+    final sessionId = this.sessionId;
+    final slotToElicit = this.slotToElicit;
+    final slots = this.slots;
+    return {
+      if (audioStream != null) 'audioStream': base64Encode(audioStream),
+    };
+  }
 }
 
 /// If you configure a response card when creating your bots, Amazon Lex
@@ -2205,6 +2353,17 @@ class ResponseCard {
       version: json['version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentType = this.contentType;
+    final genericAttachments = this.genericAttachments;
+    final version = this.version;
+    return {
+      if (contentType != null) 'contentType': contentType.toValue(),
+      if (genericAttachments != null) 'genericAttachments': genericAttachments,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// The sentiment expressed in an utterance.
@@ -2228,6 +2387,15 @@ class SentimentResponse {
       sentimentLabel: json['sentimentLabel'] as String?,
       sentimentScore: json['sentimentScore'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final sentimentLabel = this.sentimentLabel;
+    final sentimentScore = this.sentimentScore;
+    return {
+      if (sentimentLabel != null) 'sentimentLabel': sentimentLabel,
+      if (sentimentScore != null) 'sentimentScore': sentimentScore,
+    };
   }
 }
 

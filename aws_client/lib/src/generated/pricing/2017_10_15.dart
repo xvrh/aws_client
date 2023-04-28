@@ -286,6 +286,13 @@ class AttributeValue {
       value: json['Value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 class DescribeServicesResponse {
@@ -312,6 +319,17 @@ class DescribeServicesResponse {
           .map((e) => Service.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final formatVersion = this.formatVersion;
+    final nextToken = this.nextToken;
+    final services = this.services;
+    return {
+      if (formatVersion != null) 'FormatVersion': formatVersion,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (services != null) 'Services': services,
+    };
   }
 }
 
@@ -348,6 +366,7 @@ class Filter {
     required this.type,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final field = this.field;
     final type = this.type;
@@ -405,6 +424,15 @@ class GetAttributeValuesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributeValues = this.attributeValues;
+    final nextToken = this.nextToken;
+    return {
+      if (attributeValues != null) 'AttributeValues': attributeValues,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class GetProductsResponse {
@@ -435,6 +463,17 @@ class GetProductsResponse {
               .cast<Object>(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final formatVersion = this.formatVersion;
+    final nextToken = this.nextToken;
+    final priceList = this.priceList;
+    return {
+      if (formatVersion != null) 'FormatVersion': formatVersion,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (priceList != null) 'PriceList': priceList.map(jsonEncode).toList(),
+    };
+  }
 }
 
 /// The metadata for a service, such as the service code and available attribute
@@ -458,6 +497,15 @@ class Service {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final serviceCode = this.serviceCode;
+    final attributeNames = this.attributeNames;
+    return {
+      'ServiceCode': serviceCode,
+      if (attributeNames != null) 'AttributeNames': attributeNames,
+    };
   }
 }
 

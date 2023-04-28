@@ -1304,6 +1304,15 @@ class Connection {
       id: json['Id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final created = this.created;
+    final id = this.id;
+    return {
+      if (created != null) 'Created': iso8601ToJson(created),
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 class CreateGameResult {
@@ -1319,6 +1328,13 @@ class CreateGameResult {
           ? GameDetails.fromJson(json['Game'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final game = this.game;
+    return {
+      if (game != null) 'Game': game,
+    };
   }
 }
 
@@ -1336,6 +1352,13 @@ class CreateSnapshotResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
+  }
 }
 
 class CreateStageResult {
@@ -1352,6 +1375,13 @@ class CreateStageResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stage = this.stage;
+    return {
+      if (stage != null) 'Stage': stage,
+    };
+  }
 }
 
 class DeleteGameResult {
@@ -1359,12 +1389,20 @@ class DeleteGameResult {
   factory DeleteGameResult.fromJson(Map<String, dynamic> _) {
     return DeleteGameResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteStageResult {
   DeleteStageResult();
   factory DeleteStageResult.fromJson(Map<String, dynamic> _) {
     return DeleteStageResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1413,6 +1451,15 @@ class DeploymentResult {
       message: json['Message'] as String?,
       resultCode: (json['ResultCode'] as String?)?.toResultCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final resultCode = this.resultCode;
+    return {
+      if (message != null) 'Message': message,
+      if (resultCode != null) 'ResultCode': resultCode.toValue(),
+    };
   }
 }
 
@@ -1477,6 +1524,16 @@ class DisconnectPlayerResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final disconnectFailures = this.disconnectFailures;
+    final disconnectSuccesses = this.disconnectSuccesses;
+    return {
+      if (disconnectFailures != null) 'DisconnectFailures': disconnectFailures,
+      if (disconnectSuccesses != null)
+        'DisconnectSuccesses': disconnectSuccesses,
+    };
+  }
 }
 
 /// <p/>
@@ -1507,6 +1564,13 @@ class ExportSnapshotResult {
       s3Url: json['S3Url'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final s3Url = this.s3Url;
+    return {
+      if (s3Url != null) 'S3Url': s3Url,
+    };
+  }
 }
 
 /// Details about the extension.
@@ -1531,6 +1595,17 @@ class ExtensionDetails {
       name: json['Name'] as String?,
       namespace: json['Namespace'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final name = this.name;
+    final namespace = this.namespace;
+    return {
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+      if (namespace != null) 'Namespace': namespace,
+    };
   }
 }
 
@@ -1562,6 +1637,19 @@ class ExtensionVersionDetails {
       version: json['Version'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final namespace = this.namespace;
+    final schema = this.schema;
+    final version = this.version;
+    return {
+      if (name != null) 'Name': name,
+      if (namespace != null) 'Namespace': namespace,
+      if (schema != null) 'Schema': schema,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// Details about the game configuration.
@@ -1591,6 +1679,17 @@ class GameConfigurationDetails {
       sections: (json['Sections'] as Map<String, dynamic>?)?.map(
           (k, e) => MapEntry(k, Section.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final created = this.created;
+    final lastUpdated = this.lastUpdated;
+    final sections = this.sections;
+    return {
+      if (created != null) 'Created': iso8601ToJson(created),
+      if (lastUpdated != null) 'LastUpdated': iso8601ToJson(lastUpdated),
+      if (sections != null) 'Sections': sections,
+    };
   }
 }
 
@@ -1642,6 +1741,28 @@ class GameDetails {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final created = this.created;
+    final description = this.description;
+    final enableTerminationProtection = this.enableTerminationProtection;
+    final lastUpdated = this.lastUpdated;
+    final name = this.name;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (created != null) 'Created': iso8601ToJson(created),
+      if (description != null) 'Description': description,
+      if (enableTerminationProtection != null)
+        'EnableTerminationProtection': enableTerminationProtection,
+      if (lastUpdated != null) 'LastUpdated': iso8601ToJson(lastUpdated),
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1702,6 +1823,19 @@ class GameSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final name = this.name;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Details about a generated code job.
@@ -1738,6 +1872,22 @@ class GeneratedCodeJobDetails {
       s3Url: json['S3Url'] as String?,
       status: (json['Status'] as String?)?.toGeneratedCodeJobState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final expirationTime = this.expirationTime;
+    final generatedCodeJobId = this.generatedCodeJobId;
+    final s3Url = this.s3Url;
+    final status = this.status;
+    return {
+      if (description != null) 'Description': description,
+      if (expirationTime != null)
+        'ExpirationTime': iso8601ToJson(expirationTime),
+      if (generatedCodeJobId != null) 'GeneratedCodeJobId': generatedCodeJobId,
+      if (s3Url != null) 'S3Url': s3Url,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -1800,6 +1950,7 @@ class Generator {
     this.language,
     this.targetPlatform,
   });
+
   Map<String, dynamic> toJson() {
     final gameSdkVersion = this.gameSdkVersion;
     final language = this.language;
@@ -1826,6 +1977,13 @@ class GetExtensionResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final extension = this.extension;
+    return {
+      if (extension != null) 'Extension': extension,
+    };
+  }
 }
 
 class GetExtensionVersionResult {
@@ -1842,6 +2000,13 @@ class GetExtensionVersionResult {
               json['ExtensionVersion'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final extensionVersion = this.extensionVersion;
+    return {
+      if (extensionVersion != null) 'ExtensionVersion': extensionVersion,
+    };
   }
 }
 
@@ -1860,6 +2025,13 @@ class GetGameConfigurationResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameConfiguration = this.gameConfiguration;
+    return {
+      if (gameConfiguration != null) 'GameConfiguration': gameConfiguration,
+    };
+  }
 }
 
 class GetGameResult {
@@ -1875,6 +2047,13 @@ class GetGameResult {
           ? GameDetails.fromJson(json['Game'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final game = this.game;
+    return {
+      if (game != null) 'Game': game,
+    };
   }
 }
 
@@ -1893,6 +2072,13 @@ class GetGeneratedCodeJobResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final generatedCodeJob = this.generatedCodeJob;
+    return {
+      if (generatedCodeJob != null) 'GeneratedCodeJob': generatedCodeJob,
+    };
+  }
 }
 
 class GetPlayerConnectionStatusResult {
@@ -1910,6 +2096,13 @@ class GetPlayerConnectionStatusResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final connections = this.connections;
+    return {
+      if (connections != null) 'Connections': connections,
+    };
+  }
 }
 
 class GetSnapshotResult {
@@ -1925,6 +2118,13 @@ class GetSnapshotResult {
           ? SnapshotDetails.fromJson(json['Snapshot'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
   }
 }
 
@@ -1943,6 +2143,13 @@ class GetStageDeploymentResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stageDeployment = this.stageDeployment;
+    return {
+      if (stageDeployment != null) 'StageDeployment': stageDeployment,
+    };
+  }
 }
 
 class GetStageResult {
@@ -1958,6 +2165,13 @@ class GetStageResult {
           ? StageDetails.fromJson(json['Stage'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stage = this.stage;
+    return {
+      if (stage != null) 'Stage': stage,
+    };
   }
 }
 
@@ -1976,6 +2190,13 @@ class ImportGameConfigurationResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameConfiguration = this.gameConfiguration;
+    return {
+      if (gameConfiguration != null) 'GameConfiguration': gameConfiguration,
+    };
+  }
 }
 
 /// The source used to import configuration sections.
@@ -1986,6 +2207,7 @@ class ImportGameConfigurationSource {
   ImportGameConfigurationSource({
     required this.file,
   });
+
   Map<String, dynamic> toJson() {
     final file = this.file;
     return {
@@ -2018,6 +2240,15 @@ class ListExtensionVersionsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final extensionVersions = this.extensionVersions;
+    final nextToken = this.nextToken;
+    return {
+      if (extensionVersions != null) 'ExtensionVersions': extensionVersions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListExtensionsResult {
@@ -2043,6 +2274,15 @@ class ListExtensionsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final extensions = this.extensions;
+    final nextToken = this.nextToken;
+    return {
+      if (extensions != null) 'Extensions': extensions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListGamesResult {
@@ -2067,6 +2307,15 @@ class ListGamesResult {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final games = this.games;
+    final nextToken = this.nextToken;
+    return {
+      if (games != null) 'Games': games,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2094,6 +2343,15 @@ class ListGeneratedCodeJobsResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final generatedCodeJobs = this.generatedCodeJobs;
+    final nextToken = this.nextToken;
+    return {
+      if (generatedCodeJobs != null) 'GeneratedCodeJobs': generatedCodeJobs,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListSnapshotsResult {
@@ -2119,6 +2377,15 @@ class ListSnapshotsResult {
           .map((e) => SnapshotSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final snapshots = this.snapshots;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (snapshots != null) 'Snapshots': snapshots,
+    };
   }
 }
 
@@ -2148,6 +2415,15 @@ class ListStageDeploymentsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final stageDeployments = this.stageDeployments;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (stageDeployments != null) 'StageDeployments': stageDeployments,
+    };
+  }
 }
 
 class ListStagesResult {
@@ -2174,6 +2450,15 @@ class ListStagesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final stages = this.stages;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (stages != null) 'Stages': stages,
+    };
+  }
 }
 
 class ListTagsForResourceResult {
@@ -2188,6 +2473,13 @@ class ListTagsForResourceResult {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2282,6 +2574,17 @@ class Section {
       size: json['Size'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attributes = this.attributes;
+    final name = this.name;
+    final size = this.size;
+    return {
+      if (attributes != null) 'Attributes': attributes,
+      if (name != null) 'Name': name,
+      if (size != null) 'Size': size,
+    };
+  }
 }
 
 /// A single modification to the configuration section.
@@ -2308,6 +2611,7 @@ class SectionModification {
     required this.section,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final operation = this.operation;
     final path = this.path;
@@ -2356,6 +2660,21 @@ class SnapshotDetails {
           (k, e) => MapEntry(k, Section.fromJson(e as Map<String, dynamic>))),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final created = this.created;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdated = this.lastUpdated;
+    final sections = this.sections;
+    return {
+      if (created != null) 'Created': iso8601ToJson(created),
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (lastUpdated != null) 'LastUpdated': iso8601ToJson(lastUpdated),
+      if (sections != null) 'Sections': sections,
+    };
+  }
 }
 
 /// The summary of the properties of a snapshot.
@@ -2385,6 +2704,19 @@ class SnapshotSummary {
       id: json['Id'] as String?,
       lastUpdated: timeStampFromJson(json['LastUpdated']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final created = this.created;
+    final description = this.description;
+    final id = this.id;
+    final lastUpdated = this.lastUpdated;
+    return {
+      if (created != null) 'Created': iso8601ToJson(created),
+      if (description != null) 'Description': description,
+      if (id != null) 'Id': id,
+      if (lastUpdated != null) 'LastUpdated': iso8601ToJson(lastUpdated),
+    };
   }
 }
 
@@ -2436,6 +2768,26 @@ class StageDeploymentDetails {
       snapshotId: json['SnapshotId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final created = this.created;
+    final deploymentAction = this.deploymentAction;
+    final deploymentId = this.deploymentId;
+    final deploymentResult = this.deploymentResult;
+    final deploymentState = this.deploymentState;
+    final lastUpdated = this.lastUpdated;
+    final snapshotId = this.snapshotId;
+    return {
+      if (created != null) 'Created': iso8601ToJson(created),
+      if (deploymentAction != null)
+        'DeploymentAction': deploymentAction.toValue(),
+      if (deploymentId != null) 'DeploymentId': deploymentId,
+      if (deploymentResult != null) 'DeploymentResult': deploymentResult,
+      if (deploymentState != null) 'DeploymentState': deploymentState.toValue(),
+      if (lastUpdated != null) 'LastUpdated': iso8601ToJson(lastUpdated),
+      if (snapshotId != null) 'SnapshotId': snapshotId,
+    };
+  }
 }
 
 /// The summary of the properties of a stage deployment.
@@ -2480,6 +2832,24 @@ class StageDeploymentSummary {
       lastUpdated: timeStampFromJson(json['LastUpdated']),
       snapshotId: json['SnapshotId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deploymentAction = this.deploymentAction;
+    final deploymentId = this.deploymentId;
+    final deploymentResult = this.deploymentResult;
+    final deploymentState = this.deploymentState;
+    final lastUpdated = this.lastUpdated;
+    final snapshotId = this.snapshotId;
+    return {
+      if (deploymentAction != null)
+        'DeploymentAction': deploymentAction.toValue(),
+      if (deploymentId != null) 'DeploymentId': deploymentId,
+      if (deploymentResult != null) 'DeploymentResult': deploymentResult,
+      if (deploymentState != null) 'DeploymentState': deploymentState.toValue(),
+      if (lastUpdated != null) 'LastUpdated': iso8601ToJson(lastUpdated),
+      if (snapshotId != null) 'SnapshotId': snapshotId,
+    };
   }
 }
 
@@ -2545,6 +2915,31 @@ class StageDetails {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final created = this.created;
+    final description = this.description;
+    final gameKey = this.gameKey;
+    final lastUpdated = this.lastUpdated;
+    final logGroup = this.logGroup;
+    final name = this.name;
+    final role = this.role;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (created != null) 'Created': iso8601ToJson(created),
+      if (description != null) 'Description': description,
+      if (gameKey != null) 'GameKey': gameKey,
+      if (lastUpdated != null) 'LastUpdated': iso8601ToJson(lastUpdated),
+      if (logGroup != null) 'LogGroup': logGroup,
+      if (name != null) 'Name': name,
+      if (role != null) 'Role': role,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2613,6 +3008,21 @@ class StageSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final gameKey = this.gameKey;
+    final name = this.name;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (gameKey != null) 'GameKey': gameKey,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class StartGeneratedCodeJobResult {
@@ -2627,6 +3037,13 @@ class StartGeneratedCodeJobResult {
     return StartGeneratedCodeJobResult(
       generatedCodeJobId: json['GeneratedCodeJobId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final generatedCodeJobId = this.generatedCodeJobId;
+    return {
+      if (generatedCodeJobId != null) 'GeneratedCodeJobId': generatedCodeJobId,
+    };
   }
 }
 
@@ -2645,6 +3062,13 @@ class StartStageDeploymentResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final stageDeployment = this.stageDeployment;
+    return {
+      if (stageDeployment != null) 'StageDeployment': stageDeployment,
+    };
+  }
 }
 
 class TagResourceResult {
@@ -2652,12 +3076,20 @@ class TagResourceResult {
   factory TagResourceResult.fromJson(Map<String, dynamic> _) {
     return TagResourceResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResult {
   UntagResourceResult();
   factory UntagResourceResult.fromJson(Map<String, dynamic> _) {
     return UntagResourceResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2676,6 +3108,13 @@ class UpdateGameConfigurationResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gameConfiguration = this.gameConfiguration;
+    return {
+      if (gameConfiguration != null) 'GameConfiguration': gameConfiguration,
+    };
+  }
 }
 
 class UpdateGameResult {
@@ -2691,6 +3130,13 @@ class UpdateGameResult {
           ? GameDetails.fromJson(json['Game'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final game = this.game;
+    return {
+      if (game != null) 'Game': game,
+    };
   }
 }
 
@@ -2708,6 +3154,13 @@ class UpdateSnapshotResult {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snapshot = this.snapshot;
+    return {
+      if (snapshot != null) 'Snapshot': snapshot,
+    };
+  }
 }
 
 class UpdateStageResult {
@@ -2723,6 +3176,13 @@ class UpdateStageResult {
           ? StageDetails.fromJson(json['Stage'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final stage = this.stage;
+    return {
+      if (stage != null) 'Stage': stage,
+    };
   }
 }
 

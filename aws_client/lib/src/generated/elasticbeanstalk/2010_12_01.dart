@@ -2782,6 +2782,29 @@ class ApplicationDescription {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationArn = this.applicationArn;
+    final applicationName = this.applicationName;
+    final configurationTemplates = this.configurationTemplates;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final description = this.description;
+    final resourceLifecycleConfig = this.resourceLifecycleConfig;
+    final versions = this.versions;
+    return {
+      if (applicationArn != null) 'ApplicationArn': applicationArn,
+      if (applicationName != null) 'ApplicationName': applicationName,
+      if (configurationTemplates != null)
+        'ConfigurationTemplates': configurationTemplates,
+      if (dateCreated != null) 'DateCreated': iso8601ToJson(dateCreated),
+      if (dateUpdated != null) 'DateUpdated': iso8601ToJson(dateUpdated),
+      if (description != null) 'Description': description,
+      if (resourceLifecycleConfig != null)
+        'ResourceLifecycleConfig': resourceLifecycleConfig,
+      if (versions != null) 'Versions': versions,
+    };
+  }
 }
 
 /// Result message containing a single description of an application.
@@ -2798,6 +2821,13 @@ class ApplicationDescriptionMessage {
           .extractXmlChild(elem, 'Application')
           ?.let(ApplicationDescription.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final application = this.application;
+    return {
+      if (application != null) 'Application': application,
+    };
   }
 }
 
@@ -2816,6 +2846,13 @@ class ApplicationDescriptionsMessage {
           .map(ApplicationDescription.fromXml)
           .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applications = this.applications;
+    return {
+      if (applications != null) 'Applications': applications,
+    };
   }
 }
 
@@ -2853,6 +2890,19 @@ class ApplicationMetrics {
       statusCodes:
           _s.extractXmlChild(elem, 'StatusCodes')?.let(StatusCodes.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final duration = this.duration;
+    final latency = this.latency;
+    final requestCount = this.requestCount;
+    final statusCodes = this.statusCodes;
+    return {
+      if (duration != null) 'Duration': duration,
+      if (latency != null) 'Latency': latency,
+      if (requestCount != null) 'RequestCount': requestCount,
+      if (statusCodes != null) 'StatusCodes': statusCodes,
+    };
   }
 }
 
@@ -2921,6 +2971,16 @@ class ApplicationResourceLifecycleDescriptionMessage {
           .extractXmlChild(elem, 'ResourceLifecycleConfig')
           ?.let(ApplicationResourceLifecycleConfig.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationName = this.applicationName;
+    final resourceLifecycleConfig = this.resourceLifecycleConfig;
+    return {
+      if (applicationName != null) 'ApplicationName': applicationName,
+      if (resourceLifecycleConfig != null)
+        'ResourceLifecycleConfig': resourceLifecycleConfig,
+    };
   }
 }
 
@@ -3018,6 +3078,33 @@ class ApplicationVersionDescription {
       versionLabel: _s.extractXmlStringValue(elem, 'VersionLabel'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationName = this.applicationName;
+    final applicationVersionArn = this.applicationVersionArn;
+    final buildArn = this.buildArn;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final description = this.description;
+    final sourceBuildInformation = this.sourceBuildInformation;
+    final sourceBundle = this.sourceBundle;
+    final status = this.status;
+    final versionLabel = this.versionLabel;
+    return {
+      if (applicationName != null) 'ApplicationName': applicationName,
+      if (applicationVersionArn != null)
+        'ApplicationVersionArn': applicationVersionArn,
+      if (buildArn != null) 'BuildArn': buildArn,
+      if (dateCreated != null) 'DateCreated': iso8601ToJson(dateCreated),
+      if (dateUpdated != null) 'DateUpdated': iso8601ToJson(dateUpdated),
+      if (description != null) 'Description': description,
+      if (sourceBuildInformation != null)
+        'SourceBuildInformation': sourceBuildInformation,
+      if (sourceBundle != null) 'SourceBundle': sourceBundle,
+      if (status != null) 'Status': status.toValue(),
+      if (versionLabel != null) 'VersionLabel': versionLabel,
+    };
+  }
 }
 
 /// Result message wrapping a single description of an application version.
@@ -3034,6 +3121,13 @@ class ApplicationVersionDescriptionMessage {
           .extractXmlChild(elem, 'ApplicationVersion')
           ?.let(ApplicationVersionDescription.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationVersion = this.applicationVersion;
+    return {
+      if (applicationVersion != null) 'ApplicationVersion': applicationVersion,
+    };
   }
 }
 
@@ -3060,6 +3154,16 @@ class ApplicationVersionDescriptionsMessage {
               .toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationVersions = this.applicationVersions;
+    final nextToken = this.nextToken;
+    return {
+      if (applicationVersions != null)
+        'ApplicationVersions': applicationVersions,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3173,6 +3277,19 @@ class ApplyEnvironmentManagedActionResult {
       status: _s.extractXmlStringValue(elem, 'Status'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actionDescription = this.actionDescription;
+    final actionId = this.actionId;
+    final actionType = this.actionType;
+    final status = this.status;
+    return {
+      if (actionDescription != null) 'ActionDescription': actionDescription,
+      if (actionId != null) 'ActionId': actionId,
+      if (actionType != null) 'ActionType': actionType.toValue(),
+      if (status != null) 'Status': status,
+    };
+  }
 }
 
 /// Describes an Auto Scaling launch configuration.
@@ -3187,6 +3304,13 @@ class AutoScalingGroup {
     return AutoScalingGroup(
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -3238,6 +3362,7 @@ class BuildConfiguration {
     this.computeType,
     this.timeoutInMinutes,
   });
+
   Map<String, dynamic> toJson() {
     final codeBuildServiceRole = this.codeBuildServiceRole;
     final image = this.image;
@@ -3266,6 +3391,13 @@ class Builder {
     return Builder(
       arn: _s.extractXmlStringValue(elem, 'ARN'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'ARN': arn,
+    };
   }
 }
 
@@ -3337,6 +3469,27 @@ class CPUUtilization {
       user: _s.extractXmlDoubleValue(elem, 'User'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final iOWait = this.iOWait;
+    final irq = this.irq;
+    final idle = this.idle;
+    final nice = this.nice;
+    final privileged = this.privileged;
+    final softIRQ = this.softIRQ;
+    final system = this.system;
+    final user = this.user;
+    return {
+      if (iOWait != null) 'IOWait': iOWait,
+      if (irq != null) 'IRQ': irq,
+      if (idle != null) 'Idle': idle,
+      if (nice != null) 'Nice': nice,
+      if (privileged != null) 'Privileged': privileged,
+      if (softIRQ != null) 'SoftIRQ': softIRQ,
+      if (system != null) 'System': system,
+      if (user != null) 'User': user,
+    };
+  }
 }
 
 /// Indicates if the specified CNAME is available.
@@ -3367,6 +3520,16 @@ class CheckDNSAvailabilityResultMessage {
       fullyQualifiedCNAME:
           _s.extractXmlStringValue(elem, 'FullyQualifiedCNAME'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final available = this.available;
+    final fullyQualifiedCNAME = this.fullyQualifiedCNAME;
+    return {
+      if (available != null) 'Available': available,
+      if (fullyQualifiedCNAME != null)
+        'FullyQualifiedCNAME': fullyQualifiedCNAME,
+    };
   }
 }
 
@@ -3565,6 +3728,33 @@ class ConfigurationOptionDescription {
           ?.toConfigurationOptionValueType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changeSeverity = this.changeSeverity;
+    final defaultValue = this.defaultValue;
+    final maxLength = this.maxLength;
+    final maxValue = this.maxValue;
+    final minValue = this.minValue;
+    final name = this.name;
+    final namespace = this.namespace;
+    final regex = this.regex;
+    final userDefined = this.userDefined;
+    final valueOptions = this.valueOptions;
+    final valueType = this.valueType;
+    return {
+      if (changeSeverity != null) 'ChangeSeverity': changeSeverity,
+      if (defaultValue != null) 'DefaultValue': defaultValue,
+      if (maxLength != null) 'MaxLength': maxLength,
+      if (maxValue != null) 'MaxValue': maxValue,
+      if (minValue != null) 'MinValue': minValue,
+      if (name != null) 'Name': name,
+      if (namespace != null) 'Namespace': namespace,
+      if (regex != null) 'Regex': regex,
+      if (userDefined != null) 'UserDefined': userDefined,
+      if (valueOptions != null) 'ValueOptions': valueOptions,
+      if (valueType != null) 'ValueType': valueType.toValue(),
+    };
+  }
 }
 
 /// A specification identifying an individual configuration option along with
@@ -3670,6 +3860,17 @@ class ConfigurationOptionsDescription {
       solutionStackName: _s.extractXmlStringValue(elem, 'SolutionStackName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final options = this.options;
+    final platformArn = this.platformArn;
+    final solutionStackName = this.solutionStackName;
+    return {
+      if (options != null) 'Options': options,
+      if (platformArn != null) 'PlatformArn': platformArn,
+      if (solutionStackName != null) 'SolutionStackName': solutionStackName,
+    };
+  }
 }
 
 /// Describes the settings for a configuration set.
@@ -3760,6 +3961,32 @@ class ConfigurationSettingsDescription {
       templateName: _s.extractXmlStringValue(elem, 'TemplateName'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationName = this.applicationName;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final deploymentStatus = this.deploymentStatus;
+    final description = this.description;
+    final environmentName = this.environmentName;
+    final optionSettings = this.optionSettings;
+    final platformArn = this.platformArn;
+    final solutionStackName = this.solutionStackName;
+    final templateName = this.templateName;
+    return {
+      if (applicationName != null) 'ApplicationName': applicationName,
+      if (dateCreated != null) 'DateCreated': iso8601ToJson(dateCreated),
+      if (dateUpdated != null) 'DateUpdated': iso8601ToJson(dateUpdated),
+      if (deploymentStatus != null)
+        'DeploymentStatus': deploymentStatus.toValue(),
+      if (description != null) 'Description': description,
+      if (environmentName != null) 'EnvironmentName': environmentName,
+      if (optionSettings != null) 'OptionSettings': optionSettings,
+      if (platformArn != null) 'PlatformArn': platformArn,
+      if (solutionStackName != null) 'SolutionStackName': solutionStackName,
+      if (templateName != null) 'TemplateName': templateName,
+    };
+  }
 }
 
 /// The results from a request to change the configuration settings of an
@@ -3781,6 +4008,14 @@ class ConfigurationSettingsDescriptions {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSettings = this.configurationSettings;
+    return {
+      if (configurationSettings != null)
+        'ConfigurationSettings': configurationSettings,
+    };
+  }
 }
 
 /// Provides a list of validation messages.
@@ -3796,6 +4031,13 @@ class ConfigurationSettingsValidationMessages {
       messages: _s.extractXmlChild(elem, 'Messages')?.let((elem) =>
           elem.findElements('member').map(ValidationMessage.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messages = this.messages;
+    return {
+      if (messages != null) 'Messages': messages,
+    };
   }
 }
 
@@ -3818,6 +4060,15 @@ class CreatePlatformVersionResult {
           ?.let(PlatformSummary.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final builder = this.builder;
+    final platformSummary = this.platformSummary;
+    return {
+      if (builder != null) 'Builder': builder,
+      if (platformSummary != null) 'PlatformSummary': platformSummary,
+    };
+  }
 }
 
 /// Results of a <a>CreateStorageLocationResult</a> call.
@@ -3832,6 +4083,13 @@ class CreateStorageLocationResultMessage {
     return CreateStorageLocationResultMessage(
       s3Bucket: _s.extractXmlStringValue(elem, 'S3Bucket'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final s3Bucket = this.s3Bucket;
+    return {
+      if (s3Bucket != null) 'S3Bucket': s3Bucket,
+    };
   }
 }
 
@@ -3853,6 +4111,15 @@ class CustomAmi {
       virtualizationType: _s.extractXmlStringValue(elem, 'VirtualizationType'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    final virtualizationType = this.virtualizationType;
+    return {
+      if (imageId != null) 'ImageId': imageId,
+      if (virtualizationType != null) 'VirtualizationType': virtualizationType,
+    };
+  }
 }
 
 class DeletePlatformVersionResult {
@@ -3868,6 +4135,13 @@ class DeletePlatformVersionResult {
           .extractXmlChild(elem, 'PlatformSummary')
           ?.let(PlatformSummary.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final platformSummary = this.platformSummary;
+    return {
+      if (platformSummary != null) 'PlatformSummary': platformSummary,
+    };
   }
 }
 
@@ -3914,6 +4188,20 @@ class Deployment {
       versionLabel: _s.extractXmlStringValue(elem, 'VersionLabel'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deploymentId = this.deploymentId;
+    final deploymentTime = this.deploymentTime;
+    final status = this.status;
+    final versionLabel = this.versionLabel;
+    return {
+      if (deploymentId != null) 'DeploymentId': deploymentId,
+      if (deploymentTime != null)
+        'DeploymentTime': iso8601ToJson(deploymentTime),
+      if (status != null) 'Status': status,
+      if (versionLabel != null) 'VersionLabel': versionLabel,
+    };
+  }
 }
 
 class DescribeAccountAttributesResult {
@@ -3930,6 +4218,13 @@ class DescribeAccountAttributesResult {
           .extractXmlChild(elem, 'ResourceQuotas')
           ?.let(ResourceQuotas.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceQuotas = this.resourceQuotas;
+    return {
+      if (resourceQuotas != null) 'ResourceQuotas': resourceQuotas,
+    };
   }
 }
 
@@ -3994,6 +4289,27 @@ class DescribeEnvironmentHealthResult {
       status: _s.extractXmlStringValue(elem, 'Status')?.toEnvironmentHealth(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationMetrics = this.applicationMetrics;
+    final causes = this.causes;
+    final color = this.color;
+    final environmentName = this.environmentName;
+    final healthStatus = this.healthStatus;
+    final instancesHealth = this.instancesHealth;
+    final refreshedAt = this.refreshedAt;
+    final status = this.status;
+    return {
+      if (applicationMetrics != null) 'ApplicationMetrics': applicationMetrics,
+      if (causes != null) 'Causes': causes,
+      if (color != null) 'Color': color,
+      if (environmentName != null) 'EnvironmentName': environmentName,
+      if (healthStatus != null) 'HealthStatus': healthStatus,
+      if (instancesHealth != null) 'InstancesHealth': instancesHealth,
+      if (refreshedAt != null) 'RefreshedAt': iso8601ToJson(refreshedAt),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// A result message containing a list of completed and failed managed actions.
@@ -4022,6 +4338,16 @@ class DescribeEnvironmentManagedActionHistoryResult {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final managedActionHistoryItems = this.managedActionHistoryItems;
+    final nextToken = this.nextToken;
+    return {
+      if (managedActionHistoryItems != null)
+        'ManagedActionHistoryItems': managedActionHistoryItems,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// The result message containing a list of managed actions.
@@ -4037,6 +4363,13 @@ class DescribeEnvironmentManagedActionsResult {
       managedActions: _s.extractXmlChild(elem, 'ManagedActions')?.let((elem) =>
           elem.findElements('member').map(ManagedAction.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final managedActions = this.managedActions;
+    return {
+      if (managedActions != null) 'ManagedActions': managedActions,
+    };
   }
 }
 
@@ -4072,6 +4405,17 @@ class DescribeInstancesHealthResult {
       refreshedAt: _s.extractXmlDateTimeValue(elem, 'RefreshedAt'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceHealthList = this.instanceHealthList;
+    final nextToken = this.nextToken;
+    final refreshedAt = this.refreshedAt;
+    return {
+      if (instanceHealthList != null) 'InstanceHealthList': instanceHealthList,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (refreshedAt != null) 'RefreshedAt': iso8601ToJson(refreshedAt),
+    };
+  }
 }
 
 class DescribePlatformVersionResult {
@@ -4087,6 +4431,14 @@ class DescribePlatformVersionResult {
           .extractXmlChild(elem, 'PlatformDescription')
           ?.let(PlatformDescription.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final platformDescription = this.platformDescription;
+    return {
+      if (platformDescription != null)
+        'PlatformDescription': platformDescription,
+    };
   }
 }
 
@@ -4269,6 +4621,54 @@ class EnvironmentDescription {
       versionLabel: _s.extractXmlStringValue(elem, 'VersionLabel'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final abortableOperationInProgress = this.abortableOperationInProgress;
+    final applicationName = this.applicationName;
+    final cname = this.cname;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final description = this.description;
+    final endpointURL = this.endpointURL;
+    final environmentArn = this.environmentArn;
+    final environmentId = this.environmentId;
+    final environmentLinks = this.environmentLinks;
+    final environmentName = this.environmentName;
+    final health = this.health;
+    final healthStatus = this.healthStatus;
+    final operationsRole = this.operationsRole;
+    final platformArn = this.platformArn;
+    final resources = this.resources;
+    final solutionStackName = this.solutionStackName;
+    final status = this.status;
+    final templateName = this.templateName;
+    final tier = this.tier;
+    final versionLabel = this.versionLabel;
+    return {
+      if (abortableOperationInProgress != null)
+        'AbortableOperationInProgress': abortableOperationInProgress,
+      if (applicationName != null) 'ApplicationName': applicationName,
+      if (cname != null) 'CNAME': cname,
+      if (dateCreated != null) 'DateCreated': iso8601ToJson(dateCreated),
+      if (dateUpdated != null) 'DateUpdated': iso8601ToJson(dateUpdated),
+      if (description != null) 'Description': description,
+      if (endpointURL != null) 'EndpointURL': endpointURL,
+      if (environmentArn != null) 'EnvironmentArn': environmentArn,
+      if (environmentId != null) 'EnvironmentId': environmentId,
+      if (environmentLinks != null) 'EnvironmentLinks': environmentLinks,
+      if (environmentName != null) 'EnvironmentName': environmentName,
+      if (health != null) 'Health': health.toValue(),
+      if (healthStatus != null) 'HealthStatus': healthStatus.toValue(),
+      if (operationsRole != null) 'OperationsRole': operationsRole,
+      if (platformArn != null) 'PlatformArn': platformArn,
+      if (resources != null) 'Resources': resources,
+      if (solutionStackName != null) 'SolutionStackName': solutionStackName,
+      if (status != null) 'Status': status.toValue(),
+      if (templateName != null) 'TemplateName': templateName,
+      if (tier != null) 'Tier': tier,
+      if (versionLabel != null) 'VersionLabel': versionLabel,
+    };
+  }
 }
 
 /// Result message containing a list of environment descriptions.
@@ -4292,6 +4692,15 @@ class EnvironmentDescriptionsMessage {
           .toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environments = this.environments;
+    final nextToken = this.nextToken;
+    return {
+      if (environments != null) 'Environments': environments,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4488,6 +4897,20 @@ class EnvironmentInfoDescription {
       sampleTimestamp: _s.extractXmlDateTimeValue(elem, 'SampleTimestamp'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ec2InstanceId = this.ec2InstanceId;
+    final infoType = this.infoType;
+    final message = this.message;
+    final sampleTimestamp = this.sampleTimestamp;
+    return {
+      if (ec2InstanceId != null) 'Ec2InstanceId': ec2InstanceId,
+      if (infoType != null) 'InfoType': infoType.toValue(),
+      if (message != null) 'Message': message,
+      if (sampleTimestamp != null)
+        'SampleTimestamp': iso8601ToJson(sampleTimestamp),
+    };
+  }
 }
 
 enum EnvironmentInfoType {
@@ -4539,6 +4962,15 @@ class EnvironmentLink {
       environmentName: _s.extractXmlStringValue(elem, 'EnvironmentName'),
       linkName: _s.extractXmlStringValue(elem, 'LinkName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentName = this.environmentName;
+    final linkName = this.linkName;
+    return {
+      if (environmentName != null) 'EnvironmentName': environmentName,
+      if (linkName != null) 'LinkName': linkName,
+    };
   }
 }
 
@@ -4605,6 +5037,28 @@ class EnvironmentResourceDescription {
           (elem) => elem.findElements('member').map(Trigger.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingGroups = this.autoScalingGroups;
+    final environmentName = this.environmentName;
+    final instances = this.instances;
+    final launchConfigurations = this.launchConfigurations;
+    final launchTemplates = this.launchTemplates;
+    final loadBalancers = this.loadBalancers;
+    final queues = this.queues;
+    final triggers = this.triggers;
+    return {
+      if (autoScalingGroups != null) 'AutoScalingGroups': autoScalingGroups,
+      if (environmentName != null) 'EnvironmentName': environmentName,
+      if (instances != null) 'Instances': instances,
+      if (launchConfigurations != null)
+        'LaunchConfigurations': launchConfigurations,
+      if (launchTemplates != null) 'LaunchTemplates': launchTemplates,
+      if (loadBalancers != null) 'LoadBalancers': loadBalancers,
+      if (queues != null) 'Queues': queues,
+      if (triggers != null) 'Triggers': triggers,
+    };
+  }
 }
 
 /// Result message containing a list of environment resource descriptions.
@@ -4621,6 +5075,14 @@ class EnvironmentResourceDescriptionsMessage {
           .extractXmlChild(elem, 'EnvironmentResources')
           ?.let(EnvironmentResourceDescription.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentResources = this.environmentResources;
+    return {
+      if (environmentResources != null)
+        'EnvironmentResources': environmentResources,
+    };
   }
 }
 
@@ -4639,6 +5101,13 @@ class EnvironmentResourcesDescription {
           .extractXmlChild(elem, 'LoadBalancer')
           ?.let(LoadBalancerDescription.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final loadBalancer = this.loadBalancer;
+    return {
+      if (loadBalancer != null) 'LoadBalancer': loadBalancer,
+    };
   }
 }
 
@@ -4816,6 +5285,29 @@ class EventDescription {
       versionLabel: _s.extractXmlStringValue(elem, 'VersionLabel'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationName = this.applicationName;
+    final environmentName = this.environmentName;
+    final eventDate = this.eventDate;
+    final message = this.message;
+    final platformArn = this.platformArn;
+    final requestId = this.requestId;
+    final severity = this.severity;
+    final templateName = this.templateName;
+    final versionLabel = this.versionLabel;
+    return {
+      if (applicationName != null) 'ApplicationName': applicationName,
+      if (environmentName != null) 'EnvironmentName': environmentName,
+      if (eventDate != null) 'EventDate': iso8601ToJson(eventDate),
+      if (message != null) 'Message': message,
+      if (platformArn != null) 'PlatformArn': platformArn,
+      if (requestId != null) 'RequestId': requestId,
+      if (severity != null) 'Severity': severity.toValue(),
+      if (templateName != null) 'TemplateName': templateName,
+      if (versionLabel != null) 'VersionLabel': versionLabel,
+    };
+  }
 }
 
 /// Result message wrapping a list of event descriptions.
@@ -4838,6 +5330,15 @@ class EventDescriptionsMessage {
           elem.findElements('member').map(EventDescription.fromXml).toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextToken = this.nextToken;
+    return {
+      if (events != null) 'Events': events,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -4955,6 +5456,13 @@ class Instance {
       id: _s.extractXmlStringValue(elem, 'Id'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 /// Represents summary information about the health of an instance. For more
@@ -5014,6 +5522,27 @@ class InstanceHealthSummary {
       unknown: _s.extractXmlIntValue(elem, 'Unknown'),
       warning: _s.extractXmlIntValue(elem, 'Warning'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final degraded = this.degraded;
+    final info = this.info;
+    final noData = this.noData;
+    final ok = this.ok;
+    final pending = this.pending;
+    final severe = this.severe;
+    final unknown = this.unknown;
+    final warning = this.warning;
+    return {
+      if (degraded != null) 'Degraded': degraded,
+      if (info != null) 'Info': info,
+      if (noData != null) 'NoData': noData,
+      if (ok != null) 'Ok': ok,
+      if (pending != null) 'Pending': pending,
+      if (severe != null) 'Severe': severe,
+      if (unknown != null) 'Unknown': unknown,
+      if (warning != null) 'Warning': warning,
+    };
   }
 }
 
@@ -5147,6 +5676,27 @@ class Latency {
       p999: _s.extractXmlDoubleValue(elem, 'P999'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final p10 = this.p10;
+    final p50 = this.p50;
+    final p75 = this.p75;
+    final p85 = this.p85;
+    final p90 = this.p90;
+    final p95 = this.p95;
+    final p99 = this.p99;
+    final p999 = this.p999;
+    return {
+      if (p10 != null) 'P10': p10,
+      if (p50 != null) 'P50': p50,
+      if (p75 != null) 'P75': p75,
+      if (p85 != null) 'P85': p85,
+      if (p90 != null) 'P90': p90,
+      if (p95 != null) 'P95': p95,
+      if (p99 != null) 'P99': p99,
+      if (p999 != null) 'P999': p999,
+    };
+  }
 }
 
 /// Describes an Auto Scaling launch configuration.
@@ -5162,6 +5712,13 @@ class LaunchConfiguration {
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Describes an Amazon EC2 launch template.
@@ -5176,6 +5733,13 @@ class LaunchTemplate {
     return LaunchTemplate(
       id: _s.extractXmlStringValue(elem, 'Id'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    return {
+      if (id != null) 'Id': id,
+    };
   }
 }
 
@@ -5205,6 +5769,16 @@ class ListAvailableSolutionStacksResultMessage {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final solutionStackDetails = this.solutionStackDetails;
+    final solutionStacks = this.solutionStacks;
+    return {
+      if (solutionStackDetails != null)
+        'SolutionStackDetails': solutionStackDetails,
+      if (solutionStacks != null) 'SolutionStacks': solutionStacks,
+    };
+  }
 }
 
 class ListPlatformBranchesResult {
@@ -5231,6 +5805,16 @@ class ListPlatformBranchesResult {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final platformBranchSummaryList = this.platformBranchSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (platformBranchSummaryList != null)
+        'PlatformBranchSummaryList': platformBranchSummaryList,
+    };
+  }
 }
 
 class ListPlatformVersionsResult {
@@ -5256,6 +5840,16 @@ class ListPlatformVersionsResult {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final platformSummaryList = this.platformSummaryList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (platformSummaryList != null)
+        'PlatformSummaryList': platformSummaryList,
+    };
+  }
 }
 
 /// Describes the properties of a Listener for the LoadBalancer.
@@ -5276,6 +5870,15 @@ class Listener {
       protocol: _s.extractXmlStringValue(elem, 'Protocol'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final port = this.port;
+    final protocol = this.protocol;
+    return {
+      if (port != null) 'Port': port,
+      if (protocol != null) 'Protocol': protocol,
+    };
+  }
 }
 
 /// Describes a LoadBalancer.
@@ -5290,6 +5893,13 @@ class LoadBalancer {
     return LoadBalancer(
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
   }
 }
 
@@ -5316,6 +5926,17 @@ class LoadBalancerDescription {
           (elem) => elem.findElements('member').map(Listener.fromXml).toList()),
       loadBalancerName: _s.extractXmlStringValue(elem, 'LoadBalancerName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domain = this.domain;
+    final listeners = this.listeners;
+    final loadBalancerName = this.loadBalancerName;
+    return {
+      if (domain != null) 'Domain': domain,
+      if (listeners != null) 'Listeners': listeners,
+      if (loadBalancerName != null) 'LoadBalancerName': loadBalancerName,
+    };
   }
 }
 
@@ -5353,6 +5974,22 @@ class ManagedAction {
       status: _s.extractXmlStringValue(elem, 'Status')?.toActionStatus(),
       windowStartTime: _s.extractXmlDateTimeValue(elem, 'WindowStartTime'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionDescription = this.actionDescription;
+    final actionId = this.actionId;
+    final actionType = this.actionType;
+    final status = this.status;
+    final windowStartTime = this.windowStartTime;
+    return {
+      if (actionDescription != null) 'ActionDescription': actionDescription,
+      if (actionId != null) 'ActionId': actionId,
+      if (actionType != null) 'ActionType': actionType.toValue(),
+      if (status != null) 'Status': status.toValue(),
+      if (windowStartTime != null)
+        'WindowStartTime': iso8601ToJson(windowStartTime),
+    };
   }
 }
 
@@ -5404,6 +6041,27 @@ class ManagedActionHistoryItem {
       finishedTime: _s.extractXmlDateTimeValue(elem, 'FinishedTime'),
       status: _s.extractXmlStringValue(elem, 'Status')?.toActionHistoryStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final actionDescription = this.actionDescription;
+    final actionId = this.actionId;
+    final actionType = this.actionType;
+    final executedTime = this.executedTime;
+    final failureDescription = this.failureDescription;
+    final failureType = this.failureType;
+    final finishedTime = this.finishedTime;
+    final status = this.status;
+    return {
+      if (actionDescription != null) 'ActionDescription': actionDescription,
+      if (actionId != null) 'ActionId': actionId,
+      if (actionType != null) 'ActionType': actionType.toValue(),
+      if (executedTime != null) 'ExecutedTime': iso8601ToJson(executedTime),
+      if (failureDescription != null) 'FailureDescription': failureDescription,
+      if (failureType != null) 'FailureType': failureType.toValue(),
+      if (finishedTime != null) 'FinishedTime': iso8601ToJson(finishedTime),
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -5505,6 +6163,15 @@ class OptionRestrictionRegex {
       pattern: _s.extractXmlStringValue(elem, 'Pattern'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final label = this.label;
+    final pattern = this.pattern;
+    return {
+      if (label != null) 'Label': label,
+      if (pattern != null) 'Pattern': pattern,
+    };
+  }
 }
 
 /// A specification identifying an individual configuration option.
@@ -5523,6 +6190,7 @@ class OptionSpecification {
     this.optionName,
     this.resourceName,
   });
+
   Map<String, dynamic> toJson() {
     final namespace = this.namespace;
     final optionName = this.optionName;
@@ -5581,6 +6249,21 @@ class PlatformBranchSummary {
           .extractXmlChild(elem, 'SupportedTierList')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final branchName = this.branchName;
+    final branchOrder = this.branchOrder;
+    final lifecycleState = this.lifecycleState;
+    final platformName = this.platformName;
+    final supportedTierList = this.supportedTierList;
+    return {
+      if (branchName != null) 'BranchName': branchName,
+      if (branchOrder != null) 'BranchOrder': branchOrder,
+      if (lifecycleState != null) 'LifecycleState': lifecycleState,
+      if (platformName != null) 'PlatformName': platformName,
+      if (supportedTierList != null) 'SupportedTierList': supportedTierList,
+    };
   }
 }
 
@@ -5722,6 +6405,58 @@ class PlatformDescription {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customAmiList = this.customAmiList;
+    final dateCreated = this.dateCreated;
+    final dateUpdated = this.dateUpdated;
+    final description = this.description;
+    final frameworks = this.frameworks;
+    final maintainer = this.maintainer;
+    final operatingSystemName = this.operatingSystemName;
+    final operatingSystemVersion = this.operatingSystemVersion;
+    final platformArn = this.platformArn;
+    final platformBranchLifecycleState = this.platformBranchLifecycleState;
+    final platformBranchName = this.platformBranchName;
+    final platformCategory = this.platformCategory;
+    final platformLifecycleState = this.platformLifecycleState;
+    final platformName = this.platformName;
+    final platformOwner = this.platformOwner;
+    final platformStatus = this.platformStatus;
+    final platformVersion = this.platformVersion;
+    final programmingLanguages = this.programmingLanguages;
+    final solutionStackName = this.solutionStackName;
+    final supportedAddonList = this.supportedAddonList;
+    final supportedTierList = this.supportedTierList;
+    return {
+      if (customAmiList != null) 'CustomAmiList': customAmiList,
+      if (dateCreated != null) 'DateCreated': iso8601ToJson(dateCreated),
+      if (dateUpdated != null) 'DateUpdated': iso8601ToJson(dateUpdated),
+      if (description != null) 'Description': description,
+      if (frameworks != null) 'Frameworks': frameworks,
+      if (maintainer != null) 'Maintainer': maintainer,
+      if (operatingSystemName != null)
+        'OperatingSystemName': operatingSystemName,
+      if (operatingSystemVersion != null)
+        'OperatingSystemVersion': operatingSystemVersion,
+      if (platformArn != null) 'PlatformArn': platformArn,
+      if (platformBranchLifecycleState != null)
+        'PlatformBranchLifecycleState': platformBranchLifecycleState,
+      if (platformBranchName != null) 'PlatformBranchName': platformBranchName,
+      if (platformCategory != null) 'PlatformCategory': platformCategory,
+      if (platformLifecycleState != null)
+        'PlatformLifecycleState': platformLifecycleState,
+      if (platformName != null) 'PlatformName': platformName,
+      if (platformOwner != null) 'PlatformOwner': platformOwner,
+      if (platformStatus != null) 'PlatformStatus': platformStatus.toValue(),
+      if (platformVersion != null) 'PlatformVersion': platformVersion,
+      if (programmingLanguages != null)
+        'ProgrammingLanguages': programmingLanguages,
+      if (solutionStackName != null) 'SolutionStackName': solutionStackName,
+      if (supportedAddonList != null) 'SupportedAddonList': supportedAddonList,
+      if (supportedTierList != null) 'SupportedTierList': supportedTierList,
+    };
+  }
 }
 
 /// Describes criteria to restrict the results when listing platform versions.
@@ -5774,6 +6509,7 @@ class PlatformFilter {
     this.type,
     this.values,
   });
+
   Map<String, dynamic> toJson() {
     final operator = this.operator;
     final type = this.type;
@@ -5804,6 +6540,15 @@ class PlatformFramework {
       version: _s.extractXmlStringValue(elem, 'Version'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final version = this.version;
+    return {
+      if (name != null) 'Name': name,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// A programming language supported by the platform.
@@ -5823,6 +6568,15 @@ class PlatformProgrammingLanguage {
       name: _s.extractXmlStringValue(elem, 'Name'),
       version: _s.extractXmlStringValue(elem, 'Version'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final version = this.version;
+    return {
+      if (name != null) 'Name': name,
+      if (version != null) 'Version': version,
+    };
   }
 }
 
@@ -5955,6 +6709,39 @@ class PlatformSummary {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operatingSystemName = this.operatingSystemName;
+    final operatingSystemVersion = this.operatingSystemVersion;
+    final platformArn = this.platformArn;
+    final platformBranchLifecycleState = this.platformBranchLifecycleState;
+    final platformBranchName = this.platformBranchName;
+    final platformCategory = this.platformCategory;
+    final platformLifecycleState = this.platformLifecycleState;
+    final platformOwner = this.platformOwner;
+    final platformStatus = this.platformStatus;
+    final platformVersion = this.platformVersion;
+    final supportedAddonList = this.supportedAddonList;
+    final supportedTierList = this.supportedTierList;
+    return {
+      if (operatingSystemName != null)
+        'OperatingSystemName': operatingSystemName,
+      if (operatingSystemVersion != null)
+        'OperatingSystemVersion': operatingSystemVersion,
+      if (platformArn != null) 'PlatformArn': platformArn,
+      if (platformBranchLifecycleState != null)
+        'PlatformBranchLifecycleState': platformBranchLifecycleState,
+      if (platformBranchName != null) 'PlatformBranchName': platformBranchName,
+      if (platformCategory != null) 'PlatformCategory': platformCategory,
+      if (platformLifecycleState != null)
+        'PlatformLifecycleState': platformLifecycleState,
+      if (platformOwner != null) 'PlatformOwner': platformOwner,
+      if (platformStatus != null) 'PlatformStatus': platformStatus.toValue(),
+      if (platformVersion != null) 'PlatformVersion': platformVersion,
+      if (supportedAddonList != null) 'SupportedAddonList': supportedAddonList,
+      if (supportedTierList != null) 'SupportedTierList': supportedTierList,
+    };
+  }
 }
 
 /// Describes a queue.
@@ -5975,6 +6762,15 @@ class Queue {
       url: _s.extractXmlStringValue(elem, 'URL'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final url = this.url;
+    return {
+      if (name != null) 'Name': name,
+      if (url != null) 'URL': url,
+    };
+  }
 }
 
 /// The AWS Elastic Beanstalk quota information for a single resource type in an
@@ -5991,6 +6787,13 @@ class ResourceQuota {
     return ResourceQuota(
       maximum: _s.extractXmlIntValue(elem, 'Maximum'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final maximum = this.maximum;
+    return {
+      if (maximum != null) 'Maximum': maximum,
+    };
   }
 }
 
@@ -6038,6 +6841,24 @@ class ResourceQuotas {
           ?.let(ResourceQuota.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationQuota = this.applicationQuota;
+    final applicationVersionQuota = this.applicationVersionQuota;
+    final configurationTemplateQuota = this.configurationTemplateQuota;
+    final customPlatformQuota = this.customPlatformQuota;
+    final environmentQuota = this.environmentQuota;
+    return {
+      if (applicationQuota != null) 'ApplicationQuota': applicationQuota,
+      if (applicationVersionQuota != null)
+        'ApplicationVersionQuota': applicationVersionQuota,
+      if (configurationTemplateQuota != null)
+        'ConfigurationTemplateQuota': configurationTemplateQuota,
+      if (customPlatformQuota != null)
+        'CustomPlatformQuota': customPlatformQuota,
+      if (environmentQuota != null) 'EnvironmentQuota': environmentQuota,
+    };
+  }
 }
 
 class ResourceTagsDescriptionMessage {
@@ -6059,6 +6880,15 @@ class ResourceTagsDescriptionMessage {
           (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final resourceTags = this.resourceTags;
+    return {
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (resourceTags != null) 'ResourceTags': resourceTags,
+    };
+  }
 }
 
 /// Result message containing a description of the requested environment info.
@@ -6077,6 +6907,13 @@ class RetrieveEnvironmentInfoResultMessage {
               .map(EnvironmentInfoDescription.fromXml)
               .toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final environmentInfo = this.environmentInfo;
+    return {
+      if (environmentInfo != null) 'EnvironmentInfo': environmentInfo,
+    };
   }
 }
 
@@ -6141,6 +6978,7 @@ class SearchFilter {
     this.operator,
     this.values,
   });
+
   Map<String, dynamic> toJson() {
     final attribute = this.attribute;
     final operator = this.operator;
@@ -6224,6 +7062,31 @@ class SingleInstanceHealth {
       system: _s.extractXmlChild(elem, 'System')?.let(SystemStatus.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationMetrics = this.applicationMetrics;
+    final availabilityZone = this.availabilityZone;
+    final causes = this.causes;
+    final color = this.color;
+    final deployment = this.deployment;
+    final healthStatus = this.healthStatus;
+    final instanceId = this.instanceId;
+    final instanceType = this.instanceType;
+    final launchedAt = this.launchedAt;
+    final system = this.system;
+    return {
+      if (applicationMetrics != null) 'ApplicationMetrics': applicationMetrics,
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (causes != null) 'Causes': causes,
+      if (color != null) 'Color': color,
+      if (deployment != null) 'Deployment': deployment,
+      if (healthStatus != null) 'HealthStatus': healthStatus,
+      if (instanceId != null) 'InstanceId': instanceId,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (launchedAt != null) 'LaunchedAt': iso8601ToJson(launchedAt),
+      if (system != null) 'System': system,
+    };
+  }
 }
 
 /// Describes the solution stack.
@@ -6245,6 +7108,15 @@ class SolutionStackDescription {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
       solutionStackName: _s.extractXmlStringValue(elem, 'SolutionStackName'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final permittedFileTypes = this.permittedFileTypes;
+    final solutionStackName = this.solutionStackName;
+    return {
+      if (permittedFileTypes != null) 'PermittedFileTypes': permittedFileTypes,
+      if (solutionStackName != null) 'SolutionStackName': solutionStackName,
+    };
   }
 }
 
@@ -6330,6 +7202,7 @@ class SourceConfiguration {
     this.applicationName,
     this.templateName,
   });
+
   Map<String, dynamic> toJson() {
     final applicationName = this.applicationName;
     final templateName = this.templateName;
@@ -6431,6 +7304,19 @@ class StatusCodes {
       status5xx: _s.extractXmlIntValue(elem, 'Status5xx'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status2xx = this.status2xx;
+    final status3xx = this.status3xx;
+    final status4xx = this.status4xx;
+    final status5xx = this.status5xx;
+    return {
+      if (status2xx != null) 'Status2xx': status2xx,
+      if (status3xx != null) 'Status3xx': status3xx,
+      if (status4xx != null) 'Status4xx': status4xx,
+      if (status5xx != null) 'Status5xx': status5xx,
+    };
+  }
 }
 
 /// CPU utilization and load average metrics for an Amazon EC2 instance.
@@ -6457,6 +7343,15 @@ class SystemStatus {
           .extractXmlChild(elem, 'LoadAverage')
           ?.let((elem) => _s.extractXmlDoubleListValues(elem, 'member')),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cPUUtilization = this.cPUUtilization;
+    final loadAverage = this.loadAverage;
+    return {
+      if (cPUUtilization != null) 'CPUUtilization': cPUUtilization,
+      if (loadAverage != null) 'LoadAverage': loadAverage,
+    };
   }
 }
 
@@ -6502,6 +7397,13 @@ class Trigger {
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// An error or warning for a desired configuration option value.
@@ -6543,6 +7445,19 @@ class ValidationMessage {
       severity:
           _s.extractXmlStringValue(elem, 'Severity')?.toValidationSeverity(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final namespace = this.namespace;
+    final optionName = this.optionName;
+    final severity = this.severity;
+    return {
+      if (message != null) 'Message': message,
+      if (namespace != null) 'Namespace': namespace,
+      if (optionName != null) 'OptionName': optionName,
+      if (severity != null) 'Severity': severity.toValue(),
+    };
   }
 }
 

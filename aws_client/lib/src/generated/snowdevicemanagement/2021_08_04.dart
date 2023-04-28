@@ -557,6 +557,13 @@ class CancelTaskOutput {
       taskId: json['taskId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final taskId = this.taskId;
+    return {
+      if (taskId != null) 'taskId': taskId,
+    };
+  }
 }
 
 /// The physical capacity of the Amazon Web Services Snow Family device.
@@ -592,6 +599,21 @@ class Capacity {
       used: json['used'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final available = this.available;
+    final name = this.name;
+    final total = this.total;
+    final unit = this.unit;
+    final used = this.used;
+    return {
+      if (available != null) 'available': available,
+      if (name != null) 'name': name,
+      if (total != null) 'total': total,
+      if (unit != null) 'unit': unit,
+      if (used != null) 'used': used,
+    };
+  }
 }
 
 /// The command given to the device to execute.
@@ -606,6 +628,7 @@ class Command {
     this.reboot,
     this.unlock,
   });
+
   Map<String, dynamic> toJson() {
     final reboot = this.reboot;
     final unlock = this.unlock;
@@ -634,6 +657,15 @@ class CpuOptions {
       threadsPerCore: json['threadsPerCore'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final coreCount = this.coreCount;
+    final threadsPerCore = this.threadsPerCore;
+    return {
+      if (coreCount != null) 'coreCount': coreCount,
+      if (threadsPerCore != null) 'threadsPerCore': threadsPerCore,
+    };
+  }
 }
 
 class CreateTaskOutput {
@@ -653,6 +685,15 @@ class CreateTaskOutput {
       taskId: json['taskId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final taskArn = this.taskArn;
+    final taskId = this.taskId;
+    return {
+      if (taskArn != null) 'taskArn': taskArn,
+      if (taskId != null) 'taskId': taskId,
+    };
+  }
 }
 
 class DescribeDeviceEc2Output {
@@ -669,6 +710,13 @@ class DescribeDeviceEc2Output {
           .map((e) => InstanceSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    return {
+      if (instances != null) 'instances': instances,
+    };
   }
 }
 
@@ -749,6 +797,36 @@ class DescribeDeviceOutput {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associatedWithJob = this.associatedWithJob;
+    final deviceCapacities = this.deviceCapacities;
+    final deviceState = this.deviceState;
+    final deviceType = this.deviceType;
+    final lastReachedOutAt = this.lastReachedOutAt;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final managedDeviceArn = this.managedDeviceArn;
+    final managedDeviceId = this.managedDeviceId;
+    final physicalNetworkInterfaces = this.physicalNetworkInterfaces;
+    final software = this.software;
+    final tags = this.tags;
+    return {
+      if (associatedWithJob != null) 'associatedWithJob': associatedWithJob,
+      if (deviceCapacities != null) 'deviceCapacities': deviceCapacities,
+      if (deviceState != null) 'deviceState': deviceState.toValue(),
+      if (deviceType != null) 'deviceType': deviceType,
+      if (lastReachedOutAt != null)
+        'lastReachedOutAt': unixTimestampToJson(lastReachedOutAt),
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (managedDeviceArn != null) 'managedDeviceArn': managedDeviceArn,
+      if (managedDeviceId != null) 'managedDeviceId': managedDeviceId,
+      if (physicalNetworkInterfaces != null)
+        'physicalNetworkInterfaces': physicalNetworkInterfaces,
+      if (software != null) 'software': software,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class DescribeExecutionOutput {
@@ -787,6 +865,24 @@ class DescribeExecutionOutput {
       state: (json['state'] as String?)?.toExecutionState(),
       taskId: json['taskId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final executionId = this.executionId;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final managedDeviceId = this.managedDeviceId;
+    final startedAt = this.startedAt;
+    final state = this.state;
+    final taskId = this.taskId;
+    return {
+      if (executionId != null) 'executionId': executionId,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (managedDeviceId != null) 'managedDeviceId': managedDeviceId,
+      if (startedAt != null) 'startedAt': unixTimestampToJson(startedAt),
+      if (state != null) 'state': state.toValue(),
+      if (taskId != null) 'taskId': taskId,
+    };
   }
 }
 
@@ -848,6 +944,30 @@ class DescribeTaskOutput {
       taskId: json['taskId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final completedAt = this.completedAt;
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final state = this.state;
+    final tags = this.tags;
+    final targets = this.targets;
+    final taskArn = this.taskArn;
+    final taskId = this.taskId;
+    return {
+      if (completedAt != null) 'completedAt': unixTimestampToJson(completedAt),
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (description != null) 'description': description,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (targets != null) 'targets': targets,
+      if (taskArn != null) 'taskArn': taskArn,
+      if (taskId != null) 'taskId': taskId,
+    };
+  }
 }
 
 /// Identifying information about the device.
@@ -881,6 +1001,19 @@ class DeviceSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associatedWithJob = this.associatedWithJob;
+    final managedDeviceArn = this.managedDeviceArn;
+    final managedDeviceId = this.managedDeviceId;
+    final tags = this.tags;
+    return {
+      if (associatedWithJob != null) 'associatedWithJob': associatedWithJob,
+      if (managedDeviceArn != null) 'managedDeviceArn': managedDeviceArn,
+      if (managedDeviceId != null) 'managedDeviceId': managedDeviceId,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Describes a parameter used to set up an Amazon Elastic Block Store (Amazon
@@ -912,6 +1045,20 @@ class EbsInstanceBlockDevice {
       status: (json['status'] as String?)?.toAttachmentStatus(),
       volumeId: json['volumeId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachTime = this.attachTime;
+    final deleteOnTermination = this.deleteOnTermination;
+    final status = this.status;
+    final volumeId = this.volumeId;
+    return {
+      if (attachTime != null) 'attachTime': unixTimestampToJson(attachTime),
+      if (deleteOnTermination != null)
+        'deleteOnTermination': deleteOnTermination,
+      if (status != null) 'status': status.toValue(),
+      if (volumeId != null) 'volumeId': volumeId,
+    };
   }
 }
 
@@ -995,6 +1142,19 @@ class ExecutionSummary {
       state: (json['state'] as String?)?.toExecutionState(),
       taskId: json['taskId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final executionId = this.executionId;
+    final managedDeviceId = this.managedDeviceId;
+    final state = this.state;
+    final taskId = this.taskId;
+    return {
+      if (executionId != null) 'executionId': executionId,
+      if (managedDeviceId != null) 'managedDeviceId': managedDeviceId,
+      if (state != null) 'state': state.toValue(),
+      if (taskId != null) 'taskId': taskId,
+    };
   }
 }
 
@@ -1084,6 +1244,38 @@ class Instance {
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amiLaunchIndex = this.amiLaunchIndex;
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final cpuOptions = this.cpuOptions;
+    final createdAt = this.createdAt;
+    final imageId = this.imageId;
+    final instanceId = this.instanceId;
+    final instanceType = this.instanceType;
+    final privateIpAddress = this.privateIpAddress;
+    final publicIpAddress = this.publicIpAddress;
+    final rootDeviceName = this.rootDeviceName;
+    final securityGroups = this.securityGroups;
+    final state = this.state;
+    final updatedAt = this.updatedAt;
+    return {
+      if (amiLaunchIndex != null) 'amiLaunchIndex': amiLaunchIndex,
+      if (blockDeviceMappings != null)
+        'blockDeviceMappings': blockDeviceMappings,
+      if (cpuOptions != null) 'cpuOptions': cpuOptions,
+      if (createdAt != null) 'createdAt': unixTimestampToJson(createdAt),
+      if (imageId != null) 'imageId': imageId,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+      if (publicIpAddress != null) 'publicIpAddress': publicIpAddress,
+      if (rootDeviceName != null) 'rootDeviceName': rootDeviceName,
+      if (securityGroups != null) 'securityGroups': securityGroups,
+      if (state != null) 'state': state,
+      if (updatedAt != null) 'updatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 /// The description of a block device mapping.
@@ -1106,6 +1298,15 @@ class InstanceBlockDeviceMapping {
           ? EbsInstanceBlockDevice.fromJson(json['ebs'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deviceName = this.deviceName;
+    final ebs = this.ebs;
+    return {
+      if (deviceName != null) 'deviceName': deviceName,
+      if (ebs != null) 'ebs': ebs,
+    };
   }
 }
 
@@ -1159,6 +1360,15 @@ class InstanceState {
       code: json['code'] as int?,
       name: (json['name'] as String?)?.toInstanceStateName(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final name = this.name;
+    return {
+      if (code != null) 'code': code,
+      if (name != null) 'name': name.toValue(),
+    };
   }
 }
 
@@ -1230,6 +1440,16 @@ class InstanceSummary {
       lastUpdatedAt: timeStampFromJson(json['lastUpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instance = this.instance;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    return {
+      if (instance != null) 'instance': instance,
+      if (lastUpdatedAt != null)
+        'lastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+    };
+  }
 }
 
 enum IpAddressAssignment {
@@ -1281,6 +1501,15 @@ class ListDeviceResourcesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resources = this.resources;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (resources != null) 'resources': resources,
+    };
+  }
 }
 
 class ListDevicesOutput {
@@ -1302,6 +1531,15 @@ class ListDevicesOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final devices = this.devices;
+    final nextToken = this.nextToken;
+    return {
+      if (devices != null) 'devices': devices,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -1326,6 +1564,15 @@ class ListExecutionsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final executions = this.executions;
+    final nextToken = this.nextToken;
+    return {
+      if (executions != null) 'executions': executions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceOutput {
@@ -1340,6 +1587,13 @@ class ListTagsForResourceOutput {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1362,6 +1616,15 @@ class ListTasksOutput {
           .map((e) => TaskSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tasks = this.tasks;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tasks != null) 'tasks': tasks,
+    };
   }
 }
 
@@ -1453,11 +1716,34 @@ class PhysicalNetworkInterface {
       physicalNetworkInterfaceId: json['physicalNetworkInterfaceId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final defaultGateway = this.defaultGateway;
+    final ipAddress = this.ipAddress;
+    final ipAddressAssignment = this.ipAddressAssignment;
+    final macAddress = this.macAddress;
+    final netmask = this.netmask;
+    final physicalConnectorType = this.physicalConnectorType;
+    final physicalNetworkInterfaceId = this.physicalNetworkInterfaceId;
+    return {
+      if (defaultGateway != null) 'defaultGateway': defaultGateway,
+      if (ipAddress != null) 'ipAddress': ipAddress,
+      if (ipAddressAssignment != null)
+        'ipAddressAssignment': ipAddressAssignment.toValue(),
+      if (macAddress != null) 'macAddress': macAddress,
+      if (netmask != null) 'netmask': netmask,
+      if (physicalConnectorType != null)
+        'physicalConnectorType': physicalConnectorType.toValue(),
+      if (physicalNetworkInterfaceId != null)
+        'physicalNetworkInterfaceId': physicalNetworkInterfaceId,
+    };
+  }
 }
 
 /// A structure used to reboot the device.
 class Reboot {
   Reboot();
+
   Map<String, dynamic> toJson() {
     return {};
   }
@@ -1486,6 +1772,17 @@ class ResourceSummary {
       id: json['id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceType = this.resourceType;
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      'resourceType': resourceType,
+      if (arn != null) 'arn': arn,
+      if (id != null) 'id': id,
+    };
+  }
 }
 
 /// Information about the device's security group.
@@ -1505,6 +1802,15 @@ class SecurityGroupIdentifier {
       groupId: json['groupId'] as String?,
       groupName: json['groupName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    return {
+      if (groupId != null) 'groupId': groupId,
+      if (groupName != null) 'groupName': groupName,
+    };
   }
 }
 
@@ -1531,6 +1837,17 @@ class SoftwareInformation {
       installedVersion: json['installedVersion'] as String?,
       installingVersion: json['installingVersion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final installState = this.installState;
+    final installedVersion = this.installedVersion;
+    final installingVersion = this.installingVersion;
+    return {
+      if (installState != null) 'installState': installState,
+      if (installedVersion != null) 'installedVersion': installedVersion,
+      if (installingVersion != null) 'installingVersion': installingVersion,
+    };
   }
 }
 
@@ -1598,11 +1915,25 @@ class TaskSummary {
       taskArn: json['taskArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final taskId = this.taskId;
+    final state = this.state;
+    final tags = this.tags;
+    final taskArn = this.taskArn;
+    return {
+      'taskId': taskId,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tags': tags,
+      if (taskArn != null) 'taskArn': taskArn,
+    };
+  }
 }
 
 /// A structure used to unlock a device.
 class Unlock {
   Unlock();
+
   Map<String, dynamic> toJson() {
     return {};
   }

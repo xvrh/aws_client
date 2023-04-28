@@ -1619,6 +1619,15 @@ class AdditionalResources {
       type: (json['Type'] as String?)?.toAdditionalResourceType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    final type = this.type;
+    return {
+      if (content != null) 'Content': content,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 /// An answer of the question.
@@ -1685,6 +1694,41 @@ class Answer {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final choiceAnswers = this.choiceAnswers;
+    final choices = this.choices;
+    final helpfulResourceDisplayText = this.helpfulResourceDisplayText;
+    final helpfulResourceUrl = this.helpfulResourceUrl;
+    final improvementPlanUrl = this.improvementPlanUrl;
+    final isApplicable = this.isApplicable;
+    final notes = this.notes;
+    final pillarId = this.pillarId;
+    final questionDescription = this.questionDescription;
+    final questionId = this.questionId;
+    final questionTitle = this.questionTitle;
+    final reason = this.reason;
+    final risk = this.risk;
+    final selectedChoices = this.selectedChoices;
+    return {
+      if (choiceAnswers != null) 'ChoiceAnswers': choiceAnswers,
+      if (choices != null) 'Choices': choices,
+      if (helpfulResourceDisplayText != null)
+        'HelpfulResourceDisplayText': helpfulResourceDisplayText,
+      if (helpfulResourceUrl != null) 'HelpfulResourceUrl': helpfulResourceUrl,
+      if (improvementPlanUrl != null) 'ImprovementPlanUrl': improvementPlanUrl,
+      if (isApplicable != null) 'IsApplicable': isApplicable,
+      if (notes != null) 'Notes': notes,
+      if (pillarId != null) 'PillarId': pillarId,
+      if (questionDescription != null)
+        'QuestionDescription': questionDescription,
+      if (questionId != null) 'QuestionId': questionId,
+      if (questionTitle != null) 'QuestionTitle': questionTitle,
+      if (reason != null) 'Reason': reason.toValue(),
+      if (risk != null) 'Risk': risk.toValue(),
+      if (selectedChoices != null) 'SelectedChoices': selectedChoices,
+    };
   }
 }
 
@@ -1779,6 +1823,30 @@ class AnswerSummary {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final choiceAnswerSummaries = this.choiceAnswerSummaries;
+    final choices = this.choices;
+    final isApplicable = this.isApplicable;
+    final pillarId = this.pillarId;
+    final questionId = this.questionId;
+    final questionTitle = this.questionTitle;
+    final reason = this.reason;
+    final risk = this.risk;
+    final selectedChoices = this.selectedChoices;
+    return {
+      if (choiceAnswerSummaries != null)
+        'ChoiceAnswerSummaries': choiceAnswerSummaries,
+      if (choices != null) 'Choices': choices,
+      if (isApplicable != null) 'IsApplicable': isApplicable,
+      if (pillarId != null) 'PillarId': pillarId,
+      if (questionId != null) 'QuestionId': questionId,
+      if (questionTitle != null) 'QuestionTitle': questionTitle,
+      if (reason != null) 'Reason': reason.toValue(),
+      if (risk != null) 'Risk': risk.toValue(),
+      if (selectedChoices != null) 'SelectedChoices': selectedChoices,
+    };
+  }
 }
 
 /// A choice available to answer question.
@@ -1824,6 +1892,24 @@ class Choice {
       title: json['Title'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalResources = this.additionalResources;
+    final choiceId = this.choiceId;
+    final description = this.description;
+    final helpfulResource = this.helpfulResource;
+    final improvementPlan = this.improvementPlan;
+    final title = this.title;
+    return {
+      if (additionalResources != null)
+        'AdditionalResources': additionalResources,
+      if (choiceId != null) 'ChoiceId': choiceId,
+      if (description != null) 'Description': description,
+      if (helpfulResource != null) 'HelpfulResource': helpfulResource,
+      if (improvementPlan != null) 'ImprovementPlan': improvementPlan,
+      if (title != null) 'Title': title,
+    };
+  }
 }
 
 /// A choice that has been answered on a question in your workload.
@@ -1853,6 +1939,19 @@ class ChoiceAnswer {
       status: (json['Status'] as String?)?.toChoiceStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final choiceId = this.choiceId;
+    final notes = this.notes;
+    final reason = this.reason;
+    final status = this.status;
+    return {
+      if (choiceId != null) 'ChoiceId': choiceId,
+      if (notes != null) 'Notes': notes,
+      if (reason != null) 'Reason': reason.toValue(),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// A choice summary that has been answered on a question in your workload.
@@ -1877,6 +1976,17 @@ class ChoiceAnswerSummary {
       status: (json['Status'] as String?)?.toChoiceStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final choiceId = this.choiceId;
+    final reason = this.reason;
+    final status = this.status;
+    return {
+      if (choiceId != null) 'ChoiceId': choiceId,
+      if (reason != null) 'Reason': reason.toValue(),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// The choice content.
@@ -1896,6 +2006,15 @@ class ChoiceContent {
       displayText: json['DisplayText'] as String?,
       url: json['Url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final displayText = this.displayText;
+    final url = this.url;
+    return {
+      if (displayText != null) 'DisplayText': displayText,
+      if (url != null) 'Url': url,
+    };
   }
 }
 
@@ -1918,6 +2037,17 @@ class ChoiceImprovementPlan {
       displayText: json['DisplayText'] as String?,
       improvementPlanUrl: json['ImprovementPlanUrl'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final choiceId = this.choiceId;
+    final displayText = this.displayText;
+    final improvementPlanUrl = this.improvementPlanUrl;
+    return {
+      if (choiceId != null) 'ChoiceId': choiceId,
+      if (displayText != null) 'DisplayText': displayText,
+      if (improvementPlanUrl != null) 'ImprovementPlanUrl': improvementPlanUrl,
+    };
   }
 }
 
@@ -2013,6 +2143,7 @@ class ChoiceUpdate {
     this.notes,
     this.reason,
   });
+
   Map<String, dynamic> toJson() {
     final status = this.status;
     final notes = this.notes;
@@ -2036,6 +2167,13 @@ class CreateLensShareOutput {
       shareId: json['ShareId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final shareId = this.shareId;
+    return {
+      if (shareId != null) 'ShareId': shareId,
+    };
+  }
 }
 
 class CreateLensVersionOutput {
@@ -2055,6 +2193,15 @@ class CreateLensVersionOutput {
       lensVersion: json['LensVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lensArn = this.lensArn;
+    final lensVersion = this.lensVersion;
+    return {
+      if (lensArn != null) 'LensArn': lensArn,
+      if (lensVersion != null) 'LensVersion': lensVersion,
+    };
+  }
 }
 
 /// Output of a create milestone call.
@@ -2071,6 +2218,15 @@ class CreateMilestoneOutput {
       milestoneNumber: json['MilestoneNumber'] as int?,
       workloadId: json['WorkloadId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final milestoneNumber = this.milestoneNumber;
+    final workloadId = this.workloadId;
+    return {
+      if (milestoneNumber != null) 'MilestoneNumber': milestoneNumber,
+      if (workloadId != null) 'WorkloadId': workloadId,
+    };
   }
 }
 
@@ -2089,6 +2245,15 @@ class CreateWorkloadOutput {
       workloadId: json['WorkloadId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final workloadArn = this.workloadArn;
+    final workloadId = this.workloadId;
+    return {
+      if (workloadArn != null) 'WorkloadArn': workloadArn,
+      if (workloadId != null) 'WorkloadId': workloadId,
+    };
+  }
 }
 
 /// Input for Create Workload Share
@@ -2105,6 +2270,15 @@ class CreateWorkloadShareOutput {
       shareId: json['ShareId'] as String?,
       workloadId: json['WorkloadId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final shareId = this.shareId;
+    final workloadId = this.workloadId;
+    return {
+      if (shareId != null) 'ShareId': shareId,
+      if (workloadId != null) 'WorkloadId': workloadId,
+    };
   }
 }
 
@@ -2153,6 +2327,13 @@ class ExportLensOutput {
       lensJSON: json['LensJSON'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lensJSON = this.lensJSON;
+    return {
+      if (lensJSON != null) 'LensJSON': lensJSON,
+    };
+  }
 }
 
 /// Output of a get answer call.
@@ -2183,6 +2364,21 @@ class GetAnswerOutput {
       workloadId: json['WorkloadId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final answer = this.answer;
+    final lensAlias = this.lensAlias;
+    final lensArn = this.lensArn;
+    final milestoneNumber = this.milestoneNumber;
+    final workloadId = this.workloadId;
+    return {
+      if (answer != null) 'Answer': answer,
+      if (lensAlias != null) 'LensAlias': lensAlias,
+      if (lensArn != null) 'LensArn': lensArn,
+      if (milestoneNumber != null) 'MilestoneNumber': milestoneNumber,
+      if (workloadId != null) 'WorkloadId': workloadId,
+    };
+  }
 }
 
 class GetLensOutput {
@@ -2198,6 +2394,13 @@ class GetLensOutput {
           ? Lens.fromJson(json['Lens'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lens = this.lens;
+    return {
+      if (lens != null) 'Lens': lens,
+    };
   }
 }
 
@@ -2221,6 +2424,17 @@ class GetLensReviewOutput {
       workloadId: json['WorkloadId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lensReview = this.lensReview;
+    final milestoneNumber = this.milestoneNumber;
+    final workloadId = this.workloadId;
+    return {
+      if (lensReview != null) 'LensReview': lensReview,
+      if (milestoneNumber != null) 'MilestoneNumber': milestoneNumber,
+      if (workloadId != null) 'WorkloadId': workloadId,
+    };
+  }
 }
 
 /// Output of a get lens review report call.
@@ -2243,6 +2457,17 @@ class GetLensReviewReportOutput {
       milestoneNumber: json['MilestoneNumber'] as int?,
       workloadId: json['WorkloadId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lensReviewReport = this.lensReviewReport;
+    final milestoneNumber = this.milestoneNumber;
+    final workloadId = this.workloadId;
+    return {
+      if (lensReviewReport != null) 'LensReviewReport': lensReviewReport,
+      if (milestoneNumber != null) 'MilestoneNumber': milestoneNumber,
+      if (workloadId != null) 'WorkloadId': workloadId,
+    };
   }
 }
 
@@ -2282,6 +2507,23 @@ class GetLensVersionDifferenceOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final baseLensVersion = this.baseLensVersion;
+    final latestLensVersion = this.latestLensVersion;
+    final lensAlias = this.lensAlias;
+    final lensArn = this.lensArn;
+    final targetLensVersion = this.targetLensVersion;
+    final versionDifferences = this.versionDifferences;
+    return {
+      if (baseLensVersion != null) 'BaseLensVersion': baseLensVersion,
+      if (latestLensVersion != null) 'LatestLensVersion': latestLensVersion,
+      if (lensAlias != null) 'LensAlias': lensAlias,
+      if (lensArn != null) 'LensArn': lensArn,
+      if (targetLensVersion != null) 'TargetLensVersion': targetLensVersion,
+      if (versionDifferences != null) 'VersionDifferences': versionDifferences,
+    };
+  }
 }
 
 /// Output of a get milestone call.
@@ -2301,6 +2543,15 @@ class GetMilestoneOutput {
       workloadId: json['WorkloadId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final milestone = this.milestone;
+    final workloadId = this.workloadId;
+    return {
+      if (milestone != null) 'Milestone': milestone,
+      if (workloadId != null) 'WorkloadId': workloadId,
+    };
+  }
 }
 
 /// Output of a get workload call.
@@ -2316,6 +2567,13 @@ class GetWorkloadOutput {
           ? Workload.fromJson(json['Workload'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workload = this.workload;
+    return {
+      if (workload != null) 'Workload': workload,
+    };
   }
 }
 
@@ -2335,6 +2593,15 @@ class ImportLensOutput {
       lensArn: json['LensArn'] as String?,
       status: (json['Status'] as String?)?.toImportLensStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lensArn = this.lensArn;
+    final status = this.status;
+    return {
+      if (lensArn != null) 'LensArn': lensArn,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -2403,6 +2670,23 @@ class ImprovementSummary {
       risk: (json['Risk'] as String?)?.toRisk(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final improvementPlanUrl = this.improvementPlanUrl;
+    final improvementPlans = this.improvementPlans;
+    final pillarId = this.pillarId;
+    final questionId = this.questionId;
+    final questionTitle = this.questionTitle;
+    final risk = this.risk;
+    return {
+      if (improvementPlanUrl != null) 'ImprovementPlanUrl': improvementPlanUrl,
+      if (improvementPlans != null) 'ImprovementPlans': improvementPlans,
+      if (pillarId != null) 'PillarId': pillarId,
+      if (questionId != null) 'QuestionId': questionId,
+      if (questionTitle != null) 'QuestionTitle': questionTitle,
+      if (risk != null) 'Risk': risk.toValue(),
+    };
+  }
 }
 
 /// A lens return object.
@@ -2445,6 +2729,25 @@ class Lens {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final lensArn = this.lensArn;
+    final lensVersion = this.lensVersion;
+    final name = this.name;
+    final owner = this.owner;
+    final shareInvitationId = this.shareInvitationId;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (lensArn != null) 'LensArn': lensArn,
+      if (lensVersion != null) 'LensVersion': lensVersion,
+      if (name != null) 'Name': name,
+      if (owner != null) 'Owner': owner,
+      if (shareInvitationId != null) 'ShareInvitationId': shareInvitationId,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -2497,6 +2800,33 @@ class LensReview {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lensAlias = this.lensAlias;
+    final lensArn = this.lensArn;
+    final lensName = this.lensName;
+    final lensStatus = this.lensStatus;
+    final lensVersion = this.lensVersion;
+    final nextToken = this.nextToken;
+    final notes = this.notes;
+    final pillarReviewSummaries = this.pillarReviewSummaries;
+    final riskCounts = this.riskCounts;
+    final updatedAt = this.updatedAt;
+    return {
+      if (lensAlias != null) 'LensAlias': lensAlias,
+      if (lensArn != null) 'LensArn': lensArn,
+      if (lensName != null) 'LensName': lensName,
+      if (lensStatus != null) 'LensStatus': lensStatus.toValue(),
+      if (lensVersion != null) 'LensVersion': lensVersion,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (notes != null) 'Notes': notes,
+      if (pillarReviewSummaries != null)
+        'PillarReviewSummaries': pillarReviewSummaries,
+      if (riskCounts != null)
+        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.toValue(), e)),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 /// A report of a lens review.
@@ -2518,6 +2848,17 @@ class LensReviewReport {
       lensAlias: json['LensAlias'] as String?,
       lensArn: json['LensArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final base64String = this.base64String;
+    final lensAlias = this.lensAlias;
+    final lensArn = this.lensArn;
+    return {
+      if (base64String != null) 'Base64String': base64String,
+      if (lensAlias != null) 'LensAlias': lensAlias,
+      if (lensArn != null) 'LensArn': lensArn,
+    };
   }
 }
 
@@ -2558,6 +2899,26 @@ class LensReviewSummary {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lensAlias = this.lensAlias;
+    final lensArn = this.lensArn;
+    final lensName = this.lensName;
+    final lensStatus = this.lensStatus;
+    final lensVersion = this.lensVersion;
+    final riskCounts = this.riskCounts;
+    final updatedAt = this.updatedAt;
+    return {
+      if (lensAlias != null) 'LensAlias': lensAlias,
+      if (lensArn != null) 'LensArn': lensArn,
+      if (lensName != null) 'LensName': lensName,
+      if (lensStatus != null) 'LensStatus': lensStatus.toValue(),
+      if (lensVersion != null) 'LensVersion': lensVersion,
+      if (riskCounts != null)
+        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.toValue(), e)),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 /// A lens share summary return object.
@@ -2582,6 +2943,19 @@ class LensShareSummary {
       status: (json['Status'] as String?)?.toShareStatus(),
       statusMessage: json['StatusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final shareId = this.shareId;
+    final sharedWith = this.sharedWith;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (shareId != null) 'ShareId': shareId,
+      if (sharedWith != null) 'SharedWith': sharedWith,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
   }
 }
 
@@ -2708,6 +3082,31 @@ class LensSummary {
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final description = this.description;
+    final lensAlias = this.lensAlias;
+    final lensArn = this.lensArn;
+    final lensName = this.lensName;
+    final lensStatus = this.lensStatus;
+    final lensType = this.lensType;
+    final lensVersion = this.lensVersion;
+    final owner = this.owner;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (description != null) 'Description': description,
+      if (lensAlias != null) 'LensAlias': lensAlias,
+      if (lensArn != null) 'LensArn': lensArn,
+      if (lensName != null) 'LensName': lensName,
+      if (lensStatus != null) 'LensStatus': lensStatus.toValue(),
+      if (lensType != null) 'LensType': lensType.toValue(),
+      if (lensVersion != null) 'LensVersion': lensVersion,
+      if (owner != null) 'Owner': owner,
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 enum LensType {
@@ -2775,6 +3174,23 @@ class LensUpgradeSummary {
       workloadName: json['WorkloadName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currentLensVersion = this.currentLensVersion;
+    final latestLensVersion = this.latestLensVersion;
+    final lensAlias = this.lensAlias;
+    final lensArn = this.lensArn;
+    final workloadId = this.workloadId;
+    final workloadName = this.workloadName;
+    return {
+      if (currentLensVersion != null) 'CurrentLensVersion': currentLensVersion,
+      if (latestLensVersion != null) 'LatestLensVersion': latestLensVersion,
+      if (lensAlias != null) 'LensAlias': lensAlias,
+      if (lensArn != null) 'LensArn': lensArn,
+      if (workloadId != null) 'WorkloadId': workloadId,
+      if (workloadName != null) 'WorkloadName': workloadName,
+    };
+  }
 }
 
 /// Output of a list answers call.
@@ -2808,6 +3224,23 @@ class ListAnswersOutput {
       nextToken: json['NextToken'] as String?,
       workloadId: json['WorkloadId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final answerSummaries = this.answerSummaries;
+    final lensAlias = this.lensAlias;
+    final lensArn = this.lensArn;
+    final milestoneNumber = this.milestoneNumber;
+    final nextToken = this.nextToken;
+    final workloadId = this.workloadId;
+    return {
+      if (answerSummaries != null) 'AnswerSummaries': answerSummaries,
+      if (lensAlias != null) 'LensAlias': lensAlias,
+      if (lensArn != null) 'LensArn': lensArn,
+      if (milestoneNumber != null) 'MilestoneNumber': milestoneNumber,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (workloadId != null) 'WorkloadId': workloadId,
+    };
   }
 }
 
@@ -2843,6 +3276,24 @@ class ListLensReviewImprovementsOutput {
       workloadId: json['WorkloadId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final improvementSummaries = this.improvementSummaries;
+    final lensAlias = this.lensAlias;
+    final lensArn = this.lensArn;
+    final milestoneNumber = this.milestoneNumber;
+    final nextToken = this.nextToken;
+    final workloadId = this.workloadId;
+    return {
+      if (improvementSummaries != null)
+        'ImprovementSummaries': improvementSummaries,
+      if (lensAlias != null) 'LensAlias': lensAlias,
+      if (lensArn != null) 'LensArn': lensArn,
+      if (milestoneNumber != null) 'MilestoneNumber': milestoneNumber,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (workloadId != null) 'WorkloadId': workloadId,
+    };
+  }
 }
 
 /// Output of a list lens reviews call.
@@ -2869,6 +3320,20 @@ class ListLensReviewsOutput {
       workloadId: json['WorkloadId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lensReviewSummaries = this.lensReviewSummaries;
+    final milestoneNumber = this.milestoneNumber;
+    final nextToken = this.nextToken;
+    final workloadId = this.workloadId;
+    return {
+      if (lensReviewSummaries != null)
+        'LensReviewSummaries': lensReviewSummaries,
+      if (milestoneNumber != null) 'MilestoneNumber': milestoneNumber,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (workloadId != null) 'WorkloadId': workloadId,
+    };
+  }
 }
 
 class ListLensSharesOutput {
@@ -2889,6 +3354,15 @@ class ListLensSharesOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lensShareSummaries = this.lensShareSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (lensShareSummaries != null) 'LensShareSummaries': lensShareSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Output of a list lenses call.
@@ -2908,6 +3382,15 @@ class ListLensesOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lensSummaries = this.lensSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (lensSummaries != null) 'LensSummaries': lensSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2932,6 +3415,17 @@ class ListMilestonesOutput {
       workloadId: json['WorkloadId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final milestoneSummaries = this.milestoneSummaries;
+    final nextToken = this.nextToken;
+    final workloadId = this.workloadId;
+    return {
+      if (milestoneSummaries != null) 'MilestoneSummaries': milestoneSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (workloadId != null) 'WorkloadId': workloadId,
+    };
+  }
 }
 
 class ListNotificationsOutput {
@@ -2952,6 +3446,16 @@ class ListNotificationsOutput {
           .map((e) => NotificationSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final notificationSummaries = this.notificationSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (notificationSummaries != null)
+        'NotificationSummaries': notificationSummaries,
+    };
   }
 }
 
@@ -2976,6 +3480,16 @@ class ListShareInvitationsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final shareInvitationSummaries = this.shareInvitationSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (shareInvitationSummaries != null)
+        'ShareInvitationSummaries': shareInvitationSummaries,
+    };
+  }
 }
 
 class ListTagsForResourceOutput {
@@ -2990,6 +3504,13 @@ class ListTagsForResourceOutput {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -3014,6 +3535,18 @@ class ListWorkloadSharesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final workloadId = this.workloadId;
+    final workloadShareSummaries = this.workloadShareSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (workloadId != null) 'WorkloadId': workloadId,
+      if (workloadShareSummaries != null)
+        'WorkloadShareSummaries': workloadShareSummaries,
+    };
+  }
 }
 
 /// Output of a list workloads call.
@@ -3033,6 +3566,15 @@ class ListWorkloadsOutput {
           .map((e) => WorkloadSummary.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final workloadSummaries = this.workloadSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (workloadSummaries != null) 'WorkloadSummaries': workloadSummaries,
+    };
   }
 }
 
@@ -3058,6 +3600,19 @@ class Milestone {
           ? Workload.fromJson(json['Workload'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final milestoneName = this.milestoneName;
+    final milestoneNumber = this.milestoneNumber;
+    final recordedAt = this.recordedAt;
+    final workload = this.workload;
+    return {
+      if (milestoneName != null) 'MilestoneName': milestoneName,
+      if (milestoneNumber != null) 'MilestoneNumber': milestoneNumber,
+      if (recordedAt != null) 'RecordedAt': unixTimestampToJson(recordedAt),
+      if (workload != null) 'Workload': workload,
+    };
   }
 }
 
@@ -3085,6 +3640,19 @@ class MilestoneSummary {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final milestoneName = this.milestoneName;
+    final milestoneNumber = this.milestoneNumber;
+    final recordedAt = this.recordedAt;
+    final workloadSummary = this.workloadSummary;
+    return {
+      if (milestoneName != null) 'MilestoneName': milestoneName,
+      if (milestoneNumber != null) 'MilestoneNumber': milestoneNumber,
+      if (recordedAt != null) 'RecordedAt': unixTimestampToJson(recordedAt),
+      if (workloadSummary != null) 'WorkloadSummary': workloadSummary,
+    };
+  }
 }
 
 /// A notification summary return object.
@@ -3107,6 +3675,15 @@ class NotificationSummary {
           : null,
       type: (json['Type'] as String?)?.toNotificationType(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lensUpgradeSummary = this.lensUpgradeSummary;
+    final type = this.type;
+    return {
+      if (lensUpgradeSummary != null) 'LensUpgradeSummary': lensUpgradeSummary,
+      if (type != null) 'Type': type.toValue(),
+    };
   }
 }
 
@@ -3223,6 +3800,21 @@ class PillarDifference {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final differenceStatus = this.differenceStatus;
+    final pillarId = this.pillarId;
+    final pillarName = this.pillarName;
+    final questionDifferences = this.questionDifferences;
+    return {
+      if (differenceStatus != null)
+        'DifferenceStatus': differenceStatus.toValue(),
+      if (pillarId != null) 'PillarId': pillarId,
+      if (pillarName != null) 'PillarName': pillarName,
+      if (questionDifferences != null)
+        'QuestionDifferences': questionDifferences,
+    };
+  }
 }
 
 /// A pillar review summary of a lens review.
@@ -3247,6 +3839,20 @@ class PillarReviewSummary {
           ?.map((k, e) => MapEntry(k.toRisk(), e as int)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final notes = this.notes;
+    final pillarId = this.pillarId;
+    final pillarName = this.pillarName;
+    final riskCounts = this.riskCounts;
+    return {
+      if (notes != null) 'Notes': notes,
+      if (pillarId != null) 'PillarId': pillarId,
+      if (pillarName != null) 'PillarName': pillarName,
+      if (riskCounts != null)
+        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.toValue(), e)),
+    };
+  }
 }
 
 /// A question difference return object.
@@ -3268,6 +3874,18 @@ class QuestionDifference {
       questionId: json['QuestionId'] as String?,
       questionTitle: json['QuestionTitle'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final differenceStatus = this.differenceStatus;
+    final questionId = this.questionId;
+    final questionTitle = this.questionTitle;
+    return {
+      if (differenceStatus != null)
+        'DifferenceStatus': differenceStatus.toValue(),
+      if (questionId != null) 'QuestionId': questionId,
+      if (questionTitle != null) 'QuestionTitle': questionTitle,
+    };
   }
 }
 
@@ -3346,6 +3964,22 @@ class ShareInvitation {
       workloadId: json['WorkloadId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lensAlias = this.lensAlias;
+    final lensArn = this.lensArn;
+    final shareInvitationId = this.shareInvitationId;
+    final shareResourceType = this.shareResourceType;
+    final workloadId = this.workloadId;
+    return {
+      if (lensAlias != null) 'LensAlias': lensAlias,
+      if (lensArn != null) 'LensArn': lensArn,
+      if (shareInvitationId != null) 'ShareInvitationId': shareInvitationId,
+      if (shareResourceType != null)
+        'ShareResourceType': shareResourceType.toValue(),
+      if (workloadId != null) 'WorkloadId': workloadId,
+    };
+  }
 }
 
 /// Share invitation action taken by contributor.
@@ -3418,6 +4052,30 @@ class ShareInvitationSummary {
       workloadId: json['WorkloadId'] as String?,
       workloadName: json['WorkloadName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lensArn = this.lensArn;
+    final lensName = this.lensName;
+    final permissionType = this.permissionType;
+    final shareInvitationId = this.shareInvitationId;
+    final shareResourceType = this.shareResourceType;
+    final sharedBy = this.sharedBy;
+    final sharedWith = this.sharedWith;
+    final workloadId = this.workloadId;
+    final workloadName = this.workloadName;
+    return {
+      if (lensArn != null) 'LensArn': lensArn,
+      if (lensName != null) 'LensName': lensName,
+      if (permissionType != null) 'PermissionType': permissionType.toValue(),
+      if (shareInvitationId != null) 'ShareInvitationId': shareInvitationId,
+      if (shareResourceType != null)
+        'ShareResourceType': shareResourceType.toValue(),
+      if (sharedBy != null) 'SharedBy': sharedBy,
+      if (sharedWith != null) 'SharedWith': sharedWith,
+      if (workloadId != null) 'WorkloadId': workloadId,
+      if (workloadName != null) 'WorkloadName': workloadName,
+    };
   }
 }
 
@@ -3513,12 +4171,20 @@ class TagResourceOutput {
   factory TagResourceOutput.fromJson(Map<String, dynamic> _) {
     return TagResourceOutput();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceOutput {
   UntagResourceOutput();
   factory UntagResourceOutput.fromJson(Map<String, dynamic> _) {
     return UntagResourceOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3547,6 +4213,19 @@ class UpdateAnswerOutput {
       workloadId: json['WorkloadId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final answer = this.answer;
+    final lensAlias = this.lensAlias;
+    final lensArn = this.lensArn;
+    final workloadId = this.workloadId;
+    return {
+      if (answer != null) 'Answer': answer,
+      if (lensAlias != null) 'LensAlias': lensAlias,
+      if (lensArn != null) 'LensArn': lensArn,
+      if (workloadId != null) 'WorkloadId': workloadId,
+    };
+  }
 }
 
 /// Output of a update lens review call.
@@ -3566,6 +4245,15 @@ class UpdateLensReviewOutput {
       workloadId: json['WorkloadId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final lensReview = this.lensReview;
+    final workloadId = this.workloadId;
+    return {
+      if (lensReview != null) 'LensReview': lensReview,
+      if (workloadId != null) 'WorkloadId': workloadId,
+    };
+  }
 }
 
 class UpdateShareInvitationOutput {
@@ -3583,6 +4271,13 @@ class UpdateShareInvitationOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final shareInvitation = this.shareInvitation;
+    return {
+      if (shareInvitation != null) 'ShareInvitation': shareInvitation,
+    };
+  }
 }
 
 /// Output of an update workload call.
@@ -3598,6 +4293,13 @@ class UpdateWorkloadOutput {
           ? Workload.fromJson(json['Workload'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workload = this.workload;
+    return {
+      if (workload != null) 'Workload': workload,
+    };
   }
 }
 
@@ -3619,6 +4321,15 @@ class UpdateWorkloadShareOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final workloadId = this.workloadId;
+    final workloadShare = this.workloadShare;
+    return {
+      if (workloadId != null) 'WorkloadId': workloadId,
+      if (workloadShare != null) 'WorkloadShare': workloadShare,
+    };
+  }
 }
 
 /// The differences between the base and latest versions of the lens.
@@ -3636,6 +4347,13 @@ class VersionDifferences {
           .map((e) => PillarDifference.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pillarDifferences = this.pillarDifferences;
+    return {
+      if (pillarDifferences != null) 'PillarDifferences': pillarDifferences,
+    };
   }
 }
 
@@ -3747,6 +4465,63 @@ class Workload {
       workloadName: json['WorkloadName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountIds = this.accountIds;
+    final architecturalDesign = this.architecturalDesign;
+    final awsRegions = this.awsRegions;
+    final description = this.description;
+    final environment = this.environment;
+    final improvementStatus = this.improvementStatus;
+    final industry = this.industry;
+    final industryType = this.industryType;
+    final isReviewOwnerUpdateAcknowledged =
+        this.isReviewOwnerUpdateAcknowledged;
+    final lenses = this.lenses;
+    final nonAwsRegions = this.nonAwsRegions;
+    final notes = this.notes;
+    final owner = this.owner;
+    final pillarPriorities = this.pillarPriorities;
+    final reviewOwner = this.reviewOwner;
+    final reviewRestrictionDate = this.reviewRestrictionDate;
+    final riskCounts = this.riskCounts;
+    final shareInvitationId = this.shareInvitationId;
+    final tags = this.tags;
+    final updatedAt = this.updatedAt;
+    final workloadArn = this.workloadArn;
+    final workloadId = this.workloadId;
+    final workloadName = this.workloadName;
+    return {
+      if (accountIds != null) 'AccountIds': accountIds,
+      if (architecturalDesign != null)
+        'ArchitecturalDesign': architecturalDesign,
+      if (awsRegions != null) 'AwsRegions': awsRegions,
+      if (description != null) 'Description': description,
+      if (environment != null) 'Environment': environment.toValue(),
+      if (improvementStatus != null)
+        'ImprovementStatus': improvementStatus.toValue(),
+      if (industry != null) 'Industry': industry,
+      if (industryType != null) 'IndustryType': industryType,
+      if (isReviewOwnerUpdateAcknowledged != null)
+        'IsReviewOwnerUpdateAcknowledged': isReviewOwnerUpdateAcknowledged,
+      if (lenses != null) 'Lenses': lenses,
+      if (nonAwsRegions != null) 'NonAwsRegions': nonAwsRegions,
+      if (notes != null) 'Notes': notes,
+      if (owner != null) 'Owner': owner,
+      if (pillarPriorities != null) 'PillarPriorities': pillarPriorities,
+      if (reviewOwner != null) 'ReviewOwner': reviewOwner,
+      if (reviewRestrictionDate != null)
+        'ReviewRestrictionDate': unixTimestampToJson(reviewRestrictionDate),
+      if (riskCounts != null)
+        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.toValue(), e)),
+      if (shareInvitationId != null) 'ShareInvitationId': shareInvitationId,
+      if (tags != null) 'Tags': tags,
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+      if (workloadArn != null) 'WorkloadArn': workloadArn,
+      if (workloadId != null) 'WorkloadId': workloadId,
+      if (workloadName != null) 'WorkloadName': workloadName,
+    };
+  }
 }
 
 /// The environment for the workload.
@@ -3852,6 +4627,25 @@ class WorkloadShare {
       workloadName: json['WorkloadName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final permissionType = this.permissionType;
+    final shareId = this.shareId;
+    final sharedBy = this.sharedBy;
+    final sharedWith = this.sharedWith;
+    final status = this.status;
+    final workloadId = this.workloadId;
+    final workloadName = this.workloadName;
+    return {
+      if (permissionType != null) 'PermissionType': permissionType.toValue(),
+      if (shareId != null) 'ShareId': shareId,
+      if (sharedBy != null) 'SharedBy': sharedBy,
+      if (sharedWith != null) 'SharedWith': sharedWith,
+      if (status != null) 'Status': status.toValue(),
+      if (workloadId != null) 'WorkloadId': workloadId,
+      if (workloadName != null) 'WorkloadName': workloadName,
+    };
+  }
 }
 
 /// A workload share summary return object.
@@ -3879,6 +4673,21 @@ class WorkloadShareSummary {
       status: (json['Status'] as String?)?.toShareStatus(),
       statusMessage: json['StatusMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final permissionType = this.permissionType;
+    final shareId = this.shareId;
+    final sharedWith = this.sharedWith;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (permissionType != null) 'PermissionType': permissionType.toValue(),
+      if (shareId != null) 'ShareId': shareId,
+      if (sharedWith != null) 'SharedWith': sharedWith,
+      if (status != null) 'Status': status.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+    };
   }
 }
 
@@ -3919,6 +4728,29 @@ class WorkloadSummary {
       workloadId: json['WorkloadId'] as String?,
       workloadName: json['WorkloadName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final improvementStatus = this.improvementStatus;
+    final lenses = this.lenses;
+    final owner = this.owner;
+    final riskCounts = this.riskCounts;
+    final updatedAt = this.updatedAt;
+    final workloadArn = this.workloadArn;
+    final workloadId = this.workloadId;
+    final workloadName = this.workloadName;
+    return {
+      if (improvementStatus != null)
+        'ImprovementStatus': improvementStatus.toValue(),
+      if (lenses != null) 'Lenses': lenses,
+      if (owner != null) 'Owner': owner,
+      if (riskCounts != null)
+        'RiskCounts': riskCounts.map((k, e) => MapEntry(k.toValue(), e)),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+      if (workloadArn != null) 'WorkloadArn': workloadArn,
+      if (workloadId != null) 'WorkloadId': workloadId,
+      if (workloadName != null) 'WorkloadName': workloadName,
+    };
   }
 }
 

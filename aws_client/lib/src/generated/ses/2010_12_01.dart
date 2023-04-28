@@ -3708,6 +3708,7 @@ class Body {
     this.html,
     this.text,
   });
+
   Map<String, dynamic> toJson() {
     final html = this.html;
     final text = this.text;
@@ -3864,6 +3865,7 @@ class BouncedRecipientInfo {
     this.recipientArn,
     this.recipientDsnFields,
   });
+
   Map<String, dynamic> toJson() {
     final recipient = this.recipient;
     final bounceType = this.bounceType;
@@ -3899,6 +3901,7 @@ class BulkEmailDestination {
     this.replacementTags,
     this.replacementTemplateData,
   });
+
   Map<String, dynamic> toJson() {
     final destination = this.destination;
     final replacementTags = this.replacementTags;
@@ -4002,6 +4005,17 @@ class BulkEmailDestinationStatus {
       status: _s.extractXmlStringValue(elem, 'Status')?.toBulkEmailStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final messageId = this.messageId;
+    final status = this.status;
+    return {
+      if (error != null) 'Error': error,
+      if (messageId != null) 'MessageId': messageId,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 enum BulkEmailStatus {
@@ -4099,6 +4113,10 @@ class CloneReceiptRuleSetResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CloneReceiptRuleSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4304,6 +4322,7 @@ class Content {
     required this.data,
     this.charset,
   });
+
   Map<String, dynamic> toJson() {
     final data = this.data;
     final charset = this.charset;
@@ -4322,6 +4341,10 @@ class CreateConfigurationSetEventDestinationResponse {
       _s.XmlElement elem) {
     return CreateConfigurationSetEventDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty element returned on a successful request.
@@ -4331,6 +4354,10 @@ class CreateConfigurationSetResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateConfigurationSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4342,6 +4369,10 @@ class CreateConfigurationSetTrackingOptionsResponse {
       _s.XmlElement elem) {
     return CreateConfigurationSetTrackingOptionsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty element returned on a successful request.
@@ -4351,6 +4382,10 @@ class CreateReceiptFilterResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateReceiptFilterResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4362,6 +4397,10 @@ class CreateReceiptRuleResponse {
       _s.XmlElement elem) {
     return CreateReceiptRuleResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty element returned on a successful request.
@@ -4372,6 +4411,10 @@ class CreateReceiptRuleSetResponse {
       _s.XmlElement elem) {
     return CreateReceiptRuleSetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class CreateTemplateResponse {
@@ -4380,6 +4423,10 @@ class CreateTemplateResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return CreateTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4458,6 +4505,23 @@ class CustomVerificationEmailTemplate {
       templateSubject: _s.extractXmlStringValue(elem, 'TemplateSubject'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failureRedirectionURL = this.failureRedirectionURL;
+    final fromEmailAddress = this.fromEmailAddress;
+    final successRedirectionURL = this.successRedirectionURL;
+    final templateName = this.templateName;
+    final templateSubject = this.templateSubject;
+    return {
+      if (failureRedirectionURL != null)
+        'FailureRedirectionURL': failureRedirectionURL,
+      if (fromEmailAddress != null) 'FromEmailAddress': fromEmailAddress,
+      if (successRedirectionURL != null)
+        'SuccessRedirectionURL': successRedirectionURL,
+      if (templateName != null) 'TemplateName': templateName,
+      if (templateSubject != null) 'TemplateSubject': templateSubject,
+    };
+  }
 }
 
 /// An empty element returned on a successful request.
@@ -4467,6 +4531,10 @@ class DeleteConfigurationSetEventDestinationResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteConfigurationSetEventDestinationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4478,6 +4546,10 @@ class DeleteConfigurationSetResponse {
       _s.XmlElement elem) {
     return DeleteConfigurationSetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty element returned on a successful request.
@@ -4487,6 +4559,10 @@ class DeleteConfigurationSetTrackingOptionsResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteConfigurationSetTrackingOptionsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4498,6 +4574,10 @@ class DeleteIdentityPolicyResponse {
       _s.XmlElement elem) {
     return DeleteIdentityPolicyResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty element returned on a successful request.
@@ -4507,6 +4587,10 @@ class DeleteIdentityResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteIdentityResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4518,6 +4602,10 @@ class DeleteReceiptFilterResponse {
       _s.XmlElement elem) {
     return DeleteReceiptFilterResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty element returned on a successful request.
@@ -4527,6 +4615,10 @@ class DeleteReceiptRuleResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteReceiptRuleResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4538,6 +4630,10 @@ class DeleteReceiptRuleSetResponse {
       _s.XmlElement elem) {
     return DeleteReceiptRuleSetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteTemplateResponse {
@@ -4546,6 +4642,10 @@ class DeleteTemplateResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return DeleteTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4600,6 +4700,15 @@ class DescribeActiveReceiptRuleSetResponse {
           elem.findElements('member').map(ReceiptRule.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metadata = this.metadata;
+    final rules = this.rules;
+    return {
+      if (metadata != null) 'Metadata': metadata,
+      if (rules != null) 'Rules': rules,
+    };
+  }
 }
 
 /// Represents the details of a configuration set. Configuration sets enable you
@@ -4651,6 +4760,21 @@ class DescribeConfigurationSetResponse {
           ?.let(TrackingOptions.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSet = this.configurationSet;
+    final deliveryOptions = this.deliveryOptions;
+    final eventDestinations = this.eventDestinations;
+    final reputationOptions = this.reputationOptions;
+    final trackingOptions = this.trackingOptions;
+    return {
+      if (configurationSet != null) 'ConfigurationSet': configurationSet,
+      if (deliveryOptions != null) 'DeliveryOptions': deliveryOptions,
+      if (eventDestinations != null) 'EventDestinations': eventDestinations,
+      if (reputationOptions != null) 'ReputationOptions': reputationOptions,
+      if (trackingOptions != null) 'TrackingOptions': trackingOptions,
+    };
+  }
 }
 
 /// Represents the details of a receipt rule.
@@ -4667,6 +4791,13 @@ class DescribeReceiptRuleResponse {
     return DescribeReceiptRuleResponse(
       rule: _s.extractXmlChild(elem, 'Rule')?.let(ReceiptRule.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rule = this.rule;
+    return {
+      if (rule != null) 'Rule': rule,
+    };
   }
 }
 
@@ -4691,6 +4822,15 @@ class DescribeReceiptRuleSetResponse {
       rules: _s.extractXmlChild(elem, 'Rules')?.let((elem) =>
           elem.findElements('member').map(ReceiptRule.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metadata = this.metadata;
+    final rules = this.rules;
+    return {
+      if (metadata != null) 'Metadata': metadata,
+      if (rules != null) 'Rules': rules,
+    };
   }
 }
 
@@ -4722,6 +4862,7 @@ class Destination {
     this.ccAddresses,
     this.toAddresses,
   });
+
   Map<String, dynamic> toJson() {
     final bccAddresses = this.bccAddresses;
     final ccAddresses = this.ccAddresses;
@@ -4985,6 +5126,7 @@ class ExtensionField {
     required this.name,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -5009,6 +5151,13 @@ class GetAccountSendingEnabledResponse {
     return GetAccountSendingEnabledResponse(
       enabled: _s.extractXmlBoolValue(elem, 'Enabled'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      if (enabled != null) 'Enabled': enabled,
+    };
   }
 }
 
@@ -5055,6 +5204,25 @@ class GetCustomVerificationEmailTemplateResponse {
       templateSubject: _s.extractXmlStringValue(elem, 'TemplateSubject'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failureRedirectionURL = this.failureRedirectionURL;
+    final fromEmailAddress = this.fromEmailAddress;
+    final successRedirectionURL = this.successRedirectionURL;
+    final templateContent = this.templateContent;
+    final templateName = this.templateName;
+    final templateSubject = this.templateSubject;
+    return {
+      if (failureRedirectionURL != null)
+        'FailureRedirectionURL': failureRedirectionURL,
+      if (fromEmailAddress != null) 'FromEmailAddress': fromEmailAddress,
+      if (successRedirectionURL != null)
+        'SuccessRedirectionURL': successRedirectionURL,
+      if (templateContent != null) 'TemplateContent': templateContent,
+      if (templateName != null) 'TemplateName': templateName,
+      if (templateSubject != null) 'TemplateSubject': templateSubject,
+    };
+  }
 }
 
 /// Represents the status of Amazon SES Easy DKIM signing for an identity. For
@@ -5082,6 +5250,13 @@ class GetIdentityDkimAttributesResponse {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dkimAttributes = this.dkimAttributes;
+    return {
+      'DkimAttributes': dkimAttributes,
+    };
+  }
 }
 
 /// Represents the custom MAIL FROM attributes for a list of identities.
@@ -5106,6 +5281,13 @@ class GetIdentityMailFromDomainAttributesResponse {
             {},
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mailFromDomainAttributes = this.mailFromDomainAttributes;
+    return {
+      'MailFromDomainAttributes': mailFromDomainAttributes,
+    };
   }
 }
 
@@ -5132,6 +5314,13 @@ class GetIdentityNotificationAttributesResponse {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final notificationAttributes = this.notificationAttributes;
+    return {
+      'NotificationAttributes': notificationAttributes,
+    };
+  }
 }
 
 /// Represents the requested sending authorization policies.
@@ -5154,6 +5343,13 @@ class GetIdentityPoliciesResponse {
             {},
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policies = this.policies;
+    return {
+      'Policies': policies,
+    };
   }
 }
 
@@ -5180,6 +5376,13 @@ class GetIdentityVerificationAttributesResponse {
             {},
       ),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final verificationAttributes = this.verificationAttributes;
+    return {
+      'VerificationAttributes': verificationAttributes,
+    };
   }
 }
 
@@ -5213,6 +5416,17 @@ class GetSendQuotaResponse {
       sentLast24Hours: _s.extractXmlDoubleValue(elem, 'SentLast24Hours'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final max24HourSend = this.max24HourSend;
+    final maxSendRate = this.maxSendRate;
+    final sentLast24Hours = this.sentLast24Hours;
+    return {
+      if (max24HourSend != null) 'Max24HourSend': max24HourSend,
+      if (maxSendRate != null) 'MaxSendRate': maxSendRate,
+      if (sentLast24Hours != null) 'SentLast24Hours': sentLast24Hours,
+    };
+  }
 }
 
 /// Represents a list of data points. This list contains aggregated data from
@@ -5230,6 +5444,13 @@ class GetSendStatisticsResponse {
           elem.findElements('member').map(SendDataPoint.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final sendDataPoints = this.sendDataPoints;
+    return {
+      if (sendDataPoints != null) 'SendDataPoints': sendDataPoints,
+    };
+  }
 }
 
 class GetTemplateResponse {
@@ -5242,6 +5463,13 @@ class GetTemplateResponse {
     return GetTemplateResponse(
       template: _s.extractXmlChild(elem, 'Template')?.let(Template.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final template = this.template;
+    return {
+      if (template != null) 'Template': template,
+    };
   }
 }
 
@@ -5286,6 +5514,17 @@ class IdentityDkimAttributes {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dkimEnabled = this.dkimEnabled;
+    final dkimVerificationStatus = this.dkimVerificationStatus;
+    final dkimTokens = this.dkimTokens;
+    return {
+      'DkimEnabled': dkimEnabled,
+      'DkimVerificationStatus': dkimVerificationStatus.toValue(),
+      if (dkimTokens != null) 'DkimTokens': dkimTokens,
+    };
+  }
 }
 
 /// Represents the custom MAIL FROM domain attributes of a verified identity
@@ -5329,6 +5568,17 @@ class IdentityMailFromDomainAttributes {
           .extractXmlStringValue(elem, 'MailFromDomainStatus')!
           .toCustomMailFromStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final behaviorOnMXFailure = this.behaviorOnMXFailure;
+    final mailFromDomain = this.mailFromDomain;
+    final mailFromDomainStatus = this.mailFromDomainStatus;
+    return {
+      'BehaviorOnMXFailure': behaviorOnMXFailure.toValue(),
+      'MailFromDomain': mailFromDomain,
+      'MailFromDomainStatus': mailFromDomainStatus.toValue(),
+    };
   }
 }
 
@@ -5400,6 +5650,34 @@ class IdentityNotificationAttributes {
           _s.extractXmlBoolValue(elem, 'HeadersInDeliveryNotificationsEnabled'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bounceTopic = this.bounceTopic;
+    final complaintTopic = this.complaintTopic;
+    final deliveryTopic = this.deliveryTopic;
+    final forwardingEnabled = this.forwardingEnabled;
+    final headersInBounceNotificationsEnabled =
+        this.headersInBounceNotificationsEnabled;
+    final headersInComplaintNotificationsEnabled =
+        this.headersInComplaintNotificationsEnabled;
+    final headersInDeliveryNotificationsEnabled =
+        this.headersInDeliveryNotificationsEnabled;
+    return {
+      'BounceTopic': bounceTopic,
+      'ComplaintTopic': complaintTopic,
+      'DeliveryTopic': deliveryTopic,
+      'ForwardingEnabled': forwardingEnabled,
+      if (headersInBounceNotificationsEnabled != null)
+        'HeadersInBounceNotificationsEnabled':
+            headersInBounceNotificationsEnabled,
+      if (headersInComplaintNotificationsEnabled != null)
+        'HeadersInComplaintNotificationsEnabled':
+            headersInComplaintNotificationsEnabled,
+      if (headersInDeliveryNotificationsEnabled != null)
+        'HeadersInDeliveryNotificationsEnabled':
+            headersInDeliveryNotificationsEnabled,
+    };
+  }
 }
 
 enum IdentityType {
@@ -5451,6 +5729,15 @@ class IdentityVerificationAttributes {
           .toVerificationStatus(),
       verificationToken: _s.extractXmlStringValue(elem, 'VerificationToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final verificationStatus = this.verificationStatus;
+    final verificationToken = this.verificationToken;
+    return {
+      'VerificationStatus': verificationStatus.toValue(),
+      if (verificationToken != null) 'VerificationToken': verificationToken,
+    };
   }
 }
 
@@ -5620,6 +5907,15 @@ class ListConfigurationSetsResponse {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSets = this.configurationSets;
+    final nextToken = this.nextToken;
+    return {
+      if (configurationSets != null) 'ConfigurationSets': configurationSets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// A paginated list of custom verification email templates.
@@ -5650,6 +5946,17 @@ class ListCustomVerificationEmailTemplatesResponse {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final customVerificationEmailTemplates =
+        this.customVerificationEmailTemplates;
+    final nextToken = this.nextToken;
+    return {
+      if (customVerificationEmailTemplates != null)
+        'CustomVerificationEmailTemplates': customVerificationEmailTemplates,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// A list of all identities that you have attempted to verify under your AWS
@@ -5672,6 +5979,15 @@ class ListIdentitiesResponse {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final identities = this.identities;
+    final nextToken = this.nextToken;
+    return {
+      'Identities': identities,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// A list of names of sending authorization policies that apply to an identity.
@@ -5687,6 +6003,13 @@ class ListIdentityPoliciesResponse {
       policyNames: _s.extractXmlStringListValues(
           _s.extractXmlChild(elem, 'PolicyNames')!, 'member'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policyNames = this.policyNames;
+    return {
+      'PolicyNames': policyNames,
+    };
   }
 }
 
@@ -5704,6 +6027,13 @@ class ListReceiptFiltersResponse {
       filters: _s.extractXmlChild(elem, 'Filters')?.let((elem) =>
           elem.findElements('member').map(ReceiptFilter.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final filters = this.filters;
+    return {
+      if (filters != null) 'Filters': filters,
+    };
   }
 }
 
@@ -5733,6 +6063,15 @@ class ListReceiptRuleSetsResponse {
           .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final ruleSets = this.ruleSets;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (ruleSets != null) 'RuleSets': ruleSets,
+    };
+  }
 }
 
 class ListTemplatesResponse {
@@ -5759,6 +6098,15 @@ class ListTemplatesResponse {
               .toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final templatesMetadata = this.templatesMetadata;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (templatesMetadata != null) 'TemplatesMetadata': templatesMetadata,
+    };
+  }
 }
 
 /// A list of email addresses that you have verified with Amazon SES under your
@@ -5777,6 +6125,14 @@ class ListVerifiedEmailAddressesResponse {
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final verifiedEmailAddresses = this.verifiedEmailAddresses;
+    return {
+      if (verifiedEmailAddresses != null)
+        'VerifiedEmailAddresses': verifiedEmailAddresses,
+    };
+  }
 }
 
 /// Represents the message to be sent, composed of a subject and a body.
@@ -5792,6 +6148,7 @@ class Message {
     required this.body,
     required this.subject,
   });
+
   Map<String, dynamic> toJson() {
     final body = this.body;
     final subject = this.subject;
@@ -5827,6 +6184,7 @@ class MessageDsn {
     this.arrivalDate,
     this.extensionFields,
   });
+
   Map<String, dynamic> toJson() {
     final reportingMta = this.reportingMta;
     final arrivalDate = this.arrivalDate;
@@ -5878,6 +6236,7 @@ class MessageTag {
     required this.name,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -5930,6 +6289,10 @@ class PutConfigurationSetDeliveryOptionsResponse {
       _s.XmlElement elem) {
     return PutConfigurationSetDeliveryOptionsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty element returned on a successful request.
@@ -5939,6 +6302,10 @@ class PutIdentityPolicyResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return PutIdentityPolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -5969,6 +6336,7 @@ class RawMessage {
   RawMessage({
     required this.data,
   });
+
   Map<String, dynamic> toJson() {
     final data = this.data;
     return {
@@ -6306,6 +6674,16 @@ class ReceiptRuleSetMetadata {
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final name = this.name;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': iso8601ToJson(createdTimestamp),
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Recipient-related information to include in the Delivery Status Notification
@@ -6365,6 +6743,7 @@ class RecipientDsnFields {
     this.lastAttemptDate,
     this.remoteMta,
   });
+
   Map<String, dynamic> toJson() {
     final action = this.action;
     final status = this.status;
@@ -6393,6 +6772,10 @@ class ReorderReceiptRuleSetResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return ReorderReceiptRuleSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6438,6 +6821,19 @@ class ReputationOptions {
           _s.extractXmlBoolValue(elem, 'ReputationMetricsEnabled'),
       sendingEnabled: _s.extractXmlBoolValue(elem, 'SendingEnabled'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final lastFreshStart = this.lastFreshStart;
+    final reputationMetricsEnabled = this.reputationMetricsEnabled;
+    final sendingEnabled = this.sendingEnabled;
+    return {
+      if (lastFreshStart != null)
+        'LastFreshStart': iso8601ToJson(lastFreshStart),
+      if (reputationMetricsEnabled != null)
+        'ReputationMetricsEnabled': reputationMetricsEnabled,
+      if (sendingEnabled != null) 'SendingEnabled': sendingEnabled,
+    };
   }
 }
 
@@ -6683,6 +7079,13 @@ class SendBounceResponse {
       messageId: _s.extractXmlStringValue(elem, 'MessageId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      if (messageId != null) 'MessageId': messageId,
+    };
+  }
 }
 
 class SendBulkTemplatedEmailResponse {
@@ -6702,6 +7105,13 @@ class SendBulkTemplatedEmailResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'Status': status,
+    };
+  }
 }
 
 /// The response received when attempting to send the custom verification email.
@@ -6717,6 +7127,13 @@ class SendCustomVerificationEmailResponse {
     return SendCustomVerificationEmailResponse(
       messageId: _s.extractXmlStringValue(elem, 'MessageId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      if (messageId != null) 'MessageId': messageId,
+    };
   }
 }
 
@@ -6754,6 +7171,21 @@ class SendDataPoint {
       timestamp: _s.extractXmlDateTimeValue(elem, 'Timestamp'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bounces = this.bounces;
+    final complaints = this.complaints;
+    final deliveryAttempts = this.deliveryAttempts;
+    final rejects = this.rejects;
+    final timestamp = this.timestamp;
+    return {
+      if (bounces != null) 'Bounces': bounces,
+      if (complaints != null) 'Complaints': complaints,
+      if (deliveryAttempts != null) 'DeliveryAttempts': deliveryAttempts,
+      if (rejects != null) 'Rejects': rejects,
+      if (timestamp != null) 'Timestamp': iso8601ToJson(timestamp),
+    };
+  }
 }
 
 /// Represents a unique message ID.
@@ -6769,6 +7201,13 @@ class SendEmailResponse {
     return SendEmailResponse(
       messageId: _s.extractXmlStringValue(elem, 'MessageId')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      'MessageId': messageId,
+    };
   }
 }
 
@@ -6786,6 +7225,13 @@ class SendRawEmailResponse {
       messageId: _s.extractXmlStringValue(elem, 'MessageId')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      'MessageId': messageId,
+    };
+  }
 }
 
 class SendTemplatedEmailResponse {
@@ -6801,6 +7247,13 @@ class SendTemplatedEmailResponse {
       messageId: _s.extractXmlStringValue(elem, 'MessageId')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      'MessageId': messageId,
+    };
+  }
 }
 
 /// An empty element returned on a successful request.
@@ -6810,6 +7263,10 @@ class SetActiveReceiptRuleSetResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetActiveReceiptRuleSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6821,6 +7278,10 @@ class SetIdentityDkimEnabledResponse {
       _s.XmlElement elem) {
     return SetIdentityDkimEnabledResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty element returned on a successful request.
@@ -6830,6 +7291,10 @@ class SetIdentityFeedbackForwardingEnabledResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetIdentityFeedbackForwardingEnabledResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6841,6 +7306,10 @@ class SetIdentityHeadersInNotificationsEnabledResponse {
       _s.XmlElement elem) {
     return SetIdentityHeadersInNotificationsEnabledResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty element returned on a successful request.
@@ -6850,6 +7319,10 @@ class SetIdentityMailFromDomainResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetIdentityMailFromDomainResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6861,6 +7334,10 @@ class SetIdentityNotificationTopicResponse {
       _s.XmlElement elem) {
     return SetIdentityNotificationTopicResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty element returned on a successful request.
@@ -6870,6 +7347,10 @@ class SetReceiptRulePositionResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SetReceiptRulePositionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7002,6 +7483,16 @@ class TemplateMetadata {
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdTimestamp = this.createdTimestamp;
+    final name = this.name;
+    return {
+      if (createdTimestamp != null)
+        'CreatedTimestamp': iso8601ToJson(createdTimestamp),
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class TestRenderTemplateResponse {
@@ -7016,6 +7507,13 @@ class TestRenderTemplateResponse {
     return TestRenderTemplateResponse(
       renderedTemplate: _s.extractXmlStringValue(elem, 'RenderedTemplate'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final renderedTemplate = this.renderedTemplate;
+    return {
+      if (renderedTemplate != null) 'RenderedTemplate': renderedTemplate,
+    };
   }
 }
 
@@ -7087,6 +7585,10 @@ class UpdateConfigurationSetEventDestinationResponse {
       _s.XmlElement elem) {
     return UpdateConfigurationSetEventDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An empty element returned on a successful request.
@@ -7096,6 +7598,10 @@ class UpdateConfigurationSetTrackingOptionsResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return UpdateConfigurationSetTrackingOptionsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7107,6 +7613,10 @@ class UpdateReceiptRuleResponse {
       _s.XmlElement elem) {
     return UpdateReceiptRuleResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateTemplateResponse {
@@ -7115,6 +7625,10 @@ class UpdateTemplateResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return UpdateTemplateResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -7190,6 +7704,13 @@ class VerifyDomainDkimResponse {
           _s.extractXmlChild(elem, 'DkimTokens')!, 'member'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dkimTokens = this.dkimTokens;
+    return {
+      'DkimTokens': dkimTokens,
+    };
+  }
 }
 
 /// Returns a TXT record that you must publish to the DNS server of your domain
@@ -7214,6 +7735,13 @@ class VerifyDomainIdentityResponse {
       verificationToken: _s.extractXmlStringValue(elem, 'VerificationToken')!,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final verificationToken = this.verificationToken;
+    return {
+      'VerificationToken': verificationToken,
+    };
+  }
 }
 
 /// An empty element returned on a successful request.
@@ -7223,6 +7751,10 @@ class VerifyEmailIdentityResponse {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return VerifyEmailIdentityResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

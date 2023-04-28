@@ -685,6 +685,19 @@ class AlertManagerDefinitionDescription {
           json['status'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final data = this.data;
+    final modifiedAt = this.modifiedAt;
+    final status = this.status;
+    return {
+      'createdAt': unixTimestampToJson(createdAt),
+      'data': base64Encode(data),
+      'modifiedAt': unixTimestampToJson(modifiedAt),
+      'status': status,
+    };
+  }
 }
 
 /// Represents the status of a definition.
@@ -705,6 +718,15 @@ class AlertManagerDefinitionStatus {
           (json['statusCode'] as String).toAlertManagerDefinitionStatusCode(),
       statusReason: json['statusReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final statusCode = this.statusCode;
+    final statusReason = this.statusReason;
+    return {
+      'statusCode': statusCode.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+    };
   }
 }
 
@@ -774,6 +796,13 @@ class CreateAlertManagerDefinitionResponse {
           json['status'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status,
+    };
+  }
 }
 
 /// Represents the output of a CreateRuleGroupsNamespace operation.
@@ -807,6 +836,19 @@ class CreateRuleGroupsNamespaceResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'name': name,
+      'status': status,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Represents the output of a CreateWorkspace operation.
@@ -838,6 +880,19 @@ class CreateWorkspaceResponse {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final status = this.status;
+    final workspaceId = this.workspaceId;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'status': status,
+      'workspaceId': workspaceId,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Represents the output of a DescribeAlertManagerDefinition operation.
@@ -854,6 +909,13 @@ class DescribeAlertManagerDefinitionResponse {
       alertManagerDefinition: AlertManagerDefinitionDescription.fromJson(
           json['alertManagerDefinition'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alertManagerDefinition = this.alertManagerDefinition;
+    return {
+      'alertManagerDefinition': alertManagerDefinition,
+    };
   }
 }
 
@@ -872,6 +934,13 @@ class DescribeRuleGroupsNamespaceResponse {
           json['ruleGroupsNamespace'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ruleGroupsNamespace = this.ruleGroupsNamespace;
+    return {
+      'ruleGroupsNamespace': ruleGroupsNamespace,
+    };
+  }
 }
 
 /// Represents the output of a DescribeWorkspace operation.
@@ -887,6 +956,13 @@ class DescribeWorkspaceResponse {
       workspace: WorkspaceDescription.fromJson(
           json['workspace'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final workspace = this.workspace;
+    return {
+      'workspace': workspace,
+    };
   }
 }
 
@@ -912,6 +988,15 @@ class ListRuleGroupsNamespacesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ruleGroupsNamespaces = this.ruleGroupsNamespaces;
+    final nextToken = this.nextToken;
+    return {
+      'ruleGroupsNamespaces': ruleGroupsNamespaces,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -925,6 +1010,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -950,6 +1042,15 @@ class ListWorkspacesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final workspaces = this.workspaces;
+    final nextToken = this.nextToken;
+    return {
+      'workspaces': workspaces,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the output of a PutAlertManagerDefinition operation.
@@ -966,6 +1067,13 @@ class PutAlertManagerDefinitionResponse {
       status: AlertManagerDefinitionStatus.fromJson(
           json['status'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status,
+    };
   }
 }
 
@@ -998,6 +1106,19 @@ class PutRuleGroupsNamespaceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'name': name,
+      'status': status,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -1046,6 +1167,25 @@ class RuleGroupsNamespaceDescription {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final data = this.data;
+    final modifiedAt = this.modifiedAt;
+    final name = this.name;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'data': base64Encode(data),
+      'modifiedAt': unixTimestampToJson(modifiedAt),
+      'name': name,
+      'status': status,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Represents the status of a namespace.
@@ -1066,6 +1206,15 @@ class RuleGroupsNamespaceStatus {
           (json['statusCode'] as String).toRuleGroupsNamespaceStatusCode(),
       statusReason: json['statusReason'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final statusCode = this.statusCode;
+    final statusReason = this.statusReason;
+    return {
+      'statusCode': statusCode.toValue(),
+      if (statusReason != null) 'statusReason': statusReason,
+    };
   }
 }
 
@@ -1159,6 +1308,23 @@ class RuleGroupsNamespaceSummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final modifiedAt = this.modifiedAt;
+    final name = this.name;
+    final status = this.status;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'modifiedAt': unixTimestampToJson(modifiedAt),
+      'name': name,
+      'status': status,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 class TagResourceResponse {
@@ -1166,12 +1332,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1219,6 +1393,25 @@ class WorkspaceDescription {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final status = this.status;
+    final workspaceId = this.workspaceId;
+    final alias = this.alias;
+    final prometheusEndpoint = this.prometheusEndpoint;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'status': status,
+      'workspaceId': workspaceId,
+      if (alias != null) 'alias': alias,
+      if (prometheusEndpoint != null) 'prometheusEndpoint': prometheusEndpoint,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Represents the status of a workspace.
@@ -1233,6 +1426,13 @@ class WorkspaceStatus {
     return WorkspaceStatus(
       statusCode: (json['statusCode'] as String).toWorkspaceStatusCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final statusCode = this.statusCode;
+    return {
+      'statusCode': statusCode.toValue(),
+    };
   }
 }
 
@@ -1318,6 +1518,23 @@ class WorkspaceSummary {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final status = this.status;
+    final workspaceId = this.workspaceId;
+    final alias = this.alias;
+    final tags = this.tags;
+    return {
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'status': status,
+      'workspaceId': workspaceId,
+      if (alias != null) 'alias': alias,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 

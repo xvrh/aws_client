@@ -1686,6 +1686,17 @@ class BlacklistEntry {
       rblName: json['RblName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final listingTime = this.listingTime;
+    final rblName = this.rblName;
+    return {
+      if (description != null) 'Description': description,
+      if (listingTime != null) 'ListingTime': unixTimestampToJson(listingTime),
+      if (rblName != null) 'RblName': rblName,
+    };
+  }
 }
 
 /// Represents the body of the email message.
@@ -1704,6 +1715,7 @@ class Body {
     this.html,
     this.text,
   });
+
   Map<String, dynamic> toJson() {
     final html = this.html;
     final text = this.text;
@@ -1827,6 +1839,7 @@ class Content {
     required this.data,
     this.charset,
   });
+
   Map<String, dynamic> toJson() {
     final data = this.data;
     final charset = this.charset;
@@ -1845,6 +1858,10 @@ class CreateConfigurationSetEventDestinationResponse {
       Map<String, dynamic> _) {
     return CreateConfigurationSetEventDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -1854,6 +1871,10 @@ class CreateConfigurationSetResponse {
   factory CreateConfigurationSetResponse.fromJson(Map<String, dynamic> _) {
     return CreateConfigurationSetResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -1862,6 +1883,10 @@ class CreateDedicatedIpPoolResponse {
   CreateDedicatedIpPoolResponse();
   factory CreateDedicatedIpPoolResponse.fromJson(Map<String, dynamic> _) {
     return CreateDedicatedIpPoolResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1889,6 +1914,15 @@ class CreateDeliverabilityTestReportResponse {
           .toDeliverabilityTestStatus(),
       reportId: json['ReportId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deliverabilityTestStatus = this.deliverabilityTestStatus;
+    final reportId = this.reportId;
+    return {
+      'DeliverabilityTestStatus': deliverabilityTestStatus.toValue(),
+      'ReportId': reportId,
+    };
   }
 }
 
@@ -1928,6 +1962,18 @@ class CreateEmailIdentityResponse {
       verifiedForSendingStatus: json['VerifiedForSendingStatus'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dkimAttributes = this.dkimAttributes;
+    final identityType = this.identityType;
+    final verifiedForSendingStatus = this.verifiedForSendingStatus;
+    return {
+      if (dkimAttributes != null) 'DkimAttributes': dkimAttributes,
+      if (identityType != null) 'IdentityType': identityType.toValue(),
+      if (verifiedForSendingStatus != null)
+        'VerifiedForSendingStatus': verifiedForSendingStatus,
+    };
+  }
 }
 
 /// An object that contains information about the volume of email sent on each
@@ -1961,6 +2007,18 @@ class DailyVolume {
               json['VolumeStatistics'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainIspPlacements = this.domainIspPlacements;
+    final startDate = this.startDate;
+    final volumeStatistics = this.volumeStatistics;
+    return {
+      if (domainIspPlacements != null)
+        'DomainIspPlacements': domainIspPlacements,
+      if (startDate != null) 'StartDate': unixTimestampToJson(startDate),
+      if (volumeStatistics != null) 'VolumeStatistics': volumeStatistics,
+    };
   }
 }
 
@@ -2008,6 +2066,19 @@ class DedicatedIp {
       poolName: json['PoolName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ip = this.ip;
+    final warmupPercentage = this.warmupPercentage;
+    final warmupStatus = this.warmupStatus;
+    final poolName = this.poolName;
+    return {
+      'Ip': ip,
+      'WarmupPercentage': warmupPercentage,
+      'WarmupStatus': warmupStatus.toValue(),
+      if (poolName != null) 'PoolName': poolName,
+    };
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -2018,6 +2089,10 @@ class DeleteConfigurationSetEventDestinationResponse {
       Map<String, dynamic> _) {
     return DeleteConfigurationSetEventDestinationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -2026,6 +2101,10 @@ class DeleteConfigurationSetResponse {
   DeleteConfigurationSetResponse();
   factory DeleteConfigurationSetResponse.fromJson(Map<String, dynamic> _) {
     return DeleteConfigurationSetResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2036,6 +2115,10 @@ class DeleteDedicatedIpPoolResponse {
   factory DeleteDedicatedIpPoolResponse.fromJson(Map<String, dynamic> _) {
     return DeleteDedicatedIpPoolResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -2044,6 +2127,10 @@ class DeleteEmailIdentityResponse {
   DeleteEmailIdentityResponse();
   factory DeleteEmailIdentityResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEmailIdentityResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2133,6 +2220,24 @@ class DeliverabilityTestReport {
       reportName: json['ReportName'] as String?,
       subject: json['Subject'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createDate = this.createDate;
+    final deliverabilityTestStatus = this.deliverabilityTestStatus;
+    final fromEmailAddress = this.fromEmailAddress;
+    final reportId = this.reportId;
+    final reportName = this.reportName;
+    final subject = this.subject;
+    return {
+      if (createDate != null) 'CreateDate': unixTimestampToJson(createDate),
+      if (deliverabilityTestStatus != null)
+        'DeliverabilityTestStatus': deliverabilityTestStatus.toValue(),
+      if (fromEmailAddress != null) 'FromEmailAddress': fromEmailAddress,
+      if (reportId != null) 'ReportId': reportId,
+      if (reportName != null) 'ReportName': reportName,
+      if (subject != null) 'Subject': subject,
+    };
   }
 }
 
@@ -2224,6 +2329,7 @@ class Destination {
     this.ccAddresses,
     this.toAddresses,
   });
+
   Map<String, dynamic> toJson() {
     final bccAddresses = this.bccAddresses;
     final ccAddresses = this.ccAddresses;
@@ -2337,6 +2443,17 @@ class DkimAttributes {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final signingEnabled = this.signingEnabled;
+    final status = this.status;
+    final tokens = this.tokens;
+    return {
+      if (signingEnabled != null) 'SigningEnabled': signingEnabled,
+      if (status != null) 'Status': status.toValue(),
+      if (tokens != null) 'Tokens': tokens,
+    };
   }
 }
 
@@ -2515,6 +2632,41 @@ class DomainDeliverabilityCampaign {
       subject: json['Subject'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final campaignId = this.campaignId;
+    final deleteRate = this.deleteRate;
+    final esps = this.esps;
+    final firstSeenDateTime = this.firstSeenDateTime;
+    final fromAddress = this.fromAddress;
+    final imageUrl = this.imageUrl;
+    final inboxCount = this.inboxCount;
+    final lastSeenDateTime = this.lastSeenDateTime;
+    final projectedVolume = this.projectedVolume;
+    final readDeleteRate = this.readDeleteRate;
+    final readRate = this.readRate;
+    final sendingIps = this.sendingIps;
+    final spamCount = this.spamCount;
+    final subject = this.subject;
+    return {
+      if (campaignId != null) 'CampaignId': campaignId,
+      if (deleteRate != null) 'DeleteRate': deleteRate,
+      if (esps != null) 'Esps': esps,
+      if (firstSeenDateTime != null)
+        'FirstSeenDateTime': unixTimestampToJson(firstSeenDateTime),
+      if (fromAddress != null) 'FromAddress': fromAddress,
+      if (imageUrl != null) 'ImageUrl': imageUrl,
+      if (inboxCount != null) 'InboxCount': inboxCount,
+      if (lastSeenDateTime != null)
+        'LastSeenDateTime': unixTimestampToJson(lastSeenDateTime),
+      if (projectedVolume != null) 'ProjectedVolume': projectedVolume,
+      if (readDeleteRate != null) 'ReadDeleteRate': readDeleteRate,
+      if (readRate != null) 'ReadRate': readRate,
+      if (sendingIps != null) 'SendingIps': sendingIps,
+      if (spamCount != null) 'SpamCount': spamCount,
+      if (subject != null) 'Subject': subject,
+    };
+  }
 }
 
 /// An object that contains information about the Deliverability dashboard
@@ -2606,6 +2758,21 @@ class DomainIspPlacement {
       spamRawCount: json['SpamRawCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inboxPercentage = this.inboxPercentage;
+    final inboxRawCount = this.inboxRawCount;
+    final ispName = this.ispName;
+    final spamPercentage = this.spamPercentage;
+    final spamRawCount = this.spamRawCount;
+    return {
+      if (inboxPercentage != null) 'InboxPercentage': inboxPercentage,
+      if (inboxRawCount != null) 'InboxRawCount': inboxRawCount,
+      if (ispName != null) 'IspName': ispName,
+      if (spamPercentage != null) 'SpamPercentage': spamPercentage,
+      if (spamRawCount != null) 'SpamRawCount': spamRawCount,
+    };
+  }
 }
 
 /// An object that defines the entire content of the email, including the
@@ -2659,6 +2826,7 @@ class EmailContent {
     this.simple,
     this.template,
   });
+
   Map<String, dynamic> toJson() {
     final raw = this.raw;
     final simple = this.simple;
@@ -2748,6 +2916,28 @@ class EventDestination {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final matchingEventTypes = this.matchingEventTypes;
+    final name = this.name;
+    final cloudWatchDestination = this.cloudWatchDestination;
+    final enabled = this.enabled;
+    final kinesisFirehoseDestination = this.kinesisFirehoseDestination;
+    final pinpointDestination = this.pinpointDestination;
+    final snsDestination = this.snsDestination;
+    return {
+      'MatchingEventTypes': matchingEventTypes.map((e) => e.toValue()).toList(),
+      'Name': name,
+      if (cloudWatchDestination != null)
+        'CloudWatchDestination': cloudWatchDestination,
+      if (enabled != null) 'Enabled': enabled,
+      if (kinesisFirehoseDestination != null)
+        'KinesisFirehoseDestination': kinesisFirehoseDestination,
+      if (pinpointDestination != null)
+        'PinpointDestination': pinpointDestination,
+      if (snsDestination != null) 'SnsDestination': snsDestination,
+    };
+  }
 }
 
 /// An object that defines the event destination. Specifically, it defines which
@@ -2795,6 +2985,7 @@ class EventDestinationDefinition {
     this.pinpointDestination,
     this.snsDestination,
   });
+
   Map<String, dynamic> toJson() {
     final cloudWatchDestination = this.cloudWatchDestination;
     final enabled = this.enabled;
@@ -2949,6 +3140,23 @@ class GetAccountResponse {
       sendingEnabled: json['SendingEnabled'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dedicatedIpAutoWarmupEnabled = this.dedicatedIpAutoWarmupEnabled;
+    final enforcementStatus = this.enforcementStatus;
+    final productionAccessEnabled = this.productionAccessEnabled;
+    final sendQuota = this.sendQuota;
+    final sendingEnabled = this.sendingEnabled;
+    return {
+      if (dedicatedIpAutoWarmupEnabled != null)
+        'DedicatedIpAutoWarmupEnabled': dedicatedIpAutoWarmupEnabled,
+      if (enforcementStatus != null) 'EnforcementStatus': enforcementStatus,
+      if (productionAccessEnabled != null)
+        'ProductionAccessEnabled': productionAccessEnabled,
+      if (sendQuota != null) 'SendQuota': sendQuota,
+      if (sendingEnabled != null) 'SendingEnabled': sendingEnabled,
+    };
+  }
 }
 
 /// An object that contains information about blacklist events.
@@ -2972,6 +3180,13 @@ class GetBlacklistReportsResponse {
                   .toList())),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blacklistReport = this.blacklistReport;
+    return {
+      'BlacklistReport': blacklistReport,
+    };
+  }
 }
 
 /// Information about an event destination for a configuration set.
@@ -2991,6 +3206,13 @@ class GetConfigurationSetEventDestinationsResponse {
           .map((e) => EventDestination.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final eventDestinations = this.eventDestinations;
+    return {
+      if (eventDestinations != null) 'EventDestinations': eventDestinations,
+    };
   }
 }
 
@@ -3052,6 +3274,24 @@ class GetConfigurationSetResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSetName = this.configurationSetName;
+    final deliveryOptions = this.deliveryOptions;
+    final reputationOptions = this.reputationOptions;
+    final sendingOptions = this.sendingOptions;
+    final tags = this.tags;
+    final trackingOptions = this.trackingOptions;
+    return {
+      if (configurationSetName != null)
+        'ConfigurationSetName': configurationSetName,
+      if (deliveryOptions != null) 'DeliveryOptions': deliveryOptions,
+      if (reputationOptions != null) 'ReputationOptions': reputationOptions,
+      if (sendingOptions != null) 'SendingOptions': sendingOptions,
+      if (tags != null) 'Tags': tags,
+      if (trackingOptions != null) 'TrackingOptions': trackingOptions,
+    };
+  }
 }
 
 /// Information about a dedicated IP address.
@@ -3068,6 +3308,13 @@ class GetDedicatedIpResponse {
           ? DedicatedIp.fromJson(json['DedicatedIp'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dedicatedIp = this.dedicatedIp;
+    return {
+      if (dedicatedIp != null) 'DedicatedIp': dedicatedIp,
+    };
   }
 }
 
@@ -3096,6 +3343,15 @@ class GetDedicatedIpsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dedicatedIps = this.dedicatedIps;
+    final nextToken = this.nextToken;
+    return {
+      if (dedicatedIps != null) 'DedicatedIps': dedicatedIps,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3157,6 +3413,26 @@ class GetDeliverabilityDashboardOptionsResponse {
       subscriptionExpiryDate: timeStampFromJson(json['SubscriptionExpiryDate']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dashboardEnabled = this.dashboardEnabled;
+    final accountStatus = this.accountStatus;
+    final activeSubscribedDomains = this.activeSubscribedDomains;
+    final pendingExpirationSubscribedDomains =
+        this.pendingExpirationSubscribedDomains;
+    final subscriptionExpiryDate = this.subscriptionExpiryDate;
+    return {
+      'DashboardEnabled': dashboardEnabled,
+      if (accountStatus != null) 'AccountStatus': accountStatus.toValue(),
+      if (activeSubscribedDomains != null)
+        'ActiveSubscribedDomains': activeSubscribedDomains,
+      if (pendingExpirationSubscribedDomains != null)
+        'PendingExpirationSubscribedDomains':
+            pendingExpirationSubscribedDomains,
+      if (subscriptionExpiryDate != null)
+        'SubscriptionExpiryDate': unixTimestampToJson(subscriptionExpiryDate),
+    };
+  }
 }
 
 /// The results of the predictive inbox placement test.
@@ -3206,6 +3482,21 @@ class GetDeliverabilityTestReportResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deliverabilityTestReport = this.deliverabilityTestReport;
+    final ispPlacements = this.ispPlacements;
+    final overallPlacement = this.overallPlacement;
+    final message = this.message;
+    final tags = this.tags;
+    return {
+      'DeliverabilityTestReport': deliverabilityTestReport,
+      'IspPlacements': ispPlacements,
+      'OverallPlacement': overallPlacement,
+      if (message != null) 'Message': message,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// An object that contains all the deliverability data for a specific campaign.
@@ -3225,6 +3516,13 @@ class GetDomainDeliverabilityCampaignResponse {
       domainDeliverabilityCampaign: DomainDeliverabilityCampaign.fromJson(
           json['DomainDeliverabilityCampaign'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainDeliverabilityCampaign = this.domainDeliverabilityCampaign;
+    return {
+      'DomainDeliverabilityCampaign': domainDeliverabilityCampaign,
+    };
   }
 }
 
@@ -3255,6 +3553,15 @@ class GetDomainStatisticsReportResponse {
       overallVolume:
           OverallVolume.fromJson(json['OverallVolume'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dailyVolumes = this.dailyVolumes;
+    final overallVolume = this.overallVolume;
+    return {
+      'DailyVolumes': dailyVolumes,
+      'OverallVolume': overallVolume,
+    };
   }
 }
 
@@ -3325,6 +3632,25 @@ class GetEmailIdentityResponse {
       verifiedForSendingStatus: json['VerifiedForSendingStatus'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dkimAttributes = this.dkimAttributes;
+    final feedbackForwardingStatus = this.feedbackForwardingStatus;
+    final identityType = this.identityType;
+    final mailFromAttributes = this.mailFromAttributes;
+    final tags = this.tags;
+    final verifiedForSendingStatus = this.verifiedForSendingStatus;
+    return {
+      if (dkimAttributes != null) 'DkimAttributes': dkimAttributes,
+      if (feedbackForwardingStatus != null)
+        'FeedbackForwardingStatus': feedbackForwardingStatus,
+      if (identityType != null) 'IdentityType': identityType.toValue(),
+      if (mailFromAttributes != null) 'MailFromAttributes': mailFromAttributes,
+      if (tags != null) 'Tags': tags,
+      if (verifiedForSendingStatus != null)
+        'VerifiedForSendingStatus': verifiedForSendingStatus,
+    };
+  }
 }
 
 /// Information about an email identity.
@@ -3367,6 +3693,17 @@ class IdentityInfo {
       identityType: (json['IdentityType'] as String?)?.toIdentityType(),
       sendingEnabled: json['SendingEnabled'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final identityName = this.identityName;
+    final identityType = this.identityType;
+    final sendingEnabled = this.sendingEnabled;
+    return {
+      if (identityName != null) 'IdentityName': identityName,
+      if (identityType != null) 'IdentityType': identityType.toValue(),
+      if (sendingEnabled != null) 'SendingEnabled': sendingEnabled,
+    };
   }
 }
 
@@ -3472,6 +3809,16 @@ class IspPlacement {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ispName = this.ispName;
+    final placementStatistics = this.placementStatistics;
+    return {
+      if (ispName != null) 'IspName': ispName,
+      if (placementStatistics != null)
+        'PlacementStatistics': placementStatistics,
+    };
+  }
 }
 
 /// An object that defines an Amazon Kinesis Data Firehose destination for email
@@ -3533,6 +3880,15 @@ class ListConfigurationSetsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationSets = this.configurationSets;
+    final nextToken = this.nextToken;
+    return {
+      if (configurationSets != null) 'ConfigurationSets': configurationSets,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// A list of dedicated IP pools.
@@ -3559,6 +3915,15 @@ class ListDedicatedIpPoolsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dedicatedIpPools = this.dedicatedIpPools;
+    final nextToken = this.nextToken;
+    return {
+      if (dedicatedIpPools != null) 'DedicatedIpPools': dedicatedIpPools,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3589,6 +3954,15 @@ class ListDeliverabilityTestReportsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deliverabilityTestReports = this.deliverabilityTestReports;
+    final nextToken = this.nextToken;
+    return {
+      'DeliverabilityTestReports': deliverabilityTestReports,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3623,6 +3997,15 @@ class ListDomainDeliverabilityCampaignsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final domainDeliverabilityCampaigns = this.domainDeliverabilityCampaigns;
+    final nextToken = this.nextToken;
+    return {
+      'DomainDeliverabilityCampaigns': domainDeliverabilityCampaigns,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// A list of all of the identities that you've attempted to verify for use with
@@ -3652,6 +4035,15 @@ class ListEmailIdentitiesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final emailIdentities = this.emailIdentities;
+    final nextToken = this.nextToken;
+    return {
+      if (emailIdentities != null) 'EmailIdentities': emailIdentities,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3670,6 +4062,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      'Tags': tags,
+    };
   }
 }
 
@@ -3727,6 +4126,17 @@ class MailFromAttributes {
       mailFromDomainStatus:
           (json['MailFromDomainStatus'] as String).toMailFromDomainStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final behaviorOnMxFailure = this.behaviorOnMxFailure;
+    final mailFromDomain = this.mailFromDomain;
+    final mailFromDomainStatus = this.mailFromDomainStatus;
+    return {
+      'BehaviorOnMxFailure': behaviorOnMxFailure.toValue(),
+      'MailFromDomain': mailFromDomain,
+      'MailFromDomainStatus': mailFromDomainStatus.toValue(),
+    };
   }
 }
 
@@ -3806,6 +4216,7 @@ class Message {
     required this.body,
     required this.subject,
   });
+
   Map<String, dynamic> toJson() {
     final body = this.body;
     final subject = this.subject;
@@ -3851,6 +4262,7 @@ class MessageTag {
     required this.name,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -3893,6 +4305,18 @@ class OverallVolume {
               json['VolumeStatistics'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final domainIspPlacements = this.domainIspPlacements;
+    final readRatePercent = this.readRatePercent;
+    final volumeStatistics = this.volumeStatistics;
+    return {
+      if (domainIspPlacements != null)
+        'DomainIspPlacements': domainIspPlacements,
+      if (readRatePercent != null) 'ReadRatePercent': readRatePercent,
+      if (volumeStatistics != null) 'VolumeStatistics': volumeStatistics,
+    };
   }
 }
 
@@ -3960,6 +4384,21 @@ class PlacementStatistics {
       spfPercentage: json['SpfPercentage'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dkimPercentage = this.dkimPercentage;
+    final inboxPercentage = this.inboxPercentage;
+    final missingPercentage = this.missingPercentage;
+    final spamPercentage = this.spamPercentage;
+    final spfPercentage = this.spfPercentage;
+    return {
+      if (dkimPercentage != null) 'DkimPercentage': dkimPercentage,
+      if (inboxPercentage != null) 'InboxPercentage': inboxPercentage,
+      if (missingPercentage != null) 'MissingPercentage': missingPercentage,
+      if (spamPercentage != null) 'SpamPercentage': spamPercentage,
+      if (spfPercentage != null) 'SpfPercentage': spfPercentage,
+    };
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -3970,6 +4409,10 @@ class PutAccountDedicatedIpWarmupAttributesResponse {
       Map<String, dynamic> _) {
     return PutAccountDedicatedIpWarmupAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -3978,6 +4421,10 @@ class PutAccountSendingAttributesResponse {
   PutAccountSendingAttributesResponse();
   factory PutAccountSendingAttributesResponse.fromJson(Map<String, dynamic> _) {
     return PutAccountSendingAttributesResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3989,6 +4436,10 @@ class PutConfigurationSetDeliveryOptionsResponse {
       Map<String, dynamic> _) {
     return PutConfigurationSetDeliveryOptionsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -3998,6 +4449,10 @@ class PutConfigurationSetReputationOptionsResponse {
   factory PutConfigurationSetReputationOptionsResponse.fromJson(
       Map<String, dynamic> _) {
     return PutConfigurationSetReputationOptionsResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4009,6 +4464,10 @@ class PutConfigurationSetSendingOptionsResponse {
       Map<String, dynamic> _) {
     return PutConfigurationSetSendingOptionsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -4019,6 +4478,10 @@ class PutConfigurationSetTrackingOptionsResponse {
       Map<String, dynamic> _) {
     return PutConfigurationSetTrackingOptionsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -4027,6 +4490,10 @@ class PutDedicatedIpInPoolResponse {
   PutDedicatedIpInPoolResponse();
   factory PutDedicatedIpInPoolResponse.fromJson(Map<String, dynamic> _) {
     return PutDedicatedIpInPoolResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4038,6 +4505,10 @@ class PutDedicatedIpWarmupAttributesResponse {
       Map<String, dynamic> _) {
     return PutDedicatedIpWarmupAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// A response that indicates whether the Deliverability dashboard is enabled
@@ -4047,6 +4518,10 @@ class PutDeliverabilityDashboardOptionResponse {
   factory PutDeliverabilityDashboardOptionResponse.fromJson(
       Map<String, dynamic> _) {
     return PutDeliverabilityDashboardOptionResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4058,6 +4533,10 @@ class PutEmailIdentityDkimAttributesResponse {
       Map<String, dynamic> _) {
     return PutEmailIdentityDkimAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -4068,6 +4547,10 @@ class PutEmailIdentityFeedbackAttributesResponse {
       Map<String, dynamic> _) {
     return PutEmailIdentityFeedbackAttributesResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -4077,6 +4560,10 @@ class PutEmailIdentityMailFromAttributesResponse {
   factory PutEmailIdentityMailFromAttributesResponse.fromJson(
       Map<String, dynamic> _) {
     return PutEmailIdentityMailFromAttributesResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4116,6 +4603,7 @@ class RawMessage {
   RawMessage({
     required this.data,
   });
+
   Map<String, dynamic> toJson() {
     final data = this.data;
     return {
@@ -4181,6 +4669,13 @@ class SendEmailResponse {
       messageId: json['MessageId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final messageId = this.messageId;
+    return {
+      if (messageId != null) 'MessageId': messageId,
+    };
+  }
 }
 
 /// An object that contains information about the per-day and per-second sending
@@ -4210,6 +4705,17 @@ class SendQuota {
       maxSendRate: json['MaxSendRate'] as double?,
       sentLast24Hours: json['SentLast24Hours'] as double?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final max24HourSend = this.max24HourSend;
+    final maxSendRate = this.maxSendRate;
+    final sentLast24Hours = this.sentLast24Hours;
+    return {
+      if (max24HourSend != null) 'Max24HourSend': max24HourSend,
+      if (maxSendRate != null) 'MaxSendRate': maxSendRate,
+      if (sentLast24Hours != null) 'SentLast24Hours': sentLast24Hours,
+    };
   }
 }
 
@@ -4337,6 +4843,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class Template {
@@ -4353,6 +4863,7 @@ class Template {
     this.templateArn,
     this.templateData,
   });
+
   Map<String, dynamic> toJson() {
     final templateArn = this.templateArn;
     final templateData = this.templateData;
@@ -4431,6 +4942,10 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// An HTTP 200 response if the request succeeds, or an error message if the
@@ -4440,6 +4955,10 @@ class UpdateConfigurationSetEventDestinationResponse {
   factory UpdateConfigurationSetEventDestinationResponse.fromJson(
       Map<String, dynamic> _) {
     return UpdateConfigurationSetEventDestinationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4474,6 +4993,19 @@ class VolumeStatistics {
       projectedSpam: json['ProjectedSpam'] as int?,
       spamRawCount: json['SpamRawCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final inboxRawCount = this.inboxRawCount;
+    final projectedInbox = this.projectedInbox;
+    final projectedSpam = this.projectedSpam;
+    final spamRawCount = this.spamRawCount;
+    return {
+      if (inboxRawCount != null) 'InboxRawCount': inboxRawCount,
+      if (projectedInbox != null) 'ProjectedInbox': projectedInbox,
+      if (projectedSpam != null) 'ProjectedSpam': projectedSpam,
+      if (spamRawCount != null) 'SpamRawCount': spamRawCount,
+    };
   }
 }
 

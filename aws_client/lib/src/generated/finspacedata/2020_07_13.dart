@@ -1686,6 +1686,11 @@ class AssociateUserToPermissionGroupResponse {
       statusCode: json['statusCode'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final statusCode = this.statusCode;
+    return {};
+  }
 }
 
 /// The credentials required to access the external Dataview from the S3
@@ -1716,6 +1721,19 @@ class AwsCredentials {
       secretAccessKey: json['secretAccessKey'] as String?,
       sessionToken: json['sessionToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final expiration = this.expiration;
+    final secretAccessKey = this.secretAccessKey;
+    final sessionToken = this.sessionToken;
+    return {
+      if (accessKeyId != null) 'accessKeyId': accessKeyId,
+      if (expiration != null) 'expiration': expiration,
+      if (secretAccessKey != null) 'secretAccessKey': secretAccessKey,
+      if (sessionToken != null) 'sessionToken': sessionToken,
+    };
   }
 }
 
@@ -1802,6 +1820,15 @@ class ChangesetErrorInfo {
       errorCategory: (json['errorCategory'] as String?)?.toErrorCategory(),
       errorMessage: json['errorMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCategory = this.errorCategory;
+    final errorMessage = this.errorMessage;
+    return {
+      if (errorCategory != null) 'errorCategory': errorCategory.toValue(),
+      if (errorMessage != null) 'errorMessage': errorMessage,
+    };
   }
 }
 
@@ -1922,6 +1949,40 @@ class ChangesetSummary {
       updatedByChangesetId: json['updatedByChangesetId'] as String?,
       updatesChangesetId: json['updatesChangesetId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final activeFromTimestamp = this.activeFromTimestamp;
+    final activeUntilTimestamp = this.activeUntilTimestamp;
+    final changeType = this.changeType;
+    final changesetArn = this.changesetArn;
+    final changesetId = this.changesetId;
+    final createTime = this.createTime;
+    final datasetId = this.datasetId;
+    final errorInfo = this.errorInfo;
+    final formatParams = this.formatParams;
+    final sourceParams = this.sourceParams;
+    final status = this.status;
+    final updatedByChangesetId = this.updatedByChangesetId;
+    final updatesChangesetId = this.updatesChangesetId;
+    return {
+      if (activeFromTimestamp != null)
+        'activeFromTimestamp': activeFromTimestamp,
+      if (activeUntilTimestamp != null)
+        'activeUntilTimestamp': activeUntilTimestamp,
+      if (changeType != null) 'changeType': changeType.toValue(),
+      if (changesetArn != null) 'changesetArn': changesetArn,
+      if (changesetId != null) 'changesetId': changesetId,
+      if (createTime != null) 'createTime': createTime,
+      if (datasetId != null) 'datasetId': datasetId,
+      if (errorInfo != null) 'errorInfo': errorInfo,
+      if (formatParams != null) 'formatParams': formatParams,
+      if (sourceParams != null) 'sourceParams': sourceParams,
+      if (status != null) 'status': status.toValue(),
+      if (updatedByChangesetId != null)
+        'updatedByChangesetId': updatedByChangesetId,
+      if (updatesChangesetId != null) 'updatesChangesetId': updatesChangesetId,
+    };
   }
 }
 
@@ -2087,6 +2148,15 @@ class CreateChangesetResponse {
       datasetId: json['datasetId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changesetId = this.changesetId;
+    final datasetId = this.datasetId;
+    return {
+      if (changesetId != null) 'changesetId': changesetId,
+      if (datasetId != null) 'datasetId': datasetId,
+    };
+  }
 }
 
 /// Response for creating a data view.
@@ -2107,6 +2177,15 @@ class CreateDataViewResponse {
       datasetId: json['datasetId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataViewId = this.dataViewId;
+    final datasetId = this.datasetId;
+    return {
+      if (dataViewId != null) 'dataViewId': dataViewId,
+      if (datasetId != null) 'datasetId': datasetId,
+    };
+  }
 }
 
 /// The response from a CreateDataset operation
@@ -2122,6 +2201,13 @@ class CreateDatasetResponse {
       datasetId: json['datasetId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetId = this.datasetId;
+    return {
+      if (datasetId != null) 'datasetId': datasetId,
+    };
+  }
 }
 
 class CreatePermissionGroupResponse {
@@ -2136,6 +2222,13 @@ class CreatePermissionGroupResponse {
       permissionGroupId: json['permissionGroupId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final permissionGroupId = this.permissionGroupId;
+    return {
+      if (permissionGroupId != null) 'permissionGroupId': permissionGroupId,
+    };
+  }
 }
 
 class CreateUserResponse {
@@ -2149,6 +2242,13 @@ class CreateUserResponse {
     return CreateUserResponse(
       userId: json['userId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userId = this.userId;
+    return {
+      if (userId != null) 'userId': userId,
+    };
   }
 }
 
@@ -2174,6 +2274,17 @@ class Credentials {
       secretAccessKey: json['secretAccessKey'] as String?,
       sessionToken: json['sessionToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final secretAccessKey = this.secretAccessKey;
+    final sessionToken = this.sessionToken;
+    return {
+      if (accessKeyId != null) 'accessKeyId': accessKeyId,
+      if (secretAccessKey != null) 'secretAccessKey': secretAccessKey,
+      if (sessionToken != null) 'sessionToken': sessionToken,
+    };
   }
 }
 
@@ -2295,6 +2406,15 @@ class DataViewErrorInfo {
       errorCategory: (json['errorCategory'] as String?)?.toErrorCategory(),
       errorMessage: json['errorMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCategory = this.errorCategory;
+    final errorMessage = this.errorMessage;
+    return {
+      if (errorCategory != null) 'errorCategory': errorCategory.toValue(),
+      if (errorMessage != null) 'errorMessage': errorMessage,
+    };
   }
 }
 
@@ -2471,6 +2591,36 @@ class DataViewSummary {
       status: (json['status'] as String?)?.toDataViewStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final asOfTimestamp = this.asOfTimestamp;
+    final autoUpdate = this.autoUpdate;
+    final createTime = this.createTime;
+    final dataViewArn = this.dataViewArn;
+    final dataViewId = this.dataViewId;
+    final datasetId = this.datasetId;
+    final destinationTypeProperties = this.destinationTypeProperties;
+    final errorInfo = this.errorInfo;
+    final lastModifiedTime = this.lastModifiedTime;
+    final partitionColumns = this.partitionColumns;
+    final sortColumns = this.sortColumns;
+    final status = this.status;
+    return {
+      if (asOfTimestamp != null) 'asOfTimestamp': asOfTimestamp,
+      if (autoUpdate != null) 'autoUpdate': autoUpdate,
+      if (createTime != null) 'createTime': createTime,
+      if (dataViewArn != null) 'dataViewArn': dataViewArn,
+      if (dataViewId != null) 'dataViewId': dataViewId,
+      if (datasetId != null) 'datasetId': datasetId,
+      if (destinationTypeProperties != null)
+        'destinationTypeProperties': destinationTypeProperties,
+      if (errorInfo != null) 'errorInfo': errorInfo,
+      if (lastModifiedTime != null) 'lastModifiedTime': lastModifiedTime,
+      if (partitionColumns != null) 'partitionColumns': partitionColumns,
+      if (sortColumns != null) 'sortColumns': sortColumns,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// The structure for a Dataset.
@@ -2548,6 +2698,31 @@ class Dataset {
               json['schemaDefinition'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final alias = this.alias;
+    final createTime = this.createTime;
+    final datasetArn = this.datasetArn;
+    final datasetDescription = this.datasetDescription;
+    final datasetId = this.datasetId;
+    final datasetTitle = this.datasetTitle;
+    final kind = this.kind;
+    final lastModifiedTime = this.lastModifiedTime;
+    final ownerInfo = this.ownerInfo;
+    final schemaDefinition = this.schemaDefinition;
+    return {
+      if (alias != null) 'alias': alias,
+      if (createTime != null) 'createTime': createTime,
+      if (datasetArn != null) 'datasetArn': datasetArn,
+      if (datasetDescription != null) 'datasetDescription': datasetDescription,
+      if (datasetId != null) 'datasetId': datasetId,
+      if (datasetTitle != null) 'datasetTitle': datasetTitle,
+      if (kind != null) 'kind': kind.toValue(),
+      if (lastModifiedTime != null) 'lastModifiedTime': lastModifiedTime,
+      if (ownerInfo != null) 'ownerInfo': ownerInfo,
+      if (schemaDefinition != null) 'schemaDefinition': schemaDefinition,
+    };
   }
 }
 
@@ -2668,6 +2843,13 @@ class DeleteDatasetResponse {
       datasetId: json['datasetId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetId = this.datasetId;
+    return {
+      if (datasetId != null) 'datasetId': datasetId,
+    };
+  }
 }
 
 class DeletePermissionGroupResponse {
@@ -2682,6 +2864,13 @@ class DeletePermissionGroupResponse {
       permissionGroupId: json['permissionGroupId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final permissionGroupId = this.permissionGroupId;
+    return {
+      if (permissionGroupId != null) 'permissionGroupId': permissionGroupId,
+    };
+  }
 }
 
 class DisableUserResponse {
@@ -2695,6 +2884,13 @@ class DisableUserResponse {
     return DisableUserResponse(
       userId: json['userId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userId = this.userId;
+    return {
+      if (userId != null) 'userId': userId,
+    };
   }
 }
 
@@ -2711,6 +2907,11 @@ class DisassociateUserFromPermissionGroupResponse {
       statusCode: json['statusCode'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final statusCode = this.statusCode;
+    return {};
+  }
 }
 
 class EnableUserResponse {
@@ -2724,6 +2925,13 @@ class EnableUserResponse {
     return EnableUserResponse(
       userId: json['userId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userId = this.userId;
+    return {
+      if (userId != null) 'userId': userId,
+    };
   }
 }
 
@@ -2915,6 +3123,40 @@ class GetChangesetResponse {
       updatesChangesetId: json['updatesChangesetId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final activeFromTimestamp = this.activeFromTimestamp;
+    final activeUntilTimestamp = this.activeUntilTimestamp;
+    final changeType = this.changeType;
+    final changesetArn = this.changesetArn;
+    final changesetId = this.changesetId;
+    final createTime = this.createTime;
+    final datasetId = this.datasetId;
+    final errorInfo = this.errorInfo;
+    final formatParams = this.formatParams;
+    final sourceParams = this.sourceParams;
+    final status = this.status;
+    final updatedByChangesetId = this.updatedByChangesetId;
+    final updatesChangesetId = this.updatesChangesetId;
+    return {
+      if (activeFromTimestamp != null)
+        'activeFromTimestamp': activeFromTimestamp,
+      if (activeUntilTimestamp != null)
+        'activeUntilTimestamp': activeUntilTimestamp,
+      if (changeType != null) 'changeType': changeType.toValue(),
+      if (changesetArn != null) 'changesetArn': changesetArn,
+      if (changesetId != null) 'changesetId': changesetId,
+      if (createTime != null) 'createTime': createTime,
+      if (datasetId != null) 'datasetId': datasetId,
+      if (errorInfo != null) 'errorInfo': errorInfo,
+      if (formatParams != null) 'formatParams': formatParams,
+      if (sourceParams != null) 'sourceParams': sourceParams,
+      if (status != null) 'status': status.toValue(),
+      if (updatedByChangesetId != null)
+        'updatedByChangesetId': updatedByChangesetId,
+      if (updatesChangesetId != null) 'updatesChangesetId': updatesChangesetId,
+    };
+  }
 }
 
 /// Response from retrieving a dataview, which includes details on the target
@@ -3032,6 +3274,36 @@ class GetDataViewResponse {
       status: (json['status'] as String?)?.toDataViewStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final asOfTimestamp = this.asOfTimestamp;
+    final autoUpdate = this.autoUpdate;
+    final createTime = this.createTime;
+    final dataViewArn = this.dataViewArn;
+    final dataViewId = this.dataViewId;
+    final datasetId = this.datasetId;
+    final destinationTypeParams = this.destinationTypeParams;
+    final errorInfo = this.errorInfo;
+    final lastModifiedTime = this.lastModifiedTime;
+    final partitionColumns = this.partitionColumns;
+    final sortColumns = this.sortColumns;
+    final status = this.status;
+    return {
+      if (asOfTimestamp != null) 'asOfTimestamp': asOfTimestamp,
+      if (autoUpdate != null) 'autoUpdate': autoUpdate,
+      if (createTime != null) 'createTime': createTime,
+      if (dataViewArn != null) 'dataViewArn': dataViewArn,
+      if (dataViewId != null) 'dataViewId': dataViewId,
+      if (datasetId != null) 'datasetId': datasetId,
+      if (destinationTypeParams != null)
+        'destinationTypeParams': destinationTypeParams,
+      if (errorInfo != null) 'errorInfo': errorInfo,
+      if (lastModifiedTime != null) 'lastModifiedTime': lastModifiedTime,
+      if (partitionColumns != null) 'partitionColumns': partitionColumns,
+      if (sortColumns != null) 'sortColumns': sortColumns,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Response for the GetDataset operation
@@ -3123,6 +3395,31 @@ class GetDatasetResponse {
       status: (json['status'] as String?)?.toDatasetStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final alias = this.alias;
+    final createTime = this.createTime;
+    final datasetArn = this.datasetArn;
+    final datasetDescription = this.datasetDescription;
+    final datasetId = this.datasetId;
+    final datasetTitle = this.datasetTitle;
+    final kind = this.kind;
+    final lastModifiedTime = this.lastModifiedTime;
+    final schemaDefinition = this.schemaDefinition;
+    final status = this.status;
+    return {
+      if (alias != null) 'alias': alias,
+      if (createTime != null) 'createTime': createTime,
+      if (datasetArn != null) 'datasetArn': datasetArn,
+      if (datasetDescription != null) 'datasetDescription': datasetDescription,
+      if (datasetId != null) 'datasetId': datasetId,
+      if (datasetTitle != null) 'datasetTitle': datasetTitle,
+      if (kind != null) 'kind': kind.toValue(),
+      if (lastModifiedTime != null) 'lastModifiedTime': lastModifiedTime,
+      if (schemaDefinition != null) 'schemaDefinition': schemaDefinition,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class GetExternalDataViewAccessDetailsResponse {
@@ -3148,6 +3445,15 @@ class GetExternalDataViewAccessDetailsResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final credentials = this.credentials;
+    final s3Location = this.s3Location;
+    return {
+      if (credentials != null) 'credentials': credentials,
+      if (s3Location != null) 's3Location': s3Location,
+    };
+  }
 }
 
 class GetPermissionGroupResponse {
@@ -3163,6 +3469,13 @@ class GetPermissionGroupResponse {
               json['permissionGroup'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final permissionGroup = this.permissionGroup;
+    return {
+      if (permissionGroup != null) 'permissionGroup': permissionGroup,
+    };
   }
 }
 
@@ -3186,6 +3499,15 @@ class GetProgrammaticAccessCredentialsResponse {
           : null,
       durationInMinutes: json['durationInMinutes'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final credentials = this.credentials;
+    final durationInMinutes = this.durationInMinutes;
+    return {
+      if (credentials != null) 'credentials': credentials,
+      if (durationInMinutes != null) 'durationInMinutes': durationInMinutes,
+    };
   }
 }
 
@@ -3305,6 +3627,38 @@ class GetUserResponse {
       userId: json['userId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiAccess = this.apiAccess;
+    final apiAccessPrincipalArn = this.apiAccessPrincipalArn;
+    final createTime = this.createTime;
+    final emailAddress = this.emailAddress;
+    final firstName = this.firstName;
+    final lastDisabledTime = this.lastDisabledTime;
+    final lastEnabledTime = this.lastEnabledTime;
+    final lastLoginTime = this.lastLoginTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final lastName = this.lastName;
+    final status = this.status;
+    final type = this.type;
+    final userId = this.userId;
+    return {
+      if (apiAccess != null) 'apiAccess': apiAccess.toValue(),
+      if (apiAccessPrincipalArn != null)
+        'apiAccessPrincipalArn': apiAccessPrincipalArn,
+      if (createTime != null) 'createTime': createTime,
+      if (emailAddress != null) 'emailAddress': emailAddress,
+      if (firstName != null) 'firstName': firstName,
+      if (lastDisabledTime != null) 'lastDisabledTime': lastDisabledTime,
+      if (lastEnabledTime != null) 'lastEnabledTime': lastEnabledTime,
+      if (lastLoginTime != null) 'lastLoginTime': lastLoginTime,
+      if (lastModifiedTime != null) 'lastModifiedTime': lastModifiedTime,
+      if (lastName != null) 'lastName': lastName,
+      if (status != null) 'status': status.toValue(),
+      if (type != null) 'type': type.toValue(),
+      if (userId != null) 'userId': userId,
+    };
+  }
 }
 
 class GetWorkingLocationResponse {
@@ -3328,6 +3682,17 @@ class GetWorkingLocationResponse {
       s3Path: json['s3Path'] as String?,
       s3Uri: json['s3Uri'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final s3Bucket = this.s3Bucket;
+    final s3Path = this.s3Path;
+    final s3Uri = this.s3Uri;
+    return {
+      if (s3Bucket != null) 's3Bucket': s3Bucket,
+      if (s3Path != null) 's3Path': s3Path,
+      if (s3Uri != null) 's3Uri': s3Uri,
+    };
   }
 }
 
@@ -3397,6 +3762,15 @@ class ListChangesetsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changesets = this.changesets;
+    final nextToken = this.nextToken;
+    return {
+      if (changesets != null) 'changesets': changesets,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDataViewsResponse {
@@ -3418,6 +3792,15 @@ class ListDataViewsResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final dataViews = this.dataViews;
+    final nextToken = this.nextToken;
+    return {
+      if (dataViews != null) 'dataViews': dataViews,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -3442,6 +3825,15 @@ class ListDatasetsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasets = this.datasets;
+    final nextToken = this.nextToken;
+    return {
+      if (datasets != null) 'datasets': datasets,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListPermissionGroupsByUserResponse {
@@ -3465,6 +3857,15 @@ class ListPermissionGroupsByUserResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final permissionGroups = this.permissionGroups;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (permissionGroups != null) 'permissionGroups': permissionGroups,
+    };
+  }
 }
 
 class ListPermissionGroupsResponse {
@@ -3486,6 +3887,15 @@ class ListPermissionGroupsResponse {
           .map((e) => PermissionGroup.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final permissionGroups = this.permissionGroups;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (permissionGroups != null) 'permissionGroups': permissionGroups,
+    };
   }
 }
 
@@ -3510,6 +3920,15 @@ class ListUsersByPermissionGroupResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final users = this.users;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (users != null) 'users': users,
+    };
+  }
 }
 
 class ListUsersResponse {
@@ -3531,6 +3950,15 @@ class ListUsersResponse {
           .map((e) => User.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final users = this.users;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (users != null) 'users': users,
+    };
   }
 }
 
@@ -3634,6 +4062,28 @@ class PermissionGroup {
       permissionGroupId: json['permissionGroupId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationPermissions = this.applicationPermissions;
+    final createTime = this.createTime;
+    final description = this.description;
+    final lastModifiedTime = this.lastModifiedTime;
+    final membershipStatus = this.membershipStatus;
+    final name = this.name;
+    final permissionGroupId = this.permissionGroupId;
+    return {
+      if (applicationPermissions != null)
+        'applicationPermissions':
+            applicationPermissions.map((e) => e.toValue()).toList(),
+      if (createTime != null) 'createTime': createTime,
+      if (description != null) 'description': description,
+      if (lastModifiedTime != null) 'lastModifiedTime': lastModifiedTime,
+      if (membershipStatus != null)
+        'membershipStatus': membershipStatus.toValue(),
+      if (name != null) 'name': name,
+      if (permissionGroupId != null) 'permissionGroupId': permissionGroupId,
+    };
+  }
 }
 
 /// The structure of a permission group associated with a user account.
@@ -3674,6 +4124,18 @@ class PermissionGroupByUser {
       name: json['name'] as String?,
       permissionGroupId: json['permissionGroupId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final membershipStatus = this.membershipStatus;
+    final name = this.name;
+    final permissionGroupId = this.permissionGroupId;
+    return {
+      if (membershipStatus != null)
+        'membershipStatus': membershipStatus.toValue(),
+      if (name != null) 'name': name,
+      if (permissionGroupId != null) 'permissionGroupId': permissionGroupId,
+    };
   }
 }
 
@@ -3732,6 +4194,7 @@ class PermissionGroupParams {
     this.datasetPermissions,
     this.permissionGroupId,
   });
+
   Map<String, dynamic> toJson() {
     final datasetPermissions = this.datasetPermissions;
     final permissionGroupId = this.permissionGroupId;
@@ -3759,6 +4222,15 @@ class ResetUserPasswordResponse {
       temporaryPassword: json['temporaryPassword'] as String?,
       userId: json['userId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final temporaryPassword = this.temporaryPassword;
+    final userId = this.userId;
+    return {
+      if (temporaryPassword != null) 'temporaryPassword': temporaryPassword,
+      if (userId != null) 'userId': userId,
+    };
   }
 }
 
@@ -3799,6 +4271,7 @@ class ResourcePermission {
   ResourcePermission({
     this.permission,
   });
+
   Map<String, dynamic> toJson() {
     final permission = this.permission;
     return {
@@ -3824,6 +4297,15 @@ class S3Location {
       bucket: json['bucket'] as String,
       key: json['key'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final key = this.key;
+    return {
+      'bucket': bucket,
+      'key': key,
+    };
   }
 }
 
@@ -3907,6 +4389,15 @@ class UpdateChangesetResponse {
       datasetId: json['datasetId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final changesetId = this.changesetId;
+    final datasetId = this.datasetId;
+    return {
+      if (changesetId != null) 'changesetId': changesetId,
+      if (datasetId != null) 'datasetId': datasetId,
+    };
+  }
 }
 
 /// The response from an UpdateDataset operation
@@ -3922,6 +4413,13 @@ class UpdateDatasetResponse {
       datasetId: json['datasetId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetId = this.datasetId;
+    return {
+      if (datasetId != null) 'datasetId': datasetId,
+    };
+  }
 }
 
 class UpdatePermissionGroupResponse {
@@ -3936,6 +4434,13 @@ class UpdatePermissionGroupResponse {
       permissionGroupId: json['permissionGroupId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final permissionGroupId = this.permissionGroupId;
+    return {
+      if (permissionGroupId != null) 'permissionGroupId': permissionGroupId,
+    };
+  }
 }
 
 class UpdateUserResponse {
@@ -3949,6 +4454,13 @@ class UpdateUserResponse {
     return UpdateUserResponse(
       userId: json['userId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final userId = this.userId;
+    return {
+      if (userId != null) 'userId': userId,
+    };
   }
 }
 
@@ -4068,6 +4580,38 @@ class User {
       userId: json['userId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final apiAccess = this.apiAccess;
+    final apiAccessPrincipalArn = this.apiAccessPrincipalArn;
+    final createTime = this.createTime;
+    final emailAddress = this.emailAddress;
+    final firstName = this.firstName;
+    final lastDisabledTime = this.lastDisabledTime;
+    final lastEnabledTime = this.lastEnabledTime;
+    final lastLoginTime = this.lastLoginTime;
+    final lastModifiedTime = this.lastModifiedTime;
+    final lastName = this.lastName;
+    final status = this.status;
+    final type = this.type;
+    final userId = this.userId;
+    return {
+      if (apiAccess != null) 'apiAccess': apiAccess.toValue(),
+      if (apiAccessPrincipalArn != null)
+        'apiAccessPrincipalArn': apiAccessPrincipalArn,
+      if (createTime != null) 'createTime': createTime,
+      if (emailAddress != null) 'emailAddress': emailAddress,
+      if (firstName != null) 'firstName': firstName,
+      if (lastDisabledTime != null) 'lastDisabledTime': lastDisabledTime,
+      if (lastEnabledTime != null) 'lastEnabledTime': lastEnabledTime,
+      if (lastLoginTime != null) 'lastLoginTime': lastLoginTime,
+      if (lastModifiedTime != null) 'lastModifiedTime': lastModifiedTime,
+      if (lastName != null) 'lastName': lastName,
+      if (status != null) 'status': status.toValue(),
+      if (type != null) 'type': type.toValue(),
+      if (userId != null) 'userId': userId,
+    };
+  }
 }
 
 /// The structure of a user account associated with a permission group.
@@ -4172,6 +4716,31 @@ class UserByPermissionGroup {
       type: (json['type'] as String?)?.toUserType(),
       userId: json['userId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final apiAccess = this.apiAccess;
+    final apiAccessPrincipalArn = this.apiAccessPrincipalArn;
+    final emailAddress = this.emailAddress;
+    final firstName = this.firstName;
+    final lastName = this.lastName;
+    final membershipStatus = this.membershipStatus;
+    final status = this.status;
+    final type = this.type;
+    final userId = this.userId;
+    return {
+      if (apiAccess != null) 'apiAccess': apiAccess.toValue(),
+      if (apiAccessPrincipalArn != null)
+        'apiAccessPrincipalArn': apiAccessPrincipalArn,
+      if (emailAddress != null) 'emailAddress': emailAddress,
+      if (firstName != null) 'firstName': firstName,
+      if (lastName != null) 'lastName': lastName,
+      if (membershipStatus != null)
+        'membershipStatus': membershipStatus.toValue(),
+      if (status != null) 'status': status.toValue(),
+      if (type != null) 'type': type.toValue(),
+      if (userId != null) 'userId': userId,
+    };
   }
 }
 

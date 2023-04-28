@@ -630,6 +630,15 @@ class Bucket {
       value: json['value'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final value = this.value;
+    return {
+      if (count != null) 'count': count,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// A container for the calculated facet values and counts.
@@ -647,6 +656,13 @@ class BucketInfo {
           .map((e) => Bucket.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final buckets = this.buckets;
+    return {
+      if (buckets != null) 'buckets': buckets,
+    };
   }
 }
 
@@ -698,6 +714,15 @@ class DocumentServiceException implements _s.AwsException {
       status: json['status'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final status = this.status;
+    return {
+      if (message != null) 'message': message,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// A warning returned by the document service when an issue is discovered while
@@ -713,6 +738,13 @@ class DocumentServiceWarning {
     return DocumentServiceWarning(
       message: json['message'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
   }
 }
 
@@ -792,6 +824,27 @@ class FieldStats {
       sumOfSquares: json['sumOfSquares'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final max = this.max;
+    final mean = this.mean;
+    final min = this.min;
+    final missing = this.missing;
+    final stddev = this.stddev;
+    final sum = this.sum;
+    final sumOfSquares = this.sumOfSquares;
+    return {
+      if (count != null) 'count': count,
+      if (max != null) 'max': max,
+      if (mean != null) 'mean': mean,
+      if (min != null) 'min': min,
+      if (missing != null) 'missing': missing,
+      if (stddev != null) 'stddev': stddev,
+      if (sum != null) 'sum': sum,
+      if (sumOfSquares != null) 'sumOfSquares': sumOfSquares,
+    };
+  }
 }
 
 /// Information about a document that matches the search request.
@@ -824,6 +877,19 @@ class Hit {
           ?.map((k, e) => MapEntry(k, e as String)),
       id: json['id'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exprs = this.exprs;
+    final fields = this.fields;
+    final highlights = this.highlights;
+    final id = this.id;
+    return {
+      if (exprs != null) 'exprs': exprs,
+      if (fields != null) 'fields': fields,
+      if (highlights != null) 'highlights': highlights,
+      if (id != null) 'id': id,
+    };
   }
 }
 
@@ -858,6 +924,19 @@ class Hits {
           .toList(),
       start: json['start'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cursor = this.cursor;
+    final found = this.found;
+    final hit = this.hit;
+    final start = this.start;
+    return {
+      if (cursor != null) 'cursor': cursor,
+      if (found != null) 'found': found,
+      if (hit != null) 'hit': hit,
+      if (start != null) 'start': start,
+    };
   }
 }
 
@@ -913,6 +992,13 @@ class SearchException implements _s.AwsException {
       message: json['message'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// The result of a <code>Search</code> request. Contains the documents that
@@ -951,6 +1037,19 @@ class SearchResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final facets = this.facets;
+    final hits = this.hits;
+    final stats = this.stats;
+    final status = this.status;
+    return {
+      if (facets != null) 'facets': facets,
+      if (hits != null) 'hits': hits,
+      if (stats != null) 'stats': stats,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Contains the resource id (<code>rid</code>) and the time it took to process
@@ -971,6 +1070,15 @@ class SearchStatus {
       rid: json['rid'] as String?,
       timems: json['timems'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rid = this.rid;
+    final timems = this.timems;
+    return {
+      if (rid != null) 'rid': rid,
+      if (timems != null) 'timems': timems,
+    };
   }
 }
 
@@ -1001,6 +1109,17 @@ class SuggestModel {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final found = this.found;
+    final query = this.query;
+    final suggestions = this.suggestions;
+    return {
+      if (found != null) 'found': found,
+      if (query != null) 'query': query,
+      if (suggestions != null) 'suggestions': suggestions,
+    };
+  }
 }
 
 /// Contains the response to a <code>Suggest</code> request.
@@ -1027,6 +1146,15 @@ class SuggestResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final suggest = this.suggest;
+    return {
+      if (status != null) 'status': status,
+      if (suggest != null) 'suggest': suggest,
+    };
+  }
 }
 
 /// Contains the resource id (<code>rid</code>) and the time it took to process
@@ -1047,6 +1175,15 @@ class SuggestStatus {
       rid: json['rid'] as String?,
       timems: json['timems'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rid = this.rid;
+    final timems = this.timems;
+    return {
+      if (rid != null) 'rid': rid,
+      if (timems != null) 'timems': timems,
+    };
   }
 }
 
@@ -1074,6 +1211,17 @@ class SuggestionMatch {
       score: json['score'] as int?,
       suggestion: json['suggestion'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final score = this.score;
+    final suggestion = this.suggestion;
+    return {
+      if (id != null) 'id': id,
+      if (score != null) 'score': score,
+      if (suggestion != null) 'suggestion': suggestion,
+    };
   }
 }
 
@@ -1109,6 +1257,19 @@ class UploadDocumentsResponse {
               (e) => DocumentServiceWarning.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final adds = this.adds;
+    final deletes = this.deletes;
+    final status = this.status;
+    final warnings = this.warnings;
+    return {
+      if (adds != null) 'adds': adds,
+      if (deletes != null) 'deletes': deletes,
+      if (status != null) 'status': status,
+      if (warnings != null) 'warnings': warnings,
+    };
   }
 }
 

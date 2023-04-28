@@ -2044,6 +2044,10 @@ class AddTagsResponse {
   factory AddTagsResponse.fromJson(Map<String, dynamic> _) {
     return AddTagsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Advanced event selectors let you create fine-grained selectors for the
@@ -2398,6 +2402,15 @@ class CancelQueryResponse {
       queryStatus: (json['QueryStatus'] as String).toQueryStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final queryId = this.queryId;
+    final queryStatus = this.queryStatus;
+    return {
+      'QueryId': queryId,
+      'QueryStatus': queryStatus.toValue(),
+    };
+  }
 }
 
 class CreateEventDataStoreResponse {
@@ -2472,6 +2485,38 @@ class CreateEventDataStoreResponse {
           json['TerminationProtectionEnabled'] as bool?,
       updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final advancedEventSelectors = this.advancedEventSelectors;
+    final createdTimestamp = this.createdTimestamp;
+    final eventDataStoreArn = this.eventDataStoreArn;
+    final multiRegionEnabled = this.multiRegionEnabled;
+    final name = this.name;
+    final organizationEnabled = this.organizationEnabled;
+    final retentionPeriod = this.retentionPeriod;
+    final status = this.status;
+    final tagsList = this.tagsList;
+    final terminationProtectionEnabled = this.terminationProtectionEnabled;
+    final updatedTimestamp = this.updatedTimestamp;
+    return {
+      if (advancedEventSelectors != null)
+        'AdvancedEventSelectors': advancedEventSelectors,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (eventDataStoreArn != null) 'EventDataStoreArn': eventDataStoreArn,
+      if (multiRegionEnabled != null) 'MultiRegionEnabled': multiRegionEnabled,
+      if (name != null) 'Name': name,
+      if (organizationEnabled != null)
+        'OrganizationEnabled': organizationEnabled,
+      if (retentionPeriod != null) 'RetentionPeriod': retentionPeriod,
+      if (status != null) 'Status': status.toValue(),
+      if (tagsList != null) 'TagsList': tagsList,
+      if (terminationProtectionEnabled != null)
+        'TerminationProtectionEnabled': terminationProtectionEnabled,
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': unixTimestampToJson(updatedTimestamp),
+    };
   }
 }
 
@@ -2564,6 +2609,42 @@ class CreateTrailResponse {
       snsTopicName: json['SnsTopicName'] as String?,
       trailARN: json['TrailARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsLogGroupArn = this.cloudWatchLogsLogGroupArn;
+    final cloudWatchLogsRoleArn = this.cloudWatchLogsRoleArn;
+    final includeGlobalServiceEvents = this.includeGlobalServiceEvents;
+    final isMultiRegionTrail = this.isMultiRegionTrail;
+    final isOrganizationTrail = this.isOrganizationTrail;
+    final kmsKeyId = this.kmsKeyId;
+    final logFileValidationEnabled = this.logFileValidationEnabled;
+    final name = this.name;
+    final s3BucketName = this.s3BucketName;
+    final s3KeyPrefix = this.s3KeyPrefix;
+    final snsTopicARN = this.snsTopicARN;
+    final snsTopicName = this.snsTopicName;
+    final trailARN = this.trailARN;
+    return {
+      if (cloudWatchLogsLogGroupArn != null)
+        'CloudWatchLogsLogGroupArn': cloudWatchLogsLogGroupArn,
+      if (cloudWatchLogsRoleArn != null)
+        'CloudWatchLogsRoleArn': cloudWatchLogsRoleArn,
+      if (includeGlobalServiceEvents != null)
+        'IncludeGlobalServiceEvents': includeGlobalServiceEvents,
+      if (isMultiRegionTrail != null) 'IsMultiRegionTrail': isMultiRegionTrail,
+      if (isOrganizationTrail != null)
+        'IsOrganizationTrail': isOrganizationTrail,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (logFileValidationEnabled != null)
+        'LogFileValidationEnabled': logFileValidationEnabled,
+      if (name != null) 'Name': name,
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (s3KeyPrefix != null) 'S3KeyPrefix': s3KeyPrefix,
+      if (snsTopicARN != null) 'SnsTopicARN': snsTopicARN,
+      if (snsTopicName != null) 'SnsTopicName': snsTopicName,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
   }
 }
 
@@ -2748,6 +2829,10 @@ class DeleteEventDataStoreResponse {
   factory DeleteEventDataStoreResponse.fromJson(Map<String, dynamic> _) {
     return DeleteEventDataStoreResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Returns the objects or data listed below if successful. Otherwise, returns
@@ -2756,6 +2841,10 @@ class DeleteTrailResponse {
   DeleteTrailResponse();
   factory DeleteTrailResponse.fromJson(Map<String, dynamic> _) {
     return DeleteTrailResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -2798,6 +2887,21 @@ class DescribeQueryResponse {
       queryString: json['QueryString'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorMessage = this.errorMessage;
+    final queryId = this.queryId;
+    final queryStatistics = this.queryStatistics;
+    final queryStatus = this.queryStatus;
+    final queryString = this.queryString;
+    return {
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (queryId != null) 'QueryId': queryId,
+      if (queryStatistics != null) 'QueryStatistics': queryStatistics,
+      if (queryStatus != null) 'QueryStatus': queryStatus.toValue(),
+      if (queryString != null) 'QueryString': queryString,
+    };
+  }
 }
 
 /// Returns the objects or data listed below if successful. Otherwise, returns
@@ -2821,6 +2925,13 @@ class DescribeTrailsResponse {
           .map((e) => Trail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trailList = this.trailList;
+    return {
+      if (trailList != null) 'trailList': trailList,
+    };
   }
 }
 
@@ -2883,6 +2994,29 @@ class Event {
           .toList(),
       username: json['Username'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessKeyId = this.accessKeyId;
+    final cloudTrailEvent = this.cloudTrailEvent;
+    final eventId = this.eventId;
+    final eventName = this.eventName;
+    final eventSource = this.eventSource;
+    final eventTime = this.eventTime;
+    final readOnly = this.readOnly;
+    final resources = this.resources;
+    final username = this.username;
+    return {
+      if (accessKeyId != null) 'AccessKeyId': accessKeyId,
+      if (cloudTrailEvent != null) 'CloudTrailEvent': cloudTrailEvent,
+      if (eventId != null) 'EventId': eventId,
+      if (eventName != null) 'EventName': eventName,
+      if (eventSource != null) 'EventSource': eventSource,
+      if (eventTime != null) 'EventTime': unixTimestampToJson(eventTime),
+      if (readOnly != null) 'ReadOnly': readOnly,
+      if (resources != null) 'Resources': resources,
+      if (username != null) 'Username': username,
+    };
   }
 }
 
@@ -2985,6 +3119,36 @@ class EventDataStore {
           json['TerminationProtectionEnabled'] as bool?,
       updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final advancedEventSelectors = this.advancedEventSelectors;
+    final createdTimestamp = this.createdTimestamp;
+    final eventDataStoreArn = this.eventDataStoreArn;
+    final multiRegionEnabled = this.multiRegionEnabled;
+    final name = this.name;
+    final organizationEnabled = this.organizationEnabled;
+    final retentionPeriod = this.retentionPeriod;
+    final status = this.status;
+    final terminationProtectionEnabled = this.terminationProtectionEnabled;
+    final updatedTimestamp = this.updatedTimestamp;
+    return {
+      if (advancedEventSelectors != null)
+        'AdvancedEventSelectors': advancedEventSelectors,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (eventDataStoreArn != null) 'EventDataStoreArn': eventDataStoreArn,
+      if (multiRegionEnabled != null) 'MultiRegionEnabled': multiRegionEnabled,
+      if (name != null) 'Name': name,
+      if (organizationEnabled != null)
+        'OrganizationEnabled': organizationEnabled,
+      if (retentionPeriod != null) 'RetentionPeriod': retentionPeriod,
+      if (status != null) 'Status': status.toValue(),
+      if (terminationProtectionEnabled != null)
+        'TerminationProtectionEnabled': terminationProtectionEnabled,
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': unixTimestampToJson(updatedTimestamp),
+    };
   }
 }
 
@@ -3184,6 +3348,36 @@ class GetEventDataStoreResponse {
       updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final advancedEventSelectors = this.advancedEventSelectors;
+    final createdTimestamp = this.createdTimestamp;
+    final eventDataStoreArn = this.eventDataStoreArn;
+    final multiRegionEnabled = this.multiRegionEnabled;
+    final name = this.name;
+    final organizationEnabled = this.organizationEnabled;
+    final retentionPeriod = this.retentionPeriod;
+    final status = this.status;
+    final terminationProtectionEnabled = this.terminationProtectionEnabled;
+    final updatedTimestamp = this.updatedTimestamp;
+    return {
+      if (advancedEventSelectors != null)
+        'AdvancedEventSelectors': advancedEventSelectors,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (eventDataStoreArn != null) 'EventDataStoreArn': eventDataStoreArn,
+      if (multiRegionEnabled != null) 'MultiRegionEnabled': multiRegionEnabled,
+      if (name != null) 'Name': name,
+      if (organizationEnabled != null)
+        'OrganizationEnabled': organizationEnabled,
+      if (retentionPeriod != null) 'RetentionPeriod': retentionPeriod,
+      if (status != null) 'Status': status.toValue(),
+      if (terminationProtectionEnabled != null)
+        'TerminationProtectionEnabled': terminationProtectionEnabled,
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': unixTimestampToJson(updatedTimestamp),
+    };
+  }
 }
 
 class GetEventSelectorsResponse {
@@ -3214,6 +3408,18 @@ class GetEventSelectorsResponse {
       trailARN: json['TrailARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final advancedEventSelectors = this.advancedEventSelectors;
+    final eventSelectors = this.eventSelectors;
+    final trailARN = this.trailARN;
+    return {
+      if (advancedEventSelectors != null)
+        'AdvancedEventSelectors': advancedEventSelectors,
+      if (eventSelectors != null) 'EventSelectors': eventSelectors,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
+  }
 }
 
 class GetInsightSelectorsResponse {
@@ -3238,6 +3444,15 @@ class GetInsightSelectorsResponse {
           .toList(),
       trailARN: json['TrailARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final insightSelectors = this.insightSelectors;
+    final trailARN = this.trailARN;
+    return {
+      if (insightSelectors != null) 'InsightSelectors': insightSelectors,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
   }
 }
 
@@ -3285,6 +3500,21 @@ class GetQueryResultsResponse {
       queryStatus: (json['QueryStatus'] as String?)?.toQueryStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorMessage = this.errorMessage;
+    final nextToken = this.nextToken;
+    final queryResultRows = this.queryResultRows;
+    final queryStatistics = this.queryStatistics;
+    final queryStatus = this.queryStatus;
+    return {
+      if (errorMessage != null) 'ErrorMessage': errorMessage,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (queryResultRows != null) 'QueryResultRows': queryResultRows,
+      if (queryStatistics != null) 'QueryStatistics': queryStatistics,
+      if (queryStatus != null) 'QueryStatus': queryStatus.toValue(),
+    };
+  }
 }
 
 class GetTrailResponse {
@@ -3299,6 +3529,13 @@ class GetTrailResponse {
           ? Trail.fromJson(json['Trail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final trail = this.trail;
+    return {
+      if (trail != null) 'Trail': trail,
+    };
   }
 }
 
@@ -3433,6 +3670,65 @@ class GetTrailStatusResponse {
       timeLoggingStopped: json['TimeLoggingStopped'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isLogging = this.isLogging;
+    final latestCloudWatchLogsDeliveryError =
+        this.latestCloudWatchLogsDeliveryError;
+    final latestCloudWatchLogsDeliveryTime =
+        this.latestCloudWatchLogsDeliveryTime;
+    final latestDeliveryAttemptSucceeded = this.latestDeliveryAttemptSucceeded;
+    final latestDeliveryAttemptTime = this.latestDeliveryAttemptTime;
+    final latestDeliveryError = this.latestDeliveryError;
+    final latestDeliveryTime = this.latestDeliveryTime;
+    final latestDigestDeliveryError = this.latestDigestDeliveryError;
+    final latestDigestDeliveryTime = this.latestDigestDeliveryTime;
+    final latestNotificationAttemptSucceeded =
+        this.latestNotificationAttemptSucceeded;
+    final latestNotificationAttemptTime = this.latestNotificationAttemptTime;
+    final latestNotificationError = this.latestNotificationError;
+    final latestNotificationTime = this.latestNotificationTime;
+    final startLoggingTime = this.startLoggingTime;
+    final stopLoggingTime = this.stopLoggingTime;
+    final timeLoggingStarted = this.timeLoggingStarted;
+    final timeLoggingStopped = this.timeLoggingStopped;
+    return {
+      if (isLogging != null) 'IsLogging': isLogging,
+      if (latestCloudWatchLogsDeliveryError != null)
+        'LatestCloudWatchLogsDeliveryError': latestCloudWatchLogsDeliveryError,
+      if (latestCloudWatchLogsDeliveryTime != null)
+        'LatestCloudWatchLogsDeliveryTime':
+            unixTimestampToJson(latestCloudWatchLogsDeliveryTime),
+      if (latestDeliveryAttemptSucceeded != null)
+        'LatestDeliveryAttemptSucceeded': latestDeliveryAttemptSucceeded,
+      if (latestDeliveryAttemptTime != null)
+        'LatestDeliveryAttemptTime': latestDeliveryAttemptTime,
+      if (latestDeliveryError != null)
+        'LatestDeliveryError': latestDeliveryError,
+      if (latestDeliveryTime != null)
+        'LatestDeliveryTime': unixTimestampToJson(latestDeliveryTime),
+      if (latestDigestDeliveryError != null)
+        'LatestDigestDeliveryError': latestDigestDeliveryError,
+      if (latestDigestDeliveryTime != null)
+        'LatestDigestDeliveryTime':
+            unixTimestampToJson(latestDigestDeliveryTime),
+      if (latestNotificationAttemptSucceeded != null)
+        'LatestNotificationAttemptSucceeded':
+            latestNotificationAttemptSucceeded,
+      if (latestNotificationAttemptTime != null)
+        'LatestNotificationAttemptTime': latestNotificationAttemptTime,
+      if (latestNotificationError != null)
+        'LatestNotificationError': latestNotificationError,
+      if (latestNotificationTime != null)
+        'LatestNotificationTime': unixTimestampToJson(latestNotificationTime),
+      if (startLoggingTime != null)
+        'StartLoggingTime': unixTimestampToJson(startLoggingTime),
+      if (stopLoggingTime != null)
+        'StopLoggingTime': unixTimestampToJson(stopLoggingTime),
+      if (timeLoggingStarted != null) 'TimeLoggingStarted': timeLoggingStarted,
+      if (timeLoggingStopped != null) 'TimeLoggingStopped': timeLoggingStopped,
+    };
+  }
 }
 
 /// A JSON string that contains a list of insight types that are logged on a
@@ -3508,6 +3804,15 @@ class ListEventDataStoresResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventDataStores = this.eventDataStores;
+    final nextToken = this.nextToken;
+    return {
+      if (eventDataStores != null) 'EventDataStores': eventDataStores,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Returns the objects or data listed below if successful. Otherwise, returns
@@ -3535,6 +3840,15 @@ class ListPublicKeysResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final publicKeyList = this.publicKeyList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (publicKeyList != null) 'PublicKeyList': publicKeyList,
+    };
+  }
 }
 
 class ListQueriesResponse {
@@ -3557,6 +3871,15 @@ class ListQueriesResponse {
           .map((e) => Query.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final queries = this.queries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (queries != null) 'Queries': queries,
+    };
   }
 }
 
@@ -3581,6 +3904,15 @@ class ListTagsResponse {
           .map((e) => ResourceTag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final resourceTagList = this.resourceTagList;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (resourceTagList != null) 'ResourceTagList': resourceTagList,
+    };
   }
 }
 
@@ -3609,6 +3941,15 @@ class ListTrailsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final trails = this.trails;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (trails != null) 'Trails': trails,
+    };
+  }
 }
 
 /// Specifies an attribute and value that filter the events returned.
@@ -3623,6 +3964,7 @@ class LookupAttribute {
     required this.attributeKey,
     required this.attributeValue,
   });
+
   Map<String, dynamic> toJson() {
     final attributeKey = this.attributeKey;
     final attributeValue = this.attributeValue;
@@ -3719,6 +4061,15 @@ class LookupEventsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final nextToken = this.nextToken;
+    return {
+      if (events != null) 'Events': events,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Contains information about a returned public key.
@@ -3748,6 +4099,21 @@ class PublicKey {
       validityStartTime: timeStampFromJson(json['ValidityStartTime']),
       value: _s.decodeNullableUint8List(json['Value'] as String?),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final fingerprint = this.fingerprint;
+    final validityEndTime = this.validityEndTime;
+    final validityStartTime = this.validityStartTime;
+    final value = this.value;
+    return {
+      if (fingerprint != null) 'Fingerprint': fingerprint,
+      if (validityEndTime != null)
+        'ValidityEndTime': unixTimestampToJson(validityEndTime),
+      if (validityStartTime != null)
+        'ValidityStartTime': unixTimestampToJson(validityStartTime),
+      if (value != null) 'Value': base64Encode(value),
+    };
   }
 }
 
@@ -3782,6 +4148,18 @@ class PutEventSelectorsResponse {
       trailARN: json['TrailARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final advancedEventSelectors = this.advancedEventSelectors;
+    final eventSelectors = this.eventSelectors;
+    final trailARN = this.trailARN;
+    return {
+      if (advancedEventSelectors != null)
+        'AdvancedEventSelectors': advancedEventSelectors,
+      if (eventSelectors != null) 'EventSelectors': eventSelectors,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
+  }
 }
 
 class PutInsightSelectorsResponse {
@@ -3806,6 +4184,15 @@ class PutInsightSelectorsResponse {
           .toList(),
       trailARN: json['TrailARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final insightSelectors = this.insightSelectors;
+    final trailARN = this.trailARN;
+    return {
+      if (insightSelectors != null) 'InsightSelectors': insightSelectors,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
   }
 }
 
@@ -3835,6 +4222,18 @@ class Query {
       queryStatus: (json['QueryStatus'] as String?)?.toQueryStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final queryId = this.queryId;
+    final queryStatus = this.queryStatus;
+    return {
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (queryId != null) 'QueryId': queryId,
+      if (queryStatus != null) 'QueryStatus': queryStatus.toValue(),
+    };
+  }
 }
 
 /// Metadata about a query, such as the number of results.
@@ -3861,6 +4260,17 @@ class QueryStatistics {
       resultsCount: json['ResultsCount'] as int?,
       totalResultsCount: json['TotalResultsCount'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bytesScanned = this.bytesScanned;
+    final resultsCount = this.resultsCount;
+    final totalResultsCount = this.totalResultsCount;
+    return {
+      if (bytesScanned != null) 'BytesScanned': bytesScanned,
+      if (resultsCount != null) 'ResultsCount': resultsCount,
+      if (totalResultsCount != null) 'TotalResultsCount': totalResultsCount,
+    };
   }
 }
 
@@ -3900,6 +4310,23 @@ class QueryStatisticsForDescribeQuery {
       eventsScanned: json['EventsScanned'] as int?,
       executionTimeInMillis: json['ExecutionTimeInMillis'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bytesScanned = this.bytesScanned;
+    final creationTime = this.creationTime;
+    final eventsMatched = this.eventsMatched;
+    final eventsScanned = this.eventsScanned;
+    final executionTimeInMillis = this.executionTimeInMillis;
+    return {
+      if (bytesScanned != null) 'BytesScanned': bytesScanned,
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (eventsMatched != null) 'EventsMatched': eventsMatched,
+      if (eventsScanned != null) 'EventsScanned': eventsScanned,
+      if (executionTimeInMillis != null)
+        'ExecutionTimeInMillis': executionTimeInMillis,
+    };
   }
 }
 
@@ -3991,6 +4418,10 @@ class RemoveTagsResponse {
   factory RemoveTagsResponse.fromJson(Map<String, dynamic> _) {
     return RemoveTagsResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Specifies the type and name of a resource referenced by an event.
@@ -4021,6 +4452,15 @@ class Resource {
       resourceType: json['ResourceType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceName = this.resourceName;
+    final resourceType = this.resourceType;
+    return {
+      if (resourceName != null) 'ResourceName': resourceName,
+      if (resourceType != null) 'ResourceType': resourceType,
+    };
+  }
 }
 
 /// A resource tag.
@@ -4043,6 +4483,15 @@ class ResourceTag {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final tagsList = this.tagsList;
+    return {
+      if (resourceId != null) 'ResourceId': resourceId,
+      if (tagsList != null) 'TagsList': tagsList,
+    };
   }
 }
 
@@ -4112,6 +4561,36 @@ class RestoreEventDataStoreResponse {
       updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final advancedEventSelectors = this.advancedEventSelectors;
+    final createdTimestamp = this.createdTimestamp;
+    final eventDataStoreArn = this.eventDataStoreArn;
+    final multiRegionEnabled = this.multiRegionEnabled;
+    final name = this.name;
+    final organizationEnabled = this.organizationEnabled;
+    final retentionPeriod = this.retentionPeriod;
+    final status = this.status;
+    final terminationProtectionEnabled = this.terminationProtectionEnabled;
+    final updatedTimestamp = this.updatedTimestamp;
+    return {
+      if (advancedEventSelectors != null)
+        'AdvancedEventSelectors': advancedEventSelectors,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (eventDataStoreArn != null) 'EventDataStoreArn': eventDataStoreArn,
+      if (multiRegionEnabled != null) 'MultiRegionEnabled': multiRegionEnabled,
+      if (name != null) 'Name': name,
+      if (organizationEnabled != null)
+        'OrganizationEnabled': organizationEnabled,
+      if (retentionPeriod != null) 'RetentionPeriod': retentionPeriod,
+      if (status != null) 'Status': status.toValue(),
+      if (terminationProtectionEnabled != null)
+        'TerminationProtectionEnabled': terminationProtectionEnabled,
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': unixTimestampToJson(updatedTimestamp),
+    };
+  }
 }
 
 /// Returns the objects or data listed below if successful. Otherwise, returns
@@ -4120,6 +4599,10 @@ class StartLoggingResponse {
   StartLoggingResponse();
   factory StartLoggingResponse.fromJson(Map<String, dynamic> _) {
     return StartLoggingResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4135,6 +4618,13 @@ class StartQueryResponse {
       queryId: json['QueryId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final queryId = this.queryId;
+    return {
+      if (queryId != null) 'QueryId': queryId,
+    };
+  }
 }
 
 /// Returns the objects or data listed below if successful. Otherwise, returns
@@ -4143,6 +4633,10 @@ class StopLoggingResponse {
   StopLoggingResponse();
   factory StopLoggingResponse.fromJson(Map<String, dynamic> _) {
     return StopLoggingResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -4288,6 +4782,50 @@ class Trail {
       trailARN: json['TrailARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsLogGroupArn = this.cloudWatchLogsLogGroupArn;
+    final cloudWatchLogsRoleArn = this.cloudWatchLogsRoleArn;
+    final hasCustomEventSelectors = this.hasCustomEventSelectors;
+    final hasInsightSelectors = this.hasInsightSelectors;
+    final homeRegion = this.homeRegion;
+    final includeGlobalServiceEvents = this.includeGlobalServiceEvents;
+    final isMultiRegionTrail = this.isMultiRegionTrail;
+    final isOrganizationTrail = this.isOrganizationTrail;
+    final kmsKeyId = this.kmsKeyId;
+    final logFileValidationEnabled = this.logFileValidationEnabled;
+    final name = this.name;
+    final s3BucketName = this.s3BucketName;
+    final s3KeyPrefix = this.s3KeyPrefix;
+    final snsTopicARN = this.snsTopicARN;
+    final snsTopicName = this.snsTopicName;
+    final trailARN = this.trailARN;
+    return {
+      if (cloudWatchLogsLogGroupArn != null)
+        'CloudWatchLogsLogGroupArn': cloudWatchLogsLogGroupArn,
+      if (cloudWatchLogsRoleArn != null)
+        'CloudWatchLogsRoleArn': cloudWatchLogsRoleArn,
+      if (hasCustomEventSelectors != null)
+        'HasCustomEventSelectors': hasCustomEventSelectors,
+      if (hasInsightSelectors != null)
+        'HasInsightSelectors': hasInsightSelectors,
+      if (homeRegion != null) 'HomeRegion': homeRegion,
+      if (includeGlobalServiceEvents != null)
+        'IncludeGlobalServiceEvents': includeGlobalServiceEvents,
+      if (isMultiRegionTrail != null) 'IsMultiRegionTrail': isMultiRegionTrail,
+      if (isOrganizationTrail != null)
+        'IsOrganizationTrail': isOrganizationTrail,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (logFileValidationEnabled != null)
+        'LogFileValidationEnabled': logFileValidationEnabled,
+      if (name != null) 'Name': name,
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (s3KeyPrefix != null) 'S3KeyPrefix': s3KeyPrefix,
+      if (snsTopicARN != null) 'SnsTopicARN': snsTopicARN,
+      if (snsTopicName != null) 'SnsTopicName': snsTopicName,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
+  }
 }
 
 /// Information about a CloudTrail trail, including the trail's name, home
@@ -4313,6 +4851,17 @@ class TrailInfo {
       name: json['Name'] as String?,
       trailARN: json['TrailARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final homeRegion = this.homeRegion;
+    final name = this.name;
+    final trailARN = this.trailARN;
+    return {
+      if (homeRegion != null) 'HomeRegion': homeRegion,
+      if (name != null) 'Name': name,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
   }
 }
 
@@ -4382,6 +4931,36 @@ class UpdateEventDataStoreResponse {
           json['TerminationProtectionEnabled'] as bool?,
       updatedTimestamp: timeStampFromJson(json['UpdatedTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final advancedEventSelectors = this.advancedEventSelectors;
+    final createdTimestamp = this.createdTimestamp;
+    final eventDataStoreArn = this.eventDataStoreArn;
+    final multiRegionEnabled = this.multiRegionEnabled;
+    final name = this.name;
+    final organizationEnabled = this.organizationEnabled;
+    final retentionPeriod = this.retentionPeriod;
+    final status = this.status;
+    final terminationProtectionEnabled = this.terminationProtectionEnabled;
+    final updatedTimestamp = this.updatedTimestamp;
+    return {
+      if (advancedEventSelectors != null)
+        'AdvancedEventSelectors': advancedEventSelectors,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (eventDataStoreArn != null) 'EventDataStoreArn': eventDataStoreArn,
+      if (multiRegionEnabled != null) 'MultiRegionEnabled': multiRegionEnabled,
+      if (name != null) 'Name': name,
+      if (organizationEnabled != null)
+        'OrganizationEnabled': organizationEnabled,
+      if (retentionPeriod != null) 'RetentionPeriod': retentionPeriod,
+      if (status != null) 'Status': status.toValue(),
+      if (terminationProtectionEnabled != null)
+        'TerminationProtectionEnabled': terminationProtectionEnabled,
+      if (updatedTimestamp != null)
+        'UpdatedTimestamp': unixTimestampToJson(updatedTimestamp),
+    };
   }
 }
 
@@ -4475,6 +5054,42 @@ class UpdateTrailResponse {
       snsTopicName: json['SnsTopicName'] as String?,
       trailARN: json['TrailARN'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final cloudWatchLogsLogGroupArn = this.cloudWatchLogsLogGroupArn;
+    final cloudWatchLogsRoleArn = this.cloudWatchLogsRoleArn;
+    final includeGlobalServiceEvents = this.includeGlobalServiceEvents;
+    final isMultiRegionTrail = this.isMultiRegionTrail;
+    final isOrganizationTrail = this.isOrganizationTrail;
+    final kmsKeyId = this.kmsKeyId;
+    final logFileValidationEnabled = this.logFileValidationEnabled;
+    final name = this.name;
+    final s3BucketName = this.s3BucketName;
+    final s3KeyPrefix = this.s3KeyPrefix;
+    final snsTopicARN = this.snsTopicARN;
+    final snsTopicName = this.snsTopicName;
+    final trailARN = this.trailARN;
+    return {
+      if (cloudWatchLogsLogGroupArn != null)
+        'CloudWatchLogsLogGroupArn': cloudWatchLogsLogGroupArn,
+      if (cloudWatchLogsRoleArn != null)
+        'CloudWatchLogsRoleArn': cloudWatchLogsRoleArn,
+      if (includeGlobalServiceEvents != null)
+        'IncludeGlobalServiceEvents': includeGlobalServiceEvents,
+      if (isMultiRegionTrail != null) 'IsMultiRegionTrail': isMultiRegionTrail,
+      if (isOrganizationTrail != null)
+        'IsOrganizationTrail': isOrganizationTrail,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (logFileValidationEnabled != null)
+        'LogFileValidationEnabled': logFileValidationEnabled,
+      if (name != null) 'Name': name,
+      if (s3BucketName != null) 'S3BucketName': s3BucketName,
+      if (s3KeyPrefix != null) 'S3KeyPrefix': s3KeyPrefix,
+      if (snsTopicARN != null) 'SnsTopicARN': snsTopicARN,
+      if (snsTopicName != null) 'SnsTopicName': snsTopicName,
+      if (trailARN != null) 'TrailARN': trailARN,
+    };
   }
 }
 

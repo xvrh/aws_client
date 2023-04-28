@@ -1361,6 +1361,15 @@ class CategoricalValues {
       numberOfCategory: json['NumberOfCategory'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final numberOfCategory = this.numberOfCategory;
+    return {
+      'Status': status.toValue(),
+      if (numberOfCategory != null) 'NumberOfCategory': numberOfCategory,
+    };
+  }
 }
 
 /// Entity that comprises information of count and percentage.
@@ -1380,6 +1389,15 @@ class CountPercent {
       count: json['Count'] as int,
       percentage: json['Percentage'] as double,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final percentage = this.percentage;
+    return {
+      'Count': count,
+      'Percentage': percentage,
+    };
   }
 }
 
@@ -1405,6 +1423,17 @@ class CreateDatasetResponse {
       status: (json['Status'] as String?)?.toDatasetStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasetArn = this.datasetArn;
+    final datasetName = this.datasetName;
+    final status = this.status;
+    return {
+      if (datasetArn != null) 'DatasetArn': datasetArn,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class CreateInferenceSchedulerResponse {
@@ -1429,6 +1458,19 @@ class CreateInferenceSchedulerResponse {
       status: (json['Status'] as String?)?.toInferenceSchedulerStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inferenceSchedulerArn = this.inferenceSchedulerArn;
+    final inferenceSchedulerName = this.inferenceSchedulerName;
+    final status = this.status;
+    return {
+      if (inferenceSchedulerArn != null)
+        'InferenceSchedulerArn': inferenceSchedulerArn,
+      if (inferenceSchedulerName != null)
+        'InferenceSchedulerName': inferenceSchedulerName,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class CreateModelResponse {
@@ -1447,6 +1489,15 @@ class CreateModelResponse {
       modelArn: json['ModelArn'] as String?,
       status: (json['Status'] as String?)?.toModelStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelArn = this.modelArn;
+    final status = this.status;
+    return {
+      if (modelArn != null) 'ModelArn': modelArn,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -1488,6 +1539,22 @@ class DataIngestionJobSummary {
       jobId: json['JobId'] as String?,
       status: (json['Status'] as String?)?.toIngestionJobStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasetArn = this.datasetArn;
+    final datasetName = this.datasetName;
+    final ingestionInputConfiguration = this.ingestionInputConfiguration;
+    final jobId = this.jobId;
+    final status = this.status;
+    return {
+      if (datasetArn != null) 'DatasetArn': datasetArn,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (ingestionInputConfiguration != null)
+        'IngestionInputConfiguration': ingestionInputConfiguration,
+      if (jobId != null) 'JobId': jobId,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -1580,6 +1647,21 @@ class DataQualitySummary {
           json['UnsupportedTimestamps'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final duplicateTimestamps = this.duplicateTimestamps;
+    final insufficientSensorData = this.insufficientSensorData;
+    final invalidSensorData = this.invalidSensorData;
+    final missingSensorData = this.missingSensorData;
+    final unsupportedTimestamps = this.unsupportedTimestamps;
+    return {
+      'DuplicateTimestamps': duplicateTimestamps,
+      'InsufficientSensorData': insufficientSensorData,
+      'InvalidSensorData': invalidSensorData,
+      'MissingSensorData': missingSensorData,
+      'UnsupportedTimestamps': unsupportedTimestamps,
+    };
+  }
 }
 
 enum DataUploadFrequency {
@@ -1633,6 +1715,7 @@ class DatasetSchema {
   DatasetSchema({
     this.inlineDataSchema,
   });
+
   Map<String, dynamic> toJson() {
     final inlineDataSchema = this.inlineDataSchema;
     return {
@@ -1703,6 +1786,19 @@ class DatasetSummary {
       datasetName: json['DatasetName'] as String?,
       status: (json['Status'] as String?)?.toDatasetStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final datasetArn = this.datasetArn;
+    final datasetName = this.datasetName;
+    final status = this.status;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (datasetArn != null) 'DatasetArn': datasetArn,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -1793,6 +1889,40 @@ class DescribeDataIngestionJobResponse {
       status: (json['Status'] as String?)?.toIngestionJobStatus(),
       statusDetail: json['StatusDetail'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final dataEndTime = this.dataEndTime;
+    final dataQualitySummary = this.dataQualitySummary;
+    final dataStartTime = this.dataStartTime;
+    final datasetArn = this.datasetArn;
+    final failedReason = this.failedReason;
+    final ingestedDataSize = this.ingestedDataSize;
+    final ingestedFilesSummary = this.ingestedFilesSummary;
+    final ingestionInputConfiguration = this.ingestionInputConfiguration;
+    final jobId = this.jobId;
+    final roleArn = this.roleArn;
+    final status = this.status;
+    final statusDetail = this.statusDetail;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (dataEndTime != null) 'DataEndTime': unixTimestampToJson(dataEndTime),
+      if (dataQualitySummary != null) 'DataQualitySummary': dataQualitySummary,
+      if (dataStartTime != null)
+        'DataStartTime': unixTimestampToJson(dataStartTime),
+      if (datasetArn != null) 'DatasetArn': datasetArn,
+      if (failedReason != null) 'FailedReason': failedReason,
+      if (ingestedDataSize != null) 'IngestedDataSize': ingestedDataSize,
+      if (ingestedFilesSummary != null)
+        'IngestedFilesSummary': ingestedFilesSummary,
+      if (ingestionInputConfiguration != null)
+        'IngestionInputConfiguration': ingestionInputConfiguration,
+      if (jobId != null) 'JobId': jobId,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (status != null) 'Status': status.toValue(),
+      if (statusDetail != null) 'StatusDetail': statusDetail,
+    };
   }
 }
 
@@ -1888,6 +2018,41 @@ class DescribeDatasetResponse {
       serverSideKmsKeyId: json['ServerSideKmsKeyId'] as String?,
       status: (json['Status'] as String?)?.toDatasetStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final dataEndTime = this.dataEndTime;
+    final dataQualitySummary = this.dataQualitySummary;
+    final dataStartTime = this.dataStartTime;
+    final datasetArn = this.datasetArn;
+    final datasetName = this.datasetName;
+    final ingestedFilesSummary = this.ingestedFilesSummary;
+    final ingestionInputConfiguration = this.ingestionInputConfiguration;
+    final lastUpdatedAt = this.lastUpdatedAt;
+    final roleArn = this.roleArn;
+    final schema = this.schema;
+    final serverSideKmsKeyId = this.serverSideKmsKeyId;
+    final status = this.status;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (dataEndTime != null) 'DataEndTime': unixTimestampToJson(dataEndTime),
+      if (dataQualitySummary != null) 'DataQualitySummary': dataQualitySummary,
+      if (dataStartTime != null)
+        'DataStartTime': unixTimestampToJson(dataStartTime),
+      if (datasetArn != null) 'DatasetArn': datasetArn,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (ingestedFilesSummary != null)
+        'IngestedFilesSummary': ingestedFilesSummary,
+      if (ingestionInputConfiguration != null)
+        'IngestionInputConfiguration': ingestionInputConfiguration,
+      if (lastUpdatedAt != null)
+        'LastUpdatedAt': unixTimestampToJson(lastUpdatedAt),
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (schema != null) 'Schema': jsonEncode(schema),
+      if (serverSideKmsKeyId != null) 'ServerSideKmsKeyId': serverSideKmsKeyId,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -1988,6 +2153,43 @@ class DescribeInferenceSchedulerResponse {
       status: (json['Status'] as String?)?.toInferenceSchedulerStatus(),
       updatedAt: timeStampFromJson(json['UpdatedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final dataDelayOffsetInMinutes = this.dataDelayOffsetInMinutes;
+    final dataInputConfiguration = this.dataInputConfiguration;
+    final dataOutputConfiguration = this.dataOutputConfiguration;
+    final dataUploadFrequency = this.dataUploadFrequency;
+    final inferenceSchedulerArn = this.inferenceSchedulerArn;
+    final inferenceSchedulerName = this.inferenceSchedulerName;
+    final modelArn = this.modelArn;
+    final modelName = this.modelName;
+    final roleArn = this.roleArn;
+    final serverSideKmsKeyId = this.serverSideKmsKeyId;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (dataDelayOffsetInMinutes != null)
+        'DataDelayOffsetInMinutes': dataDelayOffsetInMinutes,
+      if (dataInputConfiguration != null)
+        'DataInputConfiguration': dataInputConfiguration,
+      if (dataOutputConfiguration != null)
+        'DataOutputConfiguration': dataOutputConfiguration,
+      if (dataUploadFrequency != null)
+        'DataUploadFrequency': dataUploadFrequency.toValue(),
+      if (inferenceSchedulerArn != null)
+        'InferenceSchedulerArn': inferenceSchedulerArn,
+      if (inferenceSchedulerName != null)
+        'InferenceSchedulerName': inferenceSchedulerName,
+      if (modelArn != null) 'ModelArn': modelArn,
+      if (modelName != null) 'ModelName': modelName,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (serverSideKmsKeyId != null) 'ServerSideKmsKeyId': serverSideKmsKeyId,
+      if (status != null) 'Status': status.toValue(),
+      if (updatedAt != null) 'UpdatedAt': unixTimestampToJson(updatedAt),
+    };
   }
 }
 
@@ -2141,6 +2343,64 @@ class DescribeModelResponse {
           timeStampFromJson(json['TrainingExecutionStartTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final dataPreProcessingConfiguration = this.dataPreProcessingConfiguration;
+    final datasetArn = this.datasetArn;
+    final datasetName = this.datasetName;
+    final evaluationDataEndTime = this.evaluationDataEndTime;
+    final evaluationDataStartTime = this.evaluationDataStartTime;
+    final failedReason = this.failedReason;
+    final labelsInputConfiguration = this.labelsInputConfiguration;
+    final lastUpdatedTime = this.lastUpdatedTime;
+    final modelArn = this.modelArn;
+    final modelMetrics = this.modelMetrics;
+    final modelName = this.modelName;
+    final offCondition = this.offCondition;
+    final roleArn = this.roleArn;
+    final schema = this.schema;
+    final serverSideKmsKeyId = this.serverSideKmsKeyId;
+    final status = this.status;
+    final trainingDataEndTime = this.trainingDataEndTime;
+    final trainingDataStartTime = this.trainingDataStartTime;
+    final trainingExecutionEndTime = this.trainingExecutionEndTime;
+    final trainingExecutionStartTime = this.trainingExecutionStartTime;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (dataPreProcessingConfiguration != null)
+        'DataPreProcessingConfiguration': dataPreProcessingConfiguration,
+      if (datasetArn != null) 'DatasetArn': datasetArn,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (evaluationDataEndTime != null)
+        'EvaluationDataEndTime': unixTimestampToJson(evaluationDataEndTime),
+      if (evaluationDataStartTime != null)
+        'EvaluationDataStartTime': unixTimestampToJson(evaluationDataStartTime),
+      if (failedReason != null) 'FailedReason': failedReason,
+      if (labelsInputConfiguration != null)
+        'LabelsInputConfiguration': labelsInputConfiguration,
+      if (lastUpdatedTime != null)
+        'LastUpdatedTime': unixTimestampToJson(lastUpdatedTime),
+      if (modelArn != null) 'ModelArn': modelArn,
+      if (modelMetrics != null) 'ModelMetrics': jsonEncode(modelMetrics),
+      if (modelName != null) 'ModelName': modelName,
+      if (offCondition != null) 'OffCondition': offCondition,
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (schema != null) 'Schema': jsonEncode(schema),
+      if (serverSideKmsKeyId != null) 'ServerSideKmsKeyId': serverSideKmsKeyId,
+      if (status != null) 'Status': status.toValue(),
+      if (trainingDataEndTime != null)
+        'TrainingDataEndTime': unixTimestampToJson(trainingDataEndTime),
+      if (trainingDataStartTime != null)
+        'TrainingDataStartTime': unixTimestampToJson(trainingDataStartTime),
+      if (trainingExecutionEndTime != null)
+        'TrainingExecutionEndTime':
+            unixTimestampToJson(trainingExecutionEndTime),
+      if (trainingExecutionStartTime != null)
+        'TrainingExecutionStartTime':
+            unixTimestampToJson(trainingExecutionStartTime),
+    };
+  }
 }
 
 /// Entity that comprises information abount duplicate timestamps in the
@@ -2157,6 +2417,14 @@ class DuplicateTimestamps {
       totalNumberOfDuplicateTimestamps:
           json['TotalNumberOfDuplicateTimestamps'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final totalNumberOfDuplicateTimestamps =
+        this.totalNumberOfDuplicateTimestamps;
+    return {
+      'TotalNumberOfDuplicateTimestamps': totalNumberOfDuplicateTimestamps,
+    };
   }
 }
 
@@ -2200,6 +2468,28 @@ class InferenceEventSummary {
       inferenceSchedulerArn: json['InferenceSchedulerArn'] as String?,
       inferenceSchedulerName: json['InferenceSchedulerName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final diagnostics = this.diagnostics;
+    final eventDurationInSeconds = this.eventDurationInSeconds;
+    final eventEndTime = this.eventEndTime;
+    final eventStartTime = this.eventStartTime;
+    final inferenceSchedulerArn = this.inferenceSchedulerArn;
+    final inferenceSchedulerName = this.inferenceSchedulerName;
+    return {
+      if (diagnostics != null) 'Diagnostics': diagnostics,
+      if (eventDurationInSeconds != null)
+        'EventDurationInSeconds': eventDurationInSeconds,
+      if (eventEndTime != null)
+        'EventEndTime': unixTimestampToJson(eventEndTime),
+      if (eventStartTime != null)
+        'EventStartTime': unixTimestampToJson(eventStartTime),
+      if (inferenceSchedulerArn != null)
+        'InferenceSchedulerArn': inferenceSchedulerArn,
+      if (inferenceSchedulerName != null)
+        'InferenceSchedulerName': inferenceSchedulerName,
+    };
   }
 }
 
@@ -2321,6 +2611,42 @@ class InferenceExecutionSummary {
       scheduledStartTime: timeStampFromJson(json['ScheduledStartTime']),
       status: (json['Status'] as String?)?.toInferenceExecutionStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final customerResultObject = this.customerResultObject;
+    final dataEndTime = this.dataEndTime;
+    final dataInputConfiguration = this.dataInputConfiguration;
+    final dataOutputConfiguration = this.dataOutputConfiguration;
+    final dataStartTime = this.dataStartTime;
+    final failedReason = this.failedReason;
+    final inferenceSchedulerArn = this.inferenceSchedulerArn;
+    final inferenceSchedulerName = this.inferenceSchedulerName;
+    final modelArn = this.modelArn;
+    final modelName = this.modelName;
+    final scheduledStartTime = this.scheduledStartTime;
+    final status = this.status;
+    return {
+      if (customerResultObject != null)
+        'CustomerResultObject': customerResultObject,
+      if (dataEndTime != null) 'DataEndTime': unixTimestampToJson(dataEndTime),
+      if (dataInputConfiguration != null)
+        'DataInputConfiguration': dataInputConfiguration,
+      if (dataOutputConfiguration != null)
+        'DataOutputConfiguration': dataOutputConfiguration,
+      if (dataStartTime != null)
+        'DataStartTime': unixTimestampToJson(dataStartTime),
+      if (failedReason != null) 'FailedReason': failedReason,
+      if (inferenceSchedulerArn != null)
+        'InferenceSchedulerArn': inferenceSchedulerArn,
+      if (inferenceSchedulerName != null)
+        'InferenceSchedulerName': inferenceSchedulerName,
+      if (modelArn != null) 'ModelArn': modelArn,
+      if (modelName != null) 'ModelName': modelName,
+      if (scheduledStartTime != null)
+        'ScheduledStartTime': unixTimestampToJson(scheduledStartTime),
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -2597,6 +2923,29 @@ class InferenceSchedulerSummary {
       status: (json['Status'] as String?)?.toInferenceSchedulerStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataDelayOffsetInMinutes = this.dataDelayOffsetInMinutes;
+    final dataUploadFrequency = this.dataUploadFrequency;
+    final inferenceSchedulerArn = this.inferenceSchedulerArn;
+    final inferenceSchedulerName = this.inferenceSchedulerName;
+    final modelArn = this.modelArn;
+    final modelName = this.modelName;
+    final status = this.status;
+    return {
+      if (dataDelayOffsetInMinutes != null)
+        'DataDelayOffsetInMinutes': dataDelayOffsetInMinutes,
+      if (dataUploadFrequency != null)
+        'DataUploadFrequency': dataUploadFrequency.toValue(),
+      if (inferenceSchedulerArn != null)
+        'InferenceSchedulerArn': inferenceSchedulerArn,
+      if (inferenceSchedulerName != null)
+        'InferenceSchedulerName': inferenceSchedulerName,
+      if (modelArn != null) 'ModelArn': modelArn,
+      if (modelName != null) 'ModelName': modelName,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Gives statistics about how many files have been ingested, and which files
@@ -2626,6 +2975,17 @@ class IngestedFilesSummary {
           .map((e) => S3Object.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ingestedNumberOfFiles = this.ingestedNumberOfFiles;
+    final totalNumberOfFiles = this.totalNumberOfFiles;
+    final discardedFiles = this.discardedFiles;
+    return {
+      'IngestedNumberOfFiles': ingestedNumberOfFiles,
+      'TotalNumberOfFiles': totalNumberOfFiles,
+      if (discardedFiles != null) 'DiscardedFiles': discardedFiles,
+    };
   }
 }
 
@@ -2750,6 +3110,15 @@ class InsufficientSensorData {
           json['SensorsWithShortDateRange'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final missingCompleteSensorData = this.missingCompleteSensorData;
+    final sensorsWithShortDateRange = this.sensorsWithShortDateRange;
+    return {
+      'MissingCompleteSensorData': missingCompleteSensorData,
+      'SensorsWithShortDateRange': sensorsWithShortDateRange,
+    };
+  }
 }
 
 /// Entity that comprises aggregated information on sensors having insufficient
@@ -2770,6 +3139,15 @@ class InvalidSensorData {
       affectedSensorCount: json['AffectedSensorCount'] as int,
       totalNumberOfInvalidValues: json['TotalNumberOfInvalidValues'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final affectedSensorCount = this.affectedSensorCount;
+    final totalNumberOfInvalidValues = this.totalNumberOfInvalidValues;
+    return {
+      'AffectedSensorCount': affectedSensorCount,
+      'TotalNumberOfInvalidValues': totalNumberOfInvalidValues,
+    };
   }
 }
 
@@ -2852,6 +3230,19 @@ class LargeTimestampGaps {
       numberOfLargeTimestampGaps: json['NumberOfLargeTimestampGaps'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final maxTimestampGapInDays = this.maxTimestampGapInDays;
+    final numberOfLargeTimestampGaps = this.numberOfLargeTimestampGaps;
+    return {
+      'Status': status.toValue(),
+      if (maxTimestampGapInDays != null)
+        'MaxTimestampGapInDays': maxTimestampGapInDays,
+      if (numberOfLargeTimestampGaps != null)
+        'NumberOfLargeTimestampGaps': numberOfLargeTimestampGaps,
+    };
+  }
 }
 
 class ListDataIngestionJobsResponse {
@@ -2877,6 +3268,16 @@ class ListDataIngestionJobsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dataIngestionJobSummaries = this.dataIngestionJobSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (dataIngestionJobSummaries != null)
+        'DataIngestionJobSummaries': dataIngestionJobSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListDatasetsResponse {
@@ -2900,6 +3301,15 @@ class ListDatasetsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasetSummaries = this.datasetSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (datasetSummaries != null) 'DatasetSummaries': datasetSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2925,6 +3335,16 @@ class ListInferenceEventsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final inferenceEventSummaries = this.inferenceEventSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (inferenceEventSummaries != null)
+        'InferenceEventSummaries': inferenceEventSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -2953,6 +3373,16 @@ class ListInferenceExecutionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inferenceExecutionSummaries = this.inferenceExecutionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (inferenceExecutionSummaries != null)
+        'InferenceExecutionSummaries': inferenceExecutionSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListInferenceSchedulersResponse {
@@ -2979,6 +3409,16 @@ class ListInferenceSchedulersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inferenceSchedulerSummaries = this.inferenceSchedulerSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (inferenceSchedulerSummaries != null)
+        'InferenceSchedulerSummaries': inferenceSchedulerSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListModelsResponse {
@@ -3002,6 +3442,15 @@ class ListModelsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final modelSummaries = this.modelSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (modelSummaries != null) 'ModelSummaries': modelSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -3030,6 +3479,16 @@ class ListSensorStatisticsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final sensorStatisticsSummaries = this.sensorStatisticsSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (sensorStatisticsSummaries != null)
+        'SensorStatisticsSummaries': sensorStatisticsSummaries,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -3047,6 +3506,13 @@ class ListTagsForResourceResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Entity that comprises information on sensors that have sensor data
@@ -3062,6 +3528,13 @@ class MissingCompleteSensorData {
     return MissingCompleteSensorData(
       affectedSensorCount: json['AffectedSensorCount'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final affectedSensorCount = this.affectedSensorCount;
+    return {
+      'AffectedSensorCount': affectedSensorCount,
+    };
   }
 }
 
@@ -3082,6 +3555,15 @@ class MissingSensorData {
       affectedSensorCount: json['AffectedSensorCount'] as int,
       totalNumberOfMissingValues: json['TotalNumberOfMissingValues'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final affectedSensorCount = this.affectedSensorCount;
+    final totalNumberOfMissingValues = this.totalNumberOfMissingValues;
+    return {
+      'AffectedSensorCount': affectedSensorCount,
+      'TotalNumberOfMissingValues': totalNumberOfMissingValues,
+    };
   }
 }
 
@@ -3157,6 +3639,23 @@ class ModelSummary {
       status: (json['Status'] as String?)?.toModelStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final createdAt = this.createdAt;
+    final datasetArn = this.datasetArn;
+    final datasetName = this.datasetName;
+    final modelArn = this.modelArn;
+    final modelName = this.modelName;
+    final status = this.status;
+    return {
+      if (createdAt != null) 'CreatedAt': unixTimestampToJson(createdAt),
+      if (datasetArn != null) 'DatasetArn': datasetArn,
+      if (datasetName != null) 'DatasetName': datasetName,
+      if (modelArn != null) 'ModelArn': modelArn,
+      if (modelName != null) 'ModelName': modelName,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// Entity that comprises information on monotonic values in the data.
@@ -3178,6 +3677,15 @@ class MonotonicValues {
       status: (json['Status'] as String).toStatisticalIssueStatus(),
       monotonicity: (json['Monotonicity'] as String?)?.toMonotonicity(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final monotonicity = this.monotonicity;
+    return {
+      'Status': status.toValue(),
+      if (monotonicity != null) 'Monotonicity': monotonicity.toValue(),
+    };
   }
 }
 
@@ -3228,6 +3736,13 @@ class MultipleOperatingModes {
       status: (json['Status'] as String).toStatisticalIssueStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'Status': status.toValue(),
+    };
+  }
 }
 
 /// Contains information about an S3 bucket.
@@ -3248,6 +3763,15 @@ class S3Object {
       bucket: json['Bucket'] as String,
       key: json['Key'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final key = this.key;
+    return {
+      'Bucket': bucket,
+      'Key': key,
+    };
   }
 }
 
@@ -3359,6 +3883,40 @@ class SensorStatisticsSummary {
       sensorName: json['SensorName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final categoricalValues = this.categoricalValues;
+    final componentName = this.componentName;
+    final dataEndTime = this.dataEndTime;
+    final dataExists = this.dataExists;
+    final dataStartTime = this.dataStartTime;
+    final duplicateTimestamps = this.duplicateTimestamps;
+    final invalidDateEntries = this.invalidDateEntries;
+    final invalidValues = this.invalidValues;
+    final largeTimestampGaps = this.largeTimestampGaps;
+    final missingValues = this.missingValues;
+    final monotonicValues = this.monotonicValues;
+    final multipleOperatingModes = this.multipleOperatingModes;
+    final sensorName = this.sensorName;
+    return {
+      if (categoricalValues != null) 'CategoricalValues': categoricalValues,
+      if (componentName != null) 'ComponentName': componentName,
+      if (dataEndTime != null) 'DataEndTime': unixTimestampToJson(dataEndTime),
+      if (dataExists != null) 'DataExists': dataExists,
+      if (dataStartTime != null)
+        'DataStartTime': unixTimestampToJson(dataStartTime),
+      if (duplicateTimestamps != null)
+        'DuplicateTimestamps': duplicateTimestamps,
+      if (invalidDateEntries != null) 'InvalidDateEntries': invalidDateEntries,
+      if (invalidValues != null) 'InvalidValues': invalidValues,
+      if (largeTimestampGaps != null) 'LargeTimestampGaps': largeTimestampGaps,
+      if (missingValues != null) 'MissingValues': missingValues,
+      if (monotonicValues != null) 'MonotonicValues': monotonicValues,
+      if (multipleOperatingModes != null)
+        'MultipleOperatingModes': multipleOperatingModes,
+      if (sensorName != null) 'SensorName': sensorName,
+    };
+  }
 }
 
 /// Entity that comprises information on sensors that have shorter date range.
@@ -3373,6 +3931,13 @@ class SensorsWithShortDateRange {
     return SensorsWithShortDateRange(
       affectedSensorCount: json['AffectedSensorCount'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final affectedSensorCount = this.affectedSensorCount;
+    return {
+      'AffectedSensorCount': affectedSensorCount,
+    };
   }
 }
 
@@ -3392,6 +3957,15 @@ class StartDataIngestionJobResponse {
       jobId: json['JobId'] as String?,
       status: (json['Status'] as String?)?.toIngestionJobStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final jobId = this.jobId;
+    final status = this.status;
+    return {
+      if (jobId != null) 'JobId': jobId,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -3427,6 +4001,23 @@ class StartInferenceSchedulerResponse {
       modelName: json['ModelName'] as String?,
       status: (json['Status'] as String?)?.toInferenceSchedulerStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final inferenceSchedulerArn = this.inferenceSchedulerArn;
+    final inferenceSchedulerName = this.inferenceSchedulerName;
+    final modelArn = this.modelArn;
+    final modelName = this.modelName;
+    final status = this.status;
+    return {
+      if (inferenceSchedulerArn != null)
+        'InferenceSchedulerArn': inferenceSchedulerArn,
+      if (inferenceSchedulerName != null)
+        'InferenceSchedulerName': inferenceSchedulerName,
+      if (modelArn != null) 'ModelArn': modelArn,
+      if (modelName != null) 'ModelName': modelName,
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -3491,6 +4082,23 @@ class StopInferenceSchedulerResponse {
       status: (json['Status'] as String?)?.toInferenceSchedulerStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inferenceSchedulerArn = this.inferenceSchedulerArn;
+    final inferenceSchedulerName = this.inferenceSchedulerName;
+    final modelArn = this.modelArn;
+    final modelName = this.modelName;
+    final status = this.status;
+    return {
+      if (inferenceSchedulerArn != null)
+        'InferenceSchedulerArn': inferenceSchedulerArn,
+      if (inferenceSchedulerName != null)
+        'InferenceSchedulerName': inferenceSchedulerName,
+      if (modelArn != null) 'ModelArn': modelArn,
+      if (modelName != null) 'ModelName': modelName,
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 /// A tag is a key-value pair that can be added to a resource as metadata.
@@ -3526,6 +4134,10 @@ class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3618,12 +4230,24 @@ class UnsupportedTimestamps {
           json['TotalNumberOfUnsupportedTimestamps'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final totalNumberOfUnsupportedTimestamps =
+        this.totalNumberOfUnsupportedTimestamps;
+    return {
+      'TotalNumberOfUnsupportedTimestamps': totalNumberOfUnsupportedTimestamps,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

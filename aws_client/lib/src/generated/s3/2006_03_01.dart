@@ -12718,6 +12718,14 @@ class AbortIncompleteMultipartUpload {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final daysAfterInitiation = this.daysAfterInitiation;
+    return {
+      if (daysAfterInitiation != null)
+        'DaysAfterInitiation': daysAfterInitiation,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final daysAfterInitiation = this.daysAfterInitiation;
     final $children = <_s.XmlNode>[
@@ -12741,6 +12749,11 @@ class AbortMultipartUploadOutput {
   AbortMultipartUploadOutput({
     this.requestCharged,
   });
+
+  Map<String, dynamic> toJson() {
+    final requestCharged = this.requestCharged;
+    return {};
+  }
 }
 
 /// Configures the transfer acceleration state for an Amazon S3 bucket. For more
@@ -12754,6 +12767,14 @@ class AccelerateConfiguration {
   AccelerateConfiguration({
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final status = this.status;
     final $children = <_s.XmlNode>[
@@ -12783,6 +12804,16 @@ class AccessControlPolicy {
     this.grants,
     this.owner,
   });
+
+  Map<String, dynamic> toJson() {
+    final grants = this.grants;
+    final owner = this.owner;
+    return {
+      if (grants != null) 'AccessControlList': grants,
+      if (owner != null) 'Owner': owner,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final grants = this.grants;
     final owner = this.owner;
@@ -12817,6 +12848,13 @@ class AccessControlTranslation {
     return AccessControlTranslation(
       owner: _s.extractXmlStringValue(elem, 'Owner')!.toOwnerOverride(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final owner = this.owner;
+    return {
+      'Owner': owner.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -12856,6 +12894,15 @@ class AnalyticsAndOperator {
       prefix: _s.extractXmlStringValue(elem, 'Prefix'),
       tags: elem.findElements('Tag').map(Tag.fromXml).toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final prefix = this.prefix;
+    final tags = this.tags;
+    return {
+      if (prefix != null) 'Prefix': prefix,
+      if (tags != null) 'Tag': tags,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -12905,6 +12952,17 @@ class AnalyticsConfiguration {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final storageClassAnalysis = this.storageClassAnalysis;
+    final filter = this.filter;
+    return {
+      'Id': id,
+      'StorageClassAnalysis': storageClassAnalysis,
+      if (filter != null) 'Filter': filter,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final id = this.id;
     final storageClassAnalysis = this.storageClassAnalysis;
@@ -12938,6 +12996,13 @@ class AnalyticsExportDestination {
       s3BucketDestination: AnalyticsS3BucketDestination.fromXml(
           _s.extractXmlChild(elem, 'S3BucketDestination')!),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final s3BucketDestination = this.s3BucketDestination;
+    return {
+      'S3BucketDestination': s3BucketDestination,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -12981,6 +13046,17 @@ class AnalyticsFilter {
       prefix: _s.extractXmlStringValue(elem, 'Prefix'),
       tag: _s.extractXmlChild(elem, 'Tag')?.let(Tag.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final and = this.and;
+    final prefix = this.prefix;
+    final tag = this.tag;
+    return {
+      if (and != null) 'And': and,
+      if (prefix != null) 'Prefix': prefix,
+      if (tag != null) 'Tag': tag,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -13038,6 +13114,19 @@ class AnalyticsS3BucketDestination {
       bucketAccountId: _s.extractXmlStringValue(elem, 'BucketAccountId'),
       prefix: _s.extractXmlStringValue(elem, 'Prefix'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final format = this.format;
+    final bucketAccountId = this.bucketAccountId;
+    final prefix = this.prefix;
+    return {
+      'Bucket': bucket,
+      'Format': format.toValue(),
+      if (bucketAccountId != null) 'BucketAccountId': bucketAccountId,
+      if (prefix != null) 'Prefix': prefix,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -13136,6 +13225,15 @@ class Bucket {
       name: _s.extractXmlStringValue(elem, 'Name'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final creationDate = this.creationDate;
+    final name = this.name;
+    return {
+      if (creationDate != null) 'CreationDate': iso8601ToJson(creationDate),
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 enum BucketAccelerateStatus {
@@ -13215,6 +13313,14 @@ class BucketLifecycleConfiguration {
   BucketLifecycleConfiguration({
     required this.rules,
   });
+
+  Map<String, dynamic> toJson() {
+    final rules = this.rules;
+    return {
+      'Rule': rules,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final rules = this.rules;
     final $children = <_s.XmlNode>[
@@ -13381,6 +13487,14 @@ class BucketLoggingStatus {
   BucketLoggingStatus({
     this.loggingEnabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final loggingEnabled = this.loggingEnabled;
+    return {
+      if (loggingEnabled != null) 'LoggingEnabled': loggingEnabled,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final loggingEnabled = this.loggingEnabled;
     final $children = <_s.XmlNode>[
@@ -13470,6 +13584,14 @@ class CORSConfiguration {
   CORSConfiguration({
     required this.cORSRules,
   });
+
+  Map<String, dynamic> toJson() {
+    final cORSRules = this.cORSRules;
+    return {
+      'CORSRule': cORSRules,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final cORSRules = this.cORSRules;
     final $children = <_s.XmlNode>[
@@ -13532,6 +13654,23 @@ class CORSRule {
       id: _s.extractXmlStringValue(elem, 'ID'),
       maxAgeSeconds: _s.extractXmlIntValue(elem, 'MaxAgeSeconds'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final allowedMethods = this.allowedMethods;
+    final allowedOrigins = this.allowedOrigins;
+    final allowedHeaders = this.allowedHeaders;
+    final exposeHeaders = this.exposeHeaders;
+    final id = this.id;
+    final maxAgeSeconds = this.maxAgeSeconds;
+    return {
+      'AllowedMethod': allowedMethods,
+      'AllowedOrigin': allowedOrigins,
+      if (allowedHeaders != null) 'AllowedHeader': allowedHeaders,
+      if (exposeHeaders != null) 'ExposeHeader': exposeHeaders,
+      if (id != null) 'ID': id,
+      if (maxAgeSeconds != null) 'MaxAgeSeconds': maxAgeSeconds,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -13630,6 +13769,28 @@ class CSVInput {
     this.quoteEscapeCharacter,
     this.recordDelimiter,
   });
+
+  Map<String, dynamic> toJson() {
+    final allowQuotedRecordDelimiter = this.allowQuotedRecordDelimiter;
+    final comments = this.comments;
+    final fieldDelimiter = this.fieldDelimiter;
+    final fileHeaderInfo = this.fileHeaderInfo;
+    final quoteCharacter = this.quoteCharacter;
+    final quoteEscapeCharacter = this.quoteEscapeCharacter;
+    final recordDelimiter = this.recordDelimiter;
+    return {
+      if (allowQuotedRecordDelimiter != null)
+        'AllowQuotedRecordDelimiter': allowQuotedRecordDelimiter,
+      if (comments != null) 'Comments': comments,
+      if (fieldDelimiter != null) 'FieldDelimiter': fieldDelimiter,
+      if (fileHeaderInfo != null) 'FileHeaderInfo': fileHeaderInfo.toValue(),
+      if (quoteCharacter != null) 'QuoteCharacter': quoteCharacter,
+      if (quoteEscapeCharacter != null)
+        'QuoteEscapeCharacter': quoteEscapeCharacter,
+      if (recordDelimiter != null) 'RecordDelimiter': recordDelimiter,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final allowQuotedRecordDelimiter = this.allowQuotedRecordDelimiter;
     final comments = this.comments;
@@ -13704,6 +13865,23 @@ class CSVOutput {
     this.quoteFields,
     this.recordDelimiter,
   });
+
+  Map<String, dynamic> toJson() {
+    final fieldDelimiter = this.fieldDelimiter;
+    final quoteCharacter = this.quoteCharacter;
+    final quoteEscapeCharacter = this.quoteEscapeCharacter;
+    final quoteFields = this.quoteFields;
+    final recordDelimiter = this.recordDelimiter;
+    return {
+      if (fieldDelimiter != null) 'FieldDelimiter': fieldDelimiter,
+      if (quoteCharacter != null) 'QuoteCharacter': quoteCharacter,
+      if (quoteEscapeCharacter != null)
+        'QuoteEscapeCharacter': quoteEscapeCharacter,
+      if (quoteFields != null) 'QuoteFields': quoteFields.toValue(),
+      if (recordDelimiter != null) 'RecordDelimiter': recordDelimiter,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final fieldDelimiter = this.fieldDelimiter;
     final quoteCharacter = this.quoteCharacter;
@@ -13780,6 +13958,19 @@ class Checksum {
       checksumSHA1: _s.extractXmlStringValue(elem, 'ChecksumSHA1'),
       checksumSHA256: _s.extractXmlStringValue(elem, 'ChecksumSHA256'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final checksumCRC32 = this.checksumCRC32;
+    final checksumCRC32C = this.checksumCRC32C;
+    final checksumSHA1 = this.checksumSHA1;
+    final checksumSHA256 = this.checksumSHA256;
+    return {
+      if (checksumCRC32 != null) 'ChecksumCRC32': checksumCRC32,
+      if (checksumCRC32C != null) 'ChecksumCRC32C': checksumCRC32C,
+      if (checksumSHA1 != null) 'ChecksumSHA1': checksumSHA1,
+      if (checksumSHA256 != null) 'ChecksumSHA256': checksumSHA256,
+    };
   }
 }
 
@@ -13878,6 +14069,21 @@ class CloudFunctionConfiguration {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final cloudFunction = this.cloudFunction;
+    final event = this.event;
+    final events = this.events;
+    final id = this.id;
+    final invocationRole = this.invocationRole;
+    return {
+      if (cloudFunction != null) 'CloudFunction': cloudFunction,
+      if (event != null) 'Event': event.toValue(),
+      if (events != null) 'Event': events.map((e) => e.toValue()).toList(),
+      if (id != null) 'Id': id,
+      if (invocationRole != null) 'InvocationRole': invocationRole,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final cloudFunction = this.cloudFunction;
     final event = this.event;
@@ -13921,6 +14127,13 @@ class CommonPrefix {
     return CommonPrefix(
       prefix: _s.extractXmlStringValue(elem, 'Prefix'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final prefix = this.prefix;
+    return {
+      if (prefix != null) 'Prefix': prefix,
+    };
   }
 }
 
@@ -14038,6 +14251,33 @@ class CompleteMultipartUploadOutput {
     this.serverSideEncryption,
     this.versionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final bucketKeyEnabled = this.bucketKeyEnabled;
+    final checksumCRC32 = this.checksumCRC32;
+    final checksumCRC32C = this.checksumCRC32C;
+    final checksumSHA1 = this.checksumSHA1;
+    final checksumSHA256 = this.checksumSHA256;
+    final eTag = this.eTag;
+    final expiration = this.expiration;
+    final key = this.key;
+    final location = this.location;
+    final requestCharged = this.requestCharged;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
+    final versionId = this.versionId;
+    return {
+      if (bucket != null) 'Bucket': bucket,
+      if (checksumCRC32 != null) 'ChecksumCRC32': checksumCRC32,
+      if (checksumCRC32C != null) 'ChecksumCRC32C': checksumCRC32C,
+      if (checksumSHA1 != null) 'ChecksumSHA1': checksumSHA1,
+      if (checksumSHA256 != null) 'ChecksumSHA256': checksumSHA256,
+      if (eTag != null) 'ETag': eTag,
+      if (key != null) 'Key': key,
+      if (location != null) 'Location': location,
+    };
+  }
 }
 
 /// The container for the completed multipart upload details.
@@ -14051,6 +14291,14 @@ class CompletedMultipartUpload {
   CompletedMultipartUpload({
     this.parts,
   });
+
+  Map<String, dynamic> toJson() {
+    final parts = this.parts;
+    return {
+      if (parts != null) 'Part': parts,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final parts = this.parts;
     final $children = <_s.XmlNode>[
@@ -14116,6 +14364,24 @@ class CompletedPart {
     this.eTag,
     this.partNumber,
   });
+
+  Map<String, dynamic> toJson() {
+    final checksumCRC32 = this.checksumCRC32;
+    final checksumCRC32C = this.checksumCRC32C;
+    final checksumSHA1 = this.checksumSHA1;
+    final checksumSHA256 = this.checksumSHA256;
+    final eTag = this.eTag;
+    final partNumber = this.partNumber;
+    return {
+      if (checksumCRC32 != null) 'ChecksumCRC32': checksumCRC32,
+      if (checksumCRC32C != null) 'ChecksumCRC32C': checksumCRC32C,
+      if (checksumSHA1 != null) 'ChecksumSHA1': checksumSHA1,
+      if (checksumSHA256 != null) 'ChecksumSHA256': checksumSHA256,
+      if (eTag != null) 'ETag': eTag,
+      if (partNumber != null) 'PartNumber': partNumber,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final checksumCRC32 = this.checksumCRC32;
     final checksumCRC32C = this.checksumCRC32C;
@@ -14220,6 +14486,16 @@ class Condition {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final httpErrorCodeReturnedEquals = this.httpErrorCodeReturnedEquals;
+    final keyPrefixEquals = this.keyPrefixEquals;
+    return {
+      if (httpErrorCodeReturnedEquals != null)
+        'HttpErrorCodeReturnedEquals': httpErrorCodeReturnedEquals,
+      if (keyPrefixEquals != null) 'KeyPrefixEquals': keyPrefixEquals,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final httpErrorCodeReturnedEquals = this.httpErrorCodeReturnedEquals;
     final keyPrefixEquals = this.keyPrefixEquals;
@@ -14248,6 +14524,10 @@ class ContinuationEvent {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return ContinuationEvent();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -14306,6 +14586,23 @@ class CopyObjectOutput {
     this.serverSideEncryption,
     this.versionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final bucketKeyEnabled = this.bucketKeyEnabled;
+    final copyObjectResult = this.copyObjectResult;
+    final copySourceVersionId = this.copySourceVersionId;
+    final expiration = this.expiration;
+    final requestCharged = this.requestCharged;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final sSEKMSEncryptionContext = this.sSEKMSEncryptionContext;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
+    final versionId = this.versionId;
+    return {
+      if (copyObjectResult != null) 'CopyObjectResult': copyObjectResult,
+    };
+  }
 }
 
 /// Container for all response elements.
@@ -14367,6 +14664,23 @@ class CopyObjectResult {
       lastModified: _s.extractXmlDateTimeValue(elem, 'LastModified'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checksumCRC32 = this.checksumCRC32;
+    final checksumCRC32C = this.checksumCRC32C;
+    final checksumSHA1 = this.checksumSHA1;
+    final checksumSHA256 = this.checksumSHA256;
+    final eTag = this.eTag;
+    final lastModified = this.lastModified;
+    return {
+      if (checksumCRC32 != null) 'ChecksumCRC32': checksumCRC32,
+      if (checksumCRC32C != null) 'ChecksumCRC32C': checksumCRC32C,
+      if (checksumSHA1 != null) 'ChecksumSHA1': checksumSHA1,
+      if (checksumSHA256 != null) 'ChecksumSHA256': checksumSHA256,
+      if (eTag != null) 'ETag': eTag,
+      if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
+    };
+  }
 }
 
 /// Container for all response elements.
@@ -14427,6 +14741,23 @@ class CopyPartResult {
       lastModified: _s.extractXmlDateTimeValue(elem, 'LastModified'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checksumCRC32 = this.checksumCRC32;
+    final checksumCRC32C = this.checksumCRC32C;
+    final checksumSHA1 = this.checksumSHA1;
+    final checksumSHA256 = this.checksumSHA256;
+    final eTag = this.eTag;
+    final lastModified = this.lastModified;
+    return {
+      if (checksumCRC32 != null) 'ChecksumCRC32': checksumCRC32,
+      if (checksumCRC32C != null) 'ChecksumCRC32C': checksumCRC32C,
+      if (checksumSHA1 != null) 'ChecksumSHA1': checksumSHA1,
+      if (checksumSHA256 != null) 'ChecksumSHA256': checksumSHA256,
+      if (eTag != null) 'ETag': eTag,
+      if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
+    };
+  }
 }
 
 /// The configuration information for the bucket.
@@ -14439,6 +14770,15 @@ class CreateBucketConfiguration {
   CreateBucketConfiguration({
     this.locationConstraint,
   });
+
+  Map<String, dynamic> toJson() {
+    final locationConstraint = this.locationConstraint;
+    return {
+      if (locationConstraint != null)
+        'LocationConstraint': locationConstraint.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final locationConstraint = this.locationConstraint;
     final $children = <_s.XmlNode>[
@@ -14464,6 +14804,11 @@ class CreateBucketOutput {
   CreateBucketOutput({
     this.location,
   });
+
+  Map<String, dynamic> toJson() {
+    final location = this.location;
+    return {};
+  }
 }
 
 class CreateMultipartUploadOutput {
@@ -14561,6 +14906,27 @@ class CreateMultipartUploadOutput {
     this.serverSideEncryption,
     this.uploadId,
   });
+
+  Map<String, dynamic> toJson() {
+    final abortDate = this.abortDate;
+    final abortRuleId = this.abortRuleId;
+    final bucket = this.bucket;
+    final bucketKeyEnabled = this.bucketKeyEnabled;
+    final checksumAlgorithm = this.checksumAlgorithm;
+    final key = this.key;
+    final requestCharged = this.requestCharged;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final sSEKMSEncryptionContext = this.sSEKMSEncryptionContext;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
+    final uploadId = this.uploadId;
+    return {
+      if (bucket != null) 'Bucket': bucket,
+      if (key != null) 'Key': key,
+      if (uploadId != null) 'UploadId': uploadId,
+    };
+  }
 }
 
 /// The container element for specifying the default Object Lock retention
@@ -14603,6 +14969,17 @@ class DefaultRetention {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final days = this.days;
+    final mode = this.mode;
+    final years = this.years;
+    return {
+      if (days != null) 'Days': days,
+      if (mode != null) 'Mode': mode.toValue(),
+      if (years != null) 'Years': years,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final days = this.days;
     final mode = this.mode;
@@ -14636,6 +15013,16 @@ class Delete {
     required this.objects,
     this.quiet,
   });
+
+  Map<String, dynamic> toJson() {
+    final objects = this.objects;
+    final quiet = this.quiet;
+    return {
+      'Object': objects,
+      if (quiet != null) 'Quiet': quiet,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final objects = this.objects;
     final quiet = this.quiet;
@@ -14688,6 +15075,21 @@ class DeleteMarkerEntry {
       versionId: _s.extractXmlStringValue(elem, 'VersionId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isLatest = this.isLatest;
+    final key = this.key;
+    final lastModified = this.lastModified;
+    final owner = this.owner;
+    final versionId = this.versionId;
+    return {
+      if (isLatest != null) 'IsLatest': isLatest,
+      if (key != null) 'Key': key,
+      if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
+      if (owner != null) 'Owner': owner,
+      if (versionId != null) 'VersionId': versionId,
+    };
+  }
 }
 
 /// Specifies whether Amazon S3 replicates delete markers. If you specify a
@@ -14726,6 +15128,13 @@ class DeleteMarkerReplication {
           .extractXmlStringValue(elem, 'Status')
           ?.toDeleteMarkerReplicationStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -14788,6 +15197,13 @@ class DeleteObjectOutput {
     this.requestCharged,
     this.versionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final deleteMarker = this.deleteMarker;
+    final requestCharged = this.requestCharged;
+    final versionId = this.versionId;
+    return {};
+  }
 }
 
 class DeleteObjectTaggingOutput {
@@ -14797,6 +15213,11 @@ class DeleteObjectTaggingOutput {
   DeleteObjectTaggingOutput({
     this.versionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final versionId = this.versionId;
+    return {};
+  }
 }
 
 class DeleteObjectsOutput {
@@ -14814,6 +15235,16 @@ class DeleteObjectsOutput {
     this.errors,
     this.requestCharged,
   });
+
+  Map<String, dynamic> toJson() {
+    final deleted = this.deleted;
+    final errors = this.errors;
+    final requestCharged = this.requestCharged;
+    return {
+      if (deleted != null) 'Deleted': deleted,
+      if (errors != null) 'Error': errors,
+    };
+  }
 }
 
 /// Information about the deleted object.
@@ -14848,6 +15279,20 @@ class DeletedObject {
       key: _s.extractXmlStringValue(elem, 'Key'),
       versionId: _s.extractXmlStringValue(elem, 'VersionId'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final deleteMarker = this.deleteMarker;
+    final deleteMarkerVersionId = this.deleteMarkerVersionId;
+    final key = this.key;
+    final versionId = this.versionId;
+    return {
+      if (deleteMarker != null) 'DeleteMarker': deleteMarker,
+      if (deleteMarkerVersionId != null)
+        'DeleteMarkerVersionId': deleteMarkerVersionId,
+      if (key != null) 'Key': key,
+      if (versionId != null) 'VersionId': versionId,
+    };
   }
 }
 
@@ -14925,6 +15370,27 @@ class Destination {
       storageClass:
           _s.extractXmlStringValue(elem, 'StorageClass')?.toStorageClass(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final accessControlTranslation = this.accessControlTranslation;
+    final account = this.account;
+    final encryptionConfiguration = this.encryptionConfiguration;
+    final metrics = this.metrics;
+    final replicationTime = this.replicationTime;
+    final storageClass = this.storageClass;
+    return {
+      'Bucket': bucket,
+      if (accessControlTranslation != null)
+        'AccessControlTranslation': accessControlTranslation,
+      if (account != null) 'Account': account,
+      if (encryptionConfiguration != null)
+        'EncryptionConfiguration': encryptionConfiguration,
+      if (metrics != null) 'Metrics': metrics,
+      if (replicationTime != null) 'ReplicationTime': replicationTime,
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -15011,6 +15477,18 @@ class Encryption {
     this.kMSContext,
     this.kMSKeyId,
   });
+
+  Map<String, dynamic> toJson() {
+    final encryptionType = this.encryptionType;
+    final kMSContext = this.kMSContext;
+    final kMSKeyId = this.kMSKeyId;
+    return {
+      'EncryptionType': encryptionType.toValue(),
+      if (kMSContext != null) 'KMSContext': kMSContext,
+      if (kMSKeyId != null) 'KMSKeyId': kMSKeyId,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final encryptionType = this.encryptionType;
     final kMSContext = this.kMSContext;
@@ -15053,6 +15531,13 @@ class EncryptionConfiguration {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final replicaKmsKeyID = this.replicaKmsKeyID;
+    return {
+      if (replicaKmsKeyID != null) 'ReplicaKmsKeyID': replicaKmsKeyID,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final replicaKmsKeyID = this.replicaKmsKeyID;
     final $children = <_s.XmlNode>[
@@ -15079,6 +15564,10 @@ class EndEvent {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return EndEvent();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -16512,6 +17001,19 @@ class Error {
       versionId: _s.extractXmlStringValue(elem, 'VersionId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final key = this.key;
+    final message = this.message;
+    final versionId = this.versionId;
+    return {
+      if (code != null) 'Code': code,
+      if (key != null) 'Key': key,
+      if (message != null) 'Message': message,
+      if (versionId != null) 'VersionId': versionId,
+    };
+  }
 }
 
 /// The error information.
@@ -16532,6 +17034,13 @@ class ErrorDocument {
     return ErrorDocument(
       key: _s.extractXmlStringValue(elem, 'Key')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    return {
+      'Key': key,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -16713,6 +17222,10 @@ class EventBridgeConfiguration {
     return EventBridgeConfiguration();
   }
 
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final $children = <_s.XmlNode>[];
     final $attributes = <_s.XmlAttribute>[
@@ -16743,6 +17256,13 @@ class ExistingObjectReplication {
           .extractXmlStringValue(elem, 'Status')!
           .toExistingObjectReplicationStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'Status': status.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -16900,6 +17420,15 @@ class FilterRule {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name.toValue(),
+      if (value != null) 'Value': value,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final name = this.name;
     final value = this.value;
@@ -16959,6 +17488,13 @@ class GetBucketAccelerateConfigurationOutput {
           _s.extractXmlStringValue(elem, 'Status')?.toBucketAccelerateStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
 }
 
 class GetBucketAclOutput {
@@ -16979,6 +17515,15 @@ class GetBucketAclOutput {
       owner: _s.extractXmlChild(elem, 'Owner')?.let(Owner.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final grants = this.grants;
+    final owner = this.owner;
+    return {
+      if (grants != null) 'AccessControlList': grants,
+      if (owner != null) 'Owner': owner,
+    };
+  }
 }
 
 class GetBucketAnalyticsConfigurationOutput {
@@ -16988,6 +17533,14 @@ class GetBucketAnalyticsConfigurationOutput {
   GetBucketAnalyticsConfigurationOutput({
     this.analyticsConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final analyticsConfiguration = this.analyticsConfiguration;
+    return {
+      if (analyticsConfiguration != null)
+        'AnalyticsConfiguration': analyticsConfiguration,
+    };
+  }
 }
 
 class GetBucketCorsOutput {
@@ -17003,6 +17556,13 @@ class GetBucketCorsOutput {
       cORSRules: elem.findElements('CORSRule').map(CORSRule.fromXml).toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cORSRules = this.cORSRules;
+    return {
+      if (cORSRules != null) 'CORSRule': cORSRules,
+    };
+  }
 }
 
 class GetBucketEncryptionOutput {
@@ -17011,6 +17571,15 @@ class GetBucketEncryptionOutput {
   GetBucketEncryptionOutput({
     this.serverSideEncryptionConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final serverSideEncryptionConfiguration =
+        this.serverSideEncryptionConfiguration;
+    return {
+      if (serverSideEncryptionConfiguration != null)
+        'ServerSideEncryptionConfiguration': serverSideEncryptionConfiguration,
+    };
+  }
 }
 
 class GetBucketIntelligentTieringConfigurationOutput {
@@ -17020,6 +17589,15 @@ class GetBucketIntelligentTieringConfigurationOutput {
   GetBucketIntelligentTieringConfigurationOutput({
     this.intelligentTieringConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final intelligentTieringConfiguration =
+        this.intelligentTieringConfiguration;
+    return {
+      if (intelligentTieringConfiguration != null)
+        'IntelligentTieringConfiguration': intelligentTieringConfiguration,
+    };
+  }
 }
 
 class GetBucketInventoryConfigurationOutput {
@@ -17029,6 +17607,14 @@ class GetBucketInventoryConfigurationOutput {
   GetBucketInventoryConfigurationOutput({
     this.inventoryConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final inventoryConfiguration = this.inventoryConfiguration;
+    return {
+      if (inventoryConfiguration != null)
+        'InventoryConfiguration': inventoryConfiguration,
+    };
+  }
 }
 
 class GetBucketLifecycleConfigurationOutput {
@@ -17043,6 +17629,13 @@ class GetBucketLifecycleConfigurationOutput {
       rules: elem.findElements('Rule').map(LifecycleRule.fromXml).toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rules = this.rules;
+    return {
+      if (rules != null) 'Rule': rules,
+    };
+  }
 }
 
 class GetBucketLifecycleOutput {
@@ -17056,6 +17649,13 @@ class GetBucketLifecycleOutput {
     return GetBucketLifecycleOutput(
       rules: elem.findElements('Rule').map(Rule.fromXml).toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rules = this.rules;
+    return {
+      if (rules != null) 'Rule': rules,
+    };
   }
 }
 
@@ -17077,6 +17677,14 @@ class GetBucketLocationOutput {
           ?.toBucketLocationConstraint(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final locationConstraint = this.locationConstraint;
+    return {
+      if (locationConstraint != null)
+        'LocationConstraint': locationConstraint.toValue(),
+    };
+  }
 }
 
 class GetBucketLoggingOutput {
@@ -17092,6 +17700,13 @@ class GetBucketLoggingOutput {
           ?.let(LoggingEnabled.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final loggingEnabled = this.loggingEnabled;
+    return {
+      if (loggingEnabled != null) 'LoggingEnabled': loggingEnabled,
+    };
+  }
 }
 
 class GetBucketMetricsConfigurationOutput {
@@ -17101,6 +17716,14 @@ class GetBucketMetricsConfigurationOutput {
   GetBucketMetricsConfigurationOutput({
     this.metricsConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final metricsConfiguration = this.metricsConfiguration;
+    return {
+      if (metricsConfiguration != null)
+        'MetricsConfiguration': metricsConfiguration,
+    };
+  }
 }
 
 class GetBucketOwnershipControlsOutput {
@@ -17112,6 +17735,13 @@ class GetBucketOwnershipControlsOutput {
   GetBucketOwnershipControlsOutput({
     this.ownershipControls,
   });
+
+  Map<String, dynamic> toJson() {
+    final ownershipControls = this.ownershipControls;
+    return {
+      if (ownershipControls != null) 'OwnershipControls': ownershipControls,
+    };
+  }
 }
 
 class GetBucketPolicyOutput {
@@ -17121,6 +17751,13 @@ class GetBucketPolicyOutput {
   GetBucketPolicyOutput({
     this.policy,
   });
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
+  }
 }
 
 class GetBucketPolicyStatusOutput {
@@ -17130,6 +17767,13 @@ class GetBucketPolicyStatusOutput {
   GetBucketPolicyStatusOutput({
     this.policyStatus,
   });
+
+  Map<String, dynamic> toJson() {
+    final policyStatus = this.policyStatus;
+    return {
+      if (policyStatus != null) 'PolicyStatus': policyStatus,
+    };
+  }
 }
 
 class GetBucketReplicationOutput {
@@ -17138,6 +17782,14 @@ class GetBucketReplicationOutput {
   GetBucketReplicationOutput({
     this.replicationConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final replicationConfiguration = this.replicationConfiguration;
+    return {
+      if (replicationConfiguration != null)
+        'ReplicationConfiguration': replicationConfiguration,
+    };
+  }
 }
 
 class GetBucketRequestPaymentOutput {
@@ -17151,6 +17803,13 @@ class GetBucketRequestPaymentOutput {
     return GetBucketRequestPaymentOutput(
       payer: _s.extractXmlStringValue(elem, 'Payer')?.toPayer(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final payer = this.payer;
+    return {
+      if (payer != null) 'Payer': payer.toValue(),
+    };
   }
 }
 
@@ -17169,6 +17828,13 @@ class GetBucketTaggingOutput {
           .map(Tag.fromXml)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tagSet = this.tagSet;
+    return {
+      'TagSet': tagSet,
+    };
   }
 }
 
@@ -17193,6 +17859,15 @@ class GetBucketVersioningOutput {
       status:
           _s.extractXmlStringValue(elem, 'Status')?.toBucketVersioningStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final mFADelete = this.mFADelete;
+    final status = this.status;
+    return {
+      if (mFADelete != null) 'MfaDelete': mFADelete.toValue(),
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 }
 
@@ -17231,6 +17906,20 @@ class GetBucketWebsiteOutput {
           elem.findElements('RoutingRule').map(RoutingRule.fromXml).toList()),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorDocument = this.errorDocument;
+    final indexDocument = this.indexDocument;
+    final redirectAllRequestsTo = this.redirectAllRequestsTo;
+    final routingRules = this.routingRules;
+    return {
+      if (errorDocument != null) 'ErrorDocument': errorDocument,
+      if (indexDocument != null) 'IndexDocument': indexDocument,
+      if (redirectAllRequestsTo != null)
+        'RedirectAllRequestsTo': redirectAllRequestsTo,
+      if (routingRules != null) 'RoutingRules': routingRules,
+    };
+  }
 }
 
 class GetObjectAclOutput {
@@ -17246,6 +17935,16 @@ class GetObjectAclOutput {
     this.owner,
     this.requestCharged,
   });
+
+  Map<String, dynamic> toJson() {
+    final grants = this.grants;
+    final owner = this.owner;
+    final requestCharged = this.requestCharged;
+    return {
+      if (grants != null) 'AccessControlList': grants,
+      if (owner != null) 'Owner': owner,
+    };
+  }
 }
 
 class GetObjectAttributesOutput {
@@ -17293,6 +17992,25 @@ class GetObjectAttributesOutput {
     this.storageClass,
     this.versionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final checksum = this.checksum;
+    final deleteMarker = this.deleteMarker;
+    final eTag = this.eTag;
+    final lastModified = this.lastModified;
+    final objectParts = this.objectParts;
+    final objectSize = this.objectSize;
+    final requestCharged = this.requestCharged;
+    final storageClass = this.storageClass;
+    final versionId = this.versionId;
+    return {
+      if (checksum != null) 'Checksum': checksum,
+      if (eTag != null) 'ETag': eTag,
+      if (objectParts != null) 'ObjectParts': objectParts,
+      if (objectSize != null) 'ObjectSize': objectSize,
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+    };
+  }
 }
 
 /// A collection of parts associated with a multipart upload.
@@ -17339,6 +18057,24 @@ class GetObjectAttributesParts {
       totalPartsCount: _s.extractXmlIntValue(elem, 'PartsCount'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isTruncated = this.isTruncated;
+    final maxParts = this.maxParts;
+    final nextPartNumberMarker = this.nextPartNumberMarker;
+    final partNumberMarker = this.partNumberMarker;
+    final parts = this.parts;
+    final totalPartsCount = this.totalPartsCount;
+    return {
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (maxParts != null) 'MaxParts': maxParts,
+      if (nextPartNumberMarker != null)
+        'NextPartNumberMarker': nextPartNumberMarker,
+      if (partNumberMarker != null) 'PartNumberMarker': partNumberMarker,
+      if (parts != null) 'Part': parts,
+      if (totalPartsCount != null) 'PartsCount': totalPartsCount,
+    };
+  }
 }
 
 class GetObjectLegalHoldOutput {
@@ -17348,6 +18084,13 @@ class GetObjectLegalHoldOutput {
   GetObjectLegalHoldOutput({
     this.legalHold,
   });
+
+  Map<String, dynamic> toJson() {
+    final legalHold = this.legalHold;
+    return {
+      if (legalHold != null) 'LegalHold': legalHold,
+    };
+  }
 }
 
 class GetObjectLockConfigurationOutput {
@@ -17357,6 +18100,14 @@ class GetObjectLockConfigurationOutput {
   GetObjectLockConfigurationOutput({
     this.objectLockConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final objectLockConfiguration = this.objectLockConfiguration;
+    return {
+      if (objectLockConfiguration != null)
+        'ObjectLockConfiguration': objectLockConfiguration,
+    };
+  }
 }
 
 class GetObjectOutput {
@@ -17552,6 +18303,48 @@ class GetObjectOutput {
     this.versionId,
     this.websiteRedirectLocation,
   });
+
+  Map<String, dynamic> toJson() {
+    final acceptRanges = this.acceptRanges;
+    final body = this.body;
+    final bucketKeyEnabled = this.bucketKeyEnabled;
+    final cacheControl = this.cacheControl;
+    final checksumCRC32 = this.checksumCRC32;
+    final checksumCRC32C = this.checksumCRC32C;
+    final checksumSHA1 = this.checksumSHA1;
+    final checksumSHA256 = this.checksumSHA256;
+    final contentDisposition = this.contentDisposition;
+    final contentEncoding = this.contentEncoding;
+    final contentLanguage = this.contentLanguage;
+    final contentLength = this.contentLength;
+    final contentRange = this.contentRange;
+    final contentType = this.contentType;
+    final deleteMarker = this.deleteMarker;
+    final eTag = this.eTag;
+    final expiration = this.expiration;
+    final expires = this.expires;
+    final lastModified = this.lastModified;
+    final metadata = this.metadata;
+    final missingMeta = this.missingMeta;
+    final objectLockLegalHoldStatus = this.objectLockLegalHoldStatus;
+    final objectLockMode = this.objectLockMode;
+    final objectLockRetainUntilDate = this.objectLockRetainUntilDate;
+    final partsCount = this.partsCount;
+    final replicationStatus = this.replicationStatus;
+    final requestCharged = this.requestCharged;
+    final restore = this.restore;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
+    final storageClass = this.storageClass;
+    final tagCount = this.tagCount;
+    final versionId = this.versionId;
+    final websiteRedirectLocation = this.websiteRedirectLocation;
+    return {
+      if (body != null) 'Body': base64Encode(body),
+    };
+  }
 }
 
 class GetObjectRetentionOutput {
@@ -17561,6 +18354,13 @@ class GetObjectRetentionOutput {
   GetObjectRetentionOutput({
     this.retention,
   });
+
+  Map<String, dynamic> toJson() {
+    final retention = this.retention;
+    return {
+      if (retention != null) 'Retention': retention,
+    };
+  }
 }
 
 class GetObjectTaggingOutput {
@@ -17574,6 +18374,14 @@ class GetObjectTaggingOutput {
     required this.tagSet,
     this.versionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final tagSet = this.tagSet;
+    final versionId = this.versionId;
+    return {
+      'TagSet': tagSet,
+    };
+  }
 }
 
 class GetObjectTorrentOutput {
@@ -17585,6 +18393,14 @@ class GetObjectTorrentOutput {
     this.body,
     this.requestCharged,
   });
+
+  Map<String, dynamic> toJson() {
+    final body = this.body;
+    final requestCharged = this.requestCharged;
+    return {
+      if (body != null) 'Body': base64Encode(body),
+    };
+  }
 }
 
 class GetPublicAccessBlockOutput {
@@ -17595,6 +18411,14 @@ class GetPublicAccessBlockOutput {
   GetPublicAccessBlockOutput({
     this.publicAccessBlockConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final publicAccessBlockConfiguration = this.publicAccessBlockConfiguration;
+    return {
+      if (publicAccessBlockConfiguration != null)
+        'PublicAccessBlockConfiguration': publicAccessBlockConfiguration,
+    };
+  }
 }
 
 /// Container for S3 Glacier job parameters.
@@ -17605,6 +18429,14 @@ class GlacierJobParameters {
   GlacierJobParameters({
     required this.tier,
   });
+
+  Map<String, dynamic> toJson() {
+    final tier = this.tier;
+    return {
+      'Tier': tier.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final tier = this.tier;
     final $children = <_s.XmlNode>[
@@ -17638,6 +18470,15 @@ class Grant {
       grantee: _s.extractXmlChild(elem, 'Grantee')?.let(Grantee.fromXml),
       permission: _s.extractXmlStringValue(elem, 'Permission')?.toPermission(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final grantee = this.grantee;
+    final permission = this.permission;
+    return {
+      if (grantee != null) 'Grantee': grantee,
+      if (permission != null) 'Permission': permission.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -17725,6 +18566,21 @@ class Grantee {
       id: _s.extractXmlStringValue(elem, 'ID'),
       uri: _s.extractXmlStringValue(elem, 'URI'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final displayName = this.displayName;
+    final emailAddress = this.emailAddress;
+    final id = this.id;
+    final uri = this.uri;
+    return {
+      'xsi:type': type.toValue(),
+      if (displayName != null) 'DisplayName': displayName,
+      if (emailAddress != null) 'EmailAddress': emailAddress,
+      if (id != null) 'ID': id,
+      if (uri != null) 'URI': uri,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -18011,6 +18867,44 @@ class HeadObjectOutput {
     this.versionId,
     this.websiteRedirectLocation,
   });
+
+  Map<String, dynamic> toJson() {
+    final acceptRanges = this.acceptRanges;
+    final archiveStatus = this.archiveStatus;
+    final bucketKeyEnabled = this.bucketKeyEnabled;
+    final cacheControl = this.cacheControl;
+    final checksumCRC32 = this.checksumCRC32;
+    final checksumCRC32C = this.checksumCRC32C;
+    final checksumSHA1 = this.checksumSHA1;
+    final checksumSHA256 = this.checksumSHA256;
+    final contentDisposition = this.contentDisposition;
+    final contentEncoding = this.contentEncoding;
+    final contentLanguage = this.contentLanguage;
+    final contentLength = this.contentLength;
+    final contentType = this.contentType;
+    final deleteMarker = this.deleteMarker;
+    final eTag = this.eTag;
+    final expiration = this.expiration;
+    final expires = this.expires;
+    final lastModified = this.lastModified;
+    final metadata = this.metadata;
+    final missingMeta = this.missingMeta;
+    final objectLockLegalHoldStatus = this.objectLockLegalHoldStatus;
+    final objectLockMode = this.objectLockMode;
+    final objectLockRetainUntilDate = this.objectLockRetainUntilDate;
+    final partsCount = this.partsCount;
+    final replicationStatus = this.replicationStatus;
+    final requestCharged = this.requestCharged;
+    final restore = this.restore;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
+    final storageClass = this.storageClass;
+    final versionId = this.versionId;
+    final websiteRedirectLocation = this.websiteRedirectLocation;
+    return {};
+  }
 }
 
 /// Container for the <code>Suffix</code> element.
@@ -18035,6 +18929,13 @@ class IndexDocument {
     return IndexDocument(
       suffix: _s.extractXmlStringValue(elem, 'Suffix')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final suffix = this.suffix;
+    return {
+      'Suffix': suffix,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -18073,6 +18974,15 @@ class Initiator {
       id: _s.extractXmlStringValue(elem, 'ID'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final displayName = this.displayName;
+    final id = this.id;
+    return {
+      if (displayName != null) 'DisplayName': displayName,
+      if (id != null) 'ID': id,
+    };
+  }
 }
 
 /// Describes the serialization format of the object.
@@ -18096,6 +19006,20 @@ class InputSerialization {
     this.json,
     this.parquet,
   });
+
+  Map<String, dynamic> toJson() {
+    final csv = this.csv;
+    final compressionType = this.compressionType;
+    final json = this.json;
+    final parquet = this.parquet;
+    return {
+      if (csv != null) 'CSV': csv,
+      if (compressionType != null) 'CompressionType': compressionType.toValue(),
+      if (json != null) 'JSON': json,
+      if (parquet != null) 'Parquet': parquet,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final csv = this.csv;
     final compressionType = this.compressionType;
@@ -18170,6 +19094,15 @@ class IntelligentTieringAndOperator {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final prefix = this.prefix;
+    final tags = this.tags;
+    return {
+      if (prefix != null) 'Prefix': prefix,
+      if (tags != null) 'Tag': tags,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final prefix = this.prefix;
     final tags = this.tags;
@@ -18228,6 +19161,19 @@ class IntelligentTieringConfiguration {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final status = this.status;
+    final tierings = this.tierings;
+    final filter = this.filter;
+    return {
+      'Id': id,
+      'Status': status.toValue(),
+      'Tiering': tierings,
+      if (filter != null) 'Filter': filter,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final id = this.id;
     final status = this.status;
@@ -18282,6 +19228,17 @@ class IntelligentTieringFilter {
       prefix: _s.extractXmlStringValue(elem, 'Prefix'),
       tag: _s.extractXmlChild(elem, 'Tag')?.let(Tag.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final and = this.and;
+    final prefix = this.prefix;
+    final tag = this.tag;
+    return {
+      if (and != null) 'And': and,
+      if (prefix != null) 'Prefix': prefix,
+      if (tag != null) 'Tag': tag,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -18394,6 +19351,26 @@ class InventoryConfiguration {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final destination = this.destination;
+    final id = this.id;
+    final includedObjectVersions = this.includedObjectVersions;
+    final isEnabled = this.isEnabled;
+    final schedule = this.schedule;
+    final filter = this.filter;
+    final optionalFields = this.optionalFields;
+    return {
+      'Destination': destination,
+      'Id': id,
+      'IncludedObjectVersions': includedObjectVersions.toValue(),
+      'IsEnabled': isEnabled,
+      'Schedule': schedule,
+      if (filter != null) 'Filter': filter,
+      if (optionalFields != null)
+        'OptionalFields': optionalFields.map((e) => e.toValue()).toList(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final destination = this.destination;
     final id = this.id;
@@ -18444,6 +19421,13 @@ class InventoryDestination {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final s3BucketDestination = this.s3BucketDestination;
+    return {
+      'S3BucketDestination': s3BucketDestination,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final s3BucketDestination = this.s3BucketDestination;
     final $children = <_s.XmlNode>[
@@ -18480,6 +19464,15 @@ class InventoryEncryption {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final ssekms = this.ssekms;
+    final sses3 = this.sses3;
+    return {
+      if (ssekms != null) 'SSE-KMS': ssekms,
+      if (sses3 != null) 'SSE-S3': sses3,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final ssekms = this.ssekms;
     final sses3 = this.sses3;
@@ -18511,6 +19504,13 @@ class InventoryFilter {
     return InventoryFilter(
       prefix: _s.extractXmlStringValue(elem, 'Prefix')!,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final prefix = this.prefix;
+    return {
+      'Prefix': prefix,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -18747,6 +19747,21 @@ class InventoryS3BucketDestination {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final format = this.format;
+    final accountId = this.accountId;
+    final encryption = this.encryption;
+    final prefix = this.prefix;
+    return {
+      'Bucket': bucket,
+      'Format': format.toValue(),
+      if (accountId != null) 'AccountId': accountId,
+      if (encryption != null) 'Encryption': encryption,
+      if (prefix != null) 'Prefix': prefix,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final bucket = this.bucket;
     final format = this.format;
@@ -18786,6 +19801,13 @@ class InventorySchedule {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final frequency = this.frequency;
+    return {
+      'Frequency': frequency.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final frequency = this.frequency;
     final $children = <_s.XmlNode>[
@@ -18810,6 +19832,14 @@ class JSONInput {
   JSONInput({
     this.type,
   });
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    return {
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final type = this.type;
     final $children = <_s.XmlNode>[
@@ -18835,6 +19865,14 @@ class JSONOutput {
   JSONOutput({
     this.recordDelimiter,
   });
+
+  Map<String, dynamic> toJson() {
+    final recordDelimiter = this.recordDelimiter;
+    return {
+      if (recordDelimiter != null) 'RecordDelimiter': recordDelimiter,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final recordDelimiter = this.recordDelimiter;
     final $children = <_s.XmlNode>[
@@ -18914,6 +19952,19 @@ class LambdaFunctionConfiguration {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final lambdaFunctionArn = this.lambdaFunctionArn;
+    final filter = this.filter;
+    final id = this.id;
+    return {
+      'Event': events.map((e) => e.toValue()).toList(),
+      'CloudFunction': lambdaFunctionArn,
+      if (filter != null) 'Filter': filter,
+      if (id != null) 'Id': id,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final events = this.events;
     final lambdaFunctionArn = this.lambdaFunctionArn;
@@ -18944,6 +19995,14 @@ class LifecycleConfiguration {
   LifecycleConfiguration({
     required this.rules,
   });
+
+  Map<String, dynamic> toJson() {
+    final rules = this.rules;
+    return {
+      'Rule': rules,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final rules = this.rules;
     final $children = <_s.XmlNode>[
@@ -18989,6 +20048,18 @@ class LifecycleExpiration {
       expiredObjectDeleteMarker:
           _s.extractXmlBoolValue(elem, 'ExpiredObjectDeleteMarker'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final days = this.days;
+    final expiredObjectDeleteMarker = this.expiredObjectDeleteMarker;
+    return {
+      if (date != null) 'Date': iso8601ToJson(date),
+      if (days != null) 'Days': days,
+      if (expiredObjectDeleteMarker != null)
+        'ExpiredObjectDeleteMarker': expiredObjectDeleteMarker,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -19093,6 +20164,32 @@ class LifecycleRule {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final abortIncompleteMultipartUpload = this.abortIncompleteMultipartUpload;
+    final expiration = this.expiration;
+    final filter = this.filter;
+    final id = this.id;
+    final noncurrentVersionExpiration = this.noncurrentVersionExpiration;
+    final noncurrentVersionTransitions = this.noncurrentVersionTransitions;
+    final prefix = this.prefix;
+    final transitions = this.transitions;
+    return {
+      'Status': status.toValue(),
+      if (abortIncompleteMultipartUpload != null)
+        'AbortIncompleteMultipartUpload': abortIncompleteMultipartUpload,
+      if (expiration != null) 'Expiration': expiration,
+      if (filter != null) 'Filter': filter,
+      if (id != null) 'ID': id,
+      if (noncurrentVersionExpiration != null)
+        'NoncurrentVersionExpiration': noncurrentVersionExpiration,
+      if (noncurrentVersionTransitions != null)
+        'NoncurrentVersionTransition': noncurrentVersionTransitions,
+      if (prefix != null) 'Prefix': prefix,
+      if (transitions != null) 'Transition': transitions,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final status = this.status;
     final abortIncompleteMultipartUpload = this.abortIncompleteMultipartUpload;
@@ -19160,6 +20257,20 @@ class LifecycleRuleAndOperator {
       prefix: _s.extractXmlStringValue(elem, 'Prefix'),
       tags: elem.findElements('Tag').map(Tag.fromXml).toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final objectSizeGreaterThan = this.objectSizeGreaterThan;
+    final objectSizeLessThan = this.objectSizeLessThan;
+    final prefix = this.prefix;
+    final tags = this.tags;
+    return {
+      if (objectSizeGreaterThan != null)
+        'ObjectSizeGreaterThan': objectSizeGreaterThan,
+      if (objectSizeLessThan != null) 'ObjectSizeLessThan': objectSizeLessThan,
+      if (prefix != null) 'Prefix': prefix,
+      if (tags != null) 'Tag': tags,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -19230,6 +20341,22 @@ class LifecycleRuleFilter {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final and = this.and;
+    final objectSizeGreaterThan = this.objectSizeGreaterThan;
+    final objectSizeLessThan = this.objectSizeLessThan;
+    final prefix = this.prefix;
+    final tag = this.tag;
+    return {
+      if (and != null) 'And': and,
+      if (objectSizeGreaterThan != null)
+        'ObjectSizeGreaterThan': objectSizeGreaterThan,
+      if (objectSizeLessThan != null) 'ObjectSizeLessThan': objectSizeLessThan,
+      if (prefix != null) 'Prefix': prefix,
+      if (tag != null) 'Tag': tag,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final and = this.and;
     final objectSizeGreaterThan = this.objectSizeGreaterThan;
@@ -19293,6 +20420,21 @@ class ListBucketAnalyticsConfigurationsOutput {
           _s.extractXmlStringValue(elem, 'NextContinuationToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final analyticsConfigurationList = this.analyticsConfigurationList;
+    final continuationToken = this.continuationToken;
+    final isTruncated = this.isTruncated;
+    final nextContinuationToken = this.nextContinuationToken;
+    return {
+      if (analyticsConfigurationList != null)
+        'AnalyticsConfiguration': analyticsConfigurationList,
+      if (continuationToken != null) 'ContinuationToken': continuationToken,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (nextContinuationToken != null)
+        'NextContinuationToken': nextContinuationToken,
+    };
+  }
 }
 
 class ListBucketIntelligentTieringConfigurationsOutput {
@@ -19335,6 +20477,22 @@ class ListBucketIntelligentTieringConfigurationsOutput {
           _s.extractXmlStringValue(elem, 'NextContinuationToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final continuationToken = this.continuationToken;
+    final intelligentTieringConfigurationList =
+        this.intelligentTieringConfigurationList;
+    final isTruncated = this.isTruncated;
+    final nextContinuationToken = this.nextContinuationToken;
+    return {
+      if (continuationToken != null) 'ContinuationToken': continuationToken,
+      if (intelligentTieringConfigurationList != null)
+        'IntelligentTieringConfiguration': intelligentTieringConfigurationList,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (nextContinuationToken != null)
+        'NextContinuationToken': nextContinuationToken,
+    };
+  }
 }
 
 class ListBucketInventoryConfigurationsOutput {
@@ -19373,6 +20531,21 @@ class ListBucketInventoryConfigurationsOutput {
       nextContinuationToken:
           _s.extractXmlStringValue(elem, 'NextContinuationToken'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final continuationToken = this.continuationToken;
+    final inventoryConfigurationList = this.inventoryConfigurationList;
+    final isTruncated = this.isTruncated;
+    final nextContinuationToken = this.nextContinuationToken;
+    return {
+      if (continuationToken != null) 'ContinuationToken': continuationToken,
+      if (inventoryConfigurationList != null)
+        'InventoryConfiguration': inventoryConfigurationList,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (nextContinuationToken != null)
+        'NextContinuationToken': nextContinuationToken,
+    };
   }
 }
 
@@ -19413,6 +20586,21 @@ class ListBucketMetricsConfigurationsOutput {
           _s.extractXmlStringValue(elem, 'NextContinuationToken'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final continuationToken = this.continuationToken;
+    final isTruncated = this.isTruncated;
+    final metricsConfigurationList = this.metricsConfigurationList;
+    final nextContinuationToken = this.nextContinuationToken;
+    return {
+      if (continuationToken != null) 'ContinuationToken': continuationToken,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (metricsConfigurationList != null)
+        'MetricsConfiguration': metricsConfigurationList,
+      if (nextContinuationToken != null)
+        'NextContinuationToken': nextContinuationToken,
+    };
+  }
 }
 
 class ListBucketsOutput {
@@ -19432,6 +20620,15 @@ class ListBucketsOutput {
           (elem) => elem.findElements('Bucket').map(Bucket.fromXml).toList()),
       owner: _s.extractXmlChild(elem, 'Owner')?.let(Owner.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final buckets = this.buckets;
+    final owner = this.owner;
+    return {
+      if (buckets != null) 'Buckets': buckets,
+      if (owner != null) 'Owner': owner,
+    };
   }
 }
 
@@ -19527,6 +20724,35 @@ class ListMultipartUploadsOutput {
       uploads:
           elem.findElements('Upload').map(MultipartUpload.fromXml).toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final commonPrefixes = this.commonPrefixes;
+    final delimiter = this.delimiter;
+    final encodingType = this.encodingType;
+    final isTruncated = this.isTruncated;
+    final keyMarker = this.keyMarker;
+    final maxUploads = this.maxUploads;
+    final nextKeyMarker = this.nextKeyMarker;
+    final nextUploadIdMarker = this.nextUploadIdMarker;
+    final prefix = this.prefix;
+    final uploadIdMarker = this.uploadIdMarker;
+    final uploads = this.uploads;
+    return {
+      if (bucket != null) 'Bucket': bucket,
+      if (commonPrefixes != null) 'CommonPrefixes': commonPrefixes,
+      if (delimiter != null) 'Delimiter': delimiter,
+      if (encodingType != null) 'EncodingType': encodingType.toValue(),
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (keyMarker != null) 'KeyMarker': keyMarker,
+      if (maxUploads != null) 'MaxUploads': maxUploads,
+      if (nextKeyMarker != null) 'NextKeyMarker': nextKeyMarker,
+      if (nextUploadIdMarker != null) 'NextUploadIdMarker': nextUploadIdMarker,
+      if (prefix != null) 'Prefix': prefix,
+      if (uploadIdMarker != null) 'UploadIdMarker': uploadIdMarker,
+      if (uploads != null) 'Upload': uploads,
+    };
   }
 }
 
@@ -19635,6 +20861,38 @@ class ListObjectVersionsOutput {
           elem.findElements('Version').map(ObjectVersion.fromXml).toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commonPrefixes = this.commonPrefixes;
+    final deleteMarkers = this.deleteMarkers;
+    final delimiter = this.delimiter;
+    final encodingType = this.encodingType;
+    final isTruncated = this.isTruncated;
+    final keyMarker = this.keyMarker;
+    final maxKeys = this.maxKeys;
+    final name = this.name;
+    final nextKeyMarker = this.nextKeyMarker;
+    final nextVersionIdMarker = this.nextVersionIdMarker;
+    final prefix = this.prefix;
+    final versionIdMarker = this.versionIdMarker;
+    final versions = this.versions;
+    return {
+      if (commonPrefixes != null) 'CommonPrefixes': commonPrefixes,
+      if (deleteMarkers != null) 'DeleteMarker': deleteMarkers,
+      if (delimiter != null) 'Delimiter': delimiter,
+      if (encodingType != null) 'EncodingType': encodingType.toValue(),
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (keyMarker != null) 'KeyMarker': keyMarker,
+      if (maxKeys != null) 'MaxKeys': maxKeys,
+      if (name != null) 'Name': name,
+      if (nextKeyMarker != null) 'NextKeyMarker': nextKeyMarker,
+      if (nextVersionIdMarker != null)
+        'NextVersionIdMarker': nextVersionIdMarker,
+      if (prefix != null) 'Prefix': prefix,
+      if (versionIdMarker != null) 'VersionIdMarker': versionIdMarker,
+      if (versions != null) 'Version': versions,
+    };
+  }
 }
 
 class ListObjectsOutput {
@@ -19723,6 +20981,31 @@ class ListObjectsOutput {
       nextMarker: _s.extractXmlStringValue(elem, 'NextMarker'),
       prefix: _s.extractXmlStringValue(elem, 'Prefix'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final commonPrefixes = this.commonPrefixes;
+    final contents = this.contents;
+    final delimiter = this.delimiter;
+    final encodingType = this.encodingType;
+    final isTruncated = this.isTruncated;
+    final marker = this.marker;
+    final maxKeys = this.maxKeys;
+    final name = this.name;
+    final nextMarker = this.nextMarker;
+    final prefix = this.prefix;
+    return {
+      if (commonPrefixes != null) 'CommonPrefixes': commonPrefixes,
+      if (contents != null) 'Contents': contents,
+      if (delimiter != null) 'Delimiter': delimiter,
+      if (encodingType != null) 'EncodingType': encodingType.toValue(),
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (marker != null) 'Marker': marker,
+      if (maxKeys != null) 'MaxKeys': maxKeys,
+      if (name != null) 'Name': name,
+      if (nextMarker != null) 'NextMarker': nextMarker,
+      if (prefix != null) 'Prefix': prefix,
+    };
   }
 }
 
@@ -19856,6 +21139,36 @@ class ListObjectsV2Output {
       startAfter: _s.extractXmlStringValue(elem, 'StartAfter'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commonPrefixes = this.commonPrefixes;
+    final contents = this.contents;
+    final continuationToken = this.continuationToken;
+    final delimiter = this.delimiter;
+    final encodingType = this.encodingType;
+    final isTruncated = this.isTruncated;
+    final keyCount = this.keyCount;
+    final maxKeys = this.maxKeys;
+    final name = this.name;
+    final nextContinuationToken = this.nextContinuationToken;
+    final prefix = this.prefix;
+    final startAfter = this.startAfter;
+    return {
+      if (commonPrefixes != null) 'CommonPrefixes': commonPrefixes,
+      if (contents != null) 'Contents': contents,
+      if (continuationToken != null) 'ContinuationToken': continuationToken,
+      if (delimiter != null) 'Delimiter': delimiter,
+      if (encodingType != null) 'EncodingType': encodingType.toValue(),
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (keyCount != null) 'KeyCount': keyCount,
+      if (maxKeys != null) 'MaxKeys': maxKeys,
+      if (name != null) 'Name': name,
+      if (nextContinuationToken != null)
+        'NextContinuationToken': nextContinuationToken,
+      if (prefix != null) 'Prefix': prefix,
+      if (startAfter != null) 'StartAfter': startAfter,
+    };
+  }
 }
 
 class ListPartsOutput {
@@ -19945,6 +21258,40 @@ class ListPartsOutput {
     this.storageClass,
     this.uploadId,
   });
+
+  Map<String, dynamic> toJson() {
+    final abortDate = this.abortDate;
+    final abortRuleId = this.abortRuleId;
+    final bucket = this.bucket;
+    final checksumAlgorithm = this.checksumAlgorithm;
+    final initiator = this.initiator;
+    final isTruncated = this.isTruncated;
+    final key = this.key;
+    final maxParts = this.maxParts;
+    final nextPartNumberMarker = this.nextPartNumberMarker;
+    final owner = this.owner;
+    final partNumberMarker = this.partNumberMarker;
+    final parts = this.parts;
+    final requestCharged = this.requestCharged;
+    final storageClass = this.storageClass;
+    final uploadId = this.uploadId;
+    return {
+      if (bucket != null) 'Bucket': bucket,
+      if (checksumAlgorithm != null)
+        'ChecksumAlgorithm': checksumAlgorithm.toValue(),
+      if (initiator != null) 'Initiator': initiator,
+      if (isTruncated != null) 'IsTruncated': isTruncated,
+      if (key != null) 'Key': key,
+      if (maxParts != null) 'MaxParts': maxParts,
+      if (nextPartNumberMarker != null)
+        'NextPartNumberMarker': nextPartNumberMarker,
+      if (owner != null) 'Owner': owner,
+      if (partNumberMarker != null) 'PartNumberMarker': partNumberMarker,
+      if (parts != null) 'Part': parts,
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+      if (uploadId != null) 'UploadId': uploadId,
+    };
+  }
 }
 
 /// Describes where logs are stored and the prefix that Amazon S3 assigns to all
@@ -19985,6 +21332,17 @@ class LoggingEnabled {
       targetGrants: _s.extractXmlChild(elem, 'TargetGrants')?.let((elem) =>
           elem.findElements('Grant').map(TargetGrant.fromXml).toList()),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final targetBucket = this.targetBucket;
+    final targetPrefix = this.targetPrefix;
+    final targetGrants = this.targetGrants;
+    return {
+      'TargetBucket': targetBucket,
+      'TargetPrefix': targetPrefix,
+      if (targetGrants != null) 'TargetGrants': targetGrants,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -20105,6 +21463,16 @@ class MetadataEntry {
     this.name,
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final name = this.name;
     final value = this.value;
@@ -20144,6 +21512,15 @@ class Metrics {
           .extractXmlChild(elem, 'EventThreshold')
           ?.let(ReplicationTimeValue.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final eventThreshold = this.eventThreshold;
+    return {
+      'Status': status.toValue(),
+      if (eventThreshold != null) 'EventThreshold': eventThreshold,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -20188,6 +21565,17 @@ class MetricsAndOperator {
       prefix: _s.extractXmlStringValue(elem, 'Prefix'),
       tags: elem.findElements('Tag').map(Tag.fromXml).toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessPointArn = this.accessPointArn;
+    final prefix = this.prefix;
+    final tags = this.tags;
+    return {
+      if (accessPointArn != null) 'AccessPointArn': accessPointArn,
+      if (prefix != null) 'Prefix': prefix,
+      if (tags != null) 'Tag': tags,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -20236,6 +21624,15 @@ class MetricsConfiguration {
       id: _s.extractXmlStringValue(elem, 'Id')!,
       filter: _s.extractXmlChild(elem, 'Filter')?.let(MetricsFilter.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final filter = this.filter;
+    return {
+      'Id': id,
+      if (filter != null) 'Filter': filter,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -20289,6 +21686,19 @@ class MetricsFilter {
       prefix: _s.extractXmlStringValue(elem, 'Prefix'),
       tag: _s.extractXmlChild(elem, 'Tag')?.let(Tag.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accessPointArn = this.accessPointArn;
+    final and = this.and;
+    final prefix = this.prefix;
+    final tag = this.tag;
+    return {
+      if (accessPointArn != null) 'AccessPointArn': accessPointArn,
+      if (and != null) 'And': and,
+      if (prefix != null) 'Prefix': prefix,
+      if (tag != null) 'Tag': tag,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -20388,6 +21798,26 @@ class MultipartUpload {
       uploadId: _s.extractXmlStringValue(elem, 'UploadId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checksumAlgorithm = this.checksumAlgorithm;
+    final initiated = this.initiated;
+    final initiator = this.initiator;
+    final key = this.key;
+    final owner = this.owner;
+    final storageClass = this.storageClass;
+    final uploadId = this.uploadId;
+    return {
+      if (checksumAlgorithm != null)
+        'ChecksumAlgorithm': checksumAlgorithm.toValue(),
+      if (initiated != null) 'Initiated': iso8601ToJson(initiated),
+      if (initiator != null) 'Initiator': initiator,
+      if (key != null) 'Key': key,
+      if (owner != null) 'Owner': owner,
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+      if (uploadId != null) 'UploadId': uploadId,
+    };
+  }
 }
 
 /// Specifies when noncurrent object versions expire. Upon expiration, Amazon S3
@@ -20421,6 +21851,16 @@ class NoncurrentVersionExpiration {
           _s.extractXmlIntValue(elem, 'NewerNoncurrentVersions'),
       noncurrentDays: _s.extractXmlIntValue(elem, 'NoncurrentDays'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final newerNoncurrentVersions = this.newerNoncurrentVersions;
+    final noncurrentDays = this.noncurrentDays;
+    return {
+      if (newerNoncurrentVersions != null)
+        'NewerNoncurrentVersions': newerNoncurrentVersions,
+      if (noncurrentDays != null) 'NoncurrentDays': noncurrentDays,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -20487,6 +21927,18 @@ class NoncurrentVersionTransition {
           .extractXmlStringValue(elem, 'StorageClass')
           ?.toTransitionStorageClass(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final newerNoncurrentVersions = this.newerNoncurrentVersions;
+    final noncurrentDays = this.noncurrentDays;
+    final storageClass = this.storageClass;
+    return {
+      if (newerNoncurrentVersions != null)
+        'NewerNoncurrentVersions': newerNoncurrentVersions,
+      if (noncurrentDays != null) 'NoncurrentDays': noncurrentDays,
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -20557,6 +22009,23 @@ class NotificationConfiguration {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final eventBridgeConfiguration = this.eventBridgeConfiguration;
+    final lambdaFunctionConfigurations = this.lambdaFunctionConfigurations;
+    final queueConfigurations = this.queueConfigurations;
+    final topicConfigurations = this.topicConfigurations;
+    return {
+      if (eventBridgeConfiguration != null)
+        'EventBridgeConfiguration': eventBridgeConfiguration,
+      if (lambdaFunctionConfigurations != null)
+        'CloudFunctionConfiguration': lambdaFunctionConfigurations,
+      if (queueConfigurations != null)
+        'QueueConfiguration': queueConfigurations,
+      if (topicConfigurations != null)
+        'TopicConfiguration': topicConfigurations,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final eventBridgeConfiguration = this.eventBridgeConfiguration;
     final lambdaFunctionConfigurations = this.lambdaFunctionConfigurations;
@@ -20617,6 +22086,18 @@ class NotificationConfigurationDeprecated {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final cloudFunctionConfiguration = this.cloudFunctionConfiguration;
+    final queueConfiguration = this.queueConfiguration;
+    final topicConfiguration = this.topicConfiguration;
+    return {
+      if (cloudFunctionConfiguration != null)
+        'CloudFunctionConfiguration': cloudFunctionConfiguration,
+      if (queueConfiguration != null) 'QueueConfiguration': queueConfiguration,
+      if (topicConfiguration != null) 'TopicConfiguration': topicConfiguration,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final cloudFunctionConfiguration = this.cloudFunctionConfiguration;
     final queueConfiguration = this.queueConfiguration;
@@ -20654,6 +22135,13 @@ class NotificationConfigurationFilter {
     return NotificationConfigurationFilter(
       key: _s.extractXmlChild(elem, 'S3Key')?.let(S3KeyFilter.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    return {
+      if (key != null) 'S3Key': key,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -20744,6 +22232,26 @@ class Object {
           .extractXmlStringValue(elem, 'StorageClass')
           ?.toObjectStorageClass(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final checksumAlgorithm = this.checksumAlgorithm;
+    final eTag = this.eTag;
+    final key = this.key;
+    final lastModified = this.lastModified;
+    final owner = this.owner;
+    final size = this.size;
+    final storageClass = this.storageClass;
+    return {
+      if (checksumAlgorithm != null)
+        'ChecksumAlgorithm': checksumAlgorithm.map((e) => e.toValue()).toList(),
+      if (eTag != null) 'ETag': eTag,
+      if (key != null) 'Key': key,
+      if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
+      if (owner != null) 'Owner': owner,
+      if (size != null) 'Size': size,
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+    };
   }
 }
 
@@ -20861,6 +22369,16 @@ class ObjectIdentifier {
     required this.key,
     this.versionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final versionId = this.versionId;
+    return {
+      'Key': key,
+      if (versionId != null) 'VersionId': versionId,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final key = this.key;
     final versionId = this.versionId;
@@ -20904,6 +22422,16 @@ class ObjectLockConfiguration {
           ?.toObjectLockEnabled(),
       rule: _s.extractXmlChild(elem, 'Rule')?.let(ObjectLockRule.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final objectLockEnabled = this.objectLockEnabled;
+    final rule = this.rule;
+    return {
+      if (objectLockEnabled != null)
+        'ObjectLockEnabled': objectLockEnabled.toValue(),
+      if (rule != null) 'Rule': rule,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -20963,6 +22491,13 @@ class ObjectLockLegalHold {
           .extractXmlStringValue(elem, 'Status')
           ?.toObjectLockLegalHoldStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'Status': status.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -21057,6 +22592,16 @@ class ObjectLockRetention {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final mode = this.mode;
+    final retainUntilDate = this.retainUntilDate;
+    return {
+      if (mode != null) 'Mode': mode.toValue(),
+      if (retainUntilDate != null)
+        'RetainUntilDate': iso8601ToJson(retainUntilDate),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final mode = this.mode;
     final retainUntilDate = this.retainUntilDate;
@@ -21123,6 +22668,13 @@ class ObjectLockRule {
           .extractXmlChild(elem, 'DefaultRetention')
           ?.let(DefaultRetention.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final defaultRetention = this.defaultRetention;
+    return {
+      if (defaultRetention != null) 'DefaultRetention': defaultRetention,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -21249,6 +22801,23 @@ class ObjectPart {
       size: _s.extractXmlIntValue(elem, 'Size'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checksumCRC32 = this.checksumCRC32;
+    final checksumCRC32C = this.checksumCRC32C;
+    final checksumSHA1 = this.checksumSHA1;
+    final checksumSHA256 = this.checksumSHA256;
+    final partNumber = this.partNumber;
+    final size = this.size;
+    return {
+      if (checksumCRC32 != null) 'ChecksumCRC32': checksumCRC32,
+      if (checksumCRC32C != null) 'ChecksumCRC32C': checksumCRC32C,
+      if (checksumSHA1 != null) 'ChecksumSHA1': checksumSHA1,
+      if (checksumSHA256 != null) 'ChecksumSHA256': checksumSHA256,
+      if (partNumber != null) 'PartNumber': partNumber,
+      if (size != null) 'Size': size,
+    };
+  }
 }
 
 enum ObjectStorageClass {
@@ -21373,6 +22942,30 @@ class ObjectVersion {
       versionId: _s.extractXmlStringValue(elem, 'VersionId'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checksumAlgorithm = this.checksumAlgorithm;
+    final eTag = this.eTag;
+    final isLatest = this.isLatest;
+    final key = this.key;
+    final lastModified = this.lastModified;
+    final owner = this.owner;
+    final size = this.size;
+    final storageClass = this.storageClass;
+    final versionId = this.versionId;
+    return {
+      if (checksumAlgorithm != null)
+        'ChecksumAlgorithm': checksumAlgorithm.map((e) => e.toValue()).toList(),
+      if (eTag != null) 'ETag': eTag,
+      if (isLatest != null) 'IsLatest': isLatest,
+      if (key != null) 'Key': key,
+      if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
+      if (owner != null) 'Owner': owner,
+      if (size != null) 'Size': size,
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+      if (versionId != null) 'VersionId': versionId,
+    };
+  }
 }
 
 enum ObjectVersionStorageClass {
@@ -21407,6 +23000,14 @@ class OutputLocation {
   OutputLocation({
     this.s3,
   });
+
+  Map<String, dynamic> toJson() {
+    final s3 = this.s3;
+    return {
+      if (s3 != null) 'S3': s3,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final s3 = this.s3;
     final $children = <_s.XmlNode>[
@@ -21435,6 +23036,16 @@ class OutputSerialization {
     this.csv,
     this.json,
   });
+
+  Map<String, dynamic> toJson() {
+    final csv = this.csv;
+    final json = this.json;
+    return {
+      if (csv != null) 'CSV': csv,
+      if (json != null) 'JSON': json,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final csv = this.csv;
     final json = this.json;
@@ -21470,6 +23081,15 @@ class Owner {
       displayName: _s.extractXmlStringValue(elem, 'DisplayName'),
       id: _s.extractXmlStringValue(elem, 'ID'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final displayName = this.displayName;
+    final id = this.id;
+    return {
+      if (displayName != null) 'DisplayName': displayName,
+      if (id != null) 'ID': id,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -21529,6 +23149,13 @@ class OwnershipControls {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final rules = this.rules;
+    return {
+      'Rule': rules,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final rules = this.rules;
     final $children = <_s.XmlNode>[
@@ -21560,6 +23187,13 @@ class OwnershipControlsRule {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final objectOwnership = this.objectOwnership;
+    return {
+      'ObjectOwnership': objectOwnership.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final objectOwnership = this.objectOwnership;
     final $children = <_s.XmlNode>[
@@ -21579,6 +23213,11 @@ class OwnershipControlsRule {
 /// Container for Parquet.
 class ParquetInput {
   ParquetInput();
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final $children = <_s.XmlNode>[];
     final $attributes = <_s.XmlAttribute>[
@@ -21660,6 +23299,27 @@ class Part {
       partNumber: _s.extractXmlIntValue(elem, 'PartNumber'),
       size: _s.extractXmlIntValue(elem, 'Size'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final checksumCRC32 = this.checksumCRC32;
+    final checksumCRC32C = this.checksumCRC32C;
+    final checksumSHA1 = this.checksumSHA1;
+    final checksumSHA256 = this.checksumSHA256;
+    final eTag = this.eTag;
+    final lastModified = this.lastModified;
+    final partNumber = this.partNumber;
+    final size = this.size;
+    return {
+      if (checksumCRC32 != null) 'ChecksumCRC32': checksumCRC32,
+      if (checksumCRC32C != null) 'ChecksumCRC32C': checksumCRC32C,
+      if (checksumSHA1 != null) 'ChecksumSHA1': checksumSHA1,
+      if (checksumSHA256 != null) 'ChecksumSHA256': checksumSHA256,
+      if (eTag != null) 'ETag': eTag,
+      if (lastModified != null) 'LastModified': iso8601ToJson(lastModified),
+      if (partNumber != null) 'PartNumber': partNumber,
+      if (size != null) 'Size': size,
+    };
   }
 }
 
@@ -21749,6 +23409,13 @@ class PolicyStatus {
       isPublic: _s.extractXmlBoolValue(elem, 'IsPublic'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isPublic = this.isPublic;
+    return {
+      if (isPublic != null) 'IsPublic': isPublic,
+    };
+  }
 }
 
 /// This data type contains information about progress of an operation.
@@ -21774,6 +23441,17 @@ class Progress {
       bytesScanned: _s.extractXmlIntValue(elem, 'BytesScanned'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bytesProcessed = this.bytesProcessed;
+    final bytesReturned = this.bytesReturned;
+    final bytesScanned = this.bytesScanned;
+    return {
+      if (bytesProcessed != null) 'BytesProcessed': bytesProcessed,
+      if (bytesReturned != null) 'BytesReturned': bytesReturned,
+      if (bytesScanned != null) 'BytesScanned': bytesScanned,
+    };
+  }
 }
 
 /// This data type contains information about the progress event of an
@@ -21789,6 +23467,13 @@ class ProgressEvent {
     return ProgressEvent(
       details: _s.extractXmlChild(elem, 'Details')?.let(Progress.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    return {
+      if (details != null) 'Details': details,
+    };
   }
 }
 
@@ -21888,6 +23573,20 @@ class PublicAccessBlockConfiguration {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final blockPublicAcls = this.blockPublicAcls;
+    final blockPublicPolicy = this.blockPublicPolicy;
+    final ignorePublicAcls = this.ignorePublicAcls;
+    final restrictPublicBuckets = this.restrictPublicBuckets;
+    return {
+      if (blockPublicAcls != null) 'BlockPublicAcls': blockPublicAcls,
+      if (blockPublicPolicy != null) 'BlockPublicPolicy': blockPublicPolicy,
+      if (ignorePublicAcls != null) 'IgnorePublicAcls': ignorePublicAcls,
+      if (restrictPublicBuckets != null)
+        'RestrictPublicBuckets': restrictPublicBuckets,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final blockPublicAcls = this.blockPublicAcls;
     final blockPublicPolicy = this.blockPublicPolicy;
@@ -21920,6 +23619,11 @@ class PutObjectAclOutput {
   PutObjectAclOutput({
     this.requestCharged,
   });
+
+  Map<String, dynamic> toJson() {
+    final requestCharged = this.requestCharged;
+    return {};
+  }
 }
 
 class PutObjectLegalHoldOutput {
@@ -21928,6 +23632,11 @@ class PutObjectLegalHoldOutput {
   PutObjectLegalHoldOutput({
     this.requestCharged,
   });
+
+  Map<String, dynamic> toJson() {
+    final requestCharged = this.requestCharged;
+    return {};
+  }
 }
 
 class PutObjectLockConfigurationOutput {
@@ -21936,6 +23645,11 @@ class PutObjectLockConfigurationOutput {
   PutObjectLockConfigurationOutput({
     this.requestCharged,
   });
+
+  Map<String, dynamic> toJson() {
+    final requestCharged = this.requestCharged;
+    return {};
+  }
 }
 
 class PutObjectOutput {
@@ -22032,6 +23746,24 @@ class PutObjectOutput {
     this.serverSideEncryption,
     this.versionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final bucketKeyEnabled = this.bucketKeyEnabled;
+    final checksumCRC32 = this.checksumCRC32;
+    final checksumCRC32C = this.checksumCRC32C;
+    final checksumSHA1 = this.checksumSHA1;
+    final checksumSHA256 = this.checksumSHA256;
+    final eTag = this.eTag;
+    final expiration = this.expiration;
+    final requestCharged = this.requestCharged;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final sSEKMSEncryptionContext = this.sSEKMSEncryptionContext;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
+    final versionId = this.versionId;
+    return {};
+  }
 }
 
 class PutObjectRetentionOutput {
@@ -22040,6 +23772,11 @@ class PutObjectRetentionOutput {
   PutObjectRetentionOutput({
     this.requestCharged,
   });
+
+  Map<String, dynamic> toJson() {
+    final requestCharged = this.requestCharged;
+    return {};
+  }
 }
 
 class PutObjectTaggingOutput {
@@ -22049,6 +23786,11 @@ class PutObjectTaggingOutput {
   PutObjectTaggingOutput({
     this.versionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final versionId = this.versionId;
+    return {};
+  }
 }
 
 /// Specifies the configuration for publishing messages to an Amazon Simple
@@ -22081,6 +23823,19 @@ class QueueConfiguration {
           ?.let(NotificationConfigurationFilter.fromXml),
       id: _s.extractXmlStringValue(elem, 'Id'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final queueArn = this.queueArn;
+    final filter = this.filter;
+    final id = this.id;
+    return {
+      'Event': events.map((e) => e.toValue()).toList(),
+      'Queue': queueArn,
+      if (filter != null) 'Filter': filter,
+      if (id != null) 'Id': id,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -22137,6 +23892,19 @@ class QueueConfigurationDeprecated {
       id: _s.extractXmlStringValue(elem, 'Id'),
       queue: _s.extractXmlStringValue(elem, 'Queue'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final event = this.event;
+    final events = this.events;
+    final id = this.id;
+    final queue = this.queue;
+    return {
+      if (event != null) 'Event': event.toValue(),
+      if (events != null) 'Event': events.map((e) => e.toValue()).toList(),
+      if (id != null) 'Id': id,
+      if (queue != null) 'Queue': queue,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -22203,6 +23971,13 @@ class RecordsEvent {
       payload: _s.extractXmlUint8ListValue(elem, 'Payload'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final payload = this.payload;
+    return {
+      if (payload != null) 'Payload': base64Encode(payload),
+    };
+  }
 }
 
 /// Specifies how requests are redirected. In the event of an error, you can
@@ -22264,6 +24039,22 @@ class Redirect {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final hostName = this.hostName;
+    final httpRedirectCode = this.httpRedirectCode;
+    final protocol = this.protocol;
+    final replaceKeyPrefixWith = this.replaceKeyPrefixWith;
+    final replaceKeyWith = this.replaceKeyWith;
+    return {
+      if (hostName != null) 'HostName': hostName,
+      if (httpRedirectCode != null) 'HttpRedirectCode': httpRedirectCode,
+      if (protocol != null) 'Protocol': protocol.toValue(),
+      if (replaceKeyPrefixWith != null)
+        'ReplaceKeyPrefixWith': replaceKeyPrefixWith,
+      if (replaceKeyWith != null) 'ReplaceKeyWith': replaceKeyWith,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final hostName = this.hostName;
     final httpRedirectCode = this.httpRedirectCode;
@@ -22313,6 +24104,15 @@ class RedirectAllRequestsTo {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final hostName = this.hostName;
+    final protocol = this.protocol;
+    return {
+      'HostName': hostName,
+      if (protocol != null) 'Protocol': protocol.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final hostName = this.hostName;
     final protocol = this.protocol;
@@ -22355,6 +24155,13 @@ class ReplicaModifications {
           .extractXmlStringValue(elem, 'Status')!
           .toReplicaModificationsStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'Status': status.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -22425,6 +24232,15 @@ class ReplicationConfiguration {
       role: _s.extractXmlStringValue(elem, 'Role')!,
       rules: elem.findElements('Rule').map(ReplicationRule.fromXml).toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final role = this.role;
+    final rules = this.rules;
+    return {
+      'Role': role,
+      'Rule': rules,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -22529,6 +24345,32 @@ class ReplicationRule {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final destination = this.destination;
+    final status = this.status;
+    final deleteMarkerReplication = this.deleteMarkerReplication;
+    final existingObjectReplication = this.existingObjectReplication;
+    final filter = this.filter;
+    final id = this.id;
+    final prefix = this.prefix;
+    final priority = this.priority;
+    final sourceSelectionCriteria = this.sourceSelectionCriteria;
+    return {
+      'Destination': destination,
+      'Status': status.toValue(),
+      if (deleteMarkerReplication != null)
+        'DeleteMarkerReplication': deleteMarkerReplication,
+      if (existingObjectReplication != null)
+        'ExistingObjectReplication': existingObjectReplication,
+      if (filter != null) 'Filter': filter,
+      if (id != null) 'ID': id,
+      if (prefix != null) 'Prefix': prefix,
+      if (priority != null) 'Priority': priority,
+      if (sourceSelectionCriteria != null)
+        'SourceSelectionCriteria': sourceSelectionCriteria,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final destination = this.destination;
     final status = this.status;
@@ -22599,6 +24441,15 @@ class ReplicationRuleAndOperator {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final prefix = this.prefix;
+    final tags = this.tags;
+    return {
+      if (prefix != null) 'Prefix': prefix,
+      if (tags != null) 'Tag': tags,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final prefix = this.prefix;
     final tags = this.tags;
@@ -22665,6 +24516,17 @@ class ReplicationRuleFilter {
       prefix: _s.extractXmlStringValue(elem, 'Prefix'),
       tag: _s.extractXmlChild(elem, 'Tag')?.let(Tag.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final and = this.and;
+    final prefix = this.prefix;
+    final tag = this.tag;
+    return {
+      if (and != null) 'And': and,
+      if (prefix != null) 'Prefix': prefix,
+      if (tag != null) 'Tag': tag,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -22777,6 +24639,15 @@ class ReplicationTime {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    final time = this.time;
+    return {
+      'Status': status.toValue(),
+      'Time': time,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final status = this.status;
     final time = this.time;
@@ -22838,6 +24709,13 @@ class ReplicationTimeValue {
     return ReplicationTimeValue(
       minutes: _s.extractXmlIntValue(elem, 'Minutes'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final minutes = this.minutes;
+    return {
+      if (minutes != null) 'Minutes': minutes,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -22917,6 +24795,14 @@ class RequestPaymentConfiguration {
   RequestPaymentConfiguration({
     required this.payer,
   });
+
+  Map<String, dynamic> toJson() {
+    final payer = this.payer;
+    return {
+      'Payer': payer.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final payer = this.payer;
     final $children = <_s.XmlNode>[
@@ -22943,6 +24829,14 @@ class RequestProgress {
   RequestProgress({
     this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      if (enabled != null) 'Enabled': enabled,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final enabled = this.enabled;
     final $children = <_s.XmlNode>[
@@ -22970,6 +24864,12 @@ class RestoreObjectOutput {
     this.requestCharged,
     this.restoreOutputPath,
   });
+
+  Map<String, dynamic> toJson() {
+    final requestCharged = this.requestCharged;
+    final restoreOutputPath = this.restoreOutputPath;
+    return {};
+  }
 }
 
 /// Container for restore job parameters.
@@ -23009,6 +24909,27 @@ class RestoreRequest {
     this.tier,
     this.type,
   });
+
+  Map<String, dynamic> toJson() {
+    final days = this.days;
+    final description = this.description;
+    final glacierJobParameters = this.glacierJobParameters;
+    final outputLocation = this.outputLocation;
+    final selectParameters = this.selectParameters;
+    final tier = this.tier;
+    final type = this.type;
+    return {
+      if (days != null) 'Days': days,
+      if (description != null) 'Description': description,
+      if (glacierJobParameters != null)
+        'GlacierJobParameters': glacierJobParameters,
+      if (outputLocation != null) 'OutputLocation': outputLocation,
+      if (selectParameters != null) 'SelectParameters': selectParameters,
+      if (tier != null) 'Tier': tier.toValue(),
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final days = this.days;
     final description = this.description;
@@ -23088,6 +25009,15 @@ class RoutingRule {
       redirect: Redirect.fromXml(_s.extractXmlChild(elem, 'Redirect')!),
       condition: _s.extractXmlChild(elem, 'Condition')?.let(Condition.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final redirect = this.redirect;
+    final condition = this.condition;
+    return {
+      'Redirect': redirect,
+      if (condition != null) 'Condition': condition,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -23178,6 +25108,30 @@ class Rule {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final prefix = this.prefix;
+    final status = this.status;
+    final abortIncompleteMultipartUpload = this.abortIncompleteMultipartUpload;
+    final expiration = this.expiration;
+    final id = this.id;
+    final noncurrentVersionExpiration = this.noncurrentVersionExpiration;
+    final noncurrentVersionTransition = this.noncurrentVersionTransition;
+    final transition = this.transition;
+    return {
+      'Prefix': prefix,
+      'Status': status.toValue(),
+      if (abortIncompleteMultipartUpload != null)
+        'AbortIncompleteMultipartUpload': abortIncompleteMultipartUpload,
+      if (expiration != null) 'Expiration': expiration,
+      if (id != null) 'ID': id,
+      if (noncurrentVersionExpiration != null)
+        'NoncurrentVersionExpiration': noncurrentVersionExpiration,
+      if (noncurrentVersionTransition != null)
+        'NoncurrentVersionTransition': noncurrentVersionTransition,
+      if (transition != null) 'Transition': transition,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final prefix = this.prefix;
     final status = this.status;
@@ -23223,6 +25177,13 @@ class S3KeyFilter {
       filterRules:
           elem.findElements('FilterRule').map(FilterRule.fromXml).toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final filterRules = this.filterRules;
+    return {
+      if (filterRules != null) 'FilterRule': filterRules,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -23276,6 +25237,28 @@ class S3Location {
     this.tagging,
     this.userMetadata,
   });
+
+  Map<String, dynamic> toJson() {
+    final bucketName = this.bucketName;
+    final prefix = this.prefix;
+    final accessControlList = this.accessControlList;
+    final cannedACL = this.cannedACL;
+    final encryption = this.encryption;
+    final storageClass = this.storageClass;
+    final tagging = this.tagging;
+    final userMetadata = this.userMetadata;
+    return {
+      'BucketName': bucketName,
+      'Prefix': prefix,
+      if (accessControlList != null) 'AccessControlList': accessControlList,
+      if (cannedACL != null) 'CannedACL': cannedACL.toValue(),
+      if (encryption != null) 'Encryption': encryption,
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+      if (tagging != null) 'Tagging': tagging,
+      if (userMetadata != null) 'UserMetadata': userMetadata,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final bucketName = this.bucketName;
     final prefix = this.prefix;
@@ -23328,6 +25311,13 @@ class SSEKMS {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final keyId = this.keyId;
+    return {
+      'KeyId': keyId,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final keyId = this.keyId;
     final $children = <_s.XmlNode>[
@@ -23351,6 +25341,10 @@ class SSES3 {
       // ignore: avoid_unused_constructor_parameters
       _s.XmlElement elem) {
     return SSES3();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -23391,6 +25385,16 @@ class ScanRange {
     this.end,
     this.start,
   });
+
+  Map<String, dynamic> toJson() {
+    final end = this.end;
+    final start = this.start;
+    return {
+      if (end != null) 'End': end,
+      if (start != null) 'Start': start,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final end = this.end;
     final start = this.start;
@@ -23443,6 +25447,21 @@ class SelectObjectContentEventStream {
       stats: _s.extractXmlChild(elem, 'Stats')?.let(StatsEvent.fromXml),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cont = this.cont;
+    final end = this.end;
+    final progress = this.progress;
+    final records = this.records;
+    final stats = this.stats;
+    return {
+      if (cont != null) 'Cont': cont,
+      if (end != null) 'End': end,
+      if (progress != null) 'Progress': progress,
+      if (records != null) 'Records': records,
+      if (stats != null) 'Stats': stats,
+    };
+  }
 }
 
 class SelectObjectContentOutput {
@@ -23452,6 +25471,13 @@ class SelectObjectContentOutput {
   SelectObjectContentOutput({
     this.payload,
   });
+
+  Map<String, dynamic> toJson() {
+    final payload = this.payload;
+    return {
+      if (payload != null) 'Payload': payload,
+    };
+  }
 }
 
 /// Request to filter the contents of an Amazon S3 object based on a simple
@@ -23550,6 +25576,30 @@ class SelectObjectContentRequest {
     this.sSECustomerKeyMD5,
     this.scanRange,
   });
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final expression = this.expression;
+    final expressionType = this.expressionType;
+    final inputSerialization = this.inputSerialization;
+    final key = this.key;
+    final outputSerialization = this.outputSerialization;
+    final expectedBucketOwner = this.expectedBucketOwner;
+    final requestProgress = this.requestProgress;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKey = this.sSECustomerKey;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final scanRange = this.scanRange;
+    return {
+      'Expression': expression,
+      'ExpressionType': expressionType.toValue(),
+      'InputSerialization': inputSerialization,
+      'OutputSerialization': outputSerialization,
+      if (requestProgress != null) 'RequestProgress': requestProgress,
+      if (scanRange != null) 'ScanRange': scanRange,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final bucket = this.bucket;
     final expression = this.expression;
@@ -23602,6 +25652,20 @@ class SelectParameters {
     required this.inputSerialization,
     required this.outputSerialization,
   });
+
+  Map<String, dynamic> toJson() {
+    final expression = this.expression;
+    final expressionType = this.expressionType;
+    final inputSerialization = this.inputSerialization;
+    final outputSerialization = this.outputSerialization;
+    return {
+      'Expression': expression,
+      'ExpressionType': expressionType.toValue(),
+      'InputSerialization': inputSerialization,
+      'OutputSerialization': outputSerialization,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final expression = this.expression;
     final expressionType = this.expressionType;
@@ -23709,6 +25773,15 @@ class ServerSideEncryptionByDefault {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final sSEAlgorithm = this.sSEAlgorithm;
+    final kMSMasterKeyID = this.kMSMasterKeyID;
+    return {
+      'SSEAlgorithm': sSEAlgorithm.toValue(),
+      if (kMSMasterKeyID != null) 'KMSMasterKeyID': kMSMasterKeyID,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final sSEAlgorithm = this.sSEAlgorithm;
     final kMSMasterKeyID = this.kMSMasterKeyID;
@@ -23744,6 +25817,13 @@ class ServerSideEncryptionConfiguration {
           .map(ServerSideEncryptionRule.fromXml)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rules = this.rules;
+    return {
+      'Rule': rules,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -23791,6 +25871,18 @@ class ServerSideEncryptionRule {
           ?.let(ServerSideEncryptionByDefault.fromXml),
       bucketKeyEnabled: _s.extractXmlBoolValue(elem, 'BucketKeyEnabled'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applyServerSideEncryptionByDefault =
+        this.applyServerSideEncryptionByDefault;
+    final bucketKeyEnabled = this.bucketKeyEnabled;
+    return {
+      if (applyServerSideEncryptionByDefault != null)
+        'ApplyServerSideEncryptionByDefault':
+            applyServerSideEncryptionByDefault,
+      if (bucketKeyEnabled != null) 'BucketKeyEnabled': bucketKeyEnabled,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -23855,6 +25947,17 @@ class SourceSelectionCriteria {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final replicaModifications = this.replicaModifications;
+    final sseKmsEncryptedObjects = this.sseKmsEncryptedObjects;
+    return {
+      if (replicaModifications != null)
+        'ReplicaModifications': replicaModifications,
+      if (sseKmsEncryptedObjects != null)
+        'SseKmsEncryptedObjects': sseKmsEncryptedObjects,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final replicaModifications = this.replicaModifications;
     final sseKmsEncryptedObjects = this.sseKmsEncryptedObjects;
@@ -23892,6 +25995,13 @@ class SseKmsEncryptedObjects {
           .extractXmlStringValue(elem, 'Status')!
           .toSseKmsEncryptedObjectsStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'Status': status.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -23962,6 +26072,17 @@ class Stats {
       bytesScanned: _s.extractXmlIntValue(elem, 'BytesScanned'),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bytesProcessed = this.bytesProcessed;
+    final bytesReturned = this.bytesReturned;
+    final bytesScanned = this.bytesScanned;
+    return {
+      if (bytesProcessed != null) 'BytesProcessed': bytesProcessed,
+      if (bytesReturned != null) 'BytesReturned': bytesReturned,
+      if (bytesScanned != null) 'BytesScanned': bytesScanned,
+    };
+  }
 }
 
 /// Container for the Stats Event.
@@ -23976,6 +26097,13 @@ class StatsEvent {
     return StatsEvent(
       details: _s.extractXmlChild(elem, 'Details')?.let(Stats.fromXml),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    return {
+      if (details != null) 'Details': details,
+    };
   }
 }
 
@@ -24061,6 +26189,13 @@ class StorageClassAnalysis {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final dataExport = this.dataExport;
+    return {
+      if (dataExport != null) 'DataExport': dataExport,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final dataExport = this.dataExport;
     final $children = <_s.XmlNode>[
@@ -24099,6 +26234,15 @@ class StorageClassAnalysisDataExport {
           .extractXmlStringValue(elem, 'OutputSchemaVersion')!
           .toStorageClassAnalysisSchemaVersion(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destination = this.destination;
+    final outputSchemaVersion = this.outputSchemaVersion;
+    return {
+      'Destination': destination,
+      'OutputSchemaVersion': outputSchemaVersion.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -24164,6 +26308,15 @@ class Tag {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      'Key': key,
+      'Value': value,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final key = this.key;
     final value = this.value;
@@ -24190,6 +26343,14 @@ class Tagging {
   Tagging({
     required this.tagSet,
   });
+
+  Map<String, dynamic> toJson() {
+    final tagSet = this.tagSet;
+    return {
+      'TagSet': tagSet,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final tagSet = this.tagSet;
     final $children = <_s.XmlNode>[
@@ -24259,6 +26420,15 @@ class TargetGrant {
           .extractXmlStringValue(elem, 'Permission')
           ?.toBucketLogsPermission(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final grantee = this.grantee;
+    final permission = this.permission;
+    return {
+      if (grantee != null) 'Grantee': grantee,
+      if (permission != null) 'Permission': permission.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -24344,6 +26514,15 @@ class Tiering {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final accessTier = this.accessTier;
+    final days = this.days;
+    return {
+      'AccessTier': accessTier.toValue(),
+      'Days': days,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final accessTier = this.accessTier;
     final days = this.days;
@@ -24396,6 +26575,19 @@ class TopicConfiguration {
           ?.let(NotificationConfigurationFilter.fromXml),
       id: _s.extractXmlStringValue(elem, 'Id'),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final events = this.events;
+    final topicArn = this.topicArn;
+    final filter = this.filter;
+    final id = this.id;
+    return {
+      'Event': events.map((e) => e.toValue()).toList(),
+      'Topic': topicArn,
+      if (filter != null) 'Filter': filter,
+      if (id != null) 'Id': id,
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -24455,6 +26647,19 @@ class TopicConfigurationDeprecated {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final event = this.event;
+    final events = this.events;
+    final id = this.id;
+    final topic = this.topic;
+    return {
+      if (event != null) 'Event': event.toValue(),
+      if (events != null) 'Event': events.map((e) => e.toValue()).toList(),
+      if (id != null) 'Id': id,
+      if (topic != null) 'Topic': topic,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final event = this.event;
     final events = this.events;
@@ -24508,6 +26713,17 @@ class Transition {
           .extractXmlStringValue(elem, 'StorageClass')
           ?.toTransitionStorageClass(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final days = this.days;
+    final storageClass = this.storageClass;
+    return {
+      if (date != null) 'Date': iso8601ToJson(date),
+      if (days != null) 'Days': days,
+      if (storageClass != null) 'StorageClass': storageClass.toValue(),
+    };
   }
 
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
@@ -24655,6 +26871,20 @@ class UploadPartCopyOutput {
     this.sSEKMSKeyId,
     this.serverSideEncryption,
   });
+
+  Map<String, dynamic> toJson() {
+    final bucketKeyEnabled = this.bucketKeyEnabled;
+    final copyPartResult = this.copyPartResult;
+    final copySourceVersionId = this.copySourceVersionId;
+    final requestCharged = this.requestCharged;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
+    return {
+      if (copyPartResult != null) 'CopyPartResult': copyPartResult,
+    };
+  }
 }
 
 class UploadPartOutput {
@@ -24730,6 +26960,21 @@ class UploadPartOutput {
     this.sSEKMSKeyId,
     this.serverSideEncryption,
   });
+
+  Map<String, dynamic> toJson() {
+    final bucketKeyEnabled = this.bucketKeyEnabled;
+    final checksumCRC32 = this.checksumCRC32;
+    final checksumCRC32C = this.checksumCRC32C;
+    final checksumSHA1 = this.checksumSHA1;
+    final checksumSHA256 = this.checksumSHA256;
+    final eTag = this.eTag;
+    final requestCharged = this.requestCharged;
+    final sSECustomerAlgorithm = this.sSECustomerAlgorithm;
+    final sSECustomerKeyMD5 = this.sSECustomerKeyMD5;
+    final sSEKMSKeyId = this.sSEKMSKeyId;
+    final serverSideEncryption = this.serverSideEncryption;
+    return {};
+  }
 }
 
 /// Describes the versioning state of an Amazon S3 bucket. For more information,
@@ -24750,6 +26995,16 @@ class VersioningConfiguration {
     this.mFADelete,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final mFADelete = this.mFADelete;
+    final status = this.status;
+    return {
+      if (mFADelete != null) 'MfaDelete': mFADelete.toValue(),
+      if (status != null) 'Status': status.toValue(),
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final mFADelete = this.mFADelete;
     final status = this.status;
@@ -24792,6 +27047,21 @@ class WebsiteConfiguration {
     this.redirectAllRequestsTo,
     this.routingRules,
   });
+
+  Map<String, dynamic> toJson() {
+    final errorDocument = this.errorDocument;
+    final indexDocument = this.indexDocument;
+    final redirectAllRequestsTo = this.redirectAllRequestsTo;
+    final routingRules = this.routingRules;
+    return {
+      if (errorDocument != null) 'ErrorDocument': errorDocument,
+      if (indexDocument != null) 'IndexDocument': indexDocument,
+      if (redirectAllRequestsTo != null)
+        'RedirectAllRequestsTo': redirectAllRequestsTo,
+      if (routingRules != null) 'RoutingRules': routingRules,
+    };
+  }
+
   _s.XmlElement toXml(String elemName, {List<_s.XmlAttribute>? attributes}) {
     final errorDocument = this.errorDocument;
     final indexDocument = this.indexDocument;

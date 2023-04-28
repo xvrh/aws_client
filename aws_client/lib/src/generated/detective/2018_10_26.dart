@@ -1065,6 +1065,7 @@ class Account {
     required this.accountId,
     required this.emailAddress,
   });
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final emailAddress = this.emailAddress;
@@ -1101,6 +1102,18 @@ class Administrator {
       graphArn: json['GraphArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final delegationTime = this.delegationTime;
+    final graphArn = this.graphArn;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (delegationTime != null)
+        'DelegationTime': iso8601ToJson(delegationTime),
+      if (graphArn != null) 'GraphArn': graphArn,
+    };
+  }
 }
 
 class BatchGetGraphMemberDatasourcesResponse {
@@ -1127,6 +1140,16 @@ class BatchGetGraphMemberDatasourcesResponse {
           .map((e) => UnprocessedAccount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final memberDatasources = this.memberDatasources;
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      if (memberDatasources != null) 'MemberDatasources': memberDatasources,
+      if (unprocessedAccounts != null)
+        'UnprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -1155,6 +1178,16 @@ class BatchGetMembershipDatasourcesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final membershipDatasources = this.membershipDatasources;
+    final unprocessedGraphs = this.unprocessedGraphs;
+    return {
+      if (membershipDatasources != null)
+        'MembershipDatasources': membershipDatasources,
+      if (unprocessedGraphs != null) 'UnprocessedGraphs': unprocessedGraphs,
+    };
+  }
 }
 
 class CreateGraphResponse {
@@ -1168,6 +1201,13 @@ class CreateGraphResponse {
     return CreateGraphResponse(
       graphArn: json['GraphArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final graphArn = this.graphArn;
+    return {
+      if (graphArn != null) 'GraphArn': graphArn,
+    };
   }
 }
 
@@ -1199,6 +1239,16 @@ class CreateMembersResponse {
           .map((e) => UnprocessedAccount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final members = this.members;
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      if (members != null) 'Members': members,
+      if (unprocessedAccounts != null)
+        'UnprocessedAccounts': unprocessedAccounts,
+    };
   }
 }
 
@@ -1253,6 +1303,18 @@ class DatasourcePackageIngestDetail {
               (k, e) => MapEntry(k.toDatasourcePackageIngestState(),
                   TimestampForCollection.fromJson(e as Map<String, dynamic>))),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final datasourcePackageIngestState = this.datasourcePackageIngestState;
+    final lastIngestStateChange = this.lastIngestStateChange;
+    return {
+      if (datasourcePackageIngestState != null)
+        'DatasourcePackageIngestState': datasourcePackageIngestState.toValue(),
+      if (lastIngestStateChange != null)
+        'LastIngestStateChange':
+            lastIngestStateChange.map((k, e) => MapEntry(k.toValue(), e)),
+    };
   }
 }
 
@@ -1311,6 +1373,16 @@ class DatasourcePackageUsageInfo {
       volumeUsageUpdateTime: timeStampFromJson(json['VolumeUsageUpdateTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final volumeUsageInBytes = this.volumeUsageInBytes;
+    final volumeUsageUpdateTime = this.volumeUsageUpdateTime;
+    return {
+      if (volumeUsageInBytes != null) 'VolumeUsageInBytes': volumeUsageInBytes,
+      if (volumeUsageUpdateTime != null)
+        'VolumeUsageUpdateTime': iso8601ToJson(volumeUsageUpdateTime),
+    };
+  }
 }
 
 class DeleteMembersResponse {
@@ -1339,6 +1411,16 @@ class DeleteMembersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountIds = this.accountIds;
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      if (accountIds != null) 'AccountIds': accountIds,
+      if (unprocessedAccounts != null)
+        'UnprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 class DescribeOrganizationConfigurationResponse {
@@ -1354,6 +1436,13 @@ class DescribeOrganizationConfigurationResponse {
     return DescribeOrganizationConfigurationResponse(
       autoEnable: json['AutoEnable'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoEnable = this.autoEnable;
+    return {
+      if (autoEnable != null) 'AutoEnable': autoEnable,
+    };
   }
 }
 
@@ -1385,6 +1474,16 @@ class GetMembersResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final memberDetails = this.memberDetails;
+    final unprocessedAccounts = this.unprocessedAccounts;
+    return {
+      if (memberDetails != null) 'MemberDetails': memberDetails,
+      if (unprocessedAccounts != null)
+        'UnprocessedAccounts': unprocessedAccounts,
+    };
+  }
 }
 
 /// A behavior graph in Detective.
@@ -1406,6 +1505,15 @@ class Graph {
       arn: json['Arn'] as String?,
       createdTime: timeStampFromJson(json['CreatedTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdTime = this.createdTime;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (createdTime != null) 'CreatedTime': iso8601ToJson(createdTime),
+    };
   }
 }
 
@@ -1461,6 +1569,17 @@ class ListDatasourcePackagesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final datasourcePackages = this.datasourcePackages;
+    final nextToken = this.nextToken;
+    return {
+      if (datasourcePackages != null)
+        'DatasourcePackages':
+            datasourcePackages.map((k, e) => MapEntry(k.toValue(), e)),
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListGraphsResponse {
@@ -1483,6 +1602,15 @@ class ListGraphsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final graphList = this.graphList;
+    final nextToken = this.nextToken;
+    return {
+      if (graphList != null) 'GraphList': graphList,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1507,6 +1635,15 @@ class ListInvitationsResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final invitations = this.invitations;
+    final nextToken = this.nextToken;
+    return {
+      if (invitations != null) 'Invitations': invitations,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1540,6 +1677,15 @@ class ListMembersResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final memberDetails = this.memberDetails;
+    final nextToken = this.nextToken;
+    return {
+      if (memberDetails != null) 'MemberDetails': memberDetails,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListOrganizationAdminAccountsResponse {
@@ -1564,6 +1710,15 @@ class ListOrganizationAdminAccountsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final administrators = this.administrators;
+    final nextToken = this.nextToken;
+    return {
+      if (administrators != null) 'Administrators': administrators,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1579,6 +1734,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1761,6 +1923,52 @@ class MemberDetail {
       volumeUsageUpdatedTime: timeStampFromJson(json['VolumeUsageUpdatedTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final administratorId = this.administratorId;
+    final datasourcePackageIngestStates = this.datasourcePackageIngestStates;
+    final disabledReason = this.disabledReason;
+    final emailAddress = this.emailAddress;
+    final graphArn = this.graphArn;
+    final invitationType = this.invitationType;
+    final invitedTime = this.invitedTime;
+    final masterId = this.masterId;
+    final percentOfGraphUtilization = this.percentOfGraphUtilization;
+    final percentOfGraphUtilizationUpdatedTime =
+        this.percentOfGraphUtilizationUpdatedTime;
+    final status = this.status;
+    final updatedTime = this.updatedTime;
+    final volumeUsageByDatasourcePackage = this.volumeUsageByDatasourcePackage;
+    final volumeUsageInBytes = this.volumeUsageInBytes;
+    final volumeUsageUpdatedTime = this.volumeUsageUpdatedTime;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (administratorId != null) 'AdministratorId': administratorId,
+      if (datasourcePackageIngestStates != null)
+        'DatasourcePackageIngestStates': datasourcePackageIngestStates
+            .map((k, e) => MapEntry(k.toValue(), e.toValue())),
+      if (disabledReason != null) 'DisabledReason': disabledReason.toValue(),
+      if (emailAddress != null) 'EmailAddress': emailAddress,
+      if (graphArn != null) 'GraphArn': graphArn,
+      if (invitationType != null) 'InvitationType': invitationType.toValue(),
+      if (invitedTime != null) 'InvitedTime': iso8601ToJson(invitedTime),
+      if (masterId != null) 'MasterId': masterId,
+      if (percentOfGraphUtilization != null)
+        'PercentOfGraphUtilization': percentOfGraphUtilization,
+      if (percentOfGraphUtilizationUpdatedTime != null)
+        'PercentOfGraphUtilizationUpdatedTime':
+            iso8601ToJson(percentOfGraphUtilizationUpdatedTime),
+      if (status != null) 'Status': status.toValue(),
+      if (updatedTime != null) 'UpdatedTime': iso8601ToJson(updatedTime),
+      if (volumeUsageByDatasourcePackage != null)
+        'VolumeUsageByDatasourcePackage': volumeUsageByDatasourcePackage
+            .map((k, e) => MapEntry(k.toValue(), e)),
+      if (volumeUsageInBytes != null) 'VolumeUsageInBytes': volumeUsageInBytes,
+      if (volumeUsageUpdatedTime != null)
+        'VolumeUsageUpdatedTime': iso8601ToJson(volumeUsageUpdatedTime),
+    };
+  }
 }
 
 enum MemberDisabledReason {
@@ -1866,12 +2074,30 @@ class MembershipDatasources {
       graphArn: json['GraphArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final datasourcePackageIngestHistory = this.datasourcePackageIngestHistory;
+    final graphArn = this.graphArn;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (datasourcePackageIngestHistory != null)
+        'DatasourcePackageIngestHistory': datasourcePackageIngestHistory.map((k,
+                e) =>
+            MapEntry(k.toValue(), e.map((k, e) => MapEntry(k.toValue(), e)))),
+      if (graphArn != null) 'GraphArn': graphArn,
+    };
+  }
 }
 
 class TagResourceResponse {
   TagResourceResponse();
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1889,6 +2115,13 @@ class TimestampForCollection {
     return TimestampForCollection(
       timestamp: timeStampFromJson(json['Timestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final timestamp = this.timestamp;
+    return {
+      if (timestamp != null) 'Timestamp': iso8601ToJson(timestamp),
+    };
   }
 }
 
@@ -1912,6 +2145,15 @@ class UnprocessedAccount {
       reason: json['Reason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final reason = this.reason;
+    return {
+      if (accountId != null) 'AccountId': accountId,
+      if (reason != null) 'Reason': reason,
+    };
+  }
 }
 
 /// Behavior graphs that could not be processed in the request.
@@ -1933,12 +2175,25 @@ class UnprocessedGraph {
       reason: json['Reason'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final graphArn = this.graphArn;
+    final reason = this.reason;
+    return {
+      if (graphArn != null) 'GraphArn': graphArn,
+      if (reason != null) 'Reason': reason,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

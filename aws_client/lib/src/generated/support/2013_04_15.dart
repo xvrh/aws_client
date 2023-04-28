@@ -1101,6 +1101,15 @@ class AddAttachmentsToSetResponse {
       expiryTime: json['expiryTime'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachmentSetId = this.attachmentSetId;
+    final expiryTime = this.expiryTime;
+    return {
+      if (attachmentSetId != null) 'attachmentSetId': attachmentSetId,
+      if (expiryTime != null) 'expiryTime': expiryTime,
+    };
+  }
 }
 
 /// The result of the <a>AddCommunicationToCase</a> operation.
@@ -1115,6 +1124,13 @@ class AddCommunicationToCaseResponse {
     return AddCommunicationToCaseResponse(
       result: json['result'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final result = this.result;
+    return {
+      if (result != null) 'result': result,
+    };
   }
 }
 
@@ -1167,6 +1183,15 @@ class AttachmentDetails {
       attachmentId: json['attachmentId'] as String?,
       fileName: json['fileName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachmentId = this.attachmentId;
+    final fileName = this.fileName;
+    return {
+      if (attachmentId != null) 'attachmentId': attachmentId,
+      if (fileName != null) 'fileName': fileName,
+    };
   }
 }
 
@@ -1357,6 +1382,36 @@ class CaseDetails {
       timeCreated: json['timeCreated'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final caseId = this.caseId;
+    final categoryCode = this.categoryCode;
+    final ccEmailAddresses = this.ccEmailAddresses;
+    final displayId = this.displayId;
+    final language = this.language;
+    final recentCommunications = this.recentCommunications;
+    final serviceCode = this.serviceCode;
+    final severityCode = this.severityCode;
+    final status = this.status;
+    final subject = this.subject;
+    final submittedBy = this.submittedBy;
+    final timeCreated = this.timeCreated;
+    return {
+      if (caseId != null) 'caseId': caseId,
+      if (categoryCode != null) 'categoryCode': categoryCode,
+      if (ccEmailAddresses != null) 'ccEmailAddresses': ccEmailAddresses,
+      if (displayId != null) 'displayId': displayId,
+      if (language != null) 'language': language,
+      if (recentCommunications != null)
+        'recentCommunications': recentCommunications,
+      if (serviceCode != null) 'serviceCode': serviceCode,
+      if (severityCode != null) 'severityCode': severityCode,
+      if (status != null) 'status': status,
+      if (subject != null) 'subject': subject,
+      if (submittedBy != null) 'submittedBy': submittedBy,
+      if (timeCreated != null) 'timeCreated': timeCreated,
+    };
+  }
 }
 
 /// A JSON-formatted name/value pair that represents the category name and
@@ -1378,6 +1433,15 @@ class Category {
       code: json['code'] as String?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final name = this.name;
+    return {
+      if (code != null) 'code': code,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -1426,6 +1490,21 @@ class Communication {
       timeCreated: json['timeCreated'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final attachmentSet = this.attachmentSet;
+    final body = this.body;
+    final caseId = this.caseId;
+    final submittedBy = this.submittedBy;
+    final timeCreated = this.timeCreated;
+    return {
+      if (attachmentSet != null) 'attachmentSet': attachmentSet,
+      if (body != null) 'body': body,
+      if (caseId != null) 'caseId': caseId,
+      if (submittedBy != null) 'submittedBy': submittedBy,
+      if (timeCreated != null) 'timeCreated': timeCreated,
+    };
+  }
 }
 
 /// The support case ID returned by a successful completion of the
@@ -1443,6 +1522,13 @@ class CreateCaseResponse {
     return CreateCaseResponse(
       caseId: json['caseId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final caseId = this.caseId;
+    return {
+      if (caseId != null) 'caseId': caseId,
+    };
   }
 }
 
@@ -1466,6 +1552,13 @@ class DescribeAttachmentResponse {
           ? Attachment.fromJson(json['attachment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final attachment = this.attachment;
+    return {
+      if (attachment != null) 'attachment': attachment,
+    };
   }
 }
 
@@ -1493,6 +1586,15 @@ class DescribeCasesResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cases = this.cases;
+    final nextToken = this.nextToken;
+    return {
+      if (cases != null) 'cases': cases,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// The communications returned by the <a>DescribeCommunications</a> operation.
@@ -1516,6 +1618,15 @@ class DescribeCommunicationsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final communications = this.communications;
+    final nextToken = this.nextToken;
+    return {
+      if (communications != null) 'communications': communications,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// The list of Amazon Web Services services returned by the
@@ -1534,6 +1645,13 @@ class DescribeServicesResponse {
           .map((e) => Service.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final services = this.services;
+    return {
+      if (services != null) 'services': services,
+    };
   }
 }
 
@@ -1554,6 +1672,13 @@ class DescribeSeverityLevelsResponse {
           .map((e) => SeverityLevel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final severityLevels = this.severityLevels;
+    return {
+      if (severityLevels != null) 'severityLevels': severityLevels,
+    };
   }
 }
 
@@ -1576,6 +1701,13 @@ class DescribeTrustedAdvisorCheckRefreshStatusesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final statuses = this.statuses;
+    return {
+      'statuses': statuses,
+    };
+  }
 }
 
 /// The result of the Trusted Advisor check returned by the
@@ -1595,6 +1727,13 @@ class DescribeTrustedAdvisorCheckResultResponse {
               json['result'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final result = this.result;
+    return {
+      if (result != null) 'result': result,
+    };
   }
 }
 
@@ -1617,6 +1756,13 @@ class DescribeTrustedAdvisorCheckSummariesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final summaries = this.summaries;
+    return {
+      'summaries': summaries,
+    };
+  }
 }
 
 /// Information about the Trusted Advisor checks returned by the
@@ -1637,6 +1783,13 @@ class DescribeTrustedAdvisorChecksResponse {
               e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final checks = this.checks;
+    return {
+      'checks': checks,
+    };
   }
 }
 
@@ -1661,6 +1814,15 @@ class RecentCaseCommunications {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final communications = this.communications;
+    final nextToken = this.nextToken;
+    return {
+      if (communications != null) 'communications': communications,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// The current refresh status of a Trusted Advisor check.
@@ -1678,6 +1840,13 @@ class RefreshTrustedAdvisorCheckResponse {
       status: TrustedAdvisorCheckRefreshStatus.fromJson(
           json['status'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      'status': status,
+    };
   }
 }
 
@@ -1698,6 +1867,15 @@ class ResolveCaseResponse {
       finalCaseStatus: json['finalCaseStatus'] as String?,
       initialCaseStatus: json['initialCaseStatus'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final finalCaseStatus = this.finalCaseStatus;
+    final initialCaseStatus = this.initialCaseStatus;
+    return {
+      if (finalCaseStatus != null) 'finalCaseStatus': finalCaseStatus,
+      if (initialCaseStatus != null) 'initialCaseStatus': initialCaseStatus,
+    };
   }
 }
 
@@ -1733,6 +1911,17 @@ class Service {
       code: json['code'] as String?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final categories = this.categories;
+    final code = this.code;
+    final name = this.name;
+    return {
+      if (categories != null) 'categories': categories,
+      if (code != null) 'code': code,
+      if (name != null) 'name': name,
+    };
   }
 }
 
@@ -1789,6 +1978,15 @@ class SeverityLevel {
       name: json['name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final name = this.name;
+    return {
+      if (code != null) 'code': code,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// The container for summary information that relates to the category of the
@@ -1809,6 +2007,13 @@ class TrustedAdvisorCategorySpecificSummary {
               json['costOptimizing'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final costOptimizing = this.costOptimizing;
+    return {
+      if (costOptimizing != null) 'costOptimizing': costOptimizing,
+    };
   }
 }
 
@@ -1852,6 +2057,21 @@ class TrustedAdvisorCheckDescription {
           .toList(),
       name: json['name'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final category = this.category;
+    final description = this.description;
+    final id = this.id;
+    final metadata = this.metadata;
+    final name = this.name;
+    return {
+      'category': category,
+      'description': description,
+      'id': id,
+      'metadata': metadata,
+      'name': name,
+    };
   }
 }
 
@@ -1901,6 +2121,17 @@ class TrustedAdvisorCheckRefreshStatus {
       status: json['status'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checkId = this.checkId;
+    final millisUntilNextRefreshable = this.millisUntilNextRefreshable;
+    final status = this.status;
+    return {
+      'checkId': checkId,
+      'millisUntilNextRefreshable': millisUntilNextRefreshable,
+      'status': status,
+    };
+  }
 }
 
 /// The results of a Trusted Advisor check returned by
@@ -1948,6 +2179,23 @@ class TrustedAdvisorCheckResult {
       timestamp: json['timestamp'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final categorySpecificSummary = this.categorySpecificSummary;
+    final checkId = this.checkId;
+    final flaggedResources = this.flaggedResources;
+    final resourcesSummary = this.resourcesSummary;
+    final status = this.status;
+    final timestamp = this.timestamp;
+    return {
+      'categorySpecificSummary': categorySpecificSummary,
+      'checkId': checkId,
+      'flaggedResources': flaggedResources,
+      'resourcesSummary': resourcesSummary,
+      'status': status,
+      'timestamp': timestamp,
+    };
+  }
 }
 
 /// A summary of a Trusted Advisor check result, including the alert status,
@@ -1991,6 +2239,24 @@ class TrustedAdvisorCheckSummary {
       hasFlaggedResources: json['hasFlaggedResources'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final categorySpecificSummary = this.categorySpecificSummary;
+    final checkId = this.checkId;
+    final resourcesSummary = this.resourcesSummary;
+    final status = this.status;
+    final timestamp = this.timestamp;
+    final hasFlaggedResources = this.hasFlaggedResources;
+    return {
+      'categorySpecificSummary': categorySpecificSummary,
+      'checkId': checkId,
+      'resourcesSummary': resourcesSummary,
+      'status': status,
+      'timestamp': timestamp,
+      if (hasFlaggedResources != null)
+        'hasFlaggedResources': hasFlaggedResources,
+    };
+  }
 }
 
 /// The estimated cost savings that might be realized if the recommended
@@ -2015,6 +2281,15 @@ class TrustedAdvisorCostOptimizingSummary {
       estimatedPercentMonthlySavings:
           json['estimatedPercentMonthlySavings'] as double,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final estimatedMonthlySavings = this.estimatedMonthlySavings;
+    final estimatedPercentMonthlySavings = this.estimatedPercentMonthlySavings;
+    return {
+      'estimatedMonthlySavings': estimatedMonthlySavings,
+      'estimatedPercentMonthlySavings': estimatedPercentMonthlySavings,
+    };
   }
 }
 
@@ -2060,6 +2335,21 @@ class TrustedAdvisorResourceDetail {
       region: json['region'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final metadata = this.metadata;
+    final resourceId = this.resourceId;
+    final status = this.status;
+    final isSuppressed = this.isSuppressed;
+    final region = this.region;
+    return {
+      'metadata': metadata,
+      'resourceId': resourceId,
+      'status': status,
+      if (isSuppressed != null) 'isSuppressed': isSuppressed,
+      if (region != null) 'region': region,
+    };
+  }
 }
 
 /// Details about Amazon Web Services resources that were analyzed in a call to
@@ -2094,6 +2384,19 @@ class TrustedAdvisorResourcesSummary {
       resourcesProcessed: json['resourcesProcessed'] as int,
       resourcesSuppressed: json['resourcesSuppressed'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourcesFlagged = this.resourcesFlagged;
+    final resourcesIgnored = this.resourcesIgnored;
+    final resourcesProcessed = this.resourcesProcessed;
+    final resourcesSuppressed = this.resourcesSuppressed;
+    return {
+      'resourcesFlagged': resourcesFlagged,
+      'resourcesIgnored': resourcesIgnored,
+      'resourcesProcessed': resourcesProcessed,
+      'resourcesSuppressed': resourcesSuppressed,
+    };
   }
 }
 

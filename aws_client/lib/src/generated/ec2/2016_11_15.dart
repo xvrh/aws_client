@@ -28696,6 +28696,15 @@ class AcceleratorCount {
     this.max,
     this.min,
   });
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (max != null) 'max': max,
+      if (min != null) 'min': min,
+    };
+  }
 }
 
 /// The minimum and maximum number of accelerators (GPUs, FPGAs, or Amazon Web
@@ -28715,6 +28724,15 @@ class AcceleratorCountRequest {
     this.max,
     this.min,
   });
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (max != null) 'Max': max,
+      if (min != null) 'Min': min,
+    };
+  }
 }
 
 enum AcceleratorManufacturer {
@@ -28822,6 +28840,15 @@ class AcceleratorTotalMemoryMiB {
     this.max,
     this.min,
   });
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (max != null) 'max': max,
+      if (min != null) 'min': min,
+    };
+  }
 }
 
 /// The minimum and maximum amount of total accelerator memory, in MiB.
@@ -28838,6 +28865,15 @@ class AcceleratorTotalMemoryMiBRequest {
     this.max,
     this.min,
   });
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (max != null) 'Max': max,
+      if (min != null) 'Min': min,
+    };
+  }
 }
 
 enum AcceleratorType {
@@ -28881,6 +28917,13 @@ class AcceptReservedInstancesExchangeQuoteResult {
   AcceptReservedInstancesExchangeQuoteResult({
     this.exchangeId,
   });
+
+  Map<String, dynamic> toJson() {
+    final exchangeId = this.exchangeId;
+    return {
+      if (exchangeId != null) 'exchangeId': exchangeId,
+    };
+  }
 }
 
 class AcceptTransitGatewayMulticastDomainAssociationsResult {
@@ -28889,6 +28932,13 @@ class AcceptTransitGatewayMulticastDomainAssociationsResult {
   AcceptTransitGatewayMulticastDomainAssociationsResult({
     this.associations,
   });
+
+  Map<String, dynamic> toJson() {
+    final associations = this.associations;
+    return {
+      if (associations != null) 'associations': associations,
+    };
+  }
 }
 
 class AcceptTransitGatewayPeeringAttachmentResult {
@@ -28898,6 +28948,15 @@ class AcceptTransitGatewayPeeringAttachmentResult {
   AcceptTransitGatewayPeeringAttachmentResult({
     this.transitGatewayPeeringAttachment,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayPeeringAttachment =
+        this.transitGatewayPeeringAttachment;
+    return {
+      if (transitGatewayPeeringAttachment != null)
+        'transitGatewayPeeringAttachment': transitGatewayPeeringAttachment,
+    };
+  }
 }
 
 class AcceptTransitGatewayVpcAttachmentResult {
@@ -28907,6 +28966,14 @@ class AcceptTransitGatewayVpcAttachmentResult {
   AcceptTransitGatewayVpcAttachmentResult({
     this.transitGatewayVpcAttachment,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayVpcAttachment = this.transitGatewayVpcAttachment;
+    return {
+      if (transitGatewayVpcAttachment != null)
+        'transitGatewayVpcAttachment': transitGatewayVpcAttachment,
+    };
+  }
 }
 
 class AcceptVpcEndpointConnectionsResult {
@@ -28917,6 +28984,13 @@ class AcceptVpcEndpointConnectionsResult {
   AcceptVpcEndpointConnectionsResult({
     this.unsuccessful,
   });
+
+  Map<String, dynamic> toJson() {
+    final unsuccessful = this.unsuccessful;
+    return {
+      if (unsuccessful != null) 'unsuccessful': unsuccessful,
+    };
+  }
 }
 
 class AcceptVpcPeeringConnectionResult {
@@ -28926,6 +29000,14 @@ class AcceptVpcPeeringConnectionResult {
   AcceptVpcPeeringConnectionResult({
     this.vpcPeeringConnection,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpcPeeringConnection = this.vpcPeeringConnection;
+    return {
+      if (vpcPeeringConnection != null)
+        'vpcPeeringConnection': vpcPeeringConnection,
+    };
+  }
 }
 
 /// Describes a finding for a Network Access Scope.
@@ -28948,6 +29030,23 @@ class AccessScopeAnalysisFinding {
     this.networkInsightsAccessScopeAnalysisId,
     this.networkInsightsAccessScopeId,
   });
+
+  Map<String, dynamic> toJson() {
+    final findingComponents = this.findingComponents;
+    final findingId = this.findingId;
+    final networkInsightsAccessScopeAnalysisId =
+        this.networkInsightsAccessScopeAnalysisId;
+    final networkInsightsAccessScopeId = this.networkInsightsAccessScopeId;
+    return {
+      if (findingComponents != null) 'findingComponentSet': findingComponents,
+      if (findingId != null) 'findingId': findingId,
+      if (networkInsightsAccessScopeAnalysisId != null)
+        'networkInsightsAccessScopeAnalysisId':
+            networkInsightsAccessScopeAnalysisId,
+      if (networkInsightsAccessScopeId != null)
+        'networkInsightsAccessScopeId': networkInsightsAccessScopeId,
+    };
+  }
 }
 
 /// Describes a path.
@@ -28966,6 +29065,17 @@ class AccessScopePath {
     this.source,
     this.throughResources,
   });
+
+  Map<String, dynamic> toJson() {
+    final destination = this.destination;
+    final source = this.source;
+    final throughResources = this.throughResources;
+    return {
+      if (destination != null) 'destination': destination,
+      if (source != null) 'source': source,
+      if (throughResources != null) 'throughResourceSet': throughResources,
+    };
+  }
 }
 
 /// Describes a path.
@@ -28984,6 +29094,17 @@ class AccessScopePathRequest {
     this.source,
     this.throughResources,
   });
+
+  Map<String, dynamic> toJson() {
+    final destination = this.destination;
+    final source = this.source;
+    final throughResources = this.throughResources;
+    return {
+      if (destination != null) 'Destination': destination,
+      if (source != null) 'Source': source,
+      if (throughResources != null) 'ThroughResource': throughResources,
+    };
+  }
 }
 
 /// Describes an account attribute.
@@ -28998,6 +29119,15 @@ class AccountAttribute {
     this.attributeName,
     this.attributeValues,
   });
+
+  Map<String, dynamic> toJson() {
+    final attributeName = this.attributeName;
+    final attributeValues = this.attributeValues;
+    return {
+      if (attributeName != null) 'attributeName': attributeName,
+      if (attributeValues != null) 'attributeValueSet': attributeValues,
+    };
+  }
 }
 
 enum AccountAttributeName {
@@ -29036,6 +29166,13 @@ class AccountAttributeValue {
   AccountAttributeValue({
     this.attributeValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final attributeValue = this.attributeValue;
+    return {
+      if (attributeValue != null) 'attributeValue': attributeValue,
+    };
+  }
 }
 
 /// Describes a running instance in a Spot Fleet.
@@ -29061,6 +29198,20 @@ class ActiveInstance {
     this.instanceType,
     this.spotInstanceRequestId,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceHealth = this.instanceHealth;
+    final instanceId = this.instanceId;
+    final instanceType = this.instanceType;
+    final spotInstanceRequestId = this.spotInstanceRequestId;
+    return {
+      if (instanceHealth != null) 'instanceHealth': instanceHealth.toValue(),
+      if (instanceId != null) 'instanceId': instanceId,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (spotInstanceRequestId != null)
+        'spotInstanceRequestId': spotInstanceRequestId,
+    };
+  }
 }
 
 enum ActivityStatus {
@@ -29116,6 +29267,13 @@ class AddIpamOperatingRegion {
   AddIpamOperatingRegion({
     this.regionName,
   });
+
+  Map<String, dynamic> toJson() {
+    final regionName = this.regionName;
+    return {
+      if (regionName != null) 'RegionName': regionName,
+    };
+  }
 }
 
 /// An entry for a prefix list.
@@ -29132,6 +29290,15 @@ class AddPrefixListEntry {
     required this.cidr,
     this.description,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidr = this.cidr;
+    final description = this.description;
+    return {
+      'Cidr': cidr,
+      if (description != null) 'Description': description,
+    };
+  }
 }
 
 /// Describes an additional detail for a path analysis.
@@ -29146,6 +29313,16 @@ class AdditionalDetail {
     this.additionalDetailType,
     this.component,
   });
+
+  Map<String, dynamic> toJson() {
+    final additionalDetailType = this.additionalDetailType;
+    final component = this.component;
+    return {
+      if (additionalDetailType != null)
+        'additionalDetailType': additionalDetailType,
+      if (component != null) 'component': component,
+    };
+  }
 }
 
 /// Describes an Elastic IP address, or a carrier IP address.
@@ -29214,6 +29391,41 @@ class Address {
     this.publicIpv4Pool,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final allocationId = this.allocationId;
+    final associationId = this.associationId;
+    final carrierIp = this.carrierIp;
+    final customerOwnedIp = this.customerOwnedIp;
+    final customerOwnedIpv4Pool = this.customerOwnedIpv4Pool;
+    final domain = this.domain;
+    final instanceId = this.instanceId;
+    final networkBorderGroup = this.networkBorderGroup;
+    final networkInterfaceId = this.networkInterfaceId;
+    final networkInterfaceOwnerId = this.networkInterfaceOwnerId;
+    final privateIpAddress = this.privateIpAddress;
+    final publicIp = this.publicIp;
+    final publicIpv4Pool = this.publicIpv4Pool;
+    final tags = this.tags;
+    return {
+      if (allocationId != null) 'allocationId': allocationId,
+      if (associationId != null) 'associationId': associationId,
+      if (carrierIp != null) 'carrierIp': carrierIp,
+      if (customerOwnedIp != null) 'customerOwnedIp': customerOwnedIp,
+      if (customerOwnedIpv4Pool != null)
+        'customerOwnedIpv4Pool': customerOwnedIpv4Pool,
+      if (domain != null) 'domain': domain.toValue(),
+      if (instanceId != null) 'instanceId': instanceId,
+      if (networkBorderGroup != null) 'networkBorderGroup': networkBorderGroup,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (networkInterfaceOwnerId != null)
+        'networkInterfaceOwnerId': networkInterfaceOwnerId,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+      if (publicIp != null) 'publicIp': publicIp,
+      if (publicIpv4Pool != null) 'publicIpv4Pool': publicIpv4Pool,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// The attributes associated with an Elastic IP address.
@@ -29236,6 +29448,19 @@ class AddressAttribute {
     this.ptrRecordUpdate,
     this.publicIp,
   });
+
+  Map<String, dynamic> toJson() {
+    final allocationId = this.allocationId;
+    final ptrRecord = this.ptrRecord;
+    final ptrRecordUpdate = this.ptrRecordUpdate;
+    final publicIp = this.publicIp;
+    return {
+      if (allocationId != null) 'allocationId': allocationId,
+      if (ptrRecord != null) 'ptrRecord': ptrRecord,
+      if (ptrRecordUpdate != null) 'ptrRecordUpdate': ptrRecordUpdate,
+      if (publicIp != null) 'publicIp': publicIp,
+    };
+  }
 }
 
 enum AddressAttributeName {
@@ -29296,6 +29521,13 @@ class AdvertiseByoipCidrResult {
   AdvertiseByoipCidrResult({
     this.byoipCidr,
   });
+
+  Map<String, dynamic> toJson() {
+    final byoipCidr = this.byoipCidr;
+    return {
+      if (byoipCidr != null) 'byoipCidr': byoipCidr,
+    };
+  }
 }
 
 enum Affinity {
@@ -29365,6 +29597,28 @@ class AllocateAddressResult {
     this.publicIp,
     this.publicIpv4Pool,
   });
+
+  Map<String, dynamic> toJson() {
+    final allocationId = this.allocationId;
+    final carrierIp = this.carrierIp;
+    final customerOwnedIp = this.customerOwnedIp;
+    final customerOwnedIpv4Pool = this.customerOwnedIpv4Pool;
+    final domain = this.domain;
+    final networkBorderGroup = this.networkBorderGroup;
+    final publicIp = this.publicIp;
+    final publicIpv4Pool = this.publicIpv4Pool;
+    return {
+      if (allocationId != null) 'allocationId': allocationId,
+      if (carrierIp != null) 'carrierIp': carrierIp,
+      if (customerOwnedIp != null) 'customerOwnedIp': customerOwnedIp,
+      if (customerOwnedIpv4Pool != null)
+        'customerOwnedIpv4Pool': customerOwnedIpv4Pool,
+      if (domain != null) 'domain': domain.toValue(),
+      if (networkBorderGroup != null) 'networkBorderGroup': networkBorderGroup,
+      if (publicIp != null) 'publicIp': publicIp,
+      if (publicIpv4Pool != null) 'publicIpv4Pool': publicIpv4Pool,
+    };
+  }
 }
 
 /// Contains the output of AllocateHosts.
@@ -29376,6 +29630,13 @@ class AllocateHostsResult {
   AllocateHostsResult({
     this.hostIds,
   });
+
+  Map<String, dynamic> toJson() {
+    final hostIds = this.hostIds;
+    return {
+      if (hostIds != null) 'hostIdSet': hostIds,
+    };
+  }
 }
 
 class AllocateIpamPoolCidrResult {
@@ -29385,6 +29646,13 @@ class AllocateIpamPoolCidrResult {
   AllocateIpamPoolCidrResult({
     this.ipamPoolAllocation,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamPoolAllocation = this.ipamPoolAllocation;
+    return {
+      if (ipamPoolAllocation != null) 'ipamPoolAllocation': ipamPoolAllocation,
+    };
+  }
 }
 
 enum AllocationState {
@@ -29485,6 +29753,15 @@ class AllowedPrincipal {
     this.principal,
     this.principalType,
   });
+
+  Map<String, dynamic> toJson() {
+    final principal = this.principal;
+    final principalType = this.principalType;
+    return {
+      if (principal != null) 'principal': principal,
+      if (principalType != null) 'principalType': principalType.toValue(),
+    };
+  }
 }
 
 enum AllowsMultipleInstanceTypes {
@@ -29528,6 +29805,15 @@ class AlternatePathHint {
     this.componentArn,
     this.componentId,
   });
+
+  Map<String, dynamic> toJson() {
+    final componentArn = this.componentArn;
+    final componentId = this.componentId;
+    return {
+      if (componentArn != null) 'componentArn': componentArn,
+      if (componentId != null) 'componentId': componentId,
+    };
+  }
 }
 
 /// Describes a network access control (ACL) rule.
@@ -29558,6 +29844,23 @@ class AnalysisAclRule {
     this.ruleAction,
     this.ruleNumber,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidr = this.cidr;
+    final egress = this.egress;
+    final portRange = this.portRange;
+    final protocol = this.protocol;
+    final ruleAction = this.ruleAction;
+    final ruleNumber = this.ruleNumber;
+    return {
+      if (cidr != null) 'cidr': cidr,
+      if (egress != null) 'egress': egress,
+      if (portRange != null) 'portRange': portRange,
+      if (protocol != null) 'protocol': protocol,
+      if (ruleAction != null) 'ruleAction': ruleAction,
+      if (ruleNumber != null) 'ruleNumber': ruleNumber,
+    };
+  }
 }
 
 /// Describes a path component.
@@ -29576,6 +29879,17 @@ class AnalysisComponent {
     this.id,
     this.name,
   });
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// Describes a load balancer listener.
@@ -29590,6 +29904,15 @@ class AnalysisLoadBalancerListener {
     this.instancePort,
     this.loadBalancerPort,
   });
+
+  Map<String, dynamic> toJson() {
+    final instancePort = this.instancePort;
+    final loadBalancerPort = this.loadBalancerPort;
+    return {
+      if (instancePort != null) 'instancePort': instancePort,
+      if (loadBalancerPort != null) 'loadBalancerPort': loadBalancerPort,
+    };
+  }
 }
 
 /// Describes a load balancer target.
@@ -29612,6 +29935,19 @@ class AnalysisLoadBalancerTarget {
     this.instance,
     this.port,
   });
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final availabilityZone = this.availabilityZone;
+    final instance = this.instance;
+    final port = this.port;
+    return {
+      if (address != null) 'address': address,
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (instance != null) 'instance': instance,
+      if (port != null) 'port': port,
+    };
+  }
 }
 
 /// Describes a header. Reflects any changes made by a component as traffic
@@ -29640,6 +29976,23 @@ class AnalysisPacketHeader {
     this.sourceAddresses,
     this.sourcePortRanges,
   });
+
+  Map<String, dynamic> toJson() {
+    final destinationAddresses = this.destinationAddresses;
+    final destinationPortRanges = this.destinationPortRanges;
+    final protocol = this.protocol;
+    final sourceAddresses = this.sourceAddresses;
+    final sourcePortRanges = this.sourcePortRanges;
+    return {
+      if (destinationAddresses != null)
+        'destinationAddressSet': destinationAddresses,
+      if (destinationPortRanges != null)
+        'destinationPortRangeSet': destinationPortRanges,
+      if (protocol != null) 'protocol': protocol,
+      if (sourceAddresses != null) 'sourceAddressSet': sourceAddresses,
+      if (sourcePortRanges != null) 'sourcePortRangeSet': sourcePortRanges,
+    };
+  }
 }
 
 /// Describes a route table route.
@@ -29700,6 +30053,34 @@ class AnalysisRouteTableRoute {
     this.transitGatewayId,
     this.vpcPeeringConnectionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final destinationCidr = this.destinationCidr;
+    final destinationPrefixListId = this.destinationPrefixListId;
+    final egressOnlyInternetGatewayId = this.egressOnlyInternetGatewayId;
+    final gatewayId = this.gatewayId;
+    final instanceId = this.instanceId;
+    final natGatewayId = this.natGatewayId;
+    final networkInterfaceId = this.networkInterfaceId;
+    final origin = this.origin;
+    final transitGatewayId = this.transitGatewayId;
+    final vpcPeeringConnectionId = this.vpcPeeringConnectionId;
+    return {
+      if (destinationCidr != null) 'destinationCidr': destinationCidr,
+      if (destinationPrefixListId != null)
+        'destinationPrefixListId': destinationPrefixListId,
+      if (egressOnlyInternetGatewayId != null)
+        'egressOnlyInternetGatewayId': egressOnlyInternetGatewayId,
+      if (gatewayId != null) 'gatewayId': gatewayId,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (natGatewayId != null) 'natGatewayId': natGatewayId,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (origin != null) 'origin': origin,
+      if (transitGatewayId != null) 'transitGatewayId': transitGatewayId,
+      if (vpcPeeringConnectionId != null)
+        'vpcPeeringConnectionId': vpcPeeringConnectionId,
+    };
+  }
 }
 
 /// Describes a security group rule.
@@ -29739,6 +30120,23 @@ class AnalysisSecurityGroupRule {
     this.protocol,
     this.securityGroupId,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidr = this.cidr;
+    final direction = this.direction;
+    final portRange = this.portRange;
+    final prefixListId = this.prefixListId;
+    final protocol = this.protocol;
+    final securityGroupId = this.securityGroupId;
+    return {
+      if (cidr != null) 'cidr': cidr,
+      if (direction != null) 'direction': direction,
+      if (portRange != null) 'portRange': portRange,
+      if (prefixListId != null) 'prefixListId': prefixListId,
+      if (protocol != null) 'protocol': protocol,
+      if (securityGroupId != null) 'securityGroupId': securityGroupId,
+    };
+  }
 }
 
 enum AnalysisStatus {
@@ -29809,6 +30207,13 @@ class ApplySecurityGroupsToClientVpnTargetNetworkResult {
   ApplySecurityGroupsToClientVpnTargetNetworkResult({
     this.securityGroupIds,
   });
+
+  Map<String, dynamic> toJson() {
+    final securityGroupIds = this.securityGroupIds;
+    return {
+      if (securityGroupIds != null) 'securityGroupIds': securityGroupIds,
+    };
+  }
 }
 
 enum ArchitectureType {
@@ -29904,6 +30309,19 @@ class AssignIpv6AddressesResult {
     this.assignedIpv6Prefixes,
     this.networkInterfaceId,
   });
+
+  Map<String, dynamic> toJson() {
+    final assignedIpv6Addresses = this.assignedIpv6Addresses;
+    final assignedIpv6Prefixes = this.assignedIpv6Prefixes;
+    final networkInterfaceId = this.networkInterfaceId;
+    return {
+      if (assignedIpv6Addresses != null)
+        'assignedIpv6Addresses': assignedIpv6Addresses,
+      if (assignedIpv6Prefixes != null)
+        'assignedIpv6PrefixSet': assignedIpv6Prefixes,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+    };
+  }
 }
 
 class AssignPrivateIpAddressesResult {
@@ -29921,6 +30339,19 @@ class AssignPrivateIpAddressesResult {
     this.assignedPrivateIpAddresses,
     this.networkInterfaceId,
   });
+
+  Map<String, dynamic> toJson() {
+    final assignedIpv4Prefixes = this.assignedIpv4Prefixes;
+    final assignedPrivateIpAddresses = this.assignedPrivateIpAddresses;
+    final networkInterfaceId = this.networkInterfaceId;
+    return {
+      if (assignedIpv4Prefixes != null)
+        'assignedIpv4PrefixSet': assignedIpv4Prefixes,
+      if (assignedPrivateIpAddresses != null)
+        'assignedPrivateIpAddressesSet': assignedPrivateIpAddresses,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+    };
+  }
 }
 
 /// Describes the private IP addresses assigned to a network interface.
@@ -29931,6 +30362,13 @@ class AssignedPrivateIpAddress {
   AssignedPrivateIpAddress({
     this.privateIpAddress,
   });
+
+  Map<String, dynamic> toJson() {
+    final privateIpAddress = this.privateIpAddress;
+    return {
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+    };
+  }
 }
 
 class AssociateAddressResult {
@@ -29941,6 +30379,13 @@ class AssociateAddressResult {
   AssociateAddressResult({
     this.associationId,
   });
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    return {
+      if (associationId != null) 'associationId': associationId,
+    };
+  }
 }
 
 class AssociateClientVpnTargetNetworkResult {
@@ -29954,6 +30399,15 @@ class AssociateClientVpnTargetNetworkResult {
     this.associationId,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    final status = this.status;
+    return {
+      if (associationId != null) 'associationId': associationId,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class AssociateEnclaveCertificateIamRoleResult {
@@ -29973,6 +30427,19 @@ class AssociateEnclaveCertificateIamRoleResult {
     this.certificateS3ObjectKey,
     this.encryptionKmsKeyId,
   });
+
+  Map<String, dynamic> toJson() {
+    final certificateS3BucketName = this.certificateS3BucketName;
+    final certificateS3ObjectKey = this.certificateS3ObjectKey;
+    final encryptionKmsKeyId = this.encryptionKmsKeyId;
+    return {
+      if (certificateS3BucketName != null)
+        'certificateS3BucketName': certificateS3BucketName,
+      if (certificateS3ObjectKey != null)
+        'certificateS3ObjectKey': certificateS3ObjectKey,
+      if (encryptionKmsKeyId != null) 'encryptionKmsKeyId': encryptionKmsKeyId,
+    };
+  }
 }
 
 class AssociateIamInstanceProfileResult {
@@ -29982,6 +30449,14 @@ class AssociateIamInstanceProfileResult {
   AssociateIamInstanceProfileResult({
     this.iamInstanceProfileAssociation,
   });
+
+  Map<String, dynamic> toJson() {
+    final iamInstanceProfileAssociation = this.iamInstanceProfileAssociation;
+    return {
+      if (iamInstanceProfileAssociation != null)
+        'iamInstanceProfileAssociation': iamInstanceProfileAssociation,
+    };
+  }
 }
 
 class AssociateInstanceEventWindowResult {
@@ -29991,6 +30466,14 @@ class AssociateInstanceEventWindowResult {
   AssociateInstanceEventWindowResult({
     this.instanceEventWindow,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceEventWindow = this.instanceEventWindow;
+    return {
+      if (instanceEventWindow != null)
+        'instanceEventWindow': instanceEventWindow,
+    };
+  }
 }
 
 class AssociateRouteTableResult {
@@ -30005,6 +30488,15 @@ class AssociateRouteTableResult {
     this.associationId,
     this.associationState,
   });
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    final associationState = this.associationState;
+    return {
+      if (associationId != null) 'associationId': associationId,
+      if (associationState != null) 'associationState': associationState,
+    };
+  }
 }
 
 class AssociateSubnetCidrBlockResult {
@@ -30018,6 +30510,16 @@ class AssociateSubnetCidrBlockResult {
     this.ipv6CidrBlockAssociation,
     this.subnetId,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv6CidrBlockAssociation = this.ipv6CidrBlockAssociation;
+    final subnetId = this.subnetId;
+    return {
+      if (ipv6CidrBlockAssociation != null)
+        'ipv6CidrBlockAssociation': ipv6CidrBlockAssociation,
+      if (subnetId != null) 'subnetId': subnetId,
+    };
+  }
 }
 
 class AssociateTransitGatewayMulticastDomainResult {
@@ -30027,6 +30529,13 @@ class AssociateTransitGatewayMulticastDomainResult {
   AssociateTransitGatewayMulticastDomainResult({
     this.associations,
   });
+
+  Map<String, dynamic> toJson() {
+    final associations = this.associations;
+    return {
+      if (associations != null) 'associations': associations,
+    };
+  }
 }
 
 class AssociateTransitGatewayPolicyTableResult {
@@ -30037,6 +30546,13 @@ class AssociateTransitGatewayPolicyTableResult {
   AssociateTransitGatewayPolicyTableResult({
     this.association,
   });
+
+  Map<String, dynamic> toJson() {
+    final association = this.association;
+    return {
+      if (association != null) 'association': association,
+    };
+  }
 }
 
 class AssociateTransitGatewayRouteTableResult {
@@ -30046,6 +30562,13 @@ class AssociateTransitGatewayRouteTableResult {
   AssociateTransitGatewayRouteTableResult({
     this.association,
   });
+
+  Map<String, dynamic> toJson() {
+    final association = this.association;
+    return {
+      if (association != null) 'association': association,
+    };
+  }
 }
 
 class AssociateTrunkInterfaceResult {
@@ -30063,6 +30586,16 @@ class AssociateTrunkInterfaceResult {
     this.clientToken,
     this.interfaceAssociation,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final interfaceAssociation = this.interfaceAssociation;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (interfaceAssociation != null)
+        'interfaceAssociation': interfaceAssociation,
+    };
+  }
 }
 
 class AssociateVpcCidrBlockResult {
@@ -30080,6 +30613,19 @@ class AssociateVpcCidrBlockResult {
     this.ipv6CidrBlockAssociation,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidrBlockAssociation = this.cidrBlockAssociation;
+    final ipv6CidrBlockAssociation = this.ipv6CidrBlockAssociation;
+    final vpcId = this.vpcId;
+    return {
+      if (cidrBlockAssociation != null)
+        'cidrBlockAssociation': cidrBlockAssociation,
+      if (ipv6CidrBlockAssociation != null)
+        'ipv6CidrBlockAssociation': ipv6CidrBlockAssociation,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 enum AssociatedNetworkType {
@@ -30127,6 +30673,21 @@ class AssociatedRole {
     this.certificateS3ObjectKey,
     this.encryptionKmsKeyId,
   });
+
+  Map<String, dynamic> toJson() {
+    final associatedRoleArn = this.associatedRoleArn;
+    final certificateS3BucketName = this.certificateS3BucketName;
+    final certificateS3ObjectKey = this.certificateS3ObjectKey;
+    final encryptionKmsKeyId = this.encryptionKmsKeyId;
+    return {
+      if (associatedRoleArn != null) 'associatedRoleArn': associatedRoleArn,
+      if (certificateS3BucketName != null)
+        'certificateS3BucketName': certificateS3BucketName,
+      if (certificateS3ObjectKey != null)
+        'certificateS3ObjectKey': certificateS3ObjectKey,
+      if (encryptionKmsKeyId != null) 'encryptionKmsKeyId': encryptionKmsKeyId,
+    };
+  }
 }
 
 /// Describes a target network that is associated with a Client VPN endpoint. A
@@ -30142,6 +30703,15 @@ class AssociatedTargetNetwork {
     this.networkId,
     this.networkType,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkId = this.networkId;
+    final networkType = this.networkType;
+    return {
+      if (networkId != null) 'networkId': networkId,
+      if (networkType != null) 'networkType': networkType.toValue(),
+    };
+  }
 }
 
 /// Describes the state of a target network association.
@@ -30156,6 +30726,15 @@ class AssociationStatus {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum AssociationStatusCode {
@@ -30221,6 +30800,22 @@ class AthenaIntegration {
     this.partitionEndDate,
     this.partitionStartDate,
   });
+
+  Map<String, dynamic> toJson() {
+    final integrationResultS3DestinationArn =
+        this.integrationResultS3DestinationArn;
+    final partitionLoadFrequency = this.partitionLoadFrequency;
+    final partitionEndDate = this.partitionEndDate;
+    final partitionStartDate = this.partitionStartDate;
+    return {
+      'IntegrationResultS3DestinationArn': integrationResultS3DestinationArn,
+      'PartitionLoadFrequency': partitionLoadFrequency.toValue(),
+      if (partitionEndDate != null)
+        'PartitionEndDate': iso8601ToJson(partitionEndDate),
+      if (partitionStartDate != null)
+        'PartitionStartDate': iso8601ToJson(partitionStartDate),
+    };
+  }
 }
 
 class AttachClassicLinkVpcResult {
@@ -30231,6 +30826,13 @@ class AttachClassicLinkVpcResult {
   AttachClassicLinkVpcResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 /// Contains the output of AttachNetworkInterface.
@@ -30245,6 +30847,15 @@ class AttachNetworkInterfaceResult {
     this.attachmentId,
     this.networkCardIndex,
   });
+
+  Map<String, dynamic> toJson() {
+    final attachmentId = this.attachmentId;
+    final networkCardIndex = this.networkCardIndex;
+    return {
+      if (attachmentId != null) 'attachmentId': attachmentId,
+      if (networkCardIndex != null) 'networkCardIndex': networkCardIndex,
+    };
+  }
 }
 
 /// Contains the output of AttachVpnGateway.
@@ -30255,6 +30866,13 @@ class AttachVpnGatewayResult {
   AttachVpnGatewayResult({
     this.vpcAttachment,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpcAttachment = this.vpcAttachment;
+    return {
+      if (vpcAttachment != null) 'attachment': vpcAttachment,
+    };
+  }
 }
 
 enum AttachmentStatus {
@@ -30304,6 +30922,13 @@ class AttributeBooleanValue {
   AttributeBooleanValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Describes a value for a resource attribute that is a String.
@@ -30314,6 +30939,13 @@ class AttributeValue {
   AttributeValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Information about an authorization rule.
@@ -30347,6 +30979,24 @@ class AuthorizationRule {
     this.groupId,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final accessAll = this.accessAll;
+    final clientVpnEndpointId = this.clientVpnEndpointId;
+    final description = this.description;
+    final destinationCidr = this.destinationCidr;
+    final groupId = this.groupId;
+    final status = this.status;
+    return {
+      if (accessAll != null) 'accessAll': accessAll,
+      if (clientVpnEndpointId != null)
+        'clientVpnEndpointId': clientVpnEndpointId,
+      if (description != null) 'description': description,
+      if (destinationCidr != null) 'destinationCidr': destinationCidr,
+      if (groupId != null) 'groupId': groupId,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class AuthorizeClientVpnIngressResult {
@@ -30356,6 +31006,13 @@ class AuthorizeClientVpnIngressResult {
   AuthorizeClientVpnIngressResult({
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class AuthorizeSecurityGroupEgressResult {
@@ -30371,6 +31028,16 @@ class AuthorizeSecurityGroupEgressResult {
     this.returnValue,
     this.securityGroupRules,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    final securityGroupRules = this.securityGroupRules;
+    return {
+      if (returnValue != null) 'return': returnValue,
+      if (securityGroupRules != null)
+        'securityGroupRuleSet': securityGroupRules,
+    };
+  }
 }
 
 class AuthorizeSecurityGroupIngressResult {
@@ -30386,6 +31053,16 @@ class AuthorizeSecurityGroupIngressResult {
     this.returnValue,
     this.securityGroupRules,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    final securityGroupRules = this.securityGroupRules;
+    return {
+      if (returnValue != null) 'return': returnValue,
+      if (securityGroupRules != null)
+        'securityGroupRuleSet': securityGroupRules,
+    };
+  }
 }
 
 enum AutoAcceptSharedAssociationsValue {
@@ -30540,6 +31217,33 @@ class AvailabilityZone {
     this.zoneName,
     this.zoneType,
   });
+
+  Map<String, dynamic> toJson() {
+    final groupName = this.groupName;
+    final messages = this.messages;
+    final networkBorderGroup = this.networkBorderGroup;
+    final optInStatus = this.optInStatus;
+    final parentZoneId = this.parentZoneId;
+    final parentZoneName = this.parentZoneName;
+    final regionName = this.regionName;
+    final state = this.state;
+    final zoneId = this.zoneId;
+    final zoneName = this.zoneName;
+    final zoneType = this.zoneType;
+    return {
+      if (groupName != null) 'groupName': groupName,
+      if (messages != null) 'messageSet': messages,
+      if (networkBorderGroup != null) 'networkBorderGroup': networkBorderGroup,
+      if (optInStatus != null) 'optInStatus': optInStatus.toValue(),
+      if (parentZoneId != null) 'parentZoneId': parentZoneId,
+      if (parentZoneName != null) 'parentZoneName': parentZoneName,
+      if (regionName != null) 'regionName': regionName,
+      if (state != null) 'zoneState': state.toValue(),
+      if (zoneId != null) 'zoneId': zoneId,
+      if (zoneName != null) 'zoneName': zoneName,
+      if (zoneType != null) 'zoneType': zoneType,
+    };
+  }
 }
 
 /// Describes a message about an Availability Zone, Local Zone, or Wavelength
@@ -30551,6 +31255,13 @@ class AvailabilityZoneMessage {
   AvailabilityZoneMessage({
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    return {
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum AvailabilityZoneOptInStatus {
@@ -30642,6 +31353,16 @@ class AvailableCapacity {
     this.availableInstanceCapacity,
     this.availableVCpus,
   });
+
+  Map<String, dynamic> toJson() {
+    final availableInstanceCapacity = this.availableInstanceCapacity;
+    final availableVCpus = this.availableVCpus;
+    return {
+      if (availableInstanceCapacity != null)
+        'availableInstanceCapacity': availableInstanceCapacity,
+      if (availableVCpus != null) 'availableVCpus': availableVCpus,
+    };
+  }
 }
 
 enum BareMetal {
@@ -30694,6 +31415,15 @@ class BaselineEbsBandwidthMbps {
     this.max,
     this.min,
   });
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (max != null) 'max': max,
+      if (min != null) 'min': min,
+    };
+  }
 }
 
 /// The minimum and maximum baseline bandwidth to Amazon EBS, in Mbps. For more
@@ -30713,6 +31443,15 @@ class BaselineEbsBandwidthMbpsRequest {
     this.max,
     this.min,
   });
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (max != null) 'Max': max,
+      if (min != null) 'Min': min,
+    };
+  }
 }
 
 enum BatchState {
@@ -30802,6 +31541,13 @@ class BlobAttributeValue {
   BlobAttributeValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'value': base64Encode(value),
+    };
+  }
 }
 
 /// Describes a block device mapping, which defines the EBS volumes and instance
@@ -30841,6 +31587,19 @@ class BlockDeviceMapping {
     this.noDevice,
     this.virtualName,
   });
+
+  Map<String, dynamic> toJson() {
+    final deviceName = this.deviceName;
+    final ebs = this.ebs;
+    final noDevice = this.noDevice;
+    final virtualName = this.virtualName;
+    return {
+      if (deviceName != null) 'deviceName': deviceName,
+      if (ebs != null) 'ebs': ebs,
+      if (noDevice != null) 'noDevice': noDevice,
+      if (virtualName != null) 'virtualName': virtualName,
+    };
+  }
 }
 
 enum BootModeType {
@@ -30907,6 +31666,13 @@ class BundleInstanceResult {
   BundleInstanceResult({
     this.bundleTask,
   });
+
+  Map<String, dynamic> toJson() {
+    final bundleTask = this.bundleTask;
+    return {
+      if (bundleTask != null) 'bundleInstanceTask': bundleTask,
+    };
+  }
 }
 
 /// Describes a bundle task.
@@ -30945,6 +31711,27 @@ class BundleTask {
     this.storage,
     this.updateTime,
   });
+
+  Map<String, dynamic> toJson() {
+    final bundleId = this.bundleId;
+    final bundleTaskError = this.bundleTaskError;
+    final instanceId = this.instanceId;
+    final progress = this.progress;
+    final startTime = this.startTime;
+    final state = this.state;
+    final storage = this.storage;
+    final updateTime = this.updateTime;
+    return {
+      if (bundleId != null) 'bundleId': bundleId,
+      if (bundleTaskError != null) 'error': bundleTaskError,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (progress != null) 'progress': progress,
+      if (startTime != null) 'startTime': iso8601ToJson(startTime),
+      if (state != null) 'state': state.toValue(),
+      if (storage != null) 'storage': storage,
+      if (updateTime != null) 'updateTime': iso8601ToJson(updateTime),
+    };
+  }
 }
 
 /// Describes an error for <a>BundleInstance</a>.
@@ -30959,6 +31746,15 @@ class BundleTaskError {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum BundleTaskState {
@@ -31069,6 +31865,19 @@ class ByoipCidr {
     this.state,
     this.statusMessage,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidr = this.cidr;
+    final description = this.description;
+    final state = this.state;
+    final statusMessage = this.statusMessage;
+    return {
+      if (cidr != null) 'cidr': cidr,
+      if (description != null) 'description': description,
+      if (state != null) 'state': state.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
+  }
 }
 
 enum ByoipCidrState {
@@ -31175,6 +31984,13 @@ class CancelBundleTaskResult {
   CancelBundleTaskResult({
     this.bundleTask,
   });
+
+  Map<String, dynamic> toJson() {
+    final bundleTask = this.bundleTask;
+    return {
+      if (bundleTask != null) 'bundleInstanceTask': bundleTask,
+    };
+  }
 }
 
 /// Describes a Capacity Reservation Fleet cancellation error.
@@ -31189,6 +32005,15 @@ class CancelCapacityReservationFleetError {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 class CancelCapacityReservationFleetsResult {
@@ -31206,6 +32031,17 @@ class CancelCapacityReservationFleetsResult {
     this.failedFleetCancellations,
     this.successfulFleetCancellations,
   });
+
+  Map<String, dynamic> toJson() {
+    final failedFleetCancellations = this.failedFleetCancellations;
+    final successfulFleetCancellations = this.successfulFleetCancellations;
+    return {
+      if (failedFleetCancellations != null)
+        'failedFleetCancellationSet': failedFleetCancellations,
+      if (successfulFleetCancellations != null)
+        'successfulFleetCancellationSet': successfulFleetCancellations,
+    };
+  }
 }
 
 class CancelCapacityReservationResult {
@@ -31216,6 +32052,13 @@ class CancelCapacityReservationResult {
   CancelCapacityReservationResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class CancelImportTaskResult {
@@ -31233,6 +32076,17 @@ class CancelImportTaskResult {
     this.previousState,
     this.state,
   });
+
+  Map<String, dynamic> toJson() {
+    final importTaskId = this.importTaskId;
+    final previousState = this.previousState;
+    final state = this.state;
+    return {
+      if (importTaskId != null) 'importTaskId': importTaskId,
+      if (previousState != null) 'previousState': previousState,
+      if (state != null) 'state': state,
+    };
+  }
 }
 
 /// Contains the output of CancelReservedInstancesListing.
@@ -31243,6 +32097,14 @@ class CancelReservedInstancesListingResult {
   CancelReservedInstancesListingResult({
     this.reservedInstancesListings,
   });
+
+  Map<String, dynamic> toJson() {
+    final reservedInstancesListings = this.reservedInstancesListings;
+    return {
+      if (reservedInstancesListings != null)
+        'reservedInstancesListingsSet': reservedInstancesListings,
+    };
+  }
 }
 
 /// Describes a Spot Fleet error.
@@ -31257,6 +32119,15 @@ class CancelSpotFleetRequestsError {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// Describes a Spot Fleet request that was not successfully canceled.
@@ -31271,6 +32142,15 @@ class CancelSpotFleetRequestsErrorItem {
     this.error,
     this.spotFleetRequestId,
   });
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final spotFleetRequestId = this.spotFleetRequestId;
+    return {
+      if (error != null) 'error': error,
+      if (spotFleetRequestId != null) 'spotFleetRequestId': spotFleetRequestId,
+    };
+  }
 }
 
 /// Contains the output of CancelSpotFleetRequests.
@@ -31286,6 +32166,17 @@ class CancelSpotFleetRequestsResponse {
     this.successfulFleetRequests,
     this.unsuccessfulFleetRequests,
   });
+
+  Map<String, dynamic> toJson() {
+    final successfulFleetRequests = this.successfulFleetRequests;
+    final unsuccessfulFleetRequests = this.unsuccessfulFleetRequests;
+    return {
+      if (successfulFleetRequests != null)
+        'successfulFleetRequestSet': successfulFleetRequests,
+      if (unsuccessfulFleetRequests != null)
+        'unsuccessfulFleetRequestSet': unsuccessfulFleetRequests,
+    };
+  }
 }
 
 /// Describes a Spot Fleet request that was successfully canceled.
@@ -31304,6 +32195,20 @@ class CancelSpotFleetRequestsSuccessItem {
     this.previousSpotFleetRequestState,
     this.spotFleetRequestId,
   });
+
+  Map<String, dynamic> toJson() {
+    final currentSpotFleetRequestState = this.currentSpotFleetRequestState;
+    final previousSpotFleetRequestState = this.previousSpotFleetRequestState;
+    final spotFleetRequestId = this.spotFleetRequestId;
+    return {
+      if (currentSpotFleetRequestState != null)
+        'currentSpotFleetRequestState': currentSpotFleetRequestState.toValue(),
+      if (previousSpotFleetRequestState != null)
+        'previousSpotFleetRequestState':
+            previousSpotFleetRequestState.toValue(),
+      if (spotFleetRequestId != null) 'spotFleetRequestId': spotFleetRequestId,
+    };
+  }
 }
 
 enum CancelSpotInstanceRequestState {
@@ -31359,6 +32264,14 @@ class CancelSpotInstanceRequestsResult {
   CancelSpotInstanceRequestsResult({
     this.cancelledSpotInstanceRequests,
   });
+
+  Map<String, dynamic> toJson() {
+    final cancelledSpotInstanceRequests = this.cancelledSpotInstanceRequests;
+    return {
+      if (cancelledSpotInstanceRequests != null)
+        'spotInstanceRequestSet': cancelledSpotInstanceRequests,
+    };
+  }
 }
 
 /// Describes a request to cancel a Spot Instance.
@@ -31373,6 +32286,16 @@ class CancelledSpotInstanceRequest {
     this.spotInstanceRequestId,
     this.state,
   });
+
+  Map<String, dynamic> toJson() {
+    final spotInstanceRequestId = this.spotInstanceRequestId;
+    final state = this.state;
+    return {
+      if (spotInstanceRequestId != null)
+        'spotInstanceRequestId': spotInstanceRequestId,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 /// Describes a Capacity Reservation.
@@ -31552,6 +32475,61 @@ class CapacityReservation {
     this.tenancy,
     this.totalInstanceCount,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final availabilityZoneId = this.availabilityZoneId;
+    final availableInstanceCount = this.availableInstanceCount;
+    final capacityReservationArn = this.capacityReservationArn;
+    final capacityReservationFleetId = this.capacityReservationFleetId;
+    final capacityReservationId = this.capacityReservationId;
+    final createDate = this.createDate;
+    final ebsOptimized = this.ebsOptimized;
+    final endDate = this.endDate;
+    final endDateType = this.endDateType;
+    final ephemeralStorage = this.ephemeralStorage;
+    final instanceMatchCriteria = this.instanceMatchCriteria;
+    final instancePlatform = this.instancePlatform;
+    final instanceType = this.instanceType;
+    final outpostArn = this.outpostArn;
+    final ownerId = this.ownerId;
+    final placementGroupArn = this.placementGroupArn;
+    final startDate = this.startDate;
+    final state = this.state;
+    final tags = this.tags;
+    final tenancy = this.tenancy;
+    final totalInstanceCount = this.totalInstanceCount;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (availabilityZoneId != null) 'availabilityZoneId': availabilityZoneId,
+      if (availableInstanceCount != null)
+        'availableInstanceCount': availableInstanceCount,
+      if (capacityReservationArn != null)
+        'capacityReservationArn': capacityReservationArn,
+      if (capacityReservationFleetId != null)
+        'capacityReservationFleetId': capacityReservationFleetId,
+      if (capacityReservationId != null)
+        'capacityReservationId': capacityReservationId,
+      if (createDate != null) 'createDate': iso8601ToJson(createDate),
+      if (ebsOptimized != null) 'ebsOptimized': ebsOptimized,
+      if (endDate != null) 'endDate': iso8601ToJson(endDate),
+      if (endDateType != null) 'endDateType': endDateType.toValue(),
+      if (ephemeralStorage != null) 'ephemeralStorage': ephemeralStorage,
+      if (instanceMatchCriteria != null)
+        'instanceMatchCriteria': instanceMatchCriteria.toValue(),
+      if (instancePlatform != null)
+        'instancePlatform': instancePlatform.toValue(),
+      if (instanceType != null) 'instanceType': instanceType,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (placementGroupArn != null) 'placementGroupArn': placementGroupArn,
+      if (startDate != null) 'startDate': iso8601ToJson(startDate),
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (tenancy != null) 'tenancy': tenancy.toValue(),
+      if (totalInstanceCount != null) 'totalInstanceCount': totalInstanceCount,
+    };
+  }
 }
 
 /// Information about a Capacity Reservation Fleet.
@@ -31680,6 +32658,41 @@ class CapacityReservationFleet {
     this.totalFulfilledCapacity,
     this.totalTargetCapacity,
   });
+
+  Map<String, dynamic> toJson() {
+    final allocationStrategy = this.allocationStrategy;
+    final capacityReservationFleetArn = this.capacityReservationFleetArn;
+    final capacityReservationFleetId = this.capacityReservationFleetId;
+    final createTime = this.createTime;
+    final endDate = this.endDate;
+    final instanceMatchCriteria = this.instanceMatchCriteria;
+    final instanceTypeSpecifications = this.instanceTypeSpecifications;
+    final state = this.state;
+    final tags = this.tags;
+    final tenancy = this.tenancy;
+    final totalFulfilledCapacity = this.totalFulfilledCapacity;
+    final totalTargetCapacity = this.totalTargetCapacity;
+    return {
+      if (allocationStrategy != null) 'allocationStrategy': allocationStrategy,
+      if (capacityReservationFleetArn != null)
+        'capacityReservationFleetArn': capacityReservationFleetArn,
+      if (capacityReservationFleetId != null)
+        'capacityReservationFleetId': capacityReservationFleetId,
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (endDate != null) 'endDate': iso8601ToJson(endDate),
+      if (instanceMatchCriteria != null)
+        'instanceMatchCriteria': instanceMatchCriteria.toValue(),
+      if (instanceTypeSpecifications != null)
+        'instanceTypeSpecificationSet': instanceTypeSpecifications,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (tenancy != null) 'tenancy': tenancy.toValue(),
+      if (totalFulfilledCapacity != null)
+        'totalFulfilledCapacity': totalFulfilledCapacity,
+      if (totalTargetCapacity != null)
+        'totalTargetCapacity': totalTargetCapacity,
+    };
+  }
 }
 
 /// Describes a Capacity Reservation Fleet that was successfully cancelled.
@@ -31698,6 +32711,20 @@ class CapacityReservationFleetCancellationState {
     this.currentFleetState,
     this.previousFleetState,
   });
+
+  Map<String, dynamic> toJson() {
+    final capacityReservationFleetId = this.capacityReservationFleetId;
+    final currentFleetState = this.currentFleetState;
+    final previousFleetState = this.previousFleetState;
+    return {
+      if (capacityReservationFleetId != null)
+        'capacityReservationFleetId': capacityReservationFleetId,
+      if (currentFleetState != null)
+        'currentFleetState': currentFleetState.toValue(),
+      if (previousFleetState != null)
+        'previousFleetState': previousFleetState.toValue(),
+    };
+  }
 }
 
 enum CapacityReservationFleetState {
@@ -31776,6 +32803,15 @@ class CapacityReservationGroup {
     this.groupArn,
     this.ownerId,
   });
+
+  Map<String, dynamic> toJson() {
+    final groupArn = this.groupArn;
+    final ownerId = this.ownerId;
+    return {
+      if (groupArn != null) 'groupArn': groupArn,
+      if (ownerId != null) 'ownerId': ownerId,
+    };
+  }
 }
 
 enum CapacityReservationInstancePlatform {
@@ -31918,6 +32954,13 @@ class CapacityReservationOptions {
   CapacityReservationOptions({
     this.usageStrategy,
   });
+
+  Map<String, dynamic> toJson() {
+    final usageStrategy = this.usageStrategy;
+    return {
+      if (usageStrategy != null) 'usageStrategy': usageStrategy.toValue(),
+    };
+  }
 }
 
 /// Describes the strategy for using unused Capacity Reservations for fulfilling
@@ -31952,6 +32995,13 @@ class CapacityReservationOptionsRequest {
   CapacityReservationOptionsRequest({
     this.usageStrategy,
   });
+
+  Map<String, dynamic> toJson() {
+    final usageStrategy = this.usageStrategy;
+    return {
+      if (usageStrategy != null) 'UsageStrategy': usageStrategy.toValue(),
+    };
+  }
 }
 
 enum CapacityReservationPreference {
@@ -32019,6 +33069,18 @@ class CapacityReservationSpecification {
     this.capacityReservationPreference,
     this.capacityReservationTarget,
   });
+
+  Map<String, dynamic> toJson() {
+    final capacityReservationPreference = this.capacityReservationPreference;
+    final capacityReservationTarget = this.capacityReservationTarget;
+    return {
+      if (capacityReservationPreference != null)
+        'CapacityReservationPreference':
+            capacityReservationPreference.toValue(),
+      if (capacityReservationTarget != null)
+        'CapacityReservationTarget': capacityReservationTarget,
+    };
+  }
 }
 
 /// Describes the instance's Capacity Reservation targeting preferences. The
@@ -32054,6 +33116,18 @@ class CapacityReservationSpecificationResponse {
     this.capacityReservationPreference,
     this.capacityReservationTarget,
   });
+
+  Map<String, dynamic> toJson() {
+    final capacityReservationPreference = this.capacityReservationPreference;
+    final capacityReservationTarget = this.capacityReservationTarget;
+    return {
+      if (capacityReservationPreference != null)
+        'capacityReservationPreference':
+            capacityReservationPreference.toValue(),
+      if (capacityReservationTarget != null)
+        'capacityReservationTarget': capacityReservationTarget,
+    };
+  }
 }
 
 enum CapacityReservationState {
@@ -32112,6 +33186,19 @@ class CapacityReservationTarget {
     this.capacityReservationId,
     this.capacityReservationResourceGroupArn,
   });
+
+  Map<String, dynamic> toJson() {
+    final capacityReservationId = this.capacityReservationId;
+    final capacityReservationResourceGroupArn =
+        this.capacityReservationResourceGroupArn;
+    return {
+      if (capacityReservationId != null)
+        'CapacityReservationId': capacityReservationId,
+      if (capacityReservationResourceGroupArn != null)
+        'CapacityReservationResourceGroupArn':
+            capacityReservationResourceGroupArn,
+    };
+  }
 }
 
 /// Describes a target Capacity Reservation or Capacity Reservation group.
@@ -32126,6 +33213,19 @@ class CapacityReservationTargetResponse {
     this.capacityReservationId,
     this.capacityReservationResourceGroupArn,
   });
+
+  Map<String, dynamic> toJson() {
+    final capacityReservationId = this.capacityReservationId;
+    final capacityReservationResourceGroupArn =
+        this.capacityReservationResourceGroupArn;
+    return {
+      if (capacityReservationId != null)
+        'capacityReservationId': capacityReservationId,
+      if (capacityReservationResourceGroupArn != null)
+        'capacityReservationResourceGroupArn':
+            capacityReservationResourceGroupArn,
+    };
+  }
 }
 
 enum CapacityReservationTenancy {
@@ -32181,6 +33281,21 @@ class CarrierGateway {
     this.tags,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final carrierGatewayId = this.carrierGatewayId;
+    final ownerId = this.ownerId;
+    final state = this.state;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (carrierGatewayId != null) 'carrierGatewayId': carrierGatewayId,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 enum CarrierGatewayState {
@@ -32229,6 +33344,14 @@ class CertificateAuthentication {
   CertificateAuthentication({
     this.clientRootCertificateChain,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientRootCertificateChain = this.clientRootCertificateChain;
+    return {
+      if (clientRootCertificateChain != null)
+        'clientRootCertificateChain': clientRootCertificateChain,
+    };
+  }
 }
 
 /// Information about the client certificate to be used for authentication.
@@ -32241,6 +33364,14 @@ class CertificateAuthenticationRequest {
   CertificateAuthenticationRequest({
     this.clientRootCertificateChainArn,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientRootCertificateChainArn = this.clientRootCertificateChainArn;
+    return {
+      if (clientRootCertificateChainArn != null)
+        'ClientRootCertificateChainArn': clientRootCertificateChainArn,
+    };
+  }
 }
 
 /// Provides authorization for Amazon to bring a specific IP address range to a
@@ -32260,6 +33391,15 @@ class CidrAuthorizationContext {
     required this.message,
     required this.signature,
   });
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final signature = this.signature;
+    return {
+      'Message': message,
+      'Signature': signature,
+    };
+  }
 }
 
 /// Describes an IPv4 CIDR block.
@@ -32270,6 +33410,13 @@ class CidrBlock {
   CidrBlock({
     this.cidrBlock,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidrBlock = this.cidrBlock;
+    return {
+      if (cidrBlock != null) 'cidrBlock': cidrBlock,
+    };
+  }
 }
 
 /// Describes the ClassicLink DNS support status of a VPC.
@@ -32284,6 +33431,16 @@ class ClassicLinkDnsSupport {
     this.classicLinkDnsSupported,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final classicLinkDnsSupported = this.classicLinkDnsSupported;
+    final vpcId = this.vpcId;
+    return {
+      if (classicLinkDnsSupported != null)
+        'classicLinkDnsSupported': classicLinkDnsSupported,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// <note>
@@ -32313,6 +33470,19 @@ class ClassicLinkInstance {
     this.tags,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final instanceId = this.instanceId;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (groups != null) 'groupSet': groups,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (tags != null) 'tagSet': tags,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// Describes a Classic Load Balancer.
@@ -32323,6 +33493,13 @@ class ClassicLoadBalancer {
   ClassicLoadBalancer({
     this.name,
   });
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    return {
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// Describes the Classic Load Balancers to attach to a Spot Fleet. Spot Fleet
@@ -32334,6 +33511,14 @@ class ClassicLoadBalancersConfig {
   ClassicLoadBalancersConfig({
     this.classicLoadBalancers,
   });
+
+  Map<String, dynamic> toJson() {
+    final classicLoadBalancers = this.classicLoadBalancers;
+    return {
+      if (classicLoadBalancers != null)
+        'classicLoadBalancers': classicLoadBalancers,
+    };
+  }
 }
 
 /// Describes the state of a client certificate revocation list.
@@ -32349,6 +33534,15 @@ class ClientCertificateRevocationListStatus {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum ClientCertificateRevocationListStatusCode {
@@ -32397,6 +33591,15 @@ class ClientConnectOptions {
     this.enabled,
     this.lambdaFunctionArn,
   });
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final lambdaFunctionArn = this.lambdaFunctionArn;
+    return {
+      if (enabled != null) 'Enabled': enabled,
+      if (lambdaFunctionArn != null) 'LambdaFunctionArn': lambdaFunctionArn,
+    };
+  }
 }
 
 /// The options for managing connection authorization for new client
@@ -32417,6 +33620,17 @@ class ClientConnectResponseOptions {
     this.lambdaFunctionArn,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    final lambdaFunctionArn = this.lambdaFunctionArn;
+    final status = this.status;
+    return {
+      if (enabled != null) 'enabled': enabled,
+      if (lambdaFunctionArn != null) 'lambdaFunctionArn': lambdaFunctionArn,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Describes the client-specific data.
@@ -32439,6 +33653,19 @@ class ClientData {
     this.uploadSize,
     this.uploadStart,
   });
+
+  Map<String, dynamic> toJson() {
+    final comment = this.comment;
+    final uploadEnd = this.uploadEnd;
+    final uploadSize = this.uploadSize;
+    final uploadStart = this.uploadStart;
+    return {
+      if (comment != null) 'Comment': comment,
+      if (uploadEnd != null) 'UploadEnd': iso8601ToJson(uploadEnd),
+      if (uploadSize != null) 'UploadSize': uploadSize,
+      if (uploadStart != null) 'UploadStart': iso8601ToJson(uploadStart),
+    };
+  }
 }
 
 /// Options for enabling a customizable text banner that will be displayed on
@@ -32461,6 +33688,15 @@ class ClientLoginBannerOptions {
     this.bannerText,
     this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final bannerText = this.bannerText;
+    final enabled = this.enabled;
+    return {
+      if (bannerText != null) 'BannerText': bannerText,
+      if (enabled != null) 'Enabled': enabled,
+    };
+  }
 }
 
 /// Current state of options for customizable text banner that will be displayed
@@ -32480,6 +33716,15 @@ class ClientLoginBannerResponseOptions {
     this.bannerText,
     this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final bannerText = this.bannerText;
+    final enabled = this.enabled;
+    return {
+      if (bannerText != null) 'bannerText': bannerText,
+      if (enabled != null) 'enabled': enabled,
+    };
+  }
 }
 
 /// Describes the authentication methods used by a Client VPN endpoint. For more
@@ -32505,6 +33750,21 @@ class ClientVpnAuthentication {
     this.mutualAuthentication,
     this.type,
   });
+
+  Map<String, dynamic> toJson() {
+    final activeDirectory = this.activeDirectory;
+    final federatedAuthentication = this.federatedAuthentication;
+    final mutualAuthentication = this.mutualAuthentication;
+    final type = this.type;
+    return {
+      if (activeDirectory != null) 'activeDirectory': activeDirectory,
+      if (federatedAuthentication != null)
+        'federatedAuthentication': federatedAuthentication,
+      if (mutualAuthentication != null)
+        'mutualAuthentication': mutualAuthentication,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// Describes the authentication method to be used by a Client VPN endpoint. For
@@ -32536,6 +33796,21 @@ class ClientVpnAuthenticationRequest {
     this.mutualAuthentication,
     this.type,
   });
+
+  Map<String, dynamic> toJson() {
+    final activeDirectory = this.activeDirectory;
+    final federatedAuthentication = this.federatedAuthentication;
+    final mutualAuthentication = this.mutualAuthentication;
+    final type = this.type;
+    return {
+      if (activeDirectory != null) 'ActiveDirectory': activeDirectory,
+      if (federatedAuthentication != null)
+        'FederatedAuthentication': federatedAuthentication,
+      if (mutualAuthentication != null)
+        'MutualAuthentication': mutualAuthentication,
+      if (type != null) 'Type': type.toValue(),
+    };
+  }
 }
 
 enum ClientVpnAuthenticationType {
@@ -32584,6 +33859,15 @@ class ClientVpnAuthorizationRuleStatus {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum ClientVpnAuthorizationRuleStatusCode {
@@ -32691,6 +33975,42 @@ class ClientVpnConnection {
     this.timestamp,
     this.username,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientIp = this.clientIp;
+    final clientVpnEndpointId = this.clientVpnEndpointId;
+    final commonName = this.commonName;
+    final connectionEndTime = this.connectionEndTime;
+    final connectionEstablishedTime = this.connectionEstablishedTime;
+    final connectionId = this.connectionId;
+    final egressBytes = this.egressBytes;
+    final egressPackets = this.egressPackets;
+    final ingressBytes = this.ingressBytes;
+    final ingressPackets = this.ingressPackets;
+    final postureComplianceStatuses = this.postureComplianceStatuses;
+    final status = this.status;
+    final timestamp = this.timestamp;
+    final username = this.username;
+    return {
+      if (clientIp != null) 'clientIp': clientIp,
+      if (clientVpnEndpointId != null)
+        'clientVpnEndpointId': clientVpnEndpointId,
+      if (commonName != null) 'commonName': commonName,
+      if (connectionEndTime != null) 'connectionEndTime': connectionEndTime,
+      if (connectionEstablishedTime != null)
+        'connectionEstablishedTime': connectionEstablishedTime,
+      if (connectionId != null) 'connectionId': connectionId,
+      if (egressBytes != null) 'egressBytes': egressBytes,
+      if (egressPackets != null) 'egressPackets': egressPackets,
+      if (ingressBytes != null) 'ingressBytes': ingressBytes,
+      if (ingressPackets != null) 'ingressPackets': ingressPackets,
+      if (postureComplianceStatuses != null)
+        'postureComplianceStatusSet': postureComplianceStatuses,
+      if (status != null) 'status': status,
+      if (timestamp != null) 'timestamp': timestamp,
+      if (username != null) 'username': username,
+    };
+  }
 }
 
 /// Describes the status of a client connection.
@@ -32705,6 +34025,15 @@ class ClientVpnConnectionStatus {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum ClientVpnConnectionStatusCode {
@@ -32856,6 +34185,67 @@ class ClientVpnEndpoint {
     this.vpnPort,
     this.vpnProtocol,
   });
+
+  Map<String, dynamic> toJson() {
+    final associatedTargetNetworks = this.associatedTargetNetworks;
+    final authenticationOptions = this.authenticationOptions;
+    final clientCidrBlock = this.clientCidrBlock;
+    final clientConnectOptions = this.clientConnectOptions;
+    final clientLoginBannerOptions = this.clientLoginBannerOptions;
+    final clientVpnEndpointId = this.clientVpnEndpointId;
+    final connectionLogOptions = this.connectionLogOptions;
+    final creationTime = this.creationTime;
+    final deletionTime = this.deletionTime;
+    final description = this.description;
+    final dnsName = this.dnsName;
+    final dnsServers = this.dnsServers;
+    final securityGroupIds = this.securityGroupIds;
+    final selfServicePortalUrl = this.selfServicePortalUrl;
+    final serverCertificateArn = this.serverCertificateArn;
+    final sessionTimeoutHours = this.sessionTimeoutHours;
+    final splitTunnel = this.splitTunnel;
+    final status = this.status;
+    final tags = this.tags;
+    final transportProtocol = this.transportProtocol;
+    final vpcId = this.vpcId;
+    final vpnPort = this.vpnPort;
+    final vpnProtocol = this.vpnProtocol;
+    return {
+      if (associatedTargetNetworks != null)
+        'associatedTargetNetwork': associatedTargetNetworks,
+      if (authenticationOptions != null)
+        'authenticationOptions': authenticationOptions,
+      if (clientCidrBlock != null) 'clientCidrBlock': clientCidrBlock,
+      if (clientConnectOptions != null)
+        'clientConnectOptions': clientConnectOptions,
+      if (clientLoginBannerOptions != null)
+        'clientLoginBannerOptions': clientLoginBannerOptions,
+      if (clientVpnEndpointId != null)
+        'clientVpnEndpointId': clientVpnEndpointId,
+      if (connectionLogOptions != null)
+        'connectionLogOptions': connectionLogOptions,
+      if (creationTime != null) 'creationTime': creationTime,
+      if (deletionTime != null) 'deletionTime': deletionTime,
+      if (description != null) 'description': description,
+      if (dnsName != null) 'dnsName': dnsName,
+      if (dnsServers != null) 'dnsServer': dnsServers,
+      if (securityGroupIds != null) 'securityGroupIdSet': securityGroupIds,
+      if (selfServicePortalUrl != null)
+        'selfServicePortalUrl': selfServicePortalUrl,
+      if (serverCertificateArn != null)
+        'serverCertificateArn': serverCertificateArn,
+      if (sessionTimeoutHours != null)
+        'sessionTimeoutHours': sessionTimeoutHours,
+      if (splitTunnel != null) 'splitTunnel': splitTunnel,
+      if (status != null) 'status': status,
+      if (tags != null) 'tagSet': tags,
+      if (transportProtocol != null)
+        'transportProtocol': transportProtocol.toValue(),
+      if (vpcId != null) 'vpcId': vpcId,
+      if (vpnPort != null) 'vpnPort': vpnPort,
+      if (vpnProtocol != null) 'vpnProtocol': vpnProtocol.toValue(),
+    };
+  }
 }
 
 /// Describes the status of the Client VPN endpoint attribute.
@@ -32870,6 +34260,15 @@ class ClientVpnEndpointAttributeStatus {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum ClientVpnEndpointAttributeStatusCode {
@@ -32936,6 +34335,15 @@ class ClientVpnEndpointStatus {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum ClientVpnEndpointStatusCode {
@@ -33013,6 +34421,26 @@ class ClientVpnRoute {
     this.targetSubnet,
     this.type,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientVpnEndpointId = this.clientVpnEndpointId;
+    final description = this.description;
+    final destinationCidr = this.destinationCidr;
+    final origin = this.origin;
+    final status = this.status;
+    final targetSubnet = this.targetSubnet;
+    final type = this.type;
+    return {
+      if (clientVpnEndpointId != null)
+        'clientVpnEndpointId': clientVpnEndpointId,
+      if (description != null) 'description': description,
+      if (destinationCidr != null) 'destinationCidr': destinationCidr,
+      if (origin != null) 'origin': origin,
+      if (status != null) 'status': status,
+      if (targetSubnet != null) 'targetSubnet': targetSubnet,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 /// Describes the state of a Client VPN endpoint route.
@@ -33027,6 +34455,15 @@ class ClientVpnRouteStatus {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum ClientVpnRouteStatusCode {
@@ -33087,6 +34524,19 @@ class CoipAddressUsage {
     this.awsService,
     this.coIp,
   });
+
+  Map<String, dynamic> toJson() {
+    final allocationId = this.allocationId;
+    final awsAccountId = this.awsAccountId;
+    final awsService = this.awsService;
+    final coIp = this.coIp;
+    return {
+      if (allocationId != null) 'allocationId': allocationId,
+      if (awsAccountId != null) 'awsAccountId': awsAccountId,
+      if (awsService != null) 'awsService': awsService,
+      if (coIp != null) 'coIp': coIp,
+    };
+  }
 }
 
 /// Describes a customer-owned address pool.
@@ -33113,6 +34563,22 @@ class CoipPool {
     this.poolId,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final localGatewayRouteTableId = this.localGatewayRouteTableId;
+    final poolArn = this.poolArn;
+    final poolCidrs = this.poolCidrs;
+    final poolId = this.poolId;
+    final tags = this.tags;
+    return {
+      if (localGatewayRouteTableId != null)
+        'localGatewayRouteTableId': localGatewayRouteTableId,
+      if (poolArn != null) 'poolArn': poolArn,
+      if (poolCidrs != null) 'poolCidrSet': poolCidrs,
+      if (poolId != null) 'poolId': poolId,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 class ConfirmProductInstanceResult {
@@ -33129,6 +34595,15 @@ class ConfirmProductInstanceResult {
     this.ownerId,
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final ownerId = this.ownerId;
+    final returnValue = this.returnValue;
+    return {
+      if (ownerId != null) 'ownerId': ownerId,
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 /// Describes the client connection logging options for the Client VPN endpoint.
@@ -33149,6 +34624,18 @@ class ConnectionLogOptions {
     this.cloudwatchLogStream,
     this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final cloudwatchLogGroup = this.cloudwatchLogGroup;
+    final cloudwatchLogStream = this.cloudwatchLogStream;
+    final enabled = this.enabled;
+    return {
+      if (cloudwatchLogGroup != null) 'CloudwatchLogGroup': cloudwatchLogGroup,
+      if (cloudwatchLogStream != null)
+        'CloudwatchLogStream': cloudwatchLogStream,
+      if (enabled != null) 'Enabled': enabled,
+    };
+  }
 }
 
 /// Information about the client connection logging options for a Client VPN
@@ -33171,6 +34658,18 @@ class ConnectionLogResponseOptions {
     this.cloudwatchLogStream,
     this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final cloudwatchLogGroup = this.cloudwatchLogGroup;
+    final cloudwatchLogStream = this.cloudwatchLogStream;
+    final enabled = this.enabled;
+    return {
+      if (cloudwatchLogGroup != null) 'CloudwatchLogGroup': cloudwatchLogGroup,
+      if (cloudwatchLogStream != null)
+        'CloudwatchLogStream': cloudwatchLogStream,
+      if (enabled != null) 'Enabled': enabled,
+    };
+  }
 }
 
 /// Describes a connection notification for a VPC endpoint or VPC endpoint
@@ -33207,6 +34706,29 @@ class ConnectionNotification {
     this.serviceId,
     this.vpcEndpointId,
   });
+
+  Map<String, dynamic> toJson() {
+    final connectionEvents = this.connectionEvents;
+    final connectionNotificationArn = this.connectionNotificationArn;
+    final connectionNotificationId = this.connectionNotificationId;
+    final connectionNotificationState = this.connectionNotificationState;
+    final connectionNotificationType = this.connectionNotificationType;
+    final serviceId = this.serviceId;
+    final vpcEndpointId = this.vpcEndpointId;
+    return {
+      if (connectionEvents != null) 'connectionEvents': connectionEvents,
+      if (connectionNotificationArn != null)
+        'connectionNotificationArn': connectionNotificationArn,
+      if (connectionNotificationId != null)
+        'connectionNotificationId': connectionNotificationId,
+      if (connectionNotificationState != null)
+        'connectionNotificationState': connectionNotificationState.toValue(),
+      if (connectionNotificationType != null)
+        'connectionNotificationType': connectionNotificationType.toValue(),
+      if (serviceId != null) 'serviceId': serviceId,
+      if (vpcEndpointId != null) 'vpcEndpointId': vpcEndpointId,
+    };
+  }
 }
 
 enum ConnectionNotificationState {
@@ -33348,6 +34870,25 @@ class ConversionTask {
     this.statusMessage,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final conversionTaskId = this.conversionTaskId;
+    final expirationTime = this.expirationTime;
+    final importInstance = this.importInstance;
+    final importVolume = this.importVolume;
+    final state = this.state;
+    final statusMessage = this.statusMessage;
+    final tags = this.tags;
+    return {
+      if (conversionTaskId != null) 'conversionTaskId': conversionTaskId,
+      if (expirationTime != null) 'expirationTime': expirationTime,
+      if (importInstance != null) 'importInstance': importInstance,
+      if (importVolume != null) 'importVolume': importVolume,
+      if (state != null) 'state': state.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 enum ConversionTaskState {
@@ -33395,6 +34936,13 @@ class CopyFpgaImageResult {
   CopyFpgaImageResult({
     this.fpgaImageId,
   });
+
+  Map<String, dynamic> toJson() {
+    final fpgaImageId = this.fpgaImageId;
+    return {
+      if (fpgaImageId != null) 'fpgaImageId': fpgaImageId,
+    };
+  }
 }
 
 /// Contains the output of CopyImage.
@@ -33405,6 +34953,13 @@ class CopyImageResult {
   CopyImageResult({
     this.imageId,
   });
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    return {
+      if (imageId != null) 'imageId': imageId,
+    };
+  }
 }
 
 class CopySnapshotResult {
@@ -33418,6 +34973,15 @@ class CopySnapshotResult {
     this.snapshotId,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final snapshotId = this.snapshotId;
+    final tags = this.tags;
+    return {
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 enum CopyTagsFromSource {
@@ -33488,6 +35052,15 @@ class CpuOptions {
     this.coreCount,
     this.threadsPerCore,
   });
+
+  Map<String, dynamic> toJson() {
+    final coreCount = this.coreCount;
+    final threadsPerCore = this.threadsPerCore;
+    return {
+      if (coreCount != null) 'coreCount': coreCount,
+      if (threadsPerCore != null) 'threadsPerCore': threadsPerCore,
+    };
+  }
 }
 
 /// The CPU options for the instance. Both the core count and threads per core
@@ -33505,6 +35078,15 @@ class CpuOptionsRequest {
     this.coreCount,
     this.threadsPerCore,
   });
+
+  Map<String, dynamic> toJson() {
+    final coreCount = this.coreCount;
+    final threadsPerCore = this.threadsPerCore;
+    return {
+      if (coreCount != null) 'CoreCount': coreCount,
+      if (threadsPerCore != null) 'ThreadsPerCore': threadsPerCore,
+    };
+  }
 }
 
 class CreateCapacityReservationFleetResult {
@@ -33556,6 +35138,38 @@ class CreateCapacityReservationFleetResult {
     this.totalFulfilledCapacity,
     this.totalTargetCapacity,
   });
+
+  Map<String, dynamic> toJson() {
+    final allocationStrategy = this.allocationStrategy;
+    final capacityReservationFleetId = this.capacityReservationFleetId;
+    final createTime = this.createTime;
+    final endDate = this.endDate;
+    final fleetCapacityReservations = this.fleetCapacityReservations;
+    final instanceMatchCriteria = this.instanceMatchCriteria;
+    final state = this.state;
+    final tags = this.tags;
+    final tenancy = this.tenancy;
+    final totalFulfilledCapacity = this.totalFulfilledCapacity;
+    final totalTargetCapacity = this.totalTargetCapacity;
+    return {
+      if (allocationStrategy != null) 'allocationStrategy': allocationStrategy,
+      if (capacityReservationFleetId != null)
+        'capacityReservationFleetId': capacityReservationFleetId,
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (endDate != null) 'endDate': iso8601ToJson(endDate),
+      if (fleetCapacityReservations != null)
+        'fleetCapacityReservationSet': fleetCapacityReservations,
+      if (instanceMatchCriteria != null)
+        'instanceMatchCriteria': instanceMatchCriteria.toValue(),
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (tenancy != null) 'tenancy': tenancy.toValue(),
+      if (totalFulfilledCapacity != null)
+        'totalFulfilledCapacity': totalFulfilledCapacity,
+      if (totalTargetCapacity != null)
+        'totalTargetCapacity': totalTargetCapacity,
+    };
+  }
 }
 
 class CreateCapacityReservationResult {
@@ -33565,6 +35179,14 @@ class CreateCapacityReservationResult {
   CreateCapacityReservationResult({
     this.capacityReservation,
   });
+
+  Map<String, dynamic> toJson() {
+    final capacityReservation = this.capacityReservation;
+    return {
+      if (capacityReservation != null)
+        'capacityReservation': capacityReservation,
+    };
+  }
 }
 
 class CreateCarrierGatewayResult {
@@ -33574,6 +35196,13 @@ class CreateCarrierGatewayResult {
   CreateCarrierGatewayResult({
     this.carrierGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final carrierGateway = this.carrierGateway;
+    return {
+      if (carrierGateway != null) 'carrierGateway': carrierGateway,
+    };
+  }
 }
 
 class CreateClientVpnEndpointResult {
@@ -33591,6 +35220,18 @@ class CreateClientVpnEndpointResult {
     this.dnsName,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientVpnEndpointId = this.clientVpnEndpointId;
+    final dnsName = this.dnsName;
+    final status = this.status;
+    return {
+      if (clientVpnEndpointId != null)
+        'clientVpnEndpointId': clientVpnEndpointId,
+      if (dnsName != null) 'dnsName': dnsName,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class CreateClientVpnRouteResult {
@@ -33600,6 +35241,13 @@ class CreateClientVpnRouteResult {
   CreateClientVpnRouteResult({
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Contains the output of CreateCustomerGateway.
@@ -33610,6 +35258,13 @@ class CreateCustomerGatewayResult {
   CreateCustomerGatewayResult({
     this.customerGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final customerGateway = this.customerGateway;
+    return {
+      if (customerGateway != null) 'customerGateway': customerGateway,
+    };
+  }
 }
 
 class CreateDefaultSubnetResult {
@@ -33619,6 +35274,13 @@ class CreateDefaultSubnetResult {
   CreateDefaultSubnetResult({
     this.subnet,
   });
+
+  Map<String, dynamic> toJson() {
+    final subnet = this.subnet;
+    return {
+      if (subnet != null) 'subnet': subnet,
+    };
+  }
 }
 
 class CreateDefaultVpcResult {
@@ -33628,6 +35290,13 @@ class CreateDefaultVpcResult {
   CreateDefaultVpcResult({
     this.vpc,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpc = this.vpc;
+    return {
+      if (vpc != null) 'vpc': vpc,
+    };
+  }
 }
 
 class CreateDhcpOptionsResult {
@@ -33637,6 +35306,13 @@ class CreateDhcpOptionsResult {
   CreateDhcpOptionsResult({
     this.dhcpOptions,
   });
+
+  Map<String, dynamic> toJson() {
+    final dhcpOptions = this.dhcpOptions;
+    return {
+      if (dhcpOptions != null) 'dhcpOptions': dhcpOptions,
+    };
+  }
 }
 
 class CreateEgressOnlyInternetGatewayResult {
@@ -33651,6 +35327,16 @@ class CreateEgressOnlyInternetGatewayResult {
     this.clientToken,
     this.egressOnlyInternetGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final egressOnlyInternetGateway = this.egressOnlyInternetGateway;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (egressOnlyInternetGateway != null)
+        'egressOnlyInternetGateway': egressOnlyInternetGateway,
+    };
+  }
 }
 
 /// Describes the instances that could not be launched by the fleet.
@@ -33682,6 +35368,20 @@ class CreateFleetError {
     this.launchTemplateAndOverrides,
     this.lifecycle,
   });
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final launchTemplateAndOverrides = this.launchTemplateAndOverrides;
+    final lifecycle = this.lifecycle;
+    return {
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (launchTemplateAndOverrides != null)
+        'launchTemplateAndOverrides': launchTemplateAndOverrides,
+      if (lifecycle != null) 'lifecycle': lifecycle.toValue(),
+    };
+  }
 }
 
 /// Describes the instances that were launched by the fleet.
@@ -33712,6 +35412,22 @@ class CreateFleetInstance {
     this.lifecycle,
     this.platform,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceIds = this.instanceIds;
+    final instanceType = this.instanceType;
+    final launchTemplateAndOverrides = this.launchTemplateAndOverrides;
+    final lifecycle = this.lifecycle;
+    final platform = this.platform;
+    return {
+      if (instanceIds != null) 'instanceIds': instanceIds,
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (launchTemplateAndOverrides != null)
+        'launchTemplateAndOverrides': launchTemplateAndOverrides,
+      if (lifecycle != null) 'lifecycle': lifecycle.toValue(),
+      if (platform != null) 'platform': platform.toValue(),
+    };
+  }
 }
 
 class CreateFleetResult {
@@ -33731,6 +35447,17 @@ class CreateFleetResult {
     this.fleetId,
     this.instances,
   });
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    final fleetId = this.fleetId;
+    final instances = this.instances;
+    return {
+      if (errors != null) 'errorSet': errors,
+      if (fleetId != null) 'fleetId': fleetId,
+      if (instances != null) 'fleetInstanceSet': instances,
+    };
+  }
 }
 
 class CreateFlowLogsResult {
@@ -33749,6 +35476,17 @@ class CreateFlowLogsResult {
     this.flowLogIds,
     this.unsuccessful,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final flowLogIds = this.flowLogIds;
+    final unsuccessful = this.unsuccessful;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (flowLogIds != null) 'flowLogIdSet': flowLogIds,
+      if (unsuccessful != null) 'unsuccessful': unsuccessful,
+    };
+  }
 }
 
 class CreateFpgaImageResult {
@@ -33762,6 +35500,15 @@ class CreateFpgaImageResult {
     this.fpgaImageGlobalId,
     this.fpgaImageId,
   });
+
+  Map<String, dynamic> toJson() {
+    final fpgaImageGlobalId = this.fpgaImageGlobalId;
+    final fpgaImageId = this.fpgaImageId;
+    return {
+      if (fpgaImageGlobalId != null) 'fpgaImageGlobalId': fpgaImageGlobalId,
+      if (fpgaImageId != null) 'fpgaImageId': fpgaImageId,
+    };
+  }
 }
 
 class CreateImageResult {
@@ -33771,6 +35518,13 @@ class CreateImageResult {
   CreateImageResult({
     this.imageId,
   });
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    return {
+      if (imageId != null) 'imageId': imageId,
+    };
+  }
 }
 
 class CreateInstanceEventWindowResult {
@@ -33780,6 +35534,14 @@ class CreateInstanceEventWindowResult {
   CreateInstanceEventWindowResult({
     this.instanceEventWindow,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceEventWindow = this.instanceEventWindow;
+    return {
+      if (instanceEventWindow != null)
+        'instanceEventWindow': instanceEventWindow,
+    };
+  }
 }
 
 class CreateInstanceExportTaskResult {
@@ -33789,6 +35551,13 @@ class CreateInstanceExportTaskResult {
   CreateInstanceExportTaskResult({
     this.exportTask,
   });
+
+  Map<String, dynamic> toJson() {
+    final exportTask = this.exportTask;
+    return {
+      if (exportTask != null) 'exportTask': exportTask,
+    };
+  }
 }
 
 class CreateInternetGatewayResult {
@@ -33798,6 +35567,13 @@ class CreateInternetGatewayResult {
   CreateInternetGatewayResult({
     this.internetGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final internetGateway = this.internetGateway;
+    return {
+      if (internetGateway != null) 'internetGateway': internetGateway,
+    };
+  }
 }
 
 class CreateIpamPoolResult {
@@ -33807,6 +35583,13 @@ class CreateIpamPoolResult {
   CreateIpamPoolResult({
     this.ipamPool,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamPool = this.ipamPool;
+    return {
+      if (ipamPool != null) 'ipamPool': ipamPool,
+    };
+  }
 }
 
 class CreateIpamResult {
@@ -33816,6 +35599,13 @@ class CreateIpamResult {
   CreateIpamResult({
     this.ipam,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipam = this.ipam;
+    return {
+      if (ipam != null) 'ipam': ipam,
+    };
+  }
 }
 
 class CreateIpamScopeResult {
@@ -33825,6 +35615,13 @@ class CreateIpamScopeResult {
   CreateIpamScopeResult({
     this.ipamScope,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamScope = this.ipamScope;
+    return {
+      if (ipamScope != null) 'ipamScope': ipamScope,
+    };
+  }
 }
 
 class CreateLaunchTemplateResult {
@@ -33840,6 +35637,15 @@ class CreateLaunchTemplateResult {
     this.launchTemplate,
     this.warning,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplate = this.launchTemplate;
+    final warning = this.warning;
+    return {
+      if (launchTemplate != null) 'launchTemplate': launchTemplate,
+      if (warning != null) 'warning': warning,
+    };
+  }
 }
 
 class CreateLaunchTemplateVersionResult {
@@ -33855,6 +35661,16 @@ class CreateLaunchTemplateVersionResult {
     this.launchTemplateVersion,
     this.warning,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplateVersion = this.launchTemplateVersion;
+    final warning = this.warning;
+    return {
+      if (launchTemplateVersion != null)
+        'launchTemplateVersion': launchTemplateVersion,
+      if (warning != null) 'warning': warning,
+    };
+  }
 }
 
 class CreateLocalGatewayRouteResult {
@@ -33864,6 +35680,13 @@ class CreateLocalGatewayRouteResult {
   CreateLocalGatewayRouteResult({
     this.route,
   });
+
+  Map<String, dynamic> toJson() {
+    final route = this.route;
+    return {
+      if (route != null) 'route': route,
+    };
+  }
 }
 
 class CreateLocalGatewayRouteTableVpcAssociationResult {
@@ -33874,6 +35697,16 @@ class CreateLocalGatewayRouteTableVpcAssociationResult {
   CreateLocalGatewayRouteTableVpcAssociationResult({
     this.localGatewayRouteTableVpcAssociation,
   });
+
+  Map<String, dynamic> toJson() {
+    final localGatewayRouteTableVpcAssociation =
+        this.localGatewayRouteTableVpcAssociation;
+    return {
+      if (localGatewayRouteTableVpcAssociation != null)
+        'localGatewayRouteTableVpcAssociation':
+            localGatewayRouteTableVpcAssociation,
+    };
+  }
 }
 
 class CreateManagedPrefixListResult {
@@ -33883,6 +35716,13 @@ class CreateManagedPrefixListResult {
   CreateManagedPrefixListResult({
     this.prefixList,
   });
+
+  Map<String, dynamic> toJson() {
+    final prefixList = this.prefixList;
+    return {
+      if (prefixList != null) 'prefixList': prefixList,
+    };
+  }
 }
 
 class CreateNatGatewayResult {
@@ -33897,6 +35737,15 @@ class CreateNatGatewayResult {
     this.clientToken,
     this.natGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final natGateway = this.natGateway;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (natGateway != null) 'natGateway': natGateway,
+    };
+  }
 }
 
 class CreateNetworkAclResult {
@@ -33906,6 +35755,13 @@ class CreateNetworkAclResult {
   CreateNetworkAclResult({
     this.networkAcl,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkAcl = this.networkAcl;
+    return {
+      if (networkAcl != null) 'networkAcl': networkAcl,
+    };
+  }
 }
 
 class CreateNetworkInsightsAccessScopeResult {
@@ -33919,6 +35775,18 @@ class CreateNetworkInsightsAccessScopeResult {
     this.networkInsightsAccessScope,
     this.networkInsightsAccessScopeContent,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInsightsAccessScope = this.networkInsightsAccessScope;
+    final networkInsightsAccessScopeContent =
+        this.networkInsightsAccessScopeContent;
+    return {
+      if (networkInsightsAccessScope != null)
+        'networkInsightsAccessScope': networkInsightsAccessScope,
+      if (networkInsightsAccessScopeContent != null)
+        'networkInsightsAccessScopeContent': networkInsightsAccessScopeContent,
+    };
+  }
 }
 
 class CreateNetworkInsightsPathResult {
@@ -33928,6 +35796,14 @@ class CreateNetworkInsightsPathResult {
   CreateNetworkInsightsPathResult({
     this.networkInsightsPath,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInsightsPath = this.networkInsightsPath;
+    return {
+      if (networkInsightsPath != null)
+        'networkInsightsPath': networkInsightsPath,
+    };
+  }
 }
 
 /// Contains the output of CreateNetworkInterfacePermission.
@@ -33938,6 +35814,14 @@ class CreateNetworkInterfacePermissionResult {
   CreateNetworkInterfacePermissionResult({
     this.interfacePermission,
   });
+
+  Map<String, dynamic> toJson() {
+    final interfacePermission = this.interfacePermission;
+    return {
+      if (interfacePermission != null)
+        'interfacePermission': interfacePermission,
+    };
+  }
 }
 
 /// Contains the output of CreateNetworkInterface.
@@ -33953,6 +35837,15 @@ class CreateNetworkInterfaceResult {
     this.clientToken,
     this.networkInterface,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final networkInterface = this.networkInterface;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (networkInterface != null) 'networkInterface': networkInterface,
+    };
+  }
 }
 
 class CreatePlacementGroupResult {
@@ -33961,6 +35854,13 @@ class CreatePlacementGroupResult {
   CreatePlacementGroupResult({
     this.placementGroup,
   });
+
+  Map<String, dynamic> toJson() {
+    final placementGroup = this.placementGroup;
+    return {
+      if (placementGroup != null) 'placementGroup': placementGroup,
+    };
+  }
 }
 
 class CreatePublicIpv4PoolResult {
@@ -33970,6 +35870,13 @@ class CreatePublicIpv4PoolResult {
   CreatePublicIpv4PoolResult({
     this.poolId,
   });
+
+  Map<String, dynamic> toJson() {
+    final poolId = this.poolId;
+    return {
+      if (poolId != null) 'poolId': poolId,
+    };
+  }
 }
 
 class CreateReplaceRootVolumeTaskResult {
@@ -33979,6 +35886,14 @@ class CreateReplaceRootVolumeTaskResult {
   CreateReplaceRootVolumeTaskResult({
     this.replaceRootVolumeTask,
   });
+
+  Map<String, dynamic> toJson() {
+    final replaceRootVolumeTask = this.replaceRootVolumeTask;
+    return {
+      if (replaceRootVolumeTask != null)
+        'replaceRootVolumeTask': replaceRootVolumeTask,
+    };
+  }
 }
 
 /// Contains the output of CreateReservedInstancesListing.
@@ -33989,6 +35904,14 @@ class CreateReservedInstancesListingResult {
   CreateReservedInstancesListingResult({
     this.reservedInstancesListings,
   });
+
+  Map<String, dynamic> toJson() {
+    final reservedInstancesListings = this.reservedInstancesListings;
+    return {
+      if (reservedInstancesListings != null)
+        'reservedInstancesListingsSet': reservedInstancesListings,
+    };
+  }
 }
 
 class CreateRestoreImageTaskResult {
@@ -33998,6 +35921,13 @@ class CreateRestoreImageTaskResult {
   CreateRestoreImageTaskResult({
     this.imageId,
   });
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    return {
+      if (imageId != null) 'imageId': imageId,
+    };
+  }
 }
 
 class CreateRouteResult {
@@ -34008,6 +35938,13 @@ class CreateRouteResult {
   CreateRouteResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class CreateRouteTableResult {
@@ -34017,6 +35954,13 @@ class CreateRouteTableResult {
   CreateRouteTableResult({
     this.routeTable,
   });
+
+  Map<String, dynamic> toJson() {
+    final routeTable = this.routeTable;
+    return {
+      if (routeTable != null) 'routeTable': routeTable,
+    };
+  }
 }
 
 class CreateSecurityGroupResult {
@@ -34030,6 +35974,15 @@ class CreateSecurityGroupResult {
     this.groupId,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final groupId = this.groupId;
+    final tags = this.tags;
+    return {
+      if (groupId != null) 'groupId': groupId,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 class CreateSnapshotsResult {
@@ -34039,6 +35992,13 @@ class CreateSnapshotsResult {
   CreateSnapshotsResult({
     this.snapshots,
   });
+
+  Map<String, dynamic> toJson() {
+    final snapshots = this.snapshots;
+    return {
+      if (snapshots != null) 'snapshotSet': snapshots,
+    };
+  }
 }
 
 /// Contains the output of CreateSpotDatafeedSubscription.
@@ -34049,6 +36009,14 @@ class CreateSpotDatafeedSubscriptionResult {
   CreateSpotDatafeedSubscriptionResult({
     this.spotDatafeedSubscription,
   });
+
+  Map<String, dynamic> toJson() {
+    final spotDatafeedSubscription = this.spotDatafeedSubscription;
+    return {
+      if (spotDatafeedSubscription != null)
+        'spotDatafeedSubscription': spotDatafeedSubscription,
+    };
+  }
 }
 
 class CreateStoreImageTaskResult {
@@ -34058,6 +36026,13 @@ class CreateStoreImageTaskResult {
   CreateStoreImageTaskResult({
     this.objectKey,
   });
+
+  Map<String, dynamic> toJson() {
+    final objectKey = this.objectKey;
+    return {
+      if (objectKey != null) 'objectKey': objectKey,
+    };
+  }
 }
 
 class CreateSubnetCidrReservationResult {
@@ -34067,6 +36042,14 @@ class CreateSubnetCidrReservationResult {
   CreateSubnetCidrReservationResult({
     this.subnetCidrReservation,
   });
+
+  Map<String, dynamic> toJson() {
+    final subnetCidrReservation = this.subnetCidrReservation;
+    return {
+      if (subnetCidrReservation != null)
+        'subnetCidrReservation': subnetCidrReservation,
+    };
+  }
 }
 
 class CreateSubnetResult {
@@ -34076,6 +36059,13 @@ class CreateSubnetResult {
   CreateSubnetResult({
     this.subnet,
   });
+
+  Map<String, dynamic> toJson() {
+    final subnet = this.subnet;
+    return {
+      if (subnet != null) 'subnet': subnet,
+    };
+  }
 }
 
 class CreateTrafficMirrorFilterResult {
@@ -34092,6 +36082,16 @@ class CreateTrafficMirrorFilterResult {
     this.clientToken,
     this.trafficMirrorFilter,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final trafficMirrorFilter = this.trafficMirrorFilter;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (trafficMirrorFilter != null)
+        'trafficMirrorFilter': trafficMirrorFilter,
+    };
+  }
 }
 
 class CreateTrafficMirrorFilterRuleResult {
@@ -34108,6 +36108,16 @@ class CreateTrafficMirrorFilterRuleResult {
     this.clientToken,
     this.trafficMirrorFilterRule,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final trafficMirrorFilterRule = this.trafficMirrorFilterRule;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (trafficMirrorFilterRule != null)
+        'trafficMirrorFilterRule': trafficMirrorFilterRule,
+    };
+  }
 }
 
 class CreateTrafficMirrorSessionResult {
@@ -34124,6 +36134,16 @@ class CreateTrafficMirrorSessionResult {
     this.clientToken,
     this.trafficMirrorSession,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final trafficMirrorSession = this.trafficMirrorSession;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (trafficMirrorSession != null)
+        'trafficMirrorSession': trafficMirrorSession,
+    };
+  }
 }
 
 class CreateTrafficMirrorTargetResult {
@@ -34140,6 +36160,16 @@ class CreateTrafficMirrorTargetResult {
     this.clientToken,
     this.trafficMirrorTarget,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final trafficMirrorTarget = this.trafficMirrorTarget;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (trafficMirrorTarget != null)
+        'trafficMirrorTarget': trafficMirrorTarget,
+    };
+  }
 }
 
 class CreateTransitGatewayConnectPeerResult {
@@ -34149,6 +36179,14 @@ class CreateTransitGatewayConnectPeerResult {
   CreateTransitGatewayConnectPeerResult({
     this.transitGatewayConnectPeer,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayConnectPeer = this.transitGatewayConnectPeer;
+    return {
+      if (transitGatewayConnectPeer != null)
+        'transitGatewayConnectPeer': transitGatewayConnectPeer,
+    };
+  }
 }
 
 /// The options for a Connect attachment.
@@ -34159,6 +36197,13 @@ class CreateTransitGatewayConnectRequestOptions {
   CreateTransitGatewayConnectRequestOptions({
     required this.protocol,
   });
+
+  Map<String, dynamic> toJson() {
+    final protocol = this.protocol;
+    return {
+      'Protocol': protocol.toValue(),
+    };
+  }
 }
 
 class CreateTransitGatewayConnectResult {
@@ -34168,6 +36213,14 @@ class CreateTransitGatewayConnectResult {
   CreateTransitGatewayConnectResult({
     this.transitGatewayConnect,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayConnect = this.transitGatewayConnect;
+    return {
+      if (transitGatewayConnect != null)
+        'transitGatewayConnect': transitGatewayConnect,
+    };
+  }
 }
 
 /// The options for the transit gateway multicast domain.
@@ -34189,6 +36242,19 @@ class CreateTransitGatewayMulticastDomainRequestOptions {
     this.igmpv2Support,
     this.staticSourcesSupport,
   });
+
+  Map<String, dynamic> toJson() {
+    final autoAcceptSharedAssociations = this.autoAcceptSharedAssociations;
+    final igmpv2Support = this.igmpv2Support;
+    final staticSourcesSupport = this.staticSourcesSupport;
+    return {
+      if (autoAcceptSharedAssociations != null)
+        'AutoAcceptSharedAssociations': autoAcceptSharedAssociations.toValue(),
+      if (igmpv2Support != null) 'Igmpv2Support': igmpv2Support.toValue(),
+      if (staticSourcesSupport != null)
+        'StaticSourcesSupport': staticSourcesSupport.toValue(),
+    };
+  }
 }
 
 class CreateTransitGatewayMulticastDomainResult {
@@ -34198,6 +36264,14 @@ class CreateTransitGatewayMulticastDomainResult {
   CreateTransitGatewayMulticastDomainResult({
     this.transitGatewayMulticastDomain,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayMulticastDomain = this.transitGatewayMulticastDomain;
+    return {
+      if (transitGatewayMulticastDomain != null)
+        'transitGatewayMulticastDomain': transitGatewayMulticastDomain,
+    };
+  }
 }
 
 /// Describes whether dynamic routing is enabled or disabled for the transit
@@ -34209,6 +36283,13 @@ class CreateTransitGatewayPeeringAttachmentRequestOptions {
   CreateTransitGatewayPeeringAttachmentRequestOptions({
     this.dynamicRouting,
   });
+
+  Map<String, dynamic> toJson() {
+    final dynamicRouting = this.dynamicRouting;
+    return {
+      if (dynamicRouting != null) 'DynamicRouting': dynamicRouting.toValue(),
+    };
+  }
 }
 
 class CreateTransitGatewayPeeringAttachmentResult {
@@ -34218,6 +36299,15 @@ class CreateTransitGatewayPeeringAttachmentResult {
   CreateTransitGatewayPeeringAttachmentResult({
     this.transitGatewayPeeringAttachment,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayPeeringAttachment =
+        this.transitGatewayPeeringAttachment;
+    return {
+      if (transitGatewayPeeringAttachment != null)
+        'transitGatewayPeeringAttachment': transitGatewayPeeringAttachment,
+    };
+  }
 }
 
 class CreateTransitGatewayPolicyTableResult {
@@ -34227,6 +36317,14 @@ class CreateTransitGatewayPolicyTableResult {
   CreateTransitGatewayPolicyTableResult({
     this.transitGatewayPolicyTable,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayPolicyTable = this.transitGatewayPolicyTable;
+    return {
+      if (transitGatewayPolicyTable != null)
+        'transitGatewayPolicyTable': transitGatewayPolicyTable,
+    };
+  }
 }
 
 class CreateTransitGatewayPrefixListReferenceResult {
@@ -34236,6 +36334,15 @@ class CreateTransitGatewayPrefixListReferenceResult {
   CreateTransitGatewayPrefixListReferenceResult({
     this.transitGatewayPrefixListReference,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayPrefixListReference =
+        this.transitGatewayPrefixListReference;
+    return {
+      if (transitGatewayPrefixListReference != null)
+        'transitGatewayPrefixListReference': transitGatewayPrefixListReference,
+    };
+  }
 }
 
 class CreateTransitGatewayResult {
@@ -34245,6 +36352,13 @@ class CreateTransitGatewayResult {
   CreateTransitGatewayResult({
     this.transitGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGateway = this.transitGateway;
+    return {
+      if (transitGateway != null) 'transitGateway': transitGateway,
+    };
+  }
 }
 
 class CreateTransitGatewayRouteResult {
@@ -34254,6 +36368,13 @@ class CreateTransitGatewayRouteResult {
   CreateTransitGatewayRouteResult({
     this.route,
   });
+
+  Map<String, dynamic> toJson() {
+    final route = this.route;
+    return {
+      if (route != null) 'route': route,
+    };
+  }
 }
 
 class CreateTransitGatewayRouteTableAnnouncementResult {
@@ -34264,6 +36385,16 @@ class CreateTransitGatewayRouteTableAnnouncementResult {
   CreateTransitGatewayRouteTableAnnouncementResult({
     this.transitGatewayRouteTableAnnouncement,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayRouteTableAnnouncement =
+        this.transitGatewayRouteTableAnnouncement;
+    return {
+      if (transitGatewayRouteTableAnnouncement != null)
+        'transitGatewayRouteTableAnnouncement':
+            transitGatewayRouteTableAnnouncement,
+    };
+  }
 }
 
 class CreateTransitGatewayRouteTableResult {
@@ -34273,6 +36404,14 @@ class CreateTransitGatewayRouteTableResult {
   CreateTransitGatewayRouteTableResult({
     this.transitGatewayRouteTable,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayRouteTable = this.transitGatewayRouteTable;
+    return {
+      if (transitGatewayRouteTable != null)
+        'transitGatewayRouteTable': transitGatewayRouteTable,
+    };
+  }
 }
 
 /// Describes the options for a VPC attachment.
@@ -34294,6 +36433,18 @@ class CreateTransitGatewayVpcAttachmentRequestOptions {
     this.dnsSupport,
     this.ipv6Support,
   });
+
+  Map<String, dynamic> toJson() {
+    final applianceModeSupport = this.applianceModeSupport;
+    final dnsSupport = this.dnsSupport;
+    final ipv6Support = this.ipv6Support;
+    return {
+      if (applianceModeSupport != null)
+        'ApplianceModeSupport': applianceModeSupport.toValue(),
+      if (dnsSupport != null) 'DnsSupport': dnsSupport.toValue(),
+      if (ipv6Support != null) 'Ipv6Support': ipv6Support.toValue(),
+    };
+  }
 }
 
 class CreateTransitGatewayVpcAttachmentResult {
@@ -34303,6 +36454,14 @@ class CreateTransitGatewayVpcAttachmentResult {
   CreateTransitGatewayVpcAttachmentResult({
     this.transitGatewayVpcAttachment,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayVpcAttachment = this.transitGatewayVpcAttachment;
+    return {
+      if (transitGatewayVpcAttachment != null)
+        'transitGatewayVpcAttachment': transitGatewayVpcAttachment,
+    };
+  }
 }
 
 /// Describes the user or group to be added or removed from the list of create
@@ -34318,6 +36477,15 @@ class CreateVolumePermission {
     this.group,
     this.userId,
   });
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    final userId = this.userId;
+    return {
+      if (group != null) 'group': group.toValue(),
+      if (userId != null) 'userId': userId,
+    };
+  }
 }
 
 /// Describes modifications to the list of create volume permissions for a
@@ -34333,6 +36501,15 @@ class CreateVolumePermissionModifications {
     this.add,
     this.remove,
   });
+
+  Map<String, dynamic> toJson() {
+    final add = this.add;
+    final remove = this.remove;
+    return {
+      if (add != null) 'Add': add,
+      if (remove != null) 'Remove': remove,
+    };
+  }
 }
 
 class CreateVpcEndpointConnectionNotificationResult {
@@ -34347,6 +36524,16 @@ class CreateVpcEndpointConnectionNotificationResult {
     this.clientToken,
     this.connectionNotification,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final connectionNotification = this.connectionNotification;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (connectionNotification != null)
+        'connectionNotification': connectionNotification,
+    };
+  }
 }
 
 /// Contains the output of CreateVpcEndpoint.
@@ -34362,6 +36549,15 @@ class CreateVpcEndpointResult {
     this.clientToken,
     this.vpcEndpoint,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final vpcEndpoint = this.vpcEndpoint;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (vpcEndpoint != null) 'vpcEndpoint': vpcEndpoint,
+    };
+  }
 }
 
 class CreateVpcEndpointServiceConfigurationResult {
@@ -34376,6 +36572,16 @@ class CreateVpcEndpointServiceConfigurationResult {
     this.clientToken,
     this.serviceConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final serviceConfiguration = this.serviceConfiguration;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (serviceConfiguration != null)
+        'serviceConfiguration': serviceConfiguration,
+    };
+  }
 }
 
 class CreateVpcPeeringConnectionResult {
@@ -34385,6 +36591,14 @@ class CreateVpcPeeringConnectionResult {
   CreateVpcPeeringConnectionResult({
     this.vpcPeeringConnection,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpcPeeringConnection = this.vpcPeeringConnection;
+    return {
+      if (vpcPeeringConnection != null)
+        'vpcPeeringConnection': vpcPeeringConnection,
+    };
+  }
 }
 
 class CreateVpcResult {
@@ -34394,6 +36608,13 @@ class CreateVpcResult {
   CreateVpcResult({
     this.vpc,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpc = this.vpc;
+    return {
+      if (vpc != null) 'vpc': vpc,
+    };
+  }
 }
 
 /// Contains the output of CreateVpnConnection.
@@ -34404,6 +36625,13 @@ class CreateVpnConnectionResult {
   CreateVpnConnectionResult({
     this.vpnConnection,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpnConnection = this.vpnConnection;
+    return {
+      if (vpnConnection != null) 'vpnConnection': vpnConnection,
+    };
+  }
 }
 
 /// Contains the output of CreateVpnGateway.
@@ -34414,6 +36642,13 @@ class CreateVpnGatewayResult {
   CreateVpnGatewayResult({
     this.vpnGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpnGateway = this.vpnGateway;
+    return {
+      if (vpnGateway != null) 'vpnGateway': vpnGateway,
+    };
+  }
 }
 
 /// Describes the credit option for CPU usage of a T instance.
@@ -34426,6 +36661,13 @@ class CreditSpecification {
   CreditSpecification({
     this.cpuCredits,
   });
+
+  Map<String, dynamic> toJson() {
+    final cpuCredits = this.cpuCredits;
+    return {
+      if (cpuCredits != null) 'cpuCredits': cpuCredits,
+    };
+  }
 }
 
 /// The credit option for CPU usage of a T instance.
@@ -34438,6 +36680,13 @@ class CreditSpecificationRequest {
   CreditSpecificationRequest({
     required this.cpuCredits,
   });
+
+  Map<String, dynamic> toJson() {
+    final cpuCredits = this.cpuCredits;
+    return {
+      'CpuCredits': cpuCredits,
+    };
+  }
 }
 
 enum CurrencyCodeValues {
@@ -34502,6 +36751,27 @@ class CustomerGateway {
     this.tags,
     this.type,
   });
+
+  Map<String, dynamic> toJson() {
+    final bgpAsn = this.bgpAsn;
+    final certificateArn = this.certificateArn;
+    final customerGatewayId = this.customerGatewayId;
+    final deviceName = this.deviceName;
+    final ipAddress = this.ipAddress;
+    final state = this.state;
+    final tags = this.tags;
+    final type = this.type;
+    return {
+      if (bgpAsn != null) 'bgpAsn': bgpAsn,
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (customerGatewayId != null) 'customerGatewayId': customerGatewayId,
+      if (deviceName != null) 'deviceName': deviceName,
+      if (ipAddress != null) 'ipAddress': ipAddress,
+      if (state != null) 'state': state,
+      if (tags != null) 'tagSet': tags,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 enum DatafeedSubscriptionState {
@@ -34627,6 +36897,13 @@ class DeleteCarrierGatewayResult {
   DeleteCarrierGatewayResult({
     this.carrierGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final carrierGateway = this.carrierGateway;
+    return {
+      if (carrierGateway != null) 'carrierGateway': carrierGateway,
+    };
+  }
 }
 
 class DeleteClientVpnEndpointResult {
@@ -34636,6 +36913,13 @@ class DeleteClientVpnEndpointResult {
   DeleteClientVpnEndpointResult({
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class DeleteClientVpnRouteResult {
@@ -34645,6 +36929,13 @@ class DeleteClientVpnRouteResult {
   DeleteClientVpnRouteResult({
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class DeleteEgressOnlyInternetGatewayResult {
@@ -34655,6 +36946,13 @@ class DeleteEgressOnlyInternetGatewayResult {
   DeleteEgressOnlyInternetGatewayResult({
     this.returnCode,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnCode = this.returnCode;
+    return {
+      if (returnCode != null) 'returnCode': returnCode,
+    };
+  }
 }
 
 /// Describes an EC2 Fleet error.
@@ -34669,6 +36967,15 @@ class DeleteFleetError {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum DeleteFleetErrorCode {
@@ -34721,6 +37028,15 @@ class DeleteFleetErrorItem {
     this.error,
     this.fleetId,
   });
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final fleetId = this.fleetId;
+    return {
+      if (error != null) 'error': error,
+      if (fleetId != null) 'fleetId': fleetId,
+    };
+  }
 }
 
 /// Describes an EC2 Fleet that was successfully deleted.
@@ -34739,6 +37055,19 @@ class DeleteFleetSuccessItem {
     this.fleetId,
     this.previousFleetState,
   });
+
+  Map<String, dynamic> toJson() {
+    final currentFleetState = this.currentFleetState;
+    final fleetId = this.fleetId;
+    final previousFleetState = this.previousFleetState;
+    return {
+      if (currentFleetState != null)
+        'currentFleetState': currentFleetState.toValue(),
+      if (fleetId != null) 'fleetId': fleetId,
+      if (previousFleetState != null)
+        'previousFleetState': previousFleetState.toValue(),
+    };
+  }
 }
 
 class DeleteFleetsResult {
@@ -34752,6 +37081,17 @@ class DeleteFleetsResult {
     this.successfulFleetDeletions,
     this.unsuccessfulFleetDeletions,
   });
+
+  Map<String, dynamic> toJson() {
+    final successfulFleetDeletions = this.successfulFleetDeletions;
+    final unsuccessfulFleetDeletions = this.unsuccessfulFleetDeletions;
+    return {
+      if (successfulFleetDeletions != null)
+        'successfulFleetDeletionSet': successfulFleetDeletions,
+      if (unsuccessfulFleetDeletions != null)
+        'unsuccessfulFleetDeletionSet': unsuccessfulFleetDeletions,
+    };
+  }
 }
 
 class DeleteFlowLogsResult {
@@ -34761,6 +37101,13 @@ class DeleteFlowLogsResult {
   DeleteFlowLogsResult({
     this.unsuccessful,
   });
+
+  Map<String, dynamic> toJson() {
+    final unsuccessful = this.unsuccessful;
+    return {
+      if (unsuccessful != null) 'unsuccessful': unsuccessful,
+    };
+  }
 }
 
 class DeleteFpgaImageResult {
@@ -34770,6 +37117,13 @@ class DeleteFpgaImageResult {
   DeleteFpgaImageResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class DeleteInstanceEventWindowResult {
@@ -34779,6 +37133,14 @@ class DeleteInstanceEventWindowResult {
   DeleteInstanceEventWindowResult({
     this.instanceEventWindowState,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceEventWindowState = this.instanceEventWindowState;
+    return {
+      if (instanceEventWindowState != null)
+        'instanceEventWindowState': instanceEventWindowState,
+    };
+  }
 }
 
 class DeleteIpamPoolResult {
@@ -34788,6 +37150,13 @@ class DeleteIpamPoolResult {
   DeleteIpamPoolResult({
     this.ipamPool,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamPool = this.ipamPool;
+    return {
+      if (ipamPool != null) 'ipamPool': ipamPool,
+    };
+  }
 }
 
 class DeleteIpamResult {
@@ -34797,6 +37166,13 @@ class DeleteIpamResult {
   DeleteIpamResult({
     this.ipam,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipam = this.ipam;
+    return {
+      if (ipam != null) 'ipam': ipam,
+    };
+  }
 }
 
 class DeleteIpamScopeResult {
@@ -34806,6 +37182,13 @@ class DeleteIpamScopeResult {
   DeleteIpamScopeResult({
     this.ipamScope,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamScope = this.ipamScope;
+    return {
+      if (ipamScope != null) 'ipamScope': ipamScope,
+    };
+  }
 }
 
 class DeleteLaunchTemplateResult {
@@ -34815,6 +37198,13 @@ class DeleteLaunchTemplateResult {
   DeleteLaunchTemplateResult({
     this.launchTemplate,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplate = this.launchTemplate;
+    return {
+      if (launchTemplate != null) 'launchTemplate': launchTemplate,
+    };
+  }
 }
 
 /// Describes a launch template version that could not be deleted.
@@ -34837,6 +37227,19 @@ class DeleteLaunchTemplateVersionsResponseErrorItem {
     this.responseError,
     this.versionNumber,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplateId = this.launchTemplateId;
+    final launchTemplateName = this.launchTemplateName;
+    final responseError = this.responseError;
+    final versionNumber = this.versionNumber;
+    return {
+      if (launchTemplateId != null) 'launchTemplateId': launchTemplateId,
+      if (launchTemplateName != null) 'launchTemplateName': launchTemplateName,
+      if (responseError != null) 'responseError': responseError,
+      if (versionNumber != null) 'versionNumber': versionNumber,
+    };
+  }
 }
 
 /// Describes a launch template version that was successfully deleted.
@@ -34855,6 +37258,17 @@ class DeleteLaunchTemplateVersionsResponseSuccessItem {
     this.launchTemplateName,
     this.versionNumber,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplateId = this.launchTemplateId;
+    final launchTemplateName = this.launchTemplateName;
+    final versionNumber = this.versionNumber;
+    return {
+      if (launchTemplateId != null) 'launchTemplateId': launchTemplateId,
+      if (launchTemplateName != null) 'launchTemplateName': launchTemplateName,
+      if (versionNumber != null) 'versionNumber': versionNumber,
+    };
+  }
 }
 
 class DeleteLaunchTemplateVersionsResult {
@@ -34871,6 +37285,21 @@ class DeleteLaunchTemplateVersionsResult {
     this.successfullyDeletedLaunchTemplateVersions,
     this.unsuccessfullyDeletedLaunchTemplateVersions,
   });
+
+  Map<String, dynamic> toJson() {
+    final successfullyDeletedLaunchTemplateVersions =
+        this.successfullyDeletedLaunchTemplateVersions;
+    final unsuccessfullyDeletedLaunchTemplateVersions =
+        this.unsuccessfullyDeletedLaunchTemplateVersions;
+    return {
+      if (successfullyDeletedLaunchTemplateVersions != null)
+        'successfullyDeletedLaunchTemplateVersionSet':
+            successfullyDeletedLaunchTemplateVersions,
+      if (unsuccessfullyDeletedLaunchTemplateVersions != null)
+        'unsuccessfullyDeletedLaunchTemplateVersionSet':
+            unsuccessfullyDeletedLaunchTemplateVersions,
+    };
+  }
 }
 
 class DeleteLocalGatewayRouteResult {
@@ -34880,6 +37309,13 @@ class DeleteLocalGatewayRouteResult {
   DeleteLocalGatewayRouteResult({
     this.route,
   });
+
+  Map<String, dynamic> toJson() {
+    final route = this.route;
+    return {
+      if (route != null) 'route': route,
+    };
+  }
 }
 
 class DeleteLocalGatewayRouteTableVpcAssociationResult {
@@ -34890,6 +37326,16 @@ class DeleteLocalGatewayRouteTableVpcAssociationResult {
   DeleteLocalGatewayRouteTableVpcAssociationResult({
     this.localGatewayRouteTableVpcAssociation,
   });
+
+  Map<String, dynamic> toJson() {
+    final localGatewayRouteTableVpcAssociation =
+        this.localGatewayRouteTableVpcAssociation;
+    return {
+      if (localGatewayRouteTableVpcAssociation != null)
+        'localGatewayRouteTableVpcAssociation':
+            localGatewayRouteTableVpcAssociation,
+    };
+  }
 }
 
 class DeleteManagedPrefixListResult {
@@ -34899,6 +37345,13 @@ class DeleteManagedPrefixListResult {
   DeleteManagedPrefixListResult({
     this.prefixList,
   });
+
+  Map<String, dynamic> toJson() {
+    final prefixList = this.prefixList;
+    return {
+      if (prefixList != null) 'prefixList': prefixList,
+    };
+  }
 }
 
 class DeleteNatGatewayResult {
@@ -34908,6 +37361,13 @@ class DeleteNatGatewayResult {
   DeleteNatGatewayResult({
     this.natGatewayId,
   });
+
+  Map<String, dynamic> toJson() {
+    final natGatewayId = this.natGatewayId;
+    return {
+      if (natGatewayId != null) 'natGatewayId': natGatewayId,
+    };
+  }
 }
 
 class DeleteNetworkInsightsAccessScopeAnalysisResult {
@@ -34917,6 +37377,16 @@ class DeleteNetworkInsightsAccessScopeAnalysisResult {
   DeleteNetworkInsightsAccessScopeAnalysisResult({
     this.networkInsightsAccessScopeAnalysisId,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInsightsAccessScopeAnalysisId =
+        this.networkInsightsAccessScopeAnalysisId;
+    return {
+      if (networkInsightsAccessScopeAnalysisId != null)
+        'networkInsightsAccessScopeAnalysisId':
+            networkInsightsAccessScopeAnalysisId,
+    };
+  }
 }
 
 class DeleteNetworkInsightsAccessScopeResult {
@@ -34926,6 +37396,14 @@ class DeleteNetworkInsightsAccessScopeResult {
   DeleteNetworkInsightsAccessScopeResult({
     this.networkInsightsAccessScopeId,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInsightsAccessScopeId = this.networkInsightsAccessScopeId;
+    return {
+      if (networkInsightsAccessScopeId != null)
+        'networkInsightsAccessScopeId': networkInsightsAccessScopeId,
+    };
+  }
 }
 
 class DeleteNetworkInsightsAnalysisResult {
@@ -34935,6 +37413,14 @@ class DeleteNetworkInsightsAnalysisResult {
   DeleteNetworkInsightsAnalysisResult({
     this.networkInsightsAnalysisId,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInsightsAnalysisId = this.networkInsightsAnalysisId;
+    return {
+      if (networkInsightsAnalysisId != null)
+        'networkInsightsAnalysisId': networkInsightsAnalysisId,
+    };
+  }
 }
 
 class DeleteNetworkInsightsPathResult {
@@ -34944,6 +37430,14 @@ class DeleteNetworkInsightsPathResult {
   DeleteNetworkInsightsPathResult({
     this.networkInsightsPathId,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInsightsPathId = this.networkInsightsPathId;
+    return {
+      if (networkInsightsPathId != null)
+        'networkInsightsPathId': networkInsightsPathId,
+    };
+  }
 }
 
 /// Contains the output for DeleteNetworkInterfacePermission.
@@ -34955,6 +37449,13 @@ class DeleteNetworkInterfacePermissionResult {
   DeleteNetworkInterfacePermissionResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class DeletePublicIpv4PoolResult {
@@ -34964,6 +37465,13 @@ class DeletePublicIpv4PoolResult {
   DeletePublicIpv4PoolResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'returnValue': returnValue,
+    };
+  }
 }
 
 /// Describes the error for a Reserved Instance whose queued purchase could not
@@ -34979,6 +37487,15 @@ class DeleteQueuedReservedInstancesError {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum DeleteQueuedReservedInstancesErrorCode {
@@ -35032,6 +37549,19 @@ class DeleteQueuedReservedInstancesResult {
     this.failedQueuedPurchaseDeletions,
     this.successfulQueuedPurchaseDeletions,
   });
+
+  Map<String, dynamic> toJson() {
+    final failedQueuedPurchaseDeletions = this.failedQueuedPurchaseDeletions;
+    final successfulQueuedPurchaseDeletions =
+        this.successfulQueuedPurchaseDeletions;
+    return {
+      if (failedQueuedPurchaseDeletions != null)
+        'failedQueuedPurchaseDeletionSet': failedQueuedPurchaseDeletions,
+      if (successfulQueuedPurchaseDeletions != null)
+        'successfulQueuedPurchaseDeletionSet':
+            successfulQueuedPurchaseDeletions,
+    };
+  }
 }
 
 class DeleteSubnetCidrReservationResult {
@@ -35041,6 +37571,14 @@ class DeleteSubnetCidrReservationResult {
   DeleteSubnetCidrReservationResult({
     this.deletedSubnetCidrReservation,
   });
+
+  Map<String, dynamic> toJson() {
+    final deletedSubnetCidrReservation = this.deletedSubnetCidrReservation;
+    return {
+      if (deletedSubnetCidrReservation != null)
+        'deletedSubnetCidrReservation': deletedSubnetCidrReservation,
+    };
+  }
 }
 
 class DeleteTrafficMirrorFilterResult {
@@ -35050,6 +37588,14 @@ class DeleteTrafficMirrorFilterResult {
   DeleteTrafficMirrorFilterResult({
     this.trafficMirrorFilterId,
   });
+
+  Map<String, dynamic> toJson() {
+    final trafficMirrorFilterId = this.trafficMirrorFilterId;
+    return {
+      if (trafficMirrorFilterId != null)
+        'trafficMirrorFilterId': trafficMirrorFilterId,
+    };
+  }
 }
 
 class DeleteTrafficMirrorFilterRuleResult {
@@ -35059,6 +37605,14 @@ class DeleteTrafficMirrorFilterRuleResult {
   DeleteTrafficMirrorFilterRuleResult({
     this.trafficMirrorFilterRuleId,
   });
+
+  Map<String, dynamic> toJson() {
+    final trafficMirrorFilterRuleId = this.trafficMirrorFilterRuleId;
+    return {
+      if (trafficMirrorFilterRuleId != null)
+        'trafficMirrorFilterRuleId': trafficMirrorFilterRuleId,
+    };
+  }
 }
 
 class DeleteTrafficMirrorSessionResult {
@@ -35068,6 +37622,14 @@ class DeleteTrafficMirrorSessionResult {
   DeleteTrafficMirrorSessionResult({
     this.trafficMirrorSessionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final trafficMirrorSessionId = this.trafficMirrorSessionId;
+    return {
+      if (trafficMirrorSessionId != null)
+        'trafficMirrorSessionId': trafficMirrorSessionId,
+    };
+  }
 }
 
 class DeleteTrafficMirrorTargetResult {
@@ -35077,6 +37639,14 @@ class DeleteTrafficMirrorTargetResult {
   DeleteTrafficMirrorTargetResult({
     this.trafficMirrorTargetId,
   });
+
+  Map<String, dynamic> toJson() {
+    final trafficMirrorTargetId = this.trafficMirrorTargetId;
+    return {
+      if (trafficMirrorTargetId != null)
+        'trafficMirrorTargetId': trafficMirrorTargetId,
+    };
+  }
 }
 
 class DeleteTransitGatewayConnectPeerResult {
@@ -35086,6 +37656,14 @@ class DeleteTransitGatewayConnectPeerResult {
   DeleteTransitGatewayConnectPeerResult({
     this.transitGatewayConnectPeer,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayConnectPeer = this.transitGatewayConnectPeer;
+    return {
+      if (transitGatewayConnectPeer != null)
+        'transitGatewayConnectPeer': transitGatewayConnectPeer,
+    };
+  }
 }
 
 class DeleteTransitGatewayConnectResult {
@@ -35095,6 +37673,14 @@ class DeleteTransitGatewayConnectResult {
   DeleteTransitGatewayConnectResult({
     this.transitGatewayConnect,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayConnect = this.transitGatewayConnect;
+    return {
+      if (transitGatewayConnect != null)
+        'transitGatewayConnect': transitGatewayConnect,
+    };
+  }
 }
 
 class DeleteTransitGatewayMulticastDomainResult {
@@ -35104,6 +37690,14 @@ class DeleteTransitGatewayMulticastDomainResult {
   DeleteTransitGatewayMulticastDomainResult({
     this.transitGatewayMulticastDomain,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayMulticastDomain = this.transitGatewayMulticastDomain;
+    return {
+      if (transitGatewayMulticastDomain != null)
+        'transitGatewayMulticastDomain': transitGatewayMulticastDomain,
+    };
+  }
 }
 
 class DeleteTransitGatewayPeeringAttachmentResult {
@@ -35113,6 +37707,15 @@ class DeleteTransitGatewayPeeringAttachmentResult {
   DeleteTransitGatewayPeeringAttachmentResult({
     this.transitGatewayPeeringAttachment,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayPeeringAttachment =
+        this.transitGatewayPeeringAttachment;
+    return {
+      if (transitGatewayPeeringAttachment != null)
+        'transitGatewayPeeringAttachment': transitGatewayPeeringAttachment,
+    };
+  }
 }
 
 class DeleteTransitGatewayPolicyTableResult {
@@ -35122,6 +37725,14 @@ class DeleteTransitGatewayPolicyTableResult {
   DeleteTransitGatewayPolicyTableResult({
     this.transitGatewayPolicyTable,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayPolicyTable = this.transitGatewayPolicyTable;
+    return {
+      if (transitGatewayPolicyTable != null)
+        'transitGatewayPolicyTable': transitGatewayPolicyTable,
+    };
+  }
 }
 
 class DeleteTransitGatewayPrefixListReferenceResult {
@@ -35131,6 +37742,15 @@ class DeleteTransitGatewayPrefixListReferenceResult {
   DeleteTransitGatewayPrefixListReferenceResult({
     this.transitGatewayPrefixListReference,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayPrefixListReference =
+        this.transitGatewayPrefixListReference;
+    return {
+      if (transitGatewayPrefixListReference != null)
+        'transitGatewayPrefixListReference': transitGatewayPrefixListReference,
+    };
+  }
 }
 
 class DeleteTransitGatewayResult {
@@ -35140,6 +37760,13 @@ class DeleteTransitGatewayResult {
   DeleteTransitGatewayResult({
     this.transitGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGateway = this.transitGateway;
+    return {
+      if (transitGateway != null) 'transitGateway': transitGateway,
+    };
+  }
 }
 
 class DeleteTransitGatewayRouteResult {
@@ -35149,6 +37776,13 @@ class DeleteTransitGatewayRouteResult {
   DeleteTransitGatewayRouteResult({
     this.route,
   });
+
+  Map<String, dynamic> toJson() {
+    final route = this.route;
+    return {
+      if (route != null) 'route': route,
+    };
+  }
 }
 
 class DeleteTransitGatewayRouteTableAnnouncementResult {
@@ -35159,6 +37793,16 @@ class DeleteTransitGatewayRouteTableAnnouncementResult {
   DeleteTransitGatewayRouteTableAnnouncementResult({
     this.transitGatewayRouteTableAnnouncement,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayRouteTableAnnouncement =
+        this.transitGatewayRouteTableAnnouncement;
+    return {
+      if (transitGatewayRouteTableAnnouncement != null)
+        'transitGatewayRouteTableAnnouncement':
+            transitGatewayRouteTableAnnouncement,
+    };
+  }
 }
 
 class DeleteTransitGatewayRouteTableResult {
@@ -35168,6 +37812,14 @@ class DeleteTransitGatewayRouteTableResult {
   DeleteTransitGatewayRouteTableResult({
     this.transitGatewayRouteTable,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayRouteTable = this.transitGatewayRouteTable;
+    return {
+      if (transitGatewayRouteTable != null)
+        'transitGatewayRouteTable': transitGatewayRouteTable,
+    };
+  }
 }
 
 class DeleteTransitGatewayVpcAttachmentResult {
@@ -35177,6 +37829,14 @@ class DeleteTransitGatewayVpcAttachmentResult {
   DeleteTransitGatewayVpcAttachmentResult({
     this.transitGatewayVpcAttachment,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayVpcAttachment = this.transitGatewayVpcAttachment;
+    return {
+      if (transitGatewayVpcAttachment != null)
+        'transitGatewayVpcAttachment': transitGatewayVpcAttachment,
+    };
+  }
 }
 
 class DeleteVpcEndpointConnectionNotificationsResult {
@@ -35186,6 +37846,13 @@ class DeleteVpcEndpointConnectionNotificationsResult {
   DeleteVpcEndpointConnectionNotificationsResult({
     this.unsuccessful,
   });
+
+  Map<String, dynamic> toJson() {
+    final unsuccessful = this.unsuccessful;
+    return {
+      if (unsuccessful != null) 'unsuccessful': unsuccessful,
+    };
+  }
 }
 
 class DeleteVpcEndpointServiceConfigurationsResult {
@@ -35196,6 +37863,13 @@ class DeleteVpcEndpointServiceConfigurationsResult {
   DeleteVpcEndpointServiceConfigurationsResult({
     this.unsuccessful,
   });
+
+  Map<String, dynamic> toJson() {
+    final unsuccessful = this.unsuccessful;
+    return {
+      if (unsuccessful != null) 'unsuccessful': unsuccessful,
+    };
+  }
 }
 
 /// Contains the output of DeleteVpcEndpoints.
@@ -35206,6 +37880,13 @@ class DeleteVpcEndpointsResult {
   DeleteVpcEndpointsResult({
     this.unsuccessful,
   });
+
+  Map<String, dynamic> toJson() {
+    final unsuccessful = this.unsuccessful;
+    return {
+      if (unsuccessful != null) 'unsuccessful': unsuccessful,
+    };
+  }
 }
 
 class DeleteVpcPeeringConnectionResult {
@@ -35216,6 +37897,13 @@ class DeleteVpcPeeringConnectionResult {
   DeleteVpcPeeringConnectionResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class DeprovisionByoipCidrResult {
@@ -35225,6 +37913,13 @@ class DeprovisionByoipCidrResult {
   DeprovisionByoipCidrResult({
     this.byoipCidr,
   });
+
+  Map<String, dynamic> toJson() {
+    final byoipCidr = this.byoipCidr;
+    return {
+      if (byoipCidr != null) 'byoipCidr': byoipCidr,
+    };
+  }
 }
 
 class DeprovisionIpamPoolCidrResult {
@@ -35234,6 +37929,13 @@ class DeprovisionIpamPoolCidrResult {
   DeprovisionIpamPoolCidrResult({
     this.ipamPoolCidr,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamPoolCidr = this.ipamPoolCidr;
+    return {
+      if (ipamPoolCidr != null) 'ipamPoolCidr': ipamPoolCidr,
+    };
+  }
 }
 
 class DeprovisionPublicIpv4PoolCidrResult {
@@ -35247,6 +37949,16 @@ class DeprovisionPublicIpv4PoolCidrResult {
     this.deprovisionedAddresses,
     this.poolId,
   });
+
+  Map<String, dynamic> toJson() {
+    final deprovisionedAddresses = this.deprovisionedAddresses;
+    final poolId = this.poolId;
+    return {
+      if (deprovisionedAddresses != null)
+        'deprovisionedAddressSet': deprovisionedAddresses,
+      if (poolId != null) 'poolId': poolId,
+    };
+  }
 }
 
 class DeregisterInstanceEventNotificationAttributesResult {
@@ -35256,6 +37968,14 @@ class DeregisterInstanceEventNotificationAttributesResult {
   DeregisterInstanceEventNotificationAttributesResult({
     this.instanceTagAttribute,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceTagAttribute = this.instanceTagAttribute;
+    return {
+      if (instanceTagAttribute != null)
+        'instanceTagAttribute': instanceTagAttribute,
+    };
+  }
 }
 
 /// Information about the tag keys to deregister for the current Region. You can
@@ -35274,6 +37994,16 @@ class DeregisterInstanceTagAttributeRequest {
     this.includeAllTagsOfInstance,
     this.instanceTagKeys,
   });
+
+  Map<String, dynamic> toJson() {
+    final includeAllTagsOfInstance = this.includeAllTagsOfInstance;
+    final instanceTagKeys = this.instanceTagKeys;
+    return {
+      if (includeAllTagsOfInstance != null)
+        'IncludeAllTagsOfInstance': includeAllTagsOfInstance,
+      if (instanceTagKeys != null) 'InstanceTagKey': instanceTagKeys,
+    };
+  }
 }
 
 class DeregisterTransitGatewayMulticastGroupMembersResult {
@@ -35284,6 +38014,15 @@ class DeregisterTransitGatewayMulticastGroupMembersResult {
   DeregisterTransitGatewayMulticastGroupMembersResult({
     this.deregisteredMulticastGroupMembers,
   });
+
+  Map<String, dynamic> toJson() {
+    final deregisteredMulticastGroupMembers =
+        this.deregisteredMulticastGroupMembers;
+    return {
+      if (deregisteredMulticastGroupMembers != null)
+        'deregisteredMulticastGroupMembers': deregisteredMulticastGroupMembers,
+    };
+  }
 }
 
 class DeregisterTransitGatewayMulticastGroupSourcesResult {
@@ -35294,6 +38033,15 @@ class DeregisterTransitGatewayMulticastGroupSourcesResult {
   DeregisterTransitGatewayMulticastGroupSourcesResult({
     this.deregisteredMulticastGroupSources,
   });
+
+  Map<String, dynamic> toJson() {
+    final deregisteredMulticastGroupSources =
+        this.deregisteredMulticastGroupSources;
+    return {
+      if (deregisteredMulticastGroupSources != null)
+        'deregisteredMulticastGroupSources': deregisteredMulticastGroupSources,
+    };
+  }
 }
 
 class DescribeAccountAttributesResult {
@@ -35303,6 +38051,13 @@ class DescribeAccountAttributesResult {
   DescribeAccountAttributesResult({
     this.accountAttributes,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountAttributes = this.accountAttributes;
+    return {
+      if (accountAttributes != null) 'accountAttributeSet': accountAttributes,
+    };
+  }
 }
 
 class DescribeAddressesAttributeResult {
@@ -35317,6 +38072,15 @@ class DescribeAddressesAttributeResult {
     this.addresses,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final addresses = this.addresses;
+    final nextToken = this.nextToken;
+    return {
+      if (addresses != null) 'addressSet': addresses,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeAddressesResult {
@@ -35326,6 +38090,13 @@ class DescribeAddressesResult {
   DescribeAddressesResult({
     this.addresses,
   });
+
+  Map<String, dynamic> toJson() {
+    final addresses = this.addresses;
+    return {
+      if (addresses != null) 'addressesSet': addresses,
+    };
+  }
 }
 
 class DescribeAggregateIdFormatResult {
@@ -35341,6 +38112,16 @@ class DescribeAggregateIdFormatResult {
     this.statuses,
     this.useLongIdsAggregated,
   });
+
+  Map<String, dynamic> toJson() {
+    final statuses = this.statuses;
+    final useLongIdsAggregated = this.useLongIdsAggregated;
+    return {
+      if (statuses != null) 'statusSet': statuses,
+      if (useLongIdsAggregated != null)
+        'useLongIdsAggregated': useLongIdsAggregated,
+    };
+  }
 }
 
 class DescribeAvailabilityZonesResult {
@@ -35350,6 +38131,13 @@ class DescribeAvailabilityZonesResult {
   DescribeAvailabilityZonesResult({
     this.availabilityZones,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZones = this.availabilityZones;
+    return {
+      if (availabilityZones != null) 'availabilityZoneInfo': availabilityZones,
+    };
+  }
 }
 
 class DescribeBundleTasksResult {
@@ -35359,6 +38147,13 @@ class DescribeBundleTasksResult {
   DescribeBundleTasksResult({
     this.bundleTasks,
   });
+
+  Map<String, dynamic> toJson() {
+    final bundleTasks = this.bundleTasks;
+    return {
+      if (bundleTasks != null) 'bundleInstanceTasksSet': bundleTasks,
+    };
+  }
 }
 
 class DescribeByoipCidrsResult {
@@ -35373,6 +38168,15 @@ class DescribeByoipCidrsResult {
     this.byoipCidrs,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final byoipCidrs = this.byoipCidrs;
+    final nextToken = this.nextToken;
+    return {
+      if (byoipCidrs != null) 'byoipCidrSet': byoipCidrs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeCapacityReservationFleetsResult {
@@ -35387,6 +38191,16 @@ class DescribeCapacityReservationFleetsResult {
     this.capacityReservationFleets,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final capacityReservationFleets = this.capacityReservationFleets;
+    final nextToken = this.nextToken;
+    return {
+      if (capacityReservationFleets != null)
+        'capacityReservationFleetSet': capacityReservationFleets,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeCapacityReservationsResult {
@@ -35401,6 +38215,16 @@ class DescribeCapacityReservationsResult {
     this.capacityReservations,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final capacityReservations = this.capacityReservations;
+    final nextToken = this.nextToken;
+    return {
+      if (capacityReservations != null)
+        'capacityReservationSet': capacityReservations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeCarrierGatewaysResult {
@@ -35415,6 +38239,15 @@ class DescribeCarrierGatewaysResult {
     this.carrierGateways,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final carrierGateways = this.carrierGateways;
+    final nextToken = this.nextToken;
+    return {
+      if (carrierGateways != null) 'carrierGatewaySet': carrierGateways,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeClassicLinkInstancesResult {
@@ -35429,6 +38262,15 @@ class DescribeClassicLinkInstancesResult {
     this.instances,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final instances = this.instances;
+    final nextToken = this.nextToken;
+    return {
+      if (instances != null) 'instancesSet': instances,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeClientVpnAuthorizationRulesResult {
@@ -35443,6 +38285,15 @@ class DescribeClientVpnAuthorizationRulesResult {
     this.authorizationRules,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final authorizationRules = this.authorizationRules;
+    final nextToken = this.nextToken;
+    return {
+      if (authorizationRules != null) 'authorizationRule': authorizationRules,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeClientVpnConnectionsResult {
@@ -35457,6 +38308,15 @@ class DescribeClientVpnConnectionsResult {
     this.connections,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final connections = this.connections;
+    final nextToken = this.nextToken;
+    return {
+      if (connections != null) 'connections': connections,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeClientVpnEndpointsResult {
@@ -35471,6 +38331,15 @@ class DescribeClientVpnEndpointsResult {
     this.clientVpnEndpoints,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientVpnEndpoints = this.clientVpnEndpoints;
+    final nextToken = this.nextToken;
+    return {
+      if (clientVpnEndpoints != null) 'clientVpnEndpoint': clientVpnEndpoints,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeClientVpnRoutesResult {
@@ -35485,6 +38354,15 @@ class DescribeClientVpnRoutesResult {
     this.nextToken,
     this.routes,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final routes = this.routes;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (routes != null) 'routes': routes,
+    };
+  }
 }
 
 class DescribeClientVpnTargetNetworksResult {
@@ -35499,6 +38377,16 @@ class DescribeClientVpnTargetNetworksResult {
     this.clientVpnTargetNetworks,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientVpnTargetNetworks = this.clientVpnTargetNetworks;
+    final nextToken = this.nextToken;
+    return {
+      if (clientVpnTargetNetworks != null)
+        'clientVpnTargetNetworks': clientVpnTargetNetworks,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeCoipPoolsResult {
@@ -35513,6 +38401,15 @@ class DescribeCoipPoolsResult {
     this.coipPools,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final coipPools = this.coipPools;
+    final nextToken = this.nextToken;
+    return {
+      if (coipPools != null) 'coipPoolSet': coipPools,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeConversionTasksResult {
@@ -35522,6 +38419,13 @@ class DescribeConversionTasksResult {
   DescribeConversionTasksResult({
     this.conversionTasks,
   });
+
+  Map<String, dynamic> toJson() {
+    final conversionTasks = this.conversionTasks;
+    return {
+      if (conversionTasks != null) 'conversionTasks': conversionTasks,
+    };
+  }
 }
 
 /// Contains the output of DescribeCustomerGateways.
@@ -35532,6 +38436,13 @@ class DescribeCustomerGatewaysResult {
   DescribeCustomerGatewaysResult({
     this.customerGateways,
   });
+
+  Map<String, dynamic> toJson() {
+    final customerGateways = this.customerGateways;
+    return {
+      if (customerGateways != null) 'customerGatewaySet': customerGateways,
+    };
+  }
 }
 
 class DescribeDhcpOptionsResult {
@@ -35546,6 +38457,15 @@ class DescribeDhcpOptionsResult {
     this.dhcpOptions,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final dhcpOptions = this.dhcpOptions;
+    final nextToken = this.nextToken;
+    return {
+      if (dhcpOptions != null) 'dhcpOptionsSet': dhcpOptions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeEgressOnlyInternetGatewaysResult {
@@ -35560,6 +38480,16 @@ class DescribeEgressOnlyInternetGatewaysResult {
     this.egressOnlyInternetGateways,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final egressOnlyInternetGateways = this.egressOnlyInternetGateways;
+    final nextToken = this.nextToken;
+    return {
+      if (egressOnlyInternetGateways != null)
+        'egressOnlyInternetGatewaySet': egressOnlyInternetGateways,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeElasticGpusResult {
@@ -35580,6 +38510,17 @@ class DescribeElasticGpusResult {
     this.maxResults,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final elasticGpuSet = this.elasticGpuSet;
+    final maxResults = this.maxResults;
+    final nextToken = this.nextToken;
+    return {
+      if (elasticGpuSet != null) 'elasticGpuSet': elasticGpuSet,
+      if (maxResults != null) 'maxResults': maxResults,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeExportImageTasksResult {
@@ -35594,6 +38535,15 @@ class DescribeExportImageTasksResult {
     this.exportImageTasks,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final exportImageTasks = this.exportImageTasks;
+    final nextToken = this.nextToken;
+    return {
+      if (exportImageTasks != null) 'exportImageTaskSet': exportImageTasks,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeExportTasksResult {
@@ -35603,6 +38553,13 @@ class DescribeExportTasksResult {
   DescribeExportTasksResult({
     this.exportTasks,
   });
+
+  Map<String, dynamic> toJson() {
+    final exportTasks = this.exportTasks;
+    return {
+      if (exportTasks != null) 'exportTaskSet': exportTasks,
+    };
+  }
 }
 
 class DescribeFastLaunchImagesResult {
@@ -35618,6 +38575,15 @@ class DescribeFastLaunchImagesResult {
     this.fastLaunchImages,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final fastLaunchImages = this.fastLaunchImages;
+    final nextToken = this.nextToken;
+    return {
+      if (fastLaunchImages != null) 'fastLaunchImageSet': fastLaunchImages,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Describe details about a fast-launch enabled Windows image that meets the
@@ -35668,6 +38634,33 @@ class DescribeFastLaunchImagesSuccessItem {
     this.stateTransitionReason,
     this.stateTransitionTime,
   });
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    final launchTemplate = this.launchTemplate;
+    final maxParallelLaunches = this.maxParallelLaunches;
+    final ownerId = this.ownerId;
+    final resourceType = this.resourceType;
+    final snapshotConfiguration = this.snapshotConfiguration;
+    final state = this.state;
+    final stateTransitionReason = this.stateTransitionReason;
+    final stateTransitionTime = this.stateTransitionTime;
+    return {
+      if (imageId != null) 'imageId': imageId,
+      if (launchTemplate != null) 'launchTemplate': launchTemplate,
+      if (maxParallelLaunches != null)
+        'maxParallelLaunches': maxParallelLaunches,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (snapshotConfiguration != null)
+        'snapshotConfiguration': snapshotConfiguration,
+      if (state != null) 'state': state.toValue(),
+      if (stateTransitionReason != null)
+        'stateTransitionReason': stateTransitionReason,
+      if (stateTransitionTime != null)
+        'stateTransitionTime': iso8601ToJson(stateTransitionTime),
+    };
+  }
 }
 
 /// Describes fast snapshot restores for a snapshot.
@@ -35737,6 +38730,35 @@ class DescribeFastSnapshotRestoreSuccessItem {
     this.state,
     this.stateTransitionReason,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final disabledTime = this.disabledTime;
+    final disablingTime = this.disablingTime;
+    final enabledTime = this.enabledTime;
+    final enablingTime = this.enablingTime;
+    final optimizingTime = this.optimizingTime;
+    final ownerAlias = this.ownerAlias;
+    final ownerId = this.ownerId;
+    final snapshotId = this.snapshotId;
+    final state = this.state;
+    final stateTransitionReason = this.stateTransitionReason;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (disabledTime != null) 'disabledTime': iso8601ToJson(disabledTime),
+      if (disablingTime != null) 'disablingTime': iso8601ToJson(disablingTime),
+      if (enabledTime != null) 'enabledTime': iso8601ToJson(enabledTime),
+      if (enablingTime != null) 'enablingTime': iso8601ToJson(enablingTime),
+      if (optimizingTime != null)
+        'optimizingTime': iso8601ToJson(optimizingTime),
+      if (ownerAlias != null) 'ownerAlias': ownerAlias,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (state != null) 'state': state.toValue(),
+      if (stateTransitionReason != null)
+        'stateTransitionReason': stateTransitionReason,
+    };
+  }
 }
 
 class DescribeFastSnapshotRestoresResult {
@@ -35751,6 +38773,16 @@ class DescribeFastSnapshotRestoresResult {
     this.fastSnapshotRestores,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final fastSnapshotRestores = this.fastSnapshotRestores;
+    final nextToken = this.nextToken;
+    return {
+      if (fastSnapshotRestores != null)
+        'fastSnapshotRestoreSet': fastSnapshotRestores,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Describes the instances that could not be launched by the fleet.
@@ -35782,6 +38814,20 @@ class DescribeFleetError {
     this.launchTemplateAndOverrides,
     this.lifecycle,
   });
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final launchTemplateAndOverrides = this.launchTemplateAndOverrides;
+    final lifecycle = this.lifecycle;
+    return {
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (launchTemplateAndOverrides != null)
+        'launchTemplateAndOverrides': launchTemplateAndOverrides,
+      if (lifecycle != null) 'lifecycle': lifecycle.toValue(),
+    };
+  }
 }
 
 class DescribeFleetHistoryResult {
@@ -35813,6 +38859,22 @@ class DescribeFleetHistoryResult {
     this.nextToken,
     this.startTime,
   });
+
+  Map<String, dynamic> toJson() {
+    final fleetId = this.fleetId;
+    final historyRecords = this.historyRecords;
+    final lastEvaluatedTime = this.lastEvaluatedTime;
+    final nextToken = this.nextToken;
+    final startTime = this.startTime;
+    return {
+      if (fleetId != null) 'fleetId': fleetId,
+      if (historyRecords != null) 'historyRecordSet': historyRecords,
+      if (lastEvaluatedTime != null)
+        'lastEvaluatedTime': iso8601ToJson(lastEvaluatedTime),
+      if (nextToken != null) 'nextToken': nextToken,
+      if (startTime != null) 'startTime': iso8601ToJson(startTime),
+    };
+  }
 }
 
 class DescribeFleetInstancesResult {
@@ -35831,6 +38893,17 @@ class DescribeFleetInstancesResult {
     this.fleetId,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final activeInstances = this.activeInstances;
+    final fleetId = this.fleetId;
+    final nextToken = this.nextToken;
+    return {
+      if (activeInstances != null) 'activeInstanceSet': activeInstances,
+      if (fleetId != null) 'fleetId': fleetId,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Describes the instances that were launched by the fleet.
@@ -35861,6 +38934,22 @@ class DescribeFleetsInstances {
     this.lifecycle,
     this.platform,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceIds = this.instanceIds;
+    final instanceType = this.instanceType;
+    final launchTemplateAndOverrides = this.launchTemplateAndOverrides;
+    final lifecycle = this.lifecycle;
+    final platform = this.platform;
+    return {
+      if (instanceIds != null) 'instanceIds': instanceIds,
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (launchTemplateAndOverrides != null)
+        'launchTemplateAndOverrides': launchTemplateAndOverrides,
+      if (lifecycle != null) 'lifecycle': lifecycle.toValue(),
+      if (platform != null) 'platform': platform.toValue(),
+    };
+  }
 }
 
 class DescribeFleetsResult {
@@ -35874,6 +38963,15 @@ class DescribeFleetsResult {
     this.fleets,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final fleets = this.fleets;
+    final nextToken = this.nextToken;
+    return {
+      if (fleets != null) 'fleetSet': fleets,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeFlowLogsResult {
@@ -35888,6 +38986,15 @@ class DescribeFlowLogsResult {
     this.flowLogs,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final flowLogs = this.flowLogs;
+    final nextToken = this.nextToken;
+    return {
+      if (flowLogs != null) 'flowLogSet': flowLogs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeFpgaImageAttributeResult {
@@ -35897,6 +39004,13 @@ class DescribeFpgaImageAttributeResult {
   DescribeFpgaImageAttributeResult({
     this.fpgaImageAttribute,
   });
+
+  Map<String, dynamic> toJson() {
+    final fpgaImageAttribute = this.fpgaImageAttribute;
+    return {
+      if (fpgaImageAttribute != null) 'fpgaImageAttribute': fpgaImageAttribute,
+    };
+  }
 }
 
 class DescribeFpgaImagesResult {
@@ -35911,6 +39025,15 @@ class DescribeFpgaImagesResult {
     this.fpgaImages,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final fpgaImages = this.fpgaImages;
+    final nextToken = this.nextToken;
+    return {
+      if (fpgaImages != null) 'fpgaImageSet': fpgaImages,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeHostReservationOfferingsResult {
@@ -35925,6 +39048,15 @@ class DescribeHostReservationOfferingsResult {
     this.nextToken,
     this.offeringSet,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final offeringSet = this.offeringSet;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (offeringSet != null) 'offeringSet': offeringSet,
+    };
+  }
 }
 
 class DescribeHostReservationsResult {
@@ -35939,6 +39071,15 @@ class DescribeHostReservationsResult {
     this.hostReservationSet,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final hostReservationSet = this.hostReservationSet;
+    final nextToken = this.nextToken;
+    return {
+      if (hostReservationSet != null) 'hostReservationSet': hostReservationSet,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeHostsResult {
@@ -35953,6 +39094,15 @@ class DescribeHostsResult {
     this.hosts,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final hosts = this.hosts;
+    final nextToken = this.nextToken;
+    return {
+      if (hosts != null) 'hostSet': hosts,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeIamInstanceProfileAssociationsResult {
@@ -35967,6 +39117,16 @@ class DescribeIamInstanceProfileAssociationsResult {
     this.iamInstanceProfileAssociations,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final iamInstanceProfileAssociations = this.iamInstanceProfileAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (iamInstanceProfileAssociations != null)
+        'iamInstanceProfileAssociationSet': iamInstanceProfileAssociations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeIdFormatResult {
@@ -35976,6 +39136,13 @@ class DescribeIdFormatResult {
   DescribeIdFormatResult({
     this.statuses,
   });
+
+  Map<String, dynamic> toJson() {
+    final statuses = this.statuses;
+    return {
+      if (statuses != null) 'statusSet': statuses,
+    };
+  }
 }
 
 class DescribeIdentityIdFormatResult {
@@ -35985,6 +39152,13 @@ class DescribeIdentityIdFormatResult {
   DescribeIdentityIdFormatResult({
     this.statuses,
   });
+
+  Map<String, dynamic> toJson() {
+    final statuses = this.statuses;
+    return {
+      if (statuses != null) 'statusSet': statuses,
+    };
+  }
 }
 
 class DescribeImagesResult {
@@ -35994,6 +39168,13 @@ class DescribeImagesResult {
   DescribeImagesResult({
     this.images,
   });
+
+  Map<String, dynamic> toJson() {
+    final images = this.images;
+    return {
+      if (images != null) 'imagesSet': images,
+    };
+  }
 }
 
 class DescribeImportImageTasksResult {
@@ -36009,6 +39190,15 @@ class DescribeImportImageTasksResult {
     this.importImageTasks,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final importImageTasks = this.importImageTasks;
+    final nextToken = this.nextToken;
+    return {
+      if (importImageTasks != null) 'importImageTaskSet': importImageTasks,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeImportSnapshotTasksResult {
@@ -36024,6 +39214,16 @@ class DescribeImportSnapshotTasksResult {
     this.importSnapshotTasks,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final importSnapshotTasks = this.importSnapshotTasks;
+    final nextToken = this.nextToken;
+    return {
+      if (importSnapshotTasks != null)
+        'importSnapshotTaskSet': importSnapshotTasks,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeInstanceCreditSpecificationsResult {
@@ -36038,6 +39238,16 @@ class DescribeInstanceCreditSpecificationsResult {
     this.instanceCreditSpecifications,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceCreditSpecifications = this.instanceCreditSpecifications;
+    final nextToken = this.nextToken;
+    return {
+      if (instanceCreditSpecifications != null)
+        'instanceCreditSpecificationSet': instanceCreditSpecifications,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeInstanceEventNotificationAttributesResult {
@@ -36047,6 +39257,14 @@ class DescribeInstanceEventNotificationAttributesResult {
   DescribeInstanceEventNotificationAttributesResult({
     this.instanceTagAttribute,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceTagAttribute = this.instanceTagAttribute;
+    return {
+      if (instanceTagAttribute != null)
+        'instanceTagAttribute': instanceTagAttribute,
+    };
+  }
 }
 
 class DescribeInstanceEventWindowsResult {
@@ -36061,6 +39279,16 @@ class DescribeInstanceEventWindowsResult {
     this.instanceEventWindows,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceEventWindows = this.instanceEventWindows;
+    final nextToken = this.nextToken;
+    return {
+      if (instanceEventWindows != null)
+        'instanceEventWindowSet': instanceEventWindows,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeInstanceStatusResult {
@@ -36075,6 +39303,15 @@ class DescribeInstanceStatusResult {
     this.instanceStatuses,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceStatuses = this.instanceStatuses;
+    final nextToken = this.nextToken;
+    return {
+      if (instanceStatuses != null) 'instanceStatusSet': instanceStatuses,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeInstanceTypeOfferingsResult {
@@ -36089,6 +39326,16 @@ class DescribeInstanceTypeOfferingsResult {
     this.instanceTypeOfferings,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceTypeOfferings = this.instanceTypeOfferings;
+    final nextToken = this.nextToken;
+    return {
+      if (instanceTypeOfferings != null)
+        'instanceTypeOfferingSet': instanceTypeOfferings,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeInstanceTypesResult {
@@ -36105,6 +39352,15 @@ class DescribeInstanceTypesResult {
     this.instanceTypes,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceTypes = this.instanceTypes;
+    final nextToken = this.nextToken;
+    return {
+      if (instanceTypes != null) 'instanceTypeSet': instanceTypes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeInstancesResult {
@@ -36119,6 +39375,15 @@ class DescribeInstancesResult {
     this.nextToken,
     this.reservations,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reservations = this.reservations;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (reservations != null) 'reservationSet': reservations,
+    };
+  }
 }
 
 class DescribeInternetGatewaysResult {
@@ -36133,6 +39398,15 @@ class DescribeInternetGatewaysResult {
     this.internetGateways,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final internetGateways = this.internetGateways;
+    final nextToken = this.nextToken;
+    return {
+      if (internetGateways != null) 'internetGatewaySet': internetGateways,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeIpamPoolsResult {
@@ -36147,6 +39421,15 @@ class DescribeIpamPoolsResult {
     this.ipamPools,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamPools = this.ipamPools;
+    final nextToken = this.nextToken;
+    return {
+      if (ipamPools != null) 'ipamPoolSet': ipamPools,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeIpamScopesResult {
@@ -36161,6 +39444,15 @@ class DescribeIpamScopesResult {
     this.ipamScopes,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamScopes = this.ipamScopes;
+    final nextToken = this.nextToken;
+    return {
+      if (ipamScopes != null) 'ipamScopeSet': ipamScopes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeIpamsResult {
@@ -36175,6 +39467,15 @@ class DescribeIpamsResult {
     this.ipams,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipams = this.ipams;
+    final nextToken = this.nextToken;
+    return {
+      if (ipams != null) 'ipamSet': ipams,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeIpv6PoolsResult {
@@ -36189,6 +39490,15 @@ class DescribeIpv6PoolsResult {
     this.ipv6Pools,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv6Pools = this.ipv6Pools;
+    final nextToken = this.nextToken;
+    return {
+      if (ipv6Pools != null) 'ipv6PoolSet': ipv6Pools,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeKeyPairsResult {
@@ -36198,6 +39508,13 @@ class DescribeKeyPairsResult {
   DescribeKeyPairsResult({
     this.keyPairs,
   });
+
+  Map<String, dynamic> toJson() {
+    final keyPairs = this.keyPairs;
+    return {
+      if (keyPairs != null) 'keySet': keyPairs,
+    };
+  }
 }
 
 class DescribeLaunchTemplateVersionsResult {
@@ -36212,6 +39529,16 @@ class DescribeLaunchTemplateVersionsResult {
     this.launchTemplateVersions,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplateVersions = this.launchTemplateVersions;
+    final nextToken = this.nextToken;
+    return {
+      if (launchTemplateVersions != null)
+        'launchTemplateVersionSet': launchTemplateVersions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeLaunchTemplatesResult {
@@ -36226,6 +39553,15 @@ class DescribeLaunchTemplatesResult {
     this.launchTemplates,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplates = this.launchTemplates;
+    final nextToken = this.nextToken;
+    return {
+      if (launchTemplates != null) 'launchTemplates': launchTemplates,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsResult {
@@ -36241,6 +39577,18 @@ class DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsResult {
     this.localGatewayRouteTableVirtualInterfaceGroupAssociations,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final localGatewayRouteTableVirtualInterfaceGroupAssociations =
+        this.localGatewayRouteTableVirtualInterfaceGroupAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (localGatewayRouteTableVirtualInterfaceGroupAssociations != null)
+        'localGatewayRouteTableVirtualInterfaceGroupAssociationSet':
+            localGatewayRouteTableVirtualInterfaceGroupAssociations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeLocalGatewayRouteTableVpcAssociationsResult {
@@ -36256,6 +39604,18 @@ class DescribeLocalGatewayRouteTableVpcAssociationsResult {
     this.localGatewayRouteTableVpcAssociations,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final localGatewayRouteTableVpcAssociations =
+        this.localGatewayRouteTableVpcAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (localGatewayRouteTableVpcAssociations != null)
+        'localGatewayRouteTableVpcAssociationSet':
+            localGatewayRouteTableVpcAssociations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeLocalGatewayRouteTablesResult {
@@ -36270,6 +39630,16 @@ class DescribeLocalGatewayRouteTablesResult {
     this.localGatewayRouteTables,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final localGatewayRouteTables = this.localGatewayRouteTables;
+    final nextToken = this.nextToken;
+    return {
+      if (localGatewayRouteTables != null)
+        'localGatewayRouteTableSet': localGatewayRouteTables,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeLocalGatewayVirtualInterfaceGroupsResult {
@@ -36285,6 +39655,18 @@ class DescribeLocalGatewayVirtualInterfaceGroupsResult {
     this.localGatewayVirtualInterfaceGroups,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final localGatewayVirtualInterfaceGroups =
+        this.localGatewayVirtualInterfaceGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (localGatewayVirtualInterfaceGroups != null)
+        'localGatewayVirtualInterfaceGroupSet':
+            localGatewayVirtualInterfaceGroups,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeLocalGatewayVirtualInterfacesResult {
@@ -36299,6 +39681,16 @@ class DescribeLocalGatewayVirtualInterfacesResult {
     this.localGatewayVirtualInterfaces,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final localGatewayVirtualInterfaces = this.localGatewayVirtualInterfaces;
+    final nextToken = this.nextToken;
+    return {
+      if (localGatewayVirtualInterfaces != null)
+        'localGatewayVirtualInterfaceSet': localGatewayVirtualInterfaces,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeLocalGatewaysResult {
@@ -36313,6 +39705,15 @@ class DescribeLocalGatewaysResult {
     this.localGateways,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final localGateways = this.localGateways;
+    final nextToken = this.nextToken;
+    return {
+      if (localGateways != null) 'localGatewaySet': localGateways,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeManagedPrefixListsResult {
@@ -36327,6 +39728,15 @@ class DescribeManagedPrefixListsResult {
     this.nextToken,
     this.prefixLists,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final prefixLists = this.prefixLists;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (prefixLists != null) 'prefixListSet': prefixLists,
+    };
+  }
 }
 
 class DescribeMovingAddressesResult {
@@ -36341,6 +39751,16 @@ class DescribeMovingAddressesResult {
     this.movingAddressStatuses,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final movingAddressStatuses = this.movingAddressStatuses;
+    final nextToken = this.nextToken;
+    return {
+      if (movingAddressStatuses != null)
+        'movingAddressStatusSet': movingAddressStatuses,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeNatGatewaysResult {
@@ -36355,6 +39775,15 @@ class DescribeNatGatewaysResult {
     this.natGateways,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final natGateways = this.natGateways;
+    final nextToken = this.nextToken;
+    return {
+      if (natGateways != null) 'natGatewaySet': natGateways,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeNetworkAclsResult {
@@ -36369,6 +39798,15 @@ class DescribeNetworkAclsResult {
     this.networkAcls,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkAcls = this.networkAcls;
+    final nextToken = this.nextToken;
+    return {
+      if (networkAcls != null) 'networkAclSet': networkAcls,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeNetworkInsightsAccessScopeAnalysesResult {
@@ -36384,6 +39822,18 @@ class DescribeNetworkInsightsAccessScopeAnalysesResult {
     this.networkInsightsAccessScopeAnalyses,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInsightsAccessScopeAnalyses =
+        this.networkInsightsAccessScopeAnalyses;
+    final nextToken = this.nextToken;
+    return {
+      if (networkInsightsAccessScopeAnalyses != null)
+        'networkInsightsAccessScopeAnalysisSet':
+            networkInsightsAccessScopeAnalyses,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeNetworkInsightsAccessScopesResult {
@@ -36398,6 +39848,16 @@ class DescribeNetworkInsightsAccessScopesResult {
     this.networkInsightsAccessScopes,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInsightsAccessScopes = this.networkInsightsAccessScopes;
+    final nextToken = this.nextToken;
+    return {
+      if (networkInsightsAccessScopes != null)
+        'networkInsightsAccessScopeSet': networkInsightsAccessScopes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeNetworkInsightsAnalysesResult {
@@ -36412,6 +39872,16 @@ class DescribeNetworkInsightsAnalysesResult {
     this.networkInsightsAnalyses,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInsightsAnalyses = this.networkInsightsAnalyses;
+    final nextToken = this.nextToken;
+    return {
+      if (networkInsightsAnalyses != null)
+        'networkInsightsAnalysisSet': networkInsightsAnalyses,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeNetworkInsightsPathsResult {
@@ -36426,6 +39896,16 @@ class DescribeNetworkInsightsPathsResult {
     this.networkInsightsPaths,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInsightsPaths = this.networkInsightsPaths;
+    final nextToken = this.nextToken;
+    return {
+      if (networkInsightsPaths != null)
+        'networkInsightsPathSet': networkInsightsPaths,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Contains the output of DescribeNetworkInterfaceAttribute.
@@ -36452,6 +39932,21 @@ class DescribeNetworkInterfaceAttributeResult {
     this.networkInterfaceId,
     this.sourceDestCheck,
   });
+
+  Map<String, dynamic> toJson() {
+    final attachment = this.attachment;
+    final description = this.description;
+    final groups = this.groups;
+    final networkInterfaceId = this.networkInterfaceId;
+    final sourceDestCheck = this.sourceDestCheck;
+    return {
+      if (attachment != null) 'attachment': attachment,
+      if (description != null) 'description': description,
+      if (groups != null) 'groupSet': groups,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (sourceDestCheck != null) 'sourceDestCheck': sourceDestCheck,
+    };
+  }
 }
 
 /// Contains the output for DescribeNetworkInterfacePermissions.
@@ -36466,6 +39961,16 @@ class DescribeNetworkInterfacePermissionsResult {
     this.networkInterfacePermissions,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInterfacePermissions = this.networkInterfacePermissions;
+    final nextToken = this.nextToken;
+    return {
+      if (networkInterfacePermissions != null)
+        'networkInterfacePermissions': networkInterfacePermissions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Contains the output of DescribeNetworkInterfaces.
@@ -36481,6 +39986,15 @@ class DescribeNetworkInterfacesResult {
     this.networkInterfaces,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInterfaces = this.networkInterfaces;
+    final nextToken = this.nextToken;
+    return {
+      if (networkInterfaces != null) 'networkInterfaceSet': networkInterfaces,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribePlacementGroupsResult {
@@ -36490,6 +40004,13 @@ class DescribePlacementGroupsResult {
   DescribePlacementGroupsResult({
     this.placementGroups,
   });
+
+  Map<String, dynamic> toJson() {
+    final placementGroups = this.placementGroups;
+    return {
+      if (placementGroups != null) 'placementGroupSet': placementGroups,
+    };
+  }
 }
 
 class DescribePrefixListsResult {
@@ -36504,6 +40025,15 @@ class DescribePrefixListsResult {
     this.nextToken,
     this.prefixLists,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final prefixLists = this.prefixLists;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (prefixLists != null) 'prefixListSet': prefixLists,
+    };
+  }
 }
 
 class DescribePrincipalIdFormatResult {
@@ -36518,6 +40048,15 @@ class DescribePrincipalIdFormatResult {
     this.nextToken,
     this.principals,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final principals = this.principals;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (principals != null) 'principalSet': principals,
+    };
+  }
 }
 
 class DescribePublicIpv4PoolsResult {
@@ -36532,6 +40071,15 @@ class DescribePublicIpv4PoolsResult {
     this.nextToken,
     this.publicIpv4Pools,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final publicIpv4Pools = this.publicIpv4Pools;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (publicIpv4Pools != null) 'publicIpv4PoolSet': publicIpv4Pools,
+    };
+  }
 }
 
 class DescribeRegionsResult {
@@ -36541,6 +40089,13 @@ class DescribeRegionsResult {
   DescribeRegionsResult({
     this.regions,
   });
+
+  Map<String, dynamic> toJson() {
+    final regions = this.regions;
+    return {
+      if (regions != null) 'regionInfo': regions,
+    };
+  }
 }
 
 class DescribeReplaceRootVolumeTasksResult {
@@ -36555,6 +40110,16 @@ class DescribeReplaceRootVolumeTasksResult {
     this.nextToken,
     this.replaceRootVolumeTasks,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final replaceRootVolumeTasks = this.replaceRootVolumeTasks;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (replaceRootVolumeTasks != null)
+        'replaceRootVolumeTaskSet': replaceRootVolumeTasks,
+    };
+  }
 }
 
 /// Contains the output of DescribeReservedInstancesListings.
@@ -36565,6 +40130,14 @@ class DescribeReservedInstancesListingsResult {
   DescribeReservedInstancesListingsResult({
     this.reservedInstancesListings,
   });
+
+  Map<String, dynamic> toJson() {
+    final reservedInstancesListings = this.reservedInstancesListings;
+    return {
+      if (reservedInstancesListings != null)
+        'reservedInstancesListingsSet': reservedInstancesListings,
+    };
+  }
 }
 
 /// Contains the output of DescribeReservedInstancesModifications.
@@ -36580,6 +40153,16 @@ class DescribeReservedInstancesModificationsResult {
     this.nextToken,
     this.reservedInstancesModifications,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reservedInstancesModifications = this.reservedInstancesModifications;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (reservedInstancesModifications != null)
+        'reservedInstancesModificationsSet': reservedInstancesModifications,
+    };
+  }
 }
 
 /// Contains the output of DescribeReservedInstancesOfferings.
@@ -36595,6 +40178,16 @@ class DescribeReservedInstancesOfferingsResult {
     this.nextToken,
     this.reservedInstancesOfferings,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final reservedInstancesOfferings = this.reservedInstancesOfferings;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (reservedInstancesOfferings != null)
+        'reservedInstancesOfferingsSet': reservedInstancesOfferings,
+    };
+  }
 }
 
 /// Contains the output for DescribeReservedInstances.
@@ -36605,6 +40198,13 @@ class DescribeReservedInstancesResult {
   DescribeReservedInstancesResult({
     this.reservedInstances,
   });
+
+  Map<String, dynamic> toJson() {
+    final reservedInstances = this.reservedInstances;
+    return {
+      if (reservedInstances != null) 'reservedInstancesSet': reservedInstances,
+    };
+  }
 }
 
 /// Contains the output of DescribeRouteTables.
@@ -36620,6 +40220,15 @@ class DescribeRouteTablesResult {
     this.nextToken,
     this.routeTables,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final routeTables = this.routeTables;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (routeTables != null) 'routeTableSet': routeTables,
+    };
+  }
 }
 
 /// Contains the output of DescribeScheduledInstanceAvailability.
@@ -36635,6 +40244,17 @@ class DescribeScheduledInstanceAvailabilityResult {
     this.nextToken,
     this.scheduledInstanceAvailabilitySet,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final scheduledInstanceAvailabilitySet =
+        this.scheduledInstanceAvailabilitySet;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (scheduledInstanceAvailabilitySet != null)
+        'scheduledInstanceAvailabilitySet': scheduledInstanceAvailabilitySet,
+    };
+  }
 }
 
 /// Contains the output of DescribeScheduledInstances.
@@ -36650,6 +40270,16 @@ class DescribeScheduledInstancesResult {
     this.nextToken,
     this.scheduledInstanceSet,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final scheduledInstanceSet = this.scheduledInstanceSet;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (scheduledInstanceSet != null)
+        'scheduledInstanceSet': scheduledInstanceSet,
+    };
+  }
 }
 
 class DescribeSecurityGroupReferencesResult {
@@ -36659,6 +40289,14 @@ class DescribeSecurityGroupReferencesResult {
   DescribeSecurityGroupReferencesResult({
     this.securityGroupReferenceSet,
   });
+
+  Map<String, dynamic> toJson() {
+    final securityGroupReferenceSet = this.securityGroupReferenceSet;
+    return {
+      if (securityGroupReferenceSet != null)
+        'securityGroupReferenceSet': securityGroupReferenceSet,
+    };
+  }
 }
 
 class DescribeSecurityGroupRulesResult {
@@ -36673,6 +40311,16 @@ class DescribeSecurityGroupRulesResult {
     this.nextToken,
     this.securityGroupRules,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final securityGroupRules = this.securityGroupRules;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (securityGroupRules != null)
+        'securityGroupRuleSet': securityGroupRules,
+    };
+  }
 }
 
 class DescribeSecurityGroupsResult {
@@ -36687,6 +40335,15 @@ class DescribeSecurityGroupsResult {
     this.nextToken,
     this.securityGroups,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final securityGroups = this.securityGroups;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (securityGroups != null) 'securityGroupInfo': securityGroups,
+    };
+  }
 }
 
 class DescribeSnapshotAttributeResult {
@@ -36705,6 +40362,18 @@ class DescribeSnapshotAttributeResult {
     this.productCodes,
     this.snapshotId,
   });
+
+  Map<String, dynamic> toJson() {
+    final createVolumePermissions = this.createVolumePermissions;
+    final productCodes = this.productCodes;
+    final snapshotId = this.snapshotId;
+    return {
+      if (createVolumePermissions != null)
+        'createVolumePermission': createVolumePermissions,
+      if (productCodes != null) 'productCodes': productCodes,
+      if (snapshotId != null) 'snapshotId': snapshotId,
+    };
+  }
 }
 
 class DescribeSnapshotTierStatusResult {
@@ -36719,6 +40388,16 @@ class DescribeSnapshotTierStatusResult {
     this.nextToken,
     this.snapshotTierStatuses,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final snapshotTierStatuses = this.snapshotTierStatuses;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (snapshotTierStatuses != null)
+        'snapshotTierStatusSet': snapshotTierStatuses,
+    };
+  }
 }
 
 class DescribeSnapshotsResult {
@@ -36736,6 +40415,15 @@ class DescribeSnapshotsResult {
     this.nextToken,
     this.snapshots,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final snapshots = this.snapshots;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (snapshots != null) 'snapshotSet': snapshots,
+    };
+  }
 }
 
 /// Contains the output of DescribeSpotDatafeedSubscription.
@@ -36746,6 +40434,14 @@ class DescribeSpotDatafeedSubscriptionResult {
   DescribeSpotDatafeedSubscriptionResult({
     this.spotDatafeedSubscription,
   });
+
+  Map<String, dynamic> toJson() {
+    final spotDatafeedSubscription = this.spotDatafeedSubscription;
+    return {
+      if (spotDatafeedSubscription != null)
+        'spotDatafeedSubscription': spotDatafeedSubscription,
+    };
+  }
 }
 
 /// Contains the output of DescribeSpotFleetInstances.
@@ -36766,6 +40462,17 @@ class DescribeSpotFleetInstancesResponse {
     this.nextToken,
     this.spotFleetRequestId,
   });
+
+  Map<String, dynamic> toJson() {
+    final activeInstances = this.activeInstances;
+    final nextToken = this.nextToken;
+    final spotFleetRequestId = this.spotFleetRequestId;
+    return {
+      if (activeInstances != null) 'activeInstanceSet': activeInstances,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (spotFleetRequestId != null) 'spotFleetRequestId': spotFleetRequestId,
+    };
+  }
 }
 
 /// Contains the output of DescribeSpotFleetRequestHistory.
@@ -36799,6 +40506,22 @@ class DescribeSpotFleetRequestHistoryResponse {
     this.spotFleetRequestId,
     this.startTime,
   });
+
+  Map<String, dynamic> toJson() {
+    final historyRecords = this.historyRecords;
+    final lastEvaluatedTime = this.lastEvaluatedTime;
+    final nextToken = this.nextToken;
+    final spotFleetRequestId = this.spotFleetRequestId;
+    final startTime = this.startTime;
+    return {
+      if (historyRecords != null) 'historyRecordSet': historyRecords,
+      if (lastEvaluatedTime != null)
+        'lastEvaluatedTime': iso8601ToJson(lastEvaluatedTime),
+      if (nextToken != null) 'nextToken': nextToken,
+      if (spotFleetRequestId != null) 'spotFleetRequestId': spotFleetRequestId,
+      if (startTime != null) 'startTime': iso8601ToJson(startTime),
+    };
+  }
 }
 
 /// Contains the output of DescribeSpotFleetRequests.
@@ -36814,6 +40537,16 @@ class DescribeSpotFleetRequestsResponse {
     this.nextToken,
     this.spotFleetRequestConfigs,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final spotFleetRequestConfigs = this.spotFleetRequestConfigs;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (spotFleetRequestConfigs != null)
+        'spotFleetRequestConfigSet': spotFleetRequestConfigs,
+    };
+  }
 }
 
 /// Contains the output of DescribeSpotInstanceRequests.
@@ -36829,6 +40562,16 @@ class DescribeSpotInstanceRequestsResult {
     this.nextToken,
     this.spotInstanceRequests,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final spotInstanceRequests = this.spotInstanceRequests;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (spotInstanceRequests != null)
+        'spotInstanceRequestSet': spotInstanceRequests,
+    };
+  }
 }
 
 /// Contains the output of DescribeSpotPriceHistory.
@@ -36844,6 +40587,15 @@ class DescribeSpotPriceHistoryResult {
     this.nextToken,
     this.spotPriceHistory,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final spotPriceHistory = this.spotPriceHistory;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (spotPriceHistory != null) 'spotPriceHistorySet': spotPriceHistory,
+    };
+  }
 }
 
 class DescribeStaleSecurityGroupsResult {
@@ -36858,6 +40610,16 @@ class DescribeStaleSecurityGroupsResult {
     this.nextToken,
     this.staleSecurityGroupSet,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final staleSecurityGroupSet = this.staleSecurityGroupSet;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (staleSecurityGroupSet != null)
+        'staleSecurityGroupSet': staleSecurityGroupSet,
+    };
+  }
 }
 
 class DescribeStoreImageTasksResult {
@@ -36872,6 +40634,16 @@ class DescribeStoreImageTasksResult {
     this.nextToken,
     this.storeImageTaskResults,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final storeImageTaskResults = this.storeImageTaskResults;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (storeImageTaskResults != null)
+        'storeImageTaskResultSet': storeImageTaskResults,
+    };
+  }
 }
 
 class DescribeSubnetsResult {
@@ -36886,6 +40658,15 @@ class DescribeSubnetsResult {
     this.nextToken,
     this.subnets,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final subnets = this.subnets;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (subnets != null) 'subnetSet': subnets,
+    };
+  }
 }
 
 class DescribeTagsResult {
@@ -36900,6 +40681,15 @@ class DescribeTagsResult {
     this.nextToken,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 class DescribeTrafficMirrorFiltersResult {
@@ -36914,6 +40704,16 @@ class DescribeTrafficMirrorFiltersResult {
     this.nextToken,
     this.trafficMirrorFilters,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final trafficMirrorFilters = this.trafficMirrorFilters;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (trafficMirrorFilters != null)
+        'trafficMirrorFilterSet': trafficMirrorFilters,
+    };
+  }
 }
 
 class DescribeTrafficMirrorSessionsResult {
@@ -36929,6 +40729,16 @@ class DescribeTrafficMirrorSessionsResult {
     this.nextToken,
     this.trafficMirrorSessions,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final trafficMirrorSessions = this.trafficMirrorSessions;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (trafficMirrorSessions != null)
+        'trafficMirrorSessionSet': trafficMirrorSessions,
+    };
+  }
 }
 
 class DescribeTrafficMirrorTargetsResult {
@@ -36943,6 +40753,16 @@ class DescribeTrafficMirrorTargetsResult {
     this.nextToken,
     this.trafficMirrorTargets,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final trafficMirrorTargets = this.trafficMirrorTargets;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (trafficMirrorTargets != null)
+        'trafficMirrorTargetSet': trafficMirrorTargets,
+    };
+  }
 }
 
 class DescribeTransitGatewayAttachmentsResult {
@@ -36957,6 +40777,16 @@ class DescribeTransitGatewayAttachmentsResult {
     this.nextToken,
     this.transitGatewayAttachments,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayAttachments = this.transitGatewayAttachments;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (transitGatewayAttachments != null)
+        'transitGatewayAttachments': transitGatewayAttachments,
+    };
+  }
 }
 
 class DescribeTransitGatewayConnectPeersResult {
@@ -36971,6 +40801,16 @@ class DescribeTransitGatewayConnectPeersResult {
     this.nextToken,
     this.transitGatewayConnectPeers,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayConnectPeers = this.transitGatewayConnectPeers;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (transitGatewayConnectPeers != null)
+        'transitGatewayConnectPeerSet': transitGatewayConnectPeers,
+    };
+  }
 }
 
 class DescribeTransitGatewayConnectsResult {
@@ -36985,6 +40825,16 @@ class DescribeTransitGatewayConnectsResult {
     this.nextToken,
     this.transitGatewayConnects,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayConnects = this.transitGatewayConnects;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (transitGatewayConnects != null)
+        'transitGatewayConnectSet': transitGatewayConnects,
+    };
+  }
 }
 
 class DescribeTransitGatewayMulticastDomainsResult {
@@ -36999,6 +40849,16 @@ class DescribeTransitGatewayMulticastDomainsResult {
     this.nextToken,
     this.transitGatewayMulticastDomains,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayMulticastDomains = this.transitGatewayMulticastDomains;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (transitGatewayMulticastDomains != null)
+        'transitGatewayMulticastDomains': transitGatewayMulticastDomains,
+    };
+  }
 }
 
 class DescribeTransitGatewayPeeringAttachmentsResult {
@@ -37013,6 +40873,17 @@ class DescribeTransitGatewayPeeringAttachmentsResult {
     this.nextToken,
     this.transitGatewayPeeringAttachments,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayPeeringAttachments =
+        this.transitGatewayPeeringAttachments;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (transitGatewayPeeringAttachments != null)
+        'transitGatewayPeeringAttachments': transitGatewayPeeringAttachments,
+    };
+  }
 }
 
 class DescribeTransitGatewayPolicyTablesResult {
@@ -37026,6 +40897,16 @@ class DescribeTransitGatewayPolicyTablesResult {
     this.nextToken,
     this.transitGatewayPolicyTables,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayPolicyTables = this.transitGatewayPolicyTables;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (transitGatewayPolicyTables != null)
+        'transitGatewayPolicyTables': transitGatewayPolicyTables,
+    };
+  }
 }
 
 class DescribeTransitGatewayRouteTableAnnouncementsResult {
@@ -37040,6 +40921,18 @@ class DescribeTransitGatewayRouteTableAnnouncementsResult {
     this.nextToken,
     this.transitGatewayRouteTableAnnouncements,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayRouteTableAnnouncements =
+        this.transitGatewayRouteTableAnnouncements;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (transitGatewayRouteTableAnnouncements != null)
+        'transitGatewayRouteTableAnnouncements':
+            transitGatewayRouteTableAnnouncements,
+    };
+  }
 }
 
 class DescribeTransitGatewayRouteTablesResult {
@@ -37054,6 +40947,16 @@ class DescribeTransitGatewayRouteTablesResult {
     this.nextToken,
     this.transitGatewayRouteTables,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayRouteTables = this.transitGatewayRouteTables;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (transitGatewayRouteTables != null)
+        'transitGatewayRouteTables': transitGatewayRouteTables,
+    };
+  }
 }
 
 class DescribeTransitGatewayVpcAttachmentsResult {
@@ -37068,6 +40971,16 @@ class DescribeTransitGatewayVpcAttachmentsResult {
     this.nextToken,
     this.transitGatewayVpcAttachments,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayVpcAttachments = this.transitGatewayVpcAttachments;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (transitGatewayVpcAttachments != null)
+        'transitGatewayVpcAttachments': transitGatewayVpcAttachments,
+    };
+  }
 }
 
 class DescribeTransitGatewaysResult {
@@ -37082,6 +40995,15 @@ class DescribeTransitGatewaysResult {
     this.nextToken,
     this.transitGateways,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGateways = this.transitGateways;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (transitGateways != null) 'transitGatewaySet': transitGateways,
+    };
+  }
 }
 
 class DescribeTrunkInterfaceAssociationsResult {
@@ -37096,6 +41018,16 @@ class DescribeTrunkInterfaceAssociationsResult {
     this.interfaceAssociations,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final interfaceAssociations = this.interfaceAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (interfaceAssociations != null)
+        'interfaceAssociationSet': interfaceAssociations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeVolumeAttributeResult {
@@ -37113,6 +41045,17 @@ class DescribeVolumeAttributeResult {
     this.productCodes,
     this.volumeId,
   });
+
+  Map<String, dynamic> toJson() {
+    final autoEnableIO = this.autoEnableIO;
+    final productCodes = this.productCodes;
+    final volumeId = this.volumeId;
+    return {
+      if (autoEnableIO != null) 'autoEnableIO': autoEnableIO,
+      if (productCodes != null) 'productCodes': productCodes,
+      if (volumeId != null) 'volumeId': volumeId,
+    };
+  }
 }
 
 class DescribeVolumeStatusResult {
@@ -37127,6 +41070,15 @@ class DescribeVolumeStatusResult {
     this.nextToken,
     this.volumeStatuses,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final volumeStatuses = this.volumeStatuses;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (volumeStatuses != null) 'volumeStatusSet': volumeStatuses,
+    };
+  }
 }
 
 class DescribeVolumesModificationsResult {
@@ -37140,6 +41092,16 @@ class DescribeVolumesModificationsResult {
     this.nextToken,
     this.volumesModifications,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final volumesModifications = this.volumesModifications;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (volumesModifications != null)
+        'volumeModificationSet': volumesModifications,
+    };
+  }
 }
 
 class DescribeVolumesResult {
@@ -37157,6 +41119,15 @@ class DescribeVolumesResult {
     this.nextToken,
     this.volumes,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final volumes = this.volumes;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (volumes != null) 'volumeSet': volumes,
+    };
+  }
 }
 
 class DescribeVpcAttributeResult {
@@ -37178,6 +41149,17 @@ class DescribeVpcAttributeResult {
     this.enableDnsSupport,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final enableDnsHostnames = this.enableDnsHostnames;
+    final enableDnsSupport = this.enableDnsSupport;
+    final vpcId = this.vpcId;
+    return {
+      if (enableDnsHostnames != null) 'enableDnsHostnames': enableDnsHostnames,
+      if (enableDnsSupport != null) 'enableDnsSupport': enableDnsSupport,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 class DescribeVpcClassicLinkDnsSupportResult {
@@ -37192,6 +41174,15 @@ class DescribeVpcClassicLinkDnsSupportResult {
     this.nextToken,
     this.vpcs,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final vpcs = this.vpcs;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (vpcs != null) 'vpcs': vpcs,
+    };
+  }
 }
 
 class DescribeVpcClassicLinkResult {
@@ -37201,6 +41192,13 @@ class DescribeVpcClassicLinkResult {
   DescribeVpcClassicLinkResult({
     this.vpcs,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpcs = this.vpcs;
+    return {
+      if (vpcs != null) 'vpcSet': vpcs,
+    };
+  }
 }
 
 class DescribeVpcEndpointConnectionNotificationsResult {
@@ -37215,6 +41213,16 @@ class DescribeVpcEndpointConnectionNotificationsResult {
     this.connectionNotificationSet,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final connectionNotificationSet = this.connectionNotificationSet;
+    final nextToken = this.nextToken;
+    return {
+      if (connectionNotificationSet != null)
+        'connectionNotificationSet': connectionNotificationSet,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribeVpcEndpointConnectionsResult {
@@ -37229,6 +41237,16 @@ class DescribeVpcEndpointConnectionsResult {
     this.nextToken,
     this.vpcEndpointConnections,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final vpcEndpointConnections = this.vpcEndpointConnections;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (vpcEndpointConnections != null)
+        'vpcEndpointConnectionSet': vpcEndpointConnections,
+    };
+  }
 }
 
 class DescribeVpcEndpointServiceConfigurationsResult {
@@ -37243,6 +41261,16 @@ class DescribeVpcEndpointServiceConfigurationsResult {
     this.nextToken,
     this.serviceConfigurations,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final serviceConfigurations = this.serviceConfigurations;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (serviceConfigurations != null)
+        'serviceConfigurationSet': serviceConfigurations,
+    };
+  }
 }
 
 class DescribeVpcEndpointServicePermissionsResult {
@@ -37257,6 +41285,15 @@ class DescribeVpcEndpointServicePermissionsResult {
     this.allowedPrincipals,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final allowedPrincipals = this.allowedPrincipals;
+    final nextToken = this.nextToken;
+    return {
+      if (allowedPrincipals != null) 'allowedPrincipals': allowedPrincipals,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Contains the output of DescribeVpcEndpointServices.
@@ -37276,6 +41313,17 @@ class DescribeVpcEndpointServicesResult {
     this.serviceDetails,
     this.serviceNames,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final serviceDetails = this.serviceDetails;
+    final serviceNames = this.serviceNames;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (serviceDetails != null) 'serviceDetailSet': serviceDetails,
+      if (serviceNames != null) 'serviceNameSet': serviceNames,
+    };
+  }
 }
 
 /// Contains the output of DescribeVpcEndpoints.
@@ -37291,6 +41339,15 @@ class DescribeVpcEndpointsResult {
     this.nextToken,
     this.vpcEndpoints,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final vpcEndpoints = this.vpcEndpoints;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (vpcEndpoints != null) 'vpcEndpointSet': vpcEndpoints,
+    };
+  }
 }
 
 class DescribeVpcPeeringConnectionsResult {
@@ -37305,6 +41362,16 @@ class DescribeVpcPeeringConnectionsResult {
     this.nextToken,
     this.vpcPeeringConnections,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final vpcPeeringConnections = this.vpcPeeringConnections;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (vpcPeeringConnections != null)
+        'vpcPeeringConnectionSet': vpcPeeringConnections,
+    };
+  }
 }
 
 class DescribeVpcsResult {
@@ -37319,6 +41386,15 @@ class DescribeVpcsResult {
     this.nextToken,
     this.vpcs,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final vpcs = this.vpcs;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (vpcs != null) 'vpcSet': vpcs,
+    };
+  }
 }
 
 /// Contains the output of DescribeVpnConnections.
@@ -37329,6 +41405,13 @@ class DescribeVpnConnectionsResult {
   DescribeVpnConnectionsResult({
     this.vpnConnections,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpnConnections = this.vpnConnections;
+    return {
+      if (vpnConnections != null) 'vpnConnectionSet': vpnConnections,
+    };
+  }
 }
 
 /// Contains the output of DescribeVpnGateways.
@@ -37339,6 +41422,13 @@ class DescribeVpnGatewaysResult {
   DescribeVpnGatewaysResult({
     this.vpnGateways,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpnGateways = this.vpnGateways;
+    return {
+      if (vpnGateways != null) 'vpnGatewaySet': vpnGateways,
+    };
+  }
 }
 
 enum DestinationFileFormat {
@@ -37387,6 +41477,18 @@ class DestinationOptionsRequest {
     this.hiveCompatiblePartitions,
     this.perHourPartition,
   });
+
+  Map<String, dynamic> toJson() {
+    final fileFormat = this.fileFormat;
+    final hiveCompatiblePartitions = this.hiveCompatiblePartitions;
+    final perHourPartition = this.perHourPartition;
+    return {
+      if (fileFormat != null) 'FileFormat': fileFormat.toValue(),
+      if (hiveCompatiblePartitions != null)
+        'HiveCompatiblePartitions': hiveCompatiblePartitions,
+      if (perHourPartition != null) 'PerHourPartition': perHourPartition,
+    };
+  }
 }
 
 /// Describes the destination options for a flow log.
@@ -37406,6 +41508,18 @@ class DestinationOptionsResponse {
     this.hiveCompatiblePartitions,
     this.perHourPartition,
   });
+
+  Map<String, dynamic> toJson() {
+    final fileFormat = this.fileFormat;
+    final hiveCompatiblePartitions = this.hiveCompatiblePartitions;
+    final perHourPartition = this.perHourPartition;
+    return {
+      if (fileFormat != null) 'fileFormat': fileFormat.toValue(),
+      if (hiveCompatiblePartitions != null)
+        'hiveCompatiblePartitions': hiveCompatiblePartitions,
+      if (perHourPartition != null) 'perHourPartition': perHourPartition,
+    };
+  }
 }
 
 class DetachClassicLinkVpcResult {
@@ -37416,6 +41530,13 @@ class DetachClassicLinkVpcResult {
   DetachClassicLinkVpcResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 enum DeviceType {
@@ -37458,6 +41579,15 @@ class DhcpConfiguration {
     this.key,
     this.values,
   });
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final values = this.values;
+    return {
+      if (key != null) 'key': key,
+      if (values != null) 'valueSet': values,
+    };
+  }
 }
 
 /// Describes a set of DHCP options.
@@ -37480,6 +41610,20 @@ class DhcpOptions {
     this.ownerId,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final dhcpConfigurations = this.dhcpConfigurations;
+    final dhcpOptionsId = this.dhcpOptionsId;
+    final ownerId = this.ownerId;
+    final tags = this.tags;
+    return {
+      if (dhcpConfigurations != null)
+        'dhcpConfigurationSet': dhcpConfigurations,
+      if (dhcpOptionsId != null) 'dhcpOptionsId': dhcpOptionsId,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes an Active Directory.
@@ -37490,6 +41634,13 @@ class DirectoryServiceAuthentication {
   DirectoryServiceAuthentication({
     this.directoryId,
   });
+
+  Map<String, dynamic> toJson() {
+    final directoryId = this.directoryId;
+    return {
+      if (directoryId != null) 'directoryId': directoryId,
+    };
+  }
 }
 
 /// Describes the Active Directory to be used for client authentication.
@@ -37500,6 +41651,13 @@ class DirectoryServiceAuthenticationRequest {
   DirectoryServiceAuthenticationRequest({
     this.directoryId,
   });
+
+  Map<String, dynamic> toJson() {
+    final directoryId = this.directoryId;
+    return {
+      if (directoryId != null) 'DirectoryId': directoryId,
+    };
+  }
 }
 
 class DisableEbsEncryptionByDefaultResult {
@@ -37509,6 +41667,14 @@ class DisableEbsEncryptionByDefaultResult {
   DisableEbsEncryptionByDefaultResult({
     this.ebsEncryptionByDefault,
   });
+
+  Map<String, dynamic> toJson() {
+    final ebsEncryptionByDefault = this.ebsEncryptionByDefault;
+    return {
+      if (ebsEncryptionByDefault != null)
+        'ebsEncryptionByDefault': ebsEncryptionByDefault,
+    };
+  }
 }
 
 class DisableFastLaunchResult {
@@ -37554,6 +41720,33 @@ class DisableFastLaunchResult {
     this.stateTransitionReason,
     this.stateTransitionTime,
   });
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    final launchTemplate = this.launchTemplate;
+    final maxParallelLaunches = this.maxParallelLaunches;
+    final ownerId = this.ownerId;
+    final resourceType = this.resourceType;
+    final snapshotConfiguration = this.snapshotConfiguration;
+    final state = this.state;
+    final stateTransitionReason = this.stateTransitionReason;
+    final stateTransitionTime = this.stateTransitionTime;
+    return {
+      if (imageId != null) 'imageId': imageId,
+      if (launchTemplate != null) 'launchTemplate': launchTemplate,
+      if (maxParallelLaunches != null)
+        'maxParallelLaunches': maxParallelLaunches,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (snapshotConfiguration != null)
+        'snapshotConfiguration': snapshotConfiguration,
+      if (state != null) 'state': state.toValue(),
+      if (stateTransitionReason != null)
+        'stateTransitionReason': stateTransitionReason,
+      if (stateTransitionTime != null)
+        'stateTransitionTime': iso8601ToJson(stateTransitionTime),
+    };
+  }
 }
 
 /// Contains information about the errors that occurred when disabling fast
@@ -37570,6 +41763,16 @@ class DisableFastSnapshotRestoreErrorItem {
     this.fastSnapshotRestoreStateErrors,
     this.snapshotId,
   });
+
+  Map<String, dynamic> toJson() {
+    final fastSnapshotRestoreStateErrors = this.fastSnapshotRestoreStateErrors;
+    final snapshotId = this.snapshotId;
+    return {
+      if (fastSnapshotRestoreStateErrors != null)
+        'fastSnapshotRestoreStateErrorSet': fastSnapshotRestoreStateErrors,
+      if (snapshotId != null) 'snapshotId': snapshotId,
+    };
+  }
 }
 
 /// Describes an error that occurred when disabling fast snapshot restores.
@@ -37584,6 +41787,15 @@ class DisableFastSnapshotRestoreStateError {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// Contains information about an error that occurred when disabling fast
@@ -37599,6 +41811,15 @@ class DisableFastSnapshotRestoreStateErrorItem {
     this.availabilityZone,
     this.error,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final error = this.error;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (error != null) 'error': error,
+    };
+  }
 }
 
 /// Describes fast snapshot restores that were successfully disabled.
@@ -37668,6 +41889,35 @@ class DisableFastSnapshotRestoreSuccessItem {
     this.state,
     this.stateTransitionReason,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final disabledTime = this.disabledTime;
+    final disablingTime = this.disablingTime;
+    final enabledTime = this.enabledTime;
+    final enablingTime = this.enablingTime;
+    final optimizingTime = this.optimizingTime;
+    final ownerAlias = this.ownerAlias;
+    final ownerId = this.ownerId;
+    final snapshotId = this.snapshotId;
+    final state = this.state;
+    final stateTransitionReason = this.stateTransitionReason;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (disabledTime != null) 'disabledTime': iso8601ToJson(disabledTime),
+      if (disablingTime != null) 'disablingTime': iso8601ToJson(disablingTime),
+      if (enabledTime != null) 'enabledTime': iso8601ToJson(enabledTime),
+      if (enablingTime != null) 'enablingTime': iso8601ToJson(enablingTime),
+      if (optimizingTime != null)
+        'optimizingTime': iso8601ToJson(optimizingTime),
+      if (ownerAlias != null) 'ownerAlias': ownerAlias,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (state != null) 'state': state.toValue(),
+      if (stateTransitionReason != null)
+        'stateTransitionReason': stateTransitionReason,
+    };
+  }
 }
 
 class DisableFastSnapshotRestoresResult {
@@ -37683,6 +41933,15 @@ class DisableFastSnapshotRestoresResult {
     this.successful,
     this.unsuccessful,
   });
+
+  Map<String, dynamic> toJson() {
+    final successful = this.successful;
+    final unsuccessful = this.unsuccessful;
+    return {
+      if (successful != null) 'successful': successful,
+      if (unsuccessful != null) 'unsuccessful': unsuccessful,
+    };
+  }
 }
 
 class DisableImageDeprecationResult {
@@ -37693,6 +41952,13 @@ class DisableImageDeprecationResult {
   DisableImageDeprecationResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class DisableIpamOrganizationAdminAccountResult {
@@ -37702,6 +41968,13 @@ class DisableIpamOrganizationAdminAccountResult {
   DisableIpamOrganizationAdminAccountResult({
     this.success,
   });
+
+  Map<String, dynamic> toJson() {
+    final success = this.success;
+    return {
+      if (success != null) 'success': success,
+    };
+  }
 }
 
 class DisableSerialConsoleAccessResult {
@@ -37713,6 +41986,14 @@ class DisableSerialConsoleAccessResult {
   DisableSerialConsoleAccessResult({
     this.serialConsoleAccessEnabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final serialConsoleAccessEnabled = this.serialConsoleAccessEnabled;
+    return {
+      if (serialConsoleAccessEnabled != null)
+        'serialConsoleAccessEnabled': serialConsoleAccessEnabled,
+    };
+  }
 }
 
 class DisableTransitGatewayRouteTablePropagationResult {
@@ -37722,6 +42003,13 @@ class DisableTransitGatewayRouteTablePropagationResult {
   DisableTransitGatewayRouteTablePropagationResult({
     this.propagation,
   });
+
+  Map<String, dynamic> toJson() {
+    final propagation = this.propagation;
+    return {
+      if (propagation != null) 'propagation': propagation,
+    };
+  }
 }
 
 class DisableVpcClassicLinkDnsSupportResult {
@@ -37732,6 +42020,13 @@ class DisableVpcClassicLinkDnsSupportResult {
   DisableVpcClassicLinkDnsSupportResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class DisableVpcClassicLinkResult {
@@ -37742,6 +42037,13 @@ class DisableVpcClassicLinkResult {
   DisableVpcClassicLinkResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class DisassociateClientVpnTargetNetworkResult {
@@ -37755,6 +42057,15 @@ class DisassociateClientVpnTargetNetworkResult {
     this.associationId,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    final status = this.status;
+    return {
+      if (associationId != null) 'associationId': associationId,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class DisassociateEnclaveCertificateIamRoleResult {
@@ -37765,6 +42076,13 @@ class DisassociateEnclaveCertificateIamRoleResult {
   DisassociateEnclaveCertificateIamRoleResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class DisassociateIamInstanceProfileResult {
@@ -37774,6 +42092,14 @@ class DisassociateIamInstanceProfileResult {
   DisassociateIamInstanceProfileResult({
     this.iamInstanceProfileAssociation,
   });
+
+  Map<String, dynamic> toJson() {
+    final iamInstanceProfileAssociation = this.iamInstanceProfileAssociation;
+    return {
+      if (iamInstanceProfileAssociation != null)
+        'iamInstanceProfileAssociation': iamInstanceProfileAssociation,
+    };
+  }
 }
 
 class DisassociateInstanceEventWindowResult {
@@ -37783,6 +42109,14 @@ class DisassociateInstanceEventWindowResult {
   DisassociateInstanceEventWindowResult({
     this.instanceEventWindow,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceEventWindow = this.instanceEventWindow;
+    return {
+      if (instanceEventWindow != null)
+        'instanceEventWindow': instanceEventWindow,
+    };
+  }
 }
 
 class DisassociateSubnetCidrBlockResult {
@@ -37796,6 +42130,16 @@ class DisassociateSubnetCidrBlockResult {
     this.ipv6CidrBlockAssociation,
     this.subnetId,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv6CidrBlockAssociation = this.ipv6CidrBlockAssociation;
+    final subnetId = this.subnetId;
+    return {
+      if (ipv6CidrBlockAssociation != null)
+        'ipv6CidrBlockAssociation': ipv6CidrBlockAssociation,
+      if (subnetId != null) 'subnetId': subnetId,
+    };
+  }
 }
 
 class DisassociateTransitGatewayMulticastDomainResult {
@@ -37805,6 +42149,13 @@ class DisassociateTransitGatewayMulticastDomainResult {
   DisassociateTransitGatewayMulticastDomainResult({
     this.associations,
   });
+
+  Map<String, dynamic> toJson() {
+    final associations = this.associations;
+    return {
+      if (associations != null) 'associations': associations,
+    };
+  }
 }
 
 class DisassociateTransitGatewayPolicyTableResult {
@@ -37814,6 +42165,13 @@ class DisassociateTransitGatewayPolicyTableResult {
   DisassociateTransitGatewayPolicyTableResult({
     this.association,
   });
+
+  Map<String, dynamic> toJson() {
+    final association = this.association;
+    return {
+      if (association != null) 'association': association,
+    };
+  }
 }
 
 class DisassociateTransitGatewayRouteTableResult {
@@ -37823,6 +42181,13 @@ class DisassociateTransitGatewayRouteTableResult {
   DisassociateTransitGatewayRouteTableResult({
     this.association,
   });
+
+  Map<String, dynamic> toJson() {
+    final association = this.association;
+    return {
+      if (association != null) 'association': association,
+    };
+  }
 }
 
 class DisassociateTrunkInterfaceResult {
@@ -37840,6 +42205,15 @@ class DisassociateTrunkInterfaceResult {
     this.clientToken,
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final returnValue = this.returnValue;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class DisassociateVpcCidrBlockResult {
@@ -37857,6 +42231,19 @@ class DisassociateVpcCidrBlockResult {
     this.ipv6CidrBlockAssociation,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidrBlockAssociation = this.cidrBlockAssociation;
+    final ipv6CidrBlockAssociation = this.ipv6CidrBlockAssociation;
+    final vpcId = this.vpcId;
+    return {
+      if (cidrBlockAssociation != null)
+        'cidrBlockAssociation': cidrBlockAssociation,
+      if (ipv6CidrBlockAssociation != null)
+        'ipv6CidrBlockAssociation': ipv6CidrBlockAssociation,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// Describes a disk image.
@@ -37875,6 +42262,17 @@ class DiskImage {
     this.image,
     this.volume,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final image = this.image;
+    final volume = this.volume;
+    return {
+      if (description != null) 'Description': description,
+      if (image != null) 'Image': image,
+      if (volume != null) 'Volume': volume,
+    };
+  }
 }
 
 /// Describes a disk image.
@@ -37907,6 +42305,19 @@ class DiskImageDescription {
     this.importManifestUrl,
     this.size,
   });
+
+  Map<String, dynamic> toJson() {
+    final checksum = this.checksum;
+    final format = this.format;
+    final importManifestUrl = this.importManifestUrl;
+    final size = this.size;
+    return {
+      if (checksum != null) 'checksum': checksum,
+      if (format != null) 'format': format.toValue(),
+      if (importManifestUrl != null) 'importManifestUrl': importManifestUrl,
+      if (size != null) 'size': size,
+    };
+  }
 }
 
 /// Describes a disk image.
@@ -37936,6 +42347,17 @@ class DiskImageDetail {
     required this.format,
     required this.importManifestUrl,
   });
+
+  Map<String, dynamic> toJson() {
+    final bytes = this.bytes;
+    final format = this.format;
+    final importManifestUrl = this.importManifestUrl;
+    return {
+      'bytes': bytes,
+      'format': format.toValue(),
+      'importManifestUrl': importManifestUrl,
+    };
+  }
 }
 
 enum DiskImageFormat {
@@ -37983,6 +42405,15 @@ class DiskImageVolumeDescription {
     this.id,
     this.size,
   });
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final size = this.size;
+    return {
+      if (id != null) 'id': id,
+      if (size != null) 'size': size,
+    };
+  }
 }
 
 /// Describes a disk.
@@ -38001,6 +42432,17 @@ class DiskInfo {
     this.sizeInGB,
     this.type,
   });
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final sizeInGB = this.sizeInGB;
+    final type = this.type;
+    return {
+      if (count != null) 'count': count,
+      if (sizeInGB != null) 'sizeInGB': sizeInGB,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 enum DiskType {
@@ -38043,6 +42485,15 @@ class DnsEntry {
     this.dnsName,
     this.hostedZoneId,
   });
+
+  Map<String, dynamic> toJson() {
+    final dnsName = this.dnsName;
+    final hostedZoneId = this.hostedZoneId;
+    return {
+      if (dnsName != null) 'dnsName': dnsName,
+      if (hostedZoneId != null) 'hostedZoneId': hostedZoneId,
+    };
+  }
 }
 
 enum DnsNameState {
@@ -38086,6 +42537,13 @@ class DnsOptions {
   DnsOptions({
     this.dnsRecordIpType,
   });
+
+  Map<String, dynamic> toJson() {
+    final dnsRecordIpType = this.dnsRecordIpType;
+    return {
+      if (dnsRecordIpType != null) 'dnsRecordIpType': dnsRecordIpType.toValue(),
+    };
+  }
 }
 
 /// Describes the DNS options for an endpoint.
@@ -38096,6 +42554,13 @@ class DnsOptionsSpecification {
   DnsOptionsSpecification({
     this.dnsRecordIpType,
   });
+
+  Map<String, dynamic> toJson() {
+    final dnsRecordIpType = this.dnsRecordIpType;
+    return {
+      if (dnsRecordIpType != null) 'DnsRecordIpType': dnsRecordIpType.toValue(),
+    };
+  }
 }
 
 enum DnsRecordIpType {
@@ -38151,6 +42616,15 @@ class DnsServersOptionsModifyStructure {
     this.customDnsServers,
     this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final customDnsServers = this.customDnsServers;
+    final enabled = this.enabled;
+    return {
+      if (customDnsServers != null) 'CustomDnsServers': customDnsServers,
+      if (enabled != null) 'Enabled': enabled,
+    };
+  }
 }
 
 enum DnsSupportValue {
@@ -38367,6 +42841,30 @@ class EbsBlockDevice {
     this.volumeSize,
     this.volumeType,
   });
+
+  Map<String, dynamic> toJson() {
+    final deleteOnTermination = this.deleteOnTermination;
+    final encrypted = this.encrypted;
+    final iops = this.iops;
+    final kmsKeyId = this.kmsKeyId;
+    final outpostArn = this.outpostArn;
+    final snapshotId = this.snapshotId;
+    final throughput = this.throughput;
+    final volumeSize = this.volumeSize;
+    final volumeType = this.volumeType;
+    return {
+      if (deleteOnTermination != null)
+        'deleteOnTermination': deleteOnTermination,
+      if (encrypted != null) 'encrypted': encrypted,
+      if (iops != null) 'iops': iops,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (throughput != null) 'throughput': throughput,
+      if (volumeSize != null) 'volumeSize': volumeSize,
+      if (volumeType != null) 'volumeType': volumeType.toValue(),
+    };
+  }
 }
 
 enum EbsEncryptionSupport {
@@ -38420,6 +42918,21 @@ class EbsInfo {
     this.encryptionSupport,
     this.nvmeSupport,
   });
+
+  Map<String, dynamic> toJson() {
+    final ebsOptimizedInfo = this.ebsOptimizedInfo;
+    final ebsOptimizedSupport = this.ebsOptimizedSupport;
+    final encryptionSupport = this.encryptionSupport;
+    final nvmeSupport = this.nvmeSupport;
+    return {
+      if (ebsOptimizedInfo != null) 'ebsOptimizedInfo': ebsOptimizedInfo,
+      if (ebsOptimizedSupport != null)
+        'ebsOptimizedSupport': ebsOptimizedSupport.toValue(),
+      if (encryptionSupport != null)
+        'encryptionSupport': encryptionSupport.toValue(),
+      if (nvmeSupport != null) 'nvmeSupport': nvmeSupport.toValue(),
+    };
+  }
 }
 
 /// Describes a parameter used to set up an EBS volume in a block device
@@ -38443,6 +42956,20 @@ class EbsInstanceBlockDevice {
     this.status,
     this.volumeId,
   });
+
+  Map<String, dynamic> toJson() {
+    final attachTime = this.attachTime;
+    final deleteOnTermination = this.deleteOnTermination;
+    final status = this.status;
+    final volumeId = this.volumeId;
+    return {
+      if (attachTime != null) 'attachTime': iso8601ToJson(attachTime),
+      if (deleteOnTermination != null)
+        'deleteOnTermination': deleteOnTermination,
+      if (status != null) 'status': status.toValue(),
+      if (volumeId != null) 'volumeId': volumeId,
+    };
+  }
 }
 
 /// Describes information used to set up an EBS volume specified in a block
@@ -38458,6 +42985,16 @@ class EbsInstanceBlockDeviceSpecification {
     this.deleteOnTermination,
     this.volumeId,
   });
+
+  Map<String, dynamic> toJson() {
+    final deleteOnTermination = this.deleteOnTermination;
+    final volumeId = this.volumeId;
+    return {
+      if (deleteOnTermination != null)
+        'deleteOnTermination': deleteOnTermination,
+      if (volumeId != null) 'volumeId': volumeId,
+    };
+  }
 }
 
 enum EbsNvmeSupport {
@@ -38527,6 +43064,27 @@ class EbsOptimizedInfo {
     this.maximumIops,
     this.maximumThroughputInMBps,
   });
+
+  Map<String, dynamic> toJson() {
+    final baselineBandwidthInMbps = this.baselineBandwidthInMbps;
+    final baselineIops = this.baselineIops;
+    final baselineThroughputInMBps = this.baselineThroughputInMBps;
+    final maximumBandwidthInMbps = this.maximumBandwidthInMbps;
+    final maximumIops = this.maximumIops;
+    final maximumThroughputInMBps = this.maximumThroughputInMBps;
+    return {
+      if (baselineBandwidthInMbps != null)
+        'baselineBandwidthInMbps': baselineBandwidthInMbps,
+      if (baselineIops != null) 'baselineIops': baselineIops,
+      if (baselineThroughputInMBps != null)
+        'baselineThroughputInMBps': baselineThroughputInMBps,
+      if (maximumBandwidthInMbps != null)
+        'maximumBandwidthInMbps': maximumBandwidthInMbps,
+      if (maximumIops != null) 'maximumIops': maximumIops,
+      if (maximumThroughputInMBps != null)
+        'maximumThroughputInMBps': maximumThroughputInMBps,
+    };
+  }
 }
 
 enum EbsOptimizedSupport {
@@ -38570,6 +43128,14 @@ class EfaInfo {
   EfaInfo({
     this.maximumEfaInterfaces,
   });
+
+  Map<String, dynamic> toJson() {
+    final maximumEfaInterfaces = this.maximumEfaInterfaces;
+    return {
+      if (maximumEfaInterfaces != null)
+        'maximumEfaInterfaces': maximumEfaInterfaces,
+    };
+  }
 }
 
 /// Describes an egress-only internet gateway.
@@ -38588,6 +43154,18 @@ class EgressOnlyInternetGateway {
     this.egressOnlyInternetGatewayId,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final attachments = this.attachments;
+    final egressOnlyInternetGatewayId = this.egressOnlyInternetGatewayId;
+    final tags = this.tags;
+    return {
+      if (attachments != null) 'attachmentSet': attachments,
+      if (egressOnlyInternetGatewayId != null)
+        'egressOnlyInternetGatewayId': egressOnlyInternetGatewayId,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes the association between an instance and an Elastic Graphics
@@ -38612,6 +43190,22 @@ class ElasticGpuAssociation {
     this.elasticGpuAssociationTime,
     this.elasticGpuId,
   });
+
+  Map<String, dynamic> toJson() {
+    final elasticGpuAssociationId = this.elasticGpuAssociationId;
+    final elasticGpuAssociationState = this.elasticGpuAssociationState;
+    final elasticGpuAssociationTime = this.elasticGpuAssociationTime;
+    final elasticGpuId = this.elasticGpuId;
+    return {
+      if (elasticGpuAssociationId != null)
+        'elasticGpuAssociationId': elasticGpuAssociationId,
+      if (elasticGpuAssociationState != null)
+        'elasticGpuAssociationState': elasticGpuAssociationState,
+      if (elasticGpuAssociationTime != null)
+        'elasticGpuAssociationTime': elasticGpuAssociationTime,
+      if (elasticGpuId != null) 'elasticGpuId': elasticGpuId,
+    };
+  }
 }
 
 /// Describes the status of an Elastic Graphics accelerator.
@@ -38622,6 +43216,13 @@ class ElasticGpuHealth {
   ElasticGpuHealth({
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// A specification for an Elastic Graphics accelerator.
@@ -38636,6 +43237,13 @@ class ElasticGpuSpecification {
   ElasticGpuSpecification({
     required this.type,
   });
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    return {
+      'Type': type,
+    };
+  }
 }
 
 /// Describes an elastic GPU.
@@ -38646,6 +43254,13 @@ class ElasticGpuSpecificationResponse {
   ElasticGpuSpecificationResponse({
     this.type,
   });
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    return {
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 enum ElasticGpuState {
@@ -38732,6 +43347,25 @@ class ElasticGpus {
     this.instanceId,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final elasticGpuHealth = this.elasticGpuHealth;
+    final elasticGpuId = this.elasticGpuId;
+    final elasticGpuState = this.elasticGpuState;
+    final elasticGpuType = this.elasticGpuType;
+    final instanceId = this.instanceId;
+    final tags = this.tags;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (elasticGpuHealth != null) 'elasticGpuHealth': elasticGpuHealth,
+      if (elasticGpuId != null) 'elasticGpuId': elasticGpuId,
+      if (elasticGpuState != null) 'elasticGpuState': elasticGpuState.toValue(),
+      if (elasticGpuType != null) 'elasticGpuType': elasticGpuType,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes an elastic inference accelerator.
@@ -38751,6 +43385,15 @@ class ElasticInferenceAccelerator {
     required this.type,
     this.count,
   });
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final count = this.count;
+    return {
+      'Type': type,
+      if (count != null) 'Count': count,
+    };
+  }
 }
 
 /// Describes the association between an instance and an elastic inference
@@ -38775,6 +43418,29 @@ class ElasticInferenceAcceleratorAssociation {
     this.elasticInferenceAcceleratorAssociationState,
     this.elasticInferenceAcceleratorAssociationTime,
   });
+
+  Map<String, dynamic> toJson() {
+    final elasticInferenceAcceleratorArn = this.elasticInferenceAcceleratorArn;
+    final elasticInferenceAcceleratorAssociationId =
+        this.elasticInferenceAcceleratorAssociationId;
+    final elasticInferenceAcceleratorAssociationState =
+        this.elasticInferenceAcceleratorAssociationState;
+    final elasticInferenceAcceleratorAssociationTime =
+        this.elasticInferenceAcceleratorAssociationTime;
+    return {
+      if (elasticInferenceAcceleratorArn != null)
+        'elasticInferenceAcceleratorArn': elasticInferenceAcceleratorArn,
+      if (elasticInferenceAcceleratorAssociationId != null)
+        'elasticInferenceAcceleratorAssociationId':
+            elasticInferenceAcceleratorAssociationId,
+      if (elasticInferenceAcceleratorAssociationState != null)
+        'elasticInferenceAcceleratorAssociationState':
+            elasticInferenceAcceleratorAssociationState,
+      if (elasticInferenceAcceleratorAssociationTime != null)
+        'elasticInferenceAcceleratorAssociationTime':
+            iso8601ToJson(elasticInferenceAcceleratorAssociationTime),
+    };
+  }
 }
 
 enum EnaSupport {
@@ -38817,6 +43483,14 @@ class EnableEbsEncryptionByDefaultResult {
   EnableEbsEncryptionByDefaultResult({
     this.ebsEncryptionByDefault,
   });
+
+  Map<String, dynamic> toJson() {
+    final ebsEncryptionByDefault = this.ebsEncryptionByDefault;
+    return {
+      if (ebsEncryptionByDefault != null)
+        'ebsEncryptionByDefault': ebsEncryptionByDefault,
+    };
+  }
 }
 
 class EnableFastLaunchResult {
@@ -38864,6 +43538,33 @@ class EnableFastLaunchResult {
     this.stateTransitionReason,
     this.stateTransitionTime,
   });
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    final launchTemplate = this.launchTemplate;
+    final maxParallelLaunches = this.maxParallelLaunches;
+    final ownerId = this.ownerId;
+    final resourceType = this.resourceType;
+    final snapshotConfiguration = this.snapshotConfiguration;
+    final state = this.state;
+    final stateTransitionReason = this.stateTransitionReason;
+    final stateTransitionTime = this.stateTransitionTime;
+    return {
+      if (imageId != null) 'imageId': imageId,
+      if (launchTemplate != null) 'launchTemplate': launchTemplate,
+      if (maxParallelLaunches != null)
+        'maxParallelLaunches': maxParallelLaunches,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (snapshotConfiguration != null)
+        'snapshotConfiguration': snapshotConfiguration,
+      if (state != null) 'state': state.toValue(),
+      if (stateTransitionReason != null)
+        'stateTransitionReason': stateTransitionReason,
+      if (stateTransitionTime != null)
+        'stateTransitionTime': iso8601ToJson(stateTransitionTime),
+    };
+  }
 }
 
 /// Contains information about the errors that occurred when enabling fast
@@ -38880,6 +43581,16 @@ class EnableFastSnapshotRestoreErrorItem {
     this.fastSnapshotRestoreStateErrors,
     this.snapshotId,
   });
+
+  Map<String, dynamic> toJson() {
+    final fastSnapshotRestoreStateErrors = this.fastSnapshotRestoreStateErrors;
+    final snapshotId = this.snapshotId;
+    return {
+      if (fastSnapshotRestoreStateErrors != null)
+        'fastSnapshotRestoreStateErrorSet': fastSnapshotRestoreStateErrors,
+      if (snapshotId != null) 'snapshotId': snapshotId,
+    };
+  }
 }
 
 /// Describes an error that occurred when enabling fast snapshot restores.
@@ -38894,6 +43605,15 @@ class EnableFastSnapshotRestoreStateError {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// Contains information about an error that occurred when enabling fast
@@ -38909,6 +43629,15 @@ class EnableFastSnapshotRestoreStateErrorItem {
     this.availabilityZone,
     this.error,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final error = this.error;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (error != null) 'error': error,
+    };
+  }
 }
 
 /// Describes fast snapshot restores that were successfully enabled.
@@ -38978,6 +43707,35 @@ class EnableFastSnapshotRestoreSuccessItem {
     this.state,
     this.stateTransitionReason,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final disabledTime = this.disabledTime;
+    final disablingTime = this.disablingTime;
+    final enabledTime = this.enabledTime;
+    final enablingTime = this.enablingTime;
+    final optimizingTime = this.optimizingTime;
+    final ownerAlias = this.ownerAlias;
+    final ownerId = this.ownerId;
+    final snapshotId = this.snapshotId;
+    final state = this.state;
+    final stateTransitionReason = this.stateTransitionReason;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (disabledTime != null) 'disabledTime': iso8601ToJson(disabledTime),
+      if (disablingTime != null) 'disablingTime': iso8601ToJson(disablingTime),
+      if (enabledTime != null) 'enabledTime': iso8601ToJson(enabledTime),
+      if (enablingTime != null) 'enablingTime': iso8601ToJson(enablingTime),
+      if (optimizingTime != null)
+        'optimizingTime': iso8601ToJson(optimizingTime),
+      if (ownerAlias != null) 'ownerAlias': ownerAlias,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (state != null) 'state': state.toValue(),
+      if (stateTransitionReason != null)
+        'stateTransitionReason': stateTransitionReason,
+    };
+  }
 }
 
 class EnableFastSnapshotRestoresResult {
@@ -38993,6 +43751,15 @@ class EnableFastSnapshotRestoresResult {
     this.successful,
     this.unsuccessful,
   });
+
+  Map<String, dynamic> toJson() {
+    final successful = this.successful;
+    final unsuccessful = this.unsuccessful;
+    return {
+      if (successful != null) 'successful': successful,
+      if (unsuccessful != null) 'unsuccessful': unsuccessful,
+    };
+  }
 }
 
 class EnableImageDeprecationResult {
@@ -39003,6 +43770,13 @@ class EnableImageDeprecationResult {
   EnableImageDeprecationResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class EnableIpamOrganizationAdminAccountResult {
@@ -39012,6 +43786,13 @@ class EnableIpamOrganizationAdminAccountResult {
   EnableIpamOrganizationAdminAccountResult({
     this.success,
   });
+
+  Map<String, dynamic> toJson() {
+    final success = this.success;
+    return {
+      if (success != null) 'success': success,
+    };
+  }
 }
 
 class EnableSerialConsoleAccessResult {
@@ -39023,6 +43804,14 @@ class EnableSerialConsoleAccessResult {
   EnableSerialConsoleAccessResult({
     this.serialConsoleAccessEnabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final serialConsoleAccessEnabled = this.serialConsoleAccessEnabled;
+    return {
+      if (serialConsoleAccessEnabled != null)
+        'serialConsoleAccessEnabled': serialConsoleAccessEnabled,
+    };
+  }
 }
 
 class EnableTransitGatewayRouteTablePropagationResult {
@@ -39032,6 +43821,13 @@ class EnableTransitGatewayRouteTablePropagationResult {
   EnableTransitGatewayRouteTablePropagationResult({
     this.propagation,
   });
+
+  Map<String, dynamic> toJson() {
+    final propagation = this.propagation;
+    return {
+      if (propagation != null) 'propagation': propagation,
+    };
+  }
 }
 
 class EnableVpcClassicLinkDnsSupportResult {
@@ -39042,6 +43838,13 @@ class EnableVpcClassicLinkDnsSupportResult {
   EnableVpcClassicLinkDnsSupportResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class EnableVpcClassicLinkResult {
@@ -39052,6 +43855,13 @@ class EnableVpcClassicLinkResult {
   EnableVpcClassicLinkResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 /// Indicates whether the instance is enabled for Amazon Web Services Nitro
@@ -39065,6 +43875,13 @@ class EnclaveOptions {
   EnclaveOptions({
     this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      if (enabled != null) 'enabled': enabled,
+    };
+  }
 }
 
 /// Indicates whether the instance is enabled for Amazon Web Services Nitro
@@ -39080,6 +43897,13 @@ class EnclaveOptionsRequest {
   EnclaveOptionsRequest({
     this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      if (enabled != null) 'Enabled': enabled,
+    };
+  }
 }
 
 enum EndDateType {
@@ -39317,6 +44141,17 @@ class EventInformation {
     this.eventSubType,
     this.instanceId,
   });
+
+  Map<String, dynamic> toJson() {
+    final eventDescription = this.eventDescription;
+    final eventSubType = this.eventSubType;
+    final instanceId = this.instanceId;
+    return {
+      if (eventDescription != null) 'eventDescription': eventDescription,
+      if (eventSubType != null) 'eventSubType': eventSubType,
+      if (instanceId != null) 'instanceId': instanceId,
+    };
+  }
 }
 
 enum EventType {
@@ -39599,6 +44434,119 @@ class Explanation {
     this.vpnConnection,
     this.vpnGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final acl = this.acl;
+    final aclRule = this.aclRule;
+    final address = this.address;
+    final addresses = this.addresses;
+    final attachedTo = this.attachedTo;
+    final availabilityZones = this.availabilityZones;
+    final cidrs = this.cidrs;
+    final classicLoadBalancerListener = this.classicLoadBalancerListener;
+    final component = this.component;
+    final customerGateway = this.customerGateway;
+    final destination = this.destination;
+    final destinationVpc = this.destinationVpc;
+    final direction = this.direction;
+    final elasticLoadBalancerListener = this.elasticLoadBalancerListener;
+    final explanationCode = this.explanationCode;
+    final ingressRouteTable = this.ingressRouteTable;
+    final internetGateway = this.internetGateway;
+    final loadBalancerArn = this.loadBalancerArn;
+    final loadBalancerListenerPort = this.loadBalancerListenerPort;
+    final loadBalancerTarget = this.loadBalancerTarget;
+    final loadBalancerTargetGroup = this.loadBalancerTargetGroup;
+    final loadBalancerTargetGroups = this.loadBalancerTargetGroups;
+    final loadBalancerTargetPort = this.loadBalancerTargetPort;
+    final missingComponent = this.missingComponent;
+    final natGateway = this.natGateway;
+    final networkInterface = this.networkInterface;
+    final packetField = this.packetField;
+    final port = this.port;
+    final portRanges = this.portRanges;
+    final prefixList = this.prefixList;
+    final protocols = this.protocols;
+    final routeTable = this.routeTable;
+    final routeTableRoute = this.routeTableRoute;
+    final securityGroup = this.securityGroup;
+    final securityGroupRule = this.securityGroupRule;
+    final securityGroups = this.securityGroups;
+    final sourceVpc = this.sourceVpc;
+    final state = this.state;
+    final subnet = this.subnet;
+    final subnetRouteTable = this.subnetRouteTable;
+    final transitGateway = this.transitGateway;
+    final transitGatewayAttachment = this.transitGatewayAttachment;
+    final transitGatewayRouteTable = this.transitGatewayRouteTable;
+    final transitGatewayRouteTableRoute = this.transitGatewayRouteTableRoute;
+    final vpc = this.vpc;
+    final vpcEndpoint = this.vpcEndpoint;
+    final vpcPeeringConnection = this.vpcPeeringConnection;
+    final vpnConnection = this.vpnConnection;
+    final vpnGateway = this.vpnGateway;
+    return {
+      if (acl != null) 'acl': acl,
+      if (aclRule != null) 'aclRule': aclRule,
+      if (address != null) 'address': address,
+      if (addresses != null) 'addressSet': addresses,
+      if (attachedTo != null) 'attachedTo': attachedTo,
+      if (availabilityZones != null) 'availabilityZoneSet': availabilityZones,
+      if (cidrs != null) 'cidrSet': cidrs,
+      if (classicLoadBalancerListener != null)
+        'classicLoadBalancerListener': classicLoadBalancerListener,
+      if (component != null) 'component': component,
+      if (customerGateway != null) 'customerGateway': customerGateway,
+      if (destination != null) 'destination': destination,
+      if (destinationVpc != null) 'destinationVpc': destinationVpc,
+      if (direction != null) 'direction': direction,
+      if (elasticLoadBalancerListener != null)
+        'elasticLoadBalancerListener': elasticLoadBalancerListener,
+      if (explanationCode != null) 'explanationCode': explanationCode,
+      if (ingressRouteTable != null) 'ingressRouteTable': ingressRouteTable,
+      if (internetGateway != null) 'internetGateway': internetGateway,
+      if (loadBalancerArn != null) 'loadBalancerArn': loadBalancerArn,
+      if (loadBalancerListenerPort != null)
+        'loadBalancerListenerPort': loadBalancerListenerPort,
+      if (loadBalancerTarget != null) 'loadBalancerTarget': loadBalancerTarget,
+      if (loadBalancerTargetGroup != null)
+        'loadBalancerTargetGroup': loadBalancerTargetGroup,
+      if (loadBalancerTargetGroups != null)
+        'loadBalancerTargetGroupSet': loadBalancerTargetGroups,
+      if (loadBalancerTargetPort != null)
+        'loadBalancerTargetPort': loadBalancerTargetPort,
+      if (missingComponent != null) 'missingComponent': missingComponent,
+      if (natGateway != null) 'natGateway': natGateway,
+      if (networkInterface != null) 'networkInterface': networkInterface,
+      if (packetField != null) 'packetField': packetField,
+      if (port != null) 'port': port,
+      if (portRanges != null) 'portRangeSet': portRanges,
+      if (prefixList != null) 'prefixList': prefixList,
+      if (protocols != null) 'protocolSet': protocols,
+      if (routeTable != null) 'routeTable': routeTable,
+      if (routeTableRoute != null) 'routeTableRoute': routeTableRoute,
+      if (securityGroup != null) 'securityGroup': securityGroup,
+      if (securityGroupRule != null) 'securityGroupRule': securityGroupRule,
+      if (securityGroups != null) 'securityGroupSet': securityGroups,
+      if (sourceVpc != null) 'sourceVpc': sourceVpc,
+      if (state != null) 'state': state,
+      if (subnet != null) 'subnet': subnet,
+      if (subnetRouteTable != null) 'subnetRouteTable': subnetRouteTable,
+      if (transitGateway != null) 'transitGateway': transitGateway,
+      if (transitGatewayAttachment != null)
+        'transitGatewayAttachment': transitGatewayAttachment,
+      if (transitGatewayRouteTable != null)
+        'transitGatewayRouteTable': transitGatewayRouteTable,
+      if (transitGatewayRouteTableRoute != null)
+        'transitGatewayRouteTableRoute': transitGatewayRouteTableRoute,
+      if (vpc != null) 'vpc': vpc,
+      if (vpcEndpoint != null) 'vpcEndpoint': vpcEndpoint,
+      if (vpcPeeringConnection != null)
+        'vpcPeeringConnection': vpcPeeringConnection,
+      if (vpnConnection != null) 'vpnConnection': vpnConnection,
+      if (vpnGateway != null) 'vpnGateway': vpnGateway,
+    };
+  }
 }
 
 class ExportClientVpnClientCertificateRevocationListResult {
@@ -39612,6 +44560,16 @@ class ExportClientVpnClientCertificateRevocationListResult {
     this.certificateRevocationList,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final certificateRevocationList = this.certificateRevocationList;
+    final status = this.status;
+    return {
+      if (certificateRevocationList != null)
+        'certificateRevocationList': certificateRevocationList,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class ExportClientVpnClientConfigurationResult {
@@ -39621,6 +44579,14 @@ class ExportClientVpnClientConfigurationResult {
   ExportClientVpnClientConfigurationResult({
     this.clientConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientConfiguration = this.clientConfiguration;
+    return {
+      if (clientConfiguration != null)
+        'clientConfiguration': clientConfiguration,
+    };
+  }
 }
 
 enum ExportEnvironment {
@@ -39702,6 +44668,31 @@ class ExportImageResult {
     this.statusMessage,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final diskImageFormat = this.diskImageFormat;
+    final exportImageTaskId = this.exportImageTaskId;
+    final imageId = this.imageId;
+    final progress = this.progress;
+    final roleName = this.roleName;
+    final s3ExportLocation = this.s3ExportLocation;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final tags = this.tags;
+    return {
+      if (description != null) 'description': description,
+      if (diskImageFormat != null) 'diskImageFormat': diskImageFormat.toValue(),
+      if (exportImageTaskId != null) 'exportImageTaskId': exportImageTaskId,
+      if (imageId != null) 'imageId': imageId,
+      if (progress != null) 'progress': progress,
+      if (roleName != null) 'roleName': roleName,
+      if (s3ExportLocation != null) 's3ExportLocation': s3ExportLocation,
+      if (status != null) 'status': status,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes an export image task.
@@ -39742,6 +44733,27 @@ class ExportImageTask {
     this.statusMessage,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final exportImageTaskId = this.exportImageTaskId;
+    final imageId = this.imageId;
+    final progress = this.progress;
+    final s3ExportLocation = this.s3ExportLocation;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final tags = this.tags;
+    return {
+      if (description != null) 'description': description,
+      if (exportImageTaskId != null) 'exportImageTaskId': exportImageTaskId,
+      if (imageId != null) 'imageId': imageId,
+      if (progress != null) 'progress': progress,
+      if (s3ExportLocation != null) 's3ExportLocation': s3ExportLocation,
+      if (status != null) 'status': status,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes an export instance task.
@@ -39776,6 +44788,26 @@ class ExportTask {
     this.statusMessage,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final exportTaskId = this.exportTaskId;
+    final exportToS3Task = this.exportToS3Task;
+    final instanceExportDetails = this.instanceExportDetails;
+    final state = this.state;
+    final statusMessage = this.statusMessage;
+    final tags = this.tags;
+    return {
+      if (description != null) 'description': description,
+      if (exportTaskId != null) 'exportTaskId': exportTaskId,
+      if (exportToS3Task != null) 'exportToS3': exportToS3Task,
+      if (instanceExportDetails != null)
+        'instanceExport': instanceExportDetails,
+      if (state != null) 'state': state.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes the destination for an export image task.
@@ -39790,6 +44822,15 @@ class ExportTaskS3Location {
     this.s3Bucket,
     this.s3Prefix,
   });
+
+  Map<String, dynamic> toJson() {
+    final s3Bucket = this.s3Bucket;
+    final s3Prefix = this.s3Prefix;
+    return {
+      if (s3Bucket != null) 's3Bucket': s3Bucket,
+      if (s3Prefix != null) 's3Prefix': s3Prefix,
+    };
+  }
 }
 
 /// Describes the destination for an export image task.
@@ -39804,6 +44845,15 @@ class ExportTaskS3LocationRequest {
     required this.s3Bucket,
     this.s3Prefix,
   });
+
+  Map<String, dynamic> toJson() {
+    final s3Bucket = this.s3Bucket;
+    final s3Prefix = this.s3Prefix;
+    return {
+      'S3Bucket': s3Bucket,
+      if (s3Prefix != null) 'S3Prefix': s3Prefix,
+    };
+  }
 }
 
 enum ExportTaskState {
@@ -39870,6 +44920,19 @@ class ExportToS3Task {
     this.s3Bucket,
     this.s3Key,
   });
+
+  Map<String, dynamic> toJson() {
+    final containerFormat = this.containerFormat;
+    final diskImageFormat = this.diskImageFormat;
+    final s3Bucket = this.s3Bucket;
+    final s3Key = this.s3Key;
+    return {
+      if (containerFormat != null) 'containerFormat': containerFormat.toValue(),
+      if (diskImageFormat != null) 'diskImageFormat': diskImageFormat.toValue(),
+      if (s3Bucket != null) 's3Bucket': s3Bucket,
+      if (s3Key != null) 's3Key': s3Key,
+    };
+  }
 }
 
 /// Describes an export instance task.
@@ -39899,6 +44962,19 @@ class ExportToS3TaskSpecification {
     this.s3Bucket,
     this.s3Prefix,
   });
+
+  Map<String, dynamic> toJson() {
+    final containerFormat = this.containerFormat;
+    final diskImageFormat = this.diskImageFormat;
+    final s3Bucket = this.s3Bucket;
+    final s3Prefix = this.s3Prefix;
+    return {
+      if (containerFormat != null) 'containerFormat': containerFormat.toValue(),
+      if (diskImageFormat != null) 'diskImageFormat': diskImageFormat.toValue(),
+      if (s3Bucket != null) 's3Bucket': s3Bucket,
+      if (s3Prefix != null) 's3Prefix': s3Prefix,
+    };
+  }
 }
 
 class ExportTransitGatewayRoutesResult {
@@ -39909,6 +44985,13 @@ class ExportTransitGatewayRoutesResult {
   ExportTransitGatewayRoutesResult({
     this.s3Location,
   });
+
+  Map<String, dynamic> toJson() {
+    final s3Location = this.s3Location;
+    return {
+      if (s3Location != null) 's3Location': s3Location,
+    };
+  }
 }
 
 /// Describes a Capacity Reservation Fleet that could not be cancelled.
@@ -39924,6 +45007,19 @@ class FailedCapacityReservationFleetCancellationResult {
     this.cancelCapacityReservationFleetError,
     this.capacityReservationFleetId,
   });
+
+  Map<String, dynamic> toJson() {
+    final cancelCapacityReservationFleetError =
+        this.cancelCapacityReservationFleetError;
+    final capacityReservationFleetId = this.capacityReservationFleetId;
+    return {
+      if (cancelCapacityReservationFleetError != null)
+        'cancelCapacityReservationFleetError':
+            cancelCapacityReservationFleetError,
+      if (capacityReservationFleetId != null)
+        'capacityReservationFleetId': capacityReservationFleetId,
+    };
+  }
 }
 
 /// Describes a Reserved Instance whose queued purchase was not deleted.
@@ -39938,6 +45034,16 @@ class FailedQueuedPurchaseDeletion {
     this.error,
     this.reservedInstancesId,
   });
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final reservedInstancesId = this.reservedInstancesId;
+    return {
+      if (error != null) 'error': error,
+      if (reservedInstancesId != null)
+        'reservedInstancesId': reservedInstancesId,
+    };
+  }
 }
 
 /// Request to create a launch template for a fast-launch enabled Windows AMI.
@@ -39962,6 +45068,17 @@ class FastLaunchLaunchTemplateSpecificationRequest {
     this.launchTemplateId,
     this.launchTemplateName,
   });
+
+  Map<String, dynamic> toJson() {
+    final version = this.version;
+    final launchTemplateId = this.launchTemplateId;
+    final launchTemplateName = this.launchTemplateName;
+    return {
+      'Version': version,
+      if (launchTemplateId != null) 'LaunchTemplateId': launchTemplateId,
+      if (launchTemplateName != null) 'LaunchTemplateName': launchTemplateName,
+    };
+  }
 }
 
 /// Identifies the launch template to use for faster launching of the Windows
@@ -39984,6 +45101,17 @@ class FastLaunchLaunchTemplateSpecificationResponse {
     this.launchTemplateName,
     this.version,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplateId = this.launchTemplateId;
+    final launchTemplateName = this.launchTemplateName;
+    final version = this.version;
+    return {
+      if (launchTemplateId != null) 'launchTemplateId': launchTemplateId,
+      if (launchTemplateName != null) 'launchTemplateName': launchTemplateName,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 enum FastLaunchResourceType {
@@ -40019,6 +45147,14 @@ class FastLaunchSnapshotConfigurationRequest {
   FastLaunchSnapshotConfigurationRequest({
     this.targetResourceCount,
   });
+
+  Map<String, dynamic> toJson() {
+    final targetResourceCount = this.targetResourceCount;
+    return {
+      if (targetResourceCount != null)
+        'TargetResourceCount': targetResourceCount,
+    };
+  }
 }
 
 /// Configuration settings for creating and managing pre-provisioned snapshots
@@ -40031,6 +45167,14 @@ class FastLaunchSnapshotConfigurationResponse {
   FastLaunchSnapshotConfigurationResponse({
     this.targetResourceCount,
   });
+
+  Map<String, dynamic> toJson() {
+    final targetResourceCount = this.targetResourceCount;
+    return {
+      if (targetResourceCount != null)
+        'targetResourceCount': targetResourceCount,
+    };
+  }
 }
 
 enum FastLaunchStateCode {
@@ -40138,6 +45282,16 @@ class FederatedAuthentication {
     this.samlProviderArn,
     this.selfServiceSamlProviderArn,
   });
+
+  Map<String, dynamic> toJson() {
+    final samlProviderArn = this.samlProviderArn;
+    final selfServiceSamlProviderArn = this.selfServiceSamlProviderArn;
+    return {
+      if (samlProviderArn != null) 'samlProviderArn': samlProviderArn,
+      if (selfServiceSamlProviderArn != null)
+        'selfServiceSamlProviderArn': selfServiceSamlProviderArn,
+    };
+  }
 }
 
 /// The IAM SAML identity provider used for federated authentication.
@@ -40153,6 +45307,16 @@ class FederatedAuthenticationRequest {
     this.sAMLProviderArn,
     this.selfServiceSAMLProviderArn,
   });
+
+  Map<String, dynamic> toJson() {
+    final sAMLProviderArn = this.sAMLProviderArn;
+    final selfServiceSAMLProviderArn = this.selfServiceSAMLProviderArn;
+    return {
+      if (sAMLProviderArn != null) 'SAMLProviderArn': sAMLProviderArn,
+      if (selfServiceSAMLProviderArn != null)
+        'SelfServiceSAMLProviderArn': selfServiceSAMLProviderArn,
+    };
+  }
 }
 
 /// A filter name and value pair that is used to return a more specific list of
@@ -40175,6 +45339,15 @@ class Filter {
     this.name,
     this.values,
   });
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final values = this.values;
+    return {
+      if (name != null) 'Name': name,
+      if (values != null) 'Value': values,
+    };
+  }
 }
 
 enum FindingsFound {
@@ -40309,6 +45482,35 @@ class FleetCapacityReservation {
     this.totalInstanceCount,
     this.weight,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final availabilityZoneId = this.availabilityZoneId;
+    final capacityReservationId = this.capacityReservationId;
+    final createDate = this.createDate;
+    final ebsOptimized = this.ebsOptimized;
+    final fulfilledCapacity = this.fulfilledCapacity;
+    final instancePlatform = this.instancePlatform;
+    final instanceType = this.instanceType;
+    final priority = this.priority;
+    final totalInstanceCount = this.totalInstanceCount;
+    final weight = this.weight;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (availabilityZoneId != null) 'availabilityZoneId': availabilityZoneId,
+      if (capacityReservationId != null)
+        'capacityReservationId': capacityReservationId,
+      if (createDate != null) 'createDate': iso8601ToJson(createDate),
+      if (ebsOptimized != null) 'ebsOptimized': ebsOptimized,
+      if (fulfilledCapacity != null) 'fulfilledCapacity': fulfilledCapacity,
+      if (instancePlatform != null)
+        'instancePlatform': instancePlatform.toValue(),
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (priority != null) 'priority': priority,
+      if (totalInstanceCount != null) 'totalInstanceCount': totalInstanceCount,
+      if (weight != null) 'weight': weight,
+    };
+  }
 }
 
 enum FleetCapacityReservationTenancy {
@@ -40489,6 +45691,62 @@ class FleetData {
     this.validFrom,
     this.validUntil,
   });
+
+  Map<String, dynamic> toJson() {
+    final activityStatus = this.activityStatus;
+    final clientToken = this.clientToken;
+    final context = this.context;
+    final createTime = this.createTime;
+    final errors = this.errors;
+    final excessCapacityTerminationPolicy =
+        this.excessCapacityTerminationPolicy;
+    final fleetId = this.fleetId;
+    final fleetState = this.fleetState;
+    final fulfilledCapacity = this.fulfilledCapacity;
+    final fulfilledOnDemandCapacity = this.fulfilledOnDemandCapacity;
+    final instances = this.instances;
+    final launchTemplateConfigs = this.launchTemplateConfigs;
+    final onDemandOptions = this.onDemandOptions;
+    final replaceUnhealthyInstances = this.replaceUnhealthyInstances;
+    final spotOptions = this.spotOptions;
+    final tags = this.tags;
+    final targetCapacitySpecification = this.targetCapacitySpecification;
+    final terminateInstancesWithExpiration =
+        this.terminateInstancesWithExpiration;
+    final type = this.type;
+    final validFrom = this.validFrom;
+    final validUntil = this.validUntil;
+    return {
+      if (activityStatus != null) 'activityStatus': activityStatus.toValue(),
+      if (clientToken != null) 'clientToken': clientToken,
+      if (context != null) 'context': context,
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (errors != null) 'errorSet': errors,
+      if (excessCapacityTerminationPolicy != null)
+        'excessCapacityTerminationPolicy':
+            excessCapacityTerminationPolicy.toValue(),
+      if (fleetId != null) 'fleetId': fleetId,
+      if (fleetState != null) 'fleetState': fleetState.toValue(),
+      if (fulfilledCapacity != null) 'fulfilledCapacity': fulfilledCapacity,
+      if (fulfilledOnDemandCapacity != null)
+        'fulfilledOnDemandCapacity': fulfilledOnDemandCapacity,
+      if (instances != null) 'fleetInstanceSet': instances,
+      if (launchTemplateConfigs != null)
+        'launchTemplateConfigs': launchTemplateConfigs,
+      if (onDemandOptions != null) 'onDemandOptions': onDemandOptions,
+      if (replaceUnhealthyInstances != null)
+        'replaceUnhealthyInstances': replaceUnhealthyInstances,
+      if (spotOptions != null) 'spotOptions': spotOptions,
+      if (tags != null) 'tagSet': tags,
+      if (targetCapacitySpecification != null)
+        'targetCapacitySpecification': targetCapacitySpecification,
+      if (terminateInstancesWithExpiration != null)
+        'terminateInstancesWithExpiration': terminateInstancesWithExpiration,
+      if (type != null) 'type': type.toValue(),
+      if (validFrom != null) 'validFrom': iso8601ToJson(validFrom),
+      if (validUntil != null) 'validUntil': iso8601ToJson(validUntil),
+    };
+  }
 }
 
 enum FleetEventType {
@@ -40592,6 +45850,16 @@ class FleetLaunchTemplateConfig {
     this.launchTemplateSpecification,
     this.overrides,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplateSpecification = this.launchTemplateSpecification;
+    final overrides = this.overrides;
+    return {
+      if (launchTemplateSpecification != null)
+        'launchTemplateSpecification': launchTemplateSpecification,
+      if (overrides != null) 'overrides': overrides,
+    };
+  }
 }
 
 /// Describes a launch template and overrides.
@@ -40611,6 +45879,16 @@ class FleetLaunchTemplateConfigRequest {
     this.launchTemplateSpecification,
     this.overrides,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplateSpecification = this.launchTemplateSpecification;
+    final overrides = this.overrides;
+    return {
+      if (launchTemplateSpecification != null)
+        'LaunchTemplateSpecification': launchTemplateSpecification,
+      if (overrides != null) 'Overrides': overrides,
+    };
+  }
 }
 
 /// Describes overrides for a launch template.
@@ -40680,6 +45958,28 @@ class FleetLaunchTemplateOverrides {
     this.subnetId,
     this.weightedCapacity,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final instanceRequirements = this.instanceRequirements;
+    final instanceType = this.instanceType;
+    final maxPrice = this.maxPrice;
+    final placement = this.placement;
+    final priority = this.priority;
+    final subnetId = this.subnetId;
+    final weightedCapacity = this.weightedCapacity;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (instanceRequirements != null)
+        'instanceRequirements': instanceRequirements,
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (maxPrice != null) 'maxPrice': maxPrice,
+      if (placement != null) 'placement': placement,
+      if (priority != null) 'priority': priority,
+      if (subnetId != null) 'subnetId': subnetId,
+      if (weightedCapacity != null) 'weightedCapacity': weightedCapacity,
+    };
+  }
 }
 
 /// Describes overrides for a launch template.
@@ -40752,6 +46052,28 @@ class FleetLaunchTemplateOverridesRequest {
     this.subnetId,
     this.weightedCapacity,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final instanceRequirements = this.instanceRequirements;
+    final instanceType = this.instanceType;
+    final maxPrice = this.maxPrice;
+    final placement = this.placement;
+    final priority = this.priority;
+    final subnetId = this.subnetId;
+    final weightedCapacity = this.weightedCapacity;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (instanceRequirements != null)
+        'InstanceRequirements': instanceRequirements,
+      if (instanceType != null) 'InstanceType': instanceType.toValue(),
+      if (maxPrice != null) 'MaxPrice': maxPrice,
+      if (placement != null) 'Placement': placement,
+      if (priority != null) 'Priority': priority,
+      if (subnetId != null) 'SubnetId': subnetId,
+      if (weightedCapacity != null) 'WeightedCapacity': weightedCapacity,
+    };
+  }
 }
 
 /// The Amazon EC2 launch template that can be used by a Spot Fleet to configure
@@ -40791,6 +46113,17 @@ class FleetLaunchTemplateSpecification {
     this.launchTemplateName,
     this.version,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplateId = this.launchTemplateId;
+    final launchTemplateName = this.launchTemplateName;
+    final version = this.version;
+    return {
+      if (launchTemplateId != null) 'launchTemplateId': launchTemplateId,
+      if (launchTemplateName != null) 'launchTemplateName': launchTemplateName,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 /// The Amazon EC2 launch template that can be used by an EC2 Fleet to configure
@@ -40829,6 +46162,17 @@ class FleetLaunchTemplateSpecificationRequest {
     this.launchTemplateName,
     this.version,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplateId = this.launchTemplateId;
+    final launchTemplateName = this.launchTemplateName;
+    final version = this.version;
+    return {
+      if (launchTemplateId != null) 'LaunchTemplateId': launchTemplateId,
+      if (launchTemplateName != null) 'LaunchTemplateName': launchTemplateName,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 enum FleetOnDemandAllocationStrategy {
@@ -40926,6 +46270,16 @@ class FleetSpotCapacityRebalance {
     this.replacementStrategy,
     this.terminationDelay,
   });
+
+  Map<String, dynamic> toJson() {
+    final replacementStrategy = this.replacementStrategy;
+    final terminationDelay = this.terminationDelay;
+    return {
+      if (replacementStrategy != null)
+        'replacementStrategy': replacementStrategy.toValue(),
+      if (terminationDelay != null) 'terminationDelay': terminationDelay,
+    };
+  }
 }
 
 /// The Spot Instance replacement strategy to use when Amazon EC2 emits a
@@ -40967,6 +46321,16 @@ class FleetSpotCapacityRebalanceRequest {
     this.replacementStrategy,
     this.terminationDelay,
   });
+
+  Map<String, dynamic> toJson() {
+    final replacementStrategy = this.replacementStrategy;
+    final terminationDelay = this.terminationDelay;
+    return {
+      if (replacementStrategy != null)
+        'ReplacementStrategy': replacementStrategy.toValue(),
+      if (terminationDelay != null) 'TerminationDelay': terminationDelay,
+    };
+  }
 }
 
 /// The strategies for managing your Spot Instances that are at an elevated risk
@@ -40979,6 +46343,13 @@ class FleetSpotMaintenanceStrategies {
   FleetSpotMaintenanceStrategies({
     this.capacityRebalance,
   });
+
+  Map<String, dynamic> toJson() {
+    final capacityRebalance = this.capacityRebalance;
+    return {
+      if (capacityRebalance != null) 'capacityRebalance': capacityRebalance,
+    };
+  }
 }
 
 /// The strategies for managing your Spot Instances that are at an elevated risk
@@ -40991,6 +46362,13 @@ class FleetSpotMaintenanceStrategiesRequest {
   FleetSpotMaintenanceStrategiesRequest({
     this.capacityRebalance,
   });
+
+  Map<String, dynamic> toJson() {
+    final capacityRebalance = this.capacityRebalance;
+    return {
+      if (capacityRebalance != null) 'CapacityRebalance': capacityRebalance,
+    };
+  }
 }
 
 enum FleetStateCode {
@@ -41164,6 +46542,45 @@ class FlowLog {
     this.tags,
     this.trafficType,
   });
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final deliverLogsErrorMessage = this.deliverLogsErrorMessage;
+    final deliverLogsPermissionArn = this.deliverLogsPermissionArn;
+    final deliverLogsStatus = this.deliverLogsStatus;
+    final destinationOptions = this.destinationOptions;
+    final flowLogId = this.flowLogId;
+    final flowLogStatus = this.flowLogStatus;
+    final logDestination = this.logDestination;
+    final logDestinationType = this.logDestinationType;
+    final logFormat = this.logFormat;
+    final logGroupName = this.logGroupName;
+    final maxAggregationInterval = this.maxAggregationInterval;
+    final resourceId = this.resourceId;
+    final tags = this.tags;
+    final trafficType = this.trafficType;
+    return {
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (deliverLogsErrorMessage != null)
+        'deliverLogsErrorMessage': deliverLogsErrorMessage,
+      if (deliverLogsPermissionArn != null)
+        'deliverLogsPermissionArn': deliverLogsPermissionArn,
+      if (deliverLogsStatus != null) 'deliverLogsStatus': deliverLogsStatus,
+      if (destinationOptions != null) 'destinationOptions': destinationOptions,
+      if (flowLogId != null) 'flowLogId': flowLogId,
+      if (flowLogStatus != null) 'flowLogStatus': flowLogStatus,
+      if (logDestination != null) 'logDestination': logDestination,
+      if (logDestinationType != null)
+        'logDestinationType': logDestinationType.toValue(),
+      if (logFormat != null) 'logFormat': logFormat,
+      if (logGroupName != null) 'logGroupName': logGroupName,
+      if (maxAggregationInterval != null)
+        'maxAggregationInterval': maxAggregationInterval,
+      if (resourceId != null) 'resourceId': resourceId,
+      if (tags != null) 'tagSet': tags,
+      if (trafficType != null) 'trafficType': trafficType.toValue(),
+    };
+  }
 }
 
 enum FlowLogsResourceType {
@@ -41229,6 +46646,19 @@ class FpgaDeviceInfo {
     this.memoryInfo,
     this.name,
   });
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final manufacturer = this.manufacturer;
+    final memoryInfo = this.memoryInfo;
+    final name = this.name;
+    return {
+      if (count != null) 'count': count,
+      if (manufacturer != null) 'manufacturer': manufacturer,
+      if (memoryInfo != null) 'memoryInfo': memoryInfo,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// Describes the memory for the FPGA accelerator for the instance type.
@@ -41239,6 +46669,13 @@ class FpgaDeviceMemoryInfo {
   FpgaDeviceMemoryInfo({
     this.sizeInMiB,
   });
+
+  Map<String, dynamic> toJson() {
+    final sizeInMiB = this.sizeInMiB;
+    return {
+      if (sizeInMiB != null) 'sizeInMiB': sizeInMiB,
+    };
+  }
 }
 
 /// Describes an Amazon FPGA image (AFI).
@@ -41307,6 +46744,42 @@ class FpgaImage {
     this.tags,
     this.updateTime,
   });
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final dataRetentionSupport = this.dataRetentionSupport;
+    final description = this.description;
+    final fpgaImageGlobalId = this.fpgaImageGlobalId;
+    final fpgaImageId = this.fpgaImageId;
+    final name = this.name;
+    final ownerAlias = this.ownerAlias;
+    final ownerId = this.ownerId;
+    final pciId = this.pciId;
+    final productCodes = this.productCodes;
+    final public = this.public;
+    final shellVersion = this.shellVersion;
+    final state = this.state;
+    final tags = this.tags;
+    final updateTime = this.updateTime;
+    return {
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (dataRetentionSupport != null)
+        'dataRetentionSupport': dataRetentionSupport,
+      if (description != null) 'description': description,
+      if (fpgaImageGlobalId != null) 'fpgaImageGlobalId': fpgaImageGlobalId,
+      if (fpgaImageId != null) 'fpgaImageId': fpgaImageId,
+      if (name != null) 'name': name,
+      if (ownerAlias != null) 'ownerAlias': ownerAlias,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (pciId != null) 'pciId': pciId,
+      if (productCodes != null) 'productCodes': productCodes,
+      if (public != null) 'public': public,
+      if (shellVersion != null) 'shellVersion': shellVersion,
+      if (state != null) 'state': state,
+      if (tags != null) 'tags': tags,
+      if (updateTime != null) 'updateTime': iso8601ToJson(updateTime),
+    };
+  }
 }
 
 /// Describes an Amazon FPGA image (AFI) attribute.
@@ -41333,6 +46806,21 @@ class FpgaImageAttribute {
     this.name,
     this.productCodes,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final fpgaImageId = this.fpgaImageId;
+    final loadPermissions = this.loadPermissions;
+    final name = this.name;
+    final productCodes = this.productCodes;
+    return {
+      if (description != null) 'description': description,
+      if (fpgaImageId != null) 'fpgaImageId': fpgaImageId,
+      if (loadPermissions != null) 'loadPermissions': loadPermissions,
+      if (name != null) 'name': name,
+      if (productCodes != null) 'productCodes': productCodes,
+    };
+  }
 }
 
 enum FpgaImageAttributeName {
@@ -41401,6 +46889,15 @@ class FpgaImageState {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum FpgaImageStateCode {
@@ -41453,6 +46950,16 @@ class FpgaInfo {
     this.fpgas,
     this.totalFpgaMemoryInMiB,
   });
+
+  Map<String, dynamic> toJson() {
+    final fpgas = this.fpgas;
+    final totalFpgaMemoryInMiB = this.totalFpgaMemoryInMiB;
+    return {
+      if (fpgas != null) 'fpgas': fpgas,
+      if (totalFpgaMemoryInMiB != null)
+        'totalFpgaMemoryInMiB': totalFpgaMemoryInMiB,
+    };
+  }
 }
 
 enum GatewayAssociationState {
@@ -41523,6 +47030,13 @@ class GetAssociatedEnclaveCertificateIamRolesResult {
   GetAssociatedEnclaveCertificateIamRolesResult({
     this.associatedRoles,
   });
+
+  Map<String, dynamic> toJson() {
+    final associatedRoles = this.associatedRoles;
+    return {
+      if (associatedRoles != null) 'associatedRoleSet': associatedRoles,
+    };
+  }
 }
 
 class GetAssociatedIpv6PoolCidrsResult {
@@ -41537,6 +47051,16 @@ class GetAssociatedIpv6PoolCidrsResult {
     this.ipv6CidrAssociations,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv6CidrAssociations = this.ipv6CidrAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (ipv6CidrAssociations != null)
+        'ipv6CidrAssociationSet': ipv6CidrAssociations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetCapacityReservationUsageResult {
@@ -41599,6 +47123,27 @@ class GetCapacityReservationUsageResult {
     this.state,
     this.totalInstanceCount,
   });
+
+  Map<String, dynamic> toJson() {
+    final availableInstanceCount = this.availableInstanceCount;
+    final capacityReservationId = this.capacityReservationId;
+    final instanceType = this.instanceType;
+    final instanceUsages = this.instanceUsages;
+    final nextToken = this.nextToken;
+    final state = this.state;
+    final totalInstanceCount = this.totalInstanceCount;
+    return {
+      if (availableInstanceCount != null)
+        'availableInstanceCount': availableInstanceCount,
+      if (capacityReservationId != null)
+        'capacityReservationId': capacityReservationId,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (instanceUsages != null) 'instanceUsageSet': instanceUsages,
+      if (nextToken != null) 'nextToken': nextToken,
+      if (state != null) 'state': state.toValue(),
+      if (totalInstanceCount != null) 'totalInstanceCount': totalInstanceCount,
+    };
+  }
 }
 
 class GetCoipPoolUsageResult {
@@ -41616,6 +47161,18 @@ class GetCoipPoolUsageResult {
     this.coipPoolId,
     this.localGatewayRouteTableId,
   });
+
+  Map<String, dynamic> toJson() {
+    final coipAddressUsages = this.coipAddressUsages;
+    final coipPoolId = this.coipPoolId;
+    final localGatewayRouteTableId = this.localGatewayRouteTableId;
+    return {
+      if (coipAddressUsages != null) 'coipAddressUsageSet': coipAddressUsages,
+      if (coipPoolId != null) 'coipPoolId': coipPoolId,
+      if (localGatewayRouteTableId != null)
+        'localGatewayRouteTableId': localGatewayRouteTableId,
+    };
+  }
 }
 
 class GetConsoleOutputResult {
@@ -41634,6 +47191,17 @@ class GetConsoleOutputResult {
     this.output,
     this.timestamp,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    final output = this.output;
+    final timestamp = this.timestamp;
+    return {
+      if (instanceId != null) 'instanceId': instanceId,
+      if (output != null) 'output': output,
+      if (timestamp != null) 'timestamp': iso8601ToJson(timestamp),
+    };
+  }
 }
 
 class GetConsoleScreenshotResult {
@@ -41647,6 +47215,15 @@ class GetConsoleScreenshotResult {
     this.imageData,
     this.instanceId,
   });
+
+  Map<String, dynamic> toJson() {
+    final imageData = this.imageData;
+    final instanceId = this.instanceId;
+    return {
+      if (imageData != null) 'imageData': imageData,
+      if (instanceId != null) 'instanceId': instanceId,
+    };
+  }
 }
 
 class GetDefaultCreditSpecificationResult {
@@ -41656,6 +47233,15 @@ class GetDefaultCreditSpecificationResult {
   GetDefaultCreditSpecificationResult({
     this.instanceFamilyCreditSpecification,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceFamilyCreditSpecification =
+        this.instanceFamilyCreditSpecification;
+    return {
+      if (instanceFamilyCreditSpecification != null)
+        'instanceFamilyCreditSpecification': instanceFamilyCreditSpecification,
+    };
+  }
 }
 
 class GetEbsDefaultKmsKeyIdResult {
@@ -41666,6 +47252,13 @@ class GetEbsDefaultKmsKeyIdResult {
   GetEbsDefaultKmsKeyIdResult({
     this.kmsKeyId,
   });
+
+  Map<String, dynamic> toJson() {
+    final kmsKeyId = this.kmsKeyId;
+    return {
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+    };
+  }
 }
 
 class GetEbsEncryptionByDefaultResult {
@@ -41675,6 +47268,14 @@ class GetEbsEncryptionByDefaultResult {
   GetEbsEncryptionByDefaultResult({
     this.ebsEncryptionByDefault,
   });
+
+  Map<String, dynamic> toJson() {
+    final ebsEncryptionByDefault = this.ebsEncryptionByDefault;
+    return {
+      if (ebsEncryptionByDefault != null)
+        'ebsEncryptionByDefault': ebsEncryptionByDefault,
+    };
+  }
 }
 
 class GetFlowLogsIntegrationTemplateResult {
@@ -41684,6 +47285,13 @@ class GetFlowLogsIntegrationTemplateResult {
   GetFlowLogsIntegrationTemplateResult({
     this.result,
   });
+
+  Map<String, dynamic> toJson() {
+    final result = this.result;
+    return {
+      if (result != null) 'result': result,
+    };
+  }
 }
 
 class GetGroupsForCapacityReservationResult {
@@ -41699,6 +47307,16 @@ class GetGroupsForCapacityReservationResult {
     this.capacityReservationGroups,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final capacityReservationGroups = this.capacityReservationGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (capacityReservationGroups != null)
+        'capacityReservationGroupSet': capacityReservationGroups,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetHostReservationPurchasePreviewResult {
@@ -41723,6 +47341,19 @@ class GetHostReservationPurchasePreviewResult {
     this.totalHourlyPrice,
     this.totalUpfrontPrice,
   });
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final purchase = this.purchase;
+    final totalHourlyPrice = this.totalHourlyPrice;
+    final totalUpfrontPrice = this.totalUpfrontPrice;
+    return {
+      if (currencyCode != null) 'currencyCode': currencyCode.toValue(),
+      if (purchase != null) 'purchase': purchase,
+      if (totalHourlyPrice != null) 'totalHourlyPrice': totalHourlyPrice,
+      if (totalUpfrontPrice != null) 'totalUpfrontPrice': totalUpfrontPrice,
+    };
+  }
 }
 
 class GetInstanceTypesFromInstanceRequirementsResult {
@@ -41736,6 +47367,15 @@ class GetInstanceTypesFromInstanceRequirementsResult {
     this.instanceTypes,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceTypes = this.instanceTypes;
+    final nextToken = this.nextToken;
+    return {
+      if (instanceTypes != null) 'instanceTypeSet': instanceTypes,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetInstanceUefiDataResult {
@@ -41749,6 +47389,15 @@ class GetInstanceUefiDataResult {
     this.instanceId,
     this.uefiData,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    final uefiData = this.uefiData;
+    return {
+      if (instanceId != null) 'instanceId': instanceId,
+      if (uefiData != null) 'uefiData': uefiData,
+    };
+  }
 }
 
 class GetIpamAddressHistoryResult {
@@ -41765,6 +47414,15 @@ class GetIpamAddressHistoryResult {
     this.historyRecords,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final historyRecords = this.historyRecords;
+    final nextToken = this.nextToken;
+    return {
+      if (historyRecords != null) 'historyRecordSet': historyRecords,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetIpamPoolAllocationsResult {
@@ -41779,6 +47437,16 @@ class GetIpamPoolAllocationsResult {
     this.ipamPoolAllocations,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamPoolAllocations = this.ipamPoolAllocations;
+    final nextToken = this.nextToken;
+    return {
+      if (ipamPoolAllocations != null)
+        'ipamPoolAllocationSet': ipamPoolAllocations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetIpamPoolCidrsResult {
@@ -41793,6 +47461,15 @@ class GetIpamPoolCidrsResult {
     this.ipamPoolCidrs,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamPoolCidrs = this.ipamPoolCidrs;
+    final nextToken = this.nextToken;
+    return {
+      if (ipamPoolCidrs != null) 'ipamPoolCidrSet': ipamPoolCidrs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetIpamResourceCidrsResult {
@@ -41807,6 +47484,15 @@ class GetIpamResourceCidrsResult {
     this.ipamResourceCidrs,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamResourceCidrs = this.ipamResourceCidrs;
+    final nextToken = this.nextToken;
+    return {
+      if (ipamResourceCidrs != null) 'ipamResourceCidrSet': ipamResourceCidrs,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetLaunchTemplateDataResult {
@@ -41816,6 +47502,13 @@ class GetLaunchTemplateDataResult {
   GetLaunchTemplateDataResult({
     this.launchTemplateData,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplateData = this.launchTemplateData;
+    return {
+      if (launchTemplateData != null) 'launchTemplateData': launchTemplateData,
+    };
+  }
 }
 
 class GetManagedPrefixListAssociationsResult {
@@ -41830,6 +47523,16 @@ class GetManagedPrefixListAssociationsResult {
     this.nextToken,
     this.prefixListAssociations,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final prefixListAssociations = this.prefixListAssociations;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (prefixListAssociations != null)
+        'prefixListAssociationSet': prefixListAssociations,
+    };
+  }
 }
 
 class GetManagedPrefixListEntriesResult {
@@ -41844,6 +47547,15 @@ class GetManagedPrefixListEntriesResult {
     this.entries,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final entries = this.entries;
+    final nextToken = this.nextToken;
+    return {
+      if (entries != null) 'entrySet': entries,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetNetworkInsightsAccessScopeAnalysisFindingsResult {
@@ -41866,6 +47578,22 @@ class GetNetworkInsightsAccessScopeAnalysisFindingsResult {
     this.networkInsightsAccessScopeAnalysisId,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final analysisFindings = this.analysisFindings;
+    final analysisStatus = this.analysisStatus;
+    final networkInsightsAccessScopeAnalysisId =
+        this.networkInsightsAccessScopeAnalysisId;
+    final nextToken = this.nextToken;
+    return {
+      if (analysisFindings != null) 'analysisFindingSet': analysisFindings,
+      if (analysisStatus != null) 'analysisStatus': analysisStatus.toValue(),
+      if (networkInsightsAccessScopeAnalysisId != null)
+        'networkInsightsAccessScopeAnalysisId':
+            networkInsightsAccessScopeAnalysisId,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetNetworkInsightsAccessScopeContentResult {
@@ -41875,6 +47603,15 @@ class GetNetworkInsightsAccessScopeContentResult {
   GetNetworkInsightsAccessScopeContentResult({
     this.networkInsightsAccessScopeContent,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInsightsAccessScopeContent =
+        this.networkInsightsAccessScopeContent;
+    return {
+      if (networkInsightsAccessScopeContent != null)
+        'networkInsightsAccessScopeContent': networkInsightsAccessScopeContent,
+    };
+  }
 }
 
 class GetPasswordDataResult {
@@ -41893,6 +47630,17 @@ class GetPasswordDataResult {
     this.passwordData,
     this.timestamp,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    final passwordData = this.passwordData;
+    final timestamp = this.timestamp;
+    return {
+      if (instanceId != null) 'instanceId': instanceId,
+      if (passwordData != null) 'passwordData': passwordData,
+      if (timestamp != null) 'timestamp': iso8601ToJson(timestamp),
+    };
+  }
 }
 
 /// Contains the output of GetReservedInstancesExchangeQuote.
@@ -41936,6 +47684,37 @@ class GetReservedInstancesExchangeQuoteResult {
     this.targetConfigurationValueSet,
     this.validationFailureReason,
   });
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final isValidExchange = this.isValidExchange;
+    final outputReservedInstancesWillExpireAt =
+        this.outputReservedInstancesWillExpireAt;
+    final paymentDue = this.paymentDue;
+    final reservedInstanceValueRollup = this.reservedInstanceValueRollup;
+    final reservedInstanceValueSet = this.reservedInstanceValueSet;
+    final targetConfigurationValueRollup = this.targetConfigurationValueRollup;
+    final targetConfigurationValueSet = this.targetConfigurationValueSet;
+    final validationFailureReason = this.validationFailureReason;
+    return {
+      if (currencyCode != null) 'currencyCode': currencyCode,
+      if (isValidExchange != null) 'isValidExchange': isValidExchange,
+      if (outputReservedInstancesWillExpireAt != null)
+        'outputReservedInstancesWillExpireAt':
+            iso8601ToJson(outputReservedInstancesWillExpireAt),
+      if (paymentDue != null) 'paymentDue': paymentDue,
+      if (reservedInstanceValueRollup != null)
+        'reservedInstanceValueRollup': reservedInstanceValueRollup,
+      if (reservedInstanceValueSet != null)
+        'reservedInstanceValueSet': reservedInstanceValueSet,
+      if (targetConfigurationValueRollup != null)
+        'targetConfigurationValueRollup': targetConfigurationValueRollup,
+      if (targetConfigurationValueSet != null)
+        'targetConfigurationValueSet': targetConfigurationValueSet,
+      if (validationFailureReason != null)
+        'validationFailureReason': validationFailureReason,
+    };
+  }
 }
 
 class GetSerialConsoleAccessStatusResult {
@@ -41947,6 +47726,14 @@ class GetSerialConsoleAccessStatusResult {
   GetSerialConsoleAccessStatusResult({
     this.serialConsoleAccessEnabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final serialConsoleAccessEnabled = this.serialConsoleAccessEnabled;
+    return {
+      if (serialConsoleAccessEnabled != null)
+        'serialConsoleAccessEnabled': serialConsoleAccessEnabled,
+    };
+  }
 }
 
 class GetSpotPlacementScoresResult {
@@ -41978,6 +47765,16 @@ class GetSpotPlacementScoresResult {
     this.nextToken,
     this.spotPlacementScores,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final spotPlacementScores = this.spotPlacementScores;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (spotPlacementScores != null)
+        'spotPlacementScoreSet': spotPlacementScores,
+    };
+  }
 }
 
 class GetSubnetCidrReservationsResult {
@@ -41996,6 +47793,19 @@ class GetSubnetCidrReservationsResult {
     this.subnetIpv4CidrReservations,
     this.subnetIpv6CidrReservations,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final subnetIpv4CidrReservations = this.subnetIpv4CidrReservations;
+    final subnetIpv6CidrReservations = this.subnetIpv6CidrReservations;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (subnetIpv4CidrReservations != null)
+        'subnetIpv4CidrReservationSet': subnetIpv4CidrReservations,
+      if (subnetIpv6CidrReservations != null)
+        'subnetIpv6CidrReservationSet': subnetIpv6CidrReservations,
+    };
+  }
 }
 
 class GetTransitGatewayAttachmentPropagationsResult {
@@ -42011,6 +47821,18 @@ class GetTransitGatewayAttachmentPropagationsResult {
     this.nextToken,
     this.transitGatewayAttachmentPropagations,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayAttachmentPropagations =
+        this.transitGatewayAttachmentPropagations;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (transitGatewayAttachmentPropagations != null)
+        'transitGatewayAttachmentPropagations':
+            transitGatewayAttachmentPropagations,
+    };
+  }
 }
 
 class GetTransitGatewayMulticastDomainAssociationsResult {
@@ -42026,6 +47848,16 @@ class GetTransitGatewayMulticastDomainAssociationsResult {
     this.multicastDomainAssociations,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final multicastDomainAssociations = this.multicastDomainAssociations;
+    final nextToken = this.nextToken;
+    return {
+      if (multicastDomainAssociations != null)
+        'multicastDomainAssociations': multicastDomainAssociations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetTransitGatewayPolicyTableAssociationsResult {
@@ -42039,6 +47871,15 @@ class GetTransitGatewayPolicyTableAssociationsResult {
     this.associations,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final associations = this.associations;
+    final nextToken = this.nextToken;
+    return {
+      if (associations != null) 'associations': associations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetTransitGatewayPolicyTableEntriesResult {
@@ -42048,6 +47889,15 @@ class GetTransitGatewayPolicyTableEntriesResult {
   GetTransitGatewayPolicyTableEntriesResult({
     this.transitGatewayPolicyTableEntries,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayPolicyTableEntries =
+        this.transitGatewayPolicyTableEntries;
+    return {
+      if (transitGatewayPolicyTableEntries != null)
+        'transitGatewayPolicyTableEntries': transitGatewayPolicyTableEntries,
+    };
+  }
 }
 
 class GetTransitGatewayPrefixListReferencesResult {
@@ -42063,6 +47913,18 @@ class GetTransitGatewayPrefixListReferencesResult {
     this.nextToken,
     this.transitGatewayPrefixListReferences,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayPrefixListReferences =
+        this.transitGatewayPrefixListReferences;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (transitGatewayPrefixListReferences != null)
+        'transitGatewayPrefixListReferenceSet':
+            transitGatewayPrefixListReferences,
+    };
+  }
 }
 
 class GetTransitGatewayRouteTableAssociationsResult {
@@ -42077,6 +47939,15 @@ class GetTransitGatewayRouteTableAssociationsResult {
     this.associations,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final associations = this.associations;
+    final nextToken = this.nextToken;
+    return {
+      if (associations != null) 'associations': associations,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetTransitGatewayRouteTablePropagationsResult {
@@ -42092,6 +47963,18 @@ class GetTransitGatewayRouteTablePropagationsResult {
     this.nextToken,
     this.transitGatewayRouteTablePropagations,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final transitGatewayRouteTablePropagations =
+        this.transitGatewayRouteTablePropagations;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (transitGatewayRouteTablePropagations != null)
+        'transitGatewayRouteTablePropagations':
+            transitGatewayRouteTablePropagations,
+    };
+  }
 }
 
 class GetVpnConnectionDeviceSampleConfigurationResult {
@@ -42101,6 +47984,16 @@ class GetVpnConnectionDeviceSampleConfigurationResult {
   GetVpnConnectionDeviceSampleConfigurationResult({
     this.vpnConnectionDeviceSampleConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpnConnectionDeviceSampleConfiguration =
+        this.vpnConnectionDeviceSampleConfiguration;
+    return {
+      if (vpnConnectionDeviceSampleConfiguration != null)
+        'vpnConnectionDeviceSampleConfiguration':
+            vpnConnectionDeviceSampleConfiguration,
+    };
+  }
 }
 
 class GetVpnConnectionDeviceTypesResult {
@@ -42119,6 +48012,16 @@ class GetVpnConnectionDeviceTypesResult {
     this.nextToken,
     this.vpnConnectionDeviceTypes,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final vpnConnectionDeviceTypes = this.vpnConnectionDeviceTypes;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (vpnConnectionDeviceTypes != null)
+        'vpnConnectionDeviceTypeSet': vpnConnectionDeviceTypes,
+    };
+  }
 }
 
 /// Describes the GPU accelerators for the instance type.
@@ -42141,6 +48044,19 @@ class GpuDeviceInfo {
     this.memoryInfo,
     this.name,
   });
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final manufacturer = this.manufacturer;
+    final memoryInfo = this.memoryInfo;
+    final name = this.name;
+    return {
+      if (count != null) 'count': count,
+      if (manufacturer != null) 'manufacturer': manufacturer,
+      if (memoryInfo != null) 'memoryInfo': memoryInfo,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// Describes the memory available to the GPU accelerator.
@@ -42151,6 +48067,13 @@ class GpuDeviceMemoryInfo {
   GpuDeviceMemoryInfo({
     this.sizeInMiB,
   });
+
+  Map<String, dynamic> toJson() {
+    final sizeInMiB = this.sizeInMiB;
+    return {
+      if (sizeInMiB != null) 'sizeInMiB': sizeInMiB,
+    };
+  }
 }
 
 /// Describes the GPU accelerators for the instance type.
@@ -42166,6 +48089,16 @@ class GpuInfo {
     this.gpus,
     this.totalGpuMemoryInMiB,
   });
+
+  Map<String, dynamic> toJson() {
+    final gpus = this.gpus;
+    final totalGpuMemoryInMiB = this.totalGpuMemoryInMiB;
+    return {
+      if (gpus != null) 'gpus': gpus,
+      if (totalGpuMemoryInMiB != null)
+        'totalGpuMemoryInMiB': totalGpuMemoryInMiB,
+    };
+  }
 }
 
 /// Describes a security group.
@@ -42180,6 +48113,15 @@ class GroupIdentifier {
     this.groupId,
     this.groupName,
   });
+
+  Map<String, dynamic> toJson() {
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    return {
+      if (groupId != null) 'groupId': groupId,
+      if (groupName != null) 'groupName': groupName,
+    };
+  }
 }
 
 /// Indicates whether your instance is configured for hibernation. This
@@ -42196,6 +48138,13 @@ class HibernationOptions {
   HibernationOptions({
     this.configured,
   });
+
+  Map<String, dynamic> toJson() {
+    final configured = this.configured;
+    return {
+      if (configured != null) 'configured': configured,
+    };
+  }
 }
 
 /// Indicates whether your instance is configured for hibernation. This
@@ -42214,6 +48163,13 @@ class HibernationOptionsRequest {
   HibernationOptionsRequest({
     this.configured,
   });
+
+  Map<String, dynamic> toJson() {
+    final configured = this.configured;
+    return {
+      if (configured != null) 'Configured': configured,
+    };
+  }
 }
 
 /// Describes an event in the history of the Spot Fleet request.
@@ -42249,6 +48205,17 @@ class HistoryRecord {
     this.eventType,
     this.timestamp,
   });
+
+  Map<String, dynamic> toJson() {
+    final eventInformation = this.eventInformation;
+    final eventType = this.eventType;
+    final timestamp = this.timestamp;
+    return {
+      if (eventInformation != null) 'eventInformation': eventInformation,
+      if (eventType != null) 'eventType': eventType.toValue(),
+      if (timestamp != null) 'timestamp': iso8601ToJson(timestamp),
+    };
+  }
 }
 
 /// Describes an event in the history of an EC2 Fleet.
@@ -42268,6 +48235,17 @@ class HistoryRecordEntry {
     this.eventType,
     this.timestamp,
   });
+
+  Map<String, dynamic> toJson() {
+    final eventInformation = this.eventInformation;
+    final eventType = this.eventType;
+    final timestamp = this.timestamp;
+    return {
+      if (eventInformation != null) 'eventInformation': eventInformation,
+      if (eventType != null) 'eventType': eventType.toValue(),
+      if (timestamp != null) 'timestamp': iso8601ToJson(timestamp),
+    };
+  }
 }
 
 /// Describes the properties of the Dedicated Host.
@@ -42357,6 +48335,52 @@ class Host {
     this.state,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final allocationTime = this.allocationTime;
+    final allowsMultipleInstanceTypes = this.allowsMultipleInstanceTypes;
+    final autoPlacement = this.autoPlacement;
+    final availabilityZone = this.availabilityZone;
+    final availabilityZoneId = this.availabilityZoneId;
+    final availableCapacity = this.availableCapacity;
+    final clientToken = this.clientToken;
+    final hostId = this.hostId;
+    final hostProperties = this.hostProperties;
+    final hostRecovery = this.hostRecovery;
+    final hostReservationId = this.hostReservationId;
+    final instances = this.instances;
+    final memberOfServiceLinkedResourceGroup =
+        this.memberOfServiceLinkedResourceGroup;
+    final outpostArn = this.outpostArn;
+    final ownerId = this.ownerId;
+    final releaseTime = this.releaseTime;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (allocationTime != null)
+        'allocationTime': iso8601ToJson(allocationTime),
+      if (allowsMultipleInstanceTypes != null)
+        'allowsMultipleInstanceTypes': allowsMultipleInstanceTypes.toValue(),
+      if (autoPlacement != null) 'autoPlacement': autoPlacement.toValue(),
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (availabilityZoneId != null) 'availabilityZoneId': availabilityZoneId,
+      if (availableCapacity != null) 'availableCapacity': availableCapacity,
+      if (clientToken != null) 'clientToken': clientToken,
+      if (hostId != null) 'hostId': hostId,
+      if (hostProperties != null) 'hostProperties': hostProperties,
+      if (hostRecovery != null) 'hostRecovery': hostRecovery.toValue(),
+      if (hostReservationId != null) 'hostReservationId': hostReservationId,
+      if (instances != null) 'instances': instances,
+      if (memberOfServiceLinkedResourceGroup != null)
+        'memberOfServiceLinkedResourceGroup':
+            memberOfServiceLinkedResourceGroup,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (releaseTime != null) 'releaseTime': iso8601ToJson(releaseTime),
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes an instance running on a Dedicated Host.
@@ -42376,6 +48400,17 @@ class HostInstance {
     this.instanceType,
     this.ownerId,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    final instanceType = this.instanceType;
+    final ownerId = this.ownerId;
+    return {
+      if (instanceId != null) 'instanceId': instanceId,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (ownerId != null) 'ownerId': ownerId,
+    };
+  }
 }
 
 /// Details about the Dedicated Host Reservation offering.
@@ -42410,6 +48445,25 @@ class HostOffering {
     this.paymentOption,
     this.upfrontPrice,
   });
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final hourlyPrice = this.hourlyPrice;
+    final instanceFamily = this.instanceFamily;
+    final offeringId = this.offeringId;
+    final paymentOption = this.paymentOption;
+    final upfrontPrice = this.upfrontPrice;
+    return {
+      if (currencyCode != null) 'currencyCode': currencyCode.toValue(),
+      if (duration != null) 'duration': duration,
+      if (hourlyPrice != null) 'hourlyPrice': hourlyPrice,
+      if (instanceFamily != null) 'instanceFamily': instanceFamily,
+      if (offeringId != null) 'offeringId': offeringId,
+      if (paymentOption != null) 'paymentOption': paymentOption.toValue(),
+      if (upfrontPrice != null) 'upfrontPrice': upfrontPrice,
+    };
+  }
 }
 
 /// Describes the properties of a Dedicated Host.
@@ -42439,6 +48493,21 @@ class HostProperties {
     this.sockets,
     this.totalVCpus,
   });
+
+  Map<String, dynamic> toJson() {
+    final cores = this.cores;
+    final instanceFamily = this.instanceFamily;
+    final instanceType = this.instanceType;
+    final sockets = this.sockets;
+    final totalVCpus = this.totalVCpus;
+    return {
+      if (cores != null) 'cores': cores,
+      if (instanceFamily != null) 'instanceFamily': instanceFamily,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (sockets != null) 'sockets': sockets,
+      if (totalVCpus != null) 'totalVCpus': totalVCpus,
+    };
+  }
 }
 
 enum HostRecovery {
@@ -42535,6 +48604,39 @@ class HostReservation {
     this.tags,
     this.upfrontPrice,
   });
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final end = this.end;
+    final hostIdSet = this.hostIdSet;
+    final hostReservationId = this.hostReservationId;
+    final hourlyPrice = this.hourlyPrice;
+    final instanceFamily = this.instanceFamily;
+    final offeringId = this.offeringId;
+    final paymentOption = this.paymentOption;
+    final start = this.start;
+    final state = this.state;
+    final tags = this.tags;
+    final upfrontPrice = this.upfrontPrice;
+    return {
+      if (count != null) 'count': count,
+      if (currencyCode != null) 'currencyCode': currencyCode.toValue(),
+      if (duration != null) 'duration': duration,
+      if (end != null) 'end': iso8601ToJson(end),
+      if (hostIdSet != null) 'hostIdSet': hostIdSet,
+      if (hostReservationId != null) 'hostReservationId': hostReservationId,
+      if (hourlyPrice != null) 'hourlyPrice': hourlyPrice,
+      if (instanceFamily != null) 'instanceFamily': instanceFamily,
+      if (offeringId != null) 'offeringId': offeringId,
+      if (paymentOption != null) 'paymentOption': paymentOption.toValue(),
+      if (start != null) 'start': iso8601ToJson(start),
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (upfrontPrice != null) 'upfrontPrice': upfrontPrice,
+    };
+  }
 }
 
 enum HostTenancy {
@@ -42657,6 +48759,13 @@ class IKEVersionsListValue {
   IKEVersionsListValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// The IKE version that is permitted for the VPN tunnel.
@@ -42667,6 +48776,13 @@ class IKEVersionsRequestListValue {
   IKEVersionsRequestListValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// Describes an IAM instance profile.
@@ -42681,6 +48797,15 @@ class IamInstanceProfile {
     this.arn,
     this.id,
   });
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'arn': arn,
+      if (id != null) 'id': id,
+    };
+  }
 }
 
 /// Describes an association between an IAM instance profile and an instance.
@@ -42707,6 +48832,21 @@ class IamInstanceProfileAssociation {
     this.state,
     this.timestamp,
   });
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    final iamInstanceProfile = this.iamInstanceProfile;
+    final instanceId = this.instanceId;
+    final state = this.state;
+    final timestamp = this.timestamp;
+    return {
+      if (associationId != null) 'associationId': associationId,
+      if (iamInstanceProfile != null) 'iamInstanceProfile': iamInstanceProfile,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (state != null) 'state': state.toValue(),
+      if (timestamp != null) 'timestamp': iso8601ToJson(timestamp),
+    };
+  }
 }
 
 enum IamInstanceProfileAssociationState {
@@ -42761,6 +48901,15 @@ class IamInstanceProfileSpecification {
     this.arn,
     this.name,
   });
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// Describes the ICMP type and code.
@@ -42775,6 +48924,15 @@ class IcmpTypeCode {
     this.code,
     this.type,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final type = this.type;
+    return {
+      if (code != null) 'code': code,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 /// Describes the ID format for a resource.
@@ -42796,6 +48954,17 @@ class IdFormat {
     this.resource,
     this.useLongIds,
   });
+
+  Map<String, dynamic> toJson() {
+    final deadline = this.deadline;
+    final resource = this.resource;
+    final useLongIds = this.useLongIds;
+    return {
+      if (deadline != null) 'deadline': iso8601ToJson(deadline),
+      if (resource != null) 'resource': resource,
+      if (useLongIds != null) 'useLongIds': useLongIds,
+    };
+  }
 }
 
 enum Igmpv2SupportValue {
@@ -42978,6 +49147,71 @@ class Image {
     this.usageOperation,
     this.virtualizationType,
   });
+
+  Map<String, dynamic> toJson() {
+    final architecture = this.architecture;
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final bootMode = this.bootMode;
+    final creationDate = this.creationDate;
+    final deprecationTime = this.deprecationTime;
+    final description = this.description;
+    final enaSupport = this.enaSupport;
+    final hypervisor = this.hypervisor;
+    final imageId = this.imageId;
+    final imageLocation = this.imageLocation;
+    final imageOwnerAlias = this.imageOwnerAlias;
+    final imageType = this.imageType;
+    final kernelId = this.kernelId;
+    final name = this.name;
+    final ownerId = this.ownerId;
+    final platform = this.platform;
+    final platformDetails = this.platformDetails;
+    final productCodes = this.productCodes;
+    final public = this.public;
+    final ramdiskId = this.ramdiskId;
+    final rootDeviceName = this.rootDeviceName;
+    final rootDeviceType = this.rootDeviceType;
+    final sriovNetSupport = this.sriovNetSupport;
+    final state = this.state;
+    final stateReason = this.stateReason;
+    final tags = this.tags;
+    final tpmSupport = this.tpmSupport;
+    final usageOperation = this.usageOperation;
+    final virtualizationType = this.virtualizationType;
+    return {
+      if (architecture != null) 'architecture': architecture.toValue(),
+      if (blockDeviceMappings != null)
+        'blockDeviceMapping': blockDeviceMappings,
+      if (bootMode != null) 'bootMode': bootMode.toValue(),
+      if (creationDate != null) 'creationDate': creationDate,
+      if (deprecationTime != null) 'deprecationTime': deprecationTime,
+      if (description != null) 'description': description,
+      if (enaSupport != null) 'enaSupport': enaSupport,
+      if (hypervisor != null) 'hypervisor': hypervisor.toValue(),
+      if (imageId != null) 'imageId': imageId,
+      if (imageLocation != null) 'imageLocation': imageLocation,
+      if (imageOwnerAlias != null) 'imageOwnerAlias': imageOwnerAlias,
+      if (imageType != null) 'imageType': imageType.toValue(),
+      if (kernelId != null) 'kernelId': kernelId,
+      if (name != null) 'name': name,
+      if (ownerId != null) 'imageOwnerId': ownerId,
+      if (platform != null) 'platform': platform.toValue(),
+      if (platformDetails != null) 'platformDetails': platformDetails,
+      if (productCodes != null) 'productCodes': productCodes,
+      if (public != null) 'isPublic': public,
+      if (ramdiskId != null) 'ramdiskId': ramdiskId,
+      if (rootDeviceName != null) 'rootDeviceName': rootDeviceName,
+      if (rootDeviceType != null) 'rootDeviceType': rootDeviceType.toValue(),
+      if (sriovNetSupport != null) 'sriovNetSupport': sriovNetSupport,
+      if (state != null) 'imageState': state.toValue(),
+      if (stateReason != null) 'stateReason': stateReason,
+      if (tags != null) 'tagSet': tags,
+      if (tpmSupport != null) 'tpmSupport': tpmSupport.toValue(),
+      if (usageOperation != null) 'usageOperation': usageOperation,
+      if (virtualizationType != null)
+        'virtualizationType': virtualizationType.toValue(),
+    };
+  }
 }
 
 /// Describes an image attribute.
@@ -43047,6 +49281,36 @@ class ImageAttribute {
     this.tpmSupport,
     this.uefiData,
   });
+
+  Map<String, dynamic> toJson() {
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final bootMode = this.bootMode;
+    final description = this.description;
+    final imageId = this.imageId;
+    final kernelId = this.kernelId;
+    final lastLaunchedTime = this.lastLaunchedTime;
+    final launchPermissions = this.launchPermissions;
+    final productCodes = this.productCodes;
+    final ramdiskId = this.ramdiskId;
+    final sriovNetSupport = this.sriovNetSupport;
+    final tpmSupport = this.tpmSupport;
+    final uefiData = this.uefiData;
+    return {
+      if (blockDeviceMappings != null)
+        'blockDeviceMapping': blockDeviceMappings,
+      if (bootMode != null) 'bootMode': bootMode,
+      if (description != null) 'description': description,
+      if (imageId != null) 'imageId': imageId,
+      if (kernelId != null) 'kernel': kernelId,
+      if (lastLaunchedTime != null) 'lastLaunchedTime': lastLaunchedTime,
+      if (launchPermissions != null) 'launchPermission': launchPermissions,
+      if (productCodes != null) 'productCodes': productCodes,
+      if (ramdiskId != null) 'ramdisk': ramdiskId,
+      if (sriovNetSupport != null) 'sriovNetSupport': sriovNetSupport,
+      if (tpmSupport != null) 'tpmSupport': tpmSupport,
+      if (uefiData != null) 'uefiData': uefiData,
+    };
+  }
 }
 
 enum ImageAttributeName {
@@ -43154,6 +49418,23 @@ class ImageDiskContainer {
     this.url,
     this.userBucket,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final deviceName = this.deviceName;
+    final format = this.format;
+    final snapshotId = this.snapshotId;
+    final url = this.url;
+    final userBucket = this.userBucket;
+    return {
+      if (description != null) 'Description': description,
+      if (deviceName != null) 'DeviceName': deviceName,
+      if (format != null) 'Format': format,
+      if (snapshotId != null) 'SnapshotId': snapshotId,
+      if (url != null) 'Url': url,
+      if (userBucket != null) 'UserBucket': userBucket,
+    };
+  }
 }
 
 /// Information about an AMI that is currently in the Recycle Bin.
@@ -43181,6 +49462,23 @@ class ImageRecycleBinInfo {
     this.recycleBinEnterTime,
     this.recycleBinExitTime,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final imageId = this.imageId;
+    final name = this.name;
+    final recycleBinEnterTime = this.recycleBinEnterTime;
+    final recycleBinExitTime = this.recycleBinExitTime;
+    return {
+      if (description != null) 'description': description,
+      if (imageId != null) 'imageId': imageId,
+      if (name != null) 'name': name,
+      if (recycleBinEnterTime != null)
+        'recycleBinEnterTime': iso8601ToJson(recycleBinEnterTime),
+      if (recycleBinExitTime != null)
+        'recycleBinExitTime': iso8601ToJson(recycleBinExitTime),
+    };
+  }
 }
 
 enum ImageState {
@@ -43277,6 +49575,13 @@ class ImportClientVpnClientCertificateRevocationListResult {
   ImportClientVpnClientCertificateRevocationListResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 /// The request information of license configurations.
@@ -43287,6 +49592,14 @@ class ImportImageLicenseConfigurationRequest {
   ImportImageLicenseConfigurationRequest({
     this.licenseConfigurationArn,
   });
+
+  Map<String, dynamic> toJson() {
+    final licenseConfigurationArn = this.licenseConfigurationArn;
+    return {
+      if (licenseConfigurationArn != null)
+        'LicenseConfigurationArn': licenseConfigurationArn,
+    };
+  }
 }
 
 /// The response information for license configurations.
@@ -43297,6 +49610,14 @@ class ImportImageLicenseConfigurationResponse {
   ImportImageLicenseConfigurationResponse({
     this.licenseConfigurationArn,
   });
+
+  Map<String, dynamic> toJson() {
+    final licenseConfigurationArn = this.licenseConfigurationArn;
+    return {
+      if (licenseConfigurationArn != null)
+        'licenseConfigurationArn': licenseConfigurationArn,
+    };
+  }
 }
 
 class ImportImageResult {
@@ -43367,6 +49688,44 @@ class ImportImageResult {
     this.tags,
     this.usageOperation,
   });
+
+  Map<String, dynamic> toJson() {
+    final architecture = this.architecture;
+    final description = this.description;
+    final encrypted = this.encrypted;
+    final hypervisor = this.hypervisor;
+    final imageId = this.imageId;
+    final importTaskId = this.importTaskId;
+    final kmsKeyId = this.kmsKeyId;
+    final licenseSpecifications = this.licenseSpecifications;
+    final licenseType = this.licenseType;
+    final platform = this.platform;
+    final progress = this.progress;
+    final snapshotDetails = this.snapshotDetails;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final tags = this.tags;
+    final usageOperation = this.usageOperation;
+    return {
+      if (architecture != null) 'architecture': architecture,
+      if (description != null) 'description': description,
+      if (encrypted != null) 'encrypted': encrypted,
+      if (hypervisor != null) 'hypervisor': hypervisor,
+      if (imageId != null) 'imageId': imageId,
+      if (importTaskId != null) 'importTaskId': importTaskId,
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (licenseSpecifications != null)
+        'licenseSpecifications': licenseSpecifications,
+      if (licenseType != null) 'licenseType': licenseType,
+      if (platform != null) 'platform': platform,
+      if (progress != null) 'progress': progress,
+      if (snapshotDetails != null) 'snapshotDetailSet': snapshotDetails,
+      if (status != null) 'status': status,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (tags != null) 'tagSet': tags,
+      if (usageOperation != null) 'usageOperation': usageOperation,
+    };
+  }
 }
 
 /// Describes an import image task.
@@ -43446,6 +49805,46 @@ class ImportImageTask {
     this.tags,
     this.usageOperation,
   });
+
+  Map<String, dynamic> toJson() {
+    final architecture = this.architecture;
+    final bootMode = this.bootMode;
+    final description = this.description;
+    final encrypted = this.encrypted;
+    final hypervisor = this.hypervisor;
+    final imageId = this.imageId;
+    final importTaskId = this.importTaskId;
+    final kmsKeyId = this.kmsKeyId;
+    final licenseSpecifications = this.licenseSpecifications;
+    final licenseType = this.licenseType;
+    final platform = this.platform;
+    final progress = this.progress;
+    final snapshotDetails = this.snapshotDetails;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final tags = this.tags;
+    final usageOperation = this.usageOperation;
+    return {
+      if (architecture != null) 'architecture': architecture,
+      if (bootMode != null) 'bootMode': bootMode.toValue(),
+      if (description != null) 'description': description,
+      if (encrypted != null) 'encrypted': encrypted,
+      if (hypervisor != null) 'hypervisor': hypervisor,
+      if (imageId != null) 'imageId': imageId,
+      if (importTaskId != null) 'importTaskId': importTaskId,
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (licenseSpecifications != null)
+        'licenseSpecifications': licenseSpecifications,
+      if (licenseType != null) 'licenseType': licenseType,
+      if (platform != null) 'platform': platform,
+      if (progress != null) 'progress': progress,
+      if (snapshotDetails != null) 'snapshotDetailSet': snapshotDetails,
+      if (status != null) 'status': status,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (tags != null) 'tagSet': tags,
+      if (usageOperation != null) 'usageOperation': usageOperation,
+    };
+  }
 }
 
 /// Describes the launch specification for VM import.
@@ -43500,6 +49899,36 @@ class ImportInstanceLaunchSpecification {
     this.subnetId,
     this.userData,
   });
+
+  Map<String, dynamic> toJson() {
+    final additionalInfo = this.additionalInfo;
+    final architecture = this.architecture;
+    final groupIds = this.groupIds;
+    final groupNames = this.groupNames;
+    final instanceInitiatedShutdownBehavior =
+        this.instanceInitiatedShutdownBehavior;
+    final instanceType = this.instanceType;
+    final monitoring = this.monitoring;
+    final placement = this.placement;
+    final privateIpAddress = this.privateIpAddress;
+    final subnetId = this.subnetId;
+    final userData = this.userData;
+    return {
+      if (additionalInfo != null) 'additionalInfo': additionalInfo,
+      if (architecture != null) 'architecture': architecture.toValue(),
+      if (groupIds != null) 'GroupId': groupIds,
+      if (groupNames != null) 'GroupName': groupNames,
+      if (instanceInitiatedShutdownBehavior != null)
+        'instanceInitiatedShutdownBehavior':
+            instanceInitiatedShutdownBehavior.toValue(),
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (monitoring != null) 'monitoring': monitoring,
+      if (placement != null) 'placement': placement,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+      if (subnetId != null) 'subnetId': subnetId,
+      if (userData != null) 'userData': userData,
+    };
+  }
 }
 
 class ImportInstanceResult {
@@ -43509,6 +49938,13 @@ class ImportInstanceResult {
   ImportInstanceResult({
     this.conversionTask,
   });
+
+  Map<String, dynamic> toJson() {
+    final conversionTask = this.conversionTask;
+    return {
+      if (conversionTask != null) 'conversionTask': conversionTask,
+    };
+  }
 }
 
 /// Describes an import instance task.
@@ -43531,6 +49967,19 @@ class ImportInstanceTaskDetails {
     this.platform,
     this.volumes,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final instanceId = this.instanceId;
+    final platform = this.platform;
+    final volumes = this.volumes;
+    return {
+      if (description != null) 'description': description,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (platform != null) 'platform': platform.toValue(),
+      if (volumes != null) 'volumes': volumes,
+    };
+  }
 }
 
 /// Describes an import volume task.
@@ -43565,6 +50014,25 @@ class ImportInstanceVolumeDetailItem {
     this.statusMessage,
     this.volume,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final bytesConverted = this.bytesConverted;
+    final description = this.description;
+    final image = this.image;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final volume = this.volume;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (bytesConverted != null) 'bytesConverted': bytesConverted,
+      if (description != null) 'description': description,
+      if (image != null) 'image': image,
+      if (status != null) 'status': status,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (volume != null) 'volume': volume,
+    };
+  }
 }
 
 class ImportKeyPairResult {
@@ -43596,6 +50064,19 @@ class ImportKeyPairResult {
     this.keyPairId,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final keyFingerprint = this.keyFingerprint;
+    final keyName = this.keyName;
+    final keyPairId = this.keyPairId;
+    final tags = this.tags;
+    return {
+      if (keyFingerprint != null) 'keyFingerprint': keyFingerprint,
+      if (keyName != null) 'keyName': keyName,
+      if (keyPairId != null) 'keyPairId': keyPairId,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 class ImportSnapshotResult {
@@ -43617,6 +50098,19 @@ class ImportSnapshotResult {
     this.snapshotTaskDetail,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final importTaskId = this.importTaskId;
+    final snapshotTaskDetail = this.snapshotTaskDetail;
+    final tags = this.tags;
+    return {
+      if (description != null) 'description': description,
+      if (importTaskId != null) 'importTaskId': importTaskId,
+      if (snapshotTaskDetail != null) 'snapshotTaskDetail': snapshotTaskDetail,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes an import snapshot task.
@@ -43639,6 +50133,19 @@ class ImportSnapshotTask {
     this.snapshotTaskDetail,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final importTaskId = this.importTaskId;
+    final snapshotTaskDetail = this.snapshotTaskDetail;
+    final tags = this.tags;
+    return {
+      if (description != null) 'description': description,
+      if (importTaskId != null) 'importTaskId': importTaskId,
+      if (snapshotTaskDetail != null) 'snapshotTaskDetail': snapshotTaskDetail,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 class ImportVolumeResult {
@@ -43648,6 +50155,13 @@ class ImportVolumeResult {
   ImportVolumeResult({
     this.conversionTask,
   });
+
+  Map<String, dynamic> toJson() {
+    final conversionTask = this.conversionTask;
+    return {
+      if (conversionTask != null) 'conversionTask': conversionTask,
+    };
+  }
 }
 
 /// Describes an import volume task.
@@ -43674,6 +50188,21 @@ class ImportVolumeTaskDetails {
     this.image,
     this.volume,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final bytesConverted = this.bytesConverted;
+    final description = this.description;
+    final image = this.image;
+    final volume = this.volume;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (bytesConverted != null) 'bytesConverted': bytesConverted,
+      if (description != null) 'description': description,
+      if (image != null) 'image': image,
+      if (volume != null) 'volume': volume,
+    };
+  }
 }
 
 /// Describes the Inference accelerators for the instance type.
@@ -43684,6 +50213,13 @@ class InferenceAcceleratorInfo {
   InferenceAcceleratorInfo({
     this.accelerators,
   });
+
+  Map<String, dynamic> toJson() {
+    final accelerators = this.accelerators;
+    return {
+      if (accelerators != null) 'accelerators': accelerators,
+    };
+  }
 }
 
 /// Describes the Inference accelerators for the instance type.
@@ -43702,6 +50238,17 @@ class InferenceDeviceInfo {
     this.manufacturer,
     this.name,
   });
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final manufacturer = this.manufacturer;
+    final name = this.name;
+    return {
+      if (count != null) 'count': count,
+      if (manufacturer != null) 'manufacturer': manufacturer,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// Describes an instance.
@@ -43971,6 +50518,136 @@ class Instance {
     this.virtualizationType,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final amiLaunchIndex = this.amiLaunchIndex;
+    final architecture = this.architecture;
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final bootMode = this.bootMode;
+    final capacityReservationId = this.capacityReservationId;
+    final capacityReservationSpecification =
+        this.capacityReservationSpecification;
+    final clientToken = this.clientToken;
+    final cpuOptions = this.cpuOptions;
+    final ebsOptimized = this.ebsOptimized;
+    final elasticGpuAssociations = this.elasticGpuAssociations;
+    final elasticInferenceAcceleratorAssociations =
+        this.elasticInferenceAcceleratorAssociations;
+    final enaSupport = this.enaSupport;
+    final enclaveOptions = this.enclaveOptions;
+    final hibernationOptions = this.hibernationOptions;
+    final hypervisor = this.hypervisor;
+    final iamInstanceProfile = this.iamInstanceProfile;
+    final imageId = this.imageId;
+    final instanceId = this.instanceId;
+    final instanceLifecycle = this.instanceLifecycle;
+    final instanceType = this.instanceType;
+    final ipv6Address = this.ipv6Address;
+    final kernelId = this.kernelId;
+    final keyName = this.keyName;
+    final launchTime = this.launchTime;
+    final licenses = this.licenses;
+    final maintenanceOptions = this.maintenanceOptions;
+    final metadataOptions = this.metadataOptions;
+    final monitoring = this.monitoring;
+    final networkInterfaces = this.networkInterfaces;
+    final outpostArn = this.outpostArn;
+    final placement = this.placement;
+    final platform = this.platform;
+    final platformDetails = this.platformDetails;
+    final privateDnsName = this.privateDnsName;
+    final privateDnsNameOptions = this.privateDnsNameOptions;
+    final privateIpAddress = this.privateIpAddress;
+    final productCodes = this.productCodes;
+    final publicDnsName = this.publicDnsName;
+    final publicIpAddress = this.publicIpAddress;
+    final ramdiskId = this.ramdiskId;
+    final rootDeviceName = this.rootDeviceName;
+    final rootDeviceType = this.rootDeviceType;
+    final securityGroups = this.securityGroups;
+    final sourceDestCheck = this.sourceDestCheck;
+    final spotInstanceRequestId = this.spotInstanceRequestId;
+    final sriovNetSupport = this.sriovNetSupport;
+    final state = this.state;
+    final stateReason = this.stateReason;
+    final stateTransitionReason = this.stateTransitionReason;
+    final subnetId = this.subnetId;
+    final tags = this.tags;
+    final tpmSupport = this.tpmSupport;
+    final usageOperation = this.usageOperation;
+    final usageOperationUpdateTime = this.usageOperationUpdateTime;
+    final virtualizationType = this.virtualizationType;
+    final vpcId = this.vpcId;
+    return {
+      if (amiLaunchIndex != null) 'amiLaunchIndex': amiLaunchIndex,
+      if (architecture != null) 'architecture': architecture.toValue(),
+      if (blockDeviceMappings != null)
+        'blockDeviceMapping': blockDeviceMappings,
+      if (bootMode != null) 'bootMode': bootMode.toValue(),
+      if (capacityReservationId != null)
+        'capacityReservationId': capacityReservationId,
+      if (capacityReservationSpecification != null)
+        'capacityReservationSpecification': capacityReservationSpecification,
+      if (clientToken != null) 'clientToken': clientToken,
+      if (cpuOptions != null) 'cpuOptions': cpuOptions,
+      if (ebsOptimized != null) 'ebsOptimized': ebsOptimized,
+      if (elasticGpuAssociations != null)
+        'elasticGpuAssociationSet': elasticGpuAssociations,
+      if (elasticInferenceAcceleratorAssociations != null)
+        'elasticInferenceAcceleratorAssociationSet':
+            elasticInferenceAcceleratorAssociations,
+      if (enaSupport != null) 'enaSupport': enaSupport,
+      if (enclaveOptions != null) 'enclaveOptions': enclaveOptions,
+      if (hibernationOptions != null) 'hibernationOptions': hibernationOptions,
+      if (hypervisor != null) 'hypervisor': hypervisor.toValue(),
+      if (iamInstanceProfile != null) 'iamInstanceProfile': iamInstanceProfile,
+      if (imageId != null) 'imageId': imageId,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (instanceLifecycle != null)
+        'instanceLifecycle': instanceLifecycle.toValue(),
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (ipv6Address != null) 'ipv6Address': ipv6Address,
+      if (kernelId != null) 'kernelId': kernelId,
+      if (keyName != null) 'keyName': keyName,
+      if (launchTime != null) 'launchTime': iso8601ToJson(launchTime),
+      if (licenses != null) 'licenseSet': licenses,
+      if (maintenanceOptions != null) 'maintenanceOptions': maintenanceOptions,
+      if (metadataOptions != null) 'metadataOptions': metadataOptions,
+      if (monitoring != null) 'monitoring': monitoring,
+      if (networkInterfaces != null) 'networkInterfaceSet': networkInterfaces,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (placement != null) 'placement': placement,
+      if (platform != null) 'platform': platform.toValue(),
+      if (platformDetails != null) 'platformDetails': platformDetails,
+      if (privateDnsName != null) 'privateDnsName': privateDnsName,
+      if (privateDnsNameOptions != null)
+        'privateDnsNameOptions': privateDnsNameOptions,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+      if (productCodes != null) 'productCodes': productCodes,
+      if (publicDnsName != null) 'dnsName': publicDnsName,
+      if (publicIpAddress != null) 'ipAddress': publicIpAddress,
+      if (ramdiskId != null) 'ramdiskId': ramdiskId,
+      if (rootDeviceName != null) 'rootDeviceName': rootDeviceName,
+      if (rootDeviceType != null) 'rootDeviceType': rootDeviceType.toValue(),
+      if (securityGroups != null) 'groupSet': securityGroups,
+      if (sourceDestCheck != null) 'sourceDestCheck': sourceDestCheck,
+      if (spotInstanceRequestId != null)
+        'spotInstanceRequestId': spotInstanceRequestId,
+      if (sriovNetSupport != null) 'sriovNetSupport': sriovNetSupport,
+      if (state != null) 'instanceState': state,
+      if (stateReason != null) 'stateReason': stateReason,
+      if (stateTransitionReason != null) 'reason': stateTransitionReason,
+      if (subnetId != null) 'subnetId': subnetId,
+      if (tags != null) 'tagSet': tags,
+      if (tpmSupport != null) 'tpmSupport': tpmSupport,
+      if (usageOperation != null) 'usageOperation': usageOperation,
+      if (usageOperationUpdateTime != null)
+        'usageOperationUpdateTime': iso8601ToJson(usageOperationUpdateTime),
+      if (virtualizationType != null)
+        'virtualizationType': virtualizationType.toValue(),
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// Describes an instance attribute.
@@ -44056,6 +50733,49 @@ class InstanceAttribute {
     this.sriovNetSupport,
     this.userData,
   });
+
+  Map<String, dynamic> toJson() {
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final disableApiStop = this.disableApiStop;
+    final disableApiTermination = this.disableApiTermination;
+    final ebsOptimized = this.ebsOptimized;
+    final enaSupport = this.enaSupport;
+    final enclaveOptions = this.enclaveOptions;
+    final groups = this.groups;
+    final instanceId = this.instanceId;
+    final instanceInitiatedShutdownBehavior =
+        this.instanceInitiatedShutdownBehavior;
+    final instanceType = this.instanceType;
+    final kernelId = this.kernelId;
+    final productCodes = this.productCodes;
+    final ramdiskId = this.ramdiskId;
+    final rootDeviceName = this.rootDeviceName;
+    final sourceDestCheck = this.sourceDestCheck;
+    final sriovNetSupport = this.sriovNetSupport;
+    final userData = this.userData;
+    return {
+      if (blockDeviceMappings != null)
+        'blockDeviceMapping': blockDeviceMappings,
+      if (disableApiStop != null) 'disableApiStop': disableApiStop,
+      if (disableApiTermination != null)
+        'disableApiTermination': disableApiTermination,
+      if (ebsOptimized != null) 'ebsOptimized': ebsOptimized,
+      if (enaSupport != null) 'enaSupport': enaSupport,
+      if (enclaveOptions != null) 'enclaveOptions': enclaveOptions,
+      if (groups != null) 'groupSet': groups,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (instanceInitiatedShutdownBehavior != null)
+        'instanceInitiatedShutdownBehavior': instanceInitiatedShutdownBehavior,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (kernelId != null) 'kernel': kernelId,
+      if (productCodes != null) 'productCodes': productCodes,
+      if (ramdiskId != null) 'ramdisk': ramdiskId,
+      if (rootDeviceName != null) 'rootDeviceName': rootDeviceName,
+      if (sourceDestCheck != null) 'sourceDestCheck': sourceDestCheck,
+      if (sriovNetSupport != null) 'sriovNetSupport': sriovNetSupport,
+      if (userData != null) 'userData': userData,
+    };
+  }
 }
 
 enum InstanceAttributeName {
@@ -44197,6 +50917,15 @@ class InstanceBlockDeviceMapping {
     this.deviceName,
     this.ebs,
   });
+
+  Map<String, dynamic> toJson() {
+    final deviceName = this.deviceName;
+    final ebs = this.ebs;
+    return {
+      if (deviceName != null) 'deviceName': deviceName,
+      if (ebs != null) 'ebs': ebs,
+    };
+  }
 }
 
 /// Describes a block device mapping entry.
@@ -44220,6 +50949,19 @@ class InstanceBlockDeviceMappingSpecification {
     this.noDevice,
     this.virtualName,
   });
+
+  Map<String, dynamic> toJson() {
+    final deviceName = this.deviceName;
+    final ebs = this.ebs;
+    final noDevice = this.noDevice;
+    final virtualName = this.virtualName;
+    return {
+      if (deviceName != null) 'deviceName': deviceName,
+      if (ebs != null) 'ebs': ebs,
+      if (noDevice != null) 'noDevice': noDevice,
+      if (virtualName != null) 'virtualName': virtualName,
+    };
+  }
 }
 
 /// Information about the number of instances that can be launched onto the
@@ -44241,6 +50983,17 @@ class InstanceCapacity {
     this.instanceType,
     this.totalCapacity,
   });
+
+  Map<String, dynamic> toJson() {
+    final availableCapacity = this.availableCapacity;
+    final instanceType = this.instanceType;
+    final totalCapacity = this.totalCapacity;
+    return {
+      if (availableCapacity != null) 'availableCapacity': availableCapacity,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (totalCapacity != null) 'totalCapacity': totalCapacity,
+    };
+  }
 }
 
 /// Describes a Reserved Instance listing state.
@@ -44256,6 +51009,15 @@ class InstanceCount {
     this.instanceCount,
     this.state,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceCount = this.instanceCount;
+    final state = this.state;
+    return {
+      if (instanceCount != null) 'instanceCount': instanceCount,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 /// Describes the credit option for CPU usage of a burstable performance
@@ -44273,6 +51035,15 @@ class InstanceCreditSpecification {
     this.cpuCredits,
     this.instanceId,
   });
+
+  Map<String, dynamic> toJson() {
+    final cpuCredits = this.cpuCredits;
+    final instanceId = this.instanceId;
+    return {
+      if (cpuCredits != null) 'cpuCredits': cpuCredits,
+      if (instanceId != null) 'instanceId': instanceId,
+    };
+  }
 }
 
 /// Describes the credit option for CPU usage of a burstable performance
@@ -44293,6 +51064,15 @@ class InstanceCreditSpecificationRequest {
     this.cpuCredits,
     this.instanceId,
   });
+
+  Map<String, dynamic> toJson() {
+    final cpuCredits = this.cpuCredits;
+    final instanceId = this.instanceId;
+    return {
+      if (cpuCredits != null) 'CpuCredits': cpuCredits,
+      if (instanceId != null) 'InstanceId': instanceId,
+    };
+  }
 }
 
 /// The event window.
@@ -44327,6 +51107,26 @@ class InstanceEventWindow {
     this.tags,
     this.timeRanges,
   });
+
+  Map<String, dynamic> toJson() {
+    final associationTarget = this.associationTarget;
+    final cronExpression = this.cronExpression;
+    final instanceEventWindowId = this.instanceEventWindowId;
+    final name = this.name;
+    final state = this.state;
+    final tags = this.tags;
+    final timeRanges = this.timeRanges;
+    return {
+      if (associationTarget != null) 'associationTarget': associationTarget,
+      if (cronExpression != null) 'cronExpression': cronExpression,
+      if (instanceEventWindowId != null)
+        'instanceEventWindowId': instanceEventWindowId,
+      if (name != null) 'name': name,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (timeRanges != null) 'timeRangeSet': timeRanges,
+    };
+  }
 }
 
 /// One or more targets associated with the specified event window. Only one
@@ -44350,6 +51150,17 @@ class InstanceEventWindowAssociationRequest {
     this.instanceIds,
     this.instanceTags,
   });
+
+  Map<String, dynamic> toJson() {
+    final dedicatedHostIds = this.dedicatedHostIds;
+    final instanceIds = this.instanceIds;
+    final instanceTags = this.instanceTags;
+    return {
+      if (dedicatedHostIds != null) 'DedicatedHostId': dedicatedHostIds,
+      if (instanceIds != null) 'InstanceId': instanceIds,
+      if (instanceTags != null) 'InstanceTag': instanceTags,
+    };
+  }
 }
 
 /// One or more targets associated with the event window.
@@ -44369,6 +51180,17 @@ class InstanceEventWindowAssociationTarget {
     this.instanceIds,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final dedicatedHostIds = this.dedicatedHostIds;
+    final instanceIds = this.instanceIds;
+    final tags = this.tags;
+    return {
+      if (dedicatedHostIds != null) 'dedicatedHostIdSet': dedicatedHostIds,
+      if (instanceIds != null) 'instanceIdSet': instanceIds,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// The targets to disassociate from the specified event window.
@@ -44388,6 +51210,17 @@ class InstanceEventWindowDisassociationRequest {
     this.instanceIds,
     this.instanceTags,
   });
+
+  Map<String, dynamic> toJson() {
+    final dedicatedHostIds = this.dedicatedHostIds;
+    final instanceIds = this.instanceIds;
+    final instanceTags = this.instanceTags;
+    return {
+      if (dedicatedHostIds != null) 'DedicatedHostId': dedicatedHostIds,
+      if (instanceIds != null) 'InstanceId': instanceIds,
+      if (instanceTags != null) 'InstanceTag': instanceTags,
+    };
+  }
 }
 
 enum InstanceEventWindowState {
@@ -44440,6 +51273,16 @@ class InstanceEventWindowStateChange {
     this.instanceEventWindowId,
     this.state,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceEventWindowId = this.instanceEventWindowId;
+    final state = this.state;
+    return {
+      if (instanceEventWindowId != null)
+        'instanceEventWindowId': instanceEventWindowId,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 /// The start day and time and the end day and time of the time range, in UTC.
@@ -44462,6 +51305,19 @@ class InstanceEventWindowTimeRange {
     this.startHour,
     this.startWeekDay,
   });
+
+  Map<String, dynamic> toJson() {
+    final endHour = this.endHour;
+    final endWeekDay = this.endWeekDay;
+    final startHour = this.startHour;
+    final startWeekDay = this.startWeekDay;
+    return {
+      if (endHour != null) 'endHour': endHour,
+      if (endWeekDay != null) 'endWeekDay': endWeekDay.toValue(),
+      if (startHour != null) 'startHour': startHour,
+      if (startWeekDay != null) 'startWeekDay': startWeekDay.toValue(),
+    };
+  }
 }
 
 /// The start day and time and the end day and time of the time range, in UTC.
@@ -44484,6 +51340,19 @@ class InstanceEventWindowTimeRangeRequest {
     this.startHour,
     this.startWeekDay,
   });
+
+  Map<String, dynamic> toJson() {
+    final endHour = this.endHour;
+    final endWeekDay = this.endWeekDay;
+    final startHour = this.startHour;
+    final startWeekDay = this.startWeekDay;
+    return {
+      if (endHour != null) 'EndHour': endHour,
+      if (endWeekDay != null) 'EndWeekDay': endWeekDay.toValue(),
+      if (startHour != null) 'StartHour': startHour,
+      if (startWeekDay != null) 'StartWeekDay': startWeekDay.toValue(),
+    };
+  }
 }
 
 /// Describes an instance to export.
@@ -44498,6 +51367,16 @@ class InstanceExportDetails {
     this.instanceId,
     this.targetEnvironment,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    final targetEnvironment = this.targetEnvironment;
+    return {
+      if (instanceId != null) 'instanceId': instanceId,
+      if (targetEnvironment != null)
+        'targetEnvironment': targetEnvironment.toValue(),
+    };
+  }
 }
 
 /// Describes the default credit option for CPU usage of a burstable performance
@@ -44514,6 +51393,15 @@ class InstanceFamilyCreditSpecification {
     this.cpuCredits,
     this.instanceFamily,
   });
+
+  Map<String, dynamic> toJson() {
+    final cpuCredits = this.cpuCredits;
+    final instanceFamily = this.instanceFamily;
+    return {
+      if (cpuCredits != null) 'cpuCredits': cpuCredits,
+      if (instanceFamily != null) 'instanceFamily': instanceFamily.toValue(),
+    };
+  }
 }
 
 enum InstanceGeneration {
@@ -44614,6 +51502,13 @@ class InstanceIpv4Prefix {
   InstanceIpv4Prefix({
     this.ipv4Prefix,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv4Prefix = this.ipv4Prefix;
+    return {
+      if (ipv4Prefix != null) 'ipv4Prefix': ipv4Prefix,
+    };
+  }
 }
 
 /// Describes an IPv6 address.
@@ -44624,6 +51519,13 @@ class InstanceIpv6Address {
   InstanceIpv6Address({
     this.ipv6Address,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv6Address = this.ipv6Address;
+    return {
+      if (ipv6Address != null) 'ipv6Address': ipv6Address,
+    };
+  }
 }
 
 /// Describes an IPv6 address.
@@ -44634,6 +51536,13 @@ class InstanceIpv6AddressRequest {
   InstanceIpv6AddressRequest({
     this.ipv6Address,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv6Address = this.ipv6Address;
+    return {
+      if (ipv6Address != null) 'Ipv6Address': ipv6Address,
+    };
+  }
 }
 
 /// Information about an IPv6 prefix.
@@ -44644,6 +51553,13 @@ class InstanceIpv6Prefix {
   InstanceIpv6Prefix({
     this.ipv6Prefix,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv6Prefix = this.ipv6Prefix;
+    return {
+      if (ipv6Prefix != null) 'ipv6Prefix': ipv6Prefix,
+    };
+  }
 }
 
 enum InstanceLifecycle {
@@ -44711,6 +51627,13 @@ class InstanceMaintenanceOptions {
   InstanceMaintenanceOptions({
     this.autoRecovery,
   });
+
+  Map<String, dynamic> toJson() {
+    final autoRecovery = this.autoRecovery;
+    return {
+      if (autoRecovery != null) 'autoRecovery': autoRecovery.toValue(),
+    };
+  }
 }
 
 /// The maintenance options for the instance.
@@ -44724,6 +51647,13 @@ class InstanceMaintenanceOptionsRequest {
   InstanceMaintenanceOptionsRequest({
     this.autoRecovery,
   });
+
+  Map<String, dynamic> toJson() {
+    final autoRecovery = this.autoRecovery;
+    return {
+      if (autoRecovery != null) 'AutoRecovery': autoRecovery.toValue(),
+    };
+  }
 }
 
 /// Describes the market (purchasing) option for the instances.
@@ -44738,6 +51668,15 @@ class InstanceMarketOptionsRequest {
     this.marketType,
     this.spotOptions,
   });
+
+  Map<String, dynamic> toJson() {
+    final marketType = this.marketType;
+    final spotOptions = this.spotOptions;
+    return {
+      if (marketType != null) 'MarketType': marketType.toValue(),
+      if (spotOptions != null) 'SpotOptions': spotOptions,
+    };
+  }
 }
 
 enum InstanceMatchCriteria {
@@ -44850,6 +51789,24 @@ class InstanceMetadataOptionsRequest {
     this.httpTokens,
     this.instanceMetadataTags,
   });
+
+  Map<String, dynamic> toJson() {
+    final httpEndpoint = this.httpEndpoint;
+    final httpProtocolIpv6 = this.httpProtocolIpv6;
+    final httpPutResponseHopLimit = this.httpPutResponseHopLimit;
+    final httpTokens = this.httpTokens;
+    final instanceMetadataTags = this.instanceMetadataTags;
+    return {
+      if (httpEndpoint != null) 'HttpEndpoint': httpEndpoint.toValue(),
+      if (httpProtocolIpv6 != null)
+        'HttpProtocolIpv6': httpProtocolIpv6.toValue(),
+      if (httpPutResponseHopLimit != null)
+        'HttpPutResponseHopLimit': httpPutResponseHopLimit,
+      if (httpTokens != null) 'HttpTokens': httpTokens.toValue(),
+      if (instanceMetadataTags != null)
+        'InstanceMetadataTags': instanceMetadataTags.toValue(),
+    };
+  }
 }
 
 /// The metadata options for the instance.
@@ -44912,6 +51869,26 @@ class InstanceMetadataOptionsResponse {
     this.instanceMetadataTags,
     this.state,
   });
+
+  Map<String, dynamic> toJson() {
+    final httpEndpoint = this.httpEndpoint;
+    final httpProtocolIpv6 = this.httpProtocolIpv6;
+    final httpPutResponseHopLimit = this.httpPutResponseHopLimit;
+    final httpTokens = this.httpTokens;
+    final instanceMetadataTags = this.instanceMetadataTags;
+    final state = this.state;
+    return {
+      if (httpEndpoint != null) 'httpEndpoint': httpEndpoint.toValue(),
+      if (httpProtocolIpv6 != null)
+        'httpProtocolIpv6': httpProtocolIpv6.toValue(),
+      if (httpPutResponseHopLimit != null)
+        'httpPutResponseHopLimit': httpPutResponseHopLimit,
+      if (httpTokens != null) 'httpTokens': httpTokens.toValue(),
+      if (instanceMetadataTags != null)
+        'instanceMetadataTags': instanceMetadataTags.toValue(),
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 enum InstanceMetadataOptionsState {
@@ -45012,6 +51989,15 @@ class InstanceMonitoring {
     this.instanceId,
     this.monitoring,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    final monitoring = this.monitoring;
+    return {
+      if (instanceId != null) 'instanceId': instanceId,
+      if (monitoring != null) 'monitoring': monitoring,
+    };
+  }
 }
 
 /// Describes a network interface.
@@ -45094,6 +52080,48 @@ class InstanceNetworkInterface {
     this.subnetId,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final association = this.association;
+    final attachment = this.attachment;
+    final description = this.description;
+    final groups = this.groups;
+    final interfaceType = this.interfaceType;
+    final ipv4Prefixes = this.ipv4Prefixes;
+    final ipv6Addresses = this.ipv6Addresses;
+    final ipv6Prefixes = this.ipv6Prefixes;
+    final macAddress = this.macAddress;
+    final networkInterfaceId = this.networkInterfaceId;
+    final ownerId = this.ownerId;
+    final privateDnsName = this.privateDnsName;
+    final privateIpAddress = this.privateIpAddress;
+    final privateIpAddresses = this.privateIpAddresses;
+    final sourceDestCheck = this.sourceDestCheck;
+    final status = this.status;
+    final subnetId = this.subnetId;
+    final vpcId = this.vpcId;
+    return {
+      if (association != null) 'association': association,
+      if (attachment != null) 'attachment': attachment,
+      if (description != null) 'description': description,
+      if (groups != null) 'groupSet': groups,
+      if (interfaceType != null) 'interfaceType': interfaceType,
+      if (ipv4Prefixes != null) 'ipv4PrefixSet': ipv4Prefixes,
+      if (ipv6Addresses != null) 'ipv6AddressesSet': ipv6Addresses,
+      if (ipv6Prefixes != null) 'ipv6PrefixSet': ipv6Prefixes,
+      if (macAddress != null) 'macAddress': macAddress,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (privateDnsName != null) 'privateDnsName': privateDnsName,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+      if (privateIpAddresses != null)
+        'privateIpAddressesSet': privateIpAddresses,
+      if (sourceDestCheck != null) 'sourceDestCheck': sourceDestCheck,
+      if (status != null) 'status': status.toValue(),
+      if (subnetId != null) 'subnetId': subnetId,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// Describes association information for an Elastic IP address (IPv4).
@@ -45120,6 +52148,21 @@ class InstanceNetworkInterfaceAssociation {
     this.publicDnsName,
     this.publicIp,
   });
+
+  Map<String, dynamic> toJson() {
+    final carrierIp = this.carrierIp;
+    final customerOwnedIp = this.customerOwnedIp;
+    final ipOwnerId = this.ipOwnerId;
+    final publicDnsName = this.publicDnsName;
+    final publicIp = this.publicIp;
+    return {
+      if (carrierIp != null) 'carrierIp': carrierIp,
+      if (customerOwnedIp != null) 'customerOwnedIp': customerOwnedIp,
+      if (ipOwnerId != null) 'ipOwnerId': ipOwnerId,
+      if (publicDnsName != null) 'publicDnsName': publicDnsName,
+      if (publicIp != null) 'publicIp': publicIp,
+    };
+  }
 }
 
 /// Describes a network interface attachment.
@@ -45152,6 +52195,24 @@ class InstanceNetworkInterfaceAttachment {
     this.networkCardIndex,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final attachTime = this.attachTime;
+    final attachmentId = this.attachmentId;
+    final deleteOnTermination = this.deleteOnTermination;
+    final deviceIndex = this.deviceIndex;
+    final networkCardIndex = this.networkCardIndex;
+    final status = this.status;
+    return {
+      if (attachTime != null) 'attachTime': iso8601ToJson(attachTime),
+      if (attachmentId != null) 'attachmentId': attachmentId,
+      if (deleteOnTermination != null)
+        'deleteOnTermination': deleteOnTermination,
+      if (deviceIndex != null) 'deviceIndex': deviceIndex,
+      if (networkCardIndex != null) 'networkCardIndex': networkCardIndex,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Describes a network interface.
@@ -45296,6 +52357,54 @@ class InstanceNetworkInterfaceSpecification {
     this.secondaryPrivateIpAddressCount,
     this.subnetId,
   });
+
+  Map<String, dynamic> toJson() {
+    final associateCarrierIpAddress = this.associateCarrierIpAddress;
+    final associatePublicIpAddress = this.associatePublicIpAddress;
+    final deleteOnTermination = this.deleteOnTermination;
+    final description = this.description;
+    final deviceIndex = this.deviceIndex;
+    final groups = this.groups;
+    final interfaceType = this.interfaceType;
+    final ipv4PrefixCount = this.ipv4PrefixCount;
+    final ipv4Prefixes = this.ipv4Prefixes;
+    final ipv6AddressCount = this.ipv6AddressCount;
+    final ipv6Addresses = this.ipv6Addresses;
+    final ipv6PrefixCount = this.ipv6PrefixCount;
+    final ipv6Prefixes = this.ipv6Prefixes;
+    final networkCardIndex = this.networkCardIndex;
+    final networkInterfaceId = this.networkInterfaceId;
+    final privateIpAddress = this.privateIpAddress;
+    final privateIpAddresses = this.privateIpAddresses;
+    final secondaryPrivateIpAddressCount = this.secondaryPrivateIpAddressCount;
+    final subnetId = this.subnetId;
+    return {
+      if (associateCarrierIpAddress != null)
+        'AssociateCarrierIpAddress': associateCarrierIpAddress,
+      if (associatePublicIpAddress != null)
+        'associatePublicIpAddress': associatePublicIpAddress,
+      if (deleteOnTermination != null)
+        'deleteOnTermination': deleteOnTermination,
+      if (description != null) 'description': description,
+      if (deviceIndex != null) 'deviceIndex': deviceIndex,
+      if (groups != null) 'SecurityGroupId': groups,
+      if (interfaceType != null) 'InterfaceType': interfaceType,
+      if (ipv4PrefixCount != null) 'Ipv4PrefixCount': ipv4PrefixCount,
+      if (ipv4Prefixes != null) 'Ipv4Prefix': ipv4Prefixes,
+      if (ipv6AddressCount != null) 'ipv6AddressCount': ipv6AddressCount,
+      if (ipv6Addresses != null) 'ipv6AddressesSet': ipv6Addresses,
+      if (ipv6PrefixCount != null) 'Ipv6PrefixCount': ipv6PrefixCount,
+      if (ipv6Prefixes != null) 'Ipv6Prefix': ipv6Prefixes,
+      if (networkCardIndex != null) 'NetworkCardIndex': networkCardIndex,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+      if (privateIpAddresses != null)
+        'privateIpAddressesSet': privateIpAddresses,
+      if (secondaryPrivateIpAddressCount != null)
+        'secondaryPrivateIpAddressCount': secondaryPrivateIpAddressCount,
+      if (subnetId != null) 'subnetId': subnetId,
+    };
+  }
 }
 
 /// Describes a private IPv4 address.
@@ -45320,6 +52429,19 @@ class InstancePrivateIpAddress {
     this.privateDnsName,
     this.privateIpAddress,
   });
+
+  Map<String, dynamic> toJson() {
+    final association = this.association;
+    final primary = this.primary;
+    final privateDnsName = this.privateDnsName;
+    final privateIpAddress = this.privateIpAddress;
+    return {
+      if (association != null) 'association': association,
+      if (primary != null) 'primary': primary,
+      if (privateDnsName != null) 'privateDnsName': privateDnsName,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+    };
+  }
 }
 
 /// The attributes for the instance types. When you specify instance attributes,
@@ -45656,6 +52778,75 @@ class InstanceRequirements {
     this.totalLocalStorageGB,
     this.vCpuCount,
   });
+
+  Map<String, dynamic> toJson() {
+    final acceleratorCount = this.acceleratorCount;
+    final acceleratorManufacturers = this.acceleratorManufacturers;
+    final acceleratorNames = this.acceleratorNames;
+    final acceleratorTotalMemoryMiB = this.acceleratorTotalMemoryMiB;
+    final acceleratorTypes = this.acceleratorTypes;
+    final bareMetal = this.bareMetal;
+    final baselineEbsBandwidthMbps = this.baselineEbsBandwidthMbps;
+    final burstablePerformance = this.burstablePerformance;
+    final cpuManufacturers = this.cpuManufacturers;
+    final excludedInstanceTypes = this.excludedInstanceTypes;
+    final instanceGenerations = this.instanceGenerations;
+    final localStorage = this.localStorage;
+    final localStorageTypes = this.localStorageTypes;
+    final memoryGiBPerVCpu = this.memoryGiBPerVCpu;
+    final memoryMiB = this.memoryMiB;
+    final networkInterfaceCount = this.networkInterfaceCount;
+    final onDemandMaxPricePercentageOverLowestPrice =
+        this.onDemandMaxPricePercentageOverLowestPrice;
+    final requireHibernateSupport = this.requireHibernateSupport;
+    final spotMaxPricePercentageOverLowestPrice =
+        this.spotMaxPricePercentageOverLowestPrice;
+    final totalLocalStorageGB = this.totalLocalStorageGB;
+    final vCpuCount = this.vCpuCount;
+    return {
+      if (acceleratorCount != null) 'acceleratorCount': acceleratorCount,
+      if (acceleratorManufacturers != null)
+        'acceleratorManufacturerSet':
+            acceleratorManufacturers.map((e) => e.toValue()).toList(),
+      if (acceleratorNames != null)
+        'acceleratorNameSet': acceleratorNames.map((e) => e.toValue()).toList(),
+      if (acceleratorTotalMemoryMiB != null)
+        'acceleratorTotalMemoryMiB': acceleratorTotalMemoryMiB,
+      if (acceleratorTypes != null)
+        'acceleratorTypeSet': acceleratorTypes.map((e) => e.toValue()).toList(),
+      if (bareMetal != null) 'bareMetal': bareMetal.toValue(),
+      if (baselineEbsBandwidthMbps != null)
+        'baselineEbsBandwidthMbps': baselineEbsBandwidthMbps,
+      if (burstablePerformance != null)
+        'burstablePerformance': burstablePerformance.toValue(),
+      if (cpuManufacturers != null)
+        'cpuManufacturerSet': cpuManufacturers.map((e) => e.toValue()).toList(),
+      if (excludedInstanceTypes != null)
+        'excludedInstanceTypeSet': excludedInstanceTypes,
+      if (instanceGenerations != null)
+        'instanceGenerationSet':
+            instanceGenerations.map((e) => e.toValue()).toList(),
+      if (localStorage != null) 'localStorage': localStorage.toValue(),
+      if (localStorageTypes != null)
+        'localStorageTypeSet':
+            localStorageTypes.map((e) => e.toValue()).toList(),
+      if (memoryGiBPerVCpu != null) 'memoryGiBPerVCpu': memoryGiBPerVCpu,
+      if (memoryMiB != null) 'memoryMiB': memoryMiB,
+      if (networkInterfaceCount != null)
+        'networkInterfaceCount': networkInterfaceCount,
+      if (onDemandMaxPricePercentageOverLowestPrice != null)
+        'onDemandMaxPricePercentageOverLowestPrice':
+            onDemandMaxPricePercentageOverLowestPrice,
+      if (requireHibernateSupport != null)
+        'requireHibernateSupport': requireHibernateSupport,
+      if (spotMaxPricePercentageOverLowestPrice != null)
+        'spotMaxPricePercentageOverLowestPrice':
+            spotMaxPricePercentageOverLowestPrice,
+      if (totalLocalStorageGB != null)
+        'totalLocalStorageGB': totalLocalStorageGB,
+      if (vCpuCount != null) 'vCpuCount': vCpuCount,
+    };
+  }
 }
 
 /// The attributes for the instance types. When you specify instance attributes,
@@ -45992,6 +53183,74 @@ class InstanceRequirementsRequest {
     this.spotMaxPricePercentageOverLowestPrice,
     this.totalLocalStorageGB,
   });
+
+  Map<String, dynamic> toJson() {
+    final memoryMiB = this.memoryMiB;
+    final vCpuCount = this.vCpuCount;
+    final acceleratorCount = this.acceleratorCount;
+    final acceleratorManufacturers = this.acceleratorManufacturers;
+    final acceleratorNames = this.acceleratorNames;
+    final acceleratorTotalMemoryMiB = this.acceleratorTotalMemoryMiB;
+    final acceleratorTypes = this.acceleratorTypes;
+    final bareMetal = this.bareMetal;
+    final baselineEbsBandwidthMbps = this.baselineEbsBandwidthMbps;
+    final burstablePerformance = this.burstablePerformance;
+    final cpuManufacturers = this.cpuManufacturers;
+    final excludedInstanceTypes = this.excludedInstanceTypes;
+    final instanceGenerations = this.instanceGenerations;
+    final localStorage = this.localStorage;
+    final localStorageTypes = this.localStorageTypes;
+    final memoryGiBPerVCpu = this.memoryGiBPerVCpu;
+    final networkInterfaceCount = this.networkInterfaceCount;
+    final onDemandMaxPricePercentageOverLowestPrice =
+        this.onDemandMaxPricePercentageOverLowestPrice;
+    final requireHibernateSupport = this.requireHibernateSupport;
+    final spotMaxPricePercentageOverLowestPrice =
+        this.spotMaxPricePercentageOverLowestPrice;
+    final totalLocalStorageGB = this.totalLocalStorageGB;
+    return {
+      'MemoryMiB': memoryMiB,
+      'VCpuCount': vCpuCount,
+      if (acceleratorCount != null) 'AcceleratorCount': acceleratorCount,
+      if (acceleratorManufacturers != null)
+        'AcceleratorManufacturer':
+            acceleratorManufacturers.map((e) => e.toValue()).toList(),
+      if (acceleratorNames != null)
+        'AcceleratorName': acceleratorNames.map((e) => e.toValue()).toList(),
+      if (acceleratorTotalMemoryMiB != null)
+        'AcceleratorTotalMemoryMiB': acceleratorTotalMemoryMiB,
+      if (acceleratorTypes != null)
+        'AcceleratorType': acceleratorTypes.map((e) => e.toValue()).toList(),
+      if (bareMetal != null) 'BareMetal': bareMetal.toValue(),
+      if (baselineEbsBandwidthMbps != null)
+        'BaselineEbsBandwidthMbps': baselineEbsBandwidthMbps,
+      if (burstablePerformance != null)
+        'BurstablePerformance': burstablePerformance.toValue(),
+      if (cpuManufacturers != null)
+        'CpuManufacturer': cpuManufacturers.map((e) => e.toValue()).toList(),
+      if (excludedInstanceTypes != null)
+        'ExcludedInstanceType': excludedInstanceTypes,
+      if (instanceGenerations != null)
+        'InstanceGeneration':
+            instanceGenerations.map((e) => e.toValue()).toList(),
+      if (localStorage != null) 'LocalStorage': localStorage.toValue(),
+      if (localStorageTypes != null)
+        'LocalStorageType': localStorageTypes.map((e) => e.toValue()).toList(),
+      if (memoryGiBPerVCpu != null) 'MemoryGiBPerVCpu': memoryGiBPerVCpu,
+      if (networkInterfaceCount != null)
+        'NetworkInterfaceCount': networkInterfaceCount,
+      if (onDemandMaxPricePercentageOverLowestPrice != null)
+        'OnDemandMaxPricePercentageOverLowestPrice':
+            onDemandMaxPricePercentageOverLowestPrice,
+      if (requireHibernateSupport != null)
+        'RequireHibernateSupport': requireHibernateSupport,
+      if (spotMaxPricePercentageOverLowestPrice != null)
+        'SpotMaxPricePercentageOverLowestPrice':
+            spotMaxPricePercentageOverLowestPrice,
+      if (totalLocalStorageGB != null)
+        'TotalLocalStorageGB': totalLocalStorageGB,
+    };
+  }
 }
 
 /// The architecture type, virtualization type, and other attributes for the
@@ -46016,6 +53275,21 @@ class InstanceRequirementsWithMetadataRequest {
     this.instanceRequirements,
     this.virtualizationTypes,
   });
+
+  Map<String, dynamic> toJson() {
+    final architectureTypes = this.architectureTypes;
+    final instanceRequirements = this.instanceRequirements;
+    final virtualizationTypes = this.virtualizationTypes;
+    return {
+      if (architectureTypes != null)
+        'ArchitectureType': architectureTypes.map((e) => e.toValue()).toList(),
+      if (instanceRequirements != null)
+        'InstanceRequirements': instanceRequirements,
+      if (virtualizationTypes != null)
+        'VirtualizationType':
+            virtualizationTypes.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 /// The instance details to specify which volumes should be snapshotted.
@@ -46030,6 +53304,15 @@ class InstanceSpecification {
     this.excludeBootVolume,
     this.instanceId,
   });
+
+  Map<String, dynamic> toJson() {
+    final excludeBootVolume = this.excludeBootVolume;
+    final instanceId = this.instanceId;
+    return {
+      if (excludeBootVolume != null) 'ExcludeBootVolume': excludeBootVolume,
+      if (instanceId != null) 'InstanceId': instanceId,
+    };
+  }
 }
 
 /// Describes the current state of an instance.
@@ -46077,6 +53360,15 @@ class InstanceState {
     this.code,
     this.name,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final name = this.name;
+    return {
+      if (code != null) 'code': code,
+      if (name != null) 'name': name.toValue(),
+    };
+  }
 }
 
 /// Describes an instance state change.
@@ -46095,6 +53387,17 @@ class InstanceStateChange {
     this.instanceId,
     this.previousState,
   });
+
+  Map<String, dynamic> toJson() {
+    final currentState = this.currentState;
+    final instanceId = this.instanceId;
+    final previousState = this.previousState;
+    return {
+      if (currentState != null) 'currentState': currentState,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (previousState != null) 'previousState': previousState,
+    };
+  }
 }
 
 enum InstanceStateName {
@@ -46181,6 +53484,25 @@ class InstanceStatus {
     this.outpostArn,
     this.systemStatus,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final events = this.events;
+    final instanceId = this.instanceId;
+    final instanceState = this.instanceState;
+    final instanceStatus = this.instanceStatus;
+    final outpostArn = this.outpostArn;
+    final systemStatus = this.systemStatus;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (events != null) 'eventsSet': events,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (instanceState != null) 'instanceState': instanceState,
+      if (instanceStatus != null) 'instanceStatus': instanceStatus,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (systemStatus != null) 'systemStatus': systemStatus,
+    };
+  }
 }
 
 /// Describes the instance status.
@@ -46200,6 +53522,17 @@ class InstanceStatusDetails {
     this.name,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final impairedSince = this.impairedSince;
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (impairedSince != null) 'impairedSince': iso8601ToJson(impairedSince),
+      if (name != null) 'name': name.toValue(),
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Describes a scheduled event for an instance.
@@ -46234,6 +53567,24 @@ class InstanceStatusEvent {
     this.notBefore,
     this.notBeforeDeadline,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final description = this.description;
+    final instanceEventId = this.instanceEventId;
+    final notAfter = this.notAfter;
+    final notBefore = this.notBefore;
+    final notBeforeDeadline = this.notBeforeDeadline;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (description != null) 'description': description,
+      if (instanceEventId != null) 'instanceEventId': instanceEventId,
+      if (notAfter != null) 'notAfter': iso8601ToJson(notAfter),
+      if (notBefore != null) 'notBefore': iso8601ToJson(notBefore),
+      if (notBeforeDeadline != null)
+        'notBeforeDeadline': iso8601ToJson(notBeforeDeadline),
+    };
+  }
 }
 
 /// Describes the status of an instance.
@@ -46248,6 +53599,15 @@ class InstanceStatusSummary {
     this.details,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    final status = this.status;
+    return {
+      if (details != null) 'details': details,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 enum InstanceStorageEncryptionSupport {
@@ -46301,6 +53661,20 @@ class InstanceStorageInfo {
     this.nvmeSupport,
     this.totalSizeInGB,
   });
+
+  Map<String, dynamic> toJson() {
+    final disks = this.disks;
+    final encryptionSupport = this.encryptionSupport;
+    final nvmeSupport = this.nvmeSupport;
+    final totalSizeInGB = this.totalSizeInGB;
+    return {
+      if (disks != null) 'disks': disks,
+      if (encryptionSupport != null)
+        'encryptionSupport': encryptionSupport.toValue(),
+      if (nvmeSupport != null) 'nvmeSupport': nvmeSupport.toValue(),
+      if (totalSizeInGB != null) 'totalSizeInGB': totalSizeInGB,
+    };
+  }
 }
 
 /// Describes the registered tag keys for the current Region.
@@ -46317,6 +53691,16 @@ class InstanceTagNotificationAttribute {
     this.includeAllTagsOfInstance,
     this.instanceTagKeys,
   });
+
+  Map<String, dynamic> toJson() {
+    final includeAllTagsOfInstance = this.includeAllTagsOfInstance;
+    final instanceTagKeys = this.instanceTagKeys;
+    return {
+      if (includeAllTagsOfInstance != null)
+        'includeAllTagsOfInstance': includeAllTagsOfInstance,
+      if (instanceTagKeys != null) 'instanceTagKeySet': instanceTagKeys,
+    };
+  }
 }
 
 enum InstanceType {
@@ -49100,6 +56484,74 @@ class InstanceTypeInfo {
     this.supportedVirtualizationTypes,
     this.vCpuInfo,
   });
+
+  Map<String, dynamic> toJson() {
+    final autoRecoverySupported = this.autoRecoverySupported;
+    final bareMetal = this.bareMetal;
+    final burstablePerformanceSupported = this.burstablePerformanceSupported;
+    final currentGeneration = this.currentGeneration;
+    final dedicatedHostsSupported = this.dedicatedHostsSupported;
+    final ebsInfo = this.ebsInfo;
+    final fpgaInfo = this.fpgaInfo;
+    final freeTierEligible = this.freeTierEligible;
+    final gpuInfo = this.gpuInfo;
+    final hibernationSupported = this.hibernationSupported;
+    final hypervisor = this.hypervisor;
+    final inferenceAcceleratorInfo = this.inferenceAcceleratorInfo;
+    final instanceStorageInfo = this.instanceStorageInfo;
+    final instanceStorageSupported = this.instanceStorageSupported;
+    final instanceType = this.instanceType;
+    final memoryInfo = this.memoryInfo;
+    final networkInfo = this.networkInfo;
+    final placementGroupInfo = this.placementGroupInfo;
+    final processorInfo = this.processorInfo;
+    final supportedBootModes = this.supportedBootModes;
+    final supportedRootDeviceTypes = this.supportedRootDeviceTypes;
+    final supportedUsageClasses = this.supportedUsageClasses;
+    final supportedVirtualizationTypes = this.supportedVirtualizationTypes;
+    final vCpuInfo = this.vCpuInfo;
+    return {
+      if (autoRecoverySupported != null)
+        'autoRecoverySupported': autoRecoverySupported,
+      if (bareMetal != null) 'bareMetal': bareMetal,
+      if (burstablePerformanceSupported != null)
+        'burstablePerformanceSupported': burstablePerformanceSupported,
+      if (currentGeneration != null) 'currentGeneration': currentGeneration,
+      if (dedicatedHostsSupported != null)
+        'dedicatedHostsSupported': dedicatedHostsSupported,
+      if (ebsInfo != null) 'ebsInfo': ebsInfo,
+      if (fpgaInfo != null) 'fpgaInfo': fpgaInfo,
+      if (freeTierEligible != null) 'freeTierEligible': freeTierEligible,
+      if (gpuInfo != null) 'gpuInfo': gpuInfo,
+      if (hibernationSupported != null)
+        'hibernationSupported': hibernationSupported,
+      if (hypervisor != null) 'hypervisor': hypervisor.toValue(),
+      if (inferenceAcceleratorInfo != null)
+        'inferenceAcceleratorInfo': inferenceAcceleratorInfo,
+      if (instanceStorageInfo != null)
+        'instanceStorageInfo': instanceStorageInfo,
+      if (instanceStorageSupported != null)
+        'instanceStorageSupported': instanceStorageSupported,
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (memoryInfo != null) 'memoryInfo': memoryInfo,
+      if (networkInfo != null) 'networkInfo': networkInfo,
+      if (placementGroupInfo != null) 'placementGroupInfo': placementGroupInfo,
+      if (processorInfo != null) 'processorInfo': processorInfo,
+      if (supportedBootModes != null)
+        'supportedBootModes':
+            supportedBootModes.map((e) => e.toValue()).toList(),
+      if (supportedRootDeviceTypes != null)
+        'supportedRootDeviceTypes':
+            supportedRootDeviceTypes.map((e) => e.toValue()).toList(),
+      if (supportedUsageClasses != null)
+        'supportedUsageClasses':
+            supportedUsageClasses.map((e) => e.toValue()).toList(),
+      if (supportedVirtualizationTypes != null)
+        'supportedVirtualizationTypes':
+            supportedVirtualizationTypes.map((e) => e.toValue()).toList(),
+      if (vCpuInfo != null) 'vCpuInfo': vCpuInfo,
+    };
+  }
 }
 
 /// The list of instance types with the specified instance attributes.
@@ -49110,6 +56562,13 @@ class InstanceTypeInfoFromInstanceRequirements {
   InstanceTypeInfoFromInstanceRequirements({
     this.instanceType,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceType = this.instanceType;
+    return {
+      if (instanceType != null) 'instanceType': instanceType,
+    };
+  }
 }
 
 /// The instance types offered.
@@ -49132,6 +56591,17 @@ class InstanceTypeOffering {
     this.location,
     this.locationType,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceType = this.instanceType;
+    final location = this.location;
+    final locationType = this.locationType;
+    return {
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (location != null) 'location': location,
+      if (locationType != null) 'locationType': locationType.toValue(),
+    };
+  }
 }
 
 /// Information about the Capacity Reservation usage.
@@ -49148,6 +56618,15 @@ class InstanceUsage {
     this.accountId,
     this.usedInstanceCount,
   });
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final usedInstanceCount = this.usedInstanceCount;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (usedInstanceCount != null) 'usedInstanceCount': usedInstanceCount,
+    };
+  }
 }
 
 /// Describes service integrations with VPC Flow logs.
@@ -49158,6 +56637,13 @@ class IntegrateServices {
   IntegrateServices({
     this.athenaIntegrations,
   });
+
+  Map<String, dynamic> toJson() {
+    final athenaIntegrations = this.athenaIntegrations;
+    return {
+      if (athenaIntegrations != null) 'AthenaIntegration': athenaIntegrations,
+    };
+  }
 }
 
 enum InterfacePermissionType {
@@ -49236,6 +56722,19 @@ class InternetGateway {
     this.ownerId,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final attachments = this.attachments;
+    final internetGatewayId = this.internetGatewayId;
+    final ownerId = this.ownerId;
+    final tags = this.tags;
+    return {
+      if (attachments != null) 'attachmentSet': attachments,
+      if (internetGatewayId != null) 'internetGatewayId': internetGatewayId,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes the attachment of a VPC to an internet gateway or an egress-only
@@ -49253,6 +56752,15 @@ class InternetGatewayAttachment {
     this.state,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final vpcId = this.vpcId;
+    return {
+      if (state != null) 'state': state.toValue(),
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 enum IpAddressType {
@@ -49336,6 +56844,25 @@ class IpPermission {
     this.toPort,
     this.userIdGroupPairs,
   });
+
+  Map<String, dynamic> toJson() {
+    final fromPort = this.fromPort;
+    final ipProtocol = this.ipProtocol;
+    final ipRanges = this.ipRanges;
+    final ipv6Ranges = this.ipv6Ranges;
+    final prefixListIds = this.prefixListIds;
+    final toPort = this.toPort;
+    final userIdGroupPairs = this.userIdGroupPairs;
+    return {
+      if (fromPort != null) 'fromPort': fromPort,
+      if (ipProtocol != null) 'ipProtocol': ipProtocol,
+      if (ipRanges != null) 'ipRanges': ipRanges,
+      if (ipv6Ranges != null) 'ipv6Ranges': ipv6Ranges,
+      if (prefixListIds != null) 'prefixListIds': prefixListIds,
+      if (toPort != null) 'toPort': toPort,
+      if (userIdGroupPairs != null) 'groups': userIdGroupPairs,
+    };
+  }
 }
 
 /// Describes an IPv4 range.
@@ -49356,6 +56883,15 @@ class IpRange {
     this.cidrIp,
     this.description,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidrIp = this.cidrIp;
+    final description = this.description;
+    return {
+      if (cidrIp != null) 'cidrIp': cidrIp,
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 /// IPAM is a VPC feature that you can use to automate your IP address
@@ -49426,6 +56962,35 @@ class Ipam {
     this.state,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final ipamArn = this.ipamArn;
+    final ipamId = this.ipamId;
+    final ipamRegion = this.ipamRegion;
+    final operatingRegions = this.operatingRegions;
+    final ownerId = this.ownerId;
+    final privateDefaultScopeId = this.privateDefaultScopeId;
+    final publicDefaultScopeId = this.publicDefaultScopeId;
+    final scopeCount = this.scopeCount;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (description != null) 'description': description,
+      if (ipamArn != null) 'ipamArn': ipamArn,
+      if (ipamId != null) 'ipamId': ipamId,
+      if (ipamRegion != null) 'ipamRegion': ipamRegion,
+      if (operatingRegions != null) 'operatingRegionSet': operatingRegions,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (privateDefaultScopeId != null)
+        'privateDefaultScopeId': privateDefaultScopeId,
+      if (publicDefaultScopeId != null)
+        'publicDefaultScopeId': publicDefaultScopeId,
+      if (scopeCount != null) 'scopeCount': scopeCount,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// The historical record of a CIDR within an IPAM scope. For more information,
@@ -49490,6 +57055,37 @@ class IpamAddressHistoryRecord {
     this.sampledStartTime,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceCidr = this.resourceCidr;
+    final resourceComplianceStatus = this.resourceComplianceStatus;
+    final resourceId = this.resourceId;
+    final resourceName = this.resourceName;
+    final resourceOverlapStatus = this.resourceOverlapStatus;
+    final resourceOwnerId = this.resourceOwnerId;
+    final resourceRegion = this.resourceRegion;
+    final resourceType = this.resourceType;
+    final sampledEndTime = this.sampledEndTime;
+    final sampledStartTime = this.sampledStartTime;
+    final vpcId = this.vpcId;
+    return {
+      if (resourceCidr != null) 'resourceCidr': resourceCidr,
+      if (resourceComplianceStatus != null)
+        'resourceComplianceStatus': resourceComplianceStatus.toValue(),
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceName != null) 'resourceName': resourceName,
+      if (resourceOverlapStatus != null)
+        'resourceOverlapStatus': resourceOverlapStatus.toValue(),
+      if (resourceOwnerId != null) 'resourceOwnerId': resourceOwnerId,
+      if (resourceRegion != null) 'resourceRegion': resourceRegion,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (sampledEndTime != null)
+        'sampledEndTime': iso8601ToJson(sampledEndTime),
+      if (sampledStartTime != null)
+        'sampledStartTime': iso8601ToJson(sampledStartTime),
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 enum IpamAddressHistoryResourceType {
@@ -49550,6 +57146,15 @@ class IpamCidrAuthorizationContext {
     this.message,
     this.signature,
   });
+
+  Map<String, dynamic> toJson() {
+    final message = this.message;
+    final signature = this.signature;
+    return {
+      if (message != null) 'Message': message,
+      if (signature != null) 'Signature': signature,
+    };
+  }
 }
 
 enum IpamComplianceStatus {
@@ -49638,6 +57243,13 @@ class IpamOperatingRegion {
   IpamOperatingRegion({
     this.regionName,
   });
+
+  Map<String, dynamic> toJson() {
+    final regionName = this.regionName;
+    return {
+      if (regionName != null) 'regionName': regionName,
+    };
+  }
 }
 
 enum IpamOverlapStatus {
@@ -49813,6 +57425,60 @@ class IpamPool {
     this.stateMessage,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final addressFamily = this.addressFamily;
+    final allocationDefaultNetmaskLength = this.allocationDefaultNetmaskLength;
+    final allocationMaxNetmaskLength = this.allocationMaxNetmaskLength;
+    final allocationMinNetmaskLength = this.allocationMinNetmaskLength;
+    final allocationResourceTags = this.allocationResourceTags;
+    final autoImport = this.autoImport;
+    final awsService = this.awsService;
+    final description = this.description;
+    final ipamArn = this.ipamArn;
+    final ipamPoolArn = this.ipamPoolArn;
+    final ipamPoolId = this.ipamPoolId;
+    final ipamRegion = this.ipamRegion;
+    final ipamScopeArn = this.ipamScopeArn;
+    final ipamScopeType = this.ipamScopeType;
+    final locale = this.locale;
+    final ownerId = this.ownerId;
+    final poolDepth = this.poolDepth;
+    final publiclyAdvertisable = this.publiclyAdvertisable;
+    final sourceIpamPoolId = this.sourceIpamPoolId;
+    final state = this.state;
+    final stateMessage = this.stateMessage;
+    final tags = this.tags;
+    return {
+      if (addressFamily != null) 'addressFamily': addressFamily.toValue(),
+      if (allocationDefaultNetmaskLength != null)
+        'allocationDefaultNetmaskLength': allocationDefaultNetmaskLength,
+      if (allocationMaxNetmaskLength != null)
+        'allocationMaxNetmaskLength': allocationMaxNetmaskLength,
+      if (allocationMinNetmaskLength != null)
+        'allocationMinNetmaskLength': allocationMinNetmaskLength,
+      if (allocationResourceTags != null)
+        'allocationResourceTagSet': allocationResourceTags,
+      if (autoImport != null) 'autoImport': autoImport,
+      if (awsService != null) 'awsService': awsService.toValue(),
+      if (description != null) 'description': description,
+      if (ipamArn != null) 'ipamArn': ipamArn,
+      if (ipamPoolArn != null) 'ipamPoolArn': ipamPoolArn,
+      if (ipamPoolId != null) 'ipamPoolId': ipamPoolId,
+      if (ipamRegion != null) 'ipamRegion': ipamRegion,
+      if (ipamScopeArn != null) 'ipamScopeArn': ipamScopeArn,
+      if (ipamScopeType != null) 'ipamScopeType': ipamScopeType.toValue(),
+      if (locale != null) 'locale': locale,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (poolDepth != null) 'poolDepth': poolDepth,
+      if (publiclyAdvertisable != null)
+        'publiclyAdvertisable': publiclyAdvertisable,
+      if (sourceIpamPoolId != null) 'sourceIpamPoolId': sourceIpamPoolId,
+      if (state != null) 'state': state.toValue(),
+      if (stateMessage != null) 'stateMessage': stateMessage,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// In IPAM, an allocation is a CIDR assignment from an IPAM pool to another
@@ -49851,6 +57517,26 @@ class IpamPoolAllocation {
     this.resourceRegion,
     this.resourceType,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidr = this.cidr;
+    final description = this.description;
+    final ipamPoolAllocationId = this.ipamPoolAllocationId;
+    final resourceId = this.resourceId;
+    final resourceOwner = this.resourceOwner;
+    final resourceRegion = this.resourceRegion;
+    final resourceType = this.resourceType;
+    return {
+      if (cidr != null) 'cidr': cidr,
+      if (description != null) 'description': description,
+      if (ipamPoolAllocationId != null)
+        'ipamPoolAllocationId': ipamPoolAllocationId,
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceOwner != null) 'resourceOwner': resourceOwner,
+      if (resourceRegion != null) 'resourceRegion': resourceRegion,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+    };
+  }
 }
 
 enum IpamPoolAllocationResourceType {
@@ -49935,6 +57621,17 @@ class IpamPoolCidr {
     this.failureReason,
     this.state,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidr = this.cidr;
+    final failureReason = this.failureReason;
+    final state = this.state;
+    return {
+      if (cidr != null) 'cidr': cidr,
+      if (failureReason != null) 'failureReason': failureReason,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 enum IpamPoolCidrFailureCode {
@@ -49972,6 +57669,15 @@ class IpamPoolCidrFailureReason {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum IpamPoolCidrState {
@@ -50204,6 +57910,42 @@ class IpamResourceCidr {
     this.resourceType,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final complianceStatus = this.complianceStatus;
+    final ipUsage = this.ipUsage;
+    final ipamId = this.ipamId;
+    final ipamPoolId = this.ipamPoolId;
+    final ipamScopeId = this.ipamScopeId;
+    final managementState = this.managementState;
+    final overlapStatus = this.overlapStatus;
+    final resourceCidr = this.resourceCidr;
+    final resourceId = this.resourceId;
+    final resourceName = this.resourceName;
+    final resourceOwnerId = this.resourceOwnerId;
+    final resourceRegion = this.resourceRegion;
+    final resourceTags = this.resourceTags;
+    final resourceType = this.resourceType;
+    final vpcId = this.vpcId;
+    return {
+      if (complianceStatus != null)
+        'complianceStatus': complianceStatus.toValue(),
+      if (ipUsage != null) 'ipUsage': ipUsage,
+      if (ipamId != null) 'ipamId': ipamId,
+      if (ipamPoolId != null) 'ipamPoolId': ipamPoolId,
+      if (ipamScopeId != null) 'ipamScopeId': ipamScopeId,
+      if (managementState != null) 'managementState': managementState.toValue(),
+      if (overlapStatus != null) 'overlapStatus': overlapStatus.toValue(),
+      if (resourceCidr != null) 'resourceCidr': resourceCidr,
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceName != null) 'resourceName': resourceName,
+      if (resourceOwnerId != null) 'resourceOwnerId': resourceOwnerId,
+      if (resourceRegion != null) 'resourceRegion': resourceRegion,
+      if (resourceTags != null) 'resourceTagSet': resourceTags,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// The key/value combination of a tag assigned to the resource. Use the tag key
@@ -50223,6 +57965,15 @@ class IpamResourceTag {
     this.key,
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'key': key,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 enum IpamResourceType {
@@ -50329,6 +58080,33 @@ class IpamScope {
     this.state,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final ipamArn = this.ipamArn;
+    final ipamRegion = this.ipamRegion;
+    final ipamScopeArn = this.ipamScopeArn;
+    final ipamScopeId = this.ipamScopeId;
+    final ipamScopeType = this.ipamScopeType;
+    final isDefault = this.isDefault;
+    final ownerId = this.ownerId;
+    final poolCount = this.poolCount;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (description != null) 'description': description,
+      if (ipamArn != null) 'ipamArn': ipamArn,
+      if (ipamRegion != null) 'ipamRegion': ipamRegion,
+      if (ipamScopeArn != null) 'ipamScopeArn': ipamScopeArn,
+      if (ipamScopeId != null) 'ipamScopeId': ipamScopeId,
+      if (ipamScopeType != null) 'ipamScopeType': ipamScopeType.toValue(),
+      if (isDefault != null) 'isDefault': isDefault,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (poolCount != null) 'poolCount': poolCount,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 enum IpamScopeState {
@@ -50526,6 +58304,13 @@ class Ipv4PrefixSpecification {
   Ipv4PrefixSpecification({
     this.ipv4Prefix,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv4Prefix = this.ipv4Prefix;
+    return {
+      if (ipv4Prefix != null) 'ipv4Prefix': ipv4Prefix,
+    };
+  }
 }
 
 /// Describes the IPv4 prefix option for a network interface.
@@ -50539,6 +58324,13 @@ class Ipv4PrefixSpecificationRequest {
   Ipv4PrefixSpecificationRequest({
     this.ipv4Prefix,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv4Prefix = this.ipv4Prefix;
+    return {
+      if (ipv4Prefix != null) 'Ipv4Prefix': ipv4Prefix,
+    };
+  }
 }
 
 /// Information about the IPv4 delegated prefixes assigned to a network
@@ -50550,6 +58342,13 @@ class Ipv4PrefixSpecificationResponse {
   Ipv4PrefixSpecificationResponse({
     this.ipv4Prefix,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv4Prefix = this.ipv4Prefix;
+    return {
+      if (ipv4Prefix != null) 'ipv4Prefix': ipv4Prefix,
+    };
+  }
 }
 
 /// Describes an IPv6 CIDR block association.
@@ -50564,6 +58363,15 @@ class Ipv6CidrAssociation {
     this.associatedResource,
     this.ipv6Cidr,
   });
+
+  Map<String, dynamic> toJson() {
+    final associatedResource = this.associatedResource;
+    final ipv6Cidr = this.ipv6Cidr;
+    return {
+      if (associatedResource != null) 'associatedResource': associatedResource,
+      if (ipv6Cidr != null) 'ipv6Cidr': ipv6Cidr,
+    };
+  }
 }
 
 /// Describes an IPv6 CIDR block.
@@ -50574,6 +58382,13 @@ class Ipv6CidrBlock {
   Ipv6CidrBlock({
     this.ipv6CidrBlock,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv6CidrBlock = this.ipv6CidrBlock;
+    return {
+      if (ipv6CidrBlock != null) 'ipv6CidrBlock': ipv6CidrBlock,
+    };
+  }
 }
 
 /// Describes an IPv6 address pool.
@@ -50596,6 +58411,19 @@ class Ipv6Pool {
     this.poolId,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final poolCidrBlocks = this.poolCidrBlocks;
+    final poolId = this.poolId;
+    final tags = this.tags;
+    return {
+      if (description != null) 'description': description,
+      if (poolCidrBlocks != null) 'poolCidrBlockSet': poolCidrBlocks,
+      if (poolId != null) 'poolId': poolId,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes the IPv6 prefix.
@@ -50606,6 +58434,13 @@ class Ipv6PrefixSpecification {
   Ipv6PrefixSpecification({
     this.ipv6Prefix,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv6Prefix = this.ipv6Prefix;
+    return {
+      if (ipv6Prefix != null) 'ipv6Prefix': ipv6Prefix,
+    };
+  }
 }
 
 /// Describes the IPv4 prefix option for a network interface.
@@ -50616,6 +58451,13 @@ class Ipv6PrefixSpecificationRequest {
   Ipv6PrefixSpecificationRequest({
     this.ipv6Prefix,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv6Prefix = this.ipv6Prefix;
+    return {
+      if (ipv6Prefix != null) 'Ipv6Prefix': ipv6Prefix,
+    };
+  }
 }
 
 /// Information about the IPv6 delegated prefixes assigned to a network
@@ -50627,6 +58469,13 @@ class Ipv6PrefixSpecificationResponse {
   Ipv6PrefixSpecificationResponse({
     this.ipv6Prefix,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv6Prefix = this.ipv6Prefix;
+    return {
+      if (ipv6Prefix != null) 'ipv6Prefix': ipv6Prefix,
+    };
+  }
 }
 
 /// [EC2-VPC only] Describes an IPv6 range.
@@ -50647,6 +58496,15 @@ class Ipv6Range {
     this.cidrIpv6,
     this.description,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidrIpv6 = this.cidrIpv6;
+    final description = this.description;
+    return {
+      if (cidrIpv6 != null) 'cidrIpv6': cidrIpv6,
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 enum Ipv6SupportValue {
@@ -50738,6 +58596,21 @@ class KeyPair {
     this.keyPairId,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final keyFingerprint = this.keyFingerprint;
+    final keyMaterial = this.keyMaterial;
+    final keyName = this.keyName;
+    final keyPairId = this.keyPairId;
+    final tags = this.tags;
+    return {
+      if (keyFingerprint != null) 'keyFingerprint': keyFingerprint,
+      if (keyMaterial != null) 'keyMaterial': keyMaterial,
+      if (keyName != null) 'keyName': keyName,
+      if (keyPairId != null) 'keyPairId': keyPairId,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes a key pair.
@@ -50806,6 +58679,25 @@ class KeyPairInfo {
     this.publicKey,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final keyFingerprint = this.keyFingerprint;
+    final keyName = this.keyName;
+    final keyPairId = this.keyPairId;
+    final keyType = this.keyType;
+    final publicKey = this.publicKey;
+    final tags = this.tags;
+    return {
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (keyFingerprint != null) 'keyFingerprint': keyFingerprint,
+      if (keyName != null) 'keyName': keyName,
+      if (keyPairId != null) 'keyPairId': keyPairId,
+      if (keyType != null) 'keyType': keyType.toValue(),
+      if (publicKey != null) 'publicKey': publicKey,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 enum KeyType {
@@ -50848,6 +58740,15 @@ class LastError {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// Describes a launch permission.
@@ -50872,6 +58773,20 @@ class LaunchPermission {
     this.organizationalUnitArn,
     this.userId,
   });
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    final organizationArn = this.organizationArn;
+    final organizationalUnitArn = this.organizationalUnitArn;
+    final userId = this.userId;
+    return {
+      if (group != null) 'group': group.toValue(),
+      if (organizationArn != null) 'organizationArn': organizationArn,
+      if (organizationalUnitArn != null)
+        'organizationalUnitArn': organizationalUnitArn,
+      if (userId != null) 'userId': userId,
+    };
+  }
 }
 
 /// Describes a launch permission modification.
@@ -50888,6 +58803,15 @@ class LaunchPermissionModifications {
     this.add,
     this.remove,
   });
+
+  Map<String, dynamic> toJson() {
+    final add = this.add;
+    final remove = this.remove;
+    return {
+      if (add != null) 'Add': add,
+      if (remove != null) 'Remove': remove,
+    };
+  }
 }
 
 /// Describes the launch specification for an instance.
@@ -50968,6 +58892,42 @@ class LaunchSpecification {
     this.subnetId,
     this.userData,
   });
+
+  Map<String, dynamic> toJson() {
+    final addressingType = this.addressingType;
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final ebsOptimized = this.ebsOptimized;
+    final iamInstanceProfile = this.iamInstanceProfile;
+    final imageId = this.imageId;
+    final instanceType = this.instanceType;
+    final kernelId = this.kernelId;
+    final keyName = this.keyName;
+    final monitoring = this.monitoring;
+    final networkInterfaces = this.networkInterfaces;
+    final placement = this.placement;
+    final ramdiskId = this.ramdiskId;
+    final securityGroups = this.securityGroups;
+    final subnetId = this.subnetId;
+    final userData = this.userData;
+    return {
+      if (addressingType != null) 'addressingType': addressingType,
+      if (blockDeviceMappings != null)
+        'blockDeviceMapping': blockDeviceMappings,
+      if (ebsOptimized != null) 'ebsOptimized': ebsOptimized,
+      if (iamInstanceProfile != null) 'iamInstanceProfile': iamInstanceProfile,
+      if (imageId != null) 'imageId': imageId,
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (kernelId != null) 'kernelId': kernelId,
+      if (keyName != null) 'keyName': keyName,
+      if (monitoring != null) 'monitoring': monitoring,
+      if (networkInterfaces != null) 'networkInterfaceSet': networkInterfaces,
+      if (placement != null) 'placement': placement,
+      if (ramdiskId != null) 'ramdiskId': ramdiskId,
+      if (securityGroups != null) 'groupSet': securityGroups,
+      if (subnetId != null) 'subnetId': subnetId,
+      if (userData != null) 'userData': userData,
+    };
+  }
 }
 
 /// Describes a launch template.
@@ -51002,6 +58962,27 @@ class LaunchTemplate {
     this.launchTemplateName,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final createdBy = this.createdBy;
+    final defaultVersionNumber = this.defaultVersionNumber;
+    final latestVersionNumber = this.latestVersionNumber;
+    final launchTemplateId = this.launchTemplateId;
+    final launchTemplateName = this.launchTemplateName;
+    final tags = this.tags;
+    return {
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (defaultVersionNumber != null)
+        'defaultVersionNumber': defaultVersionNumber,
+      if (latestVersionNumber != null)
+        'latestVersionNumber': latestVersionNumber,
+      if (launchTemplateId != null) 'launchTemplateId': launchTemplateId,
+      if (launchTemplateName != null) 'launchTemplateName': launchTemplateName,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes a launch template and overrides.
@@ -51017,6 +58998,16 @@ class LaunchTemplateAndOverridesResponse {
     this.launchTemplateSpecification,
     this.overrides,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplateSpecification = this.launchTemplateSpecification;
+    final overrides = this.overrides;
+    return {
+      if (launchTemplateSpecification != null)
+        'launchTemplateSpecification': launchTemplateSpecification,
+      if (overrides != null) 'overrides': overrides,
+    };
+  }
 }
 
 enum LaunchTemplateAutoRecoveryState {
@@ -51069,6 +59060,19 @@ class LaunchTemplateBlockDeviceMapping {
     this.noDevice,
     this.virtualName,
   });
+
+  Map<String, dynamic> toJson() {
+    final deviceName = this.deviceName;
+    final ebs = this.ebs;
+    final noDevice = this.noDevice;
+    final virtualName = this.virtualName;
+    return {
+      if (deviceName != null) 'deviceName': deviceName,
+      if (ebs != null) 'ebs': ebs,
+      if (noDevice != null) 'noDevice': noDevice,
+      if (virtualName != null) 'virtualName': virtualName,
+    };
+  }
 }
 
 /// Describes a block device mapping.
@@ -51096,6 +59100,19 @@ class LaunchTemplateBlockDeviceMappingRequest {
     this.noDevice,
     this.virtualName,
   });
+
+  Map<String, dynamic> toJson() {
+    final deviceName = this.deviceName;
+    final ebs = this.ebs;
+    final noDevice = this.noDevice;
+    final virtualName = this.virtualName;
+    return {
+      if (deviceName != null) 'DeviceName': deviceName,
+      if (ebs != null) 'Ebs': ebs,
+      if (noDevice != null) 'NoDevice': noDevice,
+      if (virtualName != null) 'VirtualName': virtualName,
+    };
+  }
 }
 
 /// Describes an instance's Capacity Reservation targeting option. You can
@@ -51131,6 +59148,18 @@ class LaunchTemplateCapacityReservationSpecificationRequest {
     this.capacityReservationPreference,
     this.capacityReservationTarget,
   });
+
+  Map<String, dynamic> toJson() {
+    final capacityReservationPreference = this.capacityReservationPreference;
+    final capacityReservationTarget = this.capacityReservationTarget;
+    return {
+      if (capacityReservationPreference != null)
+        'CapacityReservationPreference':
+            capacityReservationPreference.toValue(),
+      if (capacityReservationTarget != null)
+        'CapacityReservationTarget': capacityReservationTarget,
+    };
+  }
 }
 
 /// Information about the Capacity Reservation targeting option.
@@ -51159,6 +59188,18 @@ class LaunchTemplateCapacityReservationSpecificationResponse {
     this.capacityReservationPreference,
     this.capacityReservationTarget,
   });
+
+  Map<String, dynamic> toJson() {
+    final capacityReservationPreference = this.capacityReservationPreference;
+    final capacityReservationTarget = this.capacityReservationTarget;
+    return {
+      if (capacityReservationPreference != null)
+        'capacityReservationPreference':
+            capacityReservationPreference.toValue(),
+      if (capacityReservationTarget != null)
+        'capacityReservationTarget': capacityReservationTarget,
+    };
+  }
 }
 
 /// Describes a launch template and overrides.
@@ -51174,6 +59215,16 @@ class LaunchTemplateConfig {
     this.launchTemplateSpecification,
     this.overrides,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplateSpecification = this.launchTemplateSpecification;
+    final overrides = this.overrides;
+    return {
+      if (launchTemplateSpecification != null)
+        'launchTemplateSpecification': launchTemplateSpecification,
+      if (overrides != null) 'overrides': overrides,
+    };
+  }
 }
 
 /// The CPU options for the instance.
@@ -51188,6 +59239,15 @@ class LaunchTemplateCpuOptions {
     this.coreCount,
     this.threadsPerCore,
   });
+
+  Map<String, dynamic> toJson() {
+    final coreCount = this.coreCount;
+    final threadsPerCore = this.threadsPerCore;
+    return {
+      if (coreCount != null) 'coreCount': coreCount,
+      if (threadsPerCore != null) 'threadsPerCore': threadsPerCore,
+    };
+  }
 }
 
 /// The CPU options for the instance. Both the core count and threads per core
@@ -51205,6 +59265,15 @@ class LaunchTemplateCpuOptionsRequest {
     this.coreCount,
     this.threadsPerCore,
   });
+
+  Map<String, dynamic> toJson() {
+    final coreCount = this.coreCount;
+    final threadsPerCore = this.threadsPerCore;
+    return {
+      if (coreCount != null) 'CoreCount': coreCount,
+      if (threadsPerCore != null) 'ThreadsPerCore': threadsPerCore,
+    };
+  }
 }
 
 /// Describes a block device for an EBS volume.
@@ -51243,6 +59312,28 @@ class LaunchTemplateEbsBlockDevice {
     this.volumeSize,
     this.volumeType,
   });
+
+  Map<String, dynamic> toJson() {
+    final deleteOnTermination = this.deleteOnTermination;
+    final encrypted = this.encrypted;
+    final iops = this.iops;
+    final kmsKeyId = this.kmsKeyId;
+    final snapshotId = this.snapshotId;
+    final throughput = this.throughput;
+    final volumeSize = this.volumeSize;
+    final volumeType = this.volumeType;
+    return {
+      if (deleteOnTermination != null)
+        'deleteOnTermination': deleteOnTermination,
+      if (encrypted != null) 'encrypted': encrypted,
+      if (iops != null) 'iops': iops,
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (throughput != null) 'throughput': throughput,
+      if (volumeSize != null) 'volumeSize': volumeSize,
+      if (volumeType != null) 'volumeType': volumeType.toValue(),
+    };
+  }
 }
 
 /// The parameters for a block device for an EBS volume.
@@ -51334,6 +59425,28 @@ class LaunchTemplateEbsBlockDeviceRequest {
     this.volumeSize,
     this.volumeType,
   });
+
+  Map<String, dynamic> toJson() {
+    final deleteOnTermination = this.deleteOnTermination;
+    final encrypted = this.encrypted;
+    final iops = this.iops;
+    final kmsKeyId = this.kmsKeyId;
+    final snapshotId = this.snapshotId;
+    final throughput = this.throughput;
+    final volumeSize = this.volumeSize;
+    final volumeType = this.volumeType;
+    return {
+      if (deleteOnTermination != null)
+        'DeleteOnTermination': deleteOnTermination,
+      if (encrypted != null) 'Encrypted': encrypted,
+      if (iops != null) 'Iops': iops,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (snapshotId != null) 'SnapshotId': snapshotId,
+      if (throughput != null) 'Throughput': throughput,
+      if (volumeSize != null) 'VolumeSize': volumeSize,
+      if (volumeType != null) 'VolumeType': volumeType.toValue(),
+    };
+  }
 }
 
 /// Describes an elastic inference accelerator.
@@ -51351,6 +59464,15 @@ class LaunchTemplateElasticInferenceAccelerator {
     required this.type,
     this.count,
   });
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final count = this.count;
+    return {
+      'Type': type,
+      if (count != null) 'Count': count,
+    };
+  }
 }
 
 /// Describes an elastic inference accelerator.
@@ -51368,6 +59490,15 @@ class LaunchTemplateElasticInferenceAcceleratorResponse {
     this.count,
     this.type,
   });
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final type = this.type;
+    return {
+      if (count != null) 'count': count,
+      if (type != null) 'type': type,
+    };
+  }
 }
 
 /// Indicates whether the instance is enabled for Amazon Web Services Nitro
@@ -51381,6 +59512,13 @@ class LaunchTemplateEnclaveOptions {
   LaunchTemplateEnclaveOptions({
     this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      if (enabled != null) 'enabled': enabled,
+    };
+  }
 }
 
 /// Indicates whether the instance is enabled for Amazon Web Services Nitro
@@ -51396,6 +59534,13 @@ class LaunchTemplateEnclaveOptionsRequest {
   LaunchTemplateEnclaveOptionsRequest({
     this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      if (enabled != null) 'Enabled': enabled,
+    };
+  }
 }
 
 enum LaunchTemplateErrorCode {
@@ -51455,6 +59600,13 @@ class LaunchTemplateHibernationOptions {
   LaunchTemplateHibernationOptions({
     this.configured,
   });
+
+  Map<String, dynamic> toJson() {
+    final configured = this.configured;
+    return {
+      if (configured != null) 'configured': configured,
+    };
+  }
 }
 
 /// Indicates whether the instance is configured for hibernation. This parameter
@@ -51471,6 +59623,13 @@ class LaunchTemplateHibernationOptionsRequest {
   LaunchTemplateHibernationOptionsRequest({
     this.configured,
   });
+
+  Map<String, dynamic> toJson() {
+    final configured = this.configured;
+    return {
+      if (configured != null) 'Configured': configured,
+    };
+  }
 }
 
 enum LaunchTemplateHttpTokensState {
@@ -51514,6 +59673,15 @@ class LaunchTemplateIamInstanceProfileSpecification {
     this.arn,
     this.name,
   });
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'arn': arn,
+      if (name != null) 'name': name,
+    };
+  }
 }
 
 /// An IAM instance profile.
@@ -51528,6 +59696,15 @@ class LaunchTemplateIamInstanceProfileSpecificationRequest {
     this.arn,
     this.name,
   });
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// The maintenance options of your instance.
@@ -51539,6 +59716,13 @@ class LaunchTemplateInstanceMaintenanceOptions {
   LaunchTemplateInstanceMaintenanceOptions({
     this.autoRecovery,
   });
+
+  Map<String, dynamic> toJson() {
+    final autoRecovery = this.autoRecovery;
+    return {
+      if (autoRecovery != null) 'autoRecovery': autoRecovery.toValue(),
+    };
+  }
 }
 
 /// The maintenance options of your instance.
@@ -51552,6 +59736,13 @@ class LaunchTemplateInstanceMaintenanceOptionsRequest {
   LaunchTemplateInstanceMaintenanceOptionsRequest({
     this.autoRecovery,
   });
+
+  Map<String, dynamic> toJson() {
+    final autoRecovery = this.autoRecovery;
+    return {
+      if (autoRecovery != null) 'AutoRecovery': autoRecovery.toValue(),
+    };
+  }
 }
 
 /// The market (purchasing) option for the instances.
@@ -51566,6 +59757,15 @@ class LaunchTemplateInstanceMarketOptions {
     this.marketType,
     this.spotOptions,
   });
+
+  Map<String, dynamic> toJson() {
+    final marketType = this.marketType;
+    final spotOptions = this.spotOptions;
+    return {
+      if (marketType != null) 'marketType': marketType.toValue(),
+      if (spotOptions != null) 'spotOptions': spotOptions,
+    };
+  }
 }
 
 /// The market (purchasing) option for the instances.
@@ -51580,6 +59780,15 @@ class LaunchTemplateInstanceMarketOptionsRequest {
     this.marketType,
     this.spotOptions,
   });
+
+  Map<String, dynamic> toJson() {
+    final marketType = this.marketType;
+    final spotOptions = this.spotOptions;
+    return {
+      if (marketType != null) 'MarketType': marketType.toValue(),
+      if (spotOptions != null) 'SpotOptions': spotOptions,
+    };
+  }
 }
 
 enum LaunchTemplateInstanceMetadataEndpointState {
@@ -51681,6 +59890,26 @@ class LaunchTemplateInstanceMetadataOptions {
     this.instanceMetadataTags,
     this.state,
   });
+
+  Map<String, dynamic> toJson() {
+    final httpEndpoint = this.httpEndpoint;
+    final httpProtocolIpv6 = this.httpProtocolIpv6;
+    final httpPutResponseHopLimit = this.httpPutResponseHopLimit;
+    final httpTokens = this.httpTokens;
+    final instanceMetadataTags = this.instanceMetadataTags;
+    final state = this.state;
+    return {
+      if (httpEndpoint != null) 'httpEndpoint': httpEndpoint.toValue(),
+      if (httpProtocolIpv6 != null)
+        'httpProtocolIpv6': httpProtocolIpv6.toValue(),
+      if (httpPutResponseHopLimit != null)
+        'httpPutResponseHopLimit': httpPutResponseHopLimit,
+      if (httpTokens != null) 'httpTokens': httpTokens.toValue(),
+      if (instanceMetadataTags != null)
+        'instanceMetadataTags': instanceMetadataTags.toValue(),
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 /// The metadata options for the instance. For more information, see <a
@@ -51741,6 +59970,24 @@ class LaunchTemplateInstanceMetadataOptionsRequest {
     this.httpTokens,
     this.instanceMetadataTags,
   });
+
+  Map<String, dynamic> toJson() {
+    final httpEndpoint = this.httpEndpoint;
+    final httpProtocolIpv6 = this.httpProtocolIpv6;
+    final httpPutResponseHopLimit = this.httpPutResponseHopLimit;
+    final httpTokens = this.httpTokens;
+    final instanceMetadataTags = this.instanceMetadataTags;
+    return {
+      if (httpEndpoint != null) 'HttpEndpoint': httpEndpoint.toValue(),
+      if (httpProtocolIpv6 != null)
+        'HttpProtocolIpv6': httpProtocolIpv6.toValue(),
+      if (httpPutResponseHopLimit != null)
+        'HttpPutResponseHopLimit': httpPutResponseHopLimit,
+      if (httpTokens != null) 'HttpTokens': httpTokens.toValue(),
+      if (instanceMetadataTags != null)
+        'InstanceMetadataTags': instanceMetadataTags.toValue(),
+    };
+  }
 }
 
 enum LaunchTemplateInstanceMetadataOptionsState {
@@ -51927,6 +60174,54 @@ class LaunchTemplateInstanceNetworkInterfaceSpecification {
     this.secondaryPrivateIpAddressCount,
     this.subnetId,
   });
+
+  Map<String, dynamic> toJson() {
+    final associateCarrierIpAddress = this.associateCarrierIpAddress;
+    final associatePublicIpAddress = this.associatePublicIpAddress;
+    final deleteOnTermination = this.deleteOnTermination;
+    final description = this.description;
+    final deviceIndex = this.deviceIndex;
+    final groups = this.groups;
+    final interfaceType = this.interfaceType;
+    final ipv4PrefixCount = this.ipv4PrefixCount;
+    final ipv4Prefixes = this.ipv4Prefixes;
+    final ipv6AddressCount = this.ipv6AddressCount;
+    final ipv6Addresses = this.ipv6Addresses;
+    final ipv6PrefixCount = this.ipv6PrefixCount;
+    final ipv6Prefixes = this.ipv6Prefixes;
+    final networkCardIndex = this.networkCardIndex;
+    final networkInterfaceId = this.networkInterfaceId;
+    final privateIpAddress = this.privateIpAddress;
+    final privateIpAddresses = this.privateIpAddresses;
+    final secondaryPrivateIpAddressCount = this.secondaryPrivateIpAddressCount;
+    final subnetId = this.subnetId;
+    return {
+      if (associateCarrierIpAddress != null)
+        'associateCarrierIpAddress': associateCarrierIpAddress,
+      if (associatePublicIpAddress != null)
+        'associatePublicIpAddress': associatePublicIpAddress,
+      if (deleteOnTermination != null)
+        'deleteOnTermination': deleteOnTermination,
+      if (description != null) 'description': description,
+      if (deviceIndex != null) 'deviceIndex': deviceIndex,
+      if (groups != null) 'groupSet': groups,
+      if (interfaceType != null) 'interfaceType': interfaceType,
+      if (ipv4PrefixCount != null) 'ipv4PrefixCount': ipv4PrefixCount,
+      if (ipv4Prefixes != null) 'ipv4PrefixSet': ipv4Prefixes,
+      if (ipv6AddressCount != null) 'ipv6AddressCount': ipv6AddressCount,
+      if (ipv6Addresses != null) 'ipv6AddressesSet': ipv6Addresses,
+      if (ipv6PrefixCount != null) 'ipv6PrefixCount': ipv6PrefixCount,
+      if (ipv6Prefixes != null) 'ipv6PrefixSet': ipv6Prefixes,
+      if (networkCardIndex != null) 'networkCardIndex': networkCardIndex,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+      if (privateIpAddresses != null)
+        'privateIpAddressesSet': privateIpAddresses,
+      if (secondaryPrivateIpAddressCount != null)
+        'secondaryPrivateIpAddressCount': secondaryPrivateIpAddressCount,
+      if (subnetId != null) 'subnetId': subnetId,
+    };
+  }
 }
 
 /// The parameters for a network interface.
@@ -52037,6 +60332,53 @@ class LaunchTemplateInstanceNetworkInterfaceSpecificationRequest {
     this.secondaryPrivateIpAddressCount,
     this.subnetId,
   });
+
+  Map<String, dynamic> toJson() {
+    final associateCarrierIpAddress = this.associateCarrierIpAddress;
+    final associatePublicIpAddress = this.associatePublicIpAddress;
+    final deleteOnTermination = this.deleteOnTermination;
+    final description = this.description;
+    final deviceIndex = this.deviceIndex;
+    final groups = this.groups;
+    final interfaceType = this.interfaceType;
+    final ipv4PrefixCount = this.ipv4PrefixCount;
+    final ipv4Prefixes = this.ipv4Prefixes;
+    final ipv6AddressCount = this.ipv6AddressCount;
+    final ipv6Addresses = this.ipv6Addresses;
+    final ipv6PrefixCount = this.ipv6PrefixCount;
+    final ipv6Prefixes = this.ipv6Prefixes;
+    final networkCardIndex = this.networkCardIndex;
+    final networkInterfaceId = this.networkInterfaceId;
+    final privateIpAddress = this.privateIpAddress;
+    final privateIpAddresses = this.privateIpAddresses;
+    final secondaryPrivateIpAddressCount = this.secondaryPrivateIpAddressCount;
+    final subnetId = this.subnetId;
+    return {
+      if (associateCarrierIpAddress != null)
+        'AssociateCarrierIpAddress': associateCarrierIpAddress,
+      if (associatePublicIpAddress != null)
+        'AssociatePublicIpAddress': associatePublicIpAddress,
+      if (deleteOnTermination != null)
+        'DeleteOnTermination': deleteOnTermination,
+      if (description != null) 'Description': description,
+      if (deviceIndex != null) 'DeviceIndex': deviceIndex,
+      if (groups != null) 'SecurityGroupId': groups,
+      if (interfaceType != null) 'InterfaceType': interfaceType,
+      if (ipv4PrefixCount != null) 'Ipv4PrefixCount': ipv4PrefixCount,
+      if (ipv4Prefixes != null) 'Ipv4Prefix': ipv4Prefixes,
+      if (ipv6AddressCount != null) 'Ipv6AddressCount': ipv6AddressCount,
+      if (ipv6Addresses != null) 'Ipv6Addresses': ipv6Addresses,
+      if (ipv6PrefixCount != null) 'Ipv6PrefixCount': ipv6PrefixCount,
+      if (ipv6Prefixes != null) 'Ipv6Prefix': ipv6Prefixes,
+      if (networkCardIndex != null) 'NetworkCardIndex': networkCardIndex,
+      if (networkInterfaceId != null) 'NetworkInterfaceId': networkInterfaceId,
+      if (privateIpAddress != null) 'PrivateIpAddress': privateIpAddress,
+      if (privateIpAddresses != null) 'PrivateIpAddresses': privateIpAddresses,
+      if (secondaryPrivateIpAddressCount != null)
+        'SecondaryPrivateIpAddressCount': secondaryPrivateIpAddressCount,
+      if (subnetId != null) 'SubnetId': subnetId,
+    };
+  }
 }
 
 /// Describes a license configuration.
@@ -52047,6 +60389,14 @@ class LaunchTemplateLicenseConfiguration {
   LaunchTemplateLicenseConfiguration({
     this.licenseConfigurationArn,
   });
+
+  Map<String, dynamic> toJson() {
+    final licenseConfigurationArn = this.licenseConfigurationArn;
+    return {
+      if (licenseConfigurationArn != null)
+        'licenseConfigurationArn': licenseConfigurationArn,
+    };
+  }
 }
 
 /// Describes a license configuration.
@@ -52057,6 +60407,14 @@ class LaunchTemplateLicenseConfigurationRequest {
   LaunchTemplateLicenseConfigurationRequest({
     this.licenseConfigurationArn,
   });
+
+  Map<String, dynamic> toJson() {
+    final licenseConfigurationArn = this.licenseConfigurationArn;
+    return {
+      if (licenseConfigurationArn != null)
+        'LicenseConfigurationArn': licenseConfigurationArn,
+    };
+  }
 }
 
 /// Describes overrides for a launch template.
@@ -52121,6 +60479,26 @@ class LaunchTemplateOverrides {
     this.subnetId,
     this.weightedCapacity,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final instanceRequirements = this.instanceRequirements;
+    final instanceType = this.instanceType;
+    final priority = this.priority;
+    final spotPrice = this.spotPrice;
+    final subnetId = this.subnetId;
+    final weightedCapacity = this.weightedCapacity;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (instanceRequirements != null)
+        'instanceRequirements': instanceRequirements,
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (priority != null) 'priority': priority,
+      if (spotPrice != null) 'spotPrice': spotPrice,
+      if (subnetId != null) 'subnetId': subnetId,
+      if (weightedCapacity != null) 'weightedCapacity': weightedCapacity,
+    };
+  }
 }
 
 /// Describes the placement of an instance.
@@ -52162,6 +60540,28 @@ class LaunchTemplatePlacement {
     this.spreadDomain,
     this.tenancy,
   });
+
+  Map<String, dynamic> toJson() {
+    final affinity = this.affinity;
+    final availabilityZone = this.availabilityZone;
+    final groupName = this.groupName;
+    final hostId = this.hostId;
+    final hostResourceGroupArn = this.hostResourceGroupArn;
+    final partitionNumber = this.partitionNumber;
+    final spreadDomain = this.spreadDomain;
+    final tenancy = this.tenancy;
+    return {
+      if (affinity != null) 'affinity': affinity,
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (groupName != null) 'groupName': groupName,
+      if (hostId != null) 'hostId': hostId,
+      if (hostResourceGroupArn != null)
+        'hostResourceGroupArn': hostResourceGroupArn,
+      if (partitionNumber != null) 'partitionNumber': partitionNumber,
+      if (spreadDomain != null) 'spreadDomain': spreadDomain,
+      if (tenancy != null) 'tenancy': tenancy.toValue(),
+    };
+  }
 }
 
 /// Describes the placement of an instance.
@@ -52204,6 +60604,28 @@ class LaunchTemplatePlacementRequest {
     this.spreadDomain,
     this.tenancy,
   });
+
+  Map<String, dynamic> toJson() {
+    final affinity = this.affinity;
+    final availabilityZone = this.availabilityZone;
+    final groupName = this.groupName;
+    final hostId = this.hostId;
+    final hostResourceGroupArn = this.hostResourceGroupArn;
+    final partitionNumber = this.partitionNumber;
+    final spreadDomain = this.spreadDomain;
+    final tenancy = this.tenancy;
+    return {
+      if (affinity != null) 'Affinity': affinity,
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (groupName != null) 'GroupName': groupName,
+      if (hostId != null) 'HostId': hostId,
+      if (hostResourceGroupArn != null)
+        'HostResourceGroupArn': hostResourceGroupArn,
+      if (partitionNumber != null) 'PartitionNumber': partitionNumber,
+      if (spreadDomain != null) 'SpreadDomain': spreadDomain,
+      if (tenancy != null) 'Tenancy': tenancy.toValue(),
+    };
+  }
 }
 
 /// Describes the options for instance hostnames.
@@ -52224,6 +60646,20 @@ class LaunchTemplatePrivateDnsNameOptions {
     this.enableResourceNameDnsARecord,
     this.hostnameType,
   });
+
+  Map<String, dynamic> toJson() {
+    final enableResourceNameDnsAAAARecord =
+        this.enableResourceNameDnsAAAARecord;
+    final enableResourceNameDnsARecord = this.enableResourceNameDnsARecord;
+    final hostnameType = this.hostnameType;
+    return {
+      if (enableResourceNameDnsAAAARecord != null)
+        'enableResourceNameDnsAAAARecord': enableResourceNameDnsAAAARecord,
+      if (enableResourceNameDnsARecord != null)
+        'enableResourceNameDnsARecord': enableResourceNameDnsARecord,
+      if (hostnameType != null) 'hostnameType': hostnameType.toValue(),
+    };
+  }
 }
 
 /// Describes the options for instance hostnames.
@@ -52248,6 +60684,20 @@ class LaunchTemplatePrivateDnsNameOptionsRequest {
     this.enableResourceNameDnsARecord,
     this.hostnameType,
   });
+
+  Map<String, dynamic> toJson() {
+    final enableResourceNameDnsAAAARecord =
+        this.enableResourceNameDnsAAAARecord;
+    final enableResourceNameDnsARecord = this.enableResourceNameDnsARecord;
+    final hostnameType = this.hostnameType;
+    return {
+      if (enableResourceNameDnsAAAARecord != null)
+        'EnableResourceNameDnsAAAARecord': enableResourceNameDnsAAAARecord,
+      if (enableResourceNameDnsARecord != null)
+        'EnableResourceNameDnsARecord': enableResourceNameDnsARecord,
+      if (hostnameType != null) 'HostnameType': hostnameType.toValue(),
+    };
+  }
 }
 
 /// The launch template to use. You must specify either the launch template ID
@@ -52282,6 +60732,17 @@ class LaunchTemplateSpecification {
     this.launchTemplateName,
     this.version,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplateId = this.launchTemplateId;
+    final launchTemplateName = this.launchTemplateName;
+    final version = this.version;
+    return {
+      if (launchTemplateId != null) 'LaunchTemplateId': launchTemplateId,
+      if (launchTemplateName != null) 'LaunchTemplateName': launchTemplateName,
+      if (version != null) 'Version': version,
+    };
+  }
 }
 
 /// The options for Spot Instances.
@@ -52320,6 +60781,24 @@ class LaunchTemplateSpotMarketOptions {
     this.spotInstanceType,
     this.validUntil,
   });
+
+  Map<String, dynamic> toJson() {
+    final blockDurationMinutes = this.blockDurationMinutes;
+    final instanceInterruptionBehavior = this.instanceInterruptionBehavior;
+    final maxPrice = this.maxPrice;
+    final spotInstanceType = this.spotInstanceType;
+    final validUntil = this.validUntil;
+    return {
+      if (blockDurationMinutes != null)
+        'blockDurationMinutes': blockDurationMinutes,
+      if (instanceInterruptionBehavior != null)
+        'instanceInterruptionBehavior': instanceInterruptionBehavior.toValue(),
+      if (maxPrice != null) 'maxPrice': maxPrice,
+      if (spotInstanceType != null)
+        'spotInstanceType': spotInstanceType.toValue(),
+      if (validUntil != null) 'validUntil': iso8601ToJson(validUntil),
+    };
+  }
 }
 
 /// The options for Spot Instances.
@@ -52369,6 +60848,24 @@ class LaunchTemplateSpotMarketOptionsRequest {
     this.spotInstanceType,
     this.validUntil,
   });
+
+  Map<String, dynamic> toJson() {
+    final blockDurationMinutes = this.blockDurationMinutes;
+    final instanceInterruptionBehavior = this.instanceInterruptionBehavior;
+    final maxPrice = this.maxPrice;
+    final spotInstanceType = this.spotInstanceType;
+    final validUntil = this.validUntil;
+    return {
+      if (blockDurationMinutes != null)
+        'BlockDurationMinutes': blockDurationMinutes,
+      if (instanceInterruptionBehavior != null)
+        'InstanceInterruptionBehavior': instanceInterruptionBehavior.toValue(),
+      if (maxPrice != null) 'MaxPrice': maxPrice,
+      if (spotInstanceType != null)
+        'SpotInstanceType': spotInstanceType.toValue(),
+      if (validUntil != null) 'ValidUntil': iso8601ToJson(validUntil),
+    };
+  }
 }
 
 /// The tags specification for the launch template.
@@ -52383,6 +60880,15 @@ class LaunchTemplateTagSpecification {
     this.resourceType,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceType = this.resourceType;
+    final tags = this.tags;
+    return {
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// The tags specification for the resources that are created during instance
@@ -52407,6 +60913,15 @@ class LaunchTemplateTagSpecificationRequest {
     this.resourceType,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceType = this.resourceType;
+    final tags = this.tags;
+    return {
+      if (resourceType != null) 'ResourceType': resourceType.toValue(),
+      if (tags != null) 'Tag': tags,
+    };
+  }
 }
 
 /// Describes a launch template version.
@@ -52445,6 +60960,27 @@ class LaunchTemplateVersion {
     this.versionDescription,
     this.versionNumber,
   });
+
+  Map<String, dynamic> toJson() {
+    final createTime = this.createTime;
+    final createdBy = this.createdBy;
+    final defaultVersion = this.defaultVersion;
+    final launchTemplateData = this.launchTemplateData;
+    final launchTemplateId = this.launchTemplateId;
+    final launchTemplateName = this.launchTemplateName;
+    final versionDescription = this.versionDescription;
+    final versionNumber = this.versionNumber;
+    return {
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (createdBy != null) 'createdBy': createdBy,
+      if (defaultVersion != null) 'defaultVersion': defaultVersion,
+      if (launchTemplateData != null) 'launchTemplateData': launchTemplateData,
+      if (launchTemplateId != null) 'launchTemplateId': launchTemplateId,
+      if (launchTemplateName != null) 'launchTemplateName': launchTemplateName,
+      if (versionDescription != null) 'versionDescription': versionDescription,
+      if (versionNumber != null) 'versionNumber': versionNumber,
+    };
+  }
 }
 
 /// Describes the monitoring for the instance.
@@ -52456,6 +60992,13 @@ class LaunchTemplatesMonitoring {
   LaunchTemplatesMonitoring({
     this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      if (enabled != null) 'enabled': enabled,
+    };
+  }
 }
 
 /// Describes the monitoring for the instance.
@@ -52467,6 +61010,13 @@ class LaunchTemplatesMonitoringRequest {
   LaunchTemplatesMonitoringRequest({
     this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      if (enabled != null) 'Enabled': enabled,
+    };
+  }
 }
 
 /// Describes a license configuration.
@@ -52477,6 +61027,14 @@ class LicenseConfiguration {
   LicenseConfiguration({
     this.licenseConfigurationArn,
   });
+
+  Map<String, dynamic> toJson() {
+    final licenseConfigurationArn = this.licenseConfigurationArn;
+    return {
+      if (licenseConfigurationArn != null)
+        'licenseConfigurationArn': licenseConfigurationArn,
+    };
+  }
 }
 
 /// Describes a license configuration.
@@ -52487,6 +61045,14 @@ class LicenseConfigurationRequest {
   LicenseConfigurationRequest({
     this.licenseConfigurationArn,
   });
+
+  Map<String, dynamic> toJson() {
+    final licenseConfigurationArn = this.licenseConfigurationArn;
+    return {
+      if (licenseConfigurationArn != null)
+        'LicenseConfigurationArn': licenseConfigurationArn,
+    };
+  }
 }
 
 class ListImagesInRecycleBinResult {
@@ -52501,6 +61067,15 @@ class ListImagesInRecycleBinResult {
     this.images,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final images = this.images;
+    final nextToken = this.nextToken;
+    return {
+      if (images != null) 'imageSet': images,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListSnapshotsInRecycleBinResult {
@@ -52515,6 +61090,15 @@ class ListSnapshotsInRecycleBinResult {
     this.nextToken,
     this.snapshots,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final snapshots = this.snapshots;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (snapshots != null) 'snapshotSet': snapshots,
+    };
+  }
 }
 
 enum ListingState {
@@ -52606,6 +61190,16 @@ class LoadBalancersConfig {
     this.classicLoadBalancersConfig,
     this.targetGroupsConfig,
   });
+
+  Map<String, dynamic> toJson() {
+    final classicLoadBalancersConfig = this.classicLoadBalancersConfig;
+    final targetGroupsConfig = this.targetGroupsConfig;
+    return {
+      if (classicLoadBalancersConfig != null)
+        'classicLoadBalancersConfig': classicLoadBalancersConfig,
+      if (targetGroupsConfig != null) 'targetGroupsConfig': targetGroupsConfig,
+    };
+  }
 }
 
 /// Describes a load permission.
@@ -52620,6 +61214,15 @@ class LoadPermission {
     this.group,
     this.userId,
   });
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    final userId = this.userId;
+    return {
+      if (group != null) 'group': group.toValue(),
+      if (userId != null) 'userId': userId,
+    };
+  }
 }
 
 /// Describes modifications to the load permissions of an Amazon FPGA image
@@ -52635,6 +61238,15 @@ class LoadPermissionModifications {
     this.add,
     this.remove,
   });
+
+  Map<String, dynamic> toJson() {
+    final add = this.add;
+    final remove = this.remove;
+    return {
+      if (add != null) 'Add': add,
+      if (remove != null) 'Remove': remove,
+    };
+  }
 }
 
 /// Describes a load permission.
@@ -52649,6 +61261,15 @@ class LoadPermissionRequest {
     this.group,
     this.userId,
   });
+
+  Map<String, dynamic> toJson() {
+    final group = this.group;
+    final userId = this.userId;
+    return {
+      if (group != null) 'Group': group.toValue(),
+      if (userId != null) 'UserId': userId,
+    };
+  }
 }
 
 /// Describes a local gateway.
@@ -52675,6 +61296,21 @@ class LocalGateway {
     this.state,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final localGatewayId = this.localGatewayId;
+    final outpostArn = this.outpostArn;
+    final ownerId = this.ownerId;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (localGatewayId != null) 'localGatewayId': localGatewayId,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (state != null) 'state': state,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes a route for a local gateway route table.
@@ -52709,6 +61345,31 @@ class LocalGatewayRoute {
     this.state,
     this.type,
   });
+
+  Map<String, dynamic> toJson() {
+    final destinationCidrBlock = this.destinationCidrBlock;
+    final localGatewayRouteTableArn = this.localGatewayRouteTableArn;
+    final localGatewayRouteTableId = this.localGatewayRouteTableId;
+    final localGatewayVirtualInterfaceGroupId =
+        this.localGatewayVirtualInterfaceGroupId;
+    final ownerId = this.ownerId;
+    final state = this.state;
+    final type = this.type;
+    return {
+      if (destinationCidrBlock != null)
+        'destinationCidrBlock': destinationCidrBlock,
+      if (localGatewayRouteTableArn != null)
+        'localGatewayRouteTableArn': localGatewayRouteTableArn,
+      if (localGatewayRouteTableId != null)
+        'localGatewayRouteTableId': localGatewayRouteTableId,
+      if (localGatewayVirtualInterfaceGroupId != null)
+        'localGatewayVirtualInterfaceGroupId':
+            localGatewayVirtualInterfaceGroupId,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (state != null) 'state': state.toValue(),
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 enum LocalGatewayRouteState {
@@ -52787,6 +61448,27 @@ class LocalGatewayRouteTable {
     this.state,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final localGatewayId = this.localGatewayId;
+    final localGatewayRouteTableArn = this.localGatewayRouteTableArn;
+    final localGatewayRouteTableId = this.localGatewayRouteTableId;
+    final outpostArn = this.outpostArn;
+    final ownerId = this.ownerId;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (localGatewayId != null) 'localGatewayId': localGatewayId,
+      if (localGatewayRouteTableArn != null)
+        'localGatewayRouteTableArn': localGatewayRouteTableArn,
+      if (localGatewayRouteTableId != null)
+        'localGatewayRouteTableId': localGatewayRouteTableId,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (state != null) 'state': state,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes an association between a local gateway route table and a virtual
@@ -52828,6 +61510,35 @@ class LocalGatewayRouteTableVirtualInterfaceGroupAssociation {
     this.state,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final localGatewayId = this.localGatewayId;
+    final localGatewayRouteTableArn = this.localGatewayRouteTableArn;
+    final localGatewayRouteTableId = this.localGatewayRouteTableId;
+    final localGatewayRouteTableVirtualInterfaceGroupAssociationId =
+        this.localGatewayRouteTableVirtualInterfaceGroupAssociationId;
+    final localGatewayVirtualInterfaceGroupId =
+        this.localGatewayVirtualInterfaceGroupId;
+    final ownerId = this.ownerId;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (localGatewayId != null) 'localGatewayId': localGatewayId,
+      if (localGatewayRouteTableArn != null)
+        'localGatewayRouteTableArn': localGatewayRouteTableArn,
+      if (localGatewayRouteTableId != null)
+        'localGatewayRouteTableId': localGatewayRouteTableId,
+      if (localGatewayRouteTableVirtualInterfaceGroupAssociationId != null)
+        'localGatewayRouteTableVirtualInterfaceGroupAssociationId':
+            localGatewayRouteTableVirtualInterfaceGroupAssociationId,
+      if (localGatewayVirtualInterfaceGroupId != null)
+        'localGatewayVirtualInterfaceGroupId':
+            localGatewayVirtualInterfaceGroupId,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (state != null) 'state': state,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes an association between a local gateway route table and a VPC.
@@ -52868,6 +61579,32 @@ class LocalGatewayRouteTableVpcAssociation {
     this.tags,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final localGatewayId = this.localGatewayId;
+    final localGatewayRouteTableArn = this.localGatewayRouteTableArn;
+    final localGatewayRouteTableId = this.localGatewayRouteTableId;
+    final localGatewayRouteTableVpcAssociationId =
+        this.localGatewayRouteTableVpcAssociationId;
+    final ownerId = this.ownerId;
+    final state = this.state;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (localGatewayId != null) 'localGatewayId': localGatewayId,
+      if (localGatewayRouteTableArn != null)
+        'localGatewayRouteTableArn': localGatewayRouteTableArn,
+      if (localGatewayRouteTableId != null)
+        'localGatewayRouteTableId': localGatewayRouteTableId,
+      if (localGatewayRouteTableVpcAssociationId != null)
+        'localGatewayRouteTableVpcAssociationId':
+            localGatewayRouteTableVpcAssociationId,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (state != null) 'state': state,
+      if (tags != null) 'tagSet': tags,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 enum LocalGatewayRouteType {
@@ -52940,6 +61677,30 @@ class LocalGatewayVirtualInterface {
     this.tags,
     this.vlan,
   });
+
+  Map<String, dynamic> toJson() {
+    final localAddress = this.localAddress;
+    final localBgpAsn = this.localBgpAsn;
+    final localGatewayId = this.localGatewayId;
+    final localGatewayVirtualInterfaceId = this.localGatewayVirtualInterfaceId;
+    final ownerId = this.ownerId;
+    final peerAddress = this.peerAddress;
+    final peerBgpAsn = this.peerBgpAsn;
+    final tags = this.tags;
+    final vlan = this.vlan;
+    return {
+      if (localAddress != null) 'localAddress': localAddress,
+      if (localBgpAsn != null) 'localBgpAsn': localBgpAsn,
+      if (localGatewayId != null) 'localGatewayId': localGatewayId,
+      if (localGatewayVirtualInterfaceId != null)
+        'localGatewayVirtualInterfaceId': localGatewayVirtualInterfaceId,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (peerAddress != null) 'peerAddress': peerAddress,
+      if (peerBgpAsn != null) 'peerBgpAsn': peerBgpAsn,
+      if (tags != null) 'tagSet': tags,
+      if (vlan != null) 'vlan': vlan,
+    };
+  }
 }
 
 /// Describes a local gateway virtual interface group.
@@ -52967,6 +61728,26 @@ class LocalGatewayVirtualInterfaceGroup {
     this.ownerId,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final localGatewayId = this.localGatewayId;
+    final localGatewayVirtualInterfaceGroupId =
+        this.localGatewayVirtualInterfaceGroupId;
+    final localGatewayVirtualInterfaceIds =
+        this.localGatewayVirtualInterfaceIds;
+    final ownerId = this.ownerId;
+    final tags = this.tags;
+    return {
+      if (localGatewayId != null) 'localGatewayId': localGatewayId,
+      if (localGatewayVirtualInterfaceGroupId != null)
+        'localGatewayVirtualInterfaceGroupId':
+            localGatewayVirtualInterfaceGroupId,
+      if (localGatewayVirtualInterfaceIds != null)
+        'localGatewayVirtualInterfaceIdSet': localGatewayVirtualInterfaceIds,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 enum LocalStorage {
@@ -53135,6 +61916,31 @@ class ManagedPrefixList {
     this.tags,
     this.version,
   });
+
+  Map<String, dynamic> toJson() {
+    final addressFamily = this.addressFamily;
+    final maxEntries = this.maxEntries;
+    final ownerId = this.ownerId;
+    final prefixListArn = this.prefixListArn;
+    final prefixListId = this.prefixListId;
+    final prefixListName = this.prefixListName;
+    final state = this.state;
+    final stateMessage = this.stateMessage;
+    final tags = this.tags;
+    final version = this.version;
+    return {
+      if (addressFamily != null) 'addressFamily': addressFamily,
+      if (maxEntries != null) 'maxEntries': maxEntries,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (prefixListArn != null) 'prefixListArn': prefixListArn,
+      if (prefixListId != null) 'prefixListId': prefixListId,
+      if (prefixListName != null) 'prefixListName': prefixListName,
+      if (state != null) 'state': state.toValue(),
+      if (stateMessage != null) 'stateMessage': stateMessage,
+      if (tags != null) 'tagSet': tags,
+      if (version != null) 'version': version,
+    };
+  }
 }
 
 enum MarketType {
@@ -53203,6 +62009,15 @@ class MemoryGiBPerVCpu {
     this.max,
     this.min,
   });
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (max != null) 'max': max,
+      if (min != null) 'min': min,
+    };
+  }
 }
 
 /// The minimum and maximum amount of memory per vCPU, in GiB.
@@ -53219,6 +62034,15 @@ class MemoryGiBPerVCpuRequest {
     this.max,
     this.min,
   });
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (max != null) 'Max': max,
+      if (min != null) 'Min': min,
+    };
+  }
 }
 
 /// Describes the memory for the instance type.
@@ -53229,6 +62053,13 @@ class MemoryInfo {
   MemoryInfo({
     this.sizeInMiB,
   });
+
+  Map<String, dynamic> toJson() {
+    final sizeInMiB = this.sizeInMiB;
+    return {
+      if (sizeInMiB != null) 'sizeInMiB': sizeInMiB,
+    };
+  }
 }
 
 /// The minimum and maximum amount of memory, in MiB.
@@ -53245,6 +62076,15 @@ class MemoryMiB {
     this.max,
     this.min,
   });
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (max != null) 'max': max,
+      if (min != null) 'min': min,
+    };
+  }
 }
 
 /// The minimum and maximum amount of memory, in MiB.
@@ -53261,6 +62101,15 @@ class MemoryMiBRequest {
     required this.min,
     this.max,
   });
+
+  Map<String, dynamic> toJson() {
+    final min = this.min;
+    final max = this.max;
+    return {
+      'Min': min,
+      if (max != null) 'Max': max,
+    };
+  }
 }
 
 class ModifyAddressAttributeResult {
@@ -53270,6 +62119,13 @@ class ModifyAddressAttributeResult {
   ModifyAddressAttributeResult({
     this.address,
   });
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    return {
+      if (address != null) 'address': address,
+    };
+  }
 }
 
 class ModifyAvailabilityZoneGroupResult {
@@ -53279,6 +62135,13 @@ class ModifyAvailabilityZoneGroupResult {
   ModifyAvailabilityZoneGroupResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 enum ModifyAvailabilityZoneOptInStatus {
@@ -53319,6 +62182,13 @@ class ModifyCapacityReservationFleetResult {
   ModifyCapacityReservationFleetResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ModifyCapacityReservationResult {
@@ -53329,6 +62199,13 @@ class ModifyCapacityReservationResult {
   ModifyCapacityReservationResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ModifyClientVpnEndpointResult {
@@ -53339,6 +62216,13 @@ class ModifyClientVpnEndpointResult {
   ModifyClientVpnEndpointResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ModifyDefaultCreditSpecificationResult {
@@ -53348,6 +62232,15 @@ class ModifyDefaultCreditSpecificationResult {
   ModifyDefaultCreditSpecificationResult({
     this.instanceFamilyCreditSpecification,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceFamilyCreditSpecification =
+        this.instanceFamilyCreditSpecification;
+    return {
+      if (instanceFamilyCreditSpecification != null)
+        'instanceFamilyCreditSpecification': instanceFamilyCreditSpecification,
+    };
+  }
 }
 
 class ModifyEbsDefaultKmsKeyIdResult {
@@ -53358,6 +62251,13 @@ class ModifyEbsDefaultKmsKeyIdResult {
   ModifyEbsDefaultKmsKeyIdResult({
     this.kmsKeyId,
   });
+
+  Map<String, dynamic> toJson() {
+    final kmsKeyId = this.kmsKeyId;
+    return {
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+    };
+  }
 }
 
 class ModifyFleetResult {
@@ -53369,6 +62269,13 @@ class ModifyFleetResult {
   ModifyFleetResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ModifyFpgaImageAttributeResult {
@@ -53378,6 +62285,13 @@ class ModifyFpgaImageAttributeResult {
   ModifyFpgaImageAttributeResult({
     this.fpgaImageAttribute,
   });
+
+  Map<String, dynamic> toJson() {
+    final fpgaImageAttribute = this.fpgaImageAttribute;
+    return {
+      if (fpgaImageAttribute != null) 'fpgaImageAttribute': fpgaImageAttribute,
+    };
+  }
 }
 
 class ModifyHostsResult {
@@ -53392,6 +62306,15 @@ class ModifyHostsResult {
     this.successful,
     this.unsuccessful,
   });
+
+  Map<String, dynamic> toJson() {
+    final successful = this.successful;
+    final unsuccessful = this.unsuccessful;
+    return {
+      if (successful != null) 'successful': successful,
+      if (unsuccessful != null) 'unsuccessful': unsuccessful,
+    };
+  }
 }
 
 class ModifyInstanceCapacityReservationAttributesResult {
@@ -53402,6 +62325,13 @@ class ModifyInstanceCapacityReservationAttributesResult {
   ModifyInstanceCapacityReservationAttributesResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ModifyInstanceCreditSpecificationResult {
@@ -53419,6 +62349,21 @@ class ModifyInstanceCreditSpecificationResult {
     this.successfulInstanceCreditSpecifications,
     this.unsuccessfulInstanceCreditSpecifications,
   });
+
+  Map<String, dynamic> toJson() {
+    final successfulInstanceCreditSpecifications =
+        this.successfulInstanceCreditSpecifications;
+    final unsuccessfulInstanceCreditSpecifications =
+        this.unsuccessfulInstanceCreditSpecifications;
+    return {
+      if (successfulInstanceCreditSpecifications != null)
+        'successfulInstanceCreditSpecificationSet':
+            successfulInstanceCreditSpecifications,
+      if (unsuccessfulInstanceCreditSpecifications != null)
+        'unsuccessfulInstanceCreditSpecificationSet':
+            unsuccessfulInstanceCreditSpecifications,
+    };
+  }
 }
 
 class ModifyInstanceEventStartTimeResult {
@@ -53427,6 +62372,13 @@ class ModifyInstanceEventStartTimeResult {
   ModifyInstanceEventStartTimeResult({
     this.event,
   });
+
+  Map<String, dynamic> toJson() {
+    final event = this.event;
+    return {
+      if (event != null) 'event': event,
+    };
+  }
 }
 
 class ModifyInstanceEventWindowResult {
@@ -53436,6 +62388,14 @@ class ModifyInstanceEventWindowResult {
   ModifyInstanceEventWindowResult({
     this.instanceEventWindow,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceEventWindow = this.instanceEventWindow;
+    return {
+      if (instanceEventWindow != null)
+        'instanceEventWindow': instanceEventWindow,
+    };
+  }
 }
 
 class ModifyInstanceMaintenanceOptionsResult {
@@ -53450,6 +62410,15 @@ class ModifyInstanceMaintenanceOptionsResult {
     this.autoRecovery,
     this.instanceId,
   });
+
+  Map<String, dynamic> toJson() {
+    final autoRecovery = this.autoRecovery;
+    final instanceId = this.instanceId;
+    return {
+      if (autoRecovery != null) 'autoRecovery': autoRecovery.toValue(),
+      if (instanceId != null) 'instanceId': instanceId,
+    };
+  }
 }
 
 class ModifyInstanceMetadataOptionsResult {
@@ -53463,6 +62432,16 @@ class ModifyInstanceMetadataOptionsResult {
     this.instanceId,
     this.instanceMetadataOptions,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    final instanceMetadataOptions = this.instanceMetadataOptions;
+    return {
+      if (instanceId != null) 'instanceId': instanceId,
+      if (instanceMetadataOptions != null)
+        'instanceMetadataOptions': instanceMetadataOptions,
+    };
+  }
 }
 
 class ModifyInstancePlacementResult {
@@ -53472,6 +62451,13 @@ class ModifyInstancePlacementResult {
   ModifyInstancePlacementResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ModifyIpamPoolResult {
@@ -53481,6 +62467,13 @@ class ModifyIpamPoolResult {
   ModifyIpamPoolResult({
     this.ipamPool,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamPool = this.ipamPool;
+    return {
+      if (ipamPool != null) 'ipamPool': ipamPool,
+    };
+  }
 }
 
 class ModifyIpamResourceCidrResult {
@@ -53489,6 +62482,13 @@ class ModifyIpamResourceCidrResult {
   ModifyIpamResourceCidrResult({
     this.ipamResourceCidr,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamResourceCidr = this.ipamResourceCidr;
+    return {
+      if (ipamResourceCidr != null) 'ipamResourceCidr': ipamResourceCidr,
+    };
+  }
 }
 
 class ModifyIpamResult {
@@ -53498,6 +62498,13 @@ class ModifyIpamResult {
   ModifyIpamResult({
     this.ipam,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipam = this.ipam;
+    return {
+      if (ipam != null) 'ipam': ipam,
+    };
+  }
 }
 
 class ModifyIpamScopeResult {
@@ -53507,6 +62514,13 @@ class ModifyIpamScopeResult {
   ModifyIpamScopeResult({
     this.ipamScope,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamScope = this.ipamScope;
+    return {
+      if (ipamScope != null) 'ipamScope': ipamScope,
+    };
+  }
 }
 
 class ModifyLaunchTemplateResult {
@@ -53516,6 +62530,13 @@ class ModifyLaunchTemplateResult {
   ModifyLaunchTemplateResult({
     this.launchTemplate,
   });
+
+  Map<String, dynamic> toJson() {
+    final launchTemplate = this.launchTemplate;
+    return {
+      if (launchTemplate != null) 'launchTemplate': launchTemplate,
+    };
+  }
 }
 
 class ModifyManagedPrefixListResult {
@@ -53525,6 +62546,13 @@ class ModifyManagedPrefixListResult {
   ModifyManagedPrefixListResult({
     this.prefixList,
   });
+
+  Map<String, dynamic> toJson() {
+    final prefixList = this.prefixList;
+    return {
+      if (prefixList != null) 'prefixList': prefixList,
+    };
+  }
 }
 
 class ModifyPrivateDnsNameOptionsResult {
@@ -53535,6 +62563,13 @@ class ModifyPrivateDnsNameOptionsResult {
   ModifyPrivateDnsNameOptionsResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 /// Contains the output of ModifyReservedInstances.
@@ -53545,6 +62580,15 @@ class ModifyReservedInstancesResult {
   ModifyReservedInstancesResult({
     this.reservedInstancesModificationId,
   });
+
+  Map<String, dynamic> toJson() {
+    final reservedInstancesModificationId =
+        this.reservedInstancesModificationId;
+    return {
+      if (reservedInstancesModificationId != null)
+        'reservedInstancesModificationId': reservedInstancesModificationId,
+    };
+  }
 }
 
 class ModifySecurityGroupRulesResult {
@@ -53555,6 +62599,13 @@ class ModifySecurityGroupRulesResult {
   ModifySecurityGroupRulesResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ModifySnapshotTierResult {
@@ -53568,6 +62619,16 @@ class ModifySnapshotTierResult {
     this.snapshotId,
     this.tieringStartTime,
   });
+
+  Map<String, dynamic> toJson() {
+    final snapshotId = this.snapshotId;
+    final tieringStartTime = this.tieringStartTime;
+    return {
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (tieringStartTime != null)
+        'tieringStartTime': iso8601ToJson(tieringStartTime),
+    };
+  }
 }
 
 /// Contains the output of ModifySpotFleetRequest.
@@ -53580,6 +62641,13 @@ class ModifySpotFleetRequestResponse {
   ModifySpotFleetRequestResponse({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ModifyTrafficMirrorFilterNetworkServicesResult {
@@ -53589,6 +62657,14 @@ class ModifyTrafficMirrorFilterNetworkServicesResult {
   ModifyTrafficMirrorFilterNetworkServicesResult({
     this.trafficMirrorFilter,
   });
+
+  Map<String, dynamic> toJson() {
+    final trafficMirrorFilter = this.trafficMirrorFilter;
+    return {
+      if (trafficMirrorFilter != null)
+        'trafficMirrorFilter': trafficMirrorFilter,
+    };
+  }
 }
 
 class ModifyTrafficMirrorFilterRuleResult {
@@ -53598,6 +62674,14 @@ class ModifyTrafficMirrorFilterRuleResult {
   ModifyTrafficMirrorFilterRuleResult({
     this.trafficMirrorFilterRule,
   });
+
+  Map<String, dynamic> toJson() {
+    final trafficMirrorFilterRule = this.trafficMirrorFilterRule;
+    return {
+      if (trafficMirrorFilterRule != null)
+        'trafficMirrorFilterRule': trafficMirrorFilterRule,
+    };
+  }
 }
 
 class ModifyTrafficMirrorSessionResult {
@@ -53607,6 +62691,14 @@ class ModifyTrafficMirrorSessionResult {
   ModifyTrafficMirrorSessionResult({
     this.trafficMirrorSession,
   });
+
+  Map<String, dynamic> toJson() {
+    final trafficMirrorSession = this.trafficMirrorSession;
+    return {
+      if (trafficMirrorSession != null)
+        'trafficMirrorSession': trafficMirrorSession,
+    };
+  }
 }
 
 /// The transit gateway options.
@@ -53658,6 +62750,38 @@ class ModifyTransitGatewayOptions {
     this.removeTransitGatewayCidrBlocks,
     this.vpnEcmpSupport,
   });
+
+  Map<String, dynamic> toJson() {
+    final addTransitGatewayCidrBlocks = this.addTransitGatewayCidrBlocks;
+    final amazonSideAsn = this.amazonSideAsn;
+    final associationDefaultRouteTableId = this.associationDefaultRouteTableId;
+    final autoAcceptSharedAttachments = this.autoAcceptSharedAttachments;
+    final defaultRouteTableAssociation = this.defaultRouteTableAssociation;
+    final defaultRouteTablePropagation = this.defaultRouteTablePropagation;
+    final dnsSupport = this.dnsSupport;
+    final propagationDefaultRouteTableId = this.propagationDefaultRouteTableId;
+    final removeTransitGatewayCidrBlocks = this.removeTransitGatewayCidrBlocks;
+    final vpnEcmpSupport = this.vpnEcmpSupport;
+    return {
+      if (addTransitGatewayCidrBlocks != null)
+        'AddTransitGatewayCidrBlocks': addTransitGatewayCidrBlocks,
+      if (amazonSideAsn != null) 'AmazonSideAsn': amazonSideAsn,
+      if (associationDefaultRouteTableId != null)
+        'AssociationDefaultRouteTableId': associationDefaultRouteTableId,
+      if (autoAcceptSharedAttachments != null)
+        'AutoAcceptSharedAttachments': autoAcceptSharedAttachments.toValue(),
+      if (defaultRouteTableAssociation != null)
+        'DefaultRouteTableAssociation': defaultRouteTableAssociation.toValue(),
+      if (defaultRouteTablePropagation != null)
+        'DefaultRouteTablePropagation': defaultRouteTablePropagation.toValue(),
+      if (dnsSupport != null) 'DnsSupport': dnsSupport.toValue(),
+      if (propagationDefaultRouteTableId != null)
+        'PropagationDefaultRouteTableId': propagationDefaultRouteTableId,
+      if (removeTransitGatewayCidrBlocks != null)
+        'RemoveTransitGatewayCidrBlocks': removeTransitGatewayCidrBlocks,
+      if (vpnEcmpSupport != null) 'VpnEcmpSupport': vpnEcmpSupport.toValue(),
+    };
+  }
 }
 
 class ModifyTransitGatewayPrefixListReferenceResult {
@@ -53667,6 +62791,15 @@ class ModifyTransitGatewayPrefixListReferenceResult {
   ModifyTransitGatewayPrefixListReferenceResult({
     this.transitGatewayPrefixListReference,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayPrefixListReference =
+        this.transitGatewayPrefixListReference;
+    return {
+      if (transitGatewayPrefixListReference != null)
+        'transitGatewayPrefixListReference': transitGatewayPrefixListReference,
+    };
+  }
 }
 
 class ModifyTransitGatewayResult {
@@ -53675,6 +62808,13 @@ class ModifyTransitGatewayResult {
   ModifyTransitGatewayResult({
     this.transitGateway,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGateway = this.transitGateway;
+    return {
+      if (transitGateway != null) 'transitGateway': transitGateway,
+    };
+  }
 }
 
 /// Describes the options for a VPC attachment.
@@ -53696,6 +62836,18 @@ class ModifyTransitGatewayVpcAttachmentRequestOptions {
     this.dnsSupport,
     this.ipv6Support,
   });
+
+  Map<String, dynamic> toJson() {
+    final applianceModeSupport = this.applianceModeSupport;
+    final dnsSupport = this.dnsSupport;
+    final ipv6Support = this.ipv6Support;
+    return {
+      if (applianceModeSupport != null)
+        'ApplianceModeSupport': applianceModeSupport.toValue(),
+      if (dnsSupport != null) 'DnsSupport': dnsSupport.toValue(),
+      if (ipv6Support != null) 'Ipv6Support': ipv6Support.toValue(),
+    };
+  }
 }
 
 class ModifyTransitGatewayVpcAttachmentResult {
@@ -53705,6 +62857,14 @@ class ModifyTransitGatewayVpcAttachmentResult {
   ModifyTransitGatewayVpcAttachmentResult({
     this.transitGatewayVpcAttachment,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayVpcAttachment = this.transitGatewayVpcAttachment;
+    return {
+      if (transitGatewayVpcAttachment != null)
+        'transitGatewayVpcAttachment': transitGatewayVpcAttachment,
+    };
+  }
 }
 
 class ModifyVolumeResult {
@@ -53714,6 +62874,13 @@ class ModifyVolumeResult {
   ModifyVolumeResult({
     this.volumeModification,
   });
+
+  Map<String, dynamic> toJson() {
+    final volumeModification = this.volumeModification;
+    return {
+      if (volumeModification != null) 'volumeModification': volumeModification,
+    };
+  }
 }
 
 class ModifyVpcEndpointConnectionNotificationResult {
@@ -53724,6 +62891,13 @@ class ModifyVpcEndpointConnectionNotificationResult {
   ModifyVpcEndpointConnectionNotificationResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ModifyVpcEndpointResult {
@@ -53734,6 +62908,13 @@ class ModifyVpcEndpointResult {
   ModifyVpcEndpointResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ModifyVpcEndpointServiceConfigurationResult {
@@ -53744,6 +62925,13 @@ class ModifyVpcEndpointServiceConfigurationResult {
   ModifyVpcEndpointServiceConfigurationResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ModifyVpcEndpointServicePayerResponsibilityResult {
@@ -53754,6 +62942,13 @@ class ModifyVpcEndpointServicePayerResponsibilityResult {
   ModifyVpcEndpointServicePayerResponsibilityResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ModifyVpcEndpointServicePermissionsResult {
@@ -53764,6 +62959,13 @@ class ModifyVpcEndpointServicePermissionsResult {
   ModifyVpcEndpointServicePermissionsResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ModifyVpcPeeringConnectionOptionsResult {
@@ -53777,6 +62979,19 @@ class ModifyVpcPeeringConnectionOptionsResult {
     this.accepterPeeringConnectionOptions,
     this.requesterPeeringConnectionOptions,
   });
+
+  Map<String, dynamic> toJson() {
+    final accepterPeeringConnectionOptions =
+        this.accepterPeeringConnectionOptions;
+    final requesterPeeringConnectionOptions =
+        this.requesterPeeringConnectionOptions;
+    return {
+      if (accepterPeeringConnectionOptions != null)
+        'accepterPeeringConnectionOptions': accepterPeeringConnectionOptions,
+      if (requesterPeeringConnectionOptions != null)
+        'requesterPeeringConnectionOptions': requesterPeeringConnectionOptions,
+    };
+  }
 }
 
 class ModifyVpcTenancyResult {
@@ -53787,6 +63002,13 @@ class ModifyVpcTenancyResult {
   ModifyVpcTenancyResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ModifyVpnConnectionOptionsResult {
@@ -53795,6 +63017,13 @@ class ModifyVpnConnectionOptionsResult {
   ModifyVpnConnectionOptionsResult({
     this.vpnConnection,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpnConnection = this.vpnConnection;
+    return {
+      if (vpnConnection != null) 'vpnConnection': vpnConnection,
+    };
+  }
 }
 
 class ModifyVpnConnectionResult {
@@ -53803,6 +63032,13 @@ class ModifyVpnConnectionResult {
   ModifyVpnConnectionResult({
     this.vpnConnection,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpnConnection = this.vpnConnection;
+    return {
+      if (vpnConnection != null) 'vpnConnection': vpnConnection,
+    };
+  }
 }
 
 class ModifyVpnTunnelCertificateResult {
@@ -53811,6 +63047,13 @@ class ModifyVpnTunnelCertificateResult {
   ModifyVpnTunnelCertificateResult({
     this.vpnConnection,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpnConnection = this.vpnConnection;
+    return {
+      if (vpnConnection != null) 'vpnConnection': vpnConnection,
+    };
+  }
 }
 
 class ModifyVpnTunnelOptionsResult {
@@ -53819,6 +63062,13 @@ class ModifyVpnTunnelOptionsResult {
   ModifyVpnTunnelOptionsResult({
     this.vpnConnection,
   });
+
+  Map<String, dynamic> toJson() {
+    final vpnConnection = this.vpnConnection;
+    return {
+      if (vpnConnection != null) 'vpnConnection': vpnConnection,
+    };
+  }
 }
 
 /// The Amazon Web Services Site-to-Site VPN tunnel options to modify.
@@ -54013,6 +63263,58 @@ class ModifyVpnTunnelOptionsSpecification {
     this.tunnelInsideCidr,
     this.tunnelInsideIpv6Cidr,
   });
+
+  Map<String, dynamic> toJson() {
+    final dPDTimeoutAction = this.dPDTimeoutAction;
+    final dPDTimeoutSeconds = this.dPDTimeoutSeconds;
+    final iKEVersions = this.iKEVersions;
+    final phase1DHGroupNumbers = this.phase1DHGroupNumbers;
+    final phase1EncryptionAlgorithms = this.phase1EncryptionAlgorithms;
+    final phase1IntegrityAlgorithms = this.phase1IntegrityAlgorithms;
+    final phase1LifetimeSeconds = this.phase1LifetimeSeconds;
+    final phase2DHGroupNumbers = this.phase2DHGroupNumbers;
+    final phase2EncryptionAlgorithms = this.phase2EncryptionAlgorithms;
+    final phase2IntegrityAlgorithms = this.phase2IntegrityAlgorithms;
+    final phase2LifetimeSeconds = this.phase2LifetimeSeconds;
+    final preSharedKey = this.preSharedKey;
+    final rekeyFuzzPercentage = this.rekeyFuzzPercentage;
+    final rekeyMarginTimeSeconds = this.rekeyMarginTimeSeconds;
+    final replayWindowSize = this.replayWindowSize;
+    final startupAction = this.startupAction;
+    final tunnelInsideCidr = this.tunnelInsideCidr;
+    final tunnelInsideIpv6Cidr = this.tunnelInsideIpv6Cidr;
+    return {
+      if (dPDTimeoutAction != null) 'DPDTimeoutAction': dPDTimeoutAction,
+      if (dPDTimeoutSeconds != null) 'DPDTimeoutSeconds': dPDTimeoutSeconds,
+      if (iKEVersions != null) 'IKEVersion': iKEVersions,
+      if (phase1DHGroupNumbers != null)
+        'Phase1DHGroupNumber': phase1DHGroupNumbers,
+      if (phase1EncryptionAlgorithms != null)
+        'Phase1EncryptionAlgorithm': phase1EncryptionAlgorithms,
+      if (phase1IntegrityAlgorithms != null)
+        'Phase1IntegrityAlgorithm': phase1IntegrityAlgorithms,
+      if (phase1LifetimeSeconds != null)
+        'Phase1LifetimeSeconds': phase1LifetimeSeconds,
+      if (phase2DHGroupNumbers != null)
+        'Phase2DHGroupNumber': phase2DHGroupNumbers,
+      if (phase2EncryptionAlgorithms != null)
+        'Phase2EncryptionAlgorithm': phase2EncryptionAlgorithms,
+      if (phase2IntegrityAlgorithms != null)
+        'Phase2IntegrityAlgorithm': phase2IntegrityAlgorithms,
+      if (phase2LifetimeSeconds != null)
+        'Phase2LifetimeSeconds': phase2LifetimeSeconds,
+      if (preSharedKey != null) 'PreSharedKey': preSharedKey,
+      if (rekeyFuzzPercentage != null)
+        'RekeyFuzzPercentage': rekeyFuzzPercentage,
+      if (rekeyMarginTimeSeconds != null)
+        'RekeyMarginTimeSeconds': rekeyMarginTimeSeconds,
+      if (replayWindowSize != null) 'ReplayWindowSize': replayWindowSize,
+      if (startupAction != null) 'StartupAction': startupAction,
+      if (tunnelInsideCidr != null) 'TunnelInsideCidr': tunnelInsideCidr,
+      if (tunnelInsideIpv6Cidr != null)
+        'TunnelInsideIpv6Cidr': tunnelInsideIpv6Cidr,
+    };
+  }
 }
 
 class MonitorInstancesResult {
@@ -54022,6 +63324,13 @@ class MonitorInstancesResult {
   MonitorInstancesResult({
     this.instanceMonitorings,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceMonitorings = this.instanceMonitorings;
+    return {
+      if (instanceMonitorings != null) 'instancesSet': instanceMonitorings,
+    };
+  }
 }
 
 /// Describes the monitoring of an instance.
@@ -54033,6 +63342,13 @@ class Monitoring {
   Monitoring({
     this.state,
   });
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    return {
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 enum MonitoringState {
@@ -54084,6 +63400,15 @@ class MoveAddressToVpcResult {
     this.allocationId,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final allocationId = this.allocationId;
+    final status = this.status;
+    return {
+      if (allocationId != null) 'allocationId': allocationId,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class MoveByoipCidrToIpamResult {
@@ -54092,6 +63417,13 @@ class MoveByoipCidrToIpamResult {
   MoveByoipCidrToIpamResult({
     this.byoipCidr,
   });
+
+  Map<String, dynamic> toJson() {
+    final byoipCidr = this.byoipCidr;
+    return {
+      if (byoipCidr != null) 'byoipCidr': byoipCidr,
+    };
+  }
 }
 
 enum MoveStatus {
@@ -54142,6 +63474,15 @@ class MovingAddressStatus {
     this.moveStatus,
     this.publicIp,
   });
+
+  Map<String, dynamic> toJson() {
+    final moveStatus = this.moveStatus;
+    final publicIp = this.publicIp;
+    return {
+      if (moveStatus != null) 'moveStatus': moveStatus.toValue(),
+      if (publicIp != null) 'publicIp': publicIp,
+    };
+  }
 }
 
 enum MulticastSupportValue {
@@ -54285,6 +63626,38 @@ class NatGateway {
     this.tags,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final connectivityType = this.connectivityType;
+    final createTime = this.createTime;
+    final deleteTime = this.deleteTime;
+    final failureCode = this.failureCode;
+    final failureMessage = this.failureMessage;
+    final natGatewayAddresses = this.natGatewayAddresses;
+    final natGatewayId = this.natGatewayId;
+    final provisionedBandwidth = this.provisionedBandwidth;
+    final state = this.state;
+    final subnetId = this.subnetId;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (connectivityType != null)
+        'connectivityType': connectivityType.toValue(),
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (deleteTime != null) 'deleteTime': iso8601ToJson(deleteTime),
+      if (failureCode != null) 'failureCode': failureCode,
+      if (failureMessage != null) 'failureMessage': failureMessage,
+      if (natGatewayAddresses != null)
+        'natGatewayAddressSet': natGatewayAddresses,
+      if (natGatewayId != null) 'natGatewayId': natGatewayId,
+      if (provisionedBandwidth != null)
+        'provisionedBandwidth': provisionedBandwidth,
+      if (state != null) 'state': state.toValue(),
+      if (subnetId != null) 'subnetId': subnetId,
+      if (tags != null) 'tagSet': tags,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// Describes the IP addresses and network interface associated with a NAT
@@ -54310,6 +63683,19 @@ class NatGatewayAddress {
     this.privateIp,
     this.publicIp,
   });
+
+  Map<String, dynamic> toJson() {
+    final allocationId = this.allocationId;
+    final networkInterfaceId = this.networkInterfaceId;
+    final privateIp = this.privateIp;
+    final publicIp = this.publicIp;
+    return {
+      if (allocationId != null) 'allocationId': allocationId,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (privateIp != null) 'privateIp': privateIp,
+      if (publicIp != null) 'publicIp': publicIp,
+    };
+  }
 }
 
 enum NatGatewayState {
@@ -54387,6 +63773,25 @@ class NetworkAcl {
     this.tags,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final associations = this.associations;
+    final entries = this.entries;
+    final isDefault = this.isDefault;
+    final networkAclId = this.networkAclId;
+    final ownerId = this.ownerId;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (associations != null) 'associationSet': associations,
+      if (entries != null) 'entrySet': entries,
+      if (isDefault != null) 'default': isDefault,
+      if (networkAclId != null) 'networkAclId': networkAclId,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (tags != null) 'tagSet': tags,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// Describes an association between a network ACL and a subnet.
@@ -54405,6 +63810,18 @@ class NetworkAclAssociation {
     this.networkAclId,
     this.subnetId,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkAclAssociationId = this.networkAclAssociationId;
+    final networkAclId = this.networkAclId;
+    final subnetId = this.subnetId;
+    return {
+      if (networkAclAssociationId != null)
+        'networkAclAssociationId': networkAclAssociationId,
+      if (networkAclId != null) 'networkAclId': networkAclId,
+      if (subnetId != null) 'subnetId': subnetId,
+    };
+  }
 }
 
 /// Describes an entry in a network ACL.
@@ -54445,6 +63862,27 @@ class NetworkAclEntry {
     this.ruleAction,
     this.ruleNumber,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidrBlock = this.cidrBlock;
+    final egress = this.egress;
+    final icmpTypeCode = this.icmpTypeCode;
+    final ipv6CidrBlock = this.ipv6CidrBlock;
+    final portRange = this.portRange;
+    final protocol = this.protocol;
+    final ruleAction = this.ruleAction;
+    final ruleNumber = this.ruleNumber;
+    return {
+      if (cidrBlock != null) 'cidrBlock': cidrBlock,
+      if (egress != null) 'egress': egress,
+      if (icmpTypeCode != null) 'icmpTypeCode': icmpTypeCode,
+      if (ipv6CidrBlock != null) 'ipv6CidrBlock': ipv6CidrBlock,
+      if (portRange != null) 'portRange': portRange,
+      if (protocol != null) 'protocol': protocol,
+      if (ruleAction != null) 'ruleAction': ruleAction.toValue(),
+      if (ruleNumber != null) 'ruleNumber': ruleNumber,
+    };
+  }
 }
 
 /// Describes the network card support of the instance type.
@@ -54463,6 +63901,18 @@ class NetworkCardInfo {
     this.networkCardIndex,
     this.networkPerformance,
   });
+
+  Map<String, dynamic> toJson() {
+    final maximumNetworkInterfaces = this.maximumNetworkInterfaces;
+    final networkCardIndex = this.networkCardIndex;
+    final networkPerformance = this.networkPerformance;
+    return {
+      if (maximumNetworkInterfaces != null)
+        'maximumNetworkInterfaces': maximumNetworkInterfaces,
+      if (networkCardIndex != null) 'networkCardIndex': networkCardIndex,
+      if (networkPerformance != null) 'networkPerformance': networkPerformance,
+    };
+  }
 }
 
 /// Describes the networking features of the instance type.
@@ -54519,6 +63969,41 @@ class NetworkInfo {
     this.networkCards,
     this.networkPerformance,
   });
+
+  Map<String, dynamic> toJson() {
+    final defaultNetworkCardIndex = this.defaultNetworkCardIndex;
+    final efaInfo = this.efaInfo;
+    final efaSupported = this.efaSupported;
+    final enaSupport = this.enaSupport;
+    final encryptionInTransitSupported = this.encryptionInTransitSupported;
+    final ipv4AddressesPerInterface = this.ipv4AddressesPerInterface;
+    final ipv6AddressesPerInterface = this.ipv6AddressesPerInterface;
+    final ipv6Supported = this.ipv6Supported;
+    final maximumNetworkCards = this.maximumNetworkCards;
+    final maximumNetworkInterfaces = this.maximumNetworkInterfaces;
+    final networkCards = this.networkCards;
+    final networkPerformance = this.networkPerformance;
+    return {
+      if (defaultNetworkCardIndex != null)
+        'defaultNetworkCardIndex': defaultNetworkCardIndex,
+      if (efaInfo != null) 'efaInfo': efaInfo,
+      if (efaSupported != null) 'efaSupported': efaSupported,
+      if (enaSupport != null) 'enaSupport': enaSupport.toValue(),
+      if (encryptionInTransitSupported != null)
+        'encryptionInTransitSupported': encryptionInTransitSupported,
+      if (ipv4AddressesPerInterface != null)
+        'ipv4AddressesPerInterface': ipv4AddressesPerInterface,
+      if (ipv6AddressesPerInterface != null)
+        'ipv6AddressesPerInterface': ipv6AddressesPerInterface,
+      if (ipv6Supported != null) 'ipv6Supported': ipv6Supported,
+      if (maximumNetworkCards != null)
+        'maximumNetworkCards': maximumNetworkCards,
+      if (maximumNetworkInterfaces != null)
+        'maximumNetworkInterfaces': maximumNetworkInterfaces,
+      if (networkCards != null) 'networkCards': networkCards,
+      if (networkPerformance != null) 'networkPerformance': networkPerformance,
+    };
+  }
 }
 
 /// Describes a Network Access Scope.
@@ -54545,6 +64030,23 @@ class NetworkInsightsAccessScope {
     this.tags,
     this.updatedDate,
   });
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final networkInsightsAccessScopeArn = this.networkInsightsAccessScopeArn;
+    final networkInsightsAccessScopeId = this.networkInsightsAccessScopeId;
+    final tags = this.tags;
+    final updatedDate = this.updatedDate;
+    return {
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (networkInsightsAccessScopeArn != null)
+        'networkInsightsAccessScopeArn': networkInsightsAccessScopeArn,
+      if (networkInsightsAccessScopeId != null)
+        'networkInsightsAccessScopeId': networkInsightsAccessScopeId,
+      if (tags != null) 'tagSet': tags,
+      if (updatedDate != null) 'updatedDate': iso8601ToJson(updatedDate),
+    };
+  }
 }
 
 /// Describes a Network Access Scope analysis.
@@ -54595,6 +64097,40 @@ class NetworkInsightsAccessScopeAnalysis {
     this.tags,
     this.warningMessage,
   });
+
+  Map<String, dynamic> toJson() {
+    final analyzedEniCount = this.analyzedEniCount;
+    final endDate = this.endDate;
+    final findingsFound = this.findingsFound;
+    final networkInsightsAccessScopeAnalysisArn =
+        this.networkInsightsAccessScopeAnalysisArn;
+    final networkInsightsAccessScopeAnalysisId =
+        this.networkInsightsAccessScopeAnalysisId;
+    final networkInsightsAccessScopeId = this.networkInsightsAccessScopeId;
+    final startDate = this.startDate;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final tags = this.tags;
+    final warningMessage = this.warningMessage;
+    return {
+      if (analyzedEniCount != null) 'analyzedEniCount': analyzedEniCount,
+      if (endDate != null) 'endDate': iso8601ToJson(endDate),
+      if (findingsFound != null) 'findingsFound': findingsFound.toValue(),
+      if (networkInsightsAccessScopeAnalysisArn != null)
+        'networkInsightsAccessScopeAnalysisArn':
+            networkInsightsAccessScopeAnalysisArn,
+      if (networkInsightsAccessScopeAnalysisId != null)
+        'networkInsightsAccessScopeAnalysisId':
+            networkInsightsAccessScopeAnalysisId,
+      if (networkInsightsAccessScopeId != null)
+        'networkInsightsAccessScopeId': networkInsightsAccessScopeId,
+      if (startDate != null) 'startDate': iso8601ToJson(startDate),
+      if (status != null) 'status': status.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (tags != null) 'tagSet': tags,
+      if (warningMessage != null) 'warningMessage': warningMessage,
+    };
+  }
 }
 
 /// Describes the Network Access Scope content.
@@ -54613,6 +64149,18 @@ class NetworkInsightsAccessScopeContent {
     this.matchPaths,
     this.networkInsightsAccessScopeId,
   });
+
+  Map<String, dynamic> toJson() {
+    final excludePaths = this.excludePaths;
+    final matchPaths = this.matchPaths;
+    final networkInsightsAccessScopeId = this.networkInsightsAccessScopeId;
+    return {
+      if (excludePaths != null) 'excludePathSet': excludePaths,
+      if (matchPaths != null) 'matchPathSet': matchPaths,
+      if (networkInsightsAccessScopeId != null)
+        'networkInsightsAccessScopeId': networkInsightsAccessScopeId,
+    };
+  }
 }
 
 /// Describes a network insights analysis.
@@ -54678,6 +64226,45 @@ class NetworkInsightsAnalysis {
     this.tags,
     this.warningMessage,
   });
+
+  Map<String, dynamic> toJson() {
+    final alternatePathHints = this.alternatePathHints;
+    final explanations = this.explanations;
+    final filterInArns = this.filterInArns;
+    final forwardPathComponents = this.forwardPathComponents;
+    final networkInsightsAnalysisArn = this.networkInsightsAnalysisArn;
+    final networkInsightsAnalysisId = this.networkInsightsAnalysisId;
+    final networkInsightsPathId = this.networkInsightsPathId;
+    final networkPathFound = this.networkPathFound;
+    final returnPathComponents = this.returnPathComponents;
+    final startDate = this.startDate;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final tags = this.tags;
+    final warningMessage = this.warningMessage;
+    return {
+      if (alternatePathHints != null)
+        'alternatePathHintSet': alternatePathHints,
+      if (explanations != null) 'explanationSet': explanations,
+      if (filterInArns != null) 'filterInArnSet': filterInArns,
+      if (forwardPathComponents != null)
+        'forwardPathComponentSet': forwardPathComponents,
+      if (networkInsightsAnalysisArn != null)
+        'networkInsightsAnalysisArn': networkInsightsAnalysisArn,
+      if (networkInsightsAnalysisId != null)
+        'networkInsightsAnalysisId': networkInsightsAnalysisId,
+      if (networkInsightsPathId != null)
+        'networkInsightsPathId': networkInsightsPathId,
+      if (networkPathFound != null) 'networkPathFound': networkPathFound,
+      if (returnPathComponents != null)
+        'returnPathComponentSet': returnPathComponents,
+      if (startDate != null) 'startDate': iso8601ToJson(startDate),
+      if (status != null) 'status': status.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (tags != null) 'tagSet': tags,
+      if (warningMessage != null) 'warningMessage': warningMessage,
+    };
+  }
 }
 
 /// Describes a path.
@@ -54726,6 +64313,33 @@ class NetworkInsightsPath {
     this.sourceIp,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final createdDate = this.createdDate;
+    final destination = this.destination;
+    final destinationIp = this.destinationIp;
+    final destinationPort = this.destinationPort;
+    final networkInsightsPathArn = this.networkInsightsPathArn;
+    final networkInsightsPathId = this.networkInsightsPathId;
+    final protocol = this.protocol;
+    final source = this.source;
+    final sourceIp = this.sourceIp;
+    final tags = this.tags;
+    return {
+      if (createdDate != null) 'createdDate': iso8601ToJson(createdDate),
+      if (destination != null) 'destination': destination,
+      if (destinationIp != null) 'destinationIp': destinationIp,
+      if (destinationPort != null) 'destinationPort': destinationPort,
+      if (networkInsightsPathArn != null)
+        'networkInsightsPathArn': networkInsightsPathArn,
+      if (networkInsightsPathId != null)
+        'networkInsightsPathId': networkInsightsPathId,
+      if (protocol != null) 'protocol': protocol.toValue(),
+      if (source != null) 'source': source,
+      if (sourceIp != null) 'sourceIp': sourceIp,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes a network interface.
@@ -54844,6 +64458,64 @@ class NetworkInterface {
     this.tagSet,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final association = this.association;
+    final attachment = this.attachment;
+    final availabilityZone = this.availabilityZone;
+    final denyAllIgwTraffic = this.denyAllIgwTraffic;
+    final description = this.description;
+    final groups = this.groups;
+    final interfaceType = this.interfaceType;
+    final ipv4Prefixes = this.ipv4Prefixes;
+    final ipv6Address = this.ipv6Address;
+    final ipv6Addresses = this.ipv6Addresses;
+    final ipv6Native = this.ipv6Native;
+    final ipv6Prefixes = this.ipv6Prefixes;
+    final macAddress = this.macAddress;
+    final networkInterfaceId = this.networkInterfaceId;
+    final outpostArn = this.outpostArn;
+    final ownerId = this.ownerId;
+    final privateDnsName = this.privateDnsName;
+    final privateIpAddress = this.privateIpAddress;
+    final privateIpAddresses = this.privateIpAddresses;
+    final requesterId = this.requesterId;
+    final requesterManaged = this.requesterManaged;
+    final sourceDestCheck = this.sourceDestCheck;
+    final status = this.status;
+    final subnetId = this.subnetId;
+    final tagSet = this.tagSet;
+    final vpcId = this.vpcId;
+    return {
+      if (association != null) 'association': association,
+      if (attachment != null) 'attachment': attachment,
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (denyAllIgwTraffic != null) 'denyAllIgwTraffic': denyAllIgwTraffic,
+      if (description != null) 'description': description,
+      if (groups != null) 'groupSet': groups,
+      if (interfaceType != null) 'interfaceType': interfaceType.toValue(),
+      if (ipv4Prefixes != null) 'ipv4PrefixSet': ipv4Prefixes,
+      if (ipv6Address != null) 'ipv6Address': ipv6Address,
+      if (ipv6Addresses != null) 'ipv6AddressesSet': ipv6Addresses,
+      if (ipv6Native != null) 'ipv6Native': ipv6Native,
+      if (ipv6Prefixes != null) 'ipv6PrefixSet': ipv6Prefixes,
+      if (macAddress != null) 'macAddress': macAddress,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (privateDnsName != null) 'privateDnsName': privateDnsName,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+      if (privateIpAddresses != null)
+        'privateIpAddressesSet': privateIpAddresses,
+      if (requesterId != null) 'requesterId': requesterId,
+      if (requesterManaged != null) 'requesterManaged': requesterManaged,
+      if (sourceDestCheck != null) 'sourceDestCheck': sourceDestCheck,
+      if (status != null) 'status': status.toValue(),
+      if (subnetId != null) 'subnetId': subnetId,
+      if (tagSet != null) 'tagSet': tagSet,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// Describes association information for an Elastic IP address (IPv4 only), or
@@ -54883,6 +64555,25 @@ class NetworkInterfaceAssociation {
     this.publicDnsName,
     this.publicIp,
   });
+
+  Map<String, dynamic> toJson() {
+    final allocationId = this.allocationId;
+    final associationId = this.associationId;
+    final carrierIp = this.carrierIp;
+    final customerOwnedIp = this.customerOwnedIp;
+    final ipOwnerId = this.ipOwnerId;
+    final publicDnsName = this.publicDnsName;
+    final publicIp = this.publicIp;
+    return {
+      if (allocationId != null) 'allocationId': allocationId,
+      if (associationId != null) 'associationId': associationId,
+      if (carrierIp != null) 'carrierIp': carrierIp,
+      if (customerOwnedIp != null) 'customerOwnedIp': customerOwnedIp,
+      if (ipOwnerId != null) 'ipOwnerId': ipOwnerId,
+      if (publicDnsName != null) 'publicDnsName': publicDnsName,
+      if (publicIp != null) 'publicIp': publicIp,
+    };
+  }
 }
 
 /// Describes a network interface attachment.
@@ -54922,6 +64613,28 @@ class NetworkInterfaceAttachment {
     this.networkCardIndex,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final attachTime = this.attachTime;
+    final attachmentId = this.attachmentId;
+    final deleteOnTermination = this.deleteOnTermination;
+    final deviceIndex = this.deviceIndex;
+    final instanceId = this.instanceId;
+    final instanceOwnerId = this.instanceOwnerId;
+    final networkCardIndex = this.networkCardIndex;
+    final status = this.status;
+    return {
+      if (attachTime != null) 'attachTime': iso8601ToJson(attachTime),
+      if (attachmentId != null) 'attachmentId': attachmentId,
+      if (deleteOnTermination != null)
+        'deleteOnTermination': deleteOnTermination,
+      if (deviceIndex != null) 'deviceIndex': deviceIndex,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (instanceOwnerId != null) 'instanceOwnerId': instanceOwnerId,
+      if (networkCardIndex != null) 'networkCardIndex': networkCardIndex,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Describes an attachment change.
@@ -54937,6 +64650,16 @@ class NetworkInterfaceAttachmentChanges {
     this.attachmentId,
     this.deleteOnTermination,
   });
+
+  Map<String, dynamic> toJson() {
+    final attachmentId = this.attachmentId;
+    final deleteOnTermination = this.deleteOnTermination;
+    return {
+      if (attachmentId != null) 'attachmentId': attachmentId,
+      if (deleteOnTermination != null)
+        'deleteOnTermination': deleteOnTermination,
+    };
+  }
 }
 
 enum NetworkInterfaceAttribute {
@@ -54991,6 +64714,15 @@ class NetworkInterfaceCount {
     this.max,
     this.min,
   });
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (max != null) 'max': max,
+      if (min != null) 'min': min,
+    };
+  }
 }
 
 /// The minimum and maximum number of network interfaces.
@@ -55007,6 +64739,15 @@ class NetworkInterfaceCountRequest {
     this.max,
     this.min,
   });
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (max != null) 'Max': max,
+      if (min != null) 'Min': min,
+    };
+  }
 }
 
 enum NetworkInterfaceCreationType {
@@ -55051,6 +64792,13 @@ class NetworkInterfaceIpv6Address {
   NetworkInterfaceIpv6Address({
     this.ipv6Address,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv6Address = this.ipv6Address;
+    return {
+      if (ipv6Address != null) 'ipv6Address': ipv6Address,
+    };
+  }
 }
 
 /// Describes a permission for a network interface.
@@ -55081,6 +64829,24 @@ class NetworkInterfacePermission {
     this.permission,
     this.permissionState,
   });
+
+  Map<String, dynamic> toJson() {
+    final awsAccountId = this.awsAccountId;
+    final awsService = this.awsService;
+    final networkInterfaceId = this.networkInterfaceId;
+    final networkInterfacePermissionId = this.networkInterfacePermissionId;
+    final permission = this.permission;
+    final permissionState = this.permissionState;
+    return {
+      if (awsAccountId != null) 'awsAccountId': awsAccountId,
+      if (awsService != null) 'awsService': awsService,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (networkInterfacePermissionId != null)
+        'networkInterfacePermissionId': networkInterfacePermissionId,
+      if (permission != null) 'permission': permission.toValue(),
+      if (permissionState != null) 'permissionState': permissionState,
+    };
+  }
 }
 
 /// Describes the state of a network interface permission.
@@ -55095,6 +64861,15 @@ class NetworkInterfacePermissionState {
     this.state,
     this.statusMessage,
   });
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final statusMessage = this.statusMessage;
+    return {
+      if (state != null) 'state': state.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
+  }
 }
 
 enum NetworkInterfacePermissionStateCode {
@@ -55159,6 +64934,19 @@ class NetworkInterfacePrivateIpAddress {
     this.privateDnsName,
     this.privateIpAddress,
   });
+
+  Map<String, dynamic> toJson() {
+    final association = this.association;
+    final primary = this.primary;
+    final privateDnsName = this.privateDnsName;
+    final privateIpAddress = this.privateIpAddress;
+    return {
+      if (association != null) 'association': association,
+      if (primary != null) 'primary': primary,
+      if (privateDnsName != null) 'privateDnsName': privateDnsName,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+    };
+  }
 }
 
 enum NetworkInterfaceStatus {
@@ -55315,6 +65103,15 @@ class NewDhcpConfiguration {
     this.key,
     this.values,
   });
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final values = this.values;
+    return {
+      if (key != null) 'key': key,
+      if (values != null) 'Value': values,
+    };
+  }
 }
 
 enum OfferingClassType {
@@ -55475,6 +65272,26 @@ class OnDemandOptions {
     this.singleAvailabilityZone,
     this.singleInstanceType,
   });
+
+  Map<String, dynamic> toJson() {
+    final allocationStrategy = this.allocationStrategy;
+    final capacityReservationOptions = this.capacityReservationOptions;
+    final maxTotalPrice = this.maxTotalPrice;
+    final minTargetCapacity = this.minTargetCapacity;
+    final singleAvailabilityZone = this.singleAvailabilityZone;
+    final singleInstanceType = this.singleInstanceType;
+    return {
+      if (allocationStrategy != null)
+        'allocationStrategy': allocationStrategy.toValue(),
+      if (capacityReservationOptions != null)
+        'capacityReservationOptions': capacityReservationOptions,
+      if (maxTotalPrice != null) 'maxTotalPrice': maxTotalPrice,
+      if (minTargetCapacity != null) 'minTargetCapacity': minTargetCapacity,
+      if (singleAvailabilityZone != null)
+        'singleAvailabilityZone': singleAvailabilityZone,
+      if (singleInstanceType != null) 'singleInstanceType': singleInstanceType,
+    };
+  }
 }
 
 /// Describes the configuration of On-Demand Instances in an EC2 Fleet.
@@ -55530,6 +65347,26 @@ class OnDemandOptionsRequest {
     this.singleAvailabilityZone,
     this.singleInstanceType,
   });
+
+  Map<String, dynamic> toJson() {
+    final allocationStrategy = this.allocationStrategy;
+    final capacityReservationOptions = this.capacityReservationOptions;
+    final maxTotalPrice = this.maxTotalPrice;
+    final minTargetCapacity = this.minTargetCapacity;
+    final singleAvailabilityZone = this.singleAvailabilityZone;
+    final singleInstanceType = this.singleInstanceType;
+    return {
+      if (allocationStrategy != null)
+        'AllocationStrategy': allocationStrategy.toValue(),
+      if (capacityReservationOptions != null)
+        'CapacityReservationOptions': capacityReservationOptions,
+      if (maxTotalPrice != null) 'MaxTotalPrice': maxTotalPrice,
+      if (minTargetCapacity != null) 'MinTargetCapacity': minTargetCapacity,
+      if (singleAvailabilityZone != null)
+        'SingleAvailabilityZone': singleAvailabilityZone,
+      if (singleInstanceType != null) 'SingleInstanceType': singleInstanceType,
+    };
+  }
 }
 
 enum OperationType {
@@ -55592,6 +65429,28 @@ class PacketHeaderStatement {
     this.sourcePorts,
     this.sourcePrefixLists,
   });
+
+  Map<String, dynamic> toJson() {
+    final destinationAddresses = this.destinationAddresses;
+    final destinationPorts = this.destinationPorts;
+    final destinationPrefixLists = this.destinationPrefixLists;
+    final protocols = this.protocols;
+    final sourceAddresses = this.sourceAddresses;
+    final sourcePorts = this.sourcePorts;
+    final sourcePrefixLists = this.sourcePrefixLists;
+    return {
+      if (destinationAddresses != null)
+        'destinationAddressSet': destinationAddresses,
+      if (destinationPorts != null) 'destinationPortSet': destinationPorts,
+      if (destinationPrefixLists != null)
+        'destinationPrefixListSet': destinationPrefixLists,
+      if (protocols != null)
+        'protocolSet': protocols.map((e) => e.toValue()).toList(),
+      if (sourceAddresses != null) 'sourceAddressSet': sourceAddresses,
+      if (sourcePorts != null) 'sourcePortSet': sourcePorts,
+      if (sourcePrefixLists != null) 'sourcePrefixListSet': sourcePrefixLists,
+    };
+  }
 }
 
 /// Describes a packet header statement.
@@ -55626,6 +65485,28 @@ class PacketHeaderStatementRequest {
     this.sourcePorts,
     this.sourcePrefixLists,
   });
+
+  Map<String, dynamic> toJson() {
+    final destinationAddresses = this.destinationAddresses;
+    final destinationPorts = this.destinationPorts;
+    final destinationPrefixLists = this.destinationPrefixLists;
+    final protocols = this.protocols;
+    final sourceAddresses = this.sourceAddresses;
+    final sourcePorts = this.sourcePorts;
+    final sourcePrefixLists = this.sourcePrefixLists;
+    return {
+      if (destinationAddresses != null)
+        'DestinationAddress': destinationAddresses,
+      if (destinationPorts != null) 'DestinationPort': destinationPorts,
+      if (destinationPrefixLists != null)
+        'DestinationPrefixList': destinationPrefixLists,
+      if (protocols != null)
+        'Protocol': protocols.map((e) => e.toValue()).toList(),
+      if (sourceAddresses != null) 'SourceAddress': sourceAddresses,
+      if (sourcePorts != null) 'SourcePort': sourcePorts,
+      if (sourcePrefixLists != null) 'SourcePrefixList': sourcePrefixLists,
+    };
+  }
 }
 
 enum PartitionLoadFrequency {
@@ -55730,6 +65611,42 @@ class PathComponent {
     this.transitGatewayRouteTableRoute,
     this.vpc,
   });
+
+  Map<String, dynamic> toJson() {
+    final aclRule = this.aclRule;
+    final additionalDetails = this.additionalDetails;
+    final attachedTo = this.attachedTo;
+    final component = this.component;
+    final destinationVpc = this.destinationVpc;
+    final inboundHeader = this.inboundHeader;
+    final outboundHeader = this.outboundHeader;
+    final routeTableRoute = this.routeTableRoute;
+    final securityGroupRule = this.securityGroupRule;
+    final sequenceNumber = this.sequenceNumber;
+    final sourceVpc = this.sourceVpc;
+    final subnet = this.subnet;
+    final transitGateway = this.transitGateway;
+    final transitGatewayRouteTableRoute = this.transitGatewayRouteTableRoute;
+    final vpc = this.vpc;
+    return {
+      if (aclRule != null) 'aclRule': aclRule,
+      if (additionalDetails != null) 'additionalDetailSet': additionalDetails,
+      if (attachedTo != null) 'attachedTo': attachedTo,
+      if (component != null) 'component': component,
+      if (destinationVpc != null) 'destinationVpc': destinationVpc,
+      if (inboundHeader != null) 'inboundHeader': inboundHeader,
+      if (outboundHeader != null) 'outboundHeader': outboundHeader,
+      if (routeTableRoute != null) 'routeTableRoute': routeTableRoute,
+      if (securityGroupRule != null) 'securityGroupRule': securityGroupRule,
+      if (sequenceNumber != null) 'sequenceNumber': sequenceNumber,
+      if (sourceVpc != null) 'sourceVpc': sourceVpc,
+      if (subnet != null) 'subnet': subnet,
+      if (transitGateway != null) 'transitGateway': transitGateway,
+      if (transitGatewayRouteTableRoute != null)
+        'transitGatewayRouteTableRoute': transitGatewayRouteTableRoute,
+      if (vpc != null) 'vpc': vpc,
+    };
+  }
 }
 
 /// Describes a path statement.
@@ -55744,6 +65661,16 @@ class PathStatement {
     this.packetHeaderStatement,
     this.resourceStatement,
   });
+
+  Map<String, dynamic> toJson() {
+    final packetHeaderStatement = this.packetHeaderStatement;
+    final resourceStatement = this.resourceStatement;
+    return {
+      if (packetHeaderStatement != null)
+        'packetHeaderStatement': packetHeaderStatement,
+      if (resourceStatement != null) 'resourceStatement': resourceStatement,
+    };
+  }
 }
 
 /// Describes a path statement.
@@ -55758,6 +65685,16 @@ class PathStatementRequest {
     this.packetHeaderStatement,
     this.resourceStatement,
   });
+
+  Map<String, dynamic> toJson() {
+    final packetHeaderStatement = this.packetHeaderStatement;
+    final resourceStatement = this.resourceStatement;
+    return {
+      if (packetHeaderStatement != null)
+        'PacketHeaderStatement': packetHeaderStatement,
+      if (resourceStatement != null) 'ResourceStatement': resourceStatement,
+    };
+  }
 }
 
 enum PayerResponsibility {
@@ -55837,6 +65774,19 @@ class PciId {
     this.subsystemVendorId,
     this.vendorId,
   });
+
+  Map<String, dynamic> toJson() {
+    final deviceId = this.deviceId;
+    final subsystemId = this.subsystemId;
+    final subsystemVendorId = this.subsystemVendorId;
+    final vendorId = this.vendorId;
+    return {
+      if (deviceId != null) 'DeviceId': deviceId,
+      if (subsystemId != null) 'SubsystemId': subsystemId,
+      if (subsystemVendorId != null) 'SubsystemVendorId': subsystemVendorId,
+      if (vendorId != null) 'VendorId': vendorId,
+    };
+  }
 }
 
 /// The status of the transit gateway peering attachment.
@@ -55851,6 +65801,15 @@ class PeeringAttachmentStatus {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// <note>
@@ -55879,6 +65838,25 @@ class PeeringConnectionOptions {
     this.allowEgressFromLocalClassicLinkToRemoteVpc,
     this.allowEgressFromLocalVpcToRemoteClassicLink,
   });
+
+  Map<String, dynamic> toJson() {
+    final allowDnsResolutionFromRemoteVpc =
+        this.allowDnsResolutionFromRemoteVpc;
+    final allowEgressFromLocalClassicLinkToRemoteVpc =
+        this.allowEgressFromLocalClassicLinkToRemoteVpc;
+    final allowEgressFromLocalVpcToRemoteClassicLink =
+        this.allowEgressFromLocalVpcToRemoteClassicLink;
+    return {
+      if (allowDnsResolutionFromRemoteVpc != null)
+        'allowDnsResolutionFromRemoteVpc': allowDnsResolutionFromRemoteVpc,
+      if (allowEgressFromLocalClassicLinkToRemoteVpc != null)
+        'allowEgressFromLocalClassicLinkToRemoteVpc':
+            allowEgressFromLocalClassicLinkToRemoteVpc,
+      if (allowEgressFromLocalVpcToRemoteClassicLink != null)
+        'allowEgressFromLocalVpcToRemoteClassicLink':
+            allowEgressFromLocalVpcToRemoteClassicLink,
+    };
+  }
 }
 
 /// <note>
@@ -55907,6 +65885,25 @@ class PeeringConnectionOptionsRequest {
     this.allowEgressFromLocalClassicLinkToRemoteVpc,
     this.allowEgressFromLocalVpcToRemoteClassicLink,
   });
+
+  Map<String, dynamic> toJson() {
+    final allowDnsResolutionFromRemoteVpc =
+        this.allowDnsResolutionFromRemoteVpc;
+    final allowEgressFromLocalClassicLinkToRemoteVpc =
+        this.allowEgressFromLocalClassicLinkToRemoteVpc;
+    final allowEgressFromLocalVpcToRemoteClassicLink =
+        this.allowEgressFromLocalVpcToRemoteClassicLink;
+    return {
+      if (allowDnsResolutionFromRemoteVpc != null)
+        'AllowDnsResolutionFromRemoteVpc': allowDnsResolutionFromRemoteVpc,
+      if (allowEgressFromLocalClassicLinkToRemoteVpc != null)
+        'AllowEgressFromLocalClassicLinkToRemoteVpc':
+            allowEgressFromLocalClassicLinkToRemoteVpc,
+      if (allowEgressFromLocalVpcToRemoteClassicLink != null)
+        'AllowEgressFromLocalVpcToRemoteClassicLink':
+            allowEgressFromLocalVpcToRemoteClassicLink,
+    };
+  }
 }
 
 /// Information about the transit gateway in the peering attachment.
@@ -55929,6 +65926,19 @@ class PeeringTgwInfo {
     this.region,
     this.transitGatewayId,
   });
+
+  Map<String, dynamic> toJson() {
+    final coreNetworkId = this.coreNetworkId;
+    final ownerId = this.ownerId;
+    final region = this.region;
+    final transitGatewayId = this.transitGatewayId;
+    return {
+      if (coreNetworkId != null) 'coreNetworkId': coreNetworkId,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (region != null) 'region': region,
+      if (transitGatewayId != null) 'transitGatewayId': transitGatewayId,
+    };
+  }
 }
 
 enum PermissionGroup {
@@ -55962,6 +65972,13 @@ class Phase1DHGroupNumbersListValue {
   Phase1DHGroupNumbersListValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Specifies a Diffie-Hellman group number for the VPN tunnel for phase 1 IKE
@@ -55973,6 +65990,13 @@ class Phase1DHGroupNumbersRequestListValue {
   Phase1DHGroupNumbersRequestListValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// The encryption algorithm for phase 1 IKE negotiations.
@@ -55983,6 +66007,13 @@ class Phase1EncryptionAlgorithmsListValue {
   Phase1EncryptionAlgorithmsListValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Specifies the encryption algorithm for the VPN tunnel for phase 1 IKE
@@ -55994,6 +66025,13 @@ class Phase1EncryptionAlgorithmsRequestListValue {
   Phase1EncryptionAlgorithmsRequestListValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// The integrity algorithm for phase 1 IKE negotiations.
@@ -56004,6 +66042,13 @@ class Phase1IntegrityAlgorithmsListValue {
   Phase1IntegrityAlgorithmsListValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Specifies the integrity algorithm for the VPN tunnel for phase 1 IKE
@@ -56015,6 +66060,13 @@ class Phase1IntegrityAlgorithmsRequestListValue {
   Phase1IntegrityAlgorithmsRequestListValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// The Diffie-Hellmann group number for phase 2 IKE negotiations.
@@ -56025,6 +66077,13 @@ class Phase2DHGroupNumbersListValue {
   Phase2DHGroupNumbersListValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Specifies a Diffie-Hellman group number for the VPN tunnel for phase 2 IKE
@@ -56036,6 +66095,13 @@ class Phase2DHGroupNumbersRequestListValue {
   Phase2DHGroupNumbersRequestListValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// The encryption algorithm for phase 2 IKE negotiations.
@@ -56046,6 +66112,13 @@ class Phase2EncryptionAlgorithmsListValue {
   Phase2EncryptionAlgorithmsListValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Specifies the encryption algorithm for the VPN tunnel for phase 2 IKE
@@ -56057,6 +66130,13 @@ class Phase2EncryptionAlgorithmsRequestListValue {
   Phase2EncryptionAlgorithmsRequestListValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// The integrity algorithm for phase 2 IKE negotiations.
@@ -56067,6 +66147,13 @@ class Phase2IntegrityAlgorithmsListValue {
   Phase2IntegrityAlgorithmsListValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Specifies the integrity algorithm for the VPN tunnel for phase 2 IKE
@@ -56078,6 +66165,13 @@ class Phase2IntegrityAlgorithmsRequestListValue {
   Phase2IntegrityAlgorithmsRequestListValue({
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final value = this.value;
+    return {
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// Describes the placement of an instance.
@@ -56156,6 +66250,28 @@ class Placement {
     this.spreadDomain,
     this.tenancy,
   });
+
+  Map<String, dynamic> toJson() {
+    final affinity = this.affinity;
+    final availabilityZone = this.availabilityZone;
+    final groupName = this.groupName;
+    final hostId = this.hostId;
+    final hostResourceGroupArn = this.hostResourceGroupArn;
+    final partitionNumber = this.partitionNumber;
+    final spreadDomain = this.spreadDomain;
+    final tenancy = this.tenancy;
+    return {
+      if (affinity != null) 'affinity': affinity,
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (groupName != null) 'groupName': groupName,
+      if (hostId != null) 'hostId': hostId,
+      if (hostResourceGroupArn != null)
+        'hostResourceGroupArn': hostResourceGroupArn,
+      if (partitionNumber != null) 'partitionNumber': partitionNumber,
+      if (spreadDomain != null) 'spreadDomain': spreadDomain,
+      if (tenancy != null) 'tenancy': tenancy.toValue(),
+    };
+  }
 }
 
 /// Describes a placement group.
@@ -56196,6 +66312,27 @@ class PlacementGroup {
     this.strategy,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final groupArn = this.groupArn;
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    final partitionCount = this.partitionCount;
+    final spreadLevel = this.spreadLevel;
+    final state = this.state;
+    final strategy = this.strategy;
+    final tags = this.tags;
+    return {
+      if (groupArn != null) 'groupArn': groupArn,
+      if (groupId != null) 'groupId': groupId,
+      if (groupName != null) 'groupName': groupName,
+      if (partitionCount != null) 'partitionCount': partitionCount,
+      if (spreadLevel != null) 'spreadLevel': spreadLevel.toValue(),
+      if (state != null) 'state': state.toValue(),
+      if (strategy != null) 'strategy': strategy.toValue(),
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes the placement group support of the instance type.
@@ -56206,6 +66343,15 @@ class PlacementGroupInfo {
   PlacementGroupInfo({
     this.supportedStrategies,
   });
+
+  Map<String, dynamic> toJson() {
+    final supportedStrategies = this.supportedStrategies;
+    return {
+      if (supportedStrategies != null)
+        'supportedStrategies':
+            supportedStrategies.map((e) => e.toValue()).toList(),
+    };
+  }
 }
 
 enum PlacementGroupState {
@@ -56287,6 +66433,13 @@ class PlacementResponse {
   PlacementResponse({
     this.groupName,
   });
+
+  Map<String, dynamic> toJson() {
+    final groupName = this.groupName;
+    return {
+      if (groupName != null) 'groupName': groupName,
+    };
+  }
 }
 
 enum PlacementStrategy {
@@ -56353,6 +66506,13 @@ class PoolCidrBlock {
   PoolCidrBlock({
     this.cidr,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidr = this.cidr;
+    return {
+      if (cidr != null) 'poolCidrBlock': cidr,
+    };
+  }
 }
 
 /// Describes a range of ports.
@@ -56367,6 +66527,15 @@ class PortRange {
     this.from,
     this.to,
   });
+
+  Map<String, dynamic> toJson() {
+    final from = this.from;
+    final to = this.to;
+    return {
+      if (from != null) 'from': from,
+      if (to != null) 'to': to,
+    };
+  }
 }
 
 /// Describes prefixes for Amazon Web Services services.
@@ -56385,6 +66554,17 @@ class PrefixList {
     this.prefixListId,
     this.prefixListName,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidrs = this.cidrs;
+    final prefixListId = this.prefixListId;
+    final prefixListName = this.prefixListName;
+    return {
+      if (cidrs != null) 'cidrSet': cidrs,
+      if (prefixListId != null) 'prefixListId': prefixListId,
+      if (prefixListName != null) 'prefixListName': prefixListName,
+    };
+  }
 }
 
 /// Describes the resource with which a prefix list is associated.
@@ -56399,6 +66579,15 @@ class PrefixListAssociation {
     this.resourceId,
     this.resourceOwner,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceOwner = this.resourceOwner;
+    return {
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceOwner != null) 'resourceOwner': resourceOwner,
+    };
+  }
 }
 
 /// Describes a prefix list entry.
@@ -56413,6 +66602,15 @@ class PrefixListEntry {
     this.cidr,
     this.description,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidr = this.cidr;
+    final description = this.description;
+    return {
+      if (cidr != null) 'cidr': cidr,
+      if (description != null) 'description': description,
+    };
+  }
 }
 
 /// Describes a prefix list ID.
@@ -56431,6 +66629,15 @@ class PrefixListId {
     this.description,
     this.prefixListId,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final prefixListId = this.prefixListId;
+    return {
+      if (description != null) 'description': description,
+      if (prefixListId != null) 'prefixListId': prefixListId,
+    };
+  }
 }
 
 enum PrefixListState {
@@ -56542,6 +66749,19 @@ class PriceSchedule {
     this.price,
     this.term,
   });
+
+  Map<String, dynamic> toJson() {
+    final active = this.active;
+    final currencyCode = this.currencyCode;
+    final price = this.price;
+    final term = this.term;
+    return {
+      if (active != null) 'active': active,
+      if (currencyCode != null) 'currencyCode': currencyCode.toValue(),
+      if (price != null) 'price': price,
+      if (term != null) 'term': term,
+    };
+  }
 }
 
 /// Describes the price for a Reserved Instance.
@@ -56562,6 +66782,17 @@ class PriceScheduleSpecification {
     this.price,
     this.term,
   });
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final price = this.price;
+    final term = this.term;
+    return {
+      if (currencyCode != null) 'currencyCode': currencyCode.toValue(),
+      if (price != null) 'price': price,
+      if (term != null) 'term': term,
+    };
+  }
 }
 
 /// Describes a Reserved Instance offering.
@@ -56576,6 +66807,15 @@ class PricingDetail {
     this.count,
     this.price,
   });
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final price = this.price;
+    return {
+      if (count != null) 'count': count,
+      if (price != null) 'price': price,
+    };
+  }
 }
 
 /// PrincipalIdFormat description
@@ -56590,6 +66830,15 @@ class PrincipalIdFormat {
     this.arn,
     this.statuses,
   });
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final statuses = this.statuses;
+    return {
+      if (arn != null) 'arn': arn,
+      if (statuses != null) 'statusSet': statuses,
+    };
+  }
 }
 
 enum PrincipalType {
@@ -56648,6 +66897,13 @@ class PrivateDnsDetails {
   PrivateDnsDetails({
     this.privateDnsName,
   });
+
+  Map<String, dynamic> toJson() {
+    final privateDnsName = this.privateDnsName;
+    return {
+      if (privateDnsName != null) 'privateDnsName': privateDnsName,
+    };
+  }
 }
 
 /// Information about the private DNS name for the service endpoint.
@@ -56675,6 +66931,19 @@ class PrivateDnsNameConfiguration {
     this.type,
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final state = this.state;
+    final type = this.type;
+    final value = this.value;
+    return {
+      if (name != null) 'name': name,
+      if (state != null) 'state': state.toValue(),
+      if (type != null) 'type': type,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Describes the options for instance hostnames.
@@ -56699,6 +66968,20 @@ class PrivateDnsNameOptionsOnLaunch {
     this.enableResourceNameDnsARecord,
     this.hostnameType,
   });
+
+  Map<String, dynamic> toJson() {
+    final enableResourceNameDnsAAAARecord =
+        this.enableResourceNameDnsAAAARecord;
+    final enableResourceNameDnsARecord = this.enableResourceNameDnsARecord;
+    final hostnameType = this.hostnameType;
+    return {
+      if (enableResourceNameDnsAAAARecord != null)
+        'enableResourceNameDnsAAAARecord': enableResourceNameDnsAAAARecord,
+      if (enableResourceNameDnsARecord != null)
+        'enableResourceNameDnsARecord': enableResourceNameDnsARecord,
+      if (hostnameType != null) 'hostnameType': hostnameType.toValue(),
+    };
+  }
 }
 
 /// Describes the options for instance hostnames.
@@ -56723,6 +67006,20 @@ class PrivateDnsNameOptionsRequest {
     this.enableResourceNameDnsARecord,
     this.hostnameType,
   });
+
+  Map<String, dynamic> toJson() {
+    final enableResourceNameDnsAAAARecord =
+        this.enableResourceNameDnsAAAARecord;
+    final enableResourceNameDnsARecord = this.enableResourceNameDnsARecord;
+    final hostnameType = this.hostnameType;
+    return {
+      if (enableResourceNameDnsAAAARecord != null)
+        'EnableResourceNameDnsAAAARecord': enableResourceNameDnsAAAARecord,
+      if (enableResourceNameDnsARecord != null)
+        'EnableResourceNameDnsARecord': enableResourceNameDnsARecord,
+      if (hostnameType != null) 'HostnameType': hostnameType.toValue(),
+    };
+  }
 }
 
 /// Describes the options for instance hostnames.
@@ -56743,6 +67040,20 @@ class PrivateDnsNameOptionsResponse {
     this.enableResourceNameDnsARecord,
     this.hostnameType,
   });
+
+  Map<String, dynamic> toJson() {
+    final enableResourceNameDnsAAAARecord =
+        this.enableResourceNameDnsAAAARecord;
+    final enableResourceNameDnsARecord = this.enableResourceNameDnsARecord;
+    final hostnameType = this.hostnameType;
+    return {
+      if (enableResourceNameDnsAAAARecord != null)
+        'enableResourceNameDnsAAAARecord': enableResourceNameDnsAAAARecord,
+      if (enableResourceNameDnsARecord != null)
+        'enableResourceNameDnsARecord': enableResourceNameDnsARecord,
+      if (hostnameType != null) 'hostnameType': hostnameType.toValue(),
+    };
+  }
 }
 
 /// Describes a secondary private IPv4 address for a network interface.
@@ -56758,6 +67069,15 @@ class PrivateIpAddressSpecification {
     this.primary,
     this.privateIpAddress,
   });
+
+  Map<String, dynamic> toJson() {
+    final primary = this.primary;
+    final privateIpAddress = this.privateIpAddress;
+    return {
+      if (primary != null) 'primary': primary,
+      if (privateIpAddress != null) 'privateIpAddress': privateIpAddress,
+    };
+  }
 }
 
 /// Describes the processor used by the instance type.
@@ -56772,6 +67092,18 @@ class ProcessorInfo {
     this.supportedArchitectures,
     this.sustainedClockSpeedInGhz,
   });
+
+  Map<String, dynamic> toJson() {
+    final supportedArchitectures = this.supportedArchitectures;
+    final sustainedClockSpeedInGhz = this.sustainedClockSpeedInGhz;
+    return {
+      if (supportedArchitectures != null)
+        'supportedArchitectures':
+            supportedArchitectures.map((e) => e.toValue()).toList(),
+      if (sustainedClockSpeedInGhz != null)
+        'sustainedClockSpeedInGhz': sustainedClockSpeedInGhz,
+    };
+  }
 }
 
 /// Describes a product code.
@@ -56786,6 +67118,15 @@ class ProductCode {
     this.productCodeId,
     this.productCodeType,
   });
+
+  Map<String, dynamic> toJson() {
+    final productCodeId = this.productCodeId;
+    final productCodeType = this.productCodeType;
+    return {
+      if (productCodeId != null) 'productCode': productCodeId,
+      if (productCodeType != null) 'type': productCodeType.toValue(),
+    };
+  }
 }
 
 enum ProductCodeValues {
@@ -56824,6 +67165,13 @@ class PropagatingVgw {
   PropagatingVgw({
     this.gatewayId,
   });
+
+  Map<String, dynamic> toJson() {
+    final gatewayId = this.gatewayId;
+    return {
+      if (gatewayId != null) 'gatewayId': gatewayId,
+    };
+  }
 }
 
 enum Protocol {
@@ -56884,6 +67232,13 @@ class ProvisionByoipCidrResult {
   ProvisionByoipCidrResult({
     this.byoipCidr,
   });
+
+  Map<String, dynamic> toJson() {
+    final byoipCidr = this.byoipCidr;
+    return {
+      if (byoipCidr != null) 'byoipCidr': byoipCidr,
+    };
+  }
 }
 
 class ProvisionIpamPoolCidrResult {
@@ -56893,6 +67248,13 @@ class ProvisionIpamPoolCidrResult {
   ProvisionIpamPoolCidrResult({
     this.ipamPoolCidr,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipamPoolCidr = this.ipamPoolCidr;
+    return {
+      if (ipamPoolCidr != null) 'ipamPoolCidr': ipamPoolCidr,
+    };
+  }
 }
 
 class ProvisionPublicIpv4PoolCidrResult {
@@ -56905,6 +67267,15 @@ class ProvisionPublicIpv4PoolCidrResult {
     this.poolAddressRange,
     this.poolId,
   });
+
+  Map<String, dynamic> toJson() {
+    final poolAddressRange = this.poolAddressRange;
+    final poolId = this.poolId;
+    return {
+      if (poolAddressRange != null) 'poolAddressRange': poolAddressRange,
+      if (poolId != null) 'poolId': poolId,
+    };
+  }
 }
 
 /// Reserved. If you need to sustain traffic greater than the <a
@@ -56949,6 +67320,21 @@ class ProvisionedBandwidth {
     this.requested,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final provisionTime = this.provisionTime;
+    final provisioned = this.provisioned;
+    final requestTime = this.requestTime;
+    final requested = this.requested;
+    final status = this.status;
+    return {
+      if (provisionTime != null) 'provisionTime': iso8601ToJson(provisionTime),
+      if (provisioned != null) 'provisioned': provisioned,
+      if (requestTime != null) 'requestTime': iso8601ToJson(requestTime),
+      if (requested != null) 'requested': requested,
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// The status of an updated pointer (PTR) record for an Elastic IP address.
@@ -56967,6 +67353,17 @@ class PtrUpdateStatus {
     this.status,
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final reason = this.reason;
+    final status = this.status;
+    final value = this.value;
+    return {
+      if (reason != null) 'reason': reason,
+      if (status != null) 'status': status,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Describes an IPv4 address pool.
@@ -57003,6 +67400,26 @@ class PublicIpv4Pool {
     this.totalAddressCount,
     this.totalAvailableAddressCount,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final networkBorderGroup = this.networkBorderGroup;
+    final poolAddressRanges = this.poolAddressRanges;
+    final poolId = this.poolId;
+    final tags = this.tags;
+    final totalAddressCount = this.totalAddressCount;
+    final totalAvailableAddressCount = this.totalAvailableAddressCount;
+    return {
+      if (description != null) 'description': description,
+      if (networkBorderGroup != null) 'networkBorderGroup': networkBorderGroup,
+      if (poolAddressRanges != null) 'poolAddressRangeSet': poolAddressRanges,
+      if (poolId != null) 'poolId': poolId,
+      if (tags != null) 'tagSet': tags,
+      if (totalAddressCount != null) 'totalAddressCount': totalAddressCount,
+      if (totalAvailableAddressCount != null)
+        'totalAvailableAddressCount': totalAvailableAddressCount,
+    };
+  }
 }
 
 /// Describes an address range of an IPv4 address pool.
@@ -57025,6 +67442,20 @@ class PublicIpv4PoolRange {
     this.firstAddress,
     this.lastAddress,
   });
+
+  Map<String, dynamic> toJson() {
+    final addressCount = this.addressCount;
+    final availableAddressCount = this.availableAddressCount;
+    final firstAddress = this.firstAddress;
+    final lastAddress = this.lastAddress;
+    return {
+      if (addressCount != null) 'addressCount': addressCount,
+      if (availableAddressCount != null)
+        'availableAddressCount': availableAddressCount,
+      if (firstAddress != null) 'firstAddress': firstAddress,
+      if (lastAddress != null) 'lastAddress': lastAddress,
+    };
+  }
 }
 
 /// Describes the result of the purchase.
@@ -57066,6 +67497,27 @@ class Purchase {
     this.paymentOption,
     this.upfrontPrice,
   });
+
+  Map<String, dynamic> toJson() {
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final hostIdSet = this.hostIdSet;
+    final hostReservationId = this.hostReservationId;
+    final hourlyPrice = this.hourlyPrice;
+    final instanceFamily = this.instanceFamily;
+    final paymentOption = this.paymentOption;
+    final upfrontPrice = this.upfrontPrice;
+    return {
+      if (currencyCode != null) 'currencyCode': currencyCode.toValue(),
+      if (duration != null) 'duration': duration,
+      if (hostIdSet != null) 'hostIdSet': hostIdSet,
+      if (hostReservationId != null) 'hostReservationId': hostReservationId,
+      if (hourlyPrice != null) 'hourlyPrice': hourlyPrice,
+      if (instanceFamily != null) 'instanceFamily': instanceFamily,
+      if (paymentOption != null) 'paymentOption': paymentOption.toValue(),
+      if (upfrontPrice != null) 'upfrontPrice': upfrontPrice,
+    };
+  }
 }
 
 class PurchaseHostReservationResult {
@@ -57096,6 +67548,21 @@ class PurchaseHostReservationResult {
     this.totalHourlyPrice,
     this.totalUpfrontPrice,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final currencyCode = this.currencyCode;
+    final purchase = this.purchase;
+    final totalHourlyPrice = this.totalHourlyPrice;
+    final totalUpfrontPrice = this.totalUpfrontPrice;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (currencyCode != null) 'currencyCode': currencyCode.toValue(),
+      if (purchase != null) 'purchase': purchase,
+      if (totalHourlyPrice != null) 'totalHourlyPrice': totalHourlyPrice,
+      if (totalUpfrontPrice != null) 'totalUpfrontPrice': totalUpfrontPrice,
+    };
+  }
 }
 
 /// Describes a request to purchase Scheduled Instances.
@@ -57110,6 +67577,15 @@ class PurchaseRequest {
     required this.instanceCount,
     required this.purchaseToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceCount = this.instanceCount;
+    final purchaseToken = this.purchaseToken;
+    return {
+      'InstanceCount': instanceCount,
+      'PurchaseToken': purchaseToken,
+    };
+  }
 }
 
 /// Contains the output of PurchaseReservedInstancesOffering.
@@ -57124,6 +67600,14 @@ class PurchaseReservedInstancesOfferingResult {
   PurchaseReservedInstancesOfferingResult({
     this.reservedInstancesId,
   });
+
+  Map<String, dynamic> toJson() {
+    final reservedInstancesId = this.reservedInstancesId;
+    return {
+      if (reservedInstancesId != null)
+        'reservedInstancesId': reservedInstancesId,
+    };
+  }
 }
 
 /// Contains the output of PurchaseScheduledInstances.
@@ -57134,6 +67618,14 @@ class PurchaseScheduledInstancesResult {
   PurchaseScheduledInstancesResult({
     this.scheduledInstanceSet,
   });
+
+  Map<String, dynamic> toJson() {
+    final scheduledInstanceSet = this.scheduledInstanceSet;
+    return {
+      if (scheduledInstanceSet != null)
+        'scheduledInstanceSet': scheduledInstanceSet,
+    };
+  }
 }
 
 enum RIProductDescription {
@@ -57186,6 +67678,15 @@ class RecurringCharge {
     this.amount,
     this.frequency,
   });
+
+  Map<String, dynamic> toJson() {
+    final amount = this.amount;
+    final frequency = this.frequency;
+    return {
+      if (amount != null) 'amount': amount,
+      if (frequency != null) 'frequency': frequency.toValue(),
+    };
+  }
 }
 
 enum RecurringChargeFrequency {
@@ -57235,6 +67736,22 @@ class ReferencedSecurityGroup {
     this.vpcId,
     this.vpcPeeringConnectionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final groupId = this.groupId;
+    final peeringStatus = this.peeringStatus;
+    final userId = this.userId;
+    final vpcId = this.vpcId;
+    final vpcPeeringConnectionId = this.vpcPeeringConnectionId;
+    return {
+      if (groupId != null) 'groupId': groupId,
+      if (peeringStatus != null) 'peeringStatus': peeringStatus,
+      if (userId != null) 'userId': userId,
+      if (vpcId != null) 'vpcId': vpcId,
+      if (vpcPeeringConnectionId != null)
+        'vpcPeeringConnectionId': vpcPeeringConnectionId,
+    };
+  }
 }
 
 /// Describes a Region.
@@ -57255,6 +67772,17 @@ class Region {
     this.optInStatus,
     this.regionName,
   });
+
+  Map<String, dynamic> toJson() {
+    final endpoint = this.endpoint;
+    final optInStatus = this.optInStatus;
+    final regionName = this.regionName;
+    return {
+      if (endpoint != null) 'regionEndpoint': endpoint,
+      if (optInStatus != null) 'optInStatus': optInStatus,
+      if (regionName != null) 'regionName': regionName,
+    };
+  }
 }
 
 /// Contains the output of RegisterImage.
@@ -57265,6 +67793,13 @@ class RegisterImageResult {
   RegisterImageResult({
     this.imageId,
   });
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    return {
+      if (imageId != null) 'imageId': imageId,
+    };
+  }
 }
 
 class RegisterInstanceEventNotificationAttributesResult {
@@ -57274,6 +67809,14 @@ class RegisterInstanceEventNotificationAttributesResult {
   RegisterInstanceEventNotificationAttributesResult({
     this.instanceTagAttribute,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceTagAttribute = this.instanceTagAttribute;
+    return {
+      if (instanceTagAttribute != null)
+        'instanceTagAttribute': instanceTagAttribute,
+    };
+  }
 }
 
 /// Information about the tag keys to register for the current Region. You can
@@ -57292,6 +67835,16 @@ class RegisterInstanceTagAttributeRequest {
     this.includeAllTagsOfInstance,
     this.instanceTagKeys,
   });
+
+  Map<String, dynamic> toJson() {
+    final includeAllTagsOfInstance = this.includeAllTagsOfInstance;
+    final instanceTagKeys = this.instanceTagKeys;
+    return {
+      if (includeAllTagsOfInstance != null)
+        'IncludeAllTagsOfInstance': includeAllTagsOfInstance,
+      if (instanceTagKeys != null) 'InstanceTagKey': instanceTagKeys,
+    };
+  }
 }
 
 class RegisterTransitGatewayMulticastGroupMembersResult {
@@ -57302,6 +67855,15 @@ class RegisterTransitGatewayMulticastGroupMembersResult {
   RegisterTransitGatewayMulticastGroupMembersResult({
     this.registeredMulticastGroupMembers,
   });
+
+  Map<String, dynamic> toJson() {
+    final registeredMulticastGroupMembers =
+        this.registeredMulticastGroupMembers;
+    return {
+      if (registeredMulticastGroupMembers != null)
+        'registeredMulticastGroupMembers': registeredMulticastGroupMembers,
+    };
+  }
 }
 
 class RegisterTransitGatewayMulticastGroupSourcesResult {
@@ -57312,6 +67874,15 @@ class RegisterTransitGatewayMulticastGroupSourcesResult {
   RegisterTransitGatewayMulticastGroupSourcesResult({
     this.registeredMulticastGroupSources,
   });
+
+  Map<String, dynamic> toJson() {
+    final registeredMulticastGroupSources =
+        this.registeredMulticastGroupSources;
+    return {
+      if (registeredMulticastGroupSources != null)
+        'registeredMulticastGroupSources': registeredMulticastGroupSources,
+    };
+  }
 }
 
 class RejectTransitGatewayMulticastDomainAssociationsResult {
@@ -57320,6 +67891,13 @@ class RejectTransitGatewayMulticastDomainAssociationsResult {
   RejectTransitGatewayMulticastDomainAssociationsResult({
     this.associations,
   });
+
+  Map<String, dynamic> toJson() {
+    final associations = this.associations;
+    return {
+      if (associations != null) 'associations': associations,
+    };
+  }
 }
 
 class RejectTransitGatewayPeeringAttachmentResult {
@@ -57329,6 +67907,15 @@ class RejectTransitGatewayPeeringAttachmentResult {
   RejectTransitGatewayPeeringAttachmentResult({
     this.transitGatewayPeeringAttachment,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayPeeringAttachment =
+        this.transitGatewayPeeringAttachment;
+    return {
+      if (transitGatewayPeeringAttachment != null)
+        'transitGatewayPeeringAttachment': transitGatewayPeeringAttachment,
+    };
+  }
 }
 
 class RejectTransitGatewayVpcAttachmentResult {
@@ -57338,6 +67925,14 @@ class RejectTransitGatewayVpcAttachmentResult {
   RejectTransitGatewayVpcAttachmentResult({
     this.transitGatewayVpcAttachment,
   });
+
+  Map<String, dynamic> toJson() {
+    final transitGatewayVpcAttachment = this.transitGatewayVpcAttachment;
+    return {
+      if (transitGatewayVpcAttachment != null)
+        'transitGatewayVpcAttachment': transitGatewayVpcAttachment,
+    };
+  }
 }
 
 class RejectVpcEndpointConnectionsResult {
@@ -57347,6 +67942,13 @@ class RejectVpcEndpointConnectionsResult {
   RejectVpcEndpointConnectionsResult({
     this.unsuccessful,
   });
+
+  Map<String, dynamic> toJson() {
+    final unsuccessful = this.unsuccessful;
+    return {
+      if (unsuccessful != null) 'unsuccessful': unsuccessful,
+    };
+  }
 }
 
 class RejectVpcPeeringConnectionResult {
@@ -57357,6 +67959,13 @@ class RejectVpcPeeringConnectionResult {
   RejectVpcPeeringConnectionResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class ReleaseHostsResult {
@@ -57371,6 +67980,15 @@ class ReleaseHostsResult {
     this.successful,
     this.unsuccessful,
   });
+
+  Map<String, dynamic> toJson() {
+    final successful = this.successful;
+    final unsuccessful = this.unsuccessful;
+    return {
+      if (successful != null) 'successful': successful,
+      if (unsuccessful != null) 'unsuccessful': unsuccessful,
+    };
+  }
 }
 
 class ReleaseIpamPoolAllocationResult {
@@ -57380,6 +67998,13 @@ class ReleaseIpamPoolAllocationResult {
   ReleaseIpamPoolAllocationResult({
     this.success,
   });
+
+  Map<String, dynamic> toJson() {
+    final success = this.success;
+    return {
+      if (success != null) 'success': success,
+    };
+  }
 }
 
 /// Remove an operating Region from an IPAM. Operating Regions are Amazon Web
@@ -57397,6 +68022,13 @@ class RemoveIpamOperatingRegion {
   RemoveIpamOperatingRegion({
     this.regionName,
   });
+
+  Map<String, dynamic> toJson() {
+    final regionName = this.regionName;
+    return {
+      if (regionName != null) 'RegionName': regionName,
+    };
+  }
 }
 
 /// An entry for a prefix list.
@@ -57407,6 +68039,13 @@ class RemovePrefixListEntry {
   RemovePrefixListEntry({
     required this.cidr,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidr = this.cidr;
+    return {
+      'Cidr': cidr,
+    };
+  }
 }
 
 class ReplaceIamInstanceProfileAssociationResult {
@@ -57416,6 +68055,14 @@ class ReplaceIamInstanceProfileAssociationResult {
   ReplaceIamInstanceProfileAssociationResult({
     this.iamInstanceProfileAssociation,
   });
+
+  Map<String, dynamic> toJson() {
+    final iamInstanceProfileAssociation = this.iamInstanceProfileAssociation;
+    return {
+      if (iamInstanceProfileAssociation != null)
+        'iamInstanceProfileAssociation': iamInstanceProfileAssociation,
+    };
+  }
 }
 
 class ReplaceNetworkAclAssociationResult {
@@ -57425,6 +68072,13 @@ class ReplaceNetworkAclAssociationResult {
   ReplaceNetworkAclAssociationResult({
     this.newAssociationId,
   });
+
+  Map<String, dynamic> toJson() {
+    final newAssociationId = this.newAssociationId;
+    return {
+      if (newAssociationId != null) 'newAssociationId': newAssociationId,
+    };
+  }
 }
 
 /// Information about a root volume replacement task.
@@ -57485,6 +68139,24 @@ class ReplaceRootVolumeTask {
     this.tags,
     this.taskState,
   });
+
+  Map<String, dynamic> toJson() {
+    final completeTime = this.completeTime;
+    final instanceId = this.instanceId;
+    final replaceRootVolumeTaskId = this.replaceRootVolumeTaskId;
+    final startTime = this.startTime;
+    final tags = this.tags;
+    final taskState = this.taskState;
+    return {
+      if (completeTime != null) 'completeTime': completeTime,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (replaceRootVolumeTaskId != null)
+        'replaceRootVolumeTaskId': replaceRootVolumeTaskId,
+      if (startTime != null) 'startTime': startTime,
+      if (tags != null) 'tagSet': tags,
+      if (taskState != null) 'taskState': taskState.toValue(),
+    };
+  }
 }
 
 enum ReplaceRootVolumeTaskState {
@@ -57547,6 +68219,15 @@ class ReplaceRouteTableAssociationResult {
     this.associationState,
     this.newAssociationId,
   });
+
+  Map<String, dynamic> toJson() {
+    final associationState = this.associationState;
+    final newAssociationId = this.newAssociationId;
+    return {
+      if (associationState != null) 'associationState': associationState,
+      if (newAssociationId != null) 'newAssociationId': newAssociationId,
+    };
+  }
 }
 
 class ReplaceTransitGatewayRouteResult {
@@ -57556,6 +68237,13 @@ class ReplaceTransitGatewayRouteResult {
   ReplaceTransitGatewayRouteResult({
     this.route,
   });
+
+  Map<String, dynamic> toJson() {
+    final route = this.route;
+    return {
+      if (route != null) 'route': route,
+    };
+  }
 }
 
 enum ReplacementStrategy {
@@ -57690,6 +68378,15 @@ class RequestIpamResourceTag {
     this.key,
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// The information to include in the launch template.
@@ -57939,6 +68636,87 @@ class RequestLaunchTemplateData {
     this.tagSpecifications,
     this.userData,
   });
+
+  Map<String, dynamic> toJson() {
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final capacityReservationSpecification =
+        this.capacityReservationSpecification;
+    final cpuOptions = this.cpuOptions;
+    final creditSpecification = this.creditSpecification;
+    final disableApiStop = this.disableApiStop;
+    final disableApiTermination = this.disableApiTermination;
+    final ebsOptimized = this.ebsOptimized;
+    final elasticGpuSpecifications = this.elasticGpuSpecifications;
+    final elasticInferenceAccelerators = this.elasticInferenceAccelerators;
+    final enclaveOptions = this.enclaveOptions;
+    final hibernationOptions = this.hibernationOptions;
+    final iamInstanceProfile = this.iamInstanceProfile;
+    final imageId = this.imageId;
+    final instanceInitiatedShutdownBehavior =
+        this.instanceInitiatedShutdownBehavior;
+    final instanceMarketOptions = this.instanceMarketOptions;
+    final instanceRequirements = this.instanceRequirements;
+    final instanceType = this.instanceType;
+    final kernelId = this.kernelId;
+    final keyName = this.keyName;
+    final licenseSpecifications = this.licenseSpecifications;
+    final maintenanceOptions = this.maintenanceOptions;
+    final metadataOptions = this.metadataOptions;
+    final monitoring = this.monitoring;
+    final networkInterfaces = this.networkInterfaces;
+    final placement = this.placement;
+    final privateDnsNameOptions = this.privateDnsNameOptions;
+    final ramDiskId = this.ramDiskId;
+    final securityGroupIds = this.securityGroupIds;
+    final securityGroups = this.securityGroups;
+    final tagSpecifications = this.tagSpecifications;
+    final userData = this.userData;
+    return {
+      if (blockDeviceMappings != null)
+        'BlockDeviceMapping': blockDeviceMappings,
+      if (capacityReservationSpecification != null)
+        'CapacityReservationSpecification': capacityReservationSpecification,
+      if (cpuOptions != null) 'CpuOptions': cpuOptions,
+      if (creditSpecification != null)
+        'CreditSpecification': creditSpecification,
+      if (disableApiStop != null) 'DisableApiStop': disableApiStop,
+      if (disableApiTermination != null)
+        'DisableApiTermination': disableApiTermination,
+      if (ebsOptimized != null) 'EbsOptimized': ebsOptimized,
+      if (elasticGpuSpecifications != null)
+        'ElasticGpuSpecification': elasticGpuSpecifications,
+      if (elasticInferenceAccelerators != null)
+        'ElasticInferenceAccelerator': elasticInferenceAccelerators,
+      if (enclaveOptions != null) 'EnclaveOptions': enclaveOptions,
+      if (hibernationOptions != null) 'HibernationOptions': hibernationOptions,
+      if (iamInstanceProfile != null) 'IamInstanceProfile': iamInstanceProfile,
+      if (imageId != null) 'ImageId': imageId,
+      if (instanceInitiatedShutdownBehavior != null)
+        'InstanceInitiatedShutdownBehavior':
+            instanceInitiatedShutdownBehavior.toValue(),
+      if (instanceMarketOptions != null)
+        'InstanceMarketOptions': instanceMarketOptions,
+      if (instanceRequirements != null)
+        'InstanceRequirements': instanceRequirements,
+      if (instanceType != null) 'InstanceType': instanceType.toValue(),
+      if (kernelId != null) 'KernelId': kernelId,
+      if (keyName != null) 'KeyName': keyName,
+      if (licenseSpecifications != null)
+        'LicenseSpecification': licenseSpecifications,
+      if (maintenanceOptions != null) 'MaintenanceOptions': maintenanceOptions,
+      if (metadataOptions != null) 'MetadataOptions': metadataOptions,
+      if (monitoring != null) 'Monitoring': monitoring,
+      if (networkInterfaces != null) 'NetworkInterface': networkInterfaces,
+      if (placement != null) 'Placement': placement,
+      if (privateDnsNameOptions != null)
+        'PrivateDnsNameOptions': privateDnsNameOptions,
+      if (ramDiskId != null) 'RamDiskId': ramDiskId,
+      if (securityGroupIds != null) 'SecurityGroupId': securityGroupIds,
+      if (securityGroups != null) 'SecurityGroup': securityGroups,
+      if (tagSpecifications != null) 'TagSpecification': tagSpecifications,
+      if (userData != null) 'UserData': userData,
+    };
+  }
 }
 
 /// Contains the output of RequestSpotFleet.
@@ -57949,6 +68727,13 @@ class RequestSpotFleetResponse {
   RequestSpotFleetResponse({
     this.spotFleetRequestId,
   });
+
+  Map<String, dynamic> toJson() {
+    final spotFleetRequestId = this.spotFleetRequestId;
+    return {
+      if (spotFleetRequestId != null) 'spotFleetRequestId': spotFleetRequestId,
+    };
+  }
 }
 
 /// Contains the output of RequestSpotInstances.
@@ -57959,6 +68744,14 @@ class RequestSpotInstancesResult {
   RequestSpotInstancesResult({
     this.spotInstanceRequests,
   });
+
+  Map<String, dynamic> toJson() {
+    final spotInstanceRequests = this.spotInstanceRequests;
+    return {
+      if (spotInstanceRequests != null)
+        'spotInstanceRequestSet': spotInstanceRequests,
+    };
+  }
 }
 
 /// Describes the launch specification for an instance.
@@ -58044,6 +68837,44 @@ class RequestSpotLaunchSpecification {
     this.subnetId,
     this.userData,
   });
+
+  Map<String, dynamic> toJson() {
+    final addressingType = this.addressingType;
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final ebsOptimized = this.ebsOptimized;
+    final iamInstanceProfile = this.iamInstanceProfile;
+    final imageId = this.imageId;
+    final instanceType = this.instanceType;
+    final kernelId = this.kernelId;
+    final keyName = this.keyName;
+    final monitoring = this.monitoring;
+    final networkInterfaces = this.networkInterfaces;
+    final placement = this.placement;
+    final ramdiskId = this.ramdiskId;
+    final securityGroupIds = this.securityGroupIds;
+    final securityGroups = this.securityGroups;
+    final subnetId = this.subnetId;
+    final userData = this.userData;
+    return {
+      if (addressingType != null) 'addressingType': addressingType,
+      if (blockDeviceMappings != null)
+        'blockDeviceMapping': blockDeviceMappings,
+      if (ebsOptimized != null) 'ebsOptimized': ebsOptimized,
+      if (iamInstanceProfile != null) 'iamInstanceProfile': iamInstanceProfile,
+      if (imageId != null) 'imageId': imageId,
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (kernelId != null) 'kernelId': kernelId,
+      if (keyName != null) 'keyName': keyName,
+      if (monitoring != null) 'monitoring': monitoring,
+      if (networkInterfaces != null) 'NetworkInterface': networkInterfaces,
+      if (placement != null) 'placement': placement,
+      if (ramdiskId != null) 'ramdiskId': ramdiskId,
+      if (securityGroupIds != null) 'SecurityGroupId': securityGroupIds,
+      if (securityGroups != null) 'SecurityGroup': securityGroups,
+      if (subnetId != null) 'subnetId': subnetId,
+      if (userData != null) 'userData': userData,
+    };
+  }
 }
 
 /// Describes a launch request for one or more instances, and includes owner,
@@ -58079,6 +68910,21 @@ class Reservation {
     this.requesterId,
     this.reservationId,
   });
+
+  Map<String, dynamic> toJson() {
+    final groups = this.groups;
+    final instances = this.instances;
+    final ownerId = this.ownerId;
+    final requesterId = this.requesterId;
+    final reservationId = this.reservationId;
+    return {
+      if (groups != null) 'groupSet': groups,
+      if (instances != null) 'instancesSet': instances,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (requesterId != null) 'requesterId': requesterId,
+      if (reservationId != null) 'reservationId': reservationId,
+    };
+  }
 }
 
 /// Information about an instance type to use in a Capacity Reservation Fleet.
@@ -58136,6 +68982,26 @@ class ReservationFleetInstanceSpecification {
     this.priority,
     this.weight,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final availabilityZoneId = this.availabilityZoneId;
+    final ebsOptimized = this.ebsOptimized;
+    final instancePlatform = this.instancePlatform;
+    final instanceType = this.instanceType;
+    final priority = this.priority;
+    final weight = this.weight;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (availabilityZoneId != null) 'AvailabilityZoneId': availabilityZoneId,
+      if (ebsOptimized != null) 'EbsOptimized': ebsOptimized,
+      if (instancePlatform != null)
+        'InstancePlatform': instancePlatform.toValue(),
+      if (instanceType != null) 'InstanceType': instanceType.toValue(),
+      if (priority != null) 'Priority': priority,
+      if (weight != null) 'Weight': weight,
+    };
+  }
 }
 
 enum ReservationState {
@@ -58193,6 +69059,19 @@ class ReservationValue {
     this.remainingTotalValue,
     this.remainingUpfrontValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final hourlyPrice = this.hourlyPrice;
+    final remainingTotalValue = this.remainingTotalValue;
+    final remainingUpfrontValue = this.remainingUpfrontValue;
+    return {
+      if (hourlyPrice != null) 'hourlyPrice': hourlyPrice,
+      if (remainingTotalValue != null)
+        'remainingTotalValue': remainingTotalValue,
+      if (remainingUpfrontValue != null)
+        'remainingUpfrontValue': remainingUpfrontValue,
+    };
+  }
 }
 
 /// Describes the limit price of a Reserved Instance offering.
@@ -58209,6 +69088,15 @@ class ReservedInstanceLimitPrice {
     this.amount,
     this.currencyCode,
   });
+
+  Map<String, dynamic> toJson() {
+    final amount = this.amount;
+    final currencyCode = this.currencyCode;
+    return {
+      if (amount != null) 'amount': amount,
+      if (currencyCode != null) 'currencyCode': currencyCode.toValue(),
+    };
+  }
 }
 
 /// The total value of the Convertible Reserved Instance.
@@ -58224,6 +69112,15 @@ class ReservedInstanceReservationValue {
     this.reservationValue,
     this.reservedInstanceId,
   });
+
+  Map<String, dynamic> toJson() {
+    final reservationValue = this.reservationValue;
+    final reservedInstanceId = this.reservedInstanceId;
+    return {
+      if (reservationValue != null) 'reservationValue': reservationValue,
+      if (reservedInstanceId != null) 'reservedInstanceId': reservedInstanceId,
+    };
+  }
 }
 
 enum ReservedInstanceState {
@@ -58352,6 +69249,49 @@ class ReservedInstances {
     this.tags,
     this.usagePrice,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final end = this.end;
+    final fixedPrice = this.fixedPrice;
+    final instanceCount = this.instanceCount;
+    final instanceTenancy = this.instanceTenancy;
+    final instanceType = this.instanceType;
+    final offeringClass = this.offeringClass;
+    final offeringType = this.offeringType;
+    final productDescription = this.productDescription;
+    final recurringCharges = this.recurringCharges;
+    final reservedInstancesId = this.reservedInstancesId;
+    final scope = this.scope;
+    final start = this.start;
+    final state = this.state;
+    final tags = this.tags;
+    final usagePrice = this.usagePrice;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (currencyCode != null) 'currencyCode': currencyCode.toValue(),
+      if (duration != null) 'duration': duration,
+      if (end != null) 'end': iso8601ToJson(end),
+      if (fixedPrice != null) 'fixedPrice': fixedPrice,
+      if (instanceCount != null) 'instanceCount': instanceCount,
+      if (instanceTenancy != null) 'instanceTenancy': instanceTenancy.toValue(),
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (offeringClass != null) 'offeringClass': offeringClass.toValue(),
+      if (offeringType != null) 'offeringType': offeringType.toValue(),
+      if (productDescription != null)
+        'productDescription': productDescription.toValue(),
+      if (recurringCharges != null) 'recurringCharges': recurringCharges,
+      if (reservedInstancesId != null)
+        'reservedInstancesId': reservedInstancesId,
+      if (scope != null) 'scope': scope.toValue(),
+      if (start != null) 'start': iso8601ToJson(start),
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (usagePrice != null) 'usagePrice': usagePrice,
+    };
+  }
 }
 
 /// Describes the configuration settings for the modified Reserved Instances.
@@ -58390,6 +69330,21 @@ class ReservedInstancesConfiguration {
     this.platform,
     this.scope,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final instanceCount = this.instanceCount;
+    final instanceType = this.instanceType;
+    final platform = this.platform;
+    final scope = this.scope;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (instanceCount != null) 'instanceCount': instanceCount,
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (platform != null) 'platform': platform,
+      if (scope != null) 'scope': scope.toValue(),
+    };
+  }
 }
 
 /// Describes the ID of a Reserved Instance.
@@ -58400,6 +69355,14 @@ class ReservedInstancesId {
   ReservedInstancesId({
     this.reservedInstancesId,
   });
+
+  Map<String, dynamic> toJson() {
+    final reservedInstancesId = this.reservedInstancesId;
+    return {
+      if (reservedInstancesId != null)
+        'reservedInstancesId': reservedInstancesId,
+    };
+  }
 }
 
 /// Describes a Reserved Instance listing.
@@ -58450,6 +69413,33 @@ class ReservedInstancesListing {
     this.tags,
     this.updateDate,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final createDate = this.createDate;
+    final instanceCounts = this.instanceCounts;
+    final priceSchedules = this.priceSchedules;
+    final reservedInstancesId = this.reservedInstancesId;
+    final reservedInstancesListingId = this.reservedInstancesListingId;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final tags = this.tags;
+    final updateDate = this.updateDate;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (createDate != null) 'createDate': iso8601ToJson(createDate),
+      if (instanceCounts != null) 'instanceCounts': instanceCounts,
+      if (priceSchedules != null) 'priceSchedules': priceSchedules,
+      if (reservedInstancesId != null)
+        'reservedInstancesId': reservedInstancesId,
+      if (reservedInstancesListingId != null)
+        'reservedInstancesListingId': reservedInstancesListingId,
+      if (status != null) 'status': status.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (tags != null) 'tagSet': tags,
+      if (updateDate != null) 'updateDate': iso8601ToJson(updateDate),
+    };
+  }
 }
 
 /// Describes a Reserved Instance modification.
@@ -58496,6 +69486,33 @@ class ReservedInstancesModification {
     this.statusMessage,
     this.updateDate,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientToken = this.clientToken;
+    final createDate = this.createDate;
+    final effectiveDate = this.effectiveDate;
+    final modificationResults = this.modificationResults;
+    final reservedInstancesIds = this.reservedInstancesIds;
+    final reservedInstancesModificationId =
+        this.reservedInstancesModificationId;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final updateDate = this.updateDate;
+    return {
+      if (clientToken != null) 'clientToken': clientToken,
+      if (createDate != null) 'createDate': iso8601ToJson(createDate),
+      if (effectiveDate != null) 'effectiveDate': iso8601ToJson(effectiveDate),
+      if (modificationResults != null)
+        'modificationResultSet': modificationResults,
+      if (reservedInstancesIds != null)
+        'reservedInstancesSet': reservedInstancesIds,
+      if (reservedInstancesModificationId != null)
+        'reservedInstancesModificationId': reservedInstancesModificationId,
+      if (status != null) 'status': status,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (updateDate != null) 'updateDate': iso8601ToJson(updateDate),
+    };
+  }
 }
 
 /// Describes the modification request/s.
@@ -58513,6 +69530,17 @@ class ReservedInstancesModificationResult {
     this.reservedInstancesId,
     this.targetConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final reservedInstancesId = this.reservedInstancesId;
+    final targetConfiguration = this.targetConfiguration;
+    return {
+      if (reservedInstancesId != null)
+        'reservedInstancesId': reservedInstancesId,
+      if (targetConfiguration != null)
+        'targetConfiguration': targetConfiguration,
+    };
+  }
 }
 
 /// Describes a Reserved Instance offering.
@@ -58588,6 +69616,43 @@ class ReservedInstancesOffering {
     this.scope,
     this.usagePrice,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final currencyCode = this.currencyCode;
+    final duration = this.duration;
+    final fixedPrice = this.fixedPrice;
+    final instanceTenancy = this.instanceTenancy;
+    final instanceType = this.instanceType;
+    final marketplace = this.marketplace;
+    final offeringClass = this.offeringClass;
+    final offeringType = this.offeringType;
+    final pricingDetails = this.pricingDetails;
+    final productDescription = this.productDescription;
+    final recurringCharges = this.recurringCharges;
+    final reservedInstancesOfferingId = this.reservedInstancesOfferingId;
+    final scope = this.scope;
+    final usagePrice = this.usagePrice;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (currencyCode != null) 'currencyCode': currencyCode.toValue(),
+      if (duration != null) 'duration': duration,
+      if (fixedPrice != null) 'fixedPrice': fixedPrice,
+      if (instanceTenancy != null) 'instanceTenancy': instanceTenancy.toValue(),
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (marketplace != null) 'marketplace': marketplace,
+      if (offeringClass != null) 'offeringClass': offeringClass.toValue(),
+      if (offeringType != null) 'offeringType': offeringType.toValue(),
+      if (pricingDetails != null) 'pricingDetailsSet': pricingDetails,
+      if (productDescription != null)
+        'productDescription': productDescription.toValue(),
+      if (recurringCharges != null) 'recurringCharges': recurringCharges,
+      if (reservedInstancesOfferingId != null)
+        'reservedInstancesOfferingId': reservedInstancesOfferingId,
+      if (scope != null) 'scope': scope.toValue(),
+      if (usagePrice != null) 'usagePrice': usagePrice,
+    };
+  }
 }
 
 class ResetAddressAttributeResult {
@@ -58597,6 +69662,13 @@ class ResetAddressAttributeResult {
   ResetAddressAttributeResult({
     this.address,
   });
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    return {
+      if (address != null) 'address': address,
+    };
+  }
 }
 
 class ResetEbsDefaultKmsKeyIdResult {
@@ -58607,6 +69679,13 @@ class ResetEbsDefaultKmsKeyIdResult {
   ResetEbsDefaultKmsKeyIdResult({
     this.kmsKeyId,
   });
+
+  Map<String, dynamic> toJson() {
+    final kmsKeyId = this.kmsKeyId;
+    return {
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+    };
+  }
 }
 
 enum ResetFpgaImageAttributeName {
@@ -58640,6 +69719,13 @@ class ResetFpgaImageAttributeResult {
   ResetFpgaImageAttributeResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 enum ResetImageAttributeName {
@@ -58677,6 +69763,15 @@ class ResourceStatement {
     this.resourceTypes,
     this.resources,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceTypes = this.resourceTypes;
+    final resources = this.resources;
+    return {
+      if (resourceTypes != null) 'resourceTypeSet': resourceTypes,
+      if (resources != null) 'resourceSet': resources,
+    };
+  }
 }
 
 /// Describes a resource statement.
@@ -58691,6 +69786,15 @@ class ResourceStatementRequest {
     this.resourceTypes,
     this.resources,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceTypes = this.resourceTypes;
+    final resources = this.resources;
+    return {
+      if (resourceTypes != null) 'ResourceType': resourceTypes,
+      if (resources != null) 'Resource': resources,
+    };
+  }
 }
 
 enum ResourceType {
@@ -59090,6 +70194,15 @@ class ResponseError {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// The information for a launch template.
@@ -59242,6 +70355,86 @@ class ResponseLaunchTemplateData {
     this.tagSpecifications,
     this.userData,
   });
+
+  Map<String, dynamic> toJson() {
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final capacityReservationSpecification =
+        this.capacityReservationSpecification;
+    final cpuOptions = this.cpuOptions;
+    final creditSpecification = this.creditSpecification;
+    final disableApiStop = this.disableApiStop;
+    final disableApiTermination = this.disableApiTermination;
+    final ebsOptimized = this.ebsOptimized;
+    final elasticGpuSpecifications = this.elasticGpuSpecifications;
+    final elasticInferenceAccelerators = this.elasticInferenceAccelerators;
+    final enclaveOptions = this.enclaveOptions;
+    final hibernationOptions = this.hibernationOptions;
+    final iamInstanceProfile = this.iamInstanceProfile;
+    final imageId = this.imageId;
+    final instanceInitiatedShutdownBehavior =
+        this.instanceInitiatedShutdownBehavior;
+    final instanceMarketOptions = this.instanceMarketOptions;
+    final instanceRequirements = this.instanceRequirements;
+    final instanceType = this.instanceType;
+    final kernelId = this.kernelId;
+    final keyName = this.keyName;
+    final licenseSpecifications = this.licenseSpecifications;
+    final maintenanceOptions = this.maintenanceOptions;
+    final metadataOptions = this.metadataOptions;
+    final monitoring = this.monitoring;
+    final networkInterfaces = this.networkInterfaces;
+    final placement = this.placement;
+    final privateDnsNameOptions = this.privateDnsNameOptions;
+    final ramDiskId = this.ramDiskId;
+    final securityGroupIds = this.securityGroupIds;
+    final securityGroups = this.securityGroups;
+    final tagSpecifications = this.tagSpecifications;
+    final userData = this.userData;
+    return {
+      if (blockDeviceMappings != null)
+        'blockDeviceMappingSet': blockDeviceMappings,
+      if (capacityReservationSpecification != null)
+        'capacityReservationSpecification': capacityReservationSpecification,
+      if (cpuOptions != null) 'cpuOptions': cpuOptions,
+      if (creditSpecification != null)
+        'creditSpecification': creditSpecification,
+      if (disableApiStop != null) 'disableApiStop': disableApiStop,
+      if (disableApiTermination != null)
+        'disableApiTermination': disableApiTermination,
+      if (ebsOptimized != null) 'ebsOptimized': ebsOptimized,
+      if (elasticGpuSpecifications != null)
+        'elasticGpuSpecificationSet': elasticGpuSpecifications,
+      if (elasticInferenceAccelerators != null)
+        'elasticInferenceAcceleratorSet': elasticInferenceAccelerators,
+      if (enclaveOptions != null) 'enclaveOptions': enclaveOptions,
+      if (hibernationOptions != null) 'hibernationOptions': hibernationOptions,
+      if (iamInstanceProfile != null) 'iamInstanceProfile': iamInstanceProfile,
+      if (imageId != null) 'imageId': imageId,
+      if (instanceInitiatedShutdownBehavior != null)
+        'instanceInitiatedShutdownBehavior':
+            instanceInitiatedShutdownBehavior.toValue(),
+      if (instanceMarketOptions != null)
+        'instanceMarketOptions': instanceMarketOptions,
+      if (instanceRequirements != null)
+        'instanceRequirements': instanceRequirements,
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (kernelId != null) 'kernelId': kernelId,
+      if (keyName != null) 'keyName': keyName,
+      if (licenseSpecifications != null) 'licenseSet': licenseSpecifications,
+      if (maintenanceOptions != null) 'maintenanceOptions': maintenanceOptions,
+      if (metadataOptions != null) 'metadataOptions': metadataOptions,
+      if (monitoring != null) 'monitoring': monitoring,
+      if (networkInterfaces != null) 'networkInterfaceSet': networkInterfaces,
+      if (placement != null) 'placement': placement,
+      if (privateDnsNameOptions != null)
+        'privateDnsNameOptions': privateDnsNameOptions,
+      if (ramDiskId != null) 'ramDiskId': ramDiskId,
+      if (securityGroupIds != null) 'securityGroupIdSet': securityGroupIds,
+      if (securityGroups != null) 'securityGroupSet': securityGroups,
+      if (tagSpecifications != null) 'tagSpecificationSet': tagSpecifications,
+      if (userData != null) 'userData': userData,
+    };
+  }
 }
 
 class RestoreAddressToClassicResult {
@@ -59255,6 +70448,15 @@ class RestoreAddressToClassicResult {
     this.publicIp,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final publicIp = this.publicIp;
+    final status = this.status;
+    return {
+      if (publicIp != null) 'publicIp': publicIp,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class RestoreImageFromRecycleBinResult {
@@ -59265,6 +70467,13 @@ class RestoreImageFromRecycleBinResult {
   RestoreImageFromRecycleBinResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class RestoreManagedPrefixListVersionResult {
@@ -59274,6 +70483,13 @@ class RestoreManagedPrefixListVersionResult {
   RestoreManagedPrefixListVersionResult({
     this.prefixList,
   });
+
+  Map<String, dynamic> toJson() {
+    final prefixList = this.prefixList;
+    return {
+      if (prefixList != null) 'prefixList': prefixList,
+    };
+  }
 }
 
 class RestoreSnapshotFromRecycleBinResult {
@@ -59323,6 +70539,31 @@ class RestoreSnapshotFromRecycleBinResult {
     this.volumeId,
     this.volumeSize,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final encrypted = this.encrypted;
+    final outpostArn = this.outpostArn;
+    final ownerId = this.ownerId;
+    final progress = this.progress;
+    final snapshotId = this.snapshotId;
+    final startTime = this.startTime;
+    final state = this.state;
+    final volumeId = this.volumeId;
+    final volumeSize = this.volumeSize;
+    return {
+      if (description != null) 'description': description,
+      if (encrypted != null) 'encrypted': encrypted,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (progress != null) 'progress': progress,
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (startTime != null) 'startTime': iso8601ToJson(startTime),
+      if (state != null) 'status': state.toValue(),
+      if (volumeId != null) 'volumeId': volumeId,
+      if (volumeSize != null) 'volumeSize': volumeSize,
+    };
+  }
 }
 
 class RestoreSnapshotTierResult {
@@ -59347,6 +70588,20 @@ class RestoreSnapshotTierResult {
     this.restoreStartTime,
     this.snapshotId,
   });
+
+  Map<String, dynamic> toJson() {
+    final isPermanentRestore = this.isPermanentRestore;
+    final restoreDuration = this.restoreDuration;
+    final restoreStartTime = this.restoreStartTime;
+    final snapshotId = this.snapshotId;
+    return {
+      if (isPermanentRestore != null) 'isPermanentRestore': isPermanentRestore,
+      if (restoreDuration != null) 'restoreDuration': restoreDuration,
+      if (restoreStartTime != null)
+        'restoreStartTime': iso8601ToJson(restoreStartTime),
+      if (snapshotId != null) 'snapshotId': snapshotId,
+    };
+  }
 }
 
 class RevokeClientVpnIngressResult {
@@ -59356,6 +70611,13 @@ class RevokeClientVpnIngressResult {
   RevokeClientVpnIngressResult({
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final status = this.status;
+    return {
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 class RevokeSecurityGroupEgressResult {
@@ -59372,6 +70634,16 @@ class RevokeSecurityGroupEgressResult {
     this.returnValue,
     this.unknownIpPermissions,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    final unknownIpPermissions = this.unknownIpPermissions;
+    return {
+      if (returnValue != null) 'return': returnValue,
+      if (unknownIpPermissions != null)
+        'unknownIpPermissionSet': unknownIpPermissions,
+    };
+  }
 }
 
 class RevokeSecurityGroupIngressResult {
@@ -59388,6 +70660,16 @@ class RevokeSecurityGroupIngressResult {
     this.returnValue,
     this.unknownIpPermissions,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    final unknownIpPermissions = this.unknownIpPermissions;
+    return {
+      if (returnValue != null) 'return': returnValue,
+      if (unknownIpPermissions != null)
+        'unknownIpPermissionSet': unknownIpPermissions,
+    };
+  }
 }
 
 enum RootDeviceType {
@@ -59502,6 +70784,48 @@ class Route {
     this.transitGatewayId,
     this.vpcPeeringConnectionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final carrierGatewayId = this.carrierGatewayId;
+    final coreNetworkArn = this.coreNetworkArn;
+    final destinationCidrBlock = this.destinationCidrBlock;
+    final destinationIpv6CidrBlock = this.destinationIpv6CidrBlock;
+    final destinationPrefixListId = this.destinationPrefixListId;
+    final egressOnlyInternetGatewayId = this.egressOnlyInternetGatewayId;
+    final gatewayId = this.gatewayId;
+    final instanceId = this.instanceId;
+    final instanceOwnerId = this.instanceOwnerId;
+    final localGatewayId = this.localGatewayId;
+    final natGatewayId = this.natGatewayId;
+    final networkInterfaceId = this.networkInterfaceId;
+    final origin = this.origin;
+    final state = this.state;
+    final transitGatewayId = this.transitGatewayId;
+    final vpcPeeringConnectionId = this.vpcPeeringConnectionId;
+    return {
+      if (carrierGatewayId != null) 'carrierGatewayId': carrierGatewayId,
+      if (coreNetworkArn != null) 'coreNetworkArn': coreNetworkArn,
+      if (destinationCidrBlock != null)
+        'destinationCidrBlock': destinationCidrBlock,
+      if (destinationIpv6CidrBlock != null)
+        'destinationIpv6CidrBlock': destinationIpv6CidrBlock,
+      if (destinationPrefixListId != null)
+        'destinationPrefixListId': destinationPrefixListId,
+      if (egressOnlyInternetGatewayId != null)
+        'egressOnlyInternetGatewayId': egressOnlyInternetGatewayId,
+      if (gatewayId != null) 'gatewayId': gatewayId,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (instanceOwnerId != null) 'instanceOwnerId': instanceOwnerId,
+      if (localGatewayId != null) 'localGatewayId': localGatewayId,
+      if (natGatewayId != null) 'natGatewayId': natGatewayId,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (origin != null) 'origin': origin.toValue(),
+      if (state != null) 'state': state.toValue(),
+      if (transitGatewayId != null) 'transitGatewayId': transitGatewayId,
+      if (vpcPeeringConnectionId != null)
+        'vpcPeeringConnectionId': vpcPeeringConnectionId,
+    };
+  }
 }
 
 enum RouteOrigin {
@@ -59598,6 +70922,25 @@ class RouteTable {
     this.tags,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final associations = this.associations;
+    final ownerId = this.ownerId;
+    final propagatingVgws = this.propagatingVgws;
+    final routeTableId = this.routeTableId;
+    final routes = this.routes;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (associations != null) 'associationSet': associations,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (propagatingVgws != null) 'propagatingVgwSet': propagatingVgws,
+      if (routeTableId != null) 'routeTableId': routeTableId,
+      if (routes != null) 'routeSet': routes,
+      if (tags != null) 'tagSet': tags,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// Describes an association between a route table and a subnet or gateway.
@@ -59629,6 +70972,24 @@ class RouteTableAssociation {
     this.routeTableId,
     this.subnetId,
   });
+
+  Map<String, dynamic> toJson() {
+    final associationState = this.associationState;
+    final gatewayId = this.gatewayId;
+    final main = this.main;
+    final routeTableAssociationId = this.routeTableAssociationId;
+    final routeTableId = this.routeTableId;
+    final subnetId = this.subnetId;
+    return {
+      if (associationState != null) 'associationState': associationState,
+      if (gatewayId != null) 'gatewayId': gatewayId,
+      if (main != null) 'main': main,
+      if (routeTableAssociationId != null)
+        'routeTableAssociationId': routeTableAssociationId,
+      if (routeTableId != null) 'routeTableId': routeTableId,
+      if (subnetId != null) 'subnetId': subnetId,
+    };
+  }
 }
 
 /// Describes the state of an association between a route table and a subnet or
@@ -59644,6 +71005,15 @@ class RouteTableAssociationState {
     this.state,
     this.statusMessage,
   });
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final statusMessage = this.statusMessage;
+    return {
+      if (state != null) 'state': state.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
+  }
 }
 
 enum RouteTableAssociationStateCode {
@@ -59728,6 +71098,13 @@ class RunInstancesMonitoringEnabled {
   RunInstancesMonitoringEnabled({
     required this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      'enabled': enabled,
+    };
+  }
 }
 
 /// Contains the output of RunScheduledInstances.
@@ -59738,6 +71115,13 @@ class RunScheduledInstancesResult {
   RunScheduledInstancesResult({
     this.instanceIdSet,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceIdSet = this.instanceIdSet;
+    return {
+      if (instanceIdSet != null) 'instanceIdSet': instanceIdSet,
+    };
+  }
 }
 
 /// The tags to apply to the AMI object that will be stored in the Amazon S3
@@ -59762,6 +71146,15 @@ class S3ObjectTag {
     this.key,
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// Describes the storage parameters for Amazon S3 and Amazon S3 buckets for an
@@ -59795,6 +71188,22 @@ class S3Storage {
     this.uploadPolicy,
     this.uploadPolicySignature,
   });
+
+  Map<String, dynamic> toJson() {
+    final awsAccessKeyId = this.awsAccessKeyId;
+    final bucket = this.bucket;
+    final prefix = this.prefix;
+    final uploadPolicy = this.uploadPolicy;
+    final uploadPolicySignature = this.uploadPolicySignature;
+    return {
+      if (awsAccessKeyId != null) 'AWSAccessKeyId': awsAccessKeyId,
+      if (bucket != null) 'bucket': bucket,
+      if (prefix != null) 'prefix': prefix,
+      if (uploadPolicy != null) 'uploadPolicy': base64Encode(uploadPolicy),
+      if (uploadPolicySignature != null)
+        'uploadPolicySignature': uploadPolicySignature,
+    };
+  }
 }
 
 /// Describes a Scheduled Instance.
@@ -59868,6 +71277,46 @@ class ScheduledInstance {
     this.termStartDate,
     this.totalScheduledInstanceHours,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final createDate = this.createDate;
+    final hourlyPrice = this.hourlyPrice;
+    final instanceCount = this.instanceCount;
+    final instanceType = this.instanceType;
+    final networkPlatform = this.networkPlatform;
+    final nextSlotStartTime = this.nextSlotStartTime;
+    final platform = this.platform;
+    final previousSlotEndTime = this.previousSlotEndTime;
+    final recurrence = this.recurrence;
+    final scheduledInstanceId = this.scheduledInstanceId;
+    final slotDurationInHours = this.slotDurationInHours;
+    final termEndDate = this.termEndDate;
+    final termStartDate = this.termStartDate;
+    final totalScheduledInstanceHours = this.totalScheduledInstanceHours;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (createDate != null) 'createDate': iso8601ToJson(createDate),
+      if (hourlyPrice != null) 'hourlyPrice': hourlyPrice,
+      if (instanceCount != null) 'instanceCount': instanceCount,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (networkPlatform != null) 'networkPlatform': networkPlatform,
+      if (nextSlotStartTime != null)
+        'nextSlotStartTime': iso8601ToJson(nextSlotStartTime),
+      if (platform != null) 'platform': platform,
+      if (previousSlotEndTime != null)
+        'previousSlotEndTime': iso8601ToJson(previousSlotEndTime),
+      if (recurrence != null) 'recurrence': recurrence,
+      if (scheduledInstanceId != null)
+        'scheduledInstanceId': scheduledInstanceId,
+      if (slotDurationInHours != null)
+        'slotDurationInHours': slotDurationInHours,
+      if (termEndDate != null) 'termEndDate': iso8601ToJson(termEndDate),
+      if (termStartDate != null) 'termStartDate': iso8601ToJson(termStartDate),
+      if (totalScheduledInstanceHours != null)
+        'totalScheduledInstanceHours': totalScheduledInstanceHours,
+    };
+  }
 }
 
 /// Describes a schedule that is available for your Scheduled Instances.
@@ -59934,6 +71383,43 @@ class ScheduledInstanceAvailability {
     this.slotDurationInHours,
     this.totalScheduledInstanceHours,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final availableInstanceCount = this.availableInstanceCount;
+    final firstSlotStartTime = this.firstSlotStartTime;
+    final hourlyPrice = this.hourlyPrice;
+    final instanceType = this.instanceType;
+    final maxTermDurationInDays = this.maxTermDurationInDays;
+    final minTermDurationInDays = this.minTermDurationInDays;
+    final networkPlatform = this.networkPlatform;
+    final platform = this.platform;
+    final purchaseToken = this.purchaseToken;
+    final recurrence = this.recurrence;
+    final slotDurationInHours = this.slotDurationInHours;
+    final totalScheduledInstanceHours = this.totalScheduledInstanceHours;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (availableInstanceCount != null)
+        'availableInstanceCount': availableInstanceCount,
+      if (firstSlotStartTime != null)
+        'firstSlotStartTime': iso8601ToJson(firstSlotStartTime),
+      if (hourlyPrice != null) 'hourlyPrice': hourlyPrice,
+      if (instanceType != null) 'instanceType': instanceType,
+      if (maxTermDurationInDays != null)
+        'maxTermDurationInDays': maxTermDurationInDays,
+      if (minTermDurationInDays != null)
+        'minTermDurationInDays': minTermDurationInDays,
+      if (networkPlatform != null) 'networkPlatform': networkPlatform,
+      if (platform != null) 'platform': platform,
+      if (purchaseToken != null) 'purchaseToken': purchaseToken,
+      if (recurrence != null) 'recurrence': recurrence,
+      if (slotDurationInHours != null)
+        'slotDurationInHours': slotDurationInHours,
+      if (totalScheduledInstanceHours != null)
+        'totalScheduledInstanceHours': totalScheduledInstanceHours,
+    };
+  }
 }
 
 /// Describes the recurring schedule for a Scheduled Instance.
@@ -59966,6 +71452,22 @@ class ScheduledInstanceRecurrence {
     this.occurrenceRelativeToEnd,
     this.occurrenceUnit,
   });
+
+  Map<String, dynamic> toJson() {
+    final frequency = this.frequency;
+    final interval = this.interval;
+    final occurrenceDaySet = this.occurrenceDaySet;
+    final occurrenceRelativeToEnd = this.occurrenceRelativeToEnd;
+    final occurrenceUnit = this.occurrenceUnit;
+    return {
+      if (frequency != null) 'frequency': frequency,
+      if (interval != null) 'interval': interval,
+      if (occurrenceDaySet != null) 'occurrenceDaySet': occurrenceDaySet,
+      if (occurrenceRelativeToEnd != null)
+        'occurrenceRelativeToEnd': occurrenceRelativeToEnd,
+      if (occurrenceUnit != null) 'occurrenceUnit': occurrenceUnit,
+    };
+  }
 }
 
 /// Describes the recurring schedule for a Scheduled Instance.
@@ -60002,6 +71504,22 @@ class ScheduledInstanceRecurrenceRequest {
     this.occurrenceRelativeToEnd,
     this.occurrenceUnit,
   });
+
+  Map<String, dynamic> toJson() {
+    final frequency = this.frequency;
+    final interval = this.interval;
+    final occurrenceDays = this.occurrenceDays;
+    final occurrenceRelativeToEnd = this.occurrenceRelativeToEnd;
+    final occurrenceUnit = this.occurrenceUnit;
+    return {
+      if (frequency != null) 'Frequency': frequency,
+      if (interval != null) 'Interval': interval,
+      if (occurrenceDays != null) 'OccurrenceDay': occurrenceDays,
+      if (occurrenceRelativeToEnd != null)
+        'OccurrenceRelativeToEnd': occurrenceRelativeToEnd,
+      if (occurrenceUnit != null) 'OccurrenceUnit': occurrenceUnit,
+    };
+  }
 }
 
 /// Describes a block device mapping for a Scheduled Instance.
@@ -60035,6 +71553,19 @@ class ScheduledInstancesBlockDeviceMapping {
     this.noDevice,
     this.virtualName,
   });
+
+  Map<String, dynamic> toJson() {
+    final deviceName = this.deviceName;
+    final ebs = this.ebs;
+    final noDevice = this.noDevice;
+    final virtualName = this.virtualName;
+    return {
+      if (deviceName != null) 'DeviceName': deviceName,
+      if (ebs != null) 'Ebs': ebs,
+      if (noDevice != null) 'NoDevice': noDevice,
+      if (virtualName != null) 'VirtualName': virtualName,
+    };
+  }
 }
 
 /// Describes an EBS volume for a Scheduled Instance.
@@ -60086,6 +71617,24 @@ class ScheduledInstancesEbs {
     this.volumeSize,
     this.volumeType,
   });
+
+  Map<String, dynamic> toJson() {
+    final deleteOnTermination = this.deleteOnTermination;
+    final encrypted = this.encrypted;
+    final iops = this.iops;
+    final snapshotId = this.snapshotId;
+    final volumeSize = this.volumeSize;
+    final volumeType = this.volumeType;
+    return {
+      if (deleteOnTermination != null)
+        'DeleteOnTermination': deleteOnTermination,
+      if (encrypted != null) 'Encrypted': encrypted,
+      if (iops != null) 'Iops': iops,
+      if (snapshotId != null) 'SnapshotId': snapshotId,
+      if (volumeSize != null) 'VolumeSize': volumeSize,
+      if (volumeType != null) 'VolumeType': volumeType,
+    };
+  }
 }
 
 /// Describes an IAM instance profile for a Scheduled Instance.
@@ -60100,6 +71649,15 @@ class ScheduledInstancesIamInstanceProfile {
     this.arn,
     this.name,
   });
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 /// Describes an IPv6 address.
@@ -60110,6 +71668,13 @@ class ScheduledInstancesIpv6Address {
   ScheduledInstancesIpv6Address({
     this.ipv6Address,
   });
+
+  Map<String, dynamic> toJson() {
+    final ipv6Address = this.ipv6Address;
+    return {
+      if (ipv6Address != null) 'Ipv6Address': ipv6Address,
+    };
+  }
 }
 
 /// Describes the launch specification for a Scheduled Instance.
@@ -60182,6 +71747,40 @@ class ScheduledInstancesLaunchSpecification {
     this.subnetId,
     this.userData,
   });
+
+  Map<String, dynamic> toJson() {
+    final imageId = this.imageId;
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final ebsOptimized = this.ebsOptimized;
+    final iamInstanceProfile = this.iamInstanceProfile;
+    final instanceType = this.instanceType;
+    final kernelId = this.kernelId;
+    final keyName = this.keyName;
+    final monitoring = this.monitoring;
+    final networkInterfaces = this.networkInterfaces;
+    final placement = this.placement;
+    final ramdiskId = this.ramdiskId;
+    final securityGroupIds = this.securityGroupIds;
+    final subnetId = this.subnetId;
+    final userData = this.userData;
+    return {
+      'ImageId': imageId,
+      if (blockDeviceMappings != null)
+        'BlockDeviceMapping': blockDeviceMappings,
+      if (ebsOptimized != null) 'EbsOptimized': ebsOptimized,
+      if (iamInstanceProfile != null) 'IamInstanceProfile': iamInstanceProfile,
+      if (instanceType != null) 'InstanceType': instanceType,
+      if (kernelId != null) 'KernelId': kernelId,
+      if (keyName != null) 'KeyName': keyName,
+      if (monitoring != null) 'Monitoring': monitoring,
+      if (networkInterfaces != null) 'NetworkInterface': networkInterfaces,
+      if (placement != null) 'Placement': placement,
+      if (ramdiskId != null) 'RamdiskId': ramdiskId,
+      if (securityGroupIds != null) 'SecurityGroupId': securityGroupIds,
+      if (subnetId != null) 'SubnetId': subnetId,
+      if (userData != null) 'UserData': userData,
+    };
+  }
 }
 
 /// Describes whether monitoring is enabled for a Scheduled Instance.
@@ -60192,6 +71791,13 @@ class ScheduledInstancesMonitoring {
   ScheduledInstancesMonitoring({
     this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      if (enabled != null) 'Enabled': enabled,
+    };
+  }
 }
 
 /// Describes a network interface for a Scheduled Instance.
@@ -60251,6 +71857,39 @@ class ScheduledInstancesNetworkInterface {
     this.secondaryPrivateIpAddressCount,
     this.subnetId,
   });
+
+  Map<String, dynamic> toJson() {
+    final associatePublicIpAddress = this.associatePublicIpAddress;
+    final deleteOnTermination = this.deleteOnTermination;
+    final description = this.description;
+    final deviceIndex = this.deviceIndex;
+    final groups = this.groups;
+    final ipv6AddressCount = this.ipv6AddressCount;
+    final ipv6Addresses = this.ipv6Addresses;
+    final networkInterfaceId = this.networkInterfaceId;
+    final privateIpAddress = this.privateIpAddress;
+    final privateIpAddressConfigs = this.privateIpAddressConfigs;
+    final secondaryPrivateIpAddressCount = this.secondaryPrivateIpAddressCount;
+    final subnetId = this.subnetId;
+    return {
+      if (associatePublicIpAddress != null)
+        'AssociatePublicIpAddress': associatePublicIpAddress,
+      if (deleteOnTermination != null)
+        'DeleteOnTermination': deleteOnTermination,
+      if (description != null) 'Description': description,
+      if (deviceIndex != null) 'DeviceIndex': deviceIndex,
+      if (groups != null) 'Group': groups,
+      if (ipv6AddressCount != null) 'Ipv6AddressCount': ipv6AddressCount,
+      if (ipv6Addresses != null) 'Ipv6Address': ipv6Addresses,
+      if (networkInterfaceId != null) 'NetworkInterfaceId': networkInterfaceId,
+      if (privateIpAddress != null) 'PrivateIpAddress': privateIpAddress,
+      if (privateIpAddressConfigs != null)
+        'PrivateIpAddressConfig': privateIpAddressConfigs,
+      if (secondaryPrivateIpAddressCount != null)
+        'SecondaryPrivateIpAddressCount': secondaryPrivateIpAddressCount,
+      if (subnetId != null) 'SubnetId': subnetId,
+    };
+  }
 }
 
 /// Describes the placement for a Scheduled Instance.
@@ -60265,6 +71904,15 @@ class ScheduledInstancesPlacement {
     this.availabilityZone,
     this.groupName,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final groupName = this.groupName;
+    return {
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (groupName != null) 'GroupName': groupName,
+    };
+  }
 }
 
 /// Describes a private IPv4 address for a Scheduled Instance.
@@ -60280,6 +71928,15 @@ class ScheduledInstancesPrivateIpAddressConfig {
     this.primary,
     this.privateIpAddress,
   });
+
+  Map<String, dynamic> toJson() {
+    final primary = this.primary;
+    final privateIpAddress = this.privateIpAddress;
+    return {
+      if (primary != null) 'Primary': primary,
+      if (privateIpAddress != null) 'PrivateIpAddress': privateIpAddress,
+    };
+  }
 }
 
 class SearchLocalGatewayRoutesResult {
@@ -60294,6 +71951,15 @@ class SearchLocalGatewayRoutesResult {
     this.nextToken,
     this.routes,
   });
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final routes = this.routes;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (routes != null) 'routeSet': routes,
+    };
+  }
 }
 
 class SearchTransitGatewayMulticastGroupsResult {
@@ -60308,6 +71974,15 @@ class SearchTransitGatewayMulticastGroupsResult {
     this.multicastGroups,
     this.nextToken,
   });
+
+  Map<String, dynamic> toJson() {
+    final multicastGroups = this.multicastGroups;
+    final nextToken = this.nextToken;
+    return {
+      if (multicastGroups != null) 'multicastGroups': multicastGroups,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class SearchTransitGatewayRoutesResult {
@@ -60321,6 +71996,16 @@ class SearchTransitGatewayRoutesResult {
     this.additionalRoutesAvailable,
     this.routes,
   });
+
+  Map<String, dynamic> toJson() {
+    final additionalRoutesAvailable = this.additionalRoutesAvailable;
+    final routes = this.routes;
+    return {
+      if (additionalRoutesAvailable != null)
+        'additionalRoutesAvailable': additionalRoutesAvailable,
+      if (routes != null) 'routeSet': routes,
+    };
+  }
 }
 
 /// Describes a security group.
@@ -60359,6 +72044,28 @@ class SecurityGroup {
     this.tags,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    final ipPermissions = this.ipPermissions;
+    final ipPermissionsEgress = this.ipPermissionsEgress;
+    final ownerId = this.ownerId;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (description != null) 'groupDescription': description,
+      if (groupId != null) 'groupId': groupId,
+      if (groupName != null) 'groupName': groupName,
+      if (ipPermissions != null) 'ipPermissions': ipPermissions,
+      if (ipPermissionsEgress != null)
+        'ipPermissionsEgress': ipPermissionsEgress,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (tags != null) 'tagSet': tags,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// Describes a security group.
@@ -60373,6 +72080,15 @@ class SecurityGroupIdentifier {
     this.groupId,
     this.groupName,
   });
+
+  Map<String, dynamic> toJson() {
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    return {
+      if (groupId != null) 'groupId': groupId,
+      if (groupName != null) 'groupName': groupName,
+    };
+  }
 }
 
 /// Describes a VPC with a security group that references your security group.
@@ -60391,6 +72107,18 @@ class SecurityGroupReference {
     this.referencingVpcId,
     this.vpcPeeringConnectionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final groupId = this.groupId;
+    final referencingVpcId = this.referencingVpcId;
+    final vpcPeeringConnectionId = this.vpcPeeringConnectionId;
+    return {
+      if (groupId != null) 'groupId': groupId,
+      if (referencingVpcId != null) 'referencingVpcId': referencingVpcId,
+      if (vpcPeeringConnectionId != null)
+        'vpcPeeringConnectionId': vpcPeeringConnectionId,
+    };
+  }
 }
 
 /// Describes a security group rule.
@@ -60458,6 +72186,39 @@ class SecurityGroupRule {
     this.tags,
     this.toPort,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidrIpv4 = this.cidrIpv4;
+    final cidrIpv6 = this.cidrIpv6;
+    final description = this.description;
+    final fromPort = this.fromPort;
+    final groupId = this.groupId;
+    final groupOwnerId = this.groupOwnerId;
+    final ipProtocol = this.ipProtocol;
+    final isEgress = this.isEgress;
+    final prefixListId = this.prefixListId;
+    final referencedGroupInfo = this.referencedGroupInfo;
+    final securityGroupRuleId = this.securityGroupRuleId;
+    final tags = this.tags;
+    final toPort = this.toPort;
+    return {
+      if (cidrIpv4 != null) 'cidrIpv4': cidrIpv4,
+      if (cidrIpv6 != null) 'cidrIpv6': cidrIpv6,
+      if (description != null) 'description': description,
+      if (fromPort != null) 'fromPort': fromPort,
+      if (groupId != null) 'groupId': groupId,
+      if (groupOwnerId != null) 'groupOwnerId': groupOwnerId,
+      if (ipProtocol != null) 'ipProtocol': ipProtocol,
+      if (isEgress != null) 'isEgress': isEgress,
+      if (prefixListId != null) 'prefixListId': prefixListId,
+      if (referencedGroupInfo != null)
+        'referencedGroupInfo': referencedGroupInfo,
+      if (securityGroupRuleId != null)
+        'securityGroupRuleId': securityGroupRuleId,
+      if (tags != null) 'tagSet': tags,
+      if (toPort != null) 'toPort': toPort,
+    };
+  }
 }
 
 /// Describes the description of a security group rule.
@@ -60475,6 +72236,16 @@ class SecurityGroupRuleDescription {
     this.description,
     this.securityGroupRuleId,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final securityGroupRuleId = this.securityGroupRuleId;
+    return {
+      if (description != null) 'Description': description,
+      if (securityGroupRuleId != null)
+        'SecurityGroupRuleId': securityGroupRuleId,
+    };
+  }
 }
 
 /// Describes a security group rule.
@@ -60545,6 +72316,27 @@ class SecurityGroupRuleRequest {
     this.referencedGroupId,
     this.toPort,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidrIpv4 = this.cidrIpv4;
+    final cidrIpv6 = this.cidrIpv6;
+    final description = this.description;
+    final fromPort = this.fromPort;
+    final ipProtocol = this.ipProtocol;
+    final prefixListId = this.prefixListId;
+    final referencedGroupId = this.referencedGroupId;
+    final toPort = this.toPort;
+    return {
+      if (cidrIpv4 != null) 'CidrIpv4': cidrIpv4,
+      if (cidrIpv6 != null) 'CidrIpv6': cidrIpv6,
+      if (description != null) 'Description': description,
+      if (fromPort != null) 'FromPort': fromPort,
+      if (ipProtocol != null) 'IpProtocol': ipProtocol,
+      if (prefixListId != null) 'PrefixListId': prefixListId,
+      if (referencedGroupId != null) 'ReferencedGroupId': referencedGroupId,
+      if (toPort != null) 'ToPort': toPort,
+    };
+  }
 }
 
 /// Describes an update to a security group rule.
@@ -60559,6 +72351,16 @@ class SecurityGroupRuleUpdate {
     this.securityGroupRule,
     this.securityGroupRuleId,
   });
+
+  Map<String, dynamic> toJson() {
+    final securityGroupRule = this.securityGroupRule;
+    final securityGroupRuleId = this.securityGroupRuleId;
+    return {
+      if (securityGroupRule != null) 'SecurityGroupRule': securityGroupRule,
+      if (securityGroupRuleId != null)
+        'SecurityGroupRuleId': securityGroupRuleId,
+    };
+  }
 }
 
 enum SelfServicePortal {
@@ -60657,6 +72459,49 @@ class ServiceConfiguration {
     this.supportedIpAddressTypes,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final acceptanceRequired = this.acceptanceRequired;
+    final availabilityZones = this.availabilityZones;
+    final baseEndpointDnsNames = this.baseEndpointDnsNames;
+    final gatewayLoadBalancerArns = this.gatewayLoadBalancerArns;
+    final managesVpcEndpoints = this.managesVpcEndpoints;
+    final networkLoadBalancerArns = this.networkLoadBalancerArns;
+    final payerResponsibility = this.payerResponsibility;
+    final privateDnsName = this.privateDnsName;
+    final privateDnsNameConfiguration = this.privateDnsNameConfiguration;
+    final serviceId = this.serviceId;
+    final serviceName = this.serviceName;
+    final serviceState = this.serviceState;
+    final serviceType = this.serviceType;
+    final supportedIpAddressTypes = this.supportedIpAddressTypes;
+    final tags = this.tags;
+    return {
+      if (acceptanceRequired != null) 'acceptanceRequired': acceptanceRequired,
+      if (availabilityZones != null) 'availabilityZoneSet': availabilityZones,
+      if (baseEndpointDnsNames != null)
+        'baseEndpointDnsNameSet': baseEndpointDnsNames,
+      if (gatewayLoadBalancerArns != null)
+        'gatewayLoadBalancerArnSet': gatewayLoadBalancerArns,
+      if (managesVpcEndpoints != null)
+        'managesVpcEndpoints': managesVpcEndpoints,
+      if (networkLoadBalancerArns != null)
+        'networkLoadBalancerArnSet': networkLoadBalancerArns,
+      if (payerResponsibility != null)
+        'payerResponsibility': payerResponsibility.toValue(),
+      if (privateDnsName != null) 'privateDnsName': privateDnsName,
+      if (privateDnsNameConfiguration != null)
+        'privateDnsNameConfiguration': privateDnsNameConfiguration,
+      if (serviceId != null) 'serviceId': serviceId,
+      if (serviceName != null) 'serviceName': serviceName,
+      if (serviceState != null) 'serviceState': serviceState.toValue(),
+      if (serviceType != null) 'serviceType': serviceType,
+      if (supportedIpAddressTypes != null)
+        'supportedIpAddressTypeSet':
+            supportedIpAddressTypes.map((e) => e.toValue()).toList(),
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 enum ServiceConnectivityType {
@@ -60756,6 +72601,50 @@ class ServiceDetail {
     this.tags,
     this.vpcEndpointPolicySupported,
   });
+
+  Map<String, dynamic> toJson() {
+    final acceptanceRequired = this.acceptanceRequired;
+    final availabilityZones = this.availabilityZones;
+    final baseEndpointDnsNames = this.baseEndpointDnsNames;
+    final managesVpcEndpoints = this.managesVpcEndpoints;
+    final owner = this.owner;
+    final payerResponsibility = this.payerResponsibility;
+    final privateDnsName = this.privateDnsName;
+    final privateDnsNameVerificationState =
+        this.privateDnsNameVerificationState;
+    final privateDnsNames = this.privateDnsNames;
+    final serviceId = this.serviceId;
+    final serviceName = this.serviceName;
+    final serviceType = this.serviceType;
+    final supportedIpAddressTypes = this.supportedIpAddressTypes;
+    final tags = this.tags;
+    final vpcEndpointPolicySupported = this.vpcEndpointPolicySupported;
+    return {
+      if (acceptanceRequired != null) 'acceptanceRequired': acceptanceRequired,
+      if (availabilityZones != null) 'availabilityZoneSet': availabilityZones,
+      if (baseEndpointDnsNames != null)
+        'baseEndpointDnsNameSet': baseEndpointDnsNames,
+      if (managesVpcEndpoints != null)
+        'managesVpcEndpoints': managesVpcEndpoints,
+      if (owner != null) 'owner': owner,
+      if (payerResponsibility != null)
+        'payerResponsibility': payerResponsibility.toValue(),
+      if (privateDnsName != null) 'privateDnsName': privateDnsName,
+      if (privateDnsNameVerificationState != null)
+        'privateDnsNameVerificationState':
+            privateDnsNameVerificationState.toValue(),
+      if (privateDnsNames != null) 'privateDnsNameSet': privateDnsNames,
+      if (serviceId != null) 'serviceId': serviceId,
+      if (serviceName != null) 'serviceName': serviceName,
+      if (serviceType != null) 'serviceType': serviceType,
+      if (supportedIpAddressTypes != null)
+        'supportedIpAddressTypeSet':
+            supportedIpAddressTypes.map((e) => e.toValue()).toList(),
+      if (tags != null) 'tagSet': tags,
+      if (vpcEndpointPolicySupported != null)
+        'vpcEndpointPolicySupported': vpcEndpointPolicySupported,
+    };
+  }
 }
 
 enum ServiceState {
@@ -60842,6 +72731,13 @@ class ServiceTypeDetail {
   ServiceTypeDetail({
     this.serviceType,
   });
+
+  Map<String, dynamic> toJson() {
+    final serviceType = this.serviceType;
+    return {
+      if (serviceType != null) 'serviceType': serviceType.toValue(),
+    };
+  }
 }
 
 enum ShutdownBehavior {
@@ -60887,6 +72783,15 @@ class SlotDateTimeRangeRequest {
     required this.earliestTime,
     required this.latestTime,
   });
+
+  Map<String, dynamic> toJson() {
+    final earliestTime = this.earliestTime;
+    final latestTime = this.latestTime;
+    return {
+      'EarliestTime': iso8601ToJson(earliestTime),
+      'LatestTime': iso8601ToJson(latestTime),
+    };
+  }
 }
 
 /// Describes the time period for a Scheduled Instance to start its first
@@ -60902,6 +72807,15 @@ class SlotStartTimeRangeRequest {
     this.earliestTime,
     this.latestTime,
   });
+
+  Map<String, dynamic> toJson() {
+    final earliestTime = this.earliestTime;
+    final latestTime = this.latestTime;
+    return {
+      if (earliestTime != null) 'EarliestTime': iso8601ToJson(earliestTime),
+      if (latestTime != null) 'LatestTime': iso8601ToJson(latestTime),
+    };
+  }
 }
 
 /// Describes a snapshot.
@@ -61002,6 +72916,47 @@ class Snapshot {
     this.volumeId,
     this.volumeSize,
   });
+
+  Map<String, dynamic> toJson() {
+    final dataEncryptionKeyId = this.dataEncryptionKeyId;
+    final description = this.description;
+    final encrypted = this.encrypted;
+    final kmsKeyId = this.kmsKeyId;
+    final outpostArn = this.outpostArn;
+    final ownerAlias = this.ownerAlias;
+    final ownerId = this.ownerId;
+    final progress = this.progress;
+    final restoreExpiryTime = this.restoreExpiryTime;
+    final snapshotId = this.snapshotId;
+    final startTime = this.startTime;
+    final state = this.state;
+    final stateMessage = this.stateMessage;
+    final storageTier = this.storageTier;
+    final tags = this.tags;
+    final volumeId = this.volumeId;
+    final volumeSize = this.volumeSize;
+    return {
+      if (dataEncryptionKeyId != null)
+        'dataEncryptionKeyId': dataEncryptionKeyId,
+      if (description != null) 'description': description,
+      if (encrypted != null) 'encrypted': encrypted,
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (ownerAlias != null) 'ownerAlias': ownerAlias,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (progress != null) 'progress': progress,
+      if (restoreExpiryTime != null)
+        'restoreExpiryTime': iso8601ToJson(restoreExpiryTime),
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (startTime != null) 'startTime': iso8601ToJson(startTime),
+      if (state != null) 'status': state.toValue(),
+      if (stateMessage != null) 'statusMessage': stateMessage,
+      if (storageTier != null) 'storageTier': storageTier.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (volumeId != null) 'volumeId': volumeId,
+      if (volumeSize != null) 'volumeSize': volumeSize,
+    };
+  }
 }
 
 enum SnapshotAttributeName {
@@ -61076,6 +73031,31 @@ class SnapshotDetail {
     this.url,
     this.userBucket,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final deviceName = this.deviceName;
+    final diskImageSize = this.diskImageSize;
+    final format = this.format;
+    final progress = this.progress;
+    final snapshotId = this.snapshotId;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final url = this.url;
+    final userBucket = this.userBucket;
+    return {
+      if (description != null) 'description': description,
+      if (deviceName != null) 'deviceName': deviceName,
+      if (diskImageSize != null) 'diskImageSize': diskImageSize,
+      if (format != null) 'format': format,
+      if (progress != null) 'progress': progress,
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (status != null) 'status': status,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (url != null) 'url': url,
+      if (userBucket != null) 'userBucket': userBucket,
+    };
+  }
 }
 
 /// The disk container object for the import snapshot request.
@@ -61101,6 +73081,19 @@ class SnapshotDiskContainer {
     this.url,
     this.userBucket,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final format = this.format;
+    final url = this.url;
+    final userBucket = this.userBucket;
+    return {
+      if (description != null) 'Description': description,
+      if (format != null) 'Format': format,
+      if (url != null) 'Url': url,
+      if (userBucket != null) 'UserBucket': userBucket,
+    };
+  }
 }
 
 /// Information about a snapshot.
@@ -61157,6 +73150,33 @@ class SnapshotInfo {
     this.volumeId,
     this.volumeSize,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final encrypted = this.encrypted;
+    final outpostArn = this.outpostArn;
+    final ownerId = this.ownerId;
+    final progress = this.progress;
+    final snapshotId = this.snapshotId;
+    final startTime = this.startTime;
+    final state = this.state;
+    final tags = this.tags;
+    final volumeId = this.volumeId;
+    final volumeSize = this.volumeSize;
+    return {
+      if (description != null) 'description': description,
+      if (encrypted != null) 'encrypted': encrypted,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (progress != null) 'progress': progress,
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (startTime != null) 'startTime': iso8601ToJson(startTime),
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (volumeId != null) 'volumeId': volumeId,
+      if (volumeSize != null) 'volumeSize': volumeSize,
+    };
+  }
 }
 
 /// Information about a snapshot that is currently in the Recycle Bin.
@@ -61184,6 +73204,23 @@ class SnapshotRecycleBinInfo {
     this.snapshotId,
     this.volumeId,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final recycleBinEnterTime = this.recycleBinEnterTime;
+    final recycleBinExitTime = this.recycleBinExitTime;
+    final snapshotId = this.snapshotId;
+    final volumeId = this.volumeId;
+    return {
+      if (description != null) 'description': description,
+      if (recycleBinEnterTime != null)
+        'recycleBinEnterTime': iso8601ToJson(recycleBinEnterTime),
+      if (recycleBinExitTime != null)
+        'recycleBinExitTime': iso8601ToJson(recycleBinExitTime),
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (volumeId != null) 'volumeId': volumeId,
+    };
+  }
 }
 
 enum SnapshotState {
@@ -61278,6 +73315,33 @@ class SnapshotTaskDetail {
     this.url,
     this.userBucket,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final diskImageSize = this.diskImageSize;
+    final encrypted = this.encrypted;
+    final format = this.format;
+    final kmsKeyId = this.kmsKeyId;
+    final progress = this.progress;
+    final snapshotId = this.snapshotId;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    final url = this.url;
+    final userBucket = this.userBucket;
+    return {
+      if (description != null) 'description': description,
+      if (diskImageSize != null) 'diskImageSize': diskImageSize,
+      if (encrypted != null) 'encrypted': encrypted,
+      if (format != null) 'format': format,
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (progress != null) 'progress': progress,
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (status != null) 'status': status,
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (url != null) 'url': url,
+      if (userBucket != null) 'userBucket': userBucket,
+    };
+  }
 }
 
 /// Provides information about a snapshot's storage tier.
@@ -61338,6 +73402,42 @@ class SnapshotTierStatus {
     this.tags,
     this.volumeId,
   });
+
+  Map<String, dynamic> toJson() {
+    final archivalCompleteTime = this.archivalCompleteTime;
+    final lastTieringOperationStatus = this.lastTieringOperationStatus;
+    final lastTieringOperationStatusDetail =
+        this.lastTieringOperationStatusDetail;
+    final lastTieringProgress = this.lastTieringProgress;
+    final lastTieringStartTime = this.lastTieringStartTime;
+    final ownerId = this.ownerId;
+    final restoreExpiryTime = this.restoreExpiryTime;
+    final snapshotId = this.snapshotId;
+    final status = this.status;
+    final storageTier = this.storageTier;
+    final tags = this.tags;
+    final volumeId = this.volumeId;
+    return {
+      if (archivalCompleteTime != null)
+        'archivalCompleteTime': iso8601ToJson(archivalCompleteTime),
+      if (lastTieringOperationStatus != null)
+        'lastTieringOperationStatus': lastTieringOperationStatus.toValue(),
+      if (lastTieringOperationStatusDetail != null)
+        'lastTieringOperationStatusDetail': lastTieringOperationStatusDetail,
+      if (lastTieringProgress != null)
+        'lastTieringProgress': lastTieringProgress,
+      if (lastTieringStartTime != null)
+        'lastTieringStartTime': iso8601ToJson(lastTieringStartTime),
+      if (ownerId != null) 'ownerId': ownerId,
+      if (restoreExpiryTime != null)
+        'restoreExpiryTime': iso8601ToJson(restoreExpiryTime),
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (status != null) 'status': status.toValue(),
+      if (storageTier != null) 'storageTier': storageTier.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (volumeId != null) 'volumeId': volumeId,
+    };
+  }
 }
 
 enum SpotAllocationStrategy {
@@ -61418,6 +73518,16 @@ class SpotCapacityRebalance {
     this.replacementStrategy,
     this.terminationDelay,
   });
+
+  Map<String, dynamic> toJson() {
+    final replacementStrategy = this.replacementStrategy;
+    final terminationDelay = this.terminationDelay;
+    return {
+      if (replacementStrategy != null)
+        'replacementStrategy': replacementStrategy.toValue(),
+      if (terminationDelay != null) 'terminationDelay': terminationDelay,
+    };
+  }
 }
 
 /// Describes the data feed for a Spot Instance.
@@ -61445,6 +73555,21 @@ class SpotDatafeedSubscription {
     this.prefix,
     this.state,
   });
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final fault = this.fault;
+    final ownerId = this.ownerId;
+    final prefix = this.prefix;
+    final state = this.state;
+    return {
+      if (bucket != null) 'bucket': bucket,
+      if (fault != null) 'fault': fault,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (prefix != null) 'prefix': prefix,
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 /// Describes the launch specification for one or more Spot Instances. If you
@@ -61579,6 +73704,51 @@ class SpotFleetLaunchSpecification {
     this.userData,
     this.weightedCapacity,
   });
+
+  Map<String, dynamic> toJson() {
+    final addressingType = this.addressingType;
+    final blockDeviceMappings = this.blockDeviceMappings;
+    final ebsOptimized = this.ebsOptimized;
+    final iamInstanceProfile = this.iamInstanceProfile;
+    final imageId = this.imageId;
+    final instanceRequirements = this.instanceRequirements;
+    final instanceType = this.instanceType;
+    final kernelId = this.kernelId;
+    final keyName = this.keyName;
+    final monitoring = this.monitoring;
+    final networkInterfaces = this.networkInterfaces;
+    final placement = this.placement;
+    final ramdiskId = this.ramdiskId;
+    final securityGroups = this.securityGroups;
+    final spotPrice = this.spotPrice;
+    final subnetId = this.subnetId;
+    final tagSpecifications = this.tagSpecifications;
+    final userData = this.userData;
+    final weightedCapacity = this.weightedCapacity;
+    return {
+      if (addressingType != null) 'addressingType': addressingType,
+      if (blockDeviceMappings != null)
+        'blockDeviceMapping': blockDeviceMappings,
+      if (ebsOptimized != null) 'ebsOptimized': ebsOptimized,
+      if (iamInstanceProfile != null) 'iamInstanceProfile': iamInstanceProfile,
+      if (imageId != null) 'imageId': imageId,
+      if (instanceRequirements != null)
+        'instanceRequirements': instanceRequirements,
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (kernelId != null) 'kernelId': kernelId,
+      if (keyName != null) 'keyName': keyName,
+      if (monitoring != null) 'monitoring': monitoring,
+      if (networkInterfaces != null) 'networkInterfaceSet': networkInterfaces,
+      if (placement != null) 'placement': placement,
+      if (ramdiskId != null) 'ramdiskId': ramdiskId,
+      if (securityGroups != null) 'groupSet': securityGroups,
+      if (spotPrice != null) 'spotPrice': spotPrice,
+      if (subnetId != null) 'subnetId': subnetId,
+      if (tagSpecifications != null) 'tagSpecificationSet': tagSpecifications,
+      if (userData != null) 'userData': userData,
+      if (weightedCapacity != null) 'weightedCapacity': weightedCapacity,
+    };
+  }
 }
 
 /// Describes whether monitoring is enabled.
@@ -61591,6 +73761,13 @@ class SpotFleetMonitoring {
   SpotFleetMonitoring({
     this.enabled,
   });
+
+  Map<String, dynamic> toJson() {
+    final enabled = this.enabled;
+    return {
+      if (enabled != null) 'enabled': enabled,
+    };
+  }
 }
 
 /// Describes a Spot Fleet request.
@@ -61626,6 +73803,25 @@ class SpotFleetRequestConfig {
     this.spotFleetRequestState,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final activityStatus = this.activityStatus;
+    final createTime = this.createTime;
+    final spotFleetRequestConfig = this.spotFleetRequestConfig;
+    final spotFleetRequestId = this.spotFleetRequestId;
+    final spotFleetRequestState = this.spotFleetRequestState;
+    final tags = this.tags;
+    return {
+      if (activityStatus != null) 'activityStatus': activityStatus.toValue(),
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (spotFleetRequestConfig != null)
+        'spotFleetRequestConfig': spotFleetRequestConfig,
+      if (spotFleetRequestId != null) 'spotFleetRequestId': spotFleetRequestId,
+      if (spotFleetRequestState != null)
+        'spotFleetRequestState': spotFleetRequestState.toValue(),
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 /// Describes the configuration of a Spot Fleet request.
@@ -61869,6 +74065,81 @@ class SpotFleetRequestConfigData {
     this.validFrom,
     this.validUntil,
   });
+
+  Map<String, dynamic> toJson() {
+    final iamFleetRole = this.iamFleetRole;
+    final targetCapacity = this.targetCapacity;
+    final allocationStrategy = this.allocationStrategy;
+    final clientToken = this.clientToken;
+    final context = this.context;
+    final excessCapacityTerminationPolicy =
+        this.excessCapacityTerminationPolicy;
+    final fulfilledCapacity = this.fulfilledCapacity;
+    final instanceInterruptionBehavior = this.instanceInterruptionBehavior;
+    final instancePoolsToUseCount = this.instancePoolsToUseCount;
+    final launchSpecifications = this.launchSpecifications;
+    final launchTemplateConfigs = this.launchTemplateConfigs;
+    final loadBalancersConfig = this.loadBalancersConfig;
+    final onDemandAllocationStrategy = this.onDemandAllocationStrategy;
+    final onDemandFulfilledCapacity = this.onDemandFulfilledCapacity;
+    final onDemandMaxTotalPrice = this.onDemandMaxTotalPrice;
+    final onDemandTargetCapacity = this.onDemandTargetCapacity;
+    final replaceUnhealthyInstances = this.replaceUnhealthyInstances;
+    final spotMaintenanceStrategies = this.spotMaintenanceStrategies;
+    final spotMaxTotalPrice = this.spotMaxTotalPrice;
+    final spotPrice = this.spotPrice;
+    final tagSpecifications = this.tagSpecifications;
+    final targetCapacityUnitType = this.targetCapacityUnitType;
+    final terminateInstancesWithExpiration =
+        this.terminateInstancesWithExpiration;
+    final type = this.type;
+    final validFrom = this.validFrom;
+    final validUntil = this.validUntil;
+    return {
+      'iamFleetRole': iamFleetRole,
+      'targetCapacity': targetCapacity,
+      if (allocationStrategy != null)
+        'allocationStrategy': allocationStrategy.toValue(),
+      if (clientToken != null) 'clientToken': clientToken,
+      if (context != null) 'context': context,
+      if (excessCapacityTerminationPolicy != null)
+        'excessCapacityTerminationPolicy':
+            excessCapacityTerminationPolicy.toValue(),
+      if (fulfilledCapacity != null) 'fulfilledCapacity': fulfilledCapacity,
+      if (instanceInterruptionBehavior != null)
+        'instanceInterruptionBehavior': instanceInterruptionBehavior.toValue(),
+      if (instancePoolsToUseCount != null)
+        'instancePoolsToUseCount': instancePoolsToUseCount,
+      if (launchSpecifications != null)
+        'launchSpecifications': launchSpecifications,
+      if (launchTemplateConfigs != null)
+        'launchTemplateConfigs': launchTemplateConfigs,
+      if (loadBalancersConfig != null)
+        'loadBalancersConfig': loadBalancersConfig,
+      if (onDemandAllocationStrategy != null)
+        'onDemandAllocationStrategy': onDemandAllocationStrategy.toValue(),
+      if (onDemandFulfilledCapacity != null)
+        'onDemandFulfilledCapacity': onDemandFulfilledCapacity,
+      if (onDemandMaxTotalPrice != null)
+        'onDemandMaxTotalPrice': onDemandMaxTotalPrice,
+      if (onDemandTargetCapacity != null)
+        'onDemandTargetCapacity': onDemandTargetCapacity,
+      if (replaceUnhealthyInstances != null)
+        'replaceUnhealthyInstances': replaceUnhealthyInstances,
+      if (spotMaintenanceStrategies != null)
+        'spotMaintenanceStrategies': spotMaintenanceStrategies,
+      if (spotMaxTotalPrice != null) 'spotMaxTotalPrice': spotMaxTotalPrice,
+      if (spotPrice != null) 'spotPrice': spotPrice,
+      if (tagSpecifications != null) 'TagSpecification': tagSpecifications,
+      if (targetCapacityUnitType != null)
+        'targetCapacityUnitType': targetCapacityUnitType.toValue(),
+      if (terminateInstancesWithExpiration != null)
+        'terminateInstancesWithExpiration': terminateInstancesWithExpiration,
+      if (type != null) 'type': type.toValue(),
+      if (validFrom != null) 'validFrom': iso8601ToJson(validFrom),
+      if (validUntil != null) 'validUntil': iso8601ToJson(validUntil),
+    };
+  }
 }
 
 /// The tags for a Spot Fleet resource.
@@ -61887,6 +74158,15 @@ class SpotFleetTagSpecification {
     this.resourceType,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceType = this.resourceType;
+    final tags = this.tags;
+    return {
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (tags != null) 'tag': tags,
+    };
+  }
 }
 
 enum SpotInstanceInterruptionBehavior {
@@ -62037,6 +74317,57 @@ class SpotInstanceRequest {
     this.validFrom,
     this.validUntil,
   });
+
+  Map<String, dynamic> toJson() {
+    final actualBlockHourlyPrice = this.actualBlockHourlyPrice;
+    final availabilityZoneGroup = this.availabilityZoneGroup;
+    final blockDurationMinutes = this.blockDurationMinutes;
+    final createTime = this.createTime;
+    final fault = this.fault;
+    final instanceId = this.instanceId;
+    final instanceInterruptionBehavior = this.instanceInterruptionBehavior;
+    final launchGroup = this.launchGroup;
+    final launchSpecification = this.launchSpecification;
+    final launchedAvailabilityZone = this.launchedAvailabilityZone;
+    final productDescription = this.productDescription;
+    final spotInstanceRequestId = this.spotInstanceRequestId;
+    final spotPrice = this.spotPrice;
+    final state = this.state;
+    final status = this.status;
+    final tags = this.tags;
+    final type = this.type;
+    final validFrom = this.validFrom;
+    final validUntil = this.validUntil;
+    return {
+      if (actualBlockHourlyPrice != null)
+        'actualBlockHourlyPrice': actualBlockHourlyPrice,
+      if (availabilityZoneGroup != null)
+        'availabilityZoneGroup': availabilityZoneGroup,
+      if (blockDurationMinutes != null)
+        'blockDurationMinutes': blockDurationMinutes,
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (fault != null) 'fault': fault,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (instanceInterruptionBehavior != null)
+        'instanceInterruptionBehavior': instanceInterruptionBehavior.toValue(),
+      if (launchGroup != null) 'launchGroup': launchGroup,
+      if (launchSpecification != null)
+        'launchSpecification': launchSpecification,
+      if (launchedAvailabilityZone != null)
+        'launchedAvailabilityZone': launchedAvailabilityZone,
+      if (productDescription != null)
+        'productDescription': productDescription.toValue(),
+      if (spotInstanceRequestId != null)
+        'spotInstanceRequestId': spotInstanceRequestId,
+      if (spotPrice != null) 'spotPrice': spotPrice,
+      if (state != null) 'state': state.toValue(),
+      if (status != null) 'status': status,
+      if (tags != null) 'tagSet': tags,
+      if (type != null) 'type': type.toValue(),
+      if (validFrom != null) 'validFrom': iso8601ToJson(validFrom),
+      if (validUntil != null) 'validUntil': iso8601ToJson(validUntil),
+    };
+  }
 }
 
 enum SpotInstanceState {
@@ -62094,6 +74425,15 @@ class SpotInstanceStateFault {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// Describes the status of a Spot Instance request.
@@ -62116,6 +74456,17 @@ class SpotInstanceStatus {
     this.message,
     this.updateTime,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    final updateTime = this.updateTime;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+      if (updateTime != null) 'updateTime': iso8601ToJson(updateTime),
+    };
+  }
 }
 
 enum SpotInstanceType {
@@ -62159,6 +74510,13 @@ class SpotMaintenanceStrategies {
   SpotMaintenanceStrategies({
     this.capacityRebalance,
   });
+
+  Map<String, dynamic> toJson() {
+    final capacityRebalance = this.capacityRebalance;
+    return {
+      if (capacityRebalance != null) 'capacityRebalance': capacityRebalance,
+    };
+  }
 }
 
 /// The options for Spot Instances.
@@ -62210,6 +74568,24 @@ class SpotMarketOptions {
     this.spotInstanceType,
     this.validUntil,
   });
+
+  Map<String, dynamic> toJson() {
+    final blockDurationMinutes = this.blockDurationMinutes;
+    final instanceInterruptionBehavior = this.instanceInterruptionBehavior;
+    final maxPrice = this.maxPrice;
+    final spotInstanceType = this.spotInstanceType;
+    final validUntil = this.validUntil;
+    return {
+      if (blockDurationMinutes != null)
+        'BlockDurationMinutes': blockDurationMinutes,
+      if (instanceInterruptionBehavior != null)
+        'InstanceInterruptionBehavior': instanceInterruptionBehavior.toValue(),
+      if (maxPrice != null) 'MaxPrice': maxPrice,
+      if (spotInstanceType != null)
+        'SpotInstanceType': spotInstanceType.toValue(),
+      if (validUntil != null) 'ValidUntil': iso8601ToJson(validUntil),
+    };
+  }
 }
 
 /// Describes the configuration of Spot Instances in an EC2 Fleet.
@@ -62305,6 +74681,32 @@ class SpotOptions {
     this.singleAvailabilityZone,
     this.singleInstanceType,
   });
+
+  Map<String, dynamic> toJson() {
+    final allocationStrategy = this.allocationStrategy;
+    final instanceInterruptionBehavior = this.instanceInterruptionBehavior;
+    final instancePoolsToUseCount = this.instancePoolsToUseCount;
+    final maintenanceStrategies = this.maintenanceStrategies;
+    final maxTotalPrice = this.maxTotalPrice;
+    final minTargetCapacity = this.minTargetCapacity;
+    final singleAvailabilityZone = this.singleAvailabilityZone;
+    final singleInstanceType = this.singleInstanceType;
+    return {
+      if (allocationStrategy != null)
+        'allocationStrategy': allocationStrategy.toValue(),
+      if (instanceInterruptionBehavior != null)
+        'instanceInterruptionBehavior': instanceInterruptionBehavior.toValue(),
+      if (instancePoolsToUseCount != null)
+        'instancePoolsToUseCount': instancePoolsToUseCount,
+      if (maintenanceStrategies != null)
+        'maintenanceStrategies': maintenanceStrategies,
+      if (maxTotalPrice != null) 'maxTotalPrice': maxTotalPrice,
+      if (minTargetCapacity != null) 'minTargetCapacity': minTargetCapacity,
+      if (singleAvailabilityZone != null)
+        'singleAvailabilityZone': singleAvailabilityZone,
+      if (singleInstanceType != null) 'singleInstanceType': singleInstanceType,
+    };
+  }
 }
 
 /// Describes the configuration of Spot Instances in an EC2 Fleet request.
@@ -62400,6 +74802,32 @@ class SpotOptionsRequest {
     this.singleAvailabilityZone,
     this.singleInstanceType,
   });
+
+  Map<String, dynamic> toJson() {
+    final allocationStrategy = this.allocationStrategy;
+    final instanceInterruptionBehavior = this.instanceInterruptionBehavior;
+    final instancePoolsToUseCount = this.instancePoolsToUseCount;
+    final maintenanceStrategies = this.maintenanceStrategies;
+    final maxTotalPrice = this.maxTotalPrice;
+    final minTargetCapacity = this.minTargetCapacity;
+    final singleAvailabilityZone = this.singleAvailabilityZone;
+    final singleInstanceType = this.singleInstanceType;
+    return {
+      if (allocationStrategy != null)
+        'AllocationStrategy': allocationStrategy.toValue(),
+      if (instanceInterruptionBehavior != null)
+        'InstanceInterruptionBehavior': instanceInterruptionBehavior.toValue(),
+      if (instancePoolsToUseCount != null)
+        'InstancePoolsToUseCount': instancePoolsToUseCount,
+      if (maintenanceStrategies != null)
+        'MaintenanceStrategies': maintenanceStrategies,
+      if (maxTotalPrice != null) 'MaxTotalPrice': maxTotalPrice,
+      if (minTargetCapacity != null) 'MinTargetCapacity': minTargetCapacity,
+      if (singleAvailabilityZone != null)
+        'SingleAvailabilityZone': singleAvailabilityZone,
+      if (singleInstanceType != null) 'SingleInstanceType': singleInstanceType,
+    };
+  }
 }
 
 /// Describes Spot Instance placement.
@@ -62423,6 +74851,17 @@ class SpotPlacement {
     this.groupName,
     this.tenancy,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final groupName = this.groupName;
+    final tenancy = this.tenancy;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (groupName != null) 'groupName': groupName,
+      if (tenancy != null) 'tenancy': tenancy.toValue(),
+    };
+  }
 }
 
 /// The Spot placement score for this Region or Availability Zone. The score is
@@ -62447,6 +74886,17 @@ class SpotPlacementScore {
     this.region,
     this.score,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZoneId = this.availabilityZoneId;
+    final region = this.region;
+    final score = this.score;
+    return {
+      if (availabilityZoneId != null) 'availabilityZoneId': availabilityZoneId,
+      if (region != null) 'region': region,
+      if (score != null) 'score': score,
+    };
+  }
 }
 
 /// The maximum price per unit hour that you are willing to pay for a Spot
@@ -62488,6 +74938,22 @@ class SpotPrice {
     this.spotPrice,
     this.timestamp,
   });
+
+  Map<String, dynamic> toJson() {
+    final availabilityZone = this.availabilityZone;
+    final instanceType = this.instanceType;
+    final productDescription = this.productDescription;
+    final spotPrice = this.spotPrice;
+    final timestamp = this.timestamp;
+    return {
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (instanceType != null) 'instanceType': instanceType.toValue(),
+      if (productDescription != null)
+        'productDescription': productDescription.toValue(),
+      if (spotPrice != null) 'spotPrice': spotPrice,
+      if (timestamp != null) 'timestamp': iso8601ToJson(timestamp),
+    };
+  }
 }
 
 enum SpreadLevel {
@@ -62552,6 +75018,23 @@ class StaleIpPermission {
     this.toPort,
     this.userIdGroupPairs,
   });
+
+  Map<String, dynamic> toJson() {
+    final fromPort = this.fromPort;
+    final ipProtocol = this.ipProtocol;
+    final ipRanges = this.ipRanges;
+    final prefixListIds = this.prefixListIds;
+    final toPort = this.toPort;
+    final userIdGroupPairs = this.userIdGroupPairs;
+    return {
+      if (fromPort != null) 'fromPort': fromPort,
+      if (ipProtocol != null) 'ipProtocol': ipProtocol,
+      if (ipRanges != null) 'ipRanges': ipRanges,
+      if (prefixListIds != null) 'prefixListIds': prefixListIds,
+      if (toPort != null) 'toPort': toPort,
+      if (userIdGroupPairs != null) 'groups': userIdGroupPairs,
+    };
+  }
 }
 
 /// Describes a stale security group (a security group that contains stale
@@ -62583,6 +75066,24 @@ class StaleSecurityGroup {
     this.staleIpPermissionsEgress,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    final staleIpPermissions = this.staleIpPermissions;
+    final staleIpPermissionsEgress = this.staleIpPermissionsEgress;
+    final vpcId = this.vpcId;
+    return {
+      if (description != null) 'description': description,
+      if (groupId != null) 'groupId': groupId,
+      if (groupName != null) 'groupName': groupName,
+      if (staleIpPermissions != null) 'staleIpPermissions': staleIpPermissions,
+      if (staleIpPermissionsEgress != null)
+        'staleIpPermissionsEgress': staleIpPermissionsEgress,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 class StartInstancesResult {
@@ -62592,6 +75093,13 @@ class StartInstancesResult {
   StartInstancesResult({
     this.startingInstances,
   });
+
+  Map<String, dynamic> toJson() {
+    final startingInstances = this.startingInstances;
+    return {
+      if (startingInstances != null) 'instancesSet': startingInstances,
+    };
+  }
 }
 
 class StartNetworkInsightsAccessScopeAnalysisResult {
@@ -62601,6 +75109,16 @@ class StartNetworkInsightsAccessScopeAnalysisResult {
   StartNetworkInsightsAccessScopeAnalysisResult({
     this.networkInsightsAccessScopeAnalysis,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInsightsAccessScopeAnalysis =
+        this.networkInsightsAccessScopeAnalysis;
+    return {
+      if (networkInsightsAccessScopeAnalysis != null)
+        'networkInsightsAccessScopeAnalysis':
+            networkInsightsAccessScopeAnalysis,
+    };
+  }
 }
 
 class StartNetworkInsightsAnalysisResult {
@@ -62610,6 +75128,14 @@ class StartNetworkInsightsAnalysisResult {
   StartNetworkInsightsAnalysisResult({
     this.networkInsightsAnalysis,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInsightsAnalysis = this.networkInsightsAnalysis;
+    return {
+      if (networkInsightsAnalysis != null)
+        'networkInsightsAnalysis': networkInsightsAnalysis,
+    };
+  }
 }
 
 class StartVpcEndpointServicePrivateDnsVerificationResult {
@@ -62620,6 +75146,13 @@ class StartVpcEndpointServicePrivateDnsVerificationResult {
   StartVpcEndpointServicePrivateDnsVerificationResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 enum State {
@@ -62748,6 +75281,15 @@ class StateReason {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum StaticSourcesSupportValue {
@@ -62879,6 +75421,13 @@ class StopInstancesResult {
   StopInstancesResult({
     this.stoppingInstances,
   });
+
+  Map<String, dynamic> toJson() {
+    final stoppingInstances = this.stoppingInstances;
+    return {
+      if (stoppingInstances != null) 'instancesSet': stoppingInstances,
+    };
+  }
 }
 
 /// Describes the storage location for an instance store-backed AMI.
@@ -62889,6 +75438,13 @@ class Storage {
   Storage({
     this.s3,
   });
+
+  Map<String, dynamic> toJson() {
+    final s3 = this.s3;
+    return {
+      if (s3 != null) 'S3': s3,
+    };
+  }
 }
 
 /// Describes a storage location in Amazon S3.
@@ -62903,6 +75459,15 @@ class StorageLocation {
     this.bucket,
     this.key,
   });
+
+  Map<String, dynamic> toJson() {
+    final bucket = this.bucket;
+    final key = this.key;
+    return {
+      if (bucket != null) 'Bucket': bucket,
+      if (key != null) 'Key': key,
+    };
+  }
 }
 
 enum StorageTier {
@@ -62968,6 +75533,26 @@ class StoreImageTaskResult {
     this.storeTaskState,
     this.taskStartTime,
   });
+
+  Map<String, dynamic> toJson() {
+    final amiId = this.amiId;
+    final bucket = this.bucket;
+    final progressPercentage = this.progressPercentage;
+    final s3objectKey = this.s3objectKey;
+    final storeTaskFailureReason = this.storeTaskFailureReason;
+    final storeTaskState = this.storeTaskState;
+    final taskStartTime = this.taskStartTime;
+    return {
+      if (amiId != null) 'amiId': amiId,
+      if (bucket != null) 'bucket': bucket,
+      if (progressPercentage != null) 'progressPercentage': progressPercentage,
+      if (s3objectKey != null) 's3objectKey': s3objectKey,
+      if (storeTaskFailureReason != null)
+        'storeTaskFailureReason': storeTaskFailureReason,
+      if (storeTaskState != null) 'storeTaskState': storeTaskState,
+      if (taskStartTime != null) 'taskStartTime': iso8601ToJson(taskStartTime),
+    };
+  }
 }
 
 /// Describes a subnet.
@@ -63068,6 +75653,61 @@ class Subnet {
     this.tags,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final assignIpv6AddressOnCreation = this.assignIpv6AddressOnCreation;
+    final availabilityZone = this.availabilityZone;
+    final availabilityZoneId = this.availabilityZoneId;
+    final availableIpAddressCount = this.availableIpAddressCount;
+    final cidrBlock = this.cidrBlock;
+    final customerOwnedIpv4Pool = this.customerOwnedIpv4Pool;
+    final defaultForAz = this.defaultForAz;
+    final enableDns64 = this.enableDns64;
+    final enableLniAtDeviceIndex = this.enableLniAtDeviceIndex;
+    final ipv6CidrBlockAssociationSet = this.ipv6CidrBlockAssociationSet;
+    final ipv6Native = this.ipv6Native;
+    final mapCustomerOwnedIpOnLaunch = this.mapCustomerOwnedIpOnLaunch;
+    final mapPublicIpOnLaunch = this.mapPublicIpOnLaunch;
+    final outpostArn = this.outpostArn;
+    final ownerId = this.ownerId;
+    final privateDnsNameOptionsOnLaunch = this.privateDnsNameOptionsOnLaunch;
+    final state = this.state;
+    final subnetArn = this.subnetArn;
+    final subnetId = this.subnetId;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (assignIpv6AddressOnCreation != null)
+        'assignIpv6AddressOnCreation': assignIpv6AddressOnCreation,
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (availabilityZoneId != null) 'availabilityZoneId': availabilityZoneId,
+      if (availableIpAddressCount != null)
+        'availableIpAddressCount': availableIpAddressCount,
+      if (cidrBlock != null) 'cidrBlock': cidrBlock,
+      if (customerOwnedIpv4Pool != null)
+        'customerOwnedIpv4Pool': customerOwnedIpv4Pool,
+      if (defaultForAz != null) 'defaultForAz': defaultForAz,
+      if (enableDns64 != null) 'enableDns64': enableDns64,
+      if (enableLniAtDeviceIndex != null)
+        'enableLniAtDeviceIndex': enableLniAtDeviceIndex,
+      if (ipv6CidrBlockAssociationSet != null)
+        'ipv6CidrBlockAssociationSet': ipv6CidrBlockAssociationSet,
+      if (ipv6Native != null) 'ipv6Native': ipv6Native,
+      if (mapCustomerOwnedIpOnLaunch != null)
+        'mapCustomerOwnedIpOnLaunch': mapCustomerOwnedIpOnLaunch,
+      if (mapPublicIpOnLaunch != null)
+        'mapPublicIpOnLaunch': mapPublicIpOnLaunch,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (privateDnsNameOptionsOnLaunch != null)
+        'privateDnsNameOptionsOnLaunch': privateDnsNameOptionsOnLaunch,
+      if (state != null) 'state': state.toValue(),
+      if (subnetArn != null) 'subnetArn': subnetArn,
+      if (subnetId != null) 'subnetId': subnetId,
+      if (tags != null) 'tagSet': tags,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// Describes the subnet association with the transit gateway multicast domain.
@@ -63082,6 +75722,15 @@ class SubnetAssociation {
     this.state,
     this.subnetId,
   });
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final subnetId = this.subnetId;
+    return {
+      if (state != null) 'state': state.toValue(),
+      if (subnetId != null) 'subnetId': subnetId,
+    };
+  }
 }
 
 /// Describes the state of a CIDR block.
@@ -63096,6 +75745,15 @@ class SubnetCidrBlockState {
     this.state,
     this.statusMessage,
   });
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final statusMessage = this.statusMessage;
+    return {
+      if (state != null) 'state': state.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
+  }
 }
 
 enum SubnetCidrBlockStateCode {
@@ -63178,6 +75836,26 @@ class SubnetCidrReservation {
     this.subnetId,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidr = this.cidr;
+    final description = this.description;
+    final ownerId = this.ownerId;
+    final reservationType = this.reservationType;
+    final subnetCidrReservationId = this.subnetCidrReservationId;
+    final subnetId = this.subnetId;
+    final tags = this.tags;
+    return {
+      if (cidr != null) 'cidr': cidr,
+      if (description != null) 'description': description,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (reservationType != null) 'reservationType': reservationType.toValue(),
+      if (subnetCidrReservationId != null)
+        'subnetCidrReservationId': subnetCidrReservationId,
+      if (subnetId != null) 'subnetId': subnetId,
+      if (tags != null) 'tagSet': tags,
+    };
+  }
 }
 
 enum SubnetCidrReservationType {
@@ -63224,6 +75902,17 @@ class SubnetIpv6CidrBlockAssociation {
     this.ipv6CidrBlock,
     this.ipv6CidrBlockState,
   });
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    final ipv6CidrBlock = this.ipv6CidrBlock;
+    final ipv6CidrBlockState = this.ipv6CidrBlockState;
+    return {
+      if (associationId != null) 'associationId': associationId,
+      if (ipv6CidrBlock != null) 'ipv6CidrBlock': ipv6CidrBlock,
+      if (ipv6CidrBlockState != null) 'ipv6CidrBlockState': ipv6CidrBlockState,
+    };
+  }
 }
 
 enum SubnetState {
@@ -63263,6 +75952,13 @@ class SuccessfulInstanceCreditSpecificationItem {
   SuccessfulInstanceCreditSpecificationItem({
     this.instanceId,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    return {
+      if (instanceId != null) 'instanceId': instanceId,
+    };
+  }
 }
 
 /// Describes a Reserved Instance whose queued purchase was successfully
@@ -63274,6 +75970,14 @@ class SuccessfulQueuedPurchaseDeletion {
   SuccessfulQueuedPurchaseDeletion({
     this.reservedInstancesId,
   });
+
+  Map<String, dynamic> toJson() {
+    final reservedInstancesId = this.reservedInstancesId;
+    return {
+      if (reservedInstancesId != null)
+        'reservedInstancesId': reservedInstancesId,
+    };
+  }
 }
 
 enum SummaryStatus {
@@ -63337,6 +76041,15 @@ class Tag {
     this.key,
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'key': key,
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// Describes a tag.
@@ -63359,6 +76072,19 @@ class TagDescription {
     this.resourceType,
     this.value,
   });
+
+  Map<String, dynamic> toJson() {
+    final key = this.key;
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final value = this.value;
+    return {
+      if (key != null) 'key': key,
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (value != null) 'value': value,
+    };
+  }
 }
 
 /// The tags to apply to a resource when the resource is being created.
@@ -63379,6 +76105,15 @@ class TagSpecification {
     this.resourceType,
     this.tags,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceType = this.resourceType;
+    final tags = this.tags;
+    return {
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (tags != null) 'Tag': tags,
+    };
+  }
 }
 
 /// The number of units to request. You can choose to set the target capacity in
@@ -63427,6 +76162,25 @@ class TargetCapacitySpecification {
     this.targetCapacityUnitType,
     this.totalTargetCapacity,
   });
+
+  Map<String, dynamic> toJson() {
+    final defaultTargetCapacityType = this.defaultTargetCapacityType;
+    final onDemandTargetCapacity = this.onDemandTargetCapacity;
+    final spotTargetCapacity = this.spotTargetCapacity;
+    final targetCapacityUnitType = this.targetCapacityUnitType;
+    final totalTargetCapacity = this.totalTargetCapacity;
+    return {
+      if (defaultTargetCapacityType != null)
+        'defaultTargetCapacityType': defaultTargetCapacityType.toValue(),
+      if (onDemandTargetCapacity != null)
+        'onDemandTargetCapacity': onDemandTargetCapacity,
+      if (spotTargetCapacity != null) 'spotTargetCapacity': spotTargetCapacity,
+      if (targetCapacityUnitType != null)
+        'targetCapacityUnitType': targetCapacityUnitType.toValue(),
+      if (totalTargetCapacity != null)
+        'totalTargetCapacity': totalTargetCapacity,
+    };
+  }
 }
 
 /// The number of units to request. You can choose to set the target capacity as
@@ -63474,6 +76228,24 @@ class TargetCapacitySpecificationRequest {
     this.spotTargetCapacity,
     this.targetCapacityUnitType,
   });
+
+  Map<String, dynamic> toJson() {
+    final totalTargetCapacity = this.totalTargetCapacity;
+    final defaultTargetCapacityType = this.defaultTargetCapacityType;
+    final onDemandTargetCapacity = this.onDemandTargetCapacity;
+    final spotTargetCapacity = this.spotTargetCapacity;
+    final targetCapacityUnitType = this.targetCapacityUnitType;
+    return {
+      'TotalTargetCapacity': totalTargetCapacity,
+      if (defaultTargetCapacityType != null)
+        'DefaultTargetCapacityType': defaultTargetCapacityType.toValue(),
+      if (onDemandTargetCapacity != null)
+        'OnDemandTargetCapacity': onDemandTargetCapacity,
+      if (spotTargetCapacity != null) 'SpotTargetCapacity': spotTargetCapacity,
+      if (targetCapacityUnitType != null)
+        'TargetCapacityUnitType': targetCapacityUnitType.toValue(),
+    };
+  }
 }
 
 enum TargetCapacityUnitType {
@@ -63522,6 +76294,15 @@ class TargetConfiguration {
     this.instanceCount,
     this.offeringId,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceCount = this.instanceCount;
+    final offeringId = this.offeringId;
+    return {
+      if (instanceCount != null) 'instanceCount': instanceCount,
+      if (offeringId != null) 'offeringId': offeringId,
+    };
+  }
 }
 
 /// Details about the target configuration.
@@ -63537,6 +76318,15 @@ class TargetConfigurationRequest {
     required this.offeringId,
     this.instanceCount,
   });
+
+  Map<String, dynamic> toJson() {
+    final offeringId = this.offeringId;
+    final instanceCount = this.instanceCount;
+    return {
+      'OfferingId': offeringId,
+      if (instanceCount != null) 'InstanceCount': instanceCount,
+    };
+  }
 }
 
 /// Describes a load balancer target group.
@@ -63547,6 +76337,13 @@ class TargetGroup {
   TargetGroup({
     this.arn,
   });
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'arn': arn,
+    };
+  }
 }
 
 /// Describes the target groups to attach to a Spot Fleet. Spot Fleet registers
@@ -63558,6 +76355,13 @@ class TargetGroupsConfig {
   TargetGroupsConfig({
     this.targetGroups,
   });
+
+  Map<String, dynamic> toJson() {
+    final targetGroups = this.targetGroups;
+    return {
+      if (targetGroups != null) 'targetGroups': targetGroups,
+    };
+  }
 }
 
 /// Describes a target network associated with a Client VPN endpoint.
@@ -63589,6 +76393,24 @@ class TargetNetwork {
     this.targetNetworkId,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    final clientVpnEndpointId = this.clientVpnEndpointId;
+    final securityGroups = this.securityGroups;
+    final status = this.status;
+    final targetNetworkId = this.targetNetworkId;
+    final vpcId = this.vpcId;
+    return {
+      if (associationId != null) 'associationId': associationId,
+      if (clientVpnEndpointId != null)
+        'clientVpnEndpointId': clientVpnEndpointId,
+      if (securityGroups != null) 'securityGroups': securityGroups,
+      if (status != null) 'status': status,
+      if (targetNetworkId != null) 'targetNetworkId': targetNetworkId,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// The total value of the new Convertible Reserved Instances.
@@ -63606,6 +76428,16 @@ class TargetReservationValue {
     this.reservationValue,
     this.targetConfiguration,
   });
+
+  Map<String, dynamic> toJson() {
+    final reservationValue = this.reservationValue;
+    final targetConfiguration = this.targetConfiguration;
+    return {
+      if (reservationValue != null) 'reservationValue': reservationValue,
+      if (targetConfiguration != null)
+        'targetConfiguration': targetConfiguration,
+    };
+  }
 }
 
 enum TargetStorageTier {
@@ -63707,6 +76539,18 @@ class TerminateClientVpnConnectionsResult {
     this.connectionStatuses,
     this.username,
   });
+
+  Map<String, dynamic> toJson() {
+    final clientVpnEndpointId = this.clientVpnEndpointId;
+    final connectionStatuses = this.connectionStatuses;
+    final username = this.username;
+    return {
+      if (clientVpnEndpointId != null)
+        'clientVpnEndpointId': clientVpnEndpointId,
+      if (connectionStatuses != null) 'connectionStatuses': connectionStatuses,
+      if (username != null) 'username': username,
+    };
+  }
 }
 
 /// Information about a terminated Client VPN endpoint client connection.
@@ -63725,6 +76569,17 @@ class TerminateConnectionStatus {
     this.currentStatus,
     this.previousStatus,
   });
+
+  Map<String, dynamic> toJson() {
+    final connectionId = this.connectionId;
+    final currentStatus = this.currentStatus;
+    final previousStatus = this.previousStatus;
+    return {
+      if (connectionId != null) 'connectionId': connectionId,
+      if (currentStatus != null) 'currentStatus': currentStatus,
+      if (previousStatus != null) 'previousStatus': previousStatus,
+    };
+  }
 }
 
 class TerminateInstancesResult {
@@ -63734,6 +76589,13 @@ class TerminateInstancesResult {
   TerminateInstancesResult({
     this.terminatingInstances,
   });
+
+  Map<String, dynamic> toJson() {
+    final terminatingInstances = this.terminatingInstances;
+    return {
+      if (terminatingInstances != null) 'instancesSet': terminatingInstances,
+    };
+  }
 }
 
 /// Describes a through resource statement.
@@ -63744,6 +76606,13 @@ class ThroughResourcesStatement {
   ThroughResourcesStatement({
     this.resourceStatement,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceStatement = this.resourceStatement;
+    return {
+      if (resourceStatement != null) 'resourceStatement': resourceStatement,
+    };
+  }
 }
 
 /// Describes a through resource statement.
@@ -63754,6 +76623,13 @@ class ThroughResourcesStatementRequest {
   ThroughResourcesStatementRequest({
     this.resourceStatement,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceStatement = this.resourceStatement;
+    return {
+      if (resourceStatement != null) 'ResourceStatement': resourceStatement,
+    };
+  }
 }
 
 enum TieringOperationStatus {
@@ -63833,6 +76709,15 @@ class TotalLocalStorageGB {
     this.max,
     this.min,
   });
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (max != null) 'max': max,
+      if (min != null) 'min': min,
+    };
+  }
 }
 
 /// The minimum and maximum amount of total local storage, in GB.
@@ -63849,6 +76734,15 @@ class TotalLocalStorageGBRequest {
     this.max,
     this.min,
   });
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (max != null) 'Max': max,
+      if (min != null) 'Min': min,
+    };
+  }
 }
 
 enum TpmSupportValues {
@@ -63933,6 +76827,26 @@ class TrafficMirrorFilter {
     this.tags,
     this.trafficMirrorFilterId,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final egressFilterRules = this.egressFilterRules;
+    final ingressFilterRules = this.ingressFilterRules;
+    final networkServices = this.networkServices;
+    final tags = this.tags;
+    final trafficMirrorFilterId = this.trafficMirrorFilterId;
+    return {
+      if (description != null) 'description': description,
+      if (egressFilterRules != null) 'egressFilterRuleSet': egressFilterRules,
+      if (ingressFilterRules != null)
+        'ingressFilterRuleSet': ingressFilterRules,
+      if (networkServices != null)
+        'networkServiceSet': networkServices.map((e) => e.toValue()).toList(),
+      if (tags != null) 'tagSet': tags,
+      if (trafficMirrorFilterId != null)
+        'trafficMirrorFilterId': trafficMirrorFilterId,
+    };
+  }
 }
 
 /// Describes the Traffic Mirror rule.
@@ -63983,6 +76897,38 @@ class TrafficMirrorFilterRule {
     this.trafficMirrorFilterId,
     this.trafficMirrorFilterRuleId,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final destinationCidrBlock = this.destinationCidrBlock;
+    final destinationPortRange = this.destinationPortRange;
+    final protocol = this.protocol;
+    final ruleAction = this.ruleAction;
+    final ruleNumber = this.ruleNumber;
+    final sourceCidrBlock = this.sourceCidrBlock;
+    final sourcePortRange = this.sourcePortRange;
+    final trafficDirection = this.trafficDirection;
+    final trafficMirrorFilterId = this.trafficMirrorFilterId;
+    final trafficMirrorFilterRuleId = this.trafficMirrorFilterRuleId;
+    return {
+      if (description != null) 'description': description,
+      if (destinationCidrBlock != null)
+        'destinationCidrBlock': destinationCidrBlock,
+      if (destinationPortRange != null)
+        'destinationPortRange': destinationPortRange,
+      if (protocol != null) 'protocol': protocol,
+      if (ruleAction != null) 'ruleAction': ruleAction.toValue(),
+      if (ruleNumber != null) 'ruleNumber': ruleNumber,
+      if (sourceCidrBlock != null) 'sourceCidrBlock': sourceCidrBlock,
+      if (sourcePortRange != null) 'sourcePortRange': sourcePortRange,
+      if (trafficDirection != null)
+        'trafficDirection': trafficDirection.toValue(),
+      if (trafficMirrorFilterId != null)
+        'trafficMirrorFilterId': trafficMirrorFilterId,
+      if (trafficMirrorFilterRuleId != null)
+        'trafficMirrorFilterRuleId': trafficMirrorFilterRuleId,
+    };
+  }
 }
 
 enum TrafficMirrorFilterRuleField {
@@ -64062,6 +77008,15 @@ class TrafficMirrorPortRange {
     this.fromPort,
     this.toPort,
   });
+
+  Map<String, dynamic> toJson() {
+    final fromPort = this.fromPort;
+    final toPort = this.toPort;
+    return {
+      if (fromPort != null) 'fromPort': fromPort,
+      if (toPort != null) 'toPort': toPort,
+    };
+  }
 }
 
 /// Information about the Traffic Mirror filter rule port range.
@@ -64078,6 +77033,15 @@ class TrafficMirrorPortRangeRequest {
     this.fromPort,
     this.toPort,
   });
+
+  Map<String, dynamic> toJson() {
+    final fromPort = this.fromPort;
+    final toPort = this.toPort;
+    return {
+      if (fromPort != null) 'FromPort': fromPort,
+      if (toPort != null) 'ToPort': toPort,
+    };
+  }
 }
 
 enum TrafficMirrorRuleAction {
@@ -64160,6 +77124,34 @@ class TrafficMirrorSession {
     this.trafficMirrorTargetId,
     this.virtualNetworkId,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final networkInterfaceId = this.networkInterfaceId;
+    final ownerId = this.ownerId;
+    final packetLength = this.packetLength;
+    final sessionNumber = this.sessionNumber;
+    final tags = this.tags;
+    final trafficMirrorFilterId = this.trafficMirrorFilterId;
+    final trafficMirrorSessionId = this.trafficMirrorSessionId;
+    final trafficMirrorTargetId = this.trafficMirrorTargetId;
+    final virtualNetworkId = this.virtualNetworkId;
+    return {
+      if (description != null) 'description': description,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (packetLength != null) 'packetLength': packetLength,
+      if (sessionNumber != null) 'sessionNumber': sessionNumber,
+      if (tags != null) 'tagSet': tags,
+      if (trafficMirrorFilterId != null)
+        'trafficMirrorFilterId': trafficMirrorFilterId,
+      if (trafficMirrorSessionId != null)
+        'trafficMirrorSessionId': trafficMirrorSessionId,
+      if (trafficMirrorTargetId != null)
+        'trafficMirrorTargetId': trafficMirrorTargetId,
+      if (virtualNetworkId != null) 'virtualNetworkId': virtualNetworkId,
+    };
+  }
 }
 
 enum TrafficMirrorSessionField {
@@ -64231,6 +77223,30 @@ class TrafficMirrorTarget {
     this.trafficMirrorTargetId,
     this.type,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final gatewayLoadBalancerEndpointId = this.gatewayLoadBalancerEndpointId;
+    final networkInterfaceId = this.networkInterfaceId;
+    final networkLoadBalancerArn = this.networkLoadBalancerArn;
+    final ownerId = this.ownerId;
+    final tags = this.tags;
+    final trafficMirrorTargetId = this.trafficMirrorTargetId;
+    final type = this.type;
+    return {
+      if (description != null) 'description': description,
+      if (gatewayLoadBalancerEndpointId != null)
+        'gatewayLoadBalancerEndpointId': gatewayLoadBalancerEndpointId,
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (networkLoadBalancerArn != null)
+        'networkLoadBalancerArn': networkLoadBalancerArn,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (tags != null) 'tagSet': tags,
+      if (trafficMirrorTargetId != null)
+        'trafficMirrorTargetId': trafficMirrorTargetId,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 enum TrafficMirrorTargetType {
@@ -64335,6 +77351,27 @@ class TransitGateway {
     this.transitGatewayArn,
     this.transitGatewayId,
   });
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final description = this.description;
+    final options = this.options;
+    final ownerId = this.ownerId;
+    final state = this.state;
+    final tags = this.tags;
+    final transitGatewayArn = this.transitGatewayArn;
+    final transitGatewayId = this.transitGatewayId;
+    return {
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (description != null) 'description': description,
+      if (options != null) 'options': options,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (transitGatewayArn != null) 'transitGatewayArn': transitGatewayArn,
+      if (transitGatewayId != null) 'transitGatewayId': transitGatewayId,
+    };
+  }
 }
 
 /// Describes an association between a resource attachment and a transit gateway
@@ -64363,6 +77400,23 @@ class TransitGatewayAssociation {
     this.transitGatewayAttachmentId,
     this.transitGatewayRouteTableId,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final state = this.state;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    final transitGatewayRouteTableId = this.transitGatewayRouteTableId;
+    return {
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (state != null) 'state': state.toValue(),
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+      if (transitGatewayRouteTableId != null)
+        'transitGatewayRouteTableId': transitGatewayRouteTableId,
+    };
+  }
 }
 
 enum TransitGatewayAssociationState {
@@ -64451,6 +77505,33 @@ class TransitGatewayAttachment {
     this.transitGatewayId,
     this.transitGatewayOwnerId,
   });
+
+  Map<String, dynamic> toJson() {
+    final association = this.association;
+    final creationTime = this.creationTime;
+    final resourceId = this.resourceId;
+    final resourceOwnerId = this.resourceOwnerId;
+    final resourceType = this.resourceType;
+    final state = this.state;
+    final tags = this.tags;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    final transitGatewayId = this.transitGatewayId;
+    final transitGatewayOwnerId = this.transitGatewayOwnerId;
+    return {
+      if (association != null) 'association': association,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceOwnerId != null) 'resourceOwnerId': resourceOwnerId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+      if (transitGatewayId != null) 'transitGatewayId': transitGatewayId,
+      if (transitGatewayOwnerId != null)
+        'transitGatewayOwnerId': transitGatewayOwnerId,
+    };
+  }
 }
 
 /// Describes an association.
@@ -64465,6 +77546,16 @@ class TransitGatewayAttachmentAssociation {
     this.state,
     this.transitGatewayRouteTableId,
   });
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final transitGatewayRouteTableId = this.transitGatewayRouteTableId;
+    return {
+      if (state != null) 'state': state.toValue(),
+      if (transitGatewayRouteTableId != null)
+        'transitGatewayRouteTableId': transitGatewayRouteTableId,
+    };
+  }
 }
 
 /// The BGP configuration information.
@@ -64491,6 +77582,22 @@ class TransitGatewayAttachmentBgpConfiguration {
     this.transitGatewayAddress,
     this.transitGatewayAsn,
   });
+
+  Map<String, dynamic> toJson() {
+    final bgpStatus = this.bgpStatus;
+    final peerAddress = this.peerAddress;
+    final peerAsn = this.peerAsn;
+    final transitGatewayAddress = this.transitGatewayAddress;
+    final transitGatewayAsn = this.transitGatewayAsn;
+    return {
+      if (bgpStatus != null) 'bgpStatus': bgpStatus.toValue(),
+      if (peerAddress != null) 'peerAddress': peerAddress,
+      if (peerAsn != null) 'peerAsn': peerAsn,
+      if (transitGatewayAddress != null)
+        'transitGatewayAddress': transitGatewayAddress,
+      if (transitGatewayAsn != null) 'transitGatewayAsn': transitGatewayAsn,
+    };
+  }
 }
 
 /// Describes a propagation route table.
@@ -64505,6 +77612,16 @@ class TransitGatewayAttachmentPropagation {
     this.state,
     this.transitGatewayRouteTableId,
   });
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final transitGatewayRouteTableId = this.transitGatewayRouteTableId;
+    return {
+      if (state != null) 'state': state.toValue(),
+      if (transitGatewayRouteTableId != null)
+        'transitGatewayRouteTableId': transitGatewayRouteTableId,
+    };
+  }
 }
 
 enum TransitGatewayAttachmentResourceType {
@@ -64674,6 +77791,29 @@ class TransitGatewayConnect {
     this.transitGatewayId,
     this.transportTransitGatewayAttachmentId,
   });
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final options = this.options;
+    final state = this.state;
+    final tags = this.tags;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    final transitGatewayId = this.transitGatewayId;
+    final transportTransitGatewayAttachmentId =
+        this.transportTransitGatewayAttachmentId;
+    return {
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (options != null) 'options': options,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+      if (transitGatewayId != null) 'transitGatewayId': transitGatewayId,
+      if (transportTransitGatewayAttachmentId != null)
+        'transportTransitGatewayAttachmentId':
+            transportTransitGatewayAttachmentId,
+    };
+  }
 }
 
 /// Describes the Connect attachment options.
@@ -64684,6 +77824,13 @@ class TransitGatewayConnectOptions {
   TransitGatewayConnectOptions({
     this.protocol,
   });
+
+  Map<String, dynamic> toJson() {
+    final protocol = this.protocol;
+    return {
+      if (protocol != null) 'protocol': protocol.toValue(),
+    };
+  }
 }
 
 /// Describes a transit gateway Connect peer.
@@ -64714,6 +77861,26 @@ class TransitGatewayConnectPeer {
     this.transitGatewayAttachmentId,
     this.transitGatewayConnectPeerId,
   });
+
+  Map<String, dynamic> toJson() {
+    final connectPeerConfiguration = this.connectPeerConfiguration;
+    final creationTime = this.creationTime;
+    final state = this.state;
+    final tags = this.tags;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    final transitGatewayConnectPeerId = this.transitGatewayConnectPeerId;
+    return {
+      if (connectPeerConfiguration != null)
+        'connectPeerConfiguration': connectPeerConfiguration,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+      if (transitGatewayConnectPeerId != null)
+        'transitGatewayConnectPeerId': transitGatewayConnectPeerId,
+    };
+  }
 }
 
 /// Describes the Connect peer details.
@@ -64740,6 +77907,22 @@ class TransitGatewayConnectPeerConfiguration {
     this.protocol,
     this.transitGatewayAddress,
   });
+
+  Map<String, dynamic> toJson() {
+    final bgpConfigurations = this.bgpConfigurations;
+    final insideCidrBlocks = this.insideCidrBlocks;
+    final peerAddress = this.peerAddress;
+    final protocol = this.protocol;
+    final transitGatewayAddress = this.transitGatewayAddress;
+    return {
+      if (bgpConfigurations != null) 'bgpConfigurations': bgpConfigurations,
+      if (insideCidrBlocks != null) 'insideCidrBlocks': insideCidrBlocks,
+      if (peerAddress != null) 'peerAddress': peerAddress,
+      if (protocol != null) 'protocol': protocol.toValue(),
+      if (transitGatewayAddress != null)
+        'transitGatewayAddress': transitGatewayAddress,
+    };
+  }
 }
 
 enum TransitGatewayConnectPeerState {
@@ -64790,6 +77973,13 @@ class TransitGatewayConnectRequestBgpOptions {
   TransitGatewayConnectRequestBgpOptions({
     this.peerAsn,
   });
+
+  Map<String, dynamic> toJson() {
+    final peerAsn = this.peerAsn;
+    return {
+      if (peerAsn != null) 'PeerAsn': peerAsn,
+    };
+  }
 }
 
 enum TransitGatewayMulitcastDomainAssociationState {
@@ -64864,6 +78054,21 @@ class TransitGatewayMulticastDeregisteredGroupMembers {
     this.groupIpAddress,
     this.transitGatewayMulticastDomainId,
   });
+
+  Map<String, dynamic> toJson() {
+    final deregisteredNetworkInterfaceIds =
+        this.deregisteredNetworkInterfaceIds;
+    final groupIpAddress = this.groupIpAddress;
+    final transitGatewayMulticastDomainId =
+        this.transitGatewayMulticastDomainId;
+    return {
+      if (deregisteredNetworkInterfaceIds != null)
+        'deregisteredNetworkInterfaceIds': deregisteredNetworkInterfaceIds,
+      if (groupIpAddress != null) 'groupIpAddress': groupIpAddress,
+      if (transitGatewayMulticastDomainId != null)
+        'transitGatewayMulticastDomainId': transitGatewayMulticastDomainId,
+    };
+  }
 }
 
 /// Describes the deregistered transit gateway multicast group sources.
@@ -64882,6 +78087,21 @@ class TransitGatewayMulticastDeregisteredGroupSources {
     this.groupIpAddress,
     this.transitGatewayMulticastDomainId,
   });
+
+  Map<String, dynamic> toJson() {
+    final deregisteredNetworkInterfaceIds =
+        this.deregisteredNetworkInterfaceIds;
+    final groupIpAddress = this.groupIpAddress;
+    final transitGatewayMulticastDomainId =
+        this.transitGatewayMulticastDomainId;
+    return {
+      if (deregisteredNetworkInterfaceIds != null)
+        'deregisteredNetworkInterfaceIds': deregisteredNetworkInterfaceIds,
+      if (groupIpAddress != null) 'groupIpAddress': groupIpAddress,
+      if (transitGatewayMulticastDomainId != null)
+        'transitGatewayMulticastDomainId': transitGatewayMulticastDomainId,
+    };
+  }
 }
 
 /// Describes the transit gateway multicast domain.
@@ -64921,6 +78141,31 @@ class TransitGatewayMulticastDomain {
     this.transitGatewayMulticastDomainArn,
     this.transitGatewayMulticastDomainId,
   });
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final options = this.options;
+    final ownerId = this.ownerId;
+    final state = this.state;
+    final tags = this.tags;
+    final transitGatewayId = this.transitGatewayId;
+    final transitGatewayMulticastDomainArn =
+        this.transitGatewayMulticastDomainArn;
+    final transitGatewayMulticastDomainId =
+        this.transitGatewayMulticastDomainId;
+    return {
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (options != null) 'options': options,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (transitGatewayId != null) 'transitGatewayId': transitGatewayId,
+      if (transitGatewayMulticastDomainArn != null)
+        'transitGatewayMulticastDomainArn': transitGatewayMulticastDomainArn,
+      if (transitGatewayMulticastDomainId != null)
+        'transitGatewayMulticastDomainId': transitGatewayMulticastDomainId,
+    };
+  }
 }
 
 /// Describes the resources associated with the transit gateway multicast
@@ -64949,6 +78194,22 @@ class TransitGatewayMulticastDomainAssociation {
     this.subnet,
     this.transitGatewayAttachmentId,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceOwnerId = this.resourceOwnerId;
+    final resourceType = this.resourceType;
+    final subnet = this.subnet;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    return {
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceOwnerId != null) 'resourceOwnerId': resourceOwnerId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (subnet != null) 'subnet': subnet,
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+    };
+  }
 }
 
 /// Describes the multicast domain associations.
@@ -64979,6 +78240,26 @@ class TransitGatewayMulticastDomainAssociations {
     this.transitGatewayAttachmentId,
     this.transitGatewayMulticastDomainId,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceOwnerId = this.resourceOwnerId;
+    final resourceType = this.resourceType;
+    final subnets = this.subnets;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    final transitGatewayMulticastDomainId =
+        this.transitGatewayMulticastDomainId;
+    return {
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceOwnerId != null) 'resourceOwnerId': resourceOwnerId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (subnets != null) 'subnets': subnets,
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+      if (transitGatewayMulticastDomainId != null)
+        'transitGatewayMulticastDomainId': transitGatewayMulticastDomainId,
+    };
+  }
 }
 
 /// Describes the options for a transit gateway multicast domain.
@@ -65000,6 +78281,19 @@ class TransitGatewayMulticastDomainOptions {
     this.igmpv2Support,
     this.staticSourcesSupport,
   });
+
+  Map<String, dynamic> toJson() {
+    final autoAcceptSharedAssociations = this.autoAcceptSharedAssociations;
+    final igmpv2Support = this.igmpv2Support;
+    final staticSourcesSupport = this.staticSourcesSupport;
+    return {
+      if (autoAcceptSharedAssociations != null)
+        'autoAcceptSharedAssociations': autoAcceptSharedAssociations.toValue(),
+      if (igmpv2Support != null) 'igmpv2Support': igmpv2Support.toValue(),
+      if (staticSourcesSupport != null)
+        'staticSourcesSupport': staticSourcesSupport.toValue(),
+    };
+  }
 }
 
 enum TransitGatewayMulticastDomainState {
@@ -65091,6 +78385,34 @@ class TransitGatewayMulticastGroup {
     this.subnetId,
     this.transitGatewayAttachmentId,
   });
+
+  Map<String, dynamic> toJson() {
+    final groupIpAddress = this.groupIpAddress;
+    final groupMember = this.groupMember;
+    final groupSource = this.groupSource;
+    final memberType = this.memberType;
+    final networkInterfaceId = this.networkInterfaceId;
+    final resourceId = this.resourceId;
+    final resourceOwnerId = this.resourceOwnerId;
+    final resourceType = this.resourceType;
+    final sourceType = this.sourceType;
+    final subnetId = this.subnetId;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    return {
+      if (groupIpAddress != null) 'groupIpAddress': groupIpAddress,
+      if (groupMember != null) 'groupMember': groupMember,
+      if (groupSource != null) 'groupSource': groupSource,
+      if (memberType != null) 'memberType': memberType.toValue(),
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceOwnerId != null) 'resourceOwnerId': resourceOwnerId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (sourceType != null) 'sourceType': sourceType.toValue(),
+      if (subnetId != null) 'subnetId': subnetId,
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+    };
+  }
 }
 
 /// Describes the registered transit gateway multicast group members.
@@ -65109,6 +78431,20 @@ class TransitGatewayMulticastRegisteredGroupMembers {
     this.registeredNetworkInterfaceIds,
     this.transitGatewayMulticastDomainId,
   });
+
+  Map<String, dynamic> toJson() {
+    final groupIpAddress = this.groupIpAddress;
+    final registeredNetworkInterfaceIds = this.registeredNetworkInterfaceIds;
+    final transitGatewayMulticastDomainId =
+        this.transitGatewayMulticastDomainId;
+    return {
+      if (groupIpAddress != null) 'groupIpAddress': groupIpAddress,
+      if (registeredNetworkInterfaceIds != null)
+        'registeredNetworkInterfaceIds': registeredNetworkInterfaceIds,
+      if (transitGatewayMulticastDomainId != null)
+        'transitGatewayMulticastDomainId': transitGatewayMulticastDomainId,
+    };
+  }
 }
 
 /// Describes the members registered with the transit gateway multicast group.
@@ -65128,6 +78464,20 @@ class TransitGatewayMulticastRegisteredGroupSources {
     this.registeredNetworkInterfaceIds,
     this.transitGatewayMulticastDomainId,
   });
+
+  Map<String, dynamic> toJson() {
+    final groupIpAddress = this.groupIpAddress;
+    final registeredNetworkInterfaceIds = this.registeredNetworkInterfaceIds;
+    final transitGatewayMulticastDomainId =
+        this.transitGatewayMulticastDomainId;
+    return {
+      if (groupIpAddress != null) 'groupIpAddress': groupIpAddress,
+      if (registeredNetworkInterfaceIds != null)
+        'registeredNetworkInterfaceIds': registeredNetworkInterfaceIds,
+      if (transitGatewayMulticastDomainId != null)
+        'transitGatewayMulticastDomainId': transitGatewayMulticastDomainId,
+    };
+  }
 }
 
 /// Describes the options for a transit gateway.
@@ -65178,6 +78528,38 @@ class TransitGatewayOptions {
     this.transitGatewayCidrBlocks,
     this.vpnEcmpSupport,
   });
+
+  Map<String, dynamic> toJson() {
+    final amazonSideAsn = this.amazonSideAsn;
+    final associationDefaultRouteTableId = this.associationDefaultRouteTableId;
+    final autoAcceptSharedAttachments = this.autoAcceptSharedAttachments;
+    final defaultRouteTableAssociation = this.defaultRouteTableAssociation;
+    final defaultRouteTablePropagation = this.defaultRouteTablePropagation;
+    final dnsSupport = this.dnsSupport;
+    final multicastSupport = this.multicastSupport;
+    final propagationDefaultRouteTableId = this.propagationDefaultRouteTableId;
+    final transitGatewayCidrBlocks = this.transitGatewayCidrBlocks;
+    final vpnEcmpSupport = this.vpnEcmpSupport;
+    return {
+      if (amazonSideAsn != null) 'amazonSideAsn': amazonSideAsn,
+      if (associationDefaultRouteTableId != null)
+        'associationDefaultRouteTableId': associationDefaultRouteTableId,
+      if (autoAcceptSharedAttachments != null)
+        'autoAcceptSharedAttachments': autoAcceptSharedAttachments.toValue(),
+      if (defaultRouteTableAssociation != null)
+        'defaultRouteTableAssociation': defaultRouteTableAssociation.toValue(),
+      if (defaultRouteTablePropagation != null)
+        'defaultRouteTablePropagation': defaultRouteTablePropagation.toValue(),
+      if (dnsSupport != null) 'dnsSupport': dnsSupport.toValue(),
+      if (multicastSupport != null)
+        'multicastSupport': multicastSupport.toValue(),
+      if (propagationDefaultRouteTableId != null)
+        'propagationDefaultRouteTableId': propagationDefaultRouteTableId,
+      if (transitGatewayCidrBlocks != null)
+        'transitGatewayCidrBlocks': transitGatewayCidrBlocks,
+      if (vpnEcmpSupport != null) 'vpnEcmpSupport': vpnEcmpSupport.toValue(),
+    };
+  }
 }
 
 /// Describes the transit gateway peering attachment.
@@ -65221,6 +78603,33 @@ class TransitGatewayPeeringAttachment {
     this.tags,
     this.transitGatewayAttachmentId,
   });
+
+  Map<String, dynamic> toJson() {
+    final accepterTgwInfo = this.accepterTgwInfo;
+    final accepterTransitGatewayAttachmentId =
+        this.accepterTransitGatewayAttachmentId;
+    final creationTime = this.creationTime;
+    final options = this.options;
+    final requesterTgwInfo = this.requesterTgwInfo;
+    final state = this.state;
+    final status = this.status;
+    final tags = this.tags;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    return {
+      if (accepterTgwInfo != null) 'accepterTgwInfo': accepterTgwInfo,
+      if (accepterTransitGatewayAttachmentId != null)
+        'accepterTransitGatewayAttachmentId':
+            accepterTransitGatewayAttachmentId,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (options != null) 'options': options,
+      if (requesterTgwInfo != null) 'requesterTgwInfo': requesterTgwInfo,
+      if (state != null) 'state': state.toValue(),
+      if (status != null) 'status': status,
+      if (tags != null) 'tagSet': tags,
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+    };
+  }
 }
 
 /// Describes dynamic routing for the transit gateway peering attachment.
@@ -65232,6 +78641,13 @@ class TransitGatewayPeeringAttachmentOptions {
   TransitGatewayPeeringAttachmentOptions({
     this.dynamicRouting,
   });
+
+  Map<String, dynamic> toJson() {
+    final dynamicRouting = this.dynamicRouting;
+    return {
+      if (dynamicRouting != null) 'dynamicRouting': dynamicRouting.toValue(),
+    };
+  }
 }
 
 /// Describes a rule associated with a transit gateway policy.
@@ -65264,6 +78680,25 @@ class TransitGatewayPolicyRule {
     this.sourceCidrBlock,
     this.sourcePortRange,
   });
+
+  Map<String, dynamic> toJson() {
+    final destinationCidrBlock = this.destinationCidrBlock;
+    final destinationPortRange = this.destinationPortRange;
+    final metaData = this.metaData;
+    final protocol = this.protocol;
+    final sourceCidrBlock = this.sourceCidrBlock;
+    final sourcePortRange = this.sourcePortRange;
+    return {
+      if (destinationCidrBlock != null)
+        'destinationCidrBlock': destinationCidrBlock,
+      if (destinationPortRange != null)
+        'destinationPortRange': destinationPortRange,
+      if (metaData != null) 'metaData': metaData,
+      if (protocol != null) 'protocol': protocol,
+      if (sourceCidrBlock != null) 'sourceCidrBlock': sourceCidrBlock,
+      if (sourcePortRange != null) 'sourcePortRange': sourcePortRange,
+    };
+  }
 }
 
 /// Describes the meta data tags associated with a transit gateway policy rule.
@@ -65278,6 +78713,15 @@ class TransitGatewayPolicyRuleMetaData {
     this.metaDataKey,
     this.metaDataValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final metaDataKey = this.metaDataKey;
+    final metaDataValue = this.metaDataValue;
+    return {
+      if (metaDataKey != null) 'metaDataKey': metaDataKey,
+      if (metaDataValue != null) 'metaDataValue': metaDataValue,
+    };
+  }
 }
 
 /// Describes a transit gateway policy table.
@@ -65304,6 +78748,22 @@ class TransitGatewayPolicyTable {
     this.transitGatewayId,
     this.transitGatewayPolicyTableId,
   });
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final state = this.state;
+    final tags = this.tags;
+    final transitGatewayId = this.transitGatewayId;
+    final transitGatewayPolicyTableId = this.transitGatewayPolicyTableId;
+    return {
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (transitGatewayId != null) 'transitGatewayId': transitGatewayId,
+      if (transitGatewayPolicyTableId != null)
+        'transitGatewayPolicyTableId': transitGatewayPolicyTableId,
+    };
+  }
 }
 
 /// Describes a transit gateway policy table association.
@@ -65330,6 +78790,23 @@ class TransitGatewayPolicyTableAssociation {
     this.transitGatewayAttachmentId,
     this.transitGatewayPolicyTableId,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final state = this.state;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    final transitGatewayPolicyTableId = this.transitGatewayPolicyTableId;
+    return {
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (state != null) 'state': state.toValue(),
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+      if (transitGatewayPolicyTableId != null)
+        'transitGatewayPolicyTableId': transitGatewayPolicyTableId,
+    };
+  }
 }
 
 /// Describes a transit gateway policy table entry
@@ -65348,6 +78825,17 @@ class TransitGatewayPolicyTableEntry {
     this.policyRuleNumber,
     this.targetRouteTableId,
   });
+
+  Map<String, dynamic> toJson() {
+    final policyRule = this.policyRule;
+    final policyRuleNumber = this.policyRuleNumber;
+    final targetRouteTableId = this.targetRouteTableId;
+    return {
+      if (policyRule != null) 'policyRule': policyRule,
+      if (policyRuleNumber != null) 'policyRuleNumber': policyRuleNumber,
+      if (targetRouteTableId != null) 'targetRouteTableId': targetRouteTableId,
+    };
+  }
 }
 
 enum TransitGatewayPolicyTableState {
@@ -65407,6 +78895,18 @@ class TransitGatewayPrefixListAttachment {
     this.resourceType,
     this.transitGatewayAttachmentId,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    return {
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+    };
+  }
 }
 
 /// Describes a prefix list reference.
@@ -65437,6 +78937,25 @@ class TransitGatewayPrefixListReference {
     this.transitGatewayAttachment,
     this.transitGatewayRouteTableId,
   });
+
+  Map<String, dynamic> toJson() {
+    final blackhole = this.blackhole;
+    final prefixListId = this.prefixListId;
+    final prefixListOwnerId = this.prefixListOwnerId;
+    final state = this.state;
+    final transitGatewayAttachment = this.transitGatewayAttachment;
+    final transitGatewayRouteTableId = this.transitGatewayRouteTableId;
+    return {
+      if (blackhole != null) 'blackhole': blackhole,
+      if (prefixListId != null) 'prefixListId': prefixListId,
+      if (prefixListOwnerId != null) 'prefixListOwnerId': prefixListOwnerId,
+      if (state != null) 'state': state.toValue(),
+      if (transitGatewayAttachment != null)
+        'transitGatewayAttachment': transitGatewayAttachment,
+      if (transitGatewayRouteTableId != null)
+        'transitGatewayRouteTableId': transitGatewayRouteTableId,
+    };
+  }
 }
 
 enum TransitGatewayPrefixListReferenceState {
@@ -65509,6 +79028,28 @@ class TransitGatewayPropagation {
     this.transitGatewayRouteTableAnnouncementId,
     this.transitGatewayRouteTableId,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final state = this.state;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    final transitGatewayRouteTableAnnouncementId =
+        this.transitGatewayRouteTableAnnouncementId;
+    final transitGatewayRouteTableId = this.transitGatewayRouteTableId;
+    return {
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (state != null) 'state': state.toValue(),
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+      if (transitGatewayRouteTableAnnouncementId != null)
+        'transitGatewayRouteTableAnnouncementId':
+            transitGatewayRouteTableAnnouncementId,
+      if (transitGatewayRouteTableId != null)
+        'transitGatewayRouteTableId': transitGatewayRouteTableId,
+    };
+  }
 }
 
 enum TransitGatewayPropagationState {
@@ -65594,6 +79135,32 @@ class TransitGatewayRequestOptions {
     this.transitGatewayCidrBlocks,
     this.vpnEcmpSupport,
   });
+
+  Map<String, dynamic> toJson() {
+    final amazonSideAsn = this.amazonSideAsn;
+    final autoAcceptSharedAttachments = this.autoAcceptSharedAttachments;
+    final defaultRouteTableAssociation = this.defaultRouteTableAssociation;
+    final defaultRouteTablePropagation = this.defaultRouteTablePropagation;
+    final dnsSupport = this.dnsSupport;
+    final multicastSupport = this.multicastSupport;
+    final transitGatewayCidrBlocks = this.transitGatewayCidrBlocks;
+    final vpnEcmpSupport = this.vpnEcmpSupport;
+    return {
+      if (amazonSideAsn != null) 'AmazonSideAsn': amazonSideAsn,
+      if (autoAcceptSharedAttachments != null)
+        'AutoAcceptSharedAttachments': autoAcceptSharedAttachments.toValue(),
+      if (defaultRouteTableAssociation != null)
+        'DefaultRouteTableAssociation': defaultRouteTableAssociation.toValue(),
+      if (defaultRouteTablePropagation != null)
+        'DefaultRouteTablePropagation': defaultRouteTablePropagation.toValue(),
+      if (dnsSupport != null) 'DnsSupport': dnsSupport.toValue(),
+      if (multicastSupport != null)
+        'MulticastSupport': multicastSupport.toValue(),
+      if (transitGatewayCidrBlocks != null)
+        'TransitGatewayCidrBlocks': transitGatewayCidrBlocks,
+      if (vpnEcmpSupport != null) 'VpnEcmpSupport': vpnEcmpSupport.toValue(),
+    };
+  }
 }
 
 /// Describes a route for a transit gateway route table.
@@ -65624,6 +79191,28 @@ class TransitGatewayRoute {
     this.transitGatewayRouteTableAnnouncementId,
     this.type,
   });
+
+  Map<String, dynamic> toJson() {
+    final destinationCidrBlock = this.destinationCidrBlock;
+    final prefixListId = this.prefixListId;
+    final state = this.state;
+    final transitGatewayAttachments = this.transitGatewayAttachments;
+    final transitGatewayRouteTableAnnouncementId =
+        this.transitGatewayRouteTableAnnouncementId;
+    final type = this.type;
+    return {
+      if (destinationCidrBlock != null)
+        'destinationCidrBlock': destinationCidrBlock,
+      if (prefixListId != null) 'prefixListId': prefixListId,
+      if (state != null) 'state': state.toValue(),
+      if (transitGatewayAttachments != null)
+        'transitGatewayAttachments': transitGatewayAttachments,
+      if (transitGatewayRouteTableAnnouncementId != null)
+        'transitGatewayRouteTableAnnouncementId':
+            transitGatewayRouteTableAnnouncementId,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// Describes a route attachment.
@@ -65643,6 +79232,18 @@ class TransitGatewayRouteAttachment {
     this.resourceType,
     this.transitGatewayAttachmentId,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    return {
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+    };
+  }
 }
 
 enum TransitGatewayRouteState {
@@ -65722,6 +79323,28 @@ class TransitGatewayRouteTable {
     this.transitGatewayId,
     this.transitGatewayRouteTableId,
   });
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final defaultAssociationRouteTable = this.defaultAssociationRouteTable;
+    final defaultPropagationRouteTable = this.defaultPropagationRouteTable;
+    final state = this.state;
+    final tags = this.tags;
+    final transitGatewayId = this.transitGatewayId;
+    final transitGatewayRouteTableId = this.transitGatewayRouteTableId;
+    return {
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (defaultAssociationRouteTable != null)
+        'defaultAssociationRouteTable': defaultAssociationRouteTable,
+      if (defaultPropagationRouteTable != null)
+        'defaultPropagationRouteTable': defaultPropagationRouteTable,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (transitGatewayId != null) 'transitGatewayId': transitGatewayId,
+      if (transitGatewayRouteTableId != null)
+        'transitGatewayRouteTableId': transitGatewayRouteTableId,
+    };
+  }
 }
 
 /// Describes a transit gateway route table announcement.
@@ -65772,6 +79395,40 @@ class TransitGatewayRouteTableAnnouncement {
     this.transitGatewayRouteTableAnnouncementId,
     this.transitGatewayRouteTableId,
   });
+
+  Map<String, dynamic> toJson() {
+    final announcementDirection = this.announcementDirection;
+    final coreNetworkId = this.coreNetworkId;
+    final creationTime = this.creationTime;
+    final peerCoreNetworkId = this.peerCoreNetworkId;
+    final peerTransitGatewayId = this.peerTransitGatewayId;
+    final peeringAttachmentId = this.peeringAttachmentId;
+    final state = this.state;
+    final tags = this.tags;
+    final transitGatewayId = this.transitGatewayId;
+    final transitGatewayRouteTableAnnouncementId =
+        this.transitGatewayRouteTableAnnouncementId;
+    final transitGatewayRouteTableId = this.transitGatewayRouteTableId;
+    return {
+      if (announcementDirection != null)
+        'announcementDirection': announcementDirection.toValue(),
+      if (coreNetworkId != null) 'coreNetworkId': coreNetworkId,
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (peerCoreNetworkId != null) 'peerCoreNetworkId': peerCoreNetworkId,
+      if (peerTransitGatewayId != null)
+        'peerTransitGatewayId': peerTransitGatewayId,
+      if (peeringAttachmentId != null)
+        'peeringAttachmentId': peeringAttachmentId,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (transitGatewayId != null) 'transitGatewayId': transitGatewayId,
+      if (transitGatewayRouteTableAnnouncementId != null)
+        'transitGatewayRouteTableAnnouncementId':
+            transitGatewayRouteTableAnnouncementId,
+      if (transitGatewayRouteTableId != null)
+        'transitGatewayRouteTableId': transitGatewayRouteTableId,
+    };
+  }
 }
 
 enum TransitGatewayRouteTableAnnouncementDirection {
@@ -65877,6 +79534,20 @@ class TransitGatewayRouteTableAssociation {
     this.state,
     this.transitGatewayAttachmentId,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final state = this.state;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    return {
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (state != null) 'state': state.toValue(),
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+    };
+  }
 }
 
 /// Describes a route table propagation.
@@ -65904,6 +79575,25 @@ class TransitGatewayRouteTablePropagation {
     this.transitGatewayAttachmentId,
     this.transitGatewayRouteTableAnnouncementId,
   });
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final state = this.state;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    final transitGatewayRouteTableAnnouncementId =
+        this.transitGatewayRouteTableAnnouncementId;
+    return {
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceType != null) 'resourceType': resourceType.toValue(),
+      if (state != null) 'state': state.toValue(),
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+      if (transitGatewayRouteTableAnnouncementId != null)
+        'transitGatewayRouteTableAnnouncementId':
+            transitGatewayRouteTableAnnouncementId,
+    };
+  }
 }
 
 /// Describes a route in a transit gateway route table.
@@ -65947,6 +79637,25 @@ class TransitGatewayRouteTableRoute {
     this.routeOrigin,
     this.state,
   });
+
+  Map<String, dynamic> toJson() {
+    final attachmentId = this.attachmentId;
+    final destinationCidr = this.destinationCidr;
+    final prefixListId = this.prefixListId;
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final routeOrigin = this.routeOrigin;
+    final state = this.state;
+    return {
+      if (attachmentId != null) 'attachmentId': attachmentId,
+      if (destinationCidr != null) 'destinationCidr': destinationCidr,
+      if (prefixListId != null) 'prefixListId': prefixListId,
+      if (resourceId != null) 'resourceId': resourceId,
+      if (resourceType != null) 'resourceType': resourceType,
+      if (routeOrigin != null) 'routeOrigin': routeOrigin,
+      if (state != null) 'state': state,
+    };
+  }
 }
 
 enum TransitGatewayRouteTableState {
@@ -66100,6 +79809,30 @@ class TransitGatewayVpcAttachment {
     this.vpcId,
     this.vpcOwnerId,
   });
+
+  Map<String, dynamic> toJson() {
+    final creationTime = this.creationTime;
+    final options = this.options;
+    final state = this.state;
+    final subnetIds = this.subnetIds;
+    final tags = this.tags;
+    final transitGatewayAttachmentId = this.transitGatewayAttachmentId;
+    final transitGatewayId = this.transitGatewayId;
+    final vpcId = this.vpcId;
+    final vpcOwnerId = this.vpcOwnerId;
+    return {
+      if (creationTime != null) 'creationTime': iso8601ToJson(creationTime),
+      if (options != null) 'options': options,
+      if (state != null) 'state': state.toValue(),
+      if (subnetIds != null) 'subnetIds': subnetIds,
+      if (tags != null) 'tagSet': tags,
+      if (transitGatewayAttachmentId != null)
+        'transitGatewayAttachmentId': transitGatewayAttachmentId,
+      if (transitGatewayId != null) 'transitGatewayId': transitGatewayId,
+      if (vpcId != null) 'vpcId': vpcId,
+      if (vpcOwnerId != null) 'vpcOwnerId': vpcOwnerId,
+    };
+  }
 }
 
 /// Describes the VPC attachment options.
@@ -66118,6 +79851,18 @@ class TransitGatewayVpcAttachmentOptions {
     this.dnsSupport,
     this.ipv6Support,
   });
+
+  Map<String, dynamic> toJson() {
+    final applianceModeSupport = this.applianceModeSupport;
+    final dnsSupport = this.dnsSupport;
+    final ipv6Support = this.ipv6Support;
+    return {
+      if (applianceModeSupport != null)
+        'applianceModeSupport': applianceModeSupport.toValue(),
+      if (dnsSupport != null) 'dnsSupport': dnsSupport.toValue(),
+      if (ipv6Support != null) 'ipv6Support': ipv6Support.toValue(),
+    };
+  }
 }
 
 enum TransportProtocol {
@@ -66186,6 +79931,26 @@ class TrunkInterfaceAssociation {
     this.trunkInterfaceId,
     this.vlanId,
   });
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    final branchInterfaceId = this.branchInterfaceId;
+    final greKey = this.greKey;
+    final interfaceProtocol = this.interfaceProtocol;
+    final tags = this.tags;
+    final trunkInterfaceId = this.trunkInterfaceId;
+    final vlanId = this.vlanId;
+    return {
+      if (associationId != null) 'associationId': associationId,
+      if (branchInterfaceId != null) 'branchInterfaceId': branchInterfaceId,
+      if (greKey != null) 'greKey': greKey,
+      if (interfaceProtocol != null)
+        'interfaceProtocol': interfaceProtocol.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (trunkInterfaceId != null) 'trunkInterfaceId': trunkInterfaceId,
+      if (vlanId != null) 'vlanId': vlanId,
+    };
+  }
 }
 
 enum TunnelInsideIpVersion {
@@ -66308,6 +80073,60 @@ class TunnelOption {
     this.tunnelInsideCidr,
     this.tunnelInsideIpv6Cidr,
   });
+
+  Map<String, dynamic> toJson() {
+    final dpdTimeoutAction = this.dpdTimeoutAction;
+    final dpdTimeoutSeconds = this.dpdTimeoutSeconds;
+    final ikeVersions = this.ikeVersions;
+    final outsideIpAddress = this.outsideIpAddress;
+    final phase1DHGroupNumbers = this.phase1DHGroupNumbers;
+    final phase1EncryptionAlgorithms = this.phase1EncryptionAlgorithms;
+    final phase1IntegrityAlgorithms = this.phase1IntegrityAlgorithms;
+    final phase1LifetimeSeconds = this.phase1LifetimeSeconds;
+    final phase2DHGroupNumbers = this.phase2DHGroupNumbers;
+    final phase2EncryptionAlgorithms = this.phase2EncryptionAlgorithms;
+    final phase2IntegrityAlgorithms = this.phase2IntegrityAlgorithms;
+    final phase2LifetimeSeconds = this.phase2LifetimeSeconds;
+    final preSharedKey = this.preSharedKey;
+    final rekeyFuzzPercentage = this.rekeyFuzzPercentage;
+    final rekeyMarginTimeSeconds = this.rekeyMarginTimeSeconds;
+    final replayWindowSize = this.replayWindowSize;
+    final startupAction = this.startupAction;
+    final tunnelInsideCidr = this.tunnelInsideCidr;
+    final tunnelInsideIpv6Cidr = this.tunnelInsideIpv6Cidr;
+    return {
+      if (dpdTimeoutAction != null) 'dpdTimeoutAction': dpdTimeoutAction,
+      if (dpdTimeoutSeconds != null) 'dpdTimeoutSeconds': dpdTimeoutSeconds,
+      if (ikeVersions != null) 'ikeVersionSet': ikeVersions,
+      if (outsideIpAddress != null) 'outsideIpAddress': outsideIpAddress,
+      if (phase1DHGroupNumbers != null)
+        'phase1DHGroupNumberSet': phase1DHGroupNumbers,
+      if (phase1EncryptionAlgorithms != null)
+        'phase1EncryptionAlgorithmSet': phase1EncryptionAlgorithms,
+      if (phase1IntegrityAlgorithms != null)
+        'phase1IntegrityAlgorithmSet': phase1IntegrityAlgorithms,
+      if (phase1LifetimeSeconds != null)
+        'phase1LifetimeSeconds': phase1LifetimeSeconds,
+      if (phase2DHGroupNumbers != null)
+        'phase2DHGroupNumberSet': phase2DHGroupNumbers,
+      if (phase2EncryptionAlgorithms != null)
+        'phase2EncryptionAlgorithmSet': phase2EncryptionAlgorithms,
+      if (phase2IntegrityAlgorithms != null)
+        'phase2IntegrityAlgorithmSet': phase2IntegrityAlgorithms,
+      if (phase2LifetimeSeconds != null)
+        'phase2LifetimeSeconds': phase2LifetimeSeconds,
+      if (preSharedKey != null) 'preSharedKey': preSharedKey,
+      if (rekeyFuzzPercentage != null)
+        'rekeyFuzzPercentage': rekeyFuzzPercentage,
+      if (rekeyMarginTimeSeconds != null)
+        'rekeyMarginTimeSeconds': rekeyMarginTimeSeconds,
+      if (replayWindowSize != null) 'replayWindowSize': replayWindowSize,
+      if (startupAction != null) 'startupAction': startupAction,
+      if (tunnelInsideCidr != null) 'tunnelInsideCidr': tunnelInsideCidr,
+      if (tunnelInsideIpv6Cidr != null)
+        'tunnelInsideIpv6Cidr': tunnelInsideIpv6Cidr,
+    };
+  }
 }
 
 class UnassignIpv6AddressesResult {
@@ -66325,6 +80144,19 @@ class UnassignIpv6AddressesResult {
     this.unassignedIpv6Addresses,
     this.unassignedIpv6Prefixes,
   });
+
+  Map<String, dynamic> toJson() {
+    final networkInterfaceId = this.networkInterfaceId;
+    final unassignedIpv6Addresses = this.unassignedIpv6Addresses;
+    final unassignedIpv6Prefixes = this.unassignedIpv6Prefixes;
+    return {
+      if (networkInterfaceId != null) 'networkInterfaceId': networkInterfaceId,
+      if (unassignedIpv6Addresses != null)
+        'unassignedIpv6Addresses': unassignedIpv6Addresses,
+      if (unassignedIpv6Prefixes != null)
+        'unassignedIpv6PrefixSet': unassignedIpv6Prefixes,
+    };
+  }
 }
 
 enum UnlimitedSupportedInstanceFamily {
@@ -66374,6 +80206,13 @@ class UnmonitorInstancesResult {
   UnmonitorInstancesResult({
     this.instanceMonitorings,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceMonitorings = this.instanceMonitorings;
+    return {
+      if (instanceMonitorings != null) 'instancesSet': instanceMonitorings,
+    };
+  }
 }
 
 enum UnsuccessfulInstanceCreditSpecificationErrorCode {
@@ -66439,6 +80278,15 @@ class UnsuccessfulInstanceCreditSpecificationItem {
     this.error,
     this.instanceId,
   });
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final instanceId = this.instanceId;
+    return {
+      if (error != null) 'error': error,
+      if (instanceId != null) 'instanceId': instanceId,
+    };
+  }
 }
 
 /// Information about the error for the burstable performance instance whose
@@ -66454,6 +80302,15 @@ class UnsuccessfulInstanceCreditSpecificationItemError {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// Information about items that were not successfully processed in a batch
@@ -66469,6 +80326,15 @@ class UnsuccessfulItem {
     this.error,
     this.resourceId,
   });
+
+  Map<String, dynamic> toJson() {
+    final error = this.error;
+    final resourceId = this.resourceId;
+    return {
+      if (error != null) 'error': error,
+      if (resourceId != null) 'resourceId': resourceId,
+    };
+  }
 }
 
 /// Information about the error that occurred. For more information about
@@ -66486,6 +80352,15 @@ class UnsuccessfulItemError {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 class UpdateSecurityGroupRuleDescriptionsEgressResult {
@@ -66496,6 +80371,13 @@ class UpdateSecurityGroupRuleDescriptionsEgressResult {
   UpdateSecurityGroupRuleDescriptionsEgressResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 class UpdateSecurityGroupRuleDescriptionsIngressResult {
@@ -66506,6 +80388,13 @@ class UpdateSecurityGroupRuleDescriptionsIngressResult {
   UpdateSecurityGroupRuleDescriptionsIngressResult({
     this.returnValue,
   });
+
+  Map<String, dynamic> toJson() {
+    final returnValue = this.returnValue;
+    return {
+      if (returnValue != null) 'return': returnValue,
+    };
+  }
 }
 
 enum UsageClassType {
@@ -66548,6 +80437,15 @@ class UserBucket {
     this.s3Bucket,
     this.s3Key,
   });
+
+  Map<String, dynamic> toJson() {
+    final s3Bucket = this.s3Bucket;
+    final s3Key = this.s3Key;
+    return {
+      if (s3Bucket != null) 'S3Bucket': s3Bucket,
+      if (s3Key != null) 'S3Key': s3Key,
+    };
+  }
 }
 
 /// Describes the Amazon S3 bucket for the disk image.
@@ -66562,6 +80460,15 @@ class UserBucketDetails {
     this.s3Bucket,
     this.s3Key,
   });
+
+  Map<String, dynamic> toJson() {
+    final s3Bucket = this.s3Bucket;
+    final s3Key = this.s3Key;
+    return {
+      if (s3Bucket != null) 's3Bucket': s3Bucket,
+      if (s3Key != null) 's3Key': s3Key,
+    };
+  }
 }
 
 /// Describes the user data for an instance.
@@ -66574,6 +80481,13 @@ class UserData {
   UserData({
     this.data,
   });
+
+  Map<String, dynamic> toJson() {
+    final data = this.data;
+    return {
+      if (data != null) 'data': data,
+    };
+  }
 }
 
 /// Describes a security group and Amazon Web Services account ID pair.
@@ -66631,6 +80545,26 @@ class UserIdGroupPair {
     this.vpcId,
     this.vpcPeeringConnectionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final groupId = this.groupId;
+    final groupName = this.groupName;
+    final peeringStatus = this.peeringStatus;
+    final userId = this.userId;
+    final vpcId = this.vpcId;
+    final vpcPeeringConnectionId = this.vpcPeeringConnectionId;
+    return {
+      if (description != null) 'description': description,
+      if (groupId != null) 'groupId': groupId,
+      if (groupName != null) 'groupName': groupName,
+      if (peeringStatus != null) 'peeringStatus': peeringStatus,
+      if (userId != null) 'userId': userId,
+      if (vpcId != null) 'vpcId': vpcId,
+      if (vpcPeeringConnectionId != null)
+        'vpcPeeringConnectionId': vpcPeeringConnectionId,
+    };
+  }
 }
 
 /// The minimum and maximum number of vCPUs.
@@ -66647,6 +80581,15 @@ class VCpuCountRange {
     this.max,
     this.min,
   });
+
+  Map<String, dynamic> toJson() {
+    final max = this.max;
+    final min = this.min;
+    return {
+      if (max != null) 'max': max,
+      if (min != null) 'min': min,
+    };
+  }
 }
 
 /// The minimum and maximum number of vCPUs.
@@ -66663,6 +80606,15 @@ class VCpuCountRangeRequest {
     required this.min,
     this.max,
   });
+
+  Map<String, dynamic> toJson() {
+    final min = this.min;
+    final max = this.max;
+    return {
+      'Min': min,
+      if (max != null) 'Max': max,
+    };
+  }
 }
 
 /// Describes the vCPU configurations for the instance type.
@@ -66690,6 +80642,23 @@ class VCpuInfo {
     this.validCores,
     this.validThreadsPerCore,
   });
+
+  Map<String, dynamic> toJson() {
+    final defaultCores = this.defaultCores;
+    final defaultThreadsPerCore = this.defaultThreadsPerCore;
+    final defaultVCpus = this.defaultVCpus;
+    final validCores = this.validCores;
+    final validThreadsPerCore = this.validThreadsPerCore;
+    return {
+      if (defaultCores != null) 'defaultCores': defaultCores,
+      if (defaultThreadsPerCore != null)
+        'defaultThreadsPerCore': defaultThreadsPerCore,
+      if (defaultVCpus != null) 'defaultVCpus': defaultVCpus,
+      if (validCores != null) 'validCores': validCores,
+      if (validThreadsPerCore != null)
+        'validThreadsPerCore': validThreadsPerCore,
+    };
+  }
 }
 
 /// The error code and error message that is returned for a parameter or
@@ -66712,6 +80681,15 @@ class ValidationError {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code,
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 /// The error codes and error messages that are returned for the parameters or
@@ -66724,6 +80702,13 @@ class ValidationWarning {
   ValidationWarning({
     this.errors,
   });
+
+  Map<String, dynamic> toJson() {
+    final errors = this.errors;
+    return {
+      if (errors != null) 'errorSet': errors,
+    };
+  }
 }
 
 /// Describes telemetry for a VPN tunnel.
@@ -66755,6 +80740,24 @@ class VgwTelemetry {
     this.status,
     this.statusMessage,
   });
+
+  Map<String, dynamic> toJson() {
+    final acceptedRouteCount = this.acceptedRouteCount;
+    final certificateArn = this.certificateArn;
+    final lastStatusChange = this.lastStatusChange;
+    final outsideIpAddress = this.outsideIpAddress;
+    final status = this.status;
+    final statusMessage = this.statusMessage;
+    return {
+      if (acceptedRouteCount != null) 'acceptedRouteCount': acceptedRouteCount,
+      if (certificateArn != null) 'certificateArn': certificateArn,
+      if (lastStatusChange != null)
+        'lastStatusChange': iso8601ToJson(lastStatusChange),
+      if (outsideIpAddress != null) 'outsideIpAddress': outsideIpAddress,
+      if (status != null) 'status': status.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
+  }
 }
 
 enum VirtualizationType {
@@ -66858,6 +80861,43 @@ class Volume {
     this.volumeId,
     this.volumeType,
   });
+
+  Map<String, dynamic> toJson() {
+    final attachments = this.attachments;
+    final availabilityZone = this.availabilityZone;
+    final createTime = this.createTime;
+    final encrypted = this.encrypted;
+    final fastRestored = this.fastRestored;
+    final iops = this.iops;
+    final kmsKeyId = this.kmsKeyId;
+    final multiAttachEnabled = this.multiAttachEnabled;
+    final outpostArn = this.outpostArn;
+    final size = this.size;
+    final snapshotId = this.snapshotId;
+    final state = this.state;
+    final tags = this.tags;
+    final throughput = this.throughput;
+    final volumeId = this.volumeId;
+    final volumeType = this.volumeType;
+    return {
+      if (attachments != null) 'attachmentSet': attachments,
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (createTime != null) 'createTime': iso8601ToJson(createTime),
+      if (encrypted != null) 'encrypted': encrypted,
+      if (fastRestored != null) 'fastRestored': fastRestored,
+      if (iops != null) 'iops': iops,
+      if (kmsKeyId != null) 'kmsKeyId': kmsKeyId,
+      if (multiAttachEnabled != null) 'multiAttachEnabled': multiAttachEnabled,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (size != null) 'size': size,
+      if (snapshotId != null) 'snapshotId': snapshotId,
+      if (state != null) 'status': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (throughput != null) 'throughput': throughput,
+      if (volumeId != null) 'volumeId': volumeId,
+      if (volumeType != null) 'volumeType': volumeType.toValue(),
+    };
+  }
 }
 
 /// Describes volume attachment details.
@@ -66888,6 +80928,24 @@ class VolumeAttachment {
     this.state,
     this.volumeId,
   });
+
+  Map<String, dynamic> toJson() {
+    final attachTime = this.attachTime;
+    final deleteOnTermination = this.deleteOnTermination;
+    final device = this.device;
+    final instanceId = this.instanceId;
+    final state = this.state;
+    final volumeId = this.volumeId;
+    return {
+      if (attachTime != null) 'attachTime': iso8601ToJson(attachTime),
+      if (deleteOnTermination != null)
+        'deleteOnTermination': deleteOnTermination,
+      if (device != null) 'device': device,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (state != null) 'status': state.toValue(),
+      if (volumeId != null) 'volumeId': volumeId,
+    };
+  }
 }
 
 enum VolumeAttachmentState {
@@ -66969,6 +81027,13 @@ class VolumeDetail {
   VolumeDetail({
     required this.size,
   });
+
+  Map<String, dynamic> toJson() {
+    final size = this.size;
+    return {
+      'size': size,
+    };
+  }
 }
 
 /// Describes the modification status of an EBS volume.
@@ -67042,6 +81107,48 @@ class VolumeModification {
     this.targetVolumeType,
     this.volumeId,
   });
+
+  Map<String, dynamic> toJson() {
+    final endTime = this.endTime;
+    final modificationState = this.modificationState;
+    final originalIops = this.originalIops;
+    final originalMultiAttachEnabled = this.originalMultiAttachEnabled;
+    final originalSize = this.originalSize;
+    final originalThroughput = this.originalThroughput;
+    final originalVolumeType = this.originalVolumeType;
+    final progress = this.progress;
+    final startTime = this.startTime;
+    final statusMessage = this.statusMessage;
+    final targetIops = this.targetIops;
+    final targetMultiAttachEnabled = this.targetMultiAttachEnabled;
+    final targetSize = this.targetSize;
+    final targetThroughput = this.targetThroughput;
+    final targetVolumeType = this.targetVolumeType;
+    final volumeId = this.volumeId;
+    return {
+      if (endTime != null) 'endTime': iso8601ToJson(endTime),
+      if (modificationState != null)
+        'modificationState': modificationState.toValue(),
+      if (originalIops != null) 'originalIops': originalIops,
+      if (originalMultiAttachEnabled != null)
+        'originalMultiAttachEnabled': originalMultiAttachEnabled,
+      if (originalSize != null) 'originalSize': originalSize,
+      if (originalThroughput != null) 'originalThroughput': originalThroughput,
+      if (originalVolumeType != null)
+        'originalVolumeType': originalVolumeType.toValue(),
+      if (progress != null) 'progress': progress,
+      if (startTime != null) 'startTime': iso8601ToJson(startTime),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+      if (targetIops != null) 'targetIops': targetIops,
+      if (targetMultiAttachEnabled != null)
+        'targetMultiAttachEnabled': targetMultiAttachEnabled,
+      if (targetSize != null) 'targetSize': targetSize,
+      if (targetThroughput != null) 'targetThroughput': targetThroughput,
+      if (targetVolumeType != null)
+        'targetVolumeType': targetVolumeType.toValue(),
+      if (volumeId != null) 'volumeId': volumeId,
+    };
+  }
 }
 
 enum VolumeModificationState {
@@ -67151,6 +81258,19 @@ class VolumeStatusAction {
     this.eventId,
     this.eventType,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final description = this.description;
+    final eventId = this.eventId;
+    final eventType = this.eventType;
+    return {
+      if (code != null) 'code': code,
+      if (description != null) 'description': description,
+      if (eventId != null) 'eventId': eventId,
+      if (eventType != null) 'eventType': eventType,
+    };
+  }
 }
 
 /// Information about the instances to which the volume is attached.
@@ -67165,6 +81285,15 @@ class VolumeStatusAttachmentStatus {
     this.instanceId,
     this.ioPerformance,
   });
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    final ioPerformance = this.ioPerformance;
+    return {
+      if (instanceId != null) 'instanceId': instanceId,
+      if (ioPerformance != null) 'ioPerformance': ioPerformance,
+    };
+  }
 }
 
 /// Describes a volume status.
@@ -67179,6 +81308,15 @@ class VolumeStatusDetails {
     this.name,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final status = this.status;
+    return {
+      if (name != null) 'name': name.toValue(),
+      if (status != null) 'status': status,
+    };
+  }
 }
 
 /// Describes a volume status event.
@@ -67209,6 +81347,23 @@ class VolumeStatusEvent {
     this.notAfter,
     this.notBefore,
   });
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final eventId = this.eventId;
+    final eventType = this.eventType;
+    final instanceId = this.instanceId;
+    final notAfter = this.notAfter;
+    final notBefore = this.notBefore;
+    return {
+      if (description != null) 'description': description,
+      if (eventId != null) 'eventId': eventId,
+      if (eventType != null) 'eventType': eventType,
+      if (instanceId != null) 'instanceId': instanceId,
+      if (notAfter != null) 'notAfter': iso8601ToJson(notAfter),
+      if (notBefore != null) 'notBefore': iso8601ToJson(notBefore),
+    };
+  }
 }
 
 /// Describes the status of a volume.
@@ -67223,6 +81378,15 @@ class VolumeStatusInfo {
     this.details,
     this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    final details = this.details;
+    final status = this.status;
+    return {
+      if (details != null) 'details': details,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 enum VolumeStatusInfoStatus {
@@ -67290,6 +81454,25 @@ class VolumeStatusItem {
     this.volumeId,
     this.volumeStatus,
   });
+
+  Map<String, dynamic> toJson() {
+    final actions = this.actions;
+    final attachmentStatuses = this.attachmentStatuses;
+    final availabilityZone = this.availabilityZone;
+    final events = this.events;
+    final outpostArn = this.outpostArn;
+    final volumeId = this.volumeId;
+    final volumeStatus = this.volumeStatus;
+    return {
+      if (actions != null) 'actionsSet': actions,
+      if (attachmentStatuses != null) 'attachmentStatuses': attachmentStatuses,
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (events != null) 'eventsSet': events,
+      if (outpostArn != null) 'outpostArn': outpostArn,
+      if (volumeId != null) 'volumeId': volumeId,
+      if (volumeStatus != null) 'volumeStatus': volumeStatus,
+    };
+  }
 }
 
 enum VolumeStatusName {
@@ -67417,6 +81600,33 @@ class Vpc {
     this.tags,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidrBlock = this.cidrBlock;
+    final cidrBlockAssociationSet = this.cidrBlockAssociationSet;
+    final dhcpOptionsId = this.dhcpOptionsId;
+    final instanceTenancy = this.instanceTenancy;
+    final ipv6CidrBlockAssociationSet = this.ipv6CidrBlockAssociationSet;
+    final isDefault = this.isDefault;
+    final ownerId = this.ownerId;
+    final state = this.state;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (cidrBlock != null) 'cidrBlock': cidrBlock,
+      if (cidrBlockAssociationSet != null)
+        'cidrBlockAssociationSet': cidrBlockAssociationSet,
+      if (dhcpOptionsId != null) 'dhcpOptionsId': dhcpOptionsId,
+      if (instanceTenancy != null) 'instanceTenancy': instanceTenancy.toValue(),
+      if (ipv6CidrBlockAssociationSet != null)
+        'ipv6CidrBlockAssociationSet': ipv6CidrBlockAssociationSet,
+      if (isDefault != null) 'isDefault': isDefault,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// Describes an attachment between a virtual private gateway and a VPC.
@@ -67431,6 +81641,15 @@ class VpcAttachment {
     this.state,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final vpcId = this.vpcId;
+    return {
+      if (state != null) 'state': state.toValue(),
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 enum VpcAttributeName {
@@ -67477,6 +81696,17 @@ class VpcCidrBlockAssociation {
     this.cidrBlock,
     this.cidrBlockState,
   });
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    final cidrBlock = this.cidrBlock;
+    final cidrBlockState = this.cidrBlockState;
+    return {
+      if (associationId != null) 'associationId': associationId,
+      if (cidrBlock != null) 'cidrBlock': cidrBlock,
+      if (cidrBlockState != null) 'cidrBlockState': cidrBlockState,
+    };
+  }
 }
 
 /// Describes the state of a CIDR block.
@@ -67491,6 +81721,15 @@ class VpcCidrBlockState {
     this.state,
     this.statusMessage,
   });
+
+  Map<String, dynamic> toJson() {
+    final state = this.state;
+    final statusMessage = this.statusMessage;
+    return {
+      if (state != null) 'state': state.toValue(),
+      if (statusMessage != null) 'statusMessage': statusMessage,
+    };
+  }
 }
 
 enum VpcCidrBlockStateCode {
@@ -67564,6 +81803,17 @@ class VpcClassicLink {
     this.tags,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final classicLinkEnabled = this.classicLinkEnabled;
+    final tags = this.tags;
+    final vpcId = this.vpcId;
+    return {
+      if (classicLinkEnabled != null) 'classicLinkEnabled': classicLinkEnabled,
+      if (tags != null) 'tagSet': tags,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// Describes a VPC endpoint.
@@ -67648,6 +81898,51 @@ class VpcEndpoint {
     this.vpcEndpointType,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final dnsEntries = this.dnsEntries;
+    final dnsOptions = this.dnsOptions;
+    final groups = this.groups;
+    final ipAddressType = this.ipAddressType;
+    final lastError = this.lastError;
+    final networkInterfaceIds = this.networkInterfaceIds;
+    final ownerId = this.ownerId;
+    final policyDocument = this.policyDocument;
+    final privateDnsEnabled = this.privateDnsEnabled;
+    final requesterManaged = this.requesterManaged;
+    final routeTableIds = this.routeTableIds;
+    final serviceName = this.serviceName;
+    final state = this.state;
+    final subnetIds = this.subnetIds;
+    final tags = this.tags;
+    final vpcEndpointId = this.vpcEndpointId;
+    final vpcEndpointType = this.vpcEndpointType;
+    final vpcId = this.vpcId;
+    return {
+      if (creationTimestamp != null)
+        'creationTimestamp': iso8601ToJson(creationTimestamp),
+      if (dnsEntries != null) 'dnsEntrySet': dnsEntries,
+      if (dnsOptions != null) 'dnsOptions': dnsOptions,
+      if (groups != null) 'groupSet': groups,
+      if (ipAddressType != null) 'ipAddressType': ipAddressType.toValue(),
+      if (lastError != null) 'lastError': lastError,
+      if (networkInterfaceIds != null)
+        'networkInterfaceIdSet': networkInterfaceIds,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (policyDocument != null) 'policyDocument': policyDocument,
+      if (privateDnsEnabled != null) 'privateDnsEnabled': privateDnsEnabled,
+      if (requesterManaged != null) 'requesterManaged': requesterManaged,
+      if (routeTableIds != null) 'routeTableIdSet': routeTableIds,
+      if (serviceName != null) 'serviceName': serviceName,
+      if (state != null) 'state': state.toValue(),
+      if (subnetIds != null) 'subnetIdSet': subnetIds,
+      if (tags != null) 'tagSet': tags,
+      if (vpcEndpointId != null) 'vpcEndpointId': vpcEndpointId,
+      if (vpcEndpointType != null) 'vpcEndpointType': vpcEndpointType.toValue(),
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// Describes a VPC endpoint connection to a service.
@@ -67692,6 +81987,33 @@ class VpcEndpointConnection {
     this.vpcEndpointOwner,
     this.vpcEndpointState,
   });
+
+  Map<String, dynamic> toJson() {
+    final creationTimestamp = this.creationTimestamp;
+    final dnsEntries = this.dnsEntries;
+    final gatewayLoadBalancerArns = this.gatewayLoadBalancerArns;
+    final ipAddressType = this.ipAddressType;
+    final networkLoadBalancerArns = this.networkLoadBalancerArns;
+    final serviceId = this.serviceId;
+    final vpcEndpointId = this.vpcEndpointId;
+    final vpcEndpointOwner = this.vpcEndpointOwner;
+    final vpcEndpointState = this.vpcEndpointState;
+    return {
+      if (creationTimestamp != null)
+        'creationTimestamp': iso8601ToJson(creationTimestamp),
+      if (dnsEntries != null) 'dnsEntrySet': dnsEntries,
+      if (gatewayLoadBalancerArns != null)
+        'gatewayLoadBalancerArnSet': gatewayLoadBalancerArns,
+      if (ipAddressType != null) 'ipAddressType': ipAddressType.toValue(),
+      if (networkLoadBalancerArns != null)
+        'networkLoadBalancerArnSet': networkLoadBalancerArns,
+      if (serviceId != null) 'serviceId': serviceId,
+      if (vpcEndpointId != null) 'vpcEndpointId': vpcEndpointId,
+      if (vpcEndpointOwner != null) 'vpcEndpointOwner': vpcEndpointOwner,
+      if (vpcEndpointState != null)
+        'vpcEndpointState': vpcEndpointState.toValue(),
+    };
+  }
 }
 
 enum VpcEndpointType {
@@ -67753,6 +82075,21 @@ class VpcIpv6CidrBlockAssociation {
     this.ipv6Pool,
     this.networkBorderGroup,
   });
+
+  Map<String, dynamic> toJson() {
+    final associationId = this.associationId;
+    final ipv6CidrBlock = this.ipv6CidrBlock;
+    final ipv6CidrBlockState = this.ipv6CidrBlockState;
+    final ipv6Pool = this.ipv6Pool;
+    final networkBorderGroup = this.networkBorderGroup;
+    return {
+      if (associationId != null) 'associationId': associationId,
+      if (ipv6CidrBlock != null) 'ipv6CidrBlock': ipv6CidrBlock,
+      if (ipv6CidrBlockState != null) 'ipv6CidrBlockState': ipv6CidrBlockState,
+      if (ipv6Pool != null) 'ipv6Pool': ipv6Pool,
+      if (networkBorderGroup != null) 'networkBorderGroup': networkBorderGroup,
+    };
+  }
 }
 
 /// Describes a VPC peering connection.
@@ -67785,6 +82122,25 @@ class VpcPeeringConnection {
     this.tags,
     this.vpcPeeringConnectionId,
   });
+
+  Map<String, dynamic> toJson() {
+    final accepterVpcInfo = this.accepterVpcInfo;
+    final expirationTime = this.expirationTime;
+    final requesterVpcInfo = this.requesterVpcInfo;
+    final status = this.status;
+    final tags = this.tags;
+    final vpcPeeringConnectionId = this.vpcPeeringConnectionId;
+    return {
+      if (accepterVpcInfo != null) 'accepterVpcInfo': accepterVpcInfo,
+      if (expirationTime != null)
+        'expirationTime': iso8601ToJson(expirationTime),
+      if (requesterVpcInfo != null) 'requesterVpcInfo': requesterVpcInfo,
+      if (status != null) 'status': status,
+      if (tags != null) 'tagSet': tags,
+      if (vpcPeeringConnectionId != null)
+        'vpcPeeringConnectionId': vpcPeeringConnectionId,
+    };
+  }
 }
 
 /// <note>
@@ -67813,6 +82169,25 @@ class VpcPeeringConnectionOptionsDescription {
     this.allowEgressFromLocalClassicLinkToRemoteVpc,
     this.allowEgressFromLocalVpcToRemoteClassicLink,
   });
+
+  Map<String, dynamic> toJson() {
+    final allowDnsResolutionFromRemoteVpc =
+        this.allowDnsResolutionFromRemoteVpc;
+    final allowEgressFromLocalClassicLinkToRemoteVpc =
+        this.allowEgressFromLocalClassicLinkToRemoteVpc;
+    final allowEgressFromLocalVpcToRemoteClassicLink =
+        this.allowEgressFromLocalVpcToRemoteClassicLink;
+    return {
+      if (allowDnsResolutionFromRemoteVpc != null)
+        'allowDnsResolutionFromRemoteVpc': allowDnsResolutionFromRemoteVpc,
+      if (allowEgressFromLocalClassicLinkToRemoteVpc != null)
+        'allowEgressFromLocalClassicLinkToRemoteVpc':
+            allowEgressFromLocalClassicLinkToRemoteVpc,
+      if (allowEgressFromLocalVpcToRemoteClassicLink != null)
+        'allowEgressFromLocalVpcToRemoteClassicLink':
+            allowEgressFromLocalVpcToRemoteClassicLink,
+    };
+  }
 }
 
 /// Describes the status of a VPC peering connection.
@@ -67827,6 +82202,15 @@ class VpcPeeringConnectionStateReason {
     this.code,
     this.message,
   });
+
+  Map<String, dynamic> toJson() {
+    final code = this.code;
+    final message = this.message;
+    return {
+      if (code != null) 'code': code.toValue(),
+      if (message != null) 'message': message,
+    };
+  }
 }
 
 enum VpcPeeringConnectionStateReasonCode {
@@ -67927,6 +82311,25 @@ class VpcPeeringConnectionVpcInfo {
     this.region,
     this.vpcId,
   });
+
+  Map<String, dynamic> toJson() {
+    final cidrBlock = this.cidrBlock;
+    final cidrBlockSet = this.cidrBlockSet;
+    final ipv6CidrBlockSet = this.ipv6CidrBlockSet;
+    final ownerId = this.ownerId;
+    final peeringOptions = this.peeringOptions;
+    final region = this.region;
+    final vpcId = this.vpcId;
+    return {
+      if (cidrBlock != null) 'cidrBlock': cidrBlock,
+      if (cidrBlockSet != null) 'cidrBlockSet': cidrBlockSet,
+      if (ipv6CidrBlockSet != null) 'ipv6CidrBlockSet': ipv6CidrBlockSet,
+      if (ownerId != null) 'ownerId': ownerId,
+      if (peeringOptions != null) 'peeringOptions': peeringOptions,
+      if (region != null) 'region': region,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 enum VpcState {
@@ -68051,6 +82454,44 @@ class VpnConnection {
     this.vpnConnectionId,
     this.vpnGatewayId,
   });
+
+  Map<String, dynamic> toJson() {
+    final category = this.category;
+    final coreNetworkArn = this.coreNetworkArn;
+    final coreNetworkAttachmentArn = this.coreNetworkAttachmentArn;
+    final customerGatewayConfiguration = this.customerGatewayConfiguration;
+    final customerGatewayId = this.customerGatewayId;
+    final gatewayAssociationState = this.gatewayAssociationState;
+    final options = this.options;
+    final routes = this.routes;
+    final state = this.state;
+    final tags = this.tags;
+    final transitGatewayId = this.transitGatewayId;
+    final type = this.type;
+    final vgwTelemetry = this.vgwTelemetry;
+    final vpnConnectionId = this.vpnConnectionId;
+    final vpnGatewayId = this.vpnGatewayId;
+    return {
+      if (category != null) 'category': category,
+      if (coreNetworkArn != null) 'coreNetworkArn': coreNetworkArn,
+      if (coreNetworkAttachmentArn != null)
+        'coreNetworkAttachmentArn': coreNetworkAttachmentArn,
+      if (customerGatewayConfiguration != null)
+        'customerGatewayConfiguration': customerGatewayConfiguration,
+      if (customerGatewayId != null) 'customerGatewayId': customerGatewayId,
+      if (gatewayAssociationState != null)
+        'gatewayAssociationState': gatewayAssociationState.toValue(),
+      if (options != null) 'options': options,
+      if (routes != null) 'routes': routes,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (transitGatewayId != null) 'transitGatewayId': transitGatewayId,
+      if (type != null) 'type': type.toValue(),
+      if (vgwTelemetry != null) 'vgwTelemetry': vgwTelemetry,
+      if (vpnConnectionId != null) 'vpnConnectionId': vpnConnectionId,
+      if (vpnGatewayId != null) 'vpnGatewayId': vpnGatewayId,
+    };
+  }
 }
 
 /// List of customer gateway devices that have a sample configuration file
@@ -68078,6 +82519,20 @@ class VpnConnectionDeviceType {
     this.vendor,
     this.vpnConnectionDeviceTypeId,
   });
+
+  Map<String, dynamic> toJson() {
+    final platform = this.platform;
+    final software = this.software;
+    final vendor = this.vendor;
+    final vpnConnectionDeviceTypeId = this.vpnConnectionDeviceTypeId;
+    return {
+      if (platform != null) 'platform': platform,
+      if (software != null) 'software': software,
+      if (vendor != null) 'vendor': vendor,
+      if (vpnConnectionDeviceTypeId != null)
+        'vpnConnectionDeviceTypeId': vpnConnectionDeviceTypeId,
+    };
+  }
 }
 
 /// Describes VPN connection options.
@@ -68132,6 +82587,40 @@ class VpnConnectionOptions {
     this.tunnelInsideIpVersion,
     this.tunnelOptions,
   });
+
+  Map<String, dynamic> toJson() {
+    final enableAcceleration = this.enableAcceleration;
+    final localIpv4NetworkCidr = this.localIpv4NetworkCidr;
+    final localIpv6NetworkCidr = this.localIpv6NetworkCidr;
+    final outsideIpAddressType = this.outsideIpAddressType;
+    final remoteIpv4NetworkCidr = this.remoteIpv4NetworkCidr;
+    final remoteIpv6NetworkCidr = this.remoteIpv6NetworkCidr;
+    final staticRoutesOnly = this.staticRoutesOnly;
+    final transportTransitGatewayAttachmentId =
+        this.transportTransitGatewayAttachmentId;
+    final tunnelInsideIpVersion = this.tunnelInsideIpVersion;
+    final tunnelOptions = this.tunnelOptions;
+    return {
+      if (enableAcceleration != null) 'enableAcceleration': enableAcceleration,
+      if (localIpv4NetworkCidr != null)
+        'localIpv4NetworkCidr': localIpv4NetworkCidr,
+      if (localIpv6NetworkCidr != null)
+        'localIpv6NetworkCidr': localIpv6NetworkCidr,
+      if (outsideIpAddressType != null)
+        'outsideIpAddressType': outsideIpAddressType,
+      if (remoteIpv4NetworkCidr != null)
+        'remoteIpv4NetworkCidr': remoteIpv4NetworkCidr,
+      if (remoteIpv6NetworkCidr != null)
+        'remoteIpv6NetworkCidr': remoteIpv6NetworkCidr,
+      if (staticRoutesOnly != null) 'staticRoutesOnly': staticRoutesOnly,
+      if (transportTransitGatewayAttachmentId != null)
+        'transportTransitGatewayAttachmentId':
+            transportTransitGatewayAttachmentId,
+      if (tunnelInsideIpVersion != null)
+        'tunnelInsideIpVersion': tunnelInsideIpVersion.toValue(),
+      if (tunnelOptions != null) 'tunnelOptionSet': tunnelOptions,
+    };
+  }
 }
 
 /// Describes VPN connection options.
@@ -68205,6 +82694,40 @@ class VpnConnectionOptionsSpecification {
     this.tunnelInsideIpVersion,
     this.tunnelOptions,
   });
+
+  Map<String, dynamic> toJson() {
+    final enableAcceleration = this.enableAcceleration;
+    final localIpv4NetworkCidr = this.localIpv4NetworkCidr;
+    final localIpv6NetworkCidr = this.localIpv6NetworkCidr;
+    final outsideIpAddressType = this.outsideIpAddressType;
+    final remoteIpv4NetworkCidr = this.remoteIpv4NetworkCidr;
+    final remoteIpv6NetworkCidr = this.remoteIpv6NetworkCidr;
+    final staticRoutesOnly = this.staticRoutesOnly;
+    final transportTransitGatewayAttachmentId =
+        this.transportTransitGatewayAttachmentId;
+    final tunnelInsideIpVersion = this.tunnelInsideIpVersion;
+    final tunnelOptions = this.tunnelOptions;
+    return {
+      if (enableAcceleration != null) 'EnableAcceleration': enableAcceleration,
+      if (localIpv4NetworkCidr != null)
+        'LocalIpv4NetworkCidr': localIpv4NetworkCidr,
+      if (localIpv6NetworkCidr != null)
+        'LocalIpv6NetworkCidr': localIpv6NetworkCidr,
+      if (outsideIpAddressType != null)
+        'OutsideIpAddressType': outsideIpAddressType,
+      if (remoteIpv4NetworkCidr != null)
+        'RemoteIpv4NetworkCidr': remoteIpv4NetworkCidr,
+      if (remoteIpv6NetworkCidr != null)
+        'RemoteIpv6NetworkCidr': remoteIpv6NetworkCidr,
+      if (staticRoutesOnly != null) 'staticRoutesOnly': staticRoutesOnly,
+      if (transportTransitGatewayAttachmentId != null)
+        'TransportTransitGatewayAttachmentId':
+            transportTransitGatewayAttachmentId,
+      if (tunnelInsideIpVersion != null)
+        'TunnelInsideIpVersion': tunnelInsideIpVersion.toValue(),
+      if (tunnelOptions != null) 'TunnelOptions': tunnelOptions,
+    };
+  }
 }
 
 enum VpnEcmpSupportValue {
@@ -68269,6 +82792,25 @@ class VpnGateway {
     this.vpcAttachments,
     this.vpnGatewayId,
   });
+
+  Map<String, dynamic> toJson() {
+    final amazonSideAsn = this.amazonSideAsn;
+    final availabilityZone = this.availabilityZone;
+    final state = this.state;
+    final tags = this.tags;
+    final type = this.type;
+    final vpcAttachments = this.vpcAttachments;
+    final vpnGatewayId = this.vpnGatewayId;
+    return {
+      if (amazonSideAsn != null) 'amazonSideAsn': amazonSideAsn,
+      if (availabilityZone != null) 'availabilityZone': availabilityZone,
+      if (state != null) 'state': state.toValue(),
+      if (tags != null) 'tagSet': tags,
+      if (type != null) 'type': type.toValue(),
+      if (vpcAttachments != null) 'attachments': vpcAttachments,
+      if (vpnGatewayId != null) 'vpnGatewayId': vpnGatewayId,
+    };
+  }
 }
 
 enum VpnProtocol {
@@ -68348,6 +82890,18 @@ class VpnStaticRoute {
     this.source,
     this.state,
   });
+
+  Map<String, dynamic> toJson() {
+    final destinationCidrBlock = this.destinationCidrBlock;
+    final source = this.source;
+    final state = this.state;
+    return {
+      if (destinationCidrBlock != null)
+        'destinationCidrBlock': destinationCidrBlock,
+      if (source != null) 'source': source.toValue(),
+      if (state != null) 'state': state.toValue(),
+    };
+  }
 }
 
 enum VpnStaticRouteSource {
@@ -68565,6 +83119,58 @@ class VpnTunnelOptionsSpecification {
     this.tunnelInsideCidr,
     this.tunnelInsideIpv6Cidr,
   });
+
+  Map<String, dynamic> toJson() {
+    final dPDTimeoutAction = this.dPDTimeoutAction;
+    final dPDTimeoutSeconds = this.dPDTimeoutSeconds;
+    final iKEVersions = this.iKEVersions;
+    final phase1DHGroupNumbers = this.phase1DHGroupNumbers;
+    final phase1EncryptionAlgorithms = this.phase1EncryptionAlgorithms;
+    final phase1IntegrityAlgorithms = this.phase1IntegrityAlgorithms;
+    final phase1LifetimeSeconds = this.phase1LifetimeSeconds;
+    final phase2DHGroupNumbers = this.phase2DHGroupNumbers;
+    final phase2EncryptionAlgorithms = this.phase2EncryptionAlgorithms;
+    final phase2IntegrityAlgorithms = this.phase2IntegrityAlgorithms;
+    final phase2LifetimeSeconds = this.phase2LifetimeSeconds;
+    final preSharedKey = this.preSharedKey;
+    final rekeyFuzzPercentage = this.rekeyFuzzPercentage;
+    final rekeyMarginTimeSeconds = this.rekeyMarginTimeSeconds;
+    final replayWindowSize = this.replayWindowSize;
+    final startupAction = this.startupAction;
+    final tunnelInsideCidr = this.tunnelInsideCidr;
+    final tunnelInsideIpv6Cidr = this.tunnelInsideIpv6Cidr;
+    return {
+      if (dPDTimeoutAction != null) 'DPDTimeoutAction': dPDTimeoutAction,
+      if (dPDTimeoutSeconds != null) 'DPDTimeoutSeconds': dPDTimeoutSeconds,
+      if (iKEVersions != null) 'IKEVersion': iKEVersions,
+      if (phase1DHGroupNumbers != null)
+        'Phase1DHGroupNumber': phase1DHGroupNumbers,
+      if (phase1EncryptionAlgorithms != null)
+        'Phase1EncryptionAlgorithm': phase1EncryptionAlgorithms,
+      if (phase1IntegrityAlgorithms != null)
+        'Phase1IntegrityAlgorithm': phase1IntegrityAlgorithms,
+      if (phase1LifetimeSeconds != null)
+        'Phase1LifetimeSeconds': phase1LifetimeSeconds,
+      if (phase2DHGroupNumbers != null)
+        'Phase2DHGroupNumber': phase2DHGroupNumbers,
+      if (phase2EncryptionAlgorithms != null)
+        'Phase2EncryptionAlgorithm': phase2EncryptionAlgorithms,
+      if (phase2IntegrityAlgorithms != null)
+        'Phase2IntegrityAlgorithm': phase2IntegrityAlgorithms,
+      if (phase2LifetimeSeconds != null)
+        'Phase2LifetimeSeconds': phase2LifetimeSeconds,
+      if (preSharedKey != null) 'PreSharedKey': preSharedKey,
+      if (rekeyFuzzPercentage != null)
+        'RekeyFuzzPercentage': rekeyFuzzPercentage,
+      if (rekeyMarginTimeSeconds != null)
+        'RekeyMarginTimeSeconds': rekeyMarginTimeSeconds,
+      if (replayWindowSize != null) 'ReplayWindowSize': replayWindowSize,
+      if (startupAction != null) 'StartupAction': startupAction,
+      if (tunnelInsideCidr != null) 'TunnelInsideCidr': tunnelInsideCidr,
+      if (tunnelInsideIpv6Cidr != null)
+        'TunnelInsideIpv6Cidr': tunnelInsideIpv6Cidr,
+    };
+  }
 }
 
 enum WeekDay {
@@ -68627,6 +83233,13 @@ class WithdrawByoipCidrResult {
   WithdrawByoipCidrResult({
     this.byoipCidr,
   });
+
+  Map<String, dynamic> toJson() {
+    final byoipCidr = this.byoipCidr;
+    return {
+      if (byoipCidr != null) 'byoipCidr': byoipCidr,
+    };
+  }
 }
 
 enum Scope {

@@ -642,6 +642,13 @@ class CreateNotificationRuleResult {
       arn: json['Arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
+  }
 }
 
 class DeleteNotificationRuleResult {
@@ -656,12 +663,23 @@ class DeleteNotificationRuleResult {
       arn: json['Arn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
+  }
 }
 
 class DeleteTargetResult {
   DeleteTargetResult();
   factory DeleteTargetResult.fromJson(Map<String, dynamic> _) {
     return DeleteTargetResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -741,6 +759,35 @@ class DescribeNotificationRuleResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final createdBy = this.createdBy;
+    final createdTimestamp = this.createdTimestamp;
+    final detailType = this.detailType;
+    final eventTypes = this.eventTypes;
+    final lastModifiedTimestamp = this.lastModifiedTimestamp;
+    final name = this.name;
+    final resource = this.resource;
+    final status = this.status;
+    final tags = this.tags;
+    final targets = this.targets;
+    return {
+      'Arn': arn,
+      if (createdBy != null) 'CreatedBy': createdBy,
+      if (createdTimestamp != null)
+        'CreatedTimestamp': unixTimestampToJson(createdTimestamp),
+      if (detailType != null) 'DetailType': detailType.toValue(),
+      if (eventTypes != null) 'EventTypes': eventTypes,
+      if (lastModifiedTimestamp != null)
+        'LastModifiedTimestamp': unixTimestampToJson(lastModifiedTimestamp),
+      if (name != null) 'Name': name,
+      if (resource != null) 'Resource': resource,
+      if (status != null) 'Status': status.toValue(),
+      if (tags != null) 'Tags': tags,
+      if (targets != null) 'Targets': targets,
+    };
+  }
 }
 
 enum DetailType {
@@ -799,6 +846,19 @@ class EventTypeSummary {
       serviceName: json['ServiceName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventTypeId = this.eventTypeId;
+    final eventTypeName = this.eventTypeName;
+    final resourceType = this.resourceType;
+    final serviceName = this.serviceName;
+    return {
+      if (eventTypeId != null) 'EventTypeId': eventTypeId,
+      if (eventTypeName != null) 'EventTypeName': eventTypeName,
+      if (resourceType != null) 'ResourceType': resourceType,
+      if (serviceName != null) 'ServiceName': serviceName,
+    };
+  }
 }
 
 /// Information about a filter to apply to the list of returned event types. You
@@ -815,6 +875,7 @@ class ListEventTypesFilter {
     required this.name,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -875,6 +936,15 @@ class ListEventTypesResult {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final eventTypes = this.eventTypes;
+    final nextToken = this.nextToken;
+    return {
+      if (eventTypes != null) 'EventTypes': eventTypes,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 /// Information about a filter to apply to the list of returned notification
@@ -894,6 +964,7 @@ class ListNotificationRulesFilter {
     required this.name,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -967,6 +1038,15 @@ class ListNotificationRulesResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final notificationRules = this.notificationRules;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (notificationRules != null) 'NotificationRules': notificationRules,
+    };
+  }
 }
 
 class ListTagsForResourceResult {
@@ -981,6 +1061,13 @@ class ListTagsForResourceResult {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1002,6 +1089,7 @@ class ListTargetsFilter {
     required this.name,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final name = this.name;
     final value = this.value;
@@ -1066,6 +1154,15 @@ class ListTargetsResult {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final targets = this.targets;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (targets != null) 'Targets': targets,
+    };
+  }
 }
 
 enum NotificationRuleStatus {
@@ -1114,6 +1211,15 @@ class NotificationRuleSummary {
       id: json['Id'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final id = this.id;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (id != null) 'Id': id,
+    };
+  }
 }
 
 class SubscribeResult {
@@ -1128,6 +1234,13 @@ class SubscribeResult {
     return SubscribeResult(
       arn: json['Arn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      if (arn != null) 'Arn': arn,
+    };
   }
 }
 
@@ -1144,6 +1257,13 @@ class TagResourceResult {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Information about the SNS topics associated with a notification rule.
@@ -1158,6 +1278,7 @@ class Target {
     this.targetAddress,
     this.targetType,
   });
+
   Map<String, dynamic> toJson() {
     final targetAddress = this.targetAddress;
     final targetType = this.targetType;
@@ -1234,6 +1355,17 @@ class TargetSummary {
       targetType: json['TargetType'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final targetAddress = this.targetAddress;
+    final targetStatus = this.targetStatus;
+    final targetType = this.targetType;
+    return {
+      if (targetAddress != null) 'TargetAddress': targetAddress,
+      if (targetStatus != null) 'TargetStatus': targetStatus.toValue(),
+      if (targetType != null) 'TargetType': targetType,
+    };
+  }
 }
 
 class UnsubscribeResult {
@@ -1249,6 +1381,13 @@ class UnsubscribeResult {
       arn: json['Arn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      'Arn': arn,
+    };
+  }
 }
 
 class UntagResourceResult {
@@ -1256,12 +1395,20 @@ class UntagResourceResult {
   factory UntagResourceResult.fromJson(Map<String, dynamic> _) {
     return UntagResourceResult();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateNotificationRuleResult {
   UpdateNotificationRuleResult();
   factory UpdateNotificationRuleResult.fromJson(Map<String, dynamic> _) {
     return UpdateNotificationRuleResult();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

@@ -807,6 +807,14 @@ class CancelQueryResponse {
       cancellationMessage: json['CancellationMessage'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cancellationMessage = this.cancellationMessage;
+    return {
+      if (cancellationMessage != null)
+        'CancellationMessage': cancellationMessage,
+    };
+  }
 }
 
 /// Contains the metadata for query results such as the column names, data
@@ -831,6 +839,15 @@ class ColumnInfo {
       name: json['Name'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final type = this.type;
+    final name = this.name;
+    return {
+      'Type': type,
+      if (name != null) 'Name': name,
+    };
+  }
 }
 
 class CreateScheduledQueryResponse {
@@ -844,6 +861,13 @@ class CreateScheduledQueryResponse {
     return CreateScheduledQueryResponse(
       arn: json['Arn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      'Arn': arn,
+    };
   }
 }
 
@@ -889,6 +913,21 @@ class Datum {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arrayValue = this.arrayValue;
+    final nullValue = this.nullValue;
+    final rowValue = this.rowValue;
+    final scalarValue = this.scalarValue;
+    final timeSeriesValue = this.timeSeriesValue;
+    return {
+      if (arrayValue != null) 'ArrayValue': arrayValue,
+      if (nullValue != null) 'NullValue': nullValue,
+      if (rowValue != null) 'RowValue': rowValue,
+      if (scalarValue != null) 'ScalarValue': scalarValue,
+      if (timeSeriesValue != null) 'TimeSeriesValue': timeSeriesValue,
+    };
+  }
 }
 
 class DescribeEndpointsResponse {
@@ -907,6 +946,13 @@ class DescribeEndpointsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final endpoints = this.endpoints;
+    return {
+      'Endpoints': endpoints,
+    };
+  }
 }
 
 class DescribeScheduledQueryResponse {
@@ -921,6 +967,13 @@ class DescribeScheduledQueryResponse {
       scheduledQuery: ScheduledQueryDescription.fromJson(
           json['ScheduledQuery'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final scheduledQuery = this.scheduledQuery;
+    return {
+      'ScheduledQuery': scheduledQuery,
+    };
   }
 }
 
@@ -997,6 +1050,15 @@ class Endpoint {
       cachePeriodInMinutes: json['CachePeriodInMinutes'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final address = this.address;
+    final cachePeriodInMinutes = this.cachePeriodInMinutes;
+    return {
+      'Address': address,
+      'CachePeriodInMinutes': cachePeriodInMinutes,
+    };
+  }
 }
 
 /// Configuration required for error reporting.
@@ -1039,6 +1101,13 @@ class ErrorReportLocation {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final s3ReportLocation = this.s3ReportLocation;
+    return {
+      if (s3ReportLocation != null) 'S3ReportLocation': s3ReportLocation,
+    };
+  }
 }
 
 /// Statistics for a single scheduled query run.
@@ -1076,6 +1145,22 @@ class ExecutionStats {
       recordsIngested: json['RecordsIngested'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bytesMetered = this.bytesMetered;
+    final dataWrites = this.dataWrites;
+    final executionTimeInMillis = this.executionTimeInMillis;
+    final queryResultRows = this.queryResultRows;
+    final recordsIngested = this.recordsIngested;
+    return {
+      if (bytesMetered != null) 'BytesMetered': bytesMetered,
+      if (dataWrites != null) 'DataWrites': dataWrites,
+      if (executionTimeInMillis != null)
+        'ExecutionTimeInMillis': executionTimeInMillis,
+      if (queryResultRows != null) 'QueryResultRows': queryResultRows,
+      if (recordsIngested != null) 'RecordsIngested': recordsIngested,
+    };
+  }
 }
 
 class ListScheduledQueriesResponse {
@@ -1099,6 +1184,15 @@ class ListScheduledQueriesResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final scheduledQueries = this.scheduledQueries;
+    final nextToken = this.nextToken;
+    return {
+      'ScheduledQueries': scheduledQueries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1121,6 +1215,15 @@ class ListTagsForResourceResponse {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    final nextToken = this.nextToken;
+    return {
+      'Tags': tags,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1352,6 +1455,15 @@ class ParameterMapping {
       type: Type.fromJson(json['Type'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final type = this.type;
+    return {
+      'Name': name,
+      'Type': type,
+    };
+  }
 }
 
 class PrepareQueryResponse {
@@ -1381,6 +1493,17 @@ class PrepareQueryResponse {
           .toList(),
       queryString: json['QueryString'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final columns = this.columns;
+    final parameters = this.parameters;
+    final queryString = this.queryString;
+    return {
+      'Columns': columns,
+      'Parameters': parameters,
+      'QueryString': queryString,
+    };
   }
 }
 
@@ -1426,6 +1549,21 @@ class QueryResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final columnInfo = this.columnInfo;
+    final queryId = this.queryId;
+    final rows = this.rows;
+    final nextToken = this.nextToken;
+    final queryStatus = this.queryStatus;
+    return {
+      'ColumnInfo': columnInfo,
+      'QueryId': queryId,
+      'Rows': rows,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (queryStatus != null) 'QueryStatus': queryStatus,
+    };
+  }
 }
 
 /// Information about the status of the query, including progress and bytes
@@ -1458,6 +1596,19 @@ class QueryStatus {
       progressPercentage: json['ProgressPercentage'] as double?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final cumulativeBytesMetered = this.cumulativeBytesMetered;
+    final cumulativeBytesScanned = this.cumulativeBytesScanned;
+    final progressPercentage = this.progressPercentage;
+    return {
+      if (cumulativeBytesMetered != null)
+        'CumulativeBytesMetered': cumulativeBytesMetered,
+      if (cumulativeBytesScanned != null)
+        'CumulativeBytesScanned': cumulativeBytesScanned,
+      if (progressPercentage != null) 'ProgressPercentage': progressPercentage,
+    };
+  }
 }
 
 /// Represents a single row in the query results.
@@ -1475,6 +1626,13 @@ class Row {
           .map((e) => Datum.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = this.data;
+    return {
+      'Data': data,
+    };
   }
 }
 
@@ -1563,6 +1721,15 @@ class S3ReportLocation {
       bucketName: json['BucketName'] as String?,
       objectKey: json['ObjectKey'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final bucketName = this.bucketName;
+    final objectKey = this.objectKey;
+    return {
+      if (bucketName != null) 'BucketName': bucketName,
+      if (objectKey != null) 'ObjectKey': objectKey,
+    };
   }
 }
 
@@ -1765,6 +1932,33 @@ class ScheduledQuery {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final state = this.state;
+    final creationTime = this.creationTime;
+    final errorReportConfiguration = this.errorReportConfiguration;
+    final lastRunStatus = this.lastRunStatus;
+    final nextInvocationTime = this.nextInvocationTime;
+    final previousInvocationTime = this.previousInvocationTime;
+    final targetDestination = this.targetDestination;
+    return {
+      'Arn': arn,
+      'Name': name,
+      'State': state.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (errorReportConfiguration != null)
+        'ErrorReportConfiguration': errorReportConfiguration,
+      if (lastRunStatus != null) 'LastRunStatus': lastRunStatus.toValue(),
+      if (nextInvocationTime != null)
+        'NextInvocationTime': unixTimestampToJson(nextInvocationTime),
+      if (previousInvocationTime != null)
+        'PreviousInvocationTime': unixTimestampToJson(previousInvocationTime),
+      if (targetDestination != null) 'TargetDestination': targetDestination,
+    };
+  }
 }
 
 /// Structure that describes scheduled query.
@@ -1866,6 +2060,47 @@ class ScheduledQueryDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final name = this.name;
+    final notificationConfiguration = this.notificationConfiguration;
+    final queryString = this.queryString;
+    final scheduleConfiguration = this.scheduleConfiguration;
+    final state = this.state;
+    final creationTime = this.creationTime;
+    final errorReportConfiguration = this.errorReportConfiguration;
+    final kmsKeyId = this.kmsKeyId;
+    final lastRunSummary = this.lastRunSummary;
+    final nextInvocationTime = this.nextInvocationTime;
+    final previousInvocationTime = this.previousInvocationTime;
+    final recentlyFailedRuns = this.recentlyFailedRuns;
+    final scheduledQueryExecutionRoleArn = this.scheduledQueryExecutionRoleArn;
+    final targetConfiguration = this.targetConfiguration;
+    return {
+      'Arn': arn,
+      'Name': name,
+      'NotificationConfiguration': notificationConfiguration,
+      'QueryString': queryString,
+      'ScheduleConfiguration': scheduleConfiguration,
+      'State': state.toValue(),
+      if (creationTime != null)
+        'CreationTime': unixTimestampToJson(creationTime),
+      if (errorReportConfiguration != null)
+        'ErrorReportConfiguration': errorReportConfiguration,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (lastRunSummary != null) 'LastRunSummary': lastRunSummary,
+      if (nextInvocationTime != null)
+        'NextInvocationTime': unixTimestampToJson(nextInvocationTime),
+      if (previousInvocationTime != null)
+        'PreviousInvocationTime': unixTimestampToJson(previousInvocationTime),
+      if (recentlyFailedRuns != null) 'RecentlyFailedRuns': recentlyFailedRuns,
+      if (scheduledQueryExecutionRoleArn != null)
+        'ScheduledQueryExecutionRoleArn': scheduledQueryExecutionRoleArn,
+      if (targetConfiguration != null)
+        'TargetConfiguration': targetConfiguration,
+    };
+  }
 }
 
 enum ScheduledQueryRunStatus {
@@ -1953,6 +2188,25 @@ class ScheduledQueryRunSummary {
       triggerTime: timeStampFromJson(json['TriggerTime']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorReportLocation = this.errorReportLocation;
+    final executionStats = this.executionStats;
+    final failureReason = this.failureReason;
+    final invocationTime = this.invocationTime;
+    final runStatus = this.runStatus;
+    final triggerTime = this.triggerTime;
+    return {
+      if (errorReportLocation != null)
+        'ErrorReportLocation': errorReportLocation,
+      if (executionStats != null) 'ExecutionStats': executionStats,
+      if (failureReason != null) 'FailureReason': failureReason,
+      if (invocationTime != null)
+        'InvocationTime': unixTimestampToJson(invocationTime),
+      if (runStatus != null) 'RunStatus': runStatus.toValue(),
+      if (triggerTime != null) 'TriggerTime': unixTimestampToJson(triggerTime),
+    };
+  }
 }
 
 enum ScheduledQueryState {
@@ -2016,6 +2270,21 @@ class SelectColumn {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aliased = this.aliased;
+    final databaseName = this.databaseName;
+    final name = this.name;
+    final tableName = this.tableName;
+    final type = this.type;
+    return {
+      if (aliased != null) 'Aliased': aliased,
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (name != null) 'Name': name,
+      if (tableName != null) 'TableName': tableName,
+      if (type != null) 'Type': type,
+    };
+  }
 }
 
 /// Details on SNS that are required to send the notification.
@@ -2077,6 +2346,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// Configuration used for writing the output of a query.
@@ -2119,6 +2392,14 @@ class TargetDestination {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final timestreamDestination = this.timestreamDestination;
+    return {
+      if (timestreamDestination != null)
+        'TimestreamDestination': timestreamDestination,
+    };
+  }
 }
 
 /// The timeseries data type represents the values of a measure over time. A
@@ -2142,6 +2423,15 @@ class TimeSeriesDataPoint {
       time: json['Time'] as String,
       value: Datum.fromJson(json['Value'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final time = this.time;
+    final value = this.value;
+    return {
+      'Time': time,
+      'Value': value,
+    };
   }
 }
 
@@ -2244,6 +2534,15 @@ class TimestreamDestination {
       tableName: json['TableName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final databaseName = this.databaseName;
+    final tableName = this.tableName;
+    return {
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (tableName != null) 'TableName': tableName,
+    };
+  }
 }
 
 /// Contains the data type of a column in a query result set. The data type can
@@ -2287,12 +2586,31 @@ class Type {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arrayColumnInfo = this.arrayColumnInfo;
+    final rowColumnInfo = this.rowColumnInfo;
+    final scalarType = this.scalarType;
+    final timeSeriesMeasureValueColumnInfo =
+        this.timeSeriesMeasureValueColumnInfo;
+    return {
+      if (arrayColumnInfo != null) 'ArrayColumnInfo': arrayColumnInfo,
+      if (rowColumnInfo != null) 'RowColumnInfo': rowColumnInfo,
+      if (scalarType != null) 'ScalarType': scalarType.toValue(),
+      if (timeSeriesMeasureValueColumnInfo != null)
+        'TimeSeriesMeasureValueColumnInfo': timeSeriesMeasureValueColumnInfo,
+    };
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

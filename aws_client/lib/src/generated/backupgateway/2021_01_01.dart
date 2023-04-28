@@ -820,6 +820,13 @@ class AssociateGatewayToServerOutput {
       gatewayArn: json['GatewayArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayArn = this.gatewayArn;
+    return {
+      if (gatewayArn != null) 'GatewayArn': gatewayArn,
+    };
+  }
 }
 
 class CreateGatewayOutput {
@@ -833,6 +840,13 @@ class CreateGatewayOutput {
     return CreateGatewayOutput(
       gatewayArn: json['GatewayArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayArn = this.gatewayArn;
+    return {
+      if (gatewayArn != null) 'GatewayArn': gatewayArn,
+    };
   }
 }
 
@@ -848,6 +862,13 @@ class DeleteGatewayOutput {
       gatewayArn: json['GatewayArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayArn = this.gatewayArn;
+    return {
+      if (gatewayArn != null) 'GatewayArn': gatewayArn,
+    };
+  }
 }
 
 class DeleteHypervisorOutput {
@@ -861,6 +882,13 @@ class DeleteHypervisorOutput {
     return DeleteHypervisorOutput(
       hypervisorArn: json['HypervisorArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hypervisorArn = this.hypervisorArn;
+    return {
+      if (hypervisorArn != null) 'HypervisorArn': hypervisorArn,
+    };
   }
 }
 
@@ -876,6 +904,13 @@ class DisassociateGatewayFromServerOutput {
     return DisassociateGatewayFromServerOutput(
       gatewayArn: json['GatewayArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayArn = this.gatewayArn;
+    return {
+      if (gatewayArn != null) 'GatewayArn': gatewayArn,
+    };
   }
 }
 
@@ -916,6 +951,22 @@ class Gateway {
       hypervisorId: json['HypervisorId'] as String?,
       lastSeenTime: timeStampFromJson(json['LastSeenTime']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayArn = this.gatewayArn;
+    final gatewayDisplayName = this.gatewayDisplayName;
+    final gatewayType = this.gatewayType;
+    final hypervisorId = this.hypervisorId;
+    final lastSeenTime = this.lastSeenTime;
+    return {
+      if (gatewayArn != null) 'GatewayArn': gatewayArn,
+      if (gatewayDisplayName != null) 'GatewayDisplayName': gatewayDisplayName,
+      if (gatewayType != null) 'GatewayType': gatewayType.toValue(),
+      if (hypervisorId != null) 'HypervisorId': hypervisorId,
+      if (lastSeenTime != null)
+        'LastSeenTime': unixTimestampToJson(lastSeenTime),
+    };
   }
 }
 
@@ -967,6 +1018,28 @@ class GatewayDetails {
       vpcEndpoint: json['VpcEndpoint'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayArn = this.gatewayArn;
+    final gatewayDisplayName = this.gatewayDisplayName;
+    final gatewayType = this.gatewayType;
+    final hypervisorId = this.hypervisorId;
+    final lastSeenTime = this.lastSeenTime;
+    final nextUpdateAvailabilityTime = this.nextUpdateAvailabilityTime;
+    final vpcEndpoint = this.vpcEndpoint;
+    return {
+      if (gatewayArn != null) 'GatewayArn': gatewayArn,
+      if (gatewayDisplayName != null) 'GatewayDisplayName': gatewayDisplayName,
+      if (gatewayType != null) 'GatewayType': gatewayType.toValue(),
+      if (hypervisorId != null) 'HypervisorId': hypervisorId,
+      if (lastSeenTime != null)
+        'LastSeenTime': unixTimestampToJson(lastSeenTime),
+      if (nextUpdateAvailabilityTime != null)
+        'NextUpdateAvailabilityTime':
+            unixTimestampToJson(nextUpdateAvailabilityTime),
+      if (vpcEndpoint != null) 'VpcEndpoint': vpcEndpoint,
+    };
+  }
 }
 
 enum GatewayType {
@@ -1005,6 +1078,13 @@ class GetGatewayOutput {
           ? GatewayDetails.fromJson(json['Gateway'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gateway = this.gateway;
+    return {
+      if (gateway != null) 'Gateway': gateway,
+    };
   }
 }
 
@@ -1045,6 +1125,21 @@ class Hypervisor {
       name: json['Name'] as String?,
       state: (json['State'] as String?)?.toHypervisorState(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final host = this.host;
+    final hypervisorArn = this.hypervisorArn;
+    final kmsKeyArn = this.kmsKeyArn;
+    final name = this.name;
+    final state = this.state;
+    return {
+      if (host != null) 'Host': host,
+      if (hypervisorArn != null) 'HypervisorArn': hypervisorArn,
+      if (kmsKeyArn != null) 'KmsKeyArn': kmsKeyArn,
+      if (name != null) 'Name': name,
+      if (state != null) 'State': state.toValue(),
+    };
   }
 }
 
@@ -1099,6 +1194,13 @@ class ImportHypervisorConfigurationOutput {
       hypervisorArn: json['HypervisorArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hypervisorArn = this.hypervisorArn;
+    return {
+      if (hypervisorArn != null) 'HypervisorArn': hypervisorArn,
+    };
+  }
 }
 
 class ListGatewaysOutput {
@@ -1123,6 +1225,15 @@ class ListGatewaysOutput {
           .toList(),
       nextToken: json['NextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gateways = this.gateways;
+    final nextToken = this.nextToken;
+    return {
+      if (gateways != null) 'Gateways': gateways,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
   }
 }
 
@@ -1150,6 +1261,15 @@ class ListHypervisorsOutput {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final hypervisors = this.hypervisors;
+    final nextToken = this.nextToken;
+    return {
+      if (hypervisors != null) 'Hypervisors': hypervisors,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceOutput {
@@ -1171,6 +1291,15 @@ class ListTagsForResourceOutput {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final resourceArn = this.resourceArn;
+    final tags = this.tags;
+    return {
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1198,6 +1327,15 @@ class ListVirtualMachinesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final virtualMachines = this.virtualMachines;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (virtualMachines != null) 'VirtualMachines': virtualMachines,
+    };
+  }
 }
 
 class PutMaintenanceStartTimeOutput {
@@ -1212,6 +1350,13 @@ class PutMaintenanceStartTimeOutput {
     return PutMaintenanceStartTimeOutput(
       gatewayArn: json['GatewayArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayArn = this.gatewayArn;
+    return {
+      if (gatewayArn != null) 'GatewayArn': gatewayArn,
+    };
   }
 }
 
@@ -1259,12 +1404,23 @@ class TagResourceOutput {
       resourceARN: json['ResourceARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    return {
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+    };
+  }
 }
 
 class TestHypervisorConfigurationOutput {
   TestHypervisorConfigurationOutput();
   factory TestHypervisorConfigurationOutput.fromJson(Map<String, dynamic> _) {
     return TestHypervisorConfigurationOutput();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -1280,6 +1436,13 @@ class UntagResourceOutput {
       resourceARN: json['ResourceARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    return {
+      if (resourceARN != null) 'ResourceARN': resourceARN,
+    };
+  }
 }
 
 class UpdateGatewayInformationOutput {
@@ -1293,6 +1456,13 @@ class UpdateGatewayInformationOutput {
     return UpdateGatewayInformationOutput(
       gatewayArn: json['GatewayArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final gatewayArn = this.gatewayArn;
+    return {
+      if (gatewayArn != null) 'GatewayArn': gatewayArn,
+    };
   }
 }
 
@@ -1308,6 +1478,13 @@ class UpdateGatewaySoftwareNowOutput {
       gatewayArn: json['GatewayArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final gatewayArn = this.gatewayArn;
+    return {
+      if (gatewayArn != null) 'GatewayArn': gatewayArn,
+    };
+  }
 }
 
 class UpdateHypervisorOutput {
@@ -1321,6 +1498,13 @@ class UpdateHypervisorOutput {
     return UpdateHypervisorOutput(
       hypervisorArn: json['HypervisorArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hypervisorArn = this.hypervisorArn;
+    return {
+      if (hypervisorArn != null) 'HypervisorArn': hypervisorArn,
+    };
   }
 }
 
@@ -1363,6 +1547,24 @@ class VirtualMachine {
       path: json['Path'] as String?,
       resourceArn: json['ResourceArn'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final hostName = this.hostName;
+    final hypervisorId = this.hypervisorId;
+    final lastBackupDate = this.lastBackupDate;
+    final name = this.name;
+    final path = this.path;
+    final resourceArn = this.resourceArn;
+    return {
+      if (hostName != null) 'HostName': hostName,
+      if (hypervisorId != null) 'HypervisorId': hypervisorId,
+      if (lastBackupDate != null)
+        'LastBackupDate': unixTimestampToJson(lastBackupDate),
+      if (name != null) 'Name': name,
+      if (path != null) 'Path': path,
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+    };
   }
 }
 

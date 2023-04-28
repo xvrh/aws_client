@@ -1165,6 +1165,17 @@ class Account {
       status: (json['status'] as String).toStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final resourceStatus = this.resourceStatus;
+    final status = this.status;
+    return {
+      'accountId': accountId,
+      'resourceStatus': resourceStatus,
+      'status': status.toValue(),
+    };
+  }
 }
 
 /// An object that contains details about an aggregation response based on
@@ -1188,6 +1199,7 @@ class AccountAggregation {
     this.sortBy,
     this.sortOrder,
   });
+
   Map<String, dynamic> toJson() {
     final findingType = this.findingType;
     final resourceType = this.resourceType;
@@ -1222,6 +1234,15 @@ class AccountAggregationResponse {
               json['severityCounts'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final severityCounts = this.severityCounts;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (severityCounts != null) 'severityCounts': severityCounts,
+    };
   }
 }
 
@@ -1283,6 +1304,17 @@ class AccountState {
           ResourceState.fromJson(json['resourceState'] as Map<String, dynamic>),
       state: State.fromJson(json['state'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final resourceState = this.resourceState;
+    final state = this.state;
+    return {
+      'accountId': accountId,
+      'resourceState': resourceState,
+      'state': state,
+    };
   }
 }
 
@@ -1363,6 +1395,7 @@ class AggregationRequest {
     this.repositoryAggregation,
     this.titleAggregation,
   });
+
   Map<String, dynamic> toJson() {
     final accountAggregation = this.accountAggregation;
     final amiAggregation = this.amiAggregation;
@@ -1509,6 +1542,34 @@ class AggregationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountAggregation = this.accountAggregation;
+    final amiAggregation = this.amiAggregation;
+    final awsEcrContainerAggregation = this.awsEcrContainerAggregation;
+    final ec2InstanceAggregation = this.ec2InstanceAggregation;
+    final findingTypeAggregation = this.findingTypeAggregation;
+    final imageLayerAggregation = this.imageLayerAggregation;
+    final packageAggregation = this.packageAggregation;
+    final repositoryAggregation = this.repositoryAggregation;
+    final titleAggregation = this.titleAggregation;
+    return {
+      if (accountAggregation != null) 'accountAggregation': accountAggregation,
+      if (amiAggregation != null) 'amiAggregation': amiAggregation,
+      if (awsEcrContainerAggregation != null)
+        'awsEcrContainerAggregation': awsEcrContainerAggregation,
+      if (ec2InstanceAggregation != null)
+        'ec2InstanceAggregation': ec2InstanceAggregation,
+      if (findingTypeAggregation != null)
+        'findingTypeAggregation': findingTypeAggregation,
+      if (imageLayerAggregation != null)
+        'imageLayerAggregation': imageLayerAggregation,
+      if (packageAggregation != null) 'packageAggregation': packageAggregation,
+      if (repositoryAggregation != null)
+        'repositoryAggregation': repositoryAggregation,
+      if (titleAggregation != null) 'titleAggregation': titleAggregation,
+    };
+  }
 }
 
 enum AggregationType {
@@ -1591,6 +1652,7 @@ class AmiAggregation {
     this.sortBy,
     this.sortOrder,
   });
+
   Map<String, dynamic> toJson() {
     final amis = this.amis;
     final sortBy = this.sortBy;
@@ -1633,6 +1695,19 @@ class AmiAggregationResponse {
               json['severityCounts'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ami = this.ami;
+    final accountId = this.accountId;
+    final affectedInstances = this.affectedInstances;
+    final severityCounts = this.severityCounts;
+    return {
+      'ami': ami,
+      if (accountId != null) 'accountId': accountId,
+      if (affectedInstances != null) 'affectedInstances': affectedInstances,
+      if (severityCounts != null) 'severityCounts': severityCounts,
+    };
   }
 }
 
@@ -1686,6 +1761,13 @@ class AssociateMemberResponse {
     return AssociateMemberResponse(
       accountId: json['accountId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    return {
+      'accountId': accountId,
+    };
   }
 }
 
@@ -1785,6 +1867,32 @@ class AwsEc2InstanceDetails {
       vpcId: json['vpcId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final iamInstanceProfileArn = this.iamInstanceProfileArn;
+    final imageId = this.imageId;
+    final ipV4Addresses = this.ipV4Addresses;
+    final ipV6Addresses = this.ipV6Addresses;
+    final keyName = this.keyName;
+    final launchedAt = this.launchedAt;
+    final platform = this.platform;
+    final subnetId = this.subnetId;
+    final type = this.type;
+    final vpcId = this.vpcId;
+    return {
+      if (iamInstanceProfileArn != null)
+        'iamInstanceProfileArn': iamInstanceProfileArn,
+      if (imageId != null) 'imageId': imageId,
+      if (ipV4Addresses != null) 'ipV4Addresses': ipV4Addresses,
+      if (ipV6Addresses != null) 'ipV6Addresses': ipV6Addresses,
+      if (keyName != null) 'keyName': keyName,
+      if (launchedAt != null) 'launchedAt': unixTimestampToJson(launchedAt),
+      if (platform != null) 'platform': platform,
+      if (subnetId != null) 'subnetId': subnetId,
+      if (type != null) 'type': type,
+      if (vpcId != null) 'vpcId': vpcId,
+    };
+  }
 }
 
 /// An aggregation of information about Amazon ECR containers.
@@ -1819,6 +1927,7 @@ class AwsEcrContainerAggregation {
     this.sortBy,
     this.sortOrder,
   });
+
   Map<String, dynamic> toJson() {
     final architectures = this.architectures;
     final imageShas = this.imageShas;
@@ -1889,6 +1998,25 @@ class AwsEcrContainerAggregationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceId = this.resourceId;
+    final accountId = this.accountId;
+    final architecture = this.architecture;
+    final imageSha = this.imageSha;
+    final imageTags = this.imageTags;
+    final repository = this.repository;
+    final severityCounts = this.severityCounts;
+    return {
+      'resourceId': resourceId,
+      if (accountId != null) 'accountId': accountId,
+      if (architecture != null) 'architecture': architecture,
+      if (imageSha != null) 'imageSha': imageSha,
+      if (imageTags != null) 'imageTags': imageTags,
+      if (repository != null) 'repository': repository,
+      if (severityCounts != null) 'severityCounts': severityCounts,
+    };
+  }
 }
 
 /// The image details of the Amazon ECR container image.
@@ -1941,6 +2069,27 @@ class AwsEcrContainerImageDetails {
       platform: json['platform'] as String?,
       pushedAt: timeStampFromJson(json['pushedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final imageHash = this.imageHash;
+    final registry = this.registry;
+    final repositoryName = this.repositoryName;
+    final architecture = this.architecture;
+    final author = this.author;
+    final imageTags = this.imageTags;
+    final platform = this.platform;
+    final pushedAt = this.pushedAt;
+    return {
+      'imageHash': imageHash,
+      'registry': registry,
+      'repositoryName': repositoryName,
+      if (architecture != null) 'architecture': architecture,
+      if (author != null) 'author': author,
+      if (imageTags != null) 'imageTags': imageTags,
+      if (platform != null) 'platform': platform,
+      if (pushedAt != null) 'pushedAt': unixTimestampToJson(pushedAt),
+    };
   }
 }
 
@@ -2002,6 +2151,15 @@ class BatchGetAccountStatusResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accounts = this.accounts;
+    final failedAccounts = this.failedAccounts;
+    return {
+      'accounts': accounts,
+      if (failedAccounts != null) 'failedAccounts': failedAccounts,
+    };
+  }
 }
 
 class BatchGetFreeTrialInfoResponse {
@@ -2029,6 +2187,15 @@ class BatchGetFreeTrialInfoResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accounts = this.accounts;
+    final failedAccounts = this.failedAccounts;
+    return {
+      'accounts': accounts,
+      'failedAccounts': failedAccounts,
+    };
+  }
 }
 
 class CancelFindingsReportResponse {
@@ -2042,6 +2209,13 @@ class CancelFindingsReportResponse {
     return CancelFindingsReportResponse(
       reportId: json['reportId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reportId = this.reportId;
+    return {
+      'reportId': reportId,
+    };
   }
 }
 
@@ -2063,6 +2237,15 @@ class Counts {
       count: json['count'] as int?,
       groupKey: (json['groupKey'] as String?)?.toGroupKey(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final count = this.count;
+    final groupKey = this.groupKey;
+    return {
+      if (count != null) 'count': count,
+      if (groupKey != null) 'groupKey': groupKey.toValue(),
+    };
   }
 }
 
@@ -2111,6 +2294,7 @@ class CoverageFilterCriteria {
     this.scanStatusReason,
     this.scanType,
   });
+
   Map<String, dynamic> toJson() {
     final accountId = this.accountId;
     final ec2InstanceTags = this.ec2InstanceTags;
@@ -2174,6 +2358,7 @@ class CoverageMapFilter {
     required this.key,
     this.value,
   });
+
   Map<String, dynamic> toJson() {
     final comparison = this.comparison;
     final key = this.key;
@@ -2259,6 +2444,7 @@ class CoverageStringFilter {
     required this.comparison,
     required this.value,
   });
+
   Map<String, dynamic> toJson() {
     final comparison = this.comparison;
     final value = this.value;
@@ -2313,6 +2499,23 @@ class CoveredResource {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final resourceId = this.resourceId;
+    final resourceType = this.resourceType;
+    final scanType = this.scanType;
+    final resourceMetadata = this.resourceMetadata;
+    final scanStatus = this.scanStatus;
+    return {
+      'accountId': accountId,
+      'resourceId': resourceId,
+      'resourceType': resourceType.toValue(),
+      'scanType': scanType.toValue(),
+      if (resourceMetadata != null) 'resourceMetadata': resourceMetadata,
+      if (scanStatus != null) 'scanStatus': scanStatus,
+    };
+  }
 }
 
 class CreateFilterResponse {
@@ -2327,6 +2530,13 @@ class CreateFilterResponse {
       arn: json['arn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      'arn': arn,
+    };
+  }
 }
 
 class CreateFindingsReportResponse {
@@ -2340,6 +2550,13 @@ class CreateFindingsReportResponse {
     return CreateFindingsReportResponse(
       reportId: json['reportId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reportId = this.reportId;
+    return {
+      if (reportId != null) 'reportId': reportId,
+    };
   }
 }
 
@@ -2394,6 +2611,19 @@ class CvssScore {
       version: json['version'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final baseScore = this.baseScore;
+    final scoringVector = this.scoringVector;
+    final source = this.source;
+    final version = this.version;
+    return {
+      'baseScore': baseScore,
+      'scoringVector': scoringVector,
+      'source': source,
+      'version': version,
+    };
+  }
 }
 
 /// Details on adjustments Amazon Inspector made to the CVSS score for a
@@ -2414,6 +2644,15 @@ class CvssScoreAdjustment {
       metric: json['metric'] as String,
       reason: json['reason'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final metric = this.metric;
+    final reason = this.reason;
+    return {
+      'metric': metric,
+      'reason': reason,
+    };
   }
 }
 
@@ -2458,6 +2697,23 @@ class CvssScoreDetails {
           .toList(),
       cvssSource: json['cvssSource'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final score = this.score;
+    final scoreSource = this.scoreSource;
+    final scoringVector = this.scoringVector;
+    final version = this.version;
+    final adjustments = this.adjustments;
+    final cvssSource = this.cvssSource;
+    return {
+      'score': score,
+      'scoreSource': scoreSource,
+      'scoringVector': scoringVector,
+      'version': version,
+      if (adjustments != null) 'adjustments': adjustments,
+      if (cvssSource != null) 'cvssSource': cvssSource,
+    };
   }
 }
 
@@ -2513,6 +2769,16 @@ class DelegatedAdmin {
           (json['relationshipStatus'] as String?)?.toRelationshipStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final relationshipStatus = this.relationshipStatus;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (relationshipStatus != null)
+        'relationshipStatus': relationshipStatus.toValue(),
+    };
+  }
 }
 
 /// Details of the Amazon Inspector delegated administrator for your
@@ -2534,6 +2800,15 @@ class DelegatedAdminAccount {
       accountId: json['accountId'] as String?,
       status: (json['status'] as String?)?.toDelegatedAdminStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final status = this.status;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (status != null) 'status': status.toValue(),
+    };
   }
 }
 
@@ -2577,6 +2852,13 @@ class DeleteFilterResponse {
       arn: json['arn'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      'arn': arn,
+    };
+  }
 }
 
 class DescribeOrganizationConfigurationResponse {
@@ -2600,6 +2882,16 @@ class DescribeOrganizationConfigurationResponse {
           : null,
       maxAccountLimitReached: json['maxAccountLimitReached'] as bool?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoEnable = this.autoEnable;
+    final maxAccountLimitReached = this.maxAccountLimitReached;
+    return {
+      if (autoEnable != null) 'autoEnable': autoEnable,
+      if (maxAccountLimitReached != null)
+        'maxAccountLimitReached': maxAccountLimitReached,
+    };
   }
 }
 
@@ -2654,6 +2946,13 @@ class DisableDelegatedAdminAccountResponse {
       delegatedAdminAccountId: json['delegatedAdminAccountId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final delegatedAdminAccountId = this.delegatedAdminAccountId;
+    return {
+      'delegatedAdminAccountId': delegatedAdminAccountId,
+    };
+  }
 }
 
 class DisableResponse {
@@ -2681,6 +2980,15 @@ class DisableResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accounts = this.accounts;
+    final failedAccounts = this.failedAccounts;
+    return {
+      'accounts': accounts,
+      if (failedAccounts != null) 'failedAccounts': failedAccounts,
+    };
+  }
 }
 
 class DisassociateMemberResponse {
@@ -2694,6 +3002,13 @@ class DisassociateMemberResponse {
     return DisassociateMemberResponse(
       accountId: json['accountId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    return {
+      'accountId': accountId,
+    };
   }
 }
 
@@ -2728,6 +3043,7 @@ class Ec2InstanceAggregation {
     this.sortBy,
     this.sortOrder,
   });
+
   Map<String, dynamic> toJson() {
     final amis = this.amis;
     final instanceIds = this.instanceIds;
@@ -2794,6 +3110,25 @@ class Ec2InstanceAggregationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final instanceId = this.instanceId;
+    final accountId = this.accountId;
+    final ami = this.ami;
+    final instanceTags = this.instanceTags;
+    final networkFindings = this.networkFindings;
+    final operatingSystem = this.operatingSystem;
+    final severityCounts = this.severityCounts;
+    return {
+      'instanceId': instanceId,
+      if (accountId != null) 'accountId': accountId,
+      if (ami != null) 'ami': ami,
+      if (instanceTags != null) 'instanceTags': instanceTags,
+      if (networkFindings != null) 'networkFindings': networkFindings,
+      if (operatingSystem != null) 'operatingSystem': operatingSystem,
+      if (severityCounts != null) 'severityCounts': severityCounts,
+    };
+  }
 }
 
 enum Ec2InstanceSortBy {
@@ -2858,6 +3193,17 @@ class Ec2Metadata {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final amiId = this.amiId;
+    final platform = this.platform;
+    final tags = this.tags;
+    return {
+      if (amiId != null) 'amiId': amiId,
+      if (platform != null) 'platform': platform.toValue(),
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 enum Ec2Platform {
@@ -2906,6 +3252,7 @@ class EcrConfiguration {
   EcrConfiguration({
     required this.rescanDuration,
   });
+
   Map<String, dynamic> toJson() {
     final rescanDuration = this.rescanDuration;
     return {
@@ -2931,6 +3278,14 @@ class EcrConfigurationState {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final rescanDurationState = this.rescanDurationState;
+    return {
+      if (rescanDurationState != null)
+        'rescanDurationState': rescanDurationState,
+    };
+  }
 }
 
 /// Information on the Amazon ECR image metadata associated with a finding.
@@ -2948,6 +3303,13 @@ class EcrContainerImageMetadata {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -2968,6 +3330,15 @@ class EcrRepositoryMetadata {
       name: json['name'] as String?,
       scanFrequency: (json['scanFrequency'] as String?)?.toEcrScanFrequency(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final scanFrequency = this.scanFrequency;
+    return {
+      if (name != null) 'name': name,
+      if (scanFrequency != null) 'scanFrequency': scanFrequency.toValue(),
+    };
   }
 }
 
@@ -3033,6 +3404,17 @@ class EcrRescanDurationState {
       status: (json['status'] as String?)?.toEcrRescanDurationStatus(),
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final rescanDuration = this.rescanDuration;
+    final status = this.status;
+    final updatedAt = this.updatedAt;
+    return {
+      if (rescanDuration != null) 'rescanDuration': rescanDuration.toValue(),
+      if (status != null) 'status': status.toValue(),
+      if (updatedAt != null) 'updatedAt': unixTimestampToJson(updatedAt),
+    };
   }
 }
 
@@ -3116,6 +3498,13 @@ class EnableDelegatedAdminAccountResponse {
       delegatedAdminAccountId: json['delegatedAdminAccountId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final delegatedAdminAccountId = this.delegatedAdminAccountId;
+    return {
+      'delegatedAdminAccountId': delegatedAdminAccountId,
+    };
+  }
 }
 
 class EnableResponse {
@@ -3142,6 +3531,15 @@ class EnableResponse {
           .map((e) => FailedAccount.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accounts = this.accounts;
+    final failedAccounts = this.failedAccounts;
+    return {
+      'accounts': accounts,
+      if (failedAccounts != null) 'failedAccounts': failedAccounts,
+    };
   }
 }
 
@@ -3309,6 +3707,21 @@ class FailedAccount {
       status: (json['status'] as String?)?.toStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final resourceStatus = this.resourceStatus;
+    final status = this.status;
+    return {
+      'accountId': accountId,
+      'errorCode': errorCode.toValue(),
+      'errorMessage': errorMessage,
+      if (resourceStatus != null) 'resourceStatus': resourceStatus,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 /// Details about a filter.
@@ -3370,6 +3783,31 @@ class Filter {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final action = this.action;
+    final arn = this.arn;
+    final createdAt = this.createdAt;
+    final criteria = this.criteria;
+    final name = this.name;
+    final ownerId = this.ownerId;
+    final updatedAt = this.updatedAt;
+    final description = this.description;
+    final reason = this.reason;
+    final tags = this.tags;
+    return {
+      'action': action.toValue(),
+      'arn': arn,
+      'createdAt': unixTimestampToJson(createdAt),
+      'criteria': criteria,
+      'name': name,
+      'ownerId': ownerId,
+      'updatedAt': unixTimestampToJson(updatedAt),
+      if (description != null) 'description': description,
+      if (reason != null) 'reason': reason,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -3837,6 +4275,46 @@ class Finding {
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final awsAccountId = this.awsAccountId;
+    final description = this.description;
+    final findingArn = this.findingArn;
+    final firstObservedAt = this.firstObservedAt;
+    final lastObservedAt = this.lastObservedAt;
+    final remediation = this.remediation;
+    final resources = this.resources;
+    final severity = this.severity;
+    final status = this.status;
+    final type = this.type;
+    final inspectorScore = this.inspectorScore;
+    final inspectorScoreDetails = this.inspectorScoreDetails;
+    final networkReachabilityDetails = this.networkReachabilityDetails;
+    final packageVulnerabilityDetails = this.packageVulnerabilityDetails;
+    final title = this.title;
+    final updatedAt = this.updatedAt;
+    return {
+      'awsAccountId': awsAccountId,
+      'description': description,
+      'findingArn': findingArn,
+      'firstObservedAt': unixTimestampToJson(firstObservedAt),
+      'lastObservedAt': unixTimestampToJson(lastObservedAt),
+      'remediation': remediation,
+      'resources': resources,
+      'severity': severity.toValue(),
+      'status': status.toValue(),
+      'type': type.toValue(),
+      if (inspectorScore != null) 'inspectorScore': inspectorScore,
+      if (inspectorScoreDetails != null)
+        'inspectorScoreDetails': inspectorScoreDetails,
+      if (networkReachabilityDetails != null)
+        'networkReachabilityDetails': networkReachabilityDetails,
+      if (packageVulnerabilityDetails != null)
+        'packageVulnerabilityDetails': packageVulnerabilityDetails,
+      if (title != null) 'title': title,
+      if (updatedAt != null) 'updatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 enum FindingStatus {
@@ -3920,6 +4398,7 @@ class FindingTypeAggregation {
     this.sortBy,
     this.sortOrder,
   });
+
   Map<String, dynamic> toJson() {
     final findingType = this.findingType;
     final resourceType = this.resourceType;
@@ -3954,6 +4433,15 @@ class FindingTypeAggregationResponse {
               json['severityCounts'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final severityCounts = this.severityCounts;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (severityCounts != null) 'severityCounts': severityCounts,
+    };
   }
 }
 
@@ -4011,6 +4499,15 @@ class FreeTrialAccountInfo {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final freeTrialInfo = this.freeTrialInfo;
+    return {
+      'accountId': accountId,
+      'freeTrialInfo': freeTrialInfo,
+    };
+  }
 }
 
 /// An object that contains information about the Amazon Inspector free trial
@@ -4044,6 +4541,19 @@ class FreeTrialInfo {
       type: (json['type'] as String).toFreeTrialType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final end = this.end;
+    final start = this.start;
+    final status = this.status;
+    final type = this.type;
+    return {
+      'end': unixTimestampToJson(end),
+      'start': unixTimestampToJson(start),
+      'status': status.toValue(),
+      'type': type.toValue(),
+    };
+  }
 }
 
 /// Information about an error received while accessing free trail data for an
@@ -4069,6 +4579,17 @@ class FreeTrialInfoError {
       code: (json['code'] as String).toFreeTrialInfoErrorCode(),
       message: json['message'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final code = this.code;
+    final message = this.message;
+    return {
+      'accountId': accountId,
+      'code': code.toValue(),
+      'message': message,
+    };
   }
 }
 
@@ -4172,6 +4693,13 @@ class GetConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ecrConfiguration = this.ecrConfiguration;
+    return {
+      if (ecrConfiguration != null) 'ecrConfiguration': ecrConfiguration,
+    };
+  }
 }
 
 class GetDelegatedAdminAccountResponse {
@@ -4189,6 +4717,13 @@ class GetDelegatedAdminAccountResponse {
               json['delegatedAdmin'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final delegatedAdmin = this.delegatedAdmin;
+    return {
+      if (delegatedAdmin != null) 'delegatedAdmin': delegatedAdmin,
+    };
   }
 }
 
@@ -4234,6 +4769,23 @@ class GetFindingsReportStatusResponse {
       status: (json['status'] as String?)?.toExternalReportStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destination = this.destination;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final filterCriteria = this.filterCriteria;
+    final reportId = this.reportId;
+    final status = this.status;
+    return {
+      if (destination != null) 'destination': destination,
+      if (errorCode != null) 'errorCode': errorCode.toValue(),
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (filterCriteria != null) 'filterCriteria': filterCriteria,
+      if (reportId != null) 'reportId': reportId,
+      if (status != null) 'status': status.toValue(),
+    };
+  }
 }
 
 class GetMemberResponse {
@@ -4249,6 +4801,13 @@ class GetMemberResponse {
           ? Member.fromJson(json['member'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final member = this.member;
+    return {
+      if (member != null) 'member': member,
+    };
   }
 }
 
@@ -4319,6 +4878,7 @@ class ImageLayerAggregation {
     this.sortBy,
     this.sortOrder,
   });
+
   Map<String, dynamic> toJson() {
     final layerHashes = this.layerHashes;
     final repositories = this.repositories;
@@ -4373,6 +4933,21 @@ class ImageLayerAggregationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final layerHash = this.layerHash;
+    final repository = this.repository;
+    final resourceId = this.resourceId;
+    final severityCounts = this.severityCounts;
+    return {
+      'accountId': accountId,
+      'layerHash': layerHash,
+      'repository': repository,
+      'resourceId': resourceId,
+      if (severityCounts != null) 'severityCounts': severityCounts,
+    };
+  }
 }
 
 enum ImageLayerSortBy {
@@ -4424,6 +4999,13 @@ class InspectorScoreDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final adjustedCvss = this.adjustedCvss;
+    return {
+      if (adjustedCvss != null) 'adjustedCvss': adjustedCvss,
+    };
+  }
 }
 
 class ListAccountPermissionsResponse {
@@ -4450,6 +5032,15 @@ class ListAccountPermissionsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final permissions = this.permissions;
+    final nextToken = this.nextToken;
+    return {
+      'permissions': permissions,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListCoverageResponse {
@@ -4475,6 +5066,15 @@ class ListCoverageResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final coveredResources = this.coveredResources;
+    final nextToken = this.nextToken;
+    return {
+      if (coveredResources != null) 'coveredResources': coveredResources,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4506,6 +5106,17 @@ class ListCoverageStatisticsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final totalCounts = this.totalCounts;
+    final countsByGroup = this.countsByGroup;
+    final nextToken = this.nextToken;
+    return {
+      'totalCounts': totalCounts,
+      if (countsByGroup != null) 'countsByGroup': countsByGroup,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListDelegatedAdminAccountsResponse {
@@ -4533,6 +5144,16 @@ class ListDelegatedAdminAccountsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final delegatedAdminAccounts = this.delegatedAdminAccounts;
+    final nextToken = this.nextToken;
+    return {
+      if (delegatedAdminAccounts != null)
+        'delegatedAdminAccounts': delegatedAdminAccounts,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListFiltersResponse {
@@ -4557,6 +5178,15 @@ class ListFiltersResponse {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final filters = this.filters;
+    final nextToken = this.nextToken;
+    return {
+      'filters': filters,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -4588,6 +5218,17 @@ class ListFindingAggregationsResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final aggregationType = this.aggregationType;
+    final nextToken = this.nextToken;
+    final responses = this.responses;
+    return {
+      'aggregationType': aggregationType.toValue(),
+      if (nextToken != null) 'nextToken': nextToken,
+      if (responses != null) 'responses': responses,
+    };
+  }
 }
 
 class ListFindingsResponse {
@@ -4613,6 +5254,15 @@ class ListFindingsResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final findings = this.findings;
+    final nextToken = this.nextToken;
+    return {
+      if (findings != null) 'findings': findings,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListMembersResponse {
@@ -4636,6 +5286,15 @@ class ListMembersResponse {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final members = this.members;
+    final nextToken = this.nextToken;
+    return {
+      if (members != null) 'members': members,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -4650,6 +5309,13 @@ class ListTagsForResourceResponse {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -4673,6 +5339,15 @@ class ListUsageTotalsResponse {
           .map((e) => UsageTotal.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final totals = this.totals;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (totals != null) 'totals': totals,
+    };
   }
 }
 
@@ -4765,6 +5440,21 @@ class Member {
       updatedAt: timeStampFromJson(json['updatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final delegatedAdminAccountId = this.delegatedAdminAccountId;
+    final relationshipStatus = this.relationshipStatus;
+    final updatedAt = this.updatedAt;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (delegatedAdminAccountId != null)
+        'delegatedAdminAccountId': delegatedAdminAccountId,
+      if (relationshipStatus != null)
+        'relationshipStatus': relationshipStatus.toValue(),
+      if (updatedAt != null) 'updatedAt': unixTimestampToJson(updatedAt),
+    };
+  }
 }
 
 /// Information on the network path associated with a finding.
@@ -4782,6 +5472,13 @@ class NetworkPath {
           .map((e) => Step.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final steps = this.steps;
+    return {
+      if (steps != null) 'steps': steps,
+    };
   }
 }
 
@@ -4839,6 +5536,17 @@ class NetworkReachabilityDetails {
           PortRange.fromJson(json['openPortRange'] as Map<String, dynamic>),
       protocol: (json['protocol'] as String).toNetworkProtocol(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final networkPath = this.networkPath;
+    final openPortRange = this.openPortRange;
+    final protocol = this.protocol;
+    return {
+      'networkPath': networkPath,
+      'openPortRange': openPortRange,
+      'protocol': protocol.toValue(),
+    };
   }
 }
 
@@ -4926,6 +5634,7 @@ class PackageAggregation {
     this.sortBy,
     this.sortOrder,
   });
+
   Map<String, dynamic> toJson() {
     final packageNames = this.packageNames;
     final sortBy = this.sortBy;
@@ -4964,6 +5673,17 @@ class PackageAggregationResponse {
               json['severityCounts'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final packageName = this.packageName;
+    final accountId = this.accountId;
+    final severityCounts = this.severityCounts;
+    return {
+      'packageName': packageName,
+      if (accountId != null) 'accountId': accountId,
+      if (severityCounts != null) 'severityCounts': severityCounts,
+    };
   }
 }
 
@@ -5241,6 +5961,34 @@ class PackageVulnerabilityDetails {
       vendorUpdatedAt: timeStampFromJson(json['vendorUpdatedAt']),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final source = this.source;
+    final vulnerabilityId = this.vulnerabilityId;
+    final vulnerablePackages = this.vulnerablePackages;
+    final cvss = this.cvss;
+    final referenceUrls = this.referenceUrls;
+    final relatedVulnerabilities = this.relatedVulnerabilities;
+    final sourceUrl = this.sourceUrl;
+    final vendorCreatedAt = this.vendorCreatedAt;
+    final vendorSeverity = this.vendorSeverity;
+    final vendorUpdatedAt = this.vendorUpdatedAt;
+    return {
+      'source': source,
+      'vulnerabilityId': vulnerabilityId,
+      'vulnerablePackages': vulnerablePackages,
+      if (cvss != null) 'cvss': cvss,
+      if (referenceUrls != null) 'referenceUrls': referenceUrls,
+      if (relatedVulnerabilities != null)
+        'relatedVulnerabilities': relatedVulnerabilities,
+      if (sourceUrl != null) 'sourceUrl': sourceUrl,
+      if (vendorCreatedAt != null)
+        'vendorCreatedAt': unixTimestampToJson(vendorCreatedAt),
+      if (vendorSeverity != null) 'vendorSeverity': vendorSeverity,
+      if (vendorUpdatedAt != null)
+        'vendorUpdatedAt': unixTimestampToJson(vendorUpdatedAt),
+    };
+  }
 }
 
 /// Contains information on the permissions an account has within Amazon
@@ -5263,6 +6011,15 @@ class Permission {
       service: (json['service'] as String).toService(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final operation = this.operation;
+    final service = this.service;
+    return {
+      'operation': operation.toValue(),
+      'service': service.toValue(),
+    };
+  }
 }
 
 /// Details about the port range associated with a finding.
@@ -5282,6 +6039,15 @@ class PortRange {
       begin: json['begin'] as int,
       end: json['end'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final begin = this.begin;
+    final end = this.end;
+    return {
+      'begin': begin,
+      'end': end,
+    };
   }
 }
 
@@ -5331,6 +6097,15 @@ class Recommendation {
       url: json['Url'] as String?,
       text: json['text'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final url = this.url;
+    final text = this.text;
+    return {
+      if (url != null) 'Url': url,
+      if (text != null) 'text': text,
+    };
   }
 }
 
@@ -5429,6 +6204,13 @@ class Remediation {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final recommendation = this.recommendation;
+    return {
+      if (recommendation != null) 'recommendation': recommendation,
+    };
+  }
 }
 
 enum ReportFormat {
@@ -5523,6 +6305,7 @@ class RepositoryAggregation {
     this.sortBy,
     this.sortOrder,
   });
+
   Map<String, dynamic> toJson() {
     final repositories = this.repositories;
     final sortBy = this.sortBy;
@@ -5566,6 +6349,19 @@ class RepositoryAggregationResponse {
               json['severityCounts'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repository = this.repository;
+    final accountId = this.accountId;
+    final affectedImages = this.affectedImages;
+    final severityCounts = this.severityCounts;
+    return {
+      'repository': repository,
+      if (accountId != null) 'accountId': accountId,
+      if (affectedImages != null) 'affectedImages': affectedImages,
+      if (severityCounts != null) 'severityCounts': severityCounts,
+    };
   }
 }
 
@@ -5648,6 +6444,23 @@ class Resource {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final id = this.id;
+    final type = this.type;
+    final details = this.details;
+    final partition = this.partition;
+    final region = this.region;
+    final tags = this.tags;
+    return {
+      'id': id,
+      'type': type.toValue(),
+      if (details != null) 'details': details,
+      if (partition != null) 'partition': partition,
+      if (region != null) 'region': region,
+      if (tags != null) 'tags': tags,
+    };
+  }
 }
 
 /// Contains details about the resource involved in the finding.
@@ -5675,6 +6488,16 @@ class ResourceDetails {
               json['awsEcrContainerImage'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final awsEc2Instance = this.awsEc2Instance;
+    final awsEcrContainerImage = this.awsEcrContainerImage;
+    return {
+      if (awsEc2Instance != null) 'awsEc2Instance': awsEc2Instance,
+      if (awsEcrContainerImage != null)
+        'awsEcrContainerImage': awsEcrContainerImage,
+    };
   }
 }
 
@@ -5711,6 +6534,17 @@ class ResourceScanMetadata {
               json['ecrRepository'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ec2 = this.ec2;
+    final ecrImage = this.ecrImage;
+    final ecrRepository = this.ecrRepository;
+    return {
+      if (ec2 != null) 'ec2': ec2,
+      if (ecrImage != null) 'ecrImage': ecrImage,
+      if (ecrRepository != null) 'ecrRepository': ecrRepository,
+    };
   }
 }
 
@@ -5763,6 +6597,15 @@ class ResourceState {
       ecr: State.fromJson(json['ecr'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final ec2 = this.ec2;
+    final ecr = this.ecr;
+    return {
+      'ec2': ec2,
+      'ecr': ecr,
+    };
+  }
 }
 
 /// Details the status of Amazon Inspector for each resource type Amazon
@@ -5783,6 +6626,15 @@ class ResourceStatus {
       ec2: (json['ec2'] as String).toStatus(),
       ecr: (json['ecr'] as String).toStatus(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final ec2 = this.ec2;
+    final ecr = this.ecr;
+    return {
+      'ec2': ec2.toValue(),
+      'ecr': ecr.toValue(),
+    };
   }
 }
 
@@ -5836,6 +6688,15 @@ class ScanStatus {
       reason: (json['reason'] as String).toScanStatusReason(),
       statusCode: (json['statusCode'] as String).toScanStatusCode(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reason = this.reason;
+    final statusCode = this.statusCode;
+    return {
+      'reason': reason.toValue(),
+      'statusCode': statusCode.toValue(),
+    };
   }
 }
 
@@ -6087,6 +6948,19 @@ class SeverityCounts {
       medium: json['medium'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final all = this.all;
+    final critical = this.critical;
+    final high = this.high;
+    final medium = this.medium;
+    return {
+      if (all != null) 'all': all,
+      if (critical != null) 'critical': critical,
+      if (high != null) 'high': high,
+      if (medium != null) 'medium': medium,
+    };
+  }
 }
 
 /// Details about the criteria used to sort finding results.
@@ -6101,6 +6975,7 @@ class SortCriteria {
     required this.field,
     required this.sortOrder,
   });
+
   Map<String, dynamic> toJson() {
     final field = this.field;
     final sortOrder = this.sortOrder;
@@ -6261,6 +7136,17 @@ class State {
       status: (json['status'] as String).toStatus(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final status = this.status;
+    return {
+      'errorCode': errorCode.toValue(),
+      'errorMessage': errorMessage,
+      'status': status.toValue(),
+    };
+  }
 }
 
 enum Status {
@@ -6328,6 +7214,15 @@ class Step {
       componentId: json['componentId'] as String,
       componentType: json['componentType'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final componentId = this.componentId;
+    final componentType = this.componentType;
+    return {
+      'componentId': componentId,
+      'componentType': componentType,
+    };
   }
 }
 
@@ -6398,6 +7293,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 /// The details that define an aggregation based on finding title.
@@ -6424,6 +7323,7 @@ class TitleAggregation {
     this.titles,
     this.vulnerabilityIds,
   });
+
   Map<String, dynamic> toJson() {
     final resourceType = this.resourceType;
     final sortBy = this.sortBy;
@@ -6472,6 +7372,19 @@ class TitleAggregationResponse {
       vulnerabilityId: json['vulnerabilityId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final title = this.title;
+    final accountId = this.accountId;
+    final severityCounts = this.severityCounts;
+    final vulnerabilityId = this.vulnerabilityId;
+    return {
+      'title': title,
+      if (accountId != null) 'accountId': accountId,
+      if (severityCounts != null) 'severityCounts': severityCounts,
+      if (vulnerabilityId != null) 'vulnerabilityId': vulnerabilityId,
+    };
+  }
 }
 
 enum TitleSortBy {
@@ -6512,12 +7425,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateConfigurationResponse {
   UpdateConfigurationResponse();
   factory UpdateConfigurationResponse.fromJson(Map<String, dynamic> _) {
     return UpdateConfigurationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6532,6 +7453,13 @@ class UpdateFilterResponse {
     return UpdateFilterResponse(
       arn: json['arn'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    return {
+      'arn': arn,
+    };
   }
 }
 
@@ -6549,6 +7477,13 @@ class UpdateOrganizationConfigurationResponse {
       autoEnable:
           AutoEnable.fromJson(json['autoEnable'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final autoEnable = this.autoEnable;
+    return {
+      'autoEnable': autoEnable,
+    };
   }
 }
 
@@ -6580,6 +7515,20 @@ class Usage {
       type: (json['type'] as String?)?.toUsageType(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final currency = this.currency;
+    final estimatedMonthlyCost = this.estimatedMonthlyCost;
+    final total = this.total;
+    final type = this.type;
+    return {
+      if (currency != null) 'currency': currency.toValue(),
+      if (estimatedMonthlyCost != null)
+        'estimatedMonthlyCost': estimatedMonthlyCost,
+      if (total != null) 'total': total,
+      if (type != null) 'type': type.toValue(),
+    };
+  }
 }
 
 /// The total of usage for an account ID.
@@ -6602,6 +7551,15 @@ class UsageTotal {
           .map((e) => Usage.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final accountId = this.accountId;
+    final usage = this.usage;
+    return {
+      if (accountId != null) 'accountId': accountId,
+      if (usage != null) 'usage': usage,
+    };
   }
 }
 
@@ -6690,6 +7648,29 @@ class VulnerablePackage {
       release: json['release'] as String?,
       sourceLayerHash: json['sourceLayerHash'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final name = this.name;
+    final version = this.version;
+    final arch = this.arch;
+    final epoch = this.epoch;
+    final filePath = this.filePath;
+    final fixedInVersion = this.fixedInVersion;
+    final packageManager = this.packageManager;
+    final release = this.release;
+    final sourceLayerHash = this.sourceLayerHash;
+    return {
+      'name': name,
+      'version': version,
+      if (arch != null) 'arch': arch,
+      if (epoch != null) 'epoch': epoch,
+      if (filePath != null) 'filePath': filePath,
+      if (fixedInVersion != null) 'fixedInVersion': fixedInVersion,
+      if (packageManager != null) 'packageManager': packageManager.toValue(),
+      if (release != null) 'release': release,
+      if (sourceLayerHash != null) 'sourceLayerHash': sourceLayerHash,
+    };
   }
 }
 

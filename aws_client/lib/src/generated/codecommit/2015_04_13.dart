@@ -5016,6 +5016,15 @@ class Approval {
       userArn: json['userArn'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approvalState = this.approvalState;
+    final userArn = this.userArn;
+    return {
+      if (approvalState != null) 'approvalState': approvalState.toValue(),
+      if (userArn != null) 'userArn': userArn,
+    };
+  }
 }
 
 /// Returns information about an approval rule.
@@ -5070,6 +5079,31 @@ class ApprovalRule {
       ruleContentSha256: json['ruleContentSha256'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approvalRuleContent = this.approvalRuleContent;
+    final approvalRuleId = this.approvalRuleId;
+    final approvalRuleName = this.approvalRuleName;
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final lastModifiedUser = this.lastModifiedUser;
+    final originApprovalRuleTemplate = this.originApprovalRuleTemplate;
+    final ruleContentSha256 = this.ruleContentSha256;
+    return {
+      if (approvalRuleContent != null)
+        'approvalRuleContent': approvalRuleContent,
+      if (approvalRuleId != null) 'approvalRuleId': approvalRuleId,
+      if (approvalRuleName != null) 'approvalRuleName': approvalRuleName,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (lastModifiedUser != null) 'lastModifiedUser': lastModifiedUser,
+      if (originApprovalRuleTemplate != null)
+        'originApprovalRuleTemplate': originApprovalRuleTemplate,
+      if (ruleContentSha256 != null) 'ruleContentSha256': ruleContentSha256,
+    };
+  }
 }
 
 /// Returns information about an event for an approval rule.
@@ -5095,6 +5129,18 @@ class ApprovalRuleEventMetadata {
       approvalRuleName: json['approvalRuleName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approvalRuleContent = this.approvalRuleContent;
+    final approvalRuleId = this.approvalRuleId;
+    final approvalRuleName = this.approvalRuleName;
+    return {
+      if (approvalRuleContent != null)
+        'approvalRuleContent': approvalRuleContent,
+      if (approvalRuleId != null) 'approvalRuleId': approvalRuleId,
+      if (approvalRuleName != null) 'approvalRuleName': approvalRuleName,
+    };
+  }
 }
 
 /// Returns information about an override event for approval rules for a pull
@@ -5116,6 +5162,15 @@ class ApprovalRuleOverriddenEventMetadata {
       overrideStatus: (json['overrideStatus'] as String?)?.toOverrideStatus(),
       revisionId: json['revisionId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final overrideStatus = this.overrideStatus;
+    final revisionId = this.revisionId;
+    return {
+      if (overrideStatus != null) 'overrideStatus': overrideStatus.toValue(),
+      if (revisionId != null) 'revisionId': revisionId,
+    };
   }
 }
 
@@ -5171,6 +5226,34 @@ class ApprovalRuleTemplate {
       ruleContentSha256: json['ruleContentSha256'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approvalRuleTemplateContent = this.approvalRuleTemplateContent;
+    final approvalRuleTemplateDescription =
+        this.approvalRuleTemplateDescription;
+    final approvalRuleTemplateId = this.approvalRuleTemplateId;
+    final approvalRuleTemplateName = this.approvalRuleTemplateName;
+    final creationDate = this.creationDate;
+    final lastModifiedDate = this.lastModifiedDate;
+    final lastModifiedUser = this.lastModifiedUser;
+    final ruleContentSha256 = this.ruleContentSha256;
+    return {
+      if (approvalRuleTemplateContent != null)
+        'approvalRuleTemplateContent': approvalRuleTemplateContent,
+      if (approvalRuleTemplateDescription != null)
+        'approvalRuleTemplateDescription': approvalRuleTemplateDescription,
+      if (approvalRuleTemplateId != null)
+        'approvalRuleTemplateId': approvalRuleTemplateId,
+      if (approvalRuleTemplateName != null)
+        'approvalRuleTemplateName': approvalRuleTemplateName,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (lastModifiedUser != null) 'lastModifiedUser': lastModifiedUser,
+      if (ruleContentSha256 != null) 'ruleContentSha256': ruleContentSha256,
+    };
+  }
 }
 
 enum ApprovalState {
@@ -5220,6 +5303,15 @@ class ApprovalStateChangedEventMetadata {
       revisionId: json['revisionId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approvalStatus = this.approvalStatus;
+    final revisionId = this.revisionId;
+    return {
+      if (approvalStatus != null) 'approvalStatus': approvalStatus.toValue(),
+      if (revisionId != null) 'revisionId': revisionId,
+    };
+  }
 }
 
 /// Returns information about errors in a
@@ -5248,6 +5340,17 @@ class BatchAssociateApprovalRuleTemplateWithRepositoriesError {
       errorMessage: json['errorMessage'] as String?,
       repositoryName: json['repositoryName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final repositoryName = this.repositoryName;
+    return {
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
   }
 }
 
@@ -5279,6 +5382,15 @@ class BatchAssociateApprovalRuleTemplateWithRepositoriesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final associatedRepositoryNames = this.associatedRepositoryNames;
+    final errors = this.errors;
+    return {
+      'associatedRepositoryNames': associatedRepositoryNames,
+      'errors': errors,
+    };
+  }
 }
 
 /// Returns information about errors in a BatchDescribeMergeConflicts operation.
@@ -5303,6 +5415,17 @@ class BatchDescribeMergeConflictsError {
       filePath: json['filePath'] as String,
       message: json['message'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final exceptionName = this.exceptionName;
+    final filePath = this.filePath;
+    final message = this.message;
+    return {
+      'exceptionName': exceptionName,
+      'filePath': filePath,
+      'message': message,
+    };
   }
 }
 
@@ -5356,6 +5479,23 @@ class BatchDescribeMergeConflictsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final conflicts = this.conflicts;
+    final destinationCommitId = this.destinationCommitId;
+    final sourceCommitId = this.sourceCommitId;
+    final baseCommitId = this.baseCommitId;
+    final errors = this.errors;
+    final nextToken = this.nextToken;
+    return {
+      'conflicts': conflicts,
+      'destinationCommitId': destinationCommitId,
+      'sourceCommitId': sourceCommitId,
+      if (baseCommitId != null) 'baseCommitId': baseCommitId,
+      if (errors != null) 'errors': errors,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Returns information about errors in a
@@ -5385,6 +5525,17 @@ class BatchDisassociateApprovalRuleTemplateFromRepositoriesError {
       errorMessage: json['errorMessage'] as String?,
       repositoryName: json['repositoryName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    final repositoryName = this.repositoryName;
+    return {
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
   }
 }
 
@@ -5416,6 +5567,15 @@ class BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final disassociatedRepositoryNames = this.disassociatedRepositoryNames;
+    final errors = this.errors;
+    return {
+      'disassociatedRepositoryNames': disassociatedRepositoryNames,
+      'errors': errors,
+    };
+  }
 }
 
 /// Returns information about errors in a BatchGetCommits operation.
@@ -5442,6 +5602,17 @@ class BatchGetCommitsError {
       errorCode: json['errorCode'] as String?,
       errorMessage: json['errorMessage'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final commitId = this.commitId;
+    final errorCode = this.errorCode;
+    final errorMessage = this.errorMessage;
+    return {
+      if (commitId != null) 'commitId': commitId,
+      if (errorCode != null) 'errorCode': errorCode,
+      if (errorMessage != null) 'errorMessage': errorMessage,
+    };
   }
 }
 
@@ -5472,6 +5643,15 @@ class BatchGetCommitsOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commits = this.commits;
+    final errors = this.errors;
+    return {
+      if (commits != null) 'commits': commits,
+      if (errors != null) 'errors': errors,
+    };
+  }
 }
 
 /// Represents the output of a batch get repositories operation.
@@ -5497,6 +5677,16 @@ class BatchGetRepositoriesOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repositories = this.repositories;
+    final repositoriesNotFound = this.repositoriesNotFound;
+    return {
+      if (repositories != null) 'repositories': repositories,
+      if (repositoriesNotFound != null)
+        'repositoriesNotFound': repositoriesNotFound,
+    };
   }
 }
 
@@ -5538,6 +5728,17 @@ class BlobMetadata {
       path: json['path'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blobId = this.blobId;
+    final mode = this.mode;
+    final path = this.path;
+    return {
+      if (blobId != null) 'blobId': blobId,
+      if (mode != null) 'mode': mode,
+      if (path != null) 'path': path,
+    };
+  }
 }
 
 /// Returns information about a branch.
@@ -5557,6 +5758,15 @@ class BranchInfo {
       branchName: json['branchName'] as String?,
       commitId: json['commitId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final branchName = this.branchName;
+    final commitId = this.commitId;
+    return {
+      if (branchName != null) 'branchName': branchName,
+      if (commitId != null) 'commitId': commitId,
+    };
   }
 }
 
@@ -5661,6 +5871,33 @@ class Comment {
           ?.map((k, e) => MapEntry(k, e as int)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorArn = this.authorArn;
+    final callerReactions = this.callerReactions;
+    final clientRequestToken = this.clientRequestToken;
+    final commentId = this.commentId;
+    final content = this.content;
+    final creationDate = this.creationDate;
+    final deleted = this.deleted;
+    final inReplyTo = this.inReplyTo;
+    final lastModifiedDate = this.lastModifiedDate;
+    final reactionCounts = this.reactionCounts;
+    return {
+      if (authorArn != null) 'authorArn': authorArn,
+      if (callerReactions != null) 'callerReactions': callerReactions,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (commentId != null) 'commentId': commentId,
+      if (content != null) 'content': content,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (deleted != null) 'deleted': deleted,
+      if (inReplyTo != null) 'inReplyTo': inReplyTo,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (reactionCounts != null) 'reactionCounts': reactionCounts,
+    };
+  }
 }
 
 /// Returns information about comments on the comparison between two commits.
@@ -5717,6 +5954,25 @@ class CommentsForComparedCommit {
           : null,
       repositoryName: json['repositoryName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final afterBlobId = this.afterBlobId;
+    final afterCommitId = this.afterCommitId;
+    final beforeBlobId = this.beforeBlobId;
+    final beforeCommitId = this.beforeCommitId;
+    final comments = this.comments;
+    final location = this.location;
+    final repositoryName = this.repositoryName;
+    return {
+      if (afterBlobId != null) 'afterBlobId': afterBlobId,
+      if (afterCommitId != null) 'afterCommitId': afterCommitId,
+      if (beforeBlobId != null) 'beforeBlobId': beforeBlobId,
+      if (beforeCommitId != null) 'beforeCommitId': beforeCommitId,
+      if (comments != null) 'comments': comments,
+      if (location != null) 'location': location,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
   }
 }
 
@@ -5782,6 +6038,27 @@ class CommentsForPullRequest {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final afterBlobId = this.afterBlobId;
+    final afterCommitId = this.afterCommitId;
+    final beforeBlobId = this.beforeBlobId;
+    final beforeCommitId = this.beforeCommitId;
+    final comments = this.comments;
+    final location = this.location;
+    final pullRequestId = this.pullRequestId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (afterBlobId != null) 'afterBlobId': afterBlobId,
+      if (afterCommitId != null) 'afterCommitId': afterCommitId,
+      if (beforeBlobId != null) 'beforeBlobId': beforeBlobId,
+      if (beforeCommitId != null) 'beforeCommitId': beforeCommitId,
+      if (comments != null) 'comments': comments,
+      if (location != null) 'location': location,
+      if (pullRequestId != null) 'pullRequestId': pullRequestId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 /// Returns information about a specific commit.
@@ -5844,6 +6121,25 @@ class Commit {
       treeId: json['treeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final additionalData = this.additionalData;
+    final author = this.author;
+    final commitId = this.commitId;
+    final committer = this.committer;
+    final message = this.message;
+    final parents = this.parents;
+    final treeId = this.treeId;
+    return {
+      if (additionalData != null) 'additionalData': additionalData,
+      if (author != null) 'author': author,
+      if (commitId != null) 'commitId': commitId,
+      if (committer != null) 'committer': committer,
+      if (message != null) 'message': message,
+      if (parents != null) 'parents': parents,
+      if (treeId != null) 'treeId': treeId,
+    };
+  }
 }
 
 /// Information about conflicts in a merge operation.
@@ -5870,6 +6166,15 @@ class Conflict {
           .map((e) => MergeHunk.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final conflictMetadata = this.conflictMetadata;
+    final mergeHunks = this.mergeHunks;
+    return {
+      if (conflictMetadata != null) 'conflictMetadata': conflictMetadata,
+      if (mergeHunks != null) 'mergeHunks': mergeHunks,
+    };
   }
 }
 
@@ -5979,6 +6284,31 @@ class ConflictMetadata {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final contentConflict = this.contentConflict;
+    final fileModeConflict = this.fileModeConflict;
+    final fileModes = this.fileModes;
+    final filePath = this.filePath;
+    final fileSizes = this.fileSizes;
+    final isBinaryFile = this.isBinaryFile;
+    final mergeOperations = this.mergeOperations;
+    final numberOfConflicts = this.numberOfConflicts;
+    final objectTypeConflict = this.objectTypeConflict;
+    final objectTypes = this.objectTypes;
+    return {
+      if (contentConflict != null) 'contentConflict': contentConflict,
+      if (fileModeConflict != null) 'fileModeConflict': fileModeConflict,
+      if (fileModes != null) 'fileModes': fileModes,
+      if (filePath != null) 'filePath': filePath,
+      if (fileSizes != null) 'fileSizes': fileSizes,
+      if (isBinaryFile != null) 'isBinaryFile': isBinaryFile,
+      if (mergeOperations != null) 'mergeOperations': mergeOperations,
+      if (numberOfConflicts != null) 'numberOfConflicts': numberOfConflicts,
+      if (objectTypeConflict != null) 'objectTypeConflict': objectTypeConflict,
+      if (objectTypes != null) 'objectTypes': objectTypes,
+    };
+  }
 }
 
 /// If AUTOMERGE is the conflict resolution strategy, a list of inputs to use
@@ -5998,6 +6328,7 @@ class ConflictResolution {
     this.replaceContents,
     this.setFileModes,
   });
+
   Map<String, dynamic> toJson() {
     final deleteFiles = this.deleteFiles;
     final replaceContents = this.replaceContents;
@@ -6063,6 +6394,13 @@ class CreateApprovalRuleTemplateOutput {
           json['approvalRuleTemplate'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approvalRuleTemplate = this.approvalRuleTemplate;
+    return {
+      'approvalRuleTemplate': approvalRuleTemplate,
+    };
+  }
 }
 
 class CreateCommitOutput {
@@ -6107,6 +6445,21 @@ class CreateCommitOutput {
       treeId: json['treeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commitId = this.commitId;
+    final filesAdded = this.filesAdded;
+    final filesDeleted = this.filesDeleted;
+    final filesUpdated = this.filesUpdated;
+    final treeId = this.treeId;
+    return {
+      if (commitId != null) 'commitId': commitId,
+      if (filesAdded != null) 'filesAdded': filesAdded,
+      if (filesDeleted != null) 'filesDeleted': filesDeleted,
+      if (filesUpdated != null) 'filesUpdated': filesUpdated,
+      if (treeId != null) 'treeId': treeId,
+    };
+  }
 }
 
 class CreatePullRequestApprovalRuleOutput {
@@ -6123,6 +6476,13 @@ class CreatePullRequestApprovalRuleOutput {
           ApprovalRule.fromJson(json['approvalRule'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approvalRule = this.approvalRule;
+    return {
+      'approvalRule': approvalRule,
+    };
+  }
 }
 
 class CreatePullRequestOutput {
@@ -6137,6 +6497,13 @@ class CreatePullRequestOutput {
       pullRequest:
           PullRequest.fromJson(json['pullRequest'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pullRequest = this.pullRequest;
+    return {
+      'pullRequest': pullRequest,
+    };
   }
 }
 
@@ -6155,6 +6522,13 @@ class CreateRepositoryOutput {
               json['repositoryMetadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repositoryMetadata = this.repositoryMetadata;
+    return {
+      if (repositoryMetadata != null) 'repositoryMetadata': repositoryMetadata,
+    };
   }
 }
 
@@ -6177,6 +6551,15 @@ class CreateUnreferencedMergeCommitOutput {
       treeId: json['treeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commitId = this.commitId;
+    final treeId = this.treeId;
+    return {
+      if (commitId != null) 'commitId': commitId,
+      if (treeId != null) 'treeId': treeId,
+    };
+  }
 }
 
 class DeleteApprovalRuleTemplateOutput {
@@ -6191,6 +6574,13 @@ class DeleteApprovalRuleTemplateOutput {
     return DeleteApprovalRuleTemplateOutput(
       approvalRuleTemplateId: json['approvalRuleTemplateId'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final approvalRuleTemplateId = this.approvalRuleTemplateId;
+    return {
+      'approvalRuleTemplateId': approvalRuleTemplateId,
+    };
   }
 }
 
@@ -6210,6 +6600,13 @@ class DeleteBranchOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final deletedBranch = this.deletedBranch;
+    return {
+      if (deletedBranch != null) 'deletedBranch': deletedBranch,
+    };
+  }
 }
 
 class DeleteCommentContentOutput {
@@ -6226,6 +6623,13 @@ class DeleteCommentContentOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final comment = this.comment;
+    return {
+      if (comment != null) 'comment': comment,
+    };
+  }
 }
 
 /// A file that is deleted as part of a commit.
@@ -6236,6 +6640,7 @@ class DeleteFileEntry {
   DeleteFileEntry({
     required this.filePath,
   });
+
   Map<String, dynamic> toJson() {
     final filePath = this.filePath;
     return {
@@ -6274,6 +6679,19 @@ class DeleteFileOutput {
       treeId: json['treeId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blobId = this.blobId;
+    final commitId = this.commitId;
+    final filePath = this.filePath;
+    final treeId = this.treeId;
+    return {
+      'blobId': blobId,
+      'commitId': commitId,
+      'filePath': filePath,
+      'treeId': treeId,
+    };
+  }
 }
 
 class DeletePullRequestApprovalRuleOutput {
@@ -6293,6 +6711,13 @@ class DeletePullRequestApprovalRuleOutput {
       approvalRuleId: json['approvalRuleId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approvalRuleId = this.approvalRuleId;
+    return {
+      'approvalRuleId': approvalRuleId,
+    };
+  }
 }
 
 /// Represents the output of a delete repository operation.
@@ -6307,6 +6732,13 @@ class DeleteRepositoryOutput {
     return DeleteRepositoryOutput(
       repositoryId: json['repositoryId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repositoryId = this.repositoryId;
+    return {
+      if (repositoryId != null) 'repositoryId': repositoryId,
+    };
   }
 }
 
@@ -6354,6 +6786,23 @@ class DescribeMergeConflictsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final conflictMetadata = this.conflictMetadata;
+    final destinationCommitId = this.destinationCommitId;
+    final mergeHunks = this.mergeHunks;
+    final sourceCommitId = this.sourceCommitId;
+    final baseCommitId = this.baseCommitId;
+    final nextToken = this.nextToken;
+    return {
+      'conflictMetadata': conflictMetadata,
+      'destinationCommitId': destinationCommitId,
+      'mergeHunks': mergeHunks,
+      'sourceCommitId': sourceCommitId,
+      if (baseCommitId != null) 'baseCommitId': baseCommitId,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class DescribePullRequestEventsOutput {
@@ -6376,6 +6825,15 @@ class DescribePullRequestEventsOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pullRequestEvents = this.pullRequestEvents;
+    final nextToken = this.nextToken;
+    return {
+      'pullRequestEvents': pullRequestEvents,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6409,6 +6867,17 @@ class Difference {
       changeType: (json['changeType'] as String?)?.toChangeTypeEnum(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final afterBlob = this.afterBlob;
+    final beforeBlob = this.beforeBlob;
+    final changeType = this.changeType;
+    return {
+      if (afterBlob != null) 'afterBlob': afterBlob,
+      if (beforeBlob != null) 'beforeBlob': beforeBlob,
+      if (changeType != null) 'changeType': changeType.toValue(),
+    };
+  }
 }
 
 class EvaluatePullRequestApprovalRulesOutput {
@@ -6428,6 +6897,13 @@ class EvaluatePullRequestApprovalRulesOutput {
       evaluation:
           Evaluation.fromJson(json['evaluation'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final evaluation = this.evaluation;
+    return {
+      'evaluation': evaluation,
+    };
   }
 }
 
@@ -6467,6 +6943,21 @@ class Evaluation {
       overridden: json['overridden'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approvalRulesNotSatisfied = this.approvalRulesNotSatisfied;
+    final approvalRulesSatisfied = this.approvalRulesSatisfied;
+    final approved = this.approved;
+    final overridden = this.overridden;
+    return {
+      if (approvalRulesNotSatisfied != null)
+        'approvalRulesNotSatisfied': approvalRulesNotSatisfied,
+      if (approvalRulesSatisfied != null)
+        'approvalRulesSatisfied': approvalRulesSatisfied,
+      if (approved != null) 'approved': approved,
+      if (overridden != null) 'overridden': overridden,
+    };
+  }
 }
 
 /// Returns information about a file in a repository.
@@ -6498,6 +6989,19 @@ class File {
       relativePath: json['relativePath'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final absolutePath = this.absolutePath;
+    final blobId = this.blobId;
+    final fileMode = this.fileMode;
+    final relativePath = this.relativePath;
+    return {
+      if (absolutePath != null) 'absolutePath': absolutePath,
+      if (blobId != null) 'blobId': blobId,
+      if (fileMode != null) 'fileMode': fileMode.toValue(),
+      if (relativePath != null) 'relativePath': relativePath,
+    };
+  }
 }
 
 /// A file to be added, updated, or deleted as part of a commit.
@@ -6524,6 +7028,17 @@ class FileMetadata {
       blobId: json['blobId'] as String?,
       fileMode: (json['fileMode'] as String?)?.toFileModeTypeEnum(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final absolutePath = this.absolutePath;
+    final blobId = this.blobId;
+    final fileMode = this.fileMode;
+    return {
+      if (absolutePath != null) 'absolutePath': absolutePath,
+      if (blobId != null) 'blobId': blobId,
+      if (fileMode != null) 'fileMode': fileMode.toValue(),
+    };
   }
 }
 
@@ -6583,6 +7098,17 @@ class FileModes {
       source: (json['source'] as String?)?.toFileModeTypeEnum(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final base = this.base;
+    final destination = this.destination;
+    final source = this.source;
+    return {
+      if (base != null) 'base': base.toValue(),
+      if (destination != null) 'destination': destination.toValue(),
+      if (source != null) 'source': source.toValue(),
+    };
+  }
 }
 
 /// Information about the size of files in a merge or pull request.
@@ -6607,6 +7133,17 @@ class FileSizes {
       destination: json['destination'] as int?,
       source: json['source'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final base = this.base;
+    final destination = this.destination;
+    final source = this.source;
+    return {
+      if (base != null) 'base': base,
+      if (destination != null) 'destination': destination,
+      if (source != null) 'source': source,
+    };
   }
 }
 
@@ -6635,6 +7172,17 @@ class Folder {
       treeId: json['treeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final absolutePath = this.absolutePath;
+    final relativePath = this.relativePath;
+    final treeId = this.treeId;
+    return {
+      if (absolutePath != null) 'absolutePath': absolutePath,
+      if (relativePath != null) 'relativePath': relativePath,
+      if (treeId != null) 'treeId': treeId,
+    };
+  }
 }
 
 class GetApprovalRuleTemplateOutput {
@@ -6650,6 +7198,13 @@ class GetApprovalRuleTemplateOutput {
           json['approvalRuleTemplate'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approvalRuleTemplate = this.approvalRuleTemplate;
+    return {
+      'approvalRuleTemplate': approvalRuleTemplate,
+    };
+  }
 }
 
 /// Represents the output of a get blob operation.
@@ -6664,6 +7219,13 @@ class GetBlobOutput {
     return GetBlobOutput(
       content: _s.decodeUint8List(json['content']! as String),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final content = this.content;
+    return {
+      'content': base64Encode(content),
+    };
   }
 }
 
@@ -6682,6 +7244,13 @@ class GetBranchOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final branch = this.branch;
+    return {
+      if (branch != null) 'branch': branch,
+    };
+  }
 }
 
 class GetCommentOutput {
@@ -6697,6 +7266,13 @@ class GetCommentOutput {
           ? Comment.fromJson(json['comment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comment = this.comment;
+    return {
+      if (comment != null) 'comment': comment,
+    };
   }
 }
 
@@ -6720,6 +7296,15 @@ class GetCommentReactionsOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final reactionsForComment = this.reactionsForComment;
+    final nextToken = this.nextToken;
+    return {
+      'reactionsForComment': reactionsForComment,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -6747,6 +7332,16 @@ class GetCommentsForComparedCommitOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commentsForComparedCommitData = this.commentsForComparedCommitData;
+    final nextToken = this.nextToken;
+    return {
+      if (commentsForComparedCommitData != null)
+        'commentsForComparedCommitData': commentsForComparedCommitData,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetCommentsForPullRequestOutput {
@@ -6771,6 +7366,16 @@ class GetCommentsForPullRequestOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commentsForPullRequestData = this.commentsForPullRequestData;
+    final nextToken = this.nextToken;
+    return {
+      if (commentsForPullRequestData != null)
+        'commentsForPullRequestData': commentsForPullRequestData,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the output of a get commit operation.
@@ -6786,6 +7391,13 @@ class GetCommitOutput {
     return GetCommitOutput(
       commit: Commit.fromJson(json['commit'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final commit = this.commit;
+    return {
+      'commit': commit,
+    };
   }
 }
 
@@ -6810,6 +7422,15 @@ class GetDifferencesOutput {
           .map((e) => Difference.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final differences = this.differences;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (differences != null) 'differences': differences,
+    };
   }
 }
 
@@ -6858,6 +7479,23 @@ class GetFileOutput {
       filePath: json['filePath'] as String,
       fileSize: json['fileSize'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final blobId = this.blobId;
+    final commitId = this.commitId;
+    final fileContent = this.fileContent;
+    final fileMode = this.fileMode;
+    final filePath = this.filePath;
+    final fileSize = this.fileSize;
+    return {
+      'blobId': blobId,
+      'commitId': commitId,
+      'fileContent': base64Encode(fileContent),
+      'fileMode': fileMode.toValue(),
+      'filePath': filePath,
+      'fileSize': fileSize,
+    };
   }
 }
 
@@ -6918,6 +7556,25 @@ class GetFolderOutput {
       treeId: json['treeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commitId = this.commitId;
+    final folderPath = this.folderPath;
+    final files = this.files;
+    final subFolders = this.subFolders;
+    final subModules = this.subModules;
+    final symbolicLinks = this.symbolicLinks;
+    final treeId = this.treeId;
+    return {
+      'commitId': commitId,
+      'folderPath': folderPath,
+      if (files != null) 'files': files,
+      if (subFolders != null) 'subFolders': subFolders,
+      if (subModules != null) 'subModules': subModules,
+      if (symbolicLinks != null) 'symbolicLinks': symbolicLinks,
+      if (treeId != null) 'treeId': treeId,
+    };
+  }
 }
 
 class GetMergeCommitOutput {
@@ -6950,6 +7607,20 @@ class GetMergeCommitOutput {
       mergedCommitId: json['mergedCommitId'] as String?,
       sourceCommitId: json['sourceCommitId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final baseCommitId = this.baseCommitId;
+    final destinationCommitId = this.destinationCommitId;
+    final mergedCommitId = this.mergedCommitId;
+    final sourceCommitId = this.sourceCommitId;
+    return {
+      if (baseCommitId != null) 'baseCommitId': baseCommitId,
+      if (destinationCommitId != null)
+        'destinationCommitId': destinationCommitId,
+      if (mergedCommitId != null) 'mergedCommitId': mergedCommitId,
+      if (sourceCommitId != null) 'sourceCommitId': sourceCommitId,
+    };
   }
 }
 
@@ -6998,6 +7669,23 @@ class GetMergeConflictsOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final conflictMetadataList = this.conflictMetadataList;
+    final destinationCommitId = this.destinationCommitId;
+    final mergeable = this.mergeable;
+    final sourceCommitId = this.sourceCommitId;
+    final baseCommitId = this.baseCommitId;
+    final nextToken = this.nextToken;
+    return {
+      'conflictMetadataList': conflictMetadataList,
+      'destinationCommitId': destinationCommitId,
+      'mergeable': mergeable,
+      'sourceCommitId': sourceCommitId,
+      if (baseCommitId != null) 'baseCommitId': baseCommitId,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class GetMergeOptionsOutput {
@@ -7032,6 +7720,19 @@ class GetMergeOptionsOutput {
       sourceCommitId: json['sourceCommitId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final baseCommitId = this.baseCommitId;
+    final destinationCommitId = this.destinationCommitId;
+    final mergeOptions = this.mergeOptions;
+    final sourceCommitId = this.sourceCommitId;
+    return {
+      'baseCommitId': baseCommitId,
+      'destinationCommitId': destinationCommitId,
+      'mergeOptions': mergeOptions.map((e) => e.toValue()).toList(),
+      'sourceCommitId': sourceCommitId,
+    };
+  }
 }
 
 class GetPullRequestApprovalStatesOutput {
@@ -7050,6 +7751,13 @@ class GetPullRequestApprovalStatesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approvals = this.approvals;
+    return {
+      if (approvals != null) 'approvals': approvals,
+    };
+  }
 }
 
 class GetPullRequestOutput {
@@ -7064,6 +7772,13 @@ class GetPullRequestOutput {
       pullRequest:
           PullRequest.fromJson(json['pullRequest'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pullRequest = this.pullRequest;
+    return {
+      'pullRequest': pullRequest,
+    };
   }
 }
 
@@ -7087,6 +7802,15 @@ class GetPullRequestOverrideStateOutput {
       overrider: json['overrider'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final overridden = this.overridden;
+    final overrider = this.overrider;
+    return {
+      if (overridden != null) 'overridden': overridden,
+      if (overrider != null) 'overrider': overrider,
+    };
+  }
 }
 
 /// Represents the output of a get repository operation.
@@ -7104,6 +7828,13 @@ class GetRepositoryOutput {
               json['repositoryMetadata'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repositoryMetadata = this.repositoryMetadata;
+    return {
+      if (repositoryMetadata != null) 'repositoryMetadata': repositoryMetadata,
+    };
   }
 }
 
@@ -7127,6 +7858,15 @@ class GetRepositoryTriggersOutput {
           .map((e) => RepositoryTrigger.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationId = this.configurationId;
+    final triggers = this.triggers;
+    return {
+      if (configurationId != null) 'configurationId': configurationId,
+      if (triggers != null) 'triggers': triggers,
+    };
   }
 }
 
@@ -7157,6 +7897,17 @@ class IsBinaryFile {
       source: json['source'] as bool?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final base = this.base;
+    final destination = this.destination;
+    final source = this.source;
+    return {
+      if (base != null) 'base': base,
+      if (destination != null) 'destination': destination,
+      if (source != null) 'source': source,
+    };
+  }
 }
 
 class ListApprovalRuleTemplatesOutput {
@@ -7180,6 +7931,16 @@ class ListApprovalRuleTemplatesOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final approvalRuleTemplateNames = this.approvalRuleTemplateNames;
+    final nextToken = this.nextToken;
+    return {
+      if (approvalRuleTemplateNames != null)
+        'approvalRuleTemplateNames': approvalRuleTemplateNames,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -7205,6 +7966,16 @@ class ListAssociatedApprovalRuleTemplatesForRepositoryOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approvalRuleTemplateNames = this.approvalRuleTemplateNames;
+    final nextToken = this.nextToken;
+    return {
+      if (approvalRuleTemplateNames != null)
+        'approvalRuleTemplateNames': approvalRuleTemplateNames,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 /// Represents the output of a list branches operation.
@@ -7228,6 +7999,15 @@ class ListBranchesOutput {
       nextToken: json['nextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final branches = this.branches;
+    final nextToken = this.nextToken;
+    return {
+      if (branches != null) 'branches': branches,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
+  }
 }
 
 class ListPullRequestsOutput {
@@ -7250,6 +8030,15 @@ class ListPullRequestsOutput {
           .toList(),
       nextToken: json['nextToken'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pullRequestIds = this.pullRequestIds;
+    final nextToken = this.nextToken;
+    return {
+      'pullRequestIds': pullRequestIds,
+      if (nextToken != null) 'nextToken': nextToken,
+    };
   }
 }
 
@@ -7275,6 +8064,15 @@ class ListRepositoriesForApprovalRuleTemplateOutput {
           .map((e) => e as String)
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final repositoryNames = this.repositoryNames;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (repositoryNames != null) 'repositoryNames': repositoryNames,
+    };
   }
 }
 
@@ -7302,6 +8100,15 @@ class ListRepositoriesOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final repositories = this.repositories;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (repositories != null) 'repositories': repositories,
+    };
+  }
 }
 
 class ListTagsForResourceOutput {
@@ -7322,6 +8129,15 @@ class ListTagsForResourceOutput {
       tags: (json['tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final tags = this.tags;
+    return {
+      if (nextToken != null) 'nextToken': nextToken,
+      if (tags != null) 'tags': tags,
+    };
   }
 }
 
@@ -7383,6 +8199,15 @@ class MergeBranchesByFastForwardOutput {
       treeId: json['treeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commitId = this.commitId;
+    final treeId = this.treeId;
+    return {
+      if (commitId != null) 'commitId': commitId,
+      if (treeId != null) 'treeId': treeId,
+    };
+  }
 }
 
 class MergeBranchesBySquashOutput {
@@ -7402,6 +8227,15 @@ class MergeBranchesBySquashOutput {
       treeId: json['treeId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final commitId = this.commitId;
+    final treeId = this.treeId;
+    return {
+      if (commitId != null) 'commitId': commitId,
+      if (treeId != null) 'treeId': treeId,
+    };
+  }
 }
 
 class MergeBranchesByThreeWayOutput {
@@ -7420,6 +8254,15 @@ class MergeBranchesByThreeWayOutput {
       commitId: json['commitId'] as String?,
       treeId: json['treeId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final commitId = this.commitId;
+    final treeId = this.treeId;
+    return {
+      if (commitId != null) 'commitId': commitId,
+      if (treeId != null) 'treeId': treeId,
+    };
   }
 }
 
@@ -7464,6 +8307,19 @@ class MergeHunk {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final base = this.base;
+    final destination = this.destination;
+    final isConflict = this.isConflict;
+    final source = this.source;
+    return {
+      if (base != null) 'base': base,
+      if (destination != null) 'destination': destination,
+      if (isConflict != null) 'isConflict': isConflict,
+      if (source != null) 'source': source,
+    };
+  }
 }
 
 /// Information about the details of a merge hunk that contains a conflict in a
@@ -7490,6 +8346,17 @@ class MergeHunkDetail {
       hunkContent: json['hunkContent'] as String?,
       startLine: json['startLine'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final endLine = this.endLine;
+    final hunkContent = this.hunkContent;
+    final startLine = this.startLine;
+    return {
+      if (endLine != null) 'endLine': endLine,
+      if (hunkContent != null) 'hunkContent': hunkContent,
+      if (startLine != null) 'startLine': startLine,
+    };
   }
 }
 
@@ -7522,6 +8389,19 @@ class MergeMetadata {
       mergedBy: json['mergedBy'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final isMerged = this.isMerged;
+    final mergeCommitId = this.mergeCommitId;
+    final mergeOption = this.mergeOption;
+    final mergedBy = this.mergedBy;
+    return {
+      if (isMerged != null) 'isMerged': isMerged,
+      if (mergeCommitId != null) 'mergeCommitId': mergeCommitId,
+      if (mergeOption != null) 'mergeOption': mergeOption.toValue(),
+      if (mergedBy != null) 'mergedBy': mergedBy,
+    };
+  }
 }
 
 /// Information about the file operation conflicts in a merge operation.
@@ -7542,6 +8422,15 @@ class MergeOperations {
       destination: (json['destination'] as String?)?.toChangeTypeEnum(),
       source: (json['source'] as String?)?.toChangeTypeEnum(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destination = this.destination;
+    final source = this.source;
+    return {
+      if (destination != null) 'destination': destination.toValue(),
+      if (source != null) 'source': source.toValue(),
+    };
   }
 }
 
@@ -7593,6 +8482,13 @@ class MergePullRequestByFastForwardOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pullRequest = this.pullRequest;
+    return {
+      if (pullRequest != null) 'pullRequest': pullRequest,
+    };
+  }
 }
 
 class MergePullRequestBySquashOutput {
@@ -7608,6 +8504,13 @@ class MergePullRequestBySquashOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pullRequest = this.pullRequest;
+    return {
+      if (pullRequest != null) 'pullRequest': pullRequest,
+    };
+  }
 }
 
 class MergePullRequestByThreeWayOutput {
@@ -7622,6 +8525,13 @@ class MergePullRequestByThreeWayOutput {
           ? PullRequest.fromJson(json['pullRequest'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pullRequest = this.pullRequest;
+    return {
+      if (pullRequest != null) 'pullRequest': pullRequest,
+    };
   }
 }
 
@@ -7686,6 +8596,17 @@ class ObjectTypes {
       source: (json['source'] as String?)?.toObjectTypeEnum(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final base = this.base;
+    final destination = this.destination;
+    final source = this.source;
+    return {
+      if (base != null) 'base': base.toValue(),
+      if (destination != null) 'destination': destination.toValue(),
+      if (source != null) 'source': source.toValue(),
+    };
+  }
 }
 
 enum OrderEnum {
@@ -7734,6 +8655,17 @@ class OriginApprovalRuleTemplate {
       approvalRuleTemplateId: json['approvalRuleTemplateId'] as String?,
       approvalRuleTemplateName: json['approvalRuleTemplateName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final approvalRuleTemplateId = this.approvalRuleTemplateId;
+    final approvalRuleTemplateName = this.approvalRuleTemplateName;
+    return {
+      if (approvalRuleTemplateId != null)
+        'approvalRuleTemplateId': approvalRuleTemplateId,
+      if (approvalRuleTemplateName != null)
+        'approvalRuleTemplateName': approvalRuleTemplateName,
+    };
   }
 }
 
@@ -7815,6 +8747,25 @@ class PostCommentForComparedCommitOutput {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final afterBlobId = this.afterBlobId;
+    final afterCommitId = this.afterCommitId;
+    final beforeBlobId = this.beforeBlobId;
+    final beforeCommitId = this.beforeCommitId;
+    final comment = this.comment;
+    final location = this.location;
+    final repositoryName = this.repositoryName;
+    return {
+      if (afterBlobId != null) 'afterBlobId': afterBlobId,
+      if (afterCommitId != null) 'afterCommitId': afterCommitId,
+      if (beforeBlobId != null) 'beforeBlobId': beforeBlobId,
+      if (beforeCommitId != null) 'beforeCommitId': beforeCommitId,
+      if (comment != null) 'comment': comment,
+      if (location != null) 'location': location,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 class PostCommentForPullRequestOutput {
@@ -7871,6 +8822,27 @@ class PostCommentForPullRequestOutput {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final afterBlobId = this.afterBlobId;
+    final afterCommitId = this.afterCommitId;
+    final beforeBlobId = this.beforeBlobId;
+    final beforeCommitId = this.beforeCommitId;
+    final comment = this.comment;
+    final location = this.location;
+    final pullRequestId = this.pullRequestId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (afterBlobId != null) 'afterBlobId': afterBlobId,
+      if (afterCommitId != null) 'afterCommitId': afterCommitId,
+      if (beforeBlobId != null) 'beforeBlobId': beforeBlobId,
+      if (beforeCommitId != null) 'beforeCommitId': beforeCommitId,
+      if (comment != null) 'comment': comment,
+      if (location != null) 'location': location,
+      if (pullRequestId != null) 'pullRequestId': pullRequestId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 class PostCommentReplyOutput {
@@ -7886,6 +8858,13 @@ class PostCommentReplyOutput {
           ? Comment.fromJson(json['comment'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final comment = this.comment;
+    return {
+      if (comment != null) 'comment': comment,
+    };
   }
 }
 
@@ -7968,6 +8947,36 @@ class PullRequest {
       title: json['title'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approvalRules = this.approvalRules;
+    final authorArn = this.authorArn;
+    final clientRequestToken = this.clientRequestToken;
+    final creationDate = this.creationDate;
+    final description = this.description;
+    final lastActivityDate = this.lastActivityDate;
+    final pullRequestId = this.pullRequestId;
+    final pullRequestStatus = this.pullRequestStatus;
+    final pullRequestTargets = this.pullRequestTargets;
+    final revisionId = this.revisionId;
+    final title = this.title;
+    return {
+      if (approvalRules != null) 'approvalRules': approvalRules,
+      if (authorArn != null) 'authorArn': authorArn,
+      if (clientRequestToken != null) 'clientRequestToken': clientRequestToken,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (description != null) 'description': description,
+      if (lastActivityDate != null)
+        'lastActivityDate': unixTimestampToJson(lastActivityDate),
+      if (pullRequestId != null) 'pullRequestId': pullRequestId,
+      if (pullRequestStatus != null)
+        'pullRequestStatus': pullRequestStatus.toValue(),
+      if (pullRequestTargets != null) 'pullRequestTargets': pullRequestTargets,
+      if (revisionId != null) 'revisionId': revisionId,
+      if (title != null) 'title': title,
+    };
+  }
 }
 
 /// Metadata about the pull request that is used when comparing the pull request
@@ -8000,6 +9009,20 @@ class PullRequestCreatedEventMetadata {
       repositoryName: json['repositoryName'] as String?,
       sourceCommitId: json['sourceCommitId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final destinationCommitId = this.destinationCommitId;
+    final mergeBase = this.mergeBase;
+    final repositoryName = this.repositoryName;
+    final sourceCommitId = this.sourceCommitId;
+    return {
+      if (destinationCommitId != null)
+        'destinationCommitId': destinationCommitId,
+      if (mergeBase != null) 'mergeBase': mergeBase,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+      if (sourceCommitId != null) 'sourceCommitId': sourceCommitId,
+    };
   }
 }
 
@@ -8109,6 +9132,51 @@ class PullRequestEvent {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final actorArn = this.actorArn;
+    final approvalRuleEventMetadata = this.approvalRuleEventMetadata;
+    final approvalRuleOverriddenEventMetadata =
+        this.approvalRuleOverriddenEventMetadata;
+    final approvalStateChangedEventMetadata =
+        this.approvalStateChangedEventMetadata;
+    final eventDate = this.eventDate;
+    final pullRequestCreatedEventMetadata =
+        this.pullRequestCreatedEventMetadata;
+    final pullRequestEventType = this.pullRequestEventType;
+    final pullRequestId = this.pullRequestId;
+    final pullRequestMergedStateChangedEventMetadata =
+        this.pullRequestMergedStateChangedEventMetadata;
+    final pullRequestSourceReferenceUpdatedEventMetadata =
+        this.pullRequestSourceReferenceUpdatedEventMetadata;
+    final pullRequestStatusChangedEventMetadata =
+        this.pullRequestStatusChangedEventMetadata;
+    return {
+      if (actorArn != null) 'actorArn': actorArn,
+      if (approvalRuleEventMetadata != null)
+        'approvalRuleEventMetadata': approvalRuleEventMetadata,
+      if (approvalRuleOverriddenEventMetadata != null)
+        'approvalRuleOverriddenEventMetadata':
+            approvalRuleOverriddenEventMetadata,
+      if (approvalStateChangedEventMetadata != null)
+        'approvalStateChangedEventMetadata': approvalStateChangedEventMetadata,
+      if (eventDate != null) 'eventDate': unixTimestampToJson(eventDate),
+      if (pullRequestCreatedEventMetadata != null)
+        'pullRequestCreatedEventMetadata': pullRequestCreatedEventMetadata,
+      if (pullRequestEventType != null)
+        'pullRequestEventType': pullRequestEventType.toValue(),
+      if (pullRequestId != null) 'pullRequestId': pullRequestId,
+      if (pullRequestMergedStateChangedEventMetadata != null)
+        'pullRequestMergedStateChangedEventMetadata':
+            pullRequestMergedStateChangedEventMetadata,
+      if (pullRequestSourceReferenceUpdatedEventMetadata != null)
+        'pullRequestSourceReferenceUpdatedEventMetadata':
+            pullRequestSourceReferenceUpdatedEventMetadata,
+      if (pullRequestStatusChangedEventMetadata != null)
+        'pullRequestStatusChangedEventMetadata':
+            pullRequestStatusChangedEventMetadata,
+    };
+  }
 }
 
 enum PullRequestEventType {
@@ -8202,6 +9270,18 @@ class PullRequestMergedStateChangedEventMetadata {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationReference = this.destinationReference;
+    final mergeMetadata = this.mergeMetadata;
+    final repositoryName = this.repositoryName;
+    return {
+      if (destinationReference != null)
+        'destinationReference': destinationReference,
+      if (mergeMetadata != null) 'mergeMetadata': mergeMetadata,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 /// Information about an update to the source branch of a pull request.
@@ -8236,6 +9316,19 @@ class PullRequestSourceReferenceUpdatedEventMetadata {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final afterCommitId = this.afterCommitId;
+    final beforeCommitId = this.beforeCommitId;
+    final mergeBase = this.mergeBase;
+    final repositoryName = this.repositoryName;
+    return {
+      if (afterCommitId != null) 'afterCommitId': afterCommitId,
+      if (beforeCommitId != null) 'beforeCommitId': beforeCommitId,
+      if (mergeBase != null) 'mergeBase': mergeBase,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 /// Information about a change to the status of a pull request.
@@ -8252,6 +9345,14 @@ class PullRequestStatusChangedEventMetadata {
       pullRequestStatus:
           (json['pullRequestStatus'] as String?)?.toPullRequestStatusEnum(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pullRequestStatus = this.pullRequestStatus;
+    return {
+      if (pullRequestStatus != null)
+        'pullRequestStatus': pullRequestStatus.toValue(),
+    };
   }
 }
 
@@ -8337,6 +9438,26 @@ class PullRequestTarget {
       sourceReference: json['sourceReference'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationCommit = this.destinationCommit;
+    final destinationReference = this.destinationReference;
+    final mergeBase = this.mergeBase;
+    final mergeMetadata = this.mergeMetadata;
+    final repositoryName = this.repositoryName;
+    final sourceCommit = this.sourceCommit;
+    final sourceReference = this.sourceReference;
+    return {
+      if (destinationCommit != null) 'destinationCommit': destinationCommit,
+      if (destinationReference != null)
+        'destinationReference': destinationReference,
+      if (mergeBase != null) 'mergeBase': mergeBase,
+      if (mergeMetadata != null) 'mergeMetadata': mergeMetadata,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+      if (sourceCommit != null) 'sourceCommit': sourceCommit,
+      if (sourceReference != null) 'sourceReference': sourceReference,
+    };
+  }
 }
 
 /// Information about a file added or updated as part of a commit.
@@ -8362,6 +9483,7 @@ class PutFileEntry {
     this.fileMode,
     this.sourceFile,
   });
+
   Map<String, dynamic> toJson() {
     final filePath = this.filePath;
     final fileContent = this.fileContent;
@@ -8399,6 +9521,17 @@ class PutFileOutput {
       treeId: json['treeId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final blobId = this.blobId;
+    final commitId = this.commitId;
+    final treeId = this.treeId;
+    return {
+      'blobId': blobId,
+      'commitId': commitId,
+      'treeId': treeId,
+    };
+  }
 }
 
 /// Represents the output of a put repository triggers operation.
@@ -8413,6 +9546,13 @@ class PutRepositoryTriggersOutput {
     return PutRepositoryTriggersOutput(
       configurationId: json['configurationId'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final configurationId = this.configurationId;
+    return {
+      if (configurationId != null) 'configurationId': configurationId,
+    };
   }
 }
 
@@ -8450,6 +9590,18 @@ class ReactionForComment {
           json['reactionsFromDeletedUsersCount'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final reaction = this.reaction;
+    final reactionUsers = this.reactionUsers;
+    final reactionsFromDeletedUsersCount = this.reactionsFromDeletedUsersCount;
+    return {
+      if (reaction != null) 'reaction': reaction,
+      if (reactionUsers != null) 'reactionUsers': reactionUsers,
+      if (reactionsFromDeletedUsersCount != null)
+        'reactionsFromDeletedUsersCount': reactionsFromDeletedUsersCount,
+    };
+  }
 }
 
 /// Information about the values for reactions to a comment. AWS CodeCommit
@@ -8477,6 +9629,17 @@ class ReactionValueFormats {
       shortCode: json['shortCode'] as String?,
       unicode: json['unicode'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final emoji = this.emoji;
+    final shortCode = this.shortCode;
+    final unicode = this.unicode;
+    return {
+      if (emoji != null) 'emoji': emoji,
+      if (shortCode != null) 'shortCode': shortCode,
+      if (unicode != null) 'unicode': unicode,
+    };
   }
 }
 
@@ -8530,6 +9693,7 @@ class ReplaceContentEntry {
     this.content,
     this.fileMode,
   });
+
   Map<String, dynamic> toJson() {
     final filePath = this.filePath;
     final replacementType = this.replacementType;
@@ -8640,6 +9804,34 @@ class RepositoryMetadata {
       repositoryName: json['repositoryName'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final arn = this.arn;
+    final accountId = this.accountId;
+    final cloneUrlHttp = this.cloneUrlHttp;
+    final cloneUrlSsh = this.cloneUrlSsh;
+    final creationDate = this.creationDate;
+    final defaultBranch = this.defaultBranch;
+    final lastModifiedDate = this.lastModifiedDate;
+    final repositoryDescription = this.repositoryDescription;
+    final repositoryId = this.repositoryId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (arn != null) 'Arn': arn,
+      if (accountId != null) 'accountId': accountId,
+      if (cloneUrlHttp != null) 'cloneUrlHttp': cloneUrlHttp,
+      if (cloneUrlSsh != null) 'cloneUrlSsh': cloneUrlSsh,
+      if (creationDate != null)
+        'creationDate': unixTimestampToJson(creationDate),
+      if (defaultBranch != null) 'defaultBranch': defaultBranch,
+      if (lastModifiedDate != null)
+        'lastModifiedDate': unixTimestampToJson(lastModifiedDate),
+      if (repositoryDescription != null)
+        'repositoryDescription': repositoryDescription,
+      if (repositoryId != null) 'repositoryId': repositoryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
+  }
 }
 
 /// Information about a repository name and ID.
@@ -8659,6 +9851,15 @@ class RepositoryNameIdPair {
       repositoryId: json['repositoryId'] as String?,
       repositoryName: json['repositoryName'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final repositoryId = this.repositoryId;
+    final repositoryName = this.repositoryName;
+    return {
+      if (repositoryId != null) 'repositoryId': repositoryId,
+      if (repositoryName != null) 'repositoryName': repositoryName,
+    };
   }
 }
 
@@ -8787,6 +9988,15 @@ class RepositoryTriggerExecutionFailure {
       trigger: json['trigger'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failureMessage = this.failureMessage;
+    final trigger = this.trigger;
+    return {
+      if (failureMessage != null) 'failureMessage': failureMessage,
+      if (trigger != null) 'trigger': trigger,
+    };
+  }
 }
 
 /// Information about the file mode changes.
@@ -8801,6 +10011,7 @@ class SetFileModeEntry {
     required this.fileMode,
     required this.filePath,
   });
+
   Map<String, dynamic> toJson() {
     final fileMode = this.fileMode;
     final filePath = this.filePath;
@@ -8851,6 +10062,7 @@ class SourceFileSpecifier {
     required this.filePath,
     this.isMove,
   });
+
   Map<String, dynamic> toJson() {
     final filePath = this.filePath;
     final isMove = this.isMove;
@@ -8886,6 +10098,17 @@ class SubModule {
       relativePath: json['relativePath'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final absolutePath = this.absolutePath;
+    final commitId = this.commitId;
+    final relativePath = this.relativePath;
+    return {
+      if (absolutePath != null) 'absolutePath': absolutePath,
+      if (commitId != null) 'commitId': commitId,
+      if (relativePath != null) 'relativePath': relativePath,
+    };
+  }
 }
 
 /// Returns information about a symbolic link in a repository folder.
@@ -8918,6 +10141,19 @@ class SymbolicLink {
       relativePath: json['relativePath'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final absolutePath = this.absolutePath;
+    final blobId = this.blobId;
+    final fileMode = this.fileMode;
+    final relativePath = this.relativePath;
+    return {
+      if (absolutePath != null) 'absolutePath': absolutePath,
+      if (blobId != null) 'blobId': blobId,
+      if (fileMode != null) 'fileMode': fileMode.toValue(),
+      if (relativePath != null) 'relativePath': relativePath,
+    };
+  }
 }
 
 /// Returns information about a target for a pull request.
@@ -8938,6 +10174,7 @@ class Target {
     required this.sourceReference,
     this.destinationReference,
   });
+
   Map<String, dynamic> toJson() {
     final repositoryName = this.repositoryName;
     final sourceReference = this.sourceReference;
@@ -8978,6 +10215,16 @@ class TestRepositoryTriggersOutput {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final failedExecutions = this.failedExecutions;
+    final successfulExecutions = this.successfulExecutions;
+    return {
+      if (failedExecutions != null) 'failedExecutions': failedExecutions,
+      if (successfulExecutions != null)
+        'successfulExecutions': successfulExecutions,
+    };
+  }
 }
 
 class UpdateApprovalRuleTemplateContentOutput {
@@ -8992,6 +10239,13 @@ class UpdateApprovalRuleTemplateContentOutput {
       approvalRuleTemplate: ApprovalRuleTemplate.fromJson(
           json['approvalRuleTemplate'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final approvalRuleTemplate = this.approvalRuleTemplate;
+    return {
+      'approvalRuleTemplate': approvalRuleTemplate,
+    };
   }
 }
 
@@ -9009,6 +10263,13 @@ class UpdateApprovalRuleTemplateDescriptionOutput {
           json['approvalRuleTemplate'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final approvalRuleTemplate = this.approvalRuleTemplate;
+    return {
+      'approvalRuleTemplate': approvalRuleTemplate,
+    };
+  }
 }
 
 class UpdateApprovalRuleTemplateNameOutput {
@@ -9024,6 +10285,13 @@ class UpdateApprovalRuleTemplateNameOutput {
       approvalRuleTemplate: ApprovalRuleTemplate.fromJson(
           json['approvalRuleTemplate'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final approvalRuleTemplate = this.approvalRuleTemplate;
+    return {
+      'approvalRuleTemplate': approvalRuleTemplate,
+    };
   }
 }
 
@@ -9041,6 +10309,13 @@ class UpdateCommentOutput {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final comment = this.comment;
+    return {
+      if (comment != null) 'comment': comment,
+    };
+  }
 }
 
 class UpdatePullRequestApprovalRuleContentOutput {
@@ -9056,6 +10331,13 @@ class UpdatePullRequestApprovalRuleContentOutput {
       approvalRule:
           ApprovalRule.fromJson(json['approvalRule'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final approvalRule = this.approvalRule;
+    return {
+      'approvalRule': approvalRule,
+    };
   }
 }
 
@@ -9073,6 +10355,13 @@ class UpdatePullRequestDescriptionOutput {
           PullRequest.fromJson(json['pullRequest'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pullRequest = this.pullRequest;
+    return {
+      'pullRequest': pullRequest,
+    };
+  }
 }
 
 class UpdatePullRequestStatusOutput {
@@ -9088,6 +10377,13 @@ class UpdatePullRequestStatusOutput {
           PullRequest.fromJson(json['pullRequest'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final pullRequest = this.pullRequest;
+    return {
+      'pullRequest': pullRequest,
+    };
+  }
 }
 
 class UpdatePullRequestTitleOutput {
@@ -9102,6 +10398,13 @@ class UpdatePullRequestTitleOutput {
       pullRequest:
           PullRequest.fromJson(json['pullRequest'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final pullRequest = this.pullRequest;
+    return {
+      'pullRequest': pullRequest,
+    };
   }
 }
 
@@ -9128,6 +10431,17 @@ class UserInfo {
       email: json['email'] as String?,
       name: json['name'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final date = this.date;
+    final email = this.email;
+    final name = this.name;
+    return {
+      if (date != null) 'date': date,
+      if (email != null) 'email': email,
+      if (name != null) 'name': name,
+    };
   }
 }
 

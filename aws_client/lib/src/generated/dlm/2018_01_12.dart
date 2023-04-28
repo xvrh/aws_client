@@ -366,6 +366,13 @@ class CreateLifecyclePolicyResponse {
       policyId: json['PolicyId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policyId = this.policyId;
+    return {
+      if (policyId != null) 'PolicyId': policyId,
+    };
+  }
 }
 
 /// Specifies when to create snapshots of EBS volumes.
@@ -635,6 +642,10 @@ class DeleteLifecyclePolicyResponse {
   DeleteLifecyclePolicyResponse();
   factory DeleteLifecyclePolicyResponse.fromJson(Map<String, dynamic> _) {
     return DeleteLifecyclePolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -908,6 +919,13 @@ class GetLifecyclePoliciesResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final policies = this.policies;
+    return {
+      if (policies != null) 'Policies': policies,
+    };
+  }
 }
 
 class GetLifecyclePolicyResponse {
@@ -923,6 +941,13 @@ class GetLifecyclePolicyResponse {
           ? LifecyclePolicy.fromJson(json['Policy'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final policy = this.policy;
+    return {
+      if (policy != null) 'Policy': policy,
+    };
   }
 }
 
@@ -1045,6 +1070,31 @@ class LifecyclePolicy {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final dateCreated = this.dateCreated;
+    final dateModified = this.dateModified;
+    final description = this.description;
+    final executionRoleArn = this.executionRoleArn;
+    final policyArn = this.policyArn;
+    final policyDetails = this.policyDetails;
+    final policyId = this.policyId;
+    final state = this.state;
+    final statusMessage = this.statusMessage;
+    final tags = this.tags;
+    return {
+      if (dateCreated != null) 'DateCreated': iso8601ToJson(dateCreated),
+      if (dateModified != null) 'DateModified': iso8601ToJson(dateModified),
+      if (description != null) 'Description': description,
+      if (executionRoleArn != null) 'ExecutionRoleArn': executionRoleArn,
+      if (policyArn != null) 'PolicyArn': policyArn,
+      if (policyDetails != null) 'PolicyDetails': policyDetails,
+      if (policyId != null) 'PolicyId': policyId,
+      if (state != null) 'State': state.toValue(),
+      if (statusMessage != null) 'StatusMessage': statusMessage,
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 /// Summary information about a lifecycle policy.
@@ -1084,6 +1134,21 @@ class LifecyclePolicySummary {
           ?.map((k, e) => MapEntry(k, e as String)),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final description = this.description;
+    final policyId = this.policyId;
+    final policyType = this.policyType;
+    final state = this.state;
+    final tags = this.tags;
+    return {
+      if (description != null) 'Description': description,
+      if (policyId != null) 'PolicyId': policyId,
+      if (policyType != null) 'PolicyType': policyType.toValue(),
+      if (state != null) 'State': state.toValue(),
+      if (tags != null) 'Tags': tags,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -1098,6 +1163,13 @@ class ListTagsForResourceResponse {
       tags: (json['Tags'] as Map<String, dynamic>?)
           ?.map((k, e) => MapEntry(k, e as String)),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -1689,6 +1761,10 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
@@ -1696,12 +1772,20 @@ class UntagResourceResponse {
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UpdateLifecyclePolicyResponse {
   UpdateLifecyclePolicyResponse();
   factory UpdateLifecyclePolicyResponse.fromJson(Map<String, dynamic> _) {
     return UpdateLifecyclePolicyResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 

@@ -1929,6 +1929,21 @@ class AddApplicationCloudWatchLoggingOptionResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationVersionId = this.applicationVersionId;
+    final cloudWatchLoggingOptionDescriptions =
+        this.cloudWatchLoggingOptionDescriptions;
+    return {
+      if (applicationARN != null) 'ApplicationARN': applicationARN,
+      if (applicationVersionId != null)
+        'ApplicationVersionId': applicationVersionId,
+      if (cloudWatchLoggingOptionDescriptions != null)
+        'CloudWatchLoggingOptionDescriptions':
+            cloudWatchLoggingOptionDescriptions,
+    };
+  }
 }
 
 class AddApplicationInputProcessingConfigurationResponse {
@@ -1968,6 +1983,23 @@ class AddApplicationInputProcessingConfigurationResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationVersionId = this.applicationVersionId;
+    final inputId = this.inputId;
+    final inputProcessingConfigurationDescription =
+        this.inputProcessingConfigurationDescription;
+    return {
+      if (applicationARN != null) 'ApplicationARN': applicationARN,
+      if (applicationVersionId != null)
+        'ApplicationVersionId': applicationVersionId,
+      if (inputId != null) 'InputId': inputId,
+      if (inputProcessingConfigurationDescription != null)
+        'InputProcessingConfigurationDescription':
+            inputProcessingConfigurationDescription,
+    };
+  }
 }
 
 class AddApplicationInputResponse {
@@ -1994,6 +2026,18 @@ class AddApplicationInputResponse {
           .map((e) => InputDescription.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationVersionId = this.applicationVersionId;
+    final inputDescriptions = this.inputDescriptions;
+    return {
+      if (applicationARN != null) 'ApplicationARN': applicationARN,
+      if (applicationVersionId != null)
+        'ApplicationVersionId': applicationVersionId,
+      if (inputDescriptions != null) 'InputDescriptions': inputDescriptions,
+    };
   }
 }
 
@@ -2024,6 +2068,18 @@ class AddApplicationOutputResponse {
           .map((e) => OutputDescription.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationVersionId = this.applicationVersionId;
+    final outputDescriptions = this.outputDescriptions;
+    return {
+      if (applicationARN != null) 'ApplicationARN': applicationARN,
+      if (applicationVersionId != null)
+        'ApplicationVersionId': applicationVersionId,
+      if (outputDescriptions != null) 'OutputDescriptions': outputDescriptions,
+    };
   }
 }
 
@@ -2056,6 +2112,20 @@ class AddApplicationReferenceDataSourceResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationVersionId = this.applicationVersionId;
+    final referenceDataSourceDescriptions =
+        this.referenceDataSourceDescriptions;
+    return {
+      if (applicationARN != null) 'ApplicationARN': applicationARN,
+      if (applicationVersionId != null)
+        'ApplicationVersionId': applicationVersionId,
+      if (referenceDataSourceDescriptions != null)
+        'ReferenceDataSourceDescriptions': referenceDataSourceDescriptions,
+    };
+  }
 }
 
 class AddApplicationVpcConfigurationResponse {
@@ -2085,6 +2155,19 @@ class AddApplicationVpcConfigurationResponse {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationVersionId = this.applicationVersionId;
+    final vpcConfigurationDescription = this.vpcConfigurationDescription;
+    return {
+      if (applicationARN != null) 'ApplicationARN': applicationARN,
+      if (applicationVersionId != null)
+        'ApplicationVersionId': applicationVersionId,
+      if (vpcConfigurationDescription != null)
+        'VpcConfigurationDescription': vpcConfigurationDescription,
+    };
+  }
 }
 
 /// Describes code configuration for an application.
@@ -2099,6 +2182,7 @@ class ApplicationCodeConfiguration {
     required this.codeContentType,
     this.codeContent,
   });
+
   Map<String, dynamic> toJson() {
     final codeContentType = this.codeContentType;
     final codeContent = this.codeContent;
@@ -2131,6 +2215,16 @@ class ApplicationCodeConfigurationDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeContentType = this.codeContentType;
+    final codeContentDescription = this.codeContentDescription;
+    return {
+      'CodeContentType': codeContentType.toValue(),
+      if (codeContentDescription != null)
+        'CodeContentDescription': codeContentDescription,
+    };
+  }
 }
 
 /// Describes code configuration updates for an application. This is supported
@@ -2147,6 +2241,7 @@ class ApplicationCodeConfigurationUpdate {
     this.codeContentTypeUpdate,
     this.codeContentUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final codeContentTypeUpdate = this.codeContentTypeUpdate;
     final codeContentUpdate = this.codeContentUpdate;
@@ -2196,6 +2291,7 @@ class ApplicationConfiguration {
     this.vpcConfigurations,
     this.zeppelinApplicationConfiguration,
   });
+
   Map<String, dynamic> toJson() {
     final applicationCodeConfiguration = this.applicationCodeConfiguration;
     final applicationSnapshotConfiguration =
@@ -2323,6 +2419,46 @@ class ApplicationConfigurationDescription {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationCodeConfigurationDescription =
+        this.applicationCodeConfigurationDescription;
+    final applicationSnapshotConfigurationDescription =
+        this.applicationSnapshotConfigurationDescription;
+    final environmentPropertyDescriptions =
+        this.environmentPropertyDescriptions;
+    final flinkApplicationConfigurationDescription =
+        this.flinkApplicationConfigurationDescription;
+    final runConfigurationDescription = this.runConfigurationDescription;
+    final sqlApplicationConfigurationDescription =
+        this.sqlApplicationConfigurationDescription;
+    final vpcConfigurationDescriptions = this.vpcConfigurationDescriptions;
+    final zeppelinApplicationConfigurationDescription =
+        this.zeppelinApplicationConfigurationDescription;
+    return {
+      if (applicationCodeConfigurationDescription != null)
+        'ApplicationCodeConfigurationDescription':
+            applicationCodeConfigurationDescription,
+      if (applicationSnapshotConfigurationDescription != null)
+        'ApplicationSnapshotConfigurationDescription':
+            applicationSnapshotConfigurationDescription,
+      if (environmentPropertyDescriptions != null)
+        'EnvironmentPropertyDescriptions': environmentPropertyDescriptions,
+      if (flinkApplicationConfigurationDescription != null)
+        'FlinkApplicationConfigurationDescription':
+            flinkApplicationConfigurationDescription,
+      if (runConfigurationDescription != null)
+        'RunConfigurationDescription': runConfigurationDescription,
+      if (sqlApplicationConfigurationDescription != null)
+        'SqlApplicationConfigurationDescription':
+            sqlApplicationConfigurationDescription,
+      if (vpcConfigurationDescriptions != null)
+        'VpcConfigurationDescriptions': vpcConfigurationDescriptions,
+      if (zeppelinApplicationConfigurationDescription != null)
+        'ZeppelinApplicationConfigurationDescription':
+            zeppelinApplicationConfigurationDescription,
+    };
+  }
 }
 
 /// Describes updates to an application's configuration.
@@ -2365,6 +2501,7 @@ class ApplicationConfigurationUpdate {
     this.vpcConfigurationUpdates,
     this.zeppelinApplicationConfigurationUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final applicationCodeConfigurationUpdate =
         this.applicationCodeConfigurationUpdate;
@@ -2527,6 +2664,62 @@ class ApplicationDetail {
       serviceExecutionRole: json['ServiceExecutionRole'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationName = this.applicationName;
+    final applicationStatus = this.applicationStatus;
+    final applicationVersionId = this.applicationVersionId;
+    final runtimeEnvironment = this.runtimeEnvironment;
+    final applicationConfigurationDescription =
+        this.applicationConfigurationDescription;
+    final applicationDescription = this.applicationDescription;
+    final applicationMaintenanceConfigurationDescription =
+        this.applicationMaintenanceConfigurationDescription;
+    final applicationMode = this.applicationMode;
+    final applicationVersionRolledBackFrom =
+        this.applicationVersionRolledBackFrom;
+    final applicationVersionRolledBackTo = this.applicationVersionRolledBackTo;
+    final applicationVersionUpdatedFrom = this.applicationVersionUpdatedFrom;
+    final cloudWatchLoggingOptionDescriptions =
+        this.cloudWatchLoggingOptionDescriptions;
+    final conditionalToken = this.conditionalToken;
+    final createTimestamp = this.createTimestamp;
+    final lastUpdateTimestamp = this.lastUpdateTimestamp;
+    final serviceExecutionRole = this.serviceExecutionRole;
+    return {
+      'ApplicationARN': applicationARN,
+      'ApplicationName': applicationName,
+      'ApplicationStatus': applicationStatus.toValue(),
+      'ApplicationVersionId': applicationVersionId,
+      'RuntimeEnvironment': runtimeEnvironment.toValue(),
+      if (applicationConfigurationDescription != null)
+        'ApplicationConfigurationDescription':
+            applicationConfigurationDescription,
+      if (applicationDescription != null)
+        'ApplicationDescription': applicationDescription,
+      if (applicationMaintenanceConfigurationDescription != null)
+        'ApplicationMaintenanceConfigurationDescription':
+            applicationMaintenanceConfigurationDescription,
+      if (applicationMode != null) 'ApplicationMode': applicationMode.toValue(),
+      if (applicationVersionRolledBackFrom != null)
+        'ApplicationVersionRolledBackFrom': applicationVersionRolledBackFrom,
+      if (applicationVersionRolledBackTo != null)
+        'ApplicationVersionRolledBackTo': applicationVersionRolledBackTo,
+      if (applicationVersionUpdatedFrom != null)
+        'ApplicationVersionUpdatedFrom': applicationVersionUpdatedFrom,
+      if (cloudWatchLoggingOptionDescriptions != null)
+        'CloudWatchLoggingOptionDescriptions':
+            cloudWatchLoggingOptionDescriptions,
+      if (conditionalToken != null) 'ConditionalToken': conditionalToken,
+      if (createTimestamp != null)
+        'CreateTimestamp': unixTimestampToJson(createTimestamp),
+      if (lastUpdateTimestamp != null)
+        'LastUpdateTimestamp': unixTimestampToJson(lastUpdateTimestamp),
+      if (serviceExecutionRole != null)
+        'ServiceExecutionRole': serviceExecutionRole,
+    };
+  }
 }
 
 /// The details of the maintenance configuration for the application.
@@ -2550,6 +2743,19 @@ class ApplicationMaintenanceConfigurationDescription {
           json['ApplicationMaintenanceWindowStartTime'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationMaintenanceWindowEndTime =
+        this.applicationMaintenanceWindowEndTime;
+    final applicationMaintenanceWindowStartTime =
+        this.applicationMaintenanceWindowStartTime;
+    return {
+      'ApplicationMaintenanceWindowEndTime':
+          applicationMaintenanceWindowEndTime,
+      'ApplicationMaintenanceWindowStartTime':
+          applicationMaintenanceWindowStartTime,
+    };
+  }
 }
 
 /// Describes the updated maintenance configuration for the application.
@@ -2560,6 +2766,7 @@ class ApplicationMaintenanceConfigurationUpdate {
   ApplicationMaintenanceConfigurationUpdate({
     required this.applicationMaintenanceWindowStartTimeUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final applicationMaintenanceWindowStartTimeUpdate =
         this.applicationMaintenanceWindowStartTimeUpdate;
@@ -2675,6 +2882,7 @@ class ApplicationSnapshotConfiguration {
   ApplicationSnapshotConfiguration({
     required this.snapshotsEnabled,
   });
+
   Map<String, dynamic> toJson() {
     final snapshotsEnabled = this.snapshotsEnabled;
     return {
@@ -2699,6 +2907,13 @@ class ApplicationSnapshotConfigurationDescription {
       snapshotsEnabled: json['SnapshotsEnabled'] as bool,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final snapshotsEnabled = this.snapshotsEnabled;
+    return {
+      'SnapshotsEnabled': snapshotsEnabled,
+    };
+  }
 }
 
 /// Describes updates to whether snapshots are enabled for a Flink-based Kinesis
@@ -2710,6 +2925,7 @@ class ApplicationSnapshotConfigurationUpdate {
   ApplicationSnapshotConfigurationUpdate({
     required this.snapshotsEnabledUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final snapshotsEnabledUpdate = this.snapshotsEnabledUpdate;
     return {
@@ -2835,6 +3051,23 @@ class ApplicationSummary {
           (json['ApplicationMode'] as String?)?.toApplicationMode(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationName = this.applicationName;
+    final applicationStatus = this.applicationStatus;
+    final applicationVersionId = this.applicationVersionId;
+    final runtimeEnvironment = this.runtimeEnvironment;
+    final applicationMode = this.applicationMode;
+    return {
+      'ApplicationARN': applicationARN,
+      'ApplicationName': applicationName,
+      'ApplicationStatus': applicationStatus.toValue(),
+      'ApplicationVersionId': applicationVersionId,
+      'RuntimeEnvironment': runtimeEnvironment.toValue(),
+      if (applicationMode != null) 'ApplicationMode': applicationMode.toValue(),
+    };
+  }
 }
 
 /// The summary of the application version.
@@ -2856,6 +3089,15 @@ class ApplicationVersionSummary {
           (json['ApplicationStatus'] as String).toApplicationStatus(),
       applicationVersionId: json['ApplicationVersionId'] as int,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationStatus = this.applicationStatus;
+    final applicationVersionId = this.applicationVersionId;
+    return {
+      'ApplicationStatus': applicationStatus.toValue(),
+      'ApplicationVersionId': applicationVersionId,
+    };
   }
 }
 
@@ -2938,6 +3180,7 @@ class CatalogConfiguration {
   CatalogConfiguration({
     required this.glueDataCatalogConfiguration,
   });
+
   Map<String, dynamic> toJson() {
     final glueDataCatalogConfiguration = this.glueDataCatalogConfiguration;
     return {
@@ -2967,6 +3210,15 @@ class CatalogConfigurationDescription {
                   as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final glueDataCatalogConfigurationDescription =
+        this.glueDataCatalogConfigurationDescription;
+    return {
+      'GlueDataCatalogConfigurationDescription':
+          glueDataCatalogConfigurationDescription,
+    };
+  }
 }
 
 /// Updates to the configuration parameters for the default Amazon Glue
@@ -2981,6 +3233,7 @@ class CatalogConfigurationUpdate {
   CatalogConfigurationUpdate({
     required this.glueDataCatalogConfigurationUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final glueDataCatalogConfigurationUpdate =
         this.glueDataCatalogConfigurationUpdate;
@@ -3063,6 +3316,7 @@ class CheckpointConfiguration {
     this.checkpointingEnabled,
     this.minPauseBetweenCheckpoints,
   });
+
   Map<String, dynamic> toJson() {
     final configurationType = this.configurationType;
     final checkpointInterval = this.checkpointInterval;
@@ -3147,6 +3401,22 @@ class CheckpointConfigurationDescription {
       minPauseBetweenCheckpoints: json['MinPauseBetweenCheckpoints'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checkpointInterval = this.checkpointInterval;
+    final checkpointingEnabled = this.checkpointingEnabled;
+    final configurationType = this.configurationType;
+    final minPauseBetweenCheckpoints = this.minPauseBetweenCheckpoints;
+    return {
+      if (checkpointInterval != null) 'CheckpointInterval': checkpointInterval,
+      if (checkpointingEnabled != null)
+        'CheckpointingEnabled': checkpointingEnabled,
+      if (configurationType != null)
+        'ConfigurationType': configurationType.toValue(),
+      if (minPauseBetweenCheckpoints != null)
+        'MinPauseBetweenCheckpoints': minPauseBetweenCheckpoints,
+    };
+  }
 }
 
 /// Describes updates to the checkpointing parameters for a Flink-based Kinesis
@@ -3210,6 +3480,7 @@ class CheckpointConfigurationUpdate {
     this.configurationTypeUpdate,
     this.minPauseBetweenCheckpointsUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final checkpointIntervalUpdate = this.checkpointIntervalUpdate;
     final checkpointingEnabledUpdate = this.checkpointingEnabledUpdate;
@@ -3238,6 +3509,7 @@ class CloudWatchLoggingOption {
   CloudWatchLoggingOption({
     required this.logStreamARN,
   });
+
   Map<String, dynamic> toJson() {
     final logStreamARN = this.logStreamARN;
     return {
@@ -3276,6 +3548,18 @@ class CloudWatchLoggingOptionDescription {
       roleARN: json['RoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logStreamARN = this.logStreamARN;
+    final cloudWatchLoggingOptionId = this.cloudWatchLoggingOptionId;
+    final roleARN = this.roleARN;
+    return {
+      'LogStreamARN': logStreamARN,
+      if (cloudWatchLoggingOptionId != null)
+        'CloudWatchLoggingOptionId': cloudWatchLoggingOptionId,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 /// Describes the Amazon CloudWatch logging option updates.
@@ -3291,6 +3575,7 @@ class CloudWatchLoggingOptionUpdate {
     required this.cloudWatchLoggingOptionId,
     this.logStreamARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final cloudWatchLoggingOptionId = this.cloudWatchLoggingOptionId;
     final logStreamARNUpdate = this.logStreamARNUpdate;
@@ -3318,6 +3603,7 @@ class CodeContent {
     this.textContent,
     this.zipFileContent,
   });
+
   Map<String, dynamic> toJson() {
     final s3ContentLocation = this.s3ContentLocation;
     final textContent = this.textContent;
@@ -3367,6 +3653,22 @@ class CodeContentDescription {
       textContent: json['TextContent'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final codeMD5 = this.codeMD5;
+    final codeSize = this.codeSize;
+    final s3ApplicationCodeLocationDescription =
+        this.s3ApplicationCodeLocationDescription;
+    final textContent = this.textContent;
+    return {
+      if (codeMD5 != null) 'CodeMD5': codeMD5,
+      if (codeSize != null) 'CodeSize': codeSize,
+      if (s3ApplicationCodeLocationDescription != null)
+        'S3ApplicationCodeLocationDescription':
+            s3ApplicationCodeLocationDescription,
+      if (textContent != null) 'TextContent': textContent,
+    };
+  }
 }
 
 enum CodeContentType {
@@ -3414,6 +3716,7 @@ class CodeContentUpdate {
     this.textContentUpdate,
     this.zipFileContentUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final s3ContentLocationUpdate = this.s3ContentLocationUpdate;
     final textContentUpdate = this.textContentUpdate;
@@ -3469,6 +3772,13 @@ class CreateApplicationPresignedUrlResponse {
       authorizedUrl: json['AuthorizedUrl'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final authorizedUrl = this.authorizedUrl;
+    return {
+      if (authorizedUrl != null) 'AuthorizedUrl': authorizedUrl,
+    };
+  }
 }
 
 class CreateApplicationResponse {
@@ -3485,12 +3795,23 @@ class CreateApplicationResponse {
           json['ApplicationDetail'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationDetail = this.applicationDetail;
+    return {
+      'ApplicationDetail': applicationDetail,
+    };
+  }
 }
 
 class CreateApplicationSnapshotResponse {
   CreateApplicationSnapshotResponse();
   factory CreateApplicationSnapshotResponse.fromJson(Map<String, dynamic> _) {
     return CreateApplicationSnapshotResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3511,6 +3832,7 @@ class CustomArtifactConfiguration {
     this.mavenReference,
     this.s3ContentLocation,
   });
+
   Map<String, dynamic> toJson() {
     final artifactType = this.artifactType;
     final mavenReference = this.mavenReference;
@@ -3553,6 +3875,19 @@ class CustomArtifactConfigurationDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final artifactType = this.artifactType;
+    final mavenReferenceDescription = this.mavenReferenceDescription;
+    final s3ContentLocationDescription = this.s3ContentLocationDescription;
+    return {
+      if (artifactType != null) 'ArtifactType': artifactType.toValue(),
+      if (mavenReferenceDescription != null)
+        'MavenReferenceDescription': mavenReferenceDescription,
+      if (s3ContentLocationDescription != null)
+        'S3ContentLocationDescription': s3ContentLocationDescription,
+    };
+  }
 }
 
 class DeleteApplicationCloudWatchLoggingOptionResponse {
@@ -3587,6 +3922,21 @@ class DeleteApplicationCloudWatchLoggingOptionResponse {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationVersionId = this.applicationVersionId;
+    final cloudWatchLoggingOptionDescriptions =
+        this.cloudWatchLoggingOptionDescriptions;
+    return {
+      if (applicationARN != null) 'ApplicationARN': applicationARN,
+      if (applicationVersionId != null)
+        'ApplicationVersionId': applicationVersionId,
+      if (cloudWatchLoggingOptionDescriptions != null)
+        'CloudWatchLoggingOptionDescriptions':
+            cloudWatchLoggingOptionDescriptions,
+    };
+  }
 }
 
 class DeleteApplicationInputProcessingConfigurationResponse {
@@ -3607,6 +3957,16 @@ class DeleteApplicationInputProcessingConfigurationResponse {
       applicationVersionId: json['ApplicationVersionId'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationVersionId = this.applicationVersionId;
+    return {
+      if (applicationARN != null) 'ApplicationARN': applicationARN,
+      if (applicationVersionId != null)
+        'ApplicationVersionId': applicationVersionId,
+    };
+  }
 }
 
 class DeleteApplicationOutputResponse {
@@ -3625,6 +3985,16 @@ class DeleteApplicationOutputResponse {
       applicationARN: json['ApplicationARN'] as String?,
       applicationVersionId: json['ApplicationVersionId'] as int?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationVersionId = this.applicationVersionId;
+    return {
+      if (applicationARN != null) 'ApplicationARN': applicationARN,
+      if (applicationVersionId != null)
+        'ApplicationVersionId': applicationVersionId,
+    };
   }
 }
 
@@ -3646,6 +4016,16 @@ class DeleteApplicationReferenceDataSourceResponse {
       applicationVersionId: json['ApplicationVersionId'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationVersionId = this.applicationVersionId;
+    return {
+      if (applicationARN != null) 'ApplicationARN': applicationARN,
+      if (applicationVersionId != null)
+        'ApplicationVersionId': applicationVersionId,
+    };
+  }
 }
 
 class DeleteApplicationResponse {
@@ -3653,12 +4033,20 @@ class DeleteApplicationResponse {
   factory DeleteApplicationResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApplicationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class DeleteApplicationSnapshotResponse {
   DeleteApplicationSnapshotResponse();
   factory DeleteApplicationSnapshotResponse.fromJson(Map<String, dynamic> _) {
     return DeleteApplicationSnapshotResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -3680,6 +4068,16 @@ class DeleteApplicationVpcConfigurationResponse {
       applicationVersionId: json['ApplicationVersionId'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationVersionId = this.applicationVersionId;
+    return {
+      if (applicationARN != null) 'ApplicationARN': applicationARN,
+      if (applicationVersionId != null)
+        'ApplicationVersionId': applicationVersionId,
+    };
+  }
 }
 
 /// The information required to deploy a Kinesis Data Analytics Studio notebook
@@ -3694,6 +4092,7 @@ class DeployAsApplicationConfiguration {
   DeployAsApplicationConfiguration({
     required this.s3ContentLocation,
   });
+
   Map<String, dynamic> toJson() {
     final s3ContentLocation = this.s3ContentLocation;
     return {
@@ -3719,6 +4118,13 @@ class DeployAsApplicationConfigurationDescription {
           json['S3ContentLocationDescription'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final s3ContentLocationDescription = this.s3ContentLocationDescription;
+    return {
+      'S3ContentLocationDescription': s3ContentLocationDescription,
+    };
+  }
 }
 
 /// Updates to the configuration information required to deploy an Amazon Data
@@ -3731,6 +4137,7 @@ class DeployAsApplicationConfigurationUpdate {
   DeployAsApplicationConfigurationUpdate({
     this.s3ContentLocationUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final s3ContentLocationUpdate = this.s3ContentLocationUpdate;
     return {
@@ -3754,6 +4161,13 @@ class DescribeApplicationResponse {
           json['ApplicationDetail'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationDetail = this.applicationDetail;
+    return {
+      'ApplicationDetail': applicationDetail,
+    };
+  }
 }
 
 class DescribeApplicationSnapshotResponse {
@@ -3769,6 +4183,13 @@ class DescribeApplicationSnapshotResponse {
       snapshotDetails: SnapshotDetails.fromJson(
           json['SnapshotDetails'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final snapshotDetails = this.snapshotDetails;
+    return {
+      'SnapshotDetails': snapshotDetails,
+    };
   }
 }
 
@@ -3786,6 +4207,14 @@ class DescribeApplicationVersionResponse {
               json['ApplicationVersionDetail'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationVersionDetail = this.applicationVersionDetail;
+    return {
+      if (applicationVersionDetail != null)
+        'ApplicationVersionDetail': applicationVersionDetail,
+    };
   }
 }
 
@@ -3856,6 +4285,20 @@ class DiscoverInputSchemaResponse {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inputSchema = this.inputSchema;
+    final parsedInputRecords = this.parsedInputRecords;
+    final processedInputRecords = this.processedInputRecords;
+    final rawInputRecords = this.rawInputRecords;
+    return {
+      if (inputSchema != null) 'InputSchema': inputSchema,
+      if (parsedInputRecords != null) 'ParsedInputRecords': parsedInputRecords,
+      if (processedInputRecords != null)
+        'ProcessedInputRecords': processedInputRecords,
+      if (rawInputRecords != null) 'RawInputRecords': rawInputRecords,
+    };
+  }
 }
 
 /// Describes execution properties for a Flink-based Kinesis Data Analytics
@@ -3867,6 +4310,7 @@ class EnvironmentProperties {
   EnvironmentProperties({
     required this.propertyGroups,
   });
+
   Map<String, dynamic> toJson() {
     final propertyGroups = this.propertyGroups;
     return {
@@ -3891,6 +4335,14 @@ class EnvironmentPropertyDescriptions {
           .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final propertyGroupDescriptions = this.propertyGroupDescriptions;
+    return {
+      if (propertyGroupDescriptions != null)
+        'PropertyGroupDescriptions': propertyGroupDescriptions,
+    };
+  }
 }
 
 /// Describes updates to the execution property groups for a Flink-based Kinesis
@@ -3902,6 +4354,7 @@ class EnvironmentPropertyUpdates {
   EnvironmentPropertyUpdates({
     required this.propertyGroups,
   });
+
   Map<String, dynamic> toJson() {
     final propertyGroups = this.propertyGroups;
     return {
@@ -3935,6 +4388,7 @@ class FlinkApplicationConfiguration {
     this.monitoringConfiguration,
     this.parallelismConfiguration,
   });
+
   Map<String, dynamic> toJson() {
     final checkpointConfiguration = this.checkpointConfiguration;
     final monitoringConfiguration = this.monitoringConfiguration;
@@ -4006,6 +4460,28 @@ class FlinkApplicationConfigurationDescription {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final checkpointConfigurationDescription =
+        this.checkpointConfigurationDescription;
+    final jobPlanDescription = this.jobPlanDescription;
+    final monitoringConfigurationDescription =
+        this.monitoringConfigurationDescription;
+    final parallelismConfigurationDescription =
+        this.parallelismConfigurationDescription;
+    return {
+      if (checkpointConfigurationDescription != null)
+        'CheckpointConfigurationDescription':
+            checkpointConfigurationDescription,
+      if (jobPlanDescription != null) 'JobPlanDescription': jobPlanDescription,
+      if (monitoringConfigurationDescription != null)
+        'MonitoringConfigurationDescription':
+            monitoringConfigurationDescription,
+      if (parallelismConfigurationDescription != null)
+        'ParallelismConfigurationDescription':
+            parallelismConfigurationDescription,
+    };
+  }
 }
 
 /// Describes updates to the configuration parameters for a Flink-based Kinesis
@@ -4029,6 +4505,7 @@ class FlinkApplicationConfigurationUpdate {
     this.monitoringConfigurationUpdate,
     this.parallelismConfigurationUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final checkpointConfigurationUpdate = this.checkpointConfigurationUpdate;
     final monitoringConfigurationUpdate = this.monitoringConfigurationUpdate;
@@ -4091,6 +4568,7 @@ class GlueDataCatalogConfiguration {
   GlueDataCatalogConfiguration({
     required this.databaseARN,
   });
+
   Map<String, dynamic> toJson() {
     final databaseARN = this.databaseARN;
     return {
@@ -4114,6 +4592,13 @@ class GlueDataCatalogConfigurationDescription {
       databaseARN: json['DatabaseARN'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final databaseARN = this.databaseARN;
+    return {
+      'DatabaseARN': databaseARN,
+    };
+  }
 }
 
 /// Updates to the configuration of the Glue Data Catalog that you use for SQL
@@ -4125,6 +4610,7 @@ class GlueDataCatalogConfigurationUpdate {
   GlueDataCatalogConfigurationUpdate({
     required this.databaseARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final databaseARNUpdate = this.databaseARNUpdate;
     return {
@@ -4177,6 +4663,7 @@ class Input {
     this.kinesisFirehoseInput,
     this.kinesisStreamsInput,
   });
+
   Map<String, dynamic> toJson() {
     final inputSchema = this.inputSchema;
     final namePrefix = this.namePrefix;
@@ -4290,6 +4777,38 @@ class InputDescription {
       namePrefix: json['NamePrefix'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inAppStreamNames = this.inAppStreamNames;
+    final inputId = this.inputId;
+    final inputParallelism = this.inputParallelism;
+    final inputProcessingConfigurationDescription =
+        this.inputProcessingConfigurationDescription;
+    final inputSchema = this.inputSchema;
+    final inputStartingPositionConfiguration =
+        this.inputStartingPositionConfiguration;
+    final kinesisFirehoseInputDescription =
+        this.kinesisFirehoseInputDescription;
+    final kinesisStreamsInputDescription = this.kinesisStreamsInputDescription;
+    final namePrefix = this.namePrefix;
+    return {
+      if (inAppStreamNames != null) 'InAppStreamNames': inAppStreamNames,
+      if (inputId != null) 'InputId': inputId,
+      if (inputParallelism != null) 'InputParallelism': inputParallelism,
+      if (inputProcessingConfigurationDescription != null)
+        'InputProcessingConfigurationDescription':
+            inputProcessingConfigurationDescription,
+      if (inputSchema != null) 'InputSchema': inputSchema,
+      if (inputStartingPositionConfiguration != null)
+        'InputStartingPositionConfiguration':
+            inputStartingPositionConfiguration,
+      if (kinesisFirehoseInputDescription != null)
+        'KinesisFirehoseInputDescription': kinesisFirehoseInputDescription,
+      if (kinesisStreamsInputDescription != null)
+        'KinesisStreamsInputDescription': kinesisStreamsInputDescription,
+      if (namePrefix != null) 'NamePrefix': namePrefix,
+    };
+  }
 }
 
 /// An object that contains the Amazon Resource Name (ARN) of the Amazon Lambda
@@ -4310,6 +4829,7 @@ class InputLambdaProcessor {
   InputLambdaProcessor({
     required this.resourceARN,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARN = this.resourceARN;
     return {
@@ -4351,6 +4871,15 @@ class InputLambdaProcessorDescription {
       roleARN: json['RoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    final roleARN = this.roleARN;
+    return {
+      'ResourceARN': resourceARN,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 /// For a SQL-based Kinesis Data Analytics application, represents an update to
@@ -4371,6 +4900,7 @@ class InputLambdaProcessorUpdate {
   InputLambdaProcessorUpdate({
     required this.resourceARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARNUpdate = this.resourceARNUpdate;
     return {
@@ -4412,6 +4942,7 @@ class InputParallelismUpdate {
   InputParallelismUpdate({
     required this.countUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final countUpdate = this.countUpdate;
     return {
@@ -4432,6 +4963,7 @@ class InputProcessingConfiguration {
   InputProcessingConfiguration({
     required this.inputLambdaProcessor,
   });
+
   Map<String, dynamic> toJson() {
     final inputLambdaProcessor = this.inputLambdaProcessor;
     return {
@@ -4463,6 +4995,15 @@ class InputProcessingConfigurationDescription {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inputLambdaProcessorDescription =
+        this.inputLambdaProcessorDescription;
+    return {
+      if (inputLambdaProcessorDescription != null)
+        'InputLambdaProcessorDescription': inputLambdaProcessorDescription,
+    };
+  }
 }
 
 /// For a SQL-based Kinesis Data Analytics application, describes updates to an
@@ -4474,6 +5015,7 @@ class InputProcessingConfigurationUpdate {
   InputProcessingConfigurationUpdate({
     required this.inputLambdaProcessorUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final inputLambdaProcessorUpdate = this.inputLambdaProcessorUpdate;
     return {
@@ -4502,6 +5044,7 @@ class InputSchemaUpdate {
     this.recordEncodingUpdate,
     this.recordFormatUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final recordColumnUpdates = this.recordColumnUpdates;
     final recordEncodingUpdate = this.recordEncodingUpdate;
@@ -4631,6 +5174,7 @@ class InputUpdate {
     this.kinesisStreamsInputUpdate,
     this.namePrefixUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final inputId = this.inputId;
     final inputParallelismUpdate = this.inputParallelismUpdate;
@@ -4690,6 +5234,7 @@ class KinesisFirehoseInput {
   KinesisFirehoseInput({
     required this.resourceARN,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARN = this.resourceARN;
     return {
@@ -4723,6 +5268,15 @@ class KinesisFirehoseInputDescription {
       roleARN: json['RoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    final roleARN = this.roleARN;
+    return {
+      'ResourceARN': resourceARN,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 /// For a SQL-based Kinesis Data Analytics application, when updating
@@ -4735,6 +5289,7 @@ class KinesisFirehoseInputUpdate {
   KinesisFirehoseInputUpdate({
     required this.resourceARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARNUpdate = this.resourceARNUpdate;
     return {
@@ -4754,6 +5309,7 @@ class KinesisFirehoseOutput {
   KinesisFirehoseOutput({
     required this.resourceARN,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARN = this.resourceARN;
     return {
@@ -4787,6 +5343,15 @@ class KinesisFirehoseOutputDescription {
       roleARN: json['RoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    final roleARN = this.roleARN;
+    return {
+      'ResourceARN': resourceARN,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 /// For a SQL-based Kinesis Data Analytics application, when updating an output
@@ -4800,6 +5365,7 @@ class KinesisFirehoseOutputUpdate {
   KinesisFirehoseOutputUpdate({
     required this.resourceARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARNUpdate = this.resourceARNUpdate;
     return {
@@ -4817,6 +5383,7 @@ class KinesisStreamsInput {
   KinesisStreamsInput({
     required this.resourceARN,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARN = this.resourceARN;
     return {
@@ -4851,6 +5418,15 @@ class KinesisStreamsInputDescription {
       roleARN: json['RoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    final roleARN = this.roleARN;
+    return {
+      'ResourceARN': resourceARN,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 /// When you update the input configuration for a SQL-based Kinesis Data
@@ -4863,6 +5439,7 @@ class KinesisStreamsInputUpdate {
   KinesisStreamsInputUpdate({
     required this.resourceARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARNUpdate = this.resourceARNUpdate;
     return {
@@ -4881,6 +5458,7 @@ class KinesisStreamsOutput {
   KinesisStreamsOutput({
     required this.resourceARN,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARN = this.resourceARN;
     return {
@@ -4914,6 +5492,15 @@ class KinesisStreamsOutputDescription {
       roleARN: json['RoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    final roleARN = this.roleARN;
+    return {
+      'ResourceARN': resourceARN,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 /// When you update a SQL-based Kinesis Data Analytics application's output
@@ -4928,6 +5515,7 @@ class KinesisStreamsOutputUpdate {
   KinesisStreamsOutputUpdate({
     required this.resourceARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARNUpdate = this.resourceARNUpdate;
     return {
@@ -4954,6 +5542,7 @@ class LambdaOutput {
   LambdaOutput({
     required this.resourceARN,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARN = this.resourceARN;
     return {
@@ -4987,6 +5576,15 @@ class LambdaOutputDescription {
       roleARN: json['RoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final resourceARN = this.resourceARN;
+    final roleARN = this.roleARN;
+    return {
+      'ResourceARN': resourceARN,
+      if (roleARN != null) 'RoleARN': roleARN,
+    };
+  }
 }
 
 /// When you update an SQL-based Kinesis Data Analytics application's output
@@ -5007,6 +5605,7 @@ class LambdaOutputUpdate {
   LambdaOutputUpdate({
     required this.resourceARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final resourceARNUpdate = this.resourceARNUpdate;
     return {
@@ -5036,6 +5635,15 @@ class ListApplicationSnapshotsResponse {
           .map((e) => SnapshotDetails.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final nextToken = this.nextToken;
+    final snapshotSummaries = this.snapshotSummaries;
+    return {
+      if (nextToken != null) 'NextToken': nextToken,
+      if (snapshotSummaries != null) 'SnapshotSummaries': snapshotSummaries,
+    };
   }
 }
 
@@ -5070,6 +5678,16 @@ class ListApplicationVersionsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationVersionSummaries = this.applicationVersionSummaries;
+    final nextToken = this.nextToken;
+    return {
+      if (applicationVersionSummaries != null)
+        'ApplicationVersionSummaries': applicationVersionSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListApplicationsResponse {
@@ -5097,6 +5715,15 @@ class ListApplicationsResponse {
       nextToken: json['NextToken'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationSummaries = this.applicationSummaries;
+    final nextToken = this.nextToken;
+    return {
+      'ApplicationSummaries': applicationSummaries,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
+  }
 }
 
 class ListTagsForResourceResponse {
@@ -5113,6 +5740,13 @@ class ListTagsForResourceResponse {
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final tags = this.tags;
+    return {
+      if (tags != null) 'Tags': tags,
+    };
   }
 }
 
@@ -5293,6 +5927,7 @@ class MonitoringConfiguration {
     this.logLevel,
     this.metricsLevel,
   });
+
   Map<String, dynamic> toJson() {
     final configurationType = this.configurationType;
     final logLevel = this.logLevel;
@@ -5332,6 +5967,18 @@ class MonitoringConfigurationDescription {
       metricsLevel: (json['MetricsLevel'] as String?)?.toMetricsLevel(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final configurationType = this.configurationType;
+    final logLevel = this.logLevel;
+    final metricsLevel = this.metricsLevel;
+    return {
+      if (configurationType != null)
+        'ConfigurationType': configurationType.toValue(),
+      if (logLevel != null) 'LogLevel': logLevel.toValue(),
+      if (metricsLevel != null) 'MetricsLevel': metricsLevel.toValue(),
+    };
+  }
 }
 
 /// Describes updates to configuration parameters for Amazon CloudWatch logging
@@ -5357,6 +6004,7 @@ class MonitoringConfigurationUpdate {
     this.logLevelUpdate,
     this.metricsLevelUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final configurationTypeUpdate = this.configurationTypeUpdate;
     final logLevelUpdate = this.logLevelUpdate;
@@ -5400,6 +6048,7 @@ class Output {
     this.kinesisStreamsOutput,
     this.lambdaOutput,
   });
+
   Map<String, dynamic> toJson() {
     final destinationSchema = this.destinationSchema;
     final name = this.name;
@@ -5478,6 +6127,28 @@ class OutputDescription {
       outputId: json['OutputId'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final destinationSchema = this.destinationSchema;
+    final kinesisFirehoseOutputDescription =
+        this.kinesisFirehoseOutputDescription;
+    final kinesisStreamsOutputDescription =
+        this.kinesisStreamsOutputDescription;
+    final lambdaOutputDescription = this.lambdaOutputDescription;
+    final name = this.name;
+    final outputId = this.outputId;
+    return {
+      if (destinationSchema != null) 'DestinationSchema': destinationSchema,
+      if (kinesisFirehoseOutputDescription != null)
+        'KinesisFirehoseOutputDescription': kinesisFirehoseOutputDescription,
+      if (kinesisStreamsOutputDescription != null)
+        'KinesisStreamsOutputDescription': kinesisStreamsOutputDescription,
+      if (lambdaOutputDescription != null)
+        'LambdaOutputDescription': lambdaOutputDescription,
+      if (name != null) 'Name': name,
+      if (outputId != null) 'OutputId': outputId,
+    };
+  }
 }
 
 /// For a SQL-based Kinesis Data Analytics application, describes updates to the
@@ -5511,6 +6182,7 @@ class OutputUpdate {
     this.lambdaOutputUpdate,
     this.nameUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final outputId = this.outputId;
     final destinationSchemaUpdate = this.destinationSchemaUpdate;
@@ -5577,6 +6249,7 @@ class ParallelismConfiguration {
     this.parallelism,
     this.parallelismPerKPU,
   });
+
   Map<String, dynamic> toJson() {
     final configurationType = this.configurationType;
     final autoScalingEnabled = this.autoScalingEnabled;
@@ -5648,6 +6321,22 @@ class ParallelismConfigurationDescription {
       parallelismPerKPU: json['ParallelismPerKPU'] as int?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final autoScalingEnabled = this.autoScalingEnabled;
+    final configurationType = this.configurationType;
+    final currentParallelism = this.currentParallelism;
+    final parallelism = this.parallelism;
+    final parallelismPerKPU = this.parallelismPerKPU;
+    return {
+      if (autoScalingEnabled != null) 'AutoScalingEnabled': autoScalingEnabled,
+      if (configurationType != null)
+        'ConfigurationType': configurationType.toValue(),
+      if (currentParallelism != null) 'CurrentParallelism': currentParallelism,
+      if (parallelism != null) 'Parallelism': parallelism,
+      if (parallelismPerKPU != null) 'ParallelismPerKPU': parallelismPerKPU,
+    };
+  }
 }
 
 /// Describes updates to parameters for how an application executes multiple
@@ -5687,6 +6376,7 @@ class ParallelismConfigurationUpdate {
     this.parallelismPerKPUUpdate,
     this.parallelismUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final autoScalingEnabledUpdate = this.autoScalingEnabledUpdate;
     final configurationTypeUpdate = this.configurationTypeUpdate;
@@ -5867,6 +6557,7 @@ class ReferenceDataSource {
     required this.tableName,
     this.s3ReferenceDataSource,
   });
+
   Map<String, dynamic> toJson() {
     final referenceSchema = this.referenceSchema;
     final tableName = this.tableName;
@@ -5919,6 +6610,20 @@ class ReferenceDataSourceDescription {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final referenceId = this.referenceId;
+    final s3ReferenceDataSourceDescription =
+        this.s3ReferenceDataSourceDescription;
+    final tableName = this.tableName;
+    final referenceSchema = this.referenceSchema;
+    return {
+      'ReferenceId': referenceId,
+      'S3ReferenceDataSourceDescription': s3ReferenceDataSourceDescription,
+      'TableName': tableName,
+      if (referenceSchema != null) 'ReferenceSchema': referenceSchema,
+    };
+  }
 }
 
 /// When you update a reference data source configuration for a SQL-based
@@ -5950,6 +6655,7 @@ class ReferenceDataSourceUpdate {
     this.s3ReferenceDataSourceUpdate,
     this.tableNameUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final referenceId = this.referenceId;
     final referenceSchemaUpdate = this.referenceSchemaUpdate;
@@ -5978,6 +6684,13 @@ class RollbackApplicationResponse {
           json['ApplicationDetail'] as Map<String, dynamic>),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationDetail = this.applicationDetail;
+    return {
+      'ApplicationDetail': applicationDetail,
+    };
+  }
 }
 
 /// Describes the starting parameters for an Kinesis Data Analytics application.
@@ -5998,6 +6711,7 @@ class RunConfiguration {
     this.flinkRunConfiguration,
     this.sqlRunConfigurations,
   });
+
   Map<String, dynamic> toJson() {
     final applicationRestoreConfiguration =
         this.applicationRestoreConfiguration;
@@ -6041,6 +6755,20 @@ class RunConfigurationDescription {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationRestoreConfigurationDescription =
+        this.applicationRestoreConfigurationDescription;
+    final flinkRunConfigurationDescription =
+        this.flinkRunConfigurationDescription;
+    return {
+      if (applicationRestoreConfigurationDescription != null)
+        'ApplicationRestoreConfigurationDescription':
+            applicationRestoreConfigurationDescription,
+      if (flinkRunConfigurationDescription != null)
+        'FlinkRunConfigurationDescription': flinkRunConfigurationDescription,
+    };
+  }
 }
 
 /// Describes the updates to the starting parameters for a Kinesis Data
@@ -6057,6 +6785,7 @@ class RunConfigurationUpdate {
     this.applicationRestoreConfiguration,
     this.flinkRunConfiguration,
   });
+
   Map<String, dynamic> toJson() {
     final applicationRestoreConfiguration =
         this.applicationRestoreConfiguration;
@@ -6148,6 +6877,17 @@ class S3ApplicationCodeLocationDescription {
       objectVersion: json['ObjectVersion'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucketARN = this.bucketARN;
+    final fileKey = this.fileKey;
+    final objectVersion = this.objectVersion;
+    return {
+      'BucketARN': bucketARN,
+      'FileKey': fileKey,
+      if (objectVersion != null) 'ObjectVersion': objectVersion,
+    };
+  }
 }
 
 /// For a SQL-based Kinesis Data Analytics application, provides a description
@@ -6164,6 +6904,7 @@ class S3Configuration {
     required this.bucketARN,
     required this.fileKey,
   });
+
   Map<String, dynamic> toJson() {
     final bucketARN = this.bucketARN;
     final fileKey = this.fileKey;
@@ -6186,6 +6927,7 @@ class S3ContentBaseLocation {
     required this.bucketARN,
     this.basePath,
   });
+
   Map<String, dynamic> toJson() {
     final bucketARN = this.bucketARN;
     final basePath = this.basePath;
@@ -6214,6 +6956,15 @@ class S3ContentBaseLocationDescription {
       basePath: json['BasePath'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucketARN = this.bucketARN;
+    final basePath = this.basePath;
+    return {
+      'BucketARN': bucketARN,
+      if (basePath != null) 'BasePath': basePath,
+    };
+  }
 }
 
 /// The information required to update the S3 base location that holds the
@@ -6229,6 +6980,7 @@ class S3ContentBaseLocationUpdate {
     this.basePathUpdate,
     this.bucketARNUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final basePathUpdate = this.basePathUpdate;
     final bucketARNUpdate = this.bucketARNUpdate;
@@ -6297,6 +7049,7 @@ class S3ContentLocationUpdate {
     this.fileKeyUpdate,
     this.objectVersionUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final bucketARNUpdate = this.bucketARNUpdate;
     final fileKeyUpdate = this.fileKeyUpdate;
@@ -6327,6 +7080,7 @@ class S3ReferenceDataSource {
     this.bucketARN,
     this.fileKey,
   });
+
   Map<String, dynamic> toJson() {
     final bucketARN = this.bucketARN;
     final fileKey = this.fileKey;
@@ -6368,6 +7122,17 @@ class S3ReferenceDataSourceDescription {
       referenceRoleARN: json['ReferenceRoleARN'] as String?,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final bucketARN = this.bucketARN;
+    final fileKey = this.fileKey;
+    final referenceRoleARN = this.referenceRoleARN;
+    return {
+      'BucketARN': bucketARN,
+      'FileKey': fileKey,
+      if (referenceRoleARN != null) 'ReferenceRoleARN': referenceRoleARN,
+    };
+  }
 }
 
 /// For a SQL-based Kinesis Data Analytics application, describes the Amazon S3
@@ -6383,6 +7148,7 @@ class S3ReferenceDataSourceUpdate {
     this.bucketARNUpdate,
     this.fileKeyUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final bucketARNUpdate = this.bucketARNUpdate;
     final fileKeyUpdate = this.fileKeyUpdate;
@@ -6421,6 +7187,21 @@ class SnapshotDetails {
       snapshotCreationTimestamp:
           timeStampFromJson(json['SnapshotCreationTimestamp']),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationVersionId = this.applicationVersionId;
+    final snapshotName = this.snapshotName;
+    final snapshotStatus = this.snapshotStatus;
+    final snapshotCreationTimestamp = this.snapshotCreationTimestamp;
+    return {
+      'ApplicationVersionId': applicationVersionId,
+      'SnapshotName': snapshotName,
+      'SnapshotStatus': snapshotStatus.toValue(),
+      if (snapshotCreationTimestamp != null)
+        'SnapshotCreationTimestamp':
+            unixTimestampToJson(snapshotCreationTimestamp),
+    };
   }
 }
 
@@ -6525,6 +7306,7 @@ class SqlApplicationConfiguration {
     this.outputs,
     this.referenceDataSources,
   });
+
   Map<String, dynamic> toJson() {
     final inputs = this.inputs;
     final outputs = this.outputs;
@@ -6577,6 +7359,19 @@ class SqlApplicationConfigurationDescription {
               .toList(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final inputDescriptions = this.inputDescriptions;
+    final outputDescriptions = this.outputDescriptions;
+    final referenceDataSourceDescriptions =
+        this.referenceDataSourceDescriptions;
+    return {
+      if (inputDescriptions != null) 'InputDescriptions': inputDescriptions,
+      if (outputDescriptions != null) 'OutputDescriptions': outputDescriptions,
+      if (referenceDataSourceDescriptions != null)
+        'ReferenceDataSourceDescriptions': referenceDataSourceDescriptions,
+    };
+  }
 }
 
 /// Describes updates to the input streams, destination streams, and reference
@@ -6599,6 +7394,7 @@ class SqlApplicationConfigurationUpdate {
     this.outputUpdates,
     this.referenceDataSourceUpdates,
   });
+
   Map<String, dynamic> toJson() {
     final inputUpdates = this.inputUpdates;
     final outputUpdates = this.outputUpdates;
@@ -6627,6 +7423,7 @@ class SqlRunConfiguration {
     required this.inputId,
     required this.inputStartingPositionConfiguration,
   });
+
   Map<String, dynamic> toJson() {
     final inputId = this.inputId;
     final inputStartingPositionConfiguration =
@@ -6643,12 +7440,20 @@ class StartApplicationResponse {
   factory StartApplicationResponse.fromJson(Map<String, dynamic> _) {
     return StartApplicationResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class StopApplicationResponse {
   StopApplicationResponse();
   factory StopApplicationResponse.fromJson(Map<String, dynamic> _) {
     return StopApplicationResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6692,12 +7497,20 @@ class TagResourceResponse {
   factory TagResourceResponse.fromJson(Map<String, dynamic> _) {
     return TagResourceResponse();
   }
+
+  Map<String, dynamic> toJson() {
+    return {};
+  }
 }
 
 class UntagResourceResponse {
   UntagResourceResponse();
   factory UntagResourceResponse.fromJson(Map<String, dynamic> _) {
     return UntagResourceResponse();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {};
   }
 }
 
@@ -6725,6 +7538,18 @@ class UpdateApplicationMaintenanceConfigurationResponse {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final applicationARN = this.applicationARN;
+    final applicationMaintenanceConfigurationDescription =
+        this.applicationMaintenanceConfigurationDescription;
+    return {
+      if (applicationARN != null) 'ApplicationARN': applicationARN,
+      if (applicationMaintenanceConfigurationDescription != null)
+        'ApplicationMaintenanceConfigurationDescription':
+            applicationMaintenanceConfigurationDescription,
+    };
+  }
 }
 
 class UpdateApplicationResponse {
@@ -6739,6 +7564,13 @@ class UpdateApplicationResponse {
       applicationDetail: ApplicationDetail.fromJson(
           json['ApplicationDetail'] as Map<String, dynamic>),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    final applicationDetail = this.applicationDetail;
+    return {
+      'ApplicationDetail': applicationDetail,
+    };
   }
 }
 
@@ -6786,6 +7618,7 @@ class VpcConfiguration {
     required this.securityGroupIds,
     required this.subnetIds,
   });
+
   Map<String, dynamic> toJson() {
     final securityGroupIds = this.securityGroupIds;
     final subnetIds = this.subnetIds;
@@ -6834,6 +7667,19 @@ class VpcConfigurationDescription {
       vpcId: json['VpcId'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final securityGroupIds = this.securityGroupIds;
+    final subnetIds = this.subnetIds;
+    final vpcConfigurationId = this.vpcConfigurationId;
+    final vpcId = this.vpcId;
+    return {
+      'SecurityGroupIds': securityGroupIds,
+      'SubnetIds': subnetIds,
+      'VpcConfigurationId': vpcConfigurationId,
+      'VpcId': vpcId,
+    };
+  }
 }
 
 /// Describes updates to the VPC configuration used by the application.
@@ -6856,6 +7702,7 @@ class VpcConfigurationUpdate {
     this.securityGroupIdUpdates,
     this.subnetIdUpdates,
   });
+
   Map<String, dynamic> toJson() {
     final vpcConfigurationId = this.vpcConfigurationId;
     final securityGroupIdUpdates = this.securityGroupIdUpdates;
@@ -6891,6 +7738,7 @@ class ZeppelinApplicationConfiguration {
     this.deployAsApplicationConfiguration,
     this.monitoringConfiguration,
   });
+
   Map<String, dynamic> toJson() {
     final catalogConfiguration = this.catalogConfiguration;
     final customArtifactsConfiguration = this.customArtifactsConfiguration;
@@ -6962,6 +7810,28 @@ class ZeppelinApplicationConfigurationDescription {
               : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final monitoringConfigurationDescription =
+        this.monitoringConfigurationDescription;
+    final catalogConfigurationDescription =
+        this.catalogConfigurationDescription;
+    final customArtifactsConfigurationDescription =
+        this.customArtifactsConfigurationDescription;
+    final deployAsApplicationConfigurationDescription =
+        this.deployAsApplicationConfigurationDescription;
+    return {
+      'MonitoringConfigurationDescription': monitoringConfigurationDescription,
+      if (catalogConfigurationDescription != null)
+        'CatalogConfigurationDescription': catalogConfigurationDescription,
+      if (customArtifactsConfigurationDescription != null)
+        'CustomArtifactsConfigurationDescription':
+            customArtifactsConfigurationDescription,
+      if (deployAsApplicationConfigurationDescription != null)
+        'DeployAsApplicationConfigurationDescription':
+            deployAsApplicationConfigurationDescription,
+    };
+  }
 }
 
 /// Updates to the configuration of Kinesis Data Analytics Studio notebook.
@@ -6986,6 +7856,7 @@ class ZeppelinApplicationConfigurationUpdate {
     this.deployAsApplicationConfigurationUpdate,
     this.monitoringConfigurationUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final catalogConfigurationUpdate = this.catalogConfigurationUpdate;
     final customArtifactsConfigurationUpdate =
@@ -7019,6 +7890,7 @@ class ZeppelinMonitoringConfiguration {
   ZeppelinMonitoringConfiguration({
     required this.logLevel,
   });
+
   Map<String, dynamic> toJson() {
     final logLevel = this.logLevel;
     return {
@@ -7042,6 +7914,13 @@ class ZeppelinMonitoringConfigurationDescription {
       logLevel: (json['LogLevel'] as String?)?.toLogLevel(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final logLevel = this.logLevel;
+    return {
+      if (logLevel != null) 'LogLevel': logLevel.toValue(),
+    };
+  }
 }
 
 /// Updates to the monitoring configuration for Apache Zeppelin within a Kinesis
@@ -7054,6 +7933,7 @@ class ZeppelinMonitoringConfigurationUpdate {
   ZeppelinMonitoringConfigurationUpdate({
     required this.logLevelUpdate,
   });
+
   Map<String, dynamic> toJson() {
     final logLevelUpdate = this.logLevelUpdate;
     return {
