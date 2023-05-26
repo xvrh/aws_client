@@ -3543,8 +3543,8 @@ class ListEndpointsByPlatformApplicationResponse {
   factory ListEndpointsByPlatformApplicationResponse.fromXml(
       _s.XmlElement elem) {
     return ListEndpointsByPlatformApplicationResponse(
-      endpoints: _s.extractXmlChild(elem, 'Endpoints')?.let((elem) =>
-          elem.findElements('member').map((c) => Endpoint.fromXml(c)).toList()),
+      endpoints: _s.extractXmlChild(elem, 'Endpoints')?.let(
+          (elem) => elem.findElements('member').map(Endpoint.fromXml).toList()),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
   }
@@ -3577,7 +3577,7 @@ class ListOriginationNumbersResult {
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
       phoneNumbers: _s.extractXmlChild(elem, 'PhoneNumbers')?.let((elem) => elem
           .findElements('member')
-          .map((c) => PhoneNumberInformation.fromXml(c))
+          .map(PhoneNumberInformation.fromXml)
           .toList()),
     );
   }
@@ -3646,7 +3646,7 @@ class ListPlatformApplicationsResponse {
           .extractXmlChild(elem, 'PlatformApplications')
           ?.let((elem) => elem
               .findElements('member')
-              .map((c) => PlatformApplication.fromXml(c))
+              .map(PlatformApplication.fromXml)
               .toList()),
     );
   }
@@ -3680,7 +3680,7 @@ class ListSMSSandboxPhoneNumbersResult {
       phoneNumbers: _s
           .extractXmlChild(elem, 'PhoneNumbers')!
           .findElements('member')
-          .map((c) => SMSSandboxPhoneNumber.fromXml(c))
+          .map(SMSSandboxPhoneNumber.fromXml)
           .toList(),
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
     );
@@ -3714,10 +3714,7 @@ class ListSubscriptionsByTopicResponse {
     return ListSubscriptionsByTopicResponse(
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
       subscriptions: _s.extractXmlChild(elem, 'Subscriptions')?.let((elem) =>
-          elem
-              .findElements('member')
-              .map((c) => Subscription.fromXml(c))
-              .toList()),
+          elem.findElements('member').map(Subscription.fromXml).toList()),
     );
   }
 
@@ -3748,10 +3745,7 @@ class ListSubscriptionsResponse {
     return ListSubscriptionsResponse(
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
       subscriptions: _s.extractXmlChild(elem, 'Subscriptions')?.let((elem) =>
-          elem
-              .findElements('member')
-              .map((c) => Subscription.fromXml(c))
-              .toList()),
+          elem.findElements('member').map(Subscription.fromXml).toList()),
     );
   }
 
@@ -3774,8 +3768,8 @@ class ListTagsForResourceResponse {
   });
   factory ListTagsForResourceResponse.fromXml(_s.XmlElement elem) {
     return ListTagsForResourceResponse(
-      tags: _s.extractXmlChild(elem, 'Tags')?.let((elem) =>
-          elem.findElements('member').map((c) => Tag.fromXml(c)).toList()),
+      tags: _s.extractXmlChild(elem, 'Tags')?.let(
+          (elem) => elem.findElements('member').map(Tag.fromXml).toList()),
     );
   }
 
@@ -3803,8 +3797,8 @@ class ListTopicsResponse {
   factory ListTopicsResponse.fromXml(_s.XmlElement elem) {
     return ListTopicsResponse(
       nextToken: _s.extractXmlStringValue(elem, 'NextToken'),
-      topics: _s.extractXmlChild(elem, 'Topics')?.let((elem) =>
-          elem.findElements('member').map((c) => Topic.fromXml(c)).toList()),
+      topics: _s.extractXmlChild(elem, 'Topics')?.let(
+          (elem) => elem.findElements('member').map(Topic.fromXml).toList()),
     );
   }
 
@@ -4193,11 +4187,11 @@ class PublishBatchResponse {
     return PublishBatchResponse(
       failed: _s.extractXmlChild(elem, 'Failed')?.let((elem) => elem
           .findElements('member')
-          .map((c) => BatchResultErrorEntry.fromXml(c))
+          .map(BatchResultErrorEntry.fromXml)
           .toList()),
       successful: _s.extractXmlChild(elem, 'Successful')?.let((elem) => elem
           .findElements('member')
-          .map((c) => PublishBatchResultEntry.fromXml(c))
+          .map(PublishBatchResultEntry.fromXml)
           .toList()),
     );
   }
