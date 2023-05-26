@@ -10,7 +10,7 @@ import 'dart:io';
 import 'package:aws_client/s3_2006_03_01.dart';
 
 void main() async {
-  final api = S3(region: 'eu-west-1');
+  final api = S3(region: 'us-west-1');
   await api.createBucket(bucket: 'my_bucket');
   await api.putObject(
       bucket: 'my_bucket',
@@ -26,7 +26,7 @@ import 'dart:convert';
 import 'package:aws_client/dynamo_document.dart';
 
 void main() async {
-  final db = DocumentClient(region: 'eu-west-1');
+  final db = DocumentClient(region: 'us-west-1');
 
   final getResponse = await db.get(
     tableName: 'MyTable',
@@ -42,7 +42,7 @@ void main() async {
 import 'package:aws_client/sqs_2012_11_05.dart';
 
 void main() async {
-  final sqs = Sqs(region: 'us-east-1');
+  final sqs = Sqs(region: 'us-west-1');
   final queue = await sqs.createQueue(queueName: 'queue');
   await sqs.sendMessage(
           messageBody: 'Hello from Dart client!', queueUrl: queue.queueUrl!);
@@ -63,6 +63,73 @@ void main(List<String> args) async {
 
   print('StatusCode: ${response.statusCode}');
   lambda.close();
+}
+```
+
+##### Cognito Identity provider
+
+```dart
+import 'package:aws_client/cognito_identity_provider_2016_04_18.dart';
+
+void main() async {
+  final api = CognitoIdentityProvider(region: 'us-west-1');
+
+  final cognitoPool = 'us-west-1_abc';
+  final user = 'email@email.com';
+  
+  await api.adminCreateUser(
+    userPoolId: cognitoPool,
+    username: user,
+    temporaryPassword: r'Pass123$$',
+    userAttributes: [AttributeType(name: 'email', value: user)],
+    clientMetadata: {
+      'language': 'fr',
+    },
+  );
+
+  await api.adminSetUserPassword(
+      password: 'newpassword', userPoolId: cognitoPool, username: user);
+
+  await api.adminDeleteUser(userPoolId: cognitoPool, username: user);
+
+  api.close();
+}
+```
+
+##### IAM
+```dart
+import 'package:aws_client/iam_2010_05_08.dart';
+
+void main() async {
+  final iam = Iam();
+
+  final users = await iam.listUsers();
+  print(users.users.length);
+
+  iam.close();
+}
+```
+
+##### SES
+```dart
+import 'package:aws_client/ses_v2_2019_09_27.dart';
+
+void main() async {
+  final api = SesV2(region: 'us-west-1');
+
+  final response = await api.sendEmail(
+    content: EmailContent(
+      simple: Message(
+        body: Body(text: Content(data: 'Hello, here is a message')),
+        subject: Content(data: 'An email from SES'),
+      ),
+    ),
+    destination: Destination(toAddresses: ['user@email.com']),
+    fromEmailAddress: 'from@email.com',
+  );
+  print(response.messageId);
+
+  api.close();
 }
 ```
 
@@ -398,7 +465,7 @@ The following is a list of APIs that are currently available inside this package
 - AWS Service Catalog (`package:aws_client/service_catalog`)
 - AWS Service Catalog App Registry (`package:aws_client/service_catalog_app_registry`)
 - AWS Cloud Map (`package:aws_client/service_discovery`)
-- Amazon Simple Email Service (`package:aws_client/se_sv2`)
+- Amazon Simple Email Service (`package:aws_client/ses_v2`)
 - AWS Shield (`package:aws_client/shield`)
 - AWS Signer (`package:aws_client/signer`)
 - AWS SimSpace Weaver (`package:aws_client/sim_space_weaver`)

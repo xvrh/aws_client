@@ -1,5 +1,4 @@
-import 'package:aws_client/se_sv2_2019_09_27.dart';
-import 'package:http/http.dart';
+import 'package:aws_client/ses_v2_2019_09_27.dart';
 
 void main() async {
   final api = SesV2(region: 'eu-central-1');
