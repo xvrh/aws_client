@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:aws_client/s3_2006_03_01.dart';
 
 void main() async {

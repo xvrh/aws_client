@@ -4,19 +4,67 @@
 
 A simple usage example:
 
-````dart
-import 'package:aws_client/aws_client.dart';
-import 'package:http_client/console.dart';
+##### S3
+```dart
+import 'dart:io';
+import 'package:aws_client/s3_2006_03_01.dart';
 
-main() async {
-  var httpClient = newHttpClient();
-  var credentials = new Credentials(accessKey: 'MY_ACCESS_KEY', secretKey: 'MY_SECRET_KEY');
-  var aws = new Aws(credentials: credentials, httpClient: httpClient);
-  var queue = aws.sqs.queue('https://my-queue-url/number/queue-name');
-  await queue.sendMessage('Hello from Dart client!');
-  httpClient.close();
+void main() async {
+  final api = S3(region: 'eu-west-1');
+  await api.createBucket(bucket: 'my_bucket');
+  await api.putObject(
+      bucket: 'my_bucket',
+      key: 'my_file.png',
+      body: File('my_file.png').readAsBytesSync());
+  api.close();
 }
-````
+```
+
+##### DynamoDB
+```dart
+import 'dart:convert';
+import 'package:aws_client/dynamo_document.dart';
+
+void main() async {
+  final db = DocumentClient(region: 'eu-west-1');
+
+  final getResponse = await db.get(
+    tableName: 'MyTable',
+    key: {'Car': 'DudeWheresMyCar'},
+  );
+
+  print(jsonEncode(getResponse.item));
+}
+```
+
+##### SQS
+```dart
+import 'package:aws_client/sqs_2012_11_05.dart';
+
+void main() async {
+  final sqs = Sqs(region: 'us-east-1');
+  final queue = await sqs.createQueue(queueName: 'queue');
+  await sqs.sendMessage(
+          messageBody: 'Hello from Dart client!', queueUrl: queue.queueUrl!);
+  sqs.close();
+}
+```
+
+##### Lambda
+```dart
+import 'package:aws_client/lambda_2015_03_31.dart';
+
+void main(List<String> args) async {
+  final lambda = Lambda(region: 'us-west-1');
+  final response = await lambda.invoke(
+    functionName: 'my-function',
+    invocationType: InvocationType.requestResponse,
+  );
+
+  print('StatusCode: ${response.statusCode}');
+  lambda.close();
+}
+```
 
 ## How to contribute
 
