@@ -17,7 +17,6 @@ import '../../shared/shared.dart'
         nonNullableTimeStampFromJson,
         timeStampFromJson;
 
-import 'v2015_12_01.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// A load balancer distributes incoming traffic across targets, such as your
@@ -32,7 +31,6 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// health status of the targets.
 class ElasticLoadBalancingV2 {
   final _s.QueryProtocol _protocol;
-  final Map<String, _s.Shape> shapes;
 
   ElasticLoadBalancingV2({
     required String region,
@@ -40,7 +38,7 @@ class ElasticLoadBalancingV2 {
     _s.AwsClientCredentialsProvider? credentialsProvider,
     _s.Client? client,
     String? endpointUrl,
-  })  : _protocol = _s.QueryProtocol(
+  }) : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
             endpointPrefix: 'elasticloadbalancing',
@@ -49,9 +47,7 @@ class ElasticLoadBalancingV2 {
           credentials: credentials,
           credentialsProvider: credentialsProvider,
           endpointUrl: endpointUrl,
-        ),
-        shapes = shapesJson
-            .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
+        );
 
   /// Closes the internal HTTP client if none was provided at creation.
   /// If a client was passed as a constructor argument, this becomes a noop.
@@ -89,9 +85,15 @@ class ElasticLoadBalancingV2 {
     required List<Certificate> certificates,
     required String listenerArn,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Certificates'] = certificates;
-    $request['ListenerArn'] = listenerArn;
+    final $request = <String, String>{
+      if (certificates.isEmpty)
+        'Certificates': ''
+      else
+        for (var i1 = 0; i1 < certificates.length; i1++)
+          for (var e3 in certificates[i1].toQueryMap().entries)
+            'Certificates.member.${i1 + 1}.${e3.key}': e3.value,
+      'ListenerArn': listenerArn,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'AddListenerCertificates',
@@ -99,8 +101,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['AddListenerCertificatesInput'],
-      shapes: shapes,
       resultWrapper: 'AddListenerCertificatesResult',
     );
     return AddListenerCertificatesOutput.fromXml($result);
@@ -129,9 +129,19 @@ class ElasticLoadBalancingV2 {
     required List<String> resourceArns,
     required List<Tag> tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ResourceArns'] = resourceArns;
-    $request['Tags'] = tags;
+    final $request = <String, String>{
+      if (resourceArns.isEmpty)
+        'ResourceArns': ''
+      else
+        for (var i1 = 0; i1 < resourceArns.length; i1++)
+          'ResourceArns.member.${i1 + 1}': resourceArns[i1],
+      if (tags.isEmpty)
+        'Tags': ''
+      else
+        for (var i1 = 0; i1 < tags.length; i1++)
+          for (var e3 in tags[i1].toQueryMap().entries)
+            'Tags.member.${i1 + 1}.${e3.key}': e3.value,
+    };
     await _protocol.send(
       $request,
       action: 'AddTags',
@@ -139,8 +149,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['AddTagsInput'],
-      shapes: shapes,
       resultWrapper: 'AddTagsResult',
     );
   }
@@ -266,15 +274,38 @@ class ElasticLoadBalancingV2 {
       1,
       65535,
     );
-    final $request = <String, dynamic>{};
-    $request['DefaultActions'] = defaultActions;
-    $request['LoadBalancerArn'] = loadBalancerArn;
-    alpnPolicy?.also((arg) => $request['AlpnPolicy'] = arg);
-    certificates?.also((arg) => $request['Certificates'] = arg);
-    port?.also((arg) => $request['Port'] = arg);
-    protocol?.also((arg) => $request['Protocol'] = arg.toValue());
-    sslPolicy?.also((arg) => $request['SslPolicy'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      if (defaultActions.isEmpty)
+        'DefaultActions': ''
+      else
+        for (var i1 = 0; i1 < defaultActions.length; i1++)
+          for (var e3 in defaultActions[i1].toQueryMap().entries)
+            'DefaultActions.member.${i1 + 1}.${e3.key}': e3.value,
+      'LoadBalancerArn': loadBalancerArn,
+      if (alpnPolicy != null)
+        if (alpnPolicy.isEmpty)
+          'AlpnPolicy': ''
+        else
+          for (var i1 = 0; i1 < alpnPolicy.length; i1++)
+            'AlpnPolicy.member.${i1 + 1}': alpnPolicy[i1],
+      if (certificates != null)
+        if (certificates.isEmpty)
+          'Certificates': ''
+        else
+          for (var i1 = 0; i1 < certificates.length; i1++)
+            for (var e3 in certificates[i1].toQueryMap().entries)
+              'Certificates.member.${i1 + 1}.${e3.key}': e3.value,
+      if (port != null) 'Port': port.toString(),
+      if (protocol != null) 'Protocol': protocol.toValue(),
+      if (sslPolicy != null) 'SslPolicy': sslPolicy,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.member.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateListener',
@@ -282,8 +313,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateListenerInput'],
-      shapes: shapes,
       resultWrapper: 'CreateListenerResult',
     );
     return CreateListenerOutput.fromXml($result);
@@ -428,17 +457,40 @@ class ElasticLoadBalancingV2 {
     List<Tag>? tags,
     LoadBalancerTypeEnum? type,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Name'] = name;
-    customerOwnedIpv4Pool
-        ?.also((arg) => $request['CustomerOwnedIpv4Pool'] = arg);
-    ipAddressType?.also((arg) => $request['IpAddressType'] = arg.toValue());
-    scheme?.also((arg) => $request['Scheme'] = arg.toValue());
-    securityGroups?.also((arg) => $request['SecurityGroups'] = arg);
-    subnetMappings?.also((arg) => $request['SubnetMappings'] = arg);
-    subnets?.also((arg) => $request['Subnets'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
-    type?.also((arg) => $request['Type'] = arg.toValue());
+    final $request = <String, String>{
+      'Name': name,
+      if (customerOwnedIpv4Pool != null)
+        'CustomerOwnedIpv4Pool': customerOwnedIpv4Pool,
+      if (ipAddressType != null) 'IpAddressType': ipAddressType.toValue(),
+      if (scheme != null) 'Scheme': scheme.toValue(),
+      if (securityGroups != null)
+        if (securityGroups.isEmpty)
+          'SecurityGroups': ''
+        else
+          for (var i1 = 0; i1 < securityGroups.length; i1++)
+            'SecurityGroups.member.${i1 + 1}': securityGroups[i1],
+      if (subnetMappings != null)
+        if (subnetMappings.isEmpty)
+          'SubnetMappings': ''
+        else
+          for (var i1 = 0; i1 < subnetMappings.length; i1++)
+            for (var e3 in subnetMappings[i1].toQueryMap().entries)
+              'SubnetMappings.member.${i1 + 1}.${e3.key}': e3.value,
+      if (subnets != null)
+        if (subnets.isEmpty)
+          'Subnets': ''
+        else
+          for (var i1 = 0; i1 < subnets.length; i1++)
+            'Subnets.member.${i1 + 1}': subnets[i1],
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.member.${i1 + 1}.${e3.key}': e3.value,
+      if (type != null) 'Type': type.toValue(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateLoadBalancer',
@@ -446,8 +498,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateLoadBalancerInput'],
-      shapes: shapes,
       resultWrapper: 'CreateLoadBalancerResult',
     );
     return CreateLoadBalancerOutput.fromXml($result);
@@ -509,12 +559,29 @@ class ElasticLoadBalancingV2 {
       50000,
       isRequired: true,
     );
-    final $request = <String, dynamic>{};
-    $request['Actions'] = actions;
-    $request['Conditions'] = conditions;
-    $request['ListenerArn'] = listenerArn;
-    $request['Priority'] = priority;
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      if (actions.isEmpty)
+        'Actions': ''
+      else
+        for (var i1 = 0; i1 < actions.length; i1++)
+          for (var e3 in actions[i1].toQueryMap().entries)
+            'Actions.member.${i1 + 1}.${e3.key}': e3.value,
+      if (conditions.isEmpty)
+        'Conditions': ''
+      else
+        for (var i1 = 0; i1 < conditions.length; i1++)
+          for (var e3 in conditions[i1].toQueryMap().entries)
+            'Conditions.member.${i1 + 1}.${e3.key}': e3.value,
+      'ListenerArn': listenerArn,
+      'Priority': priority.toString(),
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.member.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateRule',
@@ -522,8 +589,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateRuleInput'],
-      shapes: shapes,
       resultWrapper: 'CreateRuleResult',
     );
     return CreateRuleOutput.fromXml($result);
@@ -740,29 +805,39 @@ class ElasticLoadBalancingV2 {
       2,
       10,
     );
-    final $request = <String, dynamic>{};
-    $request['Name'] = name;
-    healthCheckEnabled?.also((arg) => $request['HealthCheckEnabled'] = arg);
-    healthCheckIntervalSeconds
-        ?.also((arg) => $request['HealthCheckIntervalSeconds'] = arg);
-    healthCheckPath?.also((arg) => $request['HealthCheckPath'] = arg);
-    healthCheckPort?.also((arg) => $request['HealthCheckPort'] = arg);
-    healthCheckProtocol
-        ?.also((arg) => $request['HealthCheckProtocol'] = arg.toValue());
-    healthCheckTimeoutSeconds
-        ?.also((arg) => $request['HealthCheckTimeoutSeconds'] = arg);
-    healthyThresholdCount
-        ?.also((arg) => $request['HealthyThresholdCount'] = arg);
-    ipAddressType?.also((arg) => $request['IpAddressType'] = arg.toValue());
-    matcher?.also((arg) => $request['Matcher'] = arg);
-    port?.also((arg) => $request['Port'] = arg);
-    protocol?.also((arg) => $request['Protocol'] = arg.toValue());
-    protocolVersion?.also((arg) => $request['ProtocolVersion'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
-    targetType?.also((arg) => $request['TargetType'] = arg.toValue());
-    unhealthyThresholdCount
-        ?.also((arg) => $request['UnhealthyThresholdCount'] = arg);
-    vpcId?.also((arg) => $request['VpcId'] = arg);
+    final $request = <String, String>{
+      'Name': name,
+      if (healthCheckEnabled != null)
+        'HealthCheckEnabled': healthCheckEnabled.toString(),
+      if (healthCheckIntervalSeconds != null)
+        'HealthCheckIntervalSeconds': healthCheckIntervalSeconds.toString(),
+      if (healthCheckPath != null) 'HealthCheckPath': healthCheckPath,
+      if (healthCheckPort != null) 'HealthCheckPort': healthCheckPort,
+      if (healthCheckProtocol != null)
+        'HealthCheckProtocol': healthCheckProtocol.toValue(),
+      if (healthCheckTimeoutSeconds != null)
+        'HealthCheckTimeoutSeconds': healthCheckTimeoutSeconds.toString(),
+      if (healthyThresholdCount != null)
+        'HealthyThresholdCount': healthyThresholdCount.toString(),
+      if (ipAddressType != null) 'IpAddressType': ipAddressType.toValue(),
+      if (matcher != null)
+        for (var e1 in matcher.toQueryMap().entries)
+          'Matcher.${e1.key}': e1.value,
+      if (port != null) 'Port': port.toString(),
+      if (protocol != null) 'Protocol': protocol.toValue(),
+      if (protocolVersion != null) 'ProtocolVersion': protocolVersion,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.member.${i1 + 1}.${e3.key}': e3.value,
+      if (targetType != null) 'TargetType': targetType.toValue(),
+      if (unhealthyThresholdCount != null)
+        'UnhealthyThresholdCount': unhealthyThresholdCount.toString(),
+      if (vpcId != null) 'VpcId': vpcId,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateTargetGroup',
@@ -770,8 +845,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateTargetGroupInput'],
-      shapes: shapes,
       resultWrapper: 'CreateTargetGroupResult',
     );
     return CreateTargetGroupOutput.fromXml($result);
@@ -790,8 +863,9 @@ class ElasticLoadBalancingV2 {
   Future<void> deleteListener({
     required String listenerArn,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ListenerArn'] = listenerArn;
+    final $request = <String, String>{
+      'ListenerArn': listenerArn,
+    };
     await _protocol.send(
       $request,
       action: 'DeleteListener',
@@ -799,8 +873,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteListenerInput'],
-      shapes: shapes,
       resultWrapper: 'DeleteListenerResult',
     );
   }
@@ -827,8 +899,9 @@ class ElasticLoadBalancingV2 {
   Future<void> deleteLoadBalancer({
     required String loadBalancerArn,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['LoadBalancerArn'] = loadBalancerArn;
+    final $request = <String, String>{
+      'LoadBalancerArn': loadBalancerArn,
+    };
     await _protocol.send(
       $request,
       action: 'DeleteLoadBalancer',
@@ -836,8 +909,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteLoadBalancerInput'],
-      shapes: shapes,
       resultWrapper: 'DeleteLoadBalancerResult',
     );
   }
@@ -854,8 +925,9 @@ class ElasticLoadBalancingV2 {
   Future<void> deleteRule({
     required String ruleArn,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['RuleArn'] = ruleArn;
+    final $request = <String, String>{
+      'RuleArn': ruleArn,
+    };
     await _protocol.send(
       $request,
       action: 'DeleteRule',
@@ -863,8 +935,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteRuleInput'],
-      shapes: shapes,
       resultWrapper: 'DeleteRuleResult',
     );
   }
@@ -884,8 +954,9 @@ class ElasticLoadBalancingV2 {
   Future<void> deleteTargetGroup({
     required String targetGroupArn,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['TargetGroupArn'] = targetGroupArn;
+    final $request = <String, String>{
+      'TargetGroupArn': targetGroupArn,
+    };
     await _protocol.send(
       $request,
       action: 'DeleteTargetGroup',
@@ -893,8 +964,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteTargetGroupInput'],
-      shapes: shapes,
       resultWrapper: 'DeleteTargetGroupResult',
     );
   }
@@ -917,9 +986,15 @@ class ElasticLoadBalancingV2 {
     required String targetGroupArn,
     required List<TargetDescription> targets,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['TargetGroupArn'] = targetGroupArn;
-    $request['Targets'] = targets;
+    final $request = <String, String>{
+      'TargetGroupArn': targetGroupArn,
+      if (targets.isEmpty)
+        'Targets': ''
+      else
+        for (var i1 = 0; i1 < targets.length; i1++)
+          for (var e3 in targets[i1].toQueryMap().entries)
+            'Targets.member.${i1 + 1}.${e3.key}': e3.value,
+    };
     await _protocol.send(
       $request,
       action: 'DeregisterTargets',
@@ -927,8 +1002,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeregisterTargetsInput'],
-      shapes: shapes,
       resultWrapper: 'DeregisterTargetsResult',
     );
   }
@@ -972,9 +1045,10 @@ class ElasticLoadBalancingV2 {
       1,
       400,
     );
-    final $request = <String, dynamic>{};
-    marker?.also((arg) => $request['Marker'] = arg);
-    pageSize?.also((arg) => $request['PageSize'] = arg);
+    final $request = <String, String>{
+      if (marker != null) 'Marker': marker,
+      if (pageSize != null) 'PageSize': pageSize.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeAccountLimits',
@@ -982,8 +1056,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeAccountLimitsInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeAccountLimitsResult',
     );
     return DescribeAccountLimitsOutput.fromXml($result);
@@ -1024,10 +1096,11 @@ class ElasticLoadBalancingV2 {
       1,
       400,
     );
-    final $request = <String, dynamic>{};
-    $request['ListenerArn'] = listenerArn;
-    marker?.also((arg) => $request['Marker'] = arg);
-    pageSize?.also((arg) => $request['PageSize'] = arg);
+    final $request = <String, String>{
+      'ListenerArn': listenerArn,
+      if (marker != null) 'Marker': marker,
+      if (pageSize != null) 'PageSize': pageSize.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeListenerCertificates',
@@ -1035,8 +1108,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeListenerCertificatesInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeListenerCertificatesResult',
     );
     return DescribeListenerCertificatesOutput.fromXml($result);
@@ -1075,11 +1146,17 @@ class ElasticLoadBalancingV2 {
       1,
       400,
     );
-    final $request = <String, dynamic>{};
-    listenerArns?.also((arg) => $request['ListenerArns'] = arg);
-    loadBalancerArn?.also((arg) => $request['LoadBalancerArn'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    pageSize?.also((arg) => $request['PageSize'] = arg);
+    final $request = <String, String>{
+      if (listenerArns != null)
+        if (listenerArns.isEmpty)
+          'ListenerArns': ''
+        else
+          for (var i1 = 0; i1 < listenerArns.length; i1++)
+            'ListenerArns.member.${i1 + 1}': listenerArns[i1],
+      if (loadBalancerArn != null) 'LoadBalancerArn': loadBalancerArn,
+      if (marker != null) 'Marker': marker,
+      if (pageSize != null) 'PageSize': pageSize.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeListeners',
@@ -1087,8 +1164,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeListenersInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeListenersResult',
     );
     return DescribeListenersOutput.fromXml($result);
@@ -1124,8 +1199,9 @@ class ElasticLoadBalancingV2 {
   Future<DescribeLoadBalancerAttributesOutput> describeLoadBalancerAttributes({
     required String loadBalancerArn,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['LoadBalancerArn'] = loadBalancerArn;
+    final $request = <String, String>{
+      'LoadBalancerArn': loadBalancerArn,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeLoadBalancerAttributes',
@@ -1133,8 +1209,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeLoadBalancerAttributesInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeLoadBalancerAttributesResult',
     );
     return DescribeLoadBalancerAttributesOutput.fromXml($result);
@@ -1169,11 +1243,22 @@ class ElasticLoadBalancingV2 {
       1,
       400,
     );
-    final $request = <String, dynamic>{};
-    loadBalancerArns?.also((arg) => $request['LoadBalancerArns'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    names?.also((arg) => $request['Names'] = arg);
-    pageSize?.also((arg) => $request['PageSize'] = arg);
+    final $request = <String, String>{
+      if (loadBalancerArns != null)
+        if (loadBalancerArns.isEmpty)
+          'LoadBalancerArns': ''
+        else
+          for (var i1 = 0; i1 < loadBalancerArns.length; i1++)
+            'LoadBalancerArns.member.${i1 + 1}': loadBalancerArns[i1],
+      if (marker != null) 'Marker': marker,
+      if (names != null)
+        if (names.isEmpty)
+          'Names': ''
+        else
+          for (var i1 = 0; i1 < names.length; i1++)
+            'Names.member.${i1 + 1}': names[i1],
+      if (pageSize != null) 'PageSize': pageSize.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeLoadBalancers',
@@ -1181,8 +1266,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeLoadBalancersInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeLoadBalancersResult',
     );
     return DescribeLoadBalancersOutput.fromXml($result);
@@ -1219,11 +1302,17 @@ class ElasticLoadBalancingV2 {
       1,
       400,
     );
-    final $request = <String, dynamic>{};
-    listenerArn?.also((arg) => $request['ListenerArn'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    pageSize?.also((arg) => $request['PageSize'] = arg);
-    ruleArns?.also((arg) => $request['RuleArns'] = arg);
+    final $request = <String, String>{
+      if (listenerArn != null) 'ListenerArn': listenerArn,
+      if (marker != null) 'Marker': marker,
+      if (pageSize != null) 'PageSize': pageSize.toString(),
+      if (ruleArns != null)
+        if (ruleArns.isEmpty)
+          'RuleArns': ''
+        else
+          for (var i1 = 0; i1 < ruleArns.length; i1++)
+            'RuleArns.member.${i1 + 1}': ruleArns[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeRules',
@@ -1231,8 +1320,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeRulesInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeRulesResult',
     );
     return DescribeRulesOutput.fromXml($result);
@@ -1273,12 +1360,18 @@ class ElasticLoadBalancingV2 {
       1,
       400,
     );
-    final $request = <String, dynamic>{};
-    loadBalancerType
-        ?.also((arg) => $request['LoadBalancerType'] = arg.toValue());
-    marker?.also((arg) => $request['Marker'] = arg);
-    names?.also((arg) => $request['Names'] = arg);
-    pageSize?.also((arg) => $request['PageSize'] = arg);
+    final $request = <String, String>{
+      if (loadBalancerType != null)
+        'LoadBalancerType': loadBalancerType.toValue(),
+      if (marker != null) 'Marker': marker,
+      if (names != null)
+        if (names.isEmpty)
+          'Names': ''
+        else
+          for (var i1 = 0; i1 < names.length; i1++)
+            'Names.member.${i1 + 1}': names[i1],
+      if (pageSize != null) 'PageSize': pageSize.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeSSLPolicies',
@@ -1286,8 +1379,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeSSLPoliciesInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeSSLPoliciesResult',
     );
     return DescribeSSLPoliciesOutput.fromXml($result);
@@ -1309,8 +1400,13 @@ class ElasticLoadBalancingV2 {
   Future<DescribeTagsOutput> describeTags({
     required List<String> resourceArns,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ResourceArns'] = resourceArns;
+    final $request = <String, String>{
+      if (resourceArns.isEmpty)
+        'ResourceArns': ''
+      else
+        for (var i1 = 0; i1 < resourceArns.length; i1++)
+          'ResourceArns.member.${i1 + 1}': resourceArns[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeTags',
@@ -1318,8 +1414,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeTagsInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeTagsResult',
     );
     return DescribeTagsOutput.fromXml($result);
@@ -1354,8 +1448,9 @@ class ElasticLoadBalancingV2 {
   Future<DescribeTargetGroupAttributesOutput> describeTargetGroupAttributes({
     required String targetGroupArn,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['TargetGroupArn'] = targetGroupArn;
+    final $request = <String, String>{
+      'TargetGroupArn': targetGroupArn,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeTargetGroupAttributes',
@@ -1363,8 +1458,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeTargetGroupAttributesInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeTargetGroupAttributesResult',
     );
     return DescribeTargetGroupAttributesOutput.fromXml($result);
@@ -1407,12 +1500,23 @@ class ElasticLoadBalancingV2 {
       1,
       400,
     );
-    final $request = <String, dynamic>{};
-    loadBalancerArn?.also((arg) => $request['LoadBalancerArn'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    names?.also((arg) => $request['Names'] = arg);
-    pageSize?.also((arg) => $request['PageSize'] = arg);
-    targetGroupArns?.also((arg) => $request['TargetGroupArns'] = arg);
+    final $request = <String, String>{
+      if (loadBalancerArn != null) 'LoadBalancerArn': loadBalancerArn,
+      if (marker != null) 'Marker': marker,
+      if (names != null)
+        if (names.isEmpty)
+          'Names': ''
+        else
+          for (var i1 = 0; i1 < names.length; i1++)
+            'Names.member.${i1 + 1}': names[i1],
+      if (pageSize != null) 'PageSize': pageSize.toString(),
+      if (targetGroupArns != null)
+        if (targetGroupArns.isEmpty)
+          'TargetGroupArns': ''
+        else
+          for (var i1 = 0; i1 < targetGroupArns.length; i1++)
+            'TargetGroupArns.member.${i1 + 1}': targetGroupArns[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeTargetGroups',
@@ -1420,8 +1524,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeTargetGroupsInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeTargetGroupsResult',
     );
     return DescribeTargetGroupsOutput.fromXml($result);
@@ -1442,9 +1544,16 @@ class ElasticLoadBalancingV2 {
     required String targetGroupArn,
     List<TargetDescription>? targets,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['TargetGroupArn'] = targetGroupArn;
-    targets?.also((arg) => $request['Targets'] = arg);
+    final $request = <String, String>{
+      'TargetGroupArn': targetGroupArn,
+      if (targets != null)
+        if (targets.isEmpty)
+          'Targets': ''
+        else
+          for (var i1 = 0; i1 < targets.length; i1++)
+            for (var e3 in targets[i1].toQueryMap().entries)
+              'Targets.member.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeTargetHealth',
@@ -1452,8 +1561,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeTargetHealthInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeTargetHealthResult',
     );
     return DescribeTargetHealthOutput.fromXml($result);
@@ -1561,14 +1668,32 @@ class ElasticLoadBalancingV2 {
       1,
       65535,
     );
-    final $request = <String, dynamic>{};
-    $request['ListenerArn'] = listenerArn;
-    alpnPolicy?.also((arg) => $request['AlpnPolicy'] = arg);
-    certificates?.also((arg) => $request['Certificates'] = arg);
-    defaultActions?.also((arg) => $request['DefaultActions'] = arg);
-    port?.also((arg) => $request['Port'] = arg);
-    protocol?.also((arg) => $request['Protocol'] = arg.toValue());
-    sslPolicy?.also((arg) => $request['SslPolicy'] = arg);
+    final $request = <String, String>{
+      'ListenerArn': listenerArn,
+      if (alpnPolicy != null)
+        if (alpnPolicy.isEmpty)
+          'AlpnPolicy': ''
+        else
+          for (var i1 = 0; i1 < alpnPolicy.length; i1++)
+            'AlpnPolicy.member.${i1 + 1}': alpnPolicy[i1],
+      if (certificates != null)
+        if (certificates.isEmpty)
+          'Certificates': ''
+        else
+          for (var i1 = 0; i1 < certificates.length; i1++)
+            for (var e3 in certificates[i1].toQueryMap().entries)
+              'Certificates.member.${i1 + 1}.${e3.key}': e3.value,
+      if (defaultActions != null)
+        if (defaultActions.isEmpty)
+          'DefaultActions': ''
+        else
+          for (var i1 = 0; i1 < defaultActions.length; i1++)
+            for (var e3 in defaultActions[i1].toQueryMap().entries)
+              'DefaultActions.member.${i1 + 1}.${e3.key}': e3.value,
+      if (port != null) 'Port': port.toString(),
+      if (protocol != null) 'Protocol': protocol.toValue(),
+      if (sslPolicy != null) 'SslPolicy': sslPolicy,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyListener',
@@ -1576,8 +1701,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyListenerInput'],
-      shapes: shapes,
       resultWrapper: 'ModifyListenerResult',
     );
     return ModifyListenerOutput.fromXml($result);
@@ -1602,9 +1725,15 @@ class ElasticLoadBalancingV2 {
     required List<LoadBalancerAttribute> attributes,
     required String loadBalancerArn,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Attributes'] = attributes;
-    $request['LoadBalancerArn'] = loadBalancerArn;
+    final $request = <String, String>{
+      if (attributes.isEmpty)
+        'Attributes': ''
+      else
+        for (var i1 = 0; i1 < attributes.length; i1++)
+          for (var e3 in attributes[i1].toQueryMap().entries)
+            'Attributes.member.${i1 + 1}.${e3.key}': e3.value,
+      'LoadBalancerArn': loadBalancerArn,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyLoadBalancerAttributes',
@@ -1612,8 +1741,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyLoadBalancerAttributesInput'],
-      shapes: shapes,
       resultWrapper: 'ModifyLoadBalancerAttributesResult',
     );
     return ModifyLoadBalancerAttributesOutput.fromXml($result);
@@ -1651,10 +1778,23 @@ class ElasticLoadBalancingV2 {
     List<Action>? actions,
     List<RuleCondition>? conditions,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['RuleArn'] = ruleArn;
-    actions?.also((arg) => $request['Actions'] = arg);
-    conditions?.also((arg) => $request['Conditions'] = arg);
+    final $request = <String, String>{
+      'RuleArn': ruleArn,
+      if (actions != null)
+        if (actions.isEmpty)
+          'Actions': ''
+        else
+          for (var i1 = 0; i1 < actions.length; i1++)
+            for (var e3 in actions[i1].toQueryMap().entries)
+              'Actions.member.${i1 + 1}.${e3.key}': e3.value,
+      if (conditions != null)
+        if (conditions.isEmpty)
+          'Conditions': ''
+        else
+          for (var i1 = 0; i1 < conditions.length; i1++)
+            for (var e3 in conditions[i1].toQueryMap().entries)
+              'Conditions.member.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyRule',
@@ -1662,8 +1802,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyRuleInput'],
-      shapes: shapes,
       resultWrapper: 'ModifyRuleResult',
     );
     return ModifyRuleOutput.fromXml($result);
@@ -1761,22 +1899,26 @@ class ElasticLoadBalancingV2 {
       2,
       10,
     );
-    final $request = <String, dynamic>{};
-    $request['TargetGroupArn'] = targetGroupArn;
-    healthCheckEnabled?.also((arg) => $request['HealthCheckEnabled'] = arg);
-    healthCheckIntervalSeconds
-        ?.also((arg) => $request['HealthCheckIntervalSeconds'] = arg);
-    healthCheckPath?.also((arg) => $request['HealthCheckPath'] = arg);
-    healthCheckPort?.also((arg) => $request['HealthCheckPort'] = arg);
-    healthCheckProtocol
-        ?.also((arg) => $request['HealthCheckProtocol'] = arg.toValue());
-    healthCheckTimeoutSeconds
-        ?.also((arg) => $request['HealthCheckTimeoutSeconds'] = arg);
-    healthyThresholdCount
-        ?.also((arg) => $request['HealthyThresholdCount'] = arg);
-    matcher?.also((arg) => $request['Matcher'] = arg);
-    unhealthyThresholdCount
-        ?.also((arg) => $request['UnhealthyThresholdCount'] = arg);
+    final $request = <String, String>{
+      'TargetGroupArn': targetGroupArn,
+      if (healthCheckEnabled != null)
+        'HealthCheckEnabled': healthCheckEnabled.toString(),
+      if (healthCheckIntervalSeconds != null)
+        'HealthCheckIntervalSeconds': healthCheckIntervalSeconds.toString(),
+      if (healthCheckPath != null) 'HealthCheckPath': healthCheckPath,
+      if (healthCheckPort != null) 'HealthCheckPort': healthCheckPort,
+      if (healthCheckProtocol != null)
+        'HealthCheckProtocol': healthCheckProtocol.toValue(),
+      if (healthCheckTimeoutSeconds != null)
+        'HealthCheckTimeoutSeconds': healthCheckTimeoutSeconds.toString(),
+      if (healthyThresholdCount != null)
+        'HealthyThresholdCount': healthyThresholdCount.toString(),
+      if (matcher != null)
+        for (var e1 in matcher.toQueryMap().entries)
+          'Matcher.${e1.key}': e1.value,
+      if (unhealthyThresholdCount != null)
+        'UnhealthyThresholdCount': unhealthyThresholdCount.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyTargetGroup',
@@ -1784,8 +1926,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyTargetGroupInput'],
-      shapes: shapes,
       resultWrapper: 'ModifyTargetGroupResult',
     );
     return ModifyTargetGroupOutput.fromXml($result);
@@ -1805,9 +1945,15 @@ class ElasticLoadBalancingV2 {
     required List<TargetGroupAttribute> attributes,
     required String targetGroupArn,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Attributes'] = attributes;
-    $request['TargetGroupArn'] = targetGroupArn;
+    final $request = <String, String>{
+      if (attributes.isEmpty)
+        'Attributes': ''
+      else
+        for (var i1 = 0; i1 < attributes.length; i1++)
+          for (var e3 in attributes[i1].toQueryMap().entries)
+            'Attributes.member.${i1 + 1}.${e3.key}': e3.value,
+      'TargetGroupArn': targetGroupArn,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyTargetGroupAttributes',
@@ -1815,8 +1961,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyTargetGroupAttributesInput'],
-      shapes: shapes,
       resultWrapper: 'ModifyTargetGroupAttributesResult',
     );
     return ModifyTargetGroupAttributesOutput.fromXml($result);
@@ -1852,9 +1996,15 @@ class ElasticLoadBalancingV2 {
     required String targetGroupArn,
     required List<TargetDescription> targets,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['TargetGroupArn'] = targetGroupArn;
-    $request['Targets'] = targets;
+    final $request = <String, String>{
+      'TargetGroupArn': targetGroupArn,
+      if (targets.isEmpty)
+        'Targets': ''
+      else
+        for (var i1 = 0; i1 < targets.length; i1++)
+          for (var e3 in targets[i1].toQueryMap().entries)
+            'Targets.member.${i1 + 1}.${e3.key}': e3.value,
+    };
     await _protocol.send(
       $request,
       action: 'RegisterTargets',
@@ -1862,8 +2012,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RegisterTargetsInput'],
-      shapes: shapes,
       resultWrapper: 'RegisterTargetsResult',
     );
   }
@@ -1885,9 +2033,15 @@ class ElasticLoadBalancingV2 {
     required List<Certificate> certificates,
     required String listenerArn,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Certificates'] = certificates;
-    $request['ListenerArn'] = listenerArn;
+    final $request = <String, String>{
+      if (certificates.isEmpty)
+        'Certificates': ''
+      else
+        for (var i1 = 0; i1 < certificates.length; i1++)
+          for (var e3 in certificates[i1].toQueryMap().entries)
+            'Certificates.member.${i1 + 1}.${e3.key}': e3.value,
+      'ListenerArn': listenerArn,
+    };
     await _protocol.send(
       $request,
       action: 'RemoveListenerCertificates',
@@ -1895,8 +2049,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RemoveListenerCertificatesInput'],
-      shapes: shapes,
       resultWrapper: 'RemoveListenerCertificatesResult',
     );
   }
@@ -1921,9 +2073,18 @@ class ElasticLoadBalancingV2 {
     required List<String> resourceArns,
     required List<String> tagKeys,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ResourceArns'] = resourceArns;
-    $request['TagKeys'] = tagKeys;
+    final $request = <String, String>{
+      if (resourceArns.isEmpty)
+        'ResourceArns': ''
+      else
+        for (var i1 = 0; i1 < resourceArns.length; i1++)
+          'ResourceArns.member.${i1 + 1}': resourceArns[i1],
+      if (tagKeys.isEmpty)
+        'TagKeys': ''
+      else
+        for (var i1 = 0; i1 < tagKeys.length; i1++)
+          'TagKeys.member.${i1 + 1}': tagKeys[i1],
+    };
     await _protocol.send(
       $request,
       action: 'RemoveTags',
@@ -1931,8 +2092,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RemoveTagsInput'],
-      shapes: shapes,
       resultWrapper: 'RemoveTagsResult',
     );
   }
@@ -1956,9 +2115,10 @@ class ElasticLoadBalancingV2 {
     required IpAddressType ipAddressType,
     required String loadBalancerArn,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['IpAddressType'] = ipAddressType.toValue();
-    $request['LoadBalancerArn'] = loadBalancerArn;
+    final $request = <String, String>{
+      'IpAddressType': ipAddressType.toValue(),
+      'LoadBalancerArn': loadBalancerArn,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'SetIpAddressType',
@@ -1966,8 +2126,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['SetIpAddressTypeInput'],
-      shapes: shapes,
       resultWrapper: 'SetIpAddressTypeResult',
     );
     return SetIpAddressTypeOutput.fromXml($result);
@@ -1988,8 +2146,14 @@ class ElasticLoadBalancingV2 {
   Future<SetRulePrioritiesOutput> setRulePriorities({
     required List<RulePriorityPair> rulePriorities,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['RulePriorities'] = rulePriorities;
+    final $request = <String, String>{
+      if (rulePriorities.isEmpty)
+        'RulePriorities': ''
+      else
+        for (var i1 = 0; i1 < rulePriorities.length; i1++)
+          for (var e3 in rulePriorities[i1].toQueryMap().entries)
+            'RulePriorities.member.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'SetRulePriorities',
@@ -1997,8 +2161,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['SetRulePrioritiesInput'],
-      shapes: shapes,
       resultWrapper: 'SetRulePrioritiesResult',
     );
     return SetRulePrioritiesOutput.fromXml($result);
@@ -2024,9 +2186,14 @@ class ElasticLoadBalancingV2 {
     required String loadBalancerArn,
     required List<String> securityGroups,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['LoadBalancerArn'] = loadBalancerArn;
-    $request['SecurityGroups'] = securityGroups;
+    final $request = <String, String>{
+      'LoadBalancerArn': loadBalancerArn,
+      if (securityGroups.isEmpty)
+        'SecurityGroups': ''
+      else
+        for (var i1 = 0; i1 < securityGroups.length; i1++)
+          'SecurityGroups.member.${i1 + 1}': securityGroups[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'SetSecurityGroups',
@@ -2034,8 +2201,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['SetSecurityGroupsInput'],
-      shapes: shapes,
       resultWrapper: 'SetSecurityGroupsResult',
     );
     return SetSecurityGroupsOutput.fromXml($result);
@@ -2108,11 +2273,23 @@ class ElasticLoadBalancingV2 {
     List<SubnetMapping>? subnetMappings,
     List<String>? subnets,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['LoadBalancerArn'] = loadBalancerArn;
-    ipAddressType?.also((arg) => $request['IpAddressType'] = arg.toValue());
-    subnetMappings?.also((arg) => $request['SubnetMappings'] = arg);
-    subnets?.also((arg) => $request['Subnets'] = arg);
+    final $request = <String, String>{
+      'LoadBalancerArn': loadBalancerArn,
+      if (ipAddressType != null) 'IpAddressType': ipAddressType.toValue(),
+      if (subnetMappings != null)
+        if (subnetMappings.isEmpty)
+          'SubnetMappings': ''
+        else
+          for (var i1 = 0; i1 < subnetMappings.length; i1++)
+            for (var e3 in subnetMappings[i1].toQueryMap().entries)
+              'SubnetMappings.member.${i1 + 1}.${e3.key}': e3.value,
+      if (subnets != null)
+        if (subnets.isEmpty)
+          'Subnets': ''
+        else
+          for (var i1 = 0; i1 < subnets.length; i1++)
+            'Subnets.member.${i1 + 1}': subnets[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'SetSubnets',
@@ -2120,8 +2297,6 @@ class ElasticLoadBalancingV2 {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['SetSubnetsInput'],
-      shapes: shapes,
       resultWrapper: 'SetSubnetsResult',
     );
     return SetSubnetsOutput.fromXml($result);
@@ -2228,6 +2403,37 @@ class Action {
       if (forwardConfig != null) 'ForwardConfig': forwardConfig,
       if (order != null) 'Order': order,
       if (redirectConfig != null) 'RedirectConfig': redirectConfig,
+      if (targetGroupArn != null) 'TargetGroupArn': targetGroupArn,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final type = this.type;
+    final authenticateCognitoConfig = this.authenticateCognitoConfig;
+    final authenticateOidcConfig = this.authenticateOidcConfig;
+    final fixedResponseConfig = this.fixedResponseConfig;
+    final forwardConfig = this.forwardConfig;
+    final order = this.order;
+    final redirectConfig = this.redirectConfig;
+    final targetGroupArn = this.targetGroupArn;
+    return {
+      'Type': type.toValue(),
+      if (authenticateCognitoConfig != null)
+        for (var e1 in authenticateCognitoConfig.toQueryMap().entries)
+          'AuthenticateCognitoConfig.${e1.key}': e1.value,
+      if (authenticateOidcConfig != null)
+        for (var e1 in authenticateOidcConfig.toQueryMap().entries)
+          'AuthenticateOidcConfig.${e1.key}': e1.value,
+      if (fixedResponseConfig != null)
+        for (var e1 in fixedResponseConfig.toQueryMap().entries)
+          'FixedResponseConfig.${e1.key}': e1.value,
+      if (forwardConfig != null)
+        for (var e1 in forwardConfig.toQueryMap().entries)
+          'ForwardConfig.${e1.key}': e1.value,
+      if (order != null) 'Order': order.toString(),
+      if (redirectConfig != null)
+        for (var e1 in redirectConfig.toQueryMap().entries)
+          'RedirectConfig.${e1.key}': e1.value,
       if (targetGroupArn != null) 'TargetGroupArn': targetGroupArn,
     };
   }
@@ -2456,6 +2662,38 @@ class AuthenticateCognitoActionConfig {
       if (sessionTimeout != null) 'SessionTimeout': sessionTimeout,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final userPoolArn = this.userPoolArn;
+    final userPoolClientId = this.userPoolClientId;
+    final userPoolDomain = this.userPoolDomain;
+    final authenticationRequestExtraParams =
+        this.authenticationRequestExtraParams;
+    final onUnauthenticatedRequest = this.onUnauthenticatedRequest;
+    final scope = this.scope;
+    final sessionCookieName = this.sessionCookieName;
+    final sessionTimeout = this.sessionTimeout;
+    return {
+      'UserPoolArn': userPoolArn,
+      'UserPoolClientId': userPoolClientId,
+      'UserPoolDomain': userPoolDomain,
+      if (authenticationRequestExtraParams != null)
+        for (var e1 in authenticationRequestExtraParams.entries
+            .toList()
+            .asMap()
+            .entries) ...{
+          'AuthenticationRequestExtraParams.entry.${e1.key + 1}.key':
+              e1.value.key,
+          'AuthenticationRequestExtraParams.entry.${e1.key + 1}.value':
+              e1.value.value,
+        },
+      if (onUnauthenticatedRequest != null)
+        'OnUnauthenticatedRequest': onUnauthenticatedRequest.toValue(),
+      if (scope != null) 'Scope': scope,
+      if (sessionCookieName != null) 'SessionCookieName': sessionCookieName,
+      if (sessionTimeout != null) 'SessionTimeout': sessionTimeout.toString(),
+    };
+  }
 }
 
 enum AuthenticateOidcActionConditionalBehaviorEnum {
@@ -2639,6 +2877,47 @@ class AuthenticateOidcActionConfig {
         'UseExistingClientSecret': useExistingClientSecret,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final authorizationEndpoint = this.authorizationEndpoint;
+    final clientId = this.clientId;
+    final issuer = this.issuer;
+    final tokenEndpoint = this.tokenEndpoint;
+    final userInfoEndpoint = this.userInfoEndpoint;
+    final authenticationRequestExtraParams =
+        this.authenticationRequestExtraParams;
+    final clientSecret = this.clientSecret;
+    final onUnauthenticatedRequest = this.onUnauthenticatedRequest;
+    final scope = this.scope;
+    final sessionCookieName = this.sessionCookieName;
+    final sessionTimeout = this.sessionTimeout;
+    final useExistingClientSecret = this.useExistingClientSecret;
+    return {
+      'AuthorizationEndpoint': authorizationEndpoint,
+      'ClientId': clientId,
+      'Issuer': issuer,
+      'TokenEndpoint': tokenEndpoint,
+      'UserInfoEndpoint': userInfoEndpoint,
+      if (authenticationRequestExtraParams != null)
+        for (var e1 in authenticationRequestExtraParams.entries
+            .toList()
+            .asMap()
+            .entries) ...{
+          'AuthenticationRequestExtraParams.entry.${e1.key + 1}.key':
+              e1.value.key,
+          'AuthenticationRequestExtraParams.entry.${e1.key + 1}.value':
+              e1.value.value,
+        },
+      if (clientSecret != null) 'ClientSecret': clientSecret,
+      if (onUnauthenticatedRequest != null)
+        'OnUnauthenticatedRequest': onUnauthenticatedRequest.toValue(),
+      if (scope != null) 'Scope': scope,
+      if (sessionCookieName != null) 'SessionCookieName': sessionCookieName,
+      if (sessionTimeout != null) 'SessionTimeout': sessionTimeout.toString(),
+      if (useExistingClientSecret != null)
+        'UseExistingClientSecret': useExistingClientSecret.toString(),
+    };
+  }
 }
 
 /// Information about an Availability Zone.
@@ -2721,6 +3000,15 @@ class Certificate {
     return {
       if (certificateArn != null) 'CertificateArn': certificateArn,
       if (isDefault != null) 'IsDefault': isDefault,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final certificateArn = this.certificateArn;
+    final isDefault = this.isDefault;
+    return {
+      if (certificateArn != null) 'CertificateArn': certificateArn,
+      if (isDefault != null) 'IsDefault': isDefault.toString(),
     };
   }
 }
@@ -3252,6 +3540,17 @@ class FixedResponseActionConfig {
       if (messageBody != null) 'MessageBody': messageBody,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final statusCode = this.statusCode;
+    final contentType = this.contentType;
+    final messageBody = this.messageBody;
+    return {
+      'StatusCode': statusCode,
+      if (contentType != null) 'ContentType': contentType,
+      if (messageBody != null) 'MessageBody': messageBody,
+    };
+  }
 }
 
 /// Information about a forward action.
@@ -3286,6 +3585,23 @@ class ForwardActionConfig {
       if (targetGroups != null) 'TargetGroups': targetGroups,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final targetGroupStickinessConfig = this.targetGroupStickinessConfig;
+    final targetGroups = this.targetGroups;
+    return {
+      if (targetGroupStickinessConfig != null)
+        for (var e1 in targetGroupStickinessConfig.toQueryMap().entries)
+          'TargetGroupStickinessConfig.${e1.key}': e1.value,
+      if (targetGroups != null)
+        if (targetGroups.isEmpty)
+          'TargetGroups': ''
+        else
+          for (var i1 = 0; i1 < targetGroups.length; i1++)
+            for (var e3 in targetGroups[i1].toQueryMap().entries)
+              'TargetGroups.member.${i1 + 1}.${e3.key}': e3.value,
+    };
+  }
 }
 
 /// Information about a host header condition.
@@ -3314,6 +3630,18 @@ class HostHeaderConditionConfig {
     final values = this.values;
     return {
       if (values != null) 'Values': values,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final values = this.values;
+    return {
+      if (values != null)
+        if (values.isEmpty)
+          'Values': ''
+        else
+          for (var i1 = 0; i1 < values.length; i1++)
+            'Values.member.${i1 + 1}': values[i1],
     };
   }
 }
@@ -3365,6 +3693,20 @@ class HttpHeaderConditionConfig {
       if (values != null) 'Values': values,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final httpHeaderName = this.httpHeaderName;
+    final values = this.values;
+    return {
+      if (httpHeaderName != null) 'HttpHeaderName': httpHeaderName,
+      if (values != null)
+        if (values.isEmpty)
+          'Values': ''
+        else
+          for (var i1 = 0; i1 < values.length; i1++)
+            'Values.member.${i1 + 1}': values[i1],
+    };
+  }
 }
 
 /// Information about an HTTP method condition.
@@ -3400,6 +3742,18 @@ class HttpRequestMethodConditionConfig {
     final values = this.values;
     return {
       if (values != null) 'Values': values,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final values = this.values;
+    return {
+      if (values != null)
+        if (values.isEmpty)
+          'Values': ''
+        else
+          for (var i1 = 0; i1 < values.length; i1++)
+            'Values.member.${i1 + 1}': values[i1],
     };
   }
 }
@@ -3924,6 +4278,15 @@ class LoadBalancerAttribute {
       if (value != null) 'Value': value,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 enum LoadBalancerSchemeEnum {
@@ -4101,6 +4464,15 @@ class Matcher {
       if (httpCode != null) 'HttpCode': httpCode,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final grpcCode = this.grpcCode;
+    final httpCode = this.httpCode;
+    return {
+      if (grpcCode != null) 'GrpcCode': grpcCode,
+      if (httpCode != null) 'HttpCode': httpCode,
+    };
+  }
 }
 
 class ModifyListenerOutput {
@@ -4247,6 +4619,18 @@ class PathPatternConditionConfig {
       if (values != null) 'Values': values,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final values = this.values;
+    return {
+      if (values != null)
+        if (values.isEmpty)
+          'Values': ''
+        else
+          for (var i1 = 0; i1 < values.length; i1++)
+            'Values.member.${i1 + 1}': values[i1],
+    };
+  }
 }
 
 enum ProtocolEnum {
@@ -4339,6 +4723,19 @@ class QueryStringConditionConfig {
       if (values != null) 'Values': values,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final values = this.values;
+    return {
+      if (values != null)
+        if (values.isEmpty)
+          'Values': ''
+        else
+          for (var i1 = 0; i1 < values.length; i1++)
+            for (var e3 in values[i1].toQueryMap().entries)
+              'Values.member.${i1 + 1}.${e3.key}': e3.value,
+    };
+  }
 }
 
 /// Information about a key/value pair.
@@ -4361,6 +4758,15 @@ class QueryStringKeyValuePair {
   }
 
   Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
     final key = this.key;
     final value = this.value;
     return {
@@ -4446,6 +4852,23 @@ class RedirectActionConfig {
   }
 
   Map<String, dynamic> toJson() {
+    final statusCode = this.statusCode;
+    final host = this.host;
+    final path = this.path;
+    final port = this.port;
+    final protocol = this.protocol;
+    final query = this.query;
+    return {
+      'StatusCode': statusCode.toValue(),
+      if (host != null) 'Host': host,
+      if (path != null) 'Path': path,
+      if (port != null) 'Port': port,
+      if (protocol != null) 'Protocol': protocol,
+      if (query != null) 'Query': query,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
     final statusCode = this.statusCode;
     final host = this.host;
     final path = this.path;
@@ -4754,6 +5177,44 @@ class RuleCondition {
       if (values != null) 'Values': values,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final field = this.field;
+    final hostHeaderConfig = this.hostHeaderConfig;
+    final httpHeaderConfig = this.httpHeaderConfig;
+    final httpRequestMethodConfig = this.httpRequestMethodConfig;
+    final pathPatternConfig = this.pathPatternConfig;
+    final queryStringConfig = this.queryStringConfig;
+    final sourceIpConfig = this.sourceIpConfig;
+    final values = this.values;
+    return {
+      if (field != null) 'Field': field,
+      if (hostHeaderConfig != null)
+        for (var e1 in hostHeaderConfig.toQueryMap().entries)
+          'HostHeaderConfig.${e1.key}': e1.value,
+      if (httpHeaderConfig != null)
+        for (var e1 in httpHeaderConfig.toQueryMap().entries)
+          'HttpHeaderConfig.${e1.key}': e1.value,
+      if (httpRequestMethodConfig != null)
+        for (var e1 in httpRequestMethodConfig.toQueryMap().entries)
+          'HttpRequestMethodConfig.${e1.key}': e1.value,
+      if (pathPatternConfig != null)
+        for (var e1 in pathPatternConfig.toQueryMap().entries)
+          'PathPatternConfig.${e1.key}': e1.value,
+      if (queryStringConfig != null)
+        for (var e1 in queryStringConfig.toQueryMap().entries)
+          'QueryStringConfig.${e1.key}': e1.value,
+      if (sourceIpConfig != null)
+        for (var e1 in sourceIpConfig.toQueryMap().entries)
+          'SourceIpConfig.${e1.key}': e1.value,
+      if (values != null)
+        if (values.isEmpty)
+          'Values': ''
+        else
+          for (var i1 = 0; i1 < values.length; i1++)
+            'Values.member.${i1 + 1}': values[i1],
+    };
+  }
 }
 
 /// Information about the priorities for the rules for a listener.
@@ -4774,6 +5235,15 @@ class RulePriorityPair {
     final ruleArn = this.ruleArn;
     return {
       if (priority != null) 'Priority': priority,
+      if (ruleArn != null) 'RuleArn': ruleArn,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final priority = this.priority;
+    final ruleArn = this.ruleArn;
+    return {
+      if (priority != null) 'Priority': priority.toString(),
       if (ruleArn != null) 'RuleArn': ruleArn,
     };
   }
@@ -4912,6 +5382,18 @@ class SourceIpConditionConfig {
       if (values != null) 'Values': values,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final values = this.values;
+    return {
+      if (values != null)
+        if (values.isEmpty)
+          'Values': ''
+        else
+          for (var i1 = 0; i1 < values.length; i1++)
+            'Values.member.${i1 + 1}': values[i1],
+    };
+  }
 }
 
 /// Information about a policy used for SSL negotiation.
@@ -4998,6 +5480,19 @@ class SubnetMapping {
       if (subnetId != null) 'SubnetId': subnetId,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final allocationId = this.allocationId;
+    final iPv6Address = this.iPv6Address;
+    final privateIPv4Address = this.privateIPv4Address;
+    final subnetId = this.subnetId;
+    return {
+      if (allocationId != null) 'AllocationId': allocationId,
+      if (iPv6Address != null) 'IPv6Address': iPv6Address,
+      if (privateIPv4Address != null) 'PrivateIPv4Address': privateIPv4Address,
+      if (subnetId != null) 'SubnetId': subnetId,
+    };
+  }
 }
 
 /// Information about a tag.
@@ -5020,6 +5515,15 @@ class Tag {
   }
 
   Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
     final key = this.key;
     final value = this.value;
     return {
@@ -5122,6 +5626,17 @@ class TargetDescription {
       'Id': id,
       if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
       if (port != null) 'Port': port,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final id = this.id;
+    final availabilityZone = this.availabilityZone;
+    final port = this.port;
+    return {
+      'Id': id,
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (port != null) 'Port': port.toString(),
     };
   }
 }
@@ -5498,6 +6013,15 @@ class TargetGroupAttribute {
       if (value != null) 'Value': value,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 enum TargetGroupIpAddressTypeEnum {
@@ -5557,6 +6081,16 @@ class TargetGroupStickinessConfig {
       if (enabled != null) 'Enabled': enabled,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final durationSeconds = this.durationSeconds;
+    final enabled = this.enabled;
+    return {
+      if (durationSeconds != null)
+        'DurationSeconds': durationSeconds.toString(),
+      if (enabled != null) 'Enabled': enabled.toString(),
+    };
+  }
 }
 
 /// Information about how traffic will be distributed between multiple target
@@ -5585,6 +6119,15 @@ class TargetGroupTuple {
     return {
       if (targetGroupArn != null) 'TargetGroupArn': targetGroupArn,
       if (weight != null) 'Weight': weight,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final targetGroupArn = this.targetGroupArn;
+    final weight = this.weight;
+    return {
+      if (targetGroupArn != null) 'TargetGroupArn': targetGroupArn,
+      if (weight != null) 'Weight': weight.toString(),
     };
   }
 }

@@ -17,7 +17,6 @@ import '../../shared/shared.dart'
         nonNullableTimeStampFromJson,
         timeStampFromJson;
 
-import 'v2012_11_05.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// Welcome to the <i>Amazon SQS API Reference</i>.
@@ -90,7 +89,6 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// </ul>
 class Sqs {
   final _s.QueryProtocol _protocol;
-  final Map<String, _s.Shape> shapes;
 
   Sqs({
     required String region,
@@ -98,7 +96,7 @@ class Sqs {
     _s.AwsClientCredentialsProvider? credentialsProvider,
     _s.Client? client,
     String? endpointUrl,
-  })  : _protocol = _s.QueryProtocol(
+  }) : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
             endpointPrefix: 'sqs',
@@ -107,9 +105,7 @@ class Sqs {
           credentials: credentials,
           credentialsProvider: credentialsProvider,
           endpointUrl: endpointUrl,
-        ),
-        shapes = shapesJson
-            .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
+        );
 
   /// Closes the internal HTTP client if none was provided at creation.
   /// If a client was passed as a constructor argument, this becomes a noop.
@@ -208,11 +204,20 @@ class Sqs {
     required String label,
     required String queueUrl,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['AWSAccountIds'] = awsAccountIds;
-    $request['Actions'] = actions;
-    $request['Label'] = label;
-    $request['QueueUrl'] = queueUrl;
+    final $request = <String, String>{
+      if (awsAccountIds.isEmpty)
+        'AWSAccountIds': ''
+      else
+        for (var i1 = 0; i1 < awsAccountIds.length; i1++)
+          'AWSAccountId.${i1 + 1}': awsAccountIds[i1],
+      if (actions.isEmpty)
+        'Actions': ''
+      else
+        for (var i1 = 0; i1 < actions.length; i1++)
+          'ActionName.${i1 + 1}': actions[i1],
+      'Label': label,
+      'QueueUrl': queueUrl,
+    };
     await _protocol.send(
       $request,
       action: 'AddPermission',
@@ -220,8 +225,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['AddPermissionRequest'],
-      shapes: shapes,
     );
   }
 
@@ -310,10 +313,11 @@ class Sqs {
     required String receiptHandle,
     required int visibilityTimeout,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['QueueUrl'] = queueUrl;
-    $request['ReceiptHandle'] = receiptHandle;
-    $request['VisibilityTimeout'] = visibilityTimeout;
+    final $request = <String, String>{
+      'QueueUrl': queueUrl,
+      'ReceiptHandle': receiptHandle,
+      'VisibilityTimeout': visibilityTimeout.toString(),
+    };
     await _protocol.send(
       $request,
       action: 'ChangeMessageVisibility',
@@ -321,8 +325,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ChangeMessageVisibilityRequest'],
-      shapes: shapes,
     );
   }
 
@@ -362,9 +364,16 @@ class Sqs {
     required List<ChangeMessageVisibilityBatchRequestEntry> entries,
     required String queueUrl,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Entries'] = entries;
-    $request['QueueUrl'] = queueUrl;
+    final $request = <String, String>{
+      if (entries.isEmpty)
+        'Entries': ''
+      else
+        for (var i1 = 0; i1 < entries.length; i1++)
+          for (var e2 in entries[i1].toQueryMap().entries)
+            'ChangeMessageVisibilityBatchRequestEntry.${i1 + 1}.${e2.key}':
+                e2.value,
+      'QueueUrl': queueUrl,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ChangeMessageVisibilityBatch',
@@ -372,8 +381,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ChangeMessageVisibilityBatchRequest'],
-      shapes: shapes,
       resultWrapper: 'ChangeMessageVisibilityBatchResult',
     );
     return ChangeMessageVisibilityBatchResult.fromXml($result);
@@ -714,11 +721,19 @@ class Sqs {
     Map<QueueAttributeName, String>? attributes,
     Map<String, String>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['QueueName'] = queueName;
-    attributes?.also((arg) =>
-        $request['Attributes'] = arg.map((k, v) => MapEntry(k.toValue(), v)));
-    tags?.also((arg) => $request['tags'] = arg);
+    final $request = <String, String>{
+      'QueueName': queueName,
+      if (attributes != null)
+        for (var e1 in attributes.entries.toList().asMap().entries) ...{
+          'Attributes.${e1.key + 1}.Name': e1.value.key.toValue(),
+          'Attributes.${e1.key + 1}.Value': e1.value.value,
+        },
+      if (tags != null)
+        for (var e1 in tags.entries.toList().asMap().entries) ...{
+          'tags.${e1.key + 1}.Key': e1.value.key,
+          'tags.${e1.key + 1}.Value': e1.value.value,
+        },
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateQueue',
@@ -726,8 +741,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateQueueRequest'],
-      shapes: shapes,
       resultWrapper: 'CreateQueueResult',
     );
     return CreateQueueResult.fromXml($result);
@@ -772,9 +785,10 @@ class Sqs {
     required String queueUrl,
     required String receiptHandle,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['QueueUrl'] = queueUrl;
-    $request['ReceiptHandle'] = receiptHandle;
+    final $request = <String, String>{
+      'QueueUrl': queueUrl,
+      'ReceiptHandle': receiptHandle,
+    };
     await _protocol.send(
       $request,
       action: 'DeleteMessage',
@@ -782,8 +796,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteMessageRequest'],
-      shapes: shapes,
     );
   }
 
@@ -820,9 +832,15 @@ class Sqs {
     required List<DeleteMessageBatchRequestEntry> entries,
     required String queueUrl,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Entries'] = entries;
-    $request['QueueUrl'] = queueUrl;
+    final $request = <String, String>{
+      if (entries.isEmpty)
+        'Entries': ''
+      else
+        for (var i1 = 0; i1 < entries.length; i1++)
+          for (var e2 in entries[i1].toQueryMap().entries)
+            'DeleteMessageBatchRequestEntry.${i1 + 1}.${e2.key}': e2.value,
+      'QueueUrl': queueUrl,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DeleteMessageBatch',
@@ -830,8 +848,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteMessageBatchRequest'],
-      shapes: shapes,
       resultWrapper: 'DeleteMessageBatchResult',
     );
     return DeleteMessageBatchResult.fromXml($result);
@@ -866,8 +882,9 @@ class Sqs {
   Future<void> deleteQueue({
     required String queueUrl,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['QueueUrl'] = queueUrl;
+    final $request = <String, String>{
+      'QueueUrl': queueUrl,
+    };
     await _protocol.send(
       $request,
       action: 'DeleteQueue',
@@ -875,8 +892,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteQueueRequest'],
-      shapes: shapes,
     );
   }
 
@@ -1087,10 +1102,15 @@ class Sqs {
     required String queueUrl,
     List<QueueAttributeName>? attributeNames,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['QueueUrl'] = queueUrl;
-    attributeNames?.also((arg) =>
-        $request['AttributeNames'] = arg.map((e) => e.toValue()).toList());
+    final $request = <String, String>{
+      'QueueUrl': queueUrl,
+      if (attributeNames != null)
+        if (attributeNames.isEmpty)
+          'AttributeNames': ''
+        else
+          for (var i1 = 0; i1 < attributeNames.length; i1++)
+            'AttributeName.${i1 + 1}': attributeNames[i1].toValue(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'GetQueueAttributes',
@@ -1098,8 +1118,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['GetQueueAttributesRequest'],
-      shapes: shapes,
       resultWrapper: 'GetQueueAttributesResult',
     );
     return GetQueueAttributesResult.fromXml($result);
@@ -1131,10 +1149,11 @@ class Sqs {
     required String queueName,
     String? queueOwnerAWSAccountId,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['QueueName'] = queueName;
-    queueOwnerAWSAccountId
-        ?.also((arg) => $request['QueueOwnerAWSAccountId'] = arg);
+    final $request = <String, String>{
+      'QueueName': queueName,
+      if (queueOwnerAWSAccountId != null)
+        'QueueOwnerAWSAccountId': queueOwnerAWSAccountId,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'GetQueueUrl',
@@ -1142,8 +1161,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['GetQueueUrlRequest'],
-      shapes: shapes,
       resultWrapper: 'GetQueueUrlResult',
     );
     return GetQueueUrlResult.fromXml($result);
@@ -1186,10 +1203,11 @@ class Sqs {
     int? maxResults,
     String? nextToken,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['QueueUrl'] = queueUrl;
-    maxResults?.also((arg) => $request['MaxResults'] = arg);
-    nextToken?.also((arg) => $request['NextToken'] = arg);
+    final $request = <String, String>{
+      'QueueUrl': queueUrl,
+      if (maxResults != null) 'MaxResults': maxResults.toString(),
+      if (nextToken != null) 'NextToken': nextToken,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ListDeadLetterSourceQueues',
@@ -1197,8 +1215,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ListDeadLetterSourceQueuesRequest'],
-      shapes: shapes,
       resultWrapper: 'ListDeadLetterSourceQueuesResult',
     );
     return ListDeadLetterSourceQueuesResult.fromXml($result);
@@ -1221,8 +1237,9 @@ class Sqs {
   Future<ListQueueTagsResult> listQueueTags({
     required String queueUrl,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['QueueUrl'] = queueUrl;
+    final $request = <String, String>{
+      'QueueUrl': queueUrl,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ListQueueTags',
@@ -1230,8 +1247,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ListQueueTagsRequest'],
-      shapes: shapes,
       resultWrapper: 'ListQueueTagsResult',
     );
     return ListQueueTagsResult.fromXml($result);
@@ -1276,10 +1291,11 @@ class Sqs {
     String? nextToken,
     String? queueNamePrefix,
   }) async {
-    final $request = <String, dynamic>{};
-    maxResults?.also((arg) => $request['MaxResults'] = arg);
-    nextToken?.also((arg) => $request['NextToken'] = arg);
-    queueNamePrefix?.also((arg) => $request['QueueNamePrefix'] = arg);
+    final $request = <String, String>{
+      if (maxResults != null) 'MaxResults': maxResults.toString(),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (queueNamePrefix != null) 'QueueNamePrefix': queueNamePrefix,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ListQueues',
@@ -1287,8 +1303,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ListQueuesRequest'],
-      shapes: shapes,
       resultWrapper: 'ListQueuesResult',
     );
     return ListQueuesResult.fromXml($result);
@@ -1320,8 +1334,9 @@ class Sqs {
   Future<void> purgeQueue({
     required String queueUrl,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['QueueUrl'] = queueUrl;
+    final $request = <String, String>{
+      'QueueUrl': queueUrl,
+    };
     await _protocol.send(
       $request,
       action: 'PurgeQueue',
@@ -1329,8 +1344,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['PurgeQueueRequest'],
-      shapes: shapes,
     );
   }
 
@@ -1601,17 +1614,29 @@ class Sqs {
     int? visibilityTimeout,
     int? waitTimeSeconds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['QueueUrl'] = queueUrl;
-    attributeNames?.also((arg) =>
-        $request['AttributeNames'] = arg.map((e) => e.toValue()).toList());
-    maxNumberOfMessages?.also((arg) => $request['MaxNumberOfMessages'] = arg);
-    messageAttributeNames
-        ?.also((arg) => $request['MessageAttributeNames'] = arg);
-    receiveRequestAttemptId
-        ?.also((arg) => $request['ReceiveRequestAttemptId'] = arg);
-    visibilityTimeout?.also((arg) => $request['VisibilityTimeout'] = arg);
-    waitTimeSeconds?.also((arg) => $request['WaitTimeSeconds'] = arg);
+    final $request = <String, String>{
+      'QueueUrl': queueUrl,
+      if (attributeNames != null)
+        if (attributeNames.isEmpty)
+          'AttributeNames': ''
+        else
+          for (var i1 = 0; i1 < attributeNames.length; i1++)
+            'AttributeName.${i1 + 1}': attributeNames[i1].toValue(),
+      if (maxNumberOfMessages != null)
+        'MaxNumberOfMessages': maxNumberOfMessages.toString(),
+      if (messageAttributeNames != null)
+        if (messageAttributeNames.isEmpty)
+          'MessageAttributeNames': ''
+        else
+          for (var i1 = 0; i1 < messageAttributeNames.length; i1++)
+            'MessageAttributeName.${i1 + 1}': messageAttributeNames[i1],
+      if (receiveRequestAttemptId != null)
+        'ReceiveRequestAttemptId': receiveRequestAttemptId,
+      if (visibilityTimeout != null)
+        'VisibilityTimeout': visibilityTimeout.toString(),
+      if (waitTimeSeconds != null)
+        'WaitTimeSeconds': waitTimeSeconds.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ReceiveMessage',
@@ -1619,8 +1644,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ReceiveMessageRequest'],
-      shapes: shapes,
       resultWrapper: 'ReceiveMessageResult',
     );
     return ReceiveMessageResult.fromXml($result);
@@ -1660,9 +1683,10 @@ class Sqs {
     required String label,
     required String queueUrl,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Label'] = label;
-    $request['QueueUrl'] = queueUrl;
+    final $request = <String, String>{
+      'Label': label,
+      'QueueUrl': queueUrl,
+    };
     await _protocol.send(
       $request,
       action: 'RemovePermission',
@@ -1670,8 +1694,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RemovePermissionRequest'],
-      shapes: shapes,
     );
   }
 
@@ -1861,16 +1883,27 @@ class Sqs {
     Map<MessageSystemAttributeNameForSends, MessageSystemAttributeValue>?
         messageSystemAttributes,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['MessageBody'] = messageBody;
-    $request['QueueUrl'] = queueUrl;
-    delaySeconds?.also((arg) => $request['DelaySeconds'] = arg);
-    messageAttributes?.also((arg) => $request['MessageAttributes'] = arg);
-    messageDeduplicationId
-        ?.also((arg) => $request['MessageDeduplicationId'] = arg);
-    messageGroupId?.also((arg) => $request['MessageGroupId'] = arg);
-    messageSystemAttributes?.also((arg) => $request['MessageSystemAttributes'] =
-        arg.map((k, v) => MapEntry(k.toValue(), v)));
+    final $request = <String, String>{
+      'MessageBody': messageBody,
+      'QueueUrl': queueUrl,
+      if (delaySeconds != null) 'DelaySeconds': delaySeconds.toString(),
+      if (messageAttributes != null)
+        for (var e1 in messageAttributes.entries.toList().asMap().entries) ...{
+          'MessageAttributes.${e1.key + 1}.Name': e1.value.key,
+          for (var e3 in e1.value.value.toQueryMap().entries)
+            'MessageAttributes.${e1.key + 1}.Value.${e3.key}': e3.value,
+        },
+      if (messageDeduplicationId != null)
+        'MessageDeduplicationId': messageDeduplicationId,
+      if (messageGroupId != null) 'MessageGroupId': messageGroupId,
+      if (messageSystemAttributes != null)
+        for (var e1
+            in messageSystemAttributes.entries.toList().asMap().entries) ...{
+          'MessageSystemAttributes.${e1.key + 1}.Name': e1.value.key.toValue(),
+          for (var e3 in e1.value.value.toQueryMap().entries)
+            'MessageSystemAttributes.${e1.key + 1}.Value.${e3.key}': e3.value,
+        },
+    };
     final $result = await _protocol.send(
       $request,
       action: 'SendMessage',
@@ -1878,8 +1911,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['SendMessageRequest'],
-      shapes: shapes,
       resultWrapper: 'SendMessageResult',
     );
     return SendMessageResult.fromXml($result);
@@ -1939,9 +1970,15 @@ class Sqs {
     required List<SendMessageBatchRequestEntry> entries,
     required String queueUrl,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Entries'] = entries;
-    $request['QueueUrl'] = queueUrl;
+    final $request = <String, String>{
+      if (entries.isEmpty)
+        'Entries': ''
+      else
+        for (var i1 = 0; i1 < entries.length; i1++)
+          for (var e2 in entries[i1].toQueryMap().entries)
+            'SendMessageBatchRequestEntry.${i1 + 1}.${e2.key}': e2.value,
+      'QueueUrl': queueUrl,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'SendMessageBatch',
@@ -1949,8 +1986,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['SendMessageBatchRequest'],
-      shapes: shapes,
       resultWrapper: 'SendMessageBatchResult',
     );
     return SendMessageBatchResult.fromXml($result);
@@ -2188,9 +2223,13 @@ class Sqs {
     required Map<QueueAttributeName, String> attributes,
     required String queueUrl,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Attributes'] = attributes.map((k, v) => MapEntry(k.toValue(), v));
-    $request['QueueUrl'] = queueUrl;
+    final $request = <String, String>{
+      for (var e1 in attributes.entries.toList().asMap().entries) ...{
+        'Attributes.${e1.key + 1}.Name': e1.value.key.toValue(),
+        'Attributes.${e1.key + 1}.Value': e1.value.value,
+      },
+      'QueueUrl': queueUrl,
+    };
     await _protocol.send(
       $request,
       action: 'SetQueueAttributes',
@@ -2198,8 +2237,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['SetQueueAttributesRequest'],
-      shapes: shapes,
     );
   }
 
@@ -2246,9 +2283,13 @@ class Sqs {
     required String queueUrl,
     required Map<String, String> tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['QueueUrl'] = queueUrl;
-    $request['Tags'] = tags;
+    final $request = <String, String>{
+      'QueueUrl': queueUrl,
+      for (var e1 in tags.entries.toList().asMap().entries) ...{
+        'Tags.${e1.key + 1}.Key': e1.value.key,
+        'Tags.${e1.key + 1}.Value': e1.value.value,
+      },
+    };
     await _protocol.send(
       $request,
       action: 'TagQueue',
@@ -2256,8 +2297,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['TagQueueRequest'],
-      shapes: shapes,
     );
   }
 
@@ -2282,9 +2321,14 @@ class Sqs {
     required String queueUrl,
     required List<String> tagKeys,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['QueueUrl'] = queueUrl;
-    $request['TagKeys'] = tagKeys;
+    final $request = <String, String>{
+      'QueueUrl': queueUrl,
+      if (tagKeys.isEmpty)
+        'TagKeys': ''
+      else
+        for (var i1 = 0; i1 < tagKeys.length; i1++)
+          'TagKey.${i1 + 1}': tagKeys[i1],
+    };
     await _protocol.send(
       $request,
       action: 'UntagQueue',
@@ -2292,8 +2336,6 @@ class Sqs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['UntagQueueRequest'],
-      shapes: shapes,
     );
   }
 }
@@ -2387,6 +2429,18 @@ class ChangeMessageVisibilityBatchRequestEntry {
       'Id': id,
       'ReceiptHandle': receiptHandle,
       if (visibilityTimeout != null) 'VisibilityTimeout': visibilityTimeout,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final id = this.id;
+    final receiptHandle = this.receiptHandle;
+    final visibilityTimeout = this.visibilityTimeout;
+    return {
+      'Id': id,
+      'ReceiptHandle': receiptHandle,
+      if (visibilityTimeout != null)
+        'VisibilityTimeout': visibilityTimeout.toString(),
     };
   }
 }
@@ -2496,6 +2550,15 @@ class DeleteMessageBatchRequestEntry {
   });
 
   Map<String, dynamic> toJson() {
+    final id = this.id;
+    final receiptHandle = this.receiptHandle;
+    return {
+      'Id': id,
+      'ReceiptHandle': receiptHandle,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
     final id = this.id;
     final receiptHandle = this.receiptHandle;
     return {
@@ -2902,6 +2965,32 @@ class MessageAttributeValue {
       if (stringValue != null) 'StringValue': stringValue,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final dataType = this.dataType;
+    final binaryListValues = this.binaryListValues;
+    final binaryValue = this.binaryValue;
+    final stringListValues = this.stringListValues;
+    final stringValue = this.stringValue;
+    return {
+      'DataType': dataType,
+      if (binaryListValues != null)
+        if (binaryListValues.isEmpty)
+          'BinaryListValue': ''
+        else
+          for (var i1 = 0; i1 < binaryListValues.length; i1++)
+            'BinaryListValue.BinaryListValue.${i1 + 1}':
+                base64Encode(binaryListValues[i1]),
+      if (binaryValue != null) 'BinaryValue': base64Encode(binaryValue),
+      if (stringListValues != null)
+        if (stringListValues.isEmpty)
+          'StringListValue': ''
+        else
+          for (var i1 = 0; i1 < stringListValues.length; i1++)
+            'StringListValue.StringListValue.${i1 + 1}': stringListValues[i1],
+      if (stringValue != null) 'StringValue': stringValue,
+    };
+  }
 }
 
 enum MessageSystemAttributeName {
@@ -3041,6 +3130,32 @@ class MessageSystemAttributeValue {
         'BinaryListValue': binaryListValues.map(base64Encode).toList(),
       if (binaryValue != null) 'BinaryValue': base64Encode(binaryValue),
       if (stringListValues != null) 'StringListValue': stringListValues,
+      if (stringValue != null) 'StringValue': stringValue,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final dataType = this.dataType;
+    final binaryListValues = this.binaryListValues;
+    final binaryValue = this.binaryValue;
+    final stringListValues = this.stringListValues;
+    final stringValue = this.stringValue;
+    return {
+      'DataType': dataType,
+      if (binaryListValues != null)
+        if (binaryListValues.isEmpty)
+          'BinaryListValue': ''
+        else
+          for (var i1 = 0; i1 < binaryListValues.length; i1++)
+            'BinaryListValue.BinaryListValue.${i1 + 1}':
+                base64Encode(binaryListValues[i1]),
+      if (binaryValue != null) 'BinaryValue': base64Encode(binaryValue),
+      if (stringListValues != null)
+        if (stringListValues.isEmpty)
+          'StringListValue': ''
+        else
+          for (var i1 = 0; i1 < stringListValues.length; i1++)
+            'StringListValue.StringListValue.${i1 + 1}': stringListValues[i1],
       if (stringValue != null) 'StringValue': stringValue,
     };
   }
@@ -3377,6 +3492,37 @@ class SendMessageBatchRequestEntry {
       if (messageSystemAttributes != null)
         'MessageSystemAttribute':
             messageSystemAttributes.map((k, e) => MapEntry(k.toValue(), e)),
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final id = this.id;
+    final messageBody = this.messageBody;
+    final delaySeconds = this.delaySeconds;
+    final messageAttributes = this.messageAttributes;
+    final messageDeduplicationId = this.messageDeduplicationId;
+    final messageGroupId = this.messageGroupId;
+    final messageSystemAttributes = this.messageSystemAttributes;
+    return {
+      'Id': id,
+      'MessageBody': messageBody,
+      if (delaySeconds != null) 'DelaySeconds': delaySeconds.toString(),
+      if (messageAttributes != null)
+        for (var e1 in messageAttributes.entries.toList().asMap().entries) ...{
+          'MessageAttribute.${e1.key + 1}.Name': e1.value.key,
+          for (var e3 in e1.value.value.toQueryMap().entries)
+            'MessageAttribute.${e1.key + 1}.Value.${e3.key}': e3.value,
+        },
+      if (messageDeduplicationId != null)
+        'MessageDeduplicationId': messageDeduplicationId,
+      if (messageGroupId != null) 'MessageGroupId': messageGroupId,
+      if (messageSystemAttributes != null)
+        for (var e1
+            in messageSystemAttributes.entries.toList().asMap().entries) ...{
+          'MessageSystemAttribute.${e1.key + 1}.Name': e1.value.key.toValue(),
+          for (var e3 in e1.value.value.toQueryMap().entries)
+            'MessageSystemAttribute.${e1.key + 1}.Value.${e3.key}': e3.value,
+        },
     };
   }
 }

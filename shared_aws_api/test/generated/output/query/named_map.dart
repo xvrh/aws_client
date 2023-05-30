@@ -17,13 +17,11 @@ import 'package:shared_aws_api/shared.dart'
         nonNullableTimeStampFromJson,
         timeStampFromJson;
 
-import 'named_map.meta.dart';
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
 /// Named map
 class NamedMap {
   final _s.QueryProtocol _protocol;
-  final Map<String, _s.Shape> shapes;
 
   NamedMap({
     required String region,
@@ -31,7 +29,7 @@ class NamedMap {
     _s.AwsClientCredentialsProvider? credentialsProvider,
     _s.Client? client,
     String? endpointUrl,
-  })  : _protocol = _s.QueryProtocol(
+  }) : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
             endpointPrefix: 'NamedMap',
@@ -40,9 +38,7 @@ class NamedMap {
           credentials: credentials,
           credentialsProvider: credentialsProvider,
           endpointUrl: endpointUrl,
-        ),
-        shapes = shapesJson
-            .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
+        );
 
   /// Closes the internal HTTP client if none was provided at creation.
   /// If a client was passed as a constructor argument, this becomes a noop.
@@ -85,17 +81,6 @@ class OutputShape {
             ),
       ),
     );
-  }
-
-  Map<String, String> toQueryMap() {
-    final map = this.map;
-    return {
-      if (map != null)
-        for (var e1 in map.entries.toList().asMap().entries) ...{
-          'Map.${e1.key + 1}.foo': e1.value.key,
-          'Map.${e1.key + 1}.bar': e1.value.value,
-        },
-    };
   }
 }
 

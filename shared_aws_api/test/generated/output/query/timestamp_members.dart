@@ -17,13 +17,11 @@ import 'package:shared_aws_api/shared.dart'
         nonNullableTimeStampFromJson,
         timeStampFromJson;
 
-import 'timestamp_members.meta.dart';
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
 /// Timestamp members
 class TimestampMembers {
   final _s.QueryProtocol _protocol;
-  final Map<String, _s.Shape> shapes;
 
   TimestampMembers({
     required String region,
@@ -31,7 +29,7 @@ class TimestampMembers {
     _s.AwsClientCredentialsProvider? credentialsProvider,
     _s.Client? client,
     String? endpointUrl,
-  })  : _protocol = _s.QueryProtocol(
+  }) : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
             endpointPrefix: 'TimestampMembers',
@@ -40,9 +38,7 @@ class TimestampMembers {
           credentials: credentials,
           credentialsProvider: credentialsProvider,
           endpointUrl: endpointUrl,
-        ),
-        shapes = shapesJson
-            .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
+        );
 
   /// Closes the internal HTTP client if none was provided at creation.
   /// If a client was passed as a constructor argument, this becomes a noop.
@@ -90,22 +86,6 @@ class OutputShape {
           parser: _s.timeStampFromJson),
     );
   }
-
-  Map<String, String> toQueryMap() {
-    final structMember = this.structMember;
-    final timeArg = this.timeArg;
-    final timeCustom = this.timeCustom;
-    final timeFormat = this.timeFormat;
-    return {
-      if (structMember != null)
-        for (var e1 in structMember.toQueryMap().entries)
-          'StructMember.${e1.key}': e1.value,
-      if (timeArg != null) 'TimeArg': _s.iso8601ToJson(timeArg),
-      if (timeCustom != null) 'TimeCustom': _s.rfc822ToJson(timeCustom),
-      if (timeFormat != null)
-        'TimeFormat': _s.unixTimestampToJson(timeFormat).toString(),
-    };
-  }
 }
 
 class TimeContainer {
@@ -122,15 +102,6 @@ class TimeContainer {
           _s.extractXmlDateTimeValue(elem, 'bar', parser: _s.timeStampFromJson),
       foo: _s.extractXmlDateTimeValue(elem, 'foo'),
     );
-  }
-
-  Map<String, String> toQueryMap() {
-    final bar = this.bar;
-    final foo = this.foo;
-    return {
-      if (bar != null) 'bar': _s.unixTimestampToJson(bar).toString(),
-      if (foo != null) 'foo': _s.iso8601ToJson(foo),
-    };
   }
 }
 

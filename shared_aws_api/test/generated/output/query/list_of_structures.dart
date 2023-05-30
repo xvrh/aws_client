@@ -17,13 +17,11 @@ import 'package:shared_aws_api/shared.dart'
         nonNullableTimeStampFromJson,
         timeStampFromJson;
 
-import 'list_of_structures.meta.dart';
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
 /// List of structures
 class ListOfStructures {
   final _s.QueryProtocol _protocol;
-  final Map<String, _s.Shape> shapes;
 
   ListOfStructures({
     required String region,
@@ -31,7 +29,7 @@ class ListOfStructures {
     _s.AwsClientCredentialsProvider? credentialsProvider,
     _s.Client? client,
     String? endpointUrl,
-  })  : _protocol = _s.QueryProtocol(
+  }) : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
             endpointPrefix: 'ListOfStructures',
@@ -40,9 +38,7 @@ class ListOfStructures {
           credentials: credentials,
           credentialsProvider: credentialsProvider,
           endpointUrl: endpointUrl,
-        ),
-        shapes = shapesJson
-            .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
+        );
 
   /// Closes the internal HTTP client if none was provided at creation.
   /// If a client was passed as a constructor argument, this becomes a noop.
@@ -80,19 +76,6 @@ class OutputShape {
           elem.findElements('member').map(StructureShape.fromXml).toList()),
     );
   }
-
-  Map<String, String> toQueryMap() {
-    final list = this.list;
-    return {
-      if (list != null)
-        if (list.isEmpty)
-          'List': ''
-        else
-          for (var i1 = 0; i1 < list.length; i1++)
-            for (var e3 in list[i1].toQueryMap().entries)
-              'List.member.${i1 + 1}.${e3.key}': e3.value,
-    };
-  }
 }
 
 class StructureShape {
@@ -111,17 +94,6 @@ class StructureShape {
       baz: _s.extractXmlStringValue(elem, 'Baz'),
       foo: _s.extractXmlStringValue(elem, 'Foo'),
     );
-  }
-
-  Map<String, String> toQueryMap() {
-    final bar = this.bar;
-    final baz = this.baz;
-    final foo = this.foo;
-    return {
-      if (bar != null) 'Bar': bar,
-      if (baz != null) 'Baz': baz,
-      if (foo != null) 'Foo': foo,
-    };
   }
 }
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.2
+
+- Expose `package:aws_client/credential_providers.dart` for powerful options to resolve the `AwsClientCredentials`
+- Internal refactoring of the query protocol
+
 ## 0.4.1
 
 - Add more examples

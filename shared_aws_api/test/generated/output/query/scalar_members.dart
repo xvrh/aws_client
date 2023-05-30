@@ -17,13 +17,11 @@ import 'package:shared_aws_api/shared.dart'
         nonNullableTimeStampFromJson,
         timeStampFromJson;
 
-import 'scalar_members.meta.dart';
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
 /// Scalar members
 class ScalarMembers {
   final _s.QueryProtocol _protocol;
-  final Map<String, _s.Shape> shapes;
 
   ScalarMembers({
     required String region,
@@ -31,7 +29,7 @@ class ScalarMembers {
     _s.AwsClientCredentialsProvider? credentialsProvider,
     _s.Client? client,
     String? endpointUrl,
-  })  : _protocol = _s.QueryProtocol(
+  }) : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
             endpointPrefix: 'ScalarMembers',
@@ -40,9 +38,7 @@ class ScalarMembers {
           credentials: credentials,
           credentialsProvider: credentialsProvider,
           endpointUrl: endpointUrl,
-        ),
-        shapes = shapesJson
-            .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
+        );
 
   /// Closes the internal HTTP client if none was provided at creation.
   /// If a client was passed as a constructor argument, this becomes a noop.
@@ -102,29 +98,6 @@ class OutputShape {
       timestamp: _s.extractXmlDateTimeValue(elem, 'Timestamp'),
       trueBool: _s.extractXmlBoolValue(elem, 'TrueBool'),
     );
-  }
-
-  Map<String, String> toQueryMap() {
-    final char = this.char;
-    final doubleValue = this.doubleValue;
-    final falseBool = this.falseBool;
-    final float = this.float;
-    final long = this.long;
-    final num = this.num;
-    final str = this.str;
-    final timestamp = this.timestamp;
-    final trueBool = this.trueBool;
-    return {
-      if (char != null) 'Char': char.toString(),
-      if (doubleValue != null) 'Double': doubleValue.toString(),
-      if (falseBool != null) 'FalseBool': falseBool.toString(),
-      if (float != null) 'Float': float.toString(),
-      if (long != null) 'Long': long.toString(),
-      if (num != null) 'FooNum': num.toString(),
-      if (str != null) 'Str': str,
-      if (timestamp != null) 'Timestamp': _s.iso8601ToJson(timestamp),
-      if (trueBool != null) 'TrueBool': trueBool.toString(),
-    };
   }
 }
 

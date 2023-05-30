@@ -17,7 +17,6 @@ import '../../shared/shared.dart'
         nonNullableTimeStampFromJson,
         timeStampFromJson;
 
-import 'v2014_10_31.meta.dart';
 export '../../shared/shared.dart' show AwsClientCredentials;
 
 /// Amazon Relational Database Service (Amazon RDS) is a web service that makes
@@ -28,7 +27,6 @@ export '../../shared/shared.dart' show AwsClientCredentials;
 /// businesses unique.
 class Rds {
   final _s.QueryProtocol _protocol;
-  final Map<String, _s.Shape> shapes;
 
   Rds({
     required String region,
@@ -36,7 +34,7 @@ class Rds {
     _s.AwsClientCredentialsProvider? credentialsProvider,
     _s.Client? client,
     String? endpointUrl,
-  })  : _protocol = _s.QueryProtocol(
+  }) : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
             endpointPrefix: 'rds',
@@ -45,9 +43,7 @@ class Rds {
           credentials: credentials,
           credentialsProvider: credentialsProvider,
           endpointUrl: endpointUrl,
-        ),
-        shapes = shapesJson
-            .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
+        );
 
   /// Closes the internal HTTP client if none was provided at creation.
   /// If a client was passed as a constructor argument, this becomes a noop.
@@ -82,10 +78,11 @@ class Rds {
     required String roleArn,
     String? featureName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
-    $request['RoleArn'] = roleArn;
-    featureName?.also((arg) => $request['FeatureName'] = arg);
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+      'RoleArn': roleArn,
+      if (featureName != null) 'FeatureName': featureName,
+    };
     await _protocol.send(
       $request,
       action: 'AddRoleToDBCluster',
@@ -93,8 +90,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['AddRoleToDBClusterMessage'],
-      shapes: shapes,
     );
   }
 
@@ -128,10 +123,11 @@ class Rds {
     required String featureName,
     required String roleArn,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
-    $request['FeatureName'] = featureName;
-    $request['RoleArn'] = roleArn;
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+      'FeatureName': featureName,
+      'RoleArn': roleArn,
+    };
     await _protocol.send(
       $request,
       action: 'AddRoleToDBInstance',
@@ -139,8 +135,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['AddRoleToDBInstanceMessage'],
-      shapes: shapes,
     );
   }
 
@@ -194,9 +188,10 @@ class Rds {
     required String sourceIdentifier,
     required String subscriptionName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['SourceIdentifier'] = sourceIdentifier;
-    $request['SubscriptionName'] = subscriptionName;
+    final $request = <String, String>{
+      'SourceIdentifier': sourceIdentifier,
+      'SubscriptionName': subscriptionName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'AddSourceIdentifierToSubscription',
@@ -204,8 +199,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['AddSourceIdentifierToSubscriptionMessage'],
-      shapes: shapes,
       resultWrapper: 'AddSourceIdentifierToSubscriptionResult',
     );
     return AddSourceIdentifierToSubscriptionResult.fromXml($result);
@@ -239,9 +232,15 @@ class Rds {
     required String resourceName,
     required List<Tag> tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ResourceName'] = resourceName;
-    $request['Tags'] = tags;
+    final $request = <String, String>{
+      'ResourceName': resourceName,
+      if (tags.isEmpty)
+        'Tags': ''
+      else
+        for (var i1 = 0; i1 < tags.length; i1++)
+          for (var e3 in tags[i1].toQueryMap().entries)
+            'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     await _protocol.send(
       $request,
       action: 'AddTagsToResource',
@@ -249,8 +248,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['AddTagsToResourceMessage'],
-      shapes: shapes,
     );
   }
 
@@ -298,10 +295,11 @@ class Rds {
     required String optInType,
     required String resourceIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ApplyAction'] = applyAction;
-    $request['OptInType'] = optInType;
-    $request['ResourceIdentifier'] = resourceIdentifier;
+    final $request = <String, String>{
+      'ApplyAction': applyAction,
+      'OptInType': optInType,
+      'ResourceIdentifier': resourceIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ApplyPendingMaintenanceAction',
@@ -309,8 +307,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ApplyPendingMaintenanceActionMessage'],
-      shapes: shapes,
       resultWrapper: 'ApplyPendingMaintenanceActionResult',
     );
     return ApplyPendingMaintenanceActionResult.fromXml($result);
@@ -388,13 +384,15 @@ class Rds {
     String? eC2SecurityGroupName,
     String? eC2SecurityGroupOwnerId,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBSecurityGroupName'] = dBSecurityGroupName;
-    cidrip?.also((arg) => $request['CIDRIP'] = arg);
-    eC2SecurityGroupId?.also((arg) => $request['EC2SecurityGroupId'] = arg);
-    eC2SecurityGroupName?.also((arg) => $request['EC2SecurityGroupName'] = arg);
-    eC2SecurityGroupOwnerId
-        ?.also((arg) => $request['EC2SecurityGroupOwnerId'] = arg);
+    final $request = <String, String>{
+      'DBSecurityGroupName': dBSecurityGroupName,
+      if (cidrip != null) 'CIDRIP': cidrip,
+      if (eC2SecurityGroupId != null) 'EC2SecurityGroupId': eC2SecurityGroupId,
+      if (eC2SecurityGroupName != null)
+        'EC2SecurityGroupName': eC2SecurityGroupName,
+      if (eC2SecurityGroupOwnerId != null)
+        'EC2SecurityGroupOwnerId': eC2SecurityGroupOwnerId,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'AuthorizeDBSecurityGroupIngress',
@@ -402,8 +400,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['AuthorizeDBSecurityGroupIngressMessage'],
-      shapes: shapes,
       resultWrapper: 'AuthorizeDBSecurityGroupIngressResult',
     );
     return AuthorizeDBSecurityGroupIngressResult.fromXml($result);
@@ -480,12 +476,14 @@ class Rds {
     bool? force,
     bool? useEarliestTimeOnPointInTimeUnavailable,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['BacktrackTo'] = _s.iso8601ToJson(backtrackTo);
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
-    force?.also((arg) => $request['Force'] = arg);
-    useEarliestTimeOnPointInTimeUnavailable?.also(
-        (arg) => $request['UseEarliestTimeOnPointInTimeUnavailable'] = arg);
+    final $request = <String, String>{
+      'BacktrackTo': _s.iso8601ToJson(backtrackTo),
+      'DBClusterIdentifier': dBClusterIdentifier,
+      if (force != null) 'Force': force.toString(),
+      if (useEarliestTimeOnPointInTimeUnavailable != null)
+        'UseEarliestTimeOnPointInTimeUnavailable':
+            useEarliestTimeOnPointInTimeUnavailable.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'BacktrackDBCluster',
@@ -493,8 +491,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['BacktrackDBClusterMessage'],
-      shapes: shapes,
       resultWrapper: 'BacktrackDBClusterResult',
     );
     return DBClusterBacktrack.fromXml($result);
@@ -512,8 +508,9 @@ class Rds {
   Future<ExportTask> cancelExportTask({
     required String exportTaskIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ExportTaskIdentifier'] = exportTaskIdentifier;
+    final $request = <String, String>{
+      'ExportTaskIdentifier': exportTaskIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CancelExportTask',
@@ -521,8 +518,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CancelExportTaskMessage'],
-      shapes: shapes,
       resultWrapper: 'CancelExportTaskResult',
     );
     return ExportTask.fromXml($result);
@@ -578,14 +573,21 @@ class Rds {
     required String targetDBClusterParameterGroupIdentifier,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['SourceDBClusterParameterGroupIdentifier'] =
-        sourceDBClusterParameterGroupIdentifier;
-    $request['TargetDBClusterParameterGroupDescription'] =
-        targetDBClusterParameterGroupDescription;
-    $request['TargetDBClusterParameterGroupIdentifier'] =
-        targetDBClusterParameterGroupIdentifier;
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'SourceDBClusterParameterGroupIdentifier':
+          sourceDBClusterParameterGroupIdentifier,
+      'TargetDBClusterParameterGroupDescription':
+          targetDBClusterParameterGroupDescription,
+      'TargetDBClusterParameterGroupIdentifier':
+          targetDBClusterParameterGroupIdentifier,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CopyDBClusterParameterGroup',
@@ -593,8 +595,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CopyDBClusterParameterGroupMessage'],
-      shapes: shapes,
       resultWrapper: 'CopyDBClusterParameterGroupResult',
     );
     return CopyDBClusterParameterGroupResult.fromXml($result);
@@ -808,16 +808,21 @@ class Rds {
     String? sourceRegion,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['SourceDBClusterSnapshotIdentifier'] =
-        sourceDBClusterSnapshotIdentifier;
-    $request['TargetDBClusterSnapshotIdentifier'] =
-        targetDBClusterSnapshotIdentifier;
-    copyTags?.also((arg) => $request['CopyTags'] = arg);
-    kmsKeyId?.also((arg) => $request['KmsKeyId'] = arg);
-    preSignedUrl?.also((arg) => $request['PreSignedUrl'] = arg);
-    sourceRegion?.also((arg) => $request['SourceRegion'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'SourceDBClusterSnapshotIdentifier': sourceDBClusterSnapshotIdentifier,
+      'TargetDBClusterSnapshotIdentifier': targetDBClusterSnapshotIdentifier,
+      if (copyTags != null) 'CopyTags': copyTags.toString(),
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (preSignedUrl != null) 'PreSignedUrl': preSignedUrl,
+      if (sourceRegion != null) 'SourceRegion': sourceRegion,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CopyDBClusterSnapshot',
@@ -825,8 +830,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CopyDBClusterSnapshotMessage'],
-      shapes: shapes,
       resultWrapper: 'CopyDBClusterSnapshotResult',
     );
     return CopyDBClusterSnapshotResult.fromXml($result);
@@ -882,14 +885,18 @@ class Rds {
     required String targetDBParameterGroupIdentifier,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['SourceDBParameterGroupIdentifier'] =
-        sourceDBParameterGroupIdentifier;
-    $request['TargetDBParameterGroupDescription'] =
-        targetDBParameterGroupDescription;
-    $request['TargetDBParameterGroupIdentifier'] =
-        targetDBParameterGroupIdentifier;
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'SourceDBParameterGroupIdentifier': sourceDBParameterGroupIdentifier,
+      'TargetDBParameterGroupDescription': targetDBParameterGroupDescription,
+      'TargetDBParameterGroupIdentifier': targetDBParameterGroupIdentifier,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CopyDBParameterGroup',
@@ -897,8 +904,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CopyDBParameterGroupMessage'],
-      shapes: shapes,
       resultWrapper: 'CopyDBParameterGroupResult',
     );
     return CopyDBParameterGroupResult.fromXml($result);
@@ -1111,18 +1116,26 @@ class Rds {
     List<Tag>? tags,
     String? targetCustomAvailabilityZone,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['SourceDBSnapshotIdentifier'] = sourceDBSnapshotIdentifier;
-    $request['TargetDBSnapshotIdentifier'] = targetDBSnapshotIdentifier;
-    copyOptionGroup?.also((arg) => $request['CopyOptionGroup'] = arg);
-    copyTags?.also((arg) => $request['CopyTags'] = arg);
-    kmsKeyId?.also((arg) => $request['KmsKeyId'] = arg);
-    optionGroupName?.also((arg) => $request['OptionGroupName'] = arg);
-    preSignedUrl?.also((arg) => $request['PreSignedUrl'] = arg);
-    sourceRegion?.also((arg) => $request['SourceRegion'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
-    targetCustomAvailabilityZone
-        ?.also((arg) => $request['TargetCustomAvailabilityZone'] = arg);
+    final $request = <String, String>{
+      'SourceDBSnapshotIdentifier': sourceDBSnapshotIdentifier,
+      'TargetDBSnapshotIdentifier': targetDBSnapshotIdentifier,
+      if (copyOptionGroup != null)
+        'CopyOptionGroup': copyOptionGroup.toString(),
+      if (copyTags != null) 'CopyTags': copyTags.toString(),
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+      if (preSignedUrl != null) 'PreSignedUrl': preSignedUrl,
+      if (sourceRegion != null) 'SourceRegion': sourceRegion,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+      if (targetCustomAvailabilityZone != null)
+        'TargetCustomAvailabilityZone': targetCustomAvailabilityZone,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CopyDBSnapshot',
@@ -1130,8 +1143,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CopyDBSnapshotMessage'],
-      shapes: shapes,
       resultWrapper: 'CopyDBSnapshotResult',
     );
     return CopyDBSnapshotResult.fromXml($result);
@@ -1183,11 +1194,18 @@ class Rds {
     required String targetOptionGroupIdentifier,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['SourceOptionGroupIdentifier'] = sourceOptionGroupIdentifier;
-    $request['TargetOptionGroupDescription'] = targetOptionGroupDescription;
-    $request['TargetOptionGroupIdentifier'] = targetOptionGroupIdentifier;
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'SourceOptionGroupIdentifier': sourceOptionGroupIdentifier,
+      'TargetOptionGroupDescription': targetOptionGroupDescription,
+      'TargetOptionGroupIdentifier': targetOptionGroupIdentifier,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CopyOptionGroup',
@@ -1195,8 +1213,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CopyOptionGroupMessage'],
-      shapes: shapes,
       resultWrapper: 'CopyOptionGroupResult',
     );
     return CopyOptionGroupResult.fromXml($result);
@@ -1288,15 +1304,23 @@ class Rds {
     String? targetDBParameterGroupName,
     String? targetEngineVersion,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['BlueGreenDeploymentName'] = blueGreenDeploymentName;
-    $request['Source'] = source;
-    tags?.also((arg) => $request['Tags'] = arg);
-    targetDBClusterParameterGroupName
-        ?.also((arg) => $request['TargetDBClusterParameterGroupName'] = arg);
-    targetDBParameterGroupName
-        ?.also((arg) => $request['TargetDBParameterGroupName'] = arg);
-    targetEngineVersion?.also((arg) => $request['TargetEngineVersion'] = arg);
+    final $request = <String, String>{
+      'BlueGreenDeploymentName': blueGreenDeploymentName,
+      'Source': source,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+      if (targetDBClusterParameterGroupName != null)
+        'TargetDBClusterParameterGroupName': targetDBClusterParameterGroupName,
+      if (targetDBParameterGroupName != null)
+        'TargetDBParameterGroupName': targetDBParameterGroupName,
+      if (targetEngineVersion != null)
+        'TargetEngineVersion': targetEngineVersion,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateBlueGreenDeployment',
@@ -1304,8 +1328,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateBlueGreenDeploymentRequest'],
-      shapes: shapes,
       resultWrapper: 'CreateBlueGreenDeploymentResult',
     );
     return CreateBlueGreenDeploymentResponse.fromXml($result);
@@ -1403,18 +1425,26 @@ class Rds {
     String? manifest,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Engine'] = engine;
-    $request['EngineVersion'] = engineVersion;
-    databaseInstallationFilesS3BucketName?.also(
-        (arg) => $request['DatabaseInstallationFilesS3BucketName'] = arg);
-    databaseInstallationFilesS3Prefix
-        ?.also((arg) => $request['DatabaseInstallationFilesS3Prefix'] = arg);
-    description?.also((arg) => $request['Description'] = arg);
-    imageId?.also((arg) => $request['ImageId'] = arg);
-    kMSKeyId?.also((arg) => $request['KMSKeyId'] = arg);
-    manifest?.also((arg) => $request['Manifest'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'Engine': engine,
+      'EngineVersion': engineVersion,
+      if (databaseInstallationFilesS3BucketName != null)
+        'DatabaseInstallationFilesS3BucketName':
+            databaseInstallationFilesS3BucketName,
+      if (databaseInstallationFilesS3Prefix != null)
+        'DatabaseInstallationFilesS3Prefix': databaseInstallationFilesS3Prefix,
+      if (description != null) 'Description': description,
+      if (imageId != null) 'ImageId': imageId,
+      if (kMSKeyId != null) 'KMSKeyId': kMSKeyId,
+      if (manifest != null) 'Manifest': manifest,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateCustomDBEngineVersion',
@@ -1422,8 +1452,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateCustomDBEngineVersionMessage'],
-      shapes: shapes,
       resultWrapper: 'CreateCustomDBEngineVersionResult',
     );
     return DBEngineVersion.fromXml($result);
@@ -2339,74 +2367,111 @@ class Rds {
     List<Tag>? tags,
     List<String>? vpcSecurityGroupIds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
-    $request['Engine'] = engine;
-    allocatedStorage?.also((arg) => $request['AllocatedStorage'] = arg);
-    autoMinorVersionUpgrade
-        ?.also((arg) => $request['AutoMinorVersionUpgrade'] = arg);
-    availabilityZones?.also((arg) => $request['AvailabilityZones'] = arg);
-    backtrackWindow?.also((arg) => $request['BacktrackWindow'] = arg);
-    backupRetentionPeriod
-        ?.also((arg) => $request['BackupRetentionPeriod'] = arg);
-    characterSetName?.also((arg) => $request['CharacterSetName'] = arg);
-    copyTagsToSnapshot?.also((arg) => $request['CopyTagsToSnapshot'] = arg);
-    dBClusterInstanceClass
-        ?.also((arg) => $request['DBClusterInstanceClass'] = arg);
-    dBClusterParameterGroupName
-        ?.also((arg) => $request['DBClusterParameterGroupName'] = arg);
-    dBSubnetGroupName?.also((arg) => $request['DBSubnetGroupName'] = arg);
-    dBSystemId?.also((arg) => $request['DBSystemId'] = arg);
-    databaseName?.also((arg) => $request['DatabaseName'] = arg);
-    deletionProtection?.also((arg) => $request['DeletionProtection'] = arg);
-    domain?.also((arg) => $request['Domain'] = arg);
-    domainIAMRoleName?.also((arg) => $request['DomainIAMRoleName'] = arg);
-    enableCloudwatchLogsExports
-        ?.also((arg) => $request['EnableCloudwatchLogsExports'] = arg);
-    enableGlobalWriteForwarding
-        ?.also((arg) => $request['EnableGlobalWriteForwarding'] = arg);
-    enableHttpEndpoint?.also((arg) => $request['EnableHttpEndpoint'] = arg);
-    enableIAMDatabaseAuthentication
-        ?.also((arg) => $request['EnableIAMDatabaseAuthentication'] = arg);
-    enablePerformanceInsights
-        ?.also((arg) => $request['EnablePerformanceInsights'] = arg);
-    engineMode?.also((arg) => $request['EngineMode'] = arg);
-    engineVersion?.also((arg) => $request['EngineVersion'] = arg);
-    globalClusterIdentifier
-        ?.also((arg) => $request['GlobalClusterIdentifier'] = arg);
-    iops?.also((arg) => $request['Iops'] = arg);
-    kmsKeyId?.also((arg) => $request['KmsKeyId'] = arg);
-    manageMasterUserPassword
-        ?.also((arg) => $request['ManageMasterUserPassword'] = arg);
-    masterUserPassword?.also((arg) => $request['MasterUserPassword'] = arg);
-    masterUserSecretKmsKeyId
-        ?.also((arg) => $request['MasterUserSecretKmsKeyId'] = arg);
-    masterUsername?.also((arg) => $request['MasterUsername'] = arg);
-    monitoringInterval?.also((arg) => $request['MonitoringInterval'] = arg);
-    monitoringRoleArn?.also((arg) => $request['MonitoringRoleArn'] = arg);
-    networkType?.also((arg) => $request['NetworkType'] = arg);
-    optionGroupName?.also((arg) => $request['OptionGroupName'] = arg);
-    performanceInsightsKMSKeyId
-        ?.also((arg) => $request['PerformanceInsightsKMSKeyId'] = arg);
-    performanceInsightsRetentionPeriod
-        ?.also((arg) => $request['PerformanceInsightsRetentionPeriod'] = arg);
-    port?.also((arg) => $request['Port'] = arg);
-    preSignedUrl?.also((arg) => $request['PreSignedUrl'] = arg);
-    preferredBackupWindow
-        ?.also((arg) => $request['PreferredBackupWindow'] = arg);
-    preferredMaintenanceWindow
-        ?.also((arg) => $request['PreferredMaintenanceWindow'] = arg);
-    publiclyAccessible?.also((arg) => $request['PubliclyAccessible'] = arg);
-    replicationSourceIdentifier
-        ?.also((arg) => $request['ReplicationSourceIdentifier'] = arg);
-    scalingConfiguration?.also((arg) => $request['ScalingConfiguration'] = arg);
-    serverlessV2ScalingConfiguration
-        ?.also((arg) => $request['ServerlessV2ScalingConfiguration'] = arg);
-    sourceRegion?.also((arg) => $request['SourceRegion'] = arg);
-    storageEncrypted?.also((arg) => $request['StorageEncrypted'] = arg);
-    storageType?.also((arg) => $request['StorageType'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
-    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+      'Engine': engine,
+      if (allocatedStorage != null)
+        'AllocatedStorage': allocatedStorage.toString(),
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade.toString(),
+      if (availabilityZones != null)
+        if (availabilityZones.isEmpty)
+          'AvailabilityZones': ''
+        else
+          for (var i1 = 0; i1 < availabilityZones.length; i1++)
+            'AvailabilityZones.AvailabilityZone.${i1 + 1}':
+                availabilityZones[i1],
+      if (backtrackWindow != null)
+        'BacktrackWindow': backtrackWindow.toString(),
+      if (backupRetentionPeriod != null)
+        'BackupRetentionPeriod': backupRetentionPeriod.toString(),
+      if (characterSetName != null) 'CharacterSetName': characterSetName,
+      if (copyTagsToSnapshot != null)
+        'CopyTagsToSnapshot': copyTagsToSnapshot.toString(),
+      if (dBClusterInstanceClass != null)
+        'DBClusterInstanceClass': dBClusterInstanceClass,
+      if (dBClusterParameterGroupName != null)
+        'DBClusterParameterGroupName': dBClusterParameterGroupName,
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (dBSystemId != null) 'DBSystemId': dBSystemId,
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (deletionProtection != null)
+        'DeletionProtection': deletionProtection.toString(),
+      if (domain != null) 'Domain': domain,
+      if (domainIAMRoleName != null) 'DomainIAMRoleName': domainIAMRoleName,
+      if (enableCloudwatchLogsExports != null)
+        if (enableCloudwatchLogsExports.isEmpty)
+          'EnableCloudwatchLogsExports': ''
+        else
+          for (var i1 = 0; i1 < enableCloudwatchLogsExports.length; i1++)
+            'EnableCloudwatchLogsExports.member.${i1 + 1}':
+                enableCloudwatchLogsExports[i1],
+      if (enableGlobalWriteForwarding != null)
+        'EnableGlobalWriteForwarding': enableGlobalWriteForwarding.toString(),
+      if (enableHttpEndpoint != null)
+        'EnableHttpEndpoint': enableHttpEndpoint.toString(),
+      if (enableIAMDatabaseAuthentication != null)
+        'EnableIAMDatabaseAuthentication':
+            enableIAMDatabaseAuthentication.toString(),
+      if (enablePerformanceInsights != null)
+        'EnablePerformanceInsights': enablePerformanceInsights.toString(),
+      if (engineMode != null) 'EngineMode': engineMode,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (globalClusterIdentifier != null)
+        'GlobalClusterIdentifier': globalClusterIdentifier,
+      if (iops != null) 'Iops': iops.toString(),
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (manageMasterUserPassword != null)
+        'ManageMasterUserPassword': manageMasterUserPassword.toString(),
+      if (masterUserPassword != null) 'MasterUserPassword': masterUserPassword,
+      if (masterUserSecretKmsKeyId != null)
+        'MasterUserSecretKmsKeyId': masterUserSecretKmsKeyId,
+      if (masterUsername != null) 'MasterUsername': masterUsername,
+      if (monitoringInterval != null)
+        'MonitoringInterval': monitoringInterval.toString(),
+      if (monitoringRoleArn != null) 'MonitoringRoleArn': monitoringRoleArn,
+      if (networkType != null) 'NetworkType': networkType,
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+      if (performanceInsightsKMSKeyId != null)
+        'PerformanceInsightsKMSKeyId': performanceInsightsKMSKeyId,
+      if (performanceInsightsRetentionPeriod != null)
+        'PerformanceInsightsRetentionPeriod':
+            performanceInsightsRetentionPeriod.toString(),
+      if (port != null) 'Port': port.toString(),
+      if (preSignedUrl != null) 'PreSignedUrl': preSignedUrl,
+      if (preferredBackupWindow != null)
+        'PreferredBackupWindow': preferredBackupWindow,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (publiclyAccessible != null)
+        'PubliclyAccessible': publiclyAccessible.toString(),
+      if (replicationSourceIdentifier != null)
+        'ReplicationSourceIdentifier': replicationSourceIdentifier,
+      if (scalingConfiguration != null)
+        for (var e1 in scalingConfiguration.toQueryMap().entries)
+          'ScalingConfiguration.${e1.key}': e1.value,
+      if (serverlessV2ScalingConfiguration != null)
+        for (var e1 in serverlessV2ScalingConfiguration.toQueryMap().entries)
+          'ServerlessV2ScalingConfiguration.${e1.key}': e1.value,
+      if (sourceRegion != null) 'SourceRegion': sourceRegion,
+      if (storageEncrypted != null)
+        'StorageEncrypted': storageEncrypted.toString(),
+      if (storageType != null) 'StorageType': storageType,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+      if (vpcSecurityGroupIds != null)
+        if (vpcSecurityGroupIds.isEmpty)
+          'VpcSecurityGroupIds': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupIds.length; i1++)
+            'VpcSecurityGroupIds.VpcSecurityGroupId.${i1 + 1}':
+                vpcSecurityGroupIds[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateDBCluster',
@@ -2414,8 +2479,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateDBClusterMessage'],
-      shapes: shapes,
       resultWrapper: 'CreateDBClusterResult',
     );
     return CreateDBClusterResult.fromXml($result);
@@ -2466,13 +2529,30 @@ class Rds {
     List<String>? staticMembers,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterEndpointIdentifier'] = dBClusterEndpointIdentifier;
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
-    $request['EndpointType'] = endpointType;
-    excludedMembers?.also((arg) => $request['ExcludedMembers'] = arg);
-    staticMembers?.also((arg) => $request['StaticMembers'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'DBClusterEndpointIdentifier': dBClusterEndpointIdentifier,
+      'DBClusterIdentifier': dBClusterIdentifier,
+      'EndpointType': endpointType,
+      if (excludedMembers != null)
+        if (excludedMembers.isEmpty)
+          'ExcludedMembers': ''
+        else
+          for (var i1 = 0; i1 < excludedMembers.length; i1++)
+            'ExcludedMembers.member.${i1 + 1}': excludedMembers[i1],
+      if (staticMembers != null)
+        if (staticMembers.isEmpty)
+          'StaticMembers': ''
+        else
+          for (var i1 = 0; i1 < staticMembers.length; i1++)
+            'StaticMembers.member.${i1 + 1}': staticMembers[i1],
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateDBClusterEndpoint',
@@ -2480,8 +2560,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateDBClusterEndpointMessage'],
-      shapes: shapes,
       resultWrapper: 'CreateDBClusterEndpointResult',
     );
     return DBClusterEndpoint.fromXml($result);
@@ -2609,11 +2687,18 @@ class Rds {
     required String description,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterParameterGroupName'] = dBClusterParameterGroupName;
-    $request['DBParameterGroupFamily'] = dBParameterGroupFamily;
-    $request['Description'] = description;
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'DBClusterParameterGroupName': dBClusterParameterGroupName,
+      'DBParameterGroupFamily': dBParameterGroupFamily,
+      'Description': description,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateDBClusterParameterGroup',
@@ -2621,8 +2706,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateDBClusterParameterGroupMessage'],
-      shapes: shapes,
       resultWrapper: 'CreateDBClusterParameterGroupResult',
     );
     return CreateDBClusterParameterGroupResult.fromXml($result);
@@ -2683,10 +2766,17 @@ class Rds {
     required String dBClusterSnapshotIdentifier,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
-    $request['DBClusterSnapshotIdentifier'] = dBClusterSnapshotIdentifier;
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+      'DBClusterSnapshotIdentifier': dBClusterSnapshotIdentifier,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateDBClusterSnapshot',
@@ -2694,8 +2784,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateDBClusterSnapshotMessage'],
-      shapes: shapes,
       resultWrapper: 'CreateDBClusterSnapshotResult',
     );
     return CreateDBClusterSnapshotResult.fromXml($result);
@@ -4060,78 +4148,121 @@ class Rds {
     String? timezone,
     List<String>? vpcSecurityGroupIds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceClass'] = dBInstanceClass;
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
-    $request['Engine'] = engine;
-    allocatedStorage?.also((arg) => $request['AllocatedStorage'] = arg);
-    autoMinorVersionUpgrade
-        ?.also((arg) => $request['AutoMinorVersionUpgrade'] = arg);
-    availabilityZone?.also((arg) => $request['AvailabilityZone'] = arg);
-    backupRetentionPeriod
-        ?.also((arg) => $request['BackupRetentionPeriod'] = arg);
-    backupTarget?.also((arg) => $request['BackupTarget'] = arg);
-    cACertificateIdentifier
-        ?.also((arg) => $request['CACertificateIdentifier'] = arg);
-    characterSetName?.also((arg) => $request['CharacterSetName'] = arg);
-    copyTagsToSnapshot?.also((arg) => $request['CopyTagsToSnapshot'] = arg);
-    customIamInstanceProfile
-        ?.also((arg) => $request['CustomIamInstanceProfile'] = arg);
-    dBClusterIdentifier?.also((arg) => $request['DBClusterIdentifier'] = arg);
-    dBName?.also((arg) => $request['DBName'] = arg);
-    dBParameterGroupName?.also((arg) => $request['DBParameterGroupName'] = arg);
-    dBSecurityGroups?.also((arg) => $request['DBSecurityGroups'] = arg);
-    dBSubnetGroupName?.also((arg) => $request['DBSubnetGroupName'] = arg);
-    deletionProtection?.also((arg) => $request['DeletionProtection'] = arg);
-    domain?.also((arg) => $request['Domain'] = arg);
-    domainIAMRoleName?.also((arg) => $request['DomainIAMRoleName'] = arg);
-    enableCloudwatchLogsExports
-        ?.also((arg) => $request['EnableCloudwatchLogsExports'] = arg);
-    enableCustomerOwnedIp
-        ?.also((arg) => $request['EnableCustomerOwnedIp'] = arg);
-    enableIAMDatabaseAuthentication
-        ?.also((arg) => $request['EnableIAMDatabaseAuthentication'] = arg);
-    enablePerformanceInsights
-        ?.also((arg) => $request['EnablePerformanceInsights'] = arg);
-    engineVersion?.also((arg) => $request['EngineVersion'] = arg);
-    iops?.also((arg) => $request['Iops'] = arg);
-    kmsKeyId?.also((arg) => $request['KmsKeyId'] = arg);
-    licenseModel?.also((arg) => $request['LicenseModel'] = arg);
-    manageMasterUserPassword
-        ?.also((arg) => $request['ManageMasterUserPassword'] = arg);
-    masterUserPassword?.also((arg) => $request['MasterUserPassword'] = arg);
-    masterUserSecretKmsKeyId
-        ?.also((arg) => $request['MasterUserSecretKmsKeyId'] = arg);
-    masterUsername?.also((arg) => $request['MasterUsername'] = arg);
-    maxAllocatedStorage?.also((arg) => $request['MaxAllocatedStorage'] = arg);
-    monitoringInterval?.also((arg) => $request['MonitoringInterval'] = arg);
-    monitoringRoleArn?.also((arg) => $request['MonitoringRoleArn'] = arg);
-    multiAZ?.also((arg) => $request['MultiAZ'] = arg);
-    ncharCharacterSetName
-        ?.also((arg) => $request['NcharCharacterSetName'] = arg);
-    networkType?.also((arg) => $request['NetworkType'] = arg);
-    optionGroupName?.also((arg) => $request['OptionGroupName'] = arg);
-    performanceInsightsKMSKeyId
-        ?.also((arg) => $request['PerformanceInsightsKMSKeyId'] = arg);
-    performanceInsightsRetentionPeriod
-        ?.also((arg) => $request['PerformanceInsightsRetentionPeriod'] = arg);
-    port?.also((arg) => $request['Port'] = arg);
-    preferredBackupWindow
-        ?.also((arg) => $request['PreferredBackupWindow'] = arg);
-    preferredMaintenanceWindow
-        ?.also((arg) => $request['PreferredMaintenanceWindow'] = arg);
-    processorFeatures?.also((arg) => $request['ProcessorFeatures'] = arg);
-    promotionTier?.also((arg) => $request['PromotionTier'] = arg);
-    publiclyAccessible?.also((arg) => $request['PubliclyAccessible'] = arg);
-    storageEncrypted?.also((arg) => $request['StorageEncrypted'] = arg);
-    storageThroughput?.also((arg) => $request['StorageThroughput'] = arg);
-    storageType?.also((arg) => $request['StorageType'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
-    tdeCredentialArn?.also((arg) => $request['TdeCredentialArn'] = arg);
-    tdeCredentialPassword
-        ?.also((arg) => $request['TdeCredentialPassword'] = arg);
-    timezone?.also((arg) => $request['Timezone'] = arg);
-    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $request = <String, String>{
+      'DBInstanceClass': dBInstanceClass,
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+      'Engine': engine,
+      if (allocatedStorage != null)
+        'AllocatedStorage': allocatedStorage.toString(),
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade.toString(),
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (backupRetentionPeriod != null)
+        'BackupRetentionPeriod': backupRetentionPeriod.toString(),
+      if (backupTarget != null) 'BackupTarget': backupTarget,
+      if (cACertificateIdentifier != null)
+        'CACertificateIdentifier': cACertificateIdentifier,
+      if (characterSetName != null) 'CharacterSetName': characterSetName,
+      if (copyTagsToSnapshot != null)
+        'CopyTagsToSnapshot': copyTagsToSnapshot.toString(),
+      if (customIamInstanceProfile != null)
+        'CustomIamInstanceProfile': customIamInstanceProfile,
+      if (dBClusterIdentifier != null)
+        'DBClusterIdentifier': dBClusterIdentifier,
+      if (dBName != null) 'DBName': dBName,
+      if (dBParameterGroupName != null)
+        'DBParameterGroupName': dBParameterGroupName,
+      if (dBSecurityGroups != null)
+        if (dBSecurityGroups.isEmpty)
+          'DBSecurityGroups': ''
+        else
+          for (var i1 = 0; i1 < dBSecurityGroups.length; i1++)
+            'DBSecurityGroups.DBSecurityGroupName.${i1 + 1}':
+                dBSecurityGroups[i1],
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (deletionProtection != null)
+        'DeletionProtection': deletionProtection.toString(),
+      if (domain != null) 'Domain': domain,
+      if (domainIAMRoleName != null) 'DomainIAMRoleName': domainIAMRoleName,
+      if (enableCloudwatchLogsExports != null)
+        if (enableCloudwatchLogsExports.isEmpty)
+          'EnableCloudwatchLogsExports': ''
+        else
+          for (var i1 = 0; i1 < enableCloudwatchLogsExports.length; i1++)
+            'EnableCloudwatchLogsExports.member.${i1 + 1}':
+                enableCloudwatchLogsExports[i1],
+      if (enableCustomerOwnedIp != null)
+        'EnableCustomerOwnedIp': enableCustomerOwnedIp.toString(),
+      if (enableIAMDatabaseAuthentication != null)
+        'EnableIAMDatabaseAuthentication':
+            enableIAMDatabaseAuthentication.toString(),
+      if (enablePerformanceInsights != null)
+        'EnablePerformanceInsights': enablePerformanceInsights.toString(),
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (iops != null) 'Iops': iops.toString(),
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (licenseModel != null) 'LicenseModel': licenseModel,
+      if (manageMasterUserPassword != null)
+        'ManageMasterUserPassword': manageMasterUserPassword.toString(),
+      if (masterUserPassword != null) 'MasterUserPassword': masterUserPassword,
+      if (masterUserSecretKmsKeyId != null)
+        'MasterUserSecretKmsKeyId': masterUserSecretKmsKeyId,
+      if (masterUsername != null) 'MasterUsername': masterUsername,
+      if (maxAllocatedStorage != null)
+        'MaxAllocatedStorage': maxAllocatedStorage.toString(),
+      if (monitoringInterval != null)
+        'MonitoringInterval': monitoringInterval.toString(),
+      if (monitoringRoleArn != null) 'MonitoringRoleArn': monitoringRoleArn,
+      if (multiAZ != null) 'MultiAZ': multiAZ.toString(),
+      if (ncharCharacterSetName != null)
+        'NcharCharacterSetName': ncharCharacterSetName,
+      if (networkType != null) 'NetworkType': networkType,
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+      if (performanceInsightsKMSKeyId != null)
+        'PerformanceInsightsKMSKeyId': performanceInsightsKMSKeyId,
+      if (performanceInsightsRetentionPeriod != null)
+        'PerformanceInsightsRetentionPeriod':
+            performanceInsightsRetentionPeriod.toString(),
+      if (port != null) 'Port': port.toString(),
+      if (preferredBackupWindow != null)
+        'PreferredBackupWindow': preferredBackupWindow,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (processorFeatures != null)
+        if (processorFeatures.isEmpty)
+          'ProcessorFeatures': ''
+        else
+          for (var i1 = 0; i1 < processorFeatures.length; i1++)
+            for (var e3 in processorFeatures[i1].toQueryMap().entries)
+              'ProcessorFeatures.ProcessorFeature.${i1 + 1}.${e3.key}':
+                  e3.value,
+      if (promotionTier != null) 'PromotionTier': promotionTier.toString(),
+      if (publiclyAccessible != null)
+        'PubliclyAccessible': publiclyAccessible.toString(),
+      if (storageEncrypted != null)
+        'StorageEncrypted': storageEncrypted.toString(),
+      if (storageThroughput != null)
+        'StorageThroughput': storageThroughput.toString(),
+      if (storageType != null) 'StorageType': storageType,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+      if (tdeCredentialArn != null) 'TdeCredentialArn': tdeCredentialArn,
+      if (tdeCredentialPassword != null)
+        'TdeCredentialPassword': tdeCredentialPassword,
+      if (timezone != null) 'Timezone': timezone,
+      if (vpcSecurityGroupIds != null)
+        if (vpcSecurityGroupIds.isEmpty)
+          'VpcSecurityGroupIds': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupIds.length; i1++)
+            'VpcSecurityGroupIds.VpcSecurityGroupId.${i1 + 1}':
+                vpcSecurityGroupIds[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateDBInstance',
@@ -4139,8 +4270,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateDBInstanceMessage'],
-      shapes: shapes,
       resultWrapper: 'CreateDBInstanceResult',
     );
     return CreateDBInstanceResult.fromXml($result);
@@ -4828,57 +4957,92 @@ class Rds {
     bool? useDefaultProcessorFeatures,
     List<String>? vpcSecurityGroupIds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
-    allocatedStorage?.also((arg) => $request['AllocatedStorage'] = arg);
-    autoMinorVersionUpgrade
-        ?.also((arg) => $request['AutoMinorVersionUpgrade'] = arg);
-    availabilityZone?.also((arg) => $request['AvailabilityZone'] = arg);
-    copyTagsToSnapshot?.also((arg) => $request['CopyTagsToSnapshot'] = arg);
-    customIamInstanceProfile
-        ?.also((arg) => $request['CustomIamInstanceProfile'] = arg);
-    dBInstanceClass?.also((arg) => $request['DBInstanceClass'] = arg);
-    dBParameterGroupName?.also((arg) => $request['DBParameterGroupName'] = arg);
-    dBSubnetGroupName?.also((arg) => $request['DBSubnetGroupName'] = arg);
-    deletionProtection?.also((arg) => $request['DeletionProtection'] = arg);
-    domain?.also((arg) => $request['Domain'] = arg);
-    domainIAMRoleName?.also((arg) => $request['DomainIAMRoleName'] = arg);
-    enableCloudwatchLogsExports
-        ?.also((arg) => $request['EnableCloudwatchLogsExports'] = arg);
-    enableCustomerOwnedIp
-        ?.also((arg) => $request['EnableCustomerOwnedIp'] = arg);
-    enableIAMDatabaseAuthentication
-        ?.also((arg) => $request['EnableIAMDatabaseAuthentication'] = arg);
-    enablePerformanceInsights
-        ?.also((arg) => $request['EnablePerformanceInsights'] = arg);
-    iops?.also((arg) => $request['Iops'] = arg);
-    kmsKeyId?.also((arg) => $request['KmsKeyId'] = arg);
-    maxAllocatedStorage?.also((arg) => $request['MaxAllocatedStorage'] = arg);
-    monitoringInterval?.also((arg) => $request['MonitoringInterval'] = arg);
-    monitoringRoleArn?.also((arg) => $request['MonitoringRoleArn'] = arg);
-    multiAZ?.also((arg) => $request['MultiAZ'] = arg);
-    networkType?.also((arg) => $request['NetworkType'] = arg);
-    optionGroupName?.also((arg) => $request['OptionGroupName'] = arg);
-    performanceInsightsKMSKeyId
-        ?.also((arg) => $request['PerformanceInsightsKMSKeyId'] = arg);
-    performanceInsightsRetentionPeriod
-        ?.also((arg) => $request['PerformanceInsightsRetentionPeriod'] = arg);
-    port?.also((arg) => $request['Port'] = arg);
-    preSignedUrl?.also((arg) => $request['PreSignedUrl'] = arg);
-    processorFeatures?.also((arg) => $request['ProcessorFeatures'] = arg);
-    publiclyAccessible?.also((arg) => $request['PubliclyAccessible'] = arg);
-    replicaMode?.also((arg) => $request['ReplicaMode'] = arg.toValue());
-    sourceDBClusterIdentifier
-        ?.also((arg) => $request['SourceDBClusterIdentifier'] = arg);
-    sourceDBInstanceIdentifier
-        ?.also((arg) => $request['SourceDBInstanceIdentifier'] = arg);
-    sourceRegion?.also((arg) => $request['SourceRegion'] = arg);
-    storageThroughput?.also((arg) => $request['StorageThroughput'] = arg);
-    storageType?.also((arg) => $request['StorageType'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
-    useDefaultProcessorFeatures
-        ?.also((arg) => $request['UseDefaultProcessorFeatures'] = arg);
-    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (allocatedStorage != null)
+        'AllocatedStorage': allocatedStorage.toString(),
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade.toString(),
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (copyTagsToSnapshot != null)
+        'CopyTagsToSnapshot': copyTagsToSnapshot.toString(),
+      if (customIamInstanceProfile != null)
+        'CustomIamInstanceProfile': customIamInstanceProfile,
+      if (dBInstanceClass != null) 'DBInstanceClass': dBInstanceClass,
+      if (dBParameterGroupName != null)
+        'DBParameterGroupName': dBParameterGroupName,
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (deletionProtection != null)
+        'DeletionProtection': deletionProtection.toString(),
+      if (domain != null) 'Domain': domain,
+      if (domainIAMRoleName != null) 'DomainIAMRoleName': domainIAMRoleName,
+      if (enableCloudwatchLogsExports != null)
+        if (enableCloudwatchLogsExports.isEmpty)
+          'EnableCloudwatchLogsExports': ''
+        else
+          for (var i1 = 0; i1 < enableCloudwatchLogsExports.length; i1++)
+            'EnableCloudwatchLogsExports.member.${i1 + 1}':
+                enableCloudwatchLogsExports[i1],
+      if (enableCustomerOwnedIp != null)
+        'EnableCustomerOwnedIp': enableCustomerOwnedIp.toString(),
+      if (enableIAMDatabaseAuthentication != null)
+        'EnableIAMDatabaseAuthentication':
+            enableIAMDatabaseAuthentication.toString(),
+      if (enablePerformanceInsights != null)
+        'EnablePerformanceInsights': enablePerformanceInsights.toString(),
+      if (iops != null) 'Iops': iops.toString(),
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (maxAllocatedStorage != null)
+        'MaxAllocatedStorage': maxAllocatedStorage.toString(),
+      if (monitoringInterval != null)
+        'MonitoringInterval': monitoringInterval.toString(),
+      if (monitoringRoleArn != null) 'MonitoringRoleArn': monitoringRoleArn,
+      if (multiAZ != null) 'MultiAZ': multiAZ.toString(),
+      if (networkType != null) 'NetworkType': networkType,
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+      if (performanceInsightsKMSKeyId != null)
+        'PerformanceInsightsKMSKeyId': performanceInsightsKMSKeyId,
+      if (performanceInsightsRetentionPeriod != null)
+        'PerformanceInsightsRetentionPeriod':
+            performanceInsightsRetentionPeriod.toString(),
+      if (port != null) 'Port': port.toString(),
+      if (preSignedUrl != null) 'PreSignedUrl': preSignedUrl,
+      if (processorFeatures != null)
+        if (processorFeatures.isEmpty)
+          'ProcessorFeatures': ''
+        else
+          for (var i1 = 0; i1 < processorFeatures.length; i1++)
+            for (var e3 in processorFeatures[i1].toQueryMap().entries)
+              'ProcessorFeatures.ProcessorFeature.${i1 + 1}.${e3.key}':
+                  e3.value,
+      if (publiclyAccessible != null)
+        'PubliclyAccessible': publiclyAccessible.toString(),
+      if (replicaMode != null) 'ReplicaMode': replicaMode.toValue(),
+      if (sourceDBClusterIdentifier != null)
+        'SourceDBClusterIdentifier': sourceDBClusterIdentifier,
+      if (sourceDBInstanceIdentifier != null)
+        'SourceDBInstanceIdentifier': sourceDBInstanceIdentifier,
+      if (sourceRegion != null) 'SourceRegion': sourceRegion,
+      if (storageThroughput != null)
+        'StorageThroughput': storageThroughput.toString(),
+      if (storageType != null) 'StorageType': storageType,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+      if (useDefaultProcessorFeatures != null)
+        'UseDefaultProcessorFeatures': useDefaultProcessorFeatures.toString(),
+      if (vpcSecurityGroupIds != null)
+        if (vpcSecurityGroupIds.isEmpty)
+          'VpcSecurityGroupIds': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupIds.length; i1++)
+            'VpcSecurityGroupIds.VpcSecurityGroupId.${i1 + 1}':
+                vpcSecurityGroupIds[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateDBInstanceReadReplica',
@@ -4886,8 +5050,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateDBInstanceReadReplicaMessage'],
-      shapes: shapes,
       resultWrapper: 'CreateDBInstanceReadReplicaResult',
     );
     return CreateDBInstanceReadReplicaResult.fromXml($result);
@@ -5018,11 +5180,18 @@ class Rds {
     required String description,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBParameterGroupFamily'] = dBParameterGroupFamily;
-    $request['DBParameterGroupName'] = dBParameterGroupName;
-    $request['Description'] = description;
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'DBParameterGroupFamily': dBParameterGroupFamily,
+      'DBParameterGroupName': dBParameterGroupName,
+      'Description': description,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateDBParameterGroup',
@@ -5030,8 +5199,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateDBParameterGroupMessage'],
-      shapes: shapes,
       resultWrapper: 'CreateDBParameterGroupResult',
     );
     return CreateDBParameterGroupResult.fromXml($result);
@@ -5106,17 +5273,39 @@ class Rds {
     List<Tag>? tags,
     List<String>? vpcSecurityGroupIds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Auth'] = auth;
-    $request['DBProxyName'] = dBProxyName;
-    $request['EngineFamily'] = engineFamily.toValue();
-    $request['RoleArn'] = roleArn;
-    $request['VpcSubnetIds'] = vpcSubnetIds;
-    debugLogging?.also((arg) => $request['DebugLogging'] = arg);
-    idleClientTimeout?.also((arg) => $request['IdleClientTimeout'] = arg);
-    requireTLS?.also((arg) => $request['RequireTLS'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
-    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $request = <String, String>{
+      if (auth.isEmpty)
+        'Auth': ''
+      else
+        for (var i1 = 0; i1 < auth.length; i1++)
+          for (var e3 in auth[i1].toQueryMap().entries)
+            'Auth.member.${i1 + 1}.${e3.key}': e3.value,
+      'DBProxyName': dBProxyName,
+      'EngineFamily': engineFamily.toValue(),
+      'RoleArn': roleArn,
+      if (vpcSubnetIds.isEmpty)
+        'VpcSubnetIds': ''
+      else
+        for (var i1 = 0; i1 < vpcSubnetIds.length; i1++)
+          'VpcSubnetIds.member.${i1 + 1}': vpcSubnetIds[i1],
+      if (debugLogging != null) 'DebugLogging': debugLogging.toString(),
+      if (idleClientTimeout != null)
+        'IdleClientTimeout': idleClientTimeout.toString(),
+      if (requireTLS != null) 'RequireTLS': requireTLS.toString(),
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+      if (vpcSecurityGroupIds != null)
+        if (vpcSecurityGroupIds.isEmpty)
+          'VpcSecurityGroupIds': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupIds.length; i1++)
+            'VpcSecurityGroupIds.member.${i1 + 1}': vpcSecurityGroupIds[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateDBProxy',
@@ -5124,8 +5313,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateDBProxyRequest'],
-      shapes: shapes,
       resultWrapper: 'CreateDBProxyResult',
     );
     return CreateDBProxyResponse.fromXml($result);
@@ -5172,13 +5359,29 @@ class Rds {
     DBProxyEndpointTargetRole? targetRole,
     List<String>? vpcSecurityGroupIds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBProxyEndpointName'] = dBProxyEndpointName;
-    $request['DBProxyName'] = dBProxyName;
-    $request['VpcSubnetIds'] = vpcSubnetIds;
-    tags?.also((arg) => $request['Tags'] = arg);
-    targetRole?.also((arg) => $request['TargetRole'] = arg.toValue());
-    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $request = <String, String>{
+      'DBProxyEndpointName': dBProxyEndpointName,
+      'DBProxyName': dBProxyName,
+      if (vpcSubnetIds.isEmpty)
+        'VpcSubnetIds': ''
+      else
+        for (var i1 = 0; i1 < vpcSubnetIds.length; i1++)
+          'VpcSubnetIds.member.${i1 + 1}': vpcSubnetIds[i1],
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+      if (targetRole != null) 'TargetRole': targetRole.toValue(),
+      if (vpcSecurityGroupIds != null)
+        if (vpcSecurityGroupIds.isEmpty)
+          'VpcSecurityGroupIds': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupIds.length; i1++)
+            'VpcSecurityGroupIds.member.${i1 + 1}': vpcSecurityGroupIds[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateDBProxyEndpoint',
@@ -5186,8 +5389,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateDBProxyEndpointRequest'],
-      shapes: shapes,
       resultWrapper: 'CreateDBProxyEndpointResult',
     );
     return CreateDBProxyEndpointResponse.fromXml($result);
@@ -5248,10 +5449,17 @@ class Rds {
     required String dBSecurityGroupName,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBSecurityGroupDescription'] = dBSecurityGroupDescription;
-    $request['DBSecurityGroupName'] = dBSecurityGroupName;
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'DBSecurityGroupDescription': dBSecurityGroupDescription,
+      'DBSecurityGroupName': dBSecurityGroupName,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateDBSecurityGroup',
@@ -5259,8 +5467,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateDBSecurityGroupMessage'],
-      shapes: shapes,
       resultWrapper: 'CreateDBSecurityGroupResult',
     );
     return CreateDBSecurityGroupResult.fromXml($result);
@@ -5310,10 +5516,17 @@ class Rds {
     required String dBSnapshotIdentifier,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
-    $request['DBSnapshotIdentifier'] = dBSnapshotIdentifier;
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+      'DBSnapshotIdentifier': dBSnapshotIdentifier,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateDBSnapshot',
@@ -5321,8 +5534,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateDBSnapshotMessage'],
-      shapes: shapes,
       resultWrapper: 'CreateDBSnapshotResult',
     );
     return CreateDBSnapshotResult.fromXml($result);
@@ -5371,11 +5582,22 @@ class Rds {
     required List<String> subnetIds,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBSubnetGroupDescription'] = dBSubnetGroupDescription;
-    $request['DBSubnetGroupName'] = dBSubnetGroupName;
-    $request['SubnetIds'] = subnetIds;
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'DBSubnetGroupDescription': dBSubnetGroupDescription,
+      'DBSubnetGroupName': dBSubnetGroupName,
+      if (subnetIds.isEmpty)
+        'SubnetIds': ''
+      else
+        for (var i1 = 0; i1 < subnetIds.length; i1++)
+          'SubnetIds.SubnetIdentifier.${i1 + 1}': subnetIds[i1],
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateDBSubnetGroup',
@@ -5383,8 +5605,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateDBSubnetGroupMessage'],
-      shapes: shapes,
       resultWrapper: 'CreateDBSubnetGroupResult',
     );
     return CreateDBSubnetGroupResult.fromXml($result);
@@ -5527,14 +5747,31 @@ class Rds {
     String? sourceType,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['SnsTopicArn'] = snsTopicArn;
-    $request['SubscriptionName'] = subscriptionName;
-    enabled?.also((arg) => $request['Enabled'] = arg);
-    eventCategories?.also((arg) => $request['EventCategories'] = arg);
-    sourceIds?.also((arg) => $request['SourceIds'] = arg);
-    sourceType?.also((arg) => $request['SourceType'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'SnsTopicArn': snsTopicArn,
+      'SubscriptionName': subscriptionName,
+      if (enabled != null) 'Enabled': enabled.toString(),
+      if (eventCategories != null)
+        if (eventCategories.isEmpty)
+          'EventCategories': ''
+        else
+          for (var i1 = 0; i1 < eventCategories.length; i1++)
+            'EventCategories.EventCategory.${i1 + 1}': eventCategories[i1],
+      if (sourceIds != null)
+        if (sourceIds.isEmpty)
+          'SourceIds': ''
+        else
+          for (var i1 = 0; i1 < sourceIds.length; i1++)
+            'SourceIds.SourceId.${i1 + 1}': sourceIds[i1],
+      if (sourceType != null) 'SourceType': sourceType,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateEventSubscription',
@@ -5542,8 +5779,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateEventSubscriptionMessage'],
-      shapes: shapes,
       resultWrapper: 'CreateEventSubscriptionResult',
     );
     return CreateEventSubscriptionResult.fromXml($result);
@@ -5602,16 +5837,19 @@ class Rds {
     String? sourceDBClusterIdentifier,
     bool? storageEncrypted,
   }) async {
-    final $request = <String, dynamic>{};
-    databaseName?.also((arg) => $request['DatabaseName'] = arg);
-    deletionProtection?.also((arg) => $request['DeletionProtection'] = arg);
-    engine?.also((arg) => $request['Engine'] = arg);
-    engineVersion?.also((arg) => $request['EngineVersion'] = arg);
-    globalClusterIdentifier
-        ?.also((arg) => $request['GlobalClusterIdentifier'] = arg);
-    sourceDBClusterIdentifier
-        ?.also((arg) => $request['SourceDBClusterIdentifier'] = arg);
-    storageEncrypted?.also((arg) => $request['StorageEncrypted'] = arg);
+    final $request = <String, String>{
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (deletionProtection != null)
+        'DeletionProtection': deletionProtection.toString(),
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (globalClusterIdentifier != null)
+        'GlobalClusterIdentifier': globalClusterIdentifier,
+      if (sourceDBClusterIdentifier != null)
+        'SourceDBClusterIdentifier': sourceDBClusterIdentifier,
+      if (storageEncrypted != null)
+        'StorageEncrypted': storageEncrypted.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateGlobalCluster',
@@ -5619,8 +5857,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateGlobalClusterMessage'],
-      shapes: shapes,
       resultWrapper: 'CreateGlobalClusterResult',
     );
     return CreateGlobalClusterResult.fromXml($result);
@@ -5709,12 +5945,19 @@ class Rds {
     required String optionGroupName,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['EngineName'] = engineName;
-    $request['MajorEngineVersion'] = majorEngineVersion;
-    $request['OptionGroupDescription'] = optionGroupDescription;
-    $request['OptionGroupName'] = optionGroupName;
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'EngineName': engineName,
+      'MajorEngineVersion': majorEngineVersion,
+      'OptionGroupDescription': optionGroupDescription,
+      'OptionGroupName': optionGroupName,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'CreateOptionGroup',
@@ -5722,8 +5965,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateOptionGroupMessage'],
-      shapes: shapes,
       resultWrapper: 'CreateOptionGroupResult',
     );
     return CreateOptionGroupResult.fromXml($result);
@@ -5763,9 +6004,10 @@ class Rds {
     required String blueGreenDeploymentIdentifier,
     bool? deleteTarget,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['BlueGreenDeploymentIdentifier'] = blueGreenDeploymentIdentifier;
-    deleteTarget?.also((arg) => $request['DeleteTarget'] = arg);
+    final $request = <String, String>{
+      'BlueGreenDeploymentIdentifier': blueGreenDeploymentIdentifier,
+      if (deleteTarget != null) 'DeleteTarget': deleteTarget.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DeleteBlueGreenDeployment',
@@ -5773,8 +6015,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteBlueGreenDeploymentRequest'],
-      shapes: shapes,
       resultWrapper: 'DeleteBlueGreenDeploymentResult',
     );
     return DeleteBlueGreenDeploymentResponse.fromXml($result);
@@ -5823,9 +6063,10 @@ class Rds {
     required String engine,
     required String engineVersion,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Engine'] = engine;
-    $request['EngineVersion'] = engineVersion;
+    final $request = <String, String>{
+      'Engine': engine,
+      'EngineVersion': engineVersion,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DeleteCustomDBEngineVersion',
@@ -5833,8 +6074,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteCustomDBEngineVersionMessage'],
-      shapes: shapes,
       resultWrapper: 'DeleteCustomDBEngineVersionResult',
     );
     return DBEngineVersion.fromXml($result);
@@ -5913,11 +6152,13 @@ class Rds {
     String? finalDBSnapshotIdentifier,
     bool? skipFinalSnapshot,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
-    finalDBSnapshotIdentifier
-        ?.also((arg) => $request['FinalDBSnapshotIdentifier'] = arg);
-    skipFinalSnapshot?.also((arg) => $request['SkipFinalSnapshot'] = arg);
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+      if (finalDBSnapshotIdentifier != null)
+        'FinalDBSnapshotIdentifier': finalDBSnapshotIdentifier,
+      if (skipFinalSnapshot != null)
+        'SkipFinalSnapshot': skipFinalSnapshot.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DeleteDBCluster',
@@ -5925,8 +6166,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteDBClusterMessage'],
-      shapes: shapes,
       resultWrapper: 'DeleteDBClusterResult',
     );
     return DeleteDBClusterResult.fromXml($result);
@@ -5947,8 +6186,9 @@ class Rds {
   Future<DBClusterEndpoint> deleteDBClusterEndpoint({
     required String dBClusterEndpointIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterEndpointIdentifier'] = dBClusterEndpointIdentifier;
+    final $request = <String, String>{
+      'DBClusterEndpointIdentifier': dBClusterEndpointIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DeleteDBClusterEndpoint',
@@ -5956,8 +6196,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteDBClusterEndpointMessage'],
-      shapes: shapes,
       resultWrapper: 'DeleteDBClusterEndpointResult',
     );
     return DBClusterEndpoint.fromXml($result);
@@ -5996,8 +6234,9 @@ class Rds {
   Future<void> deleteDBClusterParameterGroup({
     required String dBClusterParameterGroupName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterParameterGroupName'] = dBClusterParameterGroupName;
+    final $request = <String, String>{
+      'DBClusterParameterGroupName': dBClusterParameterGroupName,
+    };
     await _protocol.send(
       $request,
       action: 'DeleteDBClusterParameterGroup',
@@ -6005,8 +6244,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteDBClusterParameterGroupMessage'],
-      shapes: shapes,
     );
   }
 
@@ -6035,8 +6272,9 @@ class Rds {
   Future<DeleteDBClusterSnapshotResult> deleteDBClusterSnapshot({
     required String dBClusterSnapshotIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterSnapshotIdentifier'] = dBClusterSnapshotIdentifier;
+    final $request = <String, String>{
+      'DBClusterSnapshotIdentifier': dBClusterSnapshotIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DeleteDBClusterSnapshot',
@@ -6044,8 +6282,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteDBClusterSnapshotMessage'],
-      shapes: shapes,
       resultWrapper: 'DeleteDBClusterSnapshotResult',
     );
     return DeleteDBClusterSnapshotResult.fromXml($result);
@@ -6161,13 +6397,15 @@ class Rds {
     String? finalDBSnapshotIdentifier,
     bool? skipFinalSnapshot,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
-    deleteAutomatedBackups
-        ?.also((arg) => $request['DeleteAutomatedBackups'] = arg);
-    finalDBSnapshotIdentifier
-        ?.also((arg) => $request['FinalDBSnapshotIdentifier'] = arg);
-    skipFinalSnapshot?.also((arg) => $request['SkipFinalSnapshot'] = arg);
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (deleteAutomatedBackups != null)
+        'DeleteAutomatedBackups': deleteAutomatedBackups.toString(),
+      if (finalDBSnapshotIdentifier != null)
+        'FinalDBSnapshotIdentifier': finalDBSnapshotIdentifier,
+      if (skipFinalSnapshot != null)
+        'SkipFinalSnapshot': skipFinalSnapshot.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DeleteDBInstance',
@@ -6175,8 +6413,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteDBInstanceMessage'],
-      shapes: shapes,
       resultWrapper: 'DeleteDBInstanceResult',
     );
     return DeleteDBInstanceResult.fromXml($result);
@@ -6204,10 +6440,11 @@ class Rds {
     String? dBInstanceAutomatedBackupsArn,
     String? dbiResourceId,
   }) async {
-    final $request = <String, dynamic>{};
-    dBInstanceAutomatedBackupsArn
-        ?.also((arg) => $request['DBInstanceAutomatedBackupsArn'] = arg);
-    dbiResourceId?.also((arg) => $request['DbiResourceId'] = arg);
+    final $request = <String, String>{
+      if (dBInstanceAutomatedBackupsArn != null)
+        'DBInstanceAutomatedBackupsArn': dBInstanceAutomatedBackupsArn,
+      if (dbiResourceId != null) 'DbiResourceId': dbiResourceId,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DeleteDBInstanceAutomatedBackup',
@@ -6215,8 +6452,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteDBInstanceAutomatedBackupMessage'],
-      shapes: shapes,
       resultWrapper: 'DeleteDBInstanceAutomatedBackupResult',
     );
     return DeleteDBInstanceAutomatedBackupResult.fromXml($result);
@@ -6247,8 +6482,9 @@ class Rds {
   Future<void> deleteDBParameterGroup({
     required String dBParameterGroupName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBParameterGroupName'] = dBParameterGroupName;
+    final $request = <String, String>{
+      'DBParameterGroupName': dBParameterGroupName,
+    };
     await _protocol.send(
       $request,
       action: 'DeleteDBParameterGroup',
@@ -6256,8 +6492,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteDBParameterGroupMessage'],
-      shapes: shapes,
     );
   }
 
@@ -6271,8 +6505,9 @@ class Rds {
   Future<DeleteDBProxyResponse> deleteDBProxy({
     required String dBProxyName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBProxyName'] = dBProxyName;
+    final $request = <String, String>{
+      'DBProxyName': dBProxyName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DeleteDBProxy',
@@ -6280,8 +6515,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteDBProxyRequest'],
-      shapes: shapes,
       resultWrapper: 'DeleteDBProxyResult',
     );
     return DeleteDBProxyResponse.fromXml($result);
@@ -6301,8 +6534,9 @@ class Rds {
   Future<DeleteDBProxyEndpointResponse> deleteDBProxyEndpoint({
     required String dBProxyEndpointName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBProxyEndpointName'] = dBProxyEndpointName;
+    final $request = <String, String>{
+      'DBProxyEndpointName': dBProxyEndpointName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DeleteDBProxyEndpoint',
@@ -6310,8 +6544,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteDBProxyEndpointRequest'],
-      shapes: shapes,
       resultWrapper: 'DeleteDBProxyEndpointResult',
     );
     return DeleteDBProxyEndpointResponse.fromXml($result);
@@ -6362,8 +6594,9 @@ class Rds {
   Future<void> deleteDBSecurityGroup({
     required String dBSecurityGroupName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBSecurityGroupName'] = dBSecurityGroupName;
+    final $request = <String, String>{
+      'DBSecurityGroupName': dBSecurityGroupName,
+    };
     await _protocol.send(
       $request,
       action: 'DeleteDBSecurityGroup',
@@ -6371,8 +6604,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteDBSecurityGroupMessage'],
-      shapes: shapes,
     );
   }
 
@@ -6393,8 +6624,9 @@ class Rds {
   Future<DeleteDBSnapshotResult> deleteDBSnapshot({
     required String dBSnapshotIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBSnapshotIdentifier'] = dBSnapshotIdentifier;
+    final $request = <String, String>{
+      'DBSnapshotIdentifier': dBSnapshotIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DeleteDBSnapshot',
@@ -6402,8 +6634,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteDBSnapshotMessage'],
-      shapes: shapes,
       resultWrapper: 'DeleteDBSnapshotResult',
     );
     return DeleteDBSnapshotResult.fromXml($result);
@@ -6431,8 +6661,9 @@ class Rds {
   Future<void> deleteDBSubnetGroup({
     required String dBSubnetGroupName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBSubnetGroupName'] = dBSubnetGroupName;
+    final $request = <String, String>{
+      'DBSubnetGroupName': dBSubnetGroupName,
+    };
     await _protocol.send(
       $request,
       action: 'DeleteDBSubnetGroup',
@@ -6440,8 +6671,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteDBSubnetGroupMessage'],
-      shapes: shapes,
     );
   }
 
@@ -6455,8 +6684,9 @@ class Rds {
   Future<DeleteEventSubscriptionResult> deleteEventSubscription({
     required String subscriptionName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['SubscriptionName'] = subscriptionName;
+    final $request = <String, String>{
+      'SubscriptionName': subscriptionName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DeleteEventSubscription',
@@ -6464,8 +6694,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteEventSubscriptionMessage'],
-      shapes: shapes,
       resultWrapper: 'DeleteEventSubscriptionResult',
     );
     return DeleteEventSubscriptionResult.fromXml($result);
@@ -6485,8 +6713,9 @@ class Rds {
   Future<DeleteGlobalClusterResult> deleteGlobalCluster({
     required String globalClusterIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['GlobalClusterIdentifier'] = globalClusterIdentifier;
+    final $request = <String, String>{
+      'GlobalClusterIdentifier': globalClusterIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DeleteGlobalCluster',
@@ -6494,8 +6723,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteGlobalClusterMessage'],
-      shapes: shapes,
       resultWrapper: 'DeleteGlobalClusterResult',
     );
     return DeleteGlobalClusterResult.fromXml($result);
@@ -6514,8 +6741,9 @@ class Rds {
   Future<void> deleteOptionGroup({
     required String optionGroupName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['OptionGroupName'] = optionGroupName;
+    final $request = <String, String>{
+      'OptionGroupName': optionGroupName,
+    };
     await _protocol.send(
       $request,
       action: 'DeleteOptionGroup',
@@ -6523,8 +6751,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteOptionGroupMessage'],
-      shapes: shapes,
     );
   }
 
@@ -6554,12 +6780,22 @@ class Rds {
     List<String>? dBInstanceIdentifiers,
     String? targetGroupName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBProxyName'] = dBProxyName;
-    dBClusterIdentifiers?.also((arg) => $request['DBClusterIdentifiers'] = arg);
-    dBInstanceIdentifiers
-        ?.also((arg) => $request['DBInstanceIdentifiers'] = arg);
-    targetGroupName?.also((arg) => $request['TargetGroupName'] = arg);
+    final $request = <String, String>{
+      'DBProxyName': dBProxyName,
+      if (dBClusterIdentifiers != null)
+        if (dBClusterIdentifiers.isEmpty)
+          'DBClusterIdentifiers': ''
+        else
+          for (var i1 = 0; i1 < dBClusterIdentifiers.length; i1++)
+            'DBClusterIdentifiers.member.${i1 + 1}': dBClusterIdentifiers[i1],
+      if (dBInstanceIdentifiers != null)
+        if (dBInstanceIdentifiers.isEmpty)
+          'DBInstanceIdentifiers': ''
+        else
+          for (var i1 = 0; i1 < dBInstanceIdentifiers.length; i1++)
+            'DBInstanceIdentifiers.member.${i1 + 1}': dBInstanceIdentifiers[i1],
+      if (targetGroupName != null) 'TargetGroupName': targetGroupName,
+    };
     await _protocol.send(
       $request,
       action: 'DeregisterDBProxyTargets',
@@ -6567,8 +6803,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeregisterDBProxyTargetsRequest'],
-      shapes: shapes,
       resultWrapper: 'DeregisterDBProxyTargetsResult',
     );
   }
@@ -6580,7 +6814,7 @@ class Rds {
   ///
   /// This command doesn't take any parameters.
   Future<AccountAttributesMessage> describeAccountAttributes() async {
-    final $request = <String, dynamic>{};
+    final $request = <String, String>{};
     final $result = await _protocol.send(
       $request,
       action: 'DescribeAccountAttributes',
@@ -6588,8 +6822,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeAccountAttributesMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeAccountAttributesResult',
     );
     return AccountAttributesMessage.fromXml($result);
@@ -6676,12 +6908,19 @@ class Rds {
       20,
       100,
     );
-    final $request = <String, dynamic>{};
-    blueGreenDeploymentIdentifier
-        ?.also((arg) => $request['BlueGreenDeploymentIdentifier'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      if (blueGreenDeploymentIdentifier != null)
+        'BlueGreenDeploymentIdentifier': blueGreenDeploymentIdentifier,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeBlueGreenDeployments',
@@ -6689,8 +6928,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeBlueGreenDeploymentsRequest'],
-      shapes: shapes,
       resultWrapper: 'DescribeBlueGreenDeploymentsResult',
     );
     return DescribeBlueGreenDeploymentsResponse.fromXml($result);
@@ -6746,12 +6983,19 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    certificateIdentifier
-        ?.also((arg) => $request['CertificateIdentifier'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      if (certificateIdentifier != null)
+        'CertificateIdentifier': certificateIdentifier,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeCertificates',
@@ -6759,8 +7003,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeCertificatesMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeCertificatesResult',
     );
     return CertificateMessage.fromXml($result);
@@ -6868,12 +7110,20 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
-    backtrackIdentifier?.also((arg) => $request['BacktrackIdentifier'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+      if (backtrackIdentifier != null)
+        'BacktrackIdentifier': backtrackIdentifier,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBClusterBacktracks',
@@ -6881,8 +7131,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBClusterBacktracksMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBClusterBacktracksResult',
     );
     return DBClusterBacktrackMessage.fromXml($result);
@@ -6941,13 +7189,21 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    dBClusterEndpointIdentifier
-        ?.also((arg) => $request['DBClusterEndpointIdentifier'] = arg);
-    dBClusterIdentifier?.also((arg) => $request['DBClusterIdentifier'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      if (dBClusterEndpointIdentifier != null)
+        'DBClusterEndpointIdentifier': dBClusterEndpointIdentifier,
+      if (dBClusterIdentifier != null)
+        'DBClusterIdentifier': dBClusterIdentifier,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBClusterEndpoints',
@@ -6955,8 +7211,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBClusterEndpointsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBClusterEndpointsResult',
     );
     return DBClusterEndpointMessage.fromXml($result);
@@ -7012,12 +7266,19 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    dBClusterParameterGroupName
-        ?.also((arg) => $request['DBClusterParameterGroupName'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      if (dBClusterParameterGroupName != null)
+        'DBClusterParameterGroupName': dBClusterParameterGroupName,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBClusterParameterGroups',
@@ -7025,8 +7286,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBClusterParameterGroupsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBClusterParameterGroupsResult',
     );
     return DBClusterParameterGroupsMessage.fromXml($result);
@@ -7087,12 +7346,19 @@ class Rds {
     int? maxRecords,
     String? source,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterParameterGroupName'] = dBClusterParameterGroupName;
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    source?.also((arg) => $request['Source'] = arg);
+    final $request = <String, String>{
+      'DBClusterParameterGroupName': dBClusterParameterGroupName,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (source != null) 'Source': source,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBClusterParameters',
@@ -7100,8 +7366,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBClusterParametersMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBClusterParametersResult',
     );
     return DBClusterParameterGroupDetails.fromXml($result);
@@ -7132,8 +7396,9 @@ class Rds {
       describeDBClusterSnapshotAttributes({
     required String dBClusterSnapshotIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterSnapshotIdentifier'] = dBClusterSnapshotIdentifier;
+    final $request = <String, String>{
+      'DBClusterSnapshotIdentifier': dBClusterSnapshotIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBClusterSnapshotAttributes',
@@ -7141,8 +7406,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBClusterSnapshotAttributesMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBClusterSnapshotAttributesResult',
     );
     return DescribeDBClusterSnapshotAttributesResult.fromXml($result);
@@ -7293,16 +7556,24 @@ class Rds {
     int? maxRecords,
     String? snapshotType,
   }) async {
-    final $request = <String, dynamic>{};
-    dBClusterIdentifier?.also((arg) => $request['DBClusterIdentifier'] = arg);
-    dBClusterSnapshotIdentifier
-        ?.also((arg) => $request['DBClusterSnapshotIdentifier'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    includePublic?.also((arg) => $request['IncludePublic'] = arg);
-    includeShared?.also((arg) => $request['IncludeShared'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    snapshotType?.also((arg) => $request['SnapshotType'] = arg);
+    final $request = <String, String>{
+      if (dBClusterIdentifier != null)
+        'DBClusterIdentifier': dBClusterIdentifier,
+      if (dBClusterSnapshotIdentifier != null)
+        'DBClusterSnapshotIdentifier': dBClusterSnapshotIdentifier,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (includePublic != null) 'IncludePublic': includePublic.toString(),
+      if (includeShared != null) 'IncludeShared': includeShared.toString(),
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (snapshotType != null) 'SnapshotType': snapshotType,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBClusterSnapshots',
@@ -7310,8 +7581,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBClusterSnapshotsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBClusterSnapshotsResult',
     );
     return DBClusterSnapshotMessage.fromXml($result);
@@ -7404,12 +7673,20 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    dBClusterIdentifier?.also((arg) => $request['DBClusterIdentifier'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    includeShared?.also((arg) => $request['IncludeShared'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      if (dBClusterIdentifier != null)
+        'DBClusterIdentifier': dBClusterIdentifier,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (includeShared != null) 'IncludeShared': includeShared.toString(),
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBClusters',
@@ -7417,8 +7694,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBClustersMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBClustersResult',
     );
     return DBClusterMessage.fromXml($result);
@@ -7609,20 +7884,27 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    dBParameterGroupFamily
-        ?.also((arg) => $request['DBParameterGroupFamily'] = arg);
-    defaultOnly?.also((arg) => $request['DefaultOnly'] = arg);
-    engine?.also((arg) => $request['Engine'] = arg);
-    engineVersion?.also((arg) => $request['EngineVersion'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    includeAll?.also((arg) => $request['IncludeAll'] = arg);
-    listSupportedCharacterSets
-        ?.also((arg) => $request['ListSupportedCharacterSets'] = arg);
-    listSupportedTimezones
-        ?.also((arg) => $request['ListSupportedTimezones'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      if (dBParameterGroupFamily != null)
+        'DBParameterGroupFamily': dBParameterGroupFamily,
+      if (defaultOnly != null) 'DefaultOnly': defaultOnly.toString(),
+      if (engine != null) 'Engine': engine,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (includeAll != null) 'IncludeAll': includeAll.toString(),
+      if (listSupportedCharacterSets != null)
+        'ListSupportedCharacterSets': listSupportedCharacterSets.toString(),
+      if (listSupportedTimezones != null)
+        'ListSupportedTimezones': listSupportedTimezones.toString(),
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBEngineVersions',
@@ -7630,8 +7912,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBEngineVersionsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBEngineVersionsResult',
     );
     return DBEngineVersionMessage.fromXml($result);
@@ -7719,14 +7999,22 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    dBInstanceAutomatedBackupsArn
-        ?.also((arg) => $request['DBInstanceAutomatedBackupsArn'] = arg);
-    dBInstanceIdentifier?.also((arg) => $request['DBInstanceIdentifier'] = arg);
-    dbiResourceId?.also((arg) => $request['DbiResourceId'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      if (dBInstanceAutomatedBackupsArn != null)
+        'DBInstanceAutomatedBackupsArn': dBInstanceAutomatedBackupsArn,
+      if (dBInstanceIdentifier != null)
+        'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (dbiResourceId != null) 'DbiResourceId': dbiResourceId,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBInstanceAutomatedBackups',
@@ -7734,8 +8022,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBInstanceAutomatedBackupsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBInstanceAutomatedBackupsResult',
     );
     return DBInstanceAutomatedBackupMessage.fromXml($result);
@@ -7817,11 +8103,19 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    dBInstanceIdentifier?.also((arg) => $request['DBInstanceIdentifier'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      if (dBInstanceIdentifier != null)
+        'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBInstances',
@@ -7829,8 +8123,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBInstancesMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBInstancesResult',
     );
     return DBInstanceMessage.fromXml($result);
@@ -7887,14 +8179,22 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
-    fileLastWritten?.also((arg) => $request['FileLastWritten'] = arg);
-    fileSize?.also((arg) => $request['FileSize'] = arg);
-    filenameContains?.also((arg) => $request['FilenameContains'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (fileLastWritten != null)
+        'FileLastWritten': fileLastWritten.toString(),
+      if (fileSize != null) 'FileSize': fileSize.toString(),
+      if (filenameContains != null) 'FilenameContains': filenameContains,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBLogFiles',
@@ -7902,8 +8202,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBLogFilesMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBLogFilesResult',
     );
     return DescribeDBLogFilesResponse.fromXml($result);
@@ -7950,11 +8248,19 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    dBParameterGroupName?.also((arg) => $request['DBParameterGroupName'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      if (dBParameterGroupName != null)
+        'DBParameterGroupName': dBParameterGroupName,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBParameterGroups',
@@ -7962,8 +8268,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBParameterGroupsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBParameterGroupsResult',
     );
     return DBParameterGroupsMessage.fromXml($result);
@@ -8016,12 +8320,19 @@ class Rds {
     int? maxRecords,
     String? source,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBParameterGroupName'] = dBParameterGroupName;
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    source?.also((arg) => $request['Source'] = arg);
+    final $request = <String, String>{
+      'DBParameterGroupName': dBParameterGroupName,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (source != null) 'Source': source,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBParameters',
@@ -8029,8 +8340,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBParametersMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBParametersResult',
     );
     return DBParameterGroupDetails.fromXml($result);
@@ -8074,11 +8383,18 @@ class Rds {
       20,
       100,
     );
-    final $request = <String, dynamic>{};
-    dBProxyName?.also((arg) => $request['DBProxyName'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      if (dBProxyName != null) 'DBProxyName': dBProxyName,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBProxies',
@@ -8086,8 +8402,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBProxiesRequest'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBProxiesResult',
     );
     return DescribeDBProxiesResponse.fromXml($result);
@@ -8138,12 +8452,20 @@ class Rds {
       20,
       100,
     );
-    final $request = <String, dynamic>{};
-    dBProxyEndpointName?.also((arg) => $request['DBProxyEndpointName'] = arg);
-    dBProxyName?.also((arg) => $request['DBProxyName'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      if (dBProxyEndpointName != null)
+        'DBProxyEndpointName': dBProxyEndpointName,
+      if (dBProxyName != null) 'DBProxyName': dBProxyName,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBProxyEndpoints',
@@ -8151,8 +8473,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBProxyEndpointsRequest'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBProxyEndpointsResult',
     );
     return DescribeDBProxyEndpointsResponse.fromXml($result);
@@ -8202,12 +8522,19 @@ class Rds {
       20,
       100,
     );
-    final $request = <String, dynamic>{};
-    $request['DBProxyName'] = dBProxyName;
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    targetGroupName?.also((arg) => $request['TargetGroupName'] = arg);
+    final $request = <String, String>{
+      'DBProxyName': dBProxyName,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (targetGroupName != null) 'TargetGroupName': targetGroupName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBProxyTargetGroups',
@@ -8215,8 +8542,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBProxyTargetGroupsRequest'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBProxyTargetGroupsResult',
     );
     return DescribeDBProxyTargetGroupsResponse.fromXml($result);
@@ -8266,12 +8591,19 @@ class Rds {
       20,
       100,
     );
-    final $request = <String, dynamic>{};
-    $request['DBProxyName'] = dBProxyName;
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    targetGroupName?.also((arg) => $request['TargetGroupName'] = arg);
+    final $request = <String, String>{
+      'DBProxyName': dBProxyName,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (targetGroupName != null) 'TargetGroupName': targetGroupName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBProxyTargets',
@@ -8279,8 +8611,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBProxyTargetsRequest'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBProxyTargetsResult',
     );
     return DescribeDBProxyTargetsResponse.fromXml($result);
@@ -8332,11 +8662,19 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    dBSecurityGroupName?.also((arg) => $request['DBSecurityGroupName'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      if (dBSecurityGroupName != null)
+        'DBSecurityGroupName': dBSecurityGroupName,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBSecurityGroups',
@@ -8344,8 +8682,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBSecurityGroupsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBSecurityGroupsResult',
     );
     return DBSecurityGroupMessage.fromXml($result);
@@ -8373,8 +8709,9 @@ class Rds {
   Future<DescribeDBSnapshotAttributesResult> describeDBSnapshotAttributes({
     required String dBSnapshotIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBSnapshotIdentifier'] = dBSnapshotIdentifier;
+    final $request = <String, String>{
+      'DBSnapshotIdentifier': dBSnapshotIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBSnapshotAttributes',
@@ -8382,8 +8719,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBSnapshotAttributesMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBSnapshotAttributesResult',
     );
     return DescribeDBSnapshotAttributesResult.fromXml($result);
@@ -8543,16 +8878,25 @@ class Rds {
     int? maxRecords,
     String? snapshotType,
   }) async {
-    final $request = <String, dynamic>{};
-    dBInstanceIdentifier?.also((arg) => $request['DBInstanceIdentifier'] = arg);
-    dBSnapshotIdentifier?.also((arg) => $request['DBSnapshotIdentifier'] = arg);
-    dbiResourceId?.also((arg) => $request['DbiResourceId'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    includePublic?.also((arg) => $request['IncludePublic'] = arg);
-    includeShared?.also((arg) => $request['IncludeShared'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    snapshotType?.also((arg) => $request['SnapshotType'] = arg);
+    final $request = <String, String>{
+      if (dBInstanceIdentifier != null)
+        'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (dBSnapshotIdentifier != null)
+        'DBSnapshotIdentifier': dBSnapshotIdentifier,
+      if (dbiResourceId != null) 'DbiResourceId': dbiResourceId,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (includePublic != null) 'IncludePublic': includePublic.toString(),
+      if (includeShared != null) 'IncludeShared': includeShared.toString(),
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (snapshotType != null) 'SnapshotType': snapshotType,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBSnapshots',
@@ -8560,8 +8904,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBSnapshotsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBSnapshotsResult',
     );
     return DBSnapshotMessage.fromXml($result);
@@ -8604,11 +8946,18 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    dBSubnetGroupName?.also((arg) => $request['DBSubnetGroupName'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeDBSubnetGroups',
@@ -8616,8 +8965,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeDBSubnetGroupsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeDBSubnetGroupsResult',
     );
     return DBSubnetGroupMessage.fromXml($result);
@@ -8659,11 +9006,18 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBParameterGroupFamily'] = dBParameterGroupFamily;
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      'DBParameterGroupFamily': dBParameterGroupFamily,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeEngineDefaultClusterParameters',
@@ -8671,8 +9025,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeEngineDefaultClusterParametersMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeEngineDefaultClusterParametersResult',
     );
     return DescribeEngineDefaultClusterParametersResult.fromXml($result);
@@ -8852,11 +9204,18 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBParameterGroupFamily'] = dBParameterGroupFamily;
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      'DBParameterGroupFamily': dBParameterGroupFamily,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeEngineDefaultParameters',
@@ -8864,8 +9223,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeEngineDefaultParametersMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeEngineDefaultParametersResult',
     );
     return DescribeEngineDefaultParametersResult.fromXml($result);
@@ -8894,9 +9251,16 @@ class Rds {
     List<Filter>? filters,
     String? sourceType,
   }) async {
-    final $request = <String, dynamic>{};
-    filters?.also((arg) => $request['Filters'] = arg);
-    sourceType?.also((arg) => $request['SourceType'] = arg);
+    final $request = <String, String>{
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (sourceType != null) 'SourceType': sourceType,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeEventCategories',
@@ -8904,8 +9268,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeEventCategoriesMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeEventCategoriesResult',
     );
     return EventCategoriesMessage.fromXml($result);
@@ -8949,11 +9311,18 @@ class Rds {
     int? maxRecords,
     String? subscriptionName,
   }) async {
-    final $request = <String, dynamic>{};
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    subscriptionName?.also((arg) => $request['SubscriptionName'] = arg);
+    final $request = <String, String>{
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (subscriptionName != null) 'SubscriptionName': subscriptionName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeEventSubscriptions',
@@ -8961,8 +9330,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeEventSubscriptionsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeEventSubscriptionsResult',
     );
     return EventSubscriptionsMessage.fromXml($result);
@@ -9084,16 +9451,28 @@ class Rds {
     SourceType? sourceType,
     DateTime? startTime,
   }) async {
-    final $request = <String, dynamic>{};
-    duration?.also((arg) => $request['Duration'] = arg);
-    endTime?.also((arg) => $request['EndTime'] = _s.iso8601ToJson(arg));
-    eventCategories?.also((arg) => $request['EventCategories'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    sourceIdentifier?.also((arg) => $request['SourceIdentifier'] = arg);
-    sourceType?.also((arg) => $request['SourceType'] = arg.toValue());
-    startTime?.also((arg) => $request['StartTime'] = _s.iso8601ToJson(arg));
+    final $request = <String, String>{
+      if (duration != null) 'Duration': duration.toString(),
+      if (endTime != null) 'EndTime': _s.iso8601ToJson(endTime),
+      if (eventCategories != null)
+        if (eventCategories.isEmpty)
+          'EventCategories': ''
+        else
+          for (var i1 = 0; i1 < eventCategories.length; i1++)
+            'EventCategories.EventCategory.${i1 + 1}': eventCategories[i1],
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (sourceIdentifier != null) 'SourceIdentifier': sourceIdentifier,
+      if (sourceType != null) 'SourceType': sourceType.toValue(),
+      if (startTime != null) 'StartTime': _s.iso8601ToJson(startTime),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeEvents',
@@ -9101,8 +9480,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeEventsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeEventsResult',
     );
     return EventsMessage.fromXml($result);
@@ -9198,13 +9575,21 @@ class Rds {
       20,
       100,
     );
-    final $request = <String, dynamic>{};
-    exportTaskIdentifier?.also((arg) => $request['ExportTaskIdentifier'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    sourceArn?.also((arg) => $request['SourceArn'] = arg);
-    sourceType?.also((arg) => $request['SourceType'] = arg.toValue());
+    final $request = <String, String>{
+      if (exportTaskIdentifier != null)
+        'ExportTaskIdentifier': exportTaskIdentifier,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (sourceArn != null) 'SourceArn': sourceArn,
+      if (sourceType != null) 'SourceType': sourceType.toValue(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeExportTasks',
@@ -9212,8 +9597,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeExportTasksMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeExportTasksResult',
     );
     return ExportTasksMessage.fromXml($result);
@@ -9268,12 +9651,19 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    filters?.also((arg) => $request['Filters'] = arg);
-    globalClusterIdentifier
-        ?.also((arg) => $request['GlobalClusterIdentifier'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (globalClusterIdentifier != null)
+        'GlobalClusterIdentifier': globalClusterIdentifier,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeGlobalClusters',
@@ -9281,8 +9671,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeGlobalClustersMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeGlobalClustersResult',
     );
     return GlobalClustersMessage.fromXml($result);
@@ -9360,12 +9748,19 @@ class Rds {
     String? marker,
     int? maxRecords,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['EngineName'] = engineName;
-    filters?.also((arg) => $request['Filters'] = arg);
-    majorEngineVersion?.also((arg) => $request['MajorEngineVersion'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
+    final $request = <String, String>{
+      'EngineName': engineName,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (majorEngineVersion != null) 'MajorEngineVersion': majorEngineVersion,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeOptionGroupOptions',
@@ -9373,8 +9768,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeOptionGroupOptionsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeOptionGroupOptionsResult',
     );
     return OptionGroupOptionsMessage.fromXml($result);
@@ -9461,13 +9854,20 @@ class Rds {
     int? maxRecords,
     String? optionGroupName,
   }) async {
-    final $request = <String, dynamic>{};
-    engineName?.also((arg) => $request['EngineName'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    majorEngineVersion?.also((arg) => $request['MajorEngineVersion'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    optionGroupName?.also((arg) => $request['OptionGroupName'] = arg);
+    final $request = <String, String>{
+      if (engineName != null) 'EngineName': engineName,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (majorEngineVersion != null) 'MajorEngineVersion': majorEngineVersion,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeOptionGroups',
@@ -9475,8 +9875,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeOptionGroupsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeOptionGroupsResult',
     );
     return OptionGroups.fromXml($result);
@@ -9595,17 +9993,24 @@ class Rds {
     int? maxRecords,
     bool? vpc,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Engine'] = engine;
-    availabilityZoneGroup
-        ?.also((arg) => $request['AvailabilityZoneGroup'] = arg);
-    dBInstanceClass?.also((arg) => $request['DBInstanceClass'] = arg);
-    engineVersion?.also((arg) => $request['EngineVersion'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    licenseModel?.also((arg) => $request['LicenseModel'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    vpc?.also((arg) => $request['Vpc'] = arg);
+    final $request = <String, String>{
+      'Engine': engine,
+      if (availabilityZoneGroup != null)
+        'AvailabilityZoneGroup': availabilityZoneGroup,
+      if (dBInstanceClass != null) 'DBInstanceClass': dBInstanceClass,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (licenseModel != null) 'LicenseModel': licenseModel,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (vpc != null) 'Vpc': vpc.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeOrderableDBInstanceOptions',
@@ -9613,8 +10018,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeOrderableDBInstanceOptionsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeOrderableDBInstanceOptionsResult',
     );
     return OrderableDBInstanceOptionsMessage.fromXml($result);
@@ -9668,11 +10071,18 @@ class Rds {
     int? maxRecords,
     String? resourceIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    resourceIdentifier?.also((arg) => $request['ResourceIdentifier'] = arg);
+    final $request = <String, String>{
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (resourceIdentifier != null) 'ResourceIdentifier': resourceIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribePendingMaintenanceActions',
@@ -9680,8 +10090,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribePendingMaintenanceActionsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribePendingMaintenanceActionsResult',
     );
     return PendingMaintenanceActionsMessage.fromXml($result);
@@ -9763,19 +10171,27 @@ class Rds {
     String? reservedDBInstanceId,
     String? reservedDBInstancesOfferingId,
   }) async {
-    final $request = <String, dynamic>{};
-    dBInstanceClass?.also((arg) => $request['DBInstanceClass'] = arg);
-    duration?.also((arg) => $request['Duration'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    leaseId?.also((arg) => $request['LeaseId'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    multiAZ?.also((arg) => $request['MultiAZ'] = arg);
-    offeringType?.also((arg) => $request['OfferingType'] = arg);
-    productDescription?.also((arg) => $request['ProductDescription'] = arg);
-    reservedDBInstanceId?.also((arg) => $request['ReservedDBInstanceId'] = arg);
-    reservedDBInstancesOfferingId
-        ?.also((arg) => $request['ReservedDBInstancesOfferingId'] = arg);
+    final $request = <String, String>{
+      if (dBInstanceClass != null) 'DBInstanceClass': dBInstanceClass,
+      if (duration != null) 'Duration': duration,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (leaseId != null) 'LeaseId': leaseId,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (multiAZ != null) 'MultiAZ': multiAZ.toString(),
+      if (offeringType != null) 'OfferingType': offeringType,
+      if (productDescription != null) 'ProductDescription': productDescription,
+      if (reservedDBInstanceId != null)
+        'ReservedDBInstanceId': reservedDBInstanceId,
+      if (reservedDBInstancesOfferingId != null)
+        'ReservedDBInstancesOfferingId': reservedDBInstancesOfferingId,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeReservedDBInstances',
@@ -9783,8 +10199,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeReservedDBInstancesMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeReservedDBInstancesResult',
     );
     return ReservedDBInstanceMessage.fromXml($result);
@@ -9857,17 +10271,24 @@ class Rds {
     String? productDescription,
     String? reservedDBInstancesOfferingId,
   }) async {
-    final $request = <String, dynamic>{};
-    dBInstanceClass?.also((arg) => $request['DBInstanceClass'] = arg);
-    duration?.also((arg) => $request['Duration'] = arg);
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    multiAZ?.also((arg) => $request['MultiAZ'] = arg);
-    offeringType?.also((arg) => $request['OfferingType'] = arg);
-    productDescription?.also((arg) => $request['ProductDescription'] = arg);
-    reservedDBInstancesOfferingId
-        ?.also((arg) => $request['ReservedDBInstancesOfferingId'] = arg);
+    final $request = <String, String>{
+      if (dBInstanceClass != null) 'DBInstanceClass': dBInstanceClass,
+      if (duration != null) 'Duration': duration,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (multiAZ != null) 'MultiAZ': multiAZ.toString(),
+      if (offeringType != null) 'OfferingType': offeringType,
+      if (productDescription != null) 'ProductDescription': productDescription,
+      if (reservedDBInstancesOfferingId != null)
+        'ReservedDBInstancesOfferingId': reservedDBInstancesOfferingId,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeReservedDBInstancesOfferings',
@@ -9875,8 +10296,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeReservedDBInstancesOfferingsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeReservedDBInstancesOfferingsResult',
     );
     return ReservedDBInstancesOfferingMessage.fromXml($result);
@@ -9932,11 +10351,18 @@ class Rds {
     int? maxRecords,
     String? regionName,
   }) async {
-    final $request = <String, dynamic>{};
-    filters?.also((arg) => $request['Filters'] = arg);
-    marker?.also((arg) => $request['Marker'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    regionName?.also((arg) => $request['RegionName'] = arg);
+    final $request = <String, String>{
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+      if (marker != null) 'Marker': marker,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (regionName != null) 'RegionName': regionName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeSourceRegions',
@@ -9944,8 +10370,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeSourceRegionsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeSourceRegionsResult',
     );
     return SourceRegionMessage.fromXml($result);
@@ -9966,8 +10390,9 @@ class Rds {
       describeValidDBInstanceModifications({
     required String dBInstanceIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeValidDBInstanceModifications',
@@ -9975,8 +10400,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeValidDBInstanceModificationsMessage'],
-      shapes: shapes,
       resultWrapper: 'DescribeValidDBInstanceModificationsResult',
     );
     return DescribeValidDBInstanceModificationsResult.fromXml($result);
@@ -10045,11 +10468,12 @@ class Rds {
     String? marker,
     int? numberOfLines,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
-    $request['LogFileName'] = logFileName;
-    marker?.also((arg) => $request['Marker'] = arg);
-    numberOfLines?.also((arg) => $request['NumberOfLines'] = arg);
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+      'LogFileName': logFileName,
+      if (marker != null) 'Marker': marker,
+      if (numberOfLines != null) 'NumberOfLines': numberOfLines.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DownloadDBLogFilePortion',
@@ -10057,8 +10481,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DownloadDBLogFilePortionMessage'],
-      shapes: shapes,
       resultWrapper: 'DownloadDBLogFilePortionResult',
     );
     return DownloadDBLogFilePortionDetails.fromXml($result);
@@ -10120,10 +10542,11 @@ class Rds {
     required String dBClusterIdentifier,
     String? targetDBInstanceIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
-    targetDBInstanceIdentifier
-        ?.also((arg) => $request['TargetDBInstanceIdentifier'] = arg);
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+      if (targetDBInstanceIdentifier != null)
+        'TargetDBInstanceIdentifier': targetDBInstanceIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'FailoverDBCluster',
@@ -10131,8 +10554,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['FailoverDBClusterMessage'],
-      shapes: shapes,
       resultWrapper: 'FailoverDBClusterResult',
     );
     return FailoverDBClusterResult.fromXml($result);
@@ -10189,9 +10610,10 @@ class Rds {
     required String globalClusterIdentifier,
     required String targetDbClusterIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['GlobalClusterIdentifier'] = globalClusterIdentifier;
-    $request['TargetDbClusterIdentifier'] = targetDbClusterIdentifier;
+    final $request = <String, String>{
+      'GlobalClusterIdentifier': globalClusterIdentifier,
+      'TargetDbClusterIdentifier': targetDbClusterIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'FailoverGlobalCluster',
@@ -10199,8 +10621,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['FailoverGlobalClusterMessage'],
-      shapes: shapes,
       resultWrapper: 'FailoverGlobalClusterResult',
     );
     return FailoverGlobalClusterResult.fromXml($result);
@@ -10232,9 +10652,16 @@ class Rds {
     required String resourceName,
     List<Filter>? filters,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ResourceName'] = resourceName;
-    filters?.also((arg) => $request['Filters'] = arg);
+    final $request = <String, String>{
+      'ResourceName': resourceName,
+      if (filters != null)
+        if (filters.isEmpty)
+          'Filters': ''
+        else
+          for (var i1 = 0; i1 < filters.length; i1++)
+            for (var e3 in filters[i1].toQueryMap().entries)
+              'Filters.Filter.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ListTagsForResource',
@@ -10242,8 +10669,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ListTagsForResourceMessage'],
-      shapes: shapes,
       resultWrapper: 'ListTagsForResourceResult',
     );
     return TagListMessage.fromXml($result);
@@ -10278,10 +10703,11 @@ class Rds {
     AuditPolicyState? auditPolicyState,
     String? resourceArn,
   }) async {
-    final $request = <String, dynamic>{};
-    auditPolicyState
-        ?.also((arg) => $request['AuditPolicyState'] = arg.toValue());
-    resourceArn?.also((arg) => $request['ResourceArn'] = arg);
+    final $request = <String, String>{
+      if (auditPolicyState != null)
+        'AuditPolicyState': auditPolicyState.toValue(),
+      if (resourceArn != null) 'ResourceArn': resourceArn,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyActivityStream',
@@ -10289,8 +10715,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyActivityStreamRequest'],
-      shapes: shapes,
       resultWrapper: 'ModifyActivityStreamResult',
     );
     return ModifyActivityStreamResponse.fromXml($result);
@@ -10349,11 +10773,12 @@ class Rds {
     String? certificateIdentifier,
     bool? removeCustomerOverride,
   }) async {
-    final $request = <String, dynamic>{};
-    certificateIdentifier
-        ?.also((arg) => $request['CertificateIdentifier'] = arg);
-    removeCustomerOverride
-        ?.also((arg) => $request['RemoveCustomerOverride'] = arg);
+    final $request = <String, String>{
+      if (certificateIdentifier != null)
+        'CertificateIdentifier': certificateIdentifier,
+      if (removeCustomerOverride != null)
+        'RemoveCustomerOverride': removeCustomerOverride.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyCertificates',
@@ -10361,8 +10786,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyCertificatesMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyCertificatesResult',
     );
     return ModifyCertificatesResult.fromXml($result);
@@ -10456,11 +10879,13 @@ class Rds {
     int? secondsBeforeTimeout,
     String? timeoutAction,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
-    capacity?.also((arg) => $request['Capacity'] = arg);
-    secondsBeforeTimeout?.also((arg) => $request['SecondsBeforeTimeout'] = arg);
-    timeoutAction?.also((arg) => $request['TimeoutAction'] = arg);
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+      if (capacity != null) 'Capacity': capacity.toString(),
+      if (secondsBeforeTimeout != null)
+        'SecondsBeforeTimeout': secondsBeforeTimeout.toString(),
+      if (timeoutAction != null) 'TimeoutAction': timeoutAction,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyCurrentDBClusterCapacity',
@@ -10468,8 +10893,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyCurrentDBClusterCapacityMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyCurrentDBClusterCapacityResult',
     );
     return DBClusterCapacityInfo.fromXml($result);
@@ -10528,11 +10951,12 @@ class Rds {
     String? description,
     CustomEngineVersionStatus? status,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Engine'] = engine;
-    $request['EngineVersion'] = engineVersion;
-    description?.also((arg) => $request['Description'] = arg);
-    status?.also((arg) => $request['Status'] = arg.toValue());
+    final $request = <String, String>{
+      'Engine': engine,
+      'EngineVersion': engineVersion,
+      if (description != null) 'Description': description,
+      if (status != null) 'Status': status.toValue(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyCustomDBEngineVersion',
@@ -10540,8 +10964,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyCustomDBEngineVersionMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyCustomDBEngineVersionResult',
     );
     return DBEngineVersion.fromXml($result);
@@ -11245,68 +11667,88 @@ class Rds {
     String? storageType,
     List<String>? vpcSecurityGroupIds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
-    allocatedStorage?.also((arg) => $request['AllocatedStorage'] = arg);
-    allowEngineModeChange
-        ?.also((arg) => $request['AllowEngineModeChange'] = arg);
-    allowMajorVersionUpgrade
-        ?.also((arg) => $request['AllowMajorVersionUpgrade'] = arg);
-    applyImmediately?.also((arg) => $request['ApplyImmediately'] = arg);
-    autoMinorVersionUpgrade
-        ?.also((arg) => $request['AutoMinorVersionUpgrade'] = arg);
-    backtrackWindow?.also((arg) => $request['BacktrackWindow'] = arg);
-    backupRetentionPeriod
-        ?.also((arg) => $request['BackupRetentionPeriod'] = arg);
-    cloudwatchLogsExportConfiguration
-        ?.also((arg) => $request['CloudwatchLogsExportConfiguration'] = arg);
-    copyTagsToSnapshot?.also((arg) => $request['CopyTagsToSnapshot'] = arg);
-    dBClusterInstanceClass
-        ?.also((arg) => $request['DBClusterInstanceClass'] = arg);
-    dBClusterParameterGroupName
-        ?.also((arg) => $request['DBClusterParameterGroupName'] = arg);
-    dBInstanceParameterGroupName
-        ?.also((arg) => $request['DBInstanceParameterGroupName'] = arg);
-    deletionProtection?.also((arg) => $request['DeletionProtection'] = arg);
-    domain?.also((arg) => $request['Domain'] = arg);
-    domainIAMRoleName?.also((arg) => $request['DomainIAMRoleName'] = arg);
-    enableGlobalWriteForwarding
-        ?.also((arg) => $request['EnableGlobalWriteForwarding'] = arg);
-    enableHttpEndpoint?.also((arg) => $request['EnableHttpEndpoint'] = arg);
-    enableIAMDatabaseAuthentication
-        ?.also((arg) => $request['EnableIAMDatabaseAuthentication'] = arg);
-    enablePerformanceInsights
-        ?.also((arg) => $request['EnablePerformanceInsights'] = arg);
-    engineMode?.also((arg) => $request['EngineMode'] = arg);
-    engineVersion?.also((arg) => $request['EngineVersion'] = arg);
-    iops?.also((arg) => $request['Iops'] = arg);
-    manageMasterUserPassword
-        ?.also((arg) => $request['ManageMasterUserPassword'] = arg);
-    masterUserPassword?.also((arg) => $request['MasterUserPassword'] = arg);
-    masterUserSecretKmsKeyId
-        ?.also((arg) => $request['MasterUserSecretKmsKeyId'] = arg);
-    monitoringInterval?.also((arg) => $request['MonitoringInterval'] = arg);
-    monitoringRoleArn?.also((arg) => $request['MonitoringRoleArn'] = arg);
-    networkType?.also((arg) => $request['NetworkType'] = arg);
-    newDBClusterIdentifier
-        ?.also((arg) => $request['NewDBClusterIdentifier'] = arg);
-    optionGroupName?.also((arg) => $request['OptionGroupName'] = arg);
-    performanceInsightsKMSKeyId
-        ?.also((arg) => $request['PerformanceInsightsKMSKeyId'] = arg);
-    performanceInsightsRetentionPeriod
-        ?.also((arg) => $request['PerformanceInsightsRetentionPeriod'] = arg);
-    port?.also((arg) => $request['Port'] = arg);
-    preferredBackupWindow
-        ?.also((arg) => $request['PreferredBackupWindow'] = arg);
-    preferredMaintenanceWindow
-        ?.also((arg) => $request['PreferredMaintenanceWindow'] = arg);
-    rotateMasterUserPassword
-        ?.also((arg) => $request['RotateMasterUserPassword'] = arg);
-    scalingConfiguration?.also((arg) => $request['ScalingConfiguration'] = arg);
-    serverlessV2ScalingConfiguration
-        ?.also((arg) => $request['ServerlessV2ScalingConfiguration'] = arg);
-    storageType?.also((arg) => $request['StorageType'] = arg);
-    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+      if (allocatedStorage != null)
+        'AllocatedStorage': allocatedStorage.toString(),
+      if (allowEngineModeChange != null)
+        'AllowEngineModeChange': allowEngineModeChange.toString(),
+      if (allowMajorVersionUpgrade != null)
+        'AllowMajorVersionUpgrade': allowMajorVersionUpgrade.toString(),
+      if (applyImmediately != null)
+        'ApplyImmediately': applyImmediately.toString(),
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade.toString(),
+      if (backtrackWindow != null)
+        'BacktrackWindow': backtrackWindow.toString(),
+      if (backupRetentionPeriod != null)
+        'BackupRetentionPeriod': backupRetentionPeriod.toString(),
+      if (cloudwatchLogsExportConfiguration != null)
+        for (var e1 in cloudwatchLogsExportConfiguration.toQueryMap().entries)
+          'CloudwatchLogsExportConfiguration.${e1.key}': e1.value,
+      if (copyTagsToSnapshot != null)
+        'CopyTagsToSnapshot': copyTagsToSnapshot.toString(),
+      if (dBClusterInstanceClass != null)
+        'DBClusterInstanceClass': dBClusterInstanceClass,
+      if (dBClusterParameterGroupName != null)
+        'DBClusterParameterGroupName': dBClusterParameterGroupName,
+      if (dBInstanceParameterGroupName != null)
+        'DBInstanceParameterGroupName': dBInstanceParameterGroupName,
+      if (deletionProtection != null)
+        'DeletionProtection': deletionProtection.toString(),
+      if (domain != null) 'Domain': domain,
+      if (domainIAMRoleName != null) 'DomainIAMRoleName': domainIAMRoleName,
+      if (enableGlobalWriteForwarding != null)
+        'EnableGlobalWriteForwarding': enableGlobalWriteForwarding.toString(),
+      if (enableHttpEndpoint != null)
+        'EnableHttpEndpoint': enableHttpEndpoint.toString(),
+      if (enableIAMDatabaseAuthentication != null)
+        'EnableIAMDatabaseAuthentication':
+            enableIAMDatabaseAuthentication.toString(),
+      if (enablePerformanceInsights != null)
+        'EnablePerformanceInsights': enablePerformanceInsights.toString(),
+      if (engineMode != null) 'EngineMode': engineMode,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (iops != null) 'Iops': iops.toString(),
+      if (manageMasterUserPassword != null)
+        'ManageMasterUserPassword': manageMasterUserPassword.toString(),
+      if (masterUserPassword != null) 'MasterUserPassword': masterUserPassword,
+      if (masterUserSecretKmsKeyId != null)
+        'MasterUserSecretKmsKeyId': masterUserSecretKmsKeyId,
+      if (monitoringInterval != null)
+        'MonitoringInterval': monitoringInterval.toString(),
+      if (monitoringRoleArn != null) 'MonitoringRoleArn': monitoringRoleArn,
+      if (networkType != null) 'NetworkType': networkType,
+      if (newDBClusterIdentifier != null)
+        'NewDBClusterIdentifier': newDBClusterIdentifier,
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+      if (performanceInsightsKMSKeyId != null)
+        'PerformanceInsightsKMSKeyId': performanceInsightsKMSKeyId,
+      if (performanceInsightsRetentionPeriod != null)
+        'PerformanceInsightsRetentionPeriod':
+            performanceInsightsRetentionPeriod.toString(),
+      if (port != null) 'Port': port.toString(),
+      if (preferredBackupWindow != null)
+        'PreferredBackupWindow': preferredBackupWindow,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (rotateMasterUserPassword != null)
+        'RotateMasterUserPassword': rotateMasterUserPassword.toString(),
+      if (scalingConfiguration != null)
+        for (var e1 in scalingConfiguration.toQueryMap().entries)
+          'ScalingConfiguration.${e1.key}': e1.value,
+      if (serverlessV2ScalingConfiguration != null)
+        for (var e1 in serverlessV2ScalingConfiguration.toQueryMap().entries)
+          'ServerlessV2ScalingConfiguration.${e1.key}': e1.value,
+      if (storageType != null) 'StorageType': storageType,
+      if (vpcSecurityGroupIds != null)
+        if (vpcSecurityGroupIds.isEmpty)
+          'VpcSecurityGroupIds': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupIds.length; i1++)
+            'VpcSecurityGroupIds.VpcSecurityGroupId.${i1 + 1}':
+                vpcSecurityGroupIds[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyDBCluster',
@@ -11314,8 +11756,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyDBClusterMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyDBClusterResult',
     );
     return ModifyDBClusterResult.fromXml($result);
@@ -11354,11 +11794,22 @@ class Rds {
     List<String>? excludedMembers,
     List<String>? staticMembers,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterEndpointIdentifier'] = dBClusterEndpointIdentifier;
-    endpointType?.also((arg) => $request['EndpointType'] = arg);
-    excludedMembers?.also((arg) => $request['ExcludedMembers'] = arg);
-    staticMembers?.also((arg) => $request['StaticMembers'] = arg);
+    final $request = <String, String>{
+      'DBClusterEndpointIdentifier': dBClusterEndpointIdentifier,
+      if (endpointType != null) 'EndpointType': endpointType,
+      if (excludedMembers != null)
+        if (excludedMembers.isEmpty)
+          'ExcludedMembers': ''
+        else
+          for (var i1 = 0; i1 < excludedMembers.length; i1++)
+            'ExcludedMembers.member.${i1 + 1}': excludedMembers[i1],
+      if (staticMembers != null)
+        if (staticMembers.isEmpty)
+          'StaticMembers': ''
+        else
+          for (var i1 = 0; i1 < staticMembers.length; i1++)
+            'StaticMembers.member.${i1 + 1}': staticMembers[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyDBClusterEndpoint',
@@ -11366,8 +11817,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyDBClusterEndpointMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyDBClusterEndpointResult',
     );
     return DBClusterEndpoint.fromXml($result);
@@ -11433,9 +11882,15 @@ class Rds {
     required String dBClusterParameterGroupName,
     required List<Parameter> parameters,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterParameterGroupName'] = dBClusterParameterGroupName;
-    $request['Parameters'] = parameters;
+    final $request = <String, String>{
+      'DBClusterParameterGroupName': dBClusterParameterGroupName,
+      if (parameters.isEmpty)
+        'Parameters': ''
+      else
+        for (var i1 = 0; i1 < parameters.length; i1++)
+          for (var e3 in parameters[i1].toQueryMap().entries)
+            'Parameters.Parameter.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyDBClusterParameterGroup',
@@ -11443,8 +11898,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyDBClusterParameterGroupMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyDBClusterParameterGroupResult',
     );
     return DBClusterParameterGroupNameMessage.fromXml($result);
@@ -11525,11 +11978,22 @@ class Rds {
     List<String>? valuesToAdd,
     List<String>? valuesToRemove,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['AttributeName'] = attributeName;
-    $request['DBClusterSnapshotIdentifier'] = dBClusterSnapshotIdentifier;
-    valuesToAdd?.also((arg) => $request['ValuesToAdd'] = arg);
-    valuesToRemove?.also((arg) => $request['ValuesToRemove'] = arg);
+    final $request = <String, String>{
+      'AttributeName': attributeName,
+      'DBClusterSnapshotIdentifier': dBClusterSnapshotIdentifier,
+      if (valuesToAdd != null)
+        if (valuesToAdd.isEmpty)
+          'ValuesToAdd': ''
+        else
+          for (var i1 = 0; i1 < valuesToAdd.length; i1++)
+            'ValuesToAdd.AttributeValue.${i1 + 1}': valuesToAdd[i1],
+      if (valuesToRemove != null)
+        if (valuesToRemove.isEmpty)
+          'ValuesToRemove': ''
+        else
+          for (var i1 = 0; i1 < valuesToRemove.length; i1++)
+            'ValuesToRemove.AttributeValue.${i1 + 1}': valuesToRemove[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyDBClusterSnapshotAttribute',
@@ -11537,8 +12001,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyDBClusterSnapshotAttributeMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyDBClusterSnapshotAttributeResult',
     );
     return ModifyDBClusterSnapshotAttributeResult.fromXml($result);
@@ -12560,80 +13022,113 @@ class Rds {
     bool? useDefaultProcessorFeatures,
     List<String>? vpcSecurityGroupIds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
-    allocatedStorage?.also((arg) => $request['AllocatedStorage'] = arg);
-    allowMajorVersionUpgrade
-        ?.also((arg) => $request['AllowMajorVersionUpgrade'] = arg);
-    applyImmediately?.also((arg) => $request['ApplyImmediately'] = arg);
-    autoMinorVersionUpgrade
-        ?.also((arg) => $request['AutoMinorVersionUpgrade'] = arg);
-    automationMode?.also((arg) => $request['AutomationMode'] = arg.toValue());
-    awsBackupRecoveryPointArn
-        ?.also((arg) => $request['AwsBackupRecoveryPointArn'] = arg);
-    backupRetentionPeriod
-        ?.also((arg) => $request['BackupRetentionPeriod'] = arg);
-    cACertificateIdentifier
-        ?.also((arg) => $request['CACertificateIdentifier'] = arg);
-    certificateRotationRestart
-        ?.also((arg) => $request['CertificateRotationRestart'] = arg);
-    cloudwatchLogsExportConfiguration
-        ?.also((arg) => $request['CloudwatchLogsExportConfiguration'] = arg);
-    copyTagsToSnapshot?.also((arg) => $request['CopyTagsToSnapshot'] = arg);
-    dBInstanceClass?.also((arg) => $request['DBInstanceClass'] = arg);
-    dBParameterGroupName?.also((arg) => $request['DBParameterGroupName'] = arg);
-    dBPortNumber?.also((arg) => $request['DBPortNumber'] = arg);
-    dBSecurityGroups?.also((arg) => $request['DBSecurityGroups'] = arg);
-    dBSubnetGroupName?.also((arg) => $request['DBSubnetGroupName'] = arg);
-    deletionProtection?.also((arg) => $request['DeletionProtection'] = arg);
-    domain?.also((arg) => $request['Domain'] = arg);
-    domainIAMRoleName?.also((arg) => $request['DomainIAMRoleName'] = arg);
-    enableCustomerOwnedIp
-        ?.also((arg) => $request['EnableCustomerOwnedIp'] = arg);
-    enableIAMDatabaseAuthentication
-        ?.also((arg) => $request['EnableIAMDatabaseAuthentication'] = arg);
-    enablePerformanceInsights
-        ?.also((arg) => $request['EnablePerformanceInsights'] = arg);
-    engineVersion?.also((arg) => $request['EngineVersion'] = arg);
-    iops?.also((arg) => $request['Iops'] = arg);
-    licenseModel?.also((arg) => $request['LicenseModel'] = arg);
-    manageMasterUserPassword
-        ?.also((arg) => $request['ManageMasterUserPassword'] = arg);
-    masterUserPassword?.also((arg) => $request['MasterUserPassword'] = arg);
-    masterUserSecretKmsKeyId
-        ?.also((arg) => $request['MasterUserSecretKmsKeyId'] = arg);
-    maxAllocatedStorage?.also((arg) => $request['MaxAllocatedStorage'] = arg);
-    monitoringInterval?.also((arg) => $request['MonitoringInterval'] = arg);
-    monitoringRoleArn?.also((arg) => $request['MonitoringRoleArn'] = arg);
-    multiAZ?.also((arg) => $request['MultiAZ'] = arg);
-    networkType?.also((arg) => $request['NetworkType'] = arg);
-    newDBInstanceIdentifier
-        ?.also((arg) => $request['NewDBInstanceIdentifier'] = arg);
-    optionGroupName?.also((arg) => $request['OptionGroupName'] = arg);
-    performanceInsightsKMSKeyId
-        ?.also((arg) => $request['PerformanceInsightsKMSKeyId'] = arg);
-    performanceInsightsRetentionPeriod
-        ?.also((arg) => $request['PerformanceInsightsRetentionPeriod'] = arg);
-    preferredBackupWindow
-        ?.also((arg) => $request['PreferredBackupWindow'] = arg);
-    preferredMaintenanceWindow
-        ?.also((arg) => $request['PreferredMaintenanceWindow'] = arg);
-    processorFeatures?.also((arg) => $request['ProcessorFeatures'] = arg);
-    promotionTier?.also((arg) => $request['PromotionTier'] = arg);
-    publiclyAccessible?.also((arg) => $request['PubliclyAccessible'] = arg);
-    replicaMode?.also((arg) => $request['ReplicaMode'] = arg.toValue());
-    resumeFullAutomationModeMinutes
-        ?.also((arg) => $request['ResumeFullAutomationModeMinutes'] = arg);
-    rotateMasterUserPassword
-        ?.also((arg) => $request['RotateMasterUserPassword'] = arg);
-    storageThroughput?.also((arg) => $request['StorageThroughput'] = arg);
-    storageType?.also((arg) => $request['StorageType'] = arg);
-    tdeCredentialArn?.also((arg) => $request['TdeCredentialArn'] = arg);
-    tdeCredentialPassword
-        ?.also((arg) => $request['TdeCredentialPassword'] = arg);
-    useDefaultProcessorFeatures
-        ?.also((arg) => $request['UseDefaultProcessorFeatures'] = arg);
-    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (allocatedStorage != null)
+        'AllocatedStorage': allocatedStorage.toString(),
+      if (allowMajorVersionUpgrade != null)
+        'AllowMajorVersionUpgrade': allowMajorVersionUpgrade.toString(),
+      if (applyImmediately != null)
+        'ApplyImmediately': applyImmediately.toString(),
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade.toString(),
+      if (automationMode != null) 'AutomationMode': automationMode.toValue(),
+      if (awsBackupRecoveryPointArn != null)
+        'AwsBackupRecoveryPointArn': awsBackupRecoveryPointArn,
+      if (backupRetentionPeriod != null)
+        'BackupRetentionPeriod': backupRetentionPeriod.toString(),
+      if (cACertificateIdentifier != null)
+        'CACertificateIdentifier': cACertificateIdentifier,
+      if (certificateRotationRestart != null)
+        'CertificateRotationRestart': certificateRotationRestart.toString(),
+      if (cloudwatchLogsExportConfiguration != null)
+        for (var e1 in cloudwatchLogsExportConfiguration.toQueryMap().entries)
+          'CloudwatchLogsExportConfiguration.${e1.key}': e1.value,
+      if (copyTagsToSnapshot != null)
+        'CopyTagsToSnapshot': copyTagsToSnapshot.toString(),
+      if (dBInstanceClass != null) 'DBInstanceClass': dBInstanceClass,
+      if (dBParameterGroupName != null)
+        'DBParameterGroupName': dBParameterGroupName,
+      if (dBPortNumber != null) 'DBPortNumber': dBPortNumber.toString(),
+      if (dBSecurityGroups != null)
+        if (dBSecurityGroups.isEmpty)
+          'DBSecurityGroups': ''
+        else
+          for (var i1 = 0; i1 < dBSecurityGroups.length; i1++)
+            'DBSecurityGroups.DBSecurityGroupName.${i1 + 1}':
+                dBSecurityGroups[i1],
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (deletionProtection != null)
+        'DeletionProtection': deletionProtection.toString(),
+      if (domain != null) 'Domain': domain,
+      if (domainIAMRoleName != null) 'DomainIAMRoleName': domainIAMRoleName,
+      if (enableCustomerOwnedIp != null)
+        'EnableCustomerOwnedIp': enableCustomerOwnedIp.toString(),
+      if (enableIAMDatabaseAuthentication != null)
+        'EnableIAMDatabaseAuthentication':
+            enableIAMDatabaseAuthentication.toString(),
+      if (enablePerformanceInsights != null)
+        'EnablePerformanceInsights': enablePerformanceInsights.toString(),
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (iops != null) 'Iops': iops.toString(),
+      if (licenseModel != null) 'LicenseModel': licenseModel,
+      if (manageMasterUserPassword != null)
+        'ManageMasterUserPassword': manageMasterUserPassword.toString(),
+      if (masterUserPassword != null) 'MasterUserPassword': masterUserPassword,
+      if (masterUserSecretKmsKeyId != null)
+        'MasterUserSecretKmsKeyId': masterUserSecretKmsKeyId,
+      if (maxAllocatedStorage != null)
+        'MaxAllocatedStorage': maxAllocatedStorage.toString(),
+      if (monitoringInterval != null)
+        'MonitoringInterval': monitoringInterval.toString(),
+      if (monitoringRoleArn != null) 'MonitoringRoleArn': monitoringRoleArn,
+      if (multiAZ != null) 'MultiAZ': multiAZ.toString(),
+      if (networkType != null) 'NetworkType': networkType,
+      if (newDBInstanceIdentifier != null)
+        'NewDBInstanceIdentifier': newDBInstanceIdentifier,
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+      if (performanceInsightsKMSKeyId != null)
+        'PerformanceInsightsKMSKeyId': performanceInsightsKMSKeyId,
+      if (performanceInsightsRetentionPeriod != null)
+        'PerformanceInsightsRetentionPeriod':
+            performanceInsightsRetentionPeriod.toString(),
+      if (preferredBackupWindow != null)
+        'PreferredBackupWindow': preferredBackupWindow,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (processorFeatures != null)
+        if (processorFeatures.isEmpty)
+          'ProcessorFeatures': ''
+        else
+          for (var i1 = 0; i1 < processorFeatures.length; i1++)
+            for (var e3 in processorFeatures[i1].toQueryMap().entries)
+              'ProcessorFeatures.ProcessorFeature.${i1 + 1}.${e3.key}':
+                  e3.value,
+      if (promotionTier != null) 'PromotionTier': promotionTier.toString(),
+      if (publiclyAccessible != null)
+        'PubliclyAccessible': publiclyAccessible.toString(),
+      if (replicaMode != null) 'ReplicaMode': replicaMode.toValue(),
+      if (resumeFullAutomationModeMinutes != null)
+        'ResumeFullAutomationModeMinutes':
+            resumeFullAutomationModeMinutes.toString(),
+      if (rotateMasterUserPassword != null)
+        'RotateMasterUserPassword': rotateMasterUserPassword.toString(),
+      if (storageThroughput != null)
+        'StorageThroughput': storageThroughput.toString(),
+      if (storageType != null) 'StorageType': storageType,
+      if (tdeCredentialArn != null) 'TdeCredentialArn': tdeCredentialArn,
+      if (tdeCredentialPassword != null)
+        'TdeCredentialPassword': tdeCredentialPassword,
+      if (useDefaultProcessorFeatures != null)
+        'UseDefaultProcessorFeatures': useDefaultProcessorFeatures.toString(),
+      if (vpcSecurityGroupIds != null)
+        if (vpcSecurityGroupIds.isEmpty)
+          'VpcSecurityGroupIds': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupIds.length; i1++)
+            'VpcSecurityGroupIds.VpcSecurityGroupId.${i1 + 1}':
+                vpcSecurityGroupIds[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyDBInstance',
@@ -12641,8 +13136,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyDBInstanceMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyDBInstanceResult',
     );
     return ModifyDBInstanceResult.fromXml($result);
@@ -12713,9 +13206,15 @@ class Rds {
     required String dBParameterGroupName,
     required List<Parameter> parameters,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBParameterGroupName'] = dBParameterGroupName;
-    $request['Parameters'] = parameters;
+    final $request = <String, String>{
+      'DBParameterGroupName': dBParameterGroupName,
+      if (parameters.isEmpty)
+        'Parameters': ''
+      else
+        for (var i1 = 0; i1 < parameters.length; i1++)
+          for (var e3 in parameters[i1].toQueryMap().entries)
+            'Parameters.Parameter.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyDBParameterGroup',
@@ -12723,8 +13222,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyDBParameterGroupMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyDBParameterGroupResult',
     );
     return DBParameterGroupNameMessage.fromXml($result);
@@ -12783,15 +13280,28 @@ class Rds {
     String? roleArn,
     List<String>? securityGroups,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBProxyName'] = dBProxyName;
-    auth?.also((arg) => $request['Auth'] = arg);
-    debugLogging?.also((arg) => $request['DebugLogging'] = arg);
-    idleClientTimeout?.also((arg) => $request['IdleClientTimeout'] = arg);
-    newDBProxyName?.also((arg) => $request['NewDBProxyName'] = arg);
-    requireTLS?.also((arg) => $request['RequireTLS'] = arg);
-    roleArn?.also((arg) => $request['RoleArn'] = arg);
-    securityGroups?.also((arg) => $request['SecurityGroups'] = arg);
+    final $request = <String, String>{
+      'DBProxyName': dBProxyName,
+      if (auth != null)
+        if (auth.isEmpty)
+          'Auth': ''
+        else
+          for (var i1 = 0; i1 < auth.length; i1++)
+            for (var e3 in auth[i1].toQueryMap().entries)
+              'Auth.member.${i1 + 1}.${e3.key}': e3.value,
+      if (debugLogging != null) 'DebugLogging': debugLogging.toString(),
+      if (idleClientTimeout != null)
+        'IdleClientTimeout': idleClientTimeout.toString(),
+      if (newDBProxyName != null) 'NewDBProxyName': newDBProxyName,
+      if (requireTLS != null) 'RequireTLS': requireTLS.toString(),
+      if (roleArn != null) 'RoleArn': roleArn,
+      if (securityGroups != null)
+        if (securityGroups.isEmpty)
+          'SecurityGroups': ''
+        else
+          for (var i1 = 0; i1 < securityGroups.length; i1++)
+            'SecurityGroups.member.${i1 + 1}': securityGroups[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyDBProxy',
@@ -12799,8 +13309,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyDBProxyRequest'],
-      shapes: shapes,
       resultWrapper: 'ModifyDBProxyResult',
     );
     return ModifyDBProxyResponse.fromXml($result);
@@ -12831,11 +13339,17 @@ class Rds {
     String? newDBProxyEndpointName,
     List<String>? vpcSecurityGroupIds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBProxyEndpointName'] = dBProxyEndpointName;
-    newDBProxyEndpointName
-        ?.also((arg) => $request['NewDBProxyEndpointName'] = arg);
-    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $request = <String, String>{
+      'DBProxyEndpointName': dBProxyEndpointName,
+      if (newDBProxyEndpointName != null)
+        'NewDBProxyEndpointName': newDBProxyEndpointName,
+      if (vpcSecurityGroupIds != null)
+        if (vpcSecurityGroupIds.isEmpty)
+          'VpcSecurityGroupIds': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupIds.length; i1++)
+            'VpcSecurityGroupIds.member.${i1 + 1}': vpcSecurityGroupIds[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyDBProxyEndpoint',
@@ -12843,8 +13357,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyDBProxyEndpointRequest'],
-      shapes: shapes,
       resultWrapper: 'ModifyDBProxyEndpointResult',
     );
     return ModifyDBProxyEndpointResponse.fromXml($result);
@@ -12876,11 +13388,14 @@ class Rds {
     ConnectionPoolConfiguration? connectionPoolConfig,
     String? newName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBProxyName'] = dBProxyName;
-    $request['TargetGroupName'] = targetGroupName;
-    connectionPoolConfig?.also((arg) => $request['ConnectionPoolConfig'] = arg);
-    newName?.also((arg) => $request['NewName'] = arg);
+    final $request = <String, String>{
+      'DBProxyName': dBProxyName,
+      'TargetGroupName': targetGroupName,
+      if (connectionPoolConfig != null)
+        for (var e1 in connectionPoolConfig.toQueryMap().entries)
+          'ConnectionPoolConfig.${e1.key}': e1.value,
+      if (newName != null) 'NewName': newName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyDBProxyTargetGroup',
@@ -12888,8 +13403,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyDBProxyTargetGroupRequest'],
-      shapes: shapes,
       resultWrapper: 'ModifyDBProxyTargetGroupResult',
     );
     return ModifyDBProxyTargetGroupResponse.fromXml($result);
@@ -12960,10 +13473,11 @@ class Rds {
     String? engineVersion,
     String? optionGroupName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBSnapshotIdentifier'] = dBSnapshotIdentifier;
-    engineVersion?.also((arg) => $request['EngineVersion'] = arg);
-    optionGroupName?.also((arg) => $request['OptionGroupName'] = arg);
+    final $request = <String, String>{
+      'DBSnapshotIdentifier': dBSnapshotIdentifier,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyDBSnapshot',
@@ -12971,8 +13485,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyDBSnapshotMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyDBSnapshotResult',
     );
     return ModifyDBSnapshotResult.fromXml($result);
@@ -13048,11 +13560,22 @@ class Rds {
     List<String>? valuesToAdd,
     List<String>? valuesToRemove,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['AttributeName'] = attributeName;
-    $request['DBSnapshotIdentifier'] = dBSnapshotIdentifier;
-    valuesToAdd?.also((arg) => $request['ValuesToAdd'] = arg);
-    valuesToRemove?.also((arg) => $request['ValuesToRemove'] = arg);
+    final $request = <String, String>{
+      'AttributeName': attributeName,
+      'DBSnapshotIdentifier': dBSnapshotIdentifier,
+      if (valuesToAdd != null)
+        if (valuesToAdd.isEmpty)
+          'ValuesToAdd': ''
+        else
+          for (var i1 = 0; i1 < valuesToAdd.length; i1++)
+            'ValuesToAdd.AttributeValue.${i1 + 1}': valuesToAdd[i1],
+      if (valuesToRemove != null)
+        if (valuesToRemove.isEmpty)
+          'ValuesToRemove': ''
+        else
+          for (var i1 = 0; i1 < valuesToRemove.length; i1++)
+            'ValuesToRemove.AttributeValue.${i1 + 1}': valuesToRemove[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyDBSnapshotAttribute',
@@ -13060,8 +13583,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyDBSnapshotAttributeMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyDBSnapshotAttributeResult',
     );
     return ModifyDBSnapshotAttributeResult.fromXml($result);
@@ -13095,11 +13616,16 @@ class Rds {
     required List<String> subnetIds,
     String? dBSubnetGroupDescription,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBSubnetGroupName'] = dBSubnetGroupName;
-    $request['SubnetIds'] = subnetIds;
-    dBSubnetGroupDescription
-        ?.also((arg) => $request['DBSubnetGroupDescription'] = arg);
+    final $request = <String, String>{
+      'DBSubnetGroupName': dBSubnetGroupName,
+      if (subnetIds.isEmpty)
+        'SubnetIds': ''
+      else
+        for (var i1 = 0; i1 < subnetIds.length; i1++)
+          'SubnetIds.SubnetIdentifier.${i1 + 1}': subnetIds[i1],
+      if (dBSubnetGroupDescription != null)
+        'DBSubnetGroupDescription': dBSubnetGroupDescription,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyDBSubnetGroup',
@@ -13107,8 +13633,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyDBSubnetGroupMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyDBSubnetGroupResult',
     );
     return ModifyDBSubnetGroupResult.fromXml($result);
@@ -13169,12 +13693,18 @@ class Rds {
     String? snsTopicArn,
     String? sourceType,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['SubscriptionName'] = subscriptionName;
-    enabled?.also((arg) => $request['Enabled'] = arg);
-    eventCategories?.also((arg) => $request['EventCategories'] = arg);
-    snsTopicArn?.also((arg) => $request['SnsTopicArn'] = arg);
-    sourceType?.also((arg) => $request['SourceType'] = arg);
+    final $request = <String, String>{
+      'SubscriptionName': subscriptionName,
+      if (enabled != null) 'Enabled': enabled.toString(),
+      if (eventCategories != null)
+        if (eventCategories.isEmpty)
+          'EventCategories': ''
+        else
+          for (var i1 = 0; i1 < eventCategories.length; i1++)
+            'EventCategories.EventCategory.${i1 + 1}': eventCategories[i1],
+      if (snsTopicArn != null) 'SnsTopicArn': snsTopicArn,
+      if (sourceType != null) 'SourceType': sourceType,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyEventSubscription',
@@ -13182,8 +13712,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyEventSubscriptionMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyEventSubscriptionResult',
     );
     return ModifyEventSubscriptionResult.fromXml($result);
@@ -13277,15 +13805,17 @@ class Rds {
     String? globalClusterIdentifier,
     String? newGlobalClusterIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    allowMajorVersionUpgrade
-        ?.also((arg) => $request['AllowMajorVersionUpgrade'] = arg);
-    deletionProtection?.also((arg) => $request['DeletionProtection'] = arg);
-    engineVersion?.also((arg) => $request['EngineVersion'] = arg);
-    globalClusterIdentifier
-        ?.also((arg) => $request['GlobalClusterIdentifier'] = arg);
-    newGlobalClusterIdentifier
-        ?.also((arg) => $request['NewGlobalClusterIdentifier'] = arg);
+    final $request = <String, String>{
+      if (allowMajorVersionUpgrade != null)
+        'AllowMajorVersionUpgrade': allowMajorVersionUpgrade.toString(),
+      if (deletionProtection != null)
+        'DeletionProtection': deletionProtection.toString(),
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (globalClusterIdentifier != null)
+        'GlobalClusterIdentifier': globalClusterIdentifier,
+      if (newGlobalClusterIdentifier != null)
+        'NewGlobalClusterIdentifier': newGlobalClusterIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyGlobalCluster',
@@ -13293,8 +13823,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyGlobalClusterMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyGlobalClusterResult',
     );
     return ModifyGlobalClusterResult.fromXml($result);
@@ -13329,11 +13857,25 @@ class Rds {
     List<OptionConfiguration>? optionsToInclude,
     List<String>? optionsToRemove,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['OptionGroupName'] = optionGroupName;
-    applyImmediately?.also((arg) => $request['ApplyImmediately'] = arg);
-    optionsToInclude?.also((arg) => $request['OptionsToInclude'] = arg);
-    optionsToRemove?.also((arg) => $request['OptionsToRemove'] = arg);
+    final $request = <String, String>{
+      'OptionGroupName': optionGroupName,
+      if (applyImmediately != null)
+        'ApplyImmediately': applyImmediately.toString(),
+      if (optionsToInclude != null)
+        if (optionsToInclude.isEmpty)
+          'OptionsToInclude': ''
+        else
+          for (var i1 = 0; i1 < optionsToInclude.length; i1++)
+            for (var e3 in optionsToInclude[i1].toQueryMap().entries)
+              'OptionsToInclude.OptionConfiguration.${i1 + 1}.${e3.key}':
+                  e3.value,
+      if (optionsToRemove != null)
+        if (optionsToRemove.isEmpty)
+          'OptionsToRemove': ''
+        else
+          for (var i1 = 0; i1 < optionsToRemove.length; i1++)
+            'OptionsToRemove.member.${i1 + 1}': optionsToRemove[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ModifyOptionGroup',
@@ -13341,8 +13883,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ModifyOptionGroupMessage'],
-      shapes: shapes,
       resultWrapper: 'ModifyOptionGroupResult',
     );
     return ModifyOptionGroupResult.fromXml($result);
@@ -13433,12 +13973,13 @@ class Rds {
     int? backupRetentionPeriod,
     String? preferredBackupWindow,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
-    backupRetentionPeriod
-        ?.also((arg) => $request['BackupRetentionPeriod'] = arg);
-    preferredBackupWindow
-        ?.also((arg) => $request['PreferredBackupWindow'] = arg);
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (backupRetentionPeriod != null)
+        'BackupRetentionPeriod': backupRetentionPeriod.toString(),
+      if (preferredBackupWindow != null)
+        'PreferredBackupWindow': preferredBackupWindow,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'PromoteReadReplica',
@@ -13446,8 +13987,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['PromoteReadReplicaMessage'],
-      shapes: shapes,
       resultWrapper: 'PromoteReadReplicaResult',
     );
     return PromoteReadReplicaResult.fromXml($result);
@@ -13473,8 +14012,9 @@ class Rds {
   Future<PromoteReadReplicaDBClusterResult> promoteReadReplicaDBCluster({
     required String dBClusterIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'PromoteReadReplicaDBCluster',
@@ -13482,8 +14022,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['PromoteReadReplicaDBClusterMessage'],
-      shapes: shapes,
       resultWrapper: 'PromoteReadReplicaDBClusterResult',
     );
     return PromoteReadReplicaDBClusterResult.fromXml($result);
@@ -13516,11 +14054,20 @@ class Rds {
     String? reservedDBInstanceId,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ReservedDBInstancesOfferingId'] = reservedDBInstancesOfferingId;
-    dBInstanceCount?.also((arg) => $request['DBInstanceCount'] = arg);
-    reservedDBInstanceId?.also((arg) => $request['ReservedDBInstanceId'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'ReservedDBInstancesOfferingId': reservedDBInstancesOfferingId,
+      if (dBInstanceCount != null)
+        'DBInstanceCount': dBInstanceCount.toString(),
+      if (reservedDBInstanceId != null)
+        'ReservedDBInstanceId': reservedDBInstanceId,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'PurchaseReservedDBInstancesOffering',
@@ -13528,8 +14075,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['PurchaseReservedDBInstancesOfferingMessage'],
-      shapes: shapes,
       resultWrapper: 'PurchaseReservedDBInstancesOfferingResult',
     );
     return PurchaseReservedDBInstancesOfferingResult.fromXml($result);
@@ -13567,8 +14112,9 @@ class Rds {
   Future<RebootDBClusterResult> rebootDBCluster({
     required String dBClusterIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'RebootDBCluster',
@@ -13576,8 +14122,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RebootDBClusterMessage'],
-      shapes: shapes,
       resultWrapper: 'RebootDBClusterResult',
     );
     return RebootDBClusterResult.fromXml($result);
@@ -13626,9 +14170,10 @@ class Rds {
     required String dBInstanceIdentifier,
     bool? forceFailover,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
-    forceFailover?.also((arg) => $request['ForceFailover'] = arg);
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (forceFailover != null) 'ForceFailover': forceFailover.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'RebootDBInstance',
@@ -13636,8 +14181,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RebootDBInstanceMessage'],
-      shapes: shapes,
       resultWrapper: 'RebootDBInstanceResult',
     );
     return RebootDBInstanceResult.fromXml($result);
@@ -13674,12 +14217,22 @@ class Rds {
     List<String>? dBInstanceIdentifiers,
     String? targetGroupName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBProxyName'] = dBProxyName;
-    dBClusterIdentifiers?.also((arg) => $request['DBClusterIdentifiers'] = arg);
-    dBInstanceIdentifiers
-        ?.also((arg) => $request['DBInstanceIdentifiers'] = arg);
-    targetGroupName?.also((arg) => $request['TargetGroupName'] = arg);
+    final $request = <String, String>{
+      'DBProxyName': dBProxyName,
+      if (dBClusterIdentifiers != null)
+        if (dBClusterIdentifiers.isEmpty)
+          'DBClusterIdentifiers': ''
+        else
+          for (var i1 = 0; i1 < dBClusterIdentifiers.length; i1++)
+            'DBClusterIdentifiers.member.${i1 + 1}': dBClusterIdentifiers[i1],
+      if (dBInstanceIdentifiers != null)
+        if (dBInstanceIdentifiers.isEmpty)
+          'DBInstanceIdentifiers': ''
+        else
+          for (var i1 = 0; i1 < dBInstanceIdentifiers.length; i1++)
+            'DBInstanceIdentifiers.member.${i1 + 1}': dBInstanceIdentifiers[i1],
+      if (targetGroupName != null) 'TargetGroupName': targetGroupName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'RegisterDBProxyTargets',
@@ -13687,8 +14240,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RegisterDBProxyTargetsRequest'],
-      shapes: shapes,
       resultWrapper: 'RegisterDBProxyTargetsResult',
     );
     return RegisterDBProxyTargetsResponse.fromXml($result);
@@ -13716,10 +14267,12 @@ class Rds {
     String? dbClusterIdentifier,
     String? globalClusterIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    dbClusterIdentifier?.also((arg) => $request['DbClusterIdentifier'] = arg);
-    globalClusterIdentifier
-        ?.also((arg) => $request['GlobalClusterIdentifier'] = arg);
+    final $request = <String, String>{
+      if (dbClusterIdentifier != null)
+        'DbClusterIdentifier': dbClusterIdentifier,
+      if (globalClusterIdentifier != null)
+        'GlobalClusterIdentifier': globalClusterIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'RemoveFromGlobalCluster',
@@ -13727,8 +14280,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RemoveFromGlobalClusterMessage'],
-      shapes: shapes,
       resultWrapper: 'RemoveFromGlobalClusterResult',
     );
     return RemoveFromGlobalClusterResult.fromXml($result);
@@ -13766,10 +14317,11 @@ class Rds {
     required String roleArn,
     String? featureName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
-    $request['RoleArn'] = roleArn;
-    featureName?.also((arg) => $request['FeatureName'] = arg);
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+      'RoleArn': roleArn,
+      if (featureName != null) 'FeatureName': featureName,
+    };
     await _protocol.send(
       $request,
       action: 'RemoveRoleFromDBCluster',
@@ -13777,8 +14329,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RemoveRoleFromDBClusterMessage'],
-      shapes: shapes,
     );
   }
 
@@ -13806,10 +14356,11 @@ class Rds {
     required String featureName,
     required String roleArn,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
-    $request['FeatureName'] = featureName;
-    $request['RoleArn'] = roleArn;
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+      'FeatureName': featureName,
+      'RoleArn': roleArn,
+    };
     await _protocol.send(
       $request,
       action: 'RemoveRoleFromDBInstance',
@@ -13817,8 +14368,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RemoveRoleFromDBInstanceMessage'],
-      shapes: shapes,
     );
   }
 
@@ -13841,9 +14390,10 @@ class Rds {
     required String sourceIdentifier,
     required String subscriptionName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['SourceIdentifier'] = sourceIdentifier;
-    $request['SubscriptionName'] = subscriptionName;
+    final $request = <String, String>{
+      'SourceIdentifier': sourceIdentifier,
+      'SubscriptionName': subscriptionName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'RemoveSourceIdentifierFromSubscription',
@@ -13851,8 +14401,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RemoveSourceIdentifierFromSubscriptionMessage'],
-      shapes: shapes,
       resultWrapper: 'RemoveSourceIdentifierFromSubscriptionResult',
     );
     return RemoveSourceIdentifierFromSubscriptionResult.fromXml($result);
@@ -13884,9 +14432,14 @@ class Rds {
     required String resourceName,
     required List<String> tagKeys,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ResourceName'] = resourceName;
-    $request['TagKeys'] = tagKeys;
+    final $request = <String, String>{
+      'ResourceName': resourceName,
+      if (tagKeys.isEmpty)
+        'TagKeys': ''
+      else
+        for (var i1 = 0; i1 < tagKeys.length; i1++)
+          'TagKeys.member.${i1 + 1}': tagKeys[i1],
+    };
     await _protocol.send(
       $request,
       action: 'RemoveTagsFromResource',
@@ -13894,8 +14447,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RemoveTagsFromResourceMessage'],
-      shapes: shapes,
     );
   }
 
@@ -13942,10 +14493,18 @@ class Rds {
     List<Parameter>? parameters,
     bool? resetAllParameters,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterParameterGroupName'] = dBClusterParameterGroupName;
-    parameters?.also((arg) => $request['Parameters'] = arg);
-    resetAllParameters?.also((arg) => $request['ResetAllParameters'] = arg);
+    final $request = <String, String>{
+      'DBClusterParameterGroupName': dBClusterParameterGroupName,
+      if (parameters != null)
+        if (parameters.isEmpty)
+          'Parameters': ''
+        else
+          for (var i1 = 0; i1 < parameters.length; i1++)
+            for (var e3 in parameters[i1].toQueryMap().entries)
+              'Parameters.Parameter.${i1 + 1}.${e3.key}': e3.value,
+      if (resetAllParameters != null)
+        'ResetAllParameters': resetAllParameters.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ResetDBClusterParameterGroup',
@@ -13953,8 +14512,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ResetDBClusterParameterGroupMessage'],
-      shapes: shapes,
       resultWrapper: 'ResetDBClusterParameterGroupResult',
     );
     return DBClusterParameterGroupNameMessage.fromXml($result);
@@ -14022,10 +14579,18 @@ class Rds {
     List<Parameter>? parameters,
     bool? resetAllParameters,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBParameterGroupName'] = dBParameterGroupName;
-    parameters?.also((arg) => $request['Parameters'] = arg);
-    resetAllParameters?.also((arg) => $request['ResetAllParameters'] = arg);
+    final $request = <String, String>{
+      'DBParameterGroupName': dBParameterGroupName,
+      if (parameters != null)
+        if (parameters.isEmpty)
+          'Parameters': ''
+        else
+          for (var i1 = 0; i1 < parameters.length; i1++)
+            for (var e3 in parameters[i1].toQueryMap().entries)
+              'Parameters.Parameter.${i1 + 1}.${e3.key}': e3.value,
+      if (resetAllParameters != null)
+        'ResetAllParameters': resetAllParameters.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ResetDBParameterGroup',
@@ -14033,8 +14598,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ResetDBParameterGroupMessage'],
-      shapes: shapes,
       resultWrapper: 'ResetDBParameterGroupResult',
     );
     return DBParameterGroupNameMessage.fromXml($result);
@@ -14478,52 +15041,82 @@ class Rds {
     List<Tag>? tags,
     List<String>? vpcSecurityGroupIds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
-    $request['Engine'] = engine;
-    $request['MasterUsername'] = masterUsername;
-    $request['S3BucketName'] = s3BucketName;
-    $request['S3IngestionRoleArn'] = s3IngestionRoleArn;
-    $request['SourceEngine'] = sourceEngine;
-    $request['SourceEngineVersion'] = sourceEngineVersion;
-    availabilityZones?.also((arg) => $request['AvailabilityZones'] = arg);
-    backtrackWindow?.also((arg) => $request['BacktrackWindow'] = arg);
-    backupRetentionPeriod
-        ?.also((arg) => $request['BackupRetentionPeriod'] = arg);
-    characterSetName?.also((arg) => $request['CharacterSetName'] = arg);
-    copyTagsToSnapshot?.also((arg) => $request['CopyTagsToSnapshot'] = arg);
-    dBClusterParameterGroupName
-        ?.also((arg) => $request['DBClusterParameterGroupName'] = arg);
-    dBSubnetGroupName?.also((arg) => $request['DBSubnetGroupName'] = arg);
-    databaseName?.also((arg) => $request['DatabaseName'] = arg);
-    deletionProtection?.also((arg) => $request['DeletionProtection'] = arg);
-    domain?.also((arg) => $request['Domain'] = arg);
-    domainIAMRoleName?.also((arg) => $request['DomainIAMRoleName'] = arg);
-    enableCloudwatchLogsExports
-        ?.also((arg) => $request['EnableCloudwatchLogsExports'] = arg);
-    enableIAMDatabaseAuthentication
-        ?.also((arg) => $request['EnableIAMDatabaseAuthentication'] = arg);
-    engineVersion?.also((arg) => $request['EngineVersion'] = arg);
-    kmsKeyId?.also((arg) => $request['KmsKeyId'] = arg);
-    manageMasterUserPassword
-        ?.also((arg) => $request['ManageMasterUserPassword'] = arg);
-    masterUserPassword?.also((arg) => $request['MasterUserPassword'] = arg);
-    masterUserSecretKmsKeyId
-        ?.also((arg) => $request['MasterUserSecretKmsKeyId'] = arg);
-    networkType?.also((arg) => $request['NetworkType'] = arg);
-    optionGroupName?.also((arg) => $request['OptionGroupName'] = arg);
-    port?.also((arg) => $request['Port'] = arg);
-    preferredBackupWindow
-        ?.also((arg) => $request['PreferredBackupWindow'] = arg);
-    preferredMaintenanceWindow
-        ?.also((arg) => $request['PreferredMaintenanceWindow'] = arg);
-    s3Prefix?.also((arg) => $request['S3Prefix'] = arg);
-    serverlessV2ScalingConfiguration
-        ?.also((arg) => $request['ServerlessV2ScalingConfiguration'] = arg);
-    storageEncrypted?.also((arg) => $request['StorageEncrypted'] = arg);
-    storageType?.also((arg) => $request['StorageType'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
-    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+      'Engine': engine,
+      'MasterUsername': masterUsername,
+      'S3BucketName': s3BucketName,
+      'S3IngestionRoleArn': s3IngestionRoleArn,
+      'SourceEngine': sourceEngine,
+      'SourceEngineVersion': sourceEngineVersion,
+      if (availabilityZones != null)
+        if (availabilityZones.isEmpty)
+          'AvailabilityZones': ''
+        else
+          for (var i1 = 0; i1 < availabilityZones.length; i1++)
+            'AvailabilityZones.AvailabilityZone.${i1 + 1}':
+                availabilityZones[i1],
+      if (backtrackWindow != null)
+        'BacktrackWindow': backtrackWindow.toString(),
+      if (backupRetentionPeriod != null)
+        'BackupRetentionPeriod': backupRetentionPeriod.toString(),
+      if (characterSetName != null) 'CharacterSetName': characterSetName,
+      if (copyTagsToSnapshot != null)
+        'CopyTagsToSnapshot': copyTagsToSnapshot.toString(),
+      if (dBClusterParameterGroupName != null)
+        'DBClusterParameterGroupName': dBClusterParameterGroupName,
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (deletionProtection != null)
+        'DeletionProtection': deletionProtection.toString(),
+      if (domain != null) 'Domain': domain,
+      if (domainIAMRoleName != null) 'DomainIAMRoleName': domainIAMRoleName,
+      if (enableCloudwatchLogsExports != null)
+        if (enableCloudwatchLogsExports.isEmpty)
+          'EnableCloudwatchLogsExports': ''
+        else
+          for (var i1 = 0; i1 < enableCloudwatchLogsExports.length; i1++)
+            'EnableCloudwatchLogsExports.member.${i1 + 1}':
+                enableCloudwatchLogsExports[i1],
+      if (enableIAMDatabaseAuthentication != null)
+        'EnableIAMDatabaseAuthentication':
+            enableIAMDatabaseAuthentication.toString(),
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (manageMasterUserPassword != null)
+        'ManageMasterUserPassword': manageMasterUserPassword.toString(),
+      if (masterUserPassword != null) 'MasterUserPassword': masterUserPassword,
+      if (masterUserSecretKmsKeyId != null)
+        'MasterUserSecretKmsKeyId': masterUserSecretKmsKeyId,
+      if (networkType != null) 'NetworkType': networkType,
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+      if (port != null) 'Port': port.toString(),
+      if (preferredBackupWindow != null)
+        'PreferredBackupWindow': preferredBackupWindow,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (s3Prefix != null) 'S3Prefix': s3Prefix,
+      if (serverlessV2ScalingConfiguration != null)
+        for (var e1 in serverlessV2ScalingConfiguration.toQueryMap().entries)
+          'ServerlessV2ScalingConfiguration.${e1.key}': e1.value,
+      if (storageEncrypted != null)
+        'StorageEncrypted': storageEncrypted.toString(),
+      if (storageType != null) 'StorageType': storageType,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+      if (vpcSecurityGroupIds != null)
+        if (vpcSecurityGroupIds.isEmpty)
+          'VpcSecurityGroupIds': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupIds.length; i1++)
+            'VpcSecurityGroupIds.VpcSecurityGroupId.${i1 + 1}':
+                vpcSecurityGroupIds[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'RestoreDBClusterFromS3',
@@ -14531,8 +15124,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RestoreDBClusterFromS3Message'],
-      shapes: shapes,
       resultWrapper: 'RestoreDBClusterFromS3Result',
     );
     return RestoreDBClusterFromS3Result.fromXml($result);
@@ -15032,40 +15623,72 @@ class Rds {
     List<Tag>? tags,
     List<String>? vpcSecurityGroupIds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
-    $request['Engine'] = engine;
-    $request['SnapshotIdentifier'] = snapshotIdentifier;
-    availabilityZones?.also((arg) => $request['AvailabilityZones'] = arg);
-    backtrackWindow?.also((arg) => $request['BacktrackWindow'] = arg);
-    copyTagsToSnapshot?.also((arg) => $request['CopyTagsToSnapshot'] = arg);
-    dBClusterInstanceClass
-        ?.also((arg) => $request['DBClusterInstanceClass'] = arg);
-    dBClusterParameterGroupName
-        ?.also((arg) => $request['DBClusterParameterGroupName'] = arg);
-    dBSubnetGroupName?.also((arg) => $request['DBSubnetGroupName'] = arg);
-    databaseName?.also((arg) => $request['DatabaseName'] = arg);
-    deletionProtection?.also((arg) => $request['DeletionProtection'] = arg);
-    domain?.also((arg) => $request['Domain'] = arg);
-    domainIAMRoleName?.also((arg) => $request['DomainIAMRoleName'] = arg);
-    enableCloudwatchLogsExports
-        ?.also((arg) => $request['EnableCloudwatchLogsExports'] = arg);
-    enableIAMDatabaseAuthentication
-        ?.also((arg) => $request['EnableIAMDatabaseAuthentication'] = arg);
-    engineMode?.also((arg) => $request['EngineMode'] = arg);
-    engineVersion?.also((arg) => $request['EngineVersion'] = arg);
-    iops?.also((arg) => $request['Iops'] = arg);
-    kmsKeyId?.also((arg) => $request['KmsKeyId'] = arg);
-    networkType?.also((arg) => $request['NetworkType'] = arg);
-    optionGroupName?.also((arg) => $request['OptionGroupName'] = arg);
-    port?.also((arg) => $request['Port'] = arg);
-    publiclyAccessible?.also((arg) => $request['PubliclyAccessible'] = arg);
-    scalingConfiguration?.also((arg) => $request['ScalingConfiguration'] = arg);
-    serverlessV2ScalingConfiguration
-        ?.also((arg) => $request['ServerlessV2ScalingConfiguration'] = arg);
-    storageType?.also((arg) => $request['StorageType'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
-    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+      'Engine': engine,
+      'SnapshotIdentifier': snapshotIdentifier,
+      if (availabilityZones != null)
+        if (availabilityZones.isEmpty)
+          'AvailabilityZones': ''
+        else
+          for (var i1 = 0; i1 < availabilityZones.length; i1++)
+            'AvailabilityZones.AvailabilityZone.${i1 + 1}':
+                availabilityZones[i1],
+      if (backtrackWindow != null)
+        'BacktrackWindow': backtrackWindow.toString(),
+      if (copyTagsToSnapshot != null)
+        'CopyTagsToSnapshot': copyTagsToSnapshot.toString(),
+      if (dBClusterInstanceClass != null)
+        'DBClusterInstanceClass': dBClusterInstanceClass,
+      if (dBClusterParameterGroupName != null)
+        'DBClusterParameterGroupName': dBClusterParameterGroupName,
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (databaseName != null) 'DatabaseName': databaseName,
+      if (deletionProtection != null)
+        'DeletionProtection': deletionProtection.toString(),
+      if (domain != null) 'Domain': domain,
+      if (domainIAMRoleName != null) 'DomainIAMRoleName': domainIAMRoleName,
+      if (enableCloudwatchLogsExports != null)
+        if (enableCloudwatchLogsExports.isEmpty)
+          'EnableCloudwatchLogsExports': ''
+        else
+          for (var i1 = 0; i1 < enableCloudwatchLogsExports.length; i1++)
+            'EnableCloudwatchLogsExports.member.${i1 + 1}':
+                enableCloudwatchLogsExports[i1],
+      if (enableIAMDatabaseAuthentication != null)
+        'EnableIAMDatabaseAuthentication':
+            enableIAMDatabaseAuthentication.toString(),
+      if (engineMode != null) 'EngineMode': engineMode,
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (iops != null) 'Iops': iops.toString(),
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (networkType != null) 'NetworkType': networkType,
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+      if (port != null) 'Port': port.toString(),
+      if (publiclyAccessible != null)
+        'PubliclyAccessible': publiclyAccessible.toString(),
+      if (scalingConfiguration != null)
+        for (var e1 in scalingConfiguration.toQueryMap().entries)
+          'ScalingConfiguration.${e1.key}': e1.value,
+      if (serverlessV2ScalingConfiguration != null)
+        for (var e1 in serverlessV2ScalingConfiguration.toQueryMap().entries)
+          'ServerlessV2ScalingConfiguration.${e1.key}': e1.value,
+      if (storageType != null) 'StorageType': storageType,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+      if (vpcSecurityGroupIds != null)
+        if (vpcSecurityGroupIds.isEmpty)
+          'VpcSecurityGroupIds': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupIds.length; i1++)
+            'VpcSecurityGroupIds.VpcSecurityGroupId.${i1 + 1}':
+                vpcSecurityGroupIds[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'RestoreDBClusterFromSnapshot',
@@ -15073,8 +15696,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RestoreDBClusterFromSnapshotMessage'],
-      shapes: shapes,
       resultWrapper: 'RestoreDBClusterFromSnapshotResult',
     );
     return RestoreDBClusterFromSnapshotResult.fromXml($result);
@@ -15543,41 +16164,67 @@ class Rds {
     bool? useLatestRestorableTime,
     List<String>? vpcSecurityGroupIds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
-    $request['SourceDBClusterIdentifier'] = sourceDBClusterIdentifier;
-    backtrackWindow?.also((arg) => $request['BacktrackWindow'] = arg);
-    copyTagsToSnapshot?.also((arg) => $request['CopyTagsToSnapshot'] = arg);
-    dBClusterInstanceClass
-        ?.also((arg) => $request['DBClusterInstanceClass'] = arg);
-    dBClusterParameterGroupName
-        ?.also((arg) => $request['DBClusterParameterGroupName'] = arg);
-    dBSubnetGroupName?.also((arg) => $request['DBSubnetGroupName'] = arg);
-    deletionProtection?.also((arg) => $request['DeletionProtection'] = arg);
-    domain?.also((arg) => $request['Domain'] = arg);
-    domainIAMRoleName?.also((arg) => $request['DomainIAMRoleName'] = arg);
-    enableCloudwatchLogsExports
-        ?.also((arg) => $request['EnableCloudwatchLogsExports'] = arg);
-    enableIAMDatabaseAuthentication
-        ?.also((arg) => $request['EnableIAMDatabaseAuthentication'] = arg);
-    engineMode?.also((arg) => $request['EngineMode'] = arg);
-    iops?.also((arg) => $request['Iops'] = arg);
-    kmsKeyId?.also((arg) => $request['KmsKeyId'] = arg);
-    networkType?.also((arg) => $request['NetworkType'] = arg);
-    optionGroupName?.also((arg) => $request['OptionGroupName'] = arg);
-    port?.also((arg) => $request['Port'] = arg);
-    publiclyAccessible?.also((arg) => $request['PubliclyAccessible'] = arg);
-    restoreToTime
-        ?.also((arg) => $request['RestoreToTime'] = _s.iso8601ToJson(arg));
-    restoreType?.also((arg) => $request['RestoreType'] = arg);
-    scalingConfiguration?.also((arg) => $request['ScalingConfiguration'] = arg);
-    serverlessV2ScalingConfiguration
-        ?.also((arg) => $request['ServerlessV2ScalingConfiguration'] = arg);
-    storageType?.also((arg) => $request['StorageType'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
-    useLatestRestorableTime
-        ?.also((arg) => $request['UseLatestRestorableTime'] = arg);
-    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+      'SourceDBClusterIdentifier': sourceDBClusterIdentifier,
+      if (backtrackWindow != null)
+        'BacktrackWindow': backtrackWindow.toString(),
+      if (copyTagsToSnapshot != null)
+        'CopyTagsToSnapshot': copyTagsToSnapshot.toString(),
+      if (dBClusterInstanceClass != null)
+        'DBClusterInstanceClass': dBClusterInstanceClass,
+      if (dBClusterParameterGroupName != null)
+        'DBClusterParameterGroupName': dBClusterParameterGroupName,
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (deletionProtection != null)
+        'DeletionProtection': deletionProtection.toString(),
+      if (domain != null) 'Domain': domain,
+      if (domainIAMRoleName != null) 'DomainIAMRoleName': domainIAMRoleName,
+      if (enableCloudwatchLogsExports != null)
+        if (enableCloudwatchLogsExports.isEmpty)
+          'EnableCloudwatchLogsExports': ''
+        else
+          for (var i1 = 0; i1 < enableCloudwatchLogsExports.length; i1++)
+            'EnableCloudwatchLogsExports.member.${i1 + 1}':
+                enableCloudwatchLogsExports[i1],
+      if (enableIAMDatabaseAuthentication != null)
+        'EnableIAMDatabaseAuthentication':
+            enableIAMDatabaseAuthentication.toString(),
+      if (engineMode != null) 'EngineMode': engineMode,
+      if (iops != null) 'Iops': iops.toString(),
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (networkType != null) 'NetworkType': networkType,
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+      if (port != null) 'Port': port.toString(),
+      if (publiclyAccessible != null)
+        'PubliclyAccessible': publiclyAccessible.toString(),
+      if (restoreToTime != null)
+        'RestoreToTime': _s.iso8601ToJson(restoreToTime),
+      if (restoreType != null) 'RestoreType': restoreType,
+      if (scalingConfiguration != null)
+        for (var e1 in scalingConfiguration.toQueryMap().entries)
+          'ScalingConfiguration.${e1.key}': e1.value,
+      if (serverlessV2ScalingConfiguration != null)
+        for (var e1 in serverlessV2ScalingConfiguration.toQueryMap().entries)
+          'ServerlessV2ScalingConfiguration.${e1.key}': e1.value,
+      if (storageType != null) 'StorageType': storageType,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+      if (useLatestRestorableTime != null)
+        'UseLatestRestorableTime': useLatestRestorableTime.toString(),
+      if (vpcSecurityGroupIds != null)
+        if (vpcSecurityGroupIds.isEmpty)
+          'VpcSecurityGroupIds': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupIds.length; i1++)
+            'VpcSecurityGroupIds.VpcSecurityGroupId.${i1 + 1}':
+                vpcSecurityGroupIds[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'RestoreDBClusterToPointInTime',
@@ -15585,8 +16232,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RestoreDBClusterToPointInTimeMessage'],
-      shapes: shapes,
       resultWrapper: 'RestoreDBClusterToPointInTimeResult',
     );
     return RestoreDBClusterToPointInTimeResult.fromXml($result);
@@ -16129,50 +16774,83 @@ class Rds {
     bool? useDefaultProcessorFeatures,
     List<String>? vpcSecurityGroupIds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
-    allocatedStorage?.also((arg) => $request['AllocatedStorage'] = arg);
-    autoMinorVersionUpgrade
-        ?.also((arg) => $request['AutoMinorVersionUpgrade'] = arg);
-    availabilityZone?.also((arg) => $request['AvailabilityZone'] = arg);
-    backupTarget?.also((arg) => $request['BackupTarget'] = arg);
-    copyTagsToSnapshot?.also((arg) => $request['CopyTagsToSnapshot'] = arg);
-    customIamInstanceProfile
-        ?.also((arg) => $request['CustomIamInstanceProfile'] = arg);
-    dBClusterSnapshotIdentifier
-        ?.also((arg) => $request['DBClusterSnapshotIdentifier'] = arg);
-    dBInstanceClass?.also((arg) => $request['DBInstanceClass'] = arg);
-    dBName?.also((arg) => $request['DBName'] = arg);
-    dBParameterGroupName?.also((arg) => $request['DBParameterGroupName'] = arg);
-    dBSnapshotIdentifier?.also((arg) => $request['DBSnapshotIdentifier'] = arg);
-    dBSubnetGroupName?.also((arg) => $request['DBSubnetGroupName'] = arg);
-    deletionProtection?.also((arg) => $request['DeletionProtection'] = arg);
-    domain?.also((arg) => $request['Domain'] = arg);
-    domainIAMRoleName?.also((arg) => $request['DomainIAMRoleName'] = arg);
-    enableCloudwatchLogsExports
-        ?.also((arg) => $request['EnableCloudwatchLogsExports'] = arg);
-    enableCustomerOwnedIp
-        ?.also((arg) => $request['EnableCustomerOwnedIp'] = arg);
-    enableIAMDatabaseAuthentication
-        ?.also((arg) => $request['EnableIAMDatabaseAuthentication'] = arg);
-    engine?.also((arg) => $request['Engine'] = arg);
-    iops?.also((arg) => $request['Iops'] = arg);
-    licenseModel?.also((arg) => $request['LicenseModel'] = arg);
-    multiAZ?.also((arg) => $request['MultiAZ'] = arg);
-    networkType?.also((arg) => $request['NetworkType'] = arg);
-    optionGroupName?.also((arg) => $request['OptionGroupName'] = arg);
-    port?.also((arg) => $request['Port'] = arg);
-    processorFeatures?.also((arg) => $request['ProcessorFeatures'] = arg);
-    publiclyAccessible?.also((arg) => $request['PubliclyAccessible'] = arg);
-    storageThroughput?.also((arg) => $request['StorageThroughput'] = arg);
-    storageType?.also((arg) => $request['StorageType'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
-    tdeCredentialArn?.also((arg) => $request['TdeCredentialArn'] = arg);
-    tdeCredentialPassword
-        ?.also((arg) => $request['TdeCredentialPassword'] = arg);
-    useDefaultProcessorFeatures
-        ?.also((arg) => $request['UseDefaultProcessorFeatures'] = arg);
-    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (allocatedStorage != null)
+        'AllocatedStorage': allocatedStorage.toString(),
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade.toString(),
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (backupTarget != null) 'BackupTarget': backupTarget,
+      if (copyTagsToSnapshot != null)
+        'CopyTagsToSnapshot': copyTagsToSnapshot.toString(),
+      if (customIamInstanceProfile != null)
+        'CustomIamInstanceProfile': customIamInstanceProfile,
+      if (dBClusterSnapshotIdentifier != null)
+        'DBClusterSnapshotIdentifier': dBClusterSnapshotIdentifier,
+      if (dBInstanceClass != null) 'DBInstanceClass': dBInstanceClass,
+      if (dBName != null) 'DBName': dBName,
+      if (dBParameterGroupName != null)
+        'DBParameterGroupName': dBParameterGroupName,
+      if (dBSnapshotIdentifier != null)
+        'DBSnapshotIdentifier': dBSnapshotIdentifier,
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (deletionProtection != null)
+        'DeletionProtection': deletionProtection.toString(),
+      if (domain != null) 'Domain': domain,
+      if (domainIAMRoleName != null) 'DomainIAMRoleName': domainIAMRoleName,
+      if (enableCloudwatchLogsExports != null)
+        if (enableCloudwatchLogsExports.isEmpty)
+          'EnableCloudwatchLogsExports': ''
+        else
+          for (var i1 = 0; i1 < enableCloudwatchLogsExports.length; i1++)
+            'EnableCloudwatchLogsExports.member.${i1 + 1}':
+                enableCloudwatchLogsExports[i1],
+      if (enableCustomerOwnedIp != null)
+        'EnableCustomerOwnedIp': enableCustomerOwnedIp.toString(),
+      if (enableIAMDatabaseAuthentication != null)
+        'EnableIAMDatabaseAuthentication':
+            enableIAMDatabaseAuthentication.toString(),
+      if (engine != null) 'Engine': engine,
+      if (iops != null) 'Iops': iops.toString(),
+      if (licenseModel != null) 'LicenseModel': licenseModel,
+      if (multiAZ != null) 'MultiAZ': multiAZ.toString(),
+      if (networkType != null) 'NetworkType': networkType,
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+      if (port != null) 'Port': port.toString(),
+      if (processorFeatures != null)
+        if (processorFeatures.isEmpty)
+          'ProcessorFeatures': ''
+        else
+          for (var i1 = 0; i1 < processorFeatures.length; i1++)
+            for (var e3 in processorFeatures[i1].toQueryMap().entries)
+              'ProcessorFeatures.ProcessorFeature.${i1 + 1}.${e3.key}':
+                  e3.value,
+      if (publiclyAccessible != null)
+        'PubliclyAccessible': publiclyAccessible.toString(),
+      if (storageThroughput != null)
+        'StorageThroughput': storageThroughput.toString(),
+      if (storageType != null) 'StorageType': storageType,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+      if (tdeCredentialArn != null) 'TdeCredentialArn': tdeCredentialArn,
+      if (tdeCredentialPassword != null)
+        'TdeCredentialPassword': tdeCredentialPassword,
+      if (useDefaultProcessorFeatures != null)
+        'UseDefaultProcessorFeatures': useDefaultProcessorFeatures.toString(),
+      if (vpcSecurityGroupIds != null)
+        if (vpcSecurityGroupIds.isEmpty)
+          'VpcSecurityGroupIds': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupIds.length; i1++)
+            'VpcSecurityGroupIds.VpcSecurityGroupId.${i1 + 1}':
+                vpcSecurityGroupIds[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'RestoreDBInstanceFromDBSnapshot',
@@ -16180,8 +16858,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RestoreDBInstanceFromDBSnapshotMessage'],
-      shapes: shapes,
       resultWrapper: 'RestoreDBInstanceFromDBSnapshotResult',
     );
     return RestoreDBInstanceFromDBSnapshotResult.fromXml($result);
@@ -16758,67 +17434,109 @@ class Rds {
     bool? useDefaultProcessorFeatures,
     List<String>? vpcSecurityGroupIds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceClass'] = dBInstanceClass;
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
-    $request['Engine'] = engine;
-    $request['S3BucketName'] = s3BucketName;
-    $request['S3IngestionRoleArn'] = s3IngestionRoleArn;
-    $request['SourceEngine'] = sourceEngine;
-    $request['SourceEngineVersion'] = sourceEngineVersion;
-    allocatedStorage?.also((arg) => $request['AllocatedStorage'] = arg);
-    autoMinorVersionUpgrade
-        ?.also((arg) => $request['AutoMinorVersionUpgrade'] = arg);
-    availabilityZone?.also((arg) => $request['AvailabilityZone'] = arg);
-    backupRetentionPeriod
-        ?.also((arg) => $request['BackupRetentionPeriod'] = arg);
-    copyTagsToSnapshot?.also((arg) => $request['CopyTagsToSnapshot'] = arg);
-    dBName?.also((arg) => $request['DBName'] = arg);
-    dBParameterGroupName?.also((arg) => $request['DBParameterGroupName'] = arg);
-    dBSecurityGroups?.also((arg) => $request['DBSecurityGroups'] = arg);
-    dBSubnetGroupName?.also((arg) => $request['DBSubnetGroupName'] = arg);
-    deletionProtection?.also((arg) => $request['DeletionProtection'] = arg);
-    enableCloudwatchLogsExports
-        ?.also((arg) => $request['EnableCloudwatchLogsExports'] = arg);
-    enableIAMDatabaseAuthentication
-        ?.also((arg) => $request['EnableIAMDatabaseAuthentication'] = arg);
-    enablePerformanceInsights
-        ?.also((arg) => $request['EnablePerformanceInsights'] = arg);
-    engineVersion?.also((arg) => $request['EngineVersion'] = arg);
-    iops?.also((arg) => $request['Iops'] = arg);
-    kmsKeyId?.also((arg) => $request['KmsKeyId'] = arg);
-    licenseModel?.also((arg) => $request['LicenseModel'] = arg);
-    manageMasterUserPassword
-        ?.also((arg) => $request['ManageMasterUserPassword'] = arg);
-    masterUserPassword?.also((arg) => $request['MasterUserPassword'] = arg);
-    masterUserSecretKmsKeyId
-        ?.also((arg) => $request['MasterUserSecretKmsKeyId'] = arg);
-    masterUsername?.also((arg) => $request['MasterUsername'] = arg);
-    maxAllocatedStorage?.also((arg) => $request['MaxAllocatedStorage'] = arg);
-    monitoringInterval?.also((arg) => $request['MonitoringInterval'] = arg);
-    monitoringRoleArn?.also((arg) => $request['MonitoringRoleArn'] = arg);
-    multiAZ?.also((arg) => $request['MultiAZ'] = arg);
-    networkType?.also((arg) => $request['NetworkType'] = arg);
-    optionGroupName?.also((arg) => $request['OptionGroupName'] = arg);
-    performanceInsightsKMSKeyId
-        ?.also((arg) => $request['PerformanceInsightsKMSKeyId'] = arg);
-    performanceInsightsRetentionPeriod
-        ?.also((arg) => $request['PerformanceInsightsRetentionPeriod'] = arg);
-    port?.also((arg) => $request['Port'] = arg);
-    preferredBackupWindow
-        ?.also((arg) => $request['PreferredBackupWindow'] = arg);
-    preferredMaintenanceWindow
-        ?.also((arg) => $request['PreferredMaintenanceWindow'] = arg);
-    processorFeatures?.also((arg) => $request['ProcessorFeatures'] = arg);
-    publiclyAccessible?.also((arg) => $request['PubliclyAccessible'] = arg);
-    s3Prefix?.also((arg) => $request['S3Prefix'] = arg);
-    storageEncrypted?.also((arg) => $request['StorageEncrypted'] = arg);
-    storageThroughput?.also((arg) => $request['StorageThroughput'] = arg);
-    storageType?.also((arg) => $request['StorageType'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
-    useDefaultProcessorFeatures
-        ?.also((arg) => $request['UseDefaultProcessorFeatures'] = arg);
-    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $request = <String, String>{
+      'DBInstanceClass': dBInstanceClass,
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+      'Engine': engine,
+      'S3BucketName': s3BucketName,
+      'S3IngestionRoleArn': s3IngestionRoleArn,
+      'SourceEngine': sourceEngine,
+      'SourceEngineVersion': sourceEngineVersion,
+      if (allocatedStorage != null)
+        'AllocatedStorage': allocatedStorage.toString(),
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade.toString(),
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (backupRetentionPeriod != null)
+        'BackupRetentionPeriod': backupRetentionPeriod.toString(),
+      if (copyTagsToSnapshot != null)
+        'CopyTagsToSnapshot': copyTagsToSnapshot.toString(),
+      if (dBName != null) 'DBName': dBName,
+      if (dBParameterGroupName != null)
+        'DBParameterGroupName': dBParameterGroupName,
+      if (dBSecurityGroups != null)
+        if (dBSecurityGroups.isEmpty)
+          'DBSecurityGroups': ''
+        else
+          for (var i1 = 0; i1 < dBSecurityGroups.length; i1++)
+            'DBSecurityGroups.DBSecurityGroupName.${i1 + 1}':
+                dBSecurityGroups[i1],
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (deletionProtection != null)
+        'DeletionProtection': deletionProtection.toString(),
+      if (enableCloudwatchLogsExports != null)
+        if (enableCloudwatchLogsExports.isEmpty)
+          'EnableCloudwatchLogsExports': ''
+        else
+          for (var i1 = 0; i1 < enableCloudwatchLogsExports.length; i1++)
+            'EnableCloudwatchLogsExports.member.${i1 + 1}':
+                enableCloudwatchLogsExports[i1],
+      if (enableIAMDatabaseAuthentication != null)
+        'EnableIAMDatabaseAuthentication':
+            enableIAMDatabaseAuthentication.toString(),
+      if (enablePerformanceInsights != null)
+        'EnablePerformanceInsights': enablePerformanceInsights.toString(),
+      if (engineVersion != null) 'EngineVersion': engineVersion,
+      if (iops != null) 'Iops': iops.toString(),
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (licenseModel != null) 'LicenseModel': licenseModel,
+      if (manageMasterUserPassword != null)
+        'ManageMasterUserPassword': manageMasterUserPassword.toString(),
+      if (masterUserPassword != null) 'MasterUserPassword': masterUserPassword,
+      if (masterUserSecretKmsKeyId != null)
+        'MasterUserSecretKmsKeyId': masterUserSecretKmsKeyId,
+      if (masterUsername != null) 'MasterUsername': masterUsername,
+      if (maxAllocatedStorage != null)
+        'MaxAllocatedStorage': maxAllocatedStorage.toString(),
+      if (monitoringInterval != null)
+        'MonitoringInterval': monitoringInterval.toString(),
+      if (monitoringRoleArn != null) 'MonitoringRoleArn': monitoringRoleArn,
+      if (multiAZ != null) 'MultiAZ': multiAZ.toString(),
+      if (networkType != null) 'NetworkType': networkType,
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+      if (performanceInsightsKMSKeyId != null)
+        'PerformanceInsightsKMSKeyId': performanceInsightsKMSKeyId,
+      if (performanceInsightsRetentionPeriod != null)
+        'PerformanceInsightsRetentionPeriod':
+            performanceInsightsRetentionPeriod.toString(),
+      if (port != null) 'Port': port.toString(),
+      if (preferredBackupWindow != null)
+        'PreferredBackupWindow': preferredBackupWindow,
+      if (preferredMaintenanceWindow != null)
+        'PreferredMaintenanceWindow': preferredMaintenanceWindow,
+      if (processorFeatures != null)
+        if (processorFeatures.isEmpty)
+          'ProcessorFeatures': ''
+        else
+          for (var i1 = 0; i1 < processorFeatures.length; i1++)
+            for (var e3 in processorFeatures[i1].toQueryMap().entries)
+              'ProcessorFeatures.ProcessorFeature.${i1 + 1}.${e3.key}':
+                  e3.value,
+      if (publiclyAccessible != null)
+        'PubliclyAccessible': publiclyAccessible.toString(),
+      if (s3Prefix != null) 'S3Prefix': s3Prefix,
+      if (storageEncrypted != null)
+        'StorageEncrypted': storageEncrypted.toString(),
+      if (storageThroughput != null)
+        'StorageThroughput': storageThroughput.toString(),
+      if (storageType != null) 'StorageType': storageType,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+      if (useDefaultProcessorFeatures != null)
+        'UseDefaultProcessorFeatures': useDefaultProcessorFeatures.toString(),
+      if (vpcSecurityGroupIds != null)
+        if (vpcSecurityGroupIds.isEmpty)
+          'VpcSecurityGroupIds': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupIds.length; i1++)
+            'VpcSecurityGroupIds.VpcSecurityGroupId.${i1 + 1}':
+                vpcSecurityGroupIds[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'RestoreDBInstanceFromS3',
@@ -16826,8 +17544,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RestoreDBInstanceFromS3Message'],
-      shapes: shapes,
       resultWrapper: 'RestoreDBInstanceFromS3Result',
     );
     return RestoreDBInstanceFromS3Result.fromXml($result);
@@ -17351,56 +18067,91 @@ class Rds {
     bool? useLatestRestorableTime,
     List<String>? vpcSecurityGroupIds,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['TargetDBInstanceIdentifier'] = targetDBInstanceIdentifier;
-    allocatedStorage?.also((arg) => $request['AllocatedStorage'] = arg);
-    autoMinorVersionUpgrade
-        ?.also((arg) => $request['AutoMinorVersionUpgrade'] = arg);
-    availabilityZone?.also((arg) => $request['AvailabilityZone'] = arg);
-    backupTarget?.also((arg) => $request['BackupTarget'] = arg);
-    copyTagsToSnapshot?.also((arg) => $request['CopyTagsToSnapshot'] = arg);
-    customIamInstanceProfile
-        ?.also((arg) => $request['CustomIamInstanceProfile'] = arg);
-    dBInstanceClass?.also((arg) => $request['DBInstanceClass'] = arg);
-    dBName?.also((arg) => $request['DBName'] = arg);
-    dBParameterGroupName?.also((arg) => $request['DBParameterGroupName'] = arg);
-    dBSubnetGroupName?.also((arg) => $request['DBSubnetGroupName'] = arg);
-    deletionProtection?.also((arg) => $request['DeletionProtection'] = arg);
-    domain?.also((arg) => $request['Domain'] = arg);
-    domainIAMRoleName?.also((arg) => $request['DomainIAMRoleName'] = arg);
-    enableCloudwatchLogsExports
-        ?.also((arg) => $request['EnableCloudwatchLogsExports'] = arg);
-    enableCustomerOwnedIp
-        ?.also((arg) => $request['EnableCustomerOwnedIp'] = arg);
-    enableIAMDatabaseAuthentication
-        ?.also((arg) => $request['EnableIAMDatabaseAuthentication'] = arg);
-    engine?.also((arg) => $request['Engine'] = arg);
-    iops?.also((arg) => $request['Iops'] = arg);
-    licenseModel?.also((arg) => $request['LicenseModel'] = arg);
-    maxAllocatedStorage?.also((arg) => $request['MaxAllocatedStorage'] = arg);
-    multiAZ?.also((arg) => $request['MultiAZ'] = arg);
-    networkType?.also((arg) => $request['NetworkType'] = arg);
-    optionGroupName?.also((arg) => $request['OptionGroupName'] = arg);
-    port?.also((arg) => $request['Port'] = arg);
-    processorFeatures?.also((arg) => $request['ProcessorFeatures'] = arg);
-    publiclyAccessible?.also((arg) => $request['PubliclyAccessible'] = arg);
-    restoreTime?.also((arg) => $request['RestoreTime'] = _s.iso8601ToJson(arg));
-    sourceDBInstanceAutomatedBackupsArn
-        ?.also((arg) => $request['SourceDBInstanceAutomatedBackupsArn'] = arg);
-    sourceDBInstanceIdentifier
-        ?.also((arg) => $request['SourceDBInstanceIdentifier'] = arg);
-    sourceDbiResourceId?.also((arg) => $request['SourceDbiResourceId'] = arg);
-    storageThroughput?.also((arg) => $request['StorageThroughput'] = arg);
-    storageType?.also((arg) => $request['StorageType'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
-    tdeCredentialArn?.also((arg) => $request['TdeCredentialArn'] = arg);
-    tdeCredentialPassword
-        ?.also((arg) => $request['TdeCredentialPassword'] = arg);
-    useDefaultProcessorFeatures
-        ?.also((arg) => $request['UseDefaultProcessorFeatures'] = arg);
-    useLatestRestorableTime
-        ?.also((arg) => $request['UseLatestRestorableTime'] = arg);
-    vpcSecurityGroupIds?.also((arg) => $request['VpcSecurityGroupIds'] = arg);
+    final $request = <String, String>{
+      'TargetDBInstanceIdentifier': targetDBInstanceIdentifier,
+      if (allocatedStorage != null)
+        'AllocatedStorage': allocatedStorage.toString(),
+      if (autoMinorVersionUpgrade != null)
+        'AutoMinorVersionUpgrade': autoMinorVersionUpgrade.toString(),
+      if (availabilityZone != null) 'AvailabilityZone': availabilityZone,
+      if (backupTarget != null) 'BackupTarget': backupTarget,
+      if (copyTagsToSnapshot != null)
+        'CopyTagsToSnapshot': copyTagsToSnapshot.toString(),
+      if (customIamInstanceProfile != null)
+        'CustomIamInstanceProfile': customIamInstanceProfile,
+      if (dBInstanceClass != null) 'DBInstanceClass': dBInstanceClass,
+      if (dBName != null) 'DBName': dBName,
+      if (dBParameterGroupName != null)
+        'DBParameterGroupName': dBParameterGroupName,
+      if (dBSubnetGroupName != null) 'DBSubnetGroupName': dBSubnetGroupName,
+      if (deletionProtection != null)
+        'DeletionProtection': deletionProtection.toString(),
+      if (domain != null) 'Domain': domain,
+      if (domainIAMRoleName != null) 'DomainIAMRoleName': domainIAMRoleName,
+      if (enableCloudwatchLogsExports != null)
+        if (enableCloudwatchLogsExports.isEmpty)
+          'EnableCloudwatchLogsExports': ''
+        else
+          for (var i1 = 0; i1 < enableCloudwatchLogsExports.length; i1++)
+            'EnableCloudwatchLogsExports.member.${i1 + 1}':
+                enableCloudwatchLogsExports[i1],
+      if (enableCustomerOwnedIp != null)
+        'EnableCustomerOwnedIp': enableCustomerOwnedIp.toString(),
+      if (enableIAMDatabaseAuthentication != null)
+        'EnableIAMDatabaseAuthentication':
+            enableIAMDatabaseAuthentication.toString(),
+      if (engine != null) 'Engine': engine,
+      if (iops != null) 'Iops': iops.toString(),
+      if (licenseModel != null) 'LicenseModel': licenseModel,
+      if (maxAllocatedStorage != null)
+        'MaxAllocatedStorage': maxAllocatedStorage.toString(),
+      if (multiAZ != null) 'MultiAZ': multiAZ.toString(),
+      if (networkType != null) 'NetworkType': networkType,
+      if (optionGroupName != null) 'OptionGroupName': optionGroupName,
+      if (port != null) 'Port': port.toString(),
+      if (processorFeatures != null)
+        if (processorFeatures.isEmpty)
+          'ProcessorFeatures': ''
+        else
+          for (var i1 = 0; i1 < processorFeatures.length; i1++)
+            for (var e3 in processorFeatures[i1].toQueryMap().entries)
+              'ProcessorFeatures.ProcessorFeature.${i1 + 1}.${e3.key}':
+                  e3.value,
+      if (publiclyAccessible != null)
+        'PubliclyAccessible': publiclyAccessible.toString(),
+      if (restoreTime != null) 'RestoreTime': _s.iso8601ToJson(restoreTime),
+      if (sourceDBInstanceAutomatedBackupsArn != null)
+        'SourceDBInstanceAutomatedBackupsArn':
+            sourceDBInstanceAutomatedBackupsArn,
+      if (sourceDBInstanceIdentifier != null)
+        'SourceDBInstanceIdentifier': sourceDBInstanceIdentifier,
+      if (sourceDbiResourceId != null)
+        'SourceDbiResourceId': sourceDbiResourceId,
+      if (storageThroughput != null)
+        'StorageThroughput': storageThroughput.toString(),
+      if (storageType != null) 'StorageType': storageType,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.Tag.${i1 + 1}.${e3.key}': e3.value,
+      if (tdeCredentialArn != null) 'TdeCredentialArn': tdeCredentialArn,
+      if (tdeCredentialPassword != null)
+        'TdeCredentialPassword': tdeCredentialPassword,
+      if (useDefaultProcessorFeatures != null)
+        'UseDefaultProcessorFeatures': useDefaultProcessorFeatures.toString(),
+      if (useLatestRestorableTime != null)
+        'UseLatestRestorableTime': useLatestRestorableTime.toString(),
+      if (vpcSecurityGroupIds != null)
+        if (vpcSecurityGroupIds.isEmpty)
+          'VpcSecurityGroupIds': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupIds.length; i1++)
+            'VpcSecurityGroupIds.VpcSecurityGroupId.${i1 + 1}':
+                vpcSecurityGroupIds[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'RestoreDBInstanceToPointInTime',
@@ -17408,8 +18159,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RestoreDBInstanceToPointInTimeMessage'],
-      shapes: shapes,
       resultWrapper: 'RestoreDBInstanceToPointInTimeResult',
     );
     return RestoreDBInstanceToPointInTimeResult.fromXml($result);
@@ -17475,13 +18224,15 @@ class Rds {
     String? eC2SecurityGroupName,
     String? eC2SecurityGroupOwnerId,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBSecurityGroupName'] = dBSecurityGroupName;
-    cidrip?.also((arg) => $request['CIDRIP'] = arg);
-    eC2SecurityGroupId?.also((arg) => $request['EC2SecurityGroupId'] = arg);
-    eC2SecurityGroupName?.also((arg) => $request['EC2SecurityGroupName'] = arg);
-    eC2SecurityGroupOwnerId
-        ?.also((arg) => $request['EC2SecurityGroupOwnerId'] = arg);
+    final $request = <String, String>{
+      'DBSecurityGroupName': dBSecurityGroupName,
+      if (cidrip != null) 'CIDRIP': cidrip,
+      if (eC2SecurityGroupId != null) 'EC2SecurityGroupId': eC2SecurityGroupId,
+      if (eC2SecurityGroupName != null)
+        'EC2SecurityGroupName': eC2SecurityGroupName,
+      if (eC2SecurityGroupOwnerId != null)
+        'EC2SecurityGroupOwnerId': eC2SecurityGroupOwnerId,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'RevokeDBSecurityGroupIngress',
@@ -17489,8 +18240,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['RevokeDBSecurityGroupIngressMessage'],
-      shapes: shapes,
       resultWrapper: 'RevokeDBSecurityGroupIngressResult',
     );
     return RevokeDBSecurityGroupIngressResult.fromXml($result);
@@ -17541,13 +18290,16 @@ class Rds {
     bool? applyImmediately,
     bool? engineNativeAuditFieldsIncluded,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['KmsKeyId'] = kmsKeyId;
-    $request['Mode'] = mode.toValue();
-    $request['ResourceArn'] = resourceArn;
-    applyImmediately?.also((arg) => $request['ApplyImmediately'] = arg);
-    engineNativeAuditFieldsIncluded
-        ?.also((arg) => $request['EngineNativeAuditFieldsIncluded'] = arg);
+    final $request = <String, String>{
+      'KmsKeyId': kmsKeyId,
+      'Mode': mode.toValue(),
+      'ResourceArn': resourceArn,
+      if (applyImmediately != null)
+        'ApplyImmediately': applyImmediately.toString(),
+      if (engineNativeAuditFieldsIncluded != null)
+        'EngineNativeAuditFieldsIncluded':
+            engineNativeAuditFieldsIncluded.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'StartActivityStream',
@@ -17555,8 +18307,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['StartActivityStreamRequest'],
-      shapes: shapes,
       resultWrapper: 'StartActivityStreamResult',
     );
     return StartActivityStreamResponse.fromXml($result);
@@ -17584,8 +18334,9 @@ class Rds {
   Future<StartDBClusterResult> startDBCluster({
     required String dBClusterIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'StartDBCluster',
@@ -17593,8 +18344,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['StartDBClusterMessage'],
-      shapes: shapes,
       resultWrapper: 'StartDBClusterResult',
     );
     return StartDBClusterResult.fromXml($result);
@@ -17631,8 +18380,9 @@ class Rds {
   Future<StartDBInstanceResult> startDBInstance({
     required String dBInstanceIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'StartDBInstance',
@@ -17640,8 +18390,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['StartDBInstanceMessage'],
-      shapes: shapes,
       resultWrapper: 'StartDBInstanceResult',
     );
     return StartDBInstanceResult.fromXml($result);
@@ -17712,12 +18460,13 @@ class Rds {
     String? kmsKeyId,
     String? preSignedUrl,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['SourceDBInstanceArn'] = sourceDBInstanceArn;
-    backupRetentionPeriod
-        ?.also((arg) => $request['BackupRetentionPeriod'] = arg);
-    kmsKeyId?.also((arg) => $request['KmsKeyId'] = arg);
-    preSignedUrl?.also((arg) => $request['PreSignedUrl'] = arg);
+    final $request = <String, String>{
+      'SourceDBInstanceArn': sourceDBInstanceArn,
+      if (backupRetentionPeriod != null)
+        'BackupRetentionPeriod': backupRetentionPeriod.toString(),
+      if (kmsKeyId != null) 'KmsKeyId': kmsKeyId,
+      if (preSignedUrl != null) 'PreSignedUrl': preSignedUrl,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'StartDBInstanceAutomatedBackupsReplication',
@@ -17725,8 +18474,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['StartDBInstanceAutomatedBackupsReplicationMessage'],
-      shapes: shapes,
       resultWrapper: 'StartDBInstanceAutomatedBackupsReplicationResult',
     );
     return StartDBInstanceAutomatedBackupsReplicationResult.fromXml($result);
@@ -17886,14 +18633,20 @@ class Rds {
     List<String>? exportOnly,
     String? s3Prefix,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ExportTaskIdentifier'] = exportTaskIdentifier;
-    $request['IamRoleArn'] = iamRoleArn;
-    $request['KmsKeyId'] = kmsKeyId;
-    $request['S3BucketName'] = s3BucketName;
-    $request['SourceArn'] = sourceArn;
-    exportOnly?.also((arg) => $request['ExportOnly'] = arg);
-    s3Prefix?.also((arg) => $request['S3Prefix'] = arg);
+    final $request = <String, String>{
+      'ExportTaskIdentifier': exportTaskIdentifier,
+      'IamRoleArn': iamRoleArn,
+      'KmsKeyId': kmsKeyId,
+      'S3BucketName': s3BucketName,
+      'SourceArn': sourceArn,
+      if (exportOnly != null)
+        if (exportOnly.isEmpty)
+          'ExportOnly': ''
+        else
+          for (var i1 = 0; i1 < exportOnly.length; i1++)
+            'ExportOnly.member.${i1 + 1}': exportOnly[i1],
+      if (s3Prefix != null) 'S3Prefix': s3Prefix,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'StartExportTask',
@@ -17901,8 +18654,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['StartExportTaskMessage'],
-      shapes: shapes,
       resultWrapper: 'StartExportTaskResult',
     );
     return ExportTask.fromXml($result);
@@ -17938,9 +18689,11 @@ class Rds {
     required String resourceArn,
     bool? applyImmediately,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ResourceArn'] = resourceArn;
-    applyImmediately?.also((arg) => $request['ApplyImmediately'] = arg);
+    final $request = <String, String>{
+      'ResourceArn': resourceArn,
+      if (applyImmediately != null)
+        'ApplyImmediately': applyImmediately.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'StopActivityStream',
@@ -17948,8 +18701,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['StopActivityStreamRequest'],
-      shapes: shapes,
       resultWrapper: 'StopActivityStreamResult',
     );
     return StopActivityStreamResponse.fromXml($result);
@@ -17978,8 +18729,9 @@ class Rds {
   Future<StopDBClusterResult> stopDBCluster({
     required String dBClusterIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBClusterIdentifier'] = dBClusterIdentifier;
+    final $request = <String, String>{
+      'DBClusterIdentifier': dBClusterIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'StopDBCluster',
@@ -17987,8 +18739,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['StopDBClusterMessage'],
-      shapes: shapes,
       resultWrapper: 'StopDBClusterResult',
     );
     return StopDBClusterResult.fromXml($result);
@@ -18024,9 +18774,11 @@ class Rds {
     required String dBInstanceIdentifier,
     String? dBSnapshotIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
-    dBSnapshotIdentifier?.also((arg) => $request['DBSnapshotIdentifier'] = arg);
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+      if (dBSnapshotIdentifier != null)
+        'DBSnapshotIdentifier': dBSnapshotIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'StopDBInstance',
@@ -18034,8 +18786,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['StopDBInstanceMessage'],
-      shapes: shapes,
       resultWrapper: 'StopDBInstanceResult',
     );
     return StopDBInstanceResult.fromXml($result);
@@ -18062,8 +18812,9 @@ class Rds {
       stopDBInstanceAutomatedBackupsReplication({
     required String sourceDBInstanceArn,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['SourceDBInstanceArn'] = sourceDBInstanceArn;
+    final $request = <String, String>{
+      'SourceDBInstanceArn': sourceDBInstanceArn,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'StopDBInstanceAutomatedBackupsReplication',
@@ -18071,8 +18822,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['StopDBInstanceAutomatedBackupsReplicationMessage'],
-      shapes: shapes,
       resultWrapper: 'StopDBInstanceAutomatedBackupsReplicationResult',
     );
     return StopDBInstanceAutomatedBackupsReplicationResult.fromXml($result);
@@ -18122,9 +18871,11 @@ class Rds {
       30,
       1152921504606846976,
     );
-    final $request = <String, dynamic>{};
-    $request['BlueGreenDeploymentIdentifier'] = blueGreenDeploymentIdentifier;
-    switchoverTimeout?.also((arg) => $request['SwitchoverTimeout'] = arg);
+    final $request = <String, String>{
+      'BlueGreenDeploymentIdentifier': blueGreenDeploymentIdentifier,
+      if (switchoverTimeout != null)
+        'SwitchoverTimeout': switchoverTimeout.toString(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'SwitchoverBlueGreenDeployment',
@@ -18132,8 +18883,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['SwitchoverBlueGreenDeploymentRequest'],
-      shapes: shapes,
       resultWrapper: 'SwitchoverBlueGreenDeploymentResult',
     );
     return SwitchoverBlueGreenDeploymentResponse.fromXml($result);
@@ -18160,8 +18909,9 @@ class Rds {
   Future<SwitchoverReadReplicaResult> switchoverReadReplica({
     required String dBInstanceIdentifier,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DBInstanceIdentifier'] = dBInstanceIdentifier;
+    final $request = <String, String>{
+      'DBInstanceIdentifier': dBInstanceIdentifier,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'SwitchoverReadReplica',
@@ -18169,8 +18919,6 @@ class Rds {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['SwitchoverReadReplicaMessage'],
-      shapes: shapes,
       resultWrapper: 'SwitchoverReadReplicaResult',
     );
     return SwitchoverReadReplicaResult.fromXml($result);
@@ -19161,6 +19909,25 @@ class CloudwatchLogsExportConfiguration {
       if (enableLogTypes != null) 'EnableLogTypes': enableLogTypes,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final disableLogTypes = this.disableLogTypes;
+    final enableLogTypes = this.enableLogTypes;
+    return {
+      if (disableLogTypes != null)
+        if (disableLogTypes.isEmpty)
+          'DisableLogTypes': ''
+        else
+          for (var i1 = 0; i1 < disableLogTypes.length; i1++)
+            'DisableLogTypes.member.${i1 + 1}': disableLogTypes[i1],
+      if (enableLogTypes != null)
+        if (enableLogTypes.isEmpty)
+          'EnableLogTypes': ''
+        else
+          for (var i1 = 0; i1 < enableLogTypes.length; i1++)
+            'EnableLogTypes.member.${i1 + 1}': enableLogTypes[i1],
+    };
+  }
 }
 
 /// This data type is used as a response element in the
@@ -19346,6 +20113,29 @@ class ConnectionPoolConfiguration {
         'MaxIdleConnectionsPercent': maxIdleConnectionsPercent,
       if (sessionPinningFilters != null)
         'SessionPinningFilters': sessionPinningFilters,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final connectionBorrowTimeout = this.connectionBorrowTimeout;
+    final initQuery = this.initQuery;
+    final maxConnectionsPercent = this.maxConnectionsPercent;
+    final maxIdleConnectionsPercent = this.maxIdleConnectionsPercent;
+    final sessionPinningFilters = this.sessionPinningFilters;
+    return {
+      if (connectionBorrowTimeout != null)
+        'ConnectionBorrowTimeout': connectionBorrowTimeout.toString(),
+      if (initQuery != null) 'InitQuery': initQuery,
+      if (maxConnectionsPercent != null)
+        'MaxConnectionsPercent': maxConnectionsPercent.toString(),
+      if (maxIdleConnectionsPercent != null)
+        'MaxIdleConnectionsPercent': maxIdleConnectionsPercent.toString(),
+      if (sessionPinningFilters != null)
+        if (sessionPinningFilters.isEmpty)
+          'SessionPinningFilters': ''
+        else
+          for (var i1 = 0; i1 < sessionPinningFilters.length; i1++)
+            'SessionPinningFilters.member.${i1 + 1}': sessionPinningFilters[i1],
     };
   }
 }
@@ -26736,6 +27526,19 @@ class Filter {
       'Values': values,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final name = this.name;
+    final values = this.values;
+    return {
+      'Name': name,
+      if (values.isEmpty)
+        'Value': ''
+      else
+        for (var i1 = 0; i1 < values.length; i1++)
+          'Value.Value.${i1 + 1}': values[i1],
+    };
+  }
 }
 
 /// A data type representing an Aurora global database.
@@ -27596,6 +28399,41 @@ class OptionConfiguration {
         'VpcSecurityGroupMemberships': vpcSecurityGroupMemberships,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final optionName = this.optionName;
+    final dBSecurityGroupMemberships = this.dBSecurityGroupMemberships;
+    final optionSettings = this.optionSettings;
+    final optionVersion = this.optionVersion;
+    final port = this.port;
+    final vpcSecurityGroupMemberships = this.vpcSecurityGroupMemberships;
+    return {
+      'OptionName': optionName,
+      if (dBSecurityGroupMemberships != null)
+        if (dBSecurityGroupMemberships.isEmpty)
+          'DBSecurityGroupName': ''
+        else
+          for (var i1 = 0; i1 < dBSecurityGroupMemberships.length; i1++)
+            'DBSecurityGroupName.DBSecurityGroupName.${i1 + 1}':
+                dBSecurityGroupMemberships[i1],
+      if (optionSettings != null)
+        if (optionSettings.isEmpty)
+          'OptionSetting': ''
+        else
+          for (var i1 = 0; i1 < optionSettings.length; i1++)
+            for (var e3 in optionSettings[i1].toQueryMap().entries)
+              'OptionSetting.OptionSetting.${i1 + 1}.${e3.key}': e3.value,
+      if (optionVersion != null) 'OptionVersion': optionVersion,
+      if (port != null) 'Port': port.toString(),
+      if (vpcSecurityGroupMemberships != null)
+        if (vpcSecurityGroupMemberships.isEmpty)
+          'VpcSecurityGroupId': ''
+        else
+          for (var i1 = 0; i1 < vpcSecurityGroupMemberships.length; i1++)
+            'VpcSecurityGroupId.VpcSecurityGroupId.${i1 + 1}':
+                vpcSecurityGroupMemberships[i1],
+    };
+  }
 }
 
 /// <p/>
@@ -28145,6 +28983,29 @@ class OptionSetting {
       if (value != null) 'Value': value,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final allowedValues = this.allowedValues;
+    final applyType = this.applyType;
+    final dataType = this.dataType;
+    final defaultValue = this.defaultValue;
+    final description = this.description;
+    final isCollection = this.isCollection;
+    final isModifiable = this.isModifiable;
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (allowedValues != null) 'AllowedValues': allowedValues,
+      if (applyType != null) 'ApplyType': applyType,
+      if (dataType != null) 'DataType': dataType,
+      if (defaultValue != null) 'DefaultValue': defaultValue,
+      if (description != null) 'Description': description,
+      if (isCollection != null) 'IsCollection': isCollection.toString(),
+      if (isModifiable != null) 'IsModifiable': isModifiable.toString(),
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// The version for an option. Option group option versions are returned by the
@@ -28685,6 +29546,39 @@ class Parameter {
         'SupportedEngineModes': supportedEngineModes,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final allowedValues = this.allowedValues;
+    final applyMethod = this.applyMethod;
+    final applyType = this.applyType;
+    final dataType = this.dataType;
+    final description = this.description;
+    final isModifiable = this.isModifiable;
+    final minimumEngineVersion = this.minimumEngineVersion;
+    final parameterName = this.parameterName;
+    final parameterValue = this.parameterValue;
+    final source = this.source;
+    final supportedEngineModes = this.supportedEngineModes;
+    return {
+      if (allowedValues != null) 'AllowedValues': allowedValues,
+      if (applyMethod != null) 'ApplyMethod': applyMethod.toValue(),
+      if (applyType != null) 'ApplyType': applyType,
+      if (dataType != null) 'DataType': dataType,
+      if (description != null) 'Description': description,
+      if (isModifiable != null) 'IsModifiable': isModifiable.toString(),
+      if (minimumEngineVersion != null)
+        'MinimumEngineVersion': minimumEngineVersion,
+      if (parameterName != null) 'ParameterName': parameterName,
+      if (parameterValue != null) 'ParameterValue': parameterValue,
+      if (source != null) 'Source': source,
+      if (supportedEngineModes != null)
+        if (supportedEngineModes.isEmpty)
+          'SupportedEngineModes': ''
+        else
+          for (var i1 = 0; i1 < supportedEngineModes.length; i1++)
+            'SupportedEngineModes.member.${i1 + 1}': supportedEngineModes[i1],
+    };
+  }
 }
 
 /// A list of the log types whose configuration is still pending. In other
@@ -29111,6 +30005,15 @@ class ProcessorFeature {
   }
 
   Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      if (name != null) 'Name': name,
+      if (value != null) 'Value': value,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
     final name = this.name;
     final value = this.value;
     return {
@@ -30019,6 +30922,25 @@ class ScalingConfiguration {
       if (timeoutAction != null) 'TimeoutAction': timeoutAction,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final autoPause = this.autoPause;
+    final maxCapacity = this.maxCapacity;
+    final minCapacity = this.minCapacity;
+    final secondsBeforeTimeout = this.secondsBeforeTimeout;
+    final secondsUntilAutoPause = this.secondsUntilAutoPause;
+    final timeoutAction = this.timeoutAction;
+    return {
+      if (autoPause != null) 'AutoPause': autoPause.toString(),
+      if (maxCapacity != null) 'MaxCapacity': maxCapacity.toString(),
+      if (minCapacity != null) 'MinCapacity': minCapacity.toString(),
+      if (secondsBeforeTimeout != null)
+        'SecondsBeforeTimeout': secondsBeforeTimeout.toString(),
+      if (secondsUntilAutoPause != null)
+        'SecondsUntilAutoPause': secondsUntilAutoPause.toString(),
+      if (timeoutAction != null) 'TimeoutAction': timeoutAction,
+    };
+  }
 }
 
 /// Shows the scaling configuration for an Aurora DB cluster in
@@ -30134,6 +31056,15 @@ class ServerlessV2ScalingConfiguration {
     return {
       if (maxCapacity != null) 'MaxCapacity': maxCapacity,
       if (minCapacity != null) 'MinCapacity': minCapacity,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final maxCapacity = this.maxCapacity;
+    final minCapacity = this.minCapacity;
+    return {
+      if (maxCapacity != null) 'MaxCapacity': maxCapacity.toString(),
+      if (minCapacity != null) 'MinCapacity': minCapacity.toString(),
     };
   }
 }
@@ -30765,6 +31696,15 @@ class Tag {
       if (value != null) 'Value': value,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      if (key != null) 'Key': key,
+      if (value != null) 'Value': value,
+    };
+  }
 }
 
 /// <p/>
@@ -31132,6 +32072,24 @@ class UserAuthConfig {
   });
 
   Map<String, dynamic> toJson() {
+    final authScheme = this.authScheme;
+    final clientPasswordAuthType = this.clientPasswordAuthType;
+    final description = this.description;
+    final iAMAuth = this.iAMAuth;
+    final secretArn = this.secretArn;
+    final userName = this.userName;
+    return {
+      if (authScheme != null) 'AuthScheme': authScheme.toValue(),
+      if (clientPasswordAuthType != null)
+        'ClientPasswordAuthType': clientPasswordAuthType.toValue(),
+      if (description != null) 'Description': description,
+      if (iAMAuth != null) 'IAMAuth': iAMAuth.toValue(),
+      if (secretArn != null) 'SecretArn': secretArn,
+      if (userName != null) 'UserName': userName,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
     final authScheme = this.authScheme;
     final clientPasswordAuthType = this.clientPasswordAuthType;
     final description = this.description;

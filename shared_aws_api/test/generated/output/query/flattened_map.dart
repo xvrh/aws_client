@@ -17,13 +17,11 @@ import 'package:shared_aws_api/shared.dart'
         nonNullableTimeStampFromJson,
         timeStampFromJson;
 
-import 'flattened_map.meta.dart';
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
 /// Flattened map
 class FlattenedMap {
   final _s.QueryProtocol _protocol;
-  final Map<String, _s.Shape> shapes;
 
   FlattenedMap({
     required String region,
@@ -31,7 +29,7 @@ class FlattenedMap {
     _s.AwsClientCredentialsProvider? credentialsProvider,
     _s.Client? client,
     String? endpointUrl,
-  })  : _protocol = _s.QueryProtocol(
+  }) : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
             endpointPrefix: 'FlattenedMap',
@@ -40,9 +38,7 @@ class FlattenedMap {
           credentials: credentials,
           credentialsProvider: credentialsProvider,
           endpointUrl: endpointUrl,
-        ),
-        shapes = shapesJson
-            .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
+        );
 
   /// Closes the internal HTTP client if none was provided at creation.
   /// If a client was passed as a constructor argument, this becomes a noop.
@@ -85,17 +81,6 @@ class OutputShape {
             ),
       ),
     );
-  }
-
-  Map<String, String> toQueryMap() {
-    final map = this.map;
-    return {
-      if (map != null)
-        for (var e1 in map.entries.toList().asMap().entries) ...{
-          'Map.entry.${e1.key + 1}.key': e1.value.key,
-          'Map.entry.${e1.key + 1}.value': e1.value.value,
-        },
-    };
   }
 }
 

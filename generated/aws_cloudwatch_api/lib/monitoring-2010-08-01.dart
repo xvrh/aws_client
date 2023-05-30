@@ -17,7 +17,6 @@ import 'package:shared_aws_api/shared.dart'
         nonNullableTimeStampFromJson,
         timeStampFromJson;
 
-import 'monitoring-2010-08-01.meta.dart';
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
 /// Amazon CloudWatch monitors your Amazon Web Services (Amazon Web Services)
@@ -38,7 +37,6 @@ export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 /// and operational health.
 class CloudWatch {
   final _s.QueryProtocol _protocol;
-  final Map<String, _s.Shape> shapes;
 
   CloudWatch({
     required String region,
@@ -46,7 +44,7 @@ class CloudWatch {
     _s.AwsClientCredentialsProvider? credentialsProvider,
     _s.Client? client,
     String? endpointUrl,
-  })  : _protocol = _s.QueryProtocol(
+  }) : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
             endpointPrefix: 'monitoring',
@@ -55,9 +53,7 @@ class CloudWatch {
           credentials: credentials,
           credentialsProvider: credentialsProvider,
           endpointUrl: endpointUrl,
-        ),
-        shapes = shapesJson
-            .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
+        );
 
   /// Closes the internal HTTP client if none was provided at creation.
   /// If a client was passed as a constructor argument, this becomes a noop.
@@ -103,8 +99,13 @@ class CloudWatch {
   Future<void> deleteAlarms({
     required List<String> alarmNames,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['AlarmNames'] = alarmNames;
+    final $request = <String, String>{
+      if (alarmNames.isEmpty)
+        'AlarmNames': ''
+      else
+        for (var i1 = 0; i1 < alarmNames.length; i1++)
+          'AlarmNames.member.${i1 + 1}': alarmNames[i1],
+    };
     await _protocol.send(
       $request,
       action: 'DeleteAlarms',
@@ -112,8 +113,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteAlarmsInput'],
-      shapes: shapes,
     );
   }
 
@@ -202,15 +201,24 @@ class CloudWatch {
     SingleMetricAnomalyDetector? singleMetricAnomalyDetector,
     String? stat,
   }) async {
-    final $request = <String, dynamic>{};
-    dimensions?.also((arg) => $request['Dimensions'] = arg);
-    metricMathAnomalyDetector
-        ?.also((arg) => $request['MetricMathAnomalyDetector'] = arg);
-    metricName?.also((arg) => $request['MetricName'] = arg);
-    namespace?.also((arg) => $request['Namespace'] = arg);
-    singleMetricAnomalyDetector
-        ?.also((arg) => $request['SingleMetricAnomalyDetector'] = arg);
-    stat?.also((arg) => $request['Stat'] = arg);
+    final $request = <String, String>{
+      if (dimensions != null)
+        if (dimensions.isEmpty)
+          'Dimensions': ''
+        else
+          for (var i1 = 0; i1 < dimensions.length; i1++)
+            for (var e3 in dimensions[i1].toQueryMap().entries)
+              'Dimensions.member.${i1 + 1}.${e3.key}': e3.value,
+      if (metricMathAnomalyDetector != null)
+        for (var e1 in metricMathAnomalyDetector.toQueryMap().entries)
+          'MetricMathAnomalyDetector.${e1.key}': e1.value,
+      if (metricName != null) 'MetricName': metricName,
+      if (namespace != null) 'Namespace': namespace,
+      if (singleMetricAnomalyDetector != null)
+        for (var e1 in singleMetricAnomalyDetector.toQueryMap().entries)
+          'SingleMetricAnomalyDetector.${e1.key}': e1.value,
+      if (stat != null) 'Stat': stat,
+    };
     await _protocol.send(
       $request,
       action: 'DeleteAnomalyDetector',
@@ -218,8 +226,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteAnomalyDetectorInput'],
-      shapes: shapes,
       resultWrapper: 'DeleteAnomalyDetectorResult',
     );
   }
@@ -237,8 +243,13 @@ class CloudWatch {
   Future<void> deleteDashboards({
     required List<String> dashboardNames,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DashboardNames'] = dashboardNames;
+    final $request = <String, String>{
+      if (dashboardNames.isEmpty)
+        'DashboardNames': ''
+      else
+        for (var i1 = 0; i1 < dashboardNames.length; i1++)
+          'DashboardNames.member.${i1 + 1}': dashboardNames[i1],
+    };
     await _protocol.send(
       $request,
       action: 'DeleteDashboards',
@@ -246,8 +257,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteDashboardsInput'],
-      shapes: shapes,
       resultWrapper: 'DeleteDashboardsResult',
     );
   }
@@ -268,8 +277,13 @@ class CloudWatch {
   Future<DeleteInsightRulesOutput> deleteInsightRules({
     required List<String> ruleNames,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['RuleNames'] = ruleNames;
+    final $request = <String, String>{
+      if (ruleNames.isEmpty)
+        'RuleNames': ''
+      else
+        for (var i1 = 0; i1 < ruleNames.length; i1++)
+          'RuleNames.member.${i1 + 1}': ruleNames[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DeleteInsightRules',
@@ -277,8 +291,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteInsightRulesInput'],
-      shapes: shapes,
       resultWrapper: 'DeleteInsightRulesResult',
     );
     return DeleteInsightRulesOutput.fromXml($result);
@@ -295,8 +307,9 @@ class CloudWatch {
   Future<void> deleteMetricStream({
     required String name,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Name'] = name;
+    final $request = <String, String>{
+      'Name': name,
+    };
     await _protocol.send(
       $request,
       action: 'DeleteMetricStream',
@@ -304,8 +317,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DeleteMetricStreamInput'],
-      shapes: shapes,
       resultWrapper: 'DeleteMetricStreamResult',
     );
   }
@@ -371,16 +382,21 @@ class CloudWatch {
       1,
       100,
     );
-    final $request = <String, dynamic>{};
-    alarmName?.also((arg) => $request['AlarmName'] = arg);
-    alarmTypes?.also(
-        (arg) => $request['AlarmTypes'] = arg.map((e) => e.toValue()).toList());
-    endDate?.also((arg) => $request['EndDate'] = _s.iso8601ToJson(arg));
-    historyItemType?.also((arg) => $request['HistoryItemType'] = arg.toValue());
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    nextToken?.also((arg) => $request['NextToken'] = arg);
-    scanBy?.also((arg) => $request['ScanBy'] = arg.toValue());
-    startDate?.also((arg) => $request['StartDate'] = _s.iso8601ToJson(arg));
+    final $request = <String, String>{
+      if (alarmName != null) 'AlarmName': alarmName,
+      if (alarmTypes != null)
+        if (alarmTypes.isEmpty)
+          'AlarmTypes': ''
+        else
+          for (var i1 = 0; i1 < alarmTypes.length; i1++)
+            'AlarmTypes.member.${i1 + 1}': alarmTypes[i1].toValue(),
+      if (endDate != null) 'EndDate': _s.iso8601ToJson(endDate),
+      if (historyItemType != null) 'HistoryItemType': historyItemType.toValue(),
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (scanBy != null) 'ScanBy': scanBy.toValue(),
+      if (startDate != null) 'StartDate': _s.iso8601ToJson(startDate),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeAlarmHistory',
@@ -388,8 +404,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeAlarmHistoryInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeAlarmHistoryResult',
     );
     return DescribeAlarmHistoryOutput.fromXml($result);
@@ -492,17 +506,28 @@ class CloudWatch {
       1,
       100,
     );
-    final $request = <String, dynamic>{};
-    actionPrefix?.also((arg) => $request['ActionPrefix'] = arg);
-    alarmNamePrefix?.also((arg) => $request['AlarmNamePrefix'] = arg);
-    alarmNames?.also((arg) => $request['AlarmNames'] = arg);
-    alarmTypes?.also(
-        (arg) => $request['AlarmTypes'] = arg.map((e) => e.toValue()).toList());
-    childrenOfAlarmName?.also((arg) => $request['ChildrenOfAlarmName'] = arg);
-    maxRecords?.also((arg) => $request['MaxRecords'] = arg);
-    nextToken?.also((arg) => $request['NextToken'] = arg);
-    parentsOfAlarmName?.also((arg) => $request['ParentsOfAlarmName'] = arg);
-    stateValue?.also((arg) => $request['StateValue'] = arg.toValue());
+    final $request = <String, String>{
+      if (actionPrefix != null) 'ActionPrefix': actionPrefix,
+      if (alarmNamePrefix != null) 'AlarmNamePrefix': alarmNamePrefix,
+      if (alarmNames != null)
+        if (alarmNames.isEmpty)
+          'AlarmNames': ''
+        else
+          for (var i1 = 0; i1 < alarmNames.length; i1++)
+            'AlarmNames.member.${i1 + 1}': alarmNames[i1],
+      if (alarmTypes != null)
+        if (alarmTypes.isEmpty)
+          'AlarmTypes': ''
+        else
+          for (var i1 = 0; i1 < alarmTypes.length; i1++)
+            'AlarmTypes.member.${i1 + 1}': alarmTypes[i1].toValue(),
+      if (childrenOfAlarmName != null)
+        'ChildrenOfAlarmName': childrenOfAlarmName,
+      if (maxRecords != null) 'MaxRecords': maxRecords.toString(),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (parentsOfAlarmName != null) 'ParentsOfAlarmName': parentsOfAlarmName,
+      if (stateValue != null) 'StateValue': stateValue.toValue(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeAlarms',
@@ -510,8 +535,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeAlarmsInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeAlarmsResult',
     );
     return DescribeAlarmsOutput.fromXml($result);
@@ -564,14 +587,21 @@ class CloudWatch {
       1,
       1152921504606846976,
     );
-    final $request = <String, dynamic>{};
-    $request['MetricName'] = metricName;
-    $request['Namespace'] = namespace;
-    dimensions?.also((arg) => $request['Dimensions'] = arg);
-    extendedStatistic?.also((arg) => $request['ExtendedStatistic'] = arg);
-    period?.also((arg) => $request['Period'] = arg);
-    statistic?.also((arg) => $request['Statistic'] = arg.toValue());
-    unit?.also((arg) => $request['Unit'] = arg.toValue());
+    final $request = <String, String>{
+      'MetricName': metricName,
+      'Namespace': namespace,
+      if (dimensions != null)
+        if (dimensions.isEmpty)
+          'Dimensions': ''
+        else
+          for (var i1 = 0; i1 < dimensions.length; i1++)
+            for (var e3 in dimensions[i1].toQueryMap().entries)
+              'Dimensions.member.${i1 + 1}.${e3.key}': e3.value,
+      if (extendedStatistic != null) 'ExtendedStatistic': extendedStatistic,
+      if (period != null) 'Period': period.toString(),
+      if (statistic != null) 'Statistic': statistic.toValue(),
+      if (unit != null) 'Unit': unit.toValue(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeAlarmsForMetric',
@@ -579,8 +609,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeAlarmsForMetricInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeAlarmsForMetricResult',
     );
     return DescribeAlarmsForMetricOutput.fromXml($result);
@@ -644,14 +672,26 @@ class CloudWatch {
       1,
       1152921504606846976,
     );
-    final $request = <String, dynamic>{};
-    anomalyDetectorTypes?.also((arg) => $request['AnomalyDetectorTypes'] =
-        arg.map((e) => e.toValue()).toList());
-    dimensions?.also((arg) => $request['Dimensions'] = arg);
-    maxResults?.also((arg) => $request['MaxResults'] = arg);
-    metricName?.also((arg) => $request['MetricName'] = arg);
-    namespace?.also((arg) => $request['Namespace'] = arg);
-    nextToken?.also((arg) => $request['NextToken'] = arg);
+    final $request = <String, String>{
+      if (anomalyDetectorTypes != null)
+        if (anomalyDetectorTypes.isEmpty)
+          'AnomalyDetectorTypes': ''
+        else
+          for (var i1 = 0; i1 < anomalyDetectorTypes.length; i1++)
+            'AnomalyDetectorTypes.member.${i1 + 1}':
+                anomalyDetectorTypes[i1].toValue(),
+      if (dimensions != null)
+        if (dimensions.isEmpty)
+          'Dimensions': ''
+        else
+          for (var i1 = 0; i1 < dimensions.length; i1++)
+            for (var e3 in dimensions[i1].toQueryMap().entries)
+              'Dimensions.member.${i1 + 1}.${e3.key}': e3.value,
+      if (maxResults != null) 'MaxResults': maxResults.toString(),
+      if (metricName != null) 'MetricName': metricName,
+      if (namespace != null) 'Namespace': namespace,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeAnomalyDetectors',
@@ -659,8 +699,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeAnomalyDetectorsInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeAnomalyDetectorsResult',
     );
     return DescribeAnomalyDetectorsOutput.fromXml($result);
@@ -691,9 +729,10 @@ class CloudWatch {
       1,
       500,
     );
-    final $request = <String, dynamic>{};
-    maxResults?.also((arg) => $request['MaxResults'] = arg);
-    nextToken?.also((arg) => $request['NextToken'] = arg);
+    final $request = <String, String>{
+      if (maxResults != null) 'MaxResults': maxResults.toString(),
+      if (nextToken != null) 'NextToken': nextToken,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DescribeInsightRules',
@@ -701,8 +740,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DescribeInsightRulesInput'],
-      shapes: shapes,
       resultWrapper: 'DescribeInsightRulesResult',
     );
     return DescribeInsightRulesOutput.fromXml($result);
@@ -716,8 +753,13 @@ class CloudWatch {
   Future<void> disableAlarmActions({
     required List<String> alarmNames,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['AlarmNames'] = alarmNames;
+    final $request = <String, String>{
+      if (alarmNames.isEmpty)
+        'AlarmNames': ''
+      else
+        for (var i1 = 0; i1 < alarmNames.length; i1++)
+          'AlarmNames.member.${i1 + 1}': alarmNames[i1],
+    };
     await _protocol.send(
       $request,
       action: 'DisableAlarmActions',
@@ -725,8 +767,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DisableAlarmActionsInput'],
-      shapes: shapes,
     );
   }
 
@@ -743,8 +783,13 @@ class CloudWatch {
   Future<DisableInsightRulesOutput> disableInsightRules({
     required List<String> ruleNames,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['RuleNames'] = ruleNames;
+    final $request = <String, String>{
+      if (ruleNames.isEmpty)
+        'RuleNames': ''
+      else
+        for (var i1 = 0; i1 < ruleNames.length; i1++)
+          'RuleNames.member.${i1 + 1}': ruleNames[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'DisableInsightRules',
@@ -752,8 +797,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['DisableInsightRulesInput'],
-      shapes: shapes,
       resultWrapper: 'DisableInsightRulesResult',
     );
     return DisableInsightRulesOutput.fromXml($result);
@@ -766,8 +809,13 @@ class CloudWatch {
   Future<void> enableAlarmActions({
     required List<String> alarmNames,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['AlarmNames'] = alarmNames;
+    final $request = <String, String>{
+      if (alarmNames.isEmpty)
+        'AlarmNames': ''
+      else
+        for (var i1 = 0; i1 < alarmNames.length; i1++)
+          'AlarmNames.member.${i1 + 1}': alarmNames[i1],
+    };
     await _protocol.send(
       $request,
       action: 'EnableAlarmActions',
@@ -775,8 +823,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['EnableAlarmActionsInput'],
-      shapes: shapes,
     );
   }
 
@@ -794,8 +840,13 @@ class CloudWatch {
   Future<EnableInsightRulesOutput> enableInsightRules({
     required List<String> ruleNames,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['RuleNames'] = ruleNames;
+    final $request = <String, String>{
+      if (ruleNames.isEmpty)
+        'RuleNames': ''
+      else
+        for (var i1 = 0; i1 < ruleNames.length; i1++)
+          'RuleNames.member.${i1 + 1}': ruleNames[i1],
+    };
     final $result = await _protocol.send(
       $request,
       action: 'EnableInsightRules',
@@ -803,8 +854,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['EnableInsightRulesInput'],
-      shapes: shapes,
       resultWrapper: 'EnableInsightRulesResult',
     );
     return EnableInsightRulesOutput.fromXml($result);
@@ -826,8 +875,9 @@ class CloudWatch {
   Future<GetDashboardOutput> getDashboard({
     required String dashboardName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DashboardName'] = dashboardName;
+    final $request = <String, String>{
+      'DashboardName': dashboardName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'GetDashboard',
@@ -835,8 +885,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['GetDashboardInput'],
-      shapes: shapes,
       resultWrapper: 'GetDashboardResult',
     );
     return GetDashboardOutput.fromXml($result);
@@ -971,14 +1019,21 @@ class CloudWatch {
       1152921504606846976,
       isRequired: true,
     );
-    final $request = <String, dynamic>{};
-    $request['EndTime'] = _s.iso8601ToJson(endTime);
-    $request['Period'] = period;
-    $request['RuleName'] = ruleName;
-    $request['StartTime'] = _s.iso8601ToJson(startTime);
-    maxContributorCount?.also((arg) => $request['MaxContributorCount'] = arg);
-    metrics?.also((arg) => $request['Metrics'] = arg);
-    orderBy?.also((arg) => $request['OrderBy'] = arg);
+    final $request = <String, String>{
+      'EndTime': _s.iso8601ToJson(endTime),
+      'Period': period.toString(),
+      'RuleName': ruleName,
+      'StartTime': _s.iso8601ToJson(startTime),
+      if (maxContributorCount != null)
+        'MaxContributorCount': maxContributorCount.toString(),
+      if (metrics != null)
+        if (metrics.isEmpty)
+          'Metrics': ''
+        else
+          for (var i1 = 0; i1 < metrics.length; i1++)
+            'Metrics.member.${i1 + 1}': metrics[i1],
+      if (orderBy != null) 'OrderBy': orderBy,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'GetInsightRuleReport',
@@ -986,8 +1041,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['GetInsightRuleReportInput'],
-      shapes: shapes,
       resultWrapper: 'GetInsightRuleReportResult',
     );
     return GetInsightRuleReportOutput.fromXml($result);
@@ -1158,14 +1211,22 @@ class CloudWatch {
     String? nextToken,
     ScanBy? scanBy,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['EndTime'] = _s.iso8601ToJson(endTime);
-    $request['MetricDataQueries'] = metricDataQueries;
-    $request['StartTime'] = _s.iso8601ToJson(startTime);
-    labelOptions?.also((arg) => $request['LabelOptions'] = arg);
-    maxDatapoints?.also((arg) => $request['MaxDatapoints'] = arg);
-    nextToken?.also((arg) => $request['NextToken'] = arg);
-    scanBy?.also((arg) => $request['ScanBy'] = arg.toValue());
+    final $request = <String, String>{
+      'EndTime': _s.iso8601ToJson(endTime),
+      if (metricDataQueries.isEmpty)
+        'MetricDataQueries': ''
+      else
+        for (var i1 = 0; i1 < metricDataQueries.length; i1++)
+          for (var e3 in metricDataQueries[i1].toQueryMap().entries)
+            'MetricDataQueries.member.${i1 + 1}.${e3.key}': e3.value,
+      'StartTime': _s.iso8601ToJson(startTime),
+      if (labelOptions != null)
+        for (var e1 in labelOptions.toQueryMap().entries)
+          'LabelOptions.${e1.key}': e1.value,
+      if (maxDatapoints != null) 'MaxDatapoints': maxDatapoints.toString(),
+      if (nextToken != null) 'NextToken': nextToken,
+      if (scanBy != null) 'ScanBy': scanBy.toValue(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'GetMetricData',
@@ -1173,8 +1234,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['GetMetricDataInput'],
-      shapes: shapes,
       resultWrapper: 'GetMetricDataResult',
     );
     return GetMetricDataOutput.fromXml($result);
@@ -1381,17 +1440,33 @@ class CloudWatch {
       1152921504606846976,
       isRequired: true,
     );
-    final $request = <String, dynamic>{};
-    $request['EndTime'] = _s.iso8601ToJson(endTime);
-    $request['MetricName'] = metricName;
-    $request['Namespace'] = namespace;
-    $request['Period'] = period;
-    $request['StartTime'] = _s.iso8601ToJson(startTime);
-    dimensions?.also((arg) => $request['Dimensions'] = arg);
-    extendedStatistics?.also((arg) => $request['ExtendedStatistics'] = arg);
-    statistics?.also(
-        (arg) => $request['Statistics'] = arg.map((e) => e.toValue()).toList());
-    unit?.also((arg) => $request['Unit'] = arg.toValue());
+    final $request = <String, String>{
+      'EndTime': _s.iso8601ToJson(endTime),
+      'MetricName': metricName,
+      'Namespace': namespace,
+      'Period': period.toString(),
+      'StartTime': _s.iso8601ToJson(startTime),
+      if (dimensions != null)
+        if (dimensions.isEmpty)
+          'Dimensions': ''
+        else
+          for (var i1 = 0; i1 < dimensions.length; i1++)
+            for (var e3 in dimensions[i1].toQueryMap().entries)
+              'Dimensions.member.${i1 + 1}.${e3.key}': e3.value,
+      if (extendedStatistics != null)
+        if (extendedStatistics.isEmpty)
+          'ExtendedStatistics': ''
+        else
+          for (var i1 = 0; i1 < extendedStatistics.length; i1++)
+            'ExtendedStatistics.member.${i1 + 1}': extendedStatistics[i1],
+      if (statistics != null)
+        if (statistics.isEmpty)
+          'Statistics': ''
+        else
+          for (var i1 = 0; i1 < statistics.length; i1++)
+            'Statistics.member.${i1 + 1}': statistics[i1].toValue(),
+      if (unit != null) 'Unit': unit.toValue(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'GetMetricStatistics',
@@ -1399,8 +1474,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['GetMetricStatisticsInput'],
-      shapes: shapes,
       resultWrapper: 'GetMetricStatisticsResult',
     );
     return GetMetricStatisticsOutput.fromXml($result);
@@ -1419,8 +1492,9 @@ class CloudWatch {
   Future<GetMetricStreamOutput> getMetricStream({
     required String name,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Name'] = name;
+    final $request = <String, String>{
+      'Name': name,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'GetMetricStream',
@@ -1428,8 +1502,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['GetMetricStreamInput'],
-      shapes: shapes,
       resultWrapper: 'GetMetricStreamResult',
     );
     return GetMetricStreamOutput.fromXml($result);
@@ -1510,9 +1582,10 @@ class CloudWatch {
     required String metricWidget,
     String? outputFormat,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['MetricWidget'] = metricWidget;
-    outputFormat?.also((arg) => $request['OutputFormat'] = arg);
+    final $request = <String, String>{
+      'MetricWidget': metricWidget,
+      if (outputFormat != null) 'OutputFormat': outputFormat,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'GetMetricWidgetImage',
@@ -1520,8 +1593,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['GetMetricWidgetImageInput'],
-      shapes: shapes,
       resultWrapper: 'GetMetricWidgetImageResult',
     );
     return GetMetricWidgetImageOutput.fromXml($result);
@@ -1553,9 +1624,11 @@ class CloudWatch {
     String? dashboardNamePrefix,
     String? nextToken,
   }) async {
-    final $request = <String, dynamic>{};
-    dashboardNamePrefix?.also((arg) => $request['DashboardNamePrefix'] = arg);
-    nextToken?.also((arg) => $request['NextToken'] = arg);
+    final $request = <String, String>{
+      if (dashboardNamePrefix != null)
+        'DashboardNamePrefix': dashboardNamePrefix,
+      if (nextToken != null) 'NextToken': nextToken,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ListDashboards',
@@ -1563,8 +1636,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ListDashboardsInput'],
-      shapes: shapes,
       resultWrapper: 'ListDashboardsResult',
     );
     return ListDashboardsOutput.fromXml($result);
@@ -1600,10 +1671,11 @@ class CloudWatch {
       1,
       500,
     );
-    final $request = <String, dynamic>{};
-    $request['ResourceARN'] = resourceARN;
-    maxResults?.also((arg) => $request['MaxResults'] = arg);
-    nextToken?.also((arg) => $request['NextToken'] = arg);
+    final $request = <String, String>{
+      'ResourceARN': resourceARN,
+      if (maxResults != null) 'MaxResults': maxResults.toString(),
+      if (nextToken != null) 'NextToken': nextToken,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ListManagedInsightRules',
@@ -1611,8 +1683,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ListManagedInsightRulesInput'],
-      shapes: shapes,
       resultWrapper: 'ListManagedInsightRulesResult',
     );
     return ListManagedInsightRulesOutput.fromXml($result);
@@ -1641,9 +1711,10 @@ class CloudWatch {
       1,
       500,
     );
-    final $request = <String, dynamic>{};
-    maxResults?.also((arg) => $request['MaxResults'] = arg);
-    nextToken?.also((arg) => $request['NextToken'] = arg);
+    final $request = <String, String>{
+      if (maxResults != null) 'MaxResults': maxResults.toString(),
+      if (nextToken != null) 'NextToken': nextToken,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ListMetricStreams',
@@ -1651,8 +1722,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ListMetricStreamsInput'],
-      shapes: shapes,
       resultWrapper: 'ListMetricStreamsResult',
     );
     return ListMetricStreamsOutput.fromXml($result);
@@ -1736,15 +1805,22 @@ class CloudWatch {
     String? owningAccount,
     RecentlyActive? recentlyActive,
   }) async {
-    final $request = <String, dynamic>{};
-    dimensions?.also((arg) => $request['Dimensions'] = arg);
-    includeLinkedAccounts
-        ?.also((arg) => $request['IncludeLinkedAccounts'] = arg);
-    metricName?.also((arg) => $request['MetricName'] = arg);
-    namespace?.also((arg) => $request['Namespace'] = arg);
-    nextToken?.also((arg) => $request['NextToken'] = arg);
-    owningAccount?.also((arg) => $request['OwningAccount'] = arg);
-    recentlyActive?.also((arg) => $request['RecentlyActive'] = arg.toValue());
+    final $request = <String, String>{
+      if (dimensions != null)
+        if (dimensions.isEmpty)
+          'Dimensions': ''
+        else
+          for (var i1 = 0; i1 < dimensions.length; i1++)
+            for (var e3 in dimensions[i1].toQueryMap().entries)
+              'Dimensions.member.${i1 + 1}.${e3.key}': e3.value,
+      if (includeLinkedAccounts != null)
+        'IncludeLinkedAccounts': includeLinkedAccounts.toString(),
+      if (metricName != null) 'MetricName': metricName,
+      if (namespace != null) 'Namespace': namespace,
+      if (nextToken != null) 'NextToken': nextToken,
+      if (owningAccount != null) 'OwningAccount': owningAccount,
+      if (recentlyActive != null) 'RecentlyActive': recentlyActive.toValue(),
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ListMetrics',
@@ -1752,8 +1828,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ListMetricsInput'],
-      shapes: shapes,
       resultWrapper: 'ListMetricsResult',
     );
     return ListMetricsOutput.fromXml($result);
@@ -1784,8 +1858,9 @@ class CloudWatch {
   Future<ListTagsForResourceOutput> listTagsForResource({
     required String resourceARN,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ResourceARN'] = resourceARN;
+    final $request = <String, String>{
+      'ResourceARN': resourceARN,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'ListTagsForResource',
@@ -1793,8 +1868,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['ListTagsForResourceInput'],
-      shapes: shapes,
       resultWrapper: 'ListTagsForResourceResult',
     );
     return ListTagsForResourceOutput.fromXml($result);
@@ -1895,16 +1968,27 @@ class CloudWatch {
     SingleMetricAnomalyDetector? singleMetricAnomalyDetector,
     String? stat,
   }) async {
-    final $request = <String, dynamic>{};
-    configuration?.also((arg) => $request['Configuration'] = arg);
-    dimensions?.also((arg) => $request['Dimensions'] = arg);
-    metricMathAnomalyDetector
-        ?.also((arg) => $request['MetricMathAnomalyDetector'] = arg);
-    metricName?.also((arg) => $request['MetricName'] = arg);
-    namespace?.also((arg) => $request['Namespace'] = arg);
-    singleMetricAnomalyDetector
-        ?.also((arg) => $request['SingleMetricAnomalyDetector'] = arg);
-    stat?.also((arg) => $request['Stat'] = arg);
+    final $request = <String, String>{
+      if (configuration != null)
+        for (var e1 in configuration.toQueryMap().entries)
+          'Configuration.${e1.key}': e1.value,
+      if (dimensions != null)
+        if (dimensions.isEmpty)
+          'Dimensions': ''
+        else
+          for (var i1 = 0; i1 < dimensions.length; i1++)
+            for (var e3 in dimensions[i1].toQueryMap().entries)
+              'Dimensions.member.${i1 + 1}.${e3.key}': e3.value,
+      if (metricMathAnomalyDetector != null)
+        for (var e1 in metricMathAnomalyDetector.toQueryMap().entries)
+          'MetricMathAnomalyDetector.${e1.key}': e1.value,
+      if (metricName != null) 'MetricName': metricName,
+      if (namespace != null) 'Namespace': namespace,
+      if (singleMetricAnomalyDetector != null)
+        for (var e1 in singleMetricAnomalyDetector.toQueryMap().entries)
+          'SingleMetricAnomalyDetector.${e1.key}': e1.value,
+      if (stat != null) 'Stat': stat,
+    };
     await _protocol.send(
       $request,
       action: 'PutAnomalyDetector',
@@ -1912,8 +1996,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['PutAnomalyDetectorInput'],
-      shapes: shapes,
       resultWrapper: 'PutAnomalyDetectorResult',
     );
   }
@@ -2126,21 +2208,44 @@ class CloudWatch {
     List<String>? oKActions,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['AlarmName'] = alarmName;
-    $request['AlarmRule'] = alarmRule;
-    actionsEnabled?.also((arg) => $request['ActionsEnabled'] = arg);
-    actionsSuppressor?.also((arg) => $request['ActionsSuppressor'] = arg);
-    actionsSuppressorExtensionPeriod
-        ?.also((arg) => $request['ActionsSuppressorExtensionPeriod'] = arg);
-    actionsSuppressorWaitPeriod
-        ?.also((arg) => $request['ActionsSuppressorWaitPeriod'] = arg);
-    alarmActions?.also((arg) => $request['AlarmActions'] = arg);
-    alarmDescription?.also((arg) => $request['AlarmDescription'] = arg);
-    insufficientDataActions
-        ?.also((arg) => $request['InsufficientDataActions'] = arg);
-    oKActions?.also((arg) => $request['OKActions'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'AlarmName': alarmName,
+      'AlarmRule': alarmRule,
+      if (actionsEnabled != null) 'ActionsEnabled': actionsEnabled.toString(),
+      if (actionsSuppressor != null) 'ActionsSuppressor': actionsSuppressor,
+      if (actionsSuppressorExtensionPeriod != null)
+        'ActionsSuppressorExtensionPeriod':
+            actionsSuppressorExtensionPeriod.toString(),
+      if (actionsSuppressorWaitPeriod != null)
+        'ActionsSuppressorWaitPeriod': actionsSuppressorWaitPeriod.toString(),
+      if (alarmActions != null)
+        if (alarmActions.isEmpty)
+          'AlarmActions': ''
+        else
+          for (var i1 = 0; i1 < alarmActions.length; i1++)
+            'AlarmActions.member.${i1 + 1}': alarmActions[i1],
+      if (alarmDescription != null) 'AlarmDescription': alarmDescription,
+      if (insufficientDataActions != null)
+        if (insufficientDataActions.isEmpty)
+          'InsufficientDataActions': ''
+        else
+          for (var i1 = 0; i1 < insufficientDataActions.length; i1++)
+            'InsufficientDataActions.member.${i1 + 1}':
+                insufficientDataActions[i1],
+      if (oKActions != null)
+        if (oKActions.isEmpty)
+          'OKActions': ''
+        else
+          for (var i1 = 0; i1 < oKActions.length; i1++)
+            'OKActions.member.${i1 + 1}': oKActions[i1],
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.member.${i1 + 1}.${e3.key}': e3.value,
+    };
     await _protocol.send(
       $request,
       action: 'PutCompositeAlarm',
@@ -2148,8 +2253,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['PutCompositeAlarmInput'],
-      shapes: shapes,
     );
   }
 
@@ -2196,9 +2299,10 @@ class CloudWatch {
     required String dashboardBody,
     required String dashboardName,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['DashboardBody'] = dashboardBody;
-    $request['DashboardName'] = dashboardName;
+    final $request = <String, String>{
+      'DashboardBody': dashboardBody,
+      'DashboardName': dashboardName,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'PutDashboard',
@@ -2206,8 +2310,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['PutDashboardInput'],
-      shapes: shapes,
       resultWrapper: 'PutDashboardResult',
     );
     return PutDashboardOutput.fromXml($result);
@@ -2261,11 +2363,18 @@ class CloudWatch {
     String? ruleState,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['RuleDefinition'] = ruleDefinition;
-    $request['RuleName'] = ruleName;
-    ruleState?.also((arg) => $request['RuleState'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'RuleDefinition': ruleDefinition,
+      'RuleName': ruleName,
+      if (ruleState != null) 'RuleState': ruleState,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.member.${i1 + 1}.${e3.key}': e3.value,
+    };
     await _protocol.send(
       $request,
       action: 'PutInsightRule',
@@ -2273,8 +2382,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['PutInsightRuleInput'],
-      shapes: shapes,
       resultWrapper: 'PutInsightRuleResult',
     );
   }
@@ -2297,8 +2404,14 @@ class CloudWatch {
   Future<PutManagedInsightRulesOutput> putManagedInsightRules({
     required List<ManagedRule> managedRules,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ManagedRules'] = managedRules;
+    final $request = <String, String>{
+      if (managedRules.isEmpty)
+        'ManagedRules': ''
+      else
+        for (var i1 = 0; i1 < managedRules.length; i1++)
+          for (var e3 in managedRules[i1].toQueryMap().entries)
+            'ManagedRules.member.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'PutManagedInsightRules',
@@ -2306,8 +2419,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['PutManagedInsightRulesInput'],
-      shapes: shapes,
       resultWrapper: 'PutManagedInsightRulesResult',
     );
     return PutManagedInsightRulesOutput.fromXml($result);
@@ -2814,31 +2925,66 @@ class CloudWatch {
       1,
       1152921504606846976,
     );
-    final $request = <String, dynamic>{};
-    $request['AlarmName'] = alarmName;
-    $request['ComparisonOperator'] = comparisonOperator.toValue();
-    $request['EvaluationPeriods'] = evaluationPeriods;
-    actionsEnabled?.also((arg) => $request['ActionsEnabled'] = arg);
-    alarmActions?.also((arg) => $request['AlarmActions'] = arg);
-    alarmDescription?.also((arg) => $request['AlarmDescription'] = arg);
-    datapointsToAlarm?.also((arg) => $request['DatapointsToAlarm'] = arg);
-    dimensions?.also((arg) => $request['Dimensions'] = arg);
-    evaluateLowSampleCountPercentile
-        ?.also((arg) => $request['EvaluateLowSampleCountPercentile'] = arg);
-    extendedStatistic?.also((arg) => $request['ExtendedStatistic'] = arg);
-    insufficientDataActions
-        ?.also((arg) => $request['InsufficientDataActions'] = arg);
-    metricName?.also((arg) => $request['MetricName'] = arg);
-    metrics?.also((arg) => $request['Metrics'] = arg);
-    namespace?.also((arg) => $request['Namespace'] = arg);
-    oKActions?.also((arg) => $request['OKActions'] = arg);
-    period?.also((arg) => $request['Period'] = arg);
-    statistic?.also((arg) => $request['Statistic'] = arg.toValue());
-    tags?.also((arg) => $request['Tags'] = arg);
-    threshold?.also((arg) => $request['Threshold'] = arg);
-    thresholdMetricId?.also((arg) => $request['ThresholdMetricId'] = arg);
-    treatMissingData?.also((arg) => $request['TreatMissingData'] = arg);
-    unit?.also((arg) => $request['Unit'] = arg.toValue());
+    final $request = <String, String>{
+      'AlarmName': alarmName,
+      'ComparisonOperator': comparisonOperator.toValue(),
+      'EvaluationPeriods': evaluationPeriods.toString(),
+      if (actionsEnabled != null) 'ActionsEnabled': actionsEnabled.toString(),
+      if (alarmActions != null)
+        if (alarmActions.isEmpty)
+          'AlarmActions': ''
+        else
+          for (var i1 = 0; i1 < alarmActions.length; i1++)
+            'AlarmActions.member.${i1 + 1}': alarmActions[i1],
+      if (alarmDescription != null) 'AlarmDescription': alarmDescription,
+      if (datapointsToAlarm != null)
+        'DatapointsToAlarm': datapointsToAlarm.toString(),
+      if (dimensions != null)
+        if (dimensions.isEmpty)
+          'Dimensions': ''
+        else
+          for (var i1 = 0; i1 < dimensions.length; i1++)
+            for (var e3 in dimensions[i1].toQueryMap().entries)
+              'Dimensions.member.${i1 + 1}.${e3.key}': e3.value,
+      if (evaluateLowSampleCountPercentile != null)
+        'EvaluateLowSampleCountPercentile': evaluateLowSampleCountPercentile,
+      if (extendedStatistic != null) 'ExtendedStatistic': extendedStatistic,
+      if (insufficientDataActions != null)
+        if (insufficientDataActions.isEmpty)
+          'InsufficientDataActions': ''
+        else
+          for (var i1 = 0; i1 < insufficientDataActions.length; i1++)
+            'InsufficientDataActions.member.${i1 + 1}':
+                insufficientDataActions[i1],
+      if (metricName != null) 'MetricName': metricName,
+      if (metrics != null)
+        if (metrics.isEmpty)
+          'Metrics': ''
+        else
+          for (var i1 = 0; i1 < metrics.length; i1++)
+            for (var e3 in metrics[i1].toQueryMap().entries)
+              'Metrics.member.${i1 + 1}.${e3.key}': e3.value,
+      if (namespace != null) 'Namespace': namespace,
+      if (oKActions != null)
+        if (oKActions.isEmpty)
+          'OKActions': ''
+        else
+          for (var i1 = 0; i1 < oKActions.length; i1++)
+            'OKActions.member.${i1 + 1}': oKActions[i1],
+      if (period != null) 'Period': period.toString(),
+      if (statistic != null) 'Statistic': statistic.toValue(),
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.member.${i1 + 1}.${e3.key}': e3.value,
+      if (threshold != null) 'Threshold': threshold.toString(),
+      if (thresholdMetricId != null) 'ThresholdMetricId': thresholdMetricId,
+      if (treatMissingData != null) 'TreatMissingData': treatMissingData,
+      if (unit != null) 'Unit': unit.toValue(),
+    };
     await _protocol.send(
       $request,
       action: 'PutMetricAlarm',
@@ -2846,8 +2992,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['PutMetricAlarmInput'],
-      shapes: shapes,
     );
   }
 
@@ -2932,9 +3076,15 @@ class CloudWatch {
     required List<MetricDatum> metricData,
     required String namespace,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['MetricData'] = metricData;
-    $request['Namespace'] = namespace;
+    final $request = <String, String>{
+      if (metricData.isEmpty)
+        'MetricData': ''
+      else
+        for (var i1 = 0; i1 < metricData.length; i1++)
+          for (var e3 in metricData[i1].toQueryMap().entries)
+            'MetricData.member.${i1 + 1}.${e3.key}': e3.value,
+      'Namespace': namespace,
+    };
     await _protocol.send(
       $request,
       action: 'PutMetricData',
@@ -2942,8 +3092,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['PutMetricDataInput'],
-      shapes: shapes,
     );
   }
 
@@ -3100,18 +3248,42 @@ class CloudWatch {
     List<MetricStreamStatisticsConfiguration>? statisticsConfigurations,
     List<Tag>? tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['FirehoseArn'] = firehoseArn;
-    $request['Name'] = name;
-    $request['OutputFormat'] = outputFormat.toValue();
-    $request['RoleArn'] = roleArn;
-    excludeFilters?.also((arg) => $request['ExcludeFilters'] = arg);
-    includeFilters?.also((arg) => $request['IncludeFilters'] = arg);
-    includeLinkedAccountsMetrics
-        ?.also((arg) => $request['IncludeLinkedAccountsMetrics'] = arg);
-    statisticsConfigurations
-        ?.also((arg) => $request['StatisticsConfigurations'] = arg);
-    tags?.also((arg) => $request['Tags'] = arg);
+    final $request = <String, String>{
+      'FirehoseArn': firehoseArn,
+      'Name': name,
+      'OutputFormat': outputFormat.toValue(),
+      'RoleArn': roleArn,
+      if (excludeFilters != null)
+        if (excludeFilters.isEmpty)
+          'ExcludeFilters': ''
+        else
+          for (var i1 = 0; i1 < excludeFilters.length; i1++)
+            for (var e3 in excludeFilters[i1].toQueryMap().entries)
+              'ExcludeFilters.member.${i1 + 1}.${e3.key}': e3.value,
+      if (includeFilters != null)
+        if (includeFilters.isEmpty)
+          'IncludeFilters': ''
+        else
+          for (var i1 = 0; i1 < includeFilters.length; i1++)
+            for (var e3 in includeFilters[i1].toQueryMap().entries)
+              'IncludeFilters.member.${i1 + 1}.${e3.key}': e3.value,
+      if (includeLinkedAccountsMetrics != null)
+        'IncludeLinkedAccountsMetrics': includeLinkedAccountsMetrics.toString(),
+      if (statisticsConfigurations != null)
+        if (statisticsConfigurations.isEmpty)
+          'StatisticsConfigurations': ''
+        else
+          for (var i1 = 0; i1 < statisticsConfigurations.length; i1++)
+            for (var e3 in statisticsConfigurations[i1].toQueryMap().entries)
+              'StatisticsConfigurations.member.${i1 + 1}.${e3.key}': e3.value,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.member.${i1 + 1}.${e3.key}': e3.value,
+    };
     final $result = await _protocol.send(
       $request,
       action: 'PutMetricStream',
@@ -3119,8 +3291,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['PutMetricStreamInput'],
-      shapes: shapes,
       resultWrapper: 'PutMetricStreamResult',
     );
     return PutMetricStreamOutput.fromXml($result);
@@ -3171,11 +3341,12 @@ class CloudWatch {
     required StateValue stateValue,
     String? stateReasonData,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['AlarmName'] = alarmName;
-    $request['StateReason'] = stateReason;
-    $request['StateValue'] = stateValue.toValue();
-    stateReasonData?.also((arg) => $request['StateReasonData'] = arg);
+    final $request = <String, String>{
+      'AlarmName': alarmName,
+      'StateReason': stateReason,
+      'StateValue': stateValue.toValue(),
+      if (stateReasonData != null) 'StateReasonData': stateReasonData,
+    };
     await _protocol.send(
       $request,
       action: 'SetAlarmState',
@@ -3183,8 +3354,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['SetAlarmStateInput'],
-      shapes: shapes,
     );
   }
 
@@ -3203,8 +3372,13 @@ class CloudWatch {
   Future<void> startMetricStreams({
     required List<String> names,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Names'] = names;
+    final $request = <String, String>{
+      if (names.isEmpty)
+        'Names': ''
+      else
+        for (var i1 = 0; i1 < names.length; i1++)
+          'Names.member.${i1 + 1}': names[i1],
+    };
     await _protocol.send(
       $request,
       action: 'StartMetricStreams',
@@ -3212,8 +3386,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['StartMetricStreamsInput'],
-      shapes: shapes,
       resultWrapper: 'StartMetricStreamsResult',
     );
   }
@@ -3233,8 +3405,13 @@ class CloudWatch {
   Future<void> stopMetricStreams({
     required List<String> names,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Names'] = names;
+    final $request = <String, String>{
+      if (names.isEmpty)
+        'Names': ''
+      else
+        for (var i1 = 0; i1 < names.length; i1++)
+          'Names.member.${i1 + 1}': names[i1],
+    };
     await _protocol.send(
       $request,
       action: 'StopMetricStreams',
@@ -3242,8 +3419,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['StopMetricStreamsInput'],
-      shapes: shapes,
       resultWrapper: 'StopMetricStreamsResult',
     );
   }
@@ -3294,9 +3469,15 @@ class CloudWatch {
     required String resourceARN,
     required List<Tag> tags,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ResourceARN'] = resourceARN;
-    $request['Tags'] = tags;
+    final $request = <String, String>{
+      'ResourceARN': resourceARN,
+      if (tags.isEmpty)
+        'Tags': ''
+      else
+        for (var i1 = 0; i1 < tags.length; i1++)
+          for (var e3 in tags[i1].toQueryMap().entries)
+            'Tags.member.${i1 + 1}.${e3.key}': e3.value,
+    };
     await _protocol.send(
       $request,
       action: 'TagResource',
@@ -3304,8 +3485,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['TagResourceInput'],
-      shapes: shapes,
       resultWrapper: 'TagResourceResult',
     );
   }
@@ -3339,9 +3518,14 @@ class CloudWatch {
     required String resourceARN,
     required List<String> tagKeys,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['ResourceARN'] = resourceARN;
-    $request['TagKeys'] = tagKeys;
+    final $request = <String, String>{
+      'ResourceARN': resourceARN,
+      if (tagKeys.isEmpty)
+        'TagKeys': ''
+      else
+        for (var i1 = 0; i1 < tagKeys.length; i1++)
+          'TagKeys.member.${i1 + 1}': tagKeys[i1],
+    };
     await _protocol.send(
       $request,
       action: 'UntagResource',
@@ -3349,8 +3533,6 @@ class CloudWatch {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['UntagResourceInput'],
-      shapes: shapes,
       resultWrapper: 'UntagResourceResult',
     );
   }
@@ -3559,6 +3741,21 @@ class AnomalyDetectorConfiguration {
     final metricTimezone = this.metricTimezone;
     return {
       if (excludedTimeRanges != null) 'ExcludedTimeRanges': excludedTimeRanges,
+      if (metricTimezone != null) 'MetricTimezone': metricTimezone,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final excludedTimeRanges = this.excludedTimeRanges;
+    final metricTimezone = this.metricTimezone;
+    return {
+      if (excludedTimeRanges != null)
+        if (excludedTimeRanges.isEmpty)
+          'ExcludedTimeRanges': ''
+        else
+          for (var i1 = 0; i1 < excludedTimeRanges.length; i1++)
+            for (var e3 in excludedTimeRanges[i1].toQueryMap().entries)
+              'ExcludedTimeRanges.member.${i1 + 1}.${e3.key}': e3.value,
       if (metricTimezone != null) 'MetricTimezone': metricTimezone,
     };
   }
@@ -4131,6 +4328,15 @@ class Dimension {
       'Value': value,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      'Name': name,
+      'Value': value,
+    };
+  }
 }
 
 /// Represents filters for a dimension.
@@ -4147,6 +4353,15 @@ class DimensionFilter {
   });
 
   Map<String, dynamic> toJson() {
+    final name = this.name;
+    final value = this.value;
+    return {
+      'Name': name,
+      if (value != null) 'Value': value,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
     final name = this.name;
     final value = this.value;
     return {
@@ -4718,6 +4933,13 @@ class LabelOptions {
       if (timezone != null) 'Timezone': timezone,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final timezone = this.timezone;
+    return {
+      if (timezone != null) 'Timezone': timezone,
+    };
+  }
 }
 
 class ListDashboardsOutput {
@@ -4873,6 +5095,23 @@ class ManagedRule {
       if (tags != null) 'Tags': tags,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final resourceARN = this.resourceARN;
+    final templateName = this.templateName;
+    final tags = this.tags;
+    return {
+      'ResourceARN': resourceARN,
+      'TemplateName': templateName,
+      if (tags != null)
+        if (tags.isEmpty)
+          'Tags': ''
+        else
+          for (var i1 = 0; i1 < tags.length; i1++)
+            for (var e3 in tags[i1].toQueryMap().entries)
+              'Tags.member.${i1 + 1}.${e3.key}': e3.value,
+    };
+  }
 }
 
 /// Contains information about managed Contributor Insights rules, as returned
@@ -4985,6 +5224,23 @@ class Metric {
     final namespace = this.namespace;
     return {
       if (dimensions != null) 'Dimensions': dimensions,
+      if (metricName != null) 'MetricName': metricName,
+      if (namespace != null) 'Namespace': namespace,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final dimensions = this.dimensions;
+    final metricName = this.metricName;
+    final namespace = this.namespace;
+    return {
+      if (dimensions != null)
+        if (dimensions.isEmpty)
+          'Dimensions': ''
+        else
+          for (var i1 = 0; i1 < dimensions.length; i1++)
+            for (var e3 in dimensions[i1].toQueryMap().entries)
+              'Dimensions.member.${i1 + 1}.${e3.key}': e3.value,
       if (metricName != null) 'MetricName': metricName,
       if (namespace != null) 'Namespace': namespace,
     };
@@ -5344,6 +5600,27 @@ class MetricDataQuery {
       if (returnData != null) 'ReturnData': returnData,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final id = this.id;
+    final accountId = this.accountId;
+    final expression = this.expression;
+    final label = this.label;
+    final metricStat = this.metricStat;
+    final period = this.period;
+    final returnData = this.returnData;
+    return {
+      'Id': id,
+      if (accountId != null) 'AccountId': accountId,
+      if (expression != null) 'Expression': expression,
+      if (label != null) 'Label': label,
+      if (metricStat != null)
+        for (var e1 in metricStat.toQueryMap().entries)
+          'MetricStat.${e1.key}': e1.value,
+      if (period != null) 'Period': period.toString(),
+      if (returnData != null) 'ReturnData': returnData.toString(),
+    };
+  }
 }
 
 /// A <code>GetMetricData</code> call returns an array of
@@ -5505,6 +5782,48 @@ class MetricDatum {
       if (values != null) 'Values': values,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final metricName = this.metricName;
+    final counts = this.counts;
+    final dimensions = this.dimensions;
+    final statisticValues = this.statisticValues;
+    final storageResolution = this.storageResolution;
+    final timestamp = this.timestamp;
+    final unit = this.unit;
+    final value = this.value;
+    final values = this.values;
+    return {
+      'MetricName': metricName,
+      if (counts != null)
+        if (counts.isEmpty)
+          'Counts': ''
+        else
+          for (var i1 = 0; i1 < counts.length; i1++)
+            'Counts.member.${i1 + 1}': counts[i1].toString(),
+      if (dimensions != null)
+        if (dimensions.isEmpty)
+          'Dimensions': ''
+        else
+          for (var i1 = 0; i1 < dimensions.length; i1++)
+            for (var e3 in dimensions[i1].toQueryMap().entries)
+              'Dimensions.member.${i1 + 1}.${e3.key}': e3.value,
+      if (statisticValues != null)
+        for (var e1 in statisticValues.toQueryMap().entries)
+          'StatisticValues.${e1.key}': e1.value,
+      if (storageResolution != null)
+        'StorageResolution': storageResolution.toString(),
+      if (timestamp != null) 'Timestamp': _s.iso8601ToJson(timestamp),
+      if (unit != null) 'Unit': unit.toValue(),
+      if (value != null) 'Value': value.toString(),
+      if (values != null)
+        if (values.isEmpty)
+          'Values': ''
+        else
+          for (var i1 = 0; i1 < values.length; i1++)
+            'Values.member.${i1 + 1}': values[i1].toString(),
+    };
+  }
 }
 
 /// Indicates the CloudWatch math expression that provides the time series the
@@ -5539,6 +5858,19 @@ class MetricMathAnomalyDetector {
     final metricDataQueries = this.metricDataQueries;
     return {
       if (metricDataQueries != null) 'MetricDataQueries': metricDataQueries,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final metricDataQueries = this.metricDataQueries;
+    return {
+      if (metricDataQueries != null)
+        if (metricDataQueries.isEmpty)
+          'MetricDataQueries': ''
+        else
+          for (var i1 = 0; i1 < metricDataQueries.length; i1++)
+            for (var e3 in metricDataQueries[i1].toQueryMap().entries)
+              'MetricDataQueries.member.${i1 + 1}.${e3.key}': e3.value,
     };
   }
 }
@@ -5616,6 +5948,19 @@ class MetricStat {
     return {
       'Metric': metric,
       'Period': period,
+      'Stat': stat,
+      if (unit != null) 'Unit': unit.toValue(),
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final metric = this.metric;
+    final period = this.period;
+    final stat = this.stat;
+    final unit = this.unit;
+    return {
+      for (var e1 in metric.toQueryMap().entries) 'Metric.${e1.key}': e1.value,
+      'Period': period.toString(),
       'Stat': stat,
       if (unit != null) 'Unit': unit.toValue(),
     };
@@ -5721,6 +6066,20 @@ class MetricStreamFilter {
       if (namespace != null) 'Namespace': namespace,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final metricNames = this.metricNames;
+    final namespace = this.namespace;
+    return {
+      if (metricNames != null)
+        if (metricNames.isEmpty)
+          'MetricNames': ''
+        else
+          for (var i1 = 0; i1 < metricNames.length; i1++)
+            'MetricNames.member.${i1 + 1}': metricNames[i1],
+      if (namespace != null) 'Namespace': namespace,
+    };
+  }
 }
 
 enum MetricStreamOutputFormat {
@@ -5808,6 +6167,24 @@ class MetricStreamStatisticsConfiguration {
       'IncludeMetrics': includeMetrics,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final additionalStatistics = this.additionalStatistics;
+    final includeMetrics = this.includeMetrics;
+    return {
+      if (additionalStatistics.isEmpty)
+        'AdditionalStatistics': ''
+      else
+        for (var i1 = 0; i1 < additionalStatistics.length; i1++)
+          'AdditionalStatistics.member.${i1 + 1}': additionalStatistics[i1],
+      if (includeMetrics.isEmpty)
+        'IncludeMetrics': ''
+      else
+        for (var i1 = 0; i1 < includeMetrics.length; i1++)
+          for (var e3 in includeMetrics[i1].toQueryMap().entries)
+            'IncludeMetrics.member.${i1 + 1}.${e3.key}': e3.value,
+    };
+  }
 }
 
 /// This object contains the information for one metric that is to be streamed
@@ -5831,6 +6208,15 @@ class MetricStreamStatisticsMetric {
   }
 
   Map<String, dynamic> toJson() {
+    final metricName = this.metricName;
+    final namespace = this.namespace;
+    return {
+      'MetricName': metricName,
+      'Namespace': namespace,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
     final metricName = this.metricName;
     final namespace = this.namespace;
     return {
@@ -5978,6 +6364,15 @@ class Range {
       'StartTime': iso8601ToJson(startTime),
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final endTime = this.endTime;
+    final startTime = this.startTime;
+    return {
+      'EndTime': _s.iso8601ToJson(endTime),
+      'StartTime': _s.iso8601ToJson(startTime),
+    };
+  }
 }
 
 enum RecentlyActive {
@@ -6069,6 +6464,25 @@ class SingleMetricAnomalyDetector {
     final stat = this.stat;
     return {
       if (dimensions != null) 'Dimensions': dimensions,
+      if (metricName != null) 'MetricName': metricName,
+      if (namespace != null) 'Namespace': namespace,
+      if (stat != null) 'Stat': stat,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
+    final dimensions = this.dimensions;
+    final metricName = this.metricName;
+    final namespace = this.namespace;
+    final stat = this.stat;
+    return {
+      if (dimensions != null)
+        if (dimensions.isEmpty)
+          'Dimensions': ''
+        else
+          for (var i1 = 0; i1 < dimensions.length; i1++)
+            for (var e3 in dimensions[i1].toQueryMap().entries)
+              'Dimensions.member.${i1 + 1}.${e3.key}': e3.value,
       if (metricName != null) 'MetricName': metricName,
       if (namespace != null) 'Namespace': namespace,
       if (stat != null) 'Stat': stat,
@@ -6347,6 +6761,19 @@ class StatisticSet {
       'Sum': sum,
     };
   }
+
+  Map<String, String> toQueryMap() {
+    final maximum = this.maximum;
+    final minimum = this.minimum;
+    final sampleCount = this.sampleCount;
+    final sum = this.sum;
+    return {
+      'Maximum': maximum.toString(),
+      'Minimum': minimum.toString(),
+      'SampleCount': sampleCount.toString(),
+      'Sum': sum.toString(),
+    };
+  }
 }
 
 enum StatusCode {
@@ -6417,6 +6844,15 @@ class Tag {
   }
 
   Map<String, dynamic> toJson() {
+    final key = this.key;
+    final value = this.value;
+    return {
+      'Key': key,
+      'Value': value,
+    };
+  }
+
+  Map<String, String> toQueryMap() {
     final key = this.key;
     final value = this.value;
     return {

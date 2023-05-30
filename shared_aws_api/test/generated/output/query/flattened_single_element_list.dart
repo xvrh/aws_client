@@ -17,13 +17,11 @@ import 'package:shared_aws_api/shared.dart'
         nonNullableTimeStampFromJson,
         timeStampFromJson;
 
-import 'flattened_single_element_list.meta.dart';
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
 /// Flattened single element list
 class FlattenedSingleElementList {
   final _s.QueryProtocol _protocol;
-  final Map<String, _s.Shape> shapes;
 
   FlattenedSingleElementList({
     required String region,
@@ -31,7 +29,7 @@ class FlattenedSingleElementList {
     _s.AwsClientCredentialsProvider? credentialsProvider,
     _s.Client? client,
     String? endpointUrl,
-  })  : _protocol = _s.QueryProtocol(
+  }) : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
             endpointPrefix: 'FlattenedSingleElementList',
@@ -40,9 +38,7 @@ class FlattenedSingleElementList {
           credentials: credentials,
           credentialsProvider: credentialsProvider,
           endpointUrl: endpointUrl,
-        ),
-        shapes = shapesJson
-            .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
+        );
 
   /// Closes the internal HTTP client if none was provided at creation.
   /// If a client was passed as a constructor argument, this becomes a noop.
@@ -78,18 +74,6 @@ class OutputShape {
     return OutputShape(
       listMember: _s.extractXmlStringListValues(elem, 'ListMember'),
     );
-  }
-
-  Map<String, String> toQueryMap() {
-    final listMember = this.listMember;
-    return {
-      if (listMember != null)
-        if (listMember.isEmpty)
-          'ListMember': ''
-        else
-          for (var i1 = 0; i1 < listMember.length; i1++)
-            'ListMember.${i1 + 1}': listMember[i1],
-    };
   }
 }
 

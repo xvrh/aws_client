@@ -14,7 +14,6 @@ class QueryServiceBuilder extends ServiceBuilder {
     final isRegionRequired = !api.isGlobalService;
     return '''
   final _s.QueryProtocol _protocol;
-  final Map<String, _s.Shape> shapes;
 
   ${api.metadata.className}({
     ${isRegionRequired ? 'required String' : 'String?'} region,
@@ -29,13 +28,12 @@ class QueryServiceBuilder extends ServiceBuilder {
       credentials: credentials,
       credentialsProvider: credentialsProvider,
       endpointUrl: endpointUrl,
-    ),
-  shapes = shapesJson.map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
+    );
   ''';
   }
 
   @override
-  String imports() => "import '${api.fileBasename}.meta.dart';";
+  String imports() => '';
 
   @override
   String operationContent(Operation operation) {

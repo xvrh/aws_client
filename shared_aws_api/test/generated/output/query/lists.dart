@@ -17,13 +17,11 @@ import 'package:shared_aws_api/shared.dart'
         nonNullableTimeStampFromJson,
         timeStampFromJson;
 
-import 'lists.meta.dart';
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
 /// Lists
 class Lists {
   final _s.QueryProtocol _protocol;
-  final Map<String, _s.Shape> shapes;
 
   Lists({
     required String region,
@@ -31,7 +29,7 @@ class Lists {
     _s.AwsClientCredentialsProvider? credentialsProvider,
     _s.Client? client,
     String? endpointUrl,
-  })  : _protocol = _s.QueryProtocol(
+  }) : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
             endpointPrefix: 'Lists',
@@ -40,9 +38,7 @@ class Lists {
           credentials: credentials,
           credentialsProvider: credentialsProvider,
           endpointUrl: endpointUrl,
-        ),
-        shapes = shapesJson
-            .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
+        );
 
   /// Closes the internal HTTP client if none was provided at creation.
   /// If a client was passed as a constructor argument, this becomes a noop.
@@ -80,18 +76,6 @@ class OutputShape {
           .extractXmlChild(elem, 'ListMember')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
-  }
-
-  Map<String, String> toQueryMap() {
-    final listMember = this.listMember;
-    return {
-      if (listMember != null)
-        if (listMember.isEmpty)
-          'ListMember': ''
-        else
-          for (var i1 = 0; i1 < listMember.length; i1++)
-            'ListMember.member.${i1 + 1}': listMember[i1],
-    };
   }
 }
 

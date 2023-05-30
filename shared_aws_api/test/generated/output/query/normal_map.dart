@@ -17,13 +17,11 @@ import 'package:shared_aws_api/shared.dart'
         nonNullableTimeStampFromJson,
         timeStampFromJson;
 
-import 'normal_map.meta.dart';
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
 /// Normal map
 class NormalMap {
   final _s.QueryProtocol _protocol;
-  final Map<String, _s.Shape> shapes;
 
   NormalMap({
     required String region,
@@ -31,7 +29,7 @@ class NormalMap {
     _s.AwsClientCredentialsProvider? credentialsProvider,
     _s.Client? client,
     String? endpointUrl,
-  })  : _protocol = _s.QueryProtocol(
+  }) : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
             endpointPrefix: 'NormalMap',
@@ -40,9 +38,7 @@ class NormalMap {
           credentials: credentials,
           credentialsProvider: credentialsProvider,
           endpointUrl: endpointUrl,
-        ),
-        shapes = shapesJson
-            .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
+        );
 
   /// Closes the internal HTTP client if none was provided at creation.
   /// If a client was passed as a constructor argument, this becomes a noop.
@@ -87,18 +83,6 @@ class OutputShape {
       ),
     );
   }
-
-  Map<String, String> toQueryMap() {
-    final map = this.map;
-    return {
-      if (map != null)
-        for (var e1 in map.entries.toList().asMap().entries) ...{
-          'Map.entry.${e1.key + 1}.key': e1.value.key,
-          for (var e4 in e1.value.value.toQueryMap().entries)
-            'Map.entry.${e1.key + 1}.value.${e4.key}': e4.value,
-        },
-    };
-  }
 }
 
 class StructType {
@@ -111,13 +95,6 @@ class StructType {
     return StructType(
       foo: _s.extractXmlStringValue(elem, 'foo'),
     );
-  }
-
-  Map<String, String> toQueryMap() {
-    final foo = this.foo;
-    return {
-      if (foo != null) 'foo': foo,
-    };
   }
 }
 

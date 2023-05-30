@@ -117,6 +117,10 @@ export 'src/dynamo_document/document_client.dart';
 export 'src/dynamo_document/src/translator.dart';
 ''');
 
+    File(p.join(libDir, 'credential_providers.dart')).writeAsStringSync('''
+export 'src/credential_providers/aws_credential_providers.dart';
+''');
+
     var readmeTemplate =
         File(p.join(packageDir, 'README.template.md')).readAsStringSync();
     readmeTemplate = readmeTemplate.replaceAll('<!-- INSERT API LIST -->',

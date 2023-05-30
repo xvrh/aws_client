@@ -17,13 +17,11 @@ import 'package:shared_aws_api/shared.dart'
         nonNullableTimeStampFromJson,
         timeStampFromJson;
 
-import 'enum_output.meta.dart';
 export 'package:shared_aws_api/shared.dart' show AwsClientCredentials;
 
 /// Enum output
 class EnumOutput {
   final _s.QueryProtocol _protocol;
-  final Map<String, _s.Shape> shapes;
 
   EnumOutput({
     required String region,
@@ -31,7 +29,7 @@ class EnumOutput {
     _s.AwsClientCredentialsProvider? credentialsProvider,
     _s.Client? client,
     String? endpointUrl,
-  })  : _protocol = _s.QueryProtocol(
+  }) : _protocol = _s.QueryProtocol(
           client: client,
           service: _s.ServiceMetadata(
             endpointPrefix: 'EnumOutput',
@@ -40,9 +38,7 @@ class EnumOutput {
           credentials: credentials,
           credentialsProvider: credentialsProvider,
           endpointUrl: endpointUrl,
-        ),
-        shapes = shapesJson
-            .map((key, value) => MapEntry(key, _s.Shape.fromJson(value)));
+        );
 
   /// Closes the internal HTTP client if none was provided at creation.
   /// If a client was passed as a constructor argument, this becomes a noop.
@@ -83,20 +79,6 @@ class OutputShape {
           .map((s) => s.toEC2EnumType())
           .toList()),
     );
-  }
-
-  Map<String, String> toQueryMap() {
-    final fooEnum = this.fooEnum;
-    final listEnums = this.listEnums;
-    return {
-      if (fooEnum != null) 'FooEnum': fooEnum.toValue(),
-      if (listEnums != null)
-        if (listEnums.isEmpty)
-          'ListEnums': ''
-        else
-          for (var i1 = 0; i1 < listEnums.length; i1++)
-            'ListEnums.member.${i1 + 1}': listEnums[i1].toValue(),
-    };
   }
 }
 

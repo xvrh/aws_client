@@ -336,7 +336,7 @@ ${builder.constructor()}
         writeln('}');
       }
 
-      if (shape.api.usesQueryProtocol) {
+      if (shape.isUsedInInput && shape.api.usesQueryProtocol) {
         writeln('\n\n  Map<String, String> toQueryMap() {');
         for (var member in shape.members) {
           writeln('final ${member.fieldName} = this.${member.fieldName};');
