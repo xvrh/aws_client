@@ -54,7 +54,7 @@ class Blob {
   }
 
   Future<OutputShape> operationName0() async {
-    final $request = <String, dynamic>{};
+    final $request = <String, String>{};
     final $result = await _protocol.send(
       $request,
       action: 'OperationName',
@@ -62,7 +62,6 @@ class Blob {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shapes: shapes,
       resultWrapper: 'OperationNameResult',
     );
     return OutputShape.fromXml($result);
@@ -79,6 +78,13 @@ class OutputShape {
     return OutputShape(
       blob: _s.extractXmlUint8ListValue(elem, 'Blob'),
     );
+  }
+
+  Map<String, String> toQueryMap() {
+    final blob = this.blob;
+    return {
+      if (blob != null) 'Blob': base64Encode(blob),
+    };
   }
 }
 

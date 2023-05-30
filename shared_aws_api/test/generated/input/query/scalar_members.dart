@@ -58,10 +58,11 @@ class ScalarMembers {
     bool? baz,
     String? foo,
   }) async {
-    final $request = <String, dynamic>{};
-    bar?.also((arg) => $request['Bar'] = arg);
-    baz?.also((arg) => $request['Baz'] = arg);
-    foo?.also((arg) => $request['Foo'] = arg);
+    final $request = <String, String>{
+      if (bar != null) 'Bar': bar,
+      if (baz != null) 'Baz': baz.toString(),
+      if (foo != null) 'Foo': foo,
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -69,8 +70,6 @@ class ScalarMembers {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 
@@ -79,10 +78,11 @@ class ScalarMembers {
     bool? baz,
     String? foo,
   }) async {
-    final $request = <String, dynamic>{};
-    bar?.also((arg) => $request['Bar'] = arg);
-    baz?.also((arg) => $request['Baz'] = arg);
-    foo?.also((arg) => $request['Foo'] = arg);
+    final $request = <String, String>{
+      if (bar != null) 'Bar': bar,
+      if (baz != null) 'Baz': baz.toString(),
+      if (foo != null) 'Foo': foo,
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -90,8 +90,6 @@ class ScalarMembers {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 
@@ -100,10 +98,11 @@ class ScalarMembers {
     bool? baz,
     String? foo,
   }) async {
-    final $request = <String, dynamic>{};
-    bar?.also((arg) => $request['Bar'] = arg);
-    baz?.also((arg) => $request['Baz'] = arg);
-    foo?.also((arg) => $request['Foo'] = arg);
+    final $request = <String, String>{
+      if (bar != null) 'Bar': bar,
+      if (baz != null) 'Baz': baz.toString(),
+      if (foo != null) 'Foo': foo,
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -111,8 +110,6 @@ class ScalarMembers {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 }

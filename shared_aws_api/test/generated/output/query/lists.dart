@@ -54,7 +54,7 @@ class Lists {
   }
 
   Future<OutputShape> operationName0() async {
-    final $request = <String, dynamic>{};
+    final $request = <String, String>{};
     final $result = await _protocol.send(
       $request,
       action: 'OperationName',
@@ -62,7 +62,6 @@ class Lists {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shapes: shapes,
       resultWrapper: 'OperationNameResult',
     );
     return OutputShape.fromXml($result);
@@ -81,6 +80,18 @@ class OutputShape {
           .extractXmlChild(elem, 'ListMember')
           ?.let((elem) => _s.extractXmlStringListValues(elem, 'member')),
     );
+  }
+
+  Map<String, String> toQueryMap() {
+    final listMember = this.listMember;
+    return {
+      if (listMember != null)
+        if (listMember.isEmpty)
+          'ListMember': ''
+        else
+          for (var i1 = 0; i1 < listMember.length; i1++)
+            'ListMember.member.${i1 + 1}': listMember[i1],
+    };
   }
 }
 

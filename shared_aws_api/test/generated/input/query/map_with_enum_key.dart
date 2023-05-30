@@ -57,10 +57,14 @@ class MapWithEnumKey {
     required String queueName,
     Map<QueueAttributeName, String>? attributes,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['QueueName'] = queueName;
-    attributes?.also((arg) =>
-        $request['Attributes'] = arg.map((k, v) => MapEntry(k.toValue(), v)));
+    final $request = <String, String>{
+      'QueueName': queueName,
+      if (attributes != null)
+        for (var e1 in attributes.entries.toList().asMap().entries) ...{
+          'Attributes.${e1.key + 1}.Name': e1.value.key.toValue(),
+          'Attributes.${e1.key + 1}.Value': e1.value.value,
+        },
+    };
     await _protocol.send(
       $request,
       action: 'CreateQueue',
@@ -68,8 +72,6 @@ class MapWithEnumKey {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['CreateQueueRequest'],
-      shapes: shapes,
     );
   }
 }

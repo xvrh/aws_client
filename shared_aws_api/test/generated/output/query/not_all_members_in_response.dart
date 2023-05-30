@@ -54,7 +54,7 @@ class NotAllMembersInResponse {
   }
 
   Future<OutputShape> operationName0() async {
-    final $request = <String, dynamic>{};
+    final $request = <String, String>{};
     final $result = await _protocol.send(
       $request,
       action: 'OperationName',
@@ -62,7 +62,6 @@ class NotAllMembersInResponse {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shapes: shapes,
       resultWrapper: 'OperationNameResult',
     );
     return OutputShape.fromXml($result);
@@ -82,6 +81,15 @@ class OutputShape {
       num: _s.extractXmlIntValue(elem, 'Num'),
       str: _s.extractXmlStringValue(elem, 'Str'),
     );
+  }
+
+  Map<String, String> toQueryMap() {
+    final num = this.num;
+    final str = this.str;
+    return {
+      if (num != null) 'Num': num.toString(),
+      if (str != null) 'Str': str,
+    };
   }
 }
 

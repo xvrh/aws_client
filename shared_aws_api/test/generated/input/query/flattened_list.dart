@@ -58,10 +58,21 @@ class FlattenedList {
     List<String>? namedListArg,
     String? scalarArg,
   }) async {
-    final $request = <String, dynamic>{};
-    listArg?.also((arg) => $request['ListArg'] = arg);
-    namedListArg?.also((arg) => $request['NamedListArg'] = arg);
-    scalarArg?.also((arg) => $request['ScalarArg'] = arg);
+    final $request = <String, String>{
+      if (listArg != null)
+        if (listArg.isEmpty)
+          'ListArg': ''
+        else
+          for (var i1 = 0; i1 < listArg.length; i1++)
+            'ListArg.${i1 + 1}': listArg[i1],
+      if (namedListArg != null)
+        if (namedListArg.isEmpty)
+          'NamedListArg': ''
+        else
+          for (var i1 = 0; i1 < namedListArg.length; i1++)
+            'Foo.${i1 + 1}': namedListArg[i1],
+      if (scalarArg != null) 'ScalarArg': scalarArg,
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -69,8 +80,6 @@ class FlattenedList {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 
@@ -79,10 +88,21 @@ class FlattenedList {
     List<String>? namedListArg,
     String? scalarArg,
   }) async {
-    final $request = <String, dynamic>{};
-    listArg?.also((arg) => $request['ListArg'] = arg);
-    namedListArg?.also((arg) => $request['NamedListArg'] = arg);
-    scalarArg?.also((arg) => $request['ScalarArg'] = arg);
+    final $request = <String, String>{
+      if (listArg != null)
+        if (listArg.isEmpty)
+          'ListArg': ''
+        else
+          for (var i1 = 0; i1 < listArg.length; i1++)
+            'ListArg.${i1 + 1}': listArg[i1],
+      if (namedListArg != null)
+        if (namedListArg.isEmpty)
+          'NamedListArg': ''
+        else
+          for (var i1 = 0; i1 < namedListArg.length; i1++)
+            'Foo.${i1 + 1}': namedListArg[i1],
+      if (scalarArg != null) 'ScalarArg': scalarArg,
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -90,8 +110,6 @@ class FlattenedList {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 }

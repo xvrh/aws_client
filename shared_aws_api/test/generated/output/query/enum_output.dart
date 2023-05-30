@@ -54,7 +54,7 @@ class EnumOutput {
   }
 
   Future<OutputShape> operationName0() async {
-    final $request = <String, dynamic>{};
+    final $request = <String, String>{};
     final $result = await _protocol.send(
       $request,
       action: 'OperationName',
@@ -62,7 +62,6 @@ class EnumOutput {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shapes: shapes,
     );
     return OutputShape.fromXml($result);
   }
@@ -84,6 +83,20 @@ class OutputShape {
           .map((s) => s.toEC2EnumType())
           .toList()),
     );
+  }
+
+  Map<String, String> toQueryMap() {
+    final fooEnum = this.fooEnum;
+    final listEnums = this.listEnums;
+    return {
+      if (fooEnum != null) 'FooEnum': fooEnum.toValue(),
+      if (listEnums != null)
+        if (listEnums.isEmpty)
+          'ListEnums': ''
+        else
+          for (var i1 = 0; i1 < listEnums.length; i1++)
+            'ListEnums.member.${i1 + 1}': listEnums[i1].toValue(),
+    };
   }
 }
 

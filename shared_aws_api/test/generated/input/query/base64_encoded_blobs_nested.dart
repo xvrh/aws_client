@@ -56,8 +56,14 @@ class Base64EncodedBlobsNested {
   Future<void> operationName0({
     List<Uint8List>? blobArgs,
   }) async {
-    final $request = <String, dynamic>{};
-    blobArgs?.also((arg) => $request['BlobArgs'] = arg);
+    final $request = <String, String>{
+      if (blobArgs != null)
+        if (blobArgs.isEmpty)
+          'BlobArgs': ''
+        else
+          for (var i1 = 0; i1 < blobArgs.length; i1++)
+            'BlobArgs.${i1 + 1}': base64Encode(blobArgs[i1]),
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -65,8 +71,6 @@ class Base64EncodedBlobsNested {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 }

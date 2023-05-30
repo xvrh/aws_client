@@ -54,7 +54,7 @@ class EmptyString {
   }
 
   Future<OutputShape> operationName0() async {
-    final $request = <String, dynamic>{};
+    final $request = <String, String>{};
     final $result = await _protocol.send(
       $request,
       action: 'OperationName',
@@ -62,7 +62,6 @@ class EmptyString {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shapes: shapes,
       resultWrapper: 'OperationNameResult',
     );
     return OutputShape.fromXml($result);
@@ -79,6 +78,13 @@ class OutputShape {
     return OutputShape(
       foo: _s.extractXmlStringValue(elem, 'Foo'),
     );
+  }
+
+  Map<String, String> toQueryMap() {
+    final foo = this.foo;
+    return {
+      if (foo != null) 'Foo': foo,
+    };
   }
 }
 

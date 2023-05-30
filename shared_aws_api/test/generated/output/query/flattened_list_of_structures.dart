@@ -54,7 +54,7 @@ class FlattenedListOfStructures {
   }
 
   Future<OutputShape> operationName0() async {
-    final $request = <String, dynamic>{};
+    final $request = <String, String>{};
     final $result = await _protocol.send(
       $request,
       action: 'OperationName',
@@ -62,7 +62,6 @@ class FlattenedListOfStructures {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shapes: shapes,
       resultWrapper: 'OperationNameResult',
     );
     return OutputShape.fromXml($result);
@@ -79,6 +78,19 @@ class OutputShape {
     return OutputShape(
       list: elem.findElements('List').map(StructureShape.fromXml).toList(),
     );
+  }
+
+  Map<String, String> toQueryMap() {
+    final list = this.list;
+    return {
+      if (list != null)
+        if (list.isEmpty)
+          'List': ''
+        else
+          for (var i1 = 0; i1 < list.length; i1++)
+            for (var e2 in list[i1].toQueryMap().entries)
+              'List.${i1 + 1}.${e2.key}': e2.value,
+    };
   }
 }
 
@@ -98,6 +110,17 @@ class StructureShape {
       baz: _s.extractXmlStringValue(elem, 'Baz'),
       foo: _s.extractXmlStringValue(elem, 'Foo'),
     );
+  }
+
+  Map<String, String> toQueryMap() {
+    final bar = this.bar;
+    final baz = this.baz;
+    final foo = this.foo;
+    return {
+      if (bar != null) 'Bar': bar,
+      if (baz != null) 'Baz': baz,
+      if (foo != null) 'Foo': foo,
+    };
   }
 }
 

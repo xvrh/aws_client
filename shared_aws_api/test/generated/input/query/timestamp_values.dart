@@ -58,12 +58,13 @@ class TimestampValues {
     DateTime? timeCustom,
     DateTime? timeFormat,
   }) async {
-    final $request = <String, dynamic>{};
-    timeArg?.also((arg) => $request['TimeArg'] = _s.iso8601ToJson(arg));
-    timeCustom?.also((arg) =>
-        $request['TimeCustom'] = _s.unixTimestampToJson(arg).toString());
-    timeFormat?.also((arg) =>
-        $request['TimeFormat'] = _s.unixTimestampToJson(arg).toString());
+    final $request = <String, String>{
+      if (timeArg != null) 'TimeArg': _s.iso8601ToJson(timeArg),
+      if (timeCustom != null)
+        'TimeCustom': _s.unixTimestampToJson(timeCustom).toString(),
+      if (timeFormat != null)
+        'TimeFormat': _s.unixTimestampToJson(timeFormat).toString(),
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -71,8 +72,6 @@ class TimestampValues {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 }

@@ -56,8 +56,9 @@ class EndpointHostTrait {
   Future<void> staticOp0({
     String? name,
   }) async {
-    final $request = <String, dynamic>{};
-    name?.also((arg) => $request['Name'] = arg);
+    final $request = <String, String>{
+      if (name != null) 'Name': name,
+    };
     await _protocol.send(
       $request,
       action: 'StaticOp',
@@ -65,16 +66,15 @@ class EndpointHostTrait {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['StaticInputShape'],
-      shapes: shapes,
     );
   }
 
   Future<void> memberRefOp1({
     String? name,
   }) async {
-    final $request = <String, dynamic>{};
-    name?.also((arg) => $request['Name'] = arg);
+    final $request = <String, String>{
+      if (name != null) 'Name': name,
+    };
     await _protocol.send(
       $request,
       action: 'MemberRefOp',
@@ -82,8 +82,6 @@ class EndpointHostTrait {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['MemberRefInputShape'],
-      shapes: shapes,
     );
   }
 }

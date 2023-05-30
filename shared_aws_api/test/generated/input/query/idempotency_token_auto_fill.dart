@@ -56,8 +56,9 @@ class IdempotencyTokenAutoFill {
   Future<void> operationName0({
     String? token,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Token'] = token ?? _s.generateIdempotencyToken();
+    final $request = <String, String>{
+      'Token': token ?? _s.generateIdempotencyToken(),
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -65,16 +66,15 @@ class IdempotencyTokenAutoFill {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 
   Future<void> operationName1({
     String? token,
   }) async {
-    final $request = <String, dynamic>{};
-    $request['Token'] = token ?? _s.generateIdempotencyToken();
+    final $request = <String, String>{
+      'Token': token ?? _s.generateIdempotencyToken(),
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -82,8 +82,6 @@ class IdempotencyTokenAutoFill {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 }

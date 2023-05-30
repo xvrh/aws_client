@@ -57,10 +57,15 @@ class Enum {
     EnumType? fooEnum,
     List<EnumType>? listEnums,
   }) async {
-    final $request = <String, dynamic>{};
-    fooEnum?.also((arg) => $request['FooEnum'] = arg.toValue());
-    listEnums?.also(
-        (arg) => $request['ListEnums'] = arg.map((e) => e.toValue()).toList());
+    final $request = <String, String>{
+      if (fooEnum != null) 'FooEnum': fooEnum.toValue(),
+      if (listEnums != null)
+        if (listEnums.isEmpty)
+          'ListEnums': ''
+        else
+          for (var i1 = 0; i1 < listEnums.length; i1++)
+            'ListEnums.member.${i1 + 1}': listEnums[i1].toValue(),
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -68,8 +73,6 @@ class Enum {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 
@@ -77,10 +80,15 @@ class Enum {
     EnumType? fooEnum,
     List<EnumType>? listEnums,
   }) async {
-    final $request = <String, dynamic>{};
-    fooEnum?.also((arg) => $request['FooEnum'] = arg.toValue());
-    listEnums?.also(
-        (arg) => $request['ListEnums'] = arg.map((e) => e.toValue()).toList());
+    final $request = <String, String>{
+      if (fooEnum != null) 'FooEnum': fooEnum.toValue(),
+      if (listEnums != null)
+        if (listEnums.isEmpty)
+          'ListEnums': ''
+        else
+          for (var i1 = 0; i1 < listEnums.length; i1++)
+            'ListEnums.member.${i1 + 1}': listEnums[i1].toValue(),
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -88,8 +96,6 @@ class Enum {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 
@@ -97,10 +103,15 @@ class Enum {
     EnumType? fooEnum,
     List<EnumType>? listEnums,
   }) async {
-    final $request = <String, dynamic>{};
-    fooEnum?.also((arg) => $request['FooEnum'] = arg.toValue());
-    listEnums?.also(
-        (arg) => $request['ListEnums'] = arg.map((e) => e.toValue()).toList());
+    final $request = <String, String>{
+      if (fooEnum != null) 'FooEnum': fooEnum.toValue(),
+      if (listEnums != null)
+        if (listEnums.isEmpty)
+          'ListEnums': ''
+        else
+          for (var i1 = 0; i1 < listEnums.length; i1++)
+            'ListEnums.member.${i1 + 1}': listEnums[i1].toValue(),
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -108,8 +119,6 @@ class Enum {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 }

@@ -56,8 +56,14 @@ class ListTypes {
   Future<void> operationName0({
     List<String>? listArg,
   }) async {
-    final $request = <String, dynamic>{};
-    listArg?.also((arg) => $request['ListArg'] = arg);
+    final $request = <String, String>{
+      if (listArg != null)
+        if (listArg.isEmpty)
+          'ListArg': ''
+        else
+          for (var i1 = 0; i1 < listArg.length; i1++)
+            'ListArg.member.${i1 + 1}': listArg[i1],
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -65,16 +71,20 @@ class ListTypes {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 
   Future<void> operationName1({
     List<String>? listArg,
   }) async {
-    final $request = <String, dynamic>{};
-    listArg?.also((arg) => $request['ListArg'] = arg);
+    final $request = <String, String>{
+      if (listArg != null)
+        if (listArg.isEmpty)
+          'ListArg': ''
+        else
+          for (var i1 = 0; i1 < listArg.length; i1++)
+            'ListArg.member.${i1 + 1}': listArg[i1],
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -82,8 +92,6 @@ class ListTypes {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 }

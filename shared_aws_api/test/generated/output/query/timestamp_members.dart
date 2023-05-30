@@ -54,7 +54,7 @@ class TimestampMembers {
   }
 
   Future<OutputShape> operationName0() async {
-    final $request = <String, dynamic>{};
+    final $request = <String, String>{};
     final $result = await _protocol.send(
       $request,
       action: 'OperationName',
@@ -62,7 +62,6 @@ class TimestampMembers {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shapes: shapes,
     );
     return OutputShape.fromXml($result);
   }
@@ -91,6 +90,22 @@ class OutputShape {
           parser: _s.timeStampFromJson),
     );
   }
+
+  Map<String, String> toQueryMap() {
+    final structMember = this.structMember;
+    final timeArg = this.timeArg;
+    final timeCustom = this.timeCustom;
+    final timeFormat = this.timeFormat;
+    return {
+      if (structMember != null)
+        for (var e1 in structMember.toQueryMap().entries)
+          'StructMember.${e1.key}': e1.value,
+      if (timeArg != null) 'TimeArg': _s.iso8601ToJson(timeArg),
+      if (timeCustom != null) 'TimeCustom': _s.rfc822ToJson(timeCustom),
+      if (timeFormat != null)
+        'TimeFormat': _s.unixTimestampToJson(timeFormat).toString(),
+    };
+  }
 }
 
 class TimeContainer {
@@ -107,6 +122,15 @@ class TimeContainer {
           _s.extractXmlDateTimeValue(elem, 'bar', parser: _s.timeStampFromJson),
       foo: _s.extractXmlDateTimeValue(elem, 'foo'),
     );
+  }
+
+  Map<String, String> toQueryMap() {
+    final bar = this.bar;
+    final foo = this.foo;
+    return {
+      if (bar != null) 'bar': _s.unixTimestampToJson(bar).toString(),
+      if (foo != null) 'foo': _s.iso8601ToJson(foo),
+    };
   }
 }
 

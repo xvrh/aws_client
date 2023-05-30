@@ -56,8 +56,9 @@ class Base64EncodedBlobs {
   Future<void> operationName0({
     Uint8List? blobArg,
   }) async {
-    final $request = <String, dynamic>{};
-    blobArg?.also((arg) => $request['BlobArg'] = arg);
+    final $request = <String, String>{
+      if (blobArg != null) 'BlobArg': base64Encode(blobArg),
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -65,8 +66,6 @@ class Base64EncodedBlobs {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 }

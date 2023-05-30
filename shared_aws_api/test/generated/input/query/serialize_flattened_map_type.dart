@@ -56,8 +56,13 @@ class SerializeFlattenedMapType {
   Future<void> operationName0({
     Map<String, String>? mapArg,
   }) async {
-    final $request = <String, dynamic>{};
-    mapArg?.also((arg) => $request['MapArg'] = arg);
+    final $request = <String, String>{
+      if (mapArg != null)
+        for (var e1 in mapArg.entries.toList().asMap().entries) ...{
+          'MapArg.${e1.key + 1}.key': e1.value.key,
+          'MapArg.${e1.key + 1}.value': e1.value.value,
+        },
+    };
     await _protocol.send(
       $request,
       action: 'OperationName',
@@ -65,8 +70,6 @@ class SerializeFlattenedMapType {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shape: shapes['InputShape'],
-      shapes: shapes,
     );
   }
 }

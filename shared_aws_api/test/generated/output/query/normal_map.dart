@@ -54,7 +54,7 @@ class NormalMap {
   }
 
   Future<OutputShape> operationName0() async {
-    final $request = <String, dynamic>{};
+    final $request = <String, String>{};
     final $result = await _protocol.send(
       $request,
       action: 'OperationName',
@@ -62,7 +62,6 @@ class NormalMap {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shapes: shapes,
       resultWrapper: 'OperationNameResult',
     );
     return OutputShape.fromXml($result);
@@ -88,6 +87,18 @@ class OutputShape {
       ),
     );
   }
+
+  Map<String, String> toQueryMap() {
+    final map = this.map;
+    return {
+      if (map != null)
+        for (var e1 in map.entries.toList().asMap().entries) ...{
+          'Map.entry.${e1.key + 1}.key': e1.value.key,
+          for (var e4 in e1.value.value.toQueryMap().entries)
+            'Map.entry.${e1.key + 1}.value.${e4.key}': e4.value,
+        },
+    };
+  }
 }
 
 class StructType {
@@ -100,6 +111,13 @@ class StructType {
     return StructType(
       foo: _s.extractXmlStringValue(elem, 'foo'),
     );
+  }
+
+  Map<String, String> toQueryMap() {
+    final foo = this.foo;
+    return {
+      if (foo != null) 'foo': foo,
+    };
   }
 }
 

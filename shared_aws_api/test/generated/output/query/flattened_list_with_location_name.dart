@@ -54,7 +54,7 @@ class FlattenedListWithLocationName {
   }
 
   Future<OutputShape> operationName0() async {
-    final $request = <String, dynamic>{};
+    final $request = <String, String>{};
     final $result = await _protocol.send(
       $request,
       action: 'OperationName',
@@ -62,7 +62,6 @@ class FlattenedListWithLocationName {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shapes: shapes,
       resultWrapper: 'OperationNameResult',
     );
     return OutputShape.fromXml($result);
@@ -79,6 +78,18 @@ class OutputShape {
     return OutputShape(
       list: _s.extractXmlStringListValues(elem, 'NamedList'),
     );
+  }
+
+  Map<String, String> toQueryMap() {
+    final list = this.list;
+    return {
+      if (list != null)
+        if (list.isEmpty)
+          'NamedList': ''
+        else
+          for (var i1 = 0; i1 < list.length; i1++)
+            'NamedList.${i1 + 1}': list[i1],
+    };
   }
 }
 

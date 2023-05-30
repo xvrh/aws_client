@@ -54,7 +54,7 @@ class FlattenedList {
   }
 
   Future<OutputShape> operationName0() async {
-    final $request = <String, dynamic>{};
+    final $request = <String, String>{};
     final $result = await _protocol.send(
       $request,
       action: 'OperationName',
@@ -62,7 +62,6 @@ class FlattenedList {
       method: 'POST',
       requestUri: '/',
       exceptionFnMap: _exceptionFns,
-      shapes: shapes,
       resultWrapper: 'OperationNameResult',
     );
     return OutputShape.fromXml($result);
@@ -79,6 +78,18 @@ class OutputShape {
     return OutputShape(
       listMember: _s.extractXmlStringListValues(elem, 'ListMember'),
     );
+  }
+
+  Map<String, String> toQueryMap() {
+    final listMember = this.listMember;
+    return {
+      if (listMember != null)
+        if (listMember.isEmpty)
+          'ListMember': ''
+        else
+          for (var i1 = 0; i1 < listMember.length; i1++)
+            'ListMember.${i1 + 1}': listMember[i1],
+    };
   }
 }
 
